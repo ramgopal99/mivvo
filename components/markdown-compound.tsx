@@ -1,17 +1,71 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import Markdown from "react-markdown"
 import remarkGfm from "remark-gfm"
-import rehypeHighlight from "rehype-highlight"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { cn } from "@/lib/utils"
 import type { Components } from "react-markdown"
 import type { Pluggable } from "unified"
 
-// Import syntax highlighting CSS
-import "highlight.js/styles/github-dark.css"
+// Copy button component
+function CopyButton({ text, language }: { text: string; language?: string }) {
+  const [copied, setCopied] = useState(false)
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy text: ', err)
+    }
+  }
+
+  return (
+    <div className="absolute top-3 right-3 flex items-center gap-2">
+      {language && (
+        <span className="px-2 py-1 text-xs font-medium bg-gray-800/60 text-gray-300 rounded border border-gray-600/30">
+          {language.toUpperCase()}
+        </span>
+      )}
+      <button
+        onClick={copyToClipboard}
+        className="flex items-center gap-1.5 px-2 py-1.5 text-xs font-medium bg-gray-800/80 hover:bg-gray-700/80 text-gray-300 hover:text-white rounded border border-gray-600/50 hover:border-gray-500/50 transition-all duration-200 backdrop-blur-sm"
+        title="Copy code"
+      >
+        <svg
+          className="w-3.5 h-3.5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          {copied ? (
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 13l4 4L19 7"
+            />
+          ) : (
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+            />
+          )}
+        </svg>
+        <span className="hidden sm:inline">
+          {copied ? 'Copied!' : 'Copy'}
+        </span>
+      </button>
+    </div>
+  )
+}
 
 interface MarkdownCompoundProps {
   children: string
@@ -46,20 +100,28 @@ const defaultComponents: Components = {
     </pre>
   ),
   // Enhanced code block with syntax highlighting
-  code: ({ className, children, ...props }) => {
-    const match = /language-(\w+)/.exec(className || "")
-    const isInline = !match
-    return !isInline ? (
-      <code className={cn(className, "block text-gray-100 font-mono text-sm leading-relaxed")} {...props}>
-        {children}
-      </code>
+  code: ({ children, className, ...rest }) => {
+    const match = /language-(\w+)/.exec(className || '')
+    const codeContent = String(children).replace(/\n$/, '')
+
+    return match ? (
+      <div className="relative">
+        <CopyButton text={codeContent} language={match[1]} />
+        <SyntaxHighlighter
+          PreTag="div"
+          language={match[1]}
+          style={oneDark}
+        >
+          {codeContent}
+        </SyntaxHighlighter>
+      </div>
     ) : (
       <code
         className={cn(
           className,
           "bg-gray-900 px-2 py-1 rounded font-mono text-white text-sm"
         )}
-        {...props}
+        {...rest}
       >
         {children}
       </code>
@@ -276,8 +338,7 @@ export function MarkdownCompound({
   // Build default rehype plugins conditionally based on HTML allowance
   const defaultRehypePlugins: Pluggable[] = []
 
-  // Always include syntax highlighting
-  defaultRehypePlugins.push(rehypeHighlight)
+
 
   // Add HTML processing plugins when HTML is allowed
   if (allowHtml) {
