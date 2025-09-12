@@ -2,6 +2,9 @@ import { getSessionUserData } from "@/app/lib/session"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 export default async function ProfilePage() {
   const user = await getSessionUserData()
 

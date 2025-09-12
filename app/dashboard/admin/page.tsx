@@ -5,6 +5,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 // import { UserManagement } from "./user-management"
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 export default async function AdminPage() {
   // This will redirect if not SUPERADMIN
   await requireRole(UserRole.SUPERADMIN)

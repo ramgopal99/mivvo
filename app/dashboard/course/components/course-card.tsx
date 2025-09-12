@@ -14,6 +14,9 @@ interface CourseCardProps {
 }
 
 export function CourseCard({ course, onViewDetails, onEnroll }: CourseCardProps) {
+  // Suppress unused parameter warnings for optional callbacks
+  void onViewDetails
+  void onEnroll
   const getLevelColor = (level: string) => {
     switch (level) {
       case 'Beginner':

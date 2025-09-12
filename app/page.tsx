@@ -2,6 +2,9 @@ import { getCurrentUser } from "@/app/lib/session"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
   const user = await getCurrentUser()
 

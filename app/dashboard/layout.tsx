@@ -7,6 +7,9 @@ import { RightSidebar } from "@/components/right-sidebar"
 import { DashboardHeader } from "@/components/DashboardHeader"
 import { usePathname } from "next/navigation"
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 export default function DashboardLayout({
   children,
 }: {
