@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 
 interface EmojiReactionProps {
   emoji: string
@@ -27,11 +26,16 @@ export function EmojiReaction({ emoji, onReaction }: EmojiReactionProps) {
       const floatingEmoji = document.createElement('div')
       floatingEmoji.textContent = emoji
       floatingEmoji.className = 'fixed text-4xl pointer-events-none z-50 animate-float-up'
-      floatingEmoji.style.left = `${Math.random() * (window.innerWidth - 100) + 50}px`
-      floatingEmoji.style.bottom = '120px'
+      
+      // Position randomly at the bottom of the screen
+      const randomX = Math.random() * (window.innerWidth - 100) + 50 // Random X position with 50px margin
+      floatingEmoji.style.left = `${randomX}px`
+      floatingEmoji.style.bottom = '120px' // Fixed distance from bottom
+      floatingEmoji.style.transform = 'translateX(-50%)' // Center horizontally
+      
       document.body.appendChild(floatingEmoji)
 
-      // Remove after animation
+      // Remove after animation completes
       setTimeout(() => {
         if (floatingEmoji.parentNode) {
           document.body.removeChild(floatingEmoji)
@@ -46,20 +50,15 @@ export function EmojiReaction({ emoji, onReaction }: EmojiReactionProps) {
   }
 
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={handleClick}
-          onMouseDown={(e) => e.preventDefault()}
-          disabled={isAnimating}
-          className={`transition-all duration-200 cursor-pointer select-none ${isAnimating ? 'scale-125 opacity-75' : 'hover:scale-110'}`}
-        >
-          <span className="text-lg">{emoji}</span>
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent>React with {emoji}</TooltipContent>
-    </Tooltip>
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={handleClick}
+      onMouseDown={(e) => e.preventDefault()}
+      disabled={isAnimating}
+      className={`transition-all duration-200 cursor-pointer select-none ${isAnimating ? 'scale-125 opacity-75' : 'hover:scale-110'}`}
+    >
+      <span className="text-lg">{emoji}</span>
+    </Button>
   )
 } 

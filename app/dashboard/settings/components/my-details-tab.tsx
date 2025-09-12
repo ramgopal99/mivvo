@@ -50,7 +50,7 @@ export function MyDetailsTab() {
       } else {
         setMessage(result.error || "Failed to update profile")
       }
-    } catch (error) {
+    } catch {
       setMessage("An error occurred while updating profile")
     } finally {
       setSaving(false)

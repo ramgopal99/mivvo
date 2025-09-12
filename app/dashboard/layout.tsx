@@ -1,13 +1,10 @@
 "use client"
 
-import { redirect } from "next/navigation"
 import { useEffect } from "react"
 import { useSession } from "next-auth/react"
-import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/Sidebar"
-import { Separator } from "@/components/ui/separator"
-import { DynamicPageTitle } from "@/components/DynamicPageTitle"
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
+import { RightSidebar } from "@/components/right-sidebar"
+import { DashboardHeader } from "@/components/DashboardHeader"
 import { usePathname } from "next/navigation"
 
 export default function DashboardLayout({
@@ -19,91 +16,63 @@ export default function DashboardLayout({
   const { data: session, status } = useSession()
 
   useEffect(() => {
-    // Client-side authentication check
+    // Client-side authentication check - allow guest access
     if (status === "loading") {
       // Still loading, don't redirect yet
       return
     }
 
-    if (status === "unauthenticated" || !session) {
-      redirect("/")
-    }
+    // Removed authentication check to allow guest access
+    // Guest users can now access the dashboard
   }, [session, status])
 
   // Show loading state while checking authentication
   if (status === "loading") {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-orange-50">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500 mx-auto mb-4"></div>
           <p className="text-muted-foreground">Loading...</p>
         </div>
       </div>
     )
   }
 
-  // Generate breadcrumbs from pathname
-  const generateBreadcrumbs = (path: string) => {
-    const segments = path.split('/').filter(Boolean)
-    const breadcrumbs = []
-
-    for (let i = 0; i < segments.length; i++) {
-      const segment = segments[i]
-      const href = '/' + segments.slice(0, i + 1).join('/')
-      const label = segment.charAt(0).toUpperCase() + segment.slice(1).replace('-', ' ')
-
-      breadcrumbs.push({
-        label,
-        href,
-        isLast: i === segments.length - 1
-      })
-    }
-
-    return breadcrumbs
-  }
-
-  const breadcrumbs = generateBreadcrumbs(pathname)
-
   // Check if we're on a specific course detail page to conditionally hide sidebar
   const isCourseDetailPage = pathname.match(/\/course\/[^\/]+$/)
+  const isMockInterviewPage = pathname.match(/\/mockinterview\/[^\/]+$/)
 
   return (
-    <SidebarProvider>
-      {!isCourseDetailPage && <AppSidebar />}
-      <SidebarInset>
-        {!isCourseDetailPage && (
-          <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-            <div className="flex items-center gap-2 px-4">
-              <SidebarTrigger className="-ml-1" />
-              <Separator orientation="vertical" className="mr-2 h-4" />
-              <Breadcrumb>
-                <BreadcrumbList>
-                  {breadcrumbs.map((crumb, index) => (
-                    <div key={crumb.href} className="flex items-center">
-                      {index > 0 && <BreadcrumbSeparator className="hidden md:block" />}
-                      <BreadcrumbItem>
-                        {crumb.isLast ? (
-                          <BreadcrumbPage>{crumb.label}</BreadcrumbPage>
-                        ) : (
-                          <BreadcrumbLink href={crumb.href}>
-                            {crumb.label}
-                          </BreadcrumbLink>
-                        )}
-                      </BreadcrumbItem>
-                    </div>
-                  ))}
-                </BreadcrumbList>
-              </Breadcrumb>
-            </div>
-            <div className="ml-auto px-4">
-              <DynamicPageTitle />
-            </div>
-          </header>
+    <div className="min-h-screen bg-orange-50">
+      {/* Header Component */}
+      <DashboardHeader 
+        isCourseDetailPage={!!isCourseDetailPage} 
+        isMockInterviewPage={!!isMockInterviewPage} 
+      />
+
+      <div className="flex h-screen overflow-hidden">
+        {/* Left Sidebar */}
+        {!isCourseDetailPage && !isMockInterviewPage && (
+          <div className="w-64 bg-white border-r border-gray-200 flex flex-col fixed left-0 top-0 h-full z-10">
+            <AppSidebar />
+          </div>
         )}
-        <div className={`flex flex-1 flex-col gap-4 ${isCourseDetailPage ? '' : 'p-4 pt-0'}`}>
-          {children}
+        
+        {/* Main Content Area */}
+        <div className={`flex flex-col flex-1 bg-white ${!isCourseDetailPage && !isMockInterviewPage ? 'ml-64 mr-72 pt-14' : 'w-full'}`}>
+          {/* Main Content - Scrollable */}
+          <div className={`flex-1 overflow-y-auto ${isCourseDetailPage || isMockInterviewPage ? 'pt-0' : 'p-4'}`}>
+            {children}
+          </div>
         </div>
-      </SidebarInset>
-    </SidebarProvider>
+        
+        {/* Right Sidebar */}
+        {!isCourseDetailPage && !isMockInterviewPage && (
+          <div className="w-72 bg-orange-50/50 border-l border-gray-200 flex flex-col fixed right-0 top-0 h-full z-10">
+            <RightSidebar />
+          </div>
+        )}
+      </div>
+    </div>
   )
 }

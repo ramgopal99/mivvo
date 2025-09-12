@@ -2,8 +2,8 @@ import {
   Home,
   Settings,
   Shield,
-  Video,
-  Book} from "lucide-react"
+  Book,
+  MessageSquare} from "lucide-react"
 
 export interface NavigationItem {
   title: string
@@ -21,7 +21,7 @@ export interface NavigationGroup {
 export const navigationData = {
   main: [
     {
-      title: "Dashboard",
+      title: "Home",
       url: "/dashboard",
       icon: Home,
       description: "View your overview and statistics"
@@ -35,7 +35,7 @@ export const navigationData = {
     {
       title: "Mock Interviews",
       url: "/dashboard/mockinterview",
-      icon: Video,
+      icon: MessageSquare,
       description: "View your mock interviews"
     },
     {
@@ -43,8 +43,7 @@ export const navigationData = {
       url: "/dashboard/settings",
       icon: Settings,
       description: "Configure your preferences"
-    },
- 
+    }
   ] as NavigationItem[],
 
   admin: [

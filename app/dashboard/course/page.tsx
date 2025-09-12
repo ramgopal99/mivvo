@@ -4,7 +4,7 @@ import { CourseGrid } from './components/course-grid';
 import { CourseCategories } from './components/course-categories';
 import { dummyCourses } from './dummy-data';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { BookOpen, Grid3X3, Tag } from 'lucide-react';
+import { Grid3X3, Tag } from 'lucide-react';
 
 export default function CoursePage() {
   return (

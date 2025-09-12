@@ -1,0 +1,268 @@
+"use client";
+
+import React, { useState, useEffect } from 'react';
+import {
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton
+} from '@/components/ui/sidebar';
+import { ChevronDown, ChevronRight } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox';
+import { modules } from '../data/lessonsData';
+
+interface LeftSidebarProps {
+  onSubtopicClick?: (moduleId: number, subtopicId: number, title: string, moduleTitle: string) => void;
+  onCheckedItemsChange?: (count: number) => void;
+  selectedTopic?: { moduleId: number; subtopicId: number; title: string; moduleTitle: string } | null;
+}
+
+const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedItemsChange, selectedTopic }) => {
+  const [expandedModules, setExpandedModules] = useState<number[]>([1]);
+  // const [activeModule, setActiveModule] = useState<number>(1);
+  // const [activeLesson, setActiveLesson] = useState<number | null>(null);
+  const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
+  const [selectedModule, setSelectedModule] = useState<number | null>(null);
+  const [selectedSubtopic, setSelectedSubtopic] = useState<{moduleId: number, subtopicId: number} | null>(null);
+  const [selectedExercise, setSelectedExercise] = useState<{moduleId: number, exerciseId: number} | null>(null);
+
+  // Update sidebar highlighting when selectedTopic changes (from navigation buttons)
+  useEffect(() => {
+    if (selectedTopic) {
+      setSelectedModule(selectedTopic.moduleId);
+
+      // Check if it's a subtopic or exercise
+      const currentModule = modules.find(m => m.id === selectedTopic.moduleId);
+      const isSubtopic = currentModule?.subLessons?.some(sl => sl.id === selectedTopic.subtopicId);
+      const isExercise = currentModule?.exercises?.some(ex => ex.id === selectedTopic.subtopicId);
+
+      if (isSubtopic) {
+        setSelectedSubtopic({ moduleId: selectedTopic.moduleId, subtopicId: selectedTopic.subtopicId });
+        setSelectedExercise(null);
+      } else if (isExercise) {
+        setSelectedExercise({ moduleId: selectedTopic.moduleId, exerciseId: selectedTopic.subtopicId });
+        setSelectedSubtopic(null);
+      }
+    }
+  }, [selectedTopic]);
+
+  const toggleModule = (moduleId: number) => {
+    setExpandedModules(prev =>
+      prev.includes(moduleId)
+        ? prev.filter(id => id !== moduleId)
+        : [...prev, moduleId]
+    );
+    // setActiveModule(moduleId);
+  };
+
+  const handleLessonClick = (moduleId: number, lessonId: number) => {
+    const currentModule = modules.find(m => m.id === moduleId);
+    const subLesson = currentModule?.subLessons.find(sl => sl.id === lessonId);
+
+    // Set the selected module and subtopic for highlighting
+    setSelectedModule(moduleId);
+    setSelectedSubtopic({ moduleId, subtopicId: lessonId });
+    setSelectedExercise(null); // Clear exercise selection
+
+    if (currentModule && subLesson && onSubtopicClick) {
+      onSubtopicClick(moduleId, lessonId, subLesson.title, currentModule.title);
+    }
+
+    console.log(`Clicked lesson: Module ${moduleId}, Lesson ${lessonId}`);
+  };
+
+  const handleExerciseClick = (exerciseId: number, moduleId: number) => {
+    const currentModule = modules.find(m => m.id === moduleId);
+    const exercise = currentModule?.exercises?.find(ex => ex.id === exerciseId);
+
+    // Set the selected module and exercise for highlighting
+    setSelectedModule(moduleId);
+    setSelectedExercise({ moduleId, exerciseId });
+    setSelectedSubtopic(null); // Clear subtopic selection
+
+    if (currentModule && exercise && onSubtopicClick) {
+      // Pass exercise info to middle section
+      onSubtopicClick(moduleId, exerciseId, exercise.title, currentModule.title);
+    }
+
+    console.log(`Clicked exercise: ${exerciseId} in module ${moduleId}`);
+  };
+
+  const toggleItem = (itemKey: string) => {
+    setCheckedItems(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(itemKey)) {
+        newSet.delete(itemKey);
+      } else {
+        newSet.add(itemKey);
+      }
+      return newSet;
+    });
+  };
+
+  // Notify parent when checked items count changes
+  useEffect(() => {
+    if (onCheckedItemsChange) {
+      onCheckedItemsChange(checkedItems.size);
+    }
+  }, [checkedItems.size, onCheckedItemsChange]);
+
+
+  const getStatusIndicator = (status: string, title: string, itemKey: string) => {
+    const isChecked = checkedItems.has(itemKey);
+
+    switch (status) {
+      case 'completed':
+        return (
+          <Checkbox
+            checked={isChecked}
+            onCheckedChange={() => toggleItem(itemKey)}
+            className="w-4 h-4 data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500"
+            aria-label={`${title} - Completed`}
+          />
+        );
+      case 'locked':
+        return (
+          <Checkbox
+            checked={false}
+            disabled
+            className="w-4 h-4"
+            aria-label={`${title} - Locked`}
+          />
+        );
+      case 'demo':
+        return (
+          <Checkbox
+            checked={isChecked}
+            onCheckedChange={() => toggleItem(itemKey)}
+            className="w-4 h-4 data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500"
+            aria-label={`${title} - Demo available`}
+          />
+        );
+      default:
+        return (
+          <Checkbox
+            checked={isChecked}
+            onCheckedChange={() => toggleItem(itemKey)}
+            className="w-4 h-4"
+            aria-label={`${title} - Available`}
+          />
+        );
+    }
+  };
+
+  return (
+    <>
+      <SidebarContent className="overflow-x-hidden">
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {modules.map((module) => (
+                <SidebarMenuItem key={module.id}>
+                  <SidebarMenuButton
+                    onClick={() => toggleModule(module.id)}
+                    isActive={module.isActive}
+                    className="w-full justify-between min-w-0 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-3 min-w-0 flex-1">
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 ${
+                        selectedModule === module.id
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-muted text-muted-foreground'
+                      }`}>
+                        {module.id}
+                      </div>
+                      <span className="truncate text-sm max-w-[140px] font-medium">{module.title}</span>
+                    </div>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      {expandedModules.includes(module.id) ? (
+                        <ChevronDown className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
+                      ) : (
+                        <ChevronRight className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
+                      )}
+                    </div>
+                  </SidebarMenuButton>
+
+                  {/* Sub-lessons */}
+                  {expandedModules.includes(module.id) && (
+                    <SidebarMenuSub>
+                      {module.subLessons.map((subLesson) => (
+                        <SidebarMenuSubItem key={subLesson.id}>
+                          <div className={`flex items-center gap-3 w-full p-1 rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${
+                            selectedSubtopic?.moduleId === module.id && selectedSubtopic?.subtopicId === subLesson.id
+                              ? 'bg-blue-100 dark:bg-blue-900/20'
+                              : ''
+                          }`}>
+                            <SidebarMenuSubButton
+                              onClick={() => handleLessonClick(module.id, subLesson.id)}
+                              className="flex items-center gap-3 min-w-0 flex-1 p-0 bg-transparent hover:bg-transparent cursor-pointer"
+                            >
+                              <div className="w-4 h-4 rounded-full bg-muted text-muted-foreground flex items-center justify-center text-xs font-medium flex-shrink-0">
+                                {subLesson.id}
+                              </div>
+                              <span className="truncate text-xs max-w-[120px] text-muted-foreground">{subLesson.title}</span>
+                            </SidebarMenuSubButton>
+                            <div className="flex-shrink-0">
+                              {getStatusIndicator(subLesson.status, subLesson.title, `module-${module.id}-lesson-${subLesson.id}`)}
+                            </div>
+                          </div>
+                        </SidebarMenuSubItem>
+                      ))}
+                    </SidebarMenuSub>
+                  )}
+
+                  {/* Exercises Separator */}
+                  {expandedModules.includes(module.id) && module.exercises && module.exercises.length > 0 && (
+                    <div className="px-2 py-1">
+                      <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+                        <div className="h-px bg-border flex-1"></div>
+                        <span className="px-2 py-1 bg-muted rounded text-xs font-semibold">Exercises</span>
+                        <div className="h-px bg-border flex-1"></div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Module Exercises */}
+                  {expandedModules.includes(module.id) && module.exercises && module.exercises.length > 0 && (
+                    <SidebarMenuSub>
+                      {module.exercises.map((exercise) => (
+                        <SidebarMenuSubItem key={exercise.id}>
+                          <div className={`flex items-center gap-3 w-full p-1 rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${
+                            selectedExercise?.moduleId === module.id && selectedExercise?.exerciseId === exercise.id
+                              ? 'bg-green-100 dark:bg-green-900/20'
+                              : ''
+                          }`}>
+                            <SidebarMenuSubButton
+                              onClick={() => handleExerciseClick(exercise.id, module.id)}
+                              className="flex items-center gap-3 min-w-0 flex-1 p-0 bg-transparent hover:bg-transparent cursor-pointer"
+                            >
+                              <div className="w-4 h-4 rounded-full bg-muted text-muted-foreground flex items-center justify-center text-xs font-medium flex-shrink-0">
+                                {exercise.id}
+                              </div>
+                              <span className="truncate text-xs max-w-[120px] text-muted-foreground">{exercise.title}</span>
+                            </SidebarMenuSubButton>
+                            <div className="flex-shrink-0">
+                              {getStatusIndicator(exercise.status, exercise.title, `module-${module.id}-exercise-${exercise.id}`)}
+                            </div>
+                          </div>
+                        </SidebarMenuSubItem>
+                      ))}
+                    </SidebarMenuSub>
+                  )}
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+      </SidebarContent>
+    </>
+  );
+};
+
+export default LeftSidebar;

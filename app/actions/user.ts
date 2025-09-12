@@ -1,7 +1,7 @@
 "use server"
 
 import { prisma } from "../../lib/prisma"
-import { getSessionUserData, requireRole } from "../lib/session"
+import { requireRole } from "../lib/session"
 import { UserRole } from "@prisma/client"
 import { revalidatePath } from "next/cache"
 
@@ -23,7 +23,7 @@ export async function updateUserRole(userId: string, role: UserRole) {
 
     revalidatePath("/dashboard/admin")
     return { success: true, user: updatedUser }
-  } catch (error) {
+  } catch {
     return { success: false, error: "Failed to update user role" }
   }
 }
@@ -48,7 +48,7 @@ export async function getAllUsers() {
     })
 
     return { success: true, users }
-  } catch (error) {
+  } catch {
     return { success: false, error: "Failed to fetch users" }
   }
 }

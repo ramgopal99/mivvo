@@ -95,7 +95,7 @@ export function MeetRoom({ voiceChatComponent: VoiceChatComponent }: MeetRoomPro
   const [isVoiceChatActive, setIsVoiceChatActive] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
   const [isAISpeaking, setIsAISpeaking] = useState(false)
-  const [audioLevel, setAudioLevel] = useState(0)
+  const [, setAudioLevel] = useState(0)
   const [endVoiceChatCallback, setEndVoiceChatCallback] = useState<(() => void) | null>(null)
   const [sendUserEvent, setSendUserEvent] = useState<((event: { 
     type: 'emoji_reaction'
@@ -104,7 +104,7 @@ export function MeetRoom({ voiceChatComponent: VoiceChatComponent }: MeetRoomPro
     userName?: string
     userEmail?: string
   }) => void) | undefined>(undefined)
-  const [onSendUserEventReadyCalled, setOnSendUserEventReadyCalled] = useState(false)
+  const [, setOnSendUserEventReadyCalled] = useState(false)
   const sendUserEventReadyRef = useRef(false)
 
   // Debug effect to track sendUserEvent changes

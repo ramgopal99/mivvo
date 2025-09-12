@@ -4,7 +4,6 @@ import { useState } from "react"
 import { updateUserRole } from "@/app/actions/user"
 import { UserRole } from "@prisma/client"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
 import { toast } from "sonner"
@@ -35,7 +34,7 @@ export function UserManagement({ users }: UserManagementProps) {
       } else {
         toast.error(result.error || "Failed to update role")
       }
-    } catch (error) {
+    } catch {
       toast.error("An error occurred while updating the role")
     } finally {
       setUpdating(null)

@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect, use } from "react"
-import { PageLoading } from "@/components/ui/loading"
+import { LoadingCompound } from "@/components/loading-compound"
 import { MeetRoom } from "@/components/meet/core/meet-room"
-import { MeetRoomProvider } from "@/components/provider/meet-room-provider"
+import { MeetRoomProvider } from "@/components/providers/meet-room-provider"
 // Removed SessionProviderWrapper import
 import type { MockInterview } from "../types"
 import { MockInterviewVoiceChatCompound } from "./components/mock-interview-voice-chat-compound"
@@ -57,7 +57,7 @@ export default function MockInterviewSessionPage({ params }: { params: Promise<{
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex flex-col items-center justify-center gap-4">
-        <PageLoading />
+        <LoadingCompound text="Preparing Interview Session" variant="spinner" size="lg" />
         <p className="text-muted-foreground">Preparing Interview Session...</p>
       </div>
     )

@@ -2,10 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NextAuthProvider } from "@/components/providers/session-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import { FontSizeProvider } from "@/components/providers/FontSizeProvider";
-import { ColorSchemeProvider } from "@/components/providers/ColorSchemeProvider";
-import { AuthStatus } from "@/components/auth/auth-status";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
@@ -20,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mivvo - Authentication Demo",
-  description: "Next.js app with NextAuth, Prisma, and Google OAuth",
+  title: "Mivvo - Technical Interview Platform",
+  description: "Master technical interviews with mock practice, courses, and real-time collaboration",
 };
 
 export default function RootLayout({
@@ -40,15 +36,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <FontSizeProvider>
-            <ColorSchemeProvider>
-              <NextAuthProvider>
-                <div className="min-h-screen bg-background">
-                  {children}
-                </div>
-              </NextAuthProvider>
-            </ColorSchemeProvider>
-          </FontSizeProvider>
+          <NextAuthProvider>
+            <div className="min-h-screen bg-background">
+              {children}
+            </div>
+          </NextAuthProvider>
         </ThemeProvider>
         <Toaster />
       </body>

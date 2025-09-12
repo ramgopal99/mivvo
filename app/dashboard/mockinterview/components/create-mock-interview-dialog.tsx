@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -21,7 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Brain, Plus, Loader2, Sparkles, Wand2, Building, Briefcase } from "lucide-react"
+import { Brain, Plus, Loader2, Sparkles, Wand2, Building } from "lucide-react"
 import {
   createMockInterview,
   generateInterviewContent,
@@ -30,16 +30,6 @@ import {
   optimizeSpecialties,
   generateName
 } from "../actions"
-import {
-  CreateMockInterviewData,
-  GenerateInterviewContentResponse,
-  OptimizeDescriptionData,
-  OptimizeSpecialtiesData,
-  GenerateNameData,
-  OptimizeDescriptionResponse,
-  OptimizeSpecialtiesResponse,
-  GenerateNameResponse
-} from "../types"
 import { toast } from "sonner"
 
 interface CreateMockInterviewDialogProps {

@@ -5,7 +5,7 @@ import { Course } from '../types';
 import { CourseCard } from './course-card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Grid3X3, List, Eye } from 'lucide-react';
+import { Grid3X3, Eye } from 'lucide-react';
 
 interface CourseGridProps {
   courses: Course[];

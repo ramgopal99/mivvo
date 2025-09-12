@@ -3,13 +3,13 @@
 import { useState, useCallback, memo, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { Separator } from "@/components/ui/separator"
 import {
   PhoneOff,
   MessageCircle,
   MoreVertical,
   Smile,
+  X,
 } from "lucide-react"
 import {
   DropdownMenu,
@@ -46,10 +46,12 @@ interface InterviewControlsProps {
 // Memoized Emoji Reactions Bar
 const EmojiReactionsBar = memo(({ 
   showEmojis, 
-  onReaction 
+  onReaction,
+  onClose
 }: {
   showEmojis: boolean
   onReaction: (emoji: string) => void
+  onClose: () => void
 }) => {
   if (!showEmojis) return null
   
@@ -64,6 +66,17 @@ const EmojiReactionsBar = memo(({
       <EmojiReaction emoji="😢" onReaction={() => onReaction("😢")} />
       <EmojiReaction emoji="🤔" onReaction={() => onReaction("🤔")} />
       <EmojiReaction emoji="👎" onReaction={() => onReaction("👎")} />
+      
+      {/* Close button */}
+      <Separator orientation="vertical" className="h-8 mx-1" />
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={onClose}
+        className="h-8 w-8 hover:bg-destructive/10 hover:text-destructive transition-colors"
+      >
+        <X className="h-4 w-4" />
+      </Button>
     </div>
   )
 })
@@ -108,8 +121,7 @@ export function InterviewControls({ onEndVoiceChat, sendUserEvent, session }: In
           userName: session?.user?.name || undefined,
           userEmail: session?.user?.email || undefined
         })
-        // Close emoji panel after sending reaction
-        setShowEmojis(false)
+        // Don't auto-close emoji panel - let user close manually
       } catch (error) {
         console.error('Error sending emoji reaction:', error)
       }
@@ -117,6 +129,10 @@ export function InterviewControls({ onEndVoiceChat, sendUserEvent, session }: In
       console.log('sendUserEvent not available for emoji reaction:', emoji)
     }
   }, [sendUserEvent, session?.user?.name, session?.user?.email])
+
+  const handleCloseEmojis = useCallback(() => {
+    setShowEmojis(false)
+  }, [])
 
   const toggleEmojiPanel = useCallback(() => {
     setShowEmojis(prev => !prev)
@@ -146,39 +162,29 @@ export function InterviewControls({ onEndVoiceChat, sendUserEvent, session }: In
       />
 
       {/* Emoji toggle button */}
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            variant={showEmojis ? "secondary" : "ghost"}
-            size="lg"
-            onClick={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-              toggleEmojiPanel()
-            }}
-            onMouseDown={(e) => e.preventDefault()}
-            className="h-12 w-12 cursor-pointer transition-all duration-150 ease-in-out select-none"
-          >
-            <Smile className="h-6 w-6" />
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>Reactions</TooltipContent>
-      </Tooltip>
+      <Button
+        variant={showEmojis ? "secondary" : "ghost"}
+        size="lg"
+        onClick={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          toggleEmojiPanel()
+        }}
+        onMouseDown={(e) => e.preventDefault()}
+        className="h-12 w-12 cursor-pointer transition-all duration-150 ease-in-out select-none"
+      >
+        <Smile className="h-6 w-6" />
+      </Button>
 
       {/* End session */}
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            variant="destructive"
-            size="lg"
-            onClick={handleEndSession}
-            className="h-12 w-12 cursor-pointer transition-all duration-150 ease-in-out"
-          >
-            <PhoneOff className="h-6 w-6" />
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>End Session</TooltipContent>
-      </Tooltip>
+      <Button
+        variant="destructive"
+        size="lg"
+        onClick={handleEndSession}
+        className="h-12 w-12 cursor-pointer transition-all duration-150 ease-in-out"
+      >
+        <PhoneOff className="h-6 w-6" />
+      </Button>
     </>
   ))
 
@@ -188,19 +194,14 @@ export function InterviewControls({ onEndVoiceChat, sendUserEvent, session }: In
   const AdditionalControls = memo(() => (
     <>
       {/* Chat */}
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            variant={isChatOpen ? "secondary" : "ghost"}
-            size="lg"
-            onClick={toggleChat}
-            className="h-12 w-12 cursor-pointer transition-all duration-150 ease-in-out"
-          >
-            <MessageCircle className="h-6 w-6" />
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>Chat</TooltipContent>
-      </Tooltip>
+      <Button
+        variant={isChatOpen ? "secondary" : "ghost"}
+        size="lg"
+        onClick={toggleChat}
+        className="h-12 w-12 cursor-pointer transition-all duration-150 ease-in-out"
+      >
+        <MessageCircle className="h-6 w-6" />
+      </Button>
     </>
   ))
 
@@ -212,6 +213,7 @@ export function InterviewControls({ onEndVoiceChat, sendUserEvent, session }: In
       <EmojiReactionsBar 
         showEmojis={showEmojis} 
         onReaction={handleEmojiReaction}
+        onClose={handleCloseEmojis}
       />
 
       {/* Main Controls */}

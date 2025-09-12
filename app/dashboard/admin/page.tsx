@@ -42,7 +42,7 @@ export default async function AdminPage() {
           <CardContent>
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {result.users.map((user) => (
+                {result.users?.map((user) => (
                   <Card key={user.id} className="p-4">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
@@ -56,7 +56,7 @@ export default async function AdminPage() {
                       </div>
                       <p className="text-sm text-muted-foreground truncate">{user.email}</p>
                       <div className="text-xs text-muted-foreground">
-                        Joined: {new Date(user.createdAt).toLocaleDateString()}
+                        Joined: {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'Unknown'}
                       </div>
                       <div className="flex items-center text-xs">
                         <span className={`w-2 h-2 rounded-full mr-2 ${
@@ -72,7 +72,7 @@ export default async function AdminPage() {
           </CardContent>
         </Card>
 
-        <UserManagement users={result.users} />
+        <UserManagement users={result.users || []} />
       </div>
     </div>
   )

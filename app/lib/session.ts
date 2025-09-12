@@ -5,34 +5,39 @@ import { prisma } from "../../lib/prisma"
 import { UserRole } from "@prisma/client"
 
 export async function getCurrentUser() {
-  const session = await getServerSession(authOptions)
+  try {
+    const session = await getServerSession(authOptions)
 
-  if (!session?.user) {
+    if (!session?.user) {
+      return null
+    }
+
+    // Get user with role from database
+    const dbUser = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        image: true,
+        role: true,
+      },
+    })
+
+    if (!dbUser) {
+      return null
+    }
+
+    return {
+      id: dbUser.id,
+      name: dbUser.name,
+      email: dbUser.email,
+      image: dbUser.image,
+      role: dbUser.role,
+    }
+  } catch (error) {
+    console.error("Error getting session:", error)
     return null
-  }
-
-  // Get user with role from database
-  const dbUser = await prisma.user.findUnique({
-    where: { id: session.user.id },
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      image: true,
-      role: true,
-    },
-  })
-
-  if (!dbUser) {
-    return null
-  }
-
-  return {
-    id: dbUser.id,
-    name: dbUser.name,
-    email: dbUser.email,
-    image: dbUser.image,
-    role: dbUser.role,
   }
 }
 
@@ -40,7 +45,8 @@ export async function requireAuth() {
   const session = await getServerSession(authOptions)
 
   if (!session?.user) {
-    redirect("/")
+    // Instead of redirecting, just return null to allow guest access
+    return null
   }
 
   return session
@@ -50,7 +56,14 @@ export async function getSessionUserData() {
   const user = await getCurrentUser()
 
   if (!user) {
-    throw new Error("User not authenticated")
+    // Return a guest user object for non-authenticated users
+    return {
+      id: "guest",
+      name: "Guest User",
+      email: null,
+      image: null,
+      role: "GUEST"
+    }
   }
 
   return user
@@ -60,6 +73,10 @@ export async function requireRole(requiredRole: UserRole) {
   const user = await getSessionUserData()
 
   if (user.role !== requiredRole) {
+    // For guest users, don't redirect, just return the guest user
+    if (user.role === "GUEST") {
+      return user
+    }
     redirect("/dashboard")
   }
 
@@ -81,4 +98,9 @@ export async function isSuperAdmin() {
 
 export async function isUser() {
   return hasRole(UserRole.USER)
+}
+
+export async function isGuest() {
+  const user = await getSessionUserData()
+  return user.role === "GUEST"
 }

@@ -36,6 +36,10 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
+  jwt: {
+    // Add JWT configuration to handle encryption properly
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
   callbacks: {
     async session({ session, token }) {
       if (token.sub && session.user) {
@@ -50,4 +54,14 @@ export const authOptions: NextAuthOptions = {
       return token
     },
   },
+  // Add error handling
+  events: {
+    async signIn({ user }) {
+      console.log("User signed in:", user.email)
+    },
+    async signOut() {
+      console.log("User signed out")
+    },
+  },
+  debug: process.env.NODE_ENV === "development",
 }

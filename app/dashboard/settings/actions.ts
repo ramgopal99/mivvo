@@ -135,9 +135,8 @@ export async function updateUserDetails(formData: FormData): Promise<ServerActio
   }
 }
 
-export async function updatePassword(formData: FormData): Promise<ServerActionResponse> {
+export async function updatePassword(): Promise<ServerActionResponse> {
   try {
-    const user = await getSessionUserData()
 
     // Note: OAuth users (like Google) don't have passwords
     // This function is here for compatibility but won't work for OAuth users

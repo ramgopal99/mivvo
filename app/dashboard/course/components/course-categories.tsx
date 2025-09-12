@@ -5,7 +5,7 @@ import { Course } from '../types';
 import { CourseCard } from './course-card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Grid3X3, List, BookOpen, Code, Database, Palette, Server, Briefcase } from 'lucide-react';
+import { Grid3X3, BookOpen, Code, Database, Palette, Server, Briefcase } from 'lucide-react';
 
 interface CourseCategoriesProps {
   courses: Course[];
@@ -53,13 +53,6 @@ export function CourseCategories({ courses }: CourseCategoriesProps) {
     return colors[category] || 'bg-gray-100 text-gray-800 border-gray-200 hover:bg-gray-200';
   };
 
-  const handleViewDetails = (course: Course) => {
-    console.log('Viewing course details:', course.title);
-  };
-
-  const handleEnroll = (course: Course) => {
-    console.log('Enrolling in course:', course.title);
-  };
 
   return (
     <div className="space-y-6">
@@ -117,8 +110,6 @@ export function CourseCategories({ courses }: CourseCategoriesProps) {
             <CourseCard
               key={course.id}
               course={course}
-              onViewDetails={handleViewDetails}
-              onEnroll={handleEnroll}
             />
           ))}
         </div>

@@ -1,7 +1,161 @@
-"use client"
+"use client";
 
-import MarkdownContent from "./markdown-content"
+import { useState, useEffect } from 'react';
+import { ResizablePanelGroup, ResizableHandle, ResizablePanel } from '@/components/ui/resizable';
+import { SidebarProvider } from '@/components/ui/sidebar';
+import LeftSidebar from './components/LeftSidebar';
+import Header from './components/Header';
+import MiddleSection from './components/MiddleSection';
+import RightSection from './components/RightSection';
+import { modules } from './data/lessonsData';
+
+interface SelectedTopic {
+  moduleId: number;
+  subtopicId: number;
+  title: string;
+  moduleTitle: string;
+}
 
 export default function TestPage() {
-  return <MarkdownContent />
+  const [selectedTopic, setSelectedTopic] = useState<SelectedTopic | null>(null);
+  const [checkedItemsCount, setCheckedItemsCount] = useState<number>(0);
+  const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
+
+  // Auto-select the first lesson when component mounts
+  useEffect(() => {
+    if (modules.length > 0 && modules[0].subLessons.length > 0) {
+      setSelectedTopic({
+        moduleId: modules[0].id,
+        subtopicId: modules[0].subLessons[0].id,
+        title: modules[0].subLessons[0].title,
+        moduleTitle: modules[0].title
+      });
+    }
+  }, []);
+
+  const handleSubtopicClick = (moduleId: number, subtopicId: number, title: string, moduleTitle: string) => {
+    setSelectedTopic({
+      moduleId,
+      subtopicId,
+      title,
+      moduleTitle
+    });
+  };
+
+  const handleCheckedItemsChange = (count: number) => {
+    setCheckedItemsCount(count);
+  };
+
+  // Create a flat list of all navigable items (subtopics and exercises)
+  const getAllNavigableItems = () => {
+    const items: SelectedTopic[] = [];
+    modules.forEach(module => {
+      // Add subtopics
+      module.subLessons?.forEach(subLesson => {
+        items.push({
+          moduleId: module.id,
+          subtopicId: subLesson.id,
+          title: subLesson.title,
+          moduleTitle: module.title
+        });
+      });
+      // Add exercises
+      module.exercises?.forEach(exercise => {
+        items.push({
+          moduleId: module.id,
+          subtopicId: exercise.id,
+          title: exercise.title,
+          moduleTitle: module.title
+        });
+      });
+    });
+    return items;
+  };
+
+  const handlePrevious = () => {
+    const allItems = getAllNavigableItems();
+    if (!selectedTopic || allItems.length === 0) return;
+
+    const currentIndex = allItems.findIndex(item =>
+      item.moduleId === selectedTopic.moduleId &&
+      item.subtopicId === selectedTopic.subtopicId
+    );
+
+    if (currentIndex > 0) {
+      setSelectedTopic(allItems[currentIndex - 1]);
+    } else {
+      // Go to last item if at first
+      setSelectedTopic(allItems[allItems.length - 1]);
+    }
+  };
+
+  const handleNext = () => {
+    const allItems = getAllNavigableItems();
+    if (!selectedTopic || allItems.length === 0) return;
+
+    const currentIndex = allItems.findIndex(item =>
+      item.moduleId === selectedTopic.moduleId &&
+      item.subtopicId === selectedTopic.subtopicId
+    );
+
+    if (currentIndex < allItems.length - 1) {
+      setSelectedTopic(allItems[currentIndex + 1]);
+    } else {
+      // Go to first item if at last
+      setSelectedTopic(allItems[0]);
+    }
+  };
+
+  const handleAI = () => {
+    setIsChatOpen(prev => !prev);
+  };
+
+
+  const calculateCompletionPercentage = () => {
+    const totalItems = modules.reduce((acc, module) => {
+      const subLessonsCount = module.subLessons.length;
+      const exercisesCount = module.exercises ? module.exercises.length : 0;
+      return acc + subLessonsCount + exercisesCount;
+    }, 0);
+    const percentage = totalItems > 0 ? Math.round((checkedItemsCount / totalItems) * 100) : 0;
+    return `${percentage}% Completed`;
+  };
+
+  return (
+    <div className="h-screen w-full bg-background flex">
+      {/* Left Section - Header + Fixed Sidebar */}
+      <div className="w-65 flex flex-col flex-shrink-0">
+        <Header completionPercentage={calculateCompletionPercentage()} />
+
+        {/* Sidebar */}
+        <div className="flex-1 border-r border-1 bg-sidebar">
+          <SidebarProvider>
+            <LeftSidebar
+              onSubtopicClick={handleSubtopicClick}
+              onCheckedItemsChange={handleCheckedItemsChange}
+              selectedTopic={selectedTopic}
+            />
+          </SidebarProvider>
+        </div>
+      </div>
+
+      {/* Middle and Right Sections - Resizable */}
+      <ResizablePanelGroup direction="horizontal" className="flex-1">
+        <ResizablePanel defaultSize={55} minSize={30}>
+          <MiddleSection
+            selectedTopic={selectedTopic}
+            onPrevious={handlePrevious}
+            onNext={handleNext}
+            onAI={handleAI}
+            isChatOpen={isChatOpen}
+            onCloseChat={() => setIsChatOpen(false)}
+          />
+        </ResizablePanel>
+        <ResizableHandle withHandle />
+        <ResizablePanel defaultSize={45} minSize={25}>
+          <RightSection />
+        </ResizablePanel>
+      </ResizablePanelGroup>
+    </div>
+  );
 }

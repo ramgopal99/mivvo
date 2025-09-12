@@ -27,8 +27,8 @@ export function ProfileTab() {
         if (result.success && result.data) {
           setUserData(result.data)
         }
-      } catch (error) {
-        console.error('Error fetching user data:', error)
+      } catch {
+        console.error('Error fetching user data')
       } finally {
         setLoading(false)
       }
@@ -52,7 +52,7 @@ export function ProfileTab() {
       } else {
         setPasswordMessage(result.error || "Failed to update password")
       }
-    } catch (error) {
+    } catch {
       setPasswordMessage("An error occurred while updating password")
     }
   }
@@ -72,7 +72,7 @@ export function ProfileTab() {
       } else {
         setDeleteMessage(result.error || "Failed to delete account")
       }
-    } catch (error) {
+    } catch {
       setDeleteMessage("An error occurred while deleting account")
     }
   }

@@ -119,7 +119,7 @@ const defaultComponents: Components = {
       <code
         className={cn(
           className,
-          "bg-gray-900 px-2 py-1 rounded font-mono text-white text-sm"
+          "bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded font-mono text-gray-800 dark:text-gray-200 text-sm border border-gray-300 dark:border-gray-600"
         )}
         {...rest}
       >

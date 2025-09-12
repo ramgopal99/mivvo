@@ -112,52 +112,6 @@
   --sidebar-ring: oklch(0.552 0.016 285.938);
 }
 
-/* Color Scheme Support */
-.color-blue {
-  --primary: oklch(0.55 0.15 240);
-}
-
-.color-green {
-  --primary: oklch(0.6 0.2 142);
-}
-
-.color-purple {
-  --primary: oklch(0.6 0.2 300);
-}
-
-.color-red {
-  --primary: oklch(0.6 0.2 25);
-}
-
-.color-orange {
-  --primary: oklch(0.65 0.2 45);
-}
-
-/* Dark mode color schemes */
-.dark .color-blue {
-  --primary: oklch(0.65 0.15 240);
-  --primary-foreground: oklch(0.985 0 0);
-}
-
-.dark .color-green {
-  --primary: oklch(0.7 0.18 142);
-  --primary-foreground: oklch(0.985 0 0);
-}
-
-.dark .color-purple {
-  --primary: oklch(0.7 0.18 300);
-  --primary-foreground: oklch(0.985 0 0);
-}
-
-.dark .color-red {
-  --primary: oklch(0.7 0.18 25);
-  --primary-foreground: oklch(0.985 0 0);
-}
-
-.dark .color-orange {
-  --primary: oklch(0.75 0.18 45);
-  --primary-foreground: oklch(0.985 0 0);
-}
 
 @layer base {
   * {
@@ -169,10 +123,6 @@
   }
 }
 
-/* Utility classes for dynamic color scheme application */
-.color-scheme-transition {
-  transition: --primary 0.3s ease, --primary-foreground 0.3s ease;
-}
 
 /* Smooth transitions for theme changes */
 * {
@@ -195,4 +145,67 @@
 
 .animation-delay-300 {
   animation-delay: 300ms;
+}
+
+/* Floating emoji animation */
+@keyframes float-up {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-30px) scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-80px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.animate-float-up {
+  animation: float-up 2s ease-out forwards;
+}
+
+/* Small, subtle scrollbar */
+.scrollbar-hide {
+  scrollbar-width: thin;  /* Firefox - thin scrollbar */
+  scrollbar-color: #cbd5e1 #f1f5f9;  /* Firefox - thumb and track colors */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  width: 4px;  /* Very thin width */
+  height: 4px;  /* Very thin height */
+}
+
+.scrollbar-hide::-webkit-scrollbar-track {
+  background: #f1f5f9;  /* Light gray track */
+  border-radius: 2px;  /* Smaller rounded corners */
+}
+
+.scrollbar-hide::-webkit-scrollbar-thumb {
+  background: #cbd5e1;  /* Light gray thumb */
+  border-radius: 2px;  /* Smaller rounded corners */
+  transition: background 0.2s ease;  /* Smooth hover transition */
+}
+
+.scrollbar-hide::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;  /* Darker on hover */
+}
+
+/* Dark theme support */
+.dark .scrollbar-hide {
+  scrollbar-color: #475569 #1e293b;  /* Dark theme colors */
+}
+
+.dark .scrollbar-hide::-webkit-scrollbar-track {
+  background: #1e293b;  /* Dark track */
+}
+
+.dark .scrollbar-hide::-webkit-scrollbar-thumb {
+  background: #475569;  /* Dark thumb */
+}
+
+.dark .scrollbar-hide::-webkit-scrollbar-thumb:hover {
+  background: #64748b;  /* Lighter on hover in dark theme */
 }

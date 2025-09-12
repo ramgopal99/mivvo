@@ -9,11 +9,9 @@ import Link from 'next/link';
 
 interface CourseCardProps {
   course: Course;
-  onViewDetails?: (course: Course) => void;
-  onEnroll?: (course: Course) => void;
 }
 
-export function CourseCard({ course, onViewDetails, onEnroll }: CourseCardProps) {
+export function CourseCard({ course }: CourseCardProps) {
   const getLevelColor = (level: string) => {
     switch (level) {
       case 'Beginner':

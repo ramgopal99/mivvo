@@ -6,7 +6,14 @@ export default withAuth(
   },
   {
     callbacks: {
-      authorized: ({ token }) => !!token,
+      authorized: ({ token, req }) => {
+        // Protect admin routes - require SUPERADMIN role
+        if (req.nextUrl.pathname.startsWith("/dashboard/admin")) {
+          return token?.role === "SUPERADMIN"
+        }
+        // Allow guest access to all other dashboard routes
+        return true
+      },
     },
   }
 )

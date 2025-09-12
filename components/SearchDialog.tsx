@@ -43,102 +43,6 @@ export function SearchDialog({
     const [searchResults, setSearchResults] = React.useState<SearchResult[]>([])
     const [isSearching, setIsSearching] = React.useState(false)
 
-    // Default search results for demo
-    const defaultSearchResults: SearchResult[] = [
-        {
-            id: 'mock-interviews',
-            title: 'Mock Interviews',
-            description: 'Practice with AI-powered mock interviews',
-            type: 'page',
-            url: '/dashboard/meet',
-            icon: Video,
-            category: 'Navigation'
-        },
-        {
-            id: 'settings',
-            title: 'Settings',
-            description: 'Manage your account and preferences',
-            type: 'page',
-            url: '/dashboard/settings',
-            icon: Settings,
-            category: 'Navigation'
-        },
-        {
-            id: 'dashboard',
-            title: 'Dashboard',
-            description: 'View your overview and statistics',
-            type: 'page',
-            url: '/dashboard',
-            icon: Home,
-            category: 'Navigation'
-        },
-        {
-            id: 'software-engineer-interview',
-            title: 'Software Engineer Interview',
-            description: 'Practice coding challenges and system design',
-            type: 'interview',
-            url: '/dashboard/meet/software-engineer',
-            icon: Video,
-            category: 'Interview Type'
-        },
-        {
-            id: 'product-manager-interview',
-            title: 'Product Manager Interview',
-            description: 'Case studies and behavioral questions',
-            type: 'interview',
-            url: '/dashboard/meet/product-manager',
-            icon: Video,
-            category: 'Interview Type'
-        },
-        {
-            id: 'data-scientist-interview',
-            title: 'Data Scientist Interview',
-            description: 'Machine learning and statistics problems',
-            type: 'interview',
-            url: '/dashboard/meet/data-scientist',
-            icon: Video,
-            category: 'Interview Type'
-        },
-        // Settings page content
-        {
-            id: 'my-details',
-            title: 'My Details',
-            description: 'Update your personal information and contact details',
-            type: 'setting',
-            url: '/dashboard/settings',
-            icon: User,
-            category: 'Settings'
-        },
-        {
-            id: 'profile',
-            title: 'Profile',
-            description: 'Manage your profile picture and account information',
-            type: 'setting',
-            url: '/dashboard/profile',
-            icon: User,
-            category: 'Settings'
-        },
-        {
-            id: 'settings',
-            title: 'Settings',
-            description: 'Configure your account and preferences',
-            type: 'setting',
-            url: '/dashboard/settings',
-            icon: Settings,
-            category: 'Settings'
-        },
-        {
-            id: 'appearance',
-            title: 'Appearance',
-            description: 'Customize your theme and display preferences',
-            type: 'setting',
-            url: '/dashboard/settings',
-            icon: Palette,
-            category: 'Settings'
-        },
-
-    ]
-
     // Handle search input changes
     const handleSearchChange = React.useCallback(async (query: string) => {
         setSearchQuery(query)
@@ -156,6 +60,101 @@ export function SearchDialog({
                 const results = await onSearch(query)
                 setSearchResults(results)
             } else {
+                // Default search results for demo
+                const defaultSearchResults: SearchResult[] = [
+                    {
+                        id: 'mock-interviews',
+                        title: 'Mock Interviews',
+                        description: 'Practice with AI-powered mock interviews',
+                        type: 'page',
+                        url: '/dashboard/meet',
+                        icon: Video,
+                        category: 'Navigation'
+                    },
+                    {
+                        id: 'settings',
+                        title: 'Settings',
+                        description: 'Manage your account and preferences',
+                        type: 'page',
+                        url: '/dashboard/settings',
+                        icon: Settings,
+                        category: 'Navigation'
+                    },
+                    {
+                        id: 'dashboard',
+                        title: 'Dashboard',
+                        description: 'View your overview and statistics',
+                        type: 'page',
+                        url: '/dashboard',
+                        icon: Home,
+                        category: 'Navigation'
+                    },
+                    {
+                        id: 'software-engineer-interview',
+                        title: 'Software Engineer Interview',
+                        description: 'Practice coding challenges and system design',
+                        type: 'interview',
+                        url: '/dashboard/meet/software-engineer',
+                        icon: Video,
+                        category: 'Interview Type'
+                    },
+                    {
+                        id: 'product-manager-interview',
+                        title: 'Product Manager Interview',
+                        description: 'Case studies and behavioral questions',
+                        type: 'interview',
+                        url: '/dashboard/meet/product-manager',
+                        icon: Video,
+                        category: 'Interview Type'
+                    },
+                    {
+                        id: 'data-scientist-interview',
+                        title: 'Data Scientist Interview',
+                        description: 'Machine learning and statistics problems',
+                        type: 'interview',
+                        url: '/dashboard/meet/data-scientist',
+                        icon: Video,
+                        category: 'Interview Type'
+                    },
+                    // Settings page content
+                    {
+                        id: 'my-details',
+                        title: 'My Details',
+                        description: 'Update your personal information and contact details',
+                        type: 'setting',
+                        url: '/dashboard/settings',
+                        icon: User,
+                        category: 'Settings'
+                    },
+                    {
+                        id: 'profile',
+                        title: 'Profile',
+                        description: 'Manage your profile picture and account information',
+                        type: 'setting',
+                        url: '/dashboard/profile',
+                        icon: User,
+                        category: 'Settings'
+                    },
+                    {
+                        id: 'settings',
+                        title: 'Settings',
+                        description: 'Configure your account and preferences',
+                        type: 'setting',
+                        url: '/dashboard/settings',
+                        icon: Settings,
+                        category: 'Settings'
+                    },
+                    {
+                        id: 'appearance',
+                        title: 'Appearance',
+                        description: 'Customize your theme and display preferences',
+                        type: 'setting',
+                        url: '/dashboard/settings',
+                        icon: Palette,
+                        category: 'Settings'
+                    },
+                ]
+                
                 // Use default search logic
                 const filtered = defaultSearchResults.filter(item =>
                     item.title.toLowerCase().includes(query.toLowerCase()) ||
