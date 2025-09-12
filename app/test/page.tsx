@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { ResizablePanelGroup, ResizableHandle, ResizablePanel } from '@/components/ui/resizable';
 import { SidebarProvider } from '@/components/ui/sidebar';
-import { ThemeToggle } from '@/components/ui/theme-toggle';
 import LeftSidebar from './components/LeftSidebar';
 import Header from './components/Header';
 import MiddleSection from './components/MiddleSection';
@@ -123,18 +122,13 @@ export default function TestPage() {
   };
 
   return (
-    <div className="h-screen w-full bg-background flex">
+    <div className="h-screen w-full bg-white flex" data-theme="light">
       {/* Left Section - Header + Fixed Sidebar */}
       <div className="w-65 flex flex-col flex-shrink-0">
-        <div className="relative">
-          <Header completionPercentage={calculateCompletionPercentage()} />
-          <div className="absolute top-4 right-4">
-            <ThemeToggle />
-          </div>
-        </div>
+        <Header completionPercentage={calculateCompletionPercentage()} />
 
         {/* Sidebar */}
-        <div className="flex-1 border-r border-1 bg-sidebar">
+        <div className="flex-1 border-r border-1 bg-gray-50" data-theme="light">
           <SidebarProvider>
             <LeftSidebar
               onSubtopicClick={handleSubtopicClick}

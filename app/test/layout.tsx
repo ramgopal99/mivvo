@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import { ThemeProvider } from '@/components/providers/theme-provider';
 
 export const metadata: Metadata = {
   title: 'Javascript Learning Platform - Test',
@@ -12,15 +11,8 @@ export default function TestLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="light"
-      enableSystem={true}
-      disableTransitionOnChange
-    >
-      <div className="h-screen overflow-hidden bg-background text-foreground">
-        {children}
-      </div>
-    </ThemeProvider>
+    <div className="h-screen overflow-hidden bg-white" data-theme="light">
+      {children}
+    </div>
   );
 }
