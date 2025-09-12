@@ -43,6 +43,11 @@ export function ProfileTab() {
 
     try {
       // Note: Password update functionality needs to be implemented in actions.ts
+      // const formData = new FormData(e.currentTarget)
+      // const currentPassword = formData.get('currentPassword') as string
+      // const newPassword = formData.get('newPassword') as string
+      // const confirmPassword = formData.get('confirmPassword') as string
+      
       const result = await updatePassword()
       
       if (result.success) {
