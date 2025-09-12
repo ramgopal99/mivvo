@@ -3,7 +3,7 @@ import { requireRole } from "@/app/lib/session"
 import { UserRole } from "@prisma/client"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { UserManagement } from "./user-management"
+// import { UserManagement } from "./user-management"
 
 export default async function AdminPage() {
   // This will redirect if not SUPERADMIN
@@ -72,7 +72,7 @@ export default async function AdminPage() {
           </CardContent>
         </Card>
 
-        <UserManagement users={result.users || []} />
+        {/* <UserManagement users={result.users || []} /> */}
       </div>
     </div>
   )

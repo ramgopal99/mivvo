@@ -43,7 +43,11 @@ export function ProfileTab() {
 
     try {
       const formData = new FormData(e.currentTarget)
-      const result = await updatePassword(formData)
+      const currentPassword = formData.get('currentPassword') as string
+      const newPassword = formData.get('newPassword') as string
+      const confirmPassword = formData.get('confirmPassword') as string
+      
+      const result = await updatePassword()
       
       if (result.success) {
         setPasswordMessage("Password updated successfully!")

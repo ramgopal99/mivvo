@@ -1,12 +1,12 @@
 "use client"
 
-import { useSession } from "next-auth/react"
 import Link from "next/link"
 import { UserRole } from "@prisma/client"
+import { getCurrentUser } from "@/app/lib/session"
 
-export function DashboardNav() {
-  const { data: session } = useSession()
-  const isSuperAdmin = session?.user?.role === UserRole.SUPERADMIN
+export async function DashboardNav() {
+  const user = await getCurrentUser()
+  const isSuperAdmin = user?.role === UserRole.SUPERADMIN
 
   return (
     <nav className="flex items-center justify-between">

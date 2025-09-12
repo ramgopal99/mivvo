@@ -56,12 +56,12 @@ export function EditInterviewDialog({
     if (interview) {
       setCompanyName(interview.companyName || "")
       setPosition(interview.position || "")
-      setCompanyDescription(interview.companyDescription)
-      setJobDescription(interview.jobDescription)
-      setInterviewType(interview.interviewType)
-      setExperienceLevel(interview.experienceLevel)
-      setIndustry(interview.industry)
-      setDifficulty(interview.difficulty)
+      setCompanyDescription(interview.companyDescription || "")
+      setJobDescription(interview.jobDescription || "")
+      setInterviewType(interview.interviewType || "technical")
+      setExperienceLevel(interview.experienceLevel || "mid")
+      setIndustry(interview.industry || "technology")
+      setDifficulty(interview.difficulty || "medium")
     }
   }, [interview])
 
