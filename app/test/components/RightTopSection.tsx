@@ -66,7 +66,6 @@ greet("Developer");`;
             defaultValue={defaultValue}
             height="100%"
             language="javascript"
-            theme="vs-light"
           />
         </div>
         <div className="flex items-center justify-between px-6 py-3 border-t bg-muted/30">

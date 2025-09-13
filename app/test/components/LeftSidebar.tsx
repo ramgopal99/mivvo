@@ -195,7 +195,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                         <SidebarMenuSubItem key={subLesson.id}>
                           <div className={`flex items-center gap-3 w-full p-1 rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${
                             selectedSubtopic?.moduleId === module.id && selectedSubtopic?.subtopicId === subLesson.id
-                              ? 'bg-blue-100 dark:bg-blue-900/20'
+                              ? 'bg-primary/10 dark:bg-primary/20'
                               : ''
                           }`}>
                             <SidebarMenuSubButton
@@ -234,7 +234,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                         <SidebarMenuSubItem key={exercise.id}>
                           <div className={`flex items-center gap-3 w-full p-1 rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${
                             selectedExercise?.moduleId === module.id && selectedExercise?.exerciseId === exercise.id
-                              ? 'bg-green-100 dark:bg-green-900/20'
+                              ? 'bg-emerald-100 dark:bg-emerald-900/20'
                               : ''
                           }`}>
                             <SidebarMenuSubButton

@@ -122,13 +122,13 @@ export default function TestPage() {
   };
 
   return (
-    <div className="h-screen w-full bg-white flex" data-theme="light">
+    <div className="h-screen w-full bg-background flex">
       {/* Left Section - Header + Fixed Sidebar */}
       <div className="w-65 flex flex-col flex-shrink-0">
         <Header completionPercentage={calculateCompletionPercentage()} />
 
         {/* Sidebar */}
-        <div className="flex-1 border-r border-1 bg-gray-50" data-theme="light">
+        <div className="flex-1 border-r border-border bg-muted/20">
           <SidebarProvider>
             <LeftSidebar
               onSubtopicClick={handleSubtopicClick}

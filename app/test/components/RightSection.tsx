@@ -12,9 +12,9 @@ const RightSection = () => {
   };
 
   return (
-    <div className="h-full bg-muted/20 border-l overflow-hidden flex flex-col">
+    <div className="h-full bg-muted/20 border-l border-border overflow-hidden flex flex-col">
       {/* Top Section - Monaco Editor */}
-      <div className="flex-1 border-b border-gray-200">
+      <div className="flex-1 border-b border-border">
         <RightTopSection onConsoleOutput={handleConsoleOutput} />
       </div>
 

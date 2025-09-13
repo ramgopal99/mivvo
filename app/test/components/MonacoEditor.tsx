@@ -2,6 +2,7 @@
 
 import Editor from '@monaco-editor/react';
 import { forwardRef, useImperativeHandle, useRef } from 'react';
+import { useTheme } from 'next-themes';
 import * as monaco from 'monaco-editor';
 
 export interface MonacoEditorRef {
@@ -21,10 +22,14 @@ const MonacoEditor = forwardRef<MonacoEditorRef, MonacoEditorProps>(({
   defaultValue,
   height = "100%",
   language = "javascript",
-  theme = "vs-light",
+  theme,
   onMount
 }, ref) => {
   const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
+  const { theme: currentTheme } = useTheme();
+  
+  // Use the provided theme or determine based on current theme
+  const editorTheme = theme || (currentTheme === 'dark' ? 'vs-dark' : 'vs-light');
 
   const handleEditorDidMount = (editor: monaco.editor.IStandaloneCodeEditor) => {
     editorRef.current = editor;
@@ -43,7 +48,7 @@ const MonacoEditor = forwardRef<MonacoEditorRef, MonacoEditorProps>(({
       height={height}
       defaultLanguage={language}
       defaultValue={defaultValue}
-      theme={theme}
+      theme={editorTheme}
       options={{
         minimap: { enabled: false },
         fontSize: 14,
