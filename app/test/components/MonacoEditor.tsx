@@ -1,9 +1,18 @@
 "use client";
 
-import Editor from '@monaco-editor/react';
-import { forwardRef, useImperativeHandle, useRef, useEffect, useState } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import * as monaco from 'monaco-editor';
+import dynamic from 'next/dynamic';
+
+// Dynamically import Monaco Editor to avoid SSR issues
+const Editor = dynamic(() => import('@monaco-editor/react').then(mod => mod.default), {
+  ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center h-full bg-muted/20">
+      <div className="text-muted-foreground">Loading editor...</div>
+    </div>
+  )
+});
 
 export interface MonacoEditorRef {
   getValue: () => string;
@@ -15,7 +24,7 @@ interface MonacoEditorProps {
   height?: string;
   language?: string;
   theme?: string;
-  onMount?: (editor: monaco.editor.IStandaloneCodeEditor) => void;
+  onMount?: (editor: unknown) => void;
 }
 
 const MonacoEditor = forwardRef<MonacoEditorRef, MonacoEditorProps>(({
@@ -25,27 +34,23 @@ const MonacoEditor = forwardRef<MonacoEditorRef, MonacoEditorProps>(({
   theme,
   onMount
 }, ref) => {
-  const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
+  const editorRef = useRef<unknown>(null);
   const { resolvedTheme } = useTheme();
-  const [isMounted, setIsMounted] = useState(false);
   
   // Use the provided theme or determine based on current theme
   const editorTheme = theme || (resolvedTheme === 'dark' ? 'vs-dark' : 'vs-light');
 
-  // Handle client-side mounting
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   // Update editor theme when theme changes
   useEffect(() => {
-    if (editorRef.current && isMounted) {
-      const newTheme = theme || (resolvedTheme === 'dark' ? 'vs-dark' : 'vs-light');
-      monaco.editor.setTheme(newTheme);
+    if (editorRef.current && typeof window !== 'undefined') {
+      import('monaco-editor').then((monaco) => {
+        const newTheme = theme || (resolvedTheme === 'dark' ? 'vs-dark' : 'vs-light');
+        monaco.editor.setTheme(newTheme);
+      });
     }
-  }, [resolvedTheme, theme, isMounted]);
+  }, [resolvedTheme, theme]);
 
-  const handleEditorDidMount = (editor: monaco.editor.IStandaloneCodeEditor) => {
+  const handleEditorDidMount = (editor: unknown) => {
     editorRef.current = editor;
     if (onMount) {
       onMount(editor);
@@ -53,18 +58,15 @@ const MonacoEditor = forwardRef<MonacoEditorRef, MonacoEditorProps>(({
   };
 
   useImperativeHandle(ref, () => ({
-    getValue: () => editorRef.current?.getValue() || '',
-    setValue: (value: string) => editorRef.current?.setValue(value)
+    getValue: () => {
+      const editor = editorRef.current as { getValue?: () => string } | null;
+      return editor?.getValue?.() || '';
+    },
+    setValue: (value: string) => {
+      const editor = editorRef.current as { setValue?: (value: string) => void } | null;
+      editor?.setValue?.(value);
+    }
   }));
-
-  // Show loading state during SSR
-  if (!isMounted) {
-    return (
-      <div className="flex items-center justify-center h-full bg-muted/20">
-        <div className="text-muted-foreground">Loading editor...</div>
-      </div>
-    );
-  }
 
   return (
     <Editor
