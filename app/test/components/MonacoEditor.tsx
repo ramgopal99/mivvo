@@ -1,7 +1,7 @@
 "use client";
 
 import Editor from '@monaco-editor/react';
-import { forwardRef, useImperativeHandle, useRef } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import * as monaco from 'monaco-editor';
 
@@ -26,10 +26,18 @@ const MonacoEditor = forwardRef<MonacoEditorRef, MonacoEditorProps>(({
   onMount
 }, ref) => {
   const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
-  const { theme: currentTheme } = useTheme();
+  const { theme: currentTheme, resolvedTheme } = useTheme();
   
   // Use the provided theme or determine based on current theme
-  const editorTheme = theme || (currentTheme === 'dark' ? 'vs-dark' : 'vs-light');
+  const editorTheme = theme || (resolvedTheme === 'dark' ? 'vs-dark' : 'vs-light');
+
+  // Update editor theme when theme changes
+  useEffect(() => {
+    if (editorRef.current) {
+      const newTheme = theme || (resolvedTheme === 'dark' ? 'vs-dark' : 'vs-light');
+      monaco.editor.setTheme(newTheme);
+    }
+  }, [resolvedTheme, theme]);
 
   const handleEditorDidMount = (editor: monaco.editor.IStandaloneCodeEditor) => {
     editorRef.current = editor;
