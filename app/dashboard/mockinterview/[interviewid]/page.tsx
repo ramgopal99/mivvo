@@ -8,16 +8,29 @@ import { MeetRoomProvider } from "@/components/providers/meet-room-provider"
 import type { MockInterview } from "../types"
 import { MockInterviewVoiceChatCompound } from "./components/mock-interview-voice-chat-compound"
 
-interface AIAssistant {
+// Local type definition for interview assistant data
+// This matches RoleAssistant interface with additional properties for AIAssistant
+interface InterviewAssistant {
   id: string
   name: string
-  avatar?: string
+  category: string
+  description: string
+  specialties: string
+  personality: string
+  conversations: number
+  createdBy: string
+  createdAt: Date
+  updatedAt: Date
+  avatar?: string | undefined
+  vapiAssistantId?: string | null
+  hasVoiceEnabled: boolean
+  // Required for AIAssistant interface in MeetRoomProvider
   role: string
   industry: string
   experienceLevel: string
-  hasVoiceEnabled?: boolean
+  // Index signature to match VoiceEnabledAssistant
+  [key: string]: unknown
 }
-
 
 
 export default function MockInterviewSessionPage({ params }: { params: Promise<{ interviewid: string }> }) {
@@ -68,15 +81,25 @@ export default function MockInterviewSessionPage({ params }: { params: Promise<{
     )
   }
 
-  // Prepare interview data - map MockInterview to AIAssistant interface for MeetRoomProvider
-  const interviewData: AIAssistant = {
+  // Prepare interview data - map MockInterview to InterviewAssistant interface for voice chat
+  const interviewData: InterviewAssistant = {
     id: mockInterview.id,
     name: mockInterview.position || "Interview Position",
-    role: "interviewer",
-    industry: mockInterview.industry || "Technology",
-    experienceLevel: mockInterview.experienceLevel || "Mid-level",
+    category: mockInterview.interviewType || "General Interview",
+    description: `${mockInterview.jobDescription || "Job description not available."}\n\nCompany: ${mockInterview.companyName || "Company not specified"}\nIndustry: ${mockInterview.industry || "Industry not specified"}\nExperience Level: ${mockInterview.experienceLevel || "Level not specified"}`,
+    specialties: `Interview Type: ${mockInterview.interviewType || "General"}, Difficulty: ${mockInterview.difficulty || "Not specified"}`,
+    personality: "Professional interviewer focused on assessing technical skills and experience",
+    conversations: mockInterview.conversations,
+    createdBy: mockInterview.createdBy,
+    createdAt: mockInterview.createdAt,
+    updatedAt: mockInterview.updatedAt,
+    avatar: undefined, // MockInterview doesn't have avatar
+    vapiAssistantId: mockInterview.vapiAssistantId,
     hasVoiceEnabled: mockInterview.hasVoiceEnabled,
-    avatar: undefined
+    // Required for AIAssistant interface in MeetRoomProvider
+    role: mockInterview.position || "Interview Position",
+    industry: mockInterview.industry || "General Industry",
+    experienceLevel: mockInterview.experienceLevel || "Mid Level"
   }
 
   return (
@@ -85,8 +108,7 @@ export default function MockInterviewSessionPage({ params }: { params: Promise<{
       meetingType="interview"
       assistantData={interviewData}
     >
-      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-      <MeetRoom voiceChatComponent={MockInterviewVoiceChatCompound as any} />
+      <MeetRoom voiceChatComponent={MockInterviewVoiceChatCompound} />
     </MeetRoomProvider>
   )
 }

@@ -25,6 +25,8 @@ interface RoleAssistant {
   updatedAt: Date
   vapiAssistantId?: string | null
   hasVoiceEnabled: boolean
+  // Index signature to match VoiceEnabledAssistant
+  [key: string]: unknown
 }
 
 // AIAssistant type definition (removed dummy data dependency)
