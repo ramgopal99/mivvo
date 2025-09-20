@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Javascript Learning Platform - Test',
-  description: 'Interactive Javascript learning platform with hands-on exercises',
+  title: 'Python Learning Platform - Test',
+  description: 'Interactive Python learning platform with hands-on exercises',
 };
 
 export default function TestLayout({

@@ -182,19 +182,19 @@ const defaultComponents: Components = {
   ),
   // Enhanced table (GFM)
   table: ({ children, ...props }) => (
-    <div className="my-6 max-w-2xl overflow-x-auto">
-      <table className="min-w-full border-collapse border border-border rounded-md" {...props}>
+    <div className="my-6 w-full overflow-x-auto">
+      <table className="w-full border-collapse border border-border rounded-md table-auto" {...props}>
         {children}
       </table>
     </div>
   ),
   thead: ({ children, ...props }) => (
-    <thead className="bg-muted/50 border-b border-border" {...props}>
+    <thead className="bg-muted/50 border-b border-border whitespace-nowrap" {...props}>
       {children}
     </thead>
   ),
   tbody: ({ children, ...props }) => (
-    <tbody className="[&_tr:last-child]:border-0" {...props}>
+    <tbody className="[&_tr:last-child]:border-0 break-words" {...props}>
       {children}
     </tbody>
   ),
@@ -204,12 +204,12 @@ const defaultComponents: Components = {
     </tr>
   ),
   th: ({ children, ...props }) => (
-    <th className="h-10 px-3 py-2 text-left align-middle font-semibold text-foreground border-r border-border/50 last:border-r-0 [&:has([role=checkbox])]:pr-0 text-sm" {...props}>
+    <th className="h-10 px-4 py-3 text-left align-top font-semibold text-foreground border-r border-border/50 last:border-r-0 [&:has([role=checkbox])]:pr-0 text-sm whitespace-nowrap" {...props}>
       {children}
     </th>
   ),
   td: ({ children, ...props }) => (
-    <td className="px-3 py-2 align-middle text-foreground border-r border-border/50 last:border-r-0 [&:has([role=checkbox])]:pr-0 text-sm" {...props}>
+    <td className="px-4 py-3 align-top text-foreground border-r border-border/50 last:border-r-0 [&:has([role=checkbox])]:pr-0 text-sm break-words" {...props}>
       {children}
     </td>
   ),

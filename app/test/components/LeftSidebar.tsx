@@ -177,7 +177,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                       }`}>
                         {module.id}
                       </div>
-                      <span className="truncate text-sm max-w-[140px] font-medium">{module.title}</span>
+                      <span className="truncate text-xs max-w-[140px] font-bold mt-1">{module.title}</span>
                     </div>
                     <div className="flex items-center gap-2 flex-shrink-0">
                       {expandedModules.includes(module.id) ? (
@@ -202,10 +202,10 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                               onClick={() => handleLessonClick(module.id, subLesson.id)}
                               className="flex items-center gap-3 min-w-0 flex-1 p-0 bg-transparent hover:bg-transparent cursor-pointer"
                             >
-                              <div className="w-4 h-4 rounded-full bg-muted text-muted-foreground flex items-center justify-center text-xs font-medium flex-shrink-0">
+                              <div className="w-4 h-4 text-muted-foreground flex items-center justify-center text-[11px] font-medium flex-shrink-0">
                                 {subLesson.id}
                               </div>
-                              <span className="truncate text-xs max-w-[120px] text-muted-foreground">{subLesson.title}</span>
+                              <span className="truncate text-[11px] max-w-[120px] text-muted-foreground mt-0.5">{subLesson.title}</span>
                             </SidebarMenuSubButton>
                             <div className="flex-shrink-0">
                               {getStatusIndicator(subLesson.status, subLesson.title, `module-${module.id}-lesson-${subLesson.id}`)}
@@ -241,10 +241,10 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                               onClick={() => handleExerciseClick(exercise.id, module.id)}
                               className="flex items-center gap-3 min-w-0 flex-1 p-0 bg-transparent hover:bg-transparent cursor-pointer"
                             >
-                              <div className="w-4 h-4 rounded-full bg-muted text-muted-foreground flex items-center justify-center text-xs font-medium flex-shrink-0">
+                              <div className="w-4 h-4 text-muted-foreground flex items-center justify-center text-[11px] font-medium flex-shrink-0">
                                 {exercise.id}
                               </div>
-                              <span className="truncate text-xs max-w-[120px] text-muted-foreground">{exercise.title}</span>
+                              <span className="truncate text-[11px] max-w-[120px] text-muted-foreground mt-0.5">{exercise.title}</span>
                             </SidebarMenuSubButton>
                             <div className="flex-shrink-0">
                               {getStatusIndicator(exercise.status, exercise.title, `module-${module.id}-exercise-${exercise.id}`)}
