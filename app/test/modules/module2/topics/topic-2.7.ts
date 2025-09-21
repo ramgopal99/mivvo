@@ -53,6 +53,23 @@ print("Welcome, " + full_name + "!")
 
 ---
 
+## 🔢 TYPE CONVERSION WITH INPUT
+
+\`\`\`python
+# Convert input to INTEGER
+age = int(input("Enter your age: "))
+print(f"Next year you will be {age + 1} years old.")
+
+# Convert input to FLOAT
+height = float(input("Enter your height in meters: "))
+print(f"Your height is {height} meters.")
+
+# Convert input to BOOLEAN (basic example)
+is_student = input("Are you a student? (yes/no): ")
+print(f"Student status: {is_student}")
+\`\`\`
+
+
 ## 🎯 QUICK EXAMPLES
 
 \`\`\`python
@@ -65,7 +82,13 @@ print(answer)
 num1 = input("First number: ")
 num2 = input("Second number: ")
 print("You entered: " + num1 + " and " + num2)
+
+# Calculator with type conversion
+num1 = float(input("First number: "))
+num2 = float(input("Second number: "))
+result = num1 + num2
+print(f"Sum: {result}")
 \`\`\`
 
-Input handling is essential for interactive programs! 🎯`
+Input handling with proper type conversion is essential for interactive programs! 🎯`
 };

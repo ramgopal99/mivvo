@@ -158,7 +158,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
 
   return (
     <>
-      <SidebarContent className="overflow-x-hidden">
+      <SidebarContent className="overflow-auto scrollbar-hide max-h-[calc(100vh-8rem)] w-48">
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -202,7 +202,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                               onClick={() => handleLessonClick(module.id, subLesson.id)}
                               className="flex items-center gap-3 min-w-0 flex-1 p-0 bg-transparent hover:bg-transparent cursor-pointer"
                             >
-                              <div className="w-4 h-4 text-muted-foreground flex items-center justify-center text-[11px] font-medium flex-shrink-0">
+                              <div className="w-6 h-6 text-muted-foreground flex items-center justify-center text-[10px] font-semibold flex-shrink-0">
                                 {subLesson.id}
                               </div>
                               <span className="truncate text-[11px] max-w-[120px] text-muted-foreground mt-0.5">{subLesson.title}</span>
@@ -241,7 +241,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                               onClick={() => handleExerciseClick(exercise.id, module.id)}
                               className="flex items-center gap-3 min-w-0 flex-1 p-0 bg-transparent hover:bg-transparent cursor-pointer"
                             >
-                              <div className="w-4 h-4 text-muted-foreground flex items-center justify-center text-[11px] font-medium flex-shrink-0">
+                              <div className="w-6 h-6 text-muted-foreground flex items-center justify-center text-[10px] font-semibold flex-shrink-0">
                                 {exercise.id}
                               </div>
                               <span className="truncate text-[11px] max-w-[120px] text-muted-foreground mt-0.5">{exercise.title}</span>
