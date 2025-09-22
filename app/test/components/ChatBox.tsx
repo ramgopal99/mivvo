@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { X, Send, Brain } from 'lucide-react';
+import { getChatResponse } from '../actions/chat';
 
 interface Message {
   id: string;
@@ -22,7 +23,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ isOpen, onClose }) => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hello! I'm your AI assistant. How can I help you with your learning today?",
+      text: "Hello! I'm Mivvo, your Python learning assistant. I can help you with Python programming questions, syntax, libraries, best practices, and more. What would you like to know about Python?",
       sender: 'ai',
       timestamp: new Date(),
     },
@@ -63,17 +64,30 @@ const ChatBox: React.FC<ChatBoxProps> = ({ isOpen, onClose }) => {
     setInputValue('');
     setIsTyping(true);
 
-    // Simulate AI response (replace with actual AI integration)
-    setTimeout(() => {
+    try {
+      // Call the AI service
+      const response = await getChatResponse(userMessage.text);
+
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: `I understand you said: "${userMessage.text}". This is a placeholder response. The actual AI integration would provide helpful learning assistance based on your current topic.`,
+        text: response.success ? response.message! : response.error!,
         sender: 'ai',
         timestamp: new Date(),
       };
+
       setMessages(prev => [...prev, aiMessage]);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: 'Sorry, I encountered an error. Please try again.',
+        sender: 'ai',
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
       setIsTyping(false);
-    }, 1500);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -91,7 +105,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ isOpen, onClose }) => {
       <div className="flex items-center justify-between p-4 border-b bg-muted/30 flex-shrink-0">
         <div className="flex items-center gap-2">
           <Brain className="h-5 w-5 text-primary" />
-          <span className="font-semibold">AI Assistant</span>
+          <span className="font-semibold">Mivvo Assistant</span>
         </div>
         <Button
           variant="ghost"

@@ -4,13 +4,15 @@ export const topic_2_2: SubLesson = {
   id: 2.2,
   title: 'Variables & Data Types',
   status: 'demo',
-  content: `# Python Variables and Data Types
+  content: `# 📦 Python Variables and Data Types
 
 Variables are containers that store data values in Python. Unlike some languages, Python doesn't require you to declare the data type - it figures it out automatically!
 
-## Creating Variables
+---
 
-### **Basic Variable Assignment**
+## 🆕 Creating Variables
+
+### **🎯 Basic Variable Assignment**
 \`\`\`python
 # Creating variables is simple
 name = "Alice"
@@ -25,7 +27,7 @@ x = y = z = 10
 a, b, c = 1, 2, 3
 \`\`\`
 
-### **Dynamic Typing**
+### **🔄 Dynamic Typing**
 \`\`\`python
 # Variables can change type
 score = 100        # Integer
@@ -35,9 +37,9 @@ score = 98.5       # Now it's a float
 print(score)       # Output: 98.5
 \`\`\`
 
-## Python Data Types
+## 🔢 Python Data Types
 
-### **1. Numeric Types**
+### **1. 📊 Numeric Types**
 \`\`\`python
 # Integer (whole numbers)
 age = 25
@@ -51,7 +53,7 @@ price = 19.99
 complex_num = 3 + 4j
 \`\`\`
 
-### **2. String (Text)**
+### **2. 📝 String (Text)**
 \`\`\`python
 # Single quotes
 name = 'Alice'
@@ -74,7 +76,7 @@ greeting = f"Hello, {name}!"  # f-string formatting
 print(greeting)   # Output: Hello, Alice!
 \`\`\`
 
-### **3. Boolean (True/False)**
+### **3. ✅ Boolean (True/False)**
 \`\`\`python
 # Boolean values
 is_student = True
@@ -91,7 +93,7 @@ print(True or False)   # True
 print(not True)        # False
 \`\`\`
 
-## Python Data Types Overview
+## 📊 Python Data Types Overview
 
 Python has several built-in data types, organized by category:
 
@@ -114,9 +116,9 @@ Python has several built-in data types, organized by category:
 - **Mapping Type:** \`dict\` (key-value pairs)
 - **Set Types:** \`set\` (unique items), \`frozenset\` (immutable sets)
 
-## Type Checking and Conversion
+## 🔍 Type Checking and Conversion
 
-### **Check Data Types**
+### **🔎 Check Data Types**
 \`\`\`python
 # Check variable types
 print(type(name))     # <class 'str'>
@@ -124,7 +126,7 @@ print(type(age))      # <class 'int'>
 print(type(height))   # <class 'float'>
 \`\`\`
 
-### **Type Conversion**
+### **🔄 Type Conversion**
 \`\`\`python
 # Convert between types
 number_str = "123"
@@ -137,7 +139,7 @@ age = 25
 age_str = str(age)              # Convert to string
 \`\`\`
 
-## Variable Naming Rules
+## 📋 Variable Naming Rules
 
 ### **✅ Good Variable Names**
 \`\`\`python
@@ -159,7 +161,7 @@ calculate_total = lambda x, y: x + y
 # class = "Python"  # SyntaxError
 \`\`\`
 
-## Data Type Categories
+## 📊 Data Type Categories
 
 | Category | Data Types | Examples |
 |----------|------------|----------|
@@ -170,7 +172,7 @@ calculate_total = lambda x, y: x + y
 
 *Note: Advanced data types (list, tuple, dict, set) will be covered in future lessons.*
 
-## Best Practices
+## ⭐ Best Practices
 
 1. **Use descriptive names**: \`user_age\` instead of \`x\`
 2. **Use snake_case**: \`first_name\` instead of \`firstName\`
@@ -181,5 +183,5 @@ calculate_total = lambda x, y: x + y
    MAX_USERS = 100
    \`\`\`
 
-Python's dynamic typing makes it easy to learn, but understanding data types is crucial for writing robust code! 🐍`
+Python's dynamic typing makes it easy to learn, but understanding data types is crucial for writing robust code! 🐍✨`
 };

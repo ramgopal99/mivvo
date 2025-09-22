@@ -5,6 +5,7 @@ import MiddleBottom from './MiddleBottom';
 import MCQModule, { MCQQuestion } from './MCQModule';
 import CodeExercise from './CodeExercise';
 import { modules, Module, SubLesson, Exercise } from '../data/lessonsData';
+import { useEffect, useRef } from 'react';
 
 interface SelectedTopic {
   moduleId: number;
@@ -74,6 +75,15 @@ const parseMCQQuestions = (content: string): MCQQuestion[] => {
 
 
 const MiddleSection = ({ selectedTopic, onPrevious, onNext, onAI, isChatOpen, onCloseChat }: MiddleSectionProps) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to top whenever selectedTopic changes
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0;
+    }
+  }, [selectedTopic]);
+
   const renderContent = () => {
     if (!selectedTopic) {
       return (
@@ -148,7 +158,10 @@ const MiddleSection = ({ selectedTopic, onPrevious, onNext, onAI, isChatOpen, on
 
   return (
     <div className="h-full flex flex-col">
-      <div className="flex-1 p-6 overflow-auto scrollbar-hide">
+      <div
+        ref={scrollContainerRef}
+        className="flex-1 p-6 overflow-auto scrollbar-hide"
+      >
         <div className="space-y-4">
           {renderContent()}
         </div>

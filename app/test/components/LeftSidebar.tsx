@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   SidebarContent,
   SidebarGroup,
@@ -23,6 +23,7 @@ interface LeftSidebarProps {
 }
 
 const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedItemsChange, selectedTopic }) => {
+  const sidebarScrollRef = useRef<HTMLDivElement>(null);
   const [expandedModules, setExpandedModules] = useState<number[]>([1]);
   // const [activeModule, setActiveModule] = useState<number>(1);
   // const [activeLesson, setActiveLesson] = useState<number | null>(null);
@@ -50,6 +51,13 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
       }
     }
   }, [selectedTopic]);
+
+  // Scroll to top when changing modules
+  useEffect(() => {
+    if (sidebarScrollRef.current && selectedTopic) {
+      sidebarScrollRef.current.scrollTop = 0;
+    }
+  }, [selectedTopic?.moduleId]);
 
   const toggleModule = (moduleId: number) => {
     setExpandedModules(prev =>
@@ -158,7 +166,10 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
 
   return (
     <>
-      <SidebarContent className="overflow-auto scrollbar-hide max-h-[calc(100vh-8rem)] w-48">
+      <SidebarContent
+        ref={sidebarScrollRef}
+        className="overflow-auto scrollbar-hide max-h-[calc(100vh-8rem)] w-48"
+      >
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -177,7 +188,12 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                       }`}>
                         {module.id}
                       </div>
-                      <span className="truncate text-xs max-w-[140px] font-bold mt-1">{module.title}</span>
+                      <span
+                        className="truncate text-xs max-w-[140px] font-bold mt-1"
+                        title={module.title}
+                      >
+                        {module.title}
+                      </span>
                     </div>
                     <div className="flex items-center gap-2 flex-shrink-0">
                       {expandedModules.includes(module.id) ? (
@@ -205,7 +221,12 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                               <div className="w-6 h-6 text-muted-foreground flex items-center justify-center text-[10px] font-semibold flex-shrink-0">
                                 {subLesson.id}
                               </div>
-                              <span className="truncate text-[11px] max-w-[120px] text-muted-foreground mt-0.5">{subLesson.title}</span>
+                              <span
+                                className="truncate text-[11px] max-w-[120px] text-muted-foreground mt-0.5"
+                                title={subLesson.title}
+                              >
+                                {subLesson.title}
+                              </span>
                             </SidebarMenuSubButton>
                             <div className="flex-shrink-0">
                               {getStatusIndicator(subLesson.status, subLesson.title, `module-${module.id}-lesson-${subLesson.id}`)}
@@ -244,7 +265,12 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                               <div className="w-6 h-6 text-muted-foreground flex items-center justify-center text-[10px] font-semibold flex-shrink-0">
                                 {exercise.id}
                               </div>
-                              <span className="truncate text-[11px] max-w-[120px] text-muted-foreground mt-0.5">{exercise.title}</span>
+                              <span
+                                className="truncate text-[11px] max-w-[120px] text-muted-foreground mt-0.5"
+                                title={exercise.title}
+                              >
+                                {exercise.title}
+                              </span>
                             </SidebarMenuSubButton>
                             <div className="flex-shrink-0">
                               {getStatusIndicator(exercise.status, exercise.title, `module-${module.id}-exercise-${exercise.id}`)}

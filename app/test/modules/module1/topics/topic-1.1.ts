@@ -4,11 +4,13 @@ export const topic_1_1: SubLesson = {
   id: 1.1,
   title: 'Why Python?',
   status: 'completed',
-  content: `# Why Python?
+  content: `# 🐍 Why Python?
 
 Python is one of the most popular and versatile programming languages in the world. But what makes it so special?
 
-## The Origins of Python
+---
+
+## 🎯 The Origins of Python
 
 ### Created by Guido van Rossum
 - **Born**: December 31, 1956 in Netherlands
@@ -19,7 +21,7 @@ Python is one of the most popular and versatile programming languages in the wor
 ### Key Milestones in Python's History
 - **1991**: Python 0.9.0 released (first public version)
 
-## Why Python is Special
+## ✨ Why Python is Special
 
 ### 1. **Simple & Readable Syntax**
 
@@ -56,7 +58,7 @@ This means:
 - One obvious solution to each problem
 - Easy to learn and understand
 
-### 3. **The Zen of Python**
+### 3. **📜 The Zen of Python**
 
 Run \`import this\` in Python to see the guiding principles:
 
@@ -69,12 +71,12 @@ import this
 > Simple is better than complex.  
 > Complex is better than complicated."
 
-## Python's Impact
+## 🌟 Python's Impact
 
 - **3.5+ million** developers worldwide
 - **200,000+** Python packages available
 - **Most popular** language for data science and AI
 - **Used by** major companies like Google, Netflix, Instagram
 
-Python's philosophy of simplicity and readability makes it the perfect first programming language! 🚀`
+Python's philosophy of simplicity and readability makes it the perfect first programming language! 🚀✨`
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useImperativeHandle, useRef, useEffect } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import dynamic from 'next/dynamic';
 
@@ -17,6 +17,8 @@ const Editor = dynamic(() => import('@monaco-editor/react').then(mod => mod.defa
 export interface MonacoEditorRef {
   getValue: () => string;
   setValue: (value: string) => void;
+  getLanguage: () => string;
+  setLanguage: (language: string) => void;
 }
 
 interface MonacoEditorProps {
@@ -25,6 +27,7 @@ interface MonacoEditorProps {
   language?: string;
   theme?: string;
   onMount?: (editor: unknown) => void;
+  onLanguageChange?: (language: string) => void;
 }
 
 const MonacoEditor = forwardRef<MonacoEditorRef, MonacoEditorProps>(({
@@ -32,9 +35,11 @@ const MonacoEditor = forwardRef<MonacoEditorRef, MonacoEditorProps>(({
   height = "100%",
   language = "javascript",
   theme,
-  onMount
+  onMount,
+  onLanguageChange
 }, ref) => {
   const editorRef = useRef<unknown>(null);
+  const [currentLanguage, setCurrentLanguage] = useState(language);
   const { resolvedTheme } = useTheme();
   
   // Use the provided theme or determine based on current theme
@@ -57,6 +62,18 @@ const MonacoEditor = forwardRef<MonacoEditorRef, MonacoEditorProps>(({
     }
   };
 
+  // Update language when prop changes
+  useEffect(() => {
+    setCurrentLanguage(language);
+  }, [language]);
+
+  // Call onLanguageChange when language changes
+  useEffect(() => {
+    if (onLanguageChange) {
+      onLanguageChange(currentLanguage);
+    }
+  }, [currentLanguage, onLanguageChange]);
+
   useImperativeHandle(ref, () => ({
     getValue: () => {
       const editor = editorRef.current as { getValue?: () => string } | null;
@@ -65,13 +82,17 @@ const MonacoEditor = forwardRef<MonacoEditorRef, MonacoEditorProps>(({
     setValue: (value: string) => {
       const editor = editorRef.current as { setValue?: (value: string) => void } | null;
       editor?.setValue?.(value);
+    },
+    getLanguage: () => currentLanguage,
+    setLanguage: (newLanguage: string) => {
+      setCurrentLanguage(newLanguage);
     }
   }));
 
   return (
     <Editor
       height={height}
-      defaultLanguage={language}
+      language={currentLanguage}
       defaultValue={defaultValue}
       theme={editorTheme}
       options={{

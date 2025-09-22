@@ -4,11 +4,13 @@ export const topic_2_1: SubLesson = {
   id: 2.1,
   title: 'Syntax',
   status: 'demo',
-  content: `# Python Basic Syntax
+  content: `# 📝 Python Basic Syntax
 
 Python syntax is designed to be clean, readable, and straightforward. Let's explore the fundamental building blocks of Python code.
 
-## Python Program Structure
+---
+
+## 🏗️ Python Program Structure
 
 ### 1. **Statements and Expressions**
 \`\`\`python
@@ -23,7 +25,7 @@ name = "Alice"
 age = 25
 \`\`\`
 
-### 2. **Comments**
+### 2. **💬 Comments**
 \`\`\`python
 # This is a single-line comment
 
@@ -36,9 +38,9 @@ or docstring
 user_name = "Bob"  # Store the user's name
 \`\`\`
 
-## Code Blocks and Indentation
+## 📦 Code Blocks and Indentation
 
-### **Indentation is Important!**
+### **⚠️ Indentation is Important!**
 Python uses **indentation** to define code blocks, not braces like other languages:
 
 \`\`\`python
@@ -53,7 +55,7 @@ if True:
 print("Outside the if block")
 \`\`\`
 
-### **Common Indentation Examples**
+### **🔧 Common Indentation Examples**
 \`\`\`python
 # Function definition
 def greet(name):
@@ -65,9 +67,9 @@ class Person:
         self.name = name
 \`\`\`
 
-## Keywords and Identifiers
+## 🔑 Keywords and Identifiers
 
-### **Python Keywords** (Reserved Words)
+### **🚫 Python Keywords** (Reserved Words)
 \`\`\`python
 # Some important Python keywords:
 False      # Boolean value
@@ -87,7 +89,7 @@ return     # Return from function
 import     # Import modules
 \`\`\`
 
-### **Naming Rules for Variables and Functions**
+### **📋 Naming Rules for Variables and Functions**
 \`\`\`python
 # ✅ Valid names
 name = "Alice"
@@ -101,9 +103,9 @@ calculate_total = lambda x, y: x + y
 # class = "Error"       # Cannot use keywords
 \`\`\`
 
-## String Formatting and F-Strings
+## 🎨 String Formatting and F-Strings
 
-### **F-String Basics**
+### **✨ F-String Basics**
 \`\`\`python
 # F-strings (formatted string literals) - Python 3.6+
 # Use f"..." and {variable} to insert values
@@ -121,7 +123,7 @@ print(f"Next year you will be {age + 1} years old.")
 
 \`\`\`
 
-### **F-String Formatting Options**
+### **🔧 F-String Formatting Options**
 \`\`\`python
 # Number formatting
 pi = 3.14159265359
@@ -141,7 +143,7 @@ name = "Alice"
 print(f"Left aligned: {name:<10}")   # Output: Left aligned: Alice
 \`\`\`
 
-### **F-String Examples**
+### **📖 F-String Examples**
 \`\`\`python
 # Real-world examples
 student_name = "Bob"
@@ -165,7 +167,7 @@ Status: {'Pass' if score >= 60 else 'Fail'}
 print(message)
 \`\`\`
 
-### **F-String vs Old Methods**
+### **⚡ F-String vs Old Methods**
 \`\`\`python
 name = "Alice"
 age = 25
@@ -180,9 +182,9 @@ print(f"Hello, {name}! You are {age} years old.")
 print("Hello, %s! You are %d years old." % (name, age))
 \`\`\`
 
-## Line Structure
+## 📏 Line Structure
 
-### **Physical vs Logical Lines**
+### **🔄 Physical vs Logical Lines**
 \`\`\`python
 # One physical line, one logical line
 name = "Alice"
@@ -200,16 +202,16 @@ age = 25
 total = 1 + 2 + 3 + 4
 \`\`\`
 
-## Best Practices
+## ⭐ Best Practices
 
-### **Code Style Guidelines**
+### **🎯 Code Style Guidelines**
 1. **Use 4 spaces for indentation** (not tabs)
 2. **Keep lines under 79 characters**
 3. **Use blank lines to separate functions and classes**
 4. **Use descriptive names** for variables and functions
 5. **Write comments** to explain complex logic
 
-### **Example of Good Python Style**
+### **📋 Example of Good Python Style**
 \`\`\`python
 # Calculate the area of a circle
 def calculate_area(radius):
@@ -223,7 +225,7 @@ circle_area = calculate_area(5)
 print(f"Area: {circle_area}")
 \`\`\`
 
-## Syntax Summary
+## 📚 Syntax Summary
 
 - **Comment**: Use # comment for single-line comments
 - **Multi-line Comment**: Use triple quotes for multi-line comments
@@ -231,5 +233,5 @@ print(f"Area: {circle_area}")
 - **Function**: Use def name(): to define functions
 - **Variable**: Use name = value for variable assignment
 
-Python's syntax is designed to be **intuitive and readable** - it reads almost like English! 🐍`
+Python's syntax is designed to be **intuitive and readable** - it reads almost like English! 🐍✨`
 };

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChevronDown, ChevronUp, Copy, Check } from 'lucide-react';
+import { MarkdownCompound } from '@/components/markdown-compound';
 
 export interface CodeQuestion {
   id: string;
@@ -67,10 +68,48 @@ const CodeExercise: React.FC<CodeExerciseProps> = ({
       {questions.map((question, questionIndex) => (
         <Card key={question.id} className="w-full">
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-lg flex-1">
-                Question {questionIndex + 1}: {question.question}
-              </CardTitle>
+            <CardTitle className="text-lg">
+              Question {questionIndex + 1}
+            </CardTitle>
+            <div className="mt-2 text-base">
+              {question.question.split('\n').map((line, lineIndex) => {
+                const trimmedLine = line.trim();
+                if (!trimmedLine) return null;
+
+                // Check if it's a numbered point (1., 2., etc.)
+                const numberMatch = trimmedLine.match(/^(\d+)\.\s*(.+)$/);
+                if (numberMatch) {
+                  return (
+                    <div key={lineIndex} className="flex items-start gap-2 mb-1">
+                      <span className="font-medium text-blue-600 dark:text-blue-400 min-w-[1.5rem]">
+                        {numberMatch[1]}.
+                      </span>
+                      <span>{numberMatch[2]}</span>
+                    </div>
+                  );
+                }
+
+                // Check if it's a bullet point (-)
+                if (trimmedLine.startsWith('- ')) {
+                  return (
+                    <div key={lineIndex} className="flex items-start gap-2 mb-1 ml-4">
+                      <span className="text-gray-600 dark:text-gray-400">•</span>
+                      <span>{trimmedLine.substring(2)}</span>
+                    </div>
+                  );
+                }
+
+                // Regular paragraph text
+                return (
+                  <p key={lineIndex} className="mb-2">
+                    {trimmedLine}
+                  </p>
+                );
+              })}
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="flex justify-end mb-4">
               <Button
                 variant="ghost"
                 size="sm"
@@ -90,21 +129,26 @@ const CodeExercise: React.FC<CodeExerciseProps> = ({
                 )}
               </Button>
             </div>
-          </CardHeader>
-          <CardContent>
             {showSolutions[question.id] && (
               <div className="border-t pt-4">
-                <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="font-semibold text-green-800 dark:text-green-300">
-                        Solution:
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg border border-green-200 dark:border-green-800">
+                  <div className="p-4">
+                    {/* Header with title and copy button */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                        <span className="ml-2 font-semibold text-green-800 dark:text-green-300 text-sm">
+                          Solution
+                        </span>
                       </div>
                       <Button
                         variant="ghost"
                         size="sm"
                         onClick={() => copyToClipboard(question.solution, question.id)}
-                        className="h-8 w-8 p-0 hover:bg-green-100 dark:hover:bg-green-900/30"
+                        className="h-8 w-8 p-0 hover:bg-green-100 dark:hover:bg-green-900/30 rounded-md"
+                        title="Copy solution"
                       >
                         {copiedSolutions[question.id] ? (
                           <Check className="h-4 w-4 text-green-600" />
@@ -113,9 +157,16 @@ const CodeExercise: React.FC<CodeExerciseProps> = ({
                         )}
                       </Button>
                     </div>
-                    <pre className="text-sm font-mono whitespace-pre-wrap bg-white dark:bg-gray-800 p-3 rounded border text-green-700 dark:text-green-400">
-                      {question.solution}
-                    </pre>
+
+                    {/* Code block with syntax highlighting */}
+                    <MarkdownCompound className="text-sm">
+                      {`\`\`\`python\n${question.solution}\n\`\`\``}
+                    </MarkdownCompound>
+
+                    {/* Footer hint */}
+                    <div className="mt-3 text-xs text-green-700 dark:text-green-400 opacity-75">
+                      💡 Click the copy button to copy the entire solution
+                    </div>
                   </div>
                 </div>
               </div>

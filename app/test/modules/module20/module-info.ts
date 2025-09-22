@@ -1,6 +1,6 @@
 export const moduleInfo = {
   id: 20,
-  title: 'Snake Game Project',
+  title: 'Projects 03 [Advanced]',
   hasDemo: true,
   isExpanded: true,
   isActive: true,
