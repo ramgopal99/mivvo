@@ -177,7 +177,7 @@ import { topic_20_5 } from '../app/test/modules/module20/topics/topic-20.5';
 // =============================================================================
 
 // Module 1
-import { exercise_1_2 } from '../app/test/modules/module1/mcq/exercise-1.2';
+import { exercise_1_3 } from '../app/test/modules/module1/mcq/exercise-1.3';
 
 // Module 2
 import { exercise_2_8 } from '../app/test/modules/module2/mcq/exercise-2.8';
@@ -248,7 +248,7 @@ const MODULE_CONFIG = [
   {
     info: module1Info,
     topics: [topic_1_1, topic_1_2],
-    exercises: [exercise_1_2]
+    exercises: [exercise_1_3]
   },
   {
     info: module2Info,

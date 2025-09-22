@@ -37,6 +37,14 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
     if (selectedTopic) {
       setSelectedModule(selectedTopic.moduleId);
 
+      // Auto-expand the module when navigating to it
+      setExpandedModules(prev => {
+        if (!prev.includes(selectedTopic.moduleId)) {
+          return [...prev, selectedTopic.moduleId];
+        }
+        return prev;
+      });
+
       // Check if it's a subtopic or exercise
       const currentModule = modules.find(m => m.id === selectedTopic.moduleId);
       const isSubtopic = currentModule?.subLessons?.some(sl => sl.id === selectedTopic.subtopicId);
@@ -57,7 +65,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
     if (sidebarScrollRef.current && selectedTopic) {
       sidebarScrollRef.current.scrollTop = 0;
     }
-  }, [selectedTopic?.moduleId]);
+  }, [selectedTopic]);
 
   const toggleModule = (moduleId: number) => {
     setExpandedModules(prev =>
