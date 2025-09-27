@@ -14,6 +14,7 @@ export default function TextToSpeech() {
   const [speechRate, setSpeechRate] = useState<number>(0.9)
   const [speechPitch, setSpeechPitch] = useState<number>(1)
   const [isSpeaking, setIsSpeaking] = useState(false)
+  const [autoListenAfterAI, setAutoListenAfterAI] = useState<boolean>(false)
 
   useEffect(() => {
     const loadVoices = () => {
@@ -80,13 +81,16 @@ export default function TextToSpeech() {
               speechRate={speechRate}
               speechPitch={speechPitch}
               availableVoices={voices}
+              autoListenAfterAI={autoListenAfterAI}
               onVoiceChange={setSelectedVoice}
               onRateChange={setSpeechRate}
               onPitchChange={setSpeechPitch}
               onTestVoice={() => handleSpeak()}
+              onAutoListenChange={setAutoListenAfterAI}
               onReset={() => {
                 setSpeechRate(0.9)
                 setSpeechPitch(1)
+                setAutoListenAfterAI(false)
                 if (voices.length > 0) {
                   setSelectedVoice(voices[0].voiceURI)
                 }
