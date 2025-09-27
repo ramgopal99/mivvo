@@ -67,6 +67,7 @@ export default function LLM() {
   const startListeningRef = useRef<(() => void) | null>(null)
   const isListeningRef = useRef<boolean>(false)
   const isConversationModeRef = useRef<boolean>(false)
+  const autoListenAfterAIRef = useRef<boolean>(false)
 
   const startListening = useCallback(async () => {
     if (!recognitionRef.current || isListening) return
@@ -102,10 +103,10 @@ export default function LLM() {
     utterance.onstart = () => setIsSpeaking(true)
     utterance.onend = () => {
       setIsSpeaking(false)
-      console.log('AI speech ended, isConversationMode:', isConversationModeRef.current, 'autoListenAfterAI:', autoListenAfterAI)
+      console.log('AI speech ended, isConversationMode:', isConversationModeRef.current, 'autoListenAfterAI:', autoListenAfterAIRef.current)
       // Auto-start listening if enabled (conversation mode or auto-listen setting)
       // Use setTimeout to avoid calling async function in synchronous callback
-      if (isConversationModeRef.current || autoListenAfterAI) {
+      if (isConversationModeRef.current || autoListenAfterAIRef.current) {
         console.log('Auto-starting listening...')
         setTimeout(() => {
           console.log('Checking if should start listening:', !isListeningRef.current, !!startListeningRef.current)
@@ -119,7 +120,7 @@ export default function LLM() {
     utterance.onerror = () => setIsSpeaking(false)
 
     speechSynthesisRef.current.speak(utterance)
-  }, [selectedVoice, speechRate, speechPitch, availableVoices, autoListenAfterAI])
+  }, [selectedVoice, speechRate, speechPitch, availableVoices])
 
   const handleSendMessage = useCallback(async (messageText: string = currentInput) => {
     if (!messageText.trim()) return
@@ -232,7 +233,17 @@ export default function LLM() {
         let errorMessage = ''
         switch (event.error) {
           case 'no-speech':
-            errorMessage = 'No speech detected. Please speak clearly into your microphone and try again.'
+            if (isConversationModeRef.current || autoListenAfterAIRef.current) {
+              console.log('No speech detected, restarting listening...')
+              setTimeout(() => {
+                if (!isListeningRef.current && startListeningRef.current) {
+                  startListeningRef.current()
+                }
+              }, 100)
+            } else {
+              console.log('No speech detected, but auto-listen not enabled')
+            }
+            return
             break
           case 'audio-capture':
             errorMessage = 'Audio capture failed. Please check your microphone and try again.'
@@ -527,11 +538,15 @@ export default function LLM() {
                 onRateChange={setSpeechRate}
                 onPitchChange={setSpeechPitch}
                 onTestVoice={() => speakText("Hello! This is how your selected voice sounds.")}
-                onAutoListenChange={setAutoListenAfterAI}
+                onAutoListenChange={(enabled: boolean) => {
+                  setAutoListenAfterAI(enabled)
+                  autoListenAfterAIRef.current = enabled
+                }}
                 onReset={() => {
                   setSpeechRate(0.9)
                   setSpeechPitch(1)
                   setAutoListenAfterAI(false)
+                  autoListenAfterAIRef.current = false
                   if (availableVoices.length > 0) {
                     setSelectedVoice(availableVoices[0].voiceURI)
                   }
