@@ -66,6 +66,7 @@ export default function LLM() {
   const handleSendMessageRef = useRef<((message: string) => void) | null>(null)
   const startListeningRef = useRef<(() => void) | null>(null)
   const isListeningRef = useRef<boolean>(false)
+  const isConversationModeRef = useRef<boolean>(false)
 
   const startListening = useCallback(async () => {
     if (!recognitionRef.current || isListening) return
@@ -101,11 +102,15 @@ export default function LLM() {
     utterance.onstart = () => setIsSpeaking(true)
     utterance.onend = () => {
       setIsSpeaking(false)
+      console.log('AI speech ended, isConversationMode:', isConversationModeRef.current, 'autoListenAfterAI:', autoListenAfterAI)
       // Auto-start listening if enabled (conversation mode or auto-listen setting)
       // Use setTimeout to avoid calling async function in synchronous callback
-      if (isConversationMode || autoListenAfterAI) {
+      if (isConversationModeRef.current || autoListenAfterAI) {
+        console.log('Auto-starting listening...')
         setTimeout(() => {
+          console.log('Checking if should start listening:', !isListeningRef.current, !!startListeningRef.current)
           if (!isListeningRef.current && startListeningRef.current) {
+            console.log('Starting listening automatically')
             startListeningRef.current()
           }
         }, 100) // Small delay to ensure speech has fully ended
@@ -114,7 +119,7 @@ export default function LLM() {
     utterance.onerror = () => setIsSpeaking(false)
 
     speechSynthesisRef.current.speak(utterance)
-  }, [selectedVoice, speechRate, speechPitch, availableVoices, autoListenAfterAI, isConversationMode])
+  }, [selectedVoice, speechRate, speechPitch, availableVoices, autoListenAfterAI])
 
   const handleSendMessage = useCallback(async (messageText: string = currentInput) => {
     if (!messageText.trim()) return
@@ -297,7 +302,9 @@ export default function LLM() {
   }
 
   const startConversation = useCallback(() => {
+    console.log('Starting conversation...')
     setIsConversationMode(true)
+    isConversationModeRef.current = true
     // Add AI greeting message
     const greetingMessage: Message = {
       id: Date.now().toString(),
@@ -306,12 +313,14 @@ export default function LLM() {
       timestamp: new Date()
     }
     setMessages([greetingMessage])
+    console.log('Speaking greeting:', greetingMessage.content)
     // Speak the greeting
     speakText(greetingMessage.content)
   }, [speakText])
 
   const stopConversation = useCallback(() => {
     setIsConversationMode(false)
+    isConversationModeRef.current = false
     stopListening()
     stopSpeaking()
   }, [])
@@ -321,6 +330,7 @@ export default function LLM() {
     setCurrentInput('')
     stopSpeaking()
     setIsConversationMode(false)
+    isConversationModeRef.current = false
   }
 
   if (!isSupported) {
