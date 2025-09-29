@@ -47,7 +47,7 @@ export function MeetTestHeader({
             <Button
               onClick={onStartConversation}
               disabled={isLoading}
-              className="bg-green-600 hover:bg-green-700 gap-2"
+              className="bg-green-600 hover:bg-green-700 gap-2 cursor-pointer"
               size="sm"
             >
               <Mic className="h-4 w-4" />
@@ -58,7 +58,7 @@ export function MeetTestHeader({
               onClick={onStopConversation}
               variant="destructive"
               size="sm"
-              className="gap-2"
+              className="gap-2 cursor-pointer"
             >
               <MicOff className="h-4 w-4" />
               Stop Chat
@@ -70,7 +70,7 @@ export function MeetTestHeader({
             onClick={onEndCall}
             variant="destructive"
             size="sm"
-            className="gap-2"
+            className="gap-2 cursor-pointer"
           >
             <PhoneOff className="h-4 w-4" />
             End Call

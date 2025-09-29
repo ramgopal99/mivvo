@@ -4,139 +4,175 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Switch } from '@/components/ui/switch'
-import { Settings, ChevronDown, ChevronUp } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Settings, ChevronDown, ChevronUp, Volume2 } from 'lucide-react'
 
 interface VoiceSettingsProps {
   selectedVoice: string
-  speechRate: number
-  speechPitch: number
   availableVoices: SpeechSynthesisVoice[]
-  autoListenAfterAI: boolean
   onVoiceChange: (voiceURI: string) => void
-  onRateChange: (rate: number) => void
-  onPitchChange: (pitch: number) => void
   onTestVoice: () => void
-  onReset: () => void
-  onAutoListenChange: (enabled: boolean) => void
 }
 
 export function VoiceSettings({
   selectedVoice,
-  speechRate,
-  speechPitch,
   availableVoices,
-  autoListenAfterAI,
   onVoiceChange,
-  onRateChange,
-  onPitchChange,
-  onTestVoice,
-  onReset,
-  onAutoListenChange
+  onTestVoice
 }: VoiceSettingsProps) {
   const [showSettings, setShowSettings] = useState(false)
 
+  // Filter Indian and US voices
+  const allVoices = availableVoices.filter(voice =>
+    voice.lang.startsWith('hi') || voice.lang.startsWith('en') ||
+    voice.lang.startsWith('bn') || voice.lang.startsWith('ta') ||
+    voice.lang.startsWith('te') || voice.lang.startsWith('gu') ||
+    voice.lang.startsWith('kn') || voice.lang.startsWith('ml') ||
+    voice.lang.startsWith('mr') || voice.lang.startsWith('or') ||
+    voice.lang.startsWith('pa') || voice.lang.startsWith('as') ||
+    voice.lang.startsWith('ne')
+  )
+
+  // Group voices by provider and type
+  const googleUSVoices = allVoices.filter(voice =>
+    voice.name.includes('Google') && voice.lang.startsWith('en-US')
+  )
+
+  const googleUKVoices = allVoices.filter(voice =>
+    voice.name.includes('Google') && voice.lang.startsWith('en-GB')
+  )
+
+  const microsoftVoices = allVoices.filter(voice =>
+    voice.name.includes('Microsoft')
+  )
+
+  const otherVoices = allVoices.filter(voice =>
+    !voice.name.includes('Google') && !voice.name.includes('Microsoft')
+  )
+
   return (
-    <div className="border rounded-lg p-4">
-      <Button
-        onClick={() => setShowSettings(!showSettings)}
-        variant="ghost"
-        className="w-full justify-between"
-      >
-        <div className="flex items-center gap-2">
-          <Settings className="w-4 h-4" />
-          Voice Settings
+    <Card className="w-full max-w-md shadow-xl border-0 bg-background/95 backdrop-blur-sm">
+      <CardHeader className="pb-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Settings className="w-4 h-4" />
+            <CardTitle className="text-sm font-medium">Voice Settings</CardTitle>
+            <Badge variant="secondary" className="text-xs">
+              {allVoices.length} voices
+            </Badge>
+          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setShowSettings(!showSettings)}
+            className="h-6 w-6 p-0"
+          >
+            {showSettings ? (
+              <ChevronUp className="w-4 h-4" />
+            ) : (
+              <ChevronDown className="w-4 h-4" />
+            )}
+          </Button>
         </div>
-        {showSettings ? (
-          <ChevronUp className="w-4 h-4" />
-        ) : (
-          <ChevronDown className="w-4 h-4" />
-        )}
-      </Button>
+      </CardHeader>
 
       {showSettings && (
-        <div className="mt-4 space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="voice-select">Voice ({availableVoices.length} available)</Label>
-            <Select value={selectedVoice} onValueChange={onVoiceChange}>
-              <SelectTrigger>
-                <SelectValue placeholder="Select a voice" />
-              </SelectTrigger>
-              <SelectContent>
-                {availableVoices.map((voice, index) => (
-                  <SelectItem key={`${voice.voiceURI}-${index}`} value={voice.voiceURI}>
-                    {voice.name} ({voice.lang})
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+        <CardContent className="pt-0">
+          <div className="space-y-3">
+            {/* Column 1: Voice Selection */}
+            {/* Voice Selection and Test Button in One Row */}
+            <div className="flex gap-3 items-end">
+              <div className="flex-1">
+                <Label htmlFor="voice-select" className="text-xs font-medium text-foreground">
+                  All Voices ({allVoices.length})
+                </Label>
+                <Select value={selectedVoice} onValueChange={onVoiceChange}>
+                  <SelectTrigger className="h-8 text-xs bg-background border-input mt-1">
+                    <SelectValue placeholder="Select voice" />
+                  </SelectTrigger>
+                  <SelectContent className="max-h-48">
+                    {allVoices.map((voice, index) => {
+                      // Create shorter, more user-friendly names
+                      const getDisplayName = (voiceName: string) => {
+                        // Handle Google voices with specific patterns
+                        if (voiceName === 'Google US English') return 'US English';
+                        if (voiceName === 'Google UK English Female') return 'UK Female';
+                        if (voiceName === 'Google UK English Male') return 'UK Male';
+                        if (voiceName.startsWith('Google') && voiceName.includes('US English')) {
+                          return voiceName.replace('Google US English ', '').replace(' (en-US)', '');
+                        }
+                        if (voiceName.startsWith('Google') && voiceName.includes('UK English')) {
+                          return voiceName.includes('Female') ? 'UK Female' : 'UK Male';
+                        }
 
-          <div className="flex items-center justify-between">
-            <Label htmlFor="auto-listen">Auto-listen after AI response</Label>
-            <Switch
-              id="auto-listen"
-              checked={autoListenAfterAI}
-              onCheckedChange={onAutoListenChange}
-            />
-          </div>
+                        // Handle Microsoft voices
+                        if (voiceName.includes('Microsoft')) {
+                          // Split by spaces and get the second word (character name after "Microsoft")
+                          const words = voiceName.split(' ');
+                          if (words.length >= 2) {
+                            const characterName = words[1]; // Second word is the character name
 
-          <div className="space-y-2">
-            <Label htmlFor="speech-rate">Speech Rate: {speechRate.toFixed(1)}x</Label>
-            <input
-              id="speech-rate"
-              type="range"
-              min={0.5}
-              max={2}
-              step={0.1}
-              value={speechRate}
-              onChange={(e) => onRateChange(parseFloat(e.target.value))}
-              aria-label={`Speech rate: ${speechRate.toFixed(1)} times`}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
-            />
-            <div className="flex justify-between text-xs text-muted-foreground">
-              <span>Slower</span>
-              <span>Faster</span>
+                            // Extract character name from technical voice name
+                            if (characterName.includes('Ravi')) return 'Ravi';
+                            if (characterName.includes('Priya')) return 'Priya';
+                            if (characterName.includes('Amit')) return 'Amit';
+                            if (characterName.includes('Ananya')) return 'Ananya';
+                            if (characterName.includes('Arjun')) return 'Arjun';
+                            if (characterName.includes('Kavya')) return 'Kavya';
+                            if (characterName.includes('Vikram')) return 'Vikram';
+                            if (characterName.includes('Meera')) return 'Meera';
+                            if (characterName.includes('Rahul')) return 'Rahul';
+                            if (characterName.includes('Sneha')) return 'Sneha';
+                            if (characterName.includes('Madhur')) return 'Madhur';
+
+                            return characterName; // Return the second word as-is
+                          }
+                        }
+
+                        // Handle other voices - take first meaningful word
+                        const words = voiceName.split(' ');
+                        if (words.length >= 2) {
+                          return words[1]; // Take second word for most cases
+                        }
+
+                        return voiceName.split(' ')[0] || voiceName;
+                      };
+
+                      const displayName = getDisplayName(voice.name);
+
+                      return (
+                        <SelectItem key={`${voice.voiceURI}-${index}`} value={voice.voiceURI}>
+                          <div className="flex items-center">
+                            <span className="font-medium text-xs text-foreground">{displayName}</span>
+                          </div>
+                        </SelectItem>
+                      );
+                    })}
+
+                    {allVoices.length === 0 && (
+                      <div className="p-2 text-center text-muted-foreground text-xs">
+                        No voices available
+                      </div>
+                    )}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Test Voice Button */}
+              <Button
+                onClick={onTestVoice}
+                variant="outline"
+                size="sm"
+                className="flex items-center gap-2 h-8 text-xs hover:bg-accent hover:text-accent-foreground mb-1"
+              >
+                <Volume2 className="w-3 h-3" />
+                Test Voice
+              </Button>
             </div>
           </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="speech-pitch">Speech Pitch: {speechPitch.toFixed(1)}</Label>
-            <input
-              id="speech-pitch"
-              type="range"
-              min={0}
-              max={2}
-              step={0.1}
-              value={speechPitch}
-              onChange={(e) => onPitchChange(parseFloat(e.target.value))}
-              aria-label={`Speech pitch: ${speechPitch.toFixed(1)}`}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
-            />
-            <div className="flex justify-between text-xs text-muted-foreground">
-              <span>Lower</span>
-              <span>Higher</span>
-            </div>
-          </div>
-
-          <div className="flex gap-2">
-            <Button
-              onClick={onTestVoice}
-              variant="outline"
-              size="sm"
-            >
-              Test Voice
-            </Button>
-            <Button
-              onClick={onReset}
-              variant="outline"
-              size="sm"
-            >
-              Reset
-            </Button>
-          </div>
-        </div>
+        </CardContent>
       )}
-    </div>
+    </Card>
   )
 }

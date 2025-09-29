@@ -9,7 +9,7 @@ interface MeetTestControlsProps {
   isChatOpen: boolean
   onToggleAudio: () => void
   onToggleVideo: () => void
-  onToggleChat: () => void
+  onToggleChat?: () => void
   onShowSettings?: () => void
 }
 
@@ -30,7 +30,7 @@ export function MeetTestControls({
           onClick={onToggleAudio}
           variant={isAudioEnabled ? "default" : "destructive"}
           size="sm"
-          className="rounded-full"
+          className="rounded-full cursor-pointer"
         >
           {isAudioEnabled ? (
             <Mic className="h-4 w-4" />
@@ -44,7 +44,7 @@ export function MeetTestControls({
           onClick={onToggleVideo}
           variant={isVideoEnabled ? "default" : "destructive"}
           size="sm"
-          className="rounded-full"
+          className="rounded-full cursor-pointer"
         >
           {isVideoEnabled ? (
             <Video className="h-4 w-4" />
@@ -53,15 +53,17 @@ export function MeetTestControls({
           )}
         </Button>
 
-        {/* Chat Toggle */}
-        <Button
-          onClick={onToggleChat}
-          variant={isChatOpen ? "default" : "outline"}
-          size="sm"
-          className="rounded-full"
-        >
-          <MessageSquare className="h-4 w-4" />
-        </Button>
+        {/* Chat Toggle - Only show if onToggleChat is provided */}
+        {onToggleChat && (
+          <Button
+            onClick={onToggleChat}
+            variant={isChatOpen ? "default" : "outline"}
+            size="sm"
+            className="rounded-full cursor-pointer"
+          >
+            <MessageSquare className="h-4 w-4" />
+          </Button>
+        )}
 
         {/* Settings */}
         {onShowSettings && (
@@ -69,7 +71,7 @@ export function MeetTestControls({
             onClick={onShowSettings}
             variant="outline"
             size="sm"
-            className="rounded-full"
+            className="rounded-full cursor-pointer"
           >
             <Settings className="h-4 w-4" />
           </Button>

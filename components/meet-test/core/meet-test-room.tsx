@@ -9,6 +9,20 @@ import { VoiceSettings } from '../voice/voice-settings'
 import { VoiceActivityIndicator } from '@/components/meet/ui/voice-activity-indicator'
 import { Chat } from '@/components/meet/chat'
 
+// Voice Configuration - Easy to modify in the future
+const VOICE_CONFIG = {
+  language: 'hi-IN',        // Default language (Hindi)
+  speechRate: 1.2,          // Speech rate (1.2x = 20% faster)
+  speechPitch: 1.0,         // Speech pitch (1.0 = normal)
+  autoListenAfterAI: false  // Auto-listen after AI speaks
+} as const
+
+// UI Configuration - Easy to modify in the future
+const UI_CONFIG = {
+  showChatBox: false,       // Show/hide chat box (true = show, false = hide)
+  showVoiceSettings: true   // Show/hide voice settings panel (true = show, false = hide)
+} as const
+
 interface MeetTestRoomProps {
   assistantName?: string
   assistantAvatar?: string
@@ -34,14 +48,12 @@ export function MeetTestRoom({
   // State for voice chat
   const [voiceTranscript, setVoiceTranscript] = useState<{ role: string; text: string; timestamp: string }[]>([])
   const [isVoiceChatActive, setIsVoiceChatActive] = useState(false)
+  const [isConversationMode, setIsConversationMode] = useState(false)
   const [messages, setMessages] = useState<{ id: string; role: 'user' | 'assistant'; content: string; timestamp: string }[]>([])
   
-  // Voice settings state
-  const [selectedVoice, setSelectedVoice] = useState<string>('')
-  const [speechRate, setSpeechRate] = useState<number>(0.9)
-  const [speechPitch, setSpeechPitch] = useState<number>(1)
+  // Voice settings state - using configuration values
+  const [selectedVoice, setSelectedVoice] = useState<string>(VOICE_CONFIG.language)
   const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([])
-  const [autoListenAfterAI, setAutoListenAfterAI] = useState<boolean>(false)
   
   // Refs
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -55,8 +67,32 @@ export function MeetTestRoom({
     const loadVoices = () => {
       const voices = speechSynthesis.getVoices()
       setAvailableVoices(voices)
-      if (voices.length > 0 && !selectedVoice) {
-        setSelectedVoice(voices[0].voiceURI)
+
+      // Filter for Indian and English voices
+      const targetVoices = voices.filter(voice =>
+        voice.lang.startsWith('hi') || voice.lang.startsWith('en') ||
+        voice.lang.startsWith('bn') || voice.lang.startsWith('ta') ||
+        voice.lang.startsWith('te') || voice.lang.startsWith('gu') ||
+        voice.lang.startsWith('kn') || voice.lang.startsWith('ml') ||
+        voice.lang.startsWith('mr') || voice.lang.startsWith('or') ||
+        voice.lang.startsWith('pa') || voice.lang.startsWith('as') ||
+        voice.lang.startsWith('ne')
+      )
+
+      // Auto-select configured language voice if available
+      if (targetVoices.length > 0) {
+        const targetVoice = targetVoices.find(v =>
+          v.lang.startsWith(VOICE_CONFIG.language) ||
+          v.lang.startsWith(VOICE_CONFIG.language.split('-')[0])
+        )
+        if (targetVoice) {
+          setSelectedVoice(targetVoice.voiceURI)
+          console.log(`Auto-selected ${VOICE_CONFIG.language} voice:`, targetVoice.name, targetVoice.voiceURI)
+        } else if (!selectedVoice) {
+          // Fallback to first available voice if configured language not found
+          setSelectedVoice(targetVoices[0].voiceURI)
+          console.log('Fallback to first available voice:', targetVoices[0].name)
+        }
       }
     }
 
@@ -257,13 +293,20 @@ export function MeetTestRoom({
   }
 
   const handleVoiceChatStateChange = (isActive: boolean) => {
+    console.log('Voice chat state changed:', isActive)
     setIsVoiceChatActive(isActive)
   }
 
+  const handleConversationModeChange = (isActive: boolean) => {
+    console.log('Conversation mode changed:', isActive)
+    setIsConversationMode(isActive)
+  }
+
+
   const testVoice = () => {
-    const utterance = new SpeechSynthesisUtterance("Hello! This is how your selected voice sounds.")
-    utterance.rate = speechRate
-    utterance.pitch = speechPitch
+    const utterance = new SpeechSynthesisUtterance("नमस्ते! यह आपकी चुनी हुई आवाज़ है।")
+    utterance.rate = VOICE_CONFIG.speechRate
+    utterance.pitch = VOICE_CONFIG.speechPitch
 
     if (selectedVoice) {
       const voice = availableVoices.find(v => v.voiceURI === selectedVoice)
@@ -275,14 +318,7 @@ export function MeetTestRoom({
     speechSynthesis.speak(utterance)
   }
 
-  const resetVoiceSettings = () => {
-    setSpeechRate(0.9)
-    setSpeechPitch(1)
-    setAutoListenAfterAI(false)
-    if (availableVoices.length > 0) {
-      setSelectedVoice(availableVoices[0].voiceURI)
-    }
-  }
+
 
   return (
     <div className="relative h-screen bg-background">
@@ -291,14 +327,16 @@ export function MeetTestRoom({
           assistantName={assistantName}
           assistantAvatar={assistantAvatar}
           onEndCall={onEndCall}
-          isConversationMode={isVoiceChatActive}
+          isConversationMode={isConversationMode}
           isLoading={false}
           onStartConversation={() => {
+            console.log('Header: Starting voice chat')
             // Trigger voice chat start - this will be handled by the VoiceChat component
             const event = new CustomEvent('startVoiceChat')
             window.dispatchEvent(event)
           }}
           onStopConversation={() => {
+            console.log('Header: Stopping voice chat')
             // Trigger voice chat stop - this will be handled by the VoiceChat component
             const event = new CustomEvent('stopVoiceChat')
             window.dispatchEvent(event)
@@ -379,11 +417,12 @@ export function MeetTestRoom({
           <VoiceChat
             onTranscriptUpdate={handleTranscriptUpdate}
             onVoiceChatStateChange={handleVoiceChatStateChange}
+            onConversationModeChange={handleConversationModeChange}
             selectedVoice={selectedVoice}
-            speechRate={speechRate}
-            speechPitch={speechPitch}
+            speechRate={VOICE_CONFIG.speechRate}
+            speechPitch={VOICE_CONFIG.speechPitch}
             availableVoices={availableVoices}
-            autoListenAfterAI={autoListenAfterAI}
+            autoListenAfterAI={VOICE_CONFIG.autoListenAfterAI}
           />
           
           {/* AI Voice Activity Indicator */}
@@ -404,46 +443,44 @@ export function MeetTestRoom({
         isChatOpen={isChatOpen}
         onToggleAudio={() => setIsAudioEnabled(!isAudioEnabled)}
         onToggleVideo={() => setIsVideoEnabled(!isVideoEnabled)}
-        onToggleChat={() => setIsChatOpen(!isChatOpen)}
-        onShowSettings={() => setShowSettings(!showSettings)}
+        onToggleChat={UI_CONFIG.showChatBox ? () => setIsChatOpen(!isChatOpen) : undefined}
+        onShowSettings={UI_CONFIG.showVoiceSettings ? () => setShowSettings(!showSettings) : undefined}
       />
 
-      {/* Chat */}
-      <Chat
-        isOpen={isChatOpen}
-        onOpenChange={setIsChatOpen}
-        messages={messages}
-        assistant={{
-          id: 'meet-test-assistant',
-          name: assistantName,
-          avatar: assistantAvatar,
-          role: 'AI Assistant',
-          industry: 'Technology',
-          experienceLevel: 'Expert',
-          hasVoiceEnabled: true
-        }}
-        voiceTranscript={voiceTranscript}
-        isVoiceChatActive={isVoiceChatActive}
-      />
+      {/* Chat - Only show if enabled in UI_CONFIG */}
+      {UI_CONFIG.showChatBox && (
+        <Chat
+          isOpen={isChatOpen}
+          onOpenChange={setIsChatOpen}
+          messages={messages}
+          assistant={{
+            id: 'meet-test-assistant',
+            name: assistantName,
+            avatar: assistantAvatar,
+            role: 'AI Assistant',
+            industry: 'Technology',
+            experienceLevel: 'Expert',
+            hasVoiceEnabled: true
+          }}
+          voiceTranscript={voiceTranscript}
+          isVoiceChatActive={isVoiceChatActive}
+        />
+      )}
 
-      {/* Voice Settings Panel */}
-      {showSettings && (
-        <div className="absolute top-20 right-4 w-80 z-20">
-          <VoiceSettings
-            selectedVoice={selectedVoice}
-            speechRate={speechRate}
-            speechPitch={speechPitch}
-            availableVoices={availableVoices}
-            autoListenAfterAI={autoListenAfterAI}
-            onVoiceChange={setSelectedVoice}
-            onRateChange={setSpeechRate}
-            onPitchChange={setSpeechPitch}
-            onTestVoice={testVoice}
-            onReset={resetVoiceSettings}
-            onAutoListenChange={setAutoListenAfterAI}
-          />
+      {/* Voice Settings Panel - Only show if enabled in UI_CONFIG */}
+      {UI_CONFIG.showVoiceSettings && showSettings && (
+        <div className="absolute top-32 left-4 right-4 z-20 flex justify-center">
+          <div className="w-full max-w-md">
+            <VoiceSettings
+              selectedVoice={selectedVoice}
+              availableVoices={availableVoices}
+              onVoiceChange={setSelectedVoice}
+              onTestVoice={testVoice}
+            />
+          </div>
         </div>
       )}
+
     </div>
   )
 }

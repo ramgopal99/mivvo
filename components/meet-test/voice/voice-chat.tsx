@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Brain, Mic } from 'lucide-react'
+import { Brain } from 'lucide-react'
 
 // Web Speech API types
 interface SpeechRecognitionEvent extends Event {
@@ -46,6 +46,7 @@ interface Message {
 interface VoiceChatProps {
   onTranscriptUpdate?: (messages: { role: string; text: string; timestamp: string }[]) => void
   onVoiceChatStateChange?: (isActive: boolean) => void
+  onConversationModeChange?: (isActive: boolean) => void
   selectedVoice?: string
   speechRate?: number
   speechPitch?: number
@@ -56,6 +57,7 @@ interface VoiceChatProps {
 export function VoiceChat({
   onTranscriptUpdate,
   onVoiceChatStateChange,
+  onConversationModeChange,
   selectedVoice = '',
   speechRate = 0.9,
   speechPitch = 1,
@@ -305,9 +307,13 @@ export function VoiceChat({
   // Listen for custom events from header
   useEffect(() => {
     const handleStartVoiceChat = () => {
+      console.log('VoiceChat: handleStartVoiceChat called, isConversationMode:', isConversationMode)
       if (!isConversationMode) {
+        console.log('VoiceChat: Starting conversation')
         setIsConversationMode(true)
         isConversationModeRef.current = true
+        onConversationModeChange?.(true)
+        onVoiceChatStateChange?.(true)
         const greetingMessage: Message = {
           id: Date.now().toString(),
           role: 'assistant',
@@ -320,9 +326,13 @@ export function VoiceChat({
     }
 
     const handleStopVoiceChat = () => {
+      console.log('VoiceChat: handleStopVoiceChat called, isConversationMode:', isConversationMode)
       if (isConversationMode) {
+        console.log('VoiceChat: Stopping conversation')
         setIsConversationMode(false)
         isConversationModeRef.current = false
+        onConversationModeChange?.(false)
+        onVoiceChatStateChange?.(false)
         if (recognitionRef.current) {
           recognitionRef.current.stop()
         }
@@ -339,7 +349,7 @@ export function VoiceChat({
       window.removeEventListener('startVoiceChat', handleStartVoiceChat)
       window.removeEventListener('stopVoiceChat', handleStopVoiceChat)
     }
-  }, [isConversationMode, speakText])
+  }, [isConversationMode, speakText, onVoiceChatStateChange, onConversationModeChange])
 
 
 
@@ -359,45 +369,50 @@ export function VoiceChat({
   }
 
   return (
-    <div className="flex h-full items-center justify-center">
-      <div className="text-center space-y-4">
-        {/* Default AI Icon when not in conversation */}
-        {!isConversationMode && !isListening && !isLoading && !error && (
-          <div className="flex flex-col items-center justify-center h-full">
-            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-4">
-              <Brain className="w-12 h-12 text-white" />
-            </div>
-            <div className="text-center">
-              <h3 className="text-lg font-semibold text-foreground mb-2">AI Assistant</h3>
-              <p className="text-sm text-muted-foreground">Click &quot;Start Voice Chat&quot; to begin</p>
-            </div>
-          </div>
-        )}
-
-        {/* Status Indicators - Centered */}
-        {isListening && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center p-4 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-red-700 font-medium text-lg">🎤 Listening... Speak now!</p>
-            </div>
-          </div>
-        )}
-
-        {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center p-4 bg-gray-50 border border-gray-200 rounded-lg">
-              <p className="text-gray-700 text-lg">AI is thinking...</p>
-            </div>
-          </div>
-        )}
-
-        {/* Error Display */}
-        {error && (
-          <div className="text-center p-2 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-red-700 text-sm">{error}</p>
-          </div>
-        )}
+    <div className="relative h-full">
+      {/* AI Icon - Always visible in center */}
+      <div className="flex flex-col items-center justify-center h-full">
+        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-4">
+          <Brain className="w-12 h-12 text-white" />
+        </div>
+        <div className="text-center">
+          <h3 className="text-lg font-semibold text-foreground mb-2">AI Assistant</h3>
+          {!isConversationMode ? (
+            <p className="text-sm text-muted-foreground">Click &quot;Start Voice Chat&quot; to begin</p>
+          ) : (
+            <p className="text-sm text-muted-foreground">Voice chat is active</p>
+          )}
+        </div>
       </div>
+
+      {/* Status Indicators - Bottom Left */}
+      {isListening && (
+        <div className="absolute bottom-4 left-4">
+          <div className="flex items-center gap-2 bg-red-500/90 text-white px-3 py-1.5 rounded-full text-xs font-medium">
+            <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+            <span>Listening...</span>
+          </div>
+        </div>
+      )}
+
+      {isLoading && (
+        <div className="absolute bottom-4 left-4">
+          <div className="flex items-center gap-2 bg-blue-500/90 text-white px-3 py-1.5 rounded-full text-xs font-medium">
+            <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+            <span>AI is thinking...</span>
+          </div>
+        </div>
+      )}
+
+      {/* Error Display */}
+      {error && (
+        <div className="absolute top-4 left-4 right-4">
+          <div className="flex items-center justify-center gap-2 bg-red-500/90 text-white px-3 py-1.5 rounded-full text-xs font-medium">
+            <div className="w-2 h-2 bg-white rounded-full"></div>
+            <span>{error}</span>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
