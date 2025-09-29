@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
@@ -14,15 +14,12 @@ export default function TextToSpeech() {
   const [speechRate, setSpeechRate] = useState<number>(0.9)
   const [speechPitch, setSpeechPitch] = useState<number>(1)
   const [isSpeaking, setIsSpeaking] = useState(false)
-  const [autoListenAfterAI, setAutoListenAfterAI] = useState<boolean>(false)
+  const initializedRef = useRef(false)
 
   useEffect(() => {
     const loadVoices = () => {
       const availableVoices = speechSynthesis.getVoices()
       setVoices(availableVoices)
-      if (availableVoices.length > 0 && !selectedVoice) {
-        setSelectedVoice(availableVoices[0].voiceURI)
-      }
     }
 
     loadVoices()
@@ -31,7 +28,15 @@ export default function TextToSpeech() {
     return () => {
       speechSynthesis.onvoiceschanged = null
     }
-  }, [selectedVoice])
+  }, [])
+
+  // Separate effect to handle voice selection when voices change
+  useEffect(() => {
+    if (voices.length > 0 && !selectedVoice && !initializedRef.current) {
+      setSelectedVoice(voices[0].voiceURI)
+      initializedRef.current = true
+    }
+  }, [voices, selectedVoice])
 
   const handleSpeak = () => {
     if (!text.trim()) return
@@ -81,20 +86,10 @@ export default function TextToSpeech() {
               speechRate={speechRate}
               speechPitch={speechPitch}
               availableVoices={voices}
-              autoListenAfterAI={autoListenAfterAI}
               onVoiceChange={setSelectedVoice}
               onRateChange={setSpeechRate}
               onPitchChange={setSpeechPitch}
               onTestVoice={() => handleSpeak()}
-              onAutoListenChange={setAutoListenAfterAI}
-              onReset={() => {
-                setSpeechRate(0.9)
-                setSpeechPitch(1)
-                setAutoListenAfterAI(false)
-                if (voices.length > 0) {
-                  setSelectedVoice(voices[0].voiceURI)
-                }
-              }}
             />
 
             <div className="flex gap-3">

@@ -147,7 +147,23 @@ export default function LLM() {
         },
         body: JSON.stringify({
           messages: [
-            { role: 'system', content: 'You are a helpful AI assistant. Keep your responses concise and natural.' },
+            { role: 'system', content: `You are conducting a technical interview for a Software Developer position at Amazon. You are an experienced interviewer who asks thoughtful, technical questions and provides constructive feedback.
+
+Interview Guidelines:
+- Ask one question at a time
+- Start with easier questions and progress to more complex ones
+- Ask follow-up questions based on the candidate's responses
+- Provide hints if the candidate is struggling, but don't give away the answer
+- Focus on problem-solving ability, coding skills, and system design knowledge
+- Ask about data structures, algorithms, and real-world application
+
+Current Interview Progress:
+- This is an ongoing technical interview
+- Adapt questions based on previous responses
+- Score the candidate's responses (keep track internally)
+- End the interview appropriately when complete
+
+Remember: You are interviewing the candidate, not just chatting. Maintain a professional interviewer demeanor.` },
             ...messages.map(m => ({ role: m.role, content: m.content })),
             { role: 'user', content: messageText }
           ]
@@ -313,18 +329,18 @@ export default function LLM() {
   }
 
   const startConversation = useCallback(() => {
-    console.log('Starting conversation...')
+    console.log('Starting Amazon interview...')
     setIsConversationMode(true)
     isConversationModeRef.current = true
-    // Add AI greeting message
+    // Add AI interview greeting message
     const greetingMessage: Message = {
       id: Date.now().toString(),
       role: 'assistant',
-      content: 'Hello! I\'m ready to chat. What would you like to talk about?',
+      content: 'Hello! Welcome to your Amazon Software Developer interview. I\'m your interviewer today. Let\'s start with some technical questions. Are you ready to begin?',
       timestamp: new Date()
     }
     setMessages([greetingMessage])
-    console.log('Speaking greeting:', greetingMessage.content)
+    console.log('Speaking interview greeting:', greetingMessage.content)
     // Speak the greeting
     speakText(greetingMessage.content)
   }, [speakText])
@@ -463,6 +479,19 @@ export default function LLM() {
                       Stop Conversation
                     </Button>
                   )}
+
+                  <label className="flex items-center space-x-2 text-sm">
+                    <input
+                      type="checkbox"
+                      checked={autoListenAfterAI}
+                      onChange={(e) => {
+                        setAutoListenAfterAI(e.target.checked)
+                        autoListenAfterAIRef.current = e.target.checked
+                      }}
+                      className="rounded"
+                    />
+                    <span>Auto-listen after AI response</span>
+                  </label>
                 </div>
 
                 <Button
@@ -533,24 +562,10 @@ export default function LLM() {
                 speechRate={speechRate}
                 speechPitch={speechPitch}
                 availableVoices={availableVoices}
-                autoListenAfterAI={autoListenAfterAI}
                 onVoiceChange={setSelectedVoice}
                 onRateChange={setSpeechRate}
                 onPitchChange={setSpeechPitch}
                 onTestVoice={() => speakText("Hello! This is how your selected voice sounds.")}
-                onAutoListenChange={(enabled: boolean) => {
-                  setAutoListenAfterAI(enabled)
-                  autoListenAfterAIRef.current = enabled
-                }}
-                onReset={() => {
-                  setSpeechRate(0.9)
-                  setSpeechPitch(1)
-                  setAutoListenAfterAI(false)
-                  autoListenAfterAIRef.current = false
-                  if (availableVoices.length > 0) {
-                    setSelectedVoice(availableVoices[0].voiceURI)
-                  }
-                }}
               />
 
               {isListening && (

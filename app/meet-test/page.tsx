@@ -8,8 +8,9 @@ export default function MeetTestPage() {
       assistantName="AI Meeting Assistant"
       assistantAvatar={undefined}
       onEndCall={() => {
-        // Handle end call - could redirect or show confirmation
-        console.log('End call requested')
+        import('sonner').then(({ toast }) => {
+          toast.info('End call is not implemented in dev mode.');
+        });
       }}
     />
   )

@@ -304,7 +304,7 @@ export function MeetTestRoom({
 
 
   const testVoice = () => {
-    const utterance = new SpeechSynthesisUtterance("नमस्ते! यह आपकी चुनी हुई आवाज़ है।")
+    const utterance = new SpeechSynthesisUtterance("Hello! This is how your selected voice sounds. You can now test different voices to find the one that works best for you.")
     utterance.rate = VOICE_CONFIG.speechRate
     utterance.pitch = VOICE_CONFIG.speechPitch
 
