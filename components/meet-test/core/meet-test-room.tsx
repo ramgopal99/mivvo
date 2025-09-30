@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { MicOff, VideoOff } from 'lucide-react'
 import { MeetTestHeader } from '../ui/meet-test-header'
 import { MeetTestControls } from '../ui/meet-test-controls'
@@ -34,6 +35,7 @@ export function MeetTestRoom({
   assistantAvatar,
   onEndCall
 }: MeetTestRoomProps) {
+  const router = useRouter()
   // State for media controls
   const [isAudioEnabled, setIsAudioEnabled] = useState(true)
   const [isVideoEnabled, setIsVideoEnabled] = useState(false)
@@ -302,6 +304,15 @@ export function MeetTestRoom({
     setIsConversationMode(isActive)
   }
 
+  const handleAnalyzeInterview = () => {
+    // Store transcript data in sessionStorage for the analysis page
+    if (voiceTranscript.length > 0) {
+      sessionStorage.setItem('interviewTranscript', JSON.stringify(voiceTranscript))
+      sessionStorage.setItem('interviewMessages', JSON.stringify(messages))
+    }
+    router.push('/meet-test/analysis')
+  }
+
 
   const testVoice = () => {
     const utterance = new SpeechSynthesisUtterance("Hello! This is how your selected voice sounds. You can now test different voices to find the one that works best for you.")
@@ -329,6 +340,7 @@ export function MeetTestRoom({
           onEndCall={onEndCall}
           isConversationMode={isConversationMode}
           isLoading={false}
+          hasTranscriptData={voiceTranscript.length > 0}
           onStartConversation={() => {
             console.log('Header: Starting voice chat')
             // Trigger voice chat start - this will be handled by the VoiceChat component
@@ -341,6 +353,7 @@ export function MeetTestRoom({
             const event = new CustomEvent('stopVoiceChat')
             window.dispatchEvent(event)
           }}
+          onAnalyzeInterview={handleAnalyzeInterview}
         />
 
       {/* Video Grid */}

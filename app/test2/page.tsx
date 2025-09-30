@@ -4,17 +4,18 @@ import { useContext } from 'react'
 import TextToSpeech from './components/text-to-speech'
 import SpeechToText from '@/app/test2/components/speech-to-text'
 import LLM from './components/llm'
+import CodeEditor from './components/CodeEditor'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent } from '@/components/ui/card'
-import { Chrome, Monitor, Bot } from 'lucide-react'
+import { Chrome, Monitor, Bot, Code2 } from 'lucide-react'
 import { BrowserSupportContext } from './layout'
 
 export default function Test2Page() {
   const { isSupported } = useContext(BrowserSupportContext)
 
   return (
-    <Tabs defaultValue="llm" className="max-w-4xl mx-auto">
-      <TabsList className={`grid w-full grid-cols-3 ${!isSupported ? 'opacity-50 cursor-not-allowed' : ''}`}>
+    <Tabs defaultValue="llm" className="max-w-6xl mx-auto">
+      <TabsList className={`grid w-full grid-cols-4 ${!isSupported ? 'opacity-50 cursor-not-allowed' : ''}`}>
         <TabsTrigger value="llm" disabled={!isSupported}>
           <Bot className="w-4 h-4 mr-2" />
           Voice Chat
@@ -24,6 +25,10 @@ export default function Test2Page() {
         </TabsTrigger>
         <TabsTrigger value="tts" disabled={!isSupported}>
           Text to Speech
+        </TabsTrigger>
+        <TabsTrigger value="code-editor">
+          <Code2 className="w-4 h-4 mr-2" />
+          Code Editor
         </TabsTrigger>
       </TabsList>
 
@@ -73,6 +78,10 @@ export default function Test2Page() {
             </CardContent>
           </Card>
         )}
+      </TabsContent>
+
+      <TabsContent value="code-editor" className="mt-6">
+        <CodeEditor />
       </TabsContent>
     </Tabs>
   )

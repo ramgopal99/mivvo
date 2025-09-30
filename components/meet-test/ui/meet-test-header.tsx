@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Brain, Phone, PhoneOff, Mic, MicOff } from 'lucide-react'
+import { Brain, Phone, PhoneOff, Mic, MicOff, BarChart3 } from 'lucide-react'
 
 interface MeetTestHeaderProps {
   assistantName?: string
@@ -12,6 +12,8 @@ interface MeetTestHeaderProps {
   isLoading?: boolean
   onStartConversation?: () => void
   onStopConversation?: () => void
+  onAnalyzeInterview?: () => void
+  hasTranscriptData?: boolean
 }
 
 export function MeetTestHeader({ 
@@ -21,7 +23,9 @@ export function MeetTestHeader({
   isConversationMode = false,
   isLoading = false,
   onStartConversation,
-  onStopConversation
+  onStopConversation,
+  onAnalyzeInterview,
+  hasTranscriptData = false
 }: MeetTestHeaderProps) {
   return (
     <div className="absolute top-0 left-0 right-0 z-10 bg-background/95 backdrop-blur-sm border-b">
@@ -62,6 +66,19 @@ export function MeetTestHeader({
             >
               <MicOff className="h-4 w-4" />
               Stop Chat
+            </Button>
+          )}
+
+          {/* Analyze Interview Button - Only show when not in conversation mode and has transcript data */}
+          {!isConversationMode && hasTranscriptData && onAnalyzeInterview && (
+            <Button
+              onClick={onAnalyzeInterview}
+              variant="outline"
+              size="sm"
+              className="gap-2 cursor-pointer border-blue-600 text-blue-600 hover:bg-blue-50"
+            >
+              <BarChart3 className="h-4 w-4" />
+              Analyze Interview
             </Button>
           )}
           
