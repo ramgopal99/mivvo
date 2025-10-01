@@ -172,6 +172,8 @@ export default function VoiceActivityDetector() {
   const [showCompletionBanner, setShowCompletionBanner] = useState(false)
   const [completionTrigger, setCompletionTrigger] = useState<'ai' | 'pause' | null>(null)
   const [shouldStopRecording, setShouldStopRecording] = useState(false)
+  const [lastAudioActivityTime, setLastAudioActivityTime] = useState<number>(0)
+  const [timeSinceLastAudio, setTimeSinceLastAudio] = useState<number>(0)
 
   // Ultimate configuration combining all features
   const [config, setConfig] = useState<UltimateVADConfig>({
@@ -779,6 +781,15 @@ export default function VoiceActivityDetector() {
       rms, zcr, spectralCentroid, snr, autocorrelation, confidence: 0
     }
 
+    // Track audio activity for better pause detection
+    const hasAudioActivity = rms > (noiseFloorRef.current.rms * 1.2) // Lower threshold for better detection
+    if (hasAudioActivity) {
+      setLastAudioActivityTime(Date.now())
+    }
+
+    // Update time since last audio for UI display
+    setTimeSinceLastAudio(Date.now() - lastAudioActivityTime)
+
     // Update noise floor during silence periods
     if (vadState === VADState.SILENCE) {
       updateNoiseFloor(rawAudioFeatures)
@@ -899,9 +910,38 @@ export default function VoiceActivityDetector() {
     // Update completion state based on advanced decision
     const advancedDecision = decision as CompletionDecision & SpeechCompletionAnalysis
     const timeSinceLastSpeech = Date.now() - lastSpeechTimeRef.current
+    const timeSinceLastAudio = Date.now() - lastAudioActivityTime
 
-    // Check for long pause that might indicate completion (even without full analysis confirmation)
-    const isLongPause = timeSinceLastSpeech > 2500 && currentLinguisticFeatures.transcript.length > 0
+    // Check for long pause that might indicate completion (using both transcript and audio timing)
+    const hasTranscript = currentLinguisticFeatures.transcript.length > 0
+    const isLongPause = (timeSinceLastSpeech > 2000 || timeSinceLastAudio > 2500) && hasTranscript
+
+    // More aggressive pause detection for better responsiveness - REDUCED FROM 3500 to 3000
+    const isVeryLongPause = timeSinceLastAudio > 3000 && hasTranscript
+
+    // Immediate completion for complete sentences with reasonable pause - REDUCED FROM 1500 to 1000
+    const isCompleteSentenceWithPause = hasTranscript &&
+                                       currentLinguisticFeatures.isComplete &&
+                                       timeSinceLastAudio > 1000
+
+    // Ultimate fallback: complete after 3.5 seconds regardless (as long as there's a transcript)
+    const isUltimateFallback = timeSinceLastAudio > 3500 && hasTranscript
+
+    // Debug logging for pause detection
+    if (hasTranscript && timeSinceLastAudio > 1000) {
+      console.log('🔍 PAUSE DEBUG:', {
+        timeSinceLastAudio: timeSinceLastAudio.toFixed(0) + 'ms',
+        timeSinceLastSpeech: timeSinceLastSpeech.toFixed(0) + 'ms',
+        hasTranscript,
+        isComplete: currentLinguisticFeatures.isComplete,
+        transcriptLength: currentLinguisticFeatures.transcript.length,
+        isLongPause,
+        isVeryLongPause,
+        isCompleteSentenceWithPause,
+        hesitationDetected: advancedDecision.hesitationDetected,
+        pausePattern: advancedDecision.pausePattern
+      })
+    }
 
     if (advancedDecision.hesitationDetected && advancedDecision.pausePattern === 'thinking') {
       // User is hesitating - show hesitating state
@@ -932,8 +972,27 @@ export default function VoiceActivityDetector() {
           setCompletionTrigger(null)
         }, 5000)
       }, config.completionTimeout)
-    } else if (isLongPause && !advancedDecision.hesitationDetected) {
-      // Long pause with no hesitation detected - likely user completed their thought
+    } else if (isUltimateFallback || isVeryLongPause || (isLongPause && !advancedDecision.hesitationDetected) || (isCompleteSentenceWithPause && !advancedDecision.hesitationDetected)) {
+      // Long pause or complete sentence with pause detected - likely user completed their thought
+      // Very long pause (3+ seconds) and ultimate fallback (3.5+ seconds) override hesitation detection
+      const triggerReason = isUltimateFallback ? 'Ultimate fallback (3.5s)' :
+                           isVeryLongPause ? 'Very long pause (3s)' :
+                           isCompleteSentenceWithPause ? 'Complete sentence + pause' :
+                           'Long pause'
+
+      console.log('🎯 PAUSE DETECTION: Completing sentence due to pause', {
+        timeSinceLastSpeech,
+        timeSinceLastAudio,
+        hasTranscript,
+        isLongPause,
+        isVeryLongPause,
+        isCompleteSentenceWithPause,
+        isUltimateFallback,
+        isComplete: currentLinguisticFeatures.isComplete,
+        triggerReason,
+        hesitationOverride: (isVeryLongPause || isUltimateFallback) ? 'Long pause overrides hesitation' : 'No hesitation detected'
+      })
+
       setCompletionState(CompletionState.CONFIRMED_COMPLETE)
       setCompletionTrigger('pause')
       setShowCompletionBanner(true)
@@ -967,7 +1026,7 @@ export default function VoiceActivityDetector() {
       analyserRef.current.getByteFrequencyData(spectrum)
       setSpectrumData(Array.from(spectrum.slice(0, 100)))
     }
-  }, [vadState, config, calculateRMS, calculateZCR, calculateSpectralCentroid, calculateSNR, calculateAutocorrelation, applyVoiceFrequencyFilter, updateNoiseFloor, smoothFeatures, calculateAudioConfidence, calculatePitchContour, analyzeIntonation, calculateSpeechRate, analyzeEnergyPattern, analyzePauseContext, analyzeStressPattern, makeCompletionDecision, currentLinguisticFeatures, currentUtterance])
+  }, [vadState, config, calculateRMS, calculateZCR, calculateSpectralCentroid, calculateSNR, calculateAutocorrelation, applyVoiceFrequencyFilter, updateNoiseFloor, smoothFeatures, calculateAudioConfidence, calculatePitchContour, analyzeIntonation, calculateSpeechRate, analyzeEnergyPattern, analyzePauseContext, analyzeStressPattern, makeCompletionDecision, currentLinguisticFeatures, currentUtterance, lastAudioActivityTime])
 
   // Audio processing setup - combining Web Audio API + Speech Recognition
   const setupAudioProcessing = useCallback(async () => {
@@ -1054,6 +1113,8 @@ export default function VoiceActivityDetector() {
       speechRecognitionRef.current?.start()
       setIsRecording(true)
       setCompletionState(CompletionState.INCOMPLETE)
+      setLastAudioActivityTime(Date.now()) // Reset audio activity timer
+      setTimeSinceLastAudio(0) // Reset display timer
       transcriptHistoryRef.current = []
       pitchHistoryRef.current = []
       lastSpeechTimeRef.current = Date.now()
@@ -1088,6 +1149,8 @@ export default function VoiceActivityDetector() {
     setShowCompletionBanner(false)
     setCompletionTrigger(null)
     setShouldStopRecording(false)
+    setLastAudioActivityTime(Date.now())
+    setTimeSinceLastAudio(0)
     setCompletionDecision({
       isComplete: false,
       confidence: 0,
@@ -1187,6 +1250,11 @@ export default function VoiceActivityDetector() {
                   <Mic className="w-4 h-4 mr-2" />
                   Start Ultimate VAD
                 </Button>
+              ) : completionState === CompletionState.CONFIRMED_COMPLETE ? (
+                <Button onClick={startRecording} className="flex-1 bg-green-600 hover:bg-green-700" size="lg">
+                  <Mic className="w-4 h-4 mr-2" />
+                  Start New Recording
+                </Button>
               ) : (
                 <Button onClick={stopRecording} variant="destructive" className="flex-1" size="lg">
                   <Square className="w-4 h-4 mr-2" />
@@ -1194,11 +1262,11 @@ export default function VoiceActivityDetector() {
                 </Button>
               )}
 
-              <Button onClick={clearBuffers} variant="outline" size="lg">
+              <Button onClick={clearBuffers} variant="outline" size="lg" disabled={isRecording}>
                 Clear Buffers
               </Button>
 
-              <Button onClick={resetAnalysis} variant="outline" size="lg">
+              <Button onClick={resetAnalysis} variant="outline" size="lg" disabled={isRecording}>
                 <RotateCcw className="w-4 h-4 mr-2" />
                 Reset Analysis
               </Button>
@@ -1222,12 +1290,30 @@ export default function VoiceActivityDetector() {
                   </span>
                 )}
               </Badge>
-              <Badge variant={isRecording ? 'default' : 'secondary'}>
-                Recording: {isRecording ? 'ON' : 'OFF'}
+              <Badge variant={
+                !isRecording && completionState === CompletionState.CONFIRMED_COMPLETE
+                  ? 'default'
+                  : isRecording
+                  ? 'default'
+                  : 'secondary'
+              }>
+                {completionState === CompletionState.CONFIRMED_COMPLETE && !isRecording
+                  ? 'Auto-Stopped'
+                  : `Recording: ${isRecording ? 'ON' : 'OFF'}`}
               </Badge>
               <Badge variant="outline">
                 Confidence: {(completionDecision.confidence * 100).toFixed(1)}%
               </Badge>
+              {isRecording && (
+                <Badge variant={
+                  timeSinceLastAudio > 3000 ? "destructive" :
+                  timeSinceLastAudio > 2000 ? "secondary" :
+                  "outline"
+                } className="text-xs">
+                  Audio: {((Date.now() - lastAudioActivityTime) / 1000).toFixed(1)}s ago
+                  {timeSinceLastAudio > 2000 && timeSinceLastAudio < 3500 && ' - Completing soon...'}
+                </Badge>
+              )}
               {completionDecision.hesitationDetected && (
                 <Badge variant="destructive" className="animate-pulse">
                   🤔 Hesitating
@@ -1329,10 +1415,16 @@ export default function VoiceActivityDetector() {
                     )}
 
                     {completionState === CompletionState.CONFIRMED_COMPLETE && (
-                      <div className="mt-4">
+                      <div className="mt-4 space-y-2">
                         <div className="inline-flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg animate-bounce">
                           <span className="text-lg">🎯</span>
                           <span>Speech Successfully Captured!</span>
+                        </div>
+                        <div className="text-center">
+                          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-3 py-1 rounded-lg text-xs font-medium">
+                            <span>🔄</span>
+                            <span>Analysis Auto-Stopped - Ready for Next Recording</span>
+                          </div>
                         </div>
                       </div>
                     )}
