@@ -3,11 +3,12 @@
 import { useContext } from 'react'
 import TextToSpeech from './components/text-to-speech'
 import SpeechToText from '@/app/test2/components/speech-to-text'
+import VoiceActivityDetector from './components/voice-activity-detector'
 import LLM from './components/llm'
 import CodeEditor from './components/CodeEditor'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent } from '@/components/ui/card'
-import { Chrome, Monitor, Bot, Code2 } from 'lucide-react'
+import { Chrome, Monitor, Bot, Code2, Activity } from 'lucide-react'
 import { BrowserSupportContext } from './layout'
 
 export default function Test2Page() {
@@ -15,13 +16,17 @@ export default function Test2Page() {
 
   return (
     <Tabs defaultValue="llm" className="max-w-6xl mx-auto">
-      <TabsList className={`grid w-full grid-cols-4 ${!isSupported ? 'opacity-50 cursor-not-allowed' : ''}`}>
+      <TabsList className={`grid w-full grid-cols-5 ${!isSupported ? 'opacity-50 cursor-not-allowed' : ''}`}>
         <TabsTrigger value="llm" disabled={!isSupported}>
           <Bot className="w-4 h-4 mr-2" />
           Voice Chat
         </TabsTrigger>
         <TabsTrigger value="stt" disabled={!isSupported}>
           Speech to Text
+        </TabsTrigger>
+        <TabsTrigger value="vad" disabled={!isSupported}>
+          <Activity className="w-4 h-4 mr-2" />
+          Ultimate VAD
         </TabsTrigger>
         <TabsTrigger value="tts" disabled={!isSupported}>
           Text to Speech
@@ -58,6 +63,22 @@ export default function Test2Page() {
               <h3 className="text-lg font-semibold mb-2">Feature Disabled</h3>
               <p className="text-muted-foreground">
                 Speech to Text is only available in Chrome or Edge browsers.
+              </p>
+            </CardContent>
+          </Card>
+        )}
+      </TabsContent>
+
+      <TabsContent value="vad" className="mt-6">
+        {isSupported ? (
+          <VoiceActivityDetector />
+        ) : (
+          <Card className="max-w-2xl mx-auto">
+            <CardContent className="text-center py-12">
+              <Activity className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+              <h3 className="text-lg font-semibold mb-2">Feature Disabled</h3>
+              <p className="text-muted-foreground">
+                Ultimate Voice Activity Detection is only available in Chrome or Edge browsers.
               </p>
             </CardContent>
           </Card>
