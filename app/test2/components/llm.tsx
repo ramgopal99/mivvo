@@ -328,10 +328,22 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
     }
   }
 
-  const startConversation = useCallback(() => {
+  const startConversation = useCallback(async () => {
     console.log('Starting Amazon interview...')
     setIsConversationMode(true)
     isConversationModeRef.current = true
+    
+    // Start voice input automatically when conversation begins
+    if (recognitionRef.current && !isListeningRef.current) {
+      try {
+        console.log('Auto-starting voice input...')
+        await startListening()
+      } catch (error) {
+        console.error('Failed to start voice input:', error)
+        setError('Failed to start voice input. Please try again.')
+      }
+    }
+    
     // Add AI interview greeting message
     const greetingMessage: Message = {
       id: Date.now().toString(),
@@ -343,7 +355,7 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
     console.log('Speaking interview greeting:', greetingMessage.content)
     // Speak the greeting
     speakText(greetingMessage.content)
-  }, [speakText])
+  }, [speakText, startListening])
 
   const stopConversation = useCallback(() => {
     setIsConversationMode(false)
@@ -503,28 +515,9 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
                 </Button>
               </div>
 
-              {/* Voice Controls */}
+              {/* Audio Controls - Only for speaking/replay */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  {!isListening ? (
-                    <Button
-                      onClick={startListening}
-                      disabled={isLoading}
-                      variant="outline"
-                    >
-                      <Mic className="w-4 h-4 mr-2" />
-                      Voice Input
-                    </Button>
-                  ) : (
-                    <Button
-                      onClick={stopListening}
-                      variant="destructive"
-                    >
-                      <MicOff className="w-4 h-4 mr-2" />
-                      Stop Listening
-                    </Button>
-                  )}
-
                   {isSpeaking ? (
                     <Button
                       onClick={stopSpeaking}
@@ -570,9 +563,18 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
 
               {isListening && (
                 <div className="text-center p-4 bg-red-50 border border-red-200 rounded-lg">
-                  <p className="text-red-700 font-medium">🎤 Listening... Speak now!</p>
+                  <p className="text-red-700 font-medium">🎤 Voice Input Active - Listening...</p>
                   <p className="text-sm text-red-600 mt-1">
-                    Click &quot;Stop Listening&quot; when you&apos;re done speaking.
+                    Speak naturally - voice input started automatically with conversation.
+                  </p>
+                </div>
+              )}
+
+              {isConversationMode && !isListening && (
+                <div className="text-center p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <p className="text-yellow-700 font-medium">🎤 Conversation Mode Active</p>
+                  <p className="text-sm text-yellow-600 mt-1">
+                    Voice input will auto-start when you speak.
                   </p>
                 </div>
               )}
