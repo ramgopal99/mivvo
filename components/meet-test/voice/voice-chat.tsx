@@ -221,7 +221,8 @@ export function VoiceChat({
       if (recognitionRef.current && isListeningRef.current) {
         recognitionRef.current.stop()
       }
-      // Clear any pending silence timeout - accumulated speech will be sent after AI finishes
+      // Clear live transcript and any pending silence timeout - accumulated speech will be sent after AI finishes
+      setLiveTranscript('')
       clearSilenceTimeout()
       setIsSpeaking(true)
       onVoiceChatStateChange?.(true)
@@ -545,24 +546,24 @@ export function VoiceChat({
         </div>
       </div>
 
-      {/* Live Transcription Display */}
-      {(liveTranscript || isListening) && (
-        <div className="absolute top-4 left-4 right-4">
-          <div className={`min-h-[80px] rounded-lg border-2 p-4 flex items-center justify-center transition-all duration-300 ${
+      {/* Live Transcription Display - Near Controls */}
+      {(liveTranscript || isListening) && !isAISpeaking && (
+        <div className="absolute bottom-20 left-4 right-4">
+          <div className={`min-h-[60px] rounded-lg border-2 p-3 flex items-center justify-center transition-all duration-300 ${
             liveTranscript
               ? 'border-blue-300 bg-blue-50 shadow-lg'
               : 'border-gray-200 bg-gray-50'
           }`}>
             <div className="text-center w-full">
               {liveTranscript ? (
-                <div className="text-xl md:text-2xl font-medium text-gray-800 leading-relaxed">
+                <div className="text-lg md:text-xl font-medium text-gray-800 leading-relaxed">
                   {liveTranscript}
                   {isListening && !liveTranscript.endsWith(' ') && (
                     <span className="animate-pulse text-blue-500">|</span>
                   )}
                 </div>
               ) : (
-                <div className="text-gray-400 text-lg">
+                <div className="text-gray-400 text-base">
                   Listening... Speak to see live transcription
                 </div>
               )}
