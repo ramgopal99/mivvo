@@ -56,7 +56,11 @@ export function MeetTestRoom({
   // Voice settings state - using configuration values
   const [selectedVoice, setSelectedVoice] = useState<string>(VOICE_CONFIG.language)
   const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([])
-  
+
+  // Timer state
+  const [elapsedTime, setElapsedTime] = useState<number>(0)
+  const [isTimerRunning, setIsTimerRunning] = useState<boolean>(false)
+
   // Refs
   const videoRef = useRef<HTMLVideoElement>(null)
   const audioContextRef = useRef<AudioContext | null>(null)
@@ -284,6 +288,33 @@ export function MeetTestRoom({
     }
   }, [stream, isVideoEnabled])
 
+  // Timer effect
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout | null = null
+
+    if (isTimerRunning) {
+      intervalId = setInterval(() => {
+        setElapsedTime(prev => prev + 1)
+      }, 1000)
+    }
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId)
+      }
+    }
+  }, [isTimerRunning])
+
+  // Start timer when conversation mode starts
+  useEffect(() => {
+    if (isConversationMode && !isTimerRunning) {
+      setIsTimerRunning(true)
+      setElapsedTime(0) // Reset timer when starting conversation
+    } else if (!isConversationMode && isTimerRunning) {
+      setIsTimerRunning(false)
+    }
+  }, [isConversationMode, isTimerRunning])
+
   const handleTranscriptUpdate = (transcript: { role: string; text: string; timestamp: string }[]) => {
     setVoiceTranscript(transcript)
     setMessages(transcript.map((t, index) => ({
@@ -313,6 +344,12 @@ export function MeetTestRoom({
     router.push('/meet-test/analysis')
   }
 
+  // Format elapsed time as MM:SS
+  const formatTime = (seconds: number): string => {
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
+  }
 
   const testVoice = () => {
     const utterance = new SpeechSynthesisUtterance("Hello! This is how your selected voice sounds. You can now test different voices to find the one that works best for you.")
@@ -355,6 +392,15 @@ export function MeetTestRoom({
           }}
           onAnalyzeInterview={handleAnalyzeInterview}
         />
+
+        {/* Timer Display */}
+        {isTimerRunning && (
+          <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-30">
+            <div className="bg-black/80 text-white px-4 py-2 rounded-full text-lg font-mono font-semibold shadow-lg border border-white/20">
+              {formatTime(elapsedTime)}
+            </div>
+          </div>
+        )}
 
       {/* Video Grid */}
       <div className="grid h-full grid-cols-2 gap-4 p-4 pt-24 mt-4">

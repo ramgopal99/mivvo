@@ -3,6 +3,11 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Brain } from 'lucide-react'
 
+// Configuration constants - easily adjustable timing values
+const SILENCE_TIMEOUT_MS = 8000 // Time to wait after user stops speaking before sending accumulated speech to AI
+const RECOGNITION_KEEP_ALIVE_MS = 5000 // How often to check if speech recognition is still active (keep-alive interval)
+const TTS_RESTART_DELAY_MS = 250 // Delay before restarting speech recognition after AI finishes speaking
+
 // Web Speech API types
 interface SpeechRecognitionEvent extends Event {
   resultIndex: number
@@ -113,12 +118,12 @@ export function VoiceChat({
     }, 100)
   }, [])
 
-  // Start 10-second silence timeout
+  // Start silence timeout
   const startSilenceTimeout = useCallback(() => {
     clearSilenceTimeout()
     silenceTimeoutRef.current = setTimeout(() => {
       processAccumulatedSpeech()
-    }, 10000) // 10 seconds
+    }, SILENCE_TIMEOUT_MS)
   }, [clearSilenceTimeout, processAccumulatedSpeech])
 
   // Ensure recognition stays active by restarting if needed
@@ -137,7 +142,7 @@ export function VoiceChat({
     if (recognitionActiveTimeoutRef.current) {
       clearInterval(recognitionActiveTimeoutRef.current)
     }
-    recognitionActiveTimeoutRef.current = setInterval(ensureRecognitionActive, 5000) // Check every 5 seconds
+    recognitionActiveTimeoutRef.current = setInterval(ensureRecognitionActive, RECOGNITION_KEEP_ALIVE_MS)
   }, [ensureRecognitionActive])
 
   // Stop periodic check
@@ -196,7 +201,7 @@ export function VoiceChat({
           if (!isListeningRef.current && startListeningRef.current && !isProcessingSpeechRef.current) {
             startListeningRef.current()
           }
-        }, 500) // Increased delay to avoid capturing AI's voice
+        }, TTS_RESTART_DELAY_MS)
       }
     }
     utterance.onerror = () => {
@@ -208,7 +213,7 @@ export function VoiceChat({
           if (!isListeningRef.current && startListeningRef.current && !isProcessingSpeechRef.current) {
             startListeningRef.current()
           }
-        }, 500)
+        }, TTS_RESTART_DELAY_MS)
       }
     }
 
