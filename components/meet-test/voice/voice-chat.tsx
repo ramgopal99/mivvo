@@ -57,6 +57,7 @@ interface VoiceChatProps {
   speechPitch?: number
   availableVoices?: SpeechSynthesisVoice[]
   autoListenAfterAI?: boolean
+  isAISpeaking?: boolean
 }
 
 export function VoiceChat({
@@ -67,7 +68,8 @@ export function VoiceChat({
   speechRate = 0.9,
   speechPitch = 1,
   availableVoices = [],
-  autoListenAfterAI = false
+  autoListenAfterAI = false,
+  isAISpeaking = false
 }: VoiceChatProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [isListening, setIsListening] = useState(false)
@@ -506,7 +508,7 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
       </div>
 
       {/* Status Indicators - Bottom Left */}
-      {isListening && (
+      {isListening && !isAISpeaking && (
         <div className="absolute bottom-4 left-4">
           <div className="flex items-center gap-2 bg-red-500/90 text-white px-3 py-1.5 rounded-full text-xs font-medium">
             <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>

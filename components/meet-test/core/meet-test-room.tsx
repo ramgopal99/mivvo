@@ -482,11 +482,21 @@ export function MeetTestRoom({
             speechPitch={VOICE_CONFIG.speechPitch}
             availableVoices={availableVoices}
             autoListenAfterAI={VOICE_CONFIG.autoListenAfterAI}
+            isAISpeaking={isVoiceChatActive}
           />
-          
+
+          {/* AI Speaking Indicator */}
+          {isVoiceChatActive && (
+            <div className="absolute top-4 right-4 z-20">
+              <div className="bg-blue-600/90 text-white px-3 py-1.5 rounded-lg text-sm font-medium shadow-lg border border-white/20">
+                Let AI complete
+              </div>
+            </div>
+          )}
+
           {/* AI Voice Activity Indicator */}
           <div className="absolute bottom-4 right-4">
-            <VoiceActivityIndicator 
+            <VoiceActivityIndicator
               isAudioEnabled={true}
               isSpeaking={isVoiceChatActive}
             />
