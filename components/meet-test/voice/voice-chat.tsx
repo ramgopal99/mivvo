@@ -84,6 +84,7 @@ export function VoiceChat({
   const accumulatedSpeechRef = useRef<string>('')
   const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const isProcessingSpeechRef = useRef<boolean>(false)
+  const recognitionActiveTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // Clear existing timeout
   const clearSilenceTimeout = useCallback(() => {
@@ -120,6 +121,33 @@ export function VoiceChat({
     }, 10000) // 10 seconds
   }, [clearSilenceTimeout, processAccumulatedSpeech])
 
+  // Ensure recognition stays active by restarting if needed
+  const ensureRecognitionActive = useCallback(() => {
+    // Don't restart if not in conversation mode, currently processing speech, or AI is speaking
+    if (!isConversationModeRef.current || isProcessingSpeechRef.current) return
+
+    if (!isListeningRef.current && startListeningRef.current) {
+      console.log('Recognition not active, restarting...')
+      startListeningRef.current()
+    }
+  }, [])
+
+  // Start periodic check to keep recognition active
+  const startRecognitionKeepAlive = useCallback(() => {
+    if (recognitionActiveTimeoutRef.current) {
+      clearInterval(recognitionActiveTimeoutRef.current)
+    }
+    recognitionActiveTimeoutRef.current = setInterval(ensureRecognitionActive, 5000) // Check every 5 seconds
+  }, [ensureRecognitionActive])
+
+  // Stop periodic check
+  const stopRecognitionKeepAlive = useCallback(() => {
+    if (recognitionActiveTimeoutRef.current) {
+      clearInterval(recognitionActiveTimeoutRef.current)
+      recognitionActiveTimeoutRef.current = null
+    }
+  }, [])
+
   const startListening = useCallback(async () => {
     if (!recognitionRef.current || isListening) return
 
@@ -150,27 +178,42 @@ export function VoiceChat({
     }
 
     utterance.onstart = () => {
+      // Stop speech recognition while AI is speaking to prevent feedback
+      if (recognitionRef.current && isListeningRef.current) {
+        recognitionRef.current.stop()
+      }
+      // Clear any pending silence timeout - accumulated speech will be sent after AI finishes
+      clearSilenceTimeout()
       setIsSpeaking(true)
       onVoiceChatStateChange?.(true)
     }
     utterance.onend = () => {
       setIsSpeaking(false)
       onVoiceChatStateChange?.(false)
+      // Restart speech recognition after AI finishes speaking (with delay to avoid immediate recapture)
       if (isConversationModeRef.current || autoListenAfterAIRef.current) {
         setTimeout(() => {
-          if (!isListeningRef.current && startListeningRef.current) {
+          if (!isListeningRef.current && startListeningRef.current && !isProcessingSpeechRef.current) {
             startListeningRef.current()
           }
-        }, 100)
+        }, 500) // Increased delay to avoid capturing AI's voice
       }
     }
     utterance.onerror = () => {
       setIsSpeaking(false)
       onVoiceChatStateChange?.(false)
+      // Restart speech recognition on error as well
+      if (isConversationModeRef.current || autoListenAfterAIRef.current) {
+        setTimeout(() => {
+          if (!isListeningRef.current && startListeningRef.current && !isProcessingSpeechRef.current) {
+            startListeningRef.current()
+          }
+        }, 500)
+      }
     }
 
     speechSynthesisRef.current.speak(utterance)
-  }, [selectedVoice, speechRate, speechPitch, availableVoices, onVoiceChatStateChange])
+  }, [selectedVoice, speechRate, speechPitch, availableVoices, onVoiceChatStateChange, clearSilenceTimeout])
 
   const handleSendMessage = useCallback(async (messageText: string) => {
     if (!messageText.trim()) return
@@ -350,10 +393,11 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
       if (speechSynthesisRef.current) {
         speechSynthesisRef.current.cancel()
       }
-      // Clear timeout on cleanup
+      // Clear timeouts on cleanup
       clearSilenceTimeout()
+      stopRecognitionKeepAlive()
     }
-  }, [clearSilenceTimeout, startSilenceTimeout])
+  }, [clearSilenceTimeout, startSilenceTimeout, stopRecognitionKeepAlive])
 
   // Update refs
   useEffect(() => {
@@ -378,6 +422,8 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
         isConversationModeRef.current = true
         onConversationModeChange?.(true)
         onVoiceChatStateChange?.(true)
+        // Start keep-alive to ensure recognition stays active
+        startRecognitionKeepAlive()
         const greetingMessage: Message = {
           id: Date.now().toString(),
           role: 'assistant',
@@ -397,6 +443,8 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
         isConversationModeRef.current = false
         onConversationModeChange?.(false)
         onVoiceChatStateChange?.(false)
+        // Stop keep-alive
+        stopRecognitionKeepAlive()
         // Clear timeout and accumulated speech
         clearSilenceTimeout()
         accumulatedSpeechRef.current = ''
@@ -416,7 +464,7 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
       window.removeEventListener('startVoiceChat', handleStartVoiceChat)
       window.removeEventListener('stopVoiceChat', handleStopVoiceChat)
     }
-  }, [isConversationMode, speakText, onVoiceChatStateChange, onConversationModeChange, clearSilenceTimeout])
+  }, [isConversationMode, speakText, onVoiceChatStateChange, onConversationModeChange, clearSilenceTimeout, startRecognitionKeepAlive, stopRecognitionKeepAlive])
 
 
 
