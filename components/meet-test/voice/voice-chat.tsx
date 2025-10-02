@@ -2,46 +2,10 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Brain } from 'lucide-react'
+import { INTERVIEW_CONFIG, InterviewConfig, VOICE_CHAT_CONFIG, VOICE_CHAT_MESSAGES, buildAISystemPrompt } from '../config'
 
-// Configuration constants - easily adjustable timing values
-const SILENCE_TIMEOUT_MS = 8000 // Time to wait after user stops speaking before sending accumulated speech to AI
-const RECOGNITION_KEEP_ALIVE_MS = 5000 // How often to check if speech recognition is still active (keep-alive interval)
-const TTS_RESTART_DELAY_MS = 250 // Delay before restarting speech recognition after AI finishes speaking
-const USER_RESPONSE_TIMEOUT_MS = 10000 // Time to wait for user response after AI speaks before sending automatic follow-up
+// AI System Prompt - imported from ../config.ts
 
-// Configuration constants - easily adjustable messages
-const USER_RESPONSE_TIMEOUT_MESSAGE = "The user has not responded for 10 seconds. Please provide an appropriate follow-up such as repeating the question, asking if they need clarification, or moving to the next question."
-
-// Default Interview Configuration - can be overridden via props
-const DEFAULT_INTERVIEW_CONFIG = {
-  position: "Software Developer",
-  company: "Amazon",
-  topics: "Data Structures, Algorithms, System Design, React/Frontend Development, Backend Technologies",
-  difficulty: "Beginner to Advanced"
-}
-
-// AI System Prompt - defines the AI's behavior and role (built dynamically from config)
-const buildAISystemPrompt = (config: InterviewConfig) => `You are conducting a technical interview for a ${config.position} position at ${config.company}. You are an experienced interviewer who asks thoughtful, technical questions and provides constructive feedback.
-
-Interview Guidelines:
-- Ask one question at a time
-- Start with easier questions and progress to more complex ones
-- Ask follow-up questions based on the candidate's responses
-- Provide hints if the candidate is struggling, but don't give away the answer
-- Focus on problem-solving ability, coding skills, and system design knowledge
-- Ask about ${config.topics}
-- Adapt difficulty from ${config.difficulty}
-
-Current Interview Progress:
-- This is an ongoing technical interview
-- Adapt questions based on previous responses
-- Score the candidate's responses (keep track internally)
-- End the interview appropriately when complete
-
-Remember: You are interviewing the candidate, not just chatting. Maintain a professional interviewer demeanor.`
-
-// AI Greeting Message - what the AI says when conversation starts
-const AI_GREETING_MESSAGE = "Hello! "
 
 // Web Speech API types
 interface SpeechRecognitionEvent extends Event {
@@ -83,12 +47,6 @@ interface Message {
   timestamp: Date
 }
 
-interface InterviewConfig {
-  position: string
-  company: string
-  topics: string
-  difficulty: string
-}
 
 interface VoiceChatProps {
   onTranscriptUpdate?: (messages: { role: string; text: string; timestamp: string }[]) => void
@@ -115,7 +73,7 @@ export function VoiceChat({
   autoListenAfterAI = false,
   isAISpeaking = false,
   onWaitingForResponseChange,
-  interviewConfig = DEFAULT_INTERVIEW_CONFIG
+  interviewConfig = INTERVIEW_CONFIG
 }: VoiceChatProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [isListening, setIsListening] = useState(false)
@@ -173,7 +131,7 @@ export function VoiceChat({
     clearSilenceTimeout()
     silenceTimeoutRef.current = setTimeout(() => {
       processAccumulatedSpeech()
-    }, SILENCE_TIMEOUT_MS)
+    }, VOICE_CHAT_CONFIG.SILENCE_TIMEOUT_MS)
   }, [clearSilenceTimeout, processAccumulatedSpeech])
 
   // Ensure recognition stays active by restarting if needed
@@ -192,7 +150,7 @@ export function VoiceChat({
     if (recognitionActiveTimeoutRef.current) {
       clearInterval(recognitionActiveTimeoutRef.current)
     }
-    recognitionActiveTimeoutRef.current = setInterval(ensureRecognitionActive, RECOGNITION_KEEP_ALIVE_MS)
+    recognitionActiveTimeoutRef.current = setInterval(ensureRecognitionActive, VOICE_CHAT_CONFIG.RECOGNITION_KEEP_ALIVE_MS)
   }, [ensureRecognitionActive])
 
   // Stop periodic check
@@ -219,8 +177,8 @@ export function VoiceChat({
     userResponseTimeoutRef.current = setTimeout(() => {
       setIsWaitingForUserResponse(false)
       // Send automatic follow-up message to AI
-      handleSendMessageRef.current?.(USER_RESPONSE_TIMEOUT_MESSAGE)
-    }, USER_RESPONSE_TIMEOUT_MS)
+      handleSendMessageRef.current?.(VOICE_CHAT_MESSAGES.USER_RESPONSE_TIMEOUT_MESSAGE)
+    }, VOICE_CHAT_CONFIG.USER_RESPONSE_TIMEOUT_MS)
   }, [clearUserResponseTimeout])
 
   // Notify parent when waiting state changes
@@ -278,7 +236,7 @@ export function VoiceChat({
           if (!isListeningRef.current && startListeningRef.current && !isProcessingSpeechRef.current) {
             startListeningRef.current()
           }
-        }, TTS_RESTART_DELAY_MS)
+        }, VOICE_CHAT_CONFIG.TTS_RESTART_DELAY_MS)
       }
     }
     utterance.onerror = () => {
@@ -290,7 +248,7 @@ export function VoiceChat({
           if (!isListeningRef.current && startListeningRef.current && !isProcessingSpeechRef.current) {
             startListeningRef.current()
           }
-        }, TTS_RESTART_DELAY_MS)
+        }, VOICE_CHAT_CONFIG.TTS_RESTART_DELAY_MS)
       }
     }
 
@@ -496,7 +454,7 @@ export function VoiceChat({
         const greetingMessage: Message = {
           id: Date.now().toString(),
           role: 'assistant',
-          content: AI_GREETING_MESSAGE,
+          content: VOICE_CHAT_MESSAGES.AI_GREETING_MESSAGE,
           timestamp: new Date()
         }
         setMessages([greetingMessage])

@@ -9,30 +9,14 @@ import { VoiceChat } from '../voice/voice-chat'
 import { VoiceSettings } from '../voice/voice-settings'
 import { VoiceActivityIndicator } from '@/components/meet/ui/voice-activity-indicator'
 import { Chat } from '@/components/meet/chat'
+import { INTERVIEW_CONFIG, VOICE_CONFIG, UI_CONFIG } from '../config'
 
 // Interview Configuration - Shared across all components
 // 🎯 CHANGE THIS CONFIG TO MODIFY THE ENTIRE INTERVIEW SYSTEM
 // This affects: AI prompts, analysis topics, interview focus, etc.
-export const INTERVIEW_CONFIG = {
-  position: "Software Developer",           // Job position title
-  company: "Amazon",                        // Company name
-  topics: "Data Structures, Algorithms, System Design, React/Frontend Development, Backend Technologies", // Technical topics to cover
-  difficulty: "Beginner to Advanced"         // Difficulty progression
-} as const
+// Now imported from ../config.ts
 
-// Voice Configuration - Easy to modify in the future
-const VOICE_CONFIG = {
-  language: 'hi-IN',        // Default language (Hindi)
-  speechRate: 1.2,          // Speech rate (1.2x = 20% faster)
-  speechPitch: 1.0,         // Speech pitch (1.0 = normal)
-  autoListenAfterAI: false  // Auto-listen after AI speaks
-} as const
-
-// UI Configuration - Easy to modify in the future
-const UI_CONFIG = {
-  showChatBox: true,       // Show/hide chat box (true = show, false = hide)
-  showVoiceSettings: true   // Show/hide voice settings panel (true = show, false = hide)
-} as const
+// Voice and UI Configuration - imported from ../config.ts
 
 interface MeetTestRoomProps {
   assistantName?: string
