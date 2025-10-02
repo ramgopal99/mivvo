@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Brain } from 'lucide-react'
-import { INTERVIEW_CONFIG, InterviewConfig, VOICE_CHAT_CONFIG, VOICE_CHAT_MESSAGES, buildAISystemPrompt } from '../config'
+import { INTERVIEW_CONFIG, InterviewConfig, VOICE_CHAT_CONFIG, VOICE_CHAT_MESSAGES, buildAISystemPrompt, UI_CONFIG } from '../config'
 
 // AI System Prompt - imported from ../config.ts
 
@@ -547,7 +547,7 @@ export function VoiceChat({
       </div>
 
       {/* Live Transcription Display - Near Controls */}
-      {(liveTranscript || isListening) && !isAISpeaking && (
+      {UI_CONFIG.showLiveTranscription && (liveTranscript || isListening) && !isAISpeaking && (
         <div className="absolute bottom-20 left-4 right-4">
           <div className={`min-h-[60px] rounded-lg border-2 p-3 flex items-center justify-center transition-all duration-300 ${
             liveTranscript

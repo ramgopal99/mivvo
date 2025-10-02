@@ -15,6 +15,7 @@ export interface VoiceConfig {
 export interface UIConfig {
   showChatBox: boolean
   showVoiceSettings: boolean
+  showLiveTranscription: boolean
 }
 
 // Shared Interview Configuration - Used across all meet-test components
@@ -36,7 +37,8 @@ export const VOICE_CONFIG = {
 // UI Configuration - Easy to modify in the future
 export const UI_CONFIG = {
   showChatBox: true,       // Show/hide chat box (true = show, false = hide)
-  showVoiceSettings: true   // Show/hide voice settings panel (true = show, false = hide)
+  showVoiceSettings: true,  // Show/hide voice settings panel (true = show, false = hide)
+  showLiveTranscription: true // Show/hide live speech-to-text transcription (true = show, false = hide)
 } as const satisfies UIConfig
 
 // Voice Chat Timing Configuration - easily adjustable timing values
