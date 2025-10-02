@@ -61,6 +61,9 @@ export function MeetTestRoom({
   const [elapsedTime, setElapsedTime] = useState<number>(0)
   const [isTimerRunning, setIsTimerRunning] = useState<boolean>(false)
 
+  // User response waiting state
+  const [isWaitingForUserResponse, setIsWaitingForUserResponse] = useState<boolean>(false)
+
   // Refs
   const videoRef = useRef<HTMLVideoElement>(null)
   const audioContextRef = useRef<AudioContext | null>(null)
@@ -335,6 +338,11 @@ export function MeetTestRoom({
     setIsConversationMode(isActive)
   }
 
+  const handleWaitingForResponseChange = (isWaiting: boolean) => {
+    console.log('Waiting for user response:', isWaiting)
+    setIsWaitingForUserResponse(isWaiting)
+  }
+
   const handleAnalyzeInterview = () => {
     // Store transcript data in sessionStorage for the analysis page
     if (voiceTranscript.length > 0) {
@@ -483,6 +491,7 @@ export function MeetTestRoom({
             availableVoices={availableVoices}
             autoListenAfterAI={VOICE_CONFIG.autoListenAfterAI}
             isAISpeaking={isVoiceChatActive}
+            onWaitingForResponseChange={handleWaitingForResponseChange}
           />
 
           {/* AI Speaking Indicator */}
@@ -490,6 +499,16 @@ export function MeetTestRoom({
             <div className="absolute top-4 right-4 z-20">
               <div className="bg-blue-600/90 text-white px-3 py-1.5 rounded-lg text-sm font-medium shadow-lg border border-white/20">
                 Let AI complete
+              </div>
+            </div>
+          )}
+
+          {/* Waiting for User Response Indicator */}
+          {isWaitingForUserResponse && !isVoiceChatActive && (
+            <div className="absolute top-4 right-4 z-20">
+              <div className="bg-orange-500/90 text-white px-3 py-1.5 rounded-lg text-sm font-medium shadow-lg border border-white/20 flex items-center gap-2">
+                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                Waiting for response...
               </div>
             </div>
           )}

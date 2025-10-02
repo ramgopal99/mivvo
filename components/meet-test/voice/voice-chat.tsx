@@ -7,6 +7,32 @@ import { Brain } from 'lucide-react'
 const SILENCE_TIMEOUT_MS = 8000 // Time to wait after user stops speaking before sending accumulated speech to AI
 const RECOGNITION_KEEP_ALIVE_MS = 5000 // How often to check if speech recognition is still active (keep-alive interval)
 const TTS_RESTART_DELAY_MS = 250 // Delay before restarting speech recognition after AI finishes speaking
+const USER_RESPONSE_TIMEOUT_MS = 10000 // Time to wait for user response after AI speaks before sending automatic follow-up
+
+// Configuration constants - easily adjustable messages
+const USER_RESPONSE_TIMEOUT_MESSAGE = "The user has not responded for 10 seconds. Please provide an appropriate follow-up such as repeating the question, asking if they need clarification, or moving to the next question."
+
+// AI System Prompt - defines the AI's behavior and role
+const AI_SYSTEM_PROMPT = `You are conducting a technical interview for a Software Developer position at Amazon. You are an experienced interviewer who asks thoughtful, technical questions and provides constructive feedback.
+
+Interview Guidelines:
+- Ask one question at a time
+- Start with easier questions and progress to more complex ones
+- Ask follow-up questions based on the candidate's responses
+- Provide hints if the candidate is struggling, but don't give away the answer
+- Focus on problem-solving ability, coding skills, and system design knowledge
+- Ask about data structures, algorithms, and real-world application
+
+Current Interview Progress:
+- This is an ongoing technical interview
+- Adapt questions based on previous responses
+- Score the candidate's responses (keep track internally)
+- End the interview appropriately when complete
+
+Remember: You are interviewing the candidate, not just chatting. Maintain a professional interviewer demeanor.`
+
+// AI Greeting Message - what the AI says when conversation starts
+const AI_GREETING_MESSAGE = "Hello! "
 
 // Web Speech API types
 interface SpeechRecognitionEvent extends Event {
@@ -58,6 +84,7 @@ interface VoiceChatProps {
   availableVoices?: SpeechSynthesisVoice[]
   autoListenAfterAI?: boolean
   isAISpeaking?: boolean
+  onWaitingForResponseChange?: (isWaiting: boolean) => void
 }
 
 export function VoiceChat({
@@ -69,7 +96,8 @@ export function VoiceChat({
   speechPitch = 1,
   availableVoices = [],
   autoListenAfterAI = false,
-  isAISpeaking = false
+  isAISpeaking = false,
+  onWaitingForResponseChange
 }: VoiceChatProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [isListening, setIsListening] = useState(false)
@@ -78,6 +106,7 @@ export function VoiceChat({
   const [isSupported, setIsSupported] = useState(false)
   const [error, setError] = useState<string>('')
   const [isConversationMode, setIsConversationMode] = useState<boolean>(false)
+  const [isWaitingForUserResponse, setIsWaitingForUserResponse] = useState<boolean>(false)
 
   const recognitionRef = useRef<SpeechRecognition | null>(null)
   const speechSynthesisRef = useRef<SpeechSynthesis | null>(null)
@@ -92,6 +121,7 @@ export function VoiceChat({
   const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const isProcessingSpeechRef = useRef<boolean>(false)
   const recognitionActiveTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const userResponseTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // Clear existing timeout
   const clearSilenceTimeout = useCallback(() => {
@@ -155,6 +185,31 @@ export function VoiceChat({
     }
   }, [])
 
+  // Clear user response timeout
+  const clearUserResponseTimeout = useCallback(() => {
+    if (userResponseTimeoutRef.current) {
+      clearTimeout(userResponseTimeoutRef.current)
+      userResponseTimeoutRef.current = null
+    }
+    setIsWaitingForUserResponse(false)
+  }, [])
+
+  // Start user response timeout after AI speaks
+  const startUserResponseTimeout = useCallback(() => {
+    clearUserResponseTimeout()
+    setIsWaitingForUserResponse(true)
+    userResponseTimeoutRef.current = setTimeout(() => {
+      setIsWaitingForUserResponse(false)
+      // Send automatic follow-up message to AI
+      handleSendMessageRef.current?.(USER_RESPONSE_TIMEOUT_MESSAGE)
+    }, USER_RESPONSE_TIMEOUT_MS)
+  }, [clearUserResponseTimeout])
+
+  // Notify parent when waiting state changes
+  useEffect(() => {
+    onWaitingForResponseChange?.(isWaitingForUserResponse)
+  }, [isWaitingForUserResponse, onWaitingForResponseChange])
+
   const startListening = useCallback(async () => {
     if (!recognitionRef.current || isListening) return
 
@@ -197,6 +252,8 @@ export function VoiceChat({
     utterance.onend = () => {
       setIsSpeaking(false)
       onVoiceChatStateChange?.(false)
+      // Start user response timeout - wait for user to respond
+      startUserResponseTimeout()
       // Restart speech recognition after AI finishes speaking (with delay to avoid immediate recapture)
       if (isConversationModeRef.current || autoListenAfterAIRef.current) {
         setTimeout(() => {
@@ -220,7 +277,7 @@ export function VoiceChat({
     }
 
     speechSynthesisRef.current.speak(utterance)
-  }, [selectedVoice, speechRate, speechPitch, availableVoices, onVoiceChatStateChange, clearSilenceTimeout])
+  }, [selectedVoice, speechRate, speechPitch, availableVoices, onVoiceChatStateChange, clearSilenceTimeout, startUserResponseTimeout])
 
   const handleSendMessage = useCallback(async (messageText: string) => {
     if (!messageText.trim()) return
@@ -254,23 +311,7 @@ export function VoiceChat({
         },
         body: JSON.stringify({
           messages: [
-            { role: 'system', content: `You are conducting a technical interview for a Software Developer position at Amazon. You are an experienced interviewer who asks thoughtful, technical questions and provides constructive feedback.
-
-Interview Guidelines:
-- Ask one question at a time
-- Start with easier questions and progress to more complex ones
-- Ask follow-up questions based on the candidate's responses
-- Provide hints if the candidate is struggling, but don't give away the answer
-- Focus on problem-solving ability, coding skills, and system design knowledge
-- Ask about data structures, algorithms, and real-world application
-
-Current Interview Progress:
-- This is an ongoing technical interview
-- Adapt questions based on previous responses
-- Score the candidate's responses (keep track internally)
-- End the interview appropriately when complete
-
-Remember: You are interviewing the candidate, not just chatting. Maintain a professional interviewer demeanor.` },
+            { role: 'system', content: AI_SYSTEM_PROMPT },
             ...messages.map(m => ({ role: m.role, content: m.content })),
             { role: 'user', content: messageText }
           ]
@@ -344,6 +385,8 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
         const transcript = event.results[event.resultIndex][0].transcript
 
         if (event.results[event.resultIndex].isFinal) {
+          // Clear user response timeout since user is speaking
+          clearUserResponseTimeout()
           // Accumulate final results
           if (transcript.trim()) {
             accumulatedSpeechRef.current += (accumulatedSpeechRef.current ? ' ' : '') + transcript.trim()
@@ -402,9 +445,10 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
       }
       // Clear timeouts on cleanup
       clearSilenceTimeout()
+      clearUserResponseTimeout()
       stopRecognitionKeepAlive()
     }
-  }, [clearSilenceTimeout, startSilenceTimeout, stopRecognitionKeepAlive])
+  }, [clearSilenceTimeout, startSilenceTimeout, clearUserResponseTimeout, stopRecognitionKeepAlive])
 
   // Update refs
   useEffect(() => {
@@ -434,7 +478,7 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
         const greetingMessage: Message = {
           id: Date.now().toString(),
           role: 'assistant',
-          content: 'Hello! ',
+          content: AI_GREETING_MESSAGE,
           timestamp: new Date()
         }
         setMessages([greetingMessage])
@@ -452,8 +496,9 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
         onVoiceChatStateChange?.(false)
         // Stop keep-alive
         stopRecognitionKeepAlive()
-        // Clear timeout and accumulated speech
+        // Clear all timeouts and accumulated speech
         clearSilenceTimeout()
+        clearUserResponseTimeout()
         accumulatedSpeechRef.current = ''
         if (recognitionRef.current) {
           recognitionRef.current.stop()
@@ -471,7 +516,7 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
       window.removeEventListener('startVoiceChat', handleStartVoiceChat)
       window.removeEventListener('stopVoiceChat', handleStopVoiceChat)
     }
-  }, [isConversationMode, speakText, onVoiceChatStateChange, onConversationModeChange, clearSilenceTimeout, startRecognitionKeepAlive, stopRecognitionKeepAlive])
+  }, [isConversationMode, speakText, onVoiceChatStateChange, onConversationModeChange, clearSilenceTimeout, clearUserResponseTimeout, startRecognitionKeepAlive, stopRecognitionKeepAlive])
 
 
 
