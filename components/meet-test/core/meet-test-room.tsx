@@ -380,6 +380,9 @@ export function MeetTestRoom({
           isConversationMode={isConversationMode}
           isLoading={false}
           hasTranscriptData={voiceTranscript.length > 0}
+          elapsedTime={elapsedTime}
+          isTimerRunning={isTimerRunning}
+          formatTime={formatTime}
           onStartConversation={() => {
             console.log('Header: Starting voice chat')
             // Trigger voice chat start - this will be handled by the VoiceChat component
@@ -395,14 +398,6 @@ export function MeetTestRoom({
           onAnalyzeInterview={handleAnalyzeInterview}
         />
 
-        {/* Timer Display */}
-        {isTimerRunning && (
-          <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-30">
-            <div className="bg-black/80 text-white px-4 py-2 rounded-full text-lg font-mono font-semibold shadow-lg border border-white/20">
-              {formatTime(elapsedTime)}
-            </div>
-          </div>
-        )}
 
       {/* Video Grid */}
       <div className="grid h-full grid-cols-2 gap-4 p-4 pt-24 mt-4">

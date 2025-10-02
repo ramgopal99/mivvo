@@ -83,6 +83,7 @@ export function VoiceChat({
   const [error, setError] = useState<string>('')
   const [isConversationMode, setIsConversationMode] = useState<boolean>(false)
   const [isWaitingForUserResponse, setIsWaitingForUserResponse] = useState<boolean>(false)
+  const [liveTranscript, setLiveTranscript] = useState<string>('')
 
   const recognitionRef = useRef<SpeechRecognition | null>(null)
   const speechSynthesisRef = useRef<SpeechSynthesis | null>(null)
@@ -358,17 +359,30 @@ export function VoiceChat({
       }
 
       recognition.onresult = (event: SpeechRecognitionEvent) => {
-        const transcript = event.results[event.resultIndex][0].transcript
+        let finalTranscript = ''
+        let interimTranscript = ''
+
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const transcript = event.results[i][0].transcript
+          if (event.results[i].isFinal) {
+            finalTranscript += transcript
+          } else {
+            interimTranscript += transcript
+          }
+        }
+
+        // Update live transcript with both final and interim results
+        setLiveTranscript(finalTranscript + interimTranscript)
+
+        // ANY speech result means user is actively speaking - reset all timeouts
+        clearUserResponseTimeout()
+        startSilenceTimeout()
 
         if (event.results[event.resultIndex].isFinal) {
-          // Clear user response timeout since user is speaking
-          clearUserResponseTimeout()
           // Accumulate final results
-          if (transcript.trim()) {
-            accumulatedSpeechRef.current += (accumulatedSpeechRef.current ? ' ' : '') + transcript.trim()
+          if (finalTranscript.trim()) {
+            accumulatedSpeechRef.current += (accumulatedSpeechRef.current ? ' ' : '') + finalTranscript.trim()
           }
-          // Start/restart the 10-second silence timeout
-          startSilenceTimeout()
         }
       }
 
@@ -407,6 +421,8 @@ export function VoiceChat({
       recognition.onend = () => {
         setIsListening(false)
         isListeningRef.current = false
+        // Clear live transcript when recognition ends
+        setLiveTranscript('')
         // Clear timeout when recognition ends
         clearSilenceTimeout()
       }
@@ -476,6 +492,7 @@ export function VoiceChat({
         clearSilenceTimeout()
         clearUserResponseTimeout()
         accumulatedSpeechRef.current = ''
+        setLiveTranscript('')
         if (recognitionRef.current) {
           recognitionRef.current.stop()
         }
@@ -527,6 +544,32 @@ export function VoiceChat({
           )}
         </div>
       </div>
+
+      {/* Live Transcription Display */}
+      {(liveTranscript || isListening) && (
+        <div className="absolute top-4 left-4 right-4">
+          <div className={`min-h-[80px] rounded-lg border-2 p-4 flex items-center justify-center transition-all duration-300 ${
+            liveTranscript
+              ? 'border-blue-300 bg-blue-50 shadow-lg'
+              : 'border-gray-200 bg-gray-50'
+          }`}>
+            <div className="text-center w-full">
+              {liveTranscript ? (
+                <div className="text-xl md:text-2xl font-medium text-gray-800 leading-relaxed">
+                  {liveTranscript}
+                  {isListening && !liveTranscript.endsWith(' ') && (
+                    <span className="animate-pulse text-blue-500">|</span>
+                  )}
+                </div>
+              ) : (
+                <div className="text-gray-400 text-lg">
+                  Listening... Speak to see live transcription
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Status Indicators - Bottom Left */}
       {isListening && !isAISpeaking && (

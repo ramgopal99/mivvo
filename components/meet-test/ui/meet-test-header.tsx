@@ -14,9 +14,12 @@ interface MeetTestHeaderProps {
   onStopConversation?: () => void
   onAnalyzeInterview?: () => void
   hasTranscriptData?: boolean
+  elapsedTime?: number
+  isTimerRunning?: boolean
+  formatTime?: (seconds: number) => string
 }
 
-export function MeetTestHeader({ 
+export function MeetTestHeader({
   assistantName = 'AI Assistant',
   assistantAvatar,
   onEndCall,
@@ -25,7 +28,10 @@ export function MeetTestHeader({
   onStartConversation,
   onStopConversation,
   onAnalyzeInterview,
-  hasTranscriptData = false
+  hasTranscriptData = false,
+  elapsedTime = 0,
+  isTimerRunning = false,
+  formatTime
 }: MeetTestHeaderProps) {
   return (
     <div className="absolute top-0 left-0 right-0 z-10 bg-background/95 backdrop-blur-sm border-b">
@@ -46,6 +52,13 @@ export function MeetTestHeader({
 
         {/* Right side - Voice chat and call controls */}
         <div className="flex items-center gap-2">
+          {/* Timer Display */}
+          {isTimerRunning && formatTime && (
+            <div className="bg-black/80 text-white px-3 py-1 rounded-full text-sm font-mono font-semibold shadow-lg border border-white/20">
+              {formatTime(elapsedTime)}
+            </div>
+          )}
+
           {/* Voice Chat Controls */}
           {!isConversationMode ? (
             <Button
