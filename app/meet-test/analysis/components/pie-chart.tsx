@@ -110,15 +110,14 @@ export function PieChart({ data, title, size = 300 }: PieChartProps) {
         {/* Legend */}
         <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 w-full max-w-sm">
           <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-            {validData.map((item, index) => (
-              <div key={item.label} className="flex items-center gap-2 min-w-0">
-                <div className={`w-3 h-3 rounded-full flex-shrink-0 ${
-                  index === 0 ? 'bg-purple-500' :
-                  index === 1 ? 'bg-blue-500' :
-                  index === 2 ? 'bg-green-500' : 'bg-yellow-500'
-                }`} />
+            {slices.map((slice) => (
+              <div key={slice.label} className="flex items-center gap-2 min-w-0">
+                <div
+                  className="w-3 h-3 rounded-full flex-shrink-0"
+                  style={{ backgroundColor: slice.color }}
+                />
                 <span className="text-xs text-gray-600 truncate text-left">
-                  {item.label}: {item.value} ({Math.round((item.value / total) * 100)}%)
+                  {slice.label}: {slice.value} ({Math.round(slice.percentage * 100)}%)
                 </span>
               </div>
             ))}

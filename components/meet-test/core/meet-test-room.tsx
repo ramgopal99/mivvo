@@ -3,8 +3,19 @@
 import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { MicOff, VideoOff } from 'lucide-react'
+import { toast } from 'sonner'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 import { MeetTestHeader } from '../ui/meet-test-header'
 import { MeetTestControls } from '../ui/meet-test-controls'
+import { ScreenShareDisplay } from '../ui/screen-share-display'
+import { DraggableCodeButton } from '../ui/draggable-code-button'
+import { CodeDialog } from '../ui/code-dialog'
 import { VoiceChat } from '../voice/voice-chat'
 import { VoiceSettings } from '../voice/voice-settings'
 import { VoiceActivityIndicator } from '@/components/meet/ui/voice-activity-indicator'
@@ -35,7 +46,15 @@ export function MeetTestRoom({
   const [isVideoEnabled, setIsVideoEnabled] = useState(false)
   const [isChatOpen, setIsChatOpen] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
-  
+
+  // State for screen sharing
+  const [isScreenSharing, setIsScreenSharing] = useState(false)
+  const [screenStream, setScreenStream] = useState<MediaStream | null>(null)
+  const [showScreenShareDialog, setShowScreenShareDialog] = useState(false)
+
+  // State for code dialog
+  const [showCodeDialog, setShowCodeDialog] = useState(false)
+
   // State for media stream
   const [stream, setStream] = useState<MediaStream | null>(null)
   const [isGettingStream, setIsGettingStream] = useState(false)
@@ -259,6 +278,67 @@ export function MeetTestRoom({
       }
     }
   }, [isVideoEnabled, isAudioEnabled])
+
+  // Screen sharing functions
+  const startScreenShare = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getDisplayMedia({
+        video: true,
+        audio: false
+      })
+
+      setScreenStream(stream)
+      setIsScreenSharing(true)
+
+      // Show success message and dialog
+      toast.success('Screen sharing started successfully!')
+      setShowScreenShareDialog(true)
+
+      // Handle when user stops sharing via browser UI
+      stream.getVideoTracks()[0].addEventListener('ended', () => {
+        stopScreenShare(false)
+      })
+    } catch (error: unknown) {
+      // Handle user denial/cancellation
+      if (error instanceof DOMException && error.name === 'NotAllowedError') {
+        toast.error('Screen sharing was cancelled or denied. Please try again and allow access.')
+        return
+      }
+
+      // Log other errors to console for debugging
+      console.error('Error starting screen share:', error)
+      toast.error('Failed to start screen sharing. Please try again.')
+    }
+  }
+
+  const stopScreenShare = (showMessage = true) => {
+    if (screenStream) {
+      screenStream.getTracks().forEach(track => track.stop())
+      setScreenStream(null)
+    }
+    setIsScreenSharing(false)
+
+    if (showMessage) {
+      console.log('Screen sharing stopped')
+    }
+  }
+
+  const toggleScreenShare = () => {
+    if (isScreenSharing) {
+      stopScreenShare()
+    } else {
+      startScreenShare()
+    }
+  }
+
+  // Cleanup screen sharing on unmount
+  useEffect(() => {
+    return () => {
+      if (screenStream) {
+        screenStream.getTracks().forEach(track => track.stop())
+      }
+    }
+  }, [screenStream])
 
   // Ensure video element gets the stream when available
   useEffect(() => {
@@ -523,6 +603,9 @@ export function MeetTestRoom({
         onToggleVideo={() => setIsVideoEnabled(!isVideoEnabled)}
         onToggleChat={UI_CONFIG.showChatBox ? () => setIsChatOpen(!isChatOpen) : undefined}
         onShowSettings={UI_CONFIG.showVoiceSettings ? () => setShowSettings(!showSettings) : undefined}
+        showShareScreen={UI_CONFIG.showShareScreen}
+        isScreenSharing={isScreenSharing}
+        onToggleScreenShare={toggleScreenShare}
       />
 
       {/* Chat - Only show if enabled in UI_CONFIG */}
@@ -558,6 +641,42 @@ export function MeetTestRoom({
           </div>
         </div>
       )}
+
+      {/* Screen Share Display */}
+      <ScreenShareDisplay
+        stream={screenStream}
+        isVisible={isScreenSharing}
+      />
+
+      {/* Screen Share Dialog */}
+      <Dialog open={showScreenShareDialog} onOpenChange={setShowScreenShareDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              Screen Sharing Active
+            </DialogTitle>
+            <DialogDescription>
+              Your screen is now being shared. Others can see your screen content in the bottom-right corner of their view.
+              <br /><br />
+              <strong>Tips:</strong>
+              <br />• Click the monitor button again to stop sharing
+              <br />• You can minimize this window while sharing continues
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+
+      {/* Code Dialog */}
+      <CodeDialog
+        isOpen={showCodeDialog}
+        onClose={() => setShowCodeDialog(false)}
+      />
+
+      {/* Draggable Code Button */}
+      <DraggableCodeButton
+        onClick={() => setShowCodeDialog(true)}
+      />
 
     </div>
   )

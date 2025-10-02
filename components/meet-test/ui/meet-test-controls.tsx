@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { Mic, MicOff, Video, VideoOff, MessageSquare, Settings } from 'lucide-react'
+import { Mic, MicOff, Video, VideoOff, MessageSquare, Settings, Monitor } from 'lucide-react'
 
 interface MeetTestControlsProps {
   isAudioEnabled: boolean
@@ -11,6 +11,9 @@ interface MeetTestControlsProps {
   onToggleVideo: () => void
   onToggleChat?: () => void
   onShowSettings?: () => void
+  showShareScreen?: boolean
+  isScreenSharing?: boolean
+  onToggleScreenShare?: () => void
 }
 
 export function MeetTestControls({
@@ -20,10 +23,13 @@ export function MeetTestControls({
   onToggleAudio,
   onToggleVideo,
   onToggleChat,
-  onShowSettings
+  onShowSettings,
+  showShareScreen = true,
+  isScreenSharing = false,
+  onToggleScreenShare
 }: MeetTestControlsProps) {
   return (
-    <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
+    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
       <div className="flex items-center gap-3 bg-background/95 backdrop-blur-sm border rounded-full px-4 py-2 shadow-lg">
         {/* Audio Toggle */}
         <Button
@@ -52,6 +58,18 @@ export function MeetTestControls({
             <VideoOff className="h-4 w-4" />
           )}
         </Button>
+
+        {/* Share Screen - Only show if showShareScreen is true */}
+        {showShareScreen && onToggleScreenShare && (
+          <Button
+            onClick={onToggleScreenShare}
+            variant={isScreenSharing ? "default" : "outline"}
+            size="sm"
+            className="rounded-full cursor-pointer"
+          >
+            <Monitor className="h-4 w-4" />
+          </Button>
+        )}
 
         {/* Chat Toggle - Only show if onToggleChat is provided */}
         {onToggleChat && (
