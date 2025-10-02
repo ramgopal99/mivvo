@@ -20,7 +20,7 @@ const VOICE_CONFIG = {
 
 // UI Configuration - Easy to modify in the future
 const UI_CONFIG = {
-  showChatBox: false,       // Show/hide chat box (true = show, false = hide)
+  showChatBox: true,       // Show/hide chat box (true = show, false = hide)
   showVoiceSettings: true   // Show/hide voice settings panel (true = show, false = hide)
 } as const
 
