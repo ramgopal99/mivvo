@@ -12,8 +12,16 @@ const USER_RESPONSE_TIMEOUT_MS = 10000 // Time to wait for user response after A
 // Configuration constants - easily adjustable messages
 const USER_RESPONSE_TIMEOUT_MESSAGE = "The user has not responded for 10 seconds. Please provide an appropriate follow-up such as repeating the question, asking if they need clarification, or moving to the next question."
 
-// AI System Prompt - defines the AI's behavior and role
-const AI_SYSTEM_PROMPT = `You are conducting a technical interview for a Software Developer position at Amazon. You are an experienced interviewer who asks thoughtful, technical questions and provides constructive feedback.
+// Default Interview Configuration - can be overridden via props
+const DEFAULT_INTERVIEW_CONFIG = {
+  position: "Software Developer",
+  company: "Amazon",
+  topics: "Data Structures, Algorithms, System Design, React/Frontend Development, Backend Technologies",
+  difficulty: "Beginner to Advanced"
+}
+
+// AI System Prompt - defines the AI's behavior and role (built dynamically from config)
+const buildAISystemPrompt = (config: InterviewConfig) => `You are conducting a technical interview for a ${config.position} position at ${config.company}. You are an experienced interviewer who asks thoughtful, technical questions and provides constructive feedback.
 
 Interview Guidelines:
 - Ask one question at a time
@@ -21,7 +29,8 @@ Interview Guidelines:
 - Ask follow-up questions based on the candidate's responses
 - Provide hints if the candidate is struggling, but don't give away the answer
 - Focus on problem-solving ability, coding skills, and system design knowledge
-- Ask about data structures, algorithms, and real-world application
+- Ask about ${config.topics}
+- Adapt difficulty from ${config.difficulty}
 
 Current Interview Progress:
 - This is an ongoing technical interview
@@ -74,6 +83,13 @@ interface Message {
   timestamp: Date
 }
 
+interface InterviewConfig {
+  position: string
+  company: string
+  topics: string
+  difficulty: string
+}
+
 interface VoiceChatProps {
   onTranscriptUpdate?: (messages: { role: string; text: string; timestamp: string }[]) => void
   onVoiceChatStateChange?: (isActive: boolean) => void
@@ -85,6 +101,7 @@ interface VoiceChatProps {
   autoListenAfterAI?: boolean
   isAISpeaking?: boolean
   onWaitingForResponseChange?: (isWaiting: boolean) => void
+  interviewConfig?: InterviewConfig
 }
 
 export function VoiceChat({
@@ -97,7 +114,8 @@ export function VoiceChat({
   availableVoices = [],
   autoListenAfterAI = false,
   isAISpeaking = false,
-  onWaitingForResponseChange
+  onWaitingForResponseChange,
+  interviewConfig = DEFAULT_INTERVIEW_CONFIG
 }: VoiceChatProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [isListening, setIsListening] = useState(false)
@@ -311,7 +329,7 @@ export function VoiceChat({
         },
         body: JSON.stringify({
           messages: [
-            { role: 'system', content: AI_SYSTEM_PROMPT },
+            { role: 'system', content: buildAISystemPrompt(interviewConfig) },
             ...messages.map(m => ({ role: m.role, content: m.content })),
             { role: 'user', content: messageText }
           ]
@@ -358,7 +376,7 @@ export function VoiceChat({
     } finally {
       setIsLoading(false)
     }
-  }, [messages, speakText, onTranscriptUpdate])
+  }, [messages, speakText, onTranscriptUpdate, interviewConfig])
 
   // Initialize speech recognition and voices
   useEffect(() => {

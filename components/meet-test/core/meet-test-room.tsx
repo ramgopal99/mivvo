@@ -10,6 +10,16 @@ import { VoiceSettings } from '../voice/voice-settings'
 import { VoiceActivityIndicator } from '@/components/meet/ui/voice-activity-indicator'
 import { Chat } from '@/components/meet/chat'
 
+// Interview Configuration - Shared across all components
+// 🎯 CHANGE THIS CONFIG TO MODIFY THE ENTIRE INTERVIEW SYSTEM
+// This affects: AI prompts, analysis topics, interview focus, etc.
+export const INTERVIEW_CONFIG = {
+  position: "Software Developer",           // Job position title
+  company: "Amazon",                        // Company name
+  topics: "Data Structures, Algorithms, System Design, React/Frontend Development, Backend Technologies", // Technical topics to cover
+  difficulty: "Beginner to Advanced"         // Difficulty progression
+} as const
+
 // Voice Configuration - Easy to modify in the future
 const VOICE_CONFIG = {
   language: 'hi-IN',        // Default language (Hindi)
@@ -492,6 +502,7 @@ export function MeetTestRoom({
             autoListenAfterAI={VOICE_CONFIG.autoListenAfterAI}
             isAISpeaking={isVoiceChatActive}
             onWaitingForResponseChange={handleWaitingForResponseChange}
+            interviewConfig={INTERVIEW_CONFIG}
           />
 
           {/* AI Speaking Indicator */}
