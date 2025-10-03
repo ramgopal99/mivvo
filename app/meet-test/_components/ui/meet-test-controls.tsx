@@ -36,7 +36,7 @@ export function MeetTestControls({
           onClick={onToggleAudio}
           variant={isAudioEnabled ? "default" : "destructive"}
           size="sm"
-          className="rounded-full cursor-pointer"
+          className={`rounded-full cursor-pointer ${isAudioEnabled ? 'bg-black hover:bg-black/90 text-white' : ''}`}
         >
           {isAudioEnabled ? (
             <Mic className="h-4 w-4" />
@@ -50,7 +50,7 @@ export function MeetTestControls({
           onClick={onToggleVideo}
           variant={isVideoEnabled ? "default" : "destructive"}
           size="sm"
-          className="rounded-full cursor-pointer"
+          className={`rounded-full cursor-pointer ${isVideoEnabled ? 'bg-black hover:bg-black/90 text-white' : ''}`}
         >
           {isVideoEnabled ? (
             <Video className="h-4 w-4" />
@@ -65,7 +65,7 @@ export function MeetTestControls({
             onClick={onToggleScreenShare}
             variant={isScreenSharing ? "default" : "outline"}
             size="sm"
-            className="rounded-full cursor-pointer"
+            className={`rounded-full cursor-pointer ${isScreenSharing ? 'bg-black hover:bg-black/90 text-white' : ''}`}
           >
             <Monitor className="h-4 w-4" />
           </Button>
@@ -77,7 +77,7 @@ export function MeetTestControls({
             onClick={onToggleChat}
             variant={isChatOpen ? "default" : "outline"}
             size="sm"
-            className="rounded-full cursor-pointer"
+            className={`rounded-full cursor-pointer ${isChatOpen ? 'bg-black hover:bg-black/90 text-white' : ''}`}
           >
             <MessageSquare className="h-4 w-4" />
           </Button>
