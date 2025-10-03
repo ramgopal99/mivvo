@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { landingConfig } from "../../config/landing-config"
@@ -13,17 +14,21 @@ export function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/20 backdrop-blur-sm border-b border-gray-200/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-1">
-            <div className="w-6 h-6 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xs">
-                {landingConfig.navigation.logo.icon}
-              </span>
-            </div>
-            <span className="text-lg font-bold text-gray-900">
-              {landingConfig.navigation.logo.text}
-            </span>
-          </Link>
+              {/* Logo */}
+              <Link href="/" className="flex items-center space-x-2">
+                <div className="w-8 h-8">
+                  <Image 
+                    src="/mivvo.svg" 
+                    alt="Mivvo Logo" 
+                    width={32}
+                    height={32}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="text-lg font-bold text-gray-900">
+                  {landingConfig.navigation.logo.text}
+                </span>
+              </Link>
 
           {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex items-center space-x-6">

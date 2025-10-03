@@ -24,7 +24,7 @@ export const landingConfig = {
       icon: "🔥"
     },
     links: [
-      { text: "Solutions", href: "#solutions" },
+      { text: "Product", href: "#product" },
       { text: "Features", href: "#features" },
       { text: "Pricing", href: "#pricing" }
     ],
@@ -158,32 +158,110 @@ export const landingConfig = {
       ]
     }
   },
-  features: [
-    {
-      title: "AI Mock Interviews",
-      description: "Practice with our advanced AI interviewer that adapts to your responses and provides realistic interview scenarios.",
-      icon: "🤖"
+  faq: {
+    header: {
+      title: "Questions?",
+      subtitle: "We're Glad You Asked.",
+      tabOptions: [
+        { label: "FAQs", value: "faqs" },
+        { label: "Questions you might have", value: "questions" }
+      ]
     },
-    {
-      title: "Real-time Analysis",
-      description: "Get instant feedback on your answers, communication style, and overall performance during the interview.",
-      icon: "📊"
+    questions: [
+      {
+        question: "How does the AI interviewer work?",
+        answer: "Our AI interviewer uses advanced natural language processing to conduct realistic mock interviews. It adapts to your responses, asks follow-up questions, and provides real-time feedback based on industry best practices."
+      },
+      {
+        question: "What types of interviews can I practice?",
+        answer: "You can practice technical interviews, behavioral questions, system design discussions, coding challenges, and general interview scenarios. We cover software engineering, data science, product management, and more roles."
+      },
+      {
+        question: "How accurate is the performance analysis?",
+        answer: "Our AI analyzes your communication skills, technical knowledge, problem-solving approach, and confidence levels. The analysis is based on industry standards and provides detailed insights with actionable recommendations for improvement."
+      },
+      {
+        question: "Can I use this for specific companies?",
+        answer: "Yes! Our platform includes company-specific interview formats and questions from top tech companies like Google, Amazon, Microsoft, Apple, and many others. You can also practice with custom scenarios."
+      },
+      {
+        question: "Is my data secure and private?",
+        answer: "Absolutely. We use enterprise-grade encryption and never share your interview data. All recordings and analysis are stored securely and can be deleted at any time. We're fully GDPR compliant."
+      },
+      {
+        question: "How much does it cost?",
+        answer: "We offer a free tier with basic features, and premium plans starting at $19/month for unlimited interviews, advanced analytics, and company-specific practice sessions. Students and institutions get special pricing."
+      }
+    ]
+  },
+  cta: {
+    headline: {
+      main: "Master Interviews = Career Success",
+      sub: ""
     },
-    {
-      title: "Detailed Reports",
-      description: "Receive comprehensive analysis reports with strengths, areas for improvement, and personalized recommendations.",
-      icon: "📋"
+    description: "Start practicing with AI and get detailed feedback delivered straight to your dashboard.",
+    button: {
+      text: "Get your first mock interview for free",
+      href: "/auth/signin"
     },
-    {
-      title: "Multiple Formats",
-      description: "Practice technical interviews, behavioral questions, system design, and coding challenges.",
-      icon: "💻"
-    }
-  ],
-  stats: [
-    { label: "Mock Interviews", value: "10K+" },
-    { label: "Success Stories", value: "500+" },
-    { label: "Success Rate", value: "85%" },
-    { label: "Companies", value: "50+" }
-  ]
+    trustIndicators: [
+      { icon: "Star", text: "4.9/5 Rating", color: "text-yellow-300" },
+      { icon: "Users", text: "10,000+ Users", color: "text-white/60" },
+      { icon: "Target", text: "85% Success Rate", color: "text-white/60" }
+    ]
+  },
+  testimonials: {
+    header: {
+      badge: "Testimonials",
+      subtitle: "Not just words, see results"
+    },
+    title: "Trusted by 100+ companies and students worldwide",
+    testimonials: [
+      {
+        name: "Arjun Patel",
+        role: "Software Engineer at Google",
+        avatar: "https://avatar.iran.liara.run/public/boy",
+        quote: "I received a job offer mid-course, and the AI practice sessions were current, if not more so, in the company I joined. I honestly feel I got every penny's worth.",
+        description: "I was struggling with technical interviews for many months before I joined Mivvo. The AI interviewer was incredibly realistic and helped me practice exactly the types of questions I faced in real interviews. The detailed feedback on my communication style and technical knowledge was invaluable.",
+        verified: "Verified Graduate",
+        cardStyle: "purple"
+      },
+      {
+        name: "Priya Sharma",
+        role: "Product Manager @ Microsoft",
+        avatar: "https://avatar.iran.liara.run/public/girl",
+        quote: "The team was very supportive and kept me motivated throughout my interview preparation journey.",
+        description: "I started as a total newbie with virtually no interview experience. Mivvo's AI interviewer adapted to my skill level and gradually increased the difficulty. The real-time feedback helped me identify my weak areas and improve systematically.",
+        verified: "Verified Graduate",
+        cardStyle: "dark-blue"
+      },
+      {
+        name: "Vikram Joshi",
+        role: "Data Scientist (Recent Graduate)",
+        avatar: "https://avatar.iran.liara.run/public/boy",
+        quote: "Such a life-changing experience. Highly recommended!",
+        description: "Before joining Mivvo, I've never had proper interview practice and was extremely nervous about technical interviews. The AI interviewer was so realistic and comprehensive that I felt completely confident going into my actual interviews. The detailed analysis reports with specific feedback on my communication skills, technical knowledge, and problem-solving approach helped me understand exactly what I needed to work on. The personalized recommendations and practice sessions were incredibly valuable. I landed my dream job at a top tech company and couldn't be happier with the results! I would definitely recommend Mivvo to anyone looking for interview practice.",
+        verified: "Verified Graduate",
+        cardStyle: "white"
+      },
+      {
+        name: "Rahul Singh",
+        role: "Frontend Developer @ Apple",
+        avatar: "https://avatar.iran.liara.run/public/boy",
+        quote: "An overall wonderful and rewarding experience",
+        description: "Thank you for the wonderful experience! I now have a job I really enjoy, and I owe it all to Mivvo's AI practice sessions. The personalized feedback and mock interviews prepared me perfectly for the real thing.",
+        verified: "Verified Graduate",
+        cardStyle: "white"
+      },
+      {
+        name: "Ananya Gupta",
+        role: "Full Stack Developer @ Amazon",
+        avatar: "https://avatar.iran.liara.run/public/girl",
+        quote: "Awesome teaching support from AI that actually understands interview dynamics. Getting guidance and learning from realistic scenarios was easy.",
+        description: "The staff seem genuinely concerned about my progress which I find really refreshing. The AI interviewer provided such detailed feedback that I could see my improvement week by week. The program gave me the confidence I needed to excel in my interviews.",
+        verified: "Verified Graduate",
+        cardStyle: "dark-blue"
+      }
+    ]
+  }
 } as const
