@@ -24,9 +24,10 @@ export const landingConfig = {
       icon: "🔥"
     },
     links: [
-      { text: "Product", href: "#product" },
-      { text: "Features", href: "#features" },
-      { text: "Pricing", href: "#pricing" }
+      { text: "Features", href: "/#features" },
+      { text: "Pricing", href: "/#pricing" },
+      { text: "Blog", href: "/blog" },
+      { text: "About", href: "/about" },
     ],
     actions: [
       { 
@@ -88,10 +89,10 @@ export const landingConfig = {
           text: "Excellent performance!"
         },
         performanceData: [
-          { name: 'Communication', score: 85, colorClass: 'bg-green-500' },
-          { name: 'Technical', score: 78, colorClass: 'bg-blue-500' },
-          { name: 'Problem Solving', score: 92, colorClass: 'bg-purple-500' },
-          { name: 'Confidence', score: 88, colorClass: 'bg-yellow-500' }
+          { name: 'Communication', score: 85, colorClass: 'bg-primary' },
+          { name: 'Technical', score: 78, colorClass: 'bg-primary' },
+          { name: 'Problem Solving', score: 92, colorClass: 'bg-primary' },
+          { name: 'Confidence', score: 88, colorClass: 'bg-primary' }
         ],
         improvementAreas: [
           { area: 'Body Language', priority: 'High', trend: 'up' },
@@ -264,6 +265,55 @@ export const landingConfig = {
       }
     ]
   },
+  features: {
+    mainFeatures: {
+      aiInterviews: {
+        title: "Cross Every Career Ladder",
+        description: "Climb through interview levels with AI guidance. From junior to senior roles, master every stage of your career progression."
+      },
+      technicalCoding: {
+        title: "Technical Coding Interviews",
+        description: "Experience real technical coding interviews with AI assistance. Get help solving algorithmic problems, receive detailed code reviews, and practice with industry-standard interview questions."
+      },
+      performanceAnalytics: {
+        header: "Interview Analytics",
+        badge: "Live Session",
+        mainScore: 85,
+        scoreLabel: "Interview Score",
+        metrics: [
+          {
+            name: "Confidence",
+            value: 78,
+            color: "primary"
+          },
+          {
+            name: "Technical",
+            value: 92,
+            color: "primary"
+          },
+          {
+            name: "Communication",
+            value: 88,
+            color: "primary"
+          }
+        ]
+      },
+      companyPractice: {
+        title: "Company-Specific Practice",
+        description: "Practice with interview formats and questions from top tech companies like Google, Amazon, Microsoft, and more.",
+        interviewCalls: [
+          { company: "Google", role: "Senior Software Engineer", type: "Technical Interview" },
+          { company: "Amazon", role: "Full Stack Developer", type: "System Design" },
+          { company: "Microsoft", role: "Frontend Engineer", type: "Coding Challenge" },
+          { company: "Apple", role: "iOS Developer", type: "Technical Screening" },
+          { company: "Meta", role: "React Developer", type: "Peer Interview" },
+          { company: "Netflix", role: "Backend Engineer", type: "Architecture Review" },
+          { company: "Tesla", role: "Full Stack Engineer", type: "Problem Solving" },
+          { company: "Uber", role: "Mobile Developer", type: "Code Review" }
+        ]
+      }
+    }
+  },
   footer: {
     brand: {
       description: "AI-powered mock interviews that help you practice, improve, and land your dream job."
@@ -271,8 +321,8 @@ export const landingConfig = {
     company: {
       title: "Company",
       links: [
-        { text: "Features", href: "#features" },
-        { text: "Pricing", href: "#pricing" },
+        { text: "Features", href: "/#features" },
+        { text: "Pricing", href: "/#pricing" },
         { text: "Blog", href: "/blog" },
         { text: "About Us", href: "/about" }
       ]
@@ -280,7 +330,7 @@ export const landingConfig = {
     support: {
       title: "Support",
       links: [
-        { text: "FAQs", href: "#faq" },
+        { text: "FAQs", href: "/#faq" },
         { text: "Contact Us", href: "/contact" }
       ]
     },

@@ -50,8 +50,8 @@ export function HeroSection() {
           {/* CTA Button */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href={landingConfig.hero.cta.href}>
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="px-8 py-4 text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
                 {landingConfig.hero.cta.text}
@@ -60,8 +60,16 @@ export function HeroSection() {
             </Link>
           </div>
 
+          {/* Product Launch Message */}
+          <div className="mt-6 mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 rounded-full text-sm font-medium text-primary">
+              <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+              This is our first product—soon we&apos;ll launch more amazing tools!
+            </div>
+          </div>
+
           {/* Additional Info */}
-          <div className="mt-4 mb-0 text-sm text-gray-500">
+          <div className="mt-2 text-sm text-gray-500">
             <p>{landingConfig.hero.additionalInfo.text}</p>
           </div>
         </div>

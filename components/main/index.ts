@@ -1,6 +1,8 @@
 export { Navbar } from "./navbar"
 export { HeroSection } from "./hero-section"
 export { SafariDemo } from "./safari-demo"
+export { FeaturesSection } from "./features-section"
+export * from "./features"
 export { StepsSection } from "./steps-section"
 export { StepCard } from "./step-card"
 export { Step1Form } from "./step-1-form"

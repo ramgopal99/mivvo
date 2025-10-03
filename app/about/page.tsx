@@ -2,10 +2,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Users, Target, Award, Lightbulb, ArrowRight, CheckCircle } from "lucide-react"
+import { Navbar } from "@/components/main/navbar"
+import { Footer } from "@/components/main/footer"
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
+      <Navbar />
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-primary/5 via-primary/10 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -229,6 +232,7 @@ export default function AboutPage() {
           </Button>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
