@@ -263,5 +263,35 @@ export const landingConfig = {
         cardStyle: "dark-blue"
       }
     ]
+  },
+  footer: {
+    brand: {
+      description: "AI-powered mock interviews that help you practice, improve, and land your dream job."
+    },
+    company: {
+      title: "Company",
+      links: [
+        { text: "Features", href: "#features" },
+        { text: "Pricing", href: "#pricing" },
+        { text: "Blog", href: "/blog" },
+        { text: "About Us", href: "/about" }
+      ]
+    },
+    support: {
+      title: "Support",
+      links: [
+        { text: "FAQs", href: "#faq" },
+        { text: "Contact Us", href: "/contact" }
+      ]
+    },
+    social: [
+      { name: "LinkedIn", href: "#", icon: "LinkedIn" },
+      { name: "Twitter", href: "#", icon: "Twitter" },
+      { name: "GitHub", href: "#", icon: "GitHub" }
+    ],
+    legal: [
+      { text: "Privacy Policy", href: "/privacy" },
+      { text: "Terms of Service", href: "/terms" }
+    ]
   }
 } as const
