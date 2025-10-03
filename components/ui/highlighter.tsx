@@ -28,11 +28,6 @@ export function Highlighter({
   children,
   action = "highlight",
   color = "#ffd1dc",
-  strokeWidth = 1.5,
-  animationDuration = 600,
-  iterations = 2,
-  padding = 2,
-  multiline = true,
   isView = false,
 }: HighlighterProps) {
   const elementRef = useRef<HTMLSpanElement>(null)
@@ -63,86 +58,39 @@ export function Highlighter({
     return () => observer.disconnect()
   }, [isView])
 
-  const getHighlightStyle = () => {
-    const baseStyle = {
-      transition: `all ${animationDuration}ms ease-in-out`,
-      padding: `${padding}px`,
-      borderRadius: "4px",
-    }
-
+  const getHighlightClasses = () => {
+    const baseClasses = "transition-all duration-300 rounded"
+    
     switch (action) {
       case "highlight":
-        return {
-          ...baseStyle,
-          backgroundColor: color,
-          color: "inherit",
-        }
+        return `${baseClasses} px-1 py-0.5`
       case "underline":
-        return {
-          ...baseStyle,
-          borderBottom: `${strokeWidth}px solid ${color}`,
-          paddingBottom: "2px",
-        }
+        return `${baseClasses} border-b-2 pb-0.5`
       case "box":
-        return {
-          ...baseStyle,
-          border: `${strokeWidth}px solid ${color}`,
-          borderRadius: "4px",
-        }
+        return `${baseClasses} border-2 px-1 py-0.5`
       case "circle":
-        return {
-          ...baseStyle,
-          border: `${strokeWidth}px solid ${color}`,
-          borderRadius: "50%",
-          padding: "4px 8px",
-        }
+        return `${baseClasses} border-2 rounded-full px-2 py-1`
       case "strike-through":
-        return {
-          ...baseStyle,
-          textDecoration: "line-through",
-          textDecorationColor: color,
-          textDecorationThickness: `${strokeWidth}px`,
-        }
+        return `${baseClasses} line-through`
       case "crossed-off":
-        return {
-          ...baseStyle,
-          position: "relative",
-          "&::before": {
-            content: '""',
-            position: "absolute",
-            top: "50%",
-            left: 0,
-            right: 0,
-            height: `${strokeWidth}px`,
-            backgroundColor: color,
-            transform: "translateY(-50%)",
-          },
-        }
+        return `${baseClasses} relative before:content-[''] before:absolute before:top-1/2 before:left-0 before:right-0 before:h-0.5 before:-translate-y-1/2`
       case "bracket":
-        return {
-          ...baseStyle,
-          position: "relative",
-          "&::before": {
-            content: '"[ "',
-            color: color,
-            fontWeight: "bold",
-          },
-          "&::after": {
-            content: '"]"',
-            color: color,
-            fontWeight: "bold",
-          },
-        }
+        return `${baseClasses} relative before:content-['[\\20'] before:font-bold after:content-[']'] after:font-bold`
       default:
-        return baseStyle
+        return baseClasses
     }
   }
 
   return (
     <span
       ref={elementRef}
-      className="relative inline-block"
-      style={isVisible ? getHighlightStyle() : {}}
+      className={`relative inline-block ${isVisible ? getHighlightClasses() : ''}`}
+      style={isVisible ? { 
+        backgroundColor: action === 'highlight' ? color : undefined,
+        borderColor: ['underline', 'box', 'circle'].includes(action) ? color : undefined,
+        textDecorationColor: action === 'strike-through' ? color : undefined,
+        '--highlight-color': color
+      } as React.CSSProperties : {}}
     >
       {children}
     </span>

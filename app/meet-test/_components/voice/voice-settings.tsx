@@ -34,22 +34,9 @@ export function VoiceSettings({
     voice.lang.startsWith('ne')
   )
 
-  // Group voices by provider and type
-  const googleUSVoices = allVoices.filter(voice =>
-    voice.name.includes('Google') && voice.lang.startsWith('en-US')
-  )
 
-  const googleUKVoices = allVoices.filter(voice =>
-    voice.name.includes('Google') && voice.lang.startsWith('en-GB')
-  )
 
-  const microsoftVoices = allVoices.filter(voice =>
-    voice.name.includes('Microsoft')
-  )
 
-  const otherVoices = allVoices.filter(voice =>
-    !voice.name.includes('Google') && !voice.name.includes('Microsoft')
-  )
 
   return (
     <Card className="w-full max-w-md shadow-xl border-0 bg-background/95 backdrop-blur-sm">

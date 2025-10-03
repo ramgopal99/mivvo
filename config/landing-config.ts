@@ -291,7 +291,81 @@ export const landingConfig = {
     ],
     legal: [
       { text: "Privacy Policy", href: "/privacy" },
-      { text: "Terms of Service", href: "/terms" }
+      { text: "Terms of Service", href: "/terms"       }
+    ]
+  },
+  pricing: {
+    header: {
+      title: "Simple pricing for all your needs",
+      subtitle: "Choose the plan that's right for you and start practicing today."
+    },
+    plans: [
+      {
+        name: "Free",
+        isPopular: false,
+        price: "0",
+        currency: "₹",
+        billingPeriod: "/month",
+        description: "Perfect for getting started with AI mock interviews.",
+        features: [
+          "3 mock interviews per month",
+          "Basic AI feedback",
+          "Performance summary",
+          "Email support",
+          "Mobile app access"
+        ],
+        cta: {
+          text: "Get Started Free",
+          href: "/auth/signin"
+        },
+        buttonVariant: "outline" as const
+      },
+      {
+        name: "Pro",
+        isPopular: true,
+        price: "999",
+        currency: "₹",
+        billingPeriod: "/month",
+        description: "Best for serious job seekers and career changers.",
+        features: [
+          "Unlimited mock interviews",
+          "Advanced AI analysis",
+          "Detailed performance reports",
+          "Company-specific practice",
+          "Priority support",
+          "Interview preparation tips",
+          "Progress tracking",
+          "Resume optimization tips"
+        ],
+        cta: {
+          text: "Start Pro Trial",
+          href: "/auth/signin"
+        },
+        buttonVariant: "default" as const
+      },
+      {
+        name: "Enterprise",
+        isPopular: false,
+        price: "Custom",
+        currency: "",
+        billingPeriod: "",
+        description: "For institutions and organizations training multiple users.",
+        features: [
+          "Everything in Pro",
+          "Bulk user management",
+          "Custom interview scenarios",
+          "Advanced analytics dashboard",
+          "Dedicated account manager",
+          "API access",
+          "Custom branding",
+          "SLA guarantee"
+        ],
+        cta: {
+          text: "Contact Sales",
+          href: "/contact"
+        },
+        buttonVariant: "outline" as const
+      }
     ]
   }
 } as const

@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Play, Pause, Square, Mic, Clock, User } from "lucide-react"
+import { Play, Mic, Clock, User } from "lucide-react"
 import { landingConfig } from "../../config/landing-config"
 
 const iconMap = {
@@ -38,7 +38,7 @@ export function Step2Interview() {
                 <Badge variant="secondary" className="text-xs px-1 py-0">{landingConfig.steps.step2.interview.aiStatus}</Badge>
               </div>
               <p className="text-xs text-gray-600 mb-2 leading-relaxed">
-                "{landingConfig.steps.step2.interview.question}"
+                &quot;{landingConfig.steps.step2.interview.question}&quot;
               </p>
               <div className="flex items-center space-x-2">
                 <div className="flex space-x-1">

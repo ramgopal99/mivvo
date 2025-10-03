@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Brain, Phone, PhoneOff, Mic, MicOff, BarChart3 } from 'lucide-react'
+import { Brain, PhoneOff, Mic, MicOff, BarChart3 } from 'lucide-react'
 
 interface MeetTestHeaderProps {
   assistantName?: string

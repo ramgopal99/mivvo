@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { ArrowLeft } from 'lucide-react'
-import { INTERVIEW_CONFIG } from '@/components/meet-test/config'
+import { INTERVIEW_CONFIG } from '../_components/config'
 import { AnalysisTabs } from './components/analysis-tabs'
 
 const interviewTopic = `${INTERVIEW_CONFIG.position} (${INTERVIEW_CONFIG.topics})`

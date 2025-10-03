@@ -15,7 +15,7 @@ export default function ContactPage() {
               Contact Us
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Get in touch with our team. We're here to help you succeed with your interview preparation.
+            Get in touch with our team. We&apos;re here to help you succeed with your interview preparation.
             </p>
           </div>
         </div>
@@ -29,7 +29,7 @@ export default function ContactPage() {
               <CardHeader>
                 <CardTitle>Send us a message</CardTitle>
                 <CardDescription>
-                  Fill out the form below and we'll get back to you within 24 hours.
+                  Fill out the form below and we&apos;ll get back to you within 24 hours.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -83,7 +83,7 @@ export default function ContactPage() {
                       name="subject"
                       type="text"
                       required
-                      placeholder="What's this about?"
+                      placeholder="What&apos;s this about?"
                     />
                   </div>
                   
@@ -114,8 +114,8 @@ export default function ContactPage() {
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
               <p className="text-gray-600 mb-8">
-                Have questions about our AI mock interview platform? We'd love to hear from you. 
-                Send us a message and we'll respond as soon as possible.
+                Have questions about our AI mock interview platform? We&apos;d love to hear from you. 
+                Send us a message and we&apos;ll respond as soon as possible.
               </p>
             </div>
 
@@ -127,7 +127,7 @@ export default function ContactPage() {
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900">Email</h3>
                   <p className="text-gray-600">support@mivvo.com</p>
-                  <p className="text-sm text-gray-500">We'll respond within 24 hours</p>
+                  <p className="text-sm text-gray-500">We&apos;ll respond within 24 hours</p>
                 </div>
               </div>
 

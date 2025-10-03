@@ -2,7 +2,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Users, Target, Award, Lightbulb, ArrowRight, CheckCircle } from "lucide-react"
-import Image from "next/image"
 
 export default function AboutPage() {
   return (
@@ -15,7 +14,7 @@ export default function AboutPage() {
               About Mivvo
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
-              We're revolutionizing interview preparation with AI-powered mock interviews 
+              We&apos;re revolutionizing interview preparation with AI-powered mock interviews 
               that help candidates practice, improve, and land their dream jobs.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
@@ -159,7 +158,7 @@ export default function AboutPage() {
               Meet Our Team
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              The passionate people behind Mivvo's success
+              The passionate people behind Mivvo&apos;s success
             </p>
           </div>
 

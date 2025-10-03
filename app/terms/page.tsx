@@ -24,8 +24,8 @@ export default function TermsPage() {
           </CardHeader>
           <CardContent className="space-y-6">
             <p className="text-gray-700 leading-relaxed">
-              These Terms of Service ("Terms") govern your use of Mivvo's AI-powered mock interview platform 
-              ("Service") operated by Mivvo Inc. ("us", "we", or "our").
+              These Terms of Service (&quot;Terms&quot;) govern your use of Mivvo&apos;s AI-powered mock interview platform 
+              (&quot;Service&quot;) operated by Mivvo Inc. (&quot;us&quot;, &quot;we&quot;, or &quot;our&quot;).
             </p>
             
             <p className="text-gray-700 leading-relaxed">
@@ -106,7 +106,7 @@ export default function TermsPage() {
                 <li>Attempting to reverse engineer, hack, or compromise the Service</li>
                 <li>Using the Service for any illegal or unauthorized purpose</li>
                 <li>Interfering with or disrupting the Service or servers</li>
-                <li>Attempting to gain unauthorized access to other users' accounts</li>
+                <li>Attempting to gain unauthorized access to other users&apos; accounts</li>
                 <li>Uploading malicious code or harmful content</li>
                 <li>Using the Service to harass, abuse, or harm others</li>
                 <li>Violating any applicable laws or regulations</li>

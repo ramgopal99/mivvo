@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import type { HTMLAttributes } from "react"
 
 const SAFARI_WIDTH = 1203

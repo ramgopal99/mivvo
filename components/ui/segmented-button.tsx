@@ -18,7 +18,7 @@ export function SegmentedButton({ options, value, onChange, className }: Segment
       "inline-flex items-center bg-white border border-gray-200 rounded-full overflow-hidden shadow-sm",
       className
     )}>
-      {options.map((option, index) => (
+      {options.map((option) => (
         <button
           key={option.value}
           onClick={() => onChange(option.value)}

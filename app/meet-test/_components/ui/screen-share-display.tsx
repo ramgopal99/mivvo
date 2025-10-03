@@ -31,9 +31,10 @@ export function ScreenShareDisplay({ stream, isVisible }: ScreenShareDisplayProp
 
   // Cleanup on unmount
   useEffect(() => {
+    const videoElement = videoRef.current
     return () => {
-      if (videoRef.current) {
-        videoRef.current.srcObject = null
+      if (videoElement) {
+        videoElement.srcObject = null
       }
     }
   }, [])
