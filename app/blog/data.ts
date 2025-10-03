@@ -9,6 +9,7 @@ export interface BlogPost {
     role?: string
   }
   publishedAt: string
+  readTime: number
   categories: string[]
   featured?: boolean
   image?: string
@@ -21,6 +22,7 @@ export const blogPosts: BlogPost[] = [
     slug: "mastering-technical-interviews",
     title: "Mastering Technical Interviews: A Complete Guide",
     excerpt: "Learn the essential strategies and techniques to excel in technical interviews at top tech companies. From algorithm problems to system design, we've got you covered.",
+    readTime: 8,
     content: `
 ## Introduction
 
@@ -87,6 +89,7 @@ Keep practicing, stay curious, and don't give up on your dreams. The journey to 
     slug: "ai-interview-preparation",
     title: "How AI is Revolutionizing Interview Preparation",
     excerpt: "Discover how artificial intelligence is transforming the way we prepare for job interviews, making practice more effective and accessible than ever before.",
+    readTime: 6,
     content: `
 ## The AI Revolution in Interview Prep
 
@@ -157,6 +160,7 @@ The integration of AI in interview preparation represents a paradigm shift, maki
     slug: "behavioral-interview-questions",
     title: "50 Most Common Behavioral Interview Questions",
     excerpt: "Prepare for behavioral interviews with our comprehensive list of the most frequently asked questions and proven strategies for crafting compelling answers.",
+    readTime: 10,
     content: `
 ## Mastering Behavioral Interviews
 
@@ -240,6 +244,7 @@ Start preparing today by reflecting on your past experiences and crafting compel
     slug: "system-design-interviews",
     title: "System Design Interviews: From Beginner to Expert",
     excerpt: "Master system design interviews with practical examples, case studies, and step-by-step approaches to designing scalable systems.",
+    readTime: 7,
     author: {
       name: "Mivvo",
       avatar: "/mivvo.svg",
@@ -254,6 +259,7 @@ Start preparing today by reflecting on your past experiences and crafting compel
     slug: "remote-interview-tips",
     title: "Remote Interview Success: Best Practices",
     excerpt: "Navigate remote interviews successfully with these essential tips for video calls, technical setup, and maintaining professional presence online.",
+    readTime: 5,
     author: {
       name: "Mivvo",
       avatar: "/mivvo.svg",
@@ -268,6 +274,7 @@ Start preparing today by reflecting on your past experiences and crafting compel
     slug: "salary-negotiation-guide",
     title: "The Ultimate Guide to Salary Negotiation",
     excerpt: "Learn how to negotiate your salary effectively, understand market rates, and get the compensation you deserve for your skills and experience.",
+    readTime: 6,
     author: {
       name: "Mivvo",
       avatar: "/mivvo.svg",
@@ -282,6 +289,7 @@ Start preparing today by reflecting on your past experiences and crafting compel
     slug: "coding-interview-patterns",
     title: "Common Coding Interview Patterns Explained",
     excerpt: "Understand the most frequent coding patterns that appear in technical interviews and learn how to approach them systematically.",
+    readTime: 9,
     author: {
       name: "Mivvo",
       avatar: "/mivvo.svg",
@@ -296,6 +304,7 @@ Start preparing today by reflecting on your past experiences and crafting compel
     slug: "mental-health-interviews",
     title: "Maintaining Mental Health During Interview Season",
     excerpt: "Strategies for managing stress, building confidence, and maintaining work-life balance while preparing for and attending job interviews.",
+    readTime: 4,
     author: {
       name: "Mivvo",
       avatar: "/mivvo.svg",

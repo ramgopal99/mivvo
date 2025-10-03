@@ -2,12 +2,12 @@
 
 import { useState, useMemo } from "react"
 import { BlogHeader, BlogCategories, BlogGrid } from "./_components"
-import { blogPosts, blogCategories, BlogPost } from "./data"
+import { blogPosts, blogCategories } from "./data"
 import { Navbar } from "@/components/main"
 import { Footer } from "@/components/main"
 
 export default function BlogPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined)
 
   const filteredPosts = useMemo(() => {
     let filtered = blogPosts
@@ -27,7 +27,7 @@ export default function BlogPage() {
     })
   }, [selectedCategory])
 
-  const handleCategorySelect = (category: string | null) => {
+  const handleCategorySelect = (category: string | undefined) => {
     setSelectedCategory(category)
   }
 
