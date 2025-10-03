@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { ArrowLeft } from 'lucide-react'
 import { INTERVIEW_CONFIG } from '../_components/config'
 import { AnalysisTabs } from './components/analysis-tabs'
 
@@ -88,7 +87,7 @@ export default function AnalysisPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
           <p className="text-muted-foreground">Loading...</p>
@@ -98,48 +97,28 @@ export default function AnalysisPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="border-b bg-card">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Button onClick={() => router.push('/meet-test')} variant="ghost" size="sm">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back
-              </Button>
-              <div>
-                <h1 className="text-2xl font-bold">Interview Analysis</h1>
-                <p className="text-muted-foreground">Comprehensive performance evaluation</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-4 py-8 max-w-6xl">
-        {transcript.length === 0 && !isLoading ? (
-          <Card>
-            <CardHeader>
-              <CardTitle>No Data Found</CardTitle>
-              <CardDescription>
-                No interview data was found. Please complete an interview first.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button onClick={() => router.push('/meet-test')} className="w-full">
-                Start Interview
-              </Button>
-            </CardContent>
-          </Card>
-        ) : (
-          <AnalysisTabs
-            analysis={analysis!}
-            transcript={transcript}
-            topic={interviewTopic}
-          />
-        )}
-      </div>
-    </div>
+    <>
+      {transcript.length === 0 && !isLoading ? (
+        <Card>
+          <CardHeader>
+            <CardTitle>No Data Found</CardTitle>
+            <CardDescription>
+              No interview data was found. Please complete an interview first.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button onClick={() => router.push('/meet-test')} className="w-full">
+              Start Interview
+            </Button>
+          </CardContent>
+        </Card>
+      ) : (
+        <AnalysisTabs
+          analysis={analysis!}
+          transcript={transcript}
+          topic={interviewTopic}
+        />
+      )}
+    </>
   )
 }

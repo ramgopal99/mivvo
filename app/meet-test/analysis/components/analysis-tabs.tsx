@@ -6,8 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
-import { BarChart3, TrendingUp, MessageSquare, Brain, Target, Users, Star, Clock, CheckCircle, AlertTriangle, XCircle } from 'lucide-react'
+import { BarChart3, TrendingUp, MessageSquare, Brain, Target, Users, Clock, CheckCircle, AlertTriangle, XCircle } from 'lucide-react'
 import { GraphDashboard } from './graph-dashboard'
 
 interface AnalysisResult {
@@ -50,12 +49,6 @@ export function AnalysisTabs({ analysis, transcript, topic }: AnalysisTabsProps)
 
   return (
     <div className="space-y-8">
-      {/* Header Section */}
-      <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold text-gray-900">Interview Analysis Report</h1>
-        <p className="text-lg text-muted-foreground">Comprehensive evaluation of your interview performance</p>
-        <Separator className="mt-4" />
-      </div>
 
       {/* View Toggle */}
       <div className="flex justify-center">
@@ -85,13 +78,6 @@ export function AnalysisTabs({ analysis, transcript, topic }: AnalysisTabsProps)
       ) : (
         <DetailedView analysis={analysis} transcript={transcript} />
       )}
-
-      {/* Footer */}
-      <div className="text-center pt-8 border-t border-gray-200">
-        <p className="text-sm text-muted-foreground">
-          Analysis generated on {new Date().toLocaleDateString()} • Powered by AI
-        </p>
-      </div>
     </div>
   )
 }
@@ -106,19 +92,19 @@ function DetailedView({ analysis, transcript }: { analysis: AnalysisResult, tran
         <TabsTrigger value="transcript">Transcript</TabsTrigger>
       </TabsList>
 
-      <TabsContent value="overview" className="space-y-4">
+      <TabsContent value="overview" className="space-y-4 mt-6">
         <OverviewTab analysis={analysis} />
       </TabsContent>
 
-      <TabsContent value="skills" className="space-y-4">
+      <TabsContent value="skills" className="space-y-4 mt-6">
         <SkillsTab analysis={analysis} />
       </TabsContent>
 
-      <TabsContent value="feedback" className="space-y-4">
+      <TabsContent value="feedback" className="space-y-4 mt-6">
         <FeedbackTab analysis={analysis} />
       </TabsContent>
 
-      <TabsContent value="transcript" className="space-y-4">
+      <TabsContent value="transcript" className="space-y-4 mt-6">
         <TranscriptTab transcript={transcript} />
       </TabsContent>
     </Tabs>
@@ -147,158 +133,75 @@ function OverviewTab({ analysis }: { analysis: AnalysisResult }) {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Overall Score - Hero Section */}
+    <div className="space-y-4">
+      {/* Compact Score Display */}
       <Card className={`border-2 ${getRecommendationColor(analysis.recommendation)}`}>
-        <CardContent className="pt-6">
-          <div className="text-center space-y-4">
-            <div className="flex items-center justify-center gap-3 mb-4">
+        <CardContent className="pt-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
               {getRecommendationIcon(analysis.recommendation)}
-              <div className="text-2xl font-semibold text-gray-900">Interview Assessment</div>
+              <div>
+                <div className="text-3xl font-bold text-primary">{analysis.final_score}/10</div>
+                <div className="text-sm text-muted-foreground">{scorePercentage.toFixed(0)}% Performance</div>
+              </div>
             </div>
-
-            <div className="relative">
-              <div className="text-8xl font-bold text-primary mb-2">{analysis.final_score}</div>
-              <div className="text-xl text-muted-foreground mb-4">out of 10</div>
-              <Progress value={scorePercentage} className="h-3 mb-4" />
-              <div className="text-sm text-muted-foreground">{scorePercentage.toFixed(0)}% Overall Performance</div>
-            </div>
-
-            <div className={`inline-flex items-center gap-2 px-6 py-3 rounded-full text-lg font-semibold border-2 ${
+            <div className={`px-4 py-2 rounded-full text-sm font-semibold border ${
               analysis.recommendation === 'Proceed' ? 'border-green-300 bg-green-100 text-green-800' :
               analysis.recommendation === 'Maybe' ? 'border-yellow-300 bg-yellow-100 text-yellow-800' :
               'border-red-300 bg-red-100 text-red-800'
             }`}>
-              <Target className="h-5 w-5" />
               {analysis.recommendation}
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Key Metrics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {/* Sentiment */}
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Interview Sentiment</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className={`w-3 h-3 rounded-full ${
-                  analysis.sentiment === 'Positive' ? 'bg-green-500' :
-                  analysis.sentiment === 'Neutral' ? 'bg-blue-500' : 'bg-red-500'
-                }`} />
-                <span className="font-semibold">{analysis.sentiment}</span>
-              </div>
-              <Badge variant={
-                analysis.sentiment === 'Positive' ? 'default' :
-                analysis.sentiment === 'Neutral' ? 'secondary' : 'destructive'
-              }>
-                {analysis.sentiment}
-              </Badge>
-            </div>
-          </CardContent>
+      {/* Key Metrics - Compact Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <Card className="p-3">
+          <div className="text-center">
+            <div className={`w-3 h-3 rounded-full mx-auto mb-1 ${
+              analysis.sentiment === 'Positive' ? 'bg-green-500' :
+              analysis.sentiment === 'Neutral' ? 'bg-blue-500' : 'bg-red-500'
+            }`} />
+            <div className="text-xs text-muted-foreground">Sentiment</div>
+            <div className="text-sm font-semibold">{analysis.sentiment}</div>
+          </div>
         </Card>
 
-        {/* Confidence Level */}
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Analysis Confidence</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Brain className={`h-4 w-4 ${
-                  analysis.confidence_level === 'High' ? 'text-green-600' :
-                  analysis.confidence_level === 'Medium' ? 'text-yellow-600' : 'text-red-600'
-                }`} />
-                <span className="font-semibold">{analysis.confidence_level}</span>
-              </div>
-              <Badge variant={
-                analysis.confidence_level === 'High' ? 'default' :
-                analysis.confidence_level === 'Medium' ? 'secondary' : 'destructive'
-              }>
-                {analysis.confidence_level}
-              </Badge>
-            </div>
-          </CardContent>
+        <Card className="p-3">
+          <div className="text-center">
+            <Brain className={`h-3 w-3 mx-auto mb-1 ${
+              analysis.confidence_level === 'High' ? 'text-green-600' :
+              analysis.confidence_level === 'Medium' ? 'text-yellow-600' : 'text-red-600'
+            }`} />
+            <div className="text-xs text-muted-foreground">Confidence</div>
+            <div className="text-sm font-semibold">{analysis.confidence_level}</div>
+          </div>
         </Card>
 
-        {/* Performance Indicator */}
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Performance Level</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Star className={`h-4 w-4 ${
-                  analysis.final_score >= 7 ? 'text-green-600' :
-                  analysis.final_score >= 5 ? 'text-yellow-600' : 'text-red-600'
-                }`} />
-                <span className="font-semibold">
-                  {analysis.final_score >= 8 ? 'Excellent' :
-                   analysis.final_score >= 7 ? 'Good' :
-                   analysis.final_score >= 5 ? 'Average' : 'Needs Improvement'}
-                </span>
-              </div>
-              <Badge variant={
-                analysis.final_score >= 7 ? 'default' :
-                analysis.final_score >= 5 ? 'secondary' : 'destructive'
-              }>
-                {analysis.final_score >= 8 ? 'A' :
-                 analysis.final_score >= 7 ? 'B' :
-                 analysis.final_score >= 5 ? 'C' : 'D'}
-              </Badge>
-            </div>
-          </CardContent>
+        <Card className="p-3">
+          <div className="text-center">
+            <MessageSquare className={`h-3 w-3 mx-auto mb-1 ${
+              analysis.communication_skills.clarity === 'Clear' ? 'text-green-600' :
+              analysis.communication_skills.clarity === 'Moderate' ? 'text-yellow-600' : 'text-red-600'
+            }`} />
+            <div className="text-xs text-muted-foreground">Communication</div>
+            <div className="text-sm font-semibold">{analysis.communication_skills.clarity}</div>
+          </div>
+        </Card>
+
+        <Card className="p-3">
+          <div className="text-center">
+            <Target className={`h-3 w-3 mx-auto mb-1 ${
+              analysis.technical_knowledge.depth === 'Expert' ? 'text-green-600' :
+              analysis.technical_knowledge.depth === 'Intermediate' ? 'text-yellow-600' : 'text-red-600'
+            }`} />
+            <div className="text-xs text-muted-foreground">Technical</div>
+            <div className="text-sm font-semibold">{analysis.technical_knowledge.depth}</div>
+          </div>
         </Card>
       </div>
-
-      {/* Quick Insights */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <TrendingUp className="h-5 w-5" />
-            Quick Insights
-          </CardTitle>
-          <CardDescription>Key highlights from the interview analysis</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-green-600" />
-                <span className="text-sm">
-                  Communication: <strong>{analysis.communication_skills.clarity}</strong>
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Target className="h-4 w-4 text-blue-600" />
-                <span className="text-sm">
-                  Technical Depth: <strong>{analysis.technical_knowledge.depth}</strong>
-                </span>
-              </div>
-            </div>
-            <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <Users className="h-4 w-4 text-purple-600" />
-                <span className="text-sm">
-                  Problem Solving: <strong>{analysis.soft_skills.problem_solving}</strong>
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Brain className="h-4 w-4 text-indigo-600" />
-                <span className="text-sm">
-                  Overall Attitude: <strong>{analysis.soft_skills.attitude}</strong>
-                </span>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   )
 }

@@ -6,7 +6,7 @@ export default function MeetTestLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="h-screen bg-background overflow-hidden">
+    <div className="min-h-screen bg-background">
       {children}
     </div>
   )
