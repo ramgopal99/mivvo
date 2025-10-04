@@ -17,6 +17,12 @@ export interface UIConfig {
   showVoiceSettings: boolean
   showLiveTranscription: boolean
   showShareScreen: boolean
+  showCodeButtonOnlyOnScreenShare: boolean
+  screenShareSuccessMessage: string
+  screenShareDialogTitle: string
+  screenShareDialogDescription: string
+  screenShareRestrictToScreen: boolean
+  screenShareRestrictionErrorMessage: string
 }
 
 // Shared Interview Configuration - Used across all meet-test components
@@ -40,7 +46,13 @@ export const UI_CONFIG = {
   showChatBox: true,       // Show/hide chat box (true = show, false = hide)
   showVoiceSettings: true,  // Show/hide voice settings panel (true = show, false = hide)
   showLiveTranscription: true, // Show/hide live speech-to-text transcription (true = show, false = hide)
-  showShareScreen: true    // Show/hide share screen button (true = show, false = hide)
+  showShareScreen: true,    // Show/hide share screen button (true = show, false = hide)
+  showCodeButtonOnlyOnScreenShare: true, // true = show code button only when screen sharing, false = always show
+  screenShareSuccessMessage: "Screen sharing started successfully!", // Message shown when screen sharing starts
+  screenShareDialogTitle: "Screen Sharing Active", // Dialog title when screen sharing is active
+  screenShareDialogDescription: "Your entire screen is now being shared. Others can see everything on your screen in the bottom-right corner of their view.\n\nTips:\n• Click the monitor button again to stop sharing\n• Your entire screen content is visible to others", // Dialog description text
+  screenShareRestrictToScreen: true, // true = restrict to entire screen only, false = allow all sharing types
+  screenShareRestrictionErrorMessage: "Please select your entire screen to share. Sharing individual windows or tabs is not allowed." // Error message when user tries to share windows/tabs
 } as const satisfies UIConfig
 
 // Voice Chat Timing Configuration - easily adjustable timing values

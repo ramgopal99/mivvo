@@ -282,16 +282,46 @@ export function MeetTestRoom({
   // Screen sharing functions
   const startScreenShare = async () => {
     try {
-      const stream = await navigator.mediaDevices.getDisplayMedia({
-        video: true,
+      // Configure display media options
+      const displayMediaOptions: DisplayMediaStreamOptions = {
+        video: true, // Allow all video sources, we'll restrict in the validation below
         audio: false
-      })
+      }
+
+      const stream = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions)
+
+      // Check if user selected a browser tab (not entire screen or other app)
+      const videoTrack = stream.getVideoTracks()[0]
+
+      // Wait a bit for the track to be fully initialized
+      await new Promise(resolve => setTimeout(resolve, 100))
+
+      const settings = videoTrack.getSettings()
+      const displaySurface = (settings as MediaTrackSettings & { displaySurface?: string }).displaySurface
+
+      // Debug: Log what was selected
+      console.log('Screen share selection:', { displaySurface, settings, allSettings: Object.keys(settings) })
+
+      // If restriction is enabled and we can detect the surface type
+      if (UI_CONFIG.screenShareRestrictToScreen && displaySurface) {
+        if (displaySurface !== 'monitor') {
+          // User selected something other than entire screen, reject and show error
+          console.log('Rejected screen share - only entire screen allowed:', displaySurface)
+          stream.getTracks().forEach(track => track.stop())
+          toast.error(UI_CONFIG.screenShareRestrictionErrorMessage)
+          return
+        }
+      } else if (UI_CONFIG.screenShareRestrictToScreen && !displaySurface) {
+        // displaySurface not available - allow sharing with warning
+        console.log('displaySurface not available, allowing share with warning')
+        toast.warning('Please ensure you selected your entire screen. If you shared a window or tab, please stop and try again.')
+      }
 
       setScreenStream(stream)
       setIsScreenSharing(true)
 
       // Show success message and dialog
-      toast.success('Screen sharing started successfully!')
+      toast.success(UI_CONFIG.screenShareSuccessMessage)
       setShowScreenShareDialog(true)
 
       // Handle when user stops sharing via browser UI
@@ -654,14 +684,15 @@ export function MeetTestRoom({
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              Screen Sharing Active
+              {UI_CONFIG.screenShareDialogTitle}
             </DialogTitle>
             <DialogDescription>
-              Your screen is now being shared. Others can see your screen content in the bottom-right corner of their view.
-              <br /><br />
-              <strong>Tips:</strong>
-              <br />• Click the monitor button again to stop sharing
-              <br />• You can minimize this window while sharing continues
+              {UI_CONFIG.screenShareDialogDescription.split('\n').map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < UI_CONFIG.screenShareDialogDescription.split('\n').length - 1 && <br />}
+                </span>
+              ))}
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
@@ -674,9 +705,11 @@ export function MeetTestRoom({
       />
 
       {/* Draggable Code Button */}
-      <DraggableCodeButton
-        onClick={() => setShowCodeDialog(true)}
-      />
+      {(!UI_CONFIG.showCodeButtonOnlyOnScreenShare || isScreenSharing) && (
+        <DraggableCodeButton
+          onClick={() => setShowCodeDialog(true)}
+        />
+      )}
 
     </div>
   )
