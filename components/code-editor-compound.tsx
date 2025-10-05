@@ -242,7 +242,7 @@ export function CodeEditorCompound({
             value={code}
             onChange={(value) => setCode(value || "")}
             onMount={handleEditorDidMount}
-            theme="vs-dark"
+            theme="vs-light"
             options={{
               minimap: { enabled: false },
               fontSize: 14,

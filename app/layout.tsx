@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { NextAuthProvider } from "@/components/providers/session-provider";
-import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
@@ -120,18 +119,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${suseMono.variable} antialiased font-mono`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <NextAuthProvider>
-            <div className="min-h-screen bg-background">
-              {children}
-            </div>
-          </NextAuthProvider>
-        </ThemeProvider>
+        <NextAuthProvider>
+          <div className="min-h-screen bg-background">
+            {children}
+          </div>
+        </NextAuthProvider>
         <Toaster />
       </body>
     </html>

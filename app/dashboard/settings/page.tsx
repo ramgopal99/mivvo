@@ -6,7 +6,6 @@ import { ProfileTab } from "./components/profile-tab"
 import { PlanTab } from "./components/plan-tab"
 import { BillingTab } from "./components/billing-tab"
 import { NotificationsTab } from "./components/notifications-tab"
-import { AppearanceTab } from "./components/appearance-tab"
 
 export default function SettingsPage() {
   return (
@@ -19,7 +18,7 @@ export default function SettingsPage() {
       </div>
       
       <Tabs defaultValue="my-details" className="w-full">
-        <TabsList className="mb-6 w-full grid grid-cols-3 md:grid-cols-6">
+        <TabsList className="mb-6 w-full grid grid-cols-3 md:grid-cols-5">
           <TabsTrigger value="my-details" className="text-base">
             My Details
           </TabsTrigger>
@@ -34,9 +33,6 @@ export default function SettingsPage() {
           </TabsTrigger>
           <TabsTrigger value="notifications" className="text-base">
             Notifications
-          </TabsTrigger>
-          <TabsTrigger value="appearance" className="text-base">
-            Appearance
           </TabsTrigger>
         </TabsList>
         
@@ -58,10 +54,6 @@ export default function SettingsPage() {
         
         <TabsContent value="notifications">
           <NotificationsTab />
-        </TabsContent>
-        
-        <TabsContent value="appearance">
-          <AppearanceTab />
         </TabsContent>
       </Tabs>
     </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { forwardRef, useImperativeHandle, useRef, useEffect, useState } from 'react';
-import { useTheme } from 'next-themes';
 import dynamic from 'next/dynamic';
 
 // Dynamically import Monaco Editor to avoid SSR issues
@@ -40,20 +39,9 @@ const MonacoEditor = forwardRef<MonacoEditorRef, MonacoEditorProps>(({
 }, ref) => {
   const editorRef = useRef<unknown>(null);
   const [currentLanguage, setCurrentLanguage] = useState(language);
-  const { resolvedTheme } = useTheme();
-  
-  // Use the provided theme or determine based on current theme
-  const editorTheme = theme || (resolvedTheme === 'dark' ? 'vs-dark' : 'vs-light');
 
-  // Update editor theme when theme changes
-  useEffect(() => {
-    if (editorRef.current && typeof window !== 'undefined') {
-      import('monaco-editor').then((monaco) => {
-        const newTheme = theme || (resolvedTheme === 'dark' ? 'vs-dark' : 'vs-light');
-        monaco.editor.setTheme(newTheme);
-      });
-    }
-  }, [resolvedTheme, theme]);
+  // Use the provided theme or default to light theme
+  const editorTheme = theme || 'vs-light';
 
   const handleEditorDidMount = (editor: unknown) => {
     editorRef.current = editor;

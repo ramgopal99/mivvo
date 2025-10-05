@@ -147,7 +147,7 @@ export function SearchDialog({
                     {
                         id: 'appearance',
                         title: 'Appearance',
-                        description: 'Customize your theme and display preferences',
+                        description: 'Customize your display preferences',
                         type: 'setting',
                         url: '/dashboard/settings',
                         icon: Palette,

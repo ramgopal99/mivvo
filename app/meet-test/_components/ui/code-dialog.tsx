@@ -111,7 +111,7 @@ export function CodeDialog({ isOpen, onClose }: CodeDialogProps) {
                 language={language}
                 value={code}
                 onChange={(value) => setCode(value || '')}
-                theme="vs-dark"
+                theme="vs-light"
                 options={{
                   minimap: { enabled: true },
                   fontSize: 14,
