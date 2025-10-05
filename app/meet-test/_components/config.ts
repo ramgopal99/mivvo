@@ -43,10 +43,10 @@ export const VOICE_CONFIG = {
 
 // UI Configuration - Easy to modify in the future
 export const UI_CONFIG = {
-  showChatBox: true,       // Show/hide chat box (true = show, false = hide)
+  showChatBox: false,       // Show/hide chat box (true = show, false = hide)
   showVoiceSettings: true,  // Show/hide voice settings panel (true = show, false = hide)
-  showLiveTranscription: true, // Show/hide live speech-to-text transcription (true = show, false = hide)
-  showShareScreen: true,    // Show/hide share screen button (true = show, false = hide)
+  showLiveTranscription: false, // Show/hide live speech-to-text transcription (true = show, false = hide)
+  showShareScreen: false,    // Show/hide share screen button (true = show, false = hide)
   showCodeButtonOnlyOnScreenShare: true, // true = show code button only when screen sharing, false = always show
   screenShareSuccessMessage: "Screen sharing started successfully!", // Message shown when screen sharing starts
   screenShareDialogTitle: "Screen Sharing Active", // Dialog title when screen sharing is active
