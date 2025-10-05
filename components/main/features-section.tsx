@@ -38,16 +38,16 @@ export function FeaturesSection() {
               ]}
               value="features"
               onChange={() => {}}
-              className="bg-white dark:bg-gray-800"
+              className="bg-white"
             />
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 ">
             Everything you need to
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">
               ace your interviews
             </span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 ">
             Our comprehensive platform provides all the tools and features you need to prepare for any interview scenario.
           </p>
         </div>
