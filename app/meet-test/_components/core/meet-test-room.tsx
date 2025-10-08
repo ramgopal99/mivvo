@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { MicOff, VideoOff } from 'lucide-react'
 import { toast } from 'sonner'
@@ -20,7 +20,16 @@ import { VoiceChat } from '../voice/voice-chat'
 import { VoiceSettings } from '../voice/voice-settings'
 import { VoiceActivityIndicator } from '@/components/meet/ui/voice-activity-indicator'
 import { Chat } from '@/components/meet/chat'
-import { INTERVIEW_CONFIG, VOICE_CONFIG, UI_CONFIG } from '../config'
+import { INTERVIEW_CONFIG, CODING_INTERVIEW_CONFIG, VOICE_CONFIG, UI_CONFIG, CODING_VOICE_CHAT_CONFIG, CODING_VOICE_CHAT_MESSAGES, CODING_QUESTION_DISPLAY } from '../config'
+import { CodingQuestion } from '../config'
+import { getRandomStaticQuestion } from '../static-questions'
+
+// Extend window interface for coding code getter
+declare global {
+  interface Window {
+    getCurrentCodingCode?: () => { code: string; language: string }
+  }
+}
 
 // Interview Configuration - Shared across all components
 // 🎯 CHANGE THIS CONFIG TO MODIFY THE ENTIRE INTERVIEW SYSTEM
@@ -54,6 +63,7 @@ export function MeetTestRoom({
 
   // State for code dialog
   const [showCodeDialog, setShowCodeDialog] = useState(false)
+  const [currentCodingQuestion, setCurrentCodingQuestion] = useState<CodingQuestion | null>(null)
 
   // State for media stream
   const [stream, setStream] = useState<MediaStream | null>(null)
@@ -65,6 +75,11 @@ export function MeetTestRoom({
   const [isVoiceChatActive, setIsVoiceChatActive] = useState(false)
   const [isConversationMode, setIsConversationMode] = useState(false)
   const [messages, setMessages] = useState<{ id: string; role: 'user' | 'assistant'; content: string; timestamp: string }[]>([])
+
+  // State for coding interview voice chat (separate from regular voice chat)
+  const [isCodingVoiceChatActive, setIsCodingVoiceChatActive] = useState(false)
+  const [isCodingInterviewActive, setIsCodingInterviewActive] = useState(false)
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   
   // Voice settings state - using configuration values
   const [selectedVoice, setSelectedVoice] = useState<string>(VOICE_CONFIG.language)
@@ -76,6 +91,7 @@ export function MeetTestRoom({
 
   // User response waiting state
   const [isWaitingForUserResponse, setIsWaitingForUserResponse] = useState<boolean>(false)
+  const [isWaitingForCodingUserResponse, setIsWaitingForCodingUserResponse] = useState<boolean>(false)
 
   // Refs
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -412,15 +428,104 @@ export function MeetTestRoom({
     }
   }, [isTimerRunning])
 
-  // Start timer when conversation mode starts
+  const speakCodingQuestion = useCallback((question: CodingQuestion) => {
+    // Build text to speak based on config options
+    const textParts = []
+
+    if (CODING_QUESTION_DISPLAY.INCLUDE_QUESTION_TITLE) {
+      textParts.push(question.title)
+    }
+
+    if (CODING_QUESTION_DISPLAY.INCLUDE_QUESTION_DESCRIPTION) {
+      textParts.push(question.description)
+    }
+
+    if (CODING_QUESTION_DISPLAY.INCLUDE_QUESTION_INSTRUCTIONS) {
+      textParts.push(CODING_VOICE_CHAT_MESSAGES.QUESTION_INSTRUCTIONS)
+    }
+
+    const textToSpeak = textParts.join('. ')
+
+    const utterance = new SpeechSynthesisUtterance(textToSpeak)
+    utterance.rate = VOICE_CONFIG.speechRate
+    utterance.pitch = VOICE_CONFIG.speechPitch
+
+    if (selectedVoice) {
+      const voice = availableVoices.find(v => v.voiceURI === selectedVoice)
+      if (voice) {
+        utterance.voice = voice
+      }
+    }
+
+    // Manage speaking state for UI indicators
+    utterance.onstart = () => {
+      setIsCodingVoiceChatActive(true)
+    }
+    utterance.onend = () => {
+      setIsCodingVoiceChatActive(false)
+      // Start timer after AI finishes speaking the question (like regular interviews)
+      if (isCodingInterviewActive && !isTimerRunning) {
+        setIsTimerRunning(true)
+        setElapsedTime(0)
+      }
+    }
+    utterance.onerror = () => {
+      setIsCodingVoiceChatActive(false)
+      // Start timer even on error
+      if (isCodingInterviewActive && !isTimerRunning) {
+        setIsTimerRunning(true)
+        setElapsedTime(0)
+      }
+    }
+
+    speechSynthesis.speak(utterance)
+  }, [selectedVoice, availableVoices, isCodingInterviewActive, isTimerRunning])
+
+  const handleNextCodingQuestion = useCallback(() => {
+    // Always advance to next question (no session limit)
+    if (isCodingInterviewActive) {
+      // Advance to next question
+      const nextIndex = currentQuestionIndex + 1
+      setCurrentQuestionIndex(nextIndex)
+
+      // Generate new question
+      const newQuestion = getRandomStaticQuestion()
+      setCurrentCodingQuestion(newQuestion)
+
+      // Clear current code and reset dialog
+      setShowCodeDialog(false)
+
+      // Small delay then show new question
+      setTimeout(() => {
+        setShowCodeDialog(true)
+
+        // Speak the full new question with instructions after dialog opens
+        setTimeout(() => {
+          speakCodingQuestion(newQuestion)
+        }, 1500)
+      }, 1000)
+    }
+  }, [isCodingInterviewActive, currentQuestionIndex, speakCodingQuestion])
+
+  // Listen for next coding question event
   useEffect(() => {
-    if (isConversationMode && !isTimerRunning) {
+    window.addEventListener('nextCodingQuestion', handleNextCodingQuestion)
+
+    return () => {
+      window.removeEventListener('nextCodingQuestion', handleNextCodingQuestion)
+    }
+  }, [handleNextCodingQuestion])
+
+  // Start timer when conversation mode starts (regular interviews only)
+  // Coding interviews start timer after AI finishes speaking the question
+  useEffect(() => {
+    if (isConversationMode && !isCodingInterviewActive && !isTimerRunning) {
       setIsTimerRunning(true)
       setElapsedTime(0) // Reset timer when starting conversation
-    } else if (!isConversationMode && isTimerRunning) {
+    } else if (!isConversationMode && !isCodingInterviewActive && isTimerRunning) {
       setIsTimerRunning(false)
     }
-  }, [isConversationMode, isTimerRunning])
+  }, [isConversationMode, isCodingInterviewActive, isTimerRunning])
 
   const handleTranscriptUpdate = (transcript: { role: string; text: string; timestamp: string }[]) => {
     setVoiceTranscript(transcript)
@@ -447,6 +552,17 @@ export function MeetTestRoom({
     setIsWaitingForUserResponse(isWaiting)
   }
 
+  // Coding interview voice chat handlers
+  const handleCodingVoiceChatStateChange = (isActive: boolean) => {
+    console.log('Coding voice chat state changed:', isActive)
+    setIsCodingVoiceChatActive(isActive)
+  }
+
+  const handleCodingWaitingForResponseChange = (isWaiting: boolean) => {
+    console.log('Coding interview waiting for user response:', isWaiting)
+    setIsWaitingForCodingUserResponse(isWaiting)
+  }
+
   const handleAnalyzeInterview = () => {
     // Store transcript data in sessionStorage for the analysis page
     if (voiceTranscript.length > 0) {
@@ -455,6 +571,53 @@ export function MeetTestRoom({
     }
     router.push('/meet-test/analysis')
   }
+
+  const handleStartCodingInterview = () => {
+    // Stop any existing voice chat first
+    if (isConversationMode) {
+      const stopEvent = new CustomEvent('stopVoiceChat')
+      window.dispatchEvent(stopEvent)
+    }
+
+    // Get a random coding question and open the dialog
+    const question = getRandomStaticQuestion()
+    setCurrentCodingQuestion(question)
+    setShowCodeDialog(true)
+
+    // Start coding interview voice conversation (separate from regular voice chat)
+    setIsCodingInterviewActive(true)
+
+    // Start coding interview voice chat and read the question
+    setTimeout(() => {
+      const event = new CustomEvent('startCodingInterviewVoiceChat')
+      window.dispatchEvent(event)
+
+      // After voice chat starts, read the full question with instructions
+      setTimeout(() => {
+        speakCodingQuestion(question)
+      }, 1500) // Additional delay to let voice chat fully initialize
+    }, 1000) // Small delay to let the dialog open first
+  }
+
+  const handleStopCodingInterview = useCallback(() => {
+    // Stop coding interview voice chat
+    const event = new CustomEvent('stopVoiceChat')
+    window.dispatchEvent(event)
+
+    // Stop the timer (like regular interviews)
+    setIsTimerRunning(false)
+
+    // Close the code dialog
+    setShowCodeDialog(false)
+
+    // Reset coding interview state
+    setIsCodingInterviewActive(false)
+    setCurrentQuestionIndex(0)
+
+    // Clear global code function
+    delete window.getCurrentCodingCode
+  }, [])
+
 
   // Format elapsed time as MM:SS
   const formatTime = (seconds: number): string => {
@@ -477,6 +640,7 @@ export function MeetTestRoom({
 
     speechSynthesis.speak(utterance)
   }
+
 
 
 
@@ -506,6 +670,11 @@ export function MeetTestRoom({
             window.dispatchEvent(event)
           }}
           onAnalyzeInterview={handleAnalyzeInterview}
+          onStartCodingInterview={handleStartCodingInterview}
+          onStopCodingInterview={handleStopCodingInterview}
+          isCodingInterviewActive={isCodingInterviewActive}
+          isRegularInterviewActive={isConversationMode && !isCodingInterviewActive}
+          isScreenSharing={isScreenSharing}
         />
 
 
@@ -556,13 +725,13 @@ export function MeetTestRoom({
           {/* Status indicators */}
           <div className="absolute bottom-4 left-4 flex items-center gap-2">
             {!isAudioEnabled && (
-              <div className="flex items-center gap-1 rounded-full bg-destructive/80 px-2 py-1 text-xs text-destructive-foreground">
+              <div className="flex items-center gap-1 rounded-full bg-destructive/80 px-2 py-1 text-xs text-white">
                 <MicOff className="h-3 w-3" />
                 <span>Muted</span>
               </div>
             )}
             {!isVideoEnabled && (
-              <div className="flex items-center gap-1 rounded-full bg-destructive/80 px-2 py-1 text-xs text-destructive-foreground">
+              <div className="flex items-center gap-1 rounded-full bg-destructive/80 px-2 py-1 text-xs text-white">
                 <VideoOff className="h-3 w-3" />
                 <span>Video Off</span>
               </div>
@@ -580,31 +749,58 @@ export function MeetTestRoom({
 
         {/* AI Assistant Display with Voice Chat */}
         <div className="relative aspect-video overflow-hidden rounded-xl bg-muted">
-          <VoiceChat
-            onTranscriptUpdate={handleTranscriptUpdate}
-            onVoiceChatStateChange={handleVoiceChatStateChange}
-            onConversationModeChange={handleConversationModeChange}
-            selectedVoice={selectedVoice}
-            speechRate={VOICE_CONFIG.speechRate}
-            speechPitch={VOICE_CONFIG.speechPitch}
-            availableVoices={availableVoices}
-            autoListenAfterAI={VOICE_CONFIG.autoListenAfterAI}
-            isAISpeaking={isVoiceChatActive}
-            onWaitingForResponseChange={handleWaitingForResponseChange}
-            interviewConfig={INTERVIEW_CONFIG}
-          />
+          {/* Regular Voice Chat - only show when not in coding interview */}
+          {!isCodingInterviewActive && (
+            <VoiceChat
+              key="regular-voice-chat"
+              onTranscriptUpdate={handleTranscriptUpdate}
+              onVoiceChatStateChange={handleVoiceChatStateChange}
+              onConversationModeChange={handleConversationModeChange}
+              selectedVoice={selectedVoice}
+              speechRate={VOICE_CONFIG.speechRate}
+              speechPitch={VOICE_CONFIG.speechPitch}
+              availableVoices={availableVoices}
+              autoListenAfterAI={VOICE_CONFIG.autoListenAfterAI}
+              isAISpeaking={isVoiceChatActive}
+              onWaitingForResponseChange={handleWaitingForResponseChange}
+              interviewConfig={INTERVIEW_CONFIG}
+              showLiveTranscription={UI_CONFIG.showLiveTranscription}
+            />
+          )}
+
+          {/* Coding Interview Voice Chat - separate instance for coding interviews */}
+          {isCodingInterviewActive && (
+            <VoiceChat
+              key="coding-voice-chat"
+              onVoiceChatStateChange={handleCodingVoiceChatStateChange}
+              onConversationModeChange={handleConversationModeChange}
+              selectedVoice={selectedVoice}
+              speechRate={VOICE_CONFIG.speechRate}
+              speechPitch={VOICE_CONFIG.speechPitch}
+              availableVoices={availableVoices}
+              autoListenAfterAI={VOICE_CONFIG.autoListenAfterAI}
+              isAISpeaking={isCodingVoiceChatActive}
+              onWaitingForResponseChange={handleCodingWaitingForResponseChange}
+              interviewConfig={CODING_INTERVIEW_CONFIG}
+              currentQuestion={currentCodingQuestion ? { title: currentCodingQuestion.title, description: currentCodingQuestion.description } : undefined}
+              eventName="startCodingInterviewVoiceChat"
+              voiceChatConfig={CODING_VOICE_CHAT_CONFIG}
+              voiceChatMessages={CODING_VOICE_CHAT_MESSAGES}
+              showLiveTranscription={UI_CONFIG.showLiveTranscriptionCoding}
+            />
+          )}
 
           {/* AI Speaking Indicator */}
-          {isVoiceChatActive && (
+          {(isVoiceChatActive || isCodingVoiceChatActive) && (
             <div className="absolute top-4 right-4 z-20">
               <div className="bg-blue-600/90 text-white px-3 py-1.5 rounded-lg text-sm font-medium shadow-lg border border-white/20">
-                Let AI complete
+                {isCodingInterviewActive ? "Coding Interview Active" : "Let AI complete"}
               </div>
             </div>
           )}
 
           {/* Waiting for User Response Indicator */}
-          {isWaitingForUserResponse && !isVoiceChatActive && (
+          {((isWaitingForUserResponse && !isVoiceChatActive) || (isWaitingForCodingUserResponse && !isCodingVoiceChatActive)) && (
             <div className="absolute top-4 right-4 z-20">
               <div className="bg-orange-500/90 text-white px-3 py-1.5 rounded-lg text-sm font-medium shadow-lg border border-white/20 flex items-center gap-2">
                 <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
@@ -617,7 +813,7 @@ export function MeetTestRoom({
           <div className="absolute bottom-4 right-4">
             <VoiceActivityIndicator
               isAudioEnabled={true}
-              isSpeaking={isVoiceChatActive}
+              isSpeaking={isVoiceChatActive || isCodingVoiceChatActive}
             />
           </div>
 
@@ -701,7 +897,11 @@ export function MeetTestRoom({
       {/* Code Dialog */}
       <CodeDialog
         isOpen={showCodeDialog}
-        onClose={() => setShowCodeDialog(false)}
+        onClose={() => {
+          // Just close the dialog, don't stop the coding interview
+          setShowCodeDialog(false)
+        }}
+        question={currentCodingQuestion}
       />
 
       {/* Draggable Code Button */}

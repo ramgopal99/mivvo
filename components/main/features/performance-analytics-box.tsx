@@ -16,15 +16,15 @@ export function PerformanceAnalyticsBox() {
     const interval = setInterval(() => {
       // Animate bar heights with smooth random variations
       setBar1Height(prev => {
-        const target = 78 + Math.sin(Date.now() / 1000) * 5;
+        const target = 78 + Math.sin(Date.now() / 1000) * 12;
         return prev + (target - prev) * 0.1;
       });
       setBar2Height(prev => {
-        const target = 92 + Math.sin(Date.now() / 1200 + 1) * 3;
+        const target = 92 + Math.sin(Date.now() / 1200 + 1) * 8;
         return prev + (target - prev) * 0.1;
       });
       setBar3Height(prev => {
-        const target = 88 + Math.sin(Date.now() / 1400 + 2) * 4;
+        const target = 88 + Math.sin(Date.now() / 1400 + 2) * 10;
         return prev + (target - prev) * 0.1;
       });
     }, 50);

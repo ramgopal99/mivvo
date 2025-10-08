@@ -21,7 +21,7 @@ export function CompanyPracticeBox() {
           {featureData.description}
         </p>
         <div className="relative h-[400px] w-full overflow-hidden rounded-xl border bg-slate-50 p-4">
-          <AnimatedList className="w-full h-full overflow-y-auto">
+          <AnimatedList className="w-full h-full overflow-y-auto scrollbar-hide">
             {interviewCalls.map((call, index) => (
               <div
                 key={`${call.company}-${index}`}

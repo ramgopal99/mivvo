@@ -2,7 +2,8 @@
 
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Brain, PhoneOff, Mic, MicOff, BarChart3 } from 'lucide-react'
+import { Brain, PhoneOff, Mic, MicOff, BarChart3, Code } from 'lucide-react'
+import { UI_CONFIG } from '../config'
 
 interface MeetTestHeaderProps {
   assistantName?: string
@@ -17,6 +18,11 @@ interface MeetTestHeaderProps {
   elapsedTime?: number
   isTimerRunning?: boolean
   formatTime?: (seconds: number) => string
+  onStartCodingInterview?: () => void
+  onStopCodingInterview?: () => void
+  isCodingInterviewActive?: boolean
+  isRegularInterviewActive?: boolean
+  isScreenSharing?: boolean
 }
 
 export function MeetTestHeader({
@@ -31,7 +37,12 @@ export function MeetTestHeader({
   hasTranscriptData = false,
   elapsedTime = 0,
   isTimerRunning = false,
-  formatTime
+  formatTime,
+  onStartCodingInterview,
+  onStopCodingInterview,
+  isCodingInterviewActive = false,
+  isRegularInterviewActive = false,
+  isScreenSharing = false
 }: MeetTestHeaderProps) {
   return (
     <div className="absolute top-0 left-0 right-0 z-10 bg-background/95 backdrop-blur-sm border-b">
@@ -60,7 +71,7 @@ export function MeetTestHeader({
           )}
 
           {/* Voice Chat Controls */}
-          {!isConversationMode ? (
+          {!isRegularInterviewActive ? (
             <Button
               onClick={onStartConversation}
               disabled={isLoading}
@@ -94,7 +105,24 @@ export function MeetTestHeader({
               Analyze Interview
             </Button>
           )}
-          
+
+          {/* Coding Interview Button */}
+          {onStartCodingInterview && onStopCodingInterview && (!UI_CONFIG.showCodingInterviewOnlyOnScreenShare || isScreenSharing) && (
+            <Button
+              onClick={isCodingInterviewActive ? onStopCodingInterview : onStartCodingInterview}
+              variant={isCodingInterviewActive ? "destructive" : "outline"}
+              size="sm"
+              className={`gap-2 cursor-pointer ${
+                isCodingInterviewActive
+                  ? "bg-red-600 hover:bg-red-700 text-white"
+                  : "border-purple-600 text-purple-600 hover:bg-purple-50"
+              }`}
+            >
+              <Code className="h-4 w-4" />
+              {isCodingInterviewActive ? "Stop Coding" : "Coding Interview"}
+            </Button>
+          )}
+
           {/* End Call Button */}
           <Button
             onClick={onEndCall}

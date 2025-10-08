@@ -2,7 +2,14 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Brain } from 'lucide-react'
-import { INTERVIEW_CONFIG, InterviewConfig, VOICE_CHAT_CONFIG, VOICE_CHAT_MESSAGES, buildAISystemPrompt, UI_CONFIG } from '../config'
+import { INTERVIEW_CONFIG, InterviewConfig, CodingInterviewConfig, VOICE_CHAT_CONFIG, VOICE_CHAT_MESSAGES, buildAISystemPrompt, buildCodingInterviewSystemPrompt, UI_CONFIG } from '../config'
+
+// Extend window interface for coding code getter
+declare global {
+  interface Window {
+    getCurrentCodingCode?: () => { code: string; language: string }
+  }
+}
 
 // AI System Prompt - imported from ../config.ts
 
@@ -59,7 +66,12 @@ interface VoiceChatProps {
   autoListenAfterAI?: boolean
   isAISpeaking?: boolean
   onWaitingForResponseChange?: (isWaiting: boolean) => void
-  interviewConfig?: InterviewConfig
+  interviewConfig?: InterviewConfig | CodingInterviewConfig
+  currentQuestion?: { title: string; description: string } // For coding interviews
+  eventName?: string // Custom event name for starting/stopping voice chat
+  voiceChatConfig?: { SILENCE_TIMEOUT_MS: number; RECOGNITION_KEEP_ALIVE_MS: number; TTS_RESTART_DELAY_MS: number; USER_RESPONSE_TIMEOUT_MS: number } // Optional custom voice chat config
+  voiceChatMessages?: { AI_GREETING_MESSAGE: string; USER_RESPONSE_TIMEOUT_MESSAGE: string } // Optional custom voice chat messages
+  showLiveTranscription?: boolean // Optional override for live transcription display
 }
 
 export function VoiceChat({
@@ -73,8 +85,18 @@ export function VoiceChat({
   autoListenAfterAI = false,
   isAISpeaking = false,
   onWaitingForResponseChange,
-  interviewConfig = INTERVIEW_CONFIG
+  interviewConfig = INTERVIEW_CONFIG,
+  currentQuestion,
+  eventName = 'startVoiceChat',
+  voiceChatConfig,
+  voiceChatMessages,
+  showLiveTranscription
 }: VoiceChatProps) {
+  // Use provided voice chat config or default
+  const currentVoiceChatConfig = voiceChatConfig || VOICE_CHAT_CONFIG
+  // Use provided voice chat messages or default
+  const currentVoiceChatMessages = voiceChatMessages || VOICE_CHAT_MESSAGES
+
   const [messages, setMessages] = useState<Message[]>([])
   const [isListening, setIsListening] = useState(false)
   const [, setIsSpeaking] = useState(false)
@@ -89,6 +111,7 @@ export function VoiceChat({
   const speechSynthesisRef = useRef<SpeechSynthesis | null>(null)
   const handleSendMessageRef = useRef<((message: string) => void) | null>(null)
   const startListeningRef = useRef<(() => void) | null>(null)
+  const speakTextRef = useRef<((text: string) => void) | null>(null)
   const isListeningRef = useRef<boolean>(false)
   const isConversationModeRef = useRef<boolean>(false)
   const autoListenAfterAIRef = useRef<boolean>(false)
@@ -132,8 +155,8 @@ export function VoiceChat({
     clearSilenceTimeout()
     silenceTimeoutRef.current = setTimeout(() => {
       processAccumulatedSpeech()
-    }, VOICE_CHAT_CONFIG.SILENCE_TIMEOUT_MS)
-  }, [clearSilenceTimeout, processAccumulatedSpeech])
+    }, currentVoiceChatConfig.SILENCE_TIMEOUT_MS)
+  }, [clearSilenceTimeout, processAccumulatedSpeech, currentVoiceChatConfig.SILENCE_TIMEOUT_MS])
 
   // Ensure recognition stays active by restarting if needed
   const ensureRecognitionActive = useCallback(() => {
@@ -151,8 +174,8 @@ export function VoiceChat({
     if (recognitionActiveTimeoutRef.current) {
       clearInterval(recognitionActiveTimeoutRef.current)
     }
-    recognitionActiveTimeoutRef.current = setInterval(ensureRecognitionActive, VOICE_CHAT_CONFIG.RECOGNITION_KEEP_ALIVE_MS)
-  }, [ensureRecognitionActive])
+    recognitionActiveTimeoutRef.current = setInterval(ensureRecognitionActive, currentVoiceChatConfig.RECOGNITION_KEEP_ALIVE_MS)
+  }, [ensureRecognitionActive, currentVoiceChatConfig.RECOGNITION_KEEP_ALIVE_MS])
 
   // Stop periodic check
   const stopRecognitionKeepAlive = useCallback(() => {
@@ -175,12 +198,34 @@ export function VoiceChat({
   const startUserResponseTimeout = useCallback(() => {
     clearUserResponseTimeout()
     setIsWaitingForUserResponse(true)
-    userResponseTimeoutRef.current = setTimeout(() => {
+    userResponseTimeoutRef.current = setTimeout(async () => {
       setIsWaitingForUserResponse(false)
-      // Send automatic follow-up message to AI
-      handleSendMessageRef.current?.(VOICE_CHAT_MESSAGES.USER_RESPONSE_TIMEOUT_MESSAGE)
-    }, VOICE_CHAT_CONFIG.USER_RESPONSE_TIMEOUT_MS)
-  }, [clearUserResponseTimeout])
+      // Send timeout message directly as AI response instead of user message
+      setIsLoading(true)
+
+      const timeoutMessage: Message = {
+        id: Date.now().toString(),
+        role: 'assistant',
+        content: currentVoiceChatMessages.USER_RESPONSE_TIMEOUT_MESSAGE,
+        timestamp: new Date()
+      }
+
+      setMessages(prev => [...prev, timeoutMessage])
+
+      // Update transcript
+      const updatedMessages = [...messages, timeoutMessage]
+      onTranscriptUpdate?.(updatedMessages.map(m => ({
+        role: m.role,
+        text: m.content,
+        timestamp: m.timestamp.toISOString()
+      })))
+
+      // Speak the timeout message
+      speakTextRef.current?.(currentVoiceChatMessages.USER_RESPONSE_TIMEOUT_MESSAGE)
+
+      setIsLoading(false)
+    }, currentVoiceChatConfig.USER_RESPONSE_TIMEOUT_MS)
+  }, [clearUserResponseTimeout, currentVoiceChatConfig.USER_RESPONSE_TIMEOUT_MS, currentVoiceChatMessages.USER_RESPONSE_TIMEOUT_MESSAGE, onTranscriptUpdate, messages])
 
   // Notify parent when waiting state changes
   useEffect(() => {
@@ -201,6 +246,7 @@ export function VoiceChat({
   }, [isListening])
 
   const speakText = useCallback((text: string) => {
+    speakTextRef.current = speakText
     if (!speechSynthesisRef.current) return
 
     speechSynthesisRef.current.cancel()
@@ -238,7 +284,7 @@ export function VoiceChat({
           if (!isListeningRef.current && startListeningRef.current && !isProcessingSpeechRef.current) {
             startListeningRef.current()
           }
-        }, VOICE_CHAT_CONFIG.TTS_RESTART_DELAY_MS)
+        }, currentVoiceChatConfig.TTS_RESTART_DELAY_MS)
       }
     }
     utterance.onerror = () => {
@@ -250,16 +296,18 @@ export function VoiceChat({
           if (!isListeningRef.current && startListeningRef.current && !isProcessingSpeechRef.current) {
             startListeningRef.current()
           }
-        }, VOICE_CHAT_CONFIG.TTS_RESTART_DELAY_MS)
+        }, currentVoiceChatConfig.TTS_RESTART_DELAY_MS)
       }
     }
 
     speechSynthesisRef.current.speak(utterance)
-  }, [selectedVoice, speechRate, speechPitch, availableVoices, onVoiceChatStateChange, clearSilenceTimeout, startUserResponseTimeout])
+  }, [selectedVoice, speechRate, speechPitch, availableVoices, onVoiceChatStateChange, clearSilenceTimeout, startUserResponseTimeout, currentVoiceChatConfig.TTS_RESTART_DELAY_MS])
 
   const handleSendMessage = useCallback(async (messageText: string) => {
     if (!messageText.trim()) return
 
+    console.log('Interview Config:', interviewConfig)
+    console.log('Is Coding Interview:', 'focus' in interviewConfig)
     setIsLoading(true)
 
     // Add user message
@@ -289,9 +337,34 @@ export function VoiceChat({
         },
         body: JSON.stringify({
           messages: [
-            { role: 'system', content: buildAISystemPrompt(interviewConfig) },
+            {
+              role: 'system',
+              content: (() => {
+                const systemPrompt = 'focus' in interviewConfig
+                  ? buildCodingInterviewSystemPrompt(interviewConfig as CodingInterviewConfig, currentQuestion)
+                  : buildAISystemPrompt(interviewConfig as InterviewConfig);
+                console.log('System Prompt:', systemPrompt.substring(0, 200) + '...');
+                return systemPrompt;
+              })()
+            },
             ...messages.map(m => ({ role: m.role, content: m.content })),
-            { role: 'user', content: messageText }
+            {
+              role: 'user',
+              content: 'focus' in interviewConfig
+                ? (() => {
+                    // Get current code only when user speaks during coding interview
+                    const currentCode = typeof window !== 'undefined' ? window.getCurrentCodingCode?.() : undefined
+                    const userContent = currentCode
+                      ? `I can see your current ${currentCode.language} code. ${messageText}\n\nYour current code:\n\`\`\`${currentCode.language}\n${currentCode.code}\n\`\`\``
+                      : messageText;
+                    console.log('User Message (Coding):', userContent.substring(0, 300) + '...');
+                    return userContent;
+                  })()
+                : (() => {
+                    console.log('User Message (Regular):', messageText);
+                    return messageText;
+                  })()
+            }
           ]
         })
       })
@@ -302,6 +375,7 @@ export function VoiceChat({
 
       const data = await response.json()
       const aiResponse = data.choices[0].message.content
+      console.log('AI Response:', aiResponse.substring(0, 300) + '...')
 
       // Add AI message
       const aiMessage: Message = {
@@ -321,6 +395,21 @@ export function VoiceChat({
         timestamp: m.timestamp.toISOString()
       })))
 
+      // Check if user is requesting next question in coding interviews
+      if ('focus' in interviewConfig && (
+        messageText.toLowerCase().includes('next question') ||
+        messageText.toLowerCase().includes('another question') ||
+        messageText.toLowerCase().includes('give me next') ||
+        messageText.toLowerCase().includes('next one') ||
+        messageText.toLowerCase().includes('move to next')
+      )) {
+        // User explicitly requested next question - trigger it
+        setTimeout(() => {
+          const nextQuestionEvent = new CustomEvent('nextCodingQuestion')
+          window.dispatchEvent(nextQuestionEvent)
+        }, 1000)
+      }
+
       // Speak the AI response
       speakText(aiResponse)
 
@@ -336,10 +425,12 @@ export function VoiceChat({
     } finally {
       setIsLoading(false)
     }
-  }, [messages, speakText, onTranscriptUpdate, interviewConfig])
+  }, [messages, speakText, onTranscriptUpdate, interviewConfig, currentQuestion])
 
   // Initialize speech recognition and voices
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 
     if (SpeechRecognition) {
@@ -459,7 +550,7 @@ export function VoiceChat({
   // Listen for custom events from header
   useEffect(() => {
     const handleStartVoiceChat = () => {
-      console.log('VoiceChat: handleStartVoiceChat called, isConversationMode:', isConversationMode)
+      console.log('VoiceChat: handleStartVoiceChat called for', eventName, 'isConversationMode:', isConversationMode)
       if (!isConversationMode) {
         console.log('VoiceChat: Starting conversation')
         setIsConversationMode(true)
@@ -468,14 +559,22 @@ export function VoiceChat({
         onVoiceChatStateChange?.(true)
         // Start keep-alive to ensure recognition stays active
         startRecognitionKeepAlive()
-        const greetingMessage: Message = {
-          id: Date.now().toString(),
-          role: 'assistant',
-          content: VOICE_CHAT_MESSAGES.AI_GREETING_MESSAGE,
-          timestamp: new Date()
+        // Only send greeting for regular interviews, not coding interviews
+        const isCodingInterview = 'focus' in interviewConfig
+
+        if (!isCodingInterview) {
+          const greetingMessage: Message = {
+            id: Date.now().toString(),
+            role: 'assistant',
+            content: currentVoiceChatMessages.AI_GREETING_MESSAGE,
+            timestamp: new Date()
+          }
+          setMessages([greetingMessage])
+          speakText(greetingMessage.content)
+        } else {
+          // For coding interviews, start with minimal context - system prompt has the details
+          setMessages([])
         }
-        setMessages([greetingMessage])
-        speakText(greetingMessage.content)
       }
     }
 
@@ -503,14 +602,17 @@ export function VoiceChat({
       }
     }
 
-    window.addEventListener('startVoiceChat', handleStartVoiceChat)
+    if (typeof window === 'undefined') return
+
+    console.log('VoiceChat: Setting up listeners for', eventName)
+    window.addEventListener(eventName, handleStartVoiceChat)
     window.addEventListener('stopVoiceChat', handleStopVoiceChat)
 
     return () => {
-      window.removeEventListener('startVoiceChat', handleStartVoiceChat)
+      window.removeEventListener(eventName, handleStartVoiceChat)
       window.removeEventListener('stopVoiceChat', handleStopVoiceChat)
     }
-  }, [isConversationMode, speakText, onVoiceChatStateChange, onConversationModeChange, clearSilenceTimeout, clearUserResponseTimeout, startRecognitionKeepAlive, stopRecognitionKeepAlive])
+  }, [eventName, isConversationMode, speakText, onVoiceChatStateChange, onConversationModeChange, clearSilenceTimeout, clearUserResponseTimeout, startRecognitionKeepAlive, stopRecognitionKeepAlive, interviewConfig, currentVoiceChatMessages.AI_GREETING_MESSAGE, currentQuestion?.title])
 
 
 
@@ -547,7 +649,7 @@ export function VoiceChat({
       </div>
 
       {/* Live Transcription Display - Near Controls */}
-      {UI_CONFIG.showLiveTranscription && (liveTranscript || isListening) && !isAISpeaking && (
+      {(showLiveTranscription ?? UI_CONFIG.showLiveTranscription) && (liveTranscript || isListening) && !isAISpeaking && (
         <div className="absolute bottom-20 left-4 right-4">
           <div className={`min-h-[60px] rounded-lg border-2 p-3 flex items-center justify-center transition-all duration-300 ${
             liveTranscript
