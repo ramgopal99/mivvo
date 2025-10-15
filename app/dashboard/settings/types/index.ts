@@ -12,6 +12,14 @@ export interface UserData {
   company: string | null
   location: string | null
   bio: string | null
+  // New SaaS mock interview platform fields
+  careerGoals?: string | null
+  linkedIn?: string | null
+  github?: string | null
+  // Time management fields
+  totalTimeAllowance?: number
+  usedTimeMinutes?: number
+  timeAllowanceResetAt?: Date | null
 }
 
 export interface ServerActionResponse<T = unknown> {

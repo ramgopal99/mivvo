@@ -18,15 +18,21 @@ export async function getUserDetails(): Promise<ServerActionResponse<UserData>> 
         email: true,
         image: true,
         createdAt: true,
-        // Add additional fields if they exist in your schema
-        // firstName: true,
-        // lastName: true,
-        // phone: true,
-        // dateOfBirth: true,
-        // jobTitle: true,
-        // company: true,
-        // location: true,
-        // bio: true
+        firstName: true,
+        lastName: true,
+        phone: true,
+        dateOfBirth: true,
+        jobTitle: true,
+        company: true,
+        location: true,
+        bio: true,
+        // SaaS platform fields
+        careerGoals: true,
+        linkedIn: true,
+        github: true,
+        totalTimeAllowance: true,
+        usedTimeMinutes: true,
+        timeAllowanceResetAt: true
       }
     })
 
@@ -37,20 +43,44 @@ export async function getUserDetails(): Promise<ServerActionResponse<UserData>> 
       }
     }
 
+    // Extract first and last name from Google session data if not stored in DB
+    let firstName = userProfile.firstName
+    let lastName = userProfile.lastName
+
+    if (!firstName && !lastName && userProfile.name) {
+      const fullName = userProfile.name.trim()
+      const nameParts = fullName.split(' ')
+
+      if (nameParts.length === 1) {
+        firstName = nameParts[0]
+        lastName = ""
+      } else if (nameParts.length >= 2) {
+        firstName = nameParts[0]
+        lastName = nameParts.slice(1).join(' ')
+      }
+    }
+
     const userData: UserData = {
       id: userProfile.id,
       name: userProfile.name,
       email: userProfile.email,
       image: userProfile.image,
-      createdAt: userProfile.createdAt || new Date(), // Fallback for existing users without createdAt
-      firstName: null, // Add these fields to your Prisma schema if needed
-      lastName: null,
-      phone: null,
-      dateOfBirth: null,
-      jobTitle: null,
-      company: null,
-      location: null,
-      bio: null
+      createdAt: userProfile.createdAt || new Date(),
+      firstName,
+      lastName,
+      phone: userProfile.phone,
+      dateOfBirth: userProfile.dateOfBirth,
+      jobTitle: userProfile.jobTitle,
+      company: userProfile.company,
+      location: userProfile.location,
+      bio: userProfile.bio,
+      // SaaS platform fields
+      careerGoals: userProfile.careerGoals,
+      linkedIn: userProfile.linkedIn,
+      github: userProfile.github,
+      totalTimeAllowance: userProfile.totalTimeAllowance,
+      usedTimeMinutes: userProfile.usedTimeMinutes,
+      timeAllowanceResetAt: userProfile.timeAllowanceResetAt
     }
 
     return {
@@ -78,22 +108,27 @@ export async function updateUserDetails(formData: FormData): Promise<ServerActio
     const company = formData.get("company") as string
     const location = formData.get("location") as string
     const bio = formData.get("bio") as string
+    const careerGoals = formData.get("careerGoals") as string
+    const linkedIn = formData.get("linkedIn") as string
+    const github = formData.get("github") as string
 
     // Update user profile data in database
-    // Note: You'll need to add these fields to your Prisma schema first
     const updatedUser = await prisma.user.update({
       where: { id: user.id },
       data: {
         name: `${firstName || ""} ${lastName || ""}`.trim() || user.name,
-        // Add these fields to your Prisma schema if you want to store them:
-        // firstName,
-        // lastName,
-        // phone,
-        // dateOfBirth: dateOfBirth ? new Date(dateOfBirth) : null,
-        // jobTitle,
-        // company,
-        // location,
-        // bio
+        firstName,
+        lastName,
+        phone,
+        dateOfBirth: dateOfBirth ? new Date(dateOfBirth) : null,
+        jobTitle,
+        company,
+        location,
+        bio,
+        // SaaS platform fields
+        careerGoals,
+        linkedIn,
+        github
       },
       select: {
         id: true,
@@ -101,6 +136,21 @@ export async function updateUserDetails(formData: FormData): Promise<ServerActio
         email: true,
         image: true,
         createdAt: true,
+        firstName: true,
+        lastName: true,
+        phone: true,
+        dateOfBirth: true,
+        jobTitle: true,
+        company: true,
+        location: true,
+        bio: true,
+        // SaaS platform fields
+        careerGoals: true,
+        linkedIn: true,
+        github: true,
+        totalTimeAllowance: true,
+        usedTimeMinutes: true,
+        timeAllowanceResetAt: true
       }
     })
 
@@ -110,14 +160,21 @@ export async function updateUserDetails(formData: FormData): Promise<ServerActio
       email: updatedUser.email,
       image: updatedUser.image,
       createdAt: updatedUser.createdAt,
-      firstName: firstName || null,
-      lastName: lastName || null,
-      phone: phone || null,
-      dateOfBirth: dateOfBirth ? new Date(dateOfBirth) : null,
-      jobTitle: jobTitle || null,
-      company: company || null,
-      location: location || null,
-      bio: bio || null
+      firstName: updatedUser.firstName,
+      lastName: updatedUser.lastName,
+      phone: updatedUser.phone,
+      dateOfBirth: updatedUser.dateOfBirth,
+      jobTitle: updatedUser.jobTitle,
+      company: updatedUser.company,
+      location: updatedUser.location,
+      bio: updatedUser.bio,
+      // SaaS platform fields
+      careerGoals: updatedUser.careerGoals,
+      linkedIn: updatedUser.linkedIn,
+      github: updatedUser.github,
+      totalTimeAllowance: updatedUser.totalTimeAllowance,
+      usedTimeMinutes: updatedUser.usedTimeMinutes,
+      timeAllowanceResetAt: updatedUser.timeAllowanceResetAt
     }
 
     revalidatePath("/dashboard/settings")

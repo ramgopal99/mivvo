@@ -1,175 +1,118 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+import { useEffect, useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { Check, Crown, Zap, Building } from "lucide-react"
+import { Clock } from "lucide-react"
+import { getUserDetails } from "../actions"
+import { UserData } from "../types"
 
 export function PlanTab() {
+  const [userData, setUserData] = useState<UserData | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await getUserDetails()
+        if (response.success && response.data) {
+          setUserData(response.data)
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchUserData()
+  }, [])
+
+  // Helper function to format time in minutes only
+  const formatTime = (minutes: number): string => {
+    return `${minutes} min`
+  }
+
+  const totalAllowance = userData?.totalTimeAllowance || 0
+  const usedTime = userData?.usedTimeMinutes || 0
+  const remainingTime = Math.max(0, totalAllowance - usedTime)
+  const usagePercentage = totalAllowance > 0 ? (usedTime / totalAllowance) * 100 : 0
+
   return (
     <div className="space-y-6">
-      {/* Current Plan */}
+
+
+      {/* Time Allowance & Usage */}
       <Card>
         <CardHeader>
-          <CardTitle>Current Plan</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <Clock className="h-5 w-5" />
+            Time Allowance & Usage
+          </CardTitle>
           <CardDescription>
-            Your current subscription and plan details
+            Your interview time usage and remaining allowance
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <Crown className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-medium">Pro Plan</h3>
-                <p className="text-sm text-muted-foreground">$29/month</p>
+          {loading ? (
+            <div className="flex items-center justify-center py-8">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
+                <p className="text-sm text-muted-foreground">Loading usage data...</p>
               </div>
             </div>
-            <Badge variant="secondary">Active</Badge>
-          </div>
-          <Separator />
-          <div className="text-sm text-muted-foreground">
-            <p>Next billing date: January 15, 2024</p>
-            <p>Auto-renewal: Enabled</p>
-          </div>
-        </CardContent>
-      </Card>
+          ) : (
+            <>
+              {/* Time Usage Progress */}
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span>Time Used</span>
+                  <span>{formatTime(usedTime)} / {formatTime(totalAllowance)}</span>
+                </div>
+                <div className="w-full bg-secondary rounded-full h-2">
+                  <div
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      usagePercentage > 90 ? 'bg-destructive' :
+                      usagePercentage > 75 ? 'bg-orange-500' :
+                      'bg-primary'
+                    }`}
+                    style={{ width: `${Math.min(usagePercentage, 100)}%` }}
+                  />
+                </div>
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>{usagePercentage.toFixed(1)}% used</span>
+                  <span>{formatTime(remainingTime)} remaining</span>
+                </div>
+              </div>
 
-      {/* Available Plans */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Available Plans</CardTitle>
-          <CardDescription>
-            Choose the plan that best fits your needs
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {/* Free Plan */}
-          <div className="border rounded-lg p-4">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center space-x-3">
-                <div className="p-2 bg-gray-100 rounded-lg">
-                  <Zap className="h-5 w-5 text-gray-600" />
+              <Separator />
+
+              {/* Time Statistics Grid */}
+              <div className="grid grid-cols-3 gap-4">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-primary">{formatTime(totalAllowance)}</div>
+                  <div className="text-sm text-muted-foreground">Total Allowance</div>
                 </div>
-                <div>
-                  <h3 className="font-medium">Free</h3>
-                  <p className="text-sm text-muted-foreground">$0/month</p>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-orange-600">{formatTime(usedTime)}</div>
+                  <div className="text-sm text-muted-foreground">Time Used</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-green-600">{formatTime(remainingTime)}</div>
+                  <div className="text-sm text-muted-foreground">Remaining</div>
                 </div>
               </div>
-              <Button variant="outline" size="sm">Current</Button>
-            </div>
-            <ul className="space-y-2 text-sm">
-              <li className="flex items-center space-x-2">
-                <Check className="h-4 w-4 text-green-500" />
-                <span>5 interviews per month</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Check className="h-4 w-4 text-green-500" />
-                <span>Basic AI assistance</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Check className="h-4 w-4 text-green-500" />
-                <span>Standard support</span>
-              </li>
-            </ul>
-          </div>
 
-          {/* Pro Plan */}
-          <div className="border rounded-lg p-4 bg-primary/5 border-primary/20">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center space-x-3">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Crown className="h-5 w-5 text-primary" />
+              {/* Warning for low time */}
+              {usagePercentage > 90 && (
+                <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-3">
+                  <p className="text-sm text-destructive font-medium">
+                    ⚠️ You&apos;re running low on interview time. Consider upgrading your plan.
+                  </p>
                 </div>
-                <div>
-                  <h3 className="font-medium">Pro</h3>
-                  <p className="text-sm text-muted-foreground">$29/month</p>
-                </div>
-              </div>
-              <Badge variant="default">Recommended</Badge>
-            </div>
-            <ul className="space-y-2 text-sm">
-              <li className="flex items-center space-x-2">
-                <Check className="h-4 w-4 text-green-500" />
-                <span>Unlimited interviews</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Check className="h-4 w-4 text-green-500" />
-                <span>Advanced AI assistance</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Check className="h-4 w-4 text-green-500" />
-                <span>Priority support</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Check className="h-4 w-4 text-green-500" />
-                <span>Custom interview scenarios</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Enterprise Plan */}
-          <div className="border rounded-lg p-4">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center space-x-3">
-                <div className="p-2 bg-purple-100 rounded-lg">
-                  <Building className="h-5 w-5 text-purple-600" />
-                </div>
-                <div>
-                  <h3 className="font-medium">Enterprise</h3>
-                  <p className="text-sm text-muted-foreground">Custom pricing</p>
-                </div>
-              </div>
-              <Button variant="outline" size="sm">Contact Sales</Button>
-            </div>
-            <ul className="space-y-2 text-sm">
-              <li className="flex items-center space-x-2">
-                <Check className="h-4 w-4 text-green-500" />
-                <span>Everything in Pro</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Check className="h-4 w-4 text-green-500" />
-                <span>Team management</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Check className="h-4 w-4 text-green-500" />
-                <span>Custom integrations</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Check className="h-4 w-4 text-green-500" />
-                <span>Dedicated support</span>
-              </li>
-            </ul>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Usage Statistics */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Usage Statistics</CardTitle>
-          <CardDescription>
-            Your current usage for this billing period
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-3 gap-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold">12</div>
-              <div className="text-sm text-muted-foreground">Interviews Used</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold">∞</div>
-              <div className="text-sm text-muted-foreground">Interviews Limit</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold">8</div>
-              <div className="text-sm text-muted-foreground">AI Assistants</div>
-            </div>
-          </div>
+              )}
+            </>
+          )}
         </CardContent>
       </Card>
     </div>

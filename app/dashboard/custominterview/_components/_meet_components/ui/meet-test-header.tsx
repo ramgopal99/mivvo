@@ -1,0 +1,128 @@
+'use client'
+
+import { Button } from '@/components/ui/button'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Brain, PhoneOff, Mic, MicOff, Code } from 'lucide-react'
+import { UI_CONFIG } from '../config'
+
+interface MeetTestHeaderProps {
+  interviewTitle?: string
+  assistantName?: string
+  assistantAvatar?: string
+  onEndCall?: () => void
+  isConversationMode?: boolean
+  isLoading?: boolean
+  onStartConversation?: () => void
+  onStopConversation?: () => void
+  hasTranscriptData?: boolean
+  elapsedTime?: number
+  isTimerRunning?: boolean
+  formatTime?: (seconds: number) => string
+  onStartCodingInterview?: () => void
+  onStopCodingInterview?: () => void
+  isCodingInterviewActive?: boolean
+  isRegularInterviewActive?: boolean
+  isScreenSharing?: boolean
+}
+
+export function MeetTestHeader({
+  interviewTitle = 'Interview',
+  assistantName = 'Mivvo',
+  assistantAvatar,
+  onEndCall,
+  isConversationMode = false,
+  isLoading = false,
+  onStartConversation,
+  onStopConversation,
+  hasTranscriptData = false,
+  elapsedTime = 0,
+  isTimerRunning = false,
+  formatTime,
+  onStartCodingInterview,
+  onStopCodingInterview,
+  isCodingInterviewActive = false,
+  isRegularInterviewActive = false,
+  isScreenSharing = false
+}: MeetTestHeaderProps) {
+  return (
+    <div className="absolute top-0 left-0 right-0 z-10 bg-background/95 backdrop-blur-sm border-b">
+      <div className="flex items-center justify-between px-6 py-4">
+        {/* Left side - Assistant info */}
+        <div className="flex items-center gap-3">
+          <Avatar className="h-10 w-10">
+            <AvatarImage src={assistantAvatar} />
+            <AvatarFallback>
+              <Brain className="h-5 w-5" />
+            </AvatarFallback>
+          </Avatar>
+          <div>
+            <h1 className="text-lg font-semibold">{interviewTitle}</h1>
+            <p className="text-sm text-muted-foreground">AI Meeting Assistant</p>
+          </div>
+        </div>
+
+        {/* Right side - Voice chat and call controls */}
+        <div className="flex items-center gap-2">
+          {/* Timer Display */}
+          {isTimerRunning && formatTime && (
+            <div className="bg-black/80 text-white px-3 py-1 rounded-full text-sm font-mono font-semibold shadow-lg border border-white/20">
+              {formatTime(elapsedTime)}
+            </div>
+          )}
+
+          {/* Voice Chat Controls */}
+          {!isRegularInterviewActive ? (
+            <Button
+              onClick={onStartConversation}
+              disabled={isLoading}
+              className="bg-green-600 hover:bg-green-700 gap-2 cursor-pointer"
+              size="sm"
+            >
+              <Mic className="h-4 w-4" />
+              Start Voice Chat
+            </Button>
+          ) : (
+            <Button
+              onClick={onStopConversation}
+              variant="destructive"
+              size="sm"
+              className="gap-2 cursor-pointer"
+            >
+              <MicOff className="h-4 w-4" />
+              Stop Chat
+            </Button>
+          )}
+
+
+          {/* Coding Interview Button */}
+          {onStartCodingInterview && onStopCodingInterview && (!UI_CONFIG.showCodingInterviewOnlyOnScreenShare || isScreenSharing) && (
+            <Button
+              onClick={isCodingInterviewActive ? onStopCodingInterview : onStartCodingInterview}
+              variant={isCodingInterviewActive ? "destructive" : "outline"}
+              size="sm"
+              className={`gap-2 cursor-pointer ${
+                isCodingInterviewActive
+                  ? "bg-red-600 hover:bg-red-700 text-white"
+                  : "border-purple-600 text-purple-600 hover:bg-purple-50"
+              }`}
+            >
+              <Code className="h-4 w-4" />
+              {isCodingInterviewActive ? "Stop Coding" : "Coding Interview"}
+            </Button>
+          )}
+
+          {/* End Call Button */}
+          <Button
+            onClick={onEndCall}
+            variant="destructive"
+            size="sm"
+            className="gap-2 cursor-pointer"
+          >
+            <PhoneOff className="h-4 w-4" />
+            End Call
+          </Button>
+        </div>
+      </div>
+    </div>
+  )
+}

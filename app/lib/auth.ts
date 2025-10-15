@@ -33,6 +33,10 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
+  pages: {
+    signIn: '/auth/signin',
+    error: '/auth/signin',
+  },
   session: {
     strategy: "jwt",
   },
@@ -52,6 +56,13 @@ export const authOptions: NextAuthOptions = {
         token.sub = user.id
       }
       return token
+    },
+    async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      if (url.startsWith("/")) return `${baseUrl}${url}`
+      // Allows callback URLs on the same origin
+      else if (new URL(url).origin === baseUrl) return url
+      return baseUrl
     },
   },
   // Add error handling

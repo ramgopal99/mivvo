@@ -65,7 +65,7 @@ export const UI_CONFIG = {
 
 // Voice Chat Timing Configuration - easily adjustable timing values
 export const VOICE_CHAT_CONFIG = {
-  SILENCE_TIMEOUT_MS: 3500, // Time to wait after user stops speaking before sending accumulated speech to AI
+  SILENCE_TIMEOUT_MS: 2500, // Time to wait after user stops speaking before sending accumulated speech to AI
   RECOGNITION_KEEP_ALIVE_MS: 6000, // How often to check if speech recognition is still active (keep-alive interval)
   TTS_RESTART_DELAY_MS: 250, // Delay before restarting speech recognition after AI finishes speaking
   USER_RESPONSE_TIMEOUT_MS: 15000, // Time to wait for user response after AI speaks before sending timeout message

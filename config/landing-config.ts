@@ -12,7 +12,7 @@ export const landingConfig = {
     },
     cta: {
       text: "Start your first mock interview",
-      href: "/auth/signin"
+      href: "/auth/signup"
     },
     additionalInfo: {
       text: "Free to start • Instant AI feedback • Detailed performance analysis"
@@ -36,8 +36,8 @@ export const landingConfig = {
         variant: "outline" as const
       },
       { 
-        text: "Start for Free", 
-        href: "/dashboard", 
+        text: "Sign up", 
+        href: "/auth/signup", 
         variant: "default" as const
       }
     ]
@@ -141,7 +141,7 @@ export const landingConfig = {
     ],
     cta: {
       text: "Start Free Trial for Your Institution",
-      href: "/auth/signin"
+      href: "/auth/signup"
     },
     mockInterface: {
       title: "Computer Science Batch 2024",
@@ -203,7 +203,7 @@ export const landingConfig = {
     description: "Start practicing with AI and get detailed feedback delivered straight to your dashboard.",
     button: {
       text: "Get your first mock interview for free",
-      href: "/auth/signin"
+      href: "/auth/signup"
     },
     trustIndicators: [
       { icon: "Star", text: "4.9/5 Rating", color: "text-yellow-300" },
@@ -366,7 +366,7 @@ export const landingConfig = {
         ],
         cta: {
           text: "Get Started Free",
-          href: "/auth/signin"
+          href: "/auth/signup"
         },
         buttonVariant: "outline" as const
       },
@@ -389,7 +389,7 @@ export const landingConfig = {
         ],
         cta: {
           text: "Start Pro Trial",
-          href: "/auth/signin"
+          href: "/auth/signup"
         },
         buttonVariant: "default" as const
       },

@@ -1,11 +1,21 @@
-"use server"
+"use client"
 
-import { redirect } from "next/navigation"
+import { signIn, signOut } from "next-auth/react"
 
 export async function signInWithGoogle() {
-  redirect("/api/auth/signin/google")
+  try {
+    await signIn("google", { callbackUrl: "/dashboard" })
+  } catch (error) {
+    console.error("Google sign-in error:", error)
+    throw error
+  }
 }
 
 export async function signOutAction() {
-  redirect("/api/auth/signout")
+  try {
+    await signOut({ callbackUrl: "/" })
+  } catch (error) {
+    console.error("Sign-out error:", error)
+    throw error
+  }
 }

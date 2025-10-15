@@ -5,17 +5,20 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
+import { useSession } from "next-auth/react"
 import { landingConfig } from "../../config/landing-config"
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { data: session } = useSession()
+  const isAuthenticated = !!session
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/20 backdrop-blur-sm border-b border-gray-200/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
               {/* Logo */}
-              <Link href="/" className="flex items-center space-x-2">
+              <Link href="/" className="flex items-center space-x-2 cursor-pointer">
                 <div className="w-8 h-8">
                   <Image 
                     src="/mivvo.svg" 
@@ -36,7 +39,7 @@ export function Navbar() {
               <Link
                 key={link.text}
                 href={link.href}
-                className="text-gray-700 hover:text-gray-900 transition-colors duration-200"
+                className="text-gray-700 hover:text-gray-900 transition-colors duration-200 cursor-pointer"
               >
                 {link.text}
               </Link>
@@ -45,20 +48,38 @@ export function Navbar() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-2">
-            {landingConfig.navigation.actions.map((action) => (
-              <Link key={action.text} href={action.href}>
-                <Button 
-                  variant={action.variant} 
+            {isAuthenticated ? (
+              <Link href="/dashboard">
+                <Button
+                  variant="default"
                   size="sm"
-                  className={action.variant === "outline" 
-                    ? "pl-4 pr-3 py-1.5 rounded-full bg-white text-gray-900 border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-medium text-sm"
-                    : "pl-4 pr-3 py-1.5 rounded-full bg-gray-900 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-medium text-sm"
-                  }
+                  className="pl-4 pr-3 py-1.5 rounded-full bg-gray-900 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-medium text-sm cursor-pointer"
                 >
-                  {action.text}
+                  Dashboard
                 </Button>
               </Link>
-            ))}
+            ) : (
+              <>
+                <Link href="/auth/signin">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="pl-4 pr-3 py-1.5 rounded-full bg-white text-gray-900 border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-medium text-sm cursor-pointer"
+                  >
+                    Log in
+                  </Button>
+                </Link>
+                <Link href="/auth/signup">
+                  <Button
+                    variant="default"
+                    size="sm"
+                    className="pl-4 pr-3 py-1.5 rounded-full bg-gray-900 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-medium text-sm"
+                  >
+                    Sign up
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -67,6 +88,7 @@ export function Navbar() {
               variant="ghost"
               size="sm"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="cursor-pointer"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -81,27 +103,45 @@ export function Navbar() {
                 <Link
                   key={link.text}
                   href={link.href}
-                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 cursor-pointer"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.text}
                 </Link>
               ))}
               <div className="pt-4 space-y-2">
-                {landingConfig.navigation.actions.map((action) => (
-                  <Link key={action.text} href={action.href} className="block px-3">
-                    <Button 
-                      variant={action.variant} 
+                {isAuthenticated ? (
+                  <Link href="/dashboard" className="block px-3">
+                    <Button
+                      variant="default"
                       size="sm"
-                      className={`w-full ${action.variant === "outline" 
-                        ? "pl-4 pr-3 py-1.5 rounded-full bg-white text-gray-900 border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-medium text-sm"
-                        : "pl-4 pr-3 py-1.5 rounded-full bg-gray-900 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-medium text-sm"
-                      }`}
+                      className="w-full pl-4 pr-3 py-1.5 rounded-full bg-gray-900 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-medium text-sm"
                     >
-                      {action.text}
+                      Dashboard
                     </Button>
                   </Link>
-                ))}
+                ) : (
+                  <>
+                    <Link href="/auth/signin" className="block px-3">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full pl-4 pr-3 py-1.5 rounded-full bg-white text-gray-900 border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-medium text-sm"
+                      >
+                        Log in
+                      </Button>
+                    </Link>
+                    <Link href="/auth/signup" className="block px-3">
+                      <Button
+                        variant="default"
+                        size="sm"
+                        className="w-full pl-4 pr-3 py-1.5 rounded-full bg-gray-900 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-medium text-sm"
+                      >
+                        Sign up
+                      </Button>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>

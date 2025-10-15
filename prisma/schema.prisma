@@ -54,9 +54,32 @@ model User {
   role          UserRole  @default(USER)
   createdAt     DateTime? @default(now())
   updatedAt     DateTime? @updatedAt
-  accounts      Account[]
-  sessions      Session[]
+
+  // Profile fields
+  firstName     String?
+  lastName      String?
+  phone         String?
+  dateOfBirth   DateTime?
+  jobTitle      String?
+  company       String?
+  location      String?
+  bio           String?
+
+  // SaaS platform fields
+  careerGoals         String?
+  linkedIn           String?
+  github             String?
+
+  // Time allowances (in minutes)
+  totalTimeAllowance   Int      @default(30)  // 30 minutes free for new users
+  usedTimeMinutes      Int      @default(0)
+  timeAllowanceResetAt DateTime?               
+
+  // Relations
+  accounts       Account[]
+  sessions       Session[]
   mockInterviews MockInterview[]
+  interviewAttempts InterviewAttempt[]
 
   @@map("users")
 }
@@ -72,24 +95,125 @@ model VerificationToken {
 }
 
 
+enum InterviewStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum InterviewType {
+  GENERAL_INTERVIEW
+  TECHNICAL
+  CODING
+  UI_INTERVIEW
+  HR_INTERVIEW
+}
+
 model MockInterview {
   id                String   @id @default(cuid()) @map("_id")
+  title             String?  // Custom title for the interview
   companyName       String?
   position          String?
   companyDescription String?  @default("")
   jobDescription    String?  @default("")
-  interviewType     String?
+  interviewType     InterviewType?
   experienceLevel   String?
-  industry          String?
-  difficulty        String?
-  questions         String[] // Array of interview questions
-  conversations     Int      @default(0)
-  createdBy         String   // User ID who created this interview
+  attemptCount     Int      @default(0)
+
+  // Interview settings
+  screenShareEnabled Boolean @default(false)
+  status            InterviewStatus @default(NOT_STARTED)
+
+  // Time settings
+  timeLimitMinutes  Int?     @default(0)
+
+  // Relations
+  createdBy         String
   user              User     @relation(fields: [createdBy], references: [id], onDelete: Cascade)
+  attempts          InterviewAttempt[]
+  prompts           InterviewPrompt[]
+
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
-  // VAPI Voice Assistant Integration
-  vapiAssistantId   String?  // ID of the VAPI assistant
-  hasVoiceEnabled   Boolean  @default(false)  // Whether voice is enabled
+  @@map("mockinterviews")
+}
+
+model InterviewAttempt {
+  id                String   @id @default(cuid()) @map("_id")
+  startedAt         DateTime @default(now())
+  completedAt       DateTime?
+  duration          Int?     // Duration in minutes
+  score             Float?   // Overall score (0-100)
+  status            InterviewStatus @default(NOT_STARTED)
+
+  // Feedback and analysis
+  overallFeedback   String?
+  strengths         String[]
+  weaknesses        String[]
+  recommendations    String[]
+
+  // Interview details
+  candidateName     String?
+  candidateEmail    String?
+  notes             String?
+
+  // Relations
+  interviewId       String
+  interview         MockInterview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
+  candidateId       String?  // User ID of the candidate (optional for anonymous interviews)
+  candidate         User?    @relation(fields: [candidateId], references: [id], onDelete: SetNull)
+  results           InterviewResult[]
+  conversations     InterviewConversation[]
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("interviewattempts")
+}
+
+model InterviewResult {
+  id                String   @id @default(cuid()) @map("_id")
+  question          String  
+  answer            String? 
+  score             Float?  
+  feedback          String?  // Feedback for this answer
+  duration          Int?    
+
+  attemptId         String
+  attempt           InterviewAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("interviewresults")
+}
+
+model InterviewPrompt {
+  id                String   @id @default(cuid()) @map("_id")
+  promptText        String
+  isActive          Boolean  @default(true) // Whether this prompt is currently active
+
+  interviewId       String
+  interview         MockInterview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("interviewprompts")
+}
+
+model InterviewConversation {
+  id                String   @id @default(cuid()) @map("_id")
+
+  attemptId         String
+  attempt           InterviewAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+
+  transcript        String   // JSON string of conversation transcript
+  messages          String   // JSON string of chat messages
+  duration          Int      // Duration in seconds
+
+  createdAt         DateTime @default(now())
+
+  @@map("interviewconversations")
 }
