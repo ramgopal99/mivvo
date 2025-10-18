@@ -228,7 +228,7 @@ export default function AdminGrowthPage() {
                       <span className="text-sm text-muted-foreground">{monthlyGrowth[monthlyGrowth.length - 1].colleges}</span>
                     </div>
                     <div className="h-24 flex items-end justify-between gap-1">
-                      {monthlyGrowth.map((item, index) => (
+                      {monthlyGrowth.map((item) => (
                         <div
                           key={item.month}
                           className="bg-blue-500 rounded-t flex-1 transition-all hover:bg-blue-600"
@@ -244,7 +244,7 @@ export default function AdminGrowthPage() {
                       <span className="text-sm text-muted-foreground">{(monthlyGrowth[monthlyGrowth.length - 1].revenue / 1000).toFixed(0)}k</span>
                     </div>
                     <div className="h-24 flex items-end justify-between gap-1">
-                      {monthlyGrowth.map((item, index) => (
+                      {monthlyGrowth.map((item) => (
                         <div
                           key={item.month}
                           className="bg-green-500 rounded-t flex-1 transition-all hover:bg-green-600"
@@ -366,7 +366,7 @@ export default function AdminGrowthPage() {
               <div className="space-y-4">
                 <div className="h-64 flex items-end justify-center">
                   <div className="flex items-end gap-8">
-                    {retentionData.map((data, index) => (
+                    {retentionData.map((data) => (
                       <div key={data.period} className="flex flex-col items-center gap-2">
                         <div className="flex flex-col items-center gap-1">
                           <div

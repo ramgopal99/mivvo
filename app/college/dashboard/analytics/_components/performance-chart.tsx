@@ -1,7 +1,6 @@
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
 
 interface PerformanceData {
   month: string
@@ -27,7 +26,7 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
       <CardContent>
         <div className="space-y-4">
           <div className="h-64 flex items-end justify-between gap-2">
-            {data.map((item, index) => (
+            {data.map((item) => (
               <div key={item.month} className="flex flex-col items-center gap-2 flex-1">
                 <div className="flex flex-col items-center gap-1 w-full">
                   <div

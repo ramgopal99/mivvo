@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { InterviewsStats, InterviewCard, InterviewsFilters } from "./_components"
-import { dummyStudents } from "@/app/college/_components/dummy-data"
+ 
 
 // Generate dummy interviews from student data
 const dummyInterviews = [

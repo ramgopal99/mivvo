@@ -24,7 +24,6 @@ import {
   MoreHorizontal,
   Edit,
   Trash2,
-  Shield,
   Ban,
   CheckCircle,
   Mail

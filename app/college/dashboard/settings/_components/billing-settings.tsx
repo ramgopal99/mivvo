@@ -4,7 +4,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
-import { Separator } from "@/components/ui/separator"
 import {
   CreditCard,
   Calendar,
@@ -12,7 +11,6 @@ import {
   Download,
   AlertTriangle,
   CheckCircle,
-  Clock,
   Receipt
 } from "lucide-react"
 
@@ -209,7 +207,7 @@ export function BillingSettings({
             <div className="flex items-center gap-2 p-3 bg-yellow-50 dark:bg-yellow-950/20 rounded-lg">
               <AlertTriangle className="h-4 w-4 text-yellow-600" />
               <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                You're approaching your plan limits. Consider upgrading.
+                You&apos;re approaching your plan limits. Consider upgrading.
               </p>
             </div>
           )}

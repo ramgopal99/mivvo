@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
 import { useState, useEffect } from "react"
@@ -220,7 +221,7 @@ export function ProfileSettings() {
               type="number"
               placeholder="2020"
               value={profile.establishedYear || ''}
-              onChange={(e) => handleInputChange('establishedYear', parseInt(e.target.value) || undefined)}
+              onChange={(e) => handleInputChange('establishedYear', parseInt(e.target.value) || 0)}
             />
           </div>
         </div>

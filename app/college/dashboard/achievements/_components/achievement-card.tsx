@@ -6,11 +6,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
   Trophy,
-  Medal,
   Star,
   Award,
   Target,
-  Calendar,
   User,
   TrendingUp
 } from "lucide-react"

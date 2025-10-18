@@ -6,8 +6,6 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
   Search,
-  Filter,
-  Plus,
   Download,
   Building2
 } from "lucide-react"

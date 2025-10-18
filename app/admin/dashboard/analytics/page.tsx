@@ -5,8 +5,6 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
-  BarChart3,
-  TrendingUp,
   Users,
   DollarSign,
   Calendar,
@@ -156,7 +154,7 @@ export default function AdminAnalyticsPage() {
               <CardContent>
                 <div className="space-y-4">
                   <div className="h-64 flex items-end justify-between gap-2">
-                    {userGrowthData.map((item, index) => (
+                    {userGrowthData.map((item) => (
                       <div key={item.month} className="flex flex-col items-center gap-2 flex-1">
                         <div className="flex flex-col items-center gap-1 w-full">
                           <div
@@ -183,7 +181,7 @@ export default function AdminAnalyticsPage() {
               <CardContent>
                 <div className="space-y-4">
                   <div className="h-64 flex items-end justify-between gap-2">
-                    {revenueData.map((item, index) => (
+                    {revenueData.map((item) => (
                       <div key={item.month} className="flex flex-col items-center gap-2 flex-1">
                         <div className="flex flex-col items-center gap-1 w-full">
                           <div

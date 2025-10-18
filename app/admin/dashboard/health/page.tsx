@@ -7,15 +7,12 @@ import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
   Activity,
-  Server,
-  Database,
   Wifi,
   AlertTriangle,
   CheckCircle,
   XCircle,
   RefreshCw,
   Settings,
-  Shield
 } from "lucide-react"
 
 // Dummy system health data
@@ -134,18 +131,6 @@ export default function AdminHealthPage() {
     }
   }
 
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case 'healthy':
-        return <Badge className="bg-green-100 text-green-800">Healthy</Badge>
-      case 'warning':
-        return <Badge className="bg-yellow-100 text-yellow-800">Warning</Badge>
-      case 'error':
-        return <Badge className="bg-red-100 text-red-800">Error</Badge>
-      default:
-        return <Badge variant="outline">Unknown</Badge>
-    }
-  }
 
   return (
     <div className="space-y-6">
@@ -243,7 +228,7 @@ export default function AdminHealthPage() {
             </CardHeader>
             <CardContent>
               <div className="grid gap-4 md:grid-cols-2">
-                {systemStatus.services.map((service, index) => (
+                {systemStatus.services.map((service) => (
                   <div key={service.name} className="flex items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center gap-3">
                       {getStatusIcon(service.status)}

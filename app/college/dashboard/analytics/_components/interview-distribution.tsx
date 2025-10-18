@@ -14,7 +14,6 @@ interface InterviewDistributionProps {
 
 export function InterviewDistribution({ data }: InterviewDistributionProps) {
   const total = data.reduce((acc, item) => acc + item.count, 0)
-  const colors = ['bg-blue-500', 'bg-green-500', 'bg-yellow-500', 'bg-purple-500']
 
   return (
     <Card>

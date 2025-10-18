@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Calendar, Clock, TrendingUp, Award, Eye, MessageSquare } from "lucide-react"
+import { ArrowLeft, Calendar, Clock, TrendingUp, Award, Eye } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface InterviewResult {

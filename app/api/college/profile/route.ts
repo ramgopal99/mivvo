@@ -4,6 +4,12 @@ import jwt from 'jsonwebtoken'
 
 const prisma = new PrismaClient()
 
+interface JWTPayload {
+  role: string
+  collegeId: string
+  [key: string]: unknown
+}
+
 export async function PUT(request: NextRequest) {
   try {
     // Get token from Authorization header
@@ -18,10 +24,10 @@ export async function PUT(request: NextRequest) {
     const token = authHeader.substring(7) // Remove 'Bearer ' prefix
 
     // Verify token
-    let decoded: any
+    let decoded: JWTPayload
     try {
-      decoded = jwt.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret')
-    } catch (error) {
+      decoded = jwt.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret') as JWTPayload
+    } catch {
       return NextResponse.json(
         { error: 'Invalid or expired token' },
         { status: 401 }
@@ -91,7 +97,7 @@ export async function PUT(request: NextRequest) {
     console.error('College profile update error:', error)
 
     // Handle unique constraint violations
-    if (error.code === 'P2002') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'P2002') {
       return NextResponse.json(
         { error: 'Email address is already in use by another college' },
         { status: 409 }
@@ -121,10 +127,10 @@ export async function GET(request: NextRequest) {
     const token = authHeader.substring(7) // Remove 'Bearer ' prefix
 
     // Verify token
-    let decoded: any
+    let decoded: JWTPayload
     try {
-      decoded = jwt.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret')
-    } catch (error) {
+      decoded = jwt.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret') as JWTPayload
+    } catch {
       return NextResponse.json(
         { error: 'Invalid or expired token' },
         { status: 401 }

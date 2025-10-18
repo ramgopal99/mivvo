@@ -2,16 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import {
-  Book,
-  Users,
-  Settings,
-  BarChart3,
-  MessageCircle,
-  FileText,
-  GraduationCap,
-  HelpCircle
-} from "lucide-react"
+
 
 interface HelpCategory {
   id: string
