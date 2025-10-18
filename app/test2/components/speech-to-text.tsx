@@ -44,7 +44,6 @@ declare global {
 export default function SpeechToText() {
   const [text, setText] = useState('')
   const [isListening, setIsListening] = useState(false)
-  const [isSupported, setIsSupported] = useState(false)
   const [selectedLanguage, setSelectedLanguage] = useState('en-US')
   const [interimText, setInterimText] = useState('')
   const [error, setError] = useState<string>('')
@@ -83,11 +82,10 @@ export default function SpeechToText() {
   }
 
   useEffect(() => {
-    // Check if speech recognition is supported
+    // Initialize speech recognition if available
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 
     if (SpeechRecognition) {
-      setIsSupported(true)
       recognitionRef.current = new SpeechRecognition()
 
       const recognition = recognitionRef.current
@@ -141,7 +139,10 @@ export default function SpeechToText() {
   }, [selectedLanguage])
 
   const startListening = async () => {
-    if (!recognitionRef.current) return
+    if (!recognitionRef.current) {
+      setError('Speech recognition is not supported in this browser. Please use Chrome or Edge for voice input.')
+      return
+    }
 
     try {
       setError('') // Clear any previous errors
@@ -171,29 +172,6 @@ export default function SpeechToText() {
     startListening()
   }
 
-  if (!isSupported) {
-    return (
-      <div className="min-h-screen bg-gray-50 p-8">
-        <div className="max-w-2xl mx-auto">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl">Speech to Text</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-center py-8">
-                <p className="text-red-600 mb-4">
-                  Speech recognition is not supported in your browser.
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Please use Chrome, Edge, or Safari for the best experience.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">
@@ -204,6 +182,13 @@ export default function SpeechToText() {
             <p className="text-sm text-muted-foreground">
               Click the microphone to start speaking. For better accuracy, speak clearly and use a quiet environment.
             </p>
+            {!recognitionRef.current && (
+              <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <p className="text-sm text-blue-800">
+                  <strong>Note:</strong> Speech recognition is not supported in this browser. Please use Chrome or Edge for voice input features.
+                </p>
+              </div>
+            )}
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">
@@ -257,6 +242,7 @@ export default function SpeechToText() {
               {!isListening ? (
                 <Button
                   onClick={startListening}
+                  disabled={!recognitionRef.current}
                   className="flex-1"
                   size="lg"
                 >
@@ -286,13 +272,15 @@ export default function SpeechToText() {
             </div>
 
             <div className="text-xs text-muted-foreground bg-gray-50 p-3 rounded">
-              <strong>Features & Troubleshooting:</strong>
+              <strong>Features & Browser Support:</strong>
               <ul className="mt-1 space-y-1">
-                <li>• Real-time transcription with interim results</li>
+                <li>• Works in all browsers - component loads everywhere</li>
+                <li>• Speech recognition available in Chrome and Edge browsers</li>
+                <li>• Real-time transcription with interim results (when supported)</li>
                 <li>• Automatic error handling with retry options</li>
                 <li>• Network issues will show retry buttons</li>
-                <li>• Best results with Chrome/Edge browsers</li>
-                <li>• For professional accuracy, consider cloud services (Google Speech API, AWS Transcribe, etc.)</li>
+                <li>• For cross-browser speech recognition, use the Deepgram Test tab</li>
+                <li>• For professional accuracy, consider cloud services (Deepgram, Google Speech API, AWS Transcribe)</li>
               </ul>
             </div>
           </CardContent>

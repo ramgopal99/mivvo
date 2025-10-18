@@ -53,7 +53,6 @@ export default function LLM() {
   const [isListening, setIsListening] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const [isSupported, setIsSupported] = useState(false)
   const [error, setError] = useState<string>('')
   const [selectedVoice, setSelectedVoice] = useState<string>('')
   const [speechRate, setSpeechRate] = useState<number>(0.9)
@@ -70,7 +69,12 @@ export default function LLM() {
   const autoListenAfterAIRef = useRef<boolean>(false)
 
   const startListening = useCallback(async () => {
-    if (!recognitionRef.current || isListening) return
+    if (!recognitionRef.current || isListening) {
+      if (!recognitionRef.current) {
+        setError('Speech recognition is not supported in this browser. Please use Chrome or Edge for voice input.')
+      }
+      return
+    }
 
     try {
       setError('') // Clear any previous errors
@@ -208,10 +212,11 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 
+    // Always initialize speech synthesis if available
+    speechSynthesisRef.current = window.speechSynthesis
+
     if (SpeechRecognition) {
-      setIsSupported(true)
       recognitionRef.current = new SpeechRecognition()
-      speechSynthesisRef.current = window.speechSynthesis
 
       // Load available voices
       const loadVoices = () => {
@@ -332,8 +337,8 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
     console.log('Starting Amazon interview...')
     setIsConversationMode(true)
     isConversationModeRef.current = true
-    
-    // Start voice input automatically when conversation begins
+
+    // Start voice input automatically when conversation begins (only if speech recognition is available)
     if (recognitionRef.current && !isListeningRef.current) {
       try {
         console.log('Auto-starting voice input...')
@@ -343,7 +348,7 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
         setError('Failed to start voice input. Please try again.')
       }
     }
-    
+
     // Add AI interview greeting message
     const greetingMessage: Message = {
       id: Date.now().toString(),
@@ -372,29 +377,6 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
     isConversationModeRef.current = false
   }
 
-  if (!isSupported) {
-    return (
-      <div className="min-h-screen bg-gray-50 p-8">
-        <div className="max-w-2xl mx-auto">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl">Voice LLM Chat</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-center py-8">
-                <p className="text-red-600 mb-4">
-                  Voice chat requires speech recognition support.
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Please use Chrome or Edge browser.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">
@@ -492,18 +474,20 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
                     </Button>
                   )}
 
-                  <label className="flex items-center space-x-2 text-sm">
-                    <input
-                      type="checkbox"
-                      checked={autoListenAfterAI}
-                      onChange={(e) => {
-                        setAutoListenAfterAI(e.target.checked)
-                        autoListenAfterAIRef.current = e.target.checked
-                      }}
-                      className="rounded"
-                    />
-                    <span>Auto-listen after AI response</span>
-                  </label>
+                  {recognitionRef.current && (
+                    <label className="flex items-center space-x-2 text-sm">
+                      <input
+                        type="checkbox"
+                        checked={autoListenAfterAI}
+                        onChange={(e) => {
+                          setAutoListenAfterAI(e.target.checked)
+                          autoListenAfterAIRef.current = e.target.checked
+                        }}
+                        className="rounded"
+                      />
+                      <span>Auto-listen after AI response</span>
+                    </label>
+                  )}
                 </div>
 
                 <Button
@@ -561,7 +545,7 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
                 onTestVoice={() => speakText("Hello! This is how your selected voice sounds.")}
               />
 
-              {isListening && (
+              {recognitionRef.current && isListening && (
                 <div className="text-center p-4 bg-red-50 border border-red-200 rounded-lg">
                   <p className="text-red-700 font-medium">🎤 Voice Input Active - Listening...</p>
                   <p className="text-sm text-red-600 mt-1">
@@ -570,11 +554,20 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
                 </div>
               )}
 
-              {isConversationMode && !isListening && (
+              {recognitionRef.current && isConversationMode && !isListening && (
                 <div className="text-center p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
                   <p className="text-yellow-700 font-medium">🎤 Conversation Mode Active</p>
                   <p className="text-sm text-yellow-600 mt-1">
                     Voice input will auto-start when you speak.
+                  </p>
+                </div>
+              )}
+
+              {!recognitionRef.current && (
+                <div className="text-center p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-blue-700 font-medium">💬 Text-Only Mode</p>
+                  <p className="text-sm text-blue-600 mt-1">
+                    Speech recognition not supported in this browser. Use Chrome or Edge for voice features.
                   </p>
                 </div>
               )}

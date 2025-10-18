@@ -631,6 +631,30 @@ export function MeetTestRoom({
   const handleConversationModeChange = async (isActive: boolean) => {
     console.log('Conversation mode changed:', isActive)
 
+    // Create attempt when conversation starts (voice chat begins)
+    if (isActive && !isConversationMode) {
+      console.log('Conversation starting, creating interview attempt...')
+      try {
+        const response = await fetch('/api/custom-interviews/start-attempt', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            interviewId: interviewData?.id
+          })
+        })
+
+        if (response.ok) {
+          console.log('Interview attempt created successfully')
+        } else {
+          console.error('Failed to create interview attempt:', response.status)
+        }
+      } catch (error) {
+        console.error('Error creating interview attempt:', error)
+      }
+    }
+
     // Save conversation data when conversation stops
     if (!isActive && isConversationMode) {
       console.log('Conversation stopped, saving data and updating time usage...')
@@ -681,6 +705,50 @@ export function MeetTestRoom({
 
         if (response.ok) {
           console.log('Conversation data saved successfully')
+
+          // Now perform AI analysis of the conversation
+          try {
+            console.log('Performing AI analysis of conversation...')
+
+            const analysisResponse = await fetch('/api/analysis', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                conversation: voiceTranscript,
+                topic: interviewData.customPrompt || interviewData.jd
+              })
+            })
+
+            if (analysisResponse.ok) {
+              const analysis = await analysisResponse.json()
+              console.log('Analysis completed, saving results...')
+
+              // Save analysis results to database
+              const saveAnalysisResponse = await fetch('/api/custom-interviews/save-analysis', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  interviewId: interviewData.id,
+                  analysis: analysis,
+                  duration: elapsedTime
+                })
+              })
+
+              if (saveAnalysisResponse.ok) {
+                console.log('Analysis results saved successfully')
+              } else {
+                console.error('Failed to save analysis results:', saveAnalysisResponse.status)
+              }
+            } else {
+              console.error('Failed to analyze conversation:', analysisResponse.status)
+            }
+          } catch (analysisError) {
+            console.error('Error during analysis:', analysisError)
+          }
         } else {
           console.error('Failed to save conversation data:', response.status)
         }
@@ -688,7 +756,7 @@ export function MeetTestRoom({
         console.error('Error saving conversation data:', error)
       }
     }
-  }, [voiceTranscript, interviewData?.id, messages, elapsedTime])
+  }, [voiceTranscript, interviewData?.id, interviewData?.customPrompt, interviewData?.jd, messages, elapsedTime])
 
   const handleUpdateTimeUsage = useCallback(async () => {
     // Update user's time allowance based on interview duration

@@ -46,7 +46,7 @@ export const dummyInterviews = [
     id: "interview-4",
     title: "Senior Developer Interview - Amazon",
     type: "HR_INTERVIEW",
-    status: "NOT_STARTED" as const,
+    status: "IN_PROGRESS" as const,
     score: undefined,
     duration: 0,
     createdAt: new Date("2024-01-12"),

@@ -7,7 +7,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/lib/auth'
+import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 
 export async function POST(request: NextRequest) {
@@ -37,19 +37,27 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Interview not found or access denied' }, { status: 404 })
     }
 
-    // Create a new interview attempt
-    const attempt = await prisma.interviewAttempt.create({
-      data: {
-        interviewId: interviewId,
-        startedAt: new Date()
-      }
-    })
+    // Create a new interview attempt and update interview status to IN_PROGRESS
+    const result = await prisma.$transaction([
+      // Create the attempt
+      prisma.interviewAttempt.create({
+        data: {
+          interviewId: interviewId,
+          startedAt: new Date()
+        }
+      }),
+      // Update interview status to IN_PROGRESS
+      prisma.mockInterview.update({
+        where: { id: interviewId },
+        data: { status: 'IN_PROGRESS' }
+      })
+    ])
 
-    console.log('Interview attempt created with ID:', attempt.id)
+    console.log('Interview attempt created and status updated to IN_PROGRESS')
 
     return NextResponse.json({
       success: true,
-      attemptId: attempt.id,
+      attemptId: result[0].id,
       message: 'Interview attempt started successfully'
     })
 

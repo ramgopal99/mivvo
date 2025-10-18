@@ -1,5 +1,5 @@
 import { getAllUsers } from "@/app/actions/user"
-import { requireRole } from "@/app/lib/session"
+import { requireRole } from "@/lib/session"
 import { UserRole } from "@prisma/client"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"

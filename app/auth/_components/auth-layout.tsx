@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { siteConfig } from "@/config/site"
+import { Button } from "@/components/ui/button"
 
 interface AuthLayoutProps {
   children: React.ReactNode
@@ -96,8 +97,38 @@ export function AuthLayout({
             )}
           </div>
 
+          {/* College Login Section */}
+          <div className="mt-8 pt-6 border-t border-gray-200">
+            <div className="text-center">
+              <h3 className="text-sm font-medium text-gray-900 mb-3">
+                College Portal Login
+              </h3>
+              <p className="text-xs text-gray-600 mb-4">
+                Are you a college administrator or student?
+              </p>
+              <div className="space-y-3">
+                <Link href="/auth/college-admin">
+                  <Button
+                    variant="outline"
+                    className="w-full text-sm h-10 border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/40"
+                  >
+                    🏫 College Administrator Login
+                  </Button>
+                </Link>
+                <Link href="/auth/college-student">
+                  <Button
+                    variant="outline"
+                    className="w-full text-sm h-10 border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/40"
+                  >
+                    🎓 College Student Login
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
           {/* Back to home */}
-          <div className="mt-4 text-center">
+          <div className="mt-6 text-center">
             <Link
               href="/"
               className="text-sm text-gray-500 hover:text-gray-700 transition-colors cursor-pointer"

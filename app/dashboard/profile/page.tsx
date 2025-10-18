@@ -1,4 +1,4 @@
-import { getSessionUserData } from "@/app/lib/session"
+import { getSessionUserData } from "@/lib/session"
 import { ProfileHeader, ProfileDetails } from "./_components"
 import { UserRole } from "@prisma/client"
 

@@ -10,7 +10,7 @@ interface Interview {
   id: string
   title: string
   type: string
-  status: 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED'
+  status: 'IN_PROGRESS' | 'COMPLETED'
   score?: number
   duration: number // in minutes
   createdAt: Date

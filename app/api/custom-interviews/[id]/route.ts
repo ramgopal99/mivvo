@@ -9,7 +9,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/lib/auth'
+import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 
 /**
@@ -38,7 +38,8 @@ export async function GET(
       include: {
         attempts: {
           include: {
-            results: true
+            results: true,
+            conversations: true
           }
         },
         prompts: true,
@@ -60,24 +61,28 @@ export async function GET(
       jd: interview.jobDescription || "",
       interviewType: interview.interviewType, // Add interview type for greeting selection
       createdAt: interview.createdAt.toISOString(),
-      status: interview.status === "NOT_STARTED" ? "scheduled" :
-              interview.status === "IN_PROGRESS" ? "in_progress" : "completed",
+      status: interview.status === "IN_PROGRESS" ? "in_progress" : "completed",
       screenShareEnabled: interview.screenShareEnabled,
       prompts: interview.prompts.map(prompt => ({
         id: prompt.id,
         promptText: prompt.promptText,
         isActive: prompt.isActive
       })),
-      attempts: interview.attempts.map(attempt => ({
-        id: attempt.id,
-        completedAt: attempt.completedAt?.toISOString() || attempt.startedAt.toISOString(),
-        score: attempt.score || 0,
-        duration: attempt.duration || 0,
-        feedback: attempt.overallFeedback || "",
-        strengths: attempt.strengths,
-        weaknesses: attempt.weaknesses,
-        recommendations: attempt.recommendations
-      }))
+      attempts: interview.attempts.map(attempt => {
+        // Get overall analysis from the first result that has overall feedback
+        const overallResult = attempt.results.find(r => r.overallFeedback) || attempt.results[0]
+
+        return {
+          id: attempt.id,
+          completedAt: attempt.completedAt?.toISOString() || attempt.startedAt.toISOString(),
+          score: overallResult?.overallScore || 0,
+          duration: attempt.duration || 0,
+          feedback: overallResult?.overallFeedback || "",
+          strengths: overallResult?.strengths || [],
+          weaknesses: overallResult?.weaknesses || [],
+          recommendations: overallResult?.recommendations || []
+        }
+      })
     }
 
     return NextResponse.json(formattedInterview)
@@ -122,15 +127,14 @@ export async function PUT(
       title?: string
       companyName?: string | null
       jobDescription?: string
-      status?: 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED'
+      status?: 'IN_PROGRESS' | 'COMPLETED'
     } = {}
 
     if (title) updateData.title = title
     if (company !== undefined) updateData.companyName = company || null
     if (jd) updateData.jobDescription = jd
     if (status) {
-      updateData.status = status === "scheduled" ? "NOT_STARTED" :
-                         status === "in_progress" ? "IN_PROGRESS" : "COMPLETED"
+      updateData.status = status === "in_progress" ? "IN_PROGRESS" : "COMPLETED"
     }
 
     // Update the interview
@@ -140,7 +144,8 @@ export async function PUT(
       include: {
         attempts: {
           include: {
-            results: true
+            results: true,
+            conversations: true
           }
         },
         prompts: true
@@ -155,24 +160,28 @@ export async function PUT(
       jd: updatedInterview.jobDescription || "",
       interviewType: updatedInterview.interviewType, // Add interview type for greeting selection
       createdAt: updatedInterview.createdAt.toISOString(),
-      status: updatedInterview.status === "NOT_STARTED" ? "scheduled" :
-              updatedInterview.status === "IN_PROGRESS" ? "in_progress" : "completed",
+      status: updatedInterview.status === "IN_PROGRESS" ? "in_progress" : "completed",
       screenShareEnabled: updatedInterview.screenShareEnabled,
       prompts: updatedInterview.prompts.map(prompt => ({
         id: prompt.id,
         promptText: prompt.promptText,
         isActive: prompt.isActive
       })),
-      attempts: updatedInterview.attempts.map(attempt => ({
-        id: attempt.id,
-        completedAt: attempt.completedAt?.toISOString() || attempt.startedAt.toISOString(),
-        score: attempt.score || 0,
-        duration: attempt.duration || 0,
-        feedback: attempt.overallFeedback || "",
-        strengths: attempt.strengths,
-        weaknesses: attempt.weaknesses,
-        recommendations: attempt.recommendations
-      }))
+      attempts: updatedInterview.attempts.map(attempt => {
+        // Get overall analysis from the first result that has overall feedback
+        const overallResult = attempt.results.find(r => r.overallFeedback) || attempt.results[0]
+
+        return {
+          id: attempt.id,
+          completedAt: attempt.completedAt?.toISOString() || attempt.startedAt.toISOString(),
+          score: overallResult?.overallScore || 0,
+          duration: attempt.duration || 0,
+          feedback: overallResult?.overallFeedback || "",
+          strengths: overallResult?.strengths || [],
+          weaknesses: overallResult?.weaknesses || [],
+          recommendations: overallResult?.recommendations || []
+        }
+      })
     }
 
     return NextResponse.json(formattedInterview)

@@ -1,7 +1,7 @@
 "use server"
 
 import { prisma } from "../../lib/prisma"
-import { requireRole } from "../lib/session"
+import { requireRole } from "../../lib/session"
 import { UserRole } from "@prisma/client"
 import { revalidatePath } from "next/cache"
 

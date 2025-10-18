@@ -3,7 +3,7 @@
 import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 import { UserData, ServerActionResponse } from "./types"
-import { getSessionUserData } from "@/app/lib/session"
+import { getSessionUserData } from "@/lib/session"
 
 export async function getUserDetails(): Promise<ServerActionResponse<UserData>> {
   try {

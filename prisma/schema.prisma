@@ -42,6 +42,7 @@ model Session {
 
 enum UserRole {
   USER
+  COLLEGE
   SUPERADMIN
 }
 
@@ -65,6 +66,15 @@ model User {
   location      String?
   bio           String?
 
+  // Academic fields
+  rollNumber    String?
+  collegeName   String?
+  password      String?
+
+  // College relationship
+  collegeId     String?
+  college       College?  @relation(fields: [collegeId], references: [id], onDelete: SetNull)
+
   // SaaS platform fields
   careerGoals         String?
   linkedIn           String?
@@ -84,6 +94,38 @@ model User {
   @@map("users")
 }
 
+model College {
+  id                String    @id @default(cuid()) @map("_id")
+  collegeId         String    @unique
+  name              String
+  email             String    @unique
+  password          String
+  description       String?
+  location          String?
+  website           String?
+  phone             String?
+  establishedYear   Int?
+
+  // Status and billing
+  isActive          Boolean   @default(true)
+  maxStudents       Int       @default(100)
+  currentStudents   Int       @default(0)
+
+  // Billing based on user count
+  monthlyRatePerUser Float     @default(150.0) 
+  billingCycle       String    @default("monthly")
+  nextBillingDate    DateTime?
+  lastBillingAmount  Float     @default(0.0)
+
+  // Relations
+  users             User[]
+
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@map("colleges")
+}
+
 model VerificationToken {
   id         String   @id @default(cuid()) @map("_id")
   identifier String
@@ -96,7 +138,6 @@ model VerificationToken {
 
 
 enum InterviewStatus {
-  NOT_STARTED
   IN_PROGRESS
   COMPLETED
 }
@@ -111,7 +152,7 @@ enum InterviewType {
 
 model MockInterview {
   id                String   @id @default(cuid()) @map("_id")
-  title             String?  // Custom title for the interview
+  title             String?
   companyName       String?
   position          String?
   companyDescription String?  @default("")
@@ -119,20 +160,13 @@ model MockInterview {
   interviewType     InterviewType?
   experienceLevel   String?
   attemptCount     Int      @default(0)
-
-  // Interview settings
   screenShareEnabled Boolean @default(false)
-  status            InterviewStatus @default(NOT_STARTED)
-
-  // Time settings
+  status            InterviewStatus @default(IN_PROGRESS)
   timeLimitMinutes  Int?     @default(0)
-
-  // Relations
   createdBy         String
   user              User     @relation(fields: [createdBy], references: [id], onDelete: Cascade)
   attempts          InterviewAttempt[]
   prompts           InterviewPrompt[]
-
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
@@ -143,29 +177,14 @@ model InterviewAttempt {
   id                String   @id @default(cuid()) @map("_id")
   startedAt         DateTime @default(now())
   completedAt       DateTime?
-  duration          Int?     // Duration in minutes
-  score             Float?   // Overall score (0-100)
-  status            InterviewStatus @default(NOT_STARTED)
-
-  // Feedback and analysis
-  overallFeedback   String?
-  strengths         String[]
-  weaknesses        String[]
-  recommendations    String[]
-
-  // Interview details
-  candidateName     String?
-  candidateEmail    String?
-  notes             String?
-
-  // Relations
+  duration          Int?
+  status            InterviewStatus @default(IN_PROGRESS)
   interviewId       String
   interview         MockInterview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
-  candidateId       String?  // User ID of the candidate (optional for anonymous interviews)
+  candidateId       String?
   candidate         User?    @relation(fields: [candidateId], references: [id], onDelete: SetNull)
   results           InterviewResult[]
   conversations     InterviewConversation[]
-
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
@@ -174,11 +193,24 @@ model InterviewAttempt {
 
 model InterviewResult {
   id                String   @id @default(cuid()) @map("_id")
-  question          String  
-  answer            String? 
-  score             Float?  
-  feedback          String?  // Feedback for this answer
-  duration          Int?    
+  duration          Int?
+  feedback          String?
+  knowledge         Float?
+  overallScore      Float?
+  overallFeedback   String?
+  strengths         String[]
+  weaknesses        String[]
+  recommendations    String[]
+  communication     Float?
+  notes             String?
+  vocabularyComplexity     Float?
+  emotionalTone           String?
+  wordCountAnalysis       String?
+  questionAnsweringQuality Float?
+  followUpHandling        Boolean?
+  answerStructure         String?
+  exampleUsage            Boolean?
+  relevantTopicAnswer     Boolean?
 
   attemptId         String
   attempt           InterviewAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
@@ -192,11 +224,9 @@ model InterviewResult {
 model InterviewPrompt {
   id                String   @id @default(cuid()) @map("_id")
   promptText        String
-  isActive          Boolean  @default(true) // Whether this prompt is currently active
-
+  isActive          Boolean  @default(true)
   interviewId       String
   interview         MockInterview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
-
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
@@ -205,14 +235,11 @@ model InterviewPrompt {
 
 model InterviewConversation {
   id                String   @id @default(cuid()) @map("_id")
-
   attemptId         String
   attempt           InterviewAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
-
-  transcript        String   // JSON string of conversation transcript
-  messages          String   // JSON string of chat messages
-  duration          Int      // Duration in seconds
-
+  transcript        String
+  messages          String
+  duration          Int
   createdAt         DateTime @default(now())
 
   @@map("interviewconversations")

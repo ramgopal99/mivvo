@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Brain } from 'lucide-react'
-import { INTERVIEW_CONFIG, InterviewConfig, CodingInterviewConfig, VOICE_CHAT_CONFIG, VOICE_CHAT_MESSAGES, buildAISystemPrompt, buildCodingInterviewSystemPrompt, UI_CONFIG } from '../config'
+import { INTERVIEW_CONFIG, InterviewConfig, CodingInterviewConfig, VOICE_CHAT_CONFIG, VOICE_CHAT_MESSAGES, buildAISystemPrompt, buildCodingInterviewSystemPrompt, UI_CONFIG, detectBrowser } from '../config'
 
 // Extend window interface for coding code getter
 declare global {
@@ -106,6 +106,8 @@ export function VoiceChat({
   const [isConversationMode, setIsConversationMode] = useState<boolean>(false)
   const [isWaitingForUserResponse, setIsWaitingForUserResponse] = useState<boolean>(false)
   const [liveTranscript, setLiveTranscript] = useState<string>('')
+  const [browserType, setBrowserType] = useState<string>('unknown')
+  const [handleSendMessageFunc, setHandleSendMessageFunc] = useState<((message: string) => void) | null>(null)
 
   const recognitionRef = useRef<SpeechRecognition | null>(null)
   const speechSynthesisRef = useRef<SpeechSynthesis | null>(null)
@@ -118,6 +120,16 @@ export function VoiceChat({
 
   // New refs for accumulating speech over time
   const accumulatedSpeechRef = useRef<string>('')
+
+
+  // Initialize browser detection
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const browser = detectBrowser()
+    setBrowserType(browser)
+    setIsSupported(true) // Web Speech API is supported in Chrome and Edge
+  }, [])
   const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const isProcessingSpeechRef = useRef<boolean>(false)
   const recognitionActiveTimeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -131,7 +143,7 @@ export function VoiceChat({
     }
   }, [])
 
-  // Process accumulated speech after 10 seconds of silence
+  // Process accumulated speech after silence timeout (different for each method)
   const processAccumulatedSpeech = useCallback(() => {
     if (isProcessingSpeechRef.current || !accumulatedSpeechRef.current.trim()) return
 
@@ -141,8 +153,18 @@ export function VoiceChat({
     // Clear accumulated speech
     accumulatedSpeechRef.current = ''
 
-    // Send to AI
-    handleSendMessageRef.current?.(speechToProcess)
+    console.log('Processing accumulated speech:', speechToProcess)
+
+    // Send to AI - try multiple ways to ensure it works
+    if (handleSendMessageFunc) {
+      console.log('Calling handleSendMessage via state')
+      handleSendMessageFunc(speechToProcess)
+    } else if (handleSendMessageRef.current) {
+      console.log('Calling handleSendMessage via ref (fallback)')
+      handleSendMessageRef.current(speechToProcess)
+    } else {
+      console.error('Both handleSendMessageFunc and handleSendMessageRef.current are not set!')
+    }
 
     // Reset processing flag after a short delay
     setTimeout(() => {
@@ -233,17 +255,34 @@ export function VoiceChat({
   }, [isWaitingForUserResponse, onWaitingForResponseChange])
 
   const startListening = useCallback(async () => {
-    if (!recognitionRef.current || isListening) return
+    if (isListening) return
 
     try {
       setError('')
       await navigator.mediaDevices.getUserMedia({ audio: true })
-      recognitionRef.current.start()
+
+      if (recognitionRef.current) {
+        recognitionRef.current.start()
+      }
     } catch (error) {
       console.error('Error accessing microphone:', error)
-      setError('Microphone access is required for speech recognition. Please allow microphone access and try again.')
+
+      // Provide browser-specific instructions for Chrome/Edge
+      const currentBrowser = detectBrowser()
+      let errorMessage = 'Microphone access is required for speech recognition.'
+
+      if (currentBrowser === 'chrome') {
+        errorMessage += ' In Chrome, click the camera/microphone icon in the address bar and allow access.'
+      } else if (currentBrowser === 'edge') {
+        errorMessage += ' In Edge, click the lock icon in the address bar and allow microphone access.'
+      } else {
+        errorMessage += ' Please allow microphone access in your browser settings and try again.'
+      }
+
+      setError(errorMessage)
     }
-  }, [isListening])
+  }, [isListening, clearSilenceTimeout, clearUserResponseTimeout, processAccumulatedSpeech])
+
 
   const speakText = useCallback((text: string) => {
     speakTextRef.current = speakText
@@ -431,12 +470,13 @@ export function VoiceChat({
   useEffect(() => {
     if (typeof window === 'undefined') return
 
+    speechSynthesisRef.current = window.speechSynthesis
+
+    // Initialize Web Speech API
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 
     if (SpeechRecognition) {
-      setIsSupported(true)
       recognitionRef.current = new SpeechRecognition()
-      speechSynthesisRef.current = window.speechSynthesis
 
       const recognition = recognitionRef.current
       recognition.continuous = true  // Changed to continuous for accumulating speech
@@ -480,6 +520,7 @@ export function VoiceChat({
 
       recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
         let errorMessage = ''
+
         switch (event.error) {
           case 'no-speech':
             // Don't restart automatically in continuous mode - let silence timeout handle it
@@ -488,16 +529,23 @@ export function VoiceChat({
             errorMessage = 'Audio capture failed. Please check your microphone and try again.'
             break
           case 'not-allowed':
-            errorMessage = 'Microphone access denied. Please allow microphone access and try again.'
+            const browser = detectBrowser()
+            if (browser === 'chrome') {
+              errorMessage = 'Microphone access denied in Chrome. Click the camera/microphone icon in the address bar and allow access.'
+            } else if (browser === 'edge') {
+              errorMessage = 'Microphone access denied in Edge. Click the lock icon in the address bar and allow microphone access.'
+            } else {
+              errorMessage = 'Microphone access denied. Please allow microphone access in your browser settings.'
+            }
             break
           case 'network':
-            errorMessage = 'Network error. Check your internet connection and try again.'
+            errorMessage = 'Network error with speech recognition. Please check your internet connection.'
             break
           case 'service-not-allowed':
-            errorMessage = 'Speech recognition service is not available in your region.'
+            errorMessage = 'Speech recognition service unavailable. Please try again later.'
             break
           default:
-            errorMessage = `Speech recognition error: ${event.error}`
+            errorMessage = `Speech recognition error: ${event.error}. Please try again.`
         }
 
         // Clear timeout on error
@@ -537,6 +585,7 @@ export function VoiceChat({
   // Update refs
   useEffect(() => {
     handleSendMessageRef.current = handleSendMessage
+    setHandleSendMessageFunc(() => handleSendMessage)
   }, [handleSendMessage])
 
   useEffect(() => {
@@ -621,11 +670,16 @@ export function VoiceChat({
       <div className="flex h-full items-center justify-center">
         <div className="text-center">
           <p className="text-red-600 mb-4">
-            Voice chat requires speech recognition support.
+            Voice chat is not supported in this browser.
           </p>
           <p className="text-sm text-muted-foreground">
-            Please use Chrome or Edge browser.
+            This feature requires Google Chrome or Microsoft Edge for Web Speech API support.
           </p>
+          {browserType !== 'unknown' && (
+            <p className="text-xs text-muted-foreground mt-2">
+              Detected browser: {browserType === 'brave' ? 'Brave' : browserType === 'other' ? 'Other' : browserType.charAt(0).toUpperCase() + browserType.slice(1)}
+            </p>
+          )}
         </div>
       </div>
     )
@@ -633,6 +687,20 @@ export function VoiceChat({
 
   return (
     <div className="relative h-full">
+      {/* Browser Indicator - Top Left */}
+      {isConversationMode && UI_CONFIG.showSpeechMethodIndicator && UI_CONFIG.showBrowserIndicator && (
+        <div className="absolute top-4 left-4">
+          <div className="bg-black/20 backdrop-blur-sm rounded-lg px-3 py-1 border border-white/10">
+            <p className="text-xs text-white/80 font-medium">
+              Web Speech API
+              <span className="text-white/60 ml-2">
+                • {browserType === 'brave' ? 'Brave' : browserType === 'other' ? 'Other' : browserType.charAt(0).toUpperCase() + browserType.slice(1)}
+              </span>
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* AI Icon - Always visible in center */}
       <div className="flex flex-col items-center justify-center h-full">
         <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-4">

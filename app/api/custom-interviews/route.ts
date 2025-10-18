@@ -10,26 +10,15 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/lib/auth'
+import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { generateGeneralPrompt, generateCodingPrompt, generateUIUXPrompt, generateHRPrompt, generateTechnicalPrompt } from './prompts'
 
 interface InterviewWhereClause {
   createdBy: string
-  status?: 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED'
+  status?: 'IN_PROGRESS' | 'COMPLETED'
 }
 
-interface InterviewAttempt {
-  id: string
-  startedAt: Date
-  completedAt: Date | null
-  score: number | null
-  duration: number | null
-  overallFeedback: string | null
-  strengths: string[]
-  weaknesses: string[]
-  recommendations: string[]
-}
 
 /**
  * GET /api/custom-interviews
@@ -55,8 +44,7 @@ export async function GET(request: NextRequest) {
 
     // Apply status filter if provided
     if (statusFilter) {
-      const prismaStatus = statusFilter === "scheduled" ? "NOT_STARTED" :
-                          statusFilter === "in_progress" ? "IN_PROGRESS" : "COMPLETED"
+      const prismaStatus = statusFilter === "in_progress" ? "IN_PROGRESS" : "COMPLETED"
       whereClause.status = prismaStatus
     }
 
@@ -66,7 +54,8 @@ export async function GET(request: NextRequest) {
       include: {
         attempts: {
           include: {
-            results: true
+            results: true,
+            conversations: true
           }
         },
         prompts: true
@@ -81,24 +70,28 @@ export async function GET(request: NextRequest) {
       company: interview.companyName || "",
       jd: interview.jobDescription || "",
       createdAt: interview.createdAt.toISOString(),
-      status: interview.status === "NOT_STARTED" ? "scheduled" :
-              interview.status === "IN_PROGRESS" ? "in_progress" : "completed",
+      status: interview.status === "IN_PROGRESS" ? "in_progress" : "completed",
       screenShareEnabled: interview.screenShareEnabled,
       prompts: interview.prompts.map(prompt => ({
         id: prompt.id,
         promptText: prompt.promptText,
         isActive: prompt.isActive
       })),
-      attempts: interview.attempts.map((attempt: InterviewAttempt) => ({
-        id: attempt.id,
-        completedAt: attempt.completedAt?.toISOString() || attempt.startedAt.toISOString(),
-        score: attempt.score || 0,
-        duration: attempt.duration || 0,
-        feedback: attempt.overallFeedback || "",
-        strengths: attempt.strengths,
-        weaknesses: attempt.weaknesses,
-        recommendations: attempt.recommendations
-      }))
+      attempts: interview.attempts.map((attempt) => {
+        // Get overall analysis from the first result that has overall feedback
+        const overallResult = attempt.results.find(r => r.overallFeedback) || attempt.results[0]
+
+        return {
+          id: attempt.id,
+          completedAt: attempt.completedAt?.toISOString() || attempt.startedAt.toISOString(),
+          score: overallResult?.overallScore || 0,
+          duration: attempt.duration || 0,
+          feedback: overallResult?.overallFeedback || "",
+          strengths: overallResult?.strengths || [],
+          weaknesses: overallResult?.weaknesses || [],
+          recommendations: overallResult?.recommendations || []
+        }
+      })
     }))
 
     return NextResponse.json(formattedInterviews)
@@ -150,7 +143,6 @@ export async function POST(request: NextRequest) {
         jobDescription: jdDetails,
         interviewType: mappedInterviewType,
         screenShareEnabled: screenShare || false,
-        status: 'NOT_STARTED',
         createdBy: session.user.id
       },
       include: {
@@ -190,7 +182,7 @@ export async function POST(request: NextRequest) {
       company: interview.companyName || "",
       jd: interview.jobDescription,
       createdAt: interview.createdAt.toISOString(),
-      status: "scheduled",
+      status: "in_progress",
       screenShareEnabled: interview.screenShareEnabled,
       prompts: interview.prompts.map(prompt => ({
         id: prompt.id,

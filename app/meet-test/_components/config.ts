@@ -1,3 +1,45 @@
+// Browser Detection Utility - Only Chrome and Edge support Web Speech API reliably (Brave is blocked)
+export const detectBrowser = () => {
+  if (typeof window === 'undefined') return 'unknown'
+
+  const userAgent = navigator.userAgent
+
+  // Check for Brave using multiple methods (Brave browsers may not include "Brave" in user agent)
+  // 1. Check user agent for Brave
+  if (userAgent.includes('Brave')) {
+    return 'brave'
+  }
+
+  // 2. Check for Brave-specific navigator property (more reliable detection)
+  if ((navigator as { brave?: unknown }).brave) {
+    return 'brave'
+  }
+
+  // Check for Edge
+  if (userAgent.includes('Edg')) {
+    return 'edge'
+  }
+
+  // Check for Chrome (comes after Brave check to avoid false positives)
+  if (userAgent.includes('Chrome')) {
+    return 'chrome'
+  }
+
+  // All other browsers use Deepgram
+  return 'other'
+}
+
+// Only Chrome and Edge support Web Speech API reliably
+export const shouldUseWebSpeechAPI = () => {
+  const browser = detectBrowser()
+  return browser === 'chrome' || browser === 'edge'
+}
+
+// All browsers except Chrome and Edge should use AssemblyAI
+export const shouldUseAssemblyAI = () => {
+  return !shouldUseWebSpeechAPI()
+}
+
 // Coding Question Interface (shared with other components)
 export interface CodingQuestion {
   title: string
@@ -55,6 +97,8 @@ export const UI_CONFIG = {
   showShareScreen: true,    // Show/hide share screen button (true = show, false = hide)
   showCodeButtonOnlyOnScreenShare: true, // true = show code button only when screen sharing, false = always show
   showCodingInterviewOnlyOnScreenShare: true, // true = show coding interview button only when screen sharing, false = always show
+  showSpeechMethodIndicator: false, // Show/hide speech method indicator (Web Speech API vs Deepgram) (true = show, false = hide)
+  showBrowserIndicator: false, // Show/hide browser name in the speech method indicator (true = show, false = hide)
   screenShareSuccessMessage: "Screen sharing started successfully!", // Message shown when screen sharing starts
   screenShareDialogTitle: "Screen Sharing Active", // Dialog title when screen sharing is active
   screenShareDialogDescription: "Your entire screen is now being shared. Others can see everything on your screen in the bottom-right corner of their view.\n\nTips:\n• Click the monitor button again to stop sharing\n• Your entire screen content is visible to others", // Dialog description text

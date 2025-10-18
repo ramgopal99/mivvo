@@ -14,7 +14,7 @@ import {
 import { Info, Calendar, Building, Trash2 } from "lucide-react"
 import { useState } from "react"
 
-type InterviewStatus = "completed" | "in_progress" | "scheduled"
+type InterviewStatus = "completed" | "in_progress"
 
 export interface InterviewAttempt {
   id: string
@@ -87,7 +87,7 @@ export function InterviewCard({ interview, onStartInterview, onDeleteInterview }
                   <DialogTitle className="flex items-center gap-2">
                     <span>{interview.title}</span>
                     <Badge variant="secondary" className="text-xs">
-                      {interview.status.replace('_', ' ').toUpperCase()}
+                      {interview.status === "in_progress" ? "IN PROGRESS" : "COMPLETED"}
                     </Badge>
                   </DialogTitle>
                   <DialogDescription>
@@ -134,7 +134,7 @@ export function InterviewCard({ interview, onStartInterview, onDeleteInterview }
                       variant={interview.status === "completed" ? "default" : "secondary"}
                       className="text-xs"
                     >
-                      {interview.status.replace('_', ' ').toUpperCase()}
+                      {interview.status === "in_progress" ? "IN PROGRESS" : "COMPLETED"}
                     </Badge>
                   </div>
                 </div>
@@ -185,14 +185,14 @@ export function InterviewCard({ interview, onStartInterview, onDeleteInterview }
 
         {/* Actions */}
         <div className="flex gap-2 mt-auto">
-          {interview.status === "completed" && (
+          {interview.attempts && interview.attempts.length > 0 && (
             <Button
               variant="outline"
               size="sm"
               onClick={handleViewResults}
               className="cursor-pointer"
             >
-              Result
+              Analysis
             </Button>
           )}
           <Button

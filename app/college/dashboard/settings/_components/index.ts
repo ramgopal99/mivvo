@@ -1,0 +1,5 @@
+export { ProfileSettings } from './profile-settings'
+export { NotificationsSettings } from './notifications-settings'
+export { PreferencesSettings } from './preferences-settings'
+export { SecuritySettings } from './security-settings'
+export { BillingSettings } from './billing-settings'

@@ -8,7 +8,7 @@ This route provides a full-screen AI meeting room interface using a custom compo
 - **Full-Screen Interface**: Takes up the entire screen for immersive meeting experience
 - **Video Grid Layout**: Two-panel layout showing user video and AI assistant
 - **Media Controls**: Toggle video/audio with visual indicators and proper button functionality
-- **Voice-to-Voice Chat**: Real-time voice conversation with AI using Web Speech API
+- **Voice-to-Voice Chat**: Real-time voice conversation with AI using Web Speech API, with AssemblyAI fallback
 - **Voice Activity Detection**: Real-time voice activity indicators for both user and AI
 - **Custom Compound**: Uses dedicated `@meet-test` compound components
 - **Chat Integration**: Integrated chat panel for text-based communication
@@ -51,15 +51,23 @@ Navigate to `/meet-test` to access the AI meeting room:
 - Uses custom `@meet-test` compound components
 - Integrates voice components from `@test2` functionality
 - Uses Web Speech API for speech recognition and synthesis
+- Falls back to AssemblyAI for speech recognition when Web Speech API fails
 - Handles media streams for camera and microphone access
-- No external AI service dependencies (VAPI removed)
+- Uses OpenAI API for AI responses
 
 ## Browser Compatibility
 
-- ✅ Chrome (recommended for voice features)
-- ✅ Microsoft Edge (recommended for voice features)
-- ⚠️ Firefox (limited voice support)
-- ⚠️ Safari (limited voice support)
-- ⚠️ Brave (compatibility issues with voice)
+**⚠️ Browser Restricted Access**
 
-The interface works across all modern browsers for video and audio functionality, with full voice features available in Chrome and Edge.
+This AI meeting room is **only compatible** with the following browsers for optimal voice-to-voice functionality:
+
+- ✅ **Google Chrome** (recommended) - Full Web Speech API support
+- ✅ **Microsoft Edge** - Full Web Speech API support
+
+**❌ Explicitly Blocked:**
+- Firefox
+- Safari
+- Brave (not supported despite being Chrome-based)
+- Other browsers
+
+Users attempting to access with unsupported browsers will see a clear restriction message with download links for supported browsers. This ensures consistent voice conversation quality and Web Speech API reliability across all sessions.

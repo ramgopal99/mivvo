@@ -93,21 +93,6 @@ export default function CustomInterviewMeetPage() {
 
         setInterview(interviewData)
 
-        // Create an interview attempt record for tracking this session
-        try {
-          await fetch('/api/custom-interviews/start-attempt', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              interviewId: interviewId
-            })
-          })
-        } catch (error) {
-          console.error('Error creating interview attempt:', error)
-        }
-
         // Greeting will be generated dynamically in MeetTestRoom based on interview data
         // No need to pre-generate here as MeetTestRoom handles it
 

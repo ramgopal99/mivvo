@@ -25,6 +25,14 @@ interface AnalysisResult {
   weaknesses: string[]
   final_score: number
   recommendation: "Proceed" | "Maybe" | "Reject"
+  vocabularyComplexity: number
+  emotionalTone: "Positive" | "Neutral" | "Negative"
+  wordCountAnalysis: "Too Brief" | "Appropriate" | "Too Verbose"
+  questionAnsweringQuality: number
+  followUpHandling: boolean
+  answerStructure: "Poor" | "Average" | "Excellent"
+  exampleUsage: boolean
+  relevantTopicAnswer: boolean
 }
 
 export async function POST(request: NextRequest) {
@@ -76,7 +84,15 @@ export async function POST(request: NextRequest) {
         strengths: ["Participated in conversation"],
         weaknesses: ["Minimal responses", "No technical discussion", "Limited communication"],
         final_score: 0,
-        recommendation: "Reject"
+        recommendation: "Reject",
+        vocabularyComplexity: 20,
+        emotionalTone: "Neutral",
+        wordCountAnalysis: "Too Brief",
+        questionAnsweringQuality: 10,
+        followUpHandling: false,
+        answerStructure: "Poor",
+        exampleUsage: false,
+        relevantTopicAnswer: false
       })
     }
 
@@ -101,7 +117,15 @@ export async function POST(request: NextRequest) {
         strengths: ["Basic communication skills"],
         weaknesses: ["No technical knowledge demonstrated", "Did not engage with technical questions", "Failed to show problem-solving abilities"],
         final_score: 1,
-        recommendation: "Reject"
+        recommendation: "Reject",
+        vocabularyComplexity: 35,
+        emotionalTone: "Neutral",
+        wordCountAnalysis: "Appropriate",
+        questionAnsweringQuality: 25,
+        followUpHandling: false,
+        answerStructure: "Average",
+        exampleUsage: false,
+        relevantTopicAnswer: false
       })
     }
 
@@ -136,7 +160,15 @@ Your response MUST be ONLY valid JSON with this exact structure:
   "strengths": ["list of 2-4 key strengths"],
   "weaknesses": ["list of 1-3 areas for improvement"],
   "final_score": "number between 0-10",
-  "recommendation": "Proceed/Maybe/Reject"
+  "recommendation": "Proceed/Maybe/Reject",
+  "vocabularyComplexity": "number between 0-100 (vocabulary richness and sophistication)",
+  "emotionalTone": "Positive/Neutral/Negative",
+  "wordCountAnalysis": "Too Brief/Appropriate/Too Verbose",
+  "questionAnsweringQuality": "number between 0-100 (how well questions are directly addressed)",
+  "followUpHandling": "boolean (true if handles follow-ups well, false if poor)",
+  "answerStructure": "Poor/Average/Excellent (how well answers are structured)",
+  "exampleUsage": "boolean (true if uses concrete examples, false if abstract/general)",
+  "relevantTopicAnswer": "boolean (true if answers stay on topic, false if off-topic)"
 }
 
 CRITICAL Analysis Guidelines (Be extremely strict and evidence-based):
@@ -220,7 +252,15 @@ ${conversationText}`
         strengths: ["Completed the interview process"],
         weaknesses: ["Response quality could not be fully evaluated", "Technical demonstration unclear"],
         final_score: 3,
-        recommendation: "Maybe"
+        recommendation: "Maybe",
+        vocabularyComplexity: 45,
+        emotionalTone: "Neutral",
+        wordCountAnalysis: "Appropriate",
+        questionAnsweringQuality: 50,
+        followUpHandling: true,
+        answerStructure: "Average",
+        exampleUsage: true,
+        relevantTopicAnswer: true
       })
     }
 
