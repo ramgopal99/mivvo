@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Target, Award } from "lucide-react"
 
 interface InterviewAttempt {
@@ -48,15 +47,6 @@ export function OverviewSection({ attempt, totalMessages, totalSessions, overall
           <div>
             <label className="text-sm font-medium text-gray-600">Interview Type</label>
             <p className="text-sm font-medium">{attempt.interview.interviewType || 'Not specified'}</p>
-          </div>
-          <div>
-            <label className="text-sm font-medium text-gray-600">Status</label>
-            <Badge
-              variant={attempt.status === 'COMPLETED' ? 'default' : 'secondary'}
-              className="ml-2"
-            >
-              {attempt.status}
-            </Badge>
           </div>
           <div>
             <label className="text-sm font-medium text-gray-600">Job Description</label>

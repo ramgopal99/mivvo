@@ -1,23 +1,108 @@
-import { getSessionUserData } from "@/lib/session"
+"use client"
+
+import { useEffect, useState } from "react"
+import { useSession } from "next-auth/react"
 import { ProfileHeader, ProfileDetails } from "./_components"
 import { UserRole } from "@prisma/client"
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'
 
-export default async function ProfilePage() {
-  const userData = await getSessionUserData()
-
-  // Ensure role is always a UserRole enum value
-  const user: {
+export default function ProfilePage() {
+  const { data: session, status } = useSession()
+  const [userData, setUserData] = useState<{
     id: string
     name?: string | null
     email?: string | null
     image?: string | null
     role?: UserRole
-  } = {
-    ...userData,
-    role: userData.role === "GUEST" ? UserRole.USER : userData.role as UserRole
+    college?: {
+      id: string
+      name: string
+      collegeId: string
+    }
+  } | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const loadUserData = async () => {
+      // Prioritize NextAuth session data over localStorage
+      if (status === 'authenticated' && session?.user) {
+        // Use NextAuth session data
+        setUserData({
+          id: session.user.id || 'unknown',
+          name: session.user.name,
+          email: session.user.email,
+          image: session.user.image,
+          role: UserRole.USER
+        })
+        setLoading(false)
+        return
+      }
+
+      // Only check localStorage for college students if no NextAuth session
+      if (status === 'unauthenticated' || status === 'loading') {
+        const storedUserData = localStorage.getItem('user_data')
+        if (storedUserData) {
+          try {
+            const parsedUserData = JSON.parse(storedUserData)
+            if (parsedUserData && parsedUserData.id) {
+              // College student data
+              const collegeUser = {
+                id: parsedUserData.id,
+                name: parsedUserData.name,
+                email: parsedUserData.email,
+                image: null, // College students don't have images
+                role: UserRole.USER, // College students have USER role
+                college: parsedUserData.college // Additional college info
+              }
+              setUserData(collegeUser)
+              setLoading(false)
+              return
+            }
+          } catch (error) {
+            console.error('Error parsing college student data:', error)
+          }
+        }
+
+        // If no stored data and unauthenticated, show guest
+        if (status === 'unauthenticated') {
+          setUserData({
+            id: "guest",
+            name: "Guest User",
+            email: null,
+            image: null,
+            role: UserRole.USER
+          })
+        }
+      }
+
+      setLoading(false)
+    }
+
+    loadUserData()
+  }, [session, status])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading profile...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!userData) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">Profile Not Found</h2>
+          <p className="text-gray-600">Please sign in to view your profile.</p>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -34,10 +119,10 @@ export default async function ProfilePage() {
         </div>
 
         {/* Profile Header Component */}
-        <ProfileHeader user={user} />
+        <ProfileHeader user={userData} />
 
         {/* Profile Details Component */}
-        <ProfileDetails user={user} />
+        <ProfileDetails user={userData} />
       </div>
     </div>
   )

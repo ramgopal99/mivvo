@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { CollegeSidebar } from "@/app/college/_components/CollegeSidebar"
-import { usePathname } from "next/navigation"
 import { LoadingCompound } from "@/components/loading-compound"
+import { LogoutDialog } from "@/components/logout-dialog"
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { ChevronDown, GraduationCap } from "lucide-react"
+import { ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
@@ -17,7 +17,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { NotificationCompound } from "@/components/notification-compound"
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'
@@ -27,7 +26,6 @@ export default function CollegeDashboardLayout({
 }: {
   children: React.ReactNode
 }) {
-  const pathname = usePathname()
   const { data: session, status } = useSession()
   const [collegeData, setCollegeData] = useState<{
     name: string;
@@ -82,9 +80,6 @@ export default function CollegeDashboardLayout({
             </div>
           </div>
           <div className="flex items-center gap-2">
-            {/* Notification Compound Component */}
-            <NotificationCompound />
-
             {/* User Profile Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -116,9 +111,14 @@ export default function CollegeDashboardLayout({
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-red-600">
-                  Logout
-                </DropdownMenuItem>
+                <LogoutDialog>
+                  <DropdownMenuItem 
+                    className="text-red-600 cursor-pointer"
+                    onSelect={(e) => e.preventDefault()}
+                  >
+                    Logout
+                  </DropdownMenuItem>
+                </LogoutDialog>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>

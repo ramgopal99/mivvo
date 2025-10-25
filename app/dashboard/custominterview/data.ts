@@ -8,13 +8,43 @@ import { InterviewData, InterviewAttempt } from "./_components/InterviewCard"
  */
 
 /**
+ * Get authorization headers for API requests
+ * @param includeContentType - Whether to include Content-Type header
+ * @returns Headers object with authorization if available
+ */
+const getAuthHeaders = (includeContentType = true): Record<string, string> => {
+  const headers: Record<string, string> = {}
+
+  if (includeContentType) {
+    headers['Content-Type'] = 'application/json'
+  }
+
+  // Check for NextAuth session token
+  const nextAuthToken = localStorage.getItem('next-auth.session-token') ||
+                       localStorage.getItem('__Secure-next-auth.session-token')
+  if (nextAuthToken) {
+    headers['Authorization'] = `Bearer ${nextAuthToken}`
+  }
+
+  // Check for college student JWT token
+  const studentToken = localStorage.getItem('student_token')
+  if (studentToken) {
+    headers['Authorization'] = `Bearer ${studentToken}`
+  }
+
+  return headers
+}
+
+/**
  * Fetch a specific interview by ID
  * @param id - Interview ID
  * @returns Interview data or null if not found
  */
 export const getInterviewById = async (id: string): Promise<InterviewData | null> => {
   try {
-    const response = await fetch(`/api/custom-interviews/${id}`)
+    const response = await fetch(`/api/custom-interviews/${id}`, {
+      headers: getAuthHeaders()
+    })
     if (!response.ok) {
       if (response.status === 404) return null
       throw new Error('Failed to fetch interview')
@@ -32,7 +62,9 @@ export const getInterviewById = async (id: string): Promise<InterviewData | null
  */
 export const getAllInterviews = async (): Promise<InterviewData[]> => {
   try {
-    const response = await fetch('/api/custom-interviews')
+    const response = await fetch('/api/custom-interviews', {
+      headers: getAuthHeaders()
+    })
     if (!response.ok) {
       throw new Error('Failed to fetch interviews')
     }
@@ -49,7 +81,9 @@ export const getAllInterviews = async (): Promise<InterviewData[]> => {
  */
 export const getCompletedInterviews = async (): Promise<InterviewData[]> => {
   try {
-    const response = await fetch('/api/custom-interviews?status=completed')
+    const response = await fetch('/api/custom-interviews?status=completed', {
+      headers: getAuthHeaders()
+    })
     if (!response.ok) {
       throw new Error('Failed to fetch completed interviews')
     }
@@ -67,7 +101,9 @@ export const getCompletedInterviews = async (): Promise<InterviewData[]> => {
  */
 export const getInterviewsByStatus = async (status: InterviewData['status']): Promise<InterviewData[]> => {
   try {
-    const response = await fetch(`/api/custom-interviews?status=${status}`)
+    const response = await fetch(`/api/custom-interviews?status=${status}`, {
+      headers: getAuthHeaders()
+    })
     if (!response.ok) {
       throw new Error('Failed to fetch interviews by status')
     }
@@ -91,9 +127,7 @@ export const updateInterview = async (
   try {
     const response = await fetch(`/api/custom-interviews/${id}`, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: getAuthHeaders(true), // Content-Type needed for PUT with body
       body: JSON.stringify(updates),
     })
     if (!response.ok) {
@@ -116,6 +150,7 @@ export const deleteInterview = async (id: string): Promise<boolean> => {
   try {
     const response = await fetch(`/api/custom-interviews/${id}`, {
       method: 'DELETE',
+      headers: getAuthHeaders()
     })
     if (!response.ok) {
       if (response.status === 404) return false
@@ -261,6 +296,43 @@ export const getInterviewWithDummyAttempts = async (interviewId: string): Promis
     return interview
   } catch (error) {
     console.error('Error fetching interview with dummy attempts:', error)
+    return null
+  }
+}
+
+/**
+ * Fetch detailed attempt data by interview ID and attempt ID
+ * @param interviewId - Interview ID
+ * @param attemptId - Attempt ID
+ * @returns Detailed attempt data with results and conversations
+ */
+export const getAttemptDetails = async (interviewId: string, attemptId: string): Promise<{
+  id: string;
+  startedAt: string | null;
+  completedAt: string | null;
+  duration: number | null;
+  status: string | null;
+  createdAt: string;
+  interview: Record<string, unknown>;
+  results: Record<string, unknown>[];
+  conversations: Record<string, unknown>[];
+} | null> => {
+  try {
+    console.log('Fetching detailed attempt data:', { interviewId, attemptId })
+
+    const response = await fetch(`/api/custom-interviews/${interviewId}/attempt/${attemptId}`, {
+      headers: getAuthHeaders(false)
+    })
+
+    if (!response.ok) {
+      if (response.status === 404) return null
+      throw new Error('Failed to fetch attempt details')
+    }
+
+    const attemptData = await response.json()
+    return attemptData
+  } catch (error) {
+    console.error('Error fetching attempt details:', error)
     return null
   }
 }

@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Star, Users, Target } from "lucide-react"
 import { landingConfig } from "../../config/landing-config"
+import Link from "next/link"
 
 const iconMap = {
   Star,
@@ -12,7 +13,7 @@ const iconMap = {
 
 export function CtaSection() {
   return (
-    <div className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div className="py-20 px-4 sm:px-6 lg:px-8 bg-pink-50">
       <div className="max-w-6xl mx-auto">
         {/* Centered content with gradient background */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary/90 to-primary/80">
@@ -46,13 +47,15 @@ export function CtaSection() {
 
               {/* CTA Button */}
               <div className="pt-4">
-                <Button
-                  size="lg"
-                  className="px-8 py-4 text-lg font-semibold bg-white text-primary hover:bg-white/90 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 rounded-full"
-                >
-                  {landingConfig.cta.button.text}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+                <Link href="/auth/signin">
+                  <Button
+                    size="lg"
+                    className="px-8 py-4 text-lg font-semibold bg-white text-primary hover:bg-white/90 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 rounded-full"
+                  >
+                    {landingConfig.cta.button.text}
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
               </div>
 
               {/* Trust Indicators */}

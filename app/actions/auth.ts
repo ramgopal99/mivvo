@@ -13,6 +13,12 @@ export async function signInWithGoogle() {
 
 export async function signOutAction() {
   try {
+    // Clear college student data from localStorage on logout
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('user_data')
+      localStorage.removeItem('student_token')
+    }
+
     await signOut({ callbackUrl: "/" })
   } catch (error) {
     console.error("Sign-out error:", error)

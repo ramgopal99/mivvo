@@ -4,7 +4,7 @@ import { MorphingText } from "@/components/ui/morphing-text"
 
 export function MorphingSection() {
   return (
-    <section className="h-[40vh] w-full flex items-center justify-center bg-gradient-to-br from-pink-50 via-pink-100/30 to-white">
+    <section className="h-[40vh] w-full flex items-center justify-center bg-pink-50">
       <MorphingText 
         texts={[
           "AI Mock Interviews",

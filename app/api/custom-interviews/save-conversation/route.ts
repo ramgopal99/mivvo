@@ -9,12 +9,42 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
+import jwt from 'jsonwebtoken'
+
+/**
+ * Authenticate user from NextAuth session or JWT token
+ * @param request - NextRequest object
+ * @returns User ID if authenticated, null otherwise
+ */
+async function authenticateUser(request: NextRequest): Promise<string | null> {
+  // First, try NextAuth session
+  const session = await getServerSession(authOptions)
+  if (session?.user?.id) {
+    return session.user.id
+  }
+
+  // If no NextAuth session, try JWT token from Authorization header
+  const authHeader = request.headers.get('authorization')
+  if (authHeader?.startsWith('Bearer ')) {
+    const token = authHeader.substring(7)
+    try {
+      const decoded = jwt.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret') as { userId?: string }
+      if (decoded.userId) {
+        return decoded.userId
+      }
+    } catch (error) {
+      console.error('JWT verification failed:', error)
+    }
+  }
+
+  return null
+}
 
 export async function POST(request: NextRequest) {
   try {
-    // Verify user authentication
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.id) {
+    // Verify user authentication (NextAuth or JWT token)
+    const userId = await authenticateUser(request)
+    if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
@@ -30,7 +60,7 @@ export async function POST(request: NextRequest) {
       where: {
         interviewId,
         interview: {
-          createdBy: session.user.id
+          createdBy: userId
         }
       },
       orderBy: {

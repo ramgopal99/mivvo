@@ -14,10 +14,10 @@ export default function Home() {
           <StepsSection />
           <EducationSection />
           <MorphingSection />
-          <div id="pricing"> 
+          <div id="pricing">
             <PricingSection />
           </div>
-          <div id="faq"> 
+          <div id="faq">
             <FaqSection />
           </div>
           <TestimonialsSection />

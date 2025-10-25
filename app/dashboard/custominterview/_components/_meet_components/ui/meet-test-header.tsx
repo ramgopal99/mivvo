@@ -24,6 +24,7 @@ interface MeetTestHeaderProps {
   isCodingInterviewActive?: boolean
   isRegularInterviewActive?: boolean
   isScreenSharing?: boolean
+  showInterviewStartDialog?: boolean
 }
 
 export function MeetTestHeader({
@@ -43,7 +44,8 @@ export function MeetTestHeader({
   onStopCodingInterview,
   isCodingInterviewActive = false,
   isRegularInterviewActive = false,
-  isScreenSharing = false
+  isScreenSharing = false,
+  showInterviewStartDialog = false
 }: MeetTestHeaderProps) {
   return (
     <div className="absolute top-0 left-0 right-0 z-10 bg-background/95 backdrop-blur-sm border-b">
@@ -72,26 +74,30 @@ export function MeetTestHeader({
           )}
 
           {/* Voice Chat Controls */}
-          {!isRegularInterviewActive ? (
-            <Button
-              onClick={onStartConversation}
-              disabled={isLoading}
-              className="bg-green-600 hover:bg-green-700 gap-2 cursor-pointer"
-              size="sm"
-            >
-              <Mic className="h-4 w-4" />
-              Start Voice Chat
-            </Button>
-          ) : (
-            <Button
-              onClick={onStopConversation}
-              variant="destructive"
-              size="sm"
-              className="gap-2 cursor-pointer"
-            >
-              <MicOff className="h-4 w-4" />
-              Stop Chat
-            </Button>
+          {!showInterviewStartDialog && (
+            <>
+              {!isRegularInterviewActive ? (
+                <Button
+                  onClick={onStartConversation}
+                  disabled={isLoading}
+                  className="bg-green-600 hover:bg-green-700 gap-2 cursor-pointer"
+                  size="sm"
+                >
+                  <Mic className="h-4 w-4" />
+                  Start Voice Chat
+                </Button>
+              ) : (
+                <Button
+                  onClick={onStopConversation}
+                  variant="destructive"
+                  size="sm"
+                  className="gap-2 cursor-pointer"
+                >
+                  <MicOff className="h-4 w-4" />
+                  Stop Chat
+                </Button>
+              )}
+            </>
           )}
 
 

@@ -22,7 +22,7 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               {aboutConfig.hero.badges.map((badge, index) => (
-                <Badge key={index} variant="secondary" className="px-4 py-2 text-sm">
+                <Badge key={index} variant="secondary" className="px-4 py-2 text-sm border border-gray-200">
                   {badge}
                 </Badge>
               ))}
@@ -120,7 +120,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {aboutConfig.team.members.map((member, index) => (
               <Card key={index} className="text-center">
                 <CardHeader>

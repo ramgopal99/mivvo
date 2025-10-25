@@ -47,7 +47,7 @@ export function AppSidebar() {
                     <SidebarMenuItem>
                         <SidebarMenuButton asChild size="lg" className="w-full">
                             <Link href="/">
-                                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground shrink-0">
+                                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-white text-gray-900 shrink-0">
                                     <Image
                                         src={siteConfig.logo}
                                         alt={siteConfig.name}

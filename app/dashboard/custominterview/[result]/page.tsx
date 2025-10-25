@@ -1,58 +1,142 @@
-import { notFound } from "next/navigation"
-import { getSessionUserData } from "@/lib/session"
-import { prisma } from "@/lib/prisma"
+"use client"
+
+import { useEffect, useState } from "react"
+import { useSession } from "next-auth/react"
+import { useParams, notFound } from "next/navigation"
 import { InterviewResultsContent } from "./_components"
+import { getInterviewById } from "../data"
 
-async function getInterviewResults(interviewId: string) {
-  const user = await getSessionUserData()
+interface InterviewResult {
+  id: string
+  duration: number | null
+  feedback: string | null
+  knowledge: number | null
+  overallScore: number | null
+  overallFeedback: string | null
+  strengths: string[]
+  weaknesses: string[]
+  recommendations: string[]
+  communication: number | null
+  notes: string | null
+  createdAt: Date
+}
 
-  if (!user) {
-    notFound()
-  }
+interface InterviewAttempt {
+  id: string
+  startedAt: Date
+  completedAt: Date | null
+  duration: number | null
+  status: string
+  createdAt: Date
+  results: InterviewResult[]
+}
 
-  // Fetch interview with attempts and results
-  const interview = await prisma.mockInterview.findUnique({
-    where: {
-      id: interviewId,
-      createdBy: user.id // Ensure user owns this interview
-    },
-    select: {
-      id: true,
-      title: true,
-      companyName: true,
-      position: true,
-      createdAt: true,
-      attempts: {
-        select: {
-          id: true,
-          startedAt: true,
-          completedAt: true,
-          duration: true,
-          status: true,
-          createdAt: true,
-          results: true
-        },
-        orderBy: {
-          createdAt: 'desc'
+interface InterviewData {
+  id: string
+  title: string | null
+  companyName: string | null
+  position: string | null
+  createdAt: Date
+  attempts: InterviewAttempt[]
+}
+
+export default function InterviewResultPage() {
+  const params = useParams()
+  const { data: session, status } = useSession()
+  const [interview, setInterview] = useState<InterviewData | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [authenticated, setAuthenticated] = useState(false)
+
+  useEffect(() => {
+    const checkAuthAndLoadData = async () => {
+      // Check authentication
+      const isAuthenticated = status === 'authenticated' && session?.user
+      const hasCollegeToken = typeof window !== 'undefined' && localStorage.getItem('student_token')
+
+      if (!isAuthenticated && !hasCollegeToken) {
+        if (status !== 'loading') {
+          notFound()
+        }
+        return
+      }
+
+      setAuthenticated(true)
+
+      // Load interview data
+      if (params.result) {
+        try {
+          const interviewId = Array.isArray(params.result) ? params.result[0] : params.result
+          const data = await getInterviewById(interviewId)
+
+          if (data) {
+            // Transform API data to match component expectations
+            const transformedData = {
+              id: data.id,
+              title: data.title,
+              companyName: data.company || null,
+              position: null, // API doesn't provide position
+              createdAt: new Date(data.createdAt),
+              attempts: data.attempts?.map(attempt => ({
+                id: attempt.id,
+                startedAt: new Date(attempt.completedAt || attempt.id),
+                completedAt: attempt.completedAt ? new Date(attempt.completedAt) : null,
+                duration: attempt.duration,
+                status: 'completed', // Default to completed
+                createdAt: new Date(attempt.completedAt || attempt.id),
+                results: attempt.score || attempt.feedback || attempt.strengths?.length ? [{
+                  id: `result-${attempt.id}`,
+                  overallScore: attempt.score || 0,
+                  overallFeedback: attempt.feedback || "",
+                  strengths: attempt.strengths || [],
+                  weaknesses: attempt.weaknesses || [],
+                  recommendations: attempt.recommendations || [],
+                  communication: null,
+                  knowledge: null,
+                  feedback: attempt.feedback || "",
+                  notes: attempt.feedback || "", // Map feedback to notes field for interface compatibility
+                  duration: attempt.duration,
+                  createdAt: new Date(attempt.completedAt || attempt.id),
+                  vocabularyComplexity: null,
+                  emotionalTone: null,
+                  wordCountAnalysis: null,
+                  questionAnsweringQuality: null,
+                  followUpHandling: null,
+                  answerStructure: null,
+                  exampleUsage: null,
+                  relevantTopicAnswer: null
+                }] : []
+              })) || []
+            }
+            setInterview(transformedData)
+          } else {
+            notFound()
+          }
+        } catch (error) {
+          console.error('Error loading interview:', error)
+          notFound()
+        } finally {
+          setLoading(false)
         }
       }
     }
-  })
 
-  if (!interview) {
-    notFound()
+    checkAuthAndLoadData()
+  }, [params.result, session, status])
+
+  if (loading || status === 'loading') {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading interview results...</p>
+        </div>
+      </div>
+    )
   }
 
-  return interview
-}
-
-export default async function InterviewResultPage({
-  params
-}: {
-  params: Promise<{ result: string }>
-}) {
-  const { result } = await params
-  const interview = await getInterviewResults(result)
+  if (!authenticated || !interview) {
+    notFound()
+  }
 
   return <InterviewResultsContent interview={interview} />
 }

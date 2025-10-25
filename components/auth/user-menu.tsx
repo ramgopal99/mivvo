@@ -39,7 +39,7 @@ export function UserMenu() {
           </p>
         </div>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem asChild onSelect={(e) => e.preventDefault()}>
           <form action={signOutAction}>
             <button type="submit" className="w-full text-left">
               Sign out

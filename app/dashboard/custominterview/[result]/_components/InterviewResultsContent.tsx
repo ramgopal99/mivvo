@@ -146,7 +146,7 @@ export function InterviewResultsContent({ interview }: InterviewResultsContentPr
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center space-x-2">
                         <Badge variant="outline" className="text-sm">
-                          Attempt #{index + 1}
+                          Attempt #{attempts.length - index}
                         </Badge>
                       </div>
                       <div className="flex items-center text-sm text-gray-600 space-x-4">
@@ -178,27 +178,55 @@ export function InterviewResultsContent({ interview }: InterviewResultsContentPr
 
                 {(() => {
                   const analysis = getAttemptAnalysis(attempt)
-                  return (analysis?.overallScore !== undefined && analysis?.overallScore !== null) || analysis?.notes ? (
-                    <CardContent>
-                      <div className="flex items-center justify-between">
-                        {/* Score Section */}
-                        {analysis?.overallScore !== undefined && analysis?.overallScore !== null && (
-                          <div className="text-center">
-                            <div className="text-2xl font-bold text-blue-600">{Math.round(analysis.overallScore)}</div>
-                            <div className="text-xs text-gray-600">Score</div>
-                          </div>
-                        )}
+                  const hasScore = analysis?.overallScore !== undefined && analysis?.overallScore !== null && analysis.overallScore >= 0
+                  const hasFeedback = analysis?.overallFeedback && analysis.overallFeedback.trim().length > 0
+                  const hasAnyData = hasScore || hasFeedback
 
-                        {/* Notes Section */}
-                        {analysis?.notes && (
-                          <div className="flex-1 ml-6">
-                            <h4 className="text-sm font-medium text-purple-800 mb-1">Notes</h4>
-                            <p className="text-sm text-gray-700 leading-relaxed">{analysis.notes}</p>
+                  if (hasAnyData) {
+                    return (
+                      <CardContent>
+                        <div className="flex items-center justify-between">
+                          {/* Score Section */}
+                          {hasScore && (
+                            <div className="text-center">
+                              <div className="text-2xl font-bold text-blue-600">{Math.round(analysis.overallScore!)}</div>
+                              <div className="text-xs text-gray-600">Score</div>
+                            </div>
+                          )}
+
+                          {/* Feedback Section */}
+                          {hasFeedback && (
+                            <div className="flex-1 ml-6">
+                              <h4 className="text-sm font-medium text-purple-800 mb-1">Feedback</h4>
+                              <p className="text-sm text-gray-700 leading-relaxed">{analysis.overallFeedback}</p>
+                            </div>
+                          )}
+                        </div>
+                      </CardContent>
+                    )
+                  } else if (attempt.status === 'completed') {
+                    // Show message for completed attempts with no analysis
+                    return (
+                      <CardContent>
+                        <div className="text-center py-4">
+                          <div className="text-sm text-gray-500">
+                            Analysis in progress... Results will be available shortly.
                           </div>
-                        )}
-                      </div>
-                    </CardContent>
-                  ) : null
+                        </div>
+                      </CardContent>
+                    )
+                  } else {
+                    // Show message for incomplete attempts
+                    return (
+                      <CardContent>
+                        <div className="text-center py-4">
+                          <div className="text-sm text-gray-500">
+                            Interview not completed. No analysis available.
+                          </div>
+                        </div>
+                      </CardContent>
+                    )
+                  }
                 })()}
               </Card>
             ))}

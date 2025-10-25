@@ -13,10 +13,41 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { generateGeneralPrompt, generateCodingPrompt, generateUIUXPrompt, generateHRPrompt, generateTechnicalPrompt } from './prompts'
+import { UPSE_PROMPT, BANKING_PROMPT } from './prompts'
+import jwt from 'jsonwebtoken'
 
 interface InterviewWhereClause {
   createdBy: string
   status?: 'IN_PROGRESS' | 'COMPLETED'
+}
+
+/**
+ * Authenticate user from NextAuth session or JWT token
+ * @param request - NextRequest object
+ * @returns User ID if authenticated, null otherwise
+ */
+async function authenticateUser(request: NextRequest): Promise<string | null> {
+  // First, try NextAuth session
+  const session = await getServerSession(authOptions)
+  if (session?.user?.id) {
+    return session.user.id
+  }
+
+  // If no NextAuth session, try JWT token from Authorization header
+  const authHeader = request.headers.get('authorization')
+  if (authHeader?.startsWith('Bearer ')) {
+    const token = authHeader.substring(7)
+    try {
+      const decoded = jwt.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret') as { userId?: string }
+      if (decoded.userId) {
+        return decoded.userId
+      }
+    } catch (error) {
+      console.error('JWT verification failed:', error)
+    }
+  }
+
+  return null
 }
 
 
@@ -27,9 +58,9 @@ interface InterviewWhereClause {
  */
 export async function GET(request: NextRequest) {
   try {
-    // Verify user authentication
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.id) {
+    // Verify user authentication (NextAuth or JWT token)
+    const userId = await authenticateUser(request)
+    if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
@@ -39,7 +70,7 @@ export async function GET(request: NextRequest) {
 
     // Build database query filter
     const whereClause: InterviewWhereClause = {
-      createdBy: session.user.id
+      createdBy: userId
     }
 
     // Apply status filter if provided
@@ -109,14 +140,14 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   try {
-    // Verify user authentication
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.id) {
+    // Verify user authentication (NextAuth or JWT token)
+    const userId = await authenticateUser(request)
+    if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     // Parse request body
-    const { jdDetails, interviewType, screenShare, company } = await request.json()
+    const { jdDetails, interviewType, screenShare, company, generalSubType } = await request.json()
 
     // Validate required fields
     if (!jdDetails || !interviewType) {
@@ -135,15 +166,42 @@ export async function POST(request: NextRequest) {
     // Convert interview type and prepare data
     const mappedInterviewType = interviewTypeMap[interviewType] || 'GENERAL_INTERVIEW'
 
+    // Generate unique title based on interview type and existing interviews
+    const baseTitle = interviewType === 'General' && generalSubType 
+      ? `${interviewType} - ${generalSubType} Interview`
+      : `${interviewType} Interview`
+    
+    // Check for existing interviews with similar titles
+    const existingInterviews = await prisma.mockInterview.findMany({
+      where: {
+        createdBy: userId,
+        title: {
+          startsWith: baseTitle
+        }
+      },
+      select: { title: true }
+    })
+    
+    // Generate unique title
+    let uniqueTitle = baseTitle
+    if (existingInterviews.length > 0) {
+      const existingTitles = existingInterviews.map(i => i.title)
+      let counter = 1
+      do {
+        uniqueTitle = `${baseTitle} (${counter})`
+        counter++
+      } while (existingTitles.includes(uniqueTitle))
+    }
+
     // Create interview in database
     const interview = await prisma.mockInterview.create({
       data: {
-        title: `${interviewType} - Custom Interview`,
+        title: uniqueTitle,
         companyName: company || null,
         jobDescription: jdDetails,
         interviewType: mappedInterviewType,
         screenShareEnabled: screenShare || false,
-        createdBy: session.user.id
+        createdBy: userId
       },
       include: {
         attempts: true,
@@ -162,8 +220,18 @@ export async function POST(request: NextRequest) {
       promptText = generateHRPrompt(jdDetails, interview.title || "HR Interview")
     } else if (interviewType === "Technical") {
       promptText = generateTechnicalPrompt(jdDetails, interview.title || "Technical Interview")
+    } else if (interviewType === "General") {
+      // Handle General interview sub-types (UPSE and Banking)
+      if (generalSubType === "UPSE") {
+        promptText = UPSE_PROMPT
+      } else if (generalSubType === "Banking") {
+        promptText = BANKING_PROMPT
+      } else {
+        // Fallback to general prompt
+        promptText = generateGeneralPrompt(jdDetails, interview.title || "Custom Interview")
+      }
     } else {
-      // General interview
+      // Fallback to general prompt
       promptText = generateGeneralPrompt(jdDetails, interview.title || "Custom Interview")
     }
 

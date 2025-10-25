@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { UserRole } from "@prisma/client"
-import { Shield, Mail, User, Calendar } from "lucide-react"
+import { Shield, Mail, User, Calendar, GraduationCap } from "lucide-react"
 
 interface ProfileDetailsProps {
   user: {
@@ -10,6 +10,11 @@ interface ProfileDetailsProps {
     email?: string | null
     image?: string | null
     role?: UserRole
+    college?: {
+      id: string
+      name: string
+      collegeId: string
+    }
   }
 }
 
@@ -26,7 +31,7 @@ export function ProfileDetails({ user }: ProfileDetailsProps) {
   }
 
   return (
-    <div className="grid lg:grid-cols-2 gap-6">
+    <div className={`grid ${user.college ? 'lg:grid-cols-3' : 'lg:grid-cols-2'} gap-6`}>
       {/* Account Information */}
       <Card className="border shadow-sm">
         <CardHeader>
@@ -99,7 +104,9 @@ export function ProfileDetails({ user }: ProfileDetailsProps) {
               <Calendar className="h-4 w-4 text-muted-foreground" />
               <div className="flex-1">
                 <p className="text-sm font-medium text-foreground">Provider</p>
-                <p className="text-sm text-muted-foreground">Google OAuth</p>
+                <p className="text-sm text-muted-foreground">
+                  {user.college ? "College Authentication" : "Google OAuth"}
+                </p>
               </div>
             </div>
 
@@ -116,6 +123,40 @@ export function ProfileDetails({ user }: ProfileDetailsProps) {
           </div>
         </CardContent>
       </Card>
+
+      {/* College Information - Only show for college students */}
+      {user.college && (
+        <Card className="border shadow-sm">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <GraduationCap className="h-5 w-5 text-primary" />
+              College Information
+            </CardTitle>
+            <CardDescription>
+              Your college and academic details
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <GraduationCap className="h-4 w-4 text-muted-foreground" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-foreground">College Name</p>
+                  <p className="text-sm text-muted-foreground">{user.college.name}</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Shield className="h-4 w-4 text-muted-foreground" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-foreground">College ID</p>
+                  <p className="text-sm text-muted-foreground font-mono">{user.college.collegeId}</p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   )
 }

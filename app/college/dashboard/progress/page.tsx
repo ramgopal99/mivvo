@@ -1,102 +1,121 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { dummyStudents, Student } from "@/app/college/_components/dummy-data"
-import { useState } from "react"
-import {
-  ProgressStats,
-  StudentProgressCard,
-  ProgressFilters,
-  StudentDetails
-} from "./_components"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { LoadingCompound } from "@/components/loading-compound"
+import { ProgressTable, Student } from "./_components"
 
 export default function ProgressPage() {
-  const [selectedStudent, setSelectedStudent] = useState<Student | null>(null)
-  const [sortBy, setSortBy] = useState("overall")
-  const [filterBy, setFilterBy] = useState("all")
+  const router = useRouter()
+  const [students, setStudents] = useState<Student[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-  const filteredStudents = dummyStudents.filter(student => {
-    if (filterBy === "all") return true
-    return student.status === filterBy
-  })
+  const handleViewDetails = (student: Student) => {
+    // Navigate to student details page
+    router.push(`/college/dashboard/students/${student.id}`)
+  }
 
-  const sortedStudents = [...filteredStudents].sort((a, b) => {
-    switch (sortBy) {
-      case "overall":
-        return b.progress.overall - a.progress.overall
-      case "score":
-        return b.averageScore - a.averageScore
-      case "interviews":
-        return b.completedInterviews - a.completedInterviews
-      case "activity":
-        return new Date(b.lastActivity).getTime() - new Date(a.lastActivity).getTime()
-      default:
-        return 0
+  useEffect(() => {
+    const loadStudentsData = async () => {
+      setIsLoading(true)
+      setError(null)
+
+      try {
+        const token = localStorage.getItem('college_token')
+        if (!token) {
+          setError('No authentication token found')
+          return
+        }
+
+        const response = await fetch('/api/college/students?limit=1000', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch students data')
+        }
+
+        const result = await response.json()
+
+        if (result.success) {
+          setStudents(result.data.students)
+        } else {
+          setError(result.error || 'Failed to load students data')
+        }
+      } catch (err) {
+        console.error('Error loading students data:', err)
+        setError(err instanceof Error ? err.message : 'Failed to load data')
+      } finally {
+        setIsLoading(false)
+      }
     }
-  })
 
-  // Calculate stats
-  const totalStudents = filteredStudents.length
-  const avgProgress = Math.round(filteredStudents.reduce((acc, s) => acc + s.progress.overall, 0) / filteredStudents.length)
-  const topPerformer = Math.max(...filteredStudents.map(s => s.averageScore))
-  const activeToday = filteredStudents.filter(s => {
-    const today = new Date().toDateString()
-    return new Date(s.lastActivity).toDateString() === today
-  }).length
+    loadStudentsData()
+  }, [])
+
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <LoadingCompound 
+          text="Loading students" 
+          size="lg" 
+          variant="spinner"
+          className="text-gray-600"
+        />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <p className="text-red-500">Error: {error}</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 pt-8">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Student Progress Tracking</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Student Progress</h1>
           <p className="text-muted-foreground">
-            Monitor individual student development and performance trends
+            View student progress and performance data
           </p>
         </div>
-        <ProgressFilters
-          sortBy={sortBy}
-          onSortChange={setSortBy}
-          filterBy={filterBy}
-          onFilterChange={setFilterBy}
-        />
       </div>
 
-      {/* Summary Stats */}
-      <ProgressStats
-        totalStudents={totalStudents}
-        avgProgress={avgProgress}
-        topPerformer={topPerformer}
-        activeToday={activeToday}
-      />
-
-      {/* Main Content */}
-      <div className="grid gap-6 lg:grid-cols-3">
-        {/* Student List */}
-        <div className="lg:col-span-2">
-          <Card>
-            <CardHeader>
-              <CardTitle>Student Progress Overview</CardTitle>
-              <CardDescription>
-                Individual student performance and development tracking
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid gap-4 md:grid-cols-2">
-                {sortedStudents.map((student) => (
-                  <StudentProgressCard
-                    key={student.id}
-                    student={student}
-                  />
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Detailed View */}
-        <StudentDetails student={selectedStudent} />
-      </div>
+      {/* Students Table */}
+      <ProgressTable.Container>
+        <ProgressTable.Header>
+          <ProgressTable.HeaderCell>Student</ProgressTable.HeaderCell>
+          <ProgressTable.HeaderCell>Roll Number</ProgressTable.HeaderCell>
+          <ProgressTable.HeaderCell>Interviews</ProgressTable.HeaderCell>
+          <ProgressTable.HeaderCell>Performance</ProgressTable.HeaderCell>
+          <ProgressTable.HeaderCell>Status</ProgressTable.HeaderCell>
+          <ProgressTable.HeaderCell>Actions</ProgressTable.HeaderCell>
+        </ProgressTable.Header>
+        <ProgressTable.Body>
+          {students.length === 0 ? (
+            <ProgressTable.Empty />
+          ) : (
+            students.map((student) => (
+              <ProgressTable.Row
+                key={student.id}
+                student={student}
+                onViewDetails={handleViewDetails}
+              />
+            ))
+          )}
+        </ProgressTable.Body>
+      </ProgressTable.Container>
     </div>
   )
 }

@@ -149,8 +149,9 @@ export default function CollegeAdminLoginPage() {
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
           <h4 className="text-sm font-medium text-blue-900 mb-2">Demo Credentials</h4>
           <div className="text-xs text-blue-700 space-y-1">
-            <p><strong>College ID:</strong> TECH_UNIV_001</p>
+            <p><strong>College ID:</strong> demo</p>
             <p><strong>Password:</strong> college123</p>
+            <p><strong>Admin Email:</strong> demo@college.com (alternative login)</p>
           </div>
         </div>
 

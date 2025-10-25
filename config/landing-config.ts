@@ -8,7 +8,7 @@ export const landingConfig = {
       text: "AI Mock Interviews"
     },
     description: {
-      text: "Practice with our advanced AI interviewer, get instant feedback, and receive detailed analysis to improve your performance and land your dream job."
+      text: "Practice with our advanced AI interviewer for technical roles, civil services, banking, and government exams. Get instant feedback and detailed analysis to improve your performance and land your dream job."
     },
     cta: {
       text: "Start your first mock interview",
@@ -110,32 +110,32 @@ export const landingConfig = {
   },
   education: {
     header: {
-      title: "Prepare students for real-world interviews",
-      description: "Give your students the confidence they need with AI-powered mock interviews. Perfect for career preparation and placement training.",
+      title: "Empower students for diverse career paths",
+      description: "Prepare students for technical interviews, civil services (UPSE), banking, SSC, and government exams with comprehensive AI-powered mock interviews.",
       tabOptions: [
-        { label: "For Schools & Colleges", value: "schools" },
+        { label: "For Colleges & Coaching", value: "colleges" },
         { label: "Student Practice Platform", value: "platform" }
       ]
     },
     features: [
       {
-        title: "Campus-Wide Access",
-        description: "Unlimited practice sessions for all students with institutional licensing.",
+        title: "Technical Interview Prep",
+        description: "Comprehensive preparation for software engineering, data science, and tech company interviews.",
         icon: "GraduationCap"
       },
       {
-        title: "Batch Management",
-        description: "Organize students by batches, courses, and departments for easy tracking.",
+        title: "Civil Services Training",
+        description: "Specialized coaching for UPSE, SSC, Railways, and other government exam interviews.",
         icon: "Users"
       },
       {
-        title: "Curriculum Integration",
-        description: "Seamlessly integrate with your existing career guidance and placement programs.",
+        title: "Banking & Finance",
+        description: "Prepare students for banking sector interviews, financial services, and corporate roles.",
         icon: "BookOpen"
       },
       {
-        title: "Progress Analytics",
-        description: "Track student progress, identify improvement areas, and generate detailed reports.",
+        title: "Progress Tracking",
+        description: "Monitor student performance across all interview types with detailed analytics and reports.",
         icon: "Award"
       }
     ],
@@ -144,12 +144,12 @@ export const landingConfig = {
       href: "/auth/signup"
     },
     mockInterface: {
-      title: "Computer Science Batch 2024",
-      subtitle: "45 students • 12 completed interviews",
+      title: "Engineering & Civil Services Batch 2024",
+      subtitle: "120 students • 45 completed interviews",
       status: "Active",
       stats: [
-        { label: "Avg. Score", value: "78%", icon: "Star" },
-        { label: "Completed", value: "12/45", icon: "CheckCircle" }
+        { label: "Avg. Score", value: "82%", icon: "Star" },
+        { label: "Completed", value: "45/120", icon: "CheckCircle" }
       ],
       students: [
         { name: "Priya Sharma", score: 85, status: "Completed" },
@@ -170,28 +170,24 @@ export const landingConfig = {
     },
     questions: [
       {
-        question: "How does the AI interviewer work?",
-        answer: "Our AI interviewer uses advanced natural language processing to conduct realistic mock interviews. It adapts to your responses, asks follow-up questions, and provides real-time feedback based on industry best practices."
+        question: "What interview types does Mivvo support?",
+        answer: "Mivvo supports technical interviews (coding, system design), civil services (UPSE, SSC, Railways), banking sector interviews, government exams, and corporate roles. We cover all major career paths from tech companies to civil services."
       },
       {
-        question: "What types of interviews can I practice?",
-        answer: "You can practice technical interviews, behavioral questions, system design discussions, coding challenges, and general interview scenarios. We cover software engineering, data science, product management, and more roles."
+        question: "How does the AI interviewer work?",
+        answer: "Our AI interviewer uses advanced natural language processing to conduct realistic mock interviews. It adapts to your responses, asks follow-up questions, and provides real-time feedback based on industry best practices and exam patterns."
+      },
+      {
+        question: "Is this suitable for colleges and coaching institutes?",
+        answer: "Yes! Mivvo is perfect for colleges and coaching institutes. We offer institutional licensing with batch management, progress tracking, and comprehensive preparation for both technical and civil service interviews."
       },
       {
         question: "How accurate is the performance analysis?",
         answer: "Our AI analyzes your communication skills, technical knowledge, problem-solving approach, and confidence levels. The analysis is based on industry standards and provides detailed insights with actionable recommendations for improvement."
       },
       {
-        question: "Can I use this for specific companies?",
-        answer: "Yes! Our platform includes company-specific interview formats and questions from top tech companies like Google, Amazon, Microsoft, Apple, and many others. You can also practice with custom scenarios."
-      },
-      {
-        question: "Is my data secure and private?",
-        answer: "Absolutely. We use enterprise-grade encryption and never share your interview data. All recordings and analysis are stored securely and can be deleted at any time. We're fully GDPR compliant."
-      },
-      {
-        question: "How much does it cost?",
-        answer: "We offer a free tier with basic features, and premium plans starting at $19/month for unlimited interviews, advanced analytics, and company-specific practice sessions. Students and institutions get special pricing."
+        question: "Can I practice for specific exams like UPSE or SSC?",
+        answer: "Absolutely! We have specialized interview formats for UPSE civil services, SSC government exams, banking sector interviews, and technical roles. Each format is tailored to the specific requirements of that career path."
       }
     ]
   },
@@ -202,7 +198,7 @@ export const landingConfig = {
     },
     description: "Start practicing with AI and get detailed feedback delivered straight to your dashboard.",
     button: {
-      text: "Get your first mock interview for free",
+      text: "Get your first 30 min free",
       href: "/auth/signup"
     },
     trustIndicators: [
@@ -229,28 +225,28 @@ export const landingConfig = {
       },
       {
         name: "Priya Sharma",
-        role: "Product Manager @ Microsoft",
+        role: "UPSE Civil Service Officer",
         avatar: "https://avatar.iran.liara.run/public/girl",
-        quote: "The team was very supportive and kept me motivated throughout my interview preparation journey.",
-        description: "I started as a total newbie with virtually no interview experience. Mivvo's AI interviewer adapted to my skill level and gradually increased the difficulty. The real-time feedback helped me identify my weak areas and improve systematically.",
+        quote: "The AI interviewer perfectly simulated UPSE interview scenarios. It helped me master administrative aptitude and governance questions.",
+        description: "I was preparing for UPSE civil services and needed specialized interview practice. Mivvo's AI interviewer understood the unique requirements of civil service interviews - from administrative scenarios to current affairs discussions. The feedback on my analytical thinking and ethical framework was exactly what I needed to clear the interview.",
         verified: "Verified Graduate",
         cardStyle: "dark-blue"
       },
       {
         name: "Vikram Joshi",
-        role: "Data Scientist (Recent Graduate)",
+        role: "Banking Professional @ SBI",
         avatar: "https://avatar.iran.liara.run/public/boy",
         quote: "Such a life-changing experience. Highly recommended!",
-        description: "Before joining Mivvo, I've never had proper interview practice and was extremely nervous about technical interviews. The AI interviewer was so realistic and comprehensive that I felt completely confident going into my actual interviews. The detailed analysis reports with specific feedback on my communication skills, technical knowledge, and problem-solving approach helped me understand exactly what I needed to work on. The personalized recommendations and practice sessions were incredibly valuable. I landed my dream job at a top tech company and couldn't be happier with the results! I would definitely recommend Mivvo to anyone looking for interview practice.",
+        description: "I was preparing for banking sector interviews and needed practice with financial services scenarios. Mivvo's AI interviewer provided realistic banking interview simulations covering banking products, regulatory compliance, and customer service scenarios. The detailed feedback on my financial knowledge and communication skills helped me land my dream job at SBI.",
         verified: "Verified Graduate",
         cardStyle: "white"
       },
       {
         name: "Rahul Singh",
-        role: "Frontend Developer @ Apple",
+        role: "SSC Officer @ Railways",
         avatar: "https://avatar.iran.liara.run/public/boy",
         quote: "An overall wonderful and rewarding experience",
-        description: "Thank you for the wonderful experience! I now have a job I really enjoy, and I owe it all to Mivvo's AI practice sessions. The personalized feedback and mock interviews prepared me perfectly for the real thing.",
+        description: "Thank you for the wonderful experience! I now have a government job I really enjoy, and I owe it all to Mivvo's AI practice sessions. The specialized SSC interview format with general studies questions and administrative scenarios prepared me perfectly for the real interview.",
         verified: "Verified Graduate",
         cardStyle: "white"
       },
@@ -269,11 +265,11 @@ export const landingConfig = {
     mainFeatures: {
       aiInterviews: {
         title: "Cross Every Career Ladder",
-        description: "Climb through interview levels with AI guidance. From junior to senior roles, master every stage of your career progression."
+        description: "Climb through interview levels with AI guidance. From technical roles to civil services, master every stage of your career progression."
       },
       technicalCoding: {
-        title: "Technical Coding Interviews",
-        description: "Experience real technical coding interviews with AI assistance. Get help solving algorithmic problems, receive detailed code reviews, and practice with industry-standard interview questions."
+        title: "Technical Coding Interviews (coming soon)",
+        description: "Practice technical coding problems and get instant AI-powered feedback to improve your interview skills."
       },
       performanceAnalytics: {
         header: "Interview Analytics",
@@ -299,14 +295,17 @@ export const landingConfig = {
         ]
       },
       companyPractice: {
-        title: "Company-Specific Practice",
-        description: "Practice with interview formats and questions from top tech companies like Google, Amazon, Microsoft, and more.",
+        title: "Diverse Interview Practice",
+        description: "Practice with interview formats from top tech companies, civil services, banking sector, and government exams. Master interviews across all career paths.",
         interviewCalls: [
           { company: "Google", role: "Senior Software Engineer", type: "Technical Interview" },
           { company: "Amazon", role: "Full Stack Developer", type: "System Design" },
           { company: "Microsoft", role: "Frontend Engineer", type: "Coding Challenge" },
-          { company: "Apple", role: "iOS Developer", type: "Technical Screening" },
-          { company: "Meta", role: "React Developer", type: "Peer Interview" },
+          { company: "UPSE", role: "Civil Service Officer", type: "Administrative Interview" },
+          { company: "Banking", role: "Banking Professional", type: "Financial Services Interview" },
+          { company: "SSC", role: "Government Officer", type: "General Studies Interview" },
+          { company: "Railways", role: "Railway Officer", type: "Technical & General Interview" },
+          { company: "Defense", role: "Defense Officer", type: "Leadership Interview" },
           { company: "Netflix", role: "Backend Engineer", type: "Architecture Review" },
           { company: "Tesla", role: "Full Stack Engineer", type: "Problem Solving" },
           { company: "Uber", role: "Mobile Developer", type: "Code Review" }
@@ -347,22 +346,23 @@ export const landingConfig = {
   pricing: {
     header: {
       title: "Simple pricing for all your needs",
-      subtitle: "Choose the plan that's right for you and start practicing today."
+      subtitle: "Choose the plan that's right for you and start practicing today.",
+      additionalInfo: "30 min free • No credit card required"
     },
     plans: [
       {
         name: "Free",
         isPopular: false,
-        price: "0",
-        currency: "₹",
-        billingPeriod: "/month",
+        price: "30 min",
+        currency: "",
+        billingPeriod: "free",
         description: "Perfect for getting started with AI mock interviews.",
         features: [
-          "3 mock interviews per month",
+          "30 minutes free interview time",
           "Basic AI feedback",
           "Performance summary",
           "Email support",
-          "Mobile app access"
+
         ],
         cta: {
           text: "Get Started Free",
@@ -373,12 +373,12 @@ export const landingConfig = {
       {
         name: "Pro",
         isPopular: true,
-        price: "999",
+        price: "249",
         currency: "₹",
-        billingPeriod: "/month",
+        billingPeriod: "/6+4 hr",
         description: "Best for serious job seekers and career changers.",
         features: [
-          "Unlimited mock interviews",
+          "6+4 hr total interview time",
           "Advanced AI analysis",
           "Detailed performance reports",
           "Company-specific practice",

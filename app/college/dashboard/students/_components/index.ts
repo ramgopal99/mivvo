@@ -1,3 +1,3 @@
-export { StudentCard } from './student-card'
-export { StudentsFilters } from './students-filters'
+export { StudentsTable } from './students-table'
 export { StudentDetailsDialog } from './student-details-dialog'
+export type { Student } from './students-table'

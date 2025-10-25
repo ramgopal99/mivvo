@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { MicOff, VideoOff } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 import {
   Dialog,
@@ -39,6 +40,36 @@ declare global {
   }
 }
 
+// Helper function to get authentication headers for API calls
+const getAuthHeaders = (): Record<string, string> => {
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  }
+
+  // Check for NextAuth session token
+  const nextAuthToken = typeof window !== 'undefined' ? (
+    localStorage.getItem('next-auth.session-token') ||
+    localStorage.getItem('__Secure-next-auth.session-token')
+  ) : null
+  if (nextAuthToken) {
+    console.log('Using NextAuth token for API call')
+    headers['Authorization'] = `Bearer ${nextAuthToken}`
+  }
+
+  // Check for college student JWT token (takes precedence)
+  const studentToken = typeof window !== 'undefined' ? localStorage.getItem('student_token') : null
+  if (studentToken) {
+    console.log('Using college student JWT token for API call')
+    headers['Authorization'] = `Bearer ${studentToken}`
+  }
+
+  if (!headers['Authorization']) {
+    console.warn('No authentication token found for API call')
+  }
+
+  return headers
+}
+
 interface MeetTestRoomProps {
   interviewTitle?: string
   assistantName?: string
@@ -72,6 +103,7 @@ export function MeetTestRoom({
     showShareScreen: true,
     showCodeButtonOnlyOnScreenShare: true,
     showCodingInterviewOnlyOnScreenShare: true,
+    showInterviewStartDialog: false,
     screenShareSuccessMessage: "Screen sharing started successfully!",
     screenShareDialogTitle: "Screen Sharing Active",
     screenShareDialogDescription: "Your entire screen is now being shared. Others can see everything on your screen in the bottom-right corner of their view.\n\nTips:\n• Click the monitor button again to stop sharing\n• Your entire screen content is visible to others",
@@ -122,9 +154,71 @@ export function MeetTestRoom({
     }))
   }, [interviewData, greeting, interviewTitle, assistantName])
 
-  // Handle end call - conversation data is saved when conversation stops
-  const handleEndCall = () => {
-    // Just call the original onEndCall - conversation already saved when it stopped
+  // Show interview start dialog if enabled in config
+  useEffect(() => {
+    if (uiConfig.showInterviewStartDialog) {
+      setShowInterviewStartDialog(true)
+    }
+  }, [uiConfig.showInterviewStartDialog])
+
+  // Handle end call - save conversation data and perform analysis if interview is active
+  const handleEndCall = async () => {
+    // If there's an active conversation, save it and perform analysis before ending
+    if (isConversationMode && voiceTranscript.length > 0 && interviewData?.id) {
+      console.log('End call clicked with active conversation, saving data and performing analysis...')
+
+      try {
+        // Save conversation data
+        await handleSaveConversation()
+        await handleUpdateTimeUsage()
+
+        // Perform AI analysis
+        const analysisResponse = await fetch('/api/analysis', {
+          method: 'POST',
+          headers: getAuthHeaders(),
+          body: JSON.stringify({
+            conversation: voiceTranscript,
+            topic: interviewData.customPrompt || interviewData.jd
+          })
+        })
+
+        if (analysisResponse.ok) {
+          const analysis = await analysisResponse.json()
+          console.log('Analysis completed, saving results...')
+
+          // Save analysis results to database
+          const saveAnalysisResponse = await fetch('/api/custom-interviews/save-analysis', {
+            method: 'POST',
+            headers: getAuthHeaders(),
+            body: JSON.stringify({
+              interviewId: interviewData.id,
+              analysis: analysis,
+              duration: elapsedTime
+            })
+          })
+
+          if (saveAnalysisResponse.ok) {
+            console.log('Analysis results saved successfully')
+          } else {
+            console.error('Failed to save analysis results:', saveAnalysisResponse.status)
+          }
+        } else {
+          console.error('Failed to analyze conversation:', analysisResponse.status)
+        }
+      } catch (error) {
+        console.error('Error during end call processing:', error)
+      }
+    }
+
+    // Stop any active conversations
+    if (isConversationMode) {
+      setIsConversationMode(false)
+    }
+    if (isCodingInterviewActive) {
+      setIsCodingInterviewActive(false)
+    }
+
+    // Call the original onEndCall
     if (onEndCall) {
       onEndCall()
     }
@@ -140,6 +234,9 @@ export function MeetTestRoom({
   const [isScreenSharing, setIsScreenSharing] = useState(false)
   const [screenStream, setScreenStream] = useState<MediaStream | null>(null)
   const [showScreenShareDialog, setShowScreenShareDialog] = useState(false)
+
+  // State for interview start dialog
+  const [showInterviewStartDialog, setShowInterviewStartDialog] = useState(false)
 
   // State for code dialog
   const [showCodeDialog, setShowCodeDialog] = useState(false)
@@ -637,9 +734,7 @@ export function MeetTestRoom({
       try {
         const response = await fetch('/api/custom-interviews/start-attempt', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: getAuthHeaders(),
           body: JSON.stringify({
             interviewId: interviewData?.id
           })
@@ -697,9 +792,7 @@ export function MeetTestRoom({
 
         const response = await fetch('/api/custom-interviews/save-conversation', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: getAuthHeaders(),
           body: JSON.stringify(conversationData)
         })
 
@@ -728,9 +821,7 @@ export function MeetTestRoom({
               // Save analysis results to database
               const saveAnalysisResponse = await fetch('/api/custom-interviews/save-analysis', {
                 method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
+                headers: getAuthHeaders(),
                 body: JSON.stringify({
                   interviewId: interviewData.id,
                   analysis: analysis,
@@ -781,9 +872,7 @@ export function MeetTestRoom({
       // Update user's used time in database
       const response = await fetch('/api/custom-interviews/update-time-usage', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: getAuthHeaders(),
         body: JSON.stringify({
           interviewId: interviewData.id,
           timeUsedMinutes: timeUsedMinutes
@@ -911,6 +1000,7 @@ export function MeetTestRoom({
           isCodingInterviewActive={isCodingInterviewActive}
           isRegularInterviewActive={isConversationMode && !isCodingInterviewActive}
           isScreenSharing={isScreenSharing}
+          showInterviewStartDialog={uiConfig.showInterviewStartDialog}
         />
 
 
@@ -1112,6 +1202,35 @@ export function MeetTestRoom({
         stream={screenStream}
         isVisible={isScreenSharing}
       />
+
+      {/* Interview Start Dialog */}
+      <Dialog open={showInterviewStartDialog} >
+        <DialogContent className="sm:max-w-md [&>button]:hidden">
+          <DialogHeader >
+            <DialogTitle className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              Start Your Interview
+            </DialogTitle>
+            <DialogDescription>
+              Welcome to your AI-powered interview! Click the button below to begin your conversation with the interviewer.
+              The AI will ask you relevant questions based on your experience and the job requirements.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-end gap-2 mt-4">
+            <Button
+              onClick={() => {
+                setShowInterviewStartDialog(false)
+                // Start voice chat by triggering the start event
+                const startEvent = new CustomEvent('startVoiceChat')
+                window.dispatchEvent(startEvent)
+              }}
+              className="bg-green-600 hover:bg-green-700"
+            >
+              Start Interview
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Screen Share Dialog */}
       <Dialog open={showScreenShareDialog} onOpenChange={setShowScreenShareDialog}>

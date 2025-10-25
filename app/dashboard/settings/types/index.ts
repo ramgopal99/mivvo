@@ -20,6 +20,12 @@ export interface UserData {
   totalTimeAllowance?: number
   usedTimeMinutes?: number
   timeAllowanceResetAt?: Date | null
+  // College information for college students
+  college?: {
+    id: string
+    name: string
+    collegeId: string
+  } | null
 }
 
 export interface ServerActionResponse<T = unknown> {

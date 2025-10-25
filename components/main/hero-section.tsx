@@ -18,10 +18,21 @@ export function HeroSection() {
 
   return (
     <div className="relative h-[170vh] overflow-hidden">
-      {/* Background with gradient and grid pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-pink-100/50 to-white">
-        {/* Subtle grid pattern overlay */}
-        <div className="absolute inset-0 opacity-20 bg-grid-pattern" />
+      {/* Background with uniform color and fading box pattern */}
+      <div className="absolute inset-0 bg-pink-50">
+        {/* Fading box pattern overlay */}
+        <div 
+          className="absolute inset-0 opacity-80" 
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px',
+            maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)'
+          }}
+        />
       </div>
 
       {/* Content Section - First 70% */}

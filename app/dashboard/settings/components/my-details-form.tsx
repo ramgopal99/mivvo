@@ -204,6 +204,36 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
           </CardContent>
         </Card>
 
+        {/* College Information - Only show for college students */}
+        {userData?.college && (
+          <Card>
+            <CardHeader>
+              <CardTitle>College Information</CardTitle>
+              <CardDescription>
+                Your academic institution details
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label>College Name</Label>
+                <Input
+                  value={userData.college.name}
+                  disabled
+                  className="bg-gray-50"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>College ID</Label>
+                <Input
+                  value={userData.college.collegeId}
+                  disabled
+                  className="bg-gray-50 font-mono text-sm"
+                />
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {message && (
           <div className={`p-4 rounded-md ${message.includes('successfully') ? 'bg-green-50 text-green-800 border border-green-200' : 'bg-red-50 text-red-800 border border-red-200'}`}>
             {message}

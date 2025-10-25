@@ -6,18 +6,80 @@ import { CreateInterviewDialog, InterviewStats, InterviewList } from "./_compone
 import { InterviewData } from "./_components/InterviewCard"
 import { getAllInterviews, deleteInterview } from "./data"
 
+// Helper function to get authentication headers
+const getAuthHeaders = (): Record<string, string> => {
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  }
+
+  // Check for NextAuth session token
+  const nextAuthToken = localStorage.getItem('next-auth.session-token') ||
+                       localStorage.getItem('__Secure-next-auth.session-token')
+  if (nextAuthToken) {
+    headers['Authorization'] = `Bearer ${nextAuthToken}`
+  }
+
+  // Check for college student JWT token
+  const studentToken = localStorage.getItem('student_token')
+  if (studentToken) {
+    headers['Authorization'] = `Bearer ${studentToken}`
+  }
+
+  return headers
+}
+
 export default function CustomInterviewPage() {
   const { data: session, status } = useSession()
   const [interviews, setInterviews] = useState<InterviewData[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
   const [viewFormat, setViewFormat] = useState<"box" | "list">("box")
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+  // Check authentication status
+  useEffect(() => {
+    const checkAuth = () => {
+      // Check for NextAuth session
+      if (status === 'authenticated' && session?.user) {
+        setIsAuthenticated(true)
+        setLoading(false)
+        return
+      }
+
+      // Check for college student token
+      const studentToken = localStorage.getItem('student_token')
+      const userData = localStorage.getItem('user_data')
+
+      if (studentToken && userData) {
+        try {
+          const parsedUserData = JSON.parse(userData)
+          if (parsedUserData && parsedUserData.id) {
+            setIsAuthenticated(true)
+            setLoading(false)
+            return
+          }
+        } catch (error) {
+          console.error('Error parsing user data:', error)
+        }
+      }
+
+      // If NextAuth is still loading, wait
+      if (status === 'loading') {
+        return
+      }
+
+      // Not authenticated
+      setIsAuthenticated(false)
+      setLoading(false)
+    }
+
+    checkAuth()
+  }, [status, session])
 
   // Load interviews from database
   useEffect(() => {
     const loadInterviews = async () => {
-      // Only load if user is authenticated
-      if (status === 'authenticated' && session?.user) {
+      if (isAuthenticated) {
         try {
           const data = await getAllInterviews()
           setInterviews(data)
@@ -26,13 +88,13 @@ export default function CustomInterviewPage() {
         } finally {
           setLoading(false)
         }
-      } else if (status === 'unauthenticated') {
-        setLoading(false)
       }
     }
 
-    loadInterviews()
-  }, [status, session])
+    if (isAuthenticated) {
+      loadInterviews()
+    }
+  }, [isAuthenticated])
 
   const handleInterviewCreated = async (data: { jdDetails: string; interviewType: string; screenShare?: boolean; company?: string }) => {
     // Handle new interview creation via API
@@ -41,9 +103,7 @@ export default function CustomInterviewPage() {
     try {
       const response = await fetch('/api/custom-interviews', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: getAuthHeaders(),
         body: JSON.stringify({
           jdDetails: data.jdDetails,
           interviewType: data.interviewType,
@@ -139,7 +199,7 @@ export default function CustomInterviewPage() {
     )
   }
 
-  if (status === 'unauthenticated') {
+  if (!isAuthenticated && status === 'unauthenticated') {
     return (
       <div className="space-y-6">
         <div className="flex items-center justify-center h-64">

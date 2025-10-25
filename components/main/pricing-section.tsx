@@ -8,7 +8,7 @@ import { landingConfig } from "../../config/landing-config"
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-pink-50">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -99,7 +99,7 @@ export function PricingSection() {
         {/* Additional Info */}
         <div className="text-center mt-12">
           <p className="text-gray-600 mb-4">
-            All plans include 14-day free trial • No credit card required
+            {landingConfig.pricing.header.additionalInfo}
           </p>
           <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
             <div className="flex items-center">

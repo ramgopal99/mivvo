@@ -6,6 +6,32 @@
 
 import { InterviewData } from './_components/InterviewCard'
 
+// Helper function to get authentication headers
+const getAuthHeaders = (includeContentType = true): Record<string, string> => {
+  const headers: Record<string, string> = {}
+
+  if (includeContentType) {
+    headers['Content-Type'] = 'application/json'
+  }
+
+  // Check for NextAuth session token
+  const nextAuthToken = typeof window !== 'undefined' ? (
+    localStorage.getItem('next-auth.session-token') ||
+    localStorage.getItem('__Secure-next-auth.session-token')
+  ) : null
+  if (nextAuthToken) {
+    headers['Authorization'] = `Bearer ${nextAuthToken}`
+  }
+
+  // Check for college student JWT token
+  const studentToken = typeof window !== 'undefined' ? localStorage.getItem('student_token') : null
+  if (studentToken) {
+    headers['Authorization'] = `Bearer ${studentToken}`
+  }
+
+  return headers
+}
+
 // Extended interface for API response data
 interface ExtendedInterviewData extends InterviewData {
   interviewType?: string
@@ -20,7 +46,9 @@ export async function fetchInterviewById(interviewId: string): Promise<ExtendedI
   try {
     console.log('Fetching interview with ID:', interviewId)
 
-    const response = await fetch(`/api/custom-interviews/${interviewId}`)
+    const response = await fetch(`/api/custom-interviews/${interviewId}`, {
+      headers: getAuthHeaders(false) // No content-type for GET requests
+    })
     if (!response.ok) {
       if (response.status === 404) return null
       throw new Error('Failed to fetch interview')
@@ -50,9 +78,7 @@ export async function createInterview(interviewData: {
 
     const response = await fetch('/api/custom-interviews', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: getAuthHeaders(true),
       body: JSON.stringify(interviewData),
     })
 
@@ -83,9 +109,7 @@ export async function updateInterview(
 
     const response = await fetch(`/api/custom-interviews/${id}`, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: getAuthHeaders(true),
       body: JSON.stringify(updates),
     })
 
@@ -113,6 +137,7 @@ export async function deleteInterview(id: string): Promise<boolean> {
 
     const response = await fetch(`/api/custom-interviews/${id}`, {
       method: 'DELETE',
+      headers: getAuthHeaders(false) // No content-type for DELETE requests
     })
 
     if (!response.ok) {

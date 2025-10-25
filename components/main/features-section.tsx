@@ -11,9 +11,7 @@ import {
 
 export function FeaturesSection() {
   return (
-    <section id="features" className="py-20 relative overflow-hidden" style={{
-      background: 'linear-gradient(135deg, #fef7f0 0%, #fdf2f8 50%, #fef7f0 100%)'
-    }}>
+    <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-pink-50">
       {/* Box Grid Pattern Background */}
       <div className="absolute inset-0 opacity-30">
         <div 
@@ -48,7 +46,7 @@ export function FeaturesSection() {
             </span>
           </h2>
           <p className="text-xl text-gray-600 ">
-            Our comprehensive platform provides all the tools and features you need to prepare for any interview scenario.
+            Our comprehensive platform provides all the tools and features you need to prepare for any interview scenario - from technical roles to civil services, banking, and government exams.
           </p>
         </div>
 

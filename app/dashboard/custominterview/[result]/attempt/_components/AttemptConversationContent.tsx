@@ -68,9 +68,10 @@ interface InterviewAttempt {
 
 interface AttemptDetailsContentProps {
   attempt: InterviewAttempt
+  resultId: string
 }
 
-export function AttemptDetailsContent({ attempt }: AttemptDetailsContentProps) {
+export function AttemptDetailsContent({ attempt, resultId }: AttemptDetailsContentProps) {
   const router = useRouter()
   const [activeTab, setActiveTab] = useState("overview")
 
@@ -111,9 +112,9 @@ export function AttemptDetailsContent({ attempt }: AttemptDetailsContentProps) {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-start justify-between">
-        <Button variant="ghost" onClick={() => router.push(`/dashboard/custominterview/result/${attempt.interview.id}`)} className="cursor-pointer">
+        <Button variant="ghost" onClick={() => router.push(`/dashboard/custominterview/${resultId}`)} className="cursor-pointer">
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Results
+          Back to Result
         </Button>
         <div className="flex flex-col text-center flex-1 mx-8">
           <h1 className="text-3xl font-bold text-gray-900 leading-tight">{attempt.interview.title || 'Untitled Interview'}</h1>
@@ -184,10 +185,10 @@ export function AttemptDetailsContent({ attempt }: AttemptDetailsContentProps) {
       <div className="flex justify-center space-x-4 pt-6">
         <Button
           variant="outline"
-          onClick={() => router.push(`/dashboard/custominterview/result/${attempt.interview.id}`)}
+          onClick={() => router.push(`/dashboard/custominterview/${resultId}`)}
           className="cursor-pointer"
         >
-          Back to Results
+          Back to Result
         </Button>
         <Button
           onClick={() => router.push('/dashboard/custominterview')}

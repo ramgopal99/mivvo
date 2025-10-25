@@ -54,22 +54,16 @@ export const aboutConfig = {
     subtitle: "The passionate people behind Mivvo's success",
     members: [
       {
-        initials: "AS",
-        name: "Alex Smith",
-        role: "CEO & Co-Founder",
-        bio: "Former Google engineer with 10+ years in AI and machine learning. Passionate about democratizing access to career opportunities."
+        initials: "RB",
+        name: "Ramgopal Bagh",
+        role: "CEO & Founder",
+        bio: "Visionary leader with extensive experience in AI and technology. Passionate about revolutionizing interview preparation and democratizing access to career opportunities."
       },
       {
-        initials: "MJ",
-        name: "Maria Johnson",
-        role: "CTO & Co-Founder",
-        bio: "Expert in natural language processing and conversational AI. Previously led AI teams at Microsoft and Amazon."
-      },
-      {
-        initials: "DK",
-        name: "David Kim",
-        role: "Head of Product",
-        bio: "Product strategist with deep experience in EdTech and career development. Focused on creating exceptional user experiences."
+        initials: "DC",
+        name: "Daisy Chowdhury",
+        role: "Co-Founder & Developer",
+        bio: "Expert developer with deep expertise in AI, machine learning, and conversational systems. Dedicated to building innovative solutions that empower candidates worldwide."
       }
     ]
   },

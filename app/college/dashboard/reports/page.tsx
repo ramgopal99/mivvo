@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { ReportsStats, ReportsTable, ReportsFilters } from "./_components"
-import { dummyStudents, collegeStats } from "@/app/college/_components/dummy-data"
+import { collegeStats } from "@/app/college/_components/dummy-data"
 
 // Dummy reports data
 const dummyReports = [

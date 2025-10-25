@@ -25,6 +25,13 @@ export function LogoutDialog({ children }: LogoutDialogProps) {
   const handleLogout = async () => {
     setIsLoading(true)
     try {
+      // Clear all user data from localStorage on logout
+      localStorage.removeItem('user_data')
+      localStorage.removeItem('student_token')
+      localStorage.removeItem('college_data')
+      localStorage.removeItem('college_token')
+      localStorage.removeItem('token')
+
       await signOut({ callbackUrl: "/" })
     } catch (error) {
       console.error("Logout failed:", error)
@@ -52,7 +59,7 @@ export function LogoutDialog({ children }: LogoutDialogProps) {
           <AlertDialogAction
             onClick={handleLogout}
             disabled={isLoading}
-            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            className="bg-destructive text-white hover:bg-destructive/90"
           >
             {isLoading ? "Signing out..." : "Sign Out"}
           </AlertDialogAction>

@@ -1,27 +1,24 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Save, RefreshCw } from "lucide-react"
+import { Save } from "lucide-react"
 import {
-  ProfileSettings,
-  SecuritySettings,
-  BillingSettings
+  ProfileSettings
 } from "./_components"
 
 export default function SettingsPage() {
+  const [hasChanges, setHasChanges] = useState(false)
+
   const handleSaveSettings = () => {
     // Simulate saving settings
     console.log("Saving settings...")
-  }
-
-  const handleResetSettings = () => {
-    // Simulate resetting to defaults
-    console.log("Resetting settings to defaults...")
+    setHasChanges(false) // Reset after saving
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 pt-8">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -30,16 +27,12 @@ export default function SettingsPage() {
             Manage your college profile, security settings, and billing information
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" onClick={handleResetSettings}>
-            <RefreshCw className="mr-2 h-4 w-4" />
-            Reset to Defaults
-          </Button>
-          <Button size="sm" onClick={handleSaveSettings}>
+        {hasChanges && (
+          <Button onClick={handleSaveSettings}>
             <Save className="mr-2 h-4 w-4" />
             Save Changes
           </Button>
-        </div>
+        )}
       </div>
 
       {/* Settings Tabs */}
@@ -55,11 +48,23 @@ export default function SettingsPage() {
         </TabsContent>
 
         <TabsContent value="security" className="space-y-4">
-          <SecuritySettings />
+          <div className="flex items-center justify-center py-12">
+            <div className="text-center">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Security Settings</h3>
+              <p className="text-gray-600">Coming Soon</p>
+              <p className="text-sm text-gray-500 mt-2">Security features will be available in a future update</p>
+            </div>
+          </div>
         </TabsContent>
 
         <TabsContent value="billing" className="space-y-4">
-          <BillingSettings />
+          <div className="flex items-center justify-center py-12">
+            <div className="text-center">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Billing Settings</h3>
+              <p className="text-gray-600">Coming Soon</p>
+              <p className="text-sm text-gray-500 mt-2">Billing management will be available in a future update</p>
+            </div>
+          </div>
         </TabsContent>
       </Tabs>
     </div>

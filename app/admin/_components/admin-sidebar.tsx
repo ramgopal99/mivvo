@@ -9,14 +9,22 @@ import { Separator } from "@/components/ui/separator"
 import { adminSidebarConfig } from "@/config/admin-sidebar-config"
 import { ChevronLeft, LogOut } from "lucide-react"
 import { useState } from "react"
+import { signOut } from "next-auth/react"
 
 export function AdminSidebar() {
   const pathname = usePathname()
   const [collapsed, setCollapsed] = useState(false)
 
-  const handleLogout = () => {
-    // Handle logout logic here
-    console.log("Logging out...")
+  const handleLogout = async () => {
+    try {
+      // Clear college student data from localStorage on logout
+      localStorage.removeItem('user_data')
+      localStorage.removeItem('student_token')
+
+      await signOut({ callbackUrl: "/" })
+    } catch (error) {
+      console.error("Logout failed:", error)
+    }
   }
 
   return (

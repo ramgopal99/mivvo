@@ -51,6 +51,7 @@ export const UI_CONFIG = {
   showShareScreen: true,    // Show/hide share screen button
   showCodeButtonOnlyOnScreenShare: true, // Code button visibility
   showCodingInterviewOnlyOnScreenShare: true, // Coding interview button visibility
+  showInterviewStartDialog: false, // Show interview start dialog automatically on page load
   screenShareSuccessMessage: "Screen sharing started successfully!",
   screenShareDialogTitle: "Screen Sharing Active",
   screenShareDialogDescription: "Your entire screen is now being shared...",

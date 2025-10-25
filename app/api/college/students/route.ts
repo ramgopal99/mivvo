@@ -64,9 +64,16 @@ export async function GET(request: NextRequest) {
         role: 'USER' // Only get students, not admins
       },
       include: {
+        college: {
+          select: {
+            name: true,
+            collegeId: true
+          }
+        },
         _count: {
           select: {
-            interviewAttempts: true
+            interviewAttempts: true,
+            mockInterviews: true
           }
         },
         interviewAttempts: {
@@ -74,6 +81,12 @@ export async function GET(request: NextRequest) {
             results: {
               select: {
                 overallScore: true
+              }
+            },
+            conversations: {
+              select: {
+                duration: true,
+                createdAt: true
               }
             }
           }
@@ -101,20 +114,63 @@ export async function GET(request: NextRequest) {
         attempt.status === 'COMPLETED'
       ).length
 
+      // Calculate time spent data
+      const now = new Date()
+      const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000)
+      const twoWeeksAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000)
+
+      // Get all conversation durations
+      const allConversations = student.interviewAttempts.flatMap(attempt =>
+        attempt.conversations.map(conv => ({
+          duration: conv.duration,
+          createdAt: conv.createdAt
+        }))
+      )
+
+      // Calculate total time spent (in minutes)
+      const totalTimeSpent = allConversations.reduce((total, conv) => total + conv.duration, 0)
+
+      // Calculate this week's time (conversations from the last 7 days)
+      const thisWeekConversations = allConversations.filter(conv =>
+        conv.createdAt >= oneWeekAgo
+      )
+      const thisWeekTimeSpent = thisWeekConversations.reduce((total, conv) => total + conv.duration, 0)
+
+      // Calculate last week's time (conversations from 7-14 days ago)
+      const lastWeekConversations = allConversations.filter(conv =>
+        conv.createdAt >= twoWeeksAgo && conv.createdAt < oneWeekAgo
+      )
+      const lastWeekTimeSpent = lastWeekConversations.reduce((total, conv) => total + conv.duration, 0)
+
       return {
         id: student.id,
         name: student.name || 'Unknown',
         email: student.email,
         rollNumber: student.rollNumber,
-        collegeName: student.collegeName,
+        collegeName: student.college?.name || student.collegeName || 'N/A', // Get college name from relation or fallback to stored field
+        collegeId: student.college?.collegeId || student.collegeId || 'N/A', // Also include collegeId for reference
         averageScore,
         completedInterviews,
-        totalInterviews: student._count.interviewAttempts,
+        totalInterviews: student._count.mockInterviews,
+        totalTimeSpent, // in minutes
+        thisWeekTimeSpent, // in minutes
+        lastWeekTimeSpent, // in minutes
         status: 'active', // For now, assume all are active
         major: 'Computer Science', // Default major since we don't have this field
         year: '2024', // Default year since we don't have this field
         lastActive: new Date().toISOString(), // Default to now
-        avatar: null
+        avatar: null,
+        // Additional fields from the database
+        firstName: student.firstName,
+        lastName: student.lastName,
+        phone: student.phone,
+        careerGoals: student.careerGoals,
+        linkedIn: student.linkedIn,
+        github: student.github,
+        totalTimeAllowance: student.totalTimeAllowance,
+        usedTimeMinutes: student.usedTimeMinutes,
+        createdAt: student.createdAt?.toISOString(),
+        updatedAt: student.updatedAt?.toISOString()
       }
     })
 
