@@ -205,7 +205,7 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
         </Card>
 
         {/* College Information - Only show for college students */}
-        {userData?.college && (
+        {userData?.college && userData.college.collegeId && (
           <Card>
             <CardHeader>
               <CardTitle>College Information</CardTitle>

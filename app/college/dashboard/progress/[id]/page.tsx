@@ -5,8 +5,8 @@ import { useParams, useRouter } from "next/navigation"
 import { LoadingCompound } from "@/components/loading-compound"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
-import { StudentStatsCards } from "@/app/college/dashboard/students/[id]/_components/student-stats-cards"
-import { StudentInterviewsTable } from "@/app/college/dashboard/students/[id]/_components/student-interviews-table"
+import { StudentStatsCards } from "./_components/student-stats-cards"
+import { StudentInterviewsTable } from "./_components/student-interviews-table"
 
 interface Student {
   id: string

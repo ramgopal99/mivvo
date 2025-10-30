@@ -63,19 +63,19 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Create JWT token for college student
+    // Create JWT token for college student (expires in 24 hours)
     const token = jwt.sign(
       {
         userId: user.id,
         email: user.email,
         name: user.name,
-        role: 'USER', // College students still have USER role
+        role: 'COLLEGE_STUDENT', // College students have COLLEGE_STUDENT role
         collegeId: user.collegeId,
         collegeName: user.college.name,
         type: 'college_student'
       },
       process.env.NEXTAUTH_SECRET || 'fallback-secret',
-      { expiresIn: '7d' }
+      { expiresIn: '24h' }
     )
 
     // Return success response
@@ -87,6 +87,7 @@ export async function POST(request: NextRequest) {
           id: user.id,
           name: user.name,
           email: user.email,
+          role: 'COLLEGE_STUDENT',
           firstName: user.firstName,
           lastName: user.lastName,
           rollNumber: user.rollNumber,

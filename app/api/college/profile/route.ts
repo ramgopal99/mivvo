@@ -35,7 +35,7 @@ export async function PUT(request: NextRequest) {
     }
 
     // Check if user is a college admin
-    if (decoded.role !== 'COLLEGE') {
+    if (decoded.role !== 'COLLEGE_ADMIN') {
       return NextResponse.json(
         { error: 'Access denied. College admin required.' },
         { status: 403 }
@@ -138,7 +138,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Check if user is a college admin
-    if (decoded.role !== 'COLLEGE') {
+    if (decoded.role !== 'COLLEGE_ADMIN') {
       return NextResponse.json(
         { error: 'Access denied. College admin required.' },
         { status: 403 }

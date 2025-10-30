@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
       {
         collegeId: college.id,
         collegeName: college.name,
-        role: 'COLLEGE',
+        role: 'COLLEGE_ADMIN',
         type: 'college_admin'
       },
       process.env.NEXTAUTH_SECRET || 'fallback-secret',

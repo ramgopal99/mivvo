@@ -33,6 +33,7 @@ export default function DashboardLayout({
     id: string;
     name: string;
     email: string;
+    role?: string;
     firstName?: string;
     lastName?: string;
     rollNumber?: string;
@@ -42,51 +43,90 @@ export default function DashboardLayout({
       collegeId: string;
     };
   } | null>(null)
+  const [authCheckComplete, setAuthCheckComplete] = useState(false)
+  const [authAttempted, setAuthAttempted] = useState(false)
 
-  // Load user data - prioritize NextAuth session over localStorage
   useEffect(() => {
-    const loadUserData = () => {
-      // If NextAuth session exists, use it (don't check localStorage for college students)
-      if (status === 'authenticated' && session?.user) {
-        setUserData({
-          id: session.user.id || 'unknown',
-          name: session.user.name || 'User',
-          email: session.user.email || '',
-          firstName: session.user.name?.split(' ')[0] || '',
-          lastName: session.user.name?.split(' ').slice(1).join(' ') || '',
-          rollNumber: undefined,
-          college: undefined
-        })
-        return
-      }
-
-      // Only check localStorage for college students if no NextAuth session
-      if (status !== 'loading') {
-        const storedUserData = localStorage.getItem('user_data')
-        if (storedUserData) {
+    setAuthAttempted(false) // Reset auth attempt when dependencies change
+    const loadUserData = async () => {
+      try {
+        const token = localStorage.getItem('student_token')
+        if (token) {
           try {
-            const parsedUserData = JSON.parse(storedUserData)
-            setUserData(parsedUserData)
+            const response = await fetch('/api/auth/session', {
+              headers: {
+                'Authorization': `Bearer ${token}`
+              }
+            })
+
+            if (response.ok) {
+              const sessionData = await response.json()
+              if (sessionData.authenticated && sessionData.user) {
+                setUserData({
+                  id: sessionData.user.id,
+                  name: sessionData.user.name,
+                  email: sessionData.user.email,
+                  role: sessionData.user.role,
+                  firstName: sessionData.user.name?.split(' ')[0] || '',
+                  lastName: sessionData.user.name?.split(' ').slice(1).join(' ') || '',
+                  rollNumber: sessionData.user.rollNumber,
+                  college: sessionData.user.collegeId ? {
+                    id: sessionData.user.collegeId,
+                    name: sessionData.user.collegeName,
+                    collegeId: sessionData.user.collegeId
+                  } : undefined
+                })
+                return
+              }
+            }
           } catch (error) {
-            console.error('Error parsing user data:', error)
-            setUserData(null)
+            console.error('Error checking college student session:', error)
           }
-        } else {
-          setUserData(null)
         }
+
+        if (status === 'authenticated' && session?.user) {
+          setUserData({
+            id: session.user.id || 'unknown',
+            name: session.user.name || 'User',
+            email: session.user.email || '',
+            role: (session.user as { role?: string })?.role || 'USER',
+            firstName: session.user.name?.split(' ')[0] || '',
+            lastName: session.user.name?.split(' ').slice(1).join(' ') || '',
+            rollNumber: undefined,
+            college: undefined
+          })
+          return
+        }
+
+        setUserData(null)
+      } catch (error) {
+        console.error('Error loading user data:', error)
+        setUserData(null)
+      } finally {
+        setAuthAttempted(true)
       }
     }
 
     loadUserData()
 
-    // Listen for storage changes (in case user data is updated)
-    const handleStorageChange = () => {
-      loadUserData()
+    const handleStorageChange = (e: StorageEvent) => {
+      if ((e.key === 'student_token' || e.key === 'college_token') && !e.newValue) {
+        window.location.href = '/auth/signin'
+      } else {
+        loadUserData()
+      }
     }
 
     window.addEventListener('storage', handleStorageChange)
     return () => window.removeEventListener('storage', handleStorageChange)
-  }, [session, status])
+    }, [session, status])
+
+    // Mark authentication check as complete after useEffect runs
+    useEffect(() => {
+      if (status !== 'loading') {
+        setAuthCheckComplete(true)
+      }
+    }, [status])
 
   if (status === "loading") {
     return (
@@ -97,6 +137,53 @@ export default function DashboardLayout({
         className="min-h-screen bg-gray-50"
       />
     )
+  }
+
+  if ((status === 'authenticated' || status === 'unauthenticated') && authCheckComplete && authAttempted) {
+    const hasNextAuthSession = status === 'authenticated' && !!session?.user
+    const nextAuthRole = hasNextAuthSession ? (session?.user as { role?: string })?.role : undefined
+
+    const hasCollegeAuth = !!userData && !!localStorage.getItem('student_token')
+    const collegeRole = hasCollegeAuth ? userData?.role : undefined
+
+    const isAuthenticated = hasNextAuthSession || hasCollegeAuth
+    const effectiveRole = collegeRole || nextAuthRole
+
+    const validRoles = ['USER', 'COLLEGE_STUDENT']
+    const hasValidRole = effectiveRole && validRoles.includes(effectiveRole)
+
+    if (!isAuthenticated || !hasValidRole) {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('student_token')
+        localStorage.removeItem('college_token')
+        window.location.href = '/auth/signin'
+      }
+      return (
+        <LoadingCompound
+          text="Redirecting to login..."
+          size="lg"
+          variant="spinner"
+          className="min-h-screen bg-gray-50"
+        />
+      )
+    }
+
+    // Additional check: College admins should NOT access regular dashboard - redirect them to college dashboard
+    if (effectiveRole === 'COLLEGE_ADMIN') {
+      if (typeof window !== 'undefined') {
+        window.location.href = '/college/dashboard'
+      }
+      return (
+        <LoadingCompound
+          text="Redirecting to college dashboard..."
+          size="lg"
+          variant="spinner"
+          className="min-h-screen bg-gray-50"
+        />
+      )
+    }
+
+    // College students can access the regular dashboard (no redirect needed)
   }
 
   // Get user display data (NextAuth session or college student data)

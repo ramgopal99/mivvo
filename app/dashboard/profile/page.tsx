@@ -26,55 +26,96 @@ export default function ProfilePage() {
 
   useEffect(() => {
     const loadUserData = async () => {
-      // Prioritize NextAuth session data over localStorage
-      if (status === 'authenticated' && session?.user) {
-        // Use NextAuth session data
-        setUserData({
-          id: session.user.id || 'unknown',
-          name: session.user.name,
-          email: session.user.email,
-          image: session.user.image,
-          role: UserRole.USER
-        })
-        setLoading(false)
-        return
-      }
-
-      // Only check localStorage for college students if no NextAuth session
-      if (status === 'unauthenticated' || status === 'loading') {
-        const storedUserData = localStorage.getItem('user_data')
-        if (storedUserData) {
+      try {
+        // Always check session API first for comprehensive session validation
+        const token = localStorage.getItem('student_token')
+        if (token) {
           try {
-            const parsedUserData = JSON.parse(storedUserData)
-            if (parsedUserData && parsedUserData.id) {
-              // College student data
-              const collegeUser = {
-                id: parsedUserData.id,
-                name: parsedUserData.name,
-                email: parsedUserData.email,
-                image: null, // College students don't have images
-                role: UserRole.USER, // College students have USER role
-                college: parsedUserData.college // Additional college info
+            const response = await fetch('/api/auth/session', {
+              headers: {
+                'Authorization': `Bearer ${token}`
               }
-              setUserData(collegeUser)
-              setLoading(false)
-              return
+            })
+
+            if (response.ok) {
+              const sessionData = await response.json()
+              if (sessionData.authenticated && sessionData.user) {
+                // College student session is valid
+                const collegeUser = {
+                  id: sessionData.user.id,
+                  name: sessionData.user.name,
+                  email: sessionData.user.email,
+                  image: null, // College students don't have images
+                  role: UserRole.COLLEGE_STUDENT,
+                  college: sessionData.user.collegeId ? {
+                    id: sessionData.user.collegeId,
+                    name: sessionData.user.collegeName,
+                    collegeId: sessionData.user.collegeId
+                  } : undefined
+                }
+                setUserData(collegeUser)
+                setLoading(false)
+                return
+              }
             }
           } catch (error) {
-            console.error('Error parsing college student data:', error)
+            console.error('Error checking college student session:', error)
           }
         }
 
-        // If no stored data and unauthenticated, show guest
-        if (status === 'unauthenticated') {
+        // If no college student session, check NextAuth session
+        if (status === 'authenticated' && session?.user) {
+          // Use NextAuth session data
           setUserData({
-            id: "guest",
-            name: "Guest User",
-            email: null,
-            image: null,
+            id: session.user.id || 'unknown',
+            name: session.user.name,
+            email: session.user.email,
+            image: session.user.image,
             role: UserRole.USER
           })
+          setLoading(false)
+          return
         }
+
+        // Fallback to localStorage for backward compatibility
+        if (status !== 'loading') {
+          const storedUserData = localStorage.getItem('user_data')
+          if (storedUserData) {
+            try {
+              const parsedUserData = JSON.parse(storedUserData)
+              if (parsedUserData && parsedUserData.id) {
+                // College student data (fallback)
+                const collegeUser = {
+                  id: parsedUserData.id,
+                  name: parsedUserData.name,
+                  email: parsedUserData.email,
+                  image: null,
+                  role: UserRole.COLLEGE_STUDENT,
+                  college: parsedUserData.college
+                }
+                setUserData(collegeUser)
+                setLoading(false)
+                return
+              }
+            } catch (error) {
+              console.error('Error parsing stored college student data:', error)
+            }
+          }
+
+          // If no stored data and unauthenticated, show guest
+          if (status === 'unauthenticated') {
+            setUserData({
+              id: "guest",
+              name: "Guest User",
+              email: null,
+              image: null,
+              role: UserRole.USER
+            })
+          }
+        }
+      } catch (error) {
+        console.error('Error loading user data:', error)
+        setUserData(null)
       }
 
       setLoading(false)

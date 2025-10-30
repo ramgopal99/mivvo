@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -11,7 +11,57 @@ import { landingConfig } from "../../config/landing-config"
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { data: session } = useSession()
-  const isAuthenticated = !!session
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [userRole, setUserRole] = useState<string | null>(null)
+
+  // Check authentication status including college student and admin JWT tokens
+  useEffect(() => {
+    const checkAuth = async () => {
+      // Check NextAuth session first
+      if (session?.user) {
+        setIsAuthenticated(true)
+        setUserRole((session.user as { role?: string })?.role || 'USER')
+        return
+      }
+
+      // Check for college student or admin JWT token via API
+      const studentToken = localStorage.getItem('student_token')
+      const collegeToken = localStorage.getItem('college_token')
+
+      const token = studentToken || collegeToken
+
+      if (token) {
+        try {
+          const response = await fetch('/api/auth/session', {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          })
+
+          if (response.ok) {
+            const sessionData = await response.json()
+            setIsAuthenticated(sessionData.authenticated || false)
+            setUserRole(sessionData.user?.role || null)
+          } else {
+            setIsAuthenticated(false)
+            setUserRole(null)
+          }
+        } catch (error) {
+          console.error('Error checking college authentication:', error)
+          setIsAuthenticated(false)
+          setUserRole(null)
+        }
+      } else {
+        setIsAuthenticated(false)
+        setUserRole(null)
+      }
+    }
+
+    checkAuth()
+  }, [session])
+
+  // Determine dashboard URL based on user role
+  const dashboardUrl = userRole === 'COLLEGE_ADMIN' ? '/college/dashboard' : '/dashboard'
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/20 backdrop-blur-sm border-b border-gray-200/30">
@@ -49,7 +99,7 @@ export function Navbar() {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-2">
             {isAuthenticated ? (
-              <Link href="/dashboard">
+              <Link href={dashboardUrl}>
                 <Button
                   variant="default"
                   size="sm"
@@ -111,7 +161,7 @@ export function Navbar() {
               ))}
               <div className="pt-4 space-y-2">
                 {isAuthenticated ? (
-                  <Link href="/dashboard" className="block px-3">
+                  <Link href={dashboardUrl} className="block px-3">
                     <Button
                       variant="default"
                       size="sm"

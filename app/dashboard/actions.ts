@@ -13,7 +13,7 @@ export async function getDashboardData(collegeUserData?: { id: string; name: str
       name: collegeUserData.name,
       email: collegeUserData.email,
       image: null,
-      role: "USER"
+      role: "COLLEGE_STUDENT"
     }
   }
 
@@ -58,15 +58,10 @@ export async function getDashboardData(collegeUserData?: { id: string; name: str
     return total + attempt.conversations.reduce((convTotal, conv) => convTotal + (conv.duration || 0), 0)
   }, 0)
 
-  console.log('Dashboard Debug - Total Time Spent:', totalTimeSpent, 'seconds from', allAttempts.length, 'attempts')
-
   // Calculate average score from results - include all results regardless of completion status
   const allResults = interviews.flatMap(interview =>
     interview.attempts.flatMap(attempt => attempt.results)
   )
-
-  console.log('Dashboard Debug - All Results:', allResults.length)
-  console.log('Dashboard Debug - Results with scores:', allResults.filter(r => r.overallScore !== null && r.overallScore !== undefined).length)
 
   // Calculate average from all results that have scores
   const resultsWithScores = allResults.filter(result => result.overallScore !== null && result.overallScore !== undefined && result.overallScore >= 0)
@@ -74,8 +69,6 @@ export async function getDashboardData(collegeUserData?: { id: string; name: str
   const averageScore = resultsWithScores.length > 0
     ? Math.round(resultsWithScores.reduce((sum, result) => sum + result.overallScore!, 0) / resultsWithScores.length)
     : 0
-
-  console.log('Dashboard Debug - Average Score:', averageScore, 'from', resultsWithScores.length, 'results')
 
   // Get recent interviews (last 5)
   const recentInterviews = interviews.slice(0, 5).map(interview => {

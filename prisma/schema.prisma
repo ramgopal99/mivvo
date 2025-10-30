@@ -42,7 +42,8 @@ model Session {
 
 enum UserRole {
   USER
-  COLLEGE
+  COLLEGE_ADMIN
+  COLLEGE_STUDENT
   SUPERADMIN
 }
 
@@ -148,6 +149,7 @@ enum InterviewType {
   CODING
   UI_INTERVIEW
   HR_INTERVIEW
+  CUSTOM_INTERVIEW
 }
 
 model MockInterview {

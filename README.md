@@ -10,7 +10,7 @@ A modern Next.js application demonstrating authentication with NextAuth.js, Pris
 - 🎨 **Shadcn UI** - Beautiful, accessible UI components
 - ⚡ **Server Actions** - Modern Next.js server-side actions
 - 🛡️ **Protected Routes** - Middleware-based route protection
-- 👥 **Role-Based Access Control** - USER and SUPERADMIN roles
+- 👥 **Role-Based Access Control** - USER, COLLEGE_ADMIN, COLLEGE_STUDENT, and SUPERADMIN roles
 - 🌙 **Dark/Light Theme** - System-aware theme switching
 - 📱 **Responsive Design** - Mobile-first UI with Tailwind CSS
 

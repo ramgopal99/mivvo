@@ -12,11 +12,13 @@ declare module "next-auth" {
       name?: string | null
       email?: string | null
       image?: string | null
+      role?: string
     }
   }
 
   interface User {
     id?: string
+    role?: string
   }
 }
 
@@ -45,6 +47,8 @@ export const authOptions: NextAuthOptions = {
     async session({ session, user }) {
       if (session.user) {
         session.user.id = user.id
+        // Add role from database user
+        session.user.role = user.role
       }
       return session
     },

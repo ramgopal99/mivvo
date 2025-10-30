@@ -15,7 +15,7 @@ async function createDemoCollegeAndAdmin(): Promise<void> {
     const existingAdmin = await prisma.user.findFirst({
       where: {
         email: 'demo@college.com',
-        role: 'COLLEGE'
+        role: 'COLLEGE_ADMIN'
       }
     })
 
@@ -61,7 +61,7 @@ async function createDemoCollegeAndAdmin(): Promise<void> {
         firstName: 'Demo',
         lastName: 'Admin',
         password: await bcrypt.hash('demo123', 10),
-        role: 'COLLEGE',
+        role: 'COLLEGE_ADMIN',
         collegeId: college.id,
         phone: '+91-9876543210',
         jobTitle: 'College Administrator',

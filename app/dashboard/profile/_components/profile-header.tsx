@@ -16,9 +16,11 @@ interface ProfileHeaderProps {
 export function ProfileHeader({ user }: ProfileHeaderProps) {
   const getRoleBadgeVariant = (role: UserRole) => {
     switch (role) {
-      case 'SUPERADMIN':
+      case UserRole.SUPERADMIN:
         return 'destructive'
-      case 'USER':
+      case UserRole.COLLEGE_ADMIN:
+        return 'default'
+      case UserRole.COLLEGE_ADMIN_STUDENT:
         return 'secondary'
       default:
         return 'outline'
@@ -27,10 +29,12 @@ export function ProfileHeader({ user }: ProfileHeaderProps) {
 
   const getRoleLabel = (role: UserRole) => {
     switch (role) {
-      case 'SUPERADMIN':
+      case UserRole.SUPERADMIN:
         return 'Super Admin'
-      case 'USER':
-        return 'User'
+      case UserRole.COLLEGE_ADMIN:
+        return 'College'
+      case UserRole.COLLEGE_ADMIN_STUDENT:
+        return 'College Student'
       default:
         return role
     }

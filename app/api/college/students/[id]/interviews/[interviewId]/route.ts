@@ -33,7 +33,7 @@ export async function GET(
     }
 
     // Check if user is college admin
-    if (payload.role !== 'COLLEGE') {
+    if (payload.role !== 'COLLEGE_ADMIN') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
     }
 
@@ -44,7 +44,7 @@ export async function GET(
         createdBy: studentId,
         user: {
           collegeId: payload.collegeId,
-          role: 'USER'
+          role: { in: ['USER', 'COLLEGE_STUDENT'] }
         }
       },
       include: {

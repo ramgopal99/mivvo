@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useState, useEffect } from "react"
 import { sidebarConfig, adminNavigation } from "@/config/sidebar-config"
 import { siteConfig } from "@/config/site"
 import Link from "next/link"
@@ -32,8 +33,60 @@ type SessionUserWithRole = {
 export function AppSidebar() {
     const pathname = usePathname()
     const { data: session } = useSession()
+    const [userRole, setUserRole] = useState<UserRole | undefined>()
 
-    const isSuperAdmin = (session?.user as SessionUserWithRole)?.role === UserRole.SUPERADMIN
+    // Check current session and user role
+    useEffect(() => {
+        const checkSession = async () => {
+            try {
+                // Always check session API first for comprehensive session validation
+                const token = localStorage.getItem('student_token')
+                console.log('Checking college student token:', !!token)
+                if (token) {
+                    console.log('Making session API call...')
+                    const response = await fetch('/api/auth/session', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    })
+
+                    console.log('Session API response status:', response.status)
+                    if (response.ok) {
+                        const sessionData = await response.json()
+                        console.log('Session API response:', sessionData)
+                        if (sessionData.authenticated && sessionData.user) {
+                            console.log('Setting user role:', sessionData.user.role)
+                            setUserRole(sessionData.user.role)
+                            return
+                        }
+                    } else {
+                        console.log('Session API call failed')
+                        const errorData = await response.json()
+                        console.log('Error response:', errorData)
+                    }
+                } else {
+                    console.log('No student token found in localStorage')
+                }
+
+                // If no college student token or API failed, check NextAuth session
+                if (session?.user) {
+                    setUserRole((session.user as SessionUserWithRole).role)
+                    return
+                }
+
+                // No valid session found
+                setUserRole(undefined)
+            } catch (error) {
+                console.error('Error checking session:', error)
+                setUserRole(undefined)
+            }
+        }
+
+        checkSession()
+    }, [session])
+
+
+    const isSuperAdmin = userRole === UserRole.SUPERADMIN
 
     const isItemActive = (itemUrl: string) => {
         return pathname === itemUrl || (itemUrl !== "/dashboard" && pathname.startsWith(itemUrl))
@@ -78,12 +131,19 @@ export function AppSidebar() {
                                 {sidebarConfig.sections.map((section) =>
                                     section.items.map((item) => {
                                         const isActive = isItemActive(item.url)
+                                        const badgeValue = item.badge
+                                        const showBadge = badgeValue !== undefined && Number(badgeValue) > 0
                                         return (
                                             <SidebarMenuItem key={item.title}>
                                                 <SidebarMenuButton asChild isActive={isActive} tooltip={item.title} className="w-full">
                                                     <Link href={item.url} className="flex items-center gap-2 w-full min-w-0">
                                                         <item.icon className="size-4 shrink-0" />
                                                         <span className="truncate">{item.title}</span>
+                                                        {showBadge && (
+                                                            <span className="ml-auto flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
+                                                                {badgeValue}
+                                                            </span>
+                                                        )}
                                                     </Link>
                                                 </SidebarMenuButton>
                                             </SidebarMenuItem>

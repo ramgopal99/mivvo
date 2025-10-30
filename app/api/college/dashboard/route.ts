@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Check if user is a college admin
-    if (payload.role !== 'COLLEGE' || !payload.collegeId) {
+    if (payload.role !== 'COLLEGE_ADMIN' || !payload.collegeId) {
       return NextResponse.json({ error: 'Access denied' }, { status: 403 })
     }
 
@@ -58,7 +58,7 @@ export async function GET(request: NextRequest) {
     const totalStudents = await prisma.user.count({
       where: {
         collegeId: collegeId,
-        role: 'USER'
+        role: { in: ['USER', 'COLLEGE_STUDENT'] }
       }
     })
 
@@ -66,7 +66,7 @@ export async function GET(request: NextRequest) {
     const studentsWithStats = await prisma.user.findMany({
       where: {
         collegeId: collegeId,
-        role: 'USER'
+        role: { in: ['USER', 'COLLEGE_STUDENT'] }
       },
       select: {
         id: true,
@@ -105,7 +105,7 @@ export async function GET(request: NextRequest) {
       where: {
         user: {
           collegeId: collegeId,
-          role: 'USER'
+          role: { in: ['USER', 'COLLEGE_STUDENT'] }
         }
       }
     })
@@ -140,7 +140,7 @@ export async function GET(request: NextRequest) {
       where: {
         candidate: {
           collegeId: collegeId,
-          role: 'USER'
+          role: { in: ['USER', 'COLLEGE_STUDENT'] }
         },
         startedAt: {
           gte: sevenDaysAgo

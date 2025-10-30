@@ -147,7 +147,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Parse request body
-    const { jdDetails, interviewType, screenShare, company, generalSubType } = await request.json()
+    const { jdDetails, interviewType, screenShare, company, generalSubType, customPrompt } = await request.json()
 
     // Validate required fields
     if (!jdDetails || !interviewType) {
@@ -155,12 +155,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Map frontend interview types to database enum values
-    const interviewTypeMap: Record<string, 'GENERAL_INTERVIEW' | 'TECHNICAL' | 'CODING' | 'UI_INTERVIEW' | 'HR_INTERVIEW'> = {
+    const interviewTypeMap: Record<string, 'GENERAL_INTERVIEW' | 'TECHNICAL' | 'CODING' | 'UI_INTERVIEW' | 'HR_INTERVIEW' | 'CUSTOM_INTERVIEW'> = {
       'General': 'GENERAL_INTERVIEW',
       'Technical': 'TECHNICAL',
       'Coding': 'CODING',
       'UI/UX': 'UI_INTERVIEW',
-      'HR': 'HR_INTERVIEW'
+      'HR': 'HR_INTERVIEW',
+      'Custom': 'CUSTOM_INTERVIEW' // JD-based custom interviews
     }
 
     // Convert interview type and prepare data
@@ -212,7 +213,10 @@ export async function POST(request: NextRequest) {
     // Generate and save interview prompt based on type
     let promptText: string
 
-    if (interviewType === "Coding") {
+    // Use custom prompt if provided (for custom JD interviews)
+    if (customPrompt) {
+      promptText = customPrompt
+    } else if (interviewType === "Coding") {
       promptText = generateCodingPrompt(jdDetails, interview.title || "Coding Interview")
     } else if (interviewType === "UI/UX") {
       promptText = generateUIUXPrompt(jdDetails, interview.title || "UI/UX Interview")

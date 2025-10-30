@@ -35,6 +35,8 @@ export default function CollegeStudentLoginPage() {
     setError('')
 
     try {
+      console.log('College student login: Starting login attempt', formData.email)
+
       const response = await fetch('/api/auth/college-student', {
         method: 'POST',
         headers: {
@@ -43,16 +45,27 @@ export default function CollegeStudentLoginPage() {
         body: JSON.stringify(formData),
       })
 
+      console.log('College student login: API response status:', response.status)
       const data = await response.json()
+      console.log('College student login: API response data:', data)
 
       if (response.ok && data.success) {
+        console.log('College student login: Login successful, storing tokens')
+
         // Store token in localStorage (you might want to use a more secure method)
         localStorage.setItem('student_token', data.data.token)
         localStorage.setItem('user_data', JSON.stringify(data.data.user))
 
-        console.log('College student login successful:', formData.email)
-        router.push('/dashboard')
+        console.log('College student login: Tokens stored, user role:', data.data.user.role)
+
+        // Redirect to appropriate dashboard based on user role
+        const userRole = data.data.user.role
+        const dashboardUrl = userRole === 'COLLEGE_ADMIN' ? '/college/dashboard' : '/dashboard'
+
+        console.log('College student login: Redirecting to:', dashboardUrl)
+        router.push(dashboardUrl)
       } else {
+        console.log('College student login: Login failed with error:', data.error)
         setError(data.error || 'Login failed')
       }
     } catch (err) {

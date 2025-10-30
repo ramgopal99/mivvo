@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
 import {
   Select,
   SelectContent,
@@ -19,7 +20,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Plus } from "lucide-react"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs"
+import { Plus, FileText } from "lucide-react"
 import {
   generateJDFromPredefined,
   getAvailableRoles,
@@ -45,8 +52,74 @@ export function CreateInterviewDialog({ onInterviewCreated }: CreateInterviewDia
   const [interviewType, setInterviewType] = useState("")
   const [generalSubType, setGeneralSubType] = useState("")
 
+  // Custom JD state
+  const [customJD, setCustomJD] = useState("")
+  const [activeTab, setActiveTab] = useState("predefined")
+  const [isAnalyzingJD, setIsAnalyzingJD] = useState(false)
+
 
   const handleSubmit = async () => {
+    // Handle custom JD tab
+    if (activeTab === "custom") {
+      if (!customJD.trim()) {
+        import('sonner').then(({ toast }) => {
+          toast.error('Please enter a job description')
+        })
+        return
+      }
+
+      setIsAnalyzingJD(true)
+
+      try {
+        // Analyze the custom JD using OpenAI
+        const response = await fetch('/api/custom-interviews/analyze-jd', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ jdText: customJD }),
+        })
+
+        if (!response.ok) {
+          throw new Error('Failed to analyze job description')
+        }
+
+        const analysisResult = await response.json()
+
+        // Prepare interview data with custom JD
+        const interviewData = {
+          jdDetails: customJD,
+          interviewType: "Custom", // Custom interview type for API
+          screenShare: false,
+          customPrompt: analysisResult.prompt, // Include the generated prompt
+          company: "Custom Company" // Default company name
+        }
+
+        // Show success message
+        import('sonner').then(({ toast }) => {
+          toast.success('Interview created successfully!')
+        })
+
+        onInterviewCreated?.(interviewData)
+
+        // Reset form
+        setIsDialogOpen(false)
+        setCustomJD("")
+        setActiveTab("predefined")
+
+      } catch (error) {
+        console.error('Error analyzing JD:', error)
+        import('sonner').then(({ toast }) => {
+          toast.error('Failed to analyze job description. Please try again.')
+        })
+      } finally {
+        setIsAnalyzingJD(false)
+      }
+
+      return
+    }
+
+    // Handle predefined tab
     // Validation based on interview type
     if (!interviewType) {
       import('sonner').then(({ toast }) => {
@@ -117,15 +190,21 @@ export function CreateInterviewDialog({ onInterviewCreated }: CreateInterviewDia
           Create Custom Interview
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px] max-h-[80vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Create Custom Interview</DialogTitle>
           <DialogDescription>
-            Select an interview type to create a tailored interview. For Technical and HR interviews, you&apos;ll also need to select a role and experience level.
+            Choose how you want to create your interview: use predefined templates or paste your own job description.
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-6">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="predefined">Predefined Templates</TabsTrigger>
+            <TabsTrigger value="custom">Custom Job Description</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="predefined" className="space-y-6 mt-6">
           {/* Interview Type Selection - First Field */}
           <div className="space-y-2">
             <Label htmlFor="interview-type" className="text-sm font-medium">
@@ -264,7 +343,28 @@ export function CreateInterviewDialog({ onInterviewCreated }: CreateInterviewDia
           </div>
           )}
 
+          </TabsContent>
+
+          <TabsContent value="custom" className="space-y-6 mt-6">
+            {/* Custom JD Input */}
+            <div className="space-y-2">
+              <Label htmlFor="custom-jd" className="text-sm font-medium">
+                Job Description *
+              </Label>
+              <Textarea
+                id="custom-jd"
+                placeholder="Paste your job description here. The system will analyze it and create a tailored interview prompt."
+                value={customJD}
+                onChange={(e) => setCustomJD(e.target.value)}
+                className="min-h-[200px] max-h-[400px] overflow-y-auto resize-none"
+                disabled={isAnalyzingJD}
+              />
+              <p className="text-xs text-gray-500">
+                The AI will analyze your job description and generate a custom interview prompt optimized for assessing candidates for this role.
+              </p>
         </div>
+          </TabsContent>
+        </Tabs>
 
         {/* Action Buttons */}
         <div className="flex justify-end space-x-3">
@@ -277,12 +377,25 @@ export function CreateInterviewDialog({ onInterviewCreated }: CreateInterviewDia
           <Button
             onClick={handleSubmit}
             disabled={
-              !interviewType || 
-              (interviewType === 'General' ? !generalSubType : (!selectedRole || !selectedLevel))
+              activeTab === 'predefined'
+                ? (!interviewType || (interviewType === 'General' ? !generalSubType : (!selectedRole || !selectedLevel)))
+                : (!customJD.trim() || isAnalyzingJD)
             }
             className="bg-primary hover:bg-primary/90"
           >
-            Create Interview
+            {isAnalyzingJD ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                Analyzing...
+              </>
+            ) : activeTab === 'custom' ? (
+              <>
+                <FileText className="w-4 h-4 mr-2" />
+                Create Custom Interview
+              </>
+            ) : (
+              'Create Interview'
+            )}
           </Button>
         </div>
       </DialogContent>

@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { UserRole } from "@prisma/client"
-import { Shield, Mail, User, Calendar, GraduationCap } from "lucide-react"
+import { Shield, Mail, User, Calendar, GraduationCap, Building } from "lucide-react"
 
 interface ProfileDetailsProps {
   user: {
@@ -21,10 +21,12 @@ interface ProfileDetailsProps {
 export function ProfileDetails({ user }: ProfileDetailsProps) {
   const getRoleIcon = (role: UserRole) => {
     switch (role) {
-      case 'SUPERADMIN':
+      case UserRole.SUPERADMIN:
         return <Shield className="h-4 w-4 text-primary" />
-      case 'USER':
-        return <User className="h-4 w-4 text-primary" />
+      case UserRole.COLLEGE_ADMIN:
+        return <Building className="h-4 w-4 text-primary" />
+      case UserRole.COLLEGE_ADMIN_STUDENT:
+        return <GraduationCap className="h-4 w-4 text-primary" />
       default:
         return <User className="h-4 w-4 text-primary" />
     }

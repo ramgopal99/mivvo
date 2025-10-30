@@ -13,7 +13,7 @@ export default function ProgressPage() {
 
   const handleViewDetails = (student: Student) => {
     // Navigate to student details page
-    router.push(`/college/dashboard/students/${student.id}`)
+    router.push(`/college/dashboard/progress/${student.id}`)
   }
 
   useEffect(() => {

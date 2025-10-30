@@ -106,8 +106,8 @@ export function AuthLayout({
               <p className="text-xs text-gray-600 mb-4">
                 Are you a college administrator or student?
               </p>
-              <div className="space-y-3">
-                <Link href="/auth/college-admin">
+              <div className="space-y-4">
+                <Link href="/auth/college-admin" className="block">
                   <Button
                     variant="outline"
                     className="w-full text-sm h-10 border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/40"
@@ -115,7 +115,7 @@ export function AuthLayout({
                     🏫 College Administrator Login
                   </Button>
                 </Link>
-                <Link href="/auth/college-student">
+                <Link href="/auth/college-student" className="block">
                   <Button
                     variant="outline"
                     className="w-full text-sm h-10 border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/40"

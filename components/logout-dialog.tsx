@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { signOut } from "next-auth/react"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,7 +13,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { signOut } from "next-auth/react"
 import { LogOut } from "lucide-react"
 
 interface LogoutDialogProps {
@@ -25,17 +25,60 @@ export function LogoutDialog({ children }: LogoutDialogProps) {
   const handleLogout = async () => {
     setIsLoading(true)
     try {
-      // Clear all user data from localStorage on logout
+      // Step 1: Call logout API to log server-side
+      await fetch('/api/auth/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+      // Step 2: Clear all localStorage data
       localStorage.removeItem('user_data')
       localStorage.removeItem('student_token')
       localStorage.removeItem('college_data')
       localStorage.removeItem('college_token')
       localStorage.removeItem('token')
 
-      await signOut({ callbackUrl: "/" })
+      // Clear NextAuth session tokens
+      localStorage.removeItem('next-auth.session-token')
+      localStorage.removeItem('__Secure-next-auth.session-token')
+      localStorage.removeItem('next-auth.callback-url')
+      localStorage.removeItem('next-auth.csrf-token')
+      localStorage.removeItem('__Secure-next-auth.callback-url')
+
+      // Clear any college specific data
+      localStorage.removeItem('college_student_data')
+
+      // Step 3: Clear all sessionStorage
+      sessionStorage.clear()
+
+      // Step 4: Clear any cookies related to authentication
+      // This will be handled by NextAuth signOut
+
+      // Step 5: Sign out from NextAuth (clears server session and cookies)
+      await signOut({
+        redirect: false, // We'll handle redirect manually
+        callbackUrl: '/auth/signin'
+      })
+
+      // Step 6: Force redirect to ensure clean state
+      console.log('Logout completed successfully - redirecting to login')
+      window.location.href = '/auth/signin'
+
     } catch (error) {
       console.error("Logout failed:", error)
-      setIsLoading(false)
+
+      // Even if logout fails, clear everything and redirect
+      try {
+        localStorage.clear()
+        sessionStorage.clear()
+        await signOut({ redirect: false })
+      } catch (signOutError) {
+        console.error("Emergency logout failed:", signOutError)
+      }
+
+      window.location.href = '/auth/signin'
     }
   }
 

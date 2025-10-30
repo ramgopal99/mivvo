@@ -49,74 +49,103 @@ export default function InterviewResultPage() {
 
   useEffect(() => {
     const checkAuthAndLoadData = async () => {
-      // Check authentication
-      const isAuthenticated = status === 'authenticated' && session?.user
-      const hasCollegeToken = typeof window !== 'undefined' && localStorage.getItem('student_token')
+      try {
+        let isAuthenticated = false
 
-      if (!isAuthenticated && !hasCollegeToken) {
-        if (status !== 'loading') {
-          notFound()
-        }
-        return
-      }
+        // Check NextAuth session first
+        if (status === 'authenticated' && session?.user) {
+          isAuthenticated = true
+        } else {
+          // Check session API for college students
+          const token = typeof window !== 'undefined' ? localStorage.getItem('student_token') : null
+          if (token) {
+            const response = await fetch('/api/auth/session', {
+              headers: {
+                'Authorization': `Bearer ${token}`
+              }
+            })
 
-      setAuthenticated(true)
-
-      // Load interview data
-      if (params.result) {
-        try {
-          const interviewId = Array.isArray(params.result) ? params.result[0] : params.result
-          const data = await getInterviewById(interviewId)
-
-          if (data) {
-            // Transform API data to match component expectations
-            const transformedData = {
-              id: data.id,
-              title: data.title,
-              companyName: data.company || null,
-              position: null, // API doesn't provide position
-              createdAt: new Date(data.createdAt),
-              attempts: data.attempts?.map(attempt => ({
-                id: attempt.id,
-                startedAt: new Date(attempt.completedAt || attempt.id),
-                completedAt: attempt.completedAt ? new Date(attempt.completedAt) : null,
-                duration: attempt.duration,
-                status: 'completed', // Default to completed
-                createdAt: new Date(attempt.completedAt || attempt.id),
-                results: attempt.score || attempt.feedback || attempt.strengths?.length ? [{
-                  id: `result-${attempt.id}`,
-                  overallScore: attempt.score || 0,
-                  overallFeedback: attempt.feedback || "",
-                  strengths: attempt.strengths || [],
-                  weaknesses: attempt.weaknesses || [],
-                  recommendations: attempt.recommendations || [],
-                  communication: null,
-                  knowledge: null,
-                  feedback: attempt.feedback || "",
-                  notes: attempt.feedback || "", // Map feedback to notes field for interface compatibility
-                  duration: attempt.duration,
-                  createdAt: new Date(attempt.completedAt || attempt.id),
-                  vocabularyComplexity: null,
-                  emotionalTone: null,
-                  wordCountAnalysis: null,
-                  questionAnsweringQuality: null,
-                  followUpHandling: null,
-                  answerStructure: null,
-                  exampleUsage: null,
-                  relevantTopicAnswer: null
-                }] : []
-              })) || []
+            if (response.ok) {
+              const sessionData = await response.json()
+              if (sessionData.authenticated && sessionData.user) {
+                isAuthenticated = true
+              } else {
+                notFound()
+                return
+              }
+            } else {
+              notFound()
+              return
             }
-            setInterview(transformedData)
-          } else {
+          } else if (status !== 'loading') {
             notFound()
+            return
+          } else {
+            return // Still loading
           }
-        } catch (error) {
-          console.error('Error loading interview:', error)
-          notFound()
-        } finally {
-          setLoading(false)
         }
+
+        setAuthenticated(isAuthenticated)
+
+        // Load interview data
+        if (params.result && isAuthenticated) {
+          try {
+            const interviewId = Array.isArray(params.result) ? params.result[0] : params.result
+            const data = await getInterviewById(interviewId)
+
+            if (data) {
+              // Transform API data to match component expectations
+              const transformedData = {
+                id: data.id,
+                title: data.title,
+                companyName: data.company || null,
+                position: null, // API doesn't provide position
+                createdAt: new Date(data.createdAt),
+                attempts: data.attempts?.map(attempt => ({
+                  id: attempt.id,
+                  startedAt: new Date(attempt.completedAt || attempt.id),
+                  completedAt: attempt.completedAt ? new Date(attempt.completedAt) : null,
+                  duration: attempt.duration,
+                  status: 'completed', // Default to completed
+                  createdAt: new Date(attempt.completedAt || attempt.id),
+                  results: attempt.score || attempt.feedback || attempt.strengths?.length ? [{
+                    id: `result-${attempt.id}`,
+                    overallScore: attempt.score || 0,
+                    overallFeedback: attempt.feedback || "",
+                    strengths: attempt.strengths || [],
+                    weaknesses: attempt.weaknesses || [],
+                    recommendations: attempt.recommendations || [],
+                    communication: null,
+                    knowledge: null,
+                    feedback: attempt.feedback || "",
+                    notes: attempt.feedback || "", // Map feedback to notes field for interface compatibility
+                    duration: attempt.duration,
+                    createdAt: new Date(attempt.completedAt || attempt.id),
+                    vocabularyComplexity: null,
+                    emotionalTone: null,
+                    wordCountAnalysis: null,
+                    questionAnsweringQuality: null,
+                    followUpHandling: null,
+                    answerStructure: null,
+                    exampleUsage: null,
+                    relevantTopicAnswer: null
+                  }] : []
+                })) || []
+              }
+              setInterview(transformedData)
+            } else {
+              notFound()
+            }
+          } catch (error) {
+            console.error('Error loading interview:', error)
+            notFound()
+          } finally {
+            setLoading(false)
+          }
+        }
+      } catch (error) {
+        console.error('Error in checkAuthAndLoadData:', error)
+        notFound()
       }
     }
 

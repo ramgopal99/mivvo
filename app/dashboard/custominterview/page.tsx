@@ -38,39 +38,47 @@ export default function CustomInterviewPage() {
 
   // Check authentication status
   useEffect(() => {
-    const checkAuth = () => {
-      // Check for NextAuth session
-      if (status === 'authenticated' && session?.user) {
-        setIsAuthenticated(true)
-        setLoading(false)
-        return
-      }
-
-      // Check for college student token
-      const studentToken = localStorage.getItem('student_token')
-      const userData = localStorage.getItem('user_data')
-
-      if (studentToken && userData) {
-        try {
-          const parsedUserData = JSON.parse(userData)
-          if (parsedUserData && parsedUserData.id) {
-            setIsAuthenticated(true)
-            setLoading(false)
-            return
-          }
-        } catch (error) {
-          console.error('Error parsing user data:', error)
+    const checkAuth = async () => {
+      try {
+        // Check for NextAuth session first
+        if (status === 'authenticated' && session?.user) {
+          setIsAuthenticated(true)
+          setLoading(false)
+          return
         }
-      }
 
-      // If NextAuth is still loading, wait
-      if (status === 'loading') {
-        return
-      }
+        // Check session API for college students
+        const token = localStorage.getItem('student_token')
+        if (token) {
+          const response = await fetch('/api/auth/session', {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          })
 
-      // Not authenticated
-      setIsAuthenticated(false)
-      setLoading(false)
+          if (response.ok) {
+            const sessionData = await response.json()
+            if (sessionData.authenticated && sessionData.user) {
+              setIsAuthenticated(true)
+              setLoading(false)
+              return
+            }
+          }
+        }
+
+        // If NextAuth is still loading, wait
+        if (status === 'loading') {
+          return
+        }
+
+        // Not authenticated
+        setIsAuthenticated(false)
+      } catch (error) {
+        console.error('Error checking authentication:', error)
+        setIsAuthenticated(false)
+      } finally {
+        setLoading(false)
+      }
     }
 
     checkAuth()
@@ -199,7 +207,7 @@ export default function CustomInterviewPage() {
     )
   }
 
-  if (!isAuthenticated && status === 'unauthenticated') {
+  if (!isAuthenticated && !loading) {
     return (
       <div className="space-y-6">
         <div className="flex items-center justify-center h-64">
