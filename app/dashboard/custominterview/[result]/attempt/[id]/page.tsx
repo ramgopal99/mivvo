@@ -76,9 +76,13 @@ export default function AttemptDetailsPage({ params }: AttemptDetailsPageProps) 
     const checkAuthAndLoadData = async () => {
       // Check authentication
       const isAuthenticated = status === 'authenticated' && session?.user
-      const hasCollegeToken = typeof window !== 'undefined' && localStorage.getItem('student_token')
+      const hasJwtToken = typeof window !== 'undefined' && (
+        localStorage.getItem('token') ||
+        localStorage.getItem('student_token') ||
+        localStorage.getItem('college_token')
+      )
 
-      if (!isAuthenticated && !hasCollegeToken) {
+      if (!isAuthenticated && !hasJwtToken) {
         if (status !== 'loading') {
           notFound()
         }

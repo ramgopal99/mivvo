@@ -59,15 +59,17 @@ export default function CollegeDashboardPage() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        // Check for college admin token first, then fallback to other tokens
-        const token = localStorage.getItem('college_token') || 
-                     localStorage.getItem('token') ||
-                     localStorage.getItem('student_token')
-        
+        // Get authentication token (supports multiple token types)
+        const token = localStorage.getItem('token') ||
+                     localStorage.getItem('student_token') ||
+                     localStorage.getItem('college_token')
+
         if (!token) {
-          setError('No authentication token found. Please log in as a college administrator.')
+          setError('No authentication token found. Please log in as a college student or administrator.')
           return
         }
+
+        console.log('Fetching college dashboard stats with token...')
 
         const response = await fetch('/api/college/dashboard', {
           headers: {
@@ -78,12 +80,15 @@ export default function CollegeDashboardPage() {
 
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({}))
+          console.error('Dashboard API error:', errorData)
           throw new Error(errorData.error || `Failed to fetch dashboard stats (${response.status})`)
         }
 
         const data = await response.json()
+        console.log('Dashboard stats loaded:', data)
         setStats(data)
       } catch (err) {
+        console.error('Error fetching dashboard stats:', err)
         setError(err instanceof Error ? err.message : 'An error occurred')
       } finally {
         setLoading(false)
@@ -113,13 +118,23 @@ export default function CollegeDashboardPage() {
           <AlertCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-red-600 mb-2">Authentication Required</h2>
           <p className="text-gray-600 mb-6">{error}</p>
-          <Button 
-            onClick={() => router.push('/auth/college-admin')}
-            className="w-full"
-          >
-            <LogIn className="mr-2 h-4 w-4" />
-            Go to College Admin Login
-          </Button>
+          <div className="space-y-3">
+            <Button
+              onClick={() => router.push('/auth/college-admin')}
+              className="w-full"
+            >
+              <LogIn className="mr-2 h-4 w-4" />
+              College Admin Login
+            </Button>
+            <Button
+              onClick={() => router.push('/auth/signin')}
+              variant="outline"
+              className="w-full"
+            >
+              <LogIn className="mr-2 h-4 w-4" />
+              Student Login
+            </Button>
+          </div>
         </div>
       </div>
     )

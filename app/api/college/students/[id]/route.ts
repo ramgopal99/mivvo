@@ -3,10 +3,11 @@ import jwt from 'jsonwebtoken'
 import { prisma } from '@/lib/prisma'
 
 interface JWTPayload {
-  collegeId: string
-  collegeName: string
+  userId?: string
+  collegeId?: string
+  collegeName?: string
   role: string
-  type: string
+  type?: string
   iat?: number
   exp?: number
 }
@@ -37,13 +38,41 @@ export async function GET(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
     }
 
+    let collegeId: string
+
+    // Handle both old JWT structure (collegeId directly) and new structure (userId with college relationship)
+    if (payload.collegeId) {
+      // Old structure - collegeId directly in JWT
+      collegeId = payload.collegeId
+    } else if (payload.userId) {
+      // New structure - get collegeId from user relationship
+      const user = await prisma.user.findUnique({
+        where: { id: payload.userId },
+        select: { collegeId: true }
+      })
+
+      if (!user || !user.collegeId) {
+        return NextResponse.json(
+          { error: 'College admin not associated with a college' },
+          { status: 403 }
+        )
+      }
+
+      collegeId = user.collegeId
+    } else {
+      return NextResponse.json(
+        { error: 'Invalid token structure' },
+        { status: 401 }
+      )
+    }
+
     const studentId = id
 
     // Get student details with comprehensive data
     const student = await prisma.user.findFirst({
       where: {
         id: studentId,
-        collegeId: payload.collegeId,
+        collegeId: collegeId,
         role: { in: ['USER', 'COLLEGE_STUDENT'] }
       },
       include: {

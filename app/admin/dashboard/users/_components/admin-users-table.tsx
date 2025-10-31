@@ -37,6 +37,7 @@ interface AdminUser {
   role: 'user' | 'college_admin' | 'super_admin'
   status: 'active' | 'inactive' | 'suspended'
   collegeName?: string
+  collegeAdminId?: string
   lastLogin: string
   createdAt: string
   totalLogins: number
@@ -100,7 +101,7 @@ export function AdminUsersTable({
               <TableHead>User</TableHead>
               <TableHead>Role</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead>College</TableHead>
+              <TableHead>College / Admin ID</TableHead>
               <TableHead>Last Login</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
@@ -129,7 +130,17 @@ export function AdminUsersTable({
                   {getStatusBadge(user.status)}
                 </TableCell>
                 <TableCell>
-                  <span className="text-sm">{user.collegeName || 'N/A'}</span>
+                  <div className="text-sm">
+                    {user.collegeName && (
+                      <div>{user.collegeName}</div>
+                    )}
+                    {user.collegeAdminId && (
+                      <div className="text-muted-foreground">ID: {user.collegeAdminId}</div>
+                    )}
+                    {!user.collegeName && !user.collegeAdminId && (
+                      <span>N/A</span>
+                    )}
+                  </div>
                 </TableCell>
                 <TableCell>
                   <span className="text-sm text-muted-foreground">

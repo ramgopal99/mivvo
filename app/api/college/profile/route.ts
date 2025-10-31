@@ -6,7 +6,8 @@ const prisma = new PrismaClient()
 
 interface JWTPayload {
   role: string
-  collegeId: string
+  userId?: string
+  collegeId?: string
   [key: string]: unknown
 }
 
@@ -42,24 +43,51 @@ export async function PUT(request: NextRequest) {
       )
     }
 
-    const { name, email, description, location, website, phone, establishedYear } = await request.json()
+    let collegeId: string
+
+    // Handle both old JWT structure (collegeId directly) and new structure (userId with college relationship)
+    if (decoded.collegeId) {
+      // Old structure - collegeId directly in JWT
+      collegeId = decoded.collegeId
+    } else if (decoded.userId) {
+      // New structure - get collegeId from user relationship
+      const user = await prisma.user.findUnique({
+        where: { id: decoded.userId },
+        select: { collegeId: true }
+      })
+
+      if (!user || !user.collegeId) {
+        return NextResponse.json(
+          { error: 'College admin not associated with a college' },
+          { status: 403 }
+        )
+      }
+
+      collegeId = user.collegeId
+    } else {
+      return NextResponse.json(
+        { error: 'Invalid token structure' },
+        { status: 401 }
+      )
+    }
+
+    const { name, description, location, website, phone, establishedYear } = await request.json()
 
     // Validate required fields
-    if (!name || !email) {
+    if (!name) {
       return NextResponse.json(
-        { error: 'College name and email are required' },
+        { error: 'College name is required' },
         { status: 400 }
       )
     }
 
-    // Update college profile
+    // Update college profile (email removed from College model)
     const updatedCollege = await prisma.college.update({
       where: {
-        id: decoded.collegeId
+        id: collegeId
       },
       data: {
         name,
-        email,
         description,
         location,
         website,
@@ -69,12 +97,11 @@ export async function PUT(request: NextRequest) {
       }
     })
 
-    // Return updated college data (without sensitive fields)
+    // Return updated college data (without sensitive fields - email removed)
     const responseData = {
       id: updatedCollege.id,
       collegeId: updatedCollege.collegeId,
       name: updatedCollege.name,
-      email: updatedCollege.email,
       description: updatedCollege.description,
       location: updatedCollege.location,
       website: updatedCollege.website,
@@ -145,10 +172,38 @@ export async function GET(request: NextRequest) {
       )
     }
 
+    let collegeId: string
+
+    // Handle both old JWT structure (collegeId directly) and new structure (userId with college relationship)
+    if (decoded.collegeId) {
+      // Old structure - collegeId directly in JWT
+      collegeId = decoded.collegeId
+    } else if (decoded.userId) {
+      // New structure - get collegeId from user relationship
+      const user = await prisma.user.findUnique({
+        where: { id: decoded.userId },
+        select: { collegeId: true }
+      })
+
+      if (!user || !user.collegeId) {
+        return NextResponse.json(
+          { error: 'College admin not associated with a college' },
+          { status: 403 }
+        )
+      }
+
+      collegeId = user.collegeId
+    } else {
+      return NextResponse.json(
+        { error: 'Invalid token structure' },
+        { status: 401 }
+      )
+    }
+
     // Get college profile
     const college = await prisma.college.findUnique({
       where: {
-        id: decoded.collegeId
+        id: collegeId
       }
     })
 
@@ -159,12 +214,11 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Return college data (without sensitive fields)
+    // Return college data (without sensitive fields - email removed)
     const responseData = {
       id: college.id,
       collegeId: college.collegeId,
       name: college.name,
-      email: college.email,
       description: college.description,
       location: college.location,
       website: college.website,

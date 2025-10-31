@@ -44,7 +44,9 @@ export function ProfileSettings() {
       }
 
       // Then fetch fresh data from API
-      const token = localStorage.getItem('college_token')
+      const token = localStorage.getItem('token') ||
+                   localStorage.getItem('college_token') ||
+                   localStorage.getItem('student_token')
       if (token) {
         const response = await fetch('/api/college/profile', {
           headers: {

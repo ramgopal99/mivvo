@@ -64,12 +64,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Create JWT token for college student (expires in 24 hours)
+    // Use the actual role from the database (could be COLLEGE_STUDENT or USER)
     const token = jwt.sign(
       {
         userId: user.id,
         email: user.email,
         name: user.name,
-        role: 'COLLEGE_STUDENT', // College students have COLLEGE_STUDENT role
+        role: user.role, // Use actual role from database
         collegeId: user.collegeId,
         collegeName: user.college.name,
         type: 'college_student'
@@ -87,7 +88,7 @@ export async function POST(request: NextRequest) {
           id: user.id,
           name: user.name,
           email: user.email,
-          role: 'COLLEGE_STUDENT',
+          role: user.role,
           firstName: user.firstName,
           lastName: user.lastName,
           phone: user.phone,

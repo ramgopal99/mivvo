@@ -50,17 +50,25 @@ export default function DashboardLayout({
     setAuthAttempted(false) // Reset auth attempt when dependencies change
     const loadUserData = async () => {
       try {
-        const token = localStorage.getItem('student_token')
+        // Check for JWT tokens (college students) - updated to match new token storage
+        const token = localStorage.getItem('token') ||
+                     localStorage.getItem('student_token') ||
+                     localStorage.getItem('college_token')
         if (token) {
           try {
+            console.log('Dashboard: Checking JWT token for college student authentication')
             const response = await fetch('/api/auth/session', {
               headers: {
                 'Authorization': `Bearer ${token}`
               }
             })
 
+            console.log('Dashboard: Session API response status:', response.status)
+
             if (response.ok) {
               const sessionData = await response.json()
+              console.log('Dashboard: Session data:', sessionData)
+
               if (sessionData.authenticated && sessionData.user) {
                 setUserData({
                   id: sessionData.user.id,
@@ -76,12 +84,19 @@ export default function DashboardLayout({
                     collegeId: sessionData.user.collegeId
                   } : undefined
                 })
+                console.log('Dashboard: College student authenticated successfully')
                 return
+              } else {
+                console.log('Dashboard: Session not authenticated')
               }
+            } else {
+              console.log('Dashboard: Session API failed')
             }
           } catch (error) {
-            console.error('Error checking college student session:', error)
+            console.error('Dashboard: Error checking college student session:', error)
           }
+        } else {
+          console.log('Dashboard: No JWT tokens found')
         }
 
         if (status === 'authenticated' && session?.user) {
@@ -110,7 +125,8 @@ export default function DashboardLayout({
     loadUserData()
 
     const handleStorageChange = (e: StorageEvent) => {
-      if ((e.key === 'student_token' || e.key === 'college_token') && !e.newValue) {
+      if ((e.key === 'token' || e.key === 'student_token' || e.key === 'college_token') && !e.newValue) {
+        console.log('Dashboard: Auth token removed, redirecting to signin')
         window.location.href = '/auth/signin'
       } else {
         loadUserData()
@@ -143,7 +159,12 @@ export default function DashboardLayout({
     const hasNextAuthSession = status === 'authenticated' && !!session?.user
     const nextAuthRole = hasNextAuthSession ? (session?.user as { role?: string })?.role : undefined
 
-    const hasCollegeAuth = !!userData && !!localStorage.getItem('student_token')
+    // Check for JWT authentication (college students) - updated token names
+    const hasCollegeAuth = !!userData && (
+      !!localStorage.getItem('token') ||
+      !!localStorage.getItem('student_token') ||
+      !!localStorage.getItem('college_token')
+    )
     const collegeRole = hasCollegeAuth ? userData?.role : undefined
 
     const isAuthenticated = hasNextAuthSession || hasCollegeAuth
@@ -154,6 +175,14 @@ export default function DashboardLayout({
 
     if (!isAuthenticated || !hasValidRole) {
       if (typeof window !== 'undefined') {
+        console.log('Dashboard: Not authenticated or invalid role, redirecting to signin', {
+          isAuthenticated,
+          effectiveRole,
+          hasValidRole,
+          hasNextAuthSession,
+          hasCollegeAuth
+        })
+        localStorage.removeItem('token')
         localStorage.removeItem('student_token')
         localStorage.removeItem('college_token')
         window.location.href = '/auth/signin'

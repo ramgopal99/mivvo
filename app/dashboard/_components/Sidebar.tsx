@@ -40,8 +40,10 @@ export function AppSidebar() {
         const checkSession = async () => {
             try {
                 // Always check session API first for comprehensive session validation
-                const token = localStorage.getItem('student_token')
-                console.log('Checking college student token:', !!token)
+                const token = localStorage.getItem('token') ||
+                             localStorage.getItem('student_token') ||
+                             localStorage.getItem('college_token')
+                console.log('Checking JWT token:', !!token)
                 if (token) {
                     console.log('Making session API call...')
                     const response = await fetch('/api/auth/session', {

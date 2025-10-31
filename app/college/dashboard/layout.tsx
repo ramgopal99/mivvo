@@ -44,29 +44,29 @@ export default function CollegeDashboardLayout({
     const checkAuthAndLoadData = async () => {
       console.log('College dashboard: Starting authentication check')
 
-      // Check NextAuth session first
+      // Check NextAuth session first (for users who log in via email)
       if (session?.user) {
-        console.log('College dashboard: NextAuth session found, setting authenticated')
+        console.log('College dashboard: NextAuth session found')
         setIsAuthenticated(true)
         setUserRole((session.user as { role?: string })?.role || 'USER')
+
+        // For college admins in NextAuth, load college data
+        if ((session.user as { role?: string })?.role === 'COLLEGE_ADMIN') {
+          await loadCollegeDataForUser()
+        }
+
         setAuthCheckComplete(true)
         return
       }
 
-      // Check for college student or admin JWT token via API
-      const studentToken = localStorage.getItem('student_token')
-      const collegeToken = localStorage.getItem('college_token')
-
-      console.log('College dashboard: Checking tokens', {
-        hasStudentToken: !!studentToken,
-        hasCollegeToken: !!collegeToken
-      })
-
-      const token = studentToken || collegeToken
+      // Check for JWT tokens (college students and admins)
+      const token = localStorage.getItem('token') ||
+                   localStorage.getItem('student_token') ||
+                   localStorage.getItem('college_token')
 
       if (token) {
         try {
-          console.log('College dashboard: Validating token with session API')
+          console.log('College dashboard: Validating JWT token with session API')
           const response = await fetch('/api/auth/session', {
             headers: {
               'Authorization': `Bearer ${token}`
@@ -82,42 +82,105 @@ export default function CollegeDashboardLayout({
             setIsAuthenticated(sessionData.authenticated || false)
             setUserRole(sessionData.user?.role || null)
 
-            // Load college data if authenticated
+            // Load college data for authenticated users
             if (sessionData.authenticated) {
-              const storedCollegeData = localStorage.getItem('college_data')
-              if (storedCollegeData) {
-                try {
-                  const college = JSON.parse(storedCollegeData)
-                  setCollegeData(college)
-                  console.log('College dashboard: College data loaded', college)
-                } catch (error) {
-                  console.error('Error parsing college data:', error)
-                }
-              } else {
-                console.log('College dashboard: No stored college data found')
+              if (sessionData.user?.role === 'COLLEGE_ADMIN') {
+                // For college admins, load college data from API
+                await loadCollegeDataForAdmin(token)
               }
+              // College students get college data from their user record
             }
           } else {
             console.log('College dashboard: Session API returned error')
-            const errorData = await response.json()
-            console.log('College dashboard: Error data:', errorData)
             setIsAuthenticated(false)
             setUserRole(null)
           }
         } catch (error) {
-          console.error('College dashboard: Error checking college authentication:', error)
+          console.error('College dashboard: Error checking authentication:', error)
           setIsAuthenticated(false)
           setUserRole(null)
         }
       } else {
-        console.log('College dashboard: No tokens found')
+        console.log('College dashboard: No authentication tokens found')
         setIsAuthenticated(false)
         setUserRole(null)
       }
 
-      // Mark authentication check as complete
       setAuthCheckComplete(true)
       console.log('College dashboard: Authentication check completed')
+    }
+
+    const loadCollegeDataForUser = async () => {
+      try {
+        console.log('College dashboard: Loading college data for NextAuth user')
+
+        // For NextAuth college admins, we need to call an API to get their college data
+        // Since NextAuth doesn't store JWT tokens, we need a server-side API
+        const response = await fetch('/api/auth/session', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+
+        if (response.ok) {
+          const sessionData = await response.json()
+          if (sessionData.authenticated && sessionData.user?.role === 'COLLEGE_ADMIN') {
+            // Get college data from user relationship
+            const collegeResponse = await fetch('/api/college/profile', {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            })
+
+            if (collegeResponse.ok) {
+              const profileData = await collegeResponse.json()
+              if (profileData.success && profileData.data) {
+                setCollegeData({
+                  id: profileData.data.id,
+                  name: profileData.data.name,
+                  collegeId: profileData.data.collegeId,
+                  maxStudents: profileData.data.maxStudents,
+                  currentStudents: profileData.data.currentStudents,
+                  isActive: profileData.data.isActive
+                })
+                console.log('College dashboard: College data loaded for NextAuth user')
+              }
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error loading college data for NextAuth user:', error)
+      }
+    }
+
+    const loadCollegeDataForAdmin = async (token: string) => {
+      try {
+        // Fetch college profile data for JWT-authenticated college admin
+        const response = await fetch('/api/college/profile', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+
+        if (response.ok) {
+          const profileData = await response.json()
+          if (profileData.success && profileData.data) {
+            setCollegeData({
+              id: profileData.data.id,
+              name: profileData.data.name,
+              collegeId: profileData.data.collegeId,
+              maxStudents: profileData.data.maxStudents,
+              currentStudents: profileData.data.currentStudents,
+              isActive: profileData.data.isActive
+            })
+            console.log('College dashboard: College data loaded from profile API')
+          }
+        }
+      } catch (error) {
+        console.error('Error loading college data for admin:', error)
+      }
     }
 
     if (status !== 'loading') {
@@ -126,7 +189,7 @@ export default function CollegeDashboardLayout({
 
     // Listen for storage changes (logout from other tabs)
     const handleStorageChange = (e: StorageEvent) => {
-      if ((e.key === 'student_token' || e.key === 'college_token') && !e.newValue) {
+      if ((e.key === 'token' || e.key === 'student_token' || e.key === 'college_token') && !e.newValue) {
         console.log('Auth token cleared from storage, redirecting to login')
         window.location.href = '/auth/signin'
       }
@@ -179,6 +242,7 @@ export default function CollegeDashboardLayout({
       localStorage.removeItem('student_token')
       localStorage.removeItem('college_data')
       localStorage.removeItem('college_token')
+      localStorage.removeItem('token')
 
       window.location.href = '/auth/signin'
     }

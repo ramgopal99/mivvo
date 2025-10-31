@@ -76,6 +76,10 @@ model User {
   year            String?
   password      String?
 
+  // College Admin fields (for users with COLLEGE_ADMIN role)
+  collegeAdminId  String?  // Unique ID for college admin login (e.g., TECH_UNIV_001)
+  collegeAdminPassword String?  // Password for college admin login
+
   // College relationship
   collegeId     String?
   college       College?  @relation(fields: [collegeId], references: [id], onDelete: SetNull)
@@ -103,15 +107,13 @@ model College {
   id                String    @id @default(cuid()) @map("_id")
   collegeId         String    @unique
   name              String
-  email             String    @unique
-  password          String
   description       String?
   location          String?
   website           String?
   phone             String?
   establishedYear   Int?
 
-  // Status and billing
+  // Status and billing (managed by college admins who are users)
   isActive          Boolean   @default(true)
   maxStudents       Int       @default(100)
   currentStudents   Int       @default(0)
@@ -122,7 +124,7 @@ model College {
   nextBillingDate    DateTime?
   lastBillingAmount  Float     @default(0.0)
 
-  // Relations
+  // Relations - college admins are now users with COLLEGE_ADMIN role
   users             User[]
 
   createdAt         DateTime  @default(now())

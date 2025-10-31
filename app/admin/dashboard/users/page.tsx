@@ -1,10 +1,13 @@
 import { redirect } from "next/navigation"
-import { getAdminUsers } from "@/app/actions/user"
+import { getFilteredAdminUsers } from "@/app/actions/user"
 import { AdminUsersClient } from "./_components/client"
 
 export default async function AdminUsersPage() {
-  // Fetch users from database
-  const result = await getAdminUsers()
+  // Fetch initial users from database with pagination
+  const result = await getFilteredAdminUsers({
+    page: 1,
+    limit: 50
+  })
 
   if (!result.success) {
     // If not authorized or error, redirect to dashboard

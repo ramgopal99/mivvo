@@ -47,8 +47,8 @@ export default function CollegeAdminLoginPage() {
 
       if (response.ok && data.success) {
         // Store token in localStorage (you might want to use a more secure method)
-        localStorage.setItem('college_token', data.data.token)
-        localStorage.setItem('college_data', JSON.stringify(data.data.college))
+        localStorage.setItem('token', data.data.token)
+        localStorage.setItem('user_data', JSON.stringify(data.data.user))
 
         console.log('College admin login successful')
         router.push('/college/dashboard')
@@ -149,9 +149,9 @@ export default function CollegeAdminLoginPage() {
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
           <h4 className="text-sm font-medium text-blue-900 mb-2">Demo Credentials</h4>
           <div className="text-xs text-blue-700 space-y-1">
-            <p><strong>College ID:</strong> demo</p>
+            <p><strong>College Admin ID:</strong> demo</p>
             <p><strong>Password:</strong> college123</p>
-            <p><strong>Admin Email:</strong> demo@college.com (alternative login)</p>
+            <p><strong>Note:</strong> College admins can also log in via regular email authentication</p>
           </div>
         </div>
 

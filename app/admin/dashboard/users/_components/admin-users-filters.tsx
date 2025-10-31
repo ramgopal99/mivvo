@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -9,6 +10,7 @@ import {
   Download,
   UserPlus
 } from "lucide-react"
+import { getCollegeFilterOptions } from "@/app/actions/user"
 
 interface AdminUsersFiltersProps {
   searchTerm: string
@@ -35,6 +37,22 @@ export function AdminUsersFilters({
   onAddUser,
   onExportUsers
 }: AdminUsersFiltersProps) {
+  const [collegeOptions, setCollegeOptions] = useState<Array<{ value: string; label: string }>>([])
+
+  useEffect(() => {
+    const loadCollegeOptions = async () => {
+      try {
+        const result = await getCollegeFilterOptions()
+        if (result.success) {
+          setCollegeOptions(result.colleges || [])
+        }
+      } catch (error) {
+        console.error('Error loading college options:', error)
+      }
+    }
+
+    loadCollegeOptions()
+  }, [])
   return (
     <Card>
       <CardHeader>
@@ -82,10 +100,11 @@ export function AdminUsersFilters({
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Colleges</SelectItem>
-              <SelectItem value="central-university">Central University</SelectItem>
-              <SelectItem value="tech-institute">Tech Institute</SelectItem>
-              <SelectItem value="global-college">Global College</SelectItem>
-              <SelectItem value="metro-university">Metro University</SelectItem>
+              {collegeOptions.map((college) => (
+                <SelectItem key={college.value} value={college.value}>
+                  {college.label}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
 

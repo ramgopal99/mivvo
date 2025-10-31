@@ -77,15 +77,32 @@ export async function GET(request: NextRequest) {
           })
         }
 
-        // Check if it's a college admin token
-        if (decoded.type === 'college_admin' && decoded.collegeId) {
+        // Check if it's a college student token
+        if (decoded.type === 'college_student' && decoded.userId) {
+          console.log('Valid college student token found')
+          return NextResponse.json({
+            authenticated: true,
+            user: {
+              id: decoded.userId,
+              name: decoded.name,
+              email: decoded.email,
+              role: decoded.role,
+              collegeId: decoded.collegeId,
+              collegeName: decoded.collegeName
+            },
+            provider: 'college_student_jwt'
+          })
+        }
+
+        // Check if it's a college admin token (now uses userId like regular users)
+        if (decoded.type === 'college_admin' && decoded.userId) {
           console.log('Valid college admin token found')
           return NextResponse.json({
             authenticated: true,
             user: {
-              id: decoded.collegeId, // College ID as user ID for admins
-              name: decoded.collegeName,
-              email: '', // College admins don't have personal email in token
+              id: decoded.userId,
+              name: decoded.name,
+              email: decoded.email,
               role: decoded.role,
               collegeId: decoded.collegeId,
               collegeName: decoded.collegeName

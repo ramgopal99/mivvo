@@ -19,10 +19,12 @@ const getAuthHeaders = (): Record<string, string> => {
     headers['Authorization'] = `Bearer ${nextAuthToken}`
   }
 
-  // Check for college student JWT token
-  const studentToken = localStorage.getItem('student_token')
-  if (studentToken) {
-    headers['Authorization'] = `Bearer ${studentToken}`
+  // Check for JWT tokens (college students/admins) - updated token names
+  const jwtToken = localStorage.getItem('token') ||
+                  localStorage.getItem('student_token') ||
+                  localStorage.getItem('college_token')
+  if (jwtToken) {
+    headers['Authorization'] = `Bearer ${jwtToken}`
   }
 
   return headers
@@ -47,8 +49,10 @@ export default function CustomInterviewPage() {
           return
         }
 
-        // Check session API for college students
-        const token = localStorage.getItem('student_token')
+        // Check session API for JWT-authenticated users (college students/admins)
+        const token = localStorage.getItem('token') ||
+                     localStorage.getItem('student_token') ||
+                     localStorage.getItem('college_token')
         if (token) {
           const response = await fetch('/api/auth/session', {
             headers: {

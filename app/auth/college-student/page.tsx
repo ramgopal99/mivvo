@@ -53,13 +53,14 @@ export default function CollegeStudentLoginPage() {
         console.log('College student login: Login successful, storing tokens')
 
         // Store token in localStorage (you might want to use a more secure method)
-        localStorage.setItem('student_token', data.data.token)
+        localStorage.setItem('token', data.data.token)
         localStorage.setItem('user_data', JSON.stringify(data.data.user))
 
         console.log('College student login: Tokens stored, user role:', data.data.user.role)
 
         // Redirect to appropriate dashboard based on user role
         const userRole = data.data.user.role
+        // College admins go to college dashboard, students go to regular dashboard
         const dashboardUrl = userRole === 'COLLEGE_ADMIN' ? '/college/dashboard' : '/dashboard'
 
         console.log('College student login: Redirecting to:', dashboardUrl)

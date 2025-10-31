@@ -56,11 +56,15 @@ const getAuthHeaders = (): Record<string, string> => {
     headers['Authorization'] = `Bearer ${nextAuthToken}`
   }
 
-  // Check for college student JWT token (takes precedence)
-  const studentToken = typeof window !== 'undefined' ? localStorage.getItem('student_token') : null
-  if (studentToken) {
-    console.log('Using college student JWT token for API call')
-    headers['Authorization'] = `Bearer ${studentToken}`
+  // Check for JWT tokens (college students/admins) - updated token names
+  const jwtToken = typeof window !== 'undefined' ? (
+    localStorage.getItem('token') ||
+    localStorage.getItem('student_token') ||
+    localStorage.getItem('college_token')
+  ) : null
+  if (jwtToken) {
+    console.log('Using JWT token for API call')
+    headers['Authorization'] = `Bearer ${jwtToken}`
   }
 
   if (!headers['Authorization']) {

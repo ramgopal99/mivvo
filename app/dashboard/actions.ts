@@ -2,8 +2,9 @@
 
 import { getSessionUserData } from "@/lib/session"
 import { prisma } from "@/lib/prisma"
+import { UserRole } from "@prisma/client"
 
-export async function getDashboardData(collegeUserData?: { id: string; name: string; email: string; college?: { id: string; name: string; collegeId: string } }) {
+export async function getDashboardData(collegeUserData?: { id: string; name: string; email: string; role?: string; college?: { id: string; name: string; collegeId: string } }) {
   let user = await getSessionUserData()
 
   // If college user data is provided, use it instead of session data
@@ -13,7 +14,7 @@ export async function getDashboardData(collegeUserData?: { id: string; name: str
       name: collegeUserData.name,
       email: collegeUserData.email,
       image: null,
-      role: "COLLEGE_STUDENT"
+      role: (collegeUserData.role as UserRole) || UserRole.COLLEGE_STUDENT
     }
   }
 

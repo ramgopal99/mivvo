@@ -50,9 +50,11 @@ export default function InterviewAttemptsPage() {
       setError(null)
 
       try {
-        const token = localStorage.getItem('college_token')
+        const token = localStorage.getItem('token') ||
+                     localStorage.getItem('college_token') ||
+                     localStorage.getItem('student_token')
         if (!token) {
-          setError('No authentication token found')
+          setError('No authentication token found. Please log in.')
           return
         }
 

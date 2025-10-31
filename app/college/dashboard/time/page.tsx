@@ -71,10 +71,12 @@ export default function TimePage() {
   useEffect(() => {
     const fetchStudentTimeData = async () => {
       try {
-        // Get college admin token from localStorage
-        const adminToken = localStorage.getItem('college_token')
+        // Get authentication token (supports multiple token types)
+        const adminToken = localStorage.getItem('token') ||
+                          localStorage.getItem('college_token') ||
+                          localStorage.getItem('student_token')
         if (!adminToken) {
-          setError('No admin authentication found')
+          setError('No authentication token found. Please log in.')
           setLoading(false)
           return
         }

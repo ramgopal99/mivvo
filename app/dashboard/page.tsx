@@ -62,6 +62,7 @@ export default function Dashboard() {
                   id: parsedUserData.id,
                   name: parsedUserData.name,
                   email: parsedUserData.email,
+                  role: parsedUserData.role,
                   college: parsedUserData.college
                 }
               }

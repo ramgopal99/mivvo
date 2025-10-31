@@ -16,20 +16,26 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Find college by collegeId
-    const college = await prisma.college.findUnique({
-      where: { collegeId }
+    // Find user by collegeAdminId with COLLEGE_ADMIN role
+    const user = await prisma.user.findFirst({
+      where: {
+        collegeAdminId: collegeId,
+        role: 'COLLEGE_ADMIN'
+      },
+      include: {
+        college: true
+      }
     })
 
-    if (!college) {
+    if (!user) {
       return NextResponse.json(
-        { error: 'Invalid college ID' },
+        { error: 'Invalid college ID or not a college admin' },
         { status: 401 }
       )
     }
 
     // Verify password
-    const isValidPassword = await bcrypt.compare(password, college.password)
+    const isValidPassword = await bcrypt.compare(password, user.collegeAdminPassword || '')
     if (!isValidPassword) {
       return NextResponse.json(
         { error: 'Invalid password' },
@@ -37,8 +43,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check if college is active
-    if (!college.isActive) {
+    // Check if associated college is active (if exists)
+    if (user.college && !user.college.isActive) {
       return NextResponse.json(
         { error: 'College account is inactive' },
         { status: 403 }
@@ -48,8 +54,11 @@ export async function POST(request: NextRequest) {
     // Create JWT token for college admin
     const token = jwt.sign(
       {
-        collegeId: college.id,
-        collegeName: college.name,
+        userId: user.id,
+        email: user.email,
+        name: user.name,
+        collegeId: user.college?.id,
+        collegeName: user.college?.name || user.collegeName,
         role: 'COLLEGE_ADMIN',
         type: 'college_admin'
       },
@@ -62,22 +71,29 @@ export async function POST(request: NextRequest) {
       success: true,
       message: 'College admin login successful',
       data: {
-        college: {
-          id: college.id,
-          collegeId: college.collegeId,
-          name: college.name,
-          email: college.email,
-          description: college.description,
-          location: college.location,
-          website: college.website,
-          phone: college.phone,
-          establishedYear: college.establishedYear,
-          isActive: college.isActive,
-          maxStudents: college.maxStudents,
-          currentStudents: college.currentStudents,
-          monthlyRatePerUser: college.monthlyRatePerUser,
-          billingCycle: college.billingCycle
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          collegeAdminId: user.collegeAdminId,
+          collegeName: user.collegeName,
+          role: user.role
         },
+        college: user.college ? {
+          id: user.college.id,
+          collegeId: user.college.collegeId,
+          name: user.college.name,
+          description: user.college.description,
+          location: user.college.location,
+          website: user.college.website,
+          phone: user.college.phone,
+          establishedYear: user.college.establishedYear,
+          isActive: user.college.isActive,
+          maxStudents: user.college.maxStudents,
+          currentStudents: user.college.currentStudents,
+          monthlyRatePerUser: user.college.monthlyRatePerUser,
+          billingCycle: user.college.billingCycle
+        } : null,
         token
       }
     })

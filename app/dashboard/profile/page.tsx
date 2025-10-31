@@ -28,7 +28,9 @@ export default function ProfilePage() {
     const loadUserData = async () => {
       try {
         // Always check session API first for comprehensive session validation
-        const token = localStorage.getItem('student_token')
+        const token = localStorage.getItem('token') ||
+                     localStorage.getItem('student_token') ||
+                     localStorage.getItem('college_token')
         if (token) {
           try {
             const response = await fetch('/api/auth/session', {

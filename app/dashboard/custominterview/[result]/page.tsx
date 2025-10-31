@@ -56,8 +56,12 @@ export default function InterviewResultPage() {
         if (status === 'authenticated' && session?.user) {
           isAuthenticated = true
         } else {
-          // Check session API for college students
-          const token = typeof window !== 'undefined' ? localStorage.getItem('student_token') : null
+          // Check session API for JWT-authenticated users (college students/admins)
+          const token = typeof window !== 'undefined' ? (
+            localStorage.getItem('token') ||
+            localStorage.getItem('student_token') ||
+            localStorage.getItem('college_token')
+          ) : null
           if (token) {
             const response = await fetch('/api/auth/session', {
               headers: {
