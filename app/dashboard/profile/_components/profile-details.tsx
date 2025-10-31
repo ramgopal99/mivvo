@@ -25,7 +25,7 @@ export function ProfileDetails({ user }: ProfileDetailsProps) {
         return <Shield className="h-4 w-4 text-primary" />
       case UserRole.COLLEGE_ADMIN:
         return <Building className="h-4 w-4 text-primary" />
-      case UserRole.COLLEGE_ADMIN_STUDENT:
+      case UserRole.COLLEGE_STUDENT:
         return <GraduationCap className="h-4 w-4 text-primary" />
       default:
         return <User className="h-4 w-4 text-primary" />

@@ -20,7 +20,7 @@ export function ProfileHeader({ user }: ProfileHeaderProps) {
         return 'destructive'
       case UserRole.COLLEGE_ADMIN:
         return 'default'
-      case UserRole.COLLEGE_ADMIN_STUDENT:
+      case UserRole.COLLEGE_STUDENT:
         return 'secondary'
       default:
         return 'outline'
@@ -33,7 +33,7 @@ export function ProfileHeader({ user }: ProfileHeaderProps) {
         return 'Super Admin'
       case UserRole.COLLEGE_ADMIN:
         return 'College'
-      case UserRole.COLLEGE_ADMIN_STUDENT:
+      case UserRole.COLLEGE_STUDENT:
         return 'College Student'
       default:
         return role

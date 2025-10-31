@@ -36,8 +36,6 @@ async function createDemoCollegeAndAdmin(): Promise<void> {
       data: {
         collegeId: 'demo',
         name: 'Demo College',
-        email: 'admin@democollege.edu',
-        password: await bcrypt.hash('college123', 10),
         description: 'Demo College for Testing',
         location: 'Test Location',
         website: 'https://democollege.edu',
