@@ -42,6 +42,12 @@ export function MyDetailsTab() {
                 totalTimeAllowance: parsedUserData.totalTimeAllowance || 30,
                 usedTimeMinutes: parsedUserData.usedTimeMinutes || 0,
                 timeAllowanceResetAt: null,
+                // Academic fields
+                rollNumber: parsedUserData.rollNumber || null,
+                branch: parsedUserData.branch || null,
+                course: parsedUserData.course || null,
+                courseDuration: parsedUserData.courseDuration || null,
+                year: parsedUserData.year || null,
                 college: parsedUserData.college || null
               }
               setUserData(collegeUserData)
@@ -99,5 +105,5 @@ export function MyDetailsTab() {
     )
   }
 
-  return <MyDetailsForm userData={userData} />
+  return <MyDetailsForm userData={userData} isCollegeStudent={!!userData?.college} />
 } 

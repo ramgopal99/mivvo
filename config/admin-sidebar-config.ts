@@ -99,12 +99,6 @@ export const adminSidebarConfig: AdminSidebarConfig = {
         url: "/admin/dashboard/settings",
         icon: Settings,
         description: "System-wide settings"
-      },
-      {
-        title: "Help",
-        url: "/admin/dashboard/help",
-        icon: HelpCircle,
-        description: "Admin help and documentation"
       }
     ]
   }

@@ -52,7 +52,7 @@ export const collegeSidebarConfig: CollegeSidebarConfig = {
       ]
     },
     {
-      title: "ANALYTICS",
+      title: "ACADEMICS",
       items: [
         {
           title: "Progress Tracking",
@@ -60,18 +60,6 @@ export const collegeSidebarConfig: CollegeSidebarConfig = {
           icon: Target,
           description: "Monitor individual student progress"
         },
-        {
-          title: "Reports",
-          url: "/college/dashboard/reports",
-          icon: BarChart3,
-          description: "Detailed reports and statistics"
-        },
-
-      ]
-    },
-    {
-      title: "ACADEMICS",
-      items: [
         {
           title: "Time Analytics",
           url: "/college/dashboard/time",

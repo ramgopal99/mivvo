@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -11,11 +11,89 @@ import { UserData } from "../types"
 
 interface MyDetailsFormProps {
   userData: UserData
+  isCollegeStudent?: boolean
 }
 
-export function MyDetailsForm({ userData }: MyDetailsFormProps) {
+export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsFormProps) {
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState("")
+  const [hasChanges, setHasChanges] = useState(false)
+
+  // Form state
+  const [formData, setFormData] = useState({
+    firstName: userData?.firstName || "",
+    lastName: userData?.lastName || "",
+    phone: userData?.phone || "",
+    dateOfBirth: userData?.dateOfBirth ? new Date(userData.dateOfBirth).toISOString().split('T')[0] : "",
+    jobTitle: userData?.jobTitle || "",
+    company: userData?.company || "",
+    location: userData?.location || "",
+    bio: userData?.bio || "",
+    careerGoals: userData?.careerGoals || "",
+    linkedIn: userData?.linkedIn || "",
+    github: userData?.github || "",
+    rollNumber: userData?.rollNumber || "",
+    branch: userData?.branch || "",
+    course: userData?.course || "",
+    courseDuration: userData?.courseDuration || "",
+    year: userData?.year || ""
+  })
+
+  // Update form state when userData changes (for async loading)
+  useEffect(() => {
+    setFormData({
+      firstName: userData?.firstName || "",
+      lastName: userData?.lastName || "",
+      phone: userData?.phone || "",
+      dateOfBirth: userData?.dateOfBirth ? new Date(userData.dateOfBirth).toISOString().split('T')[0] : "",
+      jobTitle: userData?.jobTitle || "",
+      company: userData?.company || "",
+      location: userData?.location || "",
+      bio: userData?.bio || "",
+      careerGoals: userData?.careerGoals || "",
+      linkedIn: userData?.linkedIn || "",
+      github: userData?.github || "",
+      rollNumber: userData?.rollNumber || "",
+      branch: userData?.branch || "",
+      course: userData?.course || "",
+      courseDuration: userData?.courseDuration || "",
+      year: userData?.year || ""
+    })
+  }, [userData])
+
+  // Track changes
+  useEffect(() => {
+    const originalData = {
+      firstName: userData?.firstName || "",
+      lastName: userData?.lastName || "",
+      phone: userData?.phone || "",
+      dateOfBirth: userData?.dateOfBirth ? new Date(userData.dateOfBirth).toISOString().split('T')[0] : "",
+      jobTitle: userData?.jobTitle || "",
+      company: userData?.company || "",
+      location: userData?.location || "",
+      bio: userData?.bio || "",
+      careerGoals: userData?.careerGoals || "",
+      linkedIn: userData?.linkedIn || "",
+      github: userData?.github || "",
+      rollNumber: userData?.rollNumber || "",
+      branch: userData?.branch || "",
+      course: userData?.course || "",
+      courseDuration: userData?.courseDuration || "",
+      year: userData?.year || ""
+    }
+
+    const hasAnyChanges = Object.keys(formData).some(key =>
+      formData[key as keyof typeof formData] !== originalData[key as keyof typeof originalData]
+    )
+    setHasChanges(hasAnyChanges)
+  }, [formData, userData])
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }))
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -25,7 +103,7 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
     try {
       const formData = new FormData(e.currentTarget)
 
-      const result = await updateUserDetails(formData)
+      const result = await updateUserDetails(formData, isCollegeStudent ? userData.id : undefined)
 
       if (result.success) {
         setMessage("Profile updated successfully!")
@@ -42,12 +120,6 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
       setSaving(false)
     }
   }
-
-  const formatDate = (date: Date | null | undefined) => {
-    if (!date) return ""
-    return new Date(date).toISOString().split('T')[0]
-  }
-
 
   return (
     <div className="space-y-8">
@@ -68,7 +140,8 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
                   id="firstName"
                   name="firstName"
                   placeholder="John"
-                  defaultValue={userData?.firstName || ""}
+                  value={formData.firstName}
+                  onChange={(e) => handleInputChange("firstName", e.target.value)}
                   required
                 />
               </div>
@@ -78,7 +151,8 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
                   id="lastName"
                   name="lastName"
                   placeholder="Doe"
-                  defaultValue={userData?.lastName || ""}
+                  value={formData.lastName}
+                  onChange={(e) => handleInputChange("lastName", e.target.value)}
                   required
                 />
               </div>
@@ -99,7 +173,8 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
                 id="phone"
                 name="phone"
                 placeholder="+1 (555) 123-4567"
-                defaultValue={userData?.phone || ""}
+                value={formData.phone}
+                onChange={(e) => handleInputChange("phone", e.target.value)}
               />
             </div>
             <div className="space-y-2">
@@ -108,7 +183,8 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
                 id="dateOfBirth"
                 name="dateOfBirth"
                 type="date"
-                defaultValue={formatDate(userData?.dateOfBirth)}
+                value={formData.dateOfBirth}
+                onChange={(e) => handleInputChange("dateOfBirth", e.target.value)}
               />
             </div>
           </CardContent>
@@ -129,7 +205,8 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
                 id="jobTitle"
                 name="jobTitle"
                 placeholder="Software Engineer"
-                defaultValue={userData?.jobTitle || ""}
+                value={formData.jobTitle}
+                onChange={(e) => handleInputChange("jobTitle", e.target.value)}
               />
             </div>
             <div className="space-y-2">
@@ -138,7 +215,8 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
                 id="company"
                 name="company"
                 placeholder="Tech Corp"
-                defaultValue={userData?.company || ""}
+                value={formData.company}
+                onChange={(e) => handleInputChange("company", e.target.value)}
               />
             </div>
             <div className="space-y-2">
@@ -147,7 +225,8 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
                 id="location"
                 name="location"
                 placeholder="San Francisco, CA"
-                defaultValue={userData?.location || ""}
+                value={formData.location}
+                onChange={(e) => handleInputChange("location", e.target.value)}
               />
             </div>
           </CardContent>
@@ -170,7 +249,8 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
                 name="careerGoals"
                 placeholder="What are your career goals? What roles are you targeting?"
                 rows={3}
-                defaultValue={userData?.careerGoals || ""}
+                value={formData.careerGoals}
+                onChange={(e) => handleInputChange("careerGoals", e.target.value)}
               />
             </div>
             <div className="space-y-2">
@@ -180,7 +260,8 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
                 name="bio"
                 placeholder="Tell us about your professional background, achievements, and what makes you unique..."
                 rows={4}
-                defaultValue={userData?.bio || ""}
+                value={formData.bio}
+                onChange={(e) => handleInputChange("bio", e.target.value)}
               />
             </div>
             <div className="space-y-2">
@@ -189,7 +270,8 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
                 id="linkedIn"
                 name="linkedIn"
                 placeholder="https://linkedin.com/in/yourprofile"
-                defaultValue={userData?.linkedIn || ""}
+                value={formData.linkedIn}
+                onChange={(e) => handleInputChange("linkedIn", e.target.value)}
               />
             </div>
             <div className="space-y-2">
@@ -198,7 +280,8 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
                 id="github"
                 name="github"
                 placeholder="https://github.com/yourusername"
-                defaultValue={userData?.github || ""}
+                value={formData.github}
+                onChange={(e) => handleInputChange("github", e.target.value)}
               />
             </div>
           </CardContent>
@@ -234,6 +317,74 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
           </Card>
         )}
 
+        {/* Academic Information - Only show for college students */}
+        {userData?.college && userData.college.collegeId && (
+          <Card>
+            <CardHeader>
+              <CardTitle>Academic Information</CardTitle>
+              <CardDescription>
+                Update your academic details and current status
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="rollNumber">Roll Number</Label>
+                <Input
+                  id="rollNumber"
+                  name="rollNumber"
+                  placeholder="DEMO2024001"
+                  value={formData.rollNumber}
+                  onChange={(e) => handleInputChange("rollNumber", e.target.value)}
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="branch">Branch</Label>
+                  <Input
+                    id="branch"
+                    name="branch"
+                    placeholder="Computer Science"
+                    value={formData.branch}
+                    onChange={(e) => handleInputChange("branch", e.target.value)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="course">Course</Label>
+                  <Input
+                    id="course"
+                    name="course"
+                    placeholder="Bachelor of Technology"
+                    value={formData.course}
+                    onChange={(e) => handleInputChange("course", e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="courseDuration">Course Duration</Label>
+                  <Input
+                    id="courseDuration"
+                    name="courseDuration"
+                    placeholder="4 years"
+                    value={formData.courseDuration}
+                    onChange={(e) => handleInputChange("courseDuration", e.target.value)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="year">Current Year</Label>
+                  <Input
+                    id="year"
+                    name="year"
+                    placeholder="3rd Year"
+                    value={formData.year}
+                    onChange={(e) => handleInputChange("year", e.target.value)}
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {message && (
           <div className={`p-4 rounded-md ${message.includes('successfully') ? 'bg-green-50 text-green-800 border border-green-200' : 'bg-red-50 text-red-800 border border-red-200'}`}>
             {message}
@@ -241,7 +392,7 @@ export function MyDetailsForm({ userData }: MyDetailsFormProps) {
         )}
 
         <div className="flex justify-end pt-6">
-          <Button type="submit" disabled={saving} className="px-8">
+          <Button type="submit" disabled={saving || !hasChanges} className="px-8">
             {saving ? "Saving..." : "Save Profile"}
           </Button>
         </div>

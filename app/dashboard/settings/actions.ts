@@ -32,7 +32,21 @@ export async function getUserDetails(): Promise<ServerActionResponse<UserData>> 
         github: true,
         totalTimeAllowance: true,
         usedTimeMinutes: true,
-        timeAllowanceResetAt: true
+        timeAllowanceResetAt: true,
+        // Academic fields
+        rollNumber: true,
+        branch: true,
+        course: true,
+        courseDuration: true,
+        year: true,
+        // College relationship
+        college: {
+          select: {
+            id: true,
+            name: true,
+            collegeId: true
+          }
+        }
       }
     })
 
@@ -80,7 +94,15 @@ export async function getUserDetails(): Promise<ServerActionResponse<UserData>> 
       github: userProfile.github,
       totalTimeAllowance: userProfile.totalTimeAllowance,
       usedTimeMinutes: userProfile.usedTimeMinutes,
-      timeAllowanceResetAt: userProfile.timeAllowanceResetAt
+      timeAllowanceResetAt: userProfile.timeAllowanceResetAt,
+      // Academic fields
+      rollNumber: userProfile.rollNumber,
+      branch: userProfile.branch,
+      course: userProfile.course,
+      courseDuration: userProfile.courseDuration,
+      year: userProfile.year,
+      // College information
+      college: userProfile.college
     }
 
     return {
@@ -96,9 +118,33 @@ export async function getUserDetails(): Promise<ServerActionResponse<UserData>> 
   }
 }
 
-export async function updateUserDetails(formData: FormData): Promise<ServerActionResponse<UserData>> {
+export async function updateUserDetails(formData: FormData, userId?: string): Promise<ServerActionResponse<UserData>> {
   try {
-    const user = await getSessionUserData()
+    let user = null
+
+    if (userId) {
+      // For college students or when userId is explicitly provided
+      user = await prisma.user.findUnique({
+        where: { id: userId },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          image: true,
+          role: true
+        }
+      })
+    } else {
+      // For regular NextAuth users
+      user = await getSessionUserData()
+    }
+
+    if (!user || user.id === "guest") {
+      return {
+        success: false,
+        error: "User not authenticated"
+      }
+    }
 
     const firstName = formData.get("firstName") as string
     const lastName = formData.get("lastName") as string
@@ -111,6 +157,11 @@ export async function updateUserDetails(formData: FormData): Promise<ServerActio
     const careerGoals = formData.get("careerGoals") as string
     const linkedIn = formData.get("linkedIn") as string
     const github = formData.get("github") as string
+    const rollNumber = formData.get("rollNumber") as string
+    const branch = formData.get("branch") as string
+    const course = formData.get("course") as string
+    const courseDuration = formData.get("courseDuration") as string
+    const year = formData.get("year") as string
 
     // Update user profile data in database
     const updatedUser = await prisma.user.update({
@@ -128,7 +179,13 @@ export async function updateUserDetails(formData: FormData): Promise<ServerActio
         // SaaS platform fields
         careerGoals,
         linkedIn,
-        github
+        github,
+        // Academic fields
+        rollNumber,
+        branch,
+        course,
+        courseDuration,
+        year
       },
       select: {
         id: true,
@@ -150,7 +207,21 @@ export async function updateUserDetails(formData: FormData): Promise<ServerActio
         github: true,
         totalTimeAllowance: true,
         usedTimeMinutes: true,
-        timeAllowanceResetAt: true
+        timeAllowanceResetAt: true,
+        // Academic fields
+        rollNumber: true,
+        branch: true,
+        course: true,
+        courseDuration: true,
+        year: true,
+        // College relationship
+        college: {
+          select: {
+            id: true,
+            name: true,
+            collegeId: true
+          }
+        }
       }
     })
 
@@ -174,7 +245,15 @@ export async function updateUserDetails(formData: FormData): Promise<ServerActio
       github: updatedUser.github,
       totalTimeAllowance: updatedUser.totalTimeAllowance,
       usedTimeMinutes: updatedUser.usedTimeMinutes,
-      timeAllowanceResetAt: updatedUser.timeAllowanceResetAt
+      timeAllowanceResetAt: updatedUser.timeAllowanceResetAt,
+      // Academic fields
+      rollNumber: updatedUser.rollNumber,
+      branch: updatedUser.branch,
+      course: updatedUser.course,
+      courseDuration: updatedUser.courseDuration,
+      year: updatedUser.year,
+      // College information
+      college: updatedUser.college
     }
 
     revalidatePath("/dashboard/settings")

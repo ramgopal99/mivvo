@@ -39,7 +39,7 @@ export default function InterviewAttemptsPage() {
 
   const handleViewResults = (attemptId: string) => {
     // Navigate to attempt results page
-    router.push(`/college/dashboard/students/${params.id}/interviews/${params.interviewId}/attempts/${attemptId}`)
+    router.push(`/college/dashboard/progress/${params.id}/interviews/${params.interviewId}/attempts/${attemptId}`)
   }
 
   useEffect(() => {

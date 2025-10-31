@@ -9,11 +9,14 @@ interface StudentTimeData {
   id: string
   name: string
   avatar?: string
-  totalHours: number
-  thisWeekHours: number
-  lastWeekHours: number
-  targetHours: number
+  totalHours: number // total minutes
+  thisMonthHours: number // this month minutes
+  lastMonthHours: number // last month minutes
+  targetHours: number // total time allowance in minutes
+  usedHours: number // used time in minutes
   efficiency: number
+  branch?: string
+  course?: string
 }
 
 interface StudentTimeBreakdownProps {
@@ -22,12 +25,6 @@ interface StudentTimeBreakdownProps {
 }
 
 export function StudentTimeBreakdown({ students, title }: StudentTimeBreakdownProps) {
-  const getEfficiencyColor = (efficiency: number) => {
-    if (efficiency >= 90) return "text-green-600"
-    if (efficiency >= 75) return "text-yellow-600"
-    return "text-red-600"
-  }
-
   const getTrendIcon = (current: number, previous: number) => {
     if (current > previous) {
       return <TrendingUp className="h-4 w-4 text-green-500" />
@@ -45,7 +42,7 @@ export function StudentTimeBreakdown({ students, title }: StudentTimeBreakdownPr
           {title}
         </CardTitle>
         <CardDescription>
-          Student time tracking and efficiency metrics
+          Student time usage in minutes against allocated allowances
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -62,26 +59,27 @@ export function StudentTimeBreakdown({ students, title }: StudentTimeBreakdownPr
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-2">
                   <p className="font-medium truncate">{student.name}</p>
-                  {getTrendIcon(student.thisWeekHours, student.lastWeekHours)}
+                  {getTrendIcon(student.usedHours, student.thisMonthHours)}
                 </div>
 
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">This week</span>
-                    <span className="font-medium">{student.thisWeekHours}h / {student.targetHours}h</span>
+                    <span className="text-muted-foreground">Time Used</span>
+                    <span className="font-medium">{Math.round(student.usedHours)}min / {Math.round(student.targetHours)}min</span>
                   </div>
                   <Progress
-                    value={(student.thisWeekHours / student.targetHours) * 100}
+                    value={(student.usedHours / student.targetHours) * 100}
                     className="h-2"
                   />
                 </div>
 
-                <div className="flex items-center justify-between mt-2 text-xs text-muted-foreground">
-                  <span>Total: {student.totalHours}h</span>
-                  <span className={`font-medium ${getEfficiencyColor(student.efficiency)}`}>
-                    {student.efficiency}% efficiency
-                  </span>
-                </div>
+
+                {(student.branch || student.course) && (
+                  <div className="flex items-center justify-between mt-1 text-xs text-muted-foreground">
+                    {student.branch && <span>Branch: {student.branch}</span>}
+                    {student.course && <span>Course: {student.course}</span>}
+                  </div>
+                )}
               </div>
             </div>
           ))}

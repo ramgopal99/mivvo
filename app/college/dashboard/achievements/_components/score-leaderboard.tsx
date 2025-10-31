@@ -5,6 +5,8 @@ interface LeaderboardEntry {
   student: {
     id: string
     name: string
+    email: string
+    rollNumber: string
     avatar: string | null
   }
   averageScore: number

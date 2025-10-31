@@ -54,7 +54,7 @@ export default function StudentDetailsPage() {
 
   const handleViewAttempts = (interviewId: string) => {
     // Navigate to interview attempts page
-    router.push(`/college/dashboard/students/${params.id}/interviews/${interviewId}`)
+    router.push(`/college/dashboard/progress/${params.id}/interviews/${interviewId}`)
   }
 
   useEffect(() => {

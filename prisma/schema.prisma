@@ -68,8 +68,12 @@ model User {
   bio           String?
 
   // Academic fields
-  rollNumber    String?
-  collegeName   String?
+  rollNumber      String?
+  collegeName     String?
+  branch          String?
+  course          String?
+  courseDuration  String?
+  year            String?
   password      String?
 
   // College relationship

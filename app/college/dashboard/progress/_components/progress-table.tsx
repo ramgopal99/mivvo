@@ -8,6 +8,10 @@ interface Student {
   email: string
   rollNumber: string | null
   collegeName: string | null
+  branch: string | null
+  course: string | null
+  courseDuration: string | null
+  year: string | null
   averageScore: number
   completedInterviews: number
   totalInterviews: number
@@ -88,29 +92,14 @@ function TableRow({ student, onViewDetails }: TableRowProps) {
         {student.rollNumber || 'N/A'}
       </td>
       <td className="p-4">
+        {student.branch || 'N/A'}
+      </td>
+      <td className="p-4">
+        {student.course || 'N/A'}
+      </td>
+      <td className="p-4">
         <div className="text-sm font-medium">{student.totalInterviews}</div>
         <div className="text-xs text-muted-foreground">Interviews Created</div>
-      </td>
-      <td className="p-4">
-        <div className="text-sm font-medium">{student.averageScore.toFixed(1)}%</div>
-        <div className="w-16 h-2 bg-muted rounded-full overflow-hidden mt-1">
-          <div
-            className={`h-full rounded-full ${
-              student.averageScore >= 80 ? 'bg-green-500' :
-              student.averageScore >= 60 ? 'bg-yellow-500' : 'bg-red-500'
-            }`}
-            style={{ width: `${student.averageScore}%` }}
-          />
-        </div>
-      </td>
-      <td className="p-4">
-        <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-          student.status === 'active'
-            ? 'bg-green-100 text-green-800'
-            : 'bg-gray-100 text-gray-800'
-        }`}>
-          {student.status}
-        </span>
       </td>
       <td className="p-4">
         {onViewDetails && (

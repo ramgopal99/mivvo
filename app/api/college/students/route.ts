@@ -116,8 +116,9 @@ export async function GET(request: NextRequest) {
 
       // Calculate time spent data
       const now = new Date()
-      const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000)
-      const twoWeeksAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000)
+      const startOfThisMonth = new Date(now.getFullYear(), now.getMonth(), 1)
+      const startOfLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1)
+      const endOfLastMonth = new Date(now.getFullYear(), now.getMonth(), 0)
 
       // Get all conversation durations
       const allConversations = student.interviewAttempts.flatMap(attempt =>
@@ -130,17 +131,18 @@ export async function GET(request: NextRequest) {
       // Calculate total time spent (in minutes)
       const totalTimeSpent = allConversations.reduce((total, conv) => total + conv.duration, 0)
 
-      // Calculate this week's time (conversations from the last 7 days)
-      const thisWeekConversations = allConversations.filter(conv =>
-        conv.createdAt >= oneWeekAgo
-      )
-      const thisWeekTimeSpent = thisWeekConversations.reduce((total, conv) => total + conv.duration, 0)
 
-      // Calculate last week's time (conversations from 7-14 days ago)
-      const lastWeekConversations = allConversations.filter(conv =>
-        conv.createdAt >= twoWeeksAgo && conv.createdAt < oneWeekAgo
+      // Calculate this month's time (conversations from the start of this month)
+      const thisMonthConversations = allConversations.filter(conv =>
+        conv.createdAt >= startOfThisMonth
       )
-      const lastWeekTimeSpent = lastWeekConversations.reduce((total, conv) => total + conv.duration, 0)
+      const thisMonthTimeSpent = thisMonthConversations.reduce((total, conv) => total + conv.duration, 0)
+
+      // Calculate last month's time (conversations from the start of last month to end of last month)
+      const lastMonthConversations = allConversations.filter(conv =>
+        conv.createdAt >= startOfLastMonth && conv.createdAt <= endOfLastMonth
+      )
+      const lastMonthTimeSpent = lastMonthConversations.reduce((total, conv) => total + conv.duration, 0)
 
       return {
         id: student.id,
@@ -149,15 +151,15 @@ export async function GET(request: NextRequest) {
         rollNumber: student.rollNumber,
         collegeName: student.college?.name || student.collegeName || 'N/A', // Get college name from relation or fallback to stored field
         collegeId: student.college?.collegeId || student.collegeId || 'N/A', // Also include collegeId for reference
+        branch: student.branch,
+        course: student.course,
+        courseDuration: student.courseDuration,
         averageScore,
         completedInterviews,
         totalInterviews: student._count.mockInterviews,
         totalTimeSpent, // in minutes
-        thisWeekTimeSpent, // in minutes
-        lastWeekTimeSpent, // in minutes
-        status: 'active', // For now, assume all are active
-        major: 'Computer Science', // Default major since we don't have this field
-        year: '2024', // Default year since we don't have this field
+        thisMonthTimeSpent, // in minutes
+        lastMonthTimeSpent, // in minutes
         lastActive: new Date().toISOString(), // Default to now
         avatar: null,
         // Additional fields from the database
@@ -175,15 +177,10 @@ export async function GET(request: NextRequest) {
     })
 
     // Calculate overall stats (from current page)
-    const activeStudents = studentsWithStats.filter(s => s.status === 'active').length
     const overallAverageScore = studentsWithStats.length > 0
       ? Math.round(studentsWithStats.reduce((acc, s) => acc + s.averageScore, 0) / studentsWithStats.length)
       : 0
     const totalInterviews = studentsWithStats.reduce((acc, s) => acc + s.totalInterviews, 0)
-
-    // Get unique majors and years (for filters)
-    const majors = [...new Set(studentsWithStats.map(s => s.major))]
-    const years = [...new Set(studentsWithStats.map(s => s.year))]
 
     // Calculate pagination info
     const totalPages = Math.ceil(totalStudents / limit)
@@ -194,14 +191,10 @@ export async function GET(request: NextRequest) {
         students: studentsWithStats,
         stats: {
           totalStudents: totalStudents, // Total across all pages
-          activeStudents,
           averageScore: overallAverageScore,
           totalInterviews
         },
-        filters: {
-          majors,
-          years
-        },
+        filters: {},
         pagination: {
           page,
           limit,

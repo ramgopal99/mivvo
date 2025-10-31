@@ -4,7 +4,7 @@ import { signIn, signOut } from "next-auth/react"
 
 export async function signInWithGoogle() {
   try {
-    await signIn("google", { callbackUrl: "/dashboard" })
+    await signIn("google", { callbackUrl: "/auth/redirect" })
   } catch (error) {
     console.error("Google sign-in error:", error)
     throw error

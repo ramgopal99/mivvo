@@ -20,6 +20,12 @@ export interface UserData {
   totalTimeAllowance?: number
   usedTimeMinutes?: number
   timeAllowanceResetAt?: Date | null
+  // Academic fields for college students
+  rollNumber?: string | null
+  branch?: string | null
+  course?: string | null
+  courseDuration?: string | null
+  year?: string | null
   // College information for college students
   college?: {
     id: string
