@@ -14,12 +14,58 @@ import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { generateGeneralPrompt, generateCodingPrompt, generateUIUXPrompt, generateHRPrompt, generateTechnicalPrompt } from './prompts'
 import { UPSE_PROMPT, BANKING_PROMPT } from './prompts'
+import { extractRoleAndCompanyFromJDWithAI, isOpenAIAvailable } from '@/lib/utils'
 import jwt from 'jsonwebtoken'
+
+/**
+ * Clean company name by removing common business suffixes for more natural display
+ */
+function cleanCompanyNameForDisplay(companyName: string | null): string | null {
+  if (!companyName) return null
+
+  // Common business suffixes to remove (case insensitive)
+  const suffixesToRemove = [
+    'pvt\\. ltd\\.',
+    'pvt ltd',
+    'private limited',
+    'ltd\\.',
+    'ltd',
+    'limited',
+    'inc\\.',
+    'inc',
+    'incorporated',
+    'llc',
+    'llp',
+    'corp\\.',
+    'corp',
+    'corporation',
+    'co\\.',
+    'co',
+    'company',
+    'technologies',
+    'tech',
+    'solutions',
+    'systems',
+    'group',
+    'international',
+    'global'
+  ]
+
+  let cleaned = companyName.trim()
+
+  // Remove suffixes from the end of the company name
+  const suffixPattern = new RegExp(`\\s+(${suffixesToRemove.join('|')})$`, 'i')
+  cleaned = cleaned.replace(suffixPattern, '')
+
+  // Clean up extra spaces and return
+  return cleaned.trim() || null
+}
 
 interface InterviewWhereClause {
   createdBy: string
   status?: 'IN_PROGRESS' | 'COMPLETED'
 }
+
 
 /**
  * Authenticate user from NextAuth session or JWT token
@@ -167,11 +213,35 @@ export async function POST(request: NextRequest) {
     // Convert interview type and prepare data
     const mappedInterviewType = interviewTypeMap[interviewType] || 'GENERAL_INTERVIEW'
 
+    // Extract AI data for custom interviews (used for both title and company)
+    let extractedData: { role: string | null; company: string | null } | null = null
+    if (interviewType === 'Custom' && isOpenAIAvailable()) {
+      try {
+        extractedData = await extractRoleAndCompanyFromJDWithAI(jdDetails)
+      } catch (error) {
+        console.error('Failed to extract data with AI:', error instanceof Error ? error.message : String(error))
+      }
+    }
+
+    // Determine company name: use manual input first, then AI extraction as fallback
+    // Treat "Custom Company" as null (user didn't provide real company name)
+    const normalizedCompany = (company && company.toLowerCase() !== 'custom company') ? company : null
+    const finalCompanyName = normalizedCompany || extractedData?.company || null
+
+    // Clean company name for display (remove suffixes like Pvt Ltd, Inc, etc.)
+    const cleanedCompanyName = cleanCompanyNameForDisplay(finalCompanyName)
     // Generate unique title based on interview type and existing interviews
-    const baseTitle = interviewType === 'General' && generalSubType 
-      ? `${interviewType} - ${generalSubType} Interview`
-      : `${interviewType} Interview`
-    
+    let baseTitle: string
+    if (interviewType === 'General' && generalSubType) {
+      baseTitle = `${interviewType} - ${generalSubType} Interview`
+    } else if (interviewType === 'Custom') {
+      const rolePart = extractedData?.role ? `${extractedData.role} Interview` : 'Custom Interview'
+      const companyPart = cleanedCompanyName ? ` at ${cleanedCompanyName}` : ''
+      baseTitle = `${rolePart}${companyPart}`
+    } else {
+      baseTitle = `${interviewType} Interview`
+    }
+
     // Check for existing interviews with similar titles
     const existingInterviews = await prisma.mockInterview.findMany({
       where: {
@@ -182,7 +252,7 @@ export async function POST(request: NextRequest) {
       },
       select: { title: true }
     })
-    
+
     // Generate unique title
     let uniqueTitle = baseTitle
     if (existingInterviews.length > 0) {
@@ -198,7 +268,7 @@ export async function POST(request: NextRequest) {
     const interview = await prisma.mockInterview.create({
       data: {
         title: uniqueTitle,
-        companyName: company || null,
+        companyName: cleanedCompanyName,
         jobDescription: jdDetails,
         interviewType: mappedInterviewType,
         screenShareEnabled: screenShare || false,

@@ -135,28 +135,32 @@ export function MeetTestRoom({
 }: MeetTestRoomProps) {
   // Set greeting when interviewData or greeting prop changes
   useEffect(() => {
-    // Priority: 1. Provided greeting prop, 2. Generated greeting, 3. Default fallback
-    let greetingMessage = greeting
+    const generateGreeting = async () => {
+      // Priority: 1. Provided greeting prop, 2. Generated greeting, 3. Default fallback
+      let greetingMessage = greeting
 
-    if (!greetingMessage && interviewData) {
-      // Generate dynamic greeting based on interview data
-      greetingMessage = generateInterviewGreeting({
-        jd: interviewData.jd || interviewData.customPrompt, // Use JD or customPrompt as context
-        interviewType: interviewData.interviewType, // Use interview type for proper messaging
-        title: interviewData.title
-      }, assistantName)
+      if (!greetingMessage && interviewData) {
+        // Generate dynamic greeting based on interview data
+        greetingMessage = await generateInterviewGreeting({
+          jd: interviewData.jd || interviewData.customPrompt, // Use JD or customPrompt as context
+          interviewType: interviewData.interviewType, // Use interview type for proper messaging
+          title: interviewData.title
+        }, assistantName)
+      }
+
+      // Fallback to default if nothing else
+      greetingMessage = greetingMessage || `Hi! I'm ${assistantName}. Could you tell me about your background?`
+
+      console.log('Setting greeting:', greetingMessage)
+
+      setVoiceChatMessages(prev => ({
+        ...prev,
+        AI_GREETING_MESSAGE: greetingMessage
+      }))
     }
 
-    // Fallback to default if nothing else
-    greetingMessage = greetingMessage || `Hi! I'm ${assistantName}. Could you tell me about your background?`
-
-    console.log('Setting greeting:', greetingMessage)
-
-    setVoiceChatMessages(prev => ({
-      ...prev,
-      AI_GREETING_MESSAGE: greetingMessage
-    }))
-  }, [interviewData, greeting, interviewTitle, assistantName])
+    generateGreeting()
+  }, [interviewData, greeting, assistantName])
 
   // Show interview start dialog if enabled in config
   useEffect(() => {
