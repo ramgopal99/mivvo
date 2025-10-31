@@ -5,6 +5,52 @@
  * and varied introductory questions to make conversations more natural.
  */
 
+import { extractRoleAndCompanyFromJDWithAI, isOpenAIAvailable } from '@/lib/utils'
+
+/**
+ * Clean company name by removing common business suffixes for more natural greetings
+ */
+function cleanCompanyNameForGreeting(companyName: string | null): string | null {
+  if (!companyName) return null
+
+  // Common business suffixes to remove (case insensitive)
+  const suffixesToRemove = [
+    'pvt\\. ltd\\.',
+    'pvt ltd',
+    'private limited',
+    'ltd\\.',
+    'ltd',
+    'limited',
+    'inc\\.',
+    'inc',
+    'incorporated',
+    'llc',
+    'llp',
+    'corp\\.',
+    'corp',
+    'corporation',
+    'co\\.',
+    'co',
+    'company',
+    'technologies',
+    'tech',
+    'solutions',
+    'systems',
+    'group',
+    'international',
+    'global'
+  ]
+
+  let cleaned = companyName.trim()
+
+  // Remove suffixes from the end of the company name
+  const suffixPattern = new RegExp(`\\s+(${suffixesToRemove.join('|')})$`, 'i')
+  cleaned = cleaned.replace(suffixPattern, '')
+
+  // Clean up extra spaces and return
+  return cleaned.trim() || null
+}
+
 interface InterviewData {
   jd?: string
   interviewType?: string
@@ -17,38 +63,29 @@ interface InterviewData {
  * @param assistantName - Name to use in the greeting (defaults to "Mivvo")
  * @returns Personalized greeting message
  */
-export function generateInterviewGreeting(interviewData?: InterviewData, assistantName: string = "Mivvo"): string {
+export async function generateInterviewGreeting(interviewData?: InterviewData, assistantName: string = "Mivvo"): Promise<string> {
   const { interviewType, title, jd } = interviewData || {}
 
-  // Extract role from job description or use title
+  // Extract role and company from job description or use title
   let jobTitle = title || 'this position'
+  let companyName: string | null = null
 
-  // Try to extract role from JD text (e.g., "We are looking for a junior level Frontend Developer to join")
-  if (jd && jd.includes('We are looking for a')) {
-    // Match everything between "We are looking for a " and " to join"
-    const jdMatch = jd.match(/We are looking for a (.+?) to join/)
-    if (jdMatch && jdMatch[1]) {
-      // Remove the level description (first few words) to get just the role
-      const fullMatch = jdMatch[1]
-      // Split by spaces and take everything except the first 1-2 words (level description)
-      const parts = fullMatch.split(' ')
-      if (parts.length > 2) {
-        // Remove level words like "junior", "mid-level", "senior"
-        const levelWords = ['junior', 'mid-level', 'mid', 'senior', 'level']
-        let roleStartIndex = 0
-        if (levelWords.includes(parts[0].toLowerCase())) {
-          roleStartIndex = 1
-          if (parts[1] && parts[1].toLowerCase() === 'level') {
-            roleStartIndex = 2
-          }
+  // Try to extract role and company from JD text using AI (only if API key is available)
+  if (jd && isOpenAIAvailable()) {
+    try {
+      const extractedData = await extractRoleAndCompanyFromJDWithAI(jd)
+      if (extractedData) {
+        if (extractedData.role) {
+          jobTitle = extractedData.role
         }
-        jobTitle = parts.slice(roleStartIndex).join(' ')
-      } else if (parts.length === 2) {
-        // Just remove the first word (level) and take the second (role)
-        jobTitle = parts[1]
-      } else {
-        jobTitle = fullMatch
+        if (extractedData.company) {
+          // Clean company name for more natural greetings
+          companyName = cleanCompanyNameForGreeting(extractedData.company)
+        }
       }
+    } catch (error) {
+      console.error('Failed to extract role and company with AI:', error instanceof Error ? error.message : String(error))
+      // Fall back to title if AI extraction fails
     }
   }
 
@@ -83,31 +120,32 @@ export function generateInterviewGreeting(interviewData?: InterviewData, assista
   ]
 
   // Interview purpose explanations based on type
+  const companySuffix = companyName ? ` at ${companyName}` : ''
   const purposeExplanations: Record<string, string[]> = {
     'GENERAL_INTERVIEW': [
-      `and I'm here to conduct a general interview for ${jobTitle}`,
-      `and I'll be interviewing you for ${jobTitle}`,
-      `and we're doing an interview for ${jobTitle}`
+      `and I'm here to interview you for ${jobTitle}${companySuffix}`,
+      `and I'll be having a conversation with you about ${jobTitle}${companySuffix}`,
+      `and we're going to have a conversation about your fit for ${jobTitle}${companySuffix}`
     ],
     'TECHNICAL': [
-      `and I'm conducting a technical interview for ${jobTitle}`,
-      `and we'll be discussing your technical background for ${jobTitle}`,
-      `and I'm here for a technical assessment for ${jobTitle}`
+      `and I'm conducting a technical interview for ${jobTitle}${companySuffix}`,
+      `and we'll be discussing your technical background for ${jobTitle}${companySuffix}`,
+      `and I'm here for a technical interview for ${jobTitle}${companySuffix}`
     ],
     'CODING': [
-      `and I'm here to do a coding interview for ${jobTitle}`,
-      `and we'll be working through some coding challenges for ${jobTitle}`,
-      `and I'm conducting a programming interview for ${jobTitle}`
+      `and I'm here to do a coding interview for ${jobTitle}${companySuffix}`,
+      `and we'll be working through some coding challenges for ${jobTitle}${companySuffix}`,
+      `and I'm conducting a programming interview for ${jobTitle}${companySuffix}`
     ],
     'HR_INTERVIEW': [
-      `and I'm conducting an HR interview for ${jobTitle}`,
-      `and we'll be discussing your professional background for ${jobTitle}`,
-      `and I'm here for a behavioral interview for ${jobTitle}`
+      `and I'm conducting an HR interview for ${jobTitle}${companySuffix}`,
+      `and we'll be discussing your professional background for ${jobTitle}${companySuffix}`,
+      `and I'm here for a behavioral interview for ${jobTitle}${companySuffix}`
     ],
     'UI_INTERVIEW': [
-      `and I'm conducting a UI/UX interview for ${jobTitle}`,
-      `and we'll be discussing your design experience for ${jobTitle}`,
-      `and I'm here for a design-focused interview for ${jobTitle}`
+      `and I'm conducting a UI/UX interview for ${jobTitle}${companySuffix}`,
+      `and we'll be discussing your design experience for ${jobTitle}${companySuffix}`,
+      `and I'm here for a design-focused interview for ${jobTitle}${companySuffix}`
     ]
   }
 
