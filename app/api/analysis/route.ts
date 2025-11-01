@@ -47,96 +47,19 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Pre-analyze conversation for obviously minimal responses
-    const userMessages = conversation.filter(msg => msg.role === 'user')
-    const totalUserWords = userMessages.reduce((sum, msg) => sum + msg.text.trim().split(/\s+/).length, 0)
-
-    // Check for minimal technical content
-    const hasTechnicalContent = userMessages.some(msg => {
-      const text = msg.text.toLowerCase()
-      return text.includes('code') || text.includes('algorithm') || text.includes('data') ||
-             text.includes('function') || text.includes('class') || text.includes('api') ||
-             text.includes('database') || text.includes('server') || text.includes('react') ||
-             text.includes('javascript') || text.includes('python') || text.includes('java') ||
-             text.includes('system') || text.includes('design') || text.includes('complexity') ||
-             text.includes('time') || text.includes('space') || text.includes('sort') ||
-             text.includes('search') || text.includes('tree') || text.includes('graph')
-    })
-
-    // If conversation is extremely minimal, return low scores without calling OpenAI
-    if (userMessages.length <= 1 || totalUserWords <= 5) {
-      return NextResponse.json({
-        sentiment: "Neutral",
-        confidence_level: "Low",
-        communication_skills: {
-          clarity: "Confusing",
-          grammar: "Poor",
-          filler_words: "High"
-        },
-        technical_knowledge: {
-          accuracy: "Wrong",
-          depth: "Basic"
-        },
-        soft_skills: {
-          problem_solving: "Weak",
-          attitude: "Neutral"
-        },
-        strengths: ["Participated in conversation"],
-        weaknesses: ["Minimal responses", "No technical discussion", "Limited communication"],
-        final_score: 0,
-        recommendation: "Reject",
-        vocabularyComplexity: 20,
-        emotionalTone: "Neutral",
-        wordCountAnalysis: "Too Brief",
-        questionAnsweringQuality: 10,
-        followUpHandling: false,
-        answerStructure: "Poor",
-        exampleUsage: false,
-        relevantTopicAnswer: false
-      })
-    }
-
-    // If conversation has responses but no technical content, also return low scores
-    if (!hasTechnicalContent && userMessages.length > 2) {
-      return NextResponse.json({
-        sentiment: "Neutral",
-        confidence_level: "Low",
-        communication_skills: {
-          clarity: "Moderate",
-          grammar: "Average",
-          filler_words: "Medium"
-        },
-        technical_knowledge: {
-          accuracy: "Wrong",
-          depth: "Basic"
-        },
-        soft_skills: {
-          problem_solving: "Weak",
-          attitude: "Neutral"
-        },
-        strengths: ["Basic communication skills"],
-        weaknesses: ["No technical knowledge demonstrated", "Did not engage with technical questions", "Failed to show problem-solving abilities"],
-        final_score: 1,
-        recommendation: "Reject",
-        vocabularyComplexity: 35,
-        emotionalTone: "Neutral",
-        wordCountAnalysis: "Appropriate",
-        questionAnsweringQuality: 25,
-        followUpHandling: false,
-        answerStructure: "Average",
-        exampleUsage: false,
-        relevantTopicAnswer: false
-      })
-    }
+    // Let OpenAI analyze ALL conversations - no hardcoded early returns
+    // This ensures consistent AI-driven evaluation for every conversation type
 
     // Format conversation for AI analysis
     const conversationText = conversation
       .map(msg => `${msg.role === 'user' ? 'Candidate' : 'Interviewer'}: ${msg.text}`)
       .join('\n\n')
 
-    const topicContext = topic ? `This interview focuses on: ${topic}. Evaluate technical knowledge and responses in the context of ${topic} expertise.` : 'This is a general technical interview. Evaluate technical knowledge based on demonstrated programming and problem-solving skills.'
+    const topicContext = topic ?
+      `This interview focuses on: ${topic}. Evaluate responses in the context of ${topic} expertise.` :
+      'This is a general interview. Evaluate communication skills, problem-solving approach, and overall fit.'
 
-    const systemPrompt = `You are an expert HR interview analyzer specializing in technical interviews. Analyze the following interview conversation and provide a detailed assessment.
+    const systemPrompt = `You are an expert HR interview analyzer. Analyze the following interview conversation and provide a detailed assessment.
 
 ${topicContext}
 
@@ -171,31 +94,47 @@ Your response MUST be ONLY valid JSON with this exact structure:
   "relevantTopicAnswer": "boolean (true if answers stay on topic, false if off-topic)"
 }
 
-CRITICAL Analysis Guidelines (Be extremely strict and evidence-based):
+CRITICAL Analysis Guidelines (Be evidence-based and comprehensive):
+- Analyze EVERY conversation - from minimal "hi" responses to detailed discussions
 - ONLY evaluate what is ACTUALLY demonstrated in the conversation
-- If candidate says "hi" or gives minimal responses, give LOW scores (0-2)
-- If no technical discussion occurs, technical_knowledge should be "Wrong" and depth "Basic"
-- Look for SPECIFIC evidence of technical understanding - don't assume knowledge
-- Communication skills should reflect actual clarity shown in responses
-- Problem-solving should only be rated if candidate demonstrates thinking process
-- Be SKEPTICAL - assume minimal competence unless clearly demonstrated
-- Strengths must be supported by specific examples from conversation
-- Weaknesses should reflect what was actually missing or poor
-- Default to LOW scores unless exceptional evidence is shown
+- For GENERAL interviews: Focus on communication, problem-solving approach, and interpersonal skills
+- For TECHNICAL interviews: Evaluate technical understanding, problem-solving, and domain knowledge
+- Communication skills should reflect actual clarity, grammar, and coherence shown
+- Problem-solving should be rated based on demonstrated thinking process and examples given
+- Be FAIR and CONSISTENT - evaluate based on what was actually asked and answered
+- Strengths must be supported by specific examples from the conversation
+- Weaknesses should reflect what was actually missing, poor, or inadequate
+- Don't assume knowledge or skills - base evaluation on what was demonstrated
 
-Strict Scoring Scale (based on actual conversation content):
-- 9-10: Demonstrated deep technical understanding with specific examples, clear explanations, strong problem-solving
-- 7-8: Showed some technical knowledge with correct answers, reasonable explanations
-- 5-6: Basic understanding shown, partial correct answers, needs more depth
-- 3-4: Very limited technical knowledge demonstrated, mostly incorrect or no answers
-- 0-2: No meaningful technical discussion, minimal responses, or complete lack of understanding
+COMPREHENSIVE SCORING SCALE (0-10):
+- 9-10: Outstanding performance - excellent communication, deep insights, strong problem-solving, relevant examples, confident delivery
+- 7-8: Good performance - clear communication, reasonable answers, some problem-solving demonstrated, appropriate examples
+- 5-6: Adequate performance - basic communication, partial answers, limited problem-solving, few or generic examples
+- 3-4: Poor performance - unclear communication, minimal answers, weak problem-solving, no specific examples
+- 1-2: Very poor performance - very limited responses, poor communication, no meaningful answers
+- 0: No meaningful participation - only greetings or non-responses
 
-EVIDENCE-BASED REQUIREMENTS:
-- If candidate only says greetings/minimal responses: score 0-2
-- If no technical questions were asked or answered: technical_knowledge = "Wrong"
-- Communication clarity based on actual response quality, not assumed
-- Problem-solving only if candidate shows thinking/reasoning process
-- Confidence level based on actual demonstrated knowledge, not personality
+DETAILED EVALUATION CRITERIA:
+- SENTIMENT: Based on overall tone and engagement level
+- CONFIDENCE_LEVEL: Based on response quality and assertiveness, not personality assumptions
+- COMMUNICATION_SKILLS: Actual clarity, grammar, filler word usage observed
+- TECHNICAL_KNOWLEDGE: Only evaluate if technical topics were discussed (accuracy and depth)
+- SOFT_SKILLS: Problem-solving approach, attitude, and interpersonal skills demonstrated
+- VOCABULARY_COMPLEXITY: Range and sophistication of language used (0-100)
+- QUESTION_ANSWERING_QUALITY: How directly and completely questions are addressed (0-100)
+
+SPECIAL HANDLING FOR EDGE CASES:
+- Single word responses ("Yes", "No", "Hi"): Score 0-1, note minimal participation
+- Very brief conversations (2-3 exchanges): Evaluate based on what was actually said
+- No responses to questions: Score 0, note lack of engagement
+- Off-topic responses: Lower scores, note poor focus
+- Technical interviews with no technical discussion: Low technical scores, note disengagement
+
+STRENGTHS & WEAKNESSES GUIDELINES:
+- Strengths: Must cite specific examples from conversation ("Clear explanation of X", "Good example of Y")
+- Weaknesses: Must be evidence-based ("Did not provide examples", "Unclear on X topic", "Minimal responses")
+- Be specific and actionable in feedback
+- Focus on observed behaviors, not assumptions
 
 Conversation to analyze:
 ${conversationText}`
