@@ -70,6 +70,9 @@ export async function GET(
           include: {
             results: true,
             conversations: true
+          },
+          orderBy: {
+            createdAt: 'desc' // Most recent attempts first
           }
         },
         prompts: true,
