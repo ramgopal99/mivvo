@@ -670,7 +670,7 @@ export function VoiceChat({
       )}
 
       {/* Status Indicators - Bottom Left */}
-      {isListening && !isAISpeaking && (
+      {isListening && !isAISpeaking && !isLoading && (
         <div className="absolute bottom-4 left-4">
           <div className="flex items-center gap-2 bg-red-500/90 text-white px-3 py-1.5 rounded-full text-xs font-medium">
             <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>

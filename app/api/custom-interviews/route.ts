@@ -192,6 +192,30 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
+    // Check user's time allowance
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        totalTimeAllowance: true,
+        usedTimeMinutes: true,
+        role: true
+      }
+    })
+
+    if (!user) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 })
+    }
+
+    // Check if user has exceeded their time allowance
+    // Only apply time limits to regular users, not admins
+    if (user.role === 'USER' && user.usedTimeMinutes >= user.totalTimeAllowance) {
+      return NextResponse.json({
+        error: 'Time limit exceeded',
+        message: `You have used all ${user.totalTimeAllowance} minutes of your free interview time. Please upgrade to continue practicing.`,
+        timeLimitExceeded: true
+      }, { status: 403 })
+    }
+
     // Parse request body
     const { jdDetails, interviewType, screenShare, company, generalSubType, customPrompt } = await request.json()
 

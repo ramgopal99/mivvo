@@ -172,15 +172,15 @@ export function InterviewResultsContent({ interview }: InterviewResultsContentPr
 
                       if (hasAnyData) {
                         return (
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => router.push(`/dashboard/custominterview/${interview.id}/attempt/${attempt.id}`)}
-                            className="cursor-pointer"
-                          >
-                            <Eye className="h-4 w-4 mr-1" />
-                            View Details
-                          </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => router.push(`/dashboard/custominterview/${interview.id}/attempt/${attempt.id}`)}
+                      className="cursor-pointer"
+                    >
+                      <Eye className="h-4 w-4 mr-1" />
+                      View Details
+                    </Button>
                         )
                       }
                       return null

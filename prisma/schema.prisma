@@ -99,6 +99,7 @@ model User {
   sessions       Session[]
   mockInterviews MockInterview[]
   interviewAttempts InterviewAttempt[]
+  supportTickets SupportTicket[]
 
   @@map("users")
 }
@@ -251,4 +252,61 @@ model InterviewConversation {
   createdAt         DateTime @default(now())
 
   @@map("interviewconversations")
+}
+
+enum SupportTicketStatus {
+  PENDING
+  COMPLETED
+}
+
+enum SupportTicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum SupportTicketCategory {
+  TECHNICAL_ISSUE
+  BILLING_PAYMENT
+  ACCOUNT_PROFILE
+  FEATURE_REQUEST
+  GENERAL_INQUIRY
+}
+
+model SupportTicket {
+  id          String   @id @default(cuid()) @map("_id")
+  ticketId    String   @unique // Human-readable ID like "SUP-20240115-001"
+  subject     String
+  category    SupportTicketCategory
+  priority    SupportTicketPriority
+  status      SupportTicketStatus @default(PENDING)
+  description String
+
+  // For completed tickets
+  resolution  String?
+
+  // Relations
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  replies     TicketReply[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("supporttickets")
+}
+
+model TicketReply {
+  id          String   @id @default(cuid()) @map("_id")
+  subject     String
+  message     String
+  from        String   // "Support Team", "Product Team", etc.
+
+  // Relations
+  ticketId    String
+  ticket      SupportTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+
+  @@map("ticketreplies")
 }

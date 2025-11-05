@@ -3,7 +3,8 @@ import {
   Settings,
   Shield,
   MessageSquare,
-  HelpCircle
+  HelpCircle,
+  Headphones
 } from "lucide-react"
 
 export interface NavigationItem {
@@ -56,6 +57,12 @@ export const sidebarConfig: SidebarConfig = {
         url: "/dashboard/settings",
         icon: Settings,
         description: "Configure your preferences"
+      },
+      {
+        title: "Support",
+        url: "/dashboard/support",
+        icon: Headphones,
+        description: "Raise queries and get support"
       },
       {
         title: "Help",

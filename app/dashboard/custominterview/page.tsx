@@ -37,6 +37,28 @@ export default function CustomInterviewPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [viewFormat, setViewFormat] = useState<"box" | "list">("box")
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [userTimeData, setUserTimeData] = useState<{ totalTimeAllowance: number; usedTimeMinutes: number } | null>(null)
+
+  // Fetch user's time data
+  const fetchUserTimeData = async () => {
+    try {
+      const response = await fetch('/api/user/time-data', {
+        headers: getAuthHeaders(),
+      })
+
+      if (response.ok) {
+        const timeData = await response.json()
+        if (timeData.success && timeData.data) {
+          setUserTimeData({
+            totalTimeAllowance: timeData.data.totalTimeAllowance,
+            usedTimeMinutes: timeData.data.usedTimeMinutes,
+          })
+        }
+      }
+    } catch (error) {
+      console.error('Failed to fetch user time data:', error)
+    }
+  }
 
   // Check authentication status
   useEffect(() => {
@@ -45,6 +67,8 @@ export default function CustomInterviewPage() {
         // Check for NextAuth session first
         if (status === 'authenticated' && session?.user) {
           setIsAuthenticated(true)
+          // Fetch time data when authenticated
+          await fetchUserTimeData()
           setLoading(false)
           return
         }
@@ -64,6 +88,13 @@ export default function CustomInterviewPage() {
             const sessionData = await response.json()
             if (sessionData.authenticated && sessionData.user) {
               setIsAuthenticated(true)
+              // Fetch time data for JWT-authenticated users
+              if (sessionData.user.totalTimeAllowance !== undefined && sessionData.user.usedTimeMinutes !== undefined) {
+                setUserTimeData({
+                  totalTimeAllowance: sessionData.user.totalTimeAllowance,
+                  usedTimeMinutes: sessionData.user.usedTimeMinutes,
+                })
+              }
               setLoading(false)
               return
             }
@@ -130,6 +161,17 @@ export default function CustomInterviewPage() {
           toast.error('Please sign in to create interviews')
         })
         return
+      }
+
+      // Handle time limit exceeded error (403)
+      if (response.status === 403) {
+        const errorData = await response.json()
+        if (errorData.timeLimitExceeded) {
+          import('sonner').then(({ toast }) => {
+            toast.error(errorData.message || 'Time limit exceeded')
+          })
+          return
+        }
       }
 
       if (!response.ok) {
@@ -249,7 +291,10 @@ export default function CustomInterviewPage() {
           </div>
 
           <div className="flex items-center gap-3">
-            <CreateInterviewDialog onInterviewCreated={handleInterviewCreated} />
+            <CreateInterviewDialog
+              onInterviewCreated={handleInterviewCreated}
+              userTimeData={userTimeData}
+            />
           </div>
         </div>
 
@@ -259,6 +304,8 @@ export default function CustomInterviewPage() {
       <InterviewStats
         totalInterviews={interviews.length}
         completedInterviews={interviews.filter(interview => interview.status === "completed").length}
+        totalTimeAllowance={userTimeData?.totalTimeAllowance}
+        usedTimeMinutes={userTimeData?.usedTimeMinutes}
       />
 
       {/* Interview List */}

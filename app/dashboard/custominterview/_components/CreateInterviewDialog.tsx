@@ -8,7 +8,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -39,9 +38,10 @@ import {
 
 interface CreateInterviewDialogProps {
   onInterviewCreated?: (data: { jdDetails: string; interviewType: string; screenShare?: boolean; company?: string; customPrompt?: string }) => void
+  userTimeData?: { totalTimeAllowance: number; usedTimeMinutes: number } | null
 }
 
-export function CreateInterviewDialog({ onInterviewCreated }: CreateInterviewDialogProps) {
+export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: CreateInterviewDialogProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   // Predefined Role state with autocomplete
@@ -57,6 +57,22 @@ export function CreateInterviewDialog({ onInterviewCreated }: CreateInterviewDia
   const [activeTab, setActiveTab] = useState("predefined")
   const [isAnalyzingJD, setIsAnalyzingJD] = useState(false)
 
+  // Check if user has time allowance remaining
+  const checkTimeLimit = () => {
+    if (!userTimeData) return true // Allow if no data (will be checked on API)
+    return userTimeData.usedTimeMinutes < userTimeData.totalTimeAllowance
+  }
+
+  // Handle button click with time limit check
+  const handleCreateClick = () => {
+    if (!checkTimeLimit()) {
+      import('sonner').then(({ toast }) => {
+        toast.error(`You have used all ${userTimeData?.totalTimeAllowance} minutes of your free interview time. Please upgrade to continue practicing.`)
+      })
+      return
+    }
+    setIsDialogOpen(true)
+  }
 
   const handleSubmit = async () => {
     // Handle custom JD tab
@@ -104,11 +120,6 @@ export function CreateInterviewDialog({ onInterviewCreated }: CreateInterviewDia
           customPrompt: analysisResult.prompt, // Include the generated prompt
           company: "Custom Company" // Default company name
         }
-
-        // Show success message
-        import('sonner').then(({ toast }) => {
-          toast.success('Interview created successfully!')
-        })
 
         onInterviewCreated?.(interviewData)
 
@@ -175,11 +186,6 @@ export function CreateInterviewDialog({ onInterviewCreated }: CreateInterviewDia
       generalSubType: interviewType === 'General' ? generalSubType : undefined
     }
 
-    // Show success message
-    import('sonner').then(({ toast }) => {
-      toast.success('Interview created successfully!')
-    })
-
     onInterviewCreated?.(interviewData)
 
     // Reset form
@@ -193,13 +199,16 @@ export function CreateInterviewDialog({ onInterviewCreated }: CreateInterviewDia
   }
 
   return (
-    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-      <DialogTrigger asChild>
-        <Button className="bg-primary hover:bg-primary/90">
-          <Plus className="w-4 h-4 mr-2" />
-          Create Custom Interview
-        </Button>
-      </DialogTrigger>
+    <>
+      <Button
+        className="bg-primary hover:bg-primary/90"
+        onClick={handleCreateClick}
+      >
+        <Plus className="w-4 h-4 mr-2" />
+        Create Custom Interview
+      </Button>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Create Custom Interview</DialogTitle>
@@ -410,5 +419,6 @@ export function CreateInterviewDialog({ onInterviewCreated }: CreateInterviewDia
         </div>
       </DialogContent>
     </Dialog>
+    </>
   )
 }
