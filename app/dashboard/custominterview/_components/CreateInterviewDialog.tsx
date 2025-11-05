@@ -38,7 +38,7 @@ import {
 
 
 interface CreateInterviewDialogProps {
-  onInterviewCreated?: (data: { jdDetails: string; interviewType: string; screenShare?: boolean; company?: string }) => void
+  onInterviewCreated?: (data: { jdDetails: string; interviewType: string; screenShare?: boolean; company?: string; customPrompt?: string }) => void
 }
 
 export function CreateInterviewDialog({ onInterviewCreated }: CreateInterviewDialogProps) {
@@ -80,11 +80,21 @@ export function CreateInterviewDialog({ onInterviewCreated }: CreateInterviewDia
           body: JSON.stringify({ jdText: customJD }),
         })
 
-        if (!response.ok) {
-          throw new Error('Failed to analyze job description')
+        const responseData = await response.json()
+
+        // Check for validation errors (success: false with validationError)
+        if (responseData.validationError) {
+          import('sonner').then(({ toast }) => {
+            toast.error(responseData.validationError)
+          })
+          return // Don't proceed with interview creation
         }
 
-        const analysisResult = await response.json()
+        if (!response.ok || responseData.error) {
+          throw new Error(responseData.error || 'Failed to analyze job description')
+        }
+
+        const analysisResult = responseData
 
         // Prepare interview data with custom JD
         const interviewData = {
@@ -356,7 +366,7 @@ export function CreateInterviewDialog({ onInterviewCreated }: CreateInterviewDia
                 placeholder="Paste your job description here. The system will analyze it and create a tailored interview prompt."
                 value={customJD}
                 onChange={(e) => setCustomJD(e.target.value)}
-                className="min-h-[200px] max-h-[400px] overflow-y-auto resize-none"
+                className="h-[200px] overflow-y-auto resize-none"
                 disabled={isAnalyzingJD}
               />
               <p className="text-xs text-gray-500">

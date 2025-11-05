@@ -17,6 +17,12 @@ export function generateCodingPrompt(jdDetails: string, title: string): string {
 JOB DESCRIPTION:
 ${jdDetails}
 
+DIFFICULTY PROGRESSION: EASY → MEDIUM → HARD
+- Start with BASIC questions about programming fundamentals and languages
+- Progress to INTERMEDIATE questions about algorithms and data structures
+- End with ADVANCED questions about system design and optimization
+- Build from basic coding concepts to complex problem-solving
+
 CONVERSATION GUIDELINES:
 - Start by acknowledging what the candidate shared about their coding experience
 - If they mentioned their name, use it throughout (e.g., "Thanks for sharing that, [Name]")

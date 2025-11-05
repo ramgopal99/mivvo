@@ -17,6 +17,12 @@ export function generateUIUXPrompt(jdDetails: string, title: string): string {
 JOB DESCRIPTION:
 ${jdDetails}
 
+DIFFICULTY PROGRESSION: EASY → MEDIUM → HARD
+- Start with BASIC questions about design fundamentals and tools
+- Progress to INTERMEDIATE questions about design processes and user research
+- End with ADVANCED questions about complex design systems and strategic thinking
+- Build from basic design knowledge to sophisticated design leadership
+
 CONVERSATION GUIDELINES:
 - Start by acknowledging what the candidate shared about their design background and experience
 - If they mentioned their name, use it throughout (e.g., "Thanks for sharing that, [Name]")

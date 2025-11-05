@@ -17,6 +17,12 @@ export function generateHRPrompt(jdDetails: string, title: string): string {
 JOB DESCRIPTION:
 ${jdDetails}
 
+DIFFICULTY PROGRESSION: EASY → MEDIUM → HARD
+- Start with BASIC questions about their background and general experiences
+- Progress to INTERMEDIATE questions about teamwork and communication
+- End with ADVANCED questions about leadership, conflict resolution, and complex scenarios
+- Build confidence first, then explore deeper behavioral insights
+
 CONVERSATION GUIDELINES:
 - Start by acknowledging what the candidate shared about themselves and their background
 - If they mentioned their name, use it throughout (e.g., "Thanks for sharing that, [Name]")

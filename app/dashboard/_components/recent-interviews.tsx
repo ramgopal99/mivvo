@@ -114,7 +114,7 @@ export function RecentInterviews({ interviews }: RecentInterviewsProps) {
                   </div>
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm" asChild>
-                      <Link href={`/dashboard/custominterview/result/${interview.id}`}>
+                      <Link href={`/dashboard/custominterview/${interview.id}`}>
                         <Eye className="h-4 w-4 mr-1" />
                         Analysis
                       </Link>

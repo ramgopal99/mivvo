@@ -273,7 +273,7 @@ export function MeetTestRoom({
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   
   // Voice settings state - using configuration values
-  const [selectedVoice, setSelectedVoice] = useState<string>(voiceConfig.language)
+  const [selectedVoice, setSelectedVoice] = useState<string>('')
   const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([])
 
   // Timer state
@@ -338,7 +338,8 @@ export function MeetTestRoom({
     return () => {
       speechSynthesis.onvoiceschanged = null
     }
-  }, [selectedVoice, voiceConfig.language])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [voiceConfig.language])
 
   // Voice activity detection for user
   useEffect(() => {
@@ -960,7 +961,7 @@ export function MeetTestRoom({
   }
 
   const testVoice = () => {
-    const utterance = new SpeechSynthesisUtterance("Hello! This is how your selected voice sounds. You can now test different voices to find the one that works best for you.")
+    const utterance = new SpeechSynthesisUtterance("This is how your selected voice sounds.")
     utterance.rate = voiceConfig.speechRate
     utterance.pitch = voiceConfig.speechPitch
 
@@ -1200,6 +1201,7 @@ export function MeetTestRoom({
               availableVoices={availableVoices}
               onVoiceChange={setSelectedVoice}
               onTestVoice={testVoice}
+              onClose={() => setShowSettings(false)}
             />
           </div>
         </div>

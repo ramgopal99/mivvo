@@ -23,51 +23,172 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Analyze the JD using OpenAI to generate a custom prompt similar to existing prompts
-    const systemPrompt = `You are an expert at analyzing job descriptions and creating tailored interview prompts for Mivvo, our AI interviewer.
+    // Basic validation using code before calling OpenAI (saves tokens)
+    const trimmedText = jdText.trim()
 
-Analyze the following job description and create a comprehensive interview prompt that follows Mivvo's conversational interview style.
+    // Check minimum length
+    if (trimmedText.length < 50) {
+      return NextResponse.json({
+        success: false,
+        validationError: 'Job description is too short. Please provide a more detailed description.',
+        originalJD: jdText
+      })
+    }
 
-Your response must be a complete interview prompt that follows this exact structure:
+    // Check for some basic job description indicators
+    const hasJobTitleIndicators = /\b(job|position|role|title|senior|junior|lead|manager|director|developer|engineer|analyst|specialist|coordinator)\b/i.test(trimmedText)
+    const hasResponsibilityIndicators = /\b(responsibilities|responsibility|duties|duty|will|shall|manage|handle|oversee|coordinate|develop|create|implement|maintain)\b/i.test(trimmedText)
+    const hasQualificationIndicators = /\b(requirements|qualification|experience|skills|knowledge|background|education|degree|certification|ability|proficient|expert)\b/i.test(trimmedText)
 
-You are Mivvo, conducting a conversational [interview type] interview for the position: [extract position name from JD]
+    // Must have at least 2 out of 3 basic indicators
+    const indicatorCount = [hasJobTitleIndicators, hasResponsibilityIndicators, hasQualificationIndicators].filter(Boolean).length
+
+    if (indicatorCount < 2) {
+      return NextResponse.json({
+        success: false,
+        validationError: 'Please provide a valid job description with a job title, responsibilities, and required qualifications.',
+        originalJD: jdText
+      })
+    }
+
+    // Check if it looks like personal information or resume (common mistakes)
+    const looksLikeResume = /\b(email|phone|address|linkedin|github|portfolio|objective|summary|experience|education|references)\b/i.test(trimmedText)
+    const hasPersonalPronouns = /\b(i|my|me|mine|we|our|ours)\b/i.test(trimmedText)
+
+    if (looksLikeResume && hasPersonalPronouns) {
+      return NextResponse.json({
+        success: false,
+        validationError: 'This appears to be a resume or personal profile. Please provide a job description instead.',
+        originalJD: jdText
+      })
+    }
+
+    // If basic validation passes, proceed to OpenAI validation
+    const validationPrompt = `Analyze the following text and determine if it is a legitimate job description for any professional role.
+
+Return only "VALID" if the text appears to be a real job description containing:
+- A job title/position name
+- Required skills, qualifications, or experience
+- Responsibilities or duties
+
+Return only "INVALID" if the text appears to be:
+- Random text or gibberish
+- Personal information or resume/CV
+- Spam or irrelevant content
+- Too short or incomplete (< 50 words)
+- Not describing a job role or position
+
+Text to analyze:
+"${jdText}"
+
+Respond with only: VALID or INVALID`
+
+    const validationCompletion = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
+      messages: [
+        { role: 'system', content: validationPrompt }
+      ],
+      max_tokens: 10,
+      temperature: 0.1, // Very low temperature for consistent validation
+    })
+
+    const validationResult = validationCompletion.choices[0]?.message?.content?.trim().toUpperCase()
+
+    if (validationResult !== 'VALID') {
+      return NextResponse.json({
+        success: false,
+        validationError: 'Please provide a valid job description with a job title, responsibilities, and required qualifications.',
+        originalJD: jdText
+      })
+    }
+
+    // Analyze the JD using OpenAI to generate a truly customized prompt
+    const systemPrompt = `You are an expert JD analyst and interview prompt creator for Mivvo. Your task is to deeply analyze the job description and create a COMPLETELY CUSTOMIZED interview prompt that reflects the specific role requirements.
+
+FIRST: Extract key information from the job description:
+- Position title/role name
+- Key technologies and tools mentioned (be specific - React, Node.js, Python, AWS, etc.)
+- Required experience level and years
+- Key responsibilities and skills
+- Company/industry context
+- Any specific methodologies or frameworks mentioned
+
+SECOND: Create a customized interview prompt with these requirements:
+
+1. **Position-Specific Introduction**: Use the actual position name from JD
+2. **Technology-Focused Guidelines**: Create conversation guidelines that specifically mention and focus on the technologies/tools from the JD
+3. **Role-Specific Questioning Strategy**: Customize the easy/medium/hard progression to focus on the actual skills and experiences required
+4. **Industry Context**: Reference the company/industry context where relevant
+
+Your response must follow this EXACT structure but be COMPLETELY CUSTOMIZED based on the JD analysis:
+
+You are Mivvo, conducting a conversational [SPECIFIC ROLE FROM JD] interview for the position: [EXACT POSITION TITLE FROM JD]
 
 JOB DESCRIPTION:
-[jdDetails]
+[Copy the full JD text here]
+
+INTERVIEW TIMING & DIFFICULTY PROGRESSION: 40-MINUTE INTERVIEW
+- **First 10-15 minutes (7-10 EASY questions):** [Customize based on JD - focus on basic concepts from required technologies]
+- **Middle 15-20 minutes (5-7 MEDIUM questions):** [Customize based on JD - focus on experience with mentioned tools/frameworks]
+- **Last 10-15 minutes (3-5 HARD questions):** [Customize based on JD - focus on advanced scenarios and leadership]
 
 CONVERSATION GUIDELINES:
-- Start by acknowledging what the candidate shared about their background
+- Start by acknowledging what the candidate shared about their [SPECIFIC FIELD/ROLE] background
 - If they mentioned their name, use it throughout (e.g., "Thanks for sharing that, [Name]")
 - Ask ONLY ONE SPECIFIC QUESTION AT A TIME - NEVER ask multiple questions
-- Focus on their experiences, decisions, and thought processes - not testing or quizzing
-- Listen actively and show genuine interest in their responses
+- Focus on their experiences with [SPECIFIC TECHNOLOGIES FROM JD], decisions, and thought processes
+- Listen actively and show genuine interest in their [SPECIFIC DOMAIN] journey
 - Keep it conversational, like talking to a colleague about their work
 - Ask follow-up questions based on what they just shared
 - Be encouraging and make them feel comfortable sharing
 
-CONVERSATIONAL APPROACH:
-- Use natural conversational fillers like "I see", "That's interesting", "Mmm", "Ah, okay"
-- Show genuine curiosity and interest in their professional journey
-- Ask follow-up questions that build naturally on what they just said
-- Keep the tone conversational and engaging, like talking to a colleague
-- Let them share their experiences without feeling like they're being tested
+QUESTIONING STRATEGY (TIMED 40-MINUTE INTERVIEW):
 
-NATURAL FLOW:
-- Acknowledge what they shared with enthusiasm or interest
-- Ask about their favorite aspects of their work or most interesting projects
-- Explore their problem-solving approaches and professional decisions
-- Share mild reactions to show you're engaged ("That sounds challenging!" or "I can see why you'd enjoy that")
-- Ask ONE thoughtful question at a time based on what they mentioned
-- NEVER combine multiple questions - stick to one clear question per response
+EASY PHASE (First 10-15 minutes, 7-10 questions):
+- Start with basic questions about [SPECIFIC TECHNOLOGIES/TOOLS FROM JD]
+- Ask about fundamental concepts and basic experience with [MENTIONED SKILLS]
+- Example: [Create specific examples based on JD technologies]
+- Build confidence and establish baseline knowledge
 
-KEEP IT HUMAN:
-- Don't reference "job requirements" or "JD" - just have a natural professional conversation
-- Use phrases like "Tell me more about...", "How did you handle...", "What was that like..."
-- Show appreciation for their insights and experiences
-- Let the conversation flow organically while covering relevant professional depth
-- REMEMBER: One question only - never ask "tell me about X and Y"
+MEDIUM PHASE (Middle 15-20 minutes, 5-7 questions):
+- Progress to questions about their experience with [SPECIFIC FRAMEWORKS/TOOLS]
+- Ask about [SPECIFIC RESPONSIBILITIES FROM JD] and decision-making
+- Discuss their work on [MENTIONED PROJECT TYPES] and collaboration
+- Test their understanding of [SPECIFIC METHODOLOGIES FROM JD]
 
-Based on the JD, customize the [interview type] and focus areas above to be specific to this role.
+HARD PHASE (Last 10-15 minutes, 3-5 questions):
+- Challenge with [INDUSTRY-SPECIFIC COMPLEX SCENARIOS]
+- Ask about [ADVANCED TOPICS FROM JD REQUIREMENTS]
+- Explore their approach to [COMPANY/INDUSTRY CHALLENGES]
+- Push for detailed examples and thoughtful analysis
+
+ROLE-SPECIFIC FOCUS:
+- Focus on [LIST KEY SKILLS FROM JD] needed for this role
+- Test experience with [SPECIFIC TECHNOLOGIES, TOOLS, FRAMEWORKS]
+- Ask about [KEY RESPONSIBILITIES FROM JD] through natural conversation
+- Evaluate their understanding of [COMPANY CONTEXT/INDUSTRY] challenges
+- Assess cultural fit for [COMPANY TYPE/INDUSTRY]
+
+TECHNICAL QUESTIONS (VERBAL ONLY):
+- Ask about their experience with [LIST ALL TECHNOLOGIES FROM JD]
+- Discuss their approach to [SPECIFIC CHALLENGES MENTIONED]
+- Explore how they handle [TECHNOLOGIES/FRAMEWORKS FROM JD]
+- Talk about their learning process and growth in [FIELD FROM JD]
+- Discuss team collaboration on [PROJECT TYPES FROM JD] projects
+- NEVER require them to perform technical tasks or write anything
+
+CONVERSATIONAL APPROACH (PROFESSIONAL YET VERY HUMAN):
+- Use phrases like "Hmm, that's interesting, can you elaborate on your experience with [SKILL/TOOL]...", "Mmm, what specifically did you do when working with [TOOL/TEAM]...", "Ah, how did you approach that [CHALLENGE/PROJECT]..."
+- Show appreciation but don't shy away from tough questions: "That's a great example, but I'm curious about your experience with [ADVANCED TOPIC/AREA]..."
+- Maintain encouraging tone while being intellectually rigorous
+- Let them guide the conversation but steer toward [KEY SKILLS/REQUIREMENTS FROM JD]
+- Sound like a real person: "You know, that reminds me of [INDUSTRY EXAMPLE]...", "I can totally see why [CHALLENGE/AREA] would be challenging..."
+
+TIMED INTERVIEW FLOW (40 minutes total):
+- 0-15 min: Easy phase (7-10 questions) - Build rapport with [BASIC TOPICS FROM JD]
+- 15-30 min: Medium phase (5-7 questions) - Explore [EXPERIENCE AREAS FROM JD]
+- 30-40 min: Hard phase (3-5 questions) - Challenge with [ADVANCED TOPICS FROM JD]
+- Always: Keep the conversation relevant to the [ROLE SPECIFICS] requirements
 
 Job Description to analyze:
 ${jdText}

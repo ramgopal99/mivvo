@@ -159,20 +159,32 @@ export function InterviewResultsContent({ interview }: InterviewResultsContentPr
                         {attempt.duration && (
                           <div className="flex items-center space-x-1">
                             <Clock className="w-4 h-4" />
-                            <span>{attempt.duration}min</span>
+                            <span>{Math.round(attempt.duration / 60)}min</span>
                           </div>
                         )}
                       </div>
                     </div>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => router.push(`/dashboard/custominterview/${interview.id}/attempt/${attempt.id}`)}
-                      className="cursor-pointer"
-                    >
-                      <Eye className="h-4 w-4 mr-1" />
-                      View Details
-                    </Button>
+                    {(() => {
+                      const analysis = getAttemptAnalysis(attempt)
+                      const hasScore = analysis?.overallScore !== undefined && analysis?.overallScore !== null && analysis.overallScore >= 0
+                      const hasFeedback = analysis?.overallFeedback && analysis.overallFeedback.trim().length > 0
+                      const hasAnyData = hasScore || hasFeedback
+
+                      if (hasAnyData) {
+                        return (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => router.push(`/dashboard/custominterview/${interview.id}/attempt/${attempt.id}`)}
+                            className="cursor-pointer"
+                          >
+                            <Eye className="h-4 w-4 mr-1" />
+                            View Details
+                          </Button>
+                        )
+                      }
+                      return null
+                    })()}
                   </div>
                 </CardHeader>
 
@@ -210,7 +222,7 @@ export function InterviewResultsContent({ interview }: InterviewResultsContentPr
                       <CardContent>
                         <div className="text-center py-4">
                           <div className="text-sm text-gray-500">
-                            Analysis in progress... Results will be available shortly.
+                            No interview conversation recorded this year.
                           </div>
                         </div>
                       </CardContent>
