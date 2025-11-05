@@ -217,7 +217,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Parse request body
-    const { jdDetails, interviewType, screenShare, company, generalSubType, customPrompt } = await request.json()
+    const { jdDetails, interviewType, screenShare, company, generalSubType, customPrompt, cvText } = await request.json()
 
     // Validate required fields
     if (!jdDetails || !interviewType) {
@@ -294,6 +294,7 @@ export async function POST(request: NextRequest) {
         title: uniqueTitle,
         companyName: cleanedCompanyName,
         jobDescription: jdDetails,
+        cvText: cvText || null, // Save CV text if provided
         interviewType: mappedInterviewType,
         screenShareEnabled: screenShare || false,
         createdBy: userId

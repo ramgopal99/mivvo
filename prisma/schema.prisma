@@ -166,6 +166,7 @@ model MockInterview {
   position          String?
   companyDescription String?  @default("")
   jobDescription    String?  @default("")
+  cvText            String?  // Optional CV/resume text extracted from uploaded file
   interviewType     InterviewType?
   experienceLevel   String?
   attemptCount     Int      @default(0)

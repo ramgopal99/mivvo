@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -25,7 +25,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { Plus, FileText } from "lucide-react"
+import { Plus, FileText, X } from "lucide-react"
 import {
   generateJDFromPredefined,
   getAvailableRoles,
@@ -56,6 +56,12 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
   const [customJD, setCustomJD] = useState("")
   const [activeTab, setActiveTab] = useState("predefined")
   const [isAnalyzingJD, setIsAnalyzingJD] = useState(false)
+  
+  // CV upload state
+  const [cvFile, setCvFile] = useState<File | null>(null)
+  const [cvText, setCvText] = useState("")
+  const [isExtractingCV, setIsExtractingCV] = useState(false)
+  const cvInputRef = useRef<HTMLInputElement>(null)
 
   // Check if user has time allowance remaining
   const checkTimeLimit = () => {
@@ -72,6 +78,83 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
       return
     }
     setIsDialogOpen(true)
+  }
+
+  // Handle CV file selection
+  const handleCvFileSelect = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files?.[0]
+    if (!selectedFile) return
+
+    // Validate file type
+    const allowedTypes = [
+      'application/pdf',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    ]
+
+    if (!allowedTypes.includes(selectedFile.type)) {
+      import('sonner').then(({ toast }) => {
+        toast.error('Please select a PDF or DOCX file only.')
+      })
+      return
+    }
+
+    // Validate file size (max 10MB)
+    if (selectedFile.size > 10 * 1024 * 1024) {
+      import('sonner').then(({ toast }) => {
+        toast.error('File size must be less than 10MB.')
+      })
+      return
+    }
+
+    setCvFile(selectedFile)
+    setIsExtractingCV(true)
+
+    try {
+      const formData = new FormData()
+      formData.append('file', selectedFile)
+
+      const response = await fetch('/api/extract-file', {
+        method: 'POST',
+        body: formData,
+      })
+
+      const result = await response.json()
+
+      if (response.ok && result.success) {
+        setCvText(result.data.extractedText)
+        import('sonner').then(({ toast }) => {
+          toast.success('CV extracted successfully')
+        })
+      } else {
+        throw new Error(result.message || 'Failed to extract text from CV')
+      }
+    } catch (error) {
+      console.error('CV extraction error:', error)
+      import('sonner').then(({ toast }) => {
+        toast.error('Failed to extract text from CV. Please try again.')
+      })
+      setCvFile(null)
+      setCvText("")
+    } finally {
+      setIsExtractingCV(false)
+    }
+  }
+
+  // Clear CV file
+  const clearCvFile = () => {
+    setCvFile(null)
+    setCvText("")
+    if (cvInputRef.current) {
+      cvInputRef.current.value = ''
+    }
+  }
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return '0 Bytes'
+    const k = 1024
+    const sizes = ['Bytes', 'KB', 'MB']
+    const i = Math.floor(Math.log(bytes) / Math.log(k))
+    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i]
   }
 
   const handleSubmit = async () => {
@@ -93,7 +176,10 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ jdText: customJD }),
+          body: JSON.stringify({ 
+            jdText: customJD,
+            cvText: cvText || undefined // Only include if CV was uploaded
+          }),
         })
 
         const responseData = await response.json()
@@ -118,7 +204,8 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
           interviewType: "Custom", // Custom interview type for API
           screenShare: false,
           customPrompt: analysisResult.prompt, // Include the generated prompt
-          company: "Custom Company" // Default company name
+          company: "Custom Company", // Default company name
+          cvText: cvText || undefined // Include CV text if available
         }
 
         onInterviewCreated?.(interviewData)
@@ -126,7 +213,12 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
         // Reset form
         setIsDialogOpen(false)
         setCustomJD("")
+        setCvFile(null)
+        setCvText("")
         setActiveTab("predefined")
+        if (cvInputRef.current) {
+          cvInputRef.current.value = ''
+        }
 
       } catch (error) {
         console.error('Error analyzing JD:', error)
@@ -381,7 +473,58 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
               <p className="text-xs text-gray-500">
                 The AI will analyze your job description and generate a custom interview prompt optimized for assessing candidates for this role.
               </p>
-        </div>
+            </div>
+
+            {/* CV Upload Section */}
+            <div className="space-y-2">
+              <Label htmlFor="cv-upload" className="text-sm font-medium">
+                Upload CV/Resume (Optional)
+              </Label>
+              <div className="space-y-3">
+                <Input
+                  id="cv-upload"
+                  ref={cvInputRef}
+                  type="file"
+                  accept=".pdf,.docx"
+                  onChange={handleCvFileSelect}
+                  disabled={isAnalyzingJD || isExtractingCV}
+                  className="file:mr-4 file:py-2 file:px-4 file:rounded-l-md file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                />
+                <p className="text-xs text-gray-500">
+                  Upload your CV/resume (PDF or DOCX, max 10MB) to personalize the interview questions based on your background.
+                </p>
+
+                {/* CV Preview */}
+                {cvFile && (
+                  <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg border">
+                    <div className="flex items-center gap-3">
+                      <FileText className="h-8 w-8 text-blue-600" />
+                      <div>
+                        <p className="font-medium text-sm text-blue-900">{cvFile.name}</p>
+                        <p className="text-xs text-blue-600">{formatFileSize(cvFile.size)}</p>
+                      </div>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={clearCvFile}
+                      disabled={isAnalyzingJD || isExtractingCV}
+                      className="text-red-600 hover:text-red-800 hover:bg-red-50"
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                )}
+
+                {/* Loading indicator for CV extraction */}
+                {isExtractingCV && (
+                  <div className="flex items-center gap-2 text-sm text-blue-600">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                    Extracting text from CV...
+                  </div>
+                )}
+              </div>
+            </div>
           </TabsContent>
         </Tabs>
 
@@ -398,7 +541,7 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
             disabled={
               activeTab === 'predefined'
                 ? (!interviewType || (interviewType === 'General' ? !generalSubType : (!selectedRole || !selectedLevel)))
-                : (!customJD.trim() || isAnalyzingJD)
+                : (!customJD.trim() || isAnalyzingJD || isExtractingCV)
             }
             className="bg-primary hover:bg-primary/90"
           >
