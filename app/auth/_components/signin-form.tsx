@@ -1,12 +1,25 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import { signInWithGoogle } from "@/app/actions/auth"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
 export function SignInForm() {
   const [isLoading, setIsLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    // Check for error parameters in URL
+    const error = searchParams.get('error')
+    if (error === 'AccessDenied') {
+      setErrorMessage("Access denied. You don't have permission to sign in.")
+    } else if (error) {
+      setErrorMessage("An error occurred during sign in. Please try again.")
+    }
+  }, [searchParams])
 
   const handleGoogleSignIn = async () => {
     setIsLoading(true)
@@ -21,6 +34,13 @@ export function SignInForm() {
 
   return (
     <div className="space-y-6">
+      {/* Error Message */}
+      {errorMessage && (
+        <div className="p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md">
+          {errorMessage}
+        </div>
+      )}
+
       {/* Google Sign In Button */}
       <Button
         onClick={handleGoogleSignIn}

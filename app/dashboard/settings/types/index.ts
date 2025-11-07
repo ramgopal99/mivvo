@@ -12,6 +12,7 @@ export interface UserData {
   company: string | null
   location: string | null
   bio: string | null
+  cv?: string | null
   // New SaaS mock interview platform fields
   careerGoals?: string | null
   linkedIn?: string | null

@@ -31,17 +31,19 @@ import {
   getAvailableRoles,
   getAvailableLevels,
   getAvailableInterviewTypes,
-  getGeneralInterviewSubTypes
+  getGeneralInterviewSubTypes,
+  getHRInterviewSubTypes
 } from "./interview-utils"
 
 
 
 interface CreateInterviewDialogProps {
-  onInterviewCreated?: (data: { jdDetails: string; interviewType: string; screenShare?: boolean; company?: string; customPrompt?: string }) => void
+  onInterviewCreated?: (data: { jdDetails: string; interviewType: string; screenShare?: boolean; company?: string; customPrompt?: string; generalSubType?: string; hrSubType?: string; cvText?: string }) => void
   userTimeData?: { totalTimeAllowance: number; usedTimeMinutes: number } | null
+  userCvData?: string | null
 }
 
-export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: CreateInterviewDialogProps) {
+export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCvData }: CreateInterviewDialogProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   // Predefined Role state with autocomplete
@@ -51,6 +53,7 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
   const [selectedLevel, setSelectedLevel] = useState("")
   const [interviewType, setInterviewType] = useState("")
   const [generalSubType, setGeneralSubType] = useState("")
+  const [hrSubType, setHrSubType] = useState("")
 
   // Custom JD state
   const [customJD, setCustomJD] = useState("")
@@ -176,9 +179,9 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ 
+          body: JSON.stringify({
             jdText: customJD,
-            cvText: cvText || undefined // Only include if CV was uploaded
+            cvText: cvText || userCvData || undefined // Include CV if uploaded or from profile
           }),
         })
 
@@ -205,7 +208,7 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
           screenShare: false,
           customPrompt: analysisResult.prompt, // Include the generated prompt
           company: "Custom Company", // Default company name
-          cvText: cvText || undefined // Include CV text if available
+          cvText: cvText || userCvData || undefined // Include CV text if available (uploaded or existing)
         }
 
         onInterviewCreated?.(interviewData)
@@ -249,8 +252,16 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
         })
         return
       }
-    } else {
-      // For other interview types, need role and level
+  } else if (interviewType === 'HR') {
+    // For HR interviews, only need sub-type
+    if (!hrSubType) {
+      import('sonner').then(({ toast }) => {
+        toast.error('Please select an HR interview sub-type')
+      })
+      return
+    }
+  } else if (interviewType === 'Technical') {
+    // For Technical interviews, need role and level
       if (!selectedRole || !selectedLevel) {
         import('sonner').then(({ toast }) => {
           toast.error('Please select role and experience level')
@@ -264,8 +275,11 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
     if (interviewType === 'General') {
       // For General interviews, use the updated JD generation with interview type and sub-type
       finalJdDetails = generateJDFromPredefined("", "", interviewType, generalSubType)
+  } else if (interviewType === 'HR') {
+    // For HR interviews, use JD generation with interview type and HR sub-type
+    finalJdDetails = generateJDFromPredefined("", "", interviewType, undefined, hrSubType)
     } else {
-      // For other interview types, use the existing JD generation
+    // For Technical interviews, use the existing JD generation
       finalJdDetails = generateJDFromPredefined(selectedRole, selectedLevel, interviewType)
     }
 
@@ -275,8 +289,13 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
       jdDetails: finalJdDetails,
       interviewType: interviewType, // Pass the original interview type
       screenShare: false, // Screen sharing disabled for now since Coding and UI/UX are coming soon
-      generalSubType: interviewType === 'General' ? generalSubType : undefined
+      generalSubType: interviewType === 'General' ? generalSubType : (interviewType === 'Technical' ? selectedRole : undefined), // Pass role as generalSubType for technical interviews
+      hrSubType: interviewType === 'HR' ? hrSubType : undefined, // Pass HR sub-type for HR interviews
+      role: interviewType === 'Technical' ? selectedRole : undefined, // Keep role field for backward compatibility
+      cvText: cvText || userCvData || undefined // Use uploaded CV, or existing CV if available
     }
+
+    console.log('DEBUG Frontend sending:', { interviewType, generalSubType: interviewData.generalSubType, role: interviewData.role, selectedRole })
 
     onInterviewCreated?.(interviewData)
 
@@ -288,6 +307,7 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
     setSelectedLevel("")
     setInterviewType("")
     setGeneralSubType("")
+    setHrSubType("")
   }
 
   return (
@@ -323,8 +343,25 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
             </Label>
             <Select value={interviewType} onValueChange={(value) => {
               setInterviewType(value)
-              if (value !== 'General') {
+              // Clear selections when switching interview types
+              if (value === 'General') {
+                // Clear role-related fields when switching to General
+                setSelectedRole("")
+                setRoleInput("")
+                setSelectedLevel("")
+                setShowSuggestions(false)
+                setHrSubType("")
+              } else if (value === 'HR') {
+                // Clear role-related fields when switching to HR
+                setSelectedRole("")
+                setRoleInput("")
+                setSelectedLevel("")
+                setShowSuggestions(false)
                 setGeneralSubType("")
+              } else {
+                // Clear sub-types when switching to Technical
+                setGeneralSubType("")
+                setHrSubType("")
               }
             }}>
               <SelectTrigger className="w-full">
@@ -367,8 +404,32 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
             </div>
           )}
 
-          {/* Role Selection with Autocomplete - Only show for non-General types */}
-          {interviewType !== 'General' && (
+          {/* HR Interview Sub-Type Selection */}
+          {interviewType === 'HR' && (
+            <div className="space-y-2">
+              <Label htmlFor="hr-subtype" className="text-sm font-medium">
+                HR Interview Type *
+              </Label>
+              <Select value={hrSubType} onValueChange={setHrSubType}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select HR interview type" />
+                </SelectTrigger>
+                <SelectContent>
+                  {getHRInterviewSubTypes().map(type => (
+                    <SelectItem
+                      key={type.value}
+                      value={type.value}
+                    >
+                      {type.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+
+          {/* Role Selection with Autocomplete - Only show for Technical types */}
+          {interviewType === 'Technical' && (
           <div className="space-y-2">
             <Label htmlFor="role" className="text-sm font-medium">
               Role *
@@ -540,7 +601,10 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData }: Crea
             onClick={handleSubmit}
             disabled={
               activeTab === 'predefined'
-                ? (!interviewType || (interviewType === 'General' ? !generalSubType : (!selectedRole || !selectedLevel)))
+                ? (!interviewType ||
+                   (interviewType === 'General' ? !generalSubType :
+                    interviewType === 'HR' ? !hrSubType :
+                    interviewType === 'Technical' ? (!selectedRole || !selectedLevel) : false))
                 : (!customJD.trim() || isAnalyzingJD || isExtractingCV)
             }
             className="bg-primary hover:bg-primary/90"

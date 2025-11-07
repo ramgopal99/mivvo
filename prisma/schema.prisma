@@ -66,6 +66,7 @@ model User {
   company       String?
   location      String?
   bio           String?
+  cv            String?
 
   // Academic fields
   rollNumber      String?
@@ -169,6 +170,7 @@ model MockInterview {
   cvText            String?  // Optional CV/resume text extracted from uploaded file
   interviewType     InterviewType?
   experienceLevel   String?
+  role              String?  // Specific technical role (e.g., 'frontend-developer', 'react-developer')
   attemptCount     Int      @default(0)
   screenShareEnabled Boolean @default(false)
   status            InterviewStatus @default(IN_PROGRESS)

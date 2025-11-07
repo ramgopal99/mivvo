@@ -33,46 +33,100 @@ export function LogoutDialog({ children }: LogoutDialogProps) {
         },
       })
 
-      // Step 2: Clear all localStorage data
+      // Step 2: Clear all localStorage data comprehensively
+      // College student/admin data
       localStorage.removeItem('user_data')
       localStorage.removeItem('student_token')
       localStorage.removeItem('college_data')
       localStorage.removeItem('college_token')
       localStorage.removeItem('token')
+      localStorage.removeItem('college_student_data')
 
-      // Clear NextAuth session tokens
+      // NextAuth session tokens
       localStorage.removeItem('next-auth.session-token')
       localStorage.removeItem('__Secure-next-auth.session-token')
       localStorage.removeItem('next-auth.callback-url')
       localStorage.removeItem('next-auth.csrf-token')
       localStorage.removeItem('__Secure-next-auth.callback-url')
 
-      // Clear any college specific data
-      localStorage.removeItem('college_student_data')
+      // Clear any potential leftover keys
+      const keysToRemove = [
+        'sidebar_state',
+        'interviewTranscript',
+        'interviewMessages',
+        'temp_data',
+        'cache_data'
+      ]
+      keysToRemove.forEach(key => localStorage.removeItem(key))
 
       // Step 3: Clear all sessionStorage
       sessionStorage.clear()
 
-      // Step 4: Clear any cookies related to authentication
-      // This will be handled by NextAuth signOut
+      // Step 4: Clear sidebar cookie
+      document.cookie = 'sidebar_state=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
 
-      // Step 5: Sign out from NextAuth (clears server session and cookies)
+      // Step 5: Clear any IndexedDB databases (for college data)
+      try {
+        if (window.indexedDB) {
+          // Clear any college-related IndexedDB databases
+          const dbNames = ['college-cache', 'student-data', 'interview-cache']
+          for (const dbName of dbNames) {
+            const deleteRequest = window.indexedDB.deleteDatabase(dbName)
+            deleteRequest.onsuccess = () => console.log(`Cleared IndexedDB: ${dbName}`)
+            deleteRequest.onerror = () => console.log(`Failed to clear IndexedDB: ${dbName}`)
+          }
+        }
+      } catch (error) {
+        console.log('IndexedDB cleanup skipped:', error)
+      }
+
+      // Step 6: Clear service worker caches
+      try {
+        if ('caches' in window) {
+          const cacheNames = await caches.keys()
+          await Promise.all(
+            cacheNames.map(cacheName => {
+              if (cacheName.includes('college') || cacheName.includes('interview')) {
+                console.log(`Clearing cache: ${cacheName}`)
+                return caches.delete(cacheName)
+              }
+              return Promise.resolve()
+            })
+          )
+        }
+      } catch (error) {
+        console.log('Cache cleanup skipped:', error)
+      }
+
+      // Step 7: Sign out from NextAuth (clears server session and cookies)
       await signOut({
         redirect: false, // We'll handle redirect manually
         callbackUrl: '/auth/signin'
       })
 
-      // Step 6: Force redirect to ensure clean state
-      console.log('Logout completed successfully - redirecting to login')
+      // Step 8: Force redirect to ensure clean state
+      console.log('Logout completed successfully - all storage cleared')
       window.location.href = '/auth/signin'
 
     } catch (error) {
       console.error("Logout failed:", error)
 
-      // Even if logout fails, clear everything and redirect
+      // Emergency cleanup: clear everything we can
       try {
         localStorage.clear()
         sessionStorage.clear()
+        document.cookie = 'sidebar_state=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+
+        // Clear NextAuth cookies
+        const nextAuthCookies = [
+          'next-auth.session-token',
+          '__Secure-next-auth.session-token',
+          'next-auth.csrf-token'
+        ]
+        nextAuthCookies.forEach(cookieName => {
+          document.cookie = `${cookieName}=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`
+        })
+
         await signOut({ redirect: false })
       } catch (signOutError) {
         console.error("Emergency logout failed:", signOutError)

@@ -170,7 +170,7 @@ export default function DashboardLayout({
     const isAuthenticated = hasNextAuthSession || hasCollegeAuth
     const effectiveRole = collegeRole || nextAuthRole
 
-    const validRoles = ['USER', 'COLLEGE_STUDENT']
+    const validRoles = ['USER', 'COLLEGE_STUDENT', 'SUPERADMIN', 'COLLEGE_ADMIN']
     const hasValidRole = effectiveRole && validRoles.includes(effectiveRole)
 
     if (!isAuthenticated || !hasValidRole) {
@@ -182,9 +182,21 @@ export default function DashboardLayout({
           hasNextAuthSession,
           hasCollegeAuth
         })
+        // Clear all storage data comprehensively before redirect
         localStorage.removeItem('token')
         localStorage.removeItem('student_token')
         localStorage.removeItem('college_token')
+        localStorage.removeItem('user_data')
+        localStorage.removeItem('college_data')
+        localStorage.removeItem('college_student_data')
+        localStorage.removeItem('sidebar_state')
+
+        // Clear sessionStorage
+        sessionStorage.clear()
+
+        // Clear sidebar cookie
+        document.cookie = 'sidebar_state=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+
         window.location.href = '/auth/signin'
       }
       return (

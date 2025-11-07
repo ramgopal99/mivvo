@@ -97,6 +97,7 @@ export default function StudentsPage() {
           <StudentsTable.HeaderCell>Name</StudentsTable.HeaderCell>
           <StudentsTable.HeaderCell>Email</StudentsTable.HeaderCell>
           <StudentsTable.HeaderCell>Roll Number</StudentsTable.HeaderCell>
+          <StudentsTable.HeaderCell>CV</StudentsTable.HeaderCell>
           <StudentsTable.HeaderCell>Actions</StudentsTable.HeaderCell>
         </StudentsTable.Header>
         <StudentsTable.Body>

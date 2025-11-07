@@ -12,8 +12,11 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { generateGeneralPrompt, generateCodingPrompt, generateUIUXPrompt, generateHRPrompt, generateTechnicalPrompt } from './prompts'
-import { UPSE_PROMPT, BANKING_PROMPT } from './prompts'
+import { generateGeneralPrompt, generateCodingPrompt, generateUIUXPrompt, generateTechnicalPrompt, generateUPSEPrompt, generateBankingPrompt, generateBehavioralHRPrompt, generateSituationalHRPrompt, generateCompetencyHRPrompt, generateLeadershipHRPrompt, generateCulturalHRPrompt } from './prompts'
+import { generateFrontendDeveloperPrompt, generateBackendDeveloperPrompt, generateFullStackDeveloperPrompt, generateReactDeveloperPrompt, generateNodeJsDeveloperPrompt, generatePythonDeveloperPrompt } from './prompts/technical'
+
+// Type for technical prompt generator functions
+type TechnicalPromptGenerator = (jdDetails: string, title: string, cvText?: string) => string
 import { extractRoleAndCompanyFromJDWithAI, isOpenAIAvailable } from '@/lib/utils'
 import jwt from 'jsonwebtoken'
 
@@ -66,6 +69,34 @@ interface InterviewWhereClause {
   status?: 'IN_PROGRESS' | 'COMPLETED'
 }
 
+
+/**
+ * Get specific technical role prompt generator function if available
+ * @param role - The role value (e.g., 'python-developer')
+ * @returns The prompt generator function or null if not found
+ */
+function getTechnicalRolePromptGenerator(role: string): TechnicalPromptGenerator | null {
+  console.log('DEBUG getTechnicalRolePromptGenerator called with role:', role)
+
+  // Map role values to their corresponding prompt generator functions
+  const roleToPromptFunction: Record<string, TechnicalPromptGenerator> = {
+    'frontend-developer': generateFrontendDeveloperPrompt,
+    'backend-developer': generateBackendDeveloperPrompt,
+    'fullstack-developer': generateFullStackDeveloperPrompt,
+    'react-developer': generateReactDeveloperPrompt,
+    'nodejs-developer': generateNodeJsDeveloperPrompt,
+    'python-developer': generatePythonDeveloperPrompt
+  }
+
+  const promptFunction = roleToPromptFunction[role]
+  if (promptFunction) {
+    console.log('DEBUG Found function for role:', role)
+    return promptFunction
+  }
+
+  console.log('DEBUG Function not found for role:', role, 'returning null')
+  return null
+}
 
 /**
  * Authenticate user from NextAuth session or JWT token
@@ -217,7 +248,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Parse request body
-    const { jdDetails, interviewType, screenShare, company, generalSubType, customPrompt, cvText } = await request.json()
+    const { jdDetails, interviewType, screenShare, company, generalSubType, hrSubType, customPrompt, cvText, role } = await request.json()
+
+    console.log('DEBUG API received:', { interviewType, generalSubType, hrSubType, role, selectedRole: generalSubType || role, jdDetails: jdDetails?.substring(0, 100) + '...' })
 
     // Validate required fields
     if (!jdDetails || !interviewType) {
@@ -296,6 +329,7 @@ export async function POST(request: NextRequest) {
         jobDescription: jdDetails,
         cvText: cvText || null, // Save CV text if provided
         interviewType: mappedInterviewType,
+        role: role || null, // Save specific role if provided
         screenShareEnabled: screenShare || false,
         createdBy: userId
       },
@@ -311,28 +345,68 @@ export async function POST(request: NextRequest) {
     // Use custom prompt if provided (for custom JD interviews)
     if (customPrompt) {
       promptText = customPrompt
-    } else if (interviewType === "Coding") {
-      promptText = generateCodingPrompt(jdDetails, interview.title || "Coding Interview")
-    } else if (interviewType === "UI/UX") {
-      promptText = generateUIUXPrompt(jdDetails, interview.title || "UI/UX Interview")
-    } else if (interviewType === "HR") {
-      promptText = generateHRPrompt(jdDetails, interview.title || "HR Interview")
-    } else if (interviewType === "Technical") {
-      promptText = generateTechnicalPrompt(jdDetails, interview.title || "Technical Interview")
-    } else if (interviewType === "General") {
+    } else if (mappedInterviewType === "CODING") {
+      promptText = generateCodingPrompt(jdDetails, interview.title || "Coding Interview", cvText)
+    } else if (mappedInterviewType === "UI_INTERVIEW") {
+      promptText = generateUIUXPrompt(jdDetails, interview.title || "UI/UX Interview", cvText)
+    } else if (mappedInterviewType === "TECHNICAL") {
+      // Check if a specific role is provided and has a dedicated prompt
+      const selectedRole = generalSubType || role
+      console.log('DEBUG TECHNICAL branch hit, checking role:', selectedRole)
+
+      if (selectedRole) {
+        const rolePromptGenerator = getTechnicalRolePromptGenerator(selectedRole)
+        if (rolePromptGenerator) {
+          console.log(`DEBUG Using ${selectedRole} specific prompt`)
+          promptText = rolePromptGenerator(jdDetails, interview.title || `${selectedRole.replace('-', ' ')} Interview`, cvText)
+        } else {
+          console.log(`DEBUG No specific prompt found for ${selectedRole}, using general technical prompt`)
+          promptText = generateTechnicalPrompt(jdDetails, interview.title || "Technical Interview", cvText)
+        }
+      } else {
+        console.log('DEBUG No specific role provided, using general technical prompt')
+        promptText = generateTechnicalPrompt(jdDetails, interview.title || "Technical Interview", cvText)
+      }
+    } else if (mappedInterviewType === "GENERAL_INTERVIEW") {
       // Handle General interview sub-types (UPSE and Banking)
       if (generalSubType === "UPSE") {
-        promptText = UPSE_PROMPT
+        promptText = generateUPSEPrompt(cvText)
       } else if (generalSubType === "Banking") {
-        promptText = BANKING_PROMPT
+        promptText = generateBankingPrompt(cvText)
       } else {
         // Fallback to general prompt
-        promptText = generateGeneralPrompt(jdDetails, interview.title || "Custom Interview")
+        promptText = generateGeneralPrompt(jdDetails, interview.title || "Custom Interview", cvText)
+      }
+    } else if (interviewType === "HR") {
+      // Handle HR interview sub-types (Behavioral, Situational, Competency, Leadership, Cultural)
+      if (hrSubType === "Behavioral") {
+        promptText = generateBehavioralHRPrompt(jdDetails, interview.title || "Behavioral HR Interview", cvText)
+      } else if (hrSubType === "Situational") {
+        promptText = generateSituationalHRPrompt(jdDetails, interview.title || "Situational HR Interview", cvText)
+      } else if (hrSubType === "Competency") {
+        promptText = generateCompetencyHRPrompt(jdDetails, interview.title || "Competency-Based HR Interview", cvText)
+      } else if (hrSubType === "Leadership") {
+        promptText = generateLeadershipHRPrompt(jdDetails, interview.title || "Leadership HR Interview", cvText)
+      } else if (hrSubType === "Cultural") {
+        promptText = generateCulturalHRPrompt(jdDetails, interview.title || "Cultural Fit HR Interview", cvText)
+      } else {
+        // Fallback to behavioral HR prompt if sub-type is not recognized
+        promptText = generateBehavioralHRPrompt(jdDetails, interview.title || "Behavioral HR Interview", cvText)
       }
     } else {
       // Fallback to general prompt
-      promptText = generateGeneralPrompt(jdDetails, interview.title || "Custom Interview")
+      promptText = generateGeneralPrompt(jdDetails, interview.title || "Custom Interview", cvText)
     }
+
+    console.log('DEBUG Final prompt type used:', {
+      mappedInterviewType,
+      selectedRole: generalSubType || role,
+      promptType: promptText.includes('Python developer interview') ? 'python-specific' :
+                  promptText.includes('UPSE') ? 'upse-specific' :
+                  promptText.includes('Banking') ? 'banking-specific' :
+                  promptText.includes('Technical Interview') ? 'general-technical' :
+                  'general-fallback'
+    })
 
     await prisma.interviewPrompt.create({
       data: {

@@ -38,6 +38,7 @@ export default function CustomInterviewPage() {
   const [viewFormat, setViewFormat] = useState<"box" | "list">("box")
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [userTimeData, setUserTimeData] = useState<{ totalTimeAllowance: number; usedTimeMinutes: number } | null>(null)
+  const [userCvData, setUserCvData] = useState<string | null>(null)
 
   // Fetch user's time data
   const fetchUserTimeData = async () => {
@@ -60,6 +61,24 @@ export default function CustomInterviewPage() {
     }
   }
 
+  // Fetch user's CV data
+  const fetchUserCvData = async () => {
+    try {
+      const response = await fetch('/api/user/profile', {
+        headers: getAuthHeaders(),
+      })
+
+      if (response.ok) {
+        const profileData = await response.json()
+        if (profileData.success && profileData.data) {
+          setUserCvData(profileData.data.cv || null)
+        }
+      }
+    } catch (error) {
+      console.error('Failed to fetch user CV data:', error)
+    }
+  }
+
   // Check authentication status
   useEffect(() => {
     const checkAuth = async () => {
@@ -67,8 +86,9 @@ export default function CustomInterviewPage() {
         // Check for NextAuth session first
         if (status === 'authenticated' && session?.user) {
           setIsAuthenticated(true)
-          // Fetch time data when authenticated
+          // Fetch time data and CV data when authenticated
           await fetchUserTimeData()
+          await fetchUserCvData()
           setLoading(false)
           return
         }
@@ -95,6 +115,8 @@ export default function CustomInterviewPage() {
                   usedTimeMinutes: sessionData.user.usedTimeMinutes,
                 })
               }
+              // Fetch CV data for JWT-authenticated users
+              await fetchUserCvData()
               setLoading(false)
               return
             }
@@ -139,7 +161,7 @@ export default function CustomInterviewPage() {
     }
   }, [isAuthenticated])
 
-  const handleInterviewCreated = async (data: { jdDetails: string; interviewType: string; screenShare?: boolean; company?: string; customPrompt?: string }) => {
+  const handleInterviewCreated = async (data: { jdDetails: string; interviewType: string; screenShare?: boolean; company?: string; customPrompt?: string; generalSubType?: string; cvText?: string }) => {
     // Handle new interview creation via API
     console.log("Creating interview with:", data)
 
@@ -152,7 +174,9 @@ export default function CustomInterviewPage() {
           interviewType: data.interviewType,
           screenShare: data.screenShare,
           company: data.company,
-          customPrompt: data.customPrompt
+          customPrompt: data.customPrompt,
+          generalSubType: data.generalSubType,
+          cvText: data.cvText
         }),
       })
 
@@ -294,6 +318,7 @@ export default function CustomInterviewPage() {
             <CreateInterviewDialog
               onInterviewCreated={handleInterviewCreated}
               userTimeData={userTimeData}
+              userCvData={userCvData}
             />
           </div>
         </div>

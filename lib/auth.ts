@@ -62,6 +62,13 @@ export const authOptions: NextAuthOptions = {
           })
 
           if (existingUser) {
+            // Check if user has a valid role for login
+            const allowedRoles = ["COLLEGE_STUDENT", "SUPERADMIN", "COLLEGE_ADMIN"]
+            if (!allowedRoles.includes(existingUser.role)) {
+              console.log(`Login denied: User ${user.email} has invalid role (role: ${existingUser.role})`)
+              return false
+            }
+
             // Check if account already exists
             const existingAccount = existingUser.accounts.find(
               acc => acc.provider === account.provider && acc.providerAccountId === account.providerAccountId
@@ -84,6 +91,10 @@ export const authOptions: NextAuthOptions = {
               })
             }
             return true
+          } else {
+            // New user - deny access (only existing students can login)
+            console.log(`Login denied: New user ${user.email} attempted to sign up. Only existing students allowed.`)
+            return false
           }
         } catch (error) {
           console.error("Error in signIn callback:", error)
