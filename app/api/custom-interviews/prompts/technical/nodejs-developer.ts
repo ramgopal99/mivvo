@@ -12,7 +12,7 @@
  * @param cvText - Optional CV/resume text for personalized questions
  * @returns Specialized Node.js developer interview prompt
  */
-export function generateNodeJsDeveloperPrompt(jdDetails: string, title: string, cvText?: string): string {
+export function generateNodeJsDeveloperPrompt(jdDetails: string, title: string, experienceLevel?: string, cvText?: string): string {
   const cvContext = cvText
     ? `\n\nCANDIDATE'S CV/RESUME:
 ${cvText}

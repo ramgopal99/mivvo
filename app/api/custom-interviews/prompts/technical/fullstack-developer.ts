@@ -12,7 +12,7 @@
  * @param cvText - Optional CV/resume text for personalized questions
  * @returns Specialized full stack developer interview prompt
  */
-export function generateFullStackDeveloperPrompt(jdDetails: string, title: string, cvText?: string): string {
+export function generateFullStackDeveloperPrompt(jdDetails: string, title: string, experienceLevel?: string, cvText?: string): string {
   const cvContext = cvText
     ? `\n\nCANDIDATE'S CV/RESUME:
 ${cvText}

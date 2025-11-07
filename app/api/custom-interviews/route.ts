@@ -16,7 +16,7 @@ import { generateGeneralPrompt, generateCodingPrompt, generateUIUXPrompt, genera
 import { generateFrontendDeveloperPrompt, generateBackendDeveloperPrompt, generateFullStackDeveloperPrompt, generateReactDeveloperPrompt, generateNodeJsDeveloperPrompt, generatePythonDeveloperPrompt } from './prompts/technical'
 
 // Type for technical prompt generator functions
-type TechnicalPromptGenerator = (jdDetails: string, title: string, cvText?: string) => string
+type TechnicalPromptGenerator = (jdDetails: string, title: string, experienceLevel?: string, cvText?: string) => string
 import { extractRoleAndCompanyFromJDWithAI, isOpenAIAvailable } from '@/lib/utils'
 import jwt from 'jsonwebtoken'
 
@@ -248,7 +248,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Parse request body
-    const { jdDetails, interviewType, screenShare, company, generalSubType, hrSubType, customPrompt, cvText, role } = await request.json()
+    const { jdDetails, interviewType, screenShare, company, generalSubType, hrSubType, customPrompt, cvText, role, experienceLevel } = await request.json()
 
     console.log('DEBUG API received:', { interviewType, generalSubType, hrSubType, role, selectedRole: generalSubType || role, jdDetails: jdDetails?.substring(0, 100) + '...' })
 
@@ -357,8 +357,8 @@ export async function POST(request: NextRequest) {
       if (selectedRole) {
         const rolePromptGenerator = getTechnicalRolePromptGenerator(selectedRole)
         if (rolePromptGenerator) {
-          console.log(`DEBUG Using ${selectedRole} specific prompt`)
-          promptText = rolePromptGenerator(jdDetails, interview.title || `${selectedRole.replace('-', ' ')} Interview`, cvText)
+          console.log(`DEBUG Using ${selectedRole} specific prompt with experience level: ${experienceLevel}`)
+          promptText = rolePromptGenerator(jdDetails, interview.title || `${selectedRole.replace('-', ' ')} Interview`, experienceLevel, cvText)
         } else {
           console.log(`DEBUG No specific prompt found for ${selectedRole}, using general technical prompt`)
           promptText = generateTechnicalPrompt(jdDetails, interview.title || "Technical Interview", cvText)

@@ -9,10 +9,11 @@
  * Generate a frontend developer interview prompt
  * @param jdDetails - Job description text
  * @param title - Interview title/position name
+ * @param experienceLevel - Experience level (e.g., '0-2 years', '2-5 years', '5+ years')
  * @param cvText - Optional CV/resume text for personalized questions
  * @returns Specialized frontend developer interview prompt
  */
-export function generateFrontendDeveloperPrompt(jdDetails: string, title: string, cvText?: string): string {
+export function generateFrontendDeveloperPrompt(jdDetails: string, title: string, experienceLevel?: string, cvText?: string): string {
   const cvContext = cvText
     ? `\n\nCANDIDATE'S CV/RESUME:
 ${cvText}
@@ -27,15 +28,33 @@ INSTRUCTIONS FOR CV-BASED QUESTIONS:
 - Personalize the difficulty progression based on their frontend experience level shown in CV`
     : ''
 
+  // Determine starting difficulty based on experience level
+  let timingGuidance: string
+
+  if (experienceLevel === '5+ years') {
+    timingGuidance = `INTERVIEW TIMING & DIFFICULTY PROGRESSION: 40-MINUTE INTERVIEW
+- **First 10-15 minutes (5-7 MEDIUM questions):** Start with questions about their experience with frameworks, responsive design, and frontend architecture
+- **Middle 15-20 minutes (5-7 HARD questions):** Challenge with complex frontend applications, performance optimization, and advanced patterns
+- **Last 10-15 minutes (3-5 ADVANCED questions):** Deep dive into architectural decisions, scaling, and advanced frontend patterns`
+  } else if (experienceLevel === '2-5 years') {
+    timingGuidance = `INTERVIEW TIMING & DIFFICULTY PROGRESSION: 40-MINUTE INTERVIEW
+- **First 10-15 minutes (7-10 EASY questions):** Start with basic questions about HTML, CSS, JavaScript fundamentals, and core web concepts
+- **Middle 15-20 minutes (5-7 MEDIUM questions):** Progress to questions about their experience with frameworks, responsive design, and frontend architecture
+- **Last 10-15 minutes (3-5 HARD questions):** Challenge with complex frontend applications, performance optimization, and advanced patterns`
+  } else {
+    // Default to EASY for 0-2 years or unknown experience
+    timingGuidance = `INTERVIEW TIMING & DIFFICULTY PROGRESSION: 40-MINUTE INTERVIEW
+- **First 10-15 minutes (7-10 EASY questions):** Start with basic questions about HTML, CSS, JavaScript fundamentals, and core web concepts
+- **Middle 15-20 minutes (5-7 MEDIUM questions):** Progress to questions about their experience with frameworks, responsive design, and frontend architecture
+- **Last 10-15 minutes (3-5 HARD questions):** Challenge with complex frontend applications, performance optimization, and advanced patterns`
+  }
+
   return `You are Mivvo, conducting a conversational frontend developer interview for the position: ${title}
 
 JOB DESCRIPTION:
 ${jdDetails}${cvContext}
 
-INTERVIEW TIMING & DIFFICULTY PROGRESSION: 40-MINUTE INTERVIEW
-- **First 10-15 minutes (7-10 EASY questions):** Start with basic questions about HTML, CSS, JavaScript fundamentals, and core web concepts
-- **Middle 15-20 minutes (5-7 MEDIUM questions):** Progress to questions about their experience with frameworks, responsive design, and frontend architecture
-- **Last 10-15 minutes (3-5 HARD questions):** Challenge with complex frontend applications, performance optimization, and advanced patterns
+${timingGuidance}
 
 CONVERSATION GUIDELINES:
 - Start by acknowledging what the candidate shared about their frontend development experience${cvText ? '. You are aware of their CV background, so you can reference their frontend experience naturally when it fits the conversation' : ''}

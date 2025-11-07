@@ -46,10 +46,8 @@ interface CreateInterviewDialogProps {
 export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCvData }: CreateInterviewDialogProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
-  // Predefined Role state with autocomplete
-  const [roleInput, setRoleInput] = useState("")
+  // Predefined Role state
   const [selectedRole, setSelectedRole] = useState("")
-  const [showSuggestions, setShowSuggestions] = useState(false)
   const [selectedLevel, setSelectedLevel] = useState("")
   const [interviewType, setInterviewType] = useState("")
   const [generalSubType, setGeneralSubType] = useState("")
@@ -292,6 +290,7 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCv
       generalSubType: interviewType === 'General' ? generalSubType : (interviewType === 'Technical' ? selectedRole : undefined), // Pass role as generalSubType for technical interviews
       hrSubType: interviewType === 'HR' ? hrSubType : undefined, // Pass HR sub-type for HR interviews
       role: interviewType === 'Technical' ? selectedRole : undefined, // Keep role field for backward compatibility
+      experienceLevel: selectedLevel, // Pass the selected experience level
       cvText: cvText || userCvData || undefined // Use uploaded CV, or existing CV if available
     }
 
@@ -301,9 +300,7 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCv
 
     // Reset form
     setIsDialogOpen(false)
-    setRoleInput("")
     setSelectedRole("")
-    setShowSuggestions(false)
     setSelectedLevel("")
     setInterviewType("")
     setGeneralSubType("")
@@ -347,16 +344,12 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCv
               if (value === 'General') {
                 // Clear role-related fields when switching to General
                 setSelectedRole("")
-                setRoleInput("")
                 setSelectedLevel("")
-                setShowSuggestions(false)
                 setHrSubType("")
               } else if (value === 'HR') {
                 // Clear role-related fields when switching to HR
                 setSelectedRole("")
-                setRoleInput("")
                 setSelectedLevel("")
-                setShowSuggestions(false)
                 setGeneralSubType("")
               } else {
                 // Clear sub-types when switching to Technical
@@ -428,70 +421,28 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCv
             </div>
           )}
 
-          {/* Role Selection with Autocomplete - Only show for Technical types */}
+          {/* Role Selection - Only show for Technical types */}
           {interviewType === 'Technical' && (
-          <div className="space-y-2">
-            <Label htmlFor="role" className="text-sm font-medium">
-              Role *
-            </Label>
-            <div className="relative">
-              <Input
-                id="role"
-                type="text"
-                placeholder="Type to search roles..."
-                value={roleInput}
-                onChange={(e) => {
-                  setRoleInput(e.target.value)
-                  setShowSuggestions(true)
-                  // If user types exactly a role name, select it
-                  const exactMatch = getAvailableRoles().find(role =>
-                    role.label.toLowerCase() === e.target.value.toLowerCase()
-                  )
-                  if (exactMatch) {
-                    setSelectedRole(exactMatch.value)
-                  } else {
-                    setSelectedRole("")
-                  }
-                }}
-                onFocus={() => setShowSuggestions(true)}
-                onBlur={() => {
-                  // Delay hiding suggestions to allow click
-                  setTimeout(() => setShowSuggestions(false), 200)
-                }}
-                className="w-full"
-              />
-
-              {/* Autocomplete Suggestions */}
-              {showSuggestions && roleInput && (
-                <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto">
-                  {getAvailableRoles()
-                    .filter(role =>
-                      role.label.toLowerCase().includes(roleInput.toLowerCase())
-                    )
-                    .map(role => (
-                      <div
-                        key={role.value}
-                        className="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm"
-                        onClick={() => {
-                          setRoleInput(role.label)
-                          setSelectedRole(role.value)
-                          setShowSuggestions(false)
-                        }}
-                      >
-                        {role.label}
-                      </div>
-                    ))}
-                  {getAvailableRoles().filter(role =>
-                    role.label.toLowerCase().includes(roleInput.toLowerCase())
-                  ).length === 0 && (
-                    <div className="px-3 py-2 text-sm text-gray-500">
-                      No roles found
-                    </div>
-                  )}
-                </div>
-              )}
+            <div className="space-y-2">
+              <Label htmlFor="role" className="text-sm font-medium">
+                Role *
+              </Label>
+              <Select value={selectedRole} onValueChange={setSelectedRole}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select a role" />
+                </SelectTrigger>
+                <SelectContent>
+                  {getAvailableRoles().map(role => (
+                    <SelectItem
+                      key={role.value}
+                      value={role.value}
+                    >
+                      {role.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
-          </div>
           )}
 
           {/* Level Selection - Only show for non-General types */}
