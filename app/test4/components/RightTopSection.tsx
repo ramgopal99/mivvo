@@ -1,32 +1,94 @@
 "use client";
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Play, RotateCcw, Code, Info } from 'lucide-react';
 import MonacoEditor, { MonacoEditorRef } from './MonacoEditor';
+import { courses } from '../data/lessonsData';
+
+interface CodeTemplate {
+  id: string;
+  language: string;
+  code: string;
+  description?: string;
+  isActive: boolean;
+}
 
 interface RightTopSectionProps {
   onConsoleOutput: (output: string) => void;
 }
 
-// Language configurations for Piston API
-const SUPPORTED_LANGUAGES = {
-  python: { name: 'Python', version: '3.12.0' },
-};
 
 const RightTopSection = ({ onConsoleOutput }: RightTopSectionProps) => {
   const editorRef = useRef<MonacoEditorRef>(null);
   const [isRunning, setIsRunning] = useState(false);
+  const [templates, setTemplates] = useState<CodeTemplate[]>([]);
+  const [templatesLoaded, setTemplatesLoaded] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState<string>('python');
 
-  const getDefaultValue = () => {
-    return `# Welcome to Python
-print("Hello, World!")
+  // Fetch code templates from database
+  useEffect(() => {
+    const fetchTemplates = async () => {
+      try {
+        // Get course ID from the first course in the data
+        const courseId = courses.length > 0 ? courses[0].id : null;
 
-def greet(name):
-    return f"Hello, {name}!"
+        if (!courseId) {
+          console.log('No course available yet, skipping template fetch');
+          setTemplatesLoaded(true);
+          return;
+        }
 
-print(greet("Developer"))`;
+        const response = await fetch(`/api/code-templates?courseId=${courseId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setTemplates(data);
+
+          // Set the first available template as current language
+          if (data.length > 0) {
+            const firstTemplate = data[0];
+            setCurrentLanguage(firstTemplate.language);
+
+            // If editor is already mounted, set the value and language
+            if (editorRef.current) {
+              editorRef.current.setValue(firstTemplate.code);
+              editorRef.current.setLanguage(firstTemplate.language);
+            }
+          }
+        } else {
+          console.error('Failed to fetch code templates');
+          setTemplates([]);
+        }
+      } catch (error) {
+        console.error('Error fetching code templates:', error);
+      } finally {
+        setTemplatesLoaded(true);
+      }
+    };
+
+    // Only fetch if courses are loaded
+    if (courses.length > 0) {
+      fetchTemplates();
+    } else {
+      setTemplatesLoaded(true);
+    }
+  }, [courses.length]);
+
+  // Update editor value and language when templates load
+  useEffect(() => {
+    if (templatesLoaded && templates.length > 0 && editorRef.current) {
+      const currentTemplate = templates.find(t => t.language === currentLanguage);
+      if (currentTemplate) {
+        editorRef.current.setValue(currentTemplate.code);
+        editorRef.current.setLanguage(currentTemplate.language);
+      }
+    }
+  }, [templatesLoaded, templates, currentLanguage]);
+
+  const getDefaultCode = (language: string): string => {
+    const template = templates.find(t => t.language === language);
+    return template?.code || '';
   };
 
   const handleRun = async () => {
@@ -45,7 +107,7 @@ print(greet("Developer"))`;
       // Prepare the request for Piston API
       const requestBody = {
         code: code,
-        language: 'python'
+        language: currentLanguage
       };
 
       // Call the API
@@ -82,7 +144,7 @@ print(greet("Developer"))`;
       const errorResult = {
         output: "",
         error: errorMessage,
-        language: 'python',
+        language: currentLanguage,
         executionTime: 0,
         memoryUsage: 0,
         exitCode: 1
@@ -96,7 +158,7 @@ print(greet("Developer"))`;
 
   const handleReset = () => {
     if (editorRef.current) {
-      const defaultCode = getDefaultValue();
+      const defaultCode = getDefaultCode(currentLanguage);
       editorRef.current.setValue(defaultCode);
       onConsoleOutput('');
     }
@@ -128,9 +190,9 @@ print(greet("Developer"))`;
         <div className="flex-1">
           <MonacoEditor
             ref={editorRef}
-            defaultValue={getDefaultValue()}
+            defaultValue={templatesLoaded && templates.length > 0 ? getDefaultCode(currentLanguage) : ''}
             height="100%"
-            language="python"
+            language={currentLanguage}
           />
         </div>
         <div className="flex items-center justify-between px-6 py-3 border-t bg-muted/30">

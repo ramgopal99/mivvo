@@ -26,6 +26,7 @@ export const landingConfig = {
     links: [
       { text: "Features", href: "/#features" },
       { text: "Pricing", href: "/#pricing" },
+      { text: "Courses", href: "/courses" },
       { text: "Blog", href: "/blog" },
       { text: "About", href: "/about" },
     ],

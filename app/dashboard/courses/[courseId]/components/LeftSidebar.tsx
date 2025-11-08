@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useRouter, useParams } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import {
   SidebarContent,
   SidebarGroup,
@@ -14,23 +16,28 @@ import {
 } from '@/components/ui/sidebar';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Button } from '@/components/ui/button';
 import { modules } from '../data/lessonsData';
 
 interface LeftSidebarProps {
-  onSubtopicClick?: (moduleId: number, subtopicId: number, title: string, moduleTitle: string) => void;
+  onSubtopicClick?: (moduleId: string, subtopicId: string, title: string, moduleTitle: string) => void;
+  selectedTopic?: { moduleId: string; subtopicId: string; title: string; moduleTitle: string } | null;
   onCheckedItemsChange?: (count: number) => void;
-  selectedTopic?: { moduleId: number; subtopicId: number; title: string; moduleTitle: string } | null;
 }
 
-const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedItemsChange, selectedTopic }) => {
+const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, selectedTopic, onCheckedItemsChange }) => {
   const sidebarScrollRef = useRef<HTMLDivElement>(null);
-  const [expandedModules, setExpandedModules] = useState<number[]>([1]);
-  // const [activeModule, setActiveModule] = useState<number>(1);
-  // const [activeLesson, setActiveLesson] = useState<number | null>(null);
+  const router = useRouter();
+  const params = useParams();
+  const { data: session } = useSession();
+  const courseId = params.courseId as string;
+  const [expandedModules, setExpandedModules] = useState<string[]>([]);
+  // const [activeModule, setActiveModule] = useState<string>('');
+  // const [activeLesson, setActiveLesson] = useState<string | null>(null);
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
-  const [selectedModule, setSelectedModule] = useState<number | null>(null);
-  const [selectedSubtopic, setSelectedSubtopic] = useState<{moduleId: number, subtopicId: number} | null>(null);
-  const [selectedExercise, setSelectedExercise] = useState<{moduleId: number, exerciseId: number} | null>(null);
+  const [selectedModule, setSelectedModule] = useState<string | null>(null);
+  const [selectedSubtopic, setSelectedSubtopic] = useState<{moduleId: string, subtopicId: string} | null>(null);
+  const [selectedExercise, setSelectedExercise] = useState<{moduleId: string, exerciseId: string} | null>(null);
 
   // Update sidebar highlighting when selectedTopic changes (from navigation buttons)
   useEffect(() => {
@@ -67,7 +74,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
     }
   }, [selectedTopic]);
 
-  const toggleModule = (moduleId: number) => {
+  const toggleModule = (moduleId: string) => {
     setExpandedModules(prev =>
       prev.includes(moduleId)
         ? prev.filter(id => id !== moduleId)
@@ -76,7 +83,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
     // setActiveModule(moduleId);
   };
 
-  const handleLessonClick = (moduleId: number, lessonId: number) => {
+  const handleLessonClick = (moduleId: string, lessonId: string) => {
     const currentModule = modules.find(m => m.id === moduleId);
     const subLesson = currentModule?.subLessons.find(sl => sl.id === lessonId);
 
@@ -92,7 +99,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
     console.log(`Clicked lesson: Module ${moduleId}, Lesson ${lessonId}`);
   };
 
-  const handleExerciseClick = (exerciseId: number, moduleId: number) => {
+  const handleExerciseClick = (exerciseId: string, moduleId: string) => {
     const currentModule = modules.find(m => m.id === moduleId);
     const exercise = currentModule?.exercises?.find(ex => ex.id === exerciseId);
 
@@ -121,6 +128,112 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
     });
   };
 
+  // Load saved progress on component mount
+  useEffect(() => {
+    const loadProgress = async () => {
+      if (!courseId) return;
+
+      try {
+        // Check for JWT tokens (college students) - updated to match new token storage
+        const token = localStorage.getItem('token') ||
+                     localStorage.getItem('student_token') ||
+                     localStorage.getItem('college_token');
+
+        if (token) {
+          try {
+            const response = await fetch(`/api/user-progress?courseId=${courseId}`, {
+              headers: {
+                'Authorization': `Bearer ${token}`
+              }
+            });
+
+            if (response.ok) {
+              const data: { itemKey: string }[] = await response.json();
+              const completedItems = new Set(data.map((item) => item.itemKey));
+              setCheckedItems(completedItems);
+            }
+          } catch (error) {
+            console.error('Error loading college student progress:', error);
+          }
+        } else if (session?.user?.id) {
+          // For NextAuth users
+          try {
+            const response = await fetch(`/api/user-progress?courseId=${courseId}&userId=${session.user.id}`);
+
+            if (response.ok) {
+              const data: { itemKey: string }[] = await response.json();
+              const completedItems = new Set(data.map((item) => item.itemKey));
+              setCheckedItems(completedItems);
+            }
+          } catch (error) {
+            console.error('Error loading user progress:', error);
+          }
+        }
+      } catch (error) {
+        console.error('Error loading progress:', error);
+      }
+    };
+
+    if (courseId) {
+      loadProgress();
+    }
+  }, [courseId, session]);
+
+  // Save progress whenever checkedItems changes
+  useEffect(() => {
+    const saveProgress = async () => {
+      if (!courseId || checkedItems.size === 0) return;
+
+      try {
+        const progressData = Array.from(checkedItems).map(itemKey => ({
+          itemKey,
+          courseId,
+          isCompleted: true
+        }));
+
+        // Check for JWT tokens (college students)
+        const token = localStorage.getItem('token') ||
+                     localStorage.getItem('student_token') ||
+                     localStorage.getItem('college_token');
+
+        if (token) {
+          try {
+            await fetch('/api/user-progress', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ progressData }),
+            });
+          } catch (error) {
+            console.error('Error saving college student progress:', error);
+          }
+        } else if (session?.user?.id) {
+          // For NextAuth users
+          try {
+            await fetch('/api/user-progress', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                progressData,
+                userId: session.user.id
+              }),
+            });
+          } catch (error) {
+            console.error('Error saving user progress:', error);
+          }
+        }
+      } catch (error) {
+        console.error('Error saving progress:', error);
+      }
+    };
+
+    saveProgress();
+  }, [checkedItems, courseId, session]);
+
   // Notify parent when checked items count changes
   useEffect(() => {
     if (onCheckedItemsChange) {
@@ -138,7 +251,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
           <Checkbox
             checked={isChecked}
             onCheckedChange={() => toggleItem(itemKey)}
-            className="w-4 h-4 data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500"
+            className="w-4 h-4 data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500 cursor-pointer"
             aria-label={`${title} - Completed`}
           />
         );
@@ -156,7 +269,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
           <Checkbox
             checked={isChecked}
             onCheckedChange={() => toggleItem(itemKey)}
-            className="w-4 h-4 data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500"
+            className="w-4 h-4 data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500 cursor-pointer"
             aria-label={`${title} - Demo available`}
           />
         );
@@ -165,7 +278,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
           <Checkbox
             checked={isChecked}
             onCheckedChange={() => toggleItem(itemKey)}
-            className="w-4 h-4"
+            className="w-4 h-4 cursor-pointer"
             aria-label={`${title} - Available`}
           />
         );
@@ -176,8 +289,9 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
     <>
       <SidebarContent
         ref={sidebarScrollRef}
-        className="overflow-auto scrollbar-hide max-h-[calc(100vh-8rem)] w-48"
+        className="flex flex-col h-full max-h-[calc(100vh-8rem)] w-48 p-0"
       >
+        <div className="flex-1 overflow-auto scrollbar-hide">
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -194,7 +308,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                           ? 'bg-primary text-primary-foreground'
                           : 'bg-muted text-muted-foreground'
                       }`}>
-                        {module.id}
+                        {module.id.replace('module-', '')}
                       </div>
                       <span
                         className="truncate text-xs max-w-[140px] font-bold mt-1"
@@ -227,7 +341,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                               className="flex items-center gap-3 min-w-0 flex-1 p-0 bg-transparent hover:bg-transparent cursor-pointer"
                             >
                               <div className="w-6 h-6 text-muted-foreground flex items-center justify-center text-[10px] font-semibold flex-shrink-0">
-                                {subLesson.id}
+                                {module.id.replace('module-', '')}.{subLesson.order + 1}
                               </div>
                               <span
                                 className="truncate text-[11px] max-w-[120px] text-foreground mt-0.5"
@@ -271,7 +385,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                               className="flex items-center gap-3 min-w-0 flex-1 p-0 bg-transparent hover:bg-transparent cursor-pointer"
                             >
                               <div className="w-6 h-6 text-muted-foreground flex items-center justify-center text-[10px] font-semibold flex-shrink-0">
-                                {exercise.id}
+                                {module.id.replace('module-', '')}.{module.subLessons.length + exercise.order + 1}
                               </div>
                               <span
                                 className="truncate text-[11px] max-w-[120px] text-foreground mt-0.5"
@@ -293,6 +407,21 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+        </div>
+
+        {/* Bottom Button */}
+        <div className="border-t border-border p-2">
+          <Button
+            variant="default"
+            size="sm"
+            className="w-full cursor-pointer"
+            onClick={() => {
+              router.push('/dashboard/courses');
+            }}
+          >
+            Back to Courses
+          </Button>
+        </div>
 
       </SidebarContent>
     </>

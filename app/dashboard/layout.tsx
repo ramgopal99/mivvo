@@ -234,7 +234,7 @@ export default function DashboardLayout({
   const displayInitial = displayName.charAt(0).toUpperCase()
 
   // Check if we're on a specific course detail page to conditionally hide sidebar
-  const isCourseDetailPage = pathname.match(/\/course\/[^\/]+$/)
+  const isCourseDetailPage = pathname.match(/\/courses\/[^\/]+$/)
   const isMockInterviewPage = pathname.match(/\/mockinterview\/[^\/]+$/)
   const isCustomInterviewMeetPage = pathname.match(/\/custominterview\/meet\/[^\/]+$/)
 
@@ -310,7 +310,7 @@ export default function DashboardLayout({
       </SidebarInset>
     </SidebarProvider>
   ) : (
-    <div className="flex flex-1 flex-col gap-4 p-6 pt-0">
+    <div className="flex flex-1 flex-col gap-4 p-0">
       <div className="flex-1 overflow-y-auto">
         {children}
       </div>

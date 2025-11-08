@@ -17,20 +17,20 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { modules } from '../data/lessonsData';
 
 interface LeftSidebarProps {
-  onSubtopicClick?: (moduleId: number, subtopicId: number, title: string, moduleTitle: string) => void;
+  onSubtopicClick?: (moduleId: string, subtopicId: string, title: string, moduleTitle: string) => void;
   onCheckedItemsChange?: (count: number) => void;
-  selectedTopic?: { moduleId: number; subtopicId: number; title: string; moduleTitle: string } | null;
+  selectedTopic?: { moduleId: string; subtopicId: string; title: string; moduleTitle: string } | null;
 }
 
 const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedItemsChange, selectedTopic }) => {
   const sidebarScrollRef = useRef<HTMLDivElement>(null);
-  const [expandedModules, setExpandedModules] = useState<number[]>([1]);
-  // const [activeModule, setActiveModule] = useState<number>(1);
-  // const [activeLesson, setActiveLesson] = useState<number | null>(null);
+  const [expandedModules, setExpandedModules] = useState<string[]>([]);
+  // const [activeModule, setActiveModule] = useState<string>('');
+  // const [activeLesson, setActiveLesson] = useState<string | null>(null);
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
-  const [selectedModule, setSelectedModule] = useState<number | null>(null);
-  const [selectedSubtopic, setSelectedSubtopic] = useState<{moduleId: number, subtopicId: number} | null>(null);
-  const [selectedExercise, setSelectedExercise] = useState<{moduleId: number, exerciseId: number} | null>(null);
+  const [selectedModule, setSelectedModule] = useState<string | null>(null);
+  const [selectedSubtopic, setSelectedSubtopic] = useState<{moduleId: string, subtopicId: string} | null>(null);
+  const [selectedExercise, setSelectedExercise] = useState<{moduleId: string, exerciseId: string} | null>(null);
 
   // Update sidebar highlighting when selectedTopic changes (from navigation buttons)
   useEffect(() => {
@@ -67,7 +67,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
     }
   }, [selectedTopic]);
 
-  const toggleModule = (moduleId: number) => {
+  const toggleModule = (moduleId: string) => {
     setExpandedModules(prev =>
       prev.includes(moduleId)
         ? prev.filter(id => id !== moduleId)
@@ -76,7 +76,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
     // setActiveModule(moduleId);
   };
 
-  const handleLessonClick = (moduleId: number, lessonId: number) => {
+  const handleLessonClick = (moduleId: string, lessonId: string) => {
     const currentModule = modules.find(m => m.id === moduleId);
     const subLesson = currentModule?.subLessons.find(sl => sl.id === lessonId);
 
@@ -92,7 +92,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
     console.log(`Clicked lesson: Module ${moduleId}, Lesson ${lessonId}`);
   };
 
-  const handleExerciseClick = (exerciseId: number, moduleId: number) => {
+  const handleExerciseClick = (exerciseId: string, moduleId: string) => {
     const currentModule = modules.find(m => m.id === moduleId);
     const exercise = currentModule?.exercises?.find(ex => ex.id === exerciseId);
 
@@ -194,7 +194,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                           ? 'bg-primary text-primary-foreground'
                           : 'bg-muted text-muted-foreground'
                       }`}>
-                        {module.id}
+                        {module.id.replace('module-', '')}
                       </div>
                       <span
                         className="truncate text-xs max-w-[140px] font-bold mt-1"
@@ -227,7 +227,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                               className="flex items-center gap-3 min-w-0 flex-1 p-0 bg-transparent hover:bg-transparent cursor-pointer"
                             >
                               <div className="w-6 h-6 text-muted-foreground flex items-center justify-center text-[10px] font-semibold flex-shrink-0">
-                                {subLesson.id}
+                                {module.id.replace('module-', '')}.{subLesson.order + 1}
                               </div>
                               <span
                                 className="truncate text-[11px] max-w-[120px] text-foreground mt-0.5"
@@ -271,7 +271,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                               className="flex items-center gap-3 min-w-0 flex-1 p-0 bg-transparent hover:bg-transparent cursor-pointer"
                             >
                               <div className="w-6 h-6 text-muted-foreground flex items-center justify-center text-[10px] font-semibold flex-shrink-0">
-                                {exercise.id}
+                                {module.id.replace('module-', '')}.{module.subLessons.length + exercise.order + 1}
                               </div>
                               <span
                                 className="truncate text-[11px] max-w-[120px] text-foreground mt-0.5"

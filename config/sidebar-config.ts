@@ -4,7 +4,8 @@ import {
   Shield,
   MessageSquare,
   HelpCircle,
-  Headphones
+  Headphones,
+  BookOpen
 } from "lucide-react"
 
 export interface NavigationItem {
@@ -44,7 +45,12 @@ export const sidebarConfig: SidebarConfig = {
           url: "/dashboard/custominterview",
           icon: MessageSquare,
           description: "custom interview"
-
+        },
+        {
+          title: "Courses",
+          url: "/dashboard/courses",
+          icon: BookOpen,
+          description: "Access programming courses"
         }
       ]
     }

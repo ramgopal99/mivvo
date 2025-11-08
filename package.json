@@ -9,6 +9,9 @@
     "lint": "eslint",
     "promote-admin": "tsx scripts/promote-admin.ts",
     "clean-collections": "tsx scripts/clean-unused-collections.ts",
+    "migrate-modules": "tsx scripts/migrate-test-modules-to-db.ts",
+    "clean-courses": "tsx scripts/clean-course-data.ts",
+    "seed-templates": "tsx scripts/seed-code-templates.ts",
     "postinstall": "prisma generate",
     "vercel-build": "prisma generate && next build --turbopack"
   },
