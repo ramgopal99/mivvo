@@ -83,6 +83,7 @@ import {
   getGeneralInterviewSubTypes,
   getHRInterviewSubTypes
 } from "./interview-utils"
+import { VoiceRecordingAnimation } from "./animations"
 import { generateInterviewTitle } from "./interview-title-utils"
 
 interface VoiceProfile {
@@ -122,7 +123,8 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
   const cvInputRef = useRef<HTMLInputElement>(null)
 
   // Voice input state
-  const [voiceText, setVoiceText] = useState("")
+  const [voiceText, setVoiceText] = useState("") // Raw transcription (not displayed)
+  const [refinedText, setRefinedText] = useState("") // Refined professional summary (displayed)
   const [isRecording, setIsRecording] = useState(false)
   const [isProcessingVoice, setIsProcessingVoice] = useState(false)
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(null)
@@ -234,7 +236,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
     const recognition = new SpeechRecognition()
 
     recognition.continuous = true
-    recognition.interimResults = true
+    recognition.interimResults = false // Only show final results, no live transcription
     recognition.lang = 'en-US'
 
     recognition.onstart = () => {
@@ -243,26 +245,46 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
 
     recognition.onresult = (event: SpeechRecognitionEvent) => {
       let finalTranscript = ''
-      let interimTranscript = ''
 
       for (let i = event.resultIndex; i < event.results.length; i++) {
         const transcript = event.results[i][0].transcript
         if (event.results[i].isFinal) {
           finalTranscript += transcript
-        } else {
-          interimTranscript += transcript
         }
       }
 
-      setVoiceText(finalTranscript + interimTranscript)
+      // Only update text with final results
+      if (finalTranscript) {
+        setVoiceText(prevText => prevText + finalTranscript)
+      }
     }
 
     recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-      console.error('Speech recognition error:', event.error)
+ 
       setIsRecording(false)
+
+      // Handle specific error types
+      if (event.error === 'no-speech') {
+        import('sonner').then(({ toast }) => {
+          toast.warning('No speech detected. Please speak clearly and try again.')
+        })
+      } else if (event.error === 'audio-capture') {
+        import('sonner').then(({ toast }) => {
+          toast.error('Microphone access denied. Please check your microphone permissions.')
+        })
+      } else if (event.error === 'not-allowed') {
+        import('sonner').then(({ toast }) => {
+          toast.error('Microphone permission denied. Please allow microphone access and try again.')
+        })
+      } else if (event.error === 'network') {
+        import('sonner').then(({ toast }) => {
+          toast.error('Network error during speech recognition. Please check your connection.')
+        })
+      } else {
       import('sonner').then(({ toast }) => {
         toast.error('Speech recognition error. Please try again.')
       })
+      }
     }
 
     recognition.onend = () => {
@@ -282,20 +304,57 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
     }
   }
 
-  const stopRecording = () => {
+  const stopRecording = async () => {
     if (recognition && isRecording) {
       recognition.stop()
       setRecognition(null)
+      setIsProcessingVoice(true)
+
+      try {
+        // Check if any speech was detected
+        const transcribedText = voiceText.trim()
+        if (!transcribedText) {
+          setIsProcessingVoice(false)
+          import('sonner').then(({ toast }) => {
+            toast.warning('No speech was detected. Please speak clearly and try recording again.')
+          })
+          return
+        }
+
+        // Refine the transcribed voice text using OpenAI
+
+        const refineResponse = await fetch('/api/custom-interviews/refine-voice', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            voiceText: transcribedText
+          }),
+        })
+
+        const refineResult = await refineResponse.json()
+
+        if (!refineResponse.ok || !refineResult.success) {
+          throw new Error(refineResult.error || 'Failed to refine voice text')
+        }
+
+        // Show the refined text in the textarea
+        setRefinedText(refineResult.refinedText)
+
+      } catch (error) {
+        console.error('Voice refinement error:', error)
+        import('sonner').then(({ toast }) => {
+          toast.error('Failed to refine voice input. Please try again.')
+        })
+        // Fallback to raw text if refinement fails
+        setRefinedText(voiceText.trim())
+      } finally {
+        setIsProcessingVoice(false)
+  }
     }
   }
 
-  const clearVoiceText = () => {
-    setVoiceText("")
-    if (recognition && isRecording) {
-      recognition.stop()
-      setRecognition(null)
-    }
-  }
 
   // Function to reset the form
   const resetForm = useCallback(() => {
@@ -308,6 +367,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
     setCvFile(null)
     setCvText("")
     setVoiceText("")
+    setRefinedText("")
     setIsDialogOpen(false)
     if (cvInputRef.current) {
       cvInputRef.current.value = ''
@@ -399,44 +459,21 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
 
     // Handle voice input tab
     if (activeTab === "voice") {
-      if (!voiceText.trim()) {
+      if (!refinedText.trim()) {
         import('sonner').then(({ toast }) => {
-          toast.error('Please record your voice input first')
+          toast.error('Please record and process your interview request first')
         })
         return
       }
 
-      setIsProcessingVoice(true)
-
-      try {
-        // Process the voice text using the voice profile API
-        const response = await fetch('/api/custom-interviews/voice-profile', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            voiceText: voiceText.trim()
-          }),
-        })
-
-        const responseData = await response.json()
-
-        if (!response.ok || responseData.error) {
-          throw new Error(responseData.error || 'Failed to process voice input')
-        }
-
-        const profile = responseData.profile
-
-        // Prepare interview data with voice profile
+      // Use the already refined text to create the interview
         const interviewData = {
-          jdDetails: `Voice Profile Interview - ${profile.professionalSummary}`,
-          interviewType: "Voice Profile",
+        jdDetails: refinedText,
+        interviewType: "Custom", // Use Custom interview type for voice input
           screenShare: false,
-          customPrompt: responseData.prompt,
-          company: "Voice Profile Company",
-          voiceProfile: profile, // Include the structured profile
-          title: generateInterviewTitle("Voice Profile")
+        customPrompt: `Create an interview based on this request: ${refinedText}`,
+        company: "Voice Interview Company",
+        title: "Voice Requested Interview"
         }
 
         onInterviewCreated?.(interviewData)
@@ -444,21 +481,13 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
         // Reset form
         setIsDialogOpen(false)
         setVoiceText("")
+      setRefinedText("")
         setActiveTab("predefined")
         setCustomJD("")
         setCvFile(null)
         setCvText("")
         if (cvInputRef.current) {
           cvInputRef.current.value = ''
-        }
-
-      } catch (error) {
-        console.error('Error processing voice input:', error)
-        import('sonner').then(({ toast }) => {
-          toast.error('Failed to process voice input. Please try again.')
-        })
-      } finally {
-        setIsProcessingVoice(false)
       }
 
       return
@@ -800,11 +829,11 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
                   </Button>
                 )}
 
-                {voiceText && (
+                {refinedText && (
                   <Button
                     type="button"
                     variant="outline"
-                    onClick={clearVoiceText}
+                    onClick={() => setRefinedText("")}
                     disabled={isProcessingVoice}
                     className="flex items-center gap-2"
                   >
@@ -815,28 +844,23 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
               </div>
 
               {/* Recording Status */}
-              {isRecording && (
-                <div className="flex items-center gap-2 text-sm text-red-600">
-                  <div className="animate-pulse w-2 h-2 bg-red-600 rounded-full"></div>
-                  Recording... Speak clearly about your background and career goals
-                </div>
-              )}
+              <VoiceRecordingAnimation isRecording={isRecording} />
 
-              {/* Transcribed Text */}
+              {/* Interview Request */}
               <div className="space-y-2">
                 <Label htmlFor="voice-text" className="text-sm font-medium">
-                  Transcribed Text
+                  Interview Request
                 </Label>
                 <Textarea
                   id="voice-text"
-                  placeholder="Your speech will appear here as you speak. You can also edit this text manually if needed."
-                  value={voiceText}
-                  onChange={(e) => setVoiceText(e.target.value)}
+                  placeholder="Your AI-refined interview request will appear here after you stop recording. You can also edit this text manually if needed."
+                  value={refinedText}
+                  onChange={(e) => setRefinedText(e.target.value)}
                   className="h-[200px] overflow-y-auto resize-none"
                   disabled={isProcessingVoice}
                 />
                 <p className="text-xs text-gray-500">
-                  Speak for 20-30 seconds about your skills, experience level, and career goals. For example: &quot;I am good in Python and want to start as a fresh developer.&quot;
+                  Simply mention what type of interview you want to conduct. For example: &quot;I want a Python developer interview&quot; or &quot;Give me a junior frontend developer interview&quot;
                 </p>
               </div>
 
@@ -844,7 +868,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
               {isProcessingVoice && (
                 <div className="flex items-center gap-2 text-sm text-blue-600">
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-                  Analyzing your voice input and creating a personalized profile...
+                  AI is refining your voice request...
                 </div>
               )}
             </div>
@@ -871,7 +895,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
                   : activeTab === 'custom'
                   ? (!customJD.trim() || isAnalyzingJD || isExtractingCV)
                   : activeTab === 'voice'
-                  ? (!voiceText.trim() || isProcessingVoice || isRecording)
+                  ? (!refinedText.trim() || isProcessingVoice || isRecording)
                   : false
               )
             }
@@ -895,7 +919,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
             ) : activeTab === 'voice' ? (
               <>
                 <Mic className="w-4 h-4 mr-2" />
-                Create Voice Interview
+                Create Interview
               </>
             ) : (
               'Create Interview'
@@ -905,7 +929,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
       </DialogContent>
     </Dialog>
     </>
-  )
+)
 })
 
 
