@@ -1,8 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useSession } from "next-auth/react"
-import { CreateInterviewDialog, InterviewStats, InterviewList } from "./_components"
+import CreateInterviewDialog from "./_components/CreateInterviewDialog"
+import { InterviewStats, InterviewList } from "./_components"
 import { InterviewData } from "./_components/InterviewCard"
 import { getAllInterviews, deleteInterview } from "./data"
 
@@ -39,6 +40,10 @@ export default function CustomInterviewPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [userTimeData, setUserTimeData] = useState<{ totalTimeAllowance: number; usedTimeMinutes: number } | null>(null)
   const [userCvData, setUserCvData] = useState<string | null>(null)
+  const [isCreatingInterview, setIsCreatingInterview] = useState(false)
+  const [deletingInterviewId, setDeletingInterviewId] = useState<string | null>(null)
+  const [closeDeleteDialog, setCloseDeleteDialog] = useState<(() => void) | null>(null)
+  const createDialogRef = useRef<{ reset: () => void } | null>(null)
 
   // Fetch user's time data
   const fetchUserTimeData = async () => {
@@ -165,6 +170,7 @@ export default function CustomInterviewPage() {
     // Handle new interview creation via API
     console.log("Creating interview with:", data)
 
+    setIsCreatingInterview(true)
     try {
       const response = await fetch('/api/custom-interviews', {
         method: 'POST',
@@ -176,7 +182,8 @@ export default function CustomInterviewPage() {
           company: data.company,
           customPrompt: data.customPrompt,
           generalSubType: data.generalSubType,
-          cvText: data.cvText
+          cvText: data.cvText,
+          title: data.title
         }),
       })
 
@@ -198,6 +205,17 @@ export default function CustomInterviewPage() {
         }
       }
 
+      // Handle duplicate interview error (409)
+      if (response.status === 409) {
+        const errorData = await response.json()
+        if (errorData.duplicateFound) {
+          import('sonner').then(({ toast }) => {
+            toast.error(errorData.error || 'This interview already exists')
+          })
+          return
+        }
+      }
+
       if (!response.ok) {
         throw new Error('Failed to create interview')
       }
@@ -209,11 +227,16 @@ export default function CustomInterviewPage() {
       import('sonner').then(({ toast }) => {
         toast.success('Interview created successfully!')
       })
+
+      // Reset the form and close the dialog after successful creation
+      createDialogRef.current?.reset()
     } catch (error) {
       console.error('Error creating interview:', error)
       import('sonner').then(({ toast }) => {
         toast.error('Failed to create interview')
       })
+    } finally {
+      setIsCreatingInterview(false)
     }
   }
 
@@ -241,20 +264,25 @@ export default function CustomInterviewPage() {
   const handleDeleteInterview = async (interview: InterviewData) => {
     console.log("Deleting interview:", interview)
 
-    const success = await deleteInterview(interview.id)
+    setDeletingInterviewId(interview.id)
+    try {
+      const success = await deleteInterview(interview.id)
 
-    if (success) {
-      // Refresh the interviews list
-      const updatedInterviews = await getAllInterviews()
-      setInterviews(updatedInterviews)
+      if (success) {
+        // Refresh the interviews list
+        const updatedInterviews = await getAllInterviews()
+        setInterviews(updatedInterviews)
 
-      import('sonner').then(({ toast }) => {
-        toast.success('Interview deleted successfully!')
-      })
-    } else {
-      import('sonner').then(({ toast }) => {
-        toast.error('Failed to delete interview')
-      })
+        import('sonner').then(({ toast }) => {
+          toast.success('Interview deleted successfully!')
+        })
+      } else {
+        import('sonner').then(({ toast }) => {
+          toast.error('Failed to delete interview')
+        })
+      }
+    } finally {
+      setDeletingInterviewId(null)
     }
   }
 
@@ -316,9 +344,11 @@ export default function CustomInterviewPage() {
 
           <div className="flex items-center gap-3">
             <CreateInterviewDialog
+              ref={createDialogRef}
               onInterviewCreated={handleInterviewCreated}
               userTimeData={userTimeData}
               userCvData={userCvData}
+              isCreating={isCreatingInterview}
             />
           </div>
         </div>
@@ -343,6 +373,7 @@ export default function CustomInterviewPage() {
         onViewDetails={handleViewDetails}
         onStartInterview={handleStartInterview}
         onDeleteInterview={handleDeleteInterview}
+        deletingInterviewId={deletingInterviewId}
       />
     </div>
   )

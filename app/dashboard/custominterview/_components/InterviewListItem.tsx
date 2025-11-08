@@ -19,9 +19,10 @@ interface InterviewListItemProps {
   onViewDetails?: (interview: InterviewData) => void
   onStartInterview?: (interview: InterviewData) => void
   onDeleteInterview?: (interview: InterviewData) => void
+  isDeleting?: boolean
 }
 
-export function InterviewListItem({ interview, onStartInterview, onDeleteInterview }: InterviewListItemProps) {
+export function InterviewListItem({ interview, onStartInterview, onDeleteInterview, isDeleting = false }: InterviewListItemProps) {
   const router = useRouter()
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 
@@ -74,7 +75,7 @@ export function InterviewListItem({ interview, onStartInterview, onDeleteIntervi
           Start
         </Button>
 
-        <Dialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+        <Dialog open={showDeleteDialog} onOpenChange={(open) => !isDeleting && setShowDeleteDialog(open)}>
           <DialogTrigger asChild>
             <Button
               variant="outline"
@@ -96,8 +97,15 @@ export function InterviewListItem({ interview, onStartInterview, onDeleteIntervi
               <Button variant="outline" onClick={() => setShowDeleteDialog(false)}>
                 Cancel
               </Button>
-              <Button variant="destructive" onClick={handleDelete}>
-                Delete Interview
+              <Button variant="destructive" onClick={handleDelete} disabled={isDeleting}>
+                {isDeleting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    Deleting...
+                  </>
+                ) : (
+                  'Delete Interview'
+                )}
               </Button>
             </DialogFooter>
           </DialogContent>

@@ -1,6 +1,55 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, forwardRef, useImperativeHandle, useCallback } from "react"
+
+// Web Speech API types
+declare global {
+  interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    SpeechRecognition: any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    webkitSpeechRecognition: any
+  }
+}
+
+interface SpeechRecognition extends EventTarget {
+  continuous: boolean
+  interimResults: boolean
+  lang: string
+  start(): void
+  stop(): void
+  onstart: (event: Event) => void
+  onresult: (event: SpeechRecognitionEvent) => void
+  onerror: (event: SpeechRecognitionErrorEvent) => void
+  onend: (event: Event) => void
+}
+
+interface SpeechRecognitionEvent extends Event {
+  resultIndex: number
+  results: SpeechRecognitionResultList
+}
+
+interface SpeechRecognitionErrorEvent extends Event {
+  error: string
+}
+
+interface SpeechRecognitionResultList {
+  readonly length: number
+  item(index: number): SpeechRecognitionResult
+  [index: number]: SpeechRecognitionResult
+}
+
+interface SpeechRecognitionResult {
+  readonly length: number
+  item(index: number): SpeechRecognitionAlternative
+  [index: number]: SpeechRecognitionAlternative
+  isFinal: boolean
+}
+
+interface SpeechRecognitionAlternative {
+  transcript: string
+  confidence: number
+}
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -25,7 +74,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { Plus, FileText, X } from "lucide-react"
+import { Plus, FileText, X, Mic, Square } from "lucide-react"
 import {
   generateJDFromPredefined,
   getAvailableRoles,
@@ -34,16 +83,24 @@ import {
   getGeneralInterviewSubTypes,
   getHRInterviewSubTypes
 } from "./interview-utils"
+import { generateInterviewTitle } from "./interview-title-utils"
+
+interface VoiceProfile {
+  professionalSummary: string
+  [key: string]: unknown // Allow additional properties from API response
+}
 
 
 
 interface CreateInterviewDialogProps {
-  onInterviewCreated?: (data: { jdDetails: string; interviewType: string; screenShare?: boolean; company?: string; customPrompt?: string; generalSubType?: string; hrSubType?: string; cvText?: string }) => void
+  onInterviewCreated?: (data: { jdDetails: string; interviewType: string; screenShare?: boolean; company?: string; customPrompt?: string; generalSubType?: string; hrSubType?: string; cvText?: string; title?: string; voiceProfile?: VoiceProfile }) => void
   userTimeData?: { totalTimeAllowance: number; usedTimeMinutes: number } | null
   userCvData?: string | null
+  isCreating?: boolean
 }
 
-export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCvData }: CreateInterviewDialogProps) {
+const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewDialogProps>(
+  ({ onInterviewCreated, userTimeData, userCvData, isCreating = false }, ref) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   // Predefined Role state
@@ -63,6 +120,12 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCv
   const [cvText, setCvText] = useState("")
   const [isExtractingCV, setIsExtractingCV] = useState(false)
   const cvInputRef = useRef<HTMLInputElement>(null)
+
+  // Voice input state
+  const [voiceText, setVoiceText] = useState("")
+  const [isRecording, setIsRecording] = useState(false)
+  const [isProcessingVoice, setIsProcessingVoice] = useState(false)
+  const [recognition, setRecognition] = useState<SpeechRecognition | null>(null)
 
   // Check if user has time allowance remaining
   const checkTimeLimit = () => {
@@ -158,6 +221,105 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCv
     return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i]
   }
 
+  // Voice recording functions
+  const initializeSpeechRecognition = () => {
+    if (typeof window === 'undefined' || !('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+      import('sonner').then(({ toast }) => {
+        toast.error('Speech recognition is not supported in your browser. Please use Chrome, Edge, or Safari.')
+      })
+      return null
+    }
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+    const recognition = new SpeechRecognition()
+
+    recognition.continuous = true
+    recognition.interimResults = true
+    recognition.lang = 'en-US'
+
+    recognition.onstart = () => {
+      setIsRecording(true)
+    }
+
+    recognition.onresult = (event: SpeechRecognitionEvent) => {
+      let finalTranscript = ''
+      let interimTranscript = ''
+
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript
+        if (event.results[i].isFinal) {
+          finalTranscript += transcript
+        } else {
+          interimTranscript += transcript
+        }
+      }
+
+      setVoiceText(finalTranscript + interimTranscript)
+    }
+
+    recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
+      console.error('Speech recognition error:', event.error)
+      setIsRecording(false)
+      import('sonner').then(({ toast }) => {
+        toast.error('Speech recognition error. Please try again.')
+      })
+    }
+
+    recognition.onend = () => {
+      setIsRecording(false)
+    }
+
+    return recognition
+  }
+
+  const startRecording = () => {
+    if (isRecording) return
+
+    const recognitionInstance = initializeSpeechRecognition()
+    if (recognitionInstance) {
+      setRecognition(recognitionInstance)
+      recognitionInstance.start()
+    }
+  }
+
+  const stopRecording = () => {
+    if (recognition && isRecording) {
+      recognition.stop()
+      setRecognition(null)
+    }
+  }
+
+  const clearVoiceText = () => {
+    setVoiceText("")
+    if (recognition && isRecording) {
+      recognition.stop()
+      setRecognition(null)
+    }
+  }
+
+  // Function to reset the form
+  const resetForm = useCallback(() => {
+    setSelectedRole("")
+    setSelectedLevel("")
+    setInterviewType("")
+    setGeneralSubType("")
+    setHrSubType("")
+    setCustomJD("")
+    setCvFile(null)
+    setCvText("")
+    setVoiceText("")
+    setIsDialogOpen(false)
+    if (cvInputRef.current) {
+      cvInputRef.current.value = ''
+    }
+  }, [])
+
+  // Expose reset function to parent
+  useImperativeHandle(ref, () => ({
+    reset: resetForm
+  }), [resetForm])
+
+
   const handleSubmit = async () => {
     // Handle custom JD tab
     if (activeTab === "custom") {
@@ -206,7 +368,8 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCv
           screenShare: false,
           customPrompt: analysisResult.prompt, // Include the generated prompt
           company: "Custom Company", // Default company name
-          cvText: cvText || userCvData || undefined // Include CV text if available (uploaded or existing)
+          cvText: cvText || userCvData || undefined, // Include CV text if available (uploaded or existing)
+          title: generateInterviewTitle("Custom")
         }
 
         onInterviewCreated?.(interviewData)
@@ -216,6 +379,7 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCv
         setCustomJD("")
         setCvFile(null)
         setCvText("")
+        setVoiceText("")
         setActiveTab("predefined")
         if (cvInputRef.current) {
           cvInputRef.current.value = ''
@@ -228,6 +392,73 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCv
         })
       } finally {
         setIsAnalyzingJD(false)
+      }
+
+      return
+    }
+
+    // Handle voice input tab
+    if (activeTab === "voice") {
+      if (!voiceText.trim()) {
+        import('sonner').then(({ toast }) => {
+          toast.error('Please record your voice input first')
+        })
+        return
+      }
+
+      setIsProcessingVoice(true)
+
+      try {
+        // Process the voice text using the voice profile API
+        const response = await fetch('/api/custom-interviews/voice-profile', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            voiceText: voiceText.trim()
+          }),
+        })
+
+        const responseData = await response.json()
+
+        if (!response.ok || responseData.error) {
+          throw new Error(responseData.error || 'Failed to process voice input')
+        }
+
+        const profile = responseData.profile
+
+        // Prepare interview data with voice profile
+        const interviewData = {
+          jdDetails: `Voice Profile Interview - ${profile.professionalSummary}`,
+          interviewType: "Voice Profile",
+          screenShare: false,
+          customPrompt: responseData.prompt,
+          company: "Voice Profile Company",
+          voiceProfile: profile, // Include the structured profile
+          title: generateInterviewTitle("Voice Profile")
+        }
+
+        onInterviewCreated?.(interviewData)
+
+        // Reset form
+        setIsDialogOpen(false)
+        setVoiceText("")
+        setActiveTab("predefined")
+        setCustomJD("")
+        setCvFile(null)
+        setCvText("")
+        if (cvInputRef.current) {
+          cvInputRef.current.value = ''
+        }
+
+      } catch (error) {
+        console.error('Error processing voice input:', error)
+        import('sonner').then(({ toast }) => {
+          toast.error('Failed to process voice input. Please try again.')
+        })
+      } finally {
+        setIsProcessingVoice(false)
       }
 
       return
@@ -290,21 +521,20 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCv
       generalSubType: interviewType === 'General' ? generalSubType : (interviewType === 'Technical' ? selectedRole : undefined), // Pass role as generalSubType for technical interviews
       hrSubType: interviewType === 'HR' ? hrSubType : undefined, // Pass HR sub-type for HR interviews
       role: interviewType === 'Technical' ? selectedRole : undefined, // Keep role field for backward compatibility
-      experienceLevel: selectedLevel, // Pass the selected experience level
-      cvText: cvText || userCvData || undefined // Use uploaded CV, or existing CV if available
+      experienceLevel: interviewType === 'Technical' ? selectedLevel : undefined, // Pass the selected experience level only for Technical interviews
+      cvText: cvText || userCvData || undefined, // Use uploaded CV, or existing CV if available
+      title: generateInterviewTitle(
+        interviewType,
+        interviewType === 'Technical' ? selectedRole :
+        interviewType === 'General' ? generalSubType :
+        interviewType === 'HR' ? hrSubType : undefined
+      )
     }
 
-    console.log('DEBUG Frontend sending:', { interviewType, generalSubType: interviewData.generalSubType, role: interviewData.role, selectedRole })
 
     onInterviewCreated?.(interviewData)
 
-    // Reset form
-    setIsDialogOpen(false)
-    setSelectedRole("")
-    setSelectedLevel("")
-    setInterviewType("")
-    setGeneralSubType("")
-    setHrSubType("")
+    // Form will be reset and dialog closed by parent after successful creation
   }
 
   return (
@@ -317,8 +547,8 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCv
         Create Custom Interview
       </Button>
 
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+      <Dialog open={isDialogOpen} onOpenChange={(open) => !isCreating && setIsDialogOpen(open)}>
+      <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Create Custom Interview</DialogTitle>
           <DialogDescription>
@@ -327,9 +557,10 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCv
         </DialogHeader>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="predefined">Predefined Templates</TabsTrigger>
-            <TabsTrigger value="custom">Custom Job Description</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger value="predefined">Templates</TabsTrigger>
+            <TabsTrigger value="custom">Custom JD</TabsTrigger>
+            <TabsTrigger value="voice">Voice</TabsTrigger>
           </TabsList>
 
           <TabsContent value="predefined" className="space-y-6 mt-6">
@@ -445,8 +676,8 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCv
             </div>
           )}
 
-          {/* Level Selection - Only show for non-General types */}
-          {interviewType !== 'General' && (
+          {/* Level Selection - Only show for Technical types */}
+          {interviewType === 'Technical' && (
           <div className="space-y-2">
             <Label htmlFor="level" className="text-sm font-medium">
               Years of Experience *
@@ -538,6 +769,86 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCv
               </div>
             </div>
           </TabsContent>
+
+          <TabsContent value="voice" className="space-y-6 mt-6">
+            {/* Voice Input Section */}
+            <div className="space-y-4">
+              <Label className="text-sm font-medium">
+                Voice Input *
+              </Label>
+
+              {/* Voice Recording Controls */}
+              <div className="flex items-center gap-4">
+                {!isRecording ? (
+                  <Button
+                    type="button"
+                    onClick={startRecording}
+                    disabled={isProcessingVoice}
+                    className="flex items-center gap-2 bg-red-600 hover:bg-red-700"
+                  >
+                    <Mic className="w-4 h-4" />
+                    Start Recording
+                  </Button>
+                ) : (
+                  <Button
+                    type="button"
+                    onClick={stopRecording}
+                    className="flex items-center gap-2 bg-red-600 hover:bg-red-700 animate-pulse"
+                  >
+                    <Square className="w-4 h-4" />
+                    Stop Recording
+                  </Button>
+                )}
+
+                {voiceText && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={clearVoiceText}
+                    disabled={isProcessingVoice}
+                    className="flex items-center gap-2"
+                  >
+                    <X className="w-4 h-4" />
+                    Clear
+                  </Button>
+                )}
+              </div>
+
+              {/* Recording Status */}
+              {isRecording && (
+                <div className="flex items-center gap-2 text-sm text-red-600">
+                  <div className="animate-pulse w-2 h-2 bg-red-600 rounded-full"></div>
+                  Recording... Speak clearly about your background and career goals
+                </div>
+              )}
+
+              {/* Transcribed Text */}
+              <div className="space-y-2">
+                <Label htmlFor="voice-text" className="text-sm font-medium">
+                  Transcribed Text
+                </Label>
+                <Textarea
+                  id="voice-text"
+                  placeholder="Your speech will appear here as you speak. You can also edit this text manually if needed."
+                  value={voiceText}
+                  onChange={(e) => setVoiceText(e.target.value)}
+                  className="h-[200px] overflow-y-auto resize-none"
+                  disabled={isProcessingVoice}
+                />
+                <p className="text-xs text-gray-500">
+                  Speak for 20-30 seconds about your skills, experience level, and career goals. For example: &quot;I am good in Python and want to start as a fresh developer.&quot;
+                </p>
+              </div>
+
+              {/* Processing indicator */}
+              {isProcessingVoice && (
+                <div className="flex items-center gap-2 text-sm text-blue-600">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                  Analyzing your voice input and creating a personalized profile...
+                </div>
+              )}
+            </div>
+          </TabsContent>
         </Tabs>
 
         {/* Action Buttons */}
@@ -551,24 +862,40 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCv
           <Button
             onClick={handleSubmit}
             disabled={
-              activeTab === 'predefined'
-                ? (!interviewType ||
-                   (interviewType === 'General' ? !generalSubType :
-                    interviewType === 'HR' ? !hrSubType :
-                    interviewType === 'Technical' ? (!selectedRole || !selectedLevel) : false))
-                : (!customJD.trim() || isAnalyzingJD || isExtractingCV)
+              isCreating || (
+                activeTab === 'predefined'
+                  ? (!interviewType ||
+                     (interviewType === 'General' ? !generalSubType :
+                      interviewType === 'HR' ? !hrSubType :
+                      interviewType === 'Technical' ? (!selectedRole || !selectedLevel) : false))
+                  : activeTab === 'custom'
+                  ? (!customJD.trim() || isAnalyzingJD || isExtractingCV)
+                  : activeTab === 'voice'
+                  ? (!voiceText.trim() || isProcessingVoice || isRecording)
+                  : false
+              )
             }
             className="bg-primary hover:bg-primary/90"
           >
-            {isAnalyzingJD ? (
+            {isCreating ? (
               <>
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                Analyzing...
+                Creating Interview...
+              </>
+            ) : isAnalyzingJD || isProcessingVoice ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                {isAnalyzingJD ? 'Analyzing...' : 'Processing Voice...'}
               </>
             ) : activeTab === 'custom' ? (
               <>
                 <FileText className="w-4 h-4 mr-2" />
                 Create Custom Interview
+              </>
+            ) : activeTab === 'voice' ? (
+              <>
+                <Mic className="w-4 h-4 mr-2" />
+                Create Voice Interview
               </>
             ) : (
               'Create Interview'
@@ -579,4 +906,9 @@ export function CreateInterviewDialog({ onInterviewCreated, userTimeData, userCv
     </Dialog>
     </>
   )
-}
+})
+
+
+CreateInterviewDialog.displayName = 'CreateInterviewDialog'
+
+export default CreateInterviewDialog

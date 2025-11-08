@@ -76,8 +76,6 @@ interface InterviewWhereClause {
  * @returns The prompt generator function or null if not found
  */
 function getTechnicalRolePromptGenerator(role: string): TechnicalPromptGenerator | null {
-  console.log('DEBUG getTechnicalRolePromptGenerator called with role:', role)
-
   // Map role values to their corresponding prompt generator functions
   const roleToPromptFunction: Record<string, TechnicalPromptGenerator> = {
     'frontend-developer': generateFrontendDeveloperPrompt,
@@ -89,13 +87,7 @@ function getTechnicalRolePromptGenerator(role: string): TechnicalPromptGenerator
   }
 
   const promptFunction = roleToPromptFunction[role]
-  if (promptFunction) {
-    console.log('DEBUG Found function for role:', role)
-    return promptFunction
-  }
-
-  console.log('DEBUG Function not found for role:', role, 'returning null')
-  return null
+  return promptFunction || null
 }
 
 /**
@@ -248,9 +240,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Parse request body
-    const { jdDetails, interviewType, screenShare, company, generalSubType, hrSubType, customPrompt, cvText, role, experienceLevel } = await request.json()
+    const { jdDetails, interviewType, screenShare, company, generalSubType, hrSubType, customPrompt, cvText, role, experienceLevel, title } = await request.json()
 
-    console.log('DEBUG API received:', { interviewType, generalSubType, hrSubType, role, selectedRole: generalSubType || role, jdDetails: jdDetails?.substring(0, 100) + '...' })
 
     // Validate required fields
     if (!jdDetails || !interviewType) {
@@ -287,9 +278,13 @@ export async function POST(request: NextRequest) {
 
     // Clean company name for display (remove suffixes like Pvt Ltd, Inc, etc.)
     const cleanedCompanyName = cleanCompanyNameForDisplay(finalCompanyName)
-    // Generate unique title based on interview type and existing interviews
+
+    // Use title from frontend if provided, otherwise generate based on interview type
     let baseTitle: string
-    if (interviewType === 'General' && generalSubType) {
+    if (title) {
+      // Use the title provided by frontend (e.g., "Python Developer Interview")
+      baseTitle = title
+    } else if (interviewType === 'General' && generalSubType) {
       baseTitle = `${interviewType} - ${generalSubType} Interview`
     } else if (interviewType === 'Custom') {
       const rolePart = extractedData?.role ? `${extractedData.role} Interview` : 'Custom Interview'
@@ -299,7 +294,31 @@ export async function POST(request: NextRequest) {
       baseTitle = `${interviewType} Interview`
     }
 
-    // Check for existing interviews with similar titles
+    // For template-based interviews (Technical, General, HR), prevent exact duplicates
+    // For custom interviews, allow duplicates since they might have different job descriptions
+    if (interviewType === 'Technical' || interviewType === 'General' || interviewType === 'HR') {
+      const existingInterview = await prisma.mockInterview.findFirst({
+        where: {
+          createdBy: userId,
+          title: baseTitle,
+          interviewType: mappedInterviewType
+        },
+        select: { id: true, title: true }
+      })
+
+      if (existingInterview) {
+        return NextResponse.json({
+          error: `You already have an interview with the title "${baseTitle}". Please choose a different interview type or check your existing interviews.`,
+          duplicateFound: true,
+          existingInterview: {
+            id: existingInterview.id,
+            title: existingInterview.title
+          }
+        }, { status: 409 }) // 409 Conflict
+      }
+    }
+
+    // For other interview types, check for existing interviews with similar titles
     const existingInterviews = await prisma.mockInterview.findMany({
       where: {
         createdBy: userId,
@@ -352,19 +371,15 @@ export async function POST(request: NextRequest) {
     } else if (mappedInterviewType === "TECHNICAL") {
       // Check if a specific role is provided and has a dedicated prompt
       const selectedRole = generalSubType || role
-      console.log('DEBUG TECHNICAL branch hit, checking role:', selectedRole)
 
       if (selectedRole) {
         const rolePromptGenerator = getTechnicalRolePromptGenerator(selectedRole)
         if (rolePromptGenerator) {
-          console.log(`DEBUG Using ${selectedRole} specific prompt with experience level: ${experienceLevel}`)
           promptText = rolePromptGenerator(jdDetails, interview.title || `${selectedRole.replace('-', ' ')} Interview`, experienceLevel, cvText)
         } else {
-          console.log(`DEBUG No specific prompt found for ${selectedRole}, using general technical prompt`)
           promptText = generateTechnicalPrompt(jdDetails, interview.title || "Technical Interview", cvText)
         }
       } else {
-        console.log('DEBUG No specific role provided, using general technical prompt')
         promptText = generateTechnicalPrompt(jdDetails, interview.title || "Technical Interview", cvText)
       }
     } else if (mappedInterviewType === "GENERAL_INTERVIEW") {
@@ -398,15 +413,6 @@ export async function POST(request: NextRequest) {
       promptText = generateGeneralPrompt(jdDetails, interview.title || "Custom Interview", cvText)
     }
 
-    console.log('DEBUG Final prompt type used:', {
-      mappedInterviewType,
-      selectedRole: generalSubType || role,
-      promptType: promptText.includes('Python developer interview') ? 'python-specific' :
-                  promptText.includes('UPSE') ? 'upse-specific' :
-                  promptText.includes('Banking') ? 'banking-specific' :
-                  promptText.includes('Technical Interview') ? 'general-technical' :
-                  'general-fallback'
-    })
 
     await prisma.interviewPrompt.create({
       data: {
