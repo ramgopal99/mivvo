@@ -14,15 +14,16 @@ import {
 } from '@/components/ui/sidebar';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
-import { modules } from '../data/lessonsData';
+import { Module } from '../data/lessonsData';
 
 interface LeftSidebarProps {
+  modules: Module[];
   onSubtopicClick?: (moduleId: number, subtopicId: number, title: string, moduleTitle: string) => void;
   onCheckedItemsChange?: (count: number) => void;
   selectedTopic?: { moduleId: number; subtopicId: number; title: string; moduleTitle: string } | null;
 }
 
-const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedItemsChange, selectedTopic }) => {
+const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, onSubtopicClick, onCheckedItemsChange, selectedTopic }) => {
   const sidebarScrollRef = useRef<HTMLDivElement>(null);
   const [expandedModules, setExpandedModules] = useState<number[]>([1]);
   // const [activeModule, setActiveModule] = useState<number>(1);

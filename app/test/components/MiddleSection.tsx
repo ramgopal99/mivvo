@@ -4,7 +4,7 @@ import { MarkdownCompound } from '@/components/markdown-compound';
 import MiddleBottom from './MiddleBottom';
 import MCQModule, { MCQQuestion } from './MCQModule';
 import CodeExercise from './CodeExercise';
-import { modules, Module, SubLesson, Exercise } from '../data/lessonsData';
+import { Module, SubLesson, Exercise } from '../data/lessonsData';
 import { useEffect, useRef } from 'react';
 
 interface SelectedTopic {
@@ -15,6 +15,7 @@ interface SelectedTopic {
 }
 
 interface MiddleSectionProps {
+  modules: Module[];
   selectedTopic: SelectedTopic | null;
   onPrevious?: () => void;
   onNext?: () => void;
@@ -74,7 +75,7 @@ const parseMCQQuestions = (content: string): MCQQuestion[] => {
 };
 
 
-const MiddleSection = ({ selectedTopic, onPrevious, onNext, onAI, isChatOpen, onCloseChat }: MiddleSectionProps) => {
+const MiddleSection = ({ modules, selectedTopic, onPrevious, onNext, onAI, isChatOpen, onCloseChat }: MiddleSectionProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Scroll to top whenever selectedTopic changes

@@ -1,7 +1,7 @@
 import { Module } from '../app/test/data/lessonsData';
 
 // =============================================================================
-// MODULE INFO IMPORTS
+// PYTHON MODULE IMPORTS
 // =============================================================================
 import { moduleInfo as module1Info } from '../app/test/modules/module1/module-info';
 import { moduleInfo as module2Info } from '../app/test/modules/module2/module-info';
@@ -25,7 +25,27 @@ import { moduleInfo as module19Info } from '../app/test/modules/module19/module-
 import { moduleInfo as module20Info } from '../app/test/modules/module20/module-info';
 
 // =============================================================================
-// TOPIC IMPORTS (Grouped by Module)
+// JAVA MODULE IMPORTS
+// =============================================================================
+import { moduleInfo as javaModule1Info } from '../app/test/modules-java/module1/module-info';
+
+// =============================================================================
+// C MODULE IMPORTS
+// =============================================================================
+import { moduleInfo as cModule1Info } from '../app/test/modules-c/module1/module-info';
+
+// =============================================================================
+// C++ MODULE IMPORTS
+// =============================================================================
+import { moduleInfo as cppModule1Info } from '../app/test/modules-cpp/module1/module-info';
+
+// =============================================================================
+// JAVASCRIPT MODULE IMPORTS
+// =============================================================================
+import { moduleInfo as jsModule1Info } from '../app/test/modules-javascript/module1/module-info';
+
+// =============================================================================
+// PYTHON TOPIC IMPORTS (Grouped by Module)
 // =============================================================================
 
 // Module 1
@@ -173,7 +193,39 @@ import { topic_20_4 } from '../app/test/modules/module20/topics/topic-20.4';
 import { topic_20_5 } from '../app/test/modules/module20/topics/topic-20.5';
 
 // =============================================================================
-// EXERCISE IMPORTS (Grouped by Module)
+// JAVA TOPIC IMPORTS (Grouped by Module)
+// =============================================================================
+
+// Module 1
+import { topic_1_1 as java_topic_1_1 } from '../app/test/modules-java/module1/topics/topic-1.1';
+import { topic_1_2 as java_topic_1_2 } from '../app/test/modules-java/module1/topics/topic-1.2';
+
+// =============================================================================
+// C TOPIC IMPORTS (Grouped by Module)
+// =============================================================================
+
+// Module 1
+import { topic_1_1 as c_topic_1_1 } from '../app/test/modules-c/module1/topics/topic-1.1';
+import { topic_1_2 as c_topic_1_2 } from '../app/test/modules-c/module1/topics/topic-1.2';
+
+// =============================================================================
+// C++ TOPIC IMPORTS (Grouped by Module)
+// =============================================================================
+
+// Module 1
+import { topic_1_1 as cpp_topic_1_1 } from '../app/test/modules-cpp/module1/topics/topic-1.1';
+import { topic_1_2 as cpp_topic_1_2 } from '../app/test/modules-cpp/module1/topics/topic-1.2';
+
+// =============================================================================
+// JAVASCRIPT TOPIC IMPORTS (Grouped by Module)
+// =============================================================================
+
+// Module 1
+import { topic_1_1 as js_topic_1_1 } from '../app/test/modules-javascript/module1/topics/topic-1.1';
+import { topic_1_2 as js_topic_1_2 } from '../app/test/modules-javascript/module1/topics/topic-1.2';
+
+// =============================================================================
+// PYTHON EXERCISE IMPORTS (Grouped by Module)
 // =============================================================================
 
 // Module 1
@@ -242,133 +294,206 @@ import { exercise_16_10 } from '../app/test/modules/module16/mcq/exercise-16.10'
 // Module 17
 import { exercise_17_4 } from '../app/test/modules/module17/mcq/exercise-17.4';
 
+// =============================================================================
+// JAVA EXERCISE IMPORTS (Grouped by Module)
+// =============================================================================
 
-// Module configuration - easy to add new modules
-const MODULE_CONFIG = [
-  {
-    info: module1Info,
-    topics: [topic_1_1, topic_1_2],
-    exercises: [exercise_1_3]
-  },
-  {
-    info: module2Info,
-    topics: [topic_2_1, topic_2_2, topic_2_3, topic_2_4, topic_2_5, topic_2_6, topic_2_7],
-    exercises: [exercise_2_8, exercise_2_9]
-  },
-  {
-    info: module3Info,
-    topics: [topic_3_1, topic_3_2, topic_3_3, topic_3_4, topic_3_5, topic_3_6],
-    exercises: [exercise_3_7, exercise_3_8]
-  },
-  {
-    info: module4Info,
-    topics: [topic_4_1, topic_4_2, topic_4_3, topic_4_4, topic_4_5, topic_4_6],
-    exercises: [exercise_4_7, exercise_4_8]
-  },
-  {
-    info: module5Info,
-    topics: [topic_5_1, topic_5_2, topic_5_3, topic_5_4, topic_5_5, topic_5_6],
-    exercises: [exercise_5_7, exercise_5_8]
-  },
-  {
-    info: module6Info,
-    topics: [topic_6_1, topic_6_2, topic_6_3, topic_6_4, topic_6_5, topic_6_6],
-    exercises: [exercise_6_7, exercise_6_8]
-  },
-  {
-    info: module7Info,
-    topics: [topic_7_1, topic_7_2, topic_7_3, topic_7_4, topic_7_5, topic_7_6],
-    exercises: [exercise_7_7, exercise_7_8]
-  },
-  {
-    info: module8Info,
-    topics: [topic_8_1, topic_8_2, topic_8_3, topic_8_4, topic_8_5, topic_8_6, topic_8_7],
-    exercises: [exercise_8_8, exercise_8_9]
-  },
-  {
-    info: module9Info,
-    topics: [topic_9_1, topic_9_2, topic_9_3, topic_9_4, topic_9_5, topic_9_6],
-    exercises: [exercise_9_7, exercise_9_8]
-  },
-  {
-    info: module10Info,
-    topics: [topic_10_1, topic_10_2, topic_10_3, topic_10_4, topic_10_5, topic_10_6],
-    exercises: [exercise_10_7, exercise_10_8]
-  },
-  {
-    info: module11Info,
-    topics: [topic_11_1, topic_11_2, topic_11_3, topic_11_4, topic_11_5, topic_11_6],
-    exercises: [exercise_11_7, exercise_11_8]
-  },
-  {
-    info: module12Info,
-    topics: [topic_12_1, topic_12_2, topic_12_3, topic_12_4, topic_12_5, topic_12_6],
-    exercises: [exercise_12_7, exercise_12_8]
-  },
-  {
-    info: module13Info,
-    topics: [topic_13_1, topic_13_2, topic_13_3, topic_13_4],
-    exercises: [exercise_13_5, exercise_13_6]
-  },
-  {
-    info: module14Info,
-    topics: [topic_14_1, topic_14_2, topic_14_3, topic_14_4],
-    exercises: [exercise_14_5, exercise_14_6]
-  },
-  {
-    info: module15Info,
-    topics: [topic_15_1, topic_15_2, topic_15_3, topic_15_4, topic_15_5, topic_15_6, topic_15_7, topic_15_8],
-    exercises: [exercise_15_9, exercise_15_10]
-  },
-  {
-    info: module16Info,
-    topics: [topic_16_1, topic_16_2, topic_16_3, topic_16_4, topic_16_5, topic_16_6, topic_16_7, topic_16_8],
-    exercises: [exercise_16_9, exercise_16_10]
-  },
-  {
-    info: module17Info,
-    topics: [topic_17_1, topic_17_2, topic_17_3],
-    exercises: [exercise_17_4]
-  },
-  {
-    info: module18Info,
-    topics: [topic_18_1],
-    exercises: []
-  },
-  {
-    info: module19Info,
-    topics: [topic_19_1],
-    exercises: []
-  },
-  {
-    info: module20Info,
-    topics: [topic_20_1, topic_20_2, topic_20_3, topic_20_4, topic_20_5],
-    exercises: []
-  },
-];
+// Module 1
+import { exercise_1_3 as java_exercise_1_3 } from '../app/test/modules-java/module1/mcq/exercise-1.3';
+
+// =============================================================================
+// C EXERCISE IMPORTS (Grouped by Module)
+// =============================================================================
+
+// Module 1
+import { exercise_1_3 as c_exercise_1_3 } from '../app/test/modules-c/module1/mcq/exercise-1.3';
+
+// =============================================================================
+// C++ EXERCISE IMPORTS (Grouped by Module)
+// =============================================================================
+
+// Module 1
+import { exercise_1_3 as cpp_exercise_1_3 } from '../app/test/modules-cpp/module1/mcq/exercise-1.3';
+
+// =============================================================================
+// JAVASCRIPT EXERCISE IMPORTS (Grouped by Module)
+// =============================================================================
+
+// Module 1
+import { exercise_1_3 as js_exercise_1_3 } from '../app/test/modules-javascript/module1/mcq/exercise-1.3';
+
+// Module configuration for different languages
+const MODULE_CONFIGS = {
+  python: [
+    {
+      info: module1Info,
+      topics: [topic_1_1, topic_1_2],
+      exercises: [exercise_1_3]
+    },
+    {
+      info: module2Info,
+      topics: [topic_2_1, topic_2_2, topic_2_3, topic_2_4, topic_2_5, topic_2_6, topic_2_7],
+      exercises: [exercise_2_8, exercise_2_9]
+    },
+    {
+      info: module3Info,
+      topics: [topic_3_1, topic_3_2, topic_3_3, topic_3_4, topic_3_5, topic_3_6],
+      exercises: [exercise_3_7, exercise_3_8]
+    },
+    {
+      info: module4Info,
+      topics: [topic_4_1, topic_4_2, topic_4_3, topic_4_4, topic_4_5, topic_4_6],
+      exercises: [exercise_4_7, exercise_4_8]
+    },
+    {
+      info: module5Info,
+      topics: [topic_5_1, topic_5_2, topic_5_3, topic_5_4, topic_5_5, topic_5_6],
+      exercises: [exercise_5_7, exercise_5_8]
+    },
+    {
+      info: module6Info,
+      topics: [topic_6_1, topic_6_2, topic_6_3, topic_6_4, topic_6_5, topic_6_6],
+      exercises: [exercise_6_7, exercise_6_8]
+    },
+    {
+      info: module7Info,
+      topics: [topic_7_1, topic_7_2, topic_7_3, topic_7_4, topic_7_5, topic_7_6],
+      exercises: [exercise_7_7, exercise_7_8]
+    },
+    {
+      info: module8Info,
+      topics: [topic_8_1, topic_8_2, topic_8_3, topic_8_4, topic_8_5, topic_8_6, topic_8_7],
+      exercises: [exercise_8_8, exercise_8_9]
+    },
+    {
+      info: module9Info,
+      topics: [topic_9_1, topic_9_2, topic_9_3, topic_9_4, topic_9_5, topic_9_6],
+      exercises: [exercise_9_7, exercise_9_8]
+    },
+    {
+      info: module10Info,
+      topics: [topic_10_1, topic_10_2, topic_10_3, topic_10_4, topic_10_5, topic_10_6],
+      exercises: [exercise_10_7, exercise_10_8]
+    },
+    {
+      info: module11Info,
+      topics: [topic_11_1, topic_11_2, topic_11_3, topic_11_4, topic_11_5, topic_11_6],
+      exercises: [exercise_11_7, exercise_11_8]
+    },
+    {
+      info: module12Info,
+      topics: [topic_12_1, topic_12_2, topic_12_3, topic_12_4, topic_12_5, topic_12_6],
+      exercises: [exercise_12_7, exercise_12_8]
+    },
+    {
+      info: module13Info,
+      topics: [topic_13_1, topic_13_2, topic_13_3, topic_13_4],
+      exercises: [exercise_13_5, exercise_13_6]
+    },
+    {
+      info: module14Info,
+      topics: [topic_14_1, topic_14_2, topic_14_3, topic_14_4],
+      exercises: [exercise_14_5, exercise_14_6]
+    },
+    {
+      info: module15Info,
+      topics: [topic_15_1, topic_15_2, topic_15_3, topic_15_4, topic_15_5, topic_15_6, topic_15_7, topic_15_8],
+      exercises: [exercise_15_9, exercise_15_10]
+    },
+    {
+      info: module16Info,
+      topics: [topic_16_1, topic_16_2, topic_16_3, topic_16_4, topic_16_5, topic_16_6, topic_16_7, topic_16_8],
+      exercises: [exercise_16_9, exercise_16_10]
+    },
+    {
+      info: module17Info,
+      topics: [topic_17_1, topic_17_2, topic_17_3],
+      exercises: [exercise_17_4]
+    },
+    {
+      info: module18Info,
+      topics: [topic_18_1],
+      exercises: []
+    },
+    {
+      info: module19Info,
+      topics: [topic_19_1],
+      exercises: []
+    },
+    {
+      info: module20Info,
+      topics: [topic_20_1, topic_20_2, topic_20_3, topic_20_4, topic_20_5],
+      exercises: []
+    },
+  ],
+  java: [
+    {
+      info: javaModule1Info,
+      topics: [java_topic_1_1, java_topic_1_2],
+      exercises: [java_exercise_1_3]
+    },
+  ],
+  c: [
+    {
+      info: cModule1Info,
+      topics: [c_topic_1_1, c_topic_1_2],
+      exercises: [c_exercise_1_3]
+    },
+  ],
+  cpp: [
+    {
+      info: cppModule1Info,
+      topics: [cpp_topic_1_1, cpp_topic_1_2],
+      exercises: [cpp_exercise_1_3]
+    },
+  ],
+  javascript: [
+    {
+      info: jsModule1Info,
+      topics: [js_topic_1_1, js_topic_1_2],
+      exercises: [js_exercise_1_3]
+    },
+  ],
+};
 
 /**
- * Loads all modules using static imports (works reliably in browser)
- * @returns Promise<Module[]> - Array of loaded modules
+ * Loads modules for a specific programming language
+ * @param language - The programming language ('python', 'java', etc.)
+ * @returns Promise<Module[]> - Array of loaded modules for the specified language
  */
-export async function loadModules(): Promise<Module[]> {
-  console.log('🔍 Loading modules using static imports...');
+export async function loadModules(language: string = 'python'): Promise<Module[]> {
+  console.log(`🔍 Loading ${language} modules using static imports...`);
 
-  const modules: Module[] = MODULE_CONFIG.map((config) => ({
-    ...config.info,
-    subLessons: config.topics,
-    exercises: config.exercises
+  const config = MODULE_CONFIGS[language as keyof typeof MODULE_CONFIGS];
+
+  if (!config) {
+    console.error(`❌ Language '${language}' not found. Available languages:`, Object.keys(MODULE_CONFIGS));
+    return [];
+  }
+
+  const modules: Module[] = config.map((moduleConfig) => ({
+    ...moduleConfig.info,
+    subLessons: moduleConfig.topics,
+    exercises: moduleConfig.exercises
   }));
 
-  console.log(`✅ Loaded ${modules.length} modules:`, modules.map(m => m.title));
+  console.log(`✅ Loaded ${modules.length} ${language} modules:`, modules.map(m => m.title));
   return modules;
 }
 
 /**
- * To add a new module:
- * 1. Create folder: app/test/modules/module{N}/
- * 2. Add module-info.ts, topics/, exercises/ folders
- * 3. Add imports to this file
- * 4. Add entry to MODULE_CONFIG array
- * 5. Module will appear automatically!
+ * Gets available languages
+ * @returns string[] - Array of available programming languages
+ */
+export function getAvailableLanguages(): string[] {
+  return Object.keys(MODULE_CONFIGS);
+}
+
+/**
+ * To add a new language:
+ * 1. Create folder: app/test/modules-{language}/
+ * 2. Add module-info.ts, topics/, exercises/ folders for each module
+ * 3. Add imports to this file for the new language
+ * 4. Add entry to MODULE_CONFIGS object
+ * 5. Language will be automatically available!
  */

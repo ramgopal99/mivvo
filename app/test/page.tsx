@@ -7,7 +7,10 @@ import LeftSidebar from './components/LeftSidebar';
 import Header from './components/Header';
 import MiddleSection from './components/MiddleSection';
 import RightSection from './components/RightSection';
-import { modules } from './data/lessonsData';
+import { loadModules } from '../../utils/moduleLoader';
+import { getHeaderData } from '../../utils/headerDataLoader';
+import { SubLesson, Exercise } from './data/lessonsData';
+import { CURRENT_COURSE } from './course-config';
 
 interface SelectedTopic {
   moduleId: number;
@@ -16,22 +19,45 @@ interface SelectedTopic {
   moduleTitle: string;
 }
 
-export default function TestPage() {
+interface TestPageProps {
+  language?: string;
+}
+
+export default function TestPage({ language = CURRENT_COURSE }: TestPageProps) {
+  const [modules, setModules] = useState<any[]>([]);
+  const [headerData, setHeaderData] = useState<any>(null);
   const [selectedTopic, setSelectedTopic] = useState<SelectedTopic | null>(null);
   const [checkedItemsCount, setCheckedItemsCount] = useState<number>(0);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
 
-  // Auto-select the first lesson when component mounts
+  // Load modules and header data when component mounts or language changes
   useEffect(() => {
-    if (modules.length > 0 && modules[0].subLessons.length > 0) {
-      setSelectedTopic({
-        moduleId: modules[0].id,
-        subtopicId: modules[0].subLessons[0].id,
-        title: modules[0].subLessons[0].title,
-        moduleTitle: modules[0].title
-      });
-    }
-  }, []);
+    const loadDataAsync = async () => {
+      try {
+        // Load modules for the specified language
+        const loadedModules = await loadModules(language);
+        setModules(loadedModules);
+
+        // Load header data for the specified language
+        const loadedHeaderData = getHeaderData(language);
+        setHeaderData(loadedHeaderData);
+
+        // Auto-select the first lesson after modules are loaded
+        if (loadedModules.length > 0 && loadedModules[0].subLessons.length > 0) {
+          setSelectedTopic({
+            moduleId: loadedModules[0].id,
+            subtopicId: loadedModules[0].subLessons[0].id,
+            title: loadedModules[0].subLessons[0].title,
+            moduleTitle: loadedModules[0].title
+          });
+        }
+      } catch (error) {
+        console.error(`Error loading ${language} modules:`, error);
+      }
+    };
+
+    loadDataAsync();
+  }, [language]);
 
   const handleSubtopicClick = (moduleId: number, subtopicId: number, title: string, moduleTitle: string) => {
     setSelectedTopic({
@@ -51,7 +77,7 @@ export default function TestPage() {
     const items: SelectedTopic[] = [];
     modules.forEach(module => {
       // Add subtopics
-      module.subLessons?.forEach(subLesson => {
+      module.subLessons?.forEach((subLesson: SubLesson) => {
         items.push({
           moduleId: module.id,
           subtopicId: subLesson.id,
@@ -60,7 +86,7 @@ export default function TestPage() {
         });
       });
       // Add exercises
-      module.exercises?.forEach(exercise => {
+      module.exercises?.forEach((exercise: Exercise) => {
         items.push({
           moduleId: module.id,
           subtopicId: exercise.id,
@@ -121,16 +147,29 @@ export default function TestPage() {
     return `${percentage}% Completed`;
   };
 
+  // Don't render until data is loaded
+  if (!headerData || modules.length === 0) {
+    return (
+      <div className="h-screen w-full bg-background flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-xl font-semibold mb-2">Loading {language} modules...</h2>
+          <p className="text-muted-foreground">Please wait while we load the content.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="h-screen w-full bg-background flex">
       {/* Left Section - Header + Fixed Sidebar */}
       <div className="w-65 flex flex-col flex-shrink-0">
-        <Header completionPercentage={calculateCompletionPercentage()} />
+        <Header headerData={headerData} completionPercentage={calculateCompletionPercentage()} />
 
         {/* Sidebar */}
         <div className="flex-1 border-r border-border bg-muted/20">
           <SidebarProvider>
             <LeftSidebar
+              modules={modules}
               onSubtopicClick={handleSubtopicClick}
               onCheckedItemsChange={handleCheckedItemsChange}
               selectedTopic={selectedTopic}
@@ -143,6 +182,7 @@ export default function TestPage() {
       <ResizablePanelGroup direction="horizontal" className="flex-1">
         <ResizablePanel defaultSize={55} minSize={30}>
           <MiddleSection
+            modules={modules}
             selectedTopic={selectedTopic}
             onPrevious={handlePrevious}
             onNext={handleNext}
