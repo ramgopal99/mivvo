@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { BookOpen, Clock, Eye } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { siteConfig } from '@/config/site';
 
 interface CourseModule {
   id: string;
@@ -27,7 +28,21 @@ export default function CoursePage() {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
+  // Check if courses are enabled
   useEffect(() => {
+    if (!siteConfig.enableCourses) {
+      router.push('/dashboard');
+      return;
+    }
+  }, [router]);
+
+  useEffect(() => {
+    // Don't fetch courses if they're disabled
+    if (!siteConfig.enableCourses) {
+      setLoading(false);
+      return;
+    }
+
     const fetchCourses = async () => {
       try {
         const response = await fetch('/api/courses');

@@ -63,7 +63,7 @@ export const authOptions: NextAuthOptions = {
 
           if (existingUser) {
             // Check if user has a valid role for login
-            const allowedRoles = ["COLLEGE_STUDENT", "SUPERADMIN", "COLLEGE_ADMIN"]
+            const allowedRoles = ["COLLEGE_STUDENT", "SUPERADMIN", "COLLEGE_ADMIN", "USER"]
             if (!allowedRoles.includes(existingUser.role)) {
               console.log(`Login denied: User ${user.email} has invalid role (role: ${existingUser.role})`)
               return false

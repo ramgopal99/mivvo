@@ -7,6 +7,7 @@ import {
   Headphones,
   BookOpen
 } from "lucide-react"
+import { siteConfig } from "./site"
 
 export interface NavigationItem {
   title: string
@@ -46,12 +47,12 @@ export const sidebarConfig: SidebarConfig = {
           icon: MessageSquare,
           description: "custom interview"
         },
-        {
+        ...(siteConfig.enableCourses ? [{
           title: "Courses",
           url: "/dashboard/courses",
           icon: BookOpen,
           description: "Access programming courses"
-        }
+        }] : [])
       ]
     }
   ],

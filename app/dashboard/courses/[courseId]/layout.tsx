@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 import { prisma } from '@/lib/prisma';
+import { siteConfig } from '@/config/site';
+import { redirect } from 'next/navigation';
 
 type Props = {
   params: Promise<{ courseId: string }>;
@@ -35,13 +37,18 @@ export default function TestLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Redirect if courses are disabled
+  if (!siteConfig.enableCourses) {
+    redirect('/dashboard');
+  }
+
   return (
     <div className="h-screen overflow-hidden bg-background">
       {/* Desktop/Laptop View */}
       <div className="hidden lg:block h-full pl-0 ml-0">
         {children}
       </div>
-      
+
       {/* Mobile/Tablet View - Show message */}
       <div className="lg:hidden h-full flex items-center justify-center p-8">
         <div className="text-center max-w-md mx-auto">

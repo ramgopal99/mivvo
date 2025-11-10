@@ -569,7 +569,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
   return (
     <>
       <Button
-        className="bg-primary hover:bg-primary/90"
+        className="bg-primary hover:bg-primary/90 cursor-pointer"
         onClick={handleCreateClick}
       >
         <Plus className="w-4 h-4 mr-2" />
