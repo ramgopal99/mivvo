@@ -42,7 +42,6 @@ export default function CustomInterviewPage() {
   const [userCvData, setUserCvData] = useState<string | null>(null)
   const [isCreatingInterview, setIsCreatingInterview] = useState(false)
   const [deletingInterviewId, setDeletingInterviewId] = useState<string | null>(null)
-  const [closeDeleteDialog, setCloseDeleteDialog] = useState<(() => void) | null>(null)
   const createDialogRef = useRef<{ reset: () => void } | null>(null)
 
   // Fetch user's time data
@@ -183,7 +182,6 @@ export default function CustomInterviewPage() {
           customPrompt: data.customPrompt,
           generalSubType: data.generalSubType,
           cvText: data.cvText,
-          title: data.title
         }),
       })
 

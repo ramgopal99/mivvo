@@ -20,7 +20,7 @@ export default function TestPage() {
   const [selectedTopic, setSelectedTopic] = useState<SelectedTopic | null>(null);
   const [checkedItemsCount, setCheckedItemsCount] = useState<number>(0);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [, setIsLoading] = useState<boolean>(true);
   const [courseTitle, setCourseTitle] = useState<string>('Loading...');
 
   // Load courses from database on component mount

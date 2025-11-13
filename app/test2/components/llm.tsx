@@ -29,14 +29,12 @@ interface SpeechRecognition extends EventTarget {
   onend: ((event: Event) => void) | null
 }
 
-interface SpeechRecognitionConstructor {
-  new (): SpeechRecognition
-}
-
 declare global {
   interface Window {
-    SpeechRecognition: SpeechRecognitionConstructor
-    webkitSpeechRecognition: SpeechRecognitionConstructor
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    SpeechRecognition: any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    webkitSpeechRecognition: any
   }
 }
 
@@ -230,67 +228,69 @@ Remember: You are interviewing the candidate, not just chatting. Maintain a prof
       }
 
       const recognition = recognitionRef.current
-      recognition.continuous = false
-      recognition.interimResults = true
-      recognition.lang = 'en-US'
+      if (recognition) {
+        recognition.continuous = false
+        recognition.interimResults = true
+        recognition.lang = 'en-US'
 
-      recognition.onstart = () => {
-        setIsListening(true)
-        isListeningRef.current = true
-        setError('') // Clear any previous errors when starting
-      }
-
-      recognition.onresult = (event: SpeechRecognitionEvent) => {
-        const transcript = event.results[event.resultIndex][0].transcript
-        if (event.results[event.resultIndex].isFinal) {
-          setCurrentInput(transcript)
-          setError('') // Clear errors on successful recognition
-          // Use ref to avoid stale closure issues
-          handleSendMessageRef.current?.(transcript)
-        }
-      }
-
-      recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-        let errorMessage = ''
-        switch (event.error) {
-          case 'no-speech':
-            if (isConversationModeRef.current || autoListenAfterAIRef.current) {
-              console.log('No speech detected, restarting listening...')
-              setTimeout(() => {
-                if (!isListeningRef.current && startListeningRef.current) {
-                  startListeningRef.current()
-                }
-              }, 100)
-            } else {
-              console.log('No speech detected, but auto-listen not enabled')
-            }
-            return
-            break
-          case 'audio-capture':
-            errorMessage = 'Audio capture failed. Please check your microphone and try again.'
-            break
-          case 'not-allowed':
-            errorMessage = 'Microphone access denied. Please allow microphone access and try again.'
-            break
-          case 'network':
-            errorMessage = 'Network error. Check your internet connection and try again.'
-            break
-          case 'service-not-allowed':
-            errorMessage = 'Speech recognition service is not available in your region.'
-            break
-          default:
-            errorMessage = `Speech recognition error: ${event.error}`
+        recognition.onstart = () => {
+          setIsListening(true)
+          isListeningRef.current = true
+          setError('') // Clear any previous errors when starting
         }
 
-        setError(errorMessage)
-        setIsListening(false)
-        isListeningRef.current = false
-        setIsLoading(false)
-      }
+        recognition.onresult = (event: SpeechRecognitionEvent) => {
+          const transcript = event.results[event.resultIndex][0].transcript
+          if (event.results[event.resultIndex].isFinal) {
+            setCurrentInput(transcript)
+            setError('') // Clear errors on successful recognition
+            // Use ref to avoid stale closure issues
+            handleSendMessageRef.current?.(transcript)
+          }
+        }
 
-      recognition.onend = () => {
-        setIsListening(false)
-        isListeningRef.current = false
+        recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
+          let errorMessage = ''
+          switch (event.error) {
+            case 'no-speech':
+              if (isConversationModeRef.current || autoListenAfterAIRef.current) {
+                console.log('No speech detected, restarting listening...')
+                setTimeout(() => {
+                  if (!isListeningRef.current && startListeningRef.current) {
+                    startListeningRef.current()
+                  }
+                }, 100)
+              } else {
+                console.log('No speech detected, but auto-listen not enabled')
+              }
+              return
+              break
+            case 'audio-capture':
+              errorMessage = 'Audio capture failed. Please check your microphone and try again.'
+              break
+            case 'not-allowed':
+              errorMessage = 'Microphone access denied. Please allow microphone access and try again.'
+              break
+            case 'network':
+              errorMessage = 'Network error. Check your internet connection and try again.'
+              break
+            case 'service-not-allowed':
+              errorMessage = 'Speech recognition service is not available in your region.'
+              break
+            default:
+              errorMessage = `Speech recognition error: ${event.error}`
+          }
+
+          setError(errorMessage)
+          setIsListening(false)
+          isListeningRef.current = false
+          setIsLoading(false)
+        }
+
+        recognition.onend = () => {
+          setIsListening(false)
+          isListeningRef.current = false
+        }
       }
     }
 

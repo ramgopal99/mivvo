@@ -101,7 +101,15 @@ Generate the professional profile JSON now:`
  * @param profile - The structured professional profile JSON
  * @returns System prompt for OpenAI to generate a personalized interview prompt
  */
-export function generateVoiceInterviewPrompt(profile: any): string {
+export function generateVoiceInterviewPrompt(profile: {
+  professionalSummary: string
+  currentExperience: { role: string; yearsExperience: string; experienceLevel: string }
+  keySkills: { skill: string; proficiency: string }[]
+  careerGoals: string
+  targetRoles: string[]
+  recommendedInterviewDifficulty: string
+  interviewFocusAreas: string[]
+}): string {
   const {
     professionalSummary,
     currentExperience,
@@ -112,7 +120,7 @@ export function generateVoiceInterviewPrompt(profile: any): string {
     interviewFocusAreas
   } = profile
 
-  const skillsList = keySkills.map((skill: any) => `${skill.skill} (${skill.proficiency})`).join(', ')
+  const skillsList = keySkills.map((skill: { skill: string; proficiency: string }) => `${skill.skill} (${skill.proficiency})`).join(', ')
   const focusAreasList = interviewFocusAreas.join(', ')
 
   return `You are Mivvo, conducting a conversational interview for a ${currentExperience.role} position.

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
   Dialog,
@@ -11,7 +11,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 import {
   Tabs,
@@ -30,16 +29,6 @@ interface PendingTicket {
   createdAt: string
   lastUpdate: string
   description?: string
-}
-
-interface ReplyMessage {
-  id: string
-  ticketId: string
-  subject: string
-  message: string
-  from: string
-  date: string
-  isRead: boolean
 }
 
 interface CompletedTicket extends PendingTicket {
@@ -182,7 +171,7 @@ export default function TicketsPage() {
                   <div className="text-center py-12">
                     <MessageSquare className="h-16 w-16 text-gray-300 mx-auto mb-4" />
                     <h3 className="text-lg font-medium text-gray-900 mb-2">No Pending Tickets</h3>
-                    <p className="text-gray-600">You don't have any pending support tickets at the moment.</p>
+                    <p className="text-gray-600">You don&apos;t have any pending support tickets at the moment.</p>
                   </div>
                 ) : (
                   ticketsData?.pending.map((ticket: PendingTicket) => (
@@ -225,7 +214,7 @@ export default function TicketsPage() {
                   <div className="text-center py-12">
                     <CheckCircle className="h-16 w-16 text-gray-300 mx-auto mb-4" />
                     <h3 className="text-lg font-medium text-gray-900 mb-2">No Completed Tickets</h3>
-                    <p className="text-gray-600">You haven't had any tickets resolved yet.</p>
+                    <p className="text-gray-600">You haven&apos;t had any tickets resolved yet.</p>
                   </div>
                 ) : (
                   ticketsData?.completed.map((ticket: CompletedTicket) => (

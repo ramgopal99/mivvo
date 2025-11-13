@@ -334,7 +334,7 @@ export async function getRefundStatus(
  * Format: SHA256(base64EncodedPayload + /pg/v1/status/{merchantId}/{merchantTransactionId} + saltKey) + ### + saltIndex
  */
 export function verifyCallback(
-  payload: any,
+  payload: Record<string, string>,
   xVerifyHeader: string | null,
   saltKey: string,
   saltIndex: string

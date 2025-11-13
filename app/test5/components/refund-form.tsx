@@ -7,13 +7,16 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { toast } from 'sonner'
 import { Loader2, RefreshCcw } from 'lucide-react'
+import type { RefundResponse } from '../types/phonepe'
+
+type RefundData = NonNullable<RefundResponse['data']>
 
 export function RefundForm() {
   const [originalTransactionId, setOriginalTransactionId] = useState<string>('')
   const [merchantUserId, setMerchantUserId] = useState<string>('')
   const [amount, setAmount] = useState<string>('')
   const [isLoading, setIsLoading] = useState(false)
-  const [refundData, setRefundData] = useState<any>(null)
+  const [refundData, setRefundData] = useState<RefundData | null>(null)
 
   const handleRefund = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -127,7 +130,7 @@ export function RefundForm() {
               </div>
               <div>
                 <span className="text-muted-foreground">Amount:</span>
-                <p className="font-semibold">₹{(refundData.amount / 100).toFixed(2)}</p>
+                <p className="font-semibold">₹{((refundData.amount || 0) / 100).toFixed(2)}</p>
               </div>
               <div>
                 <span className="text-muted-foreground">Response Code:</span>

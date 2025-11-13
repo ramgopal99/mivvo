@@ -15,7 +15,7 @@ interface CourseFAQProps {
   stats: CourseStats;
 }
 
-export default function CourseFAQ({ courseTitle, stats }: CourseFAQProps) {
+export default function CourseFAQ({ stats }: CourseFAQProps) {
   const faqs: FAQItem[] = [
     {
       question: "What skills will I gain from this course?",

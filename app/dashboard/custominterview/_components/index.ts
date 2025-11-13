@@ -1,4 +1,4 @@
-export { CreateInterviewDialog } from "./CreateInterviewDialog"
+export { default as CreateInterviewDialog } from "./CreateInterviewDialog"
 export { InterviewCard } from "./InterviewCard"
 export type { InterviewData } from "./InterviewCard"
 export { InterviewListItem } from "./InterviewListItem"

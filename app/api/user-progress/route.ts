@@ -4,6 +4,47 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import jwt from 'jsonwebtoken';
 
+interface DecodedToken {
+  userId?: string;
+  email?: string;
+  name?: string;
+  role?: string;
+  collegeId?: string;
+  collegeName?: string;
+  type?: string;
+  iat?: number;
+  exp?: number;
+}
+
+/**
+ * Authenticate user from NextAuth session or JWT token
+ * @param request - NextRequest object
+ * @returns User ID if authenticated, null otherwise
+ */
+async function authenticateUser(request: NextRequest): Promise<string | null> {
+  // First, try NextAuth session
+  const session = await getServerSession(authOptions);
+  if (session?.user?.id) {
+    return session.user.id;
+  }
+
+  // If no NextAuth session, try JWT token from Authorization header
+  const authHeader = request.headers.get('authorization');
+  if (authHeader?.startsWith('Bearer ')) {
+    const token = authHeader.substring(7);
+    try {
+      const decoded = jwt.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret') as DecodedToken;
+      if (decoded.userId) {
+        return decoded.userId;
+      }
+    } catch (error) {
+      console.error('JWT verification failed:', error);
+    }
+  }
+
+  return null;
+}
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -14,19 +55,8 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Course ID is required' }, { status: 400 });
     }
 
-    let currentUserId = userId;
-
-    // Check for JWT token in authorization header (for college students)
-    const authHeader = request.headers.get('authorization');
-    if (authHeader?.startsWith('Bearer ')) {
-      const token = authHeader.substring(7);
-      try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any;
-        currentUserId = decoded.userId;
-      } catch (error) {
-        return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-      }
-    }
+    // Try to authenticate user
+    const currentUserId = userId || await authenticateUser(request);
 
     if (!currentUserId) {
       return NextResponse.json({ error: 'User not authenticated' }, { status: 401 });
@@ -64,19 +94,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Progress data is required' }, { status: 400 });
     }
 
-    let currentUserId = userId;
-
-    // Check for JWT token in authorization header (for college students)
-    const authHeader = request.headers.get('authorization');
-    if (authHeader?.startsWith('Bearer ')) {
-      const token = authHeader.substring(7);
-      try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any;
-        currentUserId = decoded.userId;
-      } catch (error) {
-        return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-      }
-    }
+    // Try to authenticate user
+    const currentUserId = userId || await authenticateUser(request);
 
     if (!currentUserId) {
       return NextResponse.json({ error: 'User not authenticated' }, { status: 401 });
@@ -84,7 +103,7 @@ export async function POST(request: NextRequest) {
 
     // Process each progress item
     const results = await Promise.all(
-      progressData.map(async (item: any) => {
+      progressData.map(async (item: { itemKey: string; courseId: string; isCompleted: boolean }) => {
         const { itemKey, courseId, isCompleted } = item;
 
         // Extract module, lesson/exercise info from itemKey

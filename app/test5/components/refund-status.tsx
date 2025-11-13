@@ -8,11 +8,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { toast } from 'sonner'
 import { Loader2, Search } from 'lucide-react'
+import type { RefundStatusResponse } from '../types/phonepe'
+
+type RefundData = NonNullable<RefundStatusResponse['data']>
 
 export function RefundStatus() {
   const [refundId, setRefundId] = useState<string>('')
   const [isLoading, setIsLoading] = useState(false)
-  const [refundData, setRefundData] = useState<any>(null)
+  const [refundData, setRefundData] = useState<RefundData | null>(null)
 
   const handleCheckStatus = async () => {
     if (!refundId.trim()) {
@@ -100,7 +103,7 @@ export function RefundStatus() {
               </div>
               <div>
                 <span className="text-muted-foreground">Amount:</span>
-                <p className="font-semibold">₹{(refundData.amount / 100).toFixed(2)}</p>
+                <p className="font-semibold">₹{((refundData.amount || 0) / 100).toFixed(2)}</p>
               </div>
               <div>
                 <span className="text-muted-foreground">Response Code:</span>

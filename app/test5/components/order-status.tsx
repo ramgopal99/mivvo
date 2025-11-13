@@ -8,11 +8,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { toast } from 'sonner'
 import { Loader2, Search, CheckCircle2, XCircle, Clock, AlertCircle } from 'lucide-react'
+import type { OrderStatusResponse } from '../types/phonepe'
+
+type OrderData = NonNullable<OrderStatusResponse['data']>
 
 export function OrderStatus() {
   const [orderId, setOrderId] = useState<string>('')
   const [isLoading, setIsLoading] = useState(false)
-  const [orderData, setOrderData] = useState<any>(null)
+  const [orderData, setOrderData] = useState<OrderData | null>(null)
 
   const handleCheckStatus = async () => {
     if (!orderId.trim()) {
@@ -121,7 +124,7 @@ export function OrderStatus() {
               </div>
               <div>
                 <span className="text-muted-foreground">Amount:</span>
-                <p className="font-semibold">₹{(orderData.amount / 100).toFixed(2)}</p>
+                <p className="font-semibold">₹{((orderData.amount || 0) / 100).toFixed(2)}</p>
               </div>
               <div>
                 <span className="text-muted-foreground">Response Code:</span>
@@ -132,7 +135,7 @@ export function OrderStatus() {
             {orderData.paymentInstrument && (
               <div className="pt-2 border-t">
                 <span className="text-muted-foreground text-sm">Payment Method:</span>
-                <p className="font-semibold">{orderData.paymentInstrument.type}</p>
+                <p className="font-semibold">{orderData.paymentInstrument.type || 'N/A'}</p>
                 {orderData.paymentInstrument.utr && (
                   <p className="text-xs text-muted-foreground mt-1">
                     UTR: {orderData.paymentInstrument.utr}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * Voice Profile API Route
  *
@@ -62,7 +63,7 @@ export async function POST(request: NextRequest) {
         .trim()
 
       profile = JSON.parse(cleanResponse)
-    } catch (parseError) {
+    } catch (parseError: unknown) {
       console.error('Failed to parse profile JSON:', profileResponse)
       throw new Error('Failed to generate valid profile from voice input')
     }

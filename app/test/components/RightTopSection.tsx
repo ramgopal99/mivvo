@@ -11,10 +11,6 @@ interface RightTopSectionProps {
 }
 
 // Language configurations for Piston API
-const SUPPORTED_LANGUAGES = {
-  python: { name: 'Python', version: '3.12.0' },
-};
-
 const RightTopSection = ({ onConsoleOutput }: RightTopSectionProps) => {
   const editorRef = useRef<MonacoEditorRef>(null);
   const [isRunning, setIsRunning] = useState(false);

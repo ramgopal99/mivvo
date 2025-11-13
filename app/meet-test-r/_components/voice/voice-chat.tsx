@@ -8,6 +8,10 @@ import { INTERVIEW_CONFIG, InterviewConfig, CodingInterviewConfig, VOICE_CHAT_CO
 declare global {
   interface Window {
     getCurrentCodingCode?: () => { code: string; language: string }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    SpeechRecognition: any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    webkitSpeechRecognition: any
   }
 }
 
@@ -36,16 +40,6 @@ interface SpeechRecognition extends EventTarget {
   onend: ((event: Event) => void) | null
 }
 
-interface SpeechRecognitionConstructor {
-  new (): SpeechRecognition
-}
-
-declare global {
-  interface Window {
-    SpeechRecognition: SpeechRecognitionConstructor
-    webkitSpeechRecognition: SpeechRecognitionConstructor
-  }
-}
 
 interface Message {
   id: string
@@ -439,84 +433,86 @@ export function VoiceChat({
       speechSynthesisRef.current = window.speechSynthesis
 
       const recognition = recognitionRef.current
-      recognition.continuous = true  // Changed to continuous for accumulating speech
-      recognition.interimResults = true
-      recognition.lang = 'en-US'
+      if (recognition) {
+        recognition.continuous = true  // Changed to continuous for accumulating speech
+        recognition.interimResults = true
+        recognition.lang = 'en-US'
 
-      recognition.onstart = () => {
-        setIsListening(true)
-        isListeningRef.current = true
-        setError('')
-        accumulatedSpeechRef.current = ''  // Reset accumulated speech
-      }
+        recognition.onstart = () => {
+          setIsListening(true)
+          isListeningRef.current = true
+          setError('')
+          accumulatedSpeechRef.current = ''  // Reset accumulated speech
+        }
 
-      recognition.onresult = (event: SpeechRecognitionEvent) => {
-        let finalTranscript = ''
-        let interimTranscript = ''
+        recognition.onresult = (event: SpeechRecognitionEvent) => {
+          let finalTranscript = ''
+          let interimTranscript = ''
 
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-          const transcript = event.results[i][0].transcript
-          if (event.results[i].isFinal) {
-            finalTranscript += transcript
-          } else {
-            interimTranscript += transcript
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            const transcript = event.results[i][0].transcript
+            if (event.results[i].isFinal) {
+              finalTranscript += transcript
+            } else {
+              interimTranscript += transcript
+            }
+          }
+
+          // Update live transcript with both final and interim results
+          setLiveTranscript(finalTranscript + interimTranscript)
+
+          // ANY speech result means user is actively speaking - reset all timeouts
+          clearUserResponseTimeout()
+          startSilenceTimeout()
+
+          if (event.results[event.resultIndex].isFinal) {
+            // Accumulate final results
+            if (finalTranscript.trim()) {
+              accumulatedSpeechRef.current += (accumulatedSpeechRef.current ? ' ' : '') + finalTranscript.trim()
+            }
           }
         }
 
-        // Update live transcript with both final and interim results
-        setLiveTranscript(finalTranscript + interimTranscript)
-
-        // ANY speech result means user is actively speaking - reset all timeouts
-        clearUserResponseTimeout()
-        startSilenceTimeout()
-
-        if (event.results[event.resultIndex].isFinal) {
-          // Accumulate final results
-          if (finalTranscript.trim()) {
-            accumulatedSpeechRef.current += (accumulatedSpeechRef.current ? ' ' : '') + finalTranscript.trim()
+        recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
+          let errorMessage = ''
+          switch (event.error) {
+            case 'no-speech':
+              // Don't restart automatically in continuous mode - let silence timeout handle it
+              return
+            case 'audio-capture':
+              errorMessage = 'Audio capture failed. Please check your microphone and try again.'
+              break
+            case 'not-allowed':
+              errorMessage = 'Microphone access denied. Please allow microphone access and try again.'
+              break
+            case 'network':
+              errorMessage = 'Network error. Check your internet connection and try again.'
+              break
+            case 'service-not-allowed':
+              errorMessage = 'Speech recognition service is not available in your region.'
+              break
+            default:
+              errorMessage = `Speech recognition error: ${event.error}`
           }
-        }
-      }
 
-      recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-        let errorMessage = ''
-        switch (event.error) {
-          case 'no-speech':
-            // Don't restart automatically in continuous mode - let silence timeout handle it
-            return
-          case 'audio-capture':
-            errorMessage = 'Audio capture failed. Please check your microphone and try again.'
-            break
-          case 'not-allowed':
-            errorMessage = 'Microphone access denied. Please allow microphone access and try again.'
-            break
-          case 'network':
-            errorMessage = 'Network error. Check your internet connection and try again.'
-            break
-          case 'service-not-allowed':
-            errorMessage = 'Speech recognition service is not available in your region.'
-            break
-          default:
-            errorMessage = `Speech recognition error: ${event.error}`
+          // Clear timeout on error
+          clearSilenceTimeout()
+          accumulatedSpeechRef.current = ''
+
+          setError(errorMessage)
+          setIsListening(false)
+          isListeningRef.current = false
+          setIsLoading(false)
         }
 
-        // Clear timeout on error
-        clearSilenceTimeout()
-        accumulatedSpeechRef.current = ''
-
-        setError(errorMessage)
-        setIsListening(false)
-        isListeningRef.current = false
-        setIsLoading(false)
-      }
-
-      recognition.onend = () => {
-        setIsListening(false)
-        isListeningRef.current = false
-        // Clear live transcript when recognition ends
-        setLiveTranscript('')
-        // Clear timeout when recognition ends
-        clearSilenceTimeout()
+        recognition.onend = () => {
+          setIsListening(false)
+          isListeningRef.current = false
+          // Clear live transcript when recognition ends
+          setLiveTranscript('')
+          // Clear timeout when recognition ends
+          clearSilenceTimeout()
+        }
       }
     }
 

@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { useSession } from "next-auth/react"
 import { landingConfig } from "../../config/landing-config"
-import { siteConfig } from "../../config/site"
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -87,7 +86,6 @@ export function Navbar() {
           {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex items-center space-x-6">
             {landingConfig.navigation.links
-              .filter(link => link.text !== "Courses" || siteConfig.enableCourses)
               .map((link) => (
               <Link
                 key={link.text}
@@ -153,7 +151,6 @@ export function Navbar() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white/30 backdrop-blur-sm rounded-lg mt-2 border border-gray-200/30">
               {landingConfig.navigation.links
-                .filter(link => link.text !== "Courses" || siteConfig.enableCourses)
                 .map((link) => (
                 <Link
                   key={link.text}

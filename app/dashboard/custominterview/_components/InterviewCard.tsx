@@ -12,7 +12,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog"
 import { Info, Calendar, Building, Trash2 } from "lucide-react"
-import { useState, useEffect, useRef } from "react"
+import { useState } from "react"
 
 type InterviewStatus = "completed" | "in_progress"
 
@@ -49,10 +49,9 @@ interface InterviewCardProps {
   onStartInterview?: (interview: InterviewData) => void
   onDeleteInterview?: (interview: InterviewData) => void
   isDeleting?: boolean
-  onCloseDeleteDialog?: () => void
 }
 
-export function InterviewCard({ interview, onStartInterview, onDeleteInterview, isDeleting = false, onCloseDeleteDialog }: InterviewCardProps) {
+export function InterviewCard({ interview, onStartInterview, onDeleteInterview, isDeleting = false }: InterviewCardProps) {
   const router = useRouter()
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 

@@ -37,14 +37,12 @@ interface SpeechRecognition extends EventTarget {
   onend: ((event: Event) => void) | null
 }
 
-interface SpeechRecognitionConstructor {
-  new (): SpeechRecognition
-}
-
 declare global {
   interface Window {
-    SpeechRecognition: SpeechRecognitionConstructor
-    webkitSpeechRecognition: SpeechRecognitionConstructor
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    SpeechRecognition: any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    webkitSpeechRecognition: any
   }
 }
 
@@ -480,92 +478,94 @@ export function VoiceChat({
       recognitionRef.current = new SpeechRecognition()
 
       const recognition = recognitionRef.current
-      recognition.continuous = true  // Changed to continuous for accumulating speech
-      recognition.interimResults = true
-      recognition.lang = 'en-US'
+      if (recognition) {
+        recognition.continuous = true  // Changed to continuous for accumulating speech
+        recognition.interimResults = true
+        recognition.lang = 'en-US'
 
-      recognition.onstart = () => {
-        setIsListening(true)
-        isListeningRef.current = true
-        setError('')
-        accumulatedSpeechRef.current = ''  // Reset accumulated speech
-      }
-
-      recognition.onresult = (event: SpeechRecognitionEvent) => {
-        let finalTranscript = ''
-        let interimTranscript = ''
-
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-          const transcript = event.results[i][0].transcript
-          if (event.results[i].isFinal) {
-            finalTranscript += transcript
-          } else {
-            interimTranscript += transcript
-          }
+        recognition.onstart = () => {
+          setIsListening(true)
+          isListeningRef.current = true
+          setError('')
+          accumulatedSpeechRef.current = ''  // Reset accumulated speech
         }
 
-        // Update live transcript with both final and interim results
-        setLiveTranscript(finalTranscript + interimTranscript)
+        recognition.onresult = (event: SpeechRecognitionEvent) => {
+          let finalTranscript = ''
+          let interimTranscript = ''
 
-        // ANY speech result means user is actively speaking - reset all timeouts
-        clearUserResponseTimeout()
-        startSilenceTimeout()
-
-        if (event.results[event.resultIndex].isFinal) {
-          // Accumulate final results
-          if (finalTranscript.trim()) {
-            accumulatedSpeechRef.current += (accumulatedSpeechRef.current ? ' ' : '') + finalTranscript.trim()
-          }
-        }
-      }
-
-      recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-        let errorMessage = ''
-
-        switch (event.error) {
-          case 'no-speech':
-            // Don't restart automatically in continuous mode - let silence timeout handle it
-            return
-          case 'audio-capture':
-            errorMessage = 'Audio capture failed. Please check your microphone and try again.'
-            break
-          case 'not-allowed':
-            const browser = detectBrowser()
-            if (browser === 'chrome') {
-              errorMessage = 'Microphone access denied in Chrome. Click the camera/microphone icon in the address bar and allow access.'
-            } else if (browser === 'edge') {
-              errorMessage = 'Microphone access denied in Edge. Click the lock icon in the address bar and allow microphone access.'
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            const transcript = event.results[i][0].transcript
+            if (event.results[i].isFinal) {
+              finalTranscript += transcript
             } else {
-              errorMessage = 'Microphone access denied. Please allow microphone access in your browser settings.'
+              interimTranscript += transcript
             }
-            break
-          case 'network':
-            errorMessage = 'Network error with speech recognition. Please check your internet connection.'
-            break
-          case 'service-not-allowed':
-            errorMessage = 'Speech recognition service unavailable. Please try again later.'
-            break
-          default:
-            errorMessage = `Speech recognition error: ${event.error}. Please try again.`
+          }
+
+          // Update live transcript with both final and interim results
+          setLiveTranscript(finalTranscript + interimTranscript)
+
+          // ANY speech result means user is actively speaking - reset all timeouts
+          clearUserResponseTimeout()
+          startSilenceTimeout()
+
+          if (event.results[event.resultIndex].isFinal) {
+            // Accumulate final results
+            if (finalTranscript.trim()) {
+              accumulatedSpeechRef.current += (accumulatedSpeechRef.current ? ' ' : '') + finalTranscript.trim()
+            }
+          }
         }
 
-        // Clear timeout on error
-        clearSilenceTimeout()
-        accumulatedSpeechRef.current = ''
+        recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
+          let errorMessage = ''
 
-        setError(errorMessage)
-        setIsListening(false)
-        isListeningRef.current = false
-        setIsLoading(false)
-      }
+          switch (event.error) {
+            case 'no-speech':
+              // Don't restart automatically in continuous mode - let silence timeout handle it
+              return
+            case 'audio-capture':
+              errorMessage = 'Audio capture failed. Please check your microphone and try again.'
+              break
+            case 'not-allowed':
+              const browser = detectBrowser()
+              if (browser === 'chrome') {
+                errorMessage = 'Microphone access denied in Chrome. Click the camera/microphone icon in the address bar and allow access.'
+              } else if (browser === 'edge') {
+                errorMessage = 'Microphone access denied in Edge. Click the lock icon in the address bar and allow microphone access.'
+              } else {
+                errorMessage = 'Microphone access denied. Please allow microphone access in your browser settings.'
+              }
+              break
+            case 'network':
+              errorMessage = 'Network error with speech recognition. Please check your internet connection.'
+              break
+            case 'service-not-allowed':
+              errorMessage = 'Speech recognition service unavailable. Please try again later.'
+              break
+            default:
+              errorMessage = `Speech recognition error: ${event.error}. Please try again.`
+          }
 
-      recognition.onend = () => {
-        setIsListening(false)
-        isListeningRef.current = false
-        // Clear live transcript when recognition ends
-        setLiveTranscript('')
-        // Clear timeout when recognition ends
-        clearSilenceTimeout()
+          // Clear timeout on error
+          clearSilenceTimeout()
+          accumulatedSpeechRef.current = ''
+
+          setError(errorMessage)
+          setIsListening(false)
+          isListeningRef.current = false
+          setIsLoading(false)
+        }
+
+        recognition.onend = () => {
+          setIsListening(false)
+          isListeningRef.current = false
+          // Clear live transcript when recognition ends
+          setLiveTranscript('')
+          // Clear timeout when recognition ends
+          clearSilenceTimeout()
+        }
       }
     }
 
