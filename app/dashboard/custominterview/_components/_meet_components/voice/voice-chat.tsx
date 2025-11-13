@@ -734,14 +734,14 @@ export function VoiceChat({
         </div>
       )}
 
-      {isLoading && (
+      {/* {isLoading && (
         <div className="absolute bottom-4 left-4">
           <div className="flex items-center gap-2 bg-blue-500/90 text-white px-3 py-1.5 rounded-full text-xs font-medium">
             <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
             <span>Interviewer is thinking...</span>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Error Display */}
       {error && (
