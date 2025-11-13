@@ -97,8 +97,6 @@ export default function PrivacyPage() {
 
             <div className="bg-gray-50 p-6 rounded-lg">
               <p className="text-gray-700"><strong>Email:</strong> {privacyConfig.contact.email}</p>
-              <p className="text-gray-700"><strong>Address:</strong> {privacyConfig.contact.address}</p>
-              <p className="text-gray-700"><strong>Phone:</strong> {privacyConfig.contact.phone}</p>
             </div>
           </CardContent>
         </Card>

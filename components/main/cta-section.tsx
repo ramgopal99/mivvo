@@ -32,34 +32,35 @@ export function CtaSection() {
             </svg>
           </div>
 
-          <div className="relative z-10 px-8 py-16 text-center">
+          <div className="relative z-10 px-4 sm:px-6 md:px-8 py-12 sm:py-16 text-center">
             {/* Main Content */}
             <div className="space-y-8">
               {/* Headline */}
               <div className="space-y-4">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight whitespace-nowrap">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
                   {landingConfig.cta.headline.main} {landingConfig.cta.headline.sub}
                 </h2>
-                <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed px-2">
                   {landingConfig.cta.description}
                 </p>
               </div>
 
               {/* CTA Button */}
               <div className="pt-4">
-                <Link href="/auth/signin">
+                <Link href="/auth/signin" className="inline-block">
                   <Button
                     size="lg"
-                    className="px-8 py-4 text-lg font-semibold bg-white text-primary hover:bg-white/90 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 rounded-full"
+                    className="px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold bg-white text-primary hover:bg-white/90 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 rounded-full"
                   >
-                    {landingConfig.cta.button.text}
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <span className="sm:hidden">{landingConfig.cta.button.mobileText}</span>
+                    <span className="hidden sm:inline">{landingConfig.cta.button.text}</span>
+                    <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
                   </Button>
                 </Link>
               </div>
 
               {/* Trust Indicators */}
-              <div className="flex flex-wrap items-center justify-center gap-8 pt-8 text-white/80">
+              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 pt-6 sm:pt-8 text-white/80">
                 {landingConfig.cta.trustIndicators.map((indicator, index) => {
                   const IconComponent = iconMap[indicator.icon as keyof typeof iconMap]
                   return (

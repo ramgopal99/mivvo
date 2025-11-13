@@ -3,12 +3,12 @@ export const privacyConfig = {
     title: "Privacy Policy",
     description: "Your privacy is important to us. Learn how we collect, use, and protect your personal information."
   },
-  lastUpdated: "January 15, 2024",
+  lastUpdated: "November 2025",
   introduction: {
     title: "Introduction",
     content: [
       "At Mivvo, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our AI-powered mock interview platform.",
-      "By using our service, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, please do not use our service."
+      "By using our service, you agree to the collection and use of information in accordance with this policy."
     ]
   },
   sections: [
@@ -40,10 +40,10 @@ export const privacyConfig = {
         {
           title: "Technical Information",
           content: [
-            "IP address and location data",
-            "Cookies and similar tracking technologies",
-            "Log files and system information",
-            "Error reports and performance metrics"
+            "IP address and general location data",
+            "Browser type and device information",
+            "Session data and authentication tokens",
+            "Platform usage logs for error tracking"
           ]
         }
       ]
@@ -72,10 +72,10 @@ export const privacyConfig = {
         {
           title: "Analytics and Improvement",
           content: [
-            "Analyze usage patterns to improve our AI models",
-            "Develop new features and enhance existing ones",
-            "Conduct research and development",
-            "Ensure platform security and prevent fraud"
+            "Analyze usage patterns to improve our AI interview models",
+            "Develop new features and enhance existing functionality",
+            "Monitor platform performance and fix technical issues",
+            "Ensure platform security and prevent unauthorized access"
           ]
         }
       ]
@@ -83,13 +83,14 @@ export const privacyConfig = {
     {
       title: "Data Security",
       content: [
-        "We implement industry-standard security measures to protect your personal information:"
+        "We implement security measures to protect your personal information:"
       ],
       listItems: [
-        "Encryption: All data is encrypted in transit and at rest using AES-256 encryption",
-        "Access Controls: Strict access controls limit who can view your personal information",
-        "Regular Audits: We conduct regular security audits and vulnerability assessments",
-        "Secure Infrastructure: Our platform is hosted on secure, SOC 2 compliant cloud infrastructure",
+        "Database Security: Your data is stored securely with secure database access controls",
+        "Application Security: Built with security best practices and built-in security features",
+        "Server Security: Hosted on secure infrastructure with regular security updates",
+        "Access Controls: Authentication and authorization controls to limit data access",
+        "Data Encryption: Sensitive data is encrypted in transit using HTTPS/TLS protocols",
         "Data Minimization: We only collect and retain data necessary for our services"
       ]
     },
@@ -113,28 +114,26 @@ export const privacyConfig = {
     {
       title: "Data Retention",
       content: [
-        "We retain your personal information only as long as necessary to provide our services and fulfill the purposes outlined in this Privacy Policy:"
+        "We retain your personal information only as long as necessary to provide our services:"
       ],
       listItems: [
-        "Account Data: Retained while your account is active and for 2 years after closure",
-        "Interview Data: Retained for 1 year to provide historical performance tracking",
-        "Analytics Data: Aggregated and anonymized data may be retained indefinitely",
-        "Legal Requirements: Some data may be retained longer to comply with legal obligations"
+        "Account Data: Retained while your account is active",
+        "Interview Data: Retained to provide performance tracking and analysis",
+        "Session Data: Stored securely in our database",
+        "Deletion: You can request deletion of your data at any time"
       ]
     },
     {
       title: "Third-Party Services",
       content: [
-        "We may use third-party services to enhance our platform functionality:"
+        "We use the following services to operate our platform:"
       ],
       listItems: [
-        "Cloud Storage: Secure cloud storage for data processing and backup",
-        "Analytics: Anonymous usage analytics to improve our services",
-        "Communication: Email and notification services",
-        "AI Services: Third-party AI models for interview analysis"
+        "Database: Secure data storage services",
+        "Hosting: Secure application hosting infrastructure"
       ],
       additionalContent: [
-        "All third-party services are carefully vetted and required to maintain the same level of data protection as outlined in this Privacy Policy."
+        "All third-party services are selected based on their security practices and data protection standards."
       ]
     },
     {
@@ -148,8 +147,6 @@ export const privacyConfig = {
   contact: {
     title: "Contact Us",
     description: "If you have any questions about this Privacy Policy or our data practices, please contact us:",
-    email: "privacy@mivvo.com",
-    address: "123 Tech Street, San Francisco, CA 94105",
-    phone: "+1 (555) 123-4567"
+    email: "hello@mivvo.com"
   }
 }

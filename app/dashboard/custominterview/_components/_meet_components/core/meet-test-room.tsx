@@ -1132,7 +1132,7 @@ export function MeetTestRoom({
           {(isVoiceChatActive || isCodingVoiceChatActive) && (
             <div className="absolute top-4 right-4 z-20">
               <div className="bg-blue-600/90 text-white px-3 py-1.5 rounded-lg text-sm font-medium shadow-lg border border-white/20">
-                {isCodingInterviewActive ? "Coding Interview Active" : "Let AI complete"}
+                {isCodingInterviewActive ? "Coding Interview Active" : "Let Interviewer complete"}
               </div>
             </div>
           )}

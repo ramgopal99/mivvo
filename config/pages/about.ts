@@ -1,26 +1,26 @@
 export const aboutConfig = {
   hero: {
     title: "About Mivvo",
-    subtitle: "We're revolutionizing interview preparation with AI-powered mock interviews that help candidates practice, improve, and land their dream jobs.",
+    subtitle: "We're building an AI-powered mock interview platform to help candidates practice, improve, and land their dream jobs.",
     badges: [
       "AI-Powered",
       "Real-time Feedback",
-      "Industry Leading"
+      "Startup"
     ]
   },
   mission: {
     title: "Our Mission",
     description: "We believe that everyone deserves access to high-quality interview preparation. Our mission is to democratize interview success by providing AI-powered mock interviews that are accessible, affordable, and effective.",
-    additionalContent: "Through advanced natural language processing and machine learning, we create realistic interview experiences that help candidates build confidence, improve their skills, and ultimately succeed in their career goals.",
+    additionalContent: "We're building a platform to create realistic interview experiences that help candidates build confidence, improve their skills, and ultimately succeed in their career goals.",
     stats: [
-      "10,000+ successful interviews conducted",
-      "85% success rate for our users",
-      "Trusted by 50+ companies worldwide"
+      "AI-powered interview practice",
+      "Real-time performance feedback",
+      "Personalized improvement recommendations"
     ],
     statsDisplay: {
-      number: "10K+",
+      number: "0",
       label: "Mock Interviews",
-      sublabel: "and counting..."
+      sublabel: "We're just getting started!"
     }
   },
   values: {
@@ -51,7 +51,7 @@ export const aboutConfig = {
   },
   team: {
     title: "Meet Our Team",
-    subtitle: "The passionate people behind Mivvo's success",
+    subtitle: "The passionate people building Mivvo",
     members: [
       {
         initials: "RB",
@@ -69,7 +69,7 @@ export const aboutConfig = {
   },
   cta: {
     title: "Ready to Start Your Journey?",
-    description: "Join thousands of successful candidates who have improved their interview skills with Mivvo.",
+    description: "Be among the first to experience AI-powered interview preparation with Mivvo.",
     buttonText: "Get Started for Free",
     buttonHref: "/auth/signin"
   }

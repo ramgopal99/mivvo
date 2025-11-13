@@ -12,6 +12,7 @@ export const landingConfig = {
     },
     cta: {
       text: "Start your first mock interview",
+      mobileText: "Start Interview",
       href: "/auth/signup"
     },
     additionalInfo: {
@@ -26,8 +27,8 @@ export const landingConfig = {
     links: [
       { text: "Features", href: "/#features" },
       { text: "Pricing", href: "/#pricing" },
-      { text: "Courses", href: "/courses" },
-      { text: "Blog", href: "/blog" },
+      // { text: "Courses", href: "/courses" },
+      // { text: "Blog", href: "/blog" },
       { text: "About", href: "/about" },
     ],
     actions: [
@@ -142,6 +143,7 @@ export const landingConfig = {
     ],
     cta: {
       text: "Start Free Trial for Your Institution",
+      mobileText: "Start Free Trial",
       href: "/auth/signup"
     },
     mockInterface: {
@@ -199,7 +201,8 @@ export const landingConfig = {
     },
     description: "Start practicing with AI and get detailed feedback delivered straight to your dashboard.",
     button: {
-      text: "Get your first 30 min free",
+      text: "Get your first 180 credits free",
+      mobileText: "Get 180 credits free",
       href: "/auth/signup"
     },
     trustIndicators: [
@@ -323,7 +326,7 @@ export const landingConfig = {
       links: [
         { text: "Features", href: "/#features" },
         { text: "Pricing", href: "/#pricing" },
-        { text: "Blog", href: "/blog" },
+        // { text: "Blog", href: "/blog" },
         { text: "About Us", href: "/about" }
       ]
     },
@@ -336,8 +339,7 @@ export const landingConfig = {
     },
     social: [
       { name: "LinkedIn", href: "#", icon: "LinkedIn" },
-      { name: "Twitter", href: "#", icon: "Twitter" },
-      { name: "GitHub", href: "#", icon: "GitHub" }
+      { name: "Instagram", href: "#", icon: "Instagram" }
     ],
     legal: [
       { text: "Privacy Policy", href: "/privacy" },
@@ -348,18 +350,18 @@ export const landingConfig = {
     header: {
       title: "Simple pricing for all your needs",
       subtitle: "Choose the plan that's right for you and start practicing today.",
-      additionalInfo: "30 min free • No credit card required"
+      additionalInfo: "180 credits free • No credit card required"
     },
     plans: [
       {
         name: "Free",
         isPopular: false,
-        price: "30 min",
+        price: "180",
         currency: "",
-        billingPeriod: "free",
+        billingPeriod: "credits",
         description: "Perfect for getting started with AI mock interviews.",
         features: [
-          "30 minutes free interview time",
+          "180 credits free",
           "Basic AI feedback",
           "Performance summary",
           "Email support",
@@ -376,17 +378,15 @@ export const landingConfig = {
         isPopular: true,
         price: "249",
         currency: "₹",
-        billingPeriod: "/6+4 hr",
+        billingPeriod: "/4.3K credits",
         description: "Best for serious job seekers and career changers.",
         features: [
-          "6+4 hr total interview time",
+          "4,320 credits total",
           "Advanced AI analysis",
           "Detailed performance reports",
           "Company-specific practice",
-          "Priority support",
-          "Interview preparation tips",
-          "Progress tracking",
-          "Resume optimization tips"
+          "Make your own interview",
+          "Priority support"
         ],
         cta: {
           text: "Start Pro Trial",
@@ -406,10 +406,7 @@ export const landingConfig = {
           "Bulk user management",
           "Custom interview scenarios",
           "Advanced analytics dashboard",
-          "Dedicated account manager",
-          "API access",
-          "Custom branding",
-          "SLA guarantee"
+          "Dedicated account manager"
         ],
         cta: {
           text: "Contact Sales",

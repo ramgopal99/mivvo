@@ -59,19 +59,19 @@ export function TechnicalCodingBox() {
   }
 
   return (
-    <div className="col-span-3 lg:col-span-1 group relative flex flex-col justify-between overflow-hidden rounded-lg bg-white shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
+    <div className="col-span-1 sm:col-span-1 lg:col-span-1 group relative flex flex-col justify-between overflow-hidden rounded-lg bg-white shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white" />
-      <div className="relative p-6 flex flex-col h-full">
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">
+      <div className="relative p-4 sm:p-5 md:p-6 flex flex-col h-full">
+        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3 leading-tight break-words">
           {featureData.title}
         </h3>
-        <p className="text-gray-600 mb-4 text-sm">
+        <p className="text-gray-600 mb-3 sm:mb-4 text-xs sm:text-sm leading-relaxed break-words">
           {featureData.description}
         </p>
 
-        <div className="flex-1 bg-gray-900 border border-gray-700 rounded-lg p-3 font-mono text-xs min-h-[100px] flex flex-col justify-start">
+        <div className="flex-1 bg-gray-900 border border-gray-700 rounded-lg p-2 sm:p-3 font-mono text-[10px] sm:text-xs min-h-[80px] sm:min-h-[100px] flex flex-col justify-start overflow-x-auto">
           {displayedCode.map((line, i) => (
-            <div key={i} className="text-green-400 leading-tight">
+            <div key={i} className="text-green-400 leading-tight whitespace-nowrap">
               {renderLineWithVisibleSpaces(line)}
               {i === currentLine && currentChar < codeLines[currentLine].length && (
                 <span className="inline-block w-1 h-3 bg-green-400 animate-pulse ml-1" />

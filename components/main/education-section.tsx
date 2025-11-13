@@ -25,24 +25,26 @@ export function EducationSection() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="flex justify-center mb-4">
-            <SegmentedButton
-              options={[...landingConfig.education.header.tabOptions]}
-              value={selectedTag}
-              onChange={setSelectedTag}
-              className="border-primary/20 shadow-lg hover:shadow-xl transition-shadow duration-300"
-            />
+          <div className="flex justify-center mb-4 px-2 w-full">
+            <div className="w-full sm:w-auto max-w-full flex justify-center">
+              <SegmentedButton
+                options={[...landingConfig.education.header.tabOptions]}
+                value={selectedTag}
+                onChange={setSelectedTag}
+                className="border-primary/20 shadow-lg hover:shadow-xl transition-shadow duration-300 w-full sm:w-auto max-w-full"
+              />
+            </div>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
             {landingConfig.education.header.title}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed px-2">
             {landingConfig.education.header.description}
           </p>
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
           {/* Left Side - Content */}
           <div className="space-y-6">
             {/* Features List */}
@@ -67,9 +69,10 @@ export function EducationSection() {
             <div className="pt-2">
               <Button 
                 size="lg" 
-                className="px-6 py-3 text-base font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
-                {landingConfig.education.cta.text}
+                <span className="sm:hidden">{landingConfig.education.cta.mobileText}</span>
+                <span className="hidden sm:inline">{landingConfig.education.cta.text}</span>
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
@@ -91,18 +94,18 @@ export function EducationSection() {
                 </div>
 
                 {/* Mock Content */}
-                <div className="p-4 bg-white">
+                <div className="p-3 sm:p-4 bg-white">
                   {/* Header */}
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-3 sm:mb-4 gap-2">
                     <div>
-                      <h3 className="text-lg font-bold text-gray-900">{landingConfig.education.mockInterface.title}</h3>
-                      <p className="text-sm text-gray-600">{landingConfig.education.mockInterface.subtitle}</p>
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900">{landingConfig.education.mockInterface.title}</h3>
+                      <p className="text-xs sm:text-sm text-gray-600">{landingConfig.education.mockInterface.subtitle}</p>
                     </div>
-                    <Badge className="bg-primary text-white">{landingConfig.education.mockInterface.status}</Badge>
+                    <Badge className="bg-primary text-white text-xs">{landingConfig.education.mockInterface.status}</Badge>
                   </div>
 
                   {/* Stats Cards */}
-                  <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-4">
                     {landingConfig.education.mockInterface.stats.map((stat, index) => {
                       const IconComponent = iconMap[stat.icon as keyof typeof iconMap]
                       return (

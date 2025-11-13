@@ -17,7 +17,7 @@ export function HeroSection() {
   ]
 
   return (
-    <div className="relative h-[170vh] overflow-hidden">
+    <div className="relative min-h-[120vh] sm:min-h-[150vh] lg:h-[170vh] overflow-hidden w-full">
       {/* Background with uniform color and fading box pattern */}
       <div className="absolute inset-0 bg-pink-50">
         {/* Fading box pattern overlay */}
@@ -36,60 +36,55 @@ export function HeroSection() {
       </div>
 
       {/* Content Section - First 70% */}
-      <div className="relative z-10 h-[70vh] flex items-center justify-center pt-16">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 min-h-[70vh] h-auto sm:h-[70vh] flex items-center justify-center pt-24 sm:pt-20 md:pt-16 pb-8 sm:pb-0">
+        <div className="w-full max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center overflow-hidden">
           {/* New Tag */}
-          <div className="flex justify-center mb-6">
-            <SegmentedButton
-              options={[...tagOptions]}
-              value={selectedTag}
-              onChange={setSelectedTag}
-              className="border-red-400/30 shadow-lg hover:shadow-xl transition-shadow duration-300"
-            />
+          <div className="flex justify-center mb-4 sm:mb-6 px-2 w-full">
+            <div className="w-full sm:w-auto max-w-full flex justify-center">
+              <SegmentedButton
+                options={[...tagOptions]}
+                value={selectedTag}
+                onChange={setSelectedTag}
+                className="border-red-400/30 shadow-lg hover:shadow-xl transition-shadow duration-300 w-full sm:w-auto max-w-full text-xs sm:text-sm"
+              />
+            </div>
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 leading-tight whitespace-nowrap">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight break-words px-2">
             {landingConfig.hero.headline.text}
           </h1>
 
           {/* Description */}
-          <p className="text-base md:text-lg text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-3 break-words">
             Practice with our advanced AI interviewer and get instant feedback to improve your performance.
           </p>
 
           {/* CTA Button */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href={landingConfig.hero.cta.href}>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-3 w-full">
+            <Link href={landingConfig.hero.cta.href} className="w-full sm:w-auto max-w-full">
               <Button
                 size="lg"
-                className="px-8 py-4 text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="w-full sm:w-auto px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
-                {landingConfig.hero.cta.text}
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <span className="sm:hidden">{landingConfig.hero.cta.mobileText}</span>
+                <span className="hidden sm:inline whitespace-nowrap">{landingConfig.hero.cta.text}</span>
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
               </Button>
             </Link>
           </div>
 
-          {/* Product Launch Message */}
-          <div className="mt-6 mb-4">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 rounded-full text-sm font-medium text-primary">
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-              This is our first product—soon we&apos;ll launch more amazing tools!
-            </div>
-          </div>
-
           {/* Additional Info */}
-          <div className="mt-2 text-sm text-gray-500">
+          <div className="mt-4 sm:mt-6 text-xs sm:text-sm text-gray-500 px-3 break-words">
             <p>{landingConfig.hero.additionalInfo.text}</p>
           </div>
         </div>
       </div>
 
       {/* Safari Section - Next 100% */}
-      <div className="relative z-10 h-[100vh] flex items-start justify-center pt-4">
+      <div className="relative z-10 min-h-[50vh] sm:min-h-[70vh] lg:h-[100vh] flex items-start justify-center pt-4 pb-8 sm:pb-0">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="scale-100">
+          <div className="scale-90 sm:scale-100">
             <SafariDemo />
           </div>
         </div>
