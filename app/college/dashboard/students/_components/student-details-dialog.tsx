@@ -17,6 +17,7 @@ interface Student {
   collegeName: string | null
   status: string
   avatar: string | null
+  cv?: string | null
   firstName?: string
   lastName?: string
   phone?: string
@@ -57,6 +58,30 @@ function DialogHeaderComponent({ student }: DialogHeaderProps) {
 function DialogContentComponent({ student }: DialogContentProps) {
   const [copiedLinks, setCopiedLinks] = useState<{[key: string]: boolean}>({})
   const [showLinks, setShowLinks] = useState<{[key: string]: boolean}>({})
+  const [showCV, setShowCV] = useState(false)
+
+  // Function to format CV text with proper HTML
+  const formatCVText = (text: string) => {
+    return text
+      // Convert section headers (lines that are all caps or end with **)
+      .replace(/^([A-Z][A-Z\s]+)$/gm, '<h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">$1</h3>')
+      // Convert **bold** to <strong>
+      .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')
+      // Convert - bullet points to proper list items with better formatting
+      .split('\n')
+      .map(line => {
+        const trimmed = line.trim()
+        if (trimmed.startsWith('- ')) {
+          return `<div class="ml-4 mb-1">• ${trimmed.substring(2)}</div>`
+        }
+        // Empty lines become line breaks
+        if (trimmed === '') {
+          return '<br/>'
+        }
+        return `<div class="mb-1">${trimmed}</div>`
+      })
+      .join('')
+  }
 
   const copyToClipboard = async (text: string, key: string) => {
     try {
@@ -138,6 +163,39 @@ function DialogContentComponent({ student }: DialogContentProps) {
         <label className="text-sm font-medium text-muted-foreground">Career Goals</label>
         <p className="text-sm">{student.careerGoals || 'N/A'}</p>
                   </div>
+
+      {/* CV Information */}
+      <div>
+        <label className="text-sm font-medium text-muted-foreground">CV/Resume</label>
+        <div className="mt-2">
+          {student.cv ? (
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-green-600 font-medium">✓ CV Available</span>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => setShowCV(!showCV)}
+                  className="h-8 px-3"
+                >
+                  <Eye className="w-3 h-3 mr-2" />
+                  {showCV ? 'Hide CV' : 'Show CV'}
+                </Button>
+              </div>
+              {showCV && (
+                <div className="border rounded-lg p-4 bg-gray-50 max-h-96 overflow-y-auto">
+                  <div
+                    className="text-sm text-gray-800 font-sans leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: formatCVText(student.cv) }}
+                  />
+                </div>
+              )}
+            </div>
+          ) : (
+            <span className="text-sm text-muted-foreground">No CV uploaded</span>
+          )}
+        </div>
+      </div>
 
       {/* Social Links */}
       <div className="grid grid-cols-1 gap-4">
@@ -259,7 +317,7 @@ function StudentDetailsDialog({ student, open, onOpenChange }: StudentDetailsDia
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <StudentDetailsDialog.Header student={student} />
         <StudentDetailsDialog.Content student={student} />
       </DialogContent>

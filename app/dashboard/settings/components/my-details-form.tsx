@@ -1,11 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { FileText, X } from "lucide-react"
 import { updateUserDetails } from "../actions"
 import { UserData } from "../types"
 
@@ -19,6 +20,13 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
   const [message, setMessage] = useState("")
   const [hasChanges, setHasChanges] = useState(false)
 
+  // CV upload state
+  const [cvFile, setCvFile] = useState<File | null>(null)
+  const [isExtractingCV, setIsExtractingCV] = useState(false)
+  const [showCompressedCV, setShowCompressedCV] = useState(false)
+  const [showUploadInput, setShowUploadInput] = useState(!userData?.cv) // Only show if no CV exists
+  const cvInputRef = useRef<HTMLInputElement>(null)
+
   // Form state
   const [formData, setFormData] = useState({
     firstName: userData?.firstName || "",
@@ -29,6 +37,7 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
     company: userData?.company || "",
     location: userData?.location || "",
     bio: userData?.bio || "",
+    cv: userData?.cv || "",
     careerGoals: userData?.careerGoals || "",
     linkedIn: userData?.linkedIn || "",
     github: userData?.github || "",
@@ -50,6 +59,7 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
       company: userData?.company || "",
       location: userData?.location || "",
       bio: userData?.bio || "",
+      cv: userData?.cv || "",
       careerGoals: userData?.careerGoals || "",
       linkedIn: userData?.linkedIn || "",
       github: userData?.github || "",
@@ -60,6 +70,11 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
       year: userData?.year || ""
     })
   }, [userData])
+
+  // Update upload input visibility when userData.cv changes
+  useEffect(() => {
+    setShowUploadInput(!userData?.cv) // Hide upload input if CV exists
+  }, [userData?.cv])
 
   // Track changes
   useEffect(() => {
@@ -72,6 +87,7 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
       company: userData?.company || "",
       location: userData?.location || "",
       bio: userData?.bio || "",
+      cv: userData?.cv || "",
       careerGoals: userData?.careerGoals || "",
       linkedIn: userData?.linkedIn || "",
       github: userData?.github || "",
@@ -93,6 +109,112 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
       ...prev,
       [field]: value
     }))
+  }
+
+  // Handle CV file selection
+  const handleCvFileSelect = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files?.[0]
+    if (!selectedFile) return
+
+    // Validate file type
+    const allowedTypes = [
+      'application/pdf',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    ]
+
+    if (!allowedTypes.includes(selectedFile.type)) {
+      import('sonner').then(({ toast }) => {
+        toast.error('Please select a PDF or DOCX file only.')
+      })
+      return
+    }
+
+    // Validate file size (max 10MB)
+    if (selectedFile.size > 10 * 1024 * 1024) {
+      import('sonner').then(({ toast }) => {
+        toast.error('File size must be less than 10MB.')
+      })
+      return
+    }
+
+    setCvFile(selectedFile)
+    setIsExtractingCV(true)
+
+    try {
+      const formData = new FormData()
+      formData.append('file', selectedFile)
+
+      const response = await fetch('/api/extract-file', {
+        method: 'POST',
+        body: formData,
+      })
+
+      const result = await response.json()
+
+      if (response.ok && result.success) {
+        const extractedText = result.data.extractedText
+        handleInputChange("cv", extractedText)
+
+        // Compress the CV text
+        try {
+          const compressionResponse = await fetch('/api/compress-cv', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ cvText: extractedText }),
+          })
+
+          const compressionResult = await compressionResponse.json()
+
+          if (compressionResponse.ok && compressionResult.success) {
+            handleInputChange("cv", compressionResult.data.compressedCV)
+            import('sonner').then(({ toast }) => {
+              toast.success(`CV extracted and compressed successfully (${compressionResult.data.compressionRatio}% reduction)`)
+            })
+          } else {
+            // Still save the original CV even if compression fails
+            import('sonner').then(({ toast }) => {
+              toast.success('CV extracted successfully (compression failed, but CV saved)')
+            })
+          }
+        } catch (compressionError) {
+          console.error('CV compression error:', compressionError)
+          // Still save the original CV even if compression fails
+          import('sonner').then(({ toast }) => {
+            toast.success('CV extracted successfully (compression failed, but CV saved)')
+          })
+        }
+      } else {
+        throw new Error(result.message || 'Failed to extract text from CV')
+      }
+    } catch (error) {
+      console.error('CV extraction error:', error)
+      import('sonner').then(({ toast }) => {
+        toast.error('Failed to extract text from CV. Please try again.')
+      })
+      setCvFile(null)
+    } finally {
+      setIsExtractingCV(false)
+    }
+  }
+
+  // Clear CV file
+  const clearCvFile = () => {
+    setCvFile(null)
+    handleInputChange("cv", "")
+    setShowUploadInput(true) // Show upload input when CV is cleared
+    if (cvInputRef.current) {
+      cvInputRef.current.value = ''
+    }
+  }
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return '0 Bytes'
+    const k = 1024
+    const sizes = ['Bytes', 'KB', 'MB']
+    const i = Math.floor(Math.log(bytes) / Math.log(k))
+    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i]
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -284,6 +406,116 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
                 onChange={(e) => handleInputChange("github", e.target.value)}
               />
             </div>
+          </CardContent>
+        </Card>
+
+        {/* Hidden input for CV data */}
+        <input type="hidden" name="cv" value={formData.cv} />
+
+        {/* CV Upload Section */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Resume/CV</CardTitle>
+            <CardDescription>
+              Upload your resume to enhance your profile. This will help personalize your interview experiences.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="cv-upload">Upload CV/Resume</Label>
+                {formData.cv && !showUploadInput && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowUploadInput(true)}
+                    className="text-xs"
+                  >
+                    Change CV
+                  </Button>
+                )}
+              </div>
+              {showUploadInput && (
+                <div className="space-y-3">
+                  <Input
+                    id="cv-upload"
+                    ref={cvInputRef}
+                    type="file"
+                    accept=".pdf,.docx"
+                    onChange={handleCvFileSelect}
+                    disabled={saving || isExtractingCV}
+                    className="file:mr-4 file:py-2 file:px-4 file:rounded-l-md file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                  />
+                  <p className="text-xs text-gray-500">
+                    Upload your CV/resume (PDF or DOCX, max 10MB) to personalize your profile and interview experiences.
+                  </p>
+                </div>
+              )}
+              {!showUploadInput && formData.cv && (
+                <p className="text-xs text-gray-500">
+                  CV uploaded successfully. Click &apos;Change CV&apos; to upload a new one.
+                </p>
+              )}
+
+                {/* CV Preview */}
+                {cvFile && (
+                  <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg border">
+                    <div className="flex items-center gap-3">
+                      <FileText className="h-8 w-8 text-blue-600" />
+                      <div>
+                        <p className="font-medium text-sm text-blue-900">{cvFile.name}</p>
+                        <p className="text-xs text-blue-600">{formatFileSize(cvFile.size)}</p>
+                      </div>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={clearCvFile}
+                      disabled={saving || isExtractingCV}
+                      className="text-red-600 hover:text-red-800 hover:bg-red-50"
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                )}
+
+              {/* Loading indicator for CV extraction */}
+              {isExtractingCV && (
+                <div className="flex items-center gap-2 text-sm text-blue-600">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                  Extracting text from CV...
+                </div>
+              )}
+            </div>
+
+            {/* Compressed CV Display */}
+            {formData.cv && (
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <Label className="text-sm font-medium">Compressed CV Summary</Label>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setShowCompressedCV(!showCompressedCV)}
+                    className="text-xs"
+                  >
+                    {showCompressedCV ? 'Hide' : 'Show'} Summary
+                  </Button>
+                </div>
+                {showCompressedCV && (
+                  <div className="p-4 bg-gray-50 rounded-lg border max-h-60 overflow-y-auto">
+                    <pre className="text-sm text-gray-700 whitespace-pre-wrap font-sans">
+                      {formData.cv}
+                    </pre>
+                  </div>
+                )}
+                <p className="text-xs text-gray-500">
+                  This is a compressed version of your CV that captures key information for interview personalization.
+                </p>
+              </div>
+            )}
           </CardContent>
         </Card>
 

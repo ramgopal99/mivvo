@@ -5,25 +5,12 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { Brain } from 'lucide-react'
 import { VOICE_CHAT_CONFIG, VOICE_CHAT_MESSAGES, UI_CONFIG } from '../config'
 
-// Extend window interface for coding code getter
-declare global {
-  interface Window {
-    getCurrentCodingCode?: () => { code: string; language: string }
-  }
-}
 
 
 
-// Web Speech API types
-interface SpeechRecognitionEvent extends Event {
-  resultIndex: number
-  results: SpeechRecognitionResultList
-}
+// Web Speech API types are defined below
 
-interface SpeechRecognitionErrorEvent extends Event {
-  error: string
-}
-
+// Web Speech API Type Definitions
 interface SpeechRecognition extends EventTarget {
   continuous: boolean
   interimResults: boolean
@@ -36,14 +23,46 @@ interface SpeechRecognition extends EventTarget {
   onend: ((event: Event) => void) | null
 }
 
-interface SpeechRecognitionConstructor {
-  new (): SpeechRecognition
+
+interface SpeechRecognitionEvent extends Event {
+  resultIndex: number
+  results: SpeechRecognitionResultList
+}
+
+interface SpeechRecognitionErrorEvent extends Event {
+  error: string
+}
+
+interface SpeechRecognitionResultList {
+  readonly length: number
+  item(index: number): SpeechRecognitionResult
+  [index: number]: SpeechRecognitionResult
+}
+
+interface SpeechRecognitionResult {
+  readonly length: number
+  item(index: number): SpeechRecognitionAlternative
+  [index: number]: SpeechRecognitionAlternative
+  isFinal: boolean
+}
+
+interface SpeechRecognitionAlternative {
+  transcript: string
+  confidence: number
+}
+
+interface SpeechRecognitionEvent extends Event {
+  resultIndex: number
+  results: SpeechRecognitionResultList
+}
+
+interface SpeechRecognitionErrorEvent extends Event {
+  error: string
 }
 
 declare global {
   interface Window {
-    SpeechRecognition: SpeechRecognitionConstructor
-    webkitSpeechRecognition: SpeechRecognitionConstructor
+    getCurrentCodingCode?: () => { code: string; language: string }
   }
 }
 
@@ -248,7 +267,6 @@ export function VoiceChat({
   }, [isListening])
 
   const speakText = useCallback((text: string) => {
-    speakTextRef.current = speakText
     if (!speechSynthesisRef.current) return
 
     speechSynthesisRef.current.cancel()
@@ -319,17 +337,46 @@ export function VoiceChat({
       timestamp: new Date()
     }
 
-    setMessages(prev => [...prev, userMessage])
+    setMessages(prev => {
+      const updatedMessages = [...prev, userMessage]
 
-    // Update transcript
-    const updatedMessages = [...messages, userMessage]
-    onTranscriptUpdate?.(updatedMessages.map(m => ({
-      role: m.role,
-      text: m.content,
-      timestamp: m.timestamp.toISOString()
-    })))
+      // Defer transcript update to avoid setState during render
+      setTimeout(() => {
+        onTranscriptUpdate?.(updatedMessages.map(m => ({
+          role: m.role,
+          text: m.content,
+          timestamp: m.timestamp.toISOString()
+        })))
+      }, 0)
+
+      return updatedMessages
+    })
 
     try {
+      // Get current messages for API call
+      const currentMessages = await new Promise<Message[]>((resolve) => {
+        setMessages(prev => {
+          resolve(prev)
+          return prev
+        })
+      })
+
+      // Prepare user content
+      const userContent = isCoding
+        ? (() => {
+            // Get current code only when user speaks during coding interview
+            const currentCode = typeof window !== 'undefined' ? window.getCurrentCodingCode?.() : undefined
+            const content = currentCode
+              ? `I can see your current ${currentCode.language} code. ${messageText}\n\nYour current code:\n\`\`\`${currentCode.language}\n${currentCode.code}\n\`\`\``
+              : messageText;
+            console.log('User Message (Coding):', content.substring(0, 300) + '...');
+            return content;
+          })()
+        : (() => {
+            console.log('User Message (Regular):', messageText);
+            return messageText;
+          })()
+
       // Call OpenAI API
       const response = await fetch('/api/chat', {
         method: 'POST',
@@ -342,23 +389,10 @@ export function VoiceChat({
               role: 'system',
               content: customPrompt || 'You are an AI interviewer conducting a professional interview. Ask relevant questions and provide constructive feedback.'
             },
-            ...messages.map(m => ({ role: m.role, content: m.content })),
+            ...currentMessages.map(m => ({ role: m.role, content: m.content })),
             {
               role: 'user',
-              content: isCoding
-                ? (() => {
-                    // Get current code only when user speaks during coding interview
-                    const currentCode = typeof window !== 'undefined' ? window.getCurrentCodingCode?.() : undefined
-                    const userContent = currentCode
-                      ? `I can see your current ${currentCode.language} code. ${messageText}\n\nYour current code:\n\`\`\`${currentCode.language}\n${currentCode.code}\n\`\`\``
-                      : messageText;
-                    console.log('User Message (Coding):', userContent.substring(0, 300) + '...');
-                    return userContent;
-                  })()
-                : (() => {
-                    console.log('User Message (Regular):', messageText);
-                    return messageText;
-                  })()
+              content: userContent
             }
           ]
         })
@@ -380,15 +414,20 @@ export function VoiceChat({
         timestamp: new Date()
       }
 
-      setMessages(prev => [...prev, aiMessage])
+      setMessages(prev => {
+        const finalMessages = [...prev, aiMessage]
 
-      // Update transcript
-      const finalMessages = [...updatedMessages, aiMessage]
-      onTranscriptUpdate?.(finalMessages.map(m => ({
-        role: m.role,
-        text: m.content,
-        timestamp: m.timestamp.toISOString()
-      })))
+        // Defer transcript update to avoid setState during render
+        setTimeout(() => {
+          onTranscriptUpdate?.(finalMessages.map(m => ({
+            role: m.role,
+            text: m.content,
+            timestamp: m.timestamp.toISOString()
+          })))
+        }, 0)
+
+        return finalMessages
+      })
 
       // Check if user is requesting next question in coding interviews
       if (isCoding && (
@@ -420,13 +459,19 @@ export function VoiceChat({
     } finally {
       setIsLoading(false)
     }
-  }, [messages, speakText, onTranscriptUpdate, isCoding, currentQuestion, customPrompt])
+  }, [speakText, onTranscriptUpdate, isCoding, currentQuestion, customPrompt])
 
   // Initialize speech recognition and voices
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+    const SpeechRecognition = (window as Window & {
+      SpeechRecognition?: new () => SpeechRecognition
+      webkitSpeechRecognition?: new () => SpeechRecognition
+    }).SpeechRecognition || (window as Window & {
+      SpeechRecognition?: new () => SpeechRecognition
+      webkitSpeechRecognition?: new () => SpeechRecognition
+    }).webkitSpeechRecognition
 
     if (SpeechRecognition) {
       setIsSupported(true)
@@ -434,6 +479,8 @@ export function VoiceChat({
       speechSynthesisRef.current = window.speechSynthesis
 
       const recognition = recognitionRef.current
+      if (!recognition) return
+
       recognition.continuous = true  // Changed to continuous for accumulating speech
       recognition.interimResults = true
       recognition.lang = 'en-US'
@@ -517,7 +564,11 @@ export function VoiceChat({
 
     return () => {
       if (recognitionRef.current) {
-        recognitionRef.current.stop()
+        try {
+          recognitionRef.current.stop()
+        } catch {
+          // Ignore errors during cleanup
+        }
       }
       if (speechSynthesisRef.current) {
         speechSynthesisRef.current.cancel()
@@ -537,6 +588,10 @@ export function VoiceChat({
   useEffect(() => {
     startListeningRef.current = startListening
   }, [startListening])
+
+  useEffect(() => {
+    speakTextRef.current = speakText
+  }, [speakText])
 
   useEffect(() => {
     autoListenAfterAIRef.current = autoListenAfterAI
@@ -670,7 +725,7 @@ export function VoiceChat({
       )}
 
       {/* Status Indicators - Bottom Left */}
-      {isListening && !isAISpeaking && (
+      {isListening && !isAISpeaking && !isLoading && (
         <div className="absolute bottom-4 left-4">
           <div className="flex items-center gap-2 bg-red-500/90 text-white px-3 py-1.5 rounded-full text-xs font-medium">
             <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
@@ -683,7 +738,7 @@ export function VoiceChat({
         <div className="absolute bottom-4 left-4">
           <div className="flex items-center gap-2 bg-blue-500/90 text-white px-3 py-1.5 rounded-full text-xs font-medium">
             <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-            <span>AI is thinking...</span>
+            <span>Interviewer is thinking...</span>
           </div>
         </div>
       )}

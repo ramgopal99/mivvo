@@ -26,17 +26,17 @@ export function TestimonialsSection() {
               className="border-primary/20 shadow-lg hover:shadow-xl transition-shadow duration-300"
             />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
             {landingConfig.testimonials.title}
           </h2>
         </div>
 
         {/* Testimonials Masonry Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-max">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 auto-rows-max">
           {/* person 1 - 2 columns */}
           <div className={`${(() => {
-            const baseClasses = "rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden"
-            return `${baseClasses} bg-white text-gray-900 border border-gray-200 md:col-span-2`
+            const baseClasses = "rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden"
+            return `${baseClasses} bg-white text-gray-900 border border-gray-200 sm:col-span-2 md:col-span-2`
           })()}`}>
             <div className="flex items-center space-x-4 mb-4 relative z-10">
               <div className="flex-shrink-0">
@@ -76,8 +76,8 @@ export function TestimonialsSection() {
 
           {/* person 2 - 1 column */}
           <div className={`${(() => {
-            const baseClasses = "rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden"
-            return `${baseClasses} bg-gradient-to-br from-slate-700 to-slate-800 text-white md:col-span-1`
+            const baseClasses = "rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden"
+            return `${baseClasses} bg-gradient-to-br from-slate-700 to-slate-800 text-white sm:col-span-1 md:col-span-1`
           })()}`}>
             <div className="flex items-center space-x-4 mb-4 relative z-10">
               <div className="flex-shrink-0">
@@ -112,8 +112,8 @@ export function TestimonialsSection() {
 
           {/* person 3 - 1 column (first half) */}
           <div className={`${(() => {
-            const baseClasses = "rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden"
-            return `${baseClasses} bg-white text-gray-900 border border-gray-200 md:col-span-1 md:row-span-2`
+            const baseClasses = "rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden"
+            return `${baseClasses} bg-white text-gray-900 border border-gray-200 sm:col-span-1 md:col-span-1 md:row-span-2`
           })()}`}>
             <div className="flex items-center space-x-4 mb-4 relative z-10">
               <div className="flex-shrink-0">
@@ -148,8 +148,8 @@ export function TestimonialsSection() {
 
           {/* person 4 - 1 column */}
           <div className={`${(() => {
-            const baseClasses = "rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden"
-            return `${baseClasses} bg-white text-gray-900 border border-gray-200 md:col-span-1`
+            const baseClasses = "rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden"
+            return `${baseClasses} bg-white text-gray-900 border border-gray-200 sm:col-span-1 md:col-span-1`
           })()}`}>
             <div className="flex items-center space-x-4 mb-4 relative z-10">
               <div className="flex-shrink-0">
@@ -184,8 +184,8 @@ export function TestimonialsSection() {
 
             {/* person 5 - 2 columns */}
           <div className={`${(() => {
-            const baseClasses = "rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden"
-            return `${baseClasses} bg-gradient-to-br from-slate-700 to-slate-800 text-white md:col-span-2`
+            const baseClasses = "rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden"
+            return `${baseClasses} bg-gradient-to-br from-slate-700 to-slate-800 text-white sm:col-span-2 md:col-span-2`
           })()}`}>
             <div className="flex items-center space-x-4 mb-4 relative z-10">
               <div className="flex-shrink-0">

@@ -64,7 +64,7 @@ export async function POST(request: Request) {
 
 // Helper function to execute code using Piston API
 async function executeCode(code: string, language: string) {
-    const API_URL = process.env.NEXT_PUBLIC_PISTON_API_URL || "https://emkc.org/api/v2";
+    const API_URL = process.env.NEXT_PUBLIC_PISTON_API_URL || "https://api.mockopedia.com/api/v2";
     const baseUrl = API_URL.endsWith('/') ? API_URL.slice(0, -1) : API_URL;
     const executeUrl = `${baseUrl}/execute`;
 
@@ -99,6 +99,16 @@ async function executeCode(code: string, language: string) {
 
     const result = await response.json();
 
+    // Handle timeout errors
+    if (result.run.status === 'TO' || result.run.message?.includes('Time limit exceeded')) {
+        throw new Error('Code execution timed out. Please try simpler code or avoid infinite loops.');
+    }
+
+    // Handle other runtime errors
+    if (result.run.status && result.run.status !== 'success') {
+        throw new Error(`Runtime error: ${result.run.status}`);
+    }
+
     if (result.run.stderr) {
         // Clean up error message for better readability
         const errorMessage = result.run.stderr
@@ -106,10 +116,6 @@ async function executeCode(code: string, language: string) {
             .replace(/^\s+at\s+/gm, '') // Remove JavaScript stack trace
             .trim();
         throw new Error(errorMessage);
-    }
-
-    if (result.run.status) {
-        throw new Error(`Runtime error: ${result.run.status}`);
     }
 
     // Return the raw output as-is

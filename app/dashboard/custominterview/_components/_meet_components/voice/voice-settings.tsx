@@ -6,20 +6,22 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Settings, ChevronDown, ChevronUp, Volume2 } from 'lucide-react'
+import { Settings, ChevronDown, ChevronUp, Volume2, X } from 'lucide-react'
 
 interface VoiceSettingsProps {
   selectedVoice: string
   availableVoices: SpeechSynthesisVoice[]
   onVoiceChange: (voiceURI: string) => void
   onTestVoice: () => void
+  onClose?: () => void
 }
 
 export function VoiceSettings({
   selectedVoice,
   availableVoices,
   onVoiceChange,
-  onTestVoice
+  onTestVoice,
+  onClose
 }: VoiceSettingsProps) {
   const [showSettings, setShowSettings] = useState(false)
 
@@ -34,52 +36,6 @@ export function VoiceSettings({
     voice.lang.startsWith('ne')
   )
 
-
-
-
-
-  return (
-    <Card className="w-full max-w-md shadow-xl border-0 bg-background/95 backdrop-blur-sm">
-      <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Settings className="w-4 h-4" />
-            <CardTitle className="text-sm font-medium">Voice Settings</CardTitle>
-            <Badge variant="secondary" className="text-xs">
-              {allVoices.length} voices
-            </Badge>
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowSettings(!showSettings)}
-            className="h-6 w-6 p-0"
-          >
-            {showSettings ? (
-              <ChevronUp className="w-4 h-4" />
-            ) : (
-              <ChevronDown className="w-4 h-4" />
-            )}
-          </Button>
-        </div>
-      </CardHeader>
-
-      {showSettings && (
-        <CardContent className="pt-0">
-          <div className="space-y-3">
-            {/* Column 1: Voice Selection */}
-            {/* Voice Selection and Test Button in One Row */}
-            <div className="flex gap-3 items-end">
-              <div className="flex-1">
-                <Label htmlFor="voice-select" className="text-xs font-medium text-foreground">
-                  All Voices ({allVoices.length})
-                </Label>
-                <Select value={selectedVoice} onValueChange={onVoiceChange}>
-                  <SelectTrigger className="h-8 text-xs bg-background border-input mt-1">
-                    <SelectValue placeholder="Select voice" />
-                  </SelectTrigger>
-                  <SelectContent className="max-h-48">
-                    {allVoices.map((voice, index) => {
                       // Create shorter, more user-friendly names
                       const getDisplayName = (voiceName: string) => {
                         // Handle Google voices with specific patterns
@@ -125,6 +81,76 @@ export function VoiceSettings({
 
                         return voiceName.split(' ')[0] || voiceName;
                       };
+
+  // Get current voice name for display
+  const getCurrentVoiceName = () => {
+    if (!selectedVoice) return 'No voice selected'
+    const currentVoice = allVoices.find(voice => voice.voiceURI === selectedVoice)
+    if (!currentVoice) return 'Voice not found'
+    return getDisplayName(currentVoice.name)
+  }
+
+
+
+
+
+  return (
+    <Card className="w-full max-w-md shadow-xl border-0 bg-background/95 backdrop-blur-sm">
+      <CardHeader className="pb-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Settings className="w-4 h-4" />
+            <div className="flex flex-col">
+              <CardTitle className="text-sm font-medium">Voice Settings</CardTitle>
+              <p className="text-xs text-muted-foreground">
+                Current: {getCurrentVoiceName()}
+              </p>
+            </div>
+            <Badge variant="secondary" className="text-xs">
+              {allVoices.length} voices
+            </Badge>
+          </div>
+          <div className="flex gap-1">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowSettings(!showSettings)}
+              className="h-6 w-6 p-0"
+            >
+              {showSettings ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )}
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onClose}
+              className="h-6 w-6 p-0 hover:bg-destructive hover:text-destructive-foreground"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
+        </div>
+      </CardHeader>
+
+      {showSettings && (
+        <CardContent className="pt-0">
+          <div className="space-y-3">
+            {/* Column 1: Voice Selection */}
+            {/* Voice Selection and Test Button in One Row */}
+            <div className="flex gap-3 items-end">
+              <div className="flex-1">
+                <Label htmlFor="voice-select" className="text-xs font-medium text-foreground">
+                  All Voices ({allVoices.length})
+                </Label>
+                <Select value={selectedVoice} onValueChange={onVoiceChange}>
+                  <SelectTrigger className="h-8 text-xs bg-background border-input mt-1">
+                    <SelectValue placeholder="Select voice" />
+                  </SelectTrigger>
+                  <SelectContent className="max-h-48">
+                    {allVoices.map((voice, index) => {
 
                       const displayName = getDisplayName(voice.name);
 

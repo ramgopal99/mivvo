@@ -3,12 +3,12 @@ export const termsConfig = {
     title: "Terms of Service",
     description: "Please read these terms of service carefully before using our platform."
   },
-  lastUpdated: "January 15, 2024",
+  lastUpdated: "November 2025",
   introduction: {
     title: "Agreement to Terms",
     content: [
-      "These Terms of Service (\"Terms\") govern your use of Mivvo's AI-powered mock interview platform (\"Service\") operated by Mivvo Inc. (\"us\", \"we\", or \"our\").",
-      "By accessing or using our Service, you agree to be bound by these Terms. If you disagree with any part of these terms, then you may not access the Service."
+      "These Terms of Service (\"Terms\") govern your use of Mivvo's AI-powered mock interview platform (\"Service\").",
+      "By accessing or using our Service, you agree to be bound by these Terms."
     ]
   },
   sections: [
@@ -38,7 +38,6 @@ export const termsConfig = {
           content: [
             "You must provide accurate and complete information when creating an account",
             "You are responsible for maintaining the confidentiality of your account credentials",
-            "You must be at least 18 years old to use our Service",
             "One person or entity may maintain only one account"
           ]
         },
@@ -134,10 +133,11 @@ export const termsConfig = {
         {
           title: "Data Security",
           content: [
-            "We implement appropriate security measures to protect your data",
-            "Interview recordings and transcripts are encrypted and stored securely",
-            "We do not share your personal data with third parties without consent",
-            "You may request deletion of your data at any time"
+            "We implement security measures to protect your data",
+            "Your data is stored securely on our infrastructure",
+            "Our platform is built with security best practices and built-in security features",
+            "Interview data is stored securely and you may request deletion at any time",
+            "We do not share your personal data with third parties without consent"
           ]
         }
       ]
@@ -195,8 +195,7 @@ export const termsConfig = {
     {
       title: "Governing Law",
       content: [
-        "These Terms shall be interpreted and governed by the laws of the State of California, United States, without regard to its conflict of law provisions.",
-        "Any disputes arising from these Terms or your use of the Service shall be resolved in the courts of San Francisco County, California."
+        "These Terms shall be interpreted and governed by applicable laws. Any disputes arising from these Terms or your use of the Service shall be resolved through appropriate legal channels."
       ]
     },
     {
@@ -210,8 +209,6 @@ export const termsConfig = {
   contact: {
     title: "Contact Information",
     description: "If you have any questions about these Terms of Service, please contact us:",
-    email: "legal@mivvo.com",
-    address: "123 Tech Street, San Francisco, CA 94105",
-    phone: "+1 (555) 123-4567"
+    email: "hello@mivvo.com"
   }
 }

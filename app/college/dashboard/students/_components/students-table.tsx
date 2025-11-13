@@ -11,6 +11,7 @@ interface Student {
   collegeId?: string
   status: string
   avatar: string | null
+  cv?: string | null
   firstName?: string
   lastName?: string
   phone?: string
@@ -94,6 +95,17 @@ function TableRow({ student, onViewDetails }: TableRowProps) {
         {student.rollNumber || 'N/A'}
       </td>
       <td className="p-4">
+        {student.cv ? (
+          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+            ✓ Available
+          </span>
+        ) : (
+          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+            No CV
+          </span>
+        )}
+      </td>
+      <td className="p-4">
         <Button
           variant="outline"
           size="sm"
@@ -110,7 +122,7 @@ function TableRow({ student, onViewDetails }: TableRowProps) {
 function TableEmpty({ message = "No students found" }: TableEmptyProps) {
   return (
     <tr>
-      <td colSpan={4} className="text-center py-8 text-muted-foreground">
+      <td colSpan={5} className="text-center py-8 text-muted-foreground">
         {message}
       </td>
     </tr>

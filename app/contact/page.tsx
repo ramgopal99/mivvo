@@ -1,3 +1,6 @@
+"use client"
+
+import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -8,6 +11,53 @@ import { Footer } from "@/components/main"
 import { contactConfig } from "@/config/pages"
 
 export default function ContactPage() {
+  const [isLoading, setIsLoading] = useState(false)
+  const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
+  const formRef = useRef<HTMLFormElement>(null)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsLoading(true)
+    setMessage(null)
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    const data = {
+      firstName: formData.get("firstName") as string,
+      lastName: formData.get("lastName") as string,
+      email: formData.get("email") as string,
+      subject: formData.get("subject") as string,
+      message: formData.get("message") as string,
+    }
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+
+      const result = await response.json()
+
+      if (response.ok) {
+        setMessage({ type: "success", text: result.message || "Your message has been sent successfully!" })
+        // Reset form
+        if (formRef.current) {
+          formRef.current.reset()
+        }
+      } else {
+        setMessage({ type: "error", text: result.error || "Failed to send message. Please try again." })
+      }
+    } catch (error) {
+      console.error("Error submitting contact form:", error)
+      setMessage({ type: "error", text: "An error occurred. Please try again later." })
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
@@ -31,13 +81,24 @@ export default function ContactPage() {
           <div>
             <Card>
               <CardHeader>
-                <CardTitle>Send us a message</CardTitle>
+                <CardTitle>{contactConfig.form.title}</CardTitle>
                 <CardDescription>
-                  Fill out the form below and we&apos;ll get back to you within 24 hours.
+                  {contactConfig.form.description}
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form className="space-y-6">
+                {message && (
+                  <div
+                    className={`mb-4 p-3 text-sm rounded-md ${
+                      message.type === "success"
+                        ? "bg-green-50 text-green-800 border border-green-200"
+                        : "bg-red-50 text-red-800 border border-red-200"
+                    }`}
+                  >
+                    {message.text}
+                  </div>
+                )}
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
@@ -49,6 +110,7 @@ export default function ContactPage() {
                         type="text"
                         required
                         placeholder="Enter your first name"
+                        disabled={isLoading}
                       />
                     </div>
                     <div>
@@ -61,6 +123,7 @@ export default function ContactPage() {
                         type="text"
                         required
                         placeholder="Enter your last name"
+                        disabled={isLoading}
                       />
                     </div>
                   </div>
@@ -75,6 +138,7 @@ export default function ContactPage() {
                       type="email"
                       required
                       placeholder="Enter your email address"
+                      disabled={isLoading}
                     />
                   </div>
                   
@@ -88,6 +152,7 @@ export default function ContactPage() {
                       type="text"
                       required
                       placeholder="What&apos;s this about?"
+                      disabled={isLoading}
                     />
                   </div>
                   
@@ -101,12 +166,13 @@ export default function ContactPage() {
                       rows={6}
                       required
                       placeholder="Tell us how we can help you..."
+                      disabled={isLoading}
                     />
                   </div>
                   
-                  <Button type="submit" className="w-full">
+                  <Button type="submit" className="w-full" disabled={isLoading}>
                     <Send className="mr-2 h-4 w-4" />
-                    Send Message
+                    {isLoading ? "Sending..." : contactConfig.form.submitButton.text}
                   </Button>
                 </form>
               </CardContent>

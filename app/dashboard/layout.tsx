@@ -170,7 +170,7 @@ export default function DashboardLayout({
     const isAuthenticated = hasNextAuthSession || hasCollegeAuth
     const effectiveRole = collegeRole || nextAuthRole
 
-    const validRoles = ['USER', 'COLLEGE_STUDENT']
+    const validRoles = ['USER', 'COLLEGE_STUDENT', 'SUPERADMIN', 'COLLEGE_ADMIN']
     const hasValidRole = effectiveRole && validRoles.includes(effectiveRole)
 
     if (!isAuthenticated || !hasValidRole) {
@@ -182,9 +182,21 @@ export default function DashboardLayout({
           hasNextAuthSession,
           hasCollegeAuth
         })
+        // Clear all storage data comprehensively before redirect
         localStorage.removeItem('token')
         localStorage.removeItem('student_token')
         localStorage.removeItem('college_token')
+        localStorage.removeItem('user_data')
+        localStorage.removeItem('college_data')
+        localStorage.removeItem('college_student_data')
+        localStorage.removeItem('sidebar_state')
+
+        // Clear sessionStorage
+        sessionStorage.clear()
+
+        // Clear sidebar cookie
+        document.cookie = 'sidebar_state=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+
         window.location.href = '/auth/signin'
       }
       return (
@@ -222,7 +234,7 @@ export default function DashboardLayout({
   const displayInitial = displayName.charAt(0).toUpperCase()
 
   // Check if we're on a specific course detail page to conditionally hide sidebar
-  const isCourseDetailPage = pathname.match(/\/course\/[^\/]+$/)
+  const isCourseDetailPage = pathname.match(/\/courses\/[^\/]+$/)
   const isMockInterviewPage = pathname.match(/\/mockinterview\/[^\/]+$/)
   const isCustomInterviewMeetPage = pathname.match(/\/custominterview\/meet\/[^\/]+$/)
 
@@ -298,7 +310,7 @@ export default function DashboardLayout({
       </SidebarInset>
     </SidebarProvider>
   ) : (
-    <div className="flex flex-1 flex-col gap-4 p-6 pt-0">
+    <div className="flex flex-1 flex-col gap-4 p-0">
       <div className="flex-1 overflow-y-auto">
         {children}
       </div>

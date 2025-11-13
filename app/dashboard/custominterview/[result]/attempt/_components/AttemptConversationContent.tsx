@@ -118,12 +118,12 @@ export function AttemptDetailsContent({ attempt, resultId }: AttemptDetailsConte
         </Button>
         <div className="flex flex-col text-center flex-1 mx-8">
           <h1 className="text-3xl font-bold text-gray-900 leading-tight">{attempt.interview.title || 'Untitled Interview'}</h1>
-          <p className="text-gray-600 text-lg mt-1">
+          {/* <p className="text-gray-600 text-lg mt-1">
             {attempt.interview.companyName && attempt.interview.position
               ? `${attempt.interview.position} at ${attempt.interview.companyName}`
               : attempt.interview.companyName || attempt.interview.position || 'No company specified'
             }
-          </p>
+          </p> */}
           <div className="flex items-center justify-center space-x-4 mt-3 text-sm text-gray-500">
             <div className="flex items-center">
               <span>Started: {formatDate(attempt.startedAt)}</span>

@@ -36,14 +36,12 @@ interface SpeechRecognition extends EventTarget {
   onend: ((event: Event) => void) | null
 }
 
-interface SpeechRecognitionConstructor {
-  new (): SpeechRecognition
-}
-
 declare global {
   interface Window {
-    SpeechRecognition: SpeechRecognitionConstructor
-    webkitSpeechRecognition: SpeechRecognitionConstructor
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    SpeechRecognition: any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    webkitSpeechRecognition: any
   }
 }
 

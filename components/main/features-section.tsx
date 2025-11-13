@@ -27,8 +27,8 @@ export function FeaturesSection() {
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-6">
+        <div className="text-center mb-12 sm:mb-16 px-2">
+          <div className="flex justify-center mb-4 sm:mb-6">
             <SegmentedButton
               options={[
                 { label: "Features", value: "features" },
@@ -39,19 +39,19 @@ export function FeaturesSection() {
               className="bg-white"
             />
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 ">
-            Everything you need to
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight sm:leading-tight mb-4 sm:mb-6">
+            <span className="block">Everything you need to</span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">
               ace your interviews
             </span>
           </h2>
-          <p className="text-xl text-gray-600 ">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed break-words">
             Our comprehensive platform provides all the tools and features you need to prepare for any interview scenario - from technical roles to civil services, banking, and government exams.
           </p>
         </div>
 
         {/* Feature Cards Grid */}
-        <div className="grid w-full auto-rows-[22rem] grid-cols-3 gap-4 max-w-7xl mx-auto">
+        <div className="grid w-full auto-rows-[18rem] sm:auto-rows-[20rem] lg:auto-rows-[22rem] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto">
           {/* Box 1 - AI-Powered Interviews (2 columns) */}
           <AiInterviewsBox />
           

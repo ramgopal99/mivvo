@@ -26,6 +26,7 @@ export async function getUserDetails(): Promise<ServerActionResponse<UserData>> 
         company: true,
         location: true,
         bio: true,
+        cv: true,
         // SaaS platform fields
         careerGoals: true,
         linkedIn: true,
@@ -88,6 +89,7 @@ export async function getUserDetails(): Promise<ServerActionResponse<UserData>> 
       company: userProfile.company,
       location: userProfile.location,
       bio: userProfile.bio,
+      cv: userProfile.cv,
       // SaaS platform fields
       careerGoals: userProfile.careerGoals,
       linkedIn: userProfile.linkedIn,
@@ -154,6 +156,7 @@ export async function updateUserDetails(formData: FormData, userId?: string): Pr
     const company = formData.get("company") as string
     const location = formData.get("location") as string
     const bio = formData.get("bio") as string
+    const cv = formData.get("cv") as string
     const careerGoals = formData.get("careerGoals") as string
     const linkedIn = formData.get("linkedIn") as string
     const github = formData.get("github") as string
@@ -176,6 +179,7 @@ export async function updateUserDetails(formData: FormData, userId?: string): Pr
         company,
         location,
         bio,
+        cv,
         // SaaS platform fields
         careerGoals,
         linkedIn,
@@ -201,6 +205,7 @@ export async function updateUserDetails(formData: FormData, userId?: string): Pr
         company: true,
         location: true,
         bio: true,
+        cv: true,
         // SaaS platform fields
         careerGoals: true,
         linkedIn: true,
@@ -239,6 +244,7 @@ export async function updateUserDetails(formData: FormData, userId?: string): Pr
       company: updatedUser.company,
       location: updatedUser.location,
       bio: updatedUser.bio,
+      cv: updatedUser.cv,
       // SaaS platform fields
       careerGoals: updatedUser.careerGoals,
       linkedIn: updatedUser.linkedIn,

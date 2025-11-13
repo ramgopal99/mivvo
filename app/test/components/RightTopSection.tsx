@@ -2,7 +2,6 @@
 
 import { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Play, RotateCcw, Code, Info } from 'lucide-react';
 import MonacoEditor, { MonacoEditorRef } from './MonacoEditor';
@@ -12,26 +11,18 @@ interface RightTopSectionProps {
 }
 
 // Language configurations for Piston API
-const SUPPORTED_LANGUAGES = {
-  python: { name: 'Python', version: '3.10.0' },
-};
-
 const RightTopSection = ({ onConsoleOutput }: RightTopSectionProps) => {
   const editorRef = useRef<MonacoEditorRef>(null);
-  const [currentLanguage, setCurrentLanguage] = useState('python');
   const [isRunning, setIsRunning] = useState(false);
 
-  const getDefaultValue = (language: string) => {
-    const templates = {
-      python: `# Welcome to Python
+  const getDefaultValue = () => {
+    return `# Welcome to Python
 print("Hello, World!")
 
 def greet(name):
     return f"Hello, {name}!"
 
-print(greet("Developer"))`
-    };
-    return templates[language as keyof typeof templates] || templates.python;
+print(greet("Developer"))`;
   };
 
   const handleRun = async () => {
@@ -47,15 +38,10 @@ print(greet("Developer"))`
     onConsoleOutput('Running code...');
 
     try {
-      const languageConfig = SUPPORTED_LANGUAGES[currentLanguage as keyof typeof SUPPORTED_LANGUAGES];
-      if (!languageConfig) {
-        throw new Error(`Unsupported language: ${currentLanguage}`);
-      }
-
       // Prepare the request for Piston API
       const requestBody = {
         code: code,
-        language: currentLanguage
+        language: 'python'
       };
 
       // Call the API
@@ -78,11 +64,21 @@ print(greet("Developer"))`
       onConsoleOutput(JSON.stringify(result));
 
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : String(error);
+      let errorMessage = error instanceof Error ? error.message : String(error);
+
+      // Provide more user-friendly error messages
+      if (errorMessage.includes('timed out') || errorMessage.includes('Time limit exceeded')) {
+        errorMessage = 'Code execution timed out. Try simpler code or avoid infinite loops.';
+      } else if (errorMessage.includes('Failed to execute code')) {
+        errorMessage = 'Unable to connect to code execution service. Please try again later.';
+      } else if (errorMessage.includes('SyntaxError') || errorMessage.includes('IndentationError')) {
+        errorMessage = 'Syntax error in your code. Please check your code and try again.';
+      }
+
       const errorResult = {
         output: "",
         error: errorMessage,
-        language: currentLanguage,
+        language: 'python',
         executionTime: 0,
         memoryUsage: 0,
         exitCode: 1
@@ -96,28 +92,9 @@ print(greet("Developer"))`
 
   const handleReset = () => {
     if (editorRef.current) {
-      const defaultCode = getDefaultValue(currentLanguage);
+      const defaultCode = getDefaultValue();
       editorRef.current.setValue(defaultCode);
       onConsoleOutput('');
-    }
-  };
-
-  const handleLanguageChange = (language: string) => {
-    setCurrentLanguage(language);
-    if (editorRef.current) {
-      // Get current code before changing language
-      const currentCode = editorRef.current.getValue();
-
-      editorRef.current.setLanguage(language);
-
-      // Only reset to default code if the editor is empty or contains default code
-      // This prevents overwriting user-written code when changing languages
-      if (!currentCode.trim() || currentCode.trim() === getDefaultValue(currentLanguage).trim()) {
-        const defaultCode = getDefaultValue(language);
-        editorRef.current.setValue(defaultCode);
-      }
-      // Don't clear console output when changing language - only clear when running new code
-      // onConsoleOutput('');
     }
   };
 
@@ -127,27 +104,17 @@ print(greet("Developer"))`
         <h3 className="text-sm font-medium text-foreground">Code Editor</h3>
         <div className="flex items-center gap-2">
           <Code className="h-4 w-4 text-muted-foreground" />
-          <Select value={currentLanguage} onValueChange={handleLanguageChange}>
-            <SelectTrigger className="w-32 h-8">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {Object.entries(SUPPORTED_LANGUAGES).map(([key, config]) => (
-                <SelectItem key={key} value={key}>
-                  {config.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <span className="text-sm font-medium text-foreground">Python</span>
           <Tooltip>
             <TooltipTrigger asChild>
               <Info className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-help" />
             </TooltipTrigger>
             <TooltipContent className="max-w-xs">
               <div className="space-y-1">
-                <p className="font-medium">Basic Python Execution</p>
+                <p className="font-medium">Python Code Execution</p>
                 <p className="text-xs">No GUI libraries (PyGame, Tkinter)</p>
                 <p className="text-xs">No web frameworks or complex dependencies</p>
+                <p className="text-xs">Time limit: ~3 seconds</p>
               </div>
             </TooltipContent>
           </Tooltip>
@@ -157,10 +124,9 @@ print(greet("Developer"))`
         <div className="flex-1">
           <MonacoEditor
             ref={editorRef}
-            defaultValue={getDefaultValue(currentLanguage)}
+            defaultValue={getDefaultValue()}
             height="100%"
-            language={currentLanguage}
-            onLanguageChange={handleLanguageChange}
+            language="python"
           />
         </div>
         <div className="flex items-center justify-between px-6 py-3 border-t bg-muted/30">

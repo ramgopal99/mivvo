@@ -1,0 +1,431 @@
+"use client";
+
+import React, { useState, useEffect, useRef } from 'react';
+import { useRouter, useParams } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import {
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton
+} from '@/components/ui/sidebar';
+import { ChevronDown, ChevronRight } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Button } from '@/components/ui/button';
+import { modules } from '../data/lessonsData';
+
+interface LeftSidebarProps {
+  onSubtopicClick?: (moduleId: string, subtopicId: string, title: string, moduleTitle: string) => void;
+  selectedTopic?: { moduleId: string; subtopicId: string; title: string; moduleTitle: string } | null;
+  onCheckedItemsChange?: (count: number) => void;
+}
+
+const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, selectedTopic, onCheckedItemsChange }) => {
+  const sidebarScrollRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const params = useParams();
+  const { data: session } = useSession();
+  const courseId = params.courseId as string;
+  const [expandedModules, setExpandedModules] = useState<string[]>([]);
+  // const [activeModule, setActiveModule] = useState<string>('');
+  // const [activeLesson, setActiveLesson] = useState<string | null>(null);
+  const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
+  const [selectedModule, setSelectedModule] = useState<string | null>(null);
+  const [selectedSubtopic, setSelectedSubtopic] = useState<{moduleId: string, subtopicId: string} | null>(null);
+  const [selectedExercise, setSelectedExercise] = useState<{moduleId: string, exerciseId: string} | null>(null);
+
+  // Update sidebar highlighting when selectedTopic changes (from navigation buttons)
+  useEffect(() => {
+    if (selectedTopic) {
+      setSelectedModule(selectedTopic.moduleId);
+
+      // Auto-expand the module when navigating to it
+      setExpandedModules(prev => {
+        if (!prev.includes(selectedTopic.moduleId)) {
+          return [...prev, selectedTopic.moduleId];
+        }
+        return prev;
+      });
+
+      // Check if it's a subtopic or exercise
+      const currentModule = modules.find(m => m.id === selectedTopic.moduleId);
+      const isSubtopic = currentModule?.subLessons?.some(sl => sl.id === selectedTopic.subtopicId);
+      const isExercise = currentModule?.exercises?.some(ex => ex.id === selectedTopic.subtopicId);
+
+      if (isSubtopic) {
+        setSelectedSubtopic({ moduleId: selectedTopic.moduleId, subtopicId: selectedTopic.subtopicId });
+        setSelectedExercise(null);
+      } else if (isExercise) {
+        setSelectedExercise({ moduleId: selectedTopic.moduleId, exerciseId: selectedTopic.subtopicId });
+        setSelectedSubtopic(null);
+      }
+    }
+  }, [selectedTopic]);
+
+  // Scroll to top when changing modules
+  useEffect(() => {
+    if (sidebarScrollRef.current && selectedTopic) {
+      sidebarScrollRef.current.scrollTop = 0;
+    }
+  }, [selectedTopic]);
+
+  const toggleModule = (moduleId: string) => {
+    setExpandedModules(prev =>
+      prev.includes(moduleId)
+        ? prev.filter(id => id !== moduleId)
+        : [...prev, moduleId]
+    );
+    // setActiveModule(moduleId);
+  };
+
+  const handleLessonClick = (moduleId: string, lessonId: string) => {
+    const currentModule = modules.find(m => m.id === moduleId);
+    const subLesson = currentModule?.subLessons.find(sl => sl.id === lessonId);
+
+    // Set the selected module and subtopic for highlighting
+    setSelectedModule(moduleId);
+    setSelectedSubtopic({ moduleId, subtopicId: lessonId });
+    setSelectedExercise(null); // Clear exercise selection
+
+    if (currentModule && subLesson && onSubtopicClick) {
+      onSubtopicClick(moduleId, lessonId, subLesson.title, currentModule.title);
+    }
+
+    console.log(`Clicked lesson: Module ${moduleId}, Lesson ${lessonId}`);
+  };
+
+  const handleExerciseClick = (exerciseId: string, moduleId: string) => {
+    const currentModule = modules.find(m => m.id === moduleId);
+    const exercise = currentModule?.exercises?.find(ex => ex.id === exerciseId);
+
+    // Set the selected module and exercise for highlighting
+    setSelectedModule(moduleId);
+    setSelectedExercise({ moduleId, exerciseId });
+    setSelectedSubtopic(null); // Clear subtopic selection
+
+    if (currentModule && exercise && onSubtopicClick) {
+      // Pass exercise info to middle section
+      onSubtopicClick(moduleId, exerciseId, exercise.title, currentModule.title);
+    }
+
+    console.log(`Clicked exercise: ${exerciseId} in module ${moduleId}`);
+  };
+
+  const toggleItem = (itemKey: string) => {
+    setCheckedItems(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(itemKey)) {
+        newSet.delete(itemKey);
+      } else {
+        newSet.add(itemKey);
+      }
+      return newSet;
+    });
+  };
+
+  // Load saved progress on component mount
+  useEffect(() => {
+    const loadProgress = async () => {
+      if (!courseId) return;
+
+      try {
+        // Check for JWT tokens (college students) - updated to match new token storage
+        const token = localStorage.getItem('token') ||
+                     localStorage.getItem('student_token') ||
+                     localStorage.getItem('college_token');
+
+        if (token) {
+          try {
+            const response = await fetch(`/api/user-progress?courseId=${courseId}`, {
+              headers: {
+                'Authorization': `Bearer ${token}`
+              }
+            });
+
+            if (response.ok) {
+              const data: { itemKey: string }[] = await response.json();
+              const completedItems = new Set(data.map((item) => item.itemKey));
+              setCheckedItems(completedItems);
+            }
+          } catch (error) {
+            console.error('Error loading college student progress:', error);
+          }
+        } else if (session?.user?.id) {
+          // For NextAuth users
+          try {
+            const response = await fetch(`/api/user-progress?courseId=${courseId}&userId=${session.user.id}`);
+
+            if (response.ok) {
+              const data: { itemKey: string }[] = await response.json();
+              const completedItems = new Set(data.map((item) => item.itemKey));
+              setCheckedItems(completedItems);
+            }
+          } catch (error) {
+            console.error('Error loading user progress:', error);
+          }
+        }
+      } catch (error) {
+        console.error('Error loading progress:', error);
+      }
+    };
+
+    if (courseId) {
+      loadProgress();
+    }
+  }, [courseId, session]);
+
+  // Save progress whenever checkedItems changes
+  useEffect(() => {
+    const saveProgress = async () => {
+      if (!courseId || checkedItems.size === 0) return;
+
+      try {
+        const progressData = Array.from(checkedItems).map(itemKey => ({
+          itemKey,
+          courseId,
+          isCompleted: true
+        }));
+
+        // Check for JWT tokens (college students)
+        const token = localStorage.getItem('token') ||
+                     localStorage.getItem('student_token') ||
+                     localStorage.getItem('college_token');
+
+        if (token) {
+          try {
+            await fetch('/api/user-progress', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ progressData }),
+            });
+          } catch (error) {
+            console.error('Error saving college student progress:', error);
+          }
+        } else if (session?.user?.id) {
+          // For NextAuth users
+          try {
+            await fetch('/api/user-progress', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                progressData,
+                userId: session.user.id
+              }),
+            });
+          } catch (error) {
+            console.error('Error saving user progress:', error);
+          }
+        }
+      } catch (error) {
+        console.error('Error saving progress:', error);
+      }
+    };
+
+    saveProgress();
+  }, [checkedItems, courseId, session]);
+
+  // Notify parent when checked items count changes
+  useEffect(() => {
+    if (onCheckedItemsChange) {
+      onCheckedItemsChange(checkedItems.size);
+    }
+  }, [checkedItems.size, onCheckedItemsChange]);
+
+
+  const getStatusIndicator = (status: string, title: string, itemKey: string) => {
+    const isChecked = checkedItems.has(itemKey);
+
+    switch (status) {
+      case 'completed':
+        return (
+          <Checkbox
+            checked={isChecked}
+            onCheckedChange={() => toggleItem(itemKey)}
+            className="w-4 h-4 data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500 cursor-pointer"
+            aria-label={`${title} - Completed`}
+          />
+        );
+      case 'locked':
+        return (
+          <Checkbox
+            checked={false}
+            disabled
+            className="w-4 h-4"
+            aria-label={`${title} - Locked`}
+          />
+        );
+      case 'demo':
+        return (
+          <Checkbox
+            checked={isChecked}
+            onCheckedChange={() => toggleItem(itemKey)}
+            className="w-4 h-4 data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500 cursor-pointer"
+            aria-label={`${title} - Demo available`}
+          />
+        );
+      default:
+        return (
+          <Checkbox
+            checked={isChecked}
+            onCheckedChange={() => toggleItem(itemKey)}
+            className="w-4 h-4 cursor-pointer"
+            aria-label={`${title} - Available`}
+          />
+        );
+    }
+  };
+
+  return (
+    <>
+      <SidebarContent
+        ref={sidebarScrollRef}
+        className="flex flex-col h-full max-h-[calc(100vh-8rem)] w-48 p-0"
+      >
+        <div className="flex-1 overflow-auto scrollbar-hide">
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {modules.map((module) => (
+                <SidebarMenuItem key={module.id}>
+                  <SidebarMenuButton
+                    onClick={() => toggleModule(module.id)}
+                    isActive={module.isActive}
+                    className="w-full justify-between min-w-0 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-3 min-w-0 flex-1">
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 ${
+                        selectedModule === module.id
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-muted text-muted-foreground'
+                      }`}>
+                        {module.id.replace('module-', '')}
+                      </div>
+                      <span
+                        className="truncate text-xs max-w-[140px] font-bold mt-1"
+                        title={module.title}
+                      >
+                        {module.title}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      {expandedModules.includes(module.id) ? (
+                        <ChevronDown className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
+                      ) : (
+                        <ChevronRight className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
+                      )}
+                    </div>
+                  </SidebarMenuButton>
+
+                  {/* Sub-lessons */}
+                  {expandedModules.includes(module.id) && (
+                    <SidebarMenuSub>
+                      {module.subLessons.map((subLesson) => (
+                        <SidebarMenuSubItem key={subLesson.id}>
+                          <div className={`flex items-center gap-3 w-full p-1 rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${
+                            selectedSubtopic?.moduleId === module.id && selectedSubtopic?.subtopicId === subLesson.id
+                              ? 'bg-primary/10 dark:bg-primary/20'
+                              : ''
+                          }`}>
+                            <SidebarMenuSubButton
+                              onClick={() => handleLessonClick(module.id, subLesson.id)}
+                              className="flex items-center gap-3 min-w-0 flex-1 p-0 bg-transparent hover:bg-transparent cursor-pointer"
+                            >
+                              <div className="w-6 h-6 text-muted-foreground flex items-center justify-center text-[10px] font-semibold flex-shrink-0">
+                                {module.id.replace('module-', '')}.{subLesson.order + 1}
+                              </div>
+                              <span
+                                className="truncate text-[11px] max-w-[120px] text-foreground mt-0.5"
+                                title={subLesson.title}
+                              >
+                                {subLesson.title}
+                              </span>
+                            </SidebarMenuSubButton>
+                            <div className="flex-shrink-0">
+                              {getStatusIndicator(subLesson.status, subLesson.title, `module-${module.id}-lesson-${subLesson.id}`)}
+                            </div>
+                          </div>
+                        </SidebarMenuSubItem>
+                      ))}
+                    </SidebarMenuSub>
+                  )}
+
+                  {/* Exercises Separator */}
+                  {expandedModules.includes(module.id) && module.exercises && module.exercises.length > 0 && (
+                    <div className="px-2 py-1">
+                      <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+                        <div className="h-px bg-border flex-1"></div>
+                        <span className="px-2 py-1 bg-muted rounded text-xs font-semibold">Exercises</span>
+                        <div className="h-px bg-border flex-1"></div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Module Exercises */}
+                  {expandedModules.includes(module.id) && module.exercises && module.exercises.length > 0 && (
+                    <SidebarMenuSub>
+                      {module.exercises.map((exercise) => (
+                        <SidebarMenuSubItem key={exercise.id}>
+                          <div className={`flex items-center gap-3 w-full p-1 rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${
+                            selectedExercise?.moduleId === module.id && selectedExercise?.exerciseId === exercise.id
+                              ? 'bg-emerald-100 dark:bg-emerald-900/20'
+                              : ''
+                          }`}>
+                            <SidebarMenuSubButton
+                              onClick={() => handleExerciseClick(exercise.id, module.id)}
+                              className="flex items-center gap-3 min-w-0 flex-1 p-0 bg-transparent hover:bg-transparent cursor-pointer"
+                            >
+                              <div className="w-6 h-6 text-muted-foreground flex items-center justify-center text-[10px] font-semibold flex-shrink-0">
+                                {module.id.replace('module-', '')}.{module.subLessons.length + exercise.order + 1}
+                              </div>
+                              <span
+                                className="truncate text-[11px] max-w-[120px] text-foreground mt-0.5"
+                                title={exercise.title}
+                              >
+                                {exercise.title}
+                              </span>
+                            </SidebarMenuSubButton>
+                            <div className="flex-shrink-0">
+                              {getStatusIndicator(exercise.status, exercise.title, `module-${module.id}-exercise-${exercise.id}`)}
+                            </div>
+                          </div>
+                        </SidebarMenuSubItem>
+                      ))}
+                    </SidebarMenuSub>
+                  )}
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        </div>
+
+        {/* Bottom Button */}
+        <div className="border-t border-border p-2">
+          <Button
+            variant="default"
+            size="sm"
+            className="w-full cursor-pointer"
+            onClick={() => {
+              router.push('/dashboard/courses');
+            }}
+          >
+            Back to Courses
+          </Button>
+        </div>
+
+      </SidebarContent>
+    </>
+  );
+};
+
+export default LeftSidebar;

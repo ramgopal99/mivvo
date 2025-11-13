@@ -85,7 +85,8 @@ export function Navbar() {
 
           {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex items-center space-x-6">
-            {landingConfig.navigation.links.map((link) => (
+            {landingConfig.navigation.links
+              .map((link) => (
               <Link
                 key={link.text}
                 href={link.href}
@@ -149,7 +150,8 @@ export function Navbar() {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white/30 backdrop-blur-sm rounded-lg mt-2 border border-gray-200/30">
-              {landingConfig.navigation.links.map((link) => (
+              {landingConfig.navigation.links
+                .map((link) => (
                 <Link
                   key={link.text}
                   href={link.href}

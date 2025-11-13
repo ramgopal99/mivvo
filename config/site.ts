@@ -4,6 +4,7 @@ export const siteConfig = {
   url: "https://mivvo.com",
   logo: "/mivvo.svg",
   email: "support@mivvo.com",
+  enableCourses: true, // Set to false to hide courses and prevent access
   links: {
     twitter: "https://twitter.com/mivvo",
     github: "https://github.com/mivvo",

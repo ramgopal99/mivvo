@@ -66,6 +66,7 @@ model User {
   company       String?
   location      String?
   bio           String?
+  cv            String?
 
   // Academic fields
   rollNumber      String?
@@ -99,6 +100,8 @@ model User {
   sessions       Session[]
   mockInterviews MockInterview[]
   interviewAttempts InterviewAttempt[]
+  supportTickets SupportTicket[]
+  userProgress   UserProgress[]
 
   @@map("users")
 }
@@ -165,8 +168,10 @@ model MockInterview {
   position          String?
   companyDescription String?  @default("")
   jobDescription    String?  @default("")
+  cvText            String?  // Optional CV/resume text extracted from uploaded file
   interviewType     InterviewType?
   experienceLevel   String?
+  role              String?  // Specific technical role (e.g., 'frontend-developer', 'react-developer')
   attemptCount     Int      @default(0)
   screenShareEnabled Boolean @default(false)
   status            InterviewStatus @default(IN_PROGRESS)
@@ -251,4 +256,226 @@ model InterviewConversation {
   createdAt         DateTime @default(now())
 
   @@map("interviewconversations")
+}
+
+enum SupportTicketStatus {
+  PENDING
+  COMPLETED
+}
+
+enum SupportTicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum SupportTicketCategory {
+  TECHNICAL_ISSUE
+  BILLING_PAYMENT
+  ACCOUNT_PROFILE
+  FEATURE_REQUEST
+  GENERAL_INQUIRY
+}
+
+model SupportTicket {
+  id          String   @id @default(cuid()) @map("_id")
+  ticketId    String   @unique // Human-readable ID like "SUP-20240115-001"
+  subject     String
+  category    SupportTicketCategory
+  priority    SupportTicketPriority
+  status      SupportTicketStatus @default(PENDING)
+  description String
+
+  // For completed tickets
+  resolution  String?
+
+  // Relations
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  replies     TicketReply[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("supporttickets")
+}
+
+model TicketReply {
+  id          String   @id @default(cuid()) @map("_id")
+  subject     String
+  message     String
+  from        String   // "Support Team", "Product Team", etc.
+
+  // Relations
+  ticketId    String
+  ticket      SupportTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+
+  @@map("ticketreplies")
+}
+
+// Course/Learning Management Models
+enum LessonStatus {
+  DEMO
+  LOCKED
+  COMPLETED
+}
+
+enum ExerciseType {
+  MCQ
+  CODE
+}
+
+model Course {
+  id          String   @id @default(cuid()) @map("_id")
+  title       String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  modules      Module[]
+  codeTemplates CodeTemplate[]
+  userProgress UserProgress[]
+
+  @@map("courses")
+}
+
+model Module {
+  id          String   @id @default(cuid()) @map("_id")
+  title       String
+  courseId    String
+  order       Int      @default(0)
+  hasDemo     Boolean  @default(false)
+  isExpanded  Boolean  @default(false)
+  isActive    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  subLessons  SubLesson[]
+  exercises   Exercise[]
+  userProgress UserProgress[]
+
+  @@map("modules")
+}
+
+model SubLesson {
+  id          String       @id @default(cuid()) @map("_id")
+  title       String
+  moduleId    String
+  order       Int          @default(0)
+  status      LessonStatus @default(LOCKED)
+  content     String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  // Relations
+  module      Module       @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+
+  @@map("sublessons")
+}
+
+model Exercise {
+  id            String        @id @default(cuid()) @map("_id")
+  title         String
+  moduleId      String
+  order         Int           @default(0)
+  status        LessonStatus  @default(LOCKED)
+  content       String?
+  type          ExerciseType?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  // Relations
+  module        Module        @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  mcqQuestions  MCQQuestion[]
+  codeQuestions CodeQuestion[]
+
+  @@map("exercises")
+}
+
+model MCQQuestion {
+  id            String   @id @default(cuid()) @map("_id")
+  exerciseId    String
+  question      String
+  options       String[] // Array of option strings
+  correctAnswer Int      // Index of correct answer (0-based)
+  explanation   String?
+  order         Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  exercise      Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+
+  @@map("mcqquestions")
+}
+
+model CodeQuestion {
+  id         String   @id @default(cuid()) @map("_id")
+  exerciseId String
+  question   String
+  solution   String
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // Relations
+  exercise   Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+
+  @@map("codequestions")
+}
+
+model CodeTemplate {
+  id          String   @id @default(cuid()) @map("_id")
+  courseId    String
+  language    String
+  code        String
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([courseId, language])
+  @@map("codetemplates")
+}
+
+model UserProgress {
+  id            String   @id @default(cuid()) @map("_id")
+  userId        String
+  courseId      String
+  moduleId      String
+  itemType      String   // "lesson" or "exercise"
+  itemKey       String   // Unique key for the item (e.g., "module-1-lesson-1" or "module-1-exercise-1")
+  isCompleted   Boolean  @default(false)
+  completedAt   DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course        Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  module        Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, itemKey])
+  @@map("userprogress")
+}
+
+model Contact {
+  id          String   @id @default(cuid()) @map("_id")
+  firstName   String
+  lastName    String
+  email       String
+  subject     String
+  message     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("contacts")
 }

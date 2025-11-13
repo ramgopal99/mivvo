@@ -5,54 +5,19 @@
  * including role selection, experience levels, interview types, and JD generation.
  */
 
-import { UPSE_PROMPT } from '@/app/api/custom-interviews/prompts/upse-prompt'
-import { BANKING_PROMPT } from '@/app/api/custom-interviews/prompts/banking-prompt'
+import { generateUPSEPrompt, generateBankingPrompt } from '@/app/api/custom-interviews/prompts/general'
 
 /**
  * Gets the available role options for interview creation
  */
 export const getAvailableRoles = () => [
-  // General Roles
+  // Roles with specific prompts available
   { value: 'frontend-developer', label: 'Frontend Developer' },
   { value: 'backend-developer', label: 'Backend Developer' },
   { value: 'fullstack-developer', label: 'Full Stack Developer' },
-  { value: 'software-engineer', label: 'Software Engineer' },
-
-  // Technology-Specific Roles
-  { value: 'java-developer', label: 'Java Developer' },
-  { value: 'python-developer', label: 'Python Developer' },
-  { value: 'javascript-developer', label: 'JavaScript Developer' },
   { value: 'react-developer', label: 'React Developer' },
-  { value: 'angular-developer', label: 'Angular Developer' },
-  { value: 'vue-developer', label: 'Vue.js Developer' },
   { value: 'nodejs-developer', label: 'Node.js Developer' },
-  { value: 'dotnet-developer', label: '.NET Developer' },
-  { value: 'flutter-developer', label: 'Flutter Developer' },
-  { value: 'react-native-developer', label: 'React Native Developer' },
-  { value: 'swift-developer', label: 'Swift Developer (iOS)' },
-  { value: 'kotlin-developer', label: 'Kotlin Developer (Android)' },
-  { value: 'go-developer', label: 'Go Developer' },
-  { value: 'rust-developer', label: 'Rust Developer' },
-  { value: 'php-developer', label: 'PHP Developer' },
-  { value: 'ruby-developer', label: 'Ruby Developer' },
-  { value: 'scala-developer', label: 'Scala Developer' },
-  { value: 'c-developer', label: 'C Developer' },
-  { value: 'cpp-developer', label: 'C++ Developer' },
-  { value: 'csharp-developer', label: 'C# Developer' },
-
-  // Specialized Roles
-  { value: 'devops-engineer', label: 'DevOps Engineer' },
-  { value: 'data-scientist', label: 'Data Scientist' },
-  { value: 'machine-learning-engineer', label: 'Machine Learning Engineer' },
-  { value: 'product-manager', label: 'Product Manager' },
-  { value: 'qa-engineer', label: 'QA Engineer' },
-  { value: 'mobile-developer', label: 'Mobile Developer' },
-  { value: 'system-administrator', label: 'System Administrator' },
-  { value: 'database-administrator', label: 'Database Administrator' },
-  { value: 'security-engineer', label: 'Security Engineer' },
-  { value: 'cloud-architect', label: 'Cloud Architect' },
-  { value: 'ui-ux-designer', label: 'UI/UX Designer' },
-  { value: 'technical-lead', label: 'Technical Lead' }
+  { value: 'python-developer', label: 'Python Developer' }
 ]
 
 /**
@@ -82,14 +47,25 @@ export const getGeneralInterviewSubTypes = () => [
 ]
 
 /**
+ * Gets the available HR interview sub-types
+ */
+export const getHRInterviewSubTypes = () => [
+  { value: 'Behavioral', label: 'Behavioral' },
+  { value: 'Situational', label: 'Situational' },
+  { value: 'Competency', label: 'Competency-Based' },
+  { value: 'Leadership', label: 'Leadership' },
+  { value: 'Cultural', label: 'Cultural Fit' }
+]
+
+/**
  * Gets the detailed prompt for General interview types
  * This is used for the actual interview, not the UI display
  */
-export const getGeneralInterviewPrompt = (generalSubType: string): string => {
+export const getGeneralInterviewPrompt = (generalSubType: string, cvText?: string): string => {
   if (generalSubType === 'UPSE') {
-    return UPSE_PROMPT
+    return generateUPSEPrompt(cvText)
   } else if (generalSubType === 'Banking') {
-    return BANKING_PROMPT
+    return generateBankingPrompt(cvText)
   }
   return ''
 }
@@ -109,7 +85,7 @@ const getRoleTitle = (role: string): string => {
   return roleOption?.label || 'Developer'
 }
 
-export const generateJDFromPredefined = (role: string, level: string, interviewType?: string, generalSubType?: string): string => {
+export const generateJDFromPredefined = (role: string, level: string, interviewType?: string, generalSubType?: string, hrSubType?: string): string => {
   // Handle General interview types (UPSE and Banking) - return simple JD for UI
   if (interviewType === 'General') {
     if (generalSubType === 'UPSE') {
@@ -140,6 +116,81 @@ Key Assessment Areas:
 - Problem-solving in banking scenarios
 
 The interview will include scenario-based questions, financial analysis discussions, and assessments of your customer service and analytical skills.`
+    }
+  }
+
+  // Handle HR interview types - return simple JD for UI
+  if (interviewType === 'HR') {
+    if (hrSubType === 'Behavioral') {
+      return `Behavioral HR Interview Preparation
+
+This interview focuses on assessing your past behaviors and experiences as indicators of future performance. The interview will evaluate your work ethic, communication skills, and professional conduct.
+
+Key Assessment Areas:
+- Work ethic and reliability
+- Communication and interpersonal skills
+- Teamwork and collaboration abilities
+- Problem-solving and decision-making approaches
+- Adaptability and learning agility
+- Leadership potential and initiative
+
+The interview will include questions about your past experiences, workplace behaviors, and professional development.`
+    } else if (hrSubType === 'Situational') {
+      return `Situational HR Interview Preparation
+
+This interview focuses on assessing how you would handle hypothetical workplace scenarios. The interview will evaluate your problem-solving skills, decision-making process, and situational judgment.
+
+Key Assessment Areas:
+- Problem-solving under pressure
+- Conflict resolution and mediation skills
+- Decision-making in complex situations
+- Communication in difficult scenarios
+- Adaptability and change management
+- Ethical reasoning and judgment
+
+The interview will include hypothetical workplace scenarios and situational judgment questions.`
+    } else if (hrSubType === 'Competency') {
+      return `Competency-Based HR Interview Preparation
+
+This interview focuses on assessing your specific skills and competencies required for the role. The interview will evaluate your technical abilities, soft skills, and professional competencies.
+
+Key Assessment Areas:
+- Communication and presentation skills
+- Analytical thinking and problem-solving
+- Technical proficiency and expertise
+- Interpersonal and relationship-building skills
+- Leadership and influence abilities
+- Adaptability and continuous learning
+
+The interview will include questions about your competency demonstrations and skill applications.`
+    } else if (hrSubType === 'Leadership') {
+      return `Leadership HR Interview Preparation
+
+This interview focuses on assessing your leadership potential and management capabilities. The interview will evaluate your ability to lead teams, drive results, and manage organizational challenges.
+
+Key Assessment Areas:
+- Leadership style and self-awareness
+- Team development and motivation
+- Communication and stakeholder management
+- Decision-making and strategic thinking
+- Conflict resolution and crisis management
+- Change management and organizational impact
+
+The interview will include questions about your leadership experiences and management philosophy.`
+    } else if (hrSubType === 'Cultural') {
+      return `Cultural Fit HR Interview Preparation
+
+This interview focuses on assessing your alignment with company culture and organizational values. The interview will evaluate your work style preferences, communication approach, and cultural compatibility.
+
+Key Assessment Areas:
+- Work environment preferences
+- Communication and collaboration style
+- Team dynamics and interpersonal relationships
+- Company values alignment
+- Adaptability and change tolerance
+- Work-life integration and balance
+
+The interview will include questions about your workplace preferences and cultural experiences.`
     }
   }
 

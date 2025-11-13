@@ -77,7 +77,14 @@ export async function POST(request: NextRequest) {
           email: user.email,
           collegeAdminId: user.collegeAdminId,
           collegeName: user.collegeName,
-          role: user.role
+          role: user.role,
+          cv: user.cv,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          phone: user.phone,
+          careerGoals: user.careerGoals,
+          linkedIn: user.linkedIn,
+          github: user.github
         },
         college: user.college ? {
           id: user.college.id,

@@ -230,7 +230,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                                 {subLesson.id}
                               </div>
                               <span
-                                className="truncate text-[11px] max-w-[120px] text-muted-foreground mt-0.5"
+                                className="truncate text-[11px] max-w-[120px] text-foreground mt-0.5"
                                 title={subLesson.title}
                               >
                                 {subLesson.title}
@@ -274,7 +274,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, onCheckedIte
                                 {exercise.id}
                               </div>
                               <span
-                                className="truncate text-[11px] max-w-[120px] text-muted-foreground mt-0.5"
+                                className="truncate text-[11px] max-w-[120px] text-foreground mt-0.5"
                                 title={exercise.title}
                               >
                                 {exercise.title}

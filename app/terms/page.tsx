@@ -81,8 +81,6 @@ export default function TermsPage() {
 
             <div className="bg-gray-50 p-6 rounded-lg">
               <p className="text-gray-700"><strong>Email:</strong> {termsConfig.contact.email}</p>
-              <p className="text-gray-700"><strong>Address:</strong> {termsConfig.contact.address}</p>
-              <p className="text-gray-700"><strong>Phone:</strong> {termsConfig.contact.phone}</p>
             </div>
           </CardContent>
         </Card>

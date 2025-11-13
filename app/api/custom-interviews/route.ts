@@ -12,8 +12,11 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { generateGeneralPrompt, generateCodingPrompt, generateUIUXPrompt, generateHRPrompt, generateTechnicalPrompt } from './prompts'
-import { UPSE_PROMPT, BANKING_PROMPT } from './prompts'
+import { generateGeneralPrompt, generateCodingPrompt, generateUIUXPrompt, generateTechnicalPrompt, generateUPSEPrompt, generateBankingPrompt, generateBehavioralHRPrompt, generateSituationalHRPrompt, generateCompetencyHRPrompt, generateLeadershipHRPrompt, generateCulturalHRPrompt } from './prompts'
+import { generateFrontendDeveloperPrompt, generateBackendDeveloperPrompt, generateFullStackDeveloperPrompt, generateReactDeveloperPrompt, generateNodeJsDeveloperPrompt, generatePythonDeveloperPrompt } from './prompts/technical'
+
+// Type for technical prompt generator functions
+type TechnicalPromptGenerator = (jdDetails: string, title: string, experienceLevel?: string, cvText?: string) => string
 import { extractRoleAndCompanyFromJDWithAI, isOpenAIAvailable } from '@/lib/utils'
 import jwt from 'jsonwebtoken'
 
@@ -66,6 +69,26 @@ interface InterviewWhereClause {
   status?: 'IN_PROGRESS' | 'COMPLETED'
 }
 
+
+/**
+ * Get specific technical role prompt generator function if available
+ * @param role - The role value (e.g., 'python-developer')
+ * @returns The prompt generator function or null if not found
+ */
+function getTechnicalRolePromptGenerator(role: string): TechnicalPromptGenerator | null {
+  // Map role values to their corresponding prompt generator functions
+  const roleToPromptFunction: Record<string, TechnicalPromptGenerator> = {
+    'frontend-developer': generateFrontendDeveloperPrompt,
+    'backend-developer': generateBackendDeveloperPrompt,
+    'fullstack-developer': generateFullStackDeveloperPrompt,
+    'react-developer': generateReactDeveloperPrompt,
+    'nodejs-developer': generateNodeJsDeveloperPrompt,
+    'python-developer': generatePythonDeveloperPrompt
+  }
+
+  const promptFunction = roleToPromptFunction[role]
+  return promptFunction || null
+}
 
 /**
  * Authenticate user from NextAuth session or JWT token
@@ -192,8 +215,33 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
+    // Check user's time allowance
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        totalTimeAllowance: true,
+        usedTimeMinutes: true,
+        role: true
+      }
+    })
+
+    if (!user) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 })
+    }
+
+    // Check if user has exceeded their time allowance
+    // Only apply time limits to regular users, not admins
+    if (user.role === 'USER' && user.usedTimeMinutes >= user.totalTimeAllowance) {
+      return NextResponse.json({
+        error: 'Time limit exceeded',
+        message: `You have used all ${user.totalTimeAllowance} minutes of your free interview time. Please upgrade to continue practicing.`,
+        timeLimitExceeded: true
+      }, { status: 403 })
+    }
+
     // Parse request body
-    const { jdDetails, interviewType, screenShare, company, generalSubType, customPrompt } = await request.json()
+    const { jdDetails, interviewType, screenShare, company, generalSubType, hrSubType, customPrompt, cvText, role, experienceLevel, title } = await request.json()
+
 
     // Validate required fields
     if (!jdDetails || !interviewType) {
@@ -230,9 +278,13 @@ export async function POST(request: NextRequest) {
 
     // Clean company name for display (remove suffixes like Pvt Ltd, Inc, etc.)
     const cleanedCompanyName = cleanCompanyNameForDisplay(finalCompanyName)
-    // Generate unique title based on interview type and existing interviews
+
+    // Use title from frontend if provided, otherwise generate based on interview type
     let baseTitle: string
-    if (interviewType === 'General' && generalSubType) {
+    if (title) {
+      // Use the title provided by frontend (e.g., "Python Developer Interview")
+      baseTitle = title
+    } else if (interviewType === 'General' && generalSubType) {
       baseTitle = `${interviewType} - ${generalSubType} Interview`
     } else if (interviewType === 'Custom') {
       const rolePart = extractedData?.role ? `${extractedData.role} Interview` : 'Custom Interview'
@@ -242,7 +294,31 @@ export async function POST(request: NextRequest) {
       baseTitle = `${interviewType} Interview`
     }
 
-    // Check for existing interviews with similar titles
+    // For template-based interviews (Technical, General, HR), prevent exact duplicates
+    // For custom interviews, allow duplicates since they might have different job descriptions
+    if (interviewType === 'Technical' || interviewType === 'General' || interviewType === 'HR') {
+      const existingInterview = await prisma.mockInterview.findFirst({
+        where: {
+          createdBy: userId,
+          title: baseTitle,
+          interviewType: mappedInterviewType
+        },
+        select: { id: true, title: true }
+      })
+
+      if (existingInterview) {
+        return NextResponse.json({
+          error: `You already have an interview with the title "${baseTitle}". Please choose a different interview type or check your existing interviews.`,
+          duplicateFound: true,
+          existingInterview: {
+            id: existingInterview.id,
+            title: existingInterview.title
+          }
+        }, { status: 409 }) // 409 Conflict
+      }
+    }
+
+    // For other interview types, check for existing interviews with similar titles
     const existingInterviews = await prisma.mockInterview.findMany({
       where: {
         createdBy: userId,
@@ -270,7 +346,9 @@ export async function POST(request: NextRequest) {
         title: uniqueTitle,
         companyName: cleanedCompanyName,
         jobDescription: jdDetails,
+        cvText: cvText || null, // Save CV text if provided
         interviewType: mappedInterviewType,
+        role: role || null, // Save specific role if provided
         screenShareEnabled: screenShare || false,
         createdBy: userId
       },
@@ -286,28 +364,55 @@ export async function POST(request: NextRequest) {
     // Use custom prompt if provided (for custom JD interviews)
     if (customPrompt) {
       promptText = customPrompt
-    } else if (interviewType === "Coding") {
-      promptText = generateCodingPrompt(jdDetails, interview.title || "Coding Interview")
-    } else if (interviewType === "UI/UX") {
-      promptText = generateUIUXPrompt(jdDetails, interview.title || "UI/UX Interview")
-    } else if (interviewType === "HR") {
-      promptText = generateHRPrompt(jdDetails, interview.title || "HR Interview")
-    } else if (interviewType === "Technical") {
-      promptText = generateTechnicalPrompt(jdDetails, interview.title || "Technical Interview")
-    } else if (interviewType === "General") {
+    } else if (mappedInterviewType === "CODING") {
+      promptText = generateCodingPrompt(jdDetails, interview.title || "Coding Interview", cvText)
+    } else if (mappedInterviewType === "UI_INTERVIEW") {
+      promptText = generateUIUXPrompt(jdDetails, interview.title || "UI/UX Interview", cvText)
+    } else if (mappedInterviewType === "TECHNICAL") {
+      // Check if a specific role is provided and has a dedicated prompt
+      const selectedRole = generalSubType || role
+
+      if (selectedRole) {
+        const rolePromptGenerator = getTechnicalRolePromptGenerator(selectedRole)
+        if (rolePromptGenerator) {
+          promptText = rolePromptGenerator(jdDetails, interview.title || `${selectedRole.replace('-', ' ')} Interview`, experienceLevel, cvText)
+        } else {
+          promptText = generateTechnicalPrompt(jdDetails, interview.title || "Technical Interview", cvText)
+        }
+      } else {
+        promptText = generateTechnicalPrompt(jdDetails, interview.title || "Technical Interview", cvText)
+      }
+    } else if (mappedInterviewType === "GENERAL_INTERVIEW") {
       // Handle General interview sub-types (UPSE and Banking)
       if (generalSubType === "UPSE") {
-        promptText = UPSE_PROMPT
+        promptText = generateUPSEPrompt(cvText)
       } else if (generalSubType === "Banking") {
-        promptText = BANKING_PROMPT
+        promptText = generateBankingPrompt(cvText)
       } else {
         // Fallback to general prompt
-        promptText = generateGeneralPrompt(jdDetails, interview.title || "Custom Interview")
+        promptText = generateGeneralPrompt(jdDetails, interview.title || "Custom Interview", cvText)
+      }
+    } else if (interviewType === "HR") {
+      // Handle HR interview sub-types (Behavioral, Situational, Competency, Leadership, Cultural)
+      if (hrSubType === "Behavioral") {
+        promptText = generateBehavioralHRPrompt(jdDetails, interview.title || "Behavioral HR Interview", cvText)
+      } else if (hrSubType === "Situational") {
+        promptText = generateSituationalHRPrompt(jdDetails, interview.title || "Situational HR Interview", cvText)
+      } else if (hrSubType === "Competency") {
+        promptText = generateCompetencyHRPrompt(jdDetails, interview.title || "Competency-Based HR Interview", cvText)
+      } else if (hrSubType === "Leadership") {
+        promptText = generateLeadershipHRPrompt(jdDetails, interview.title || "Leadership HR Interview", cvText)
+      } else if (hrSubType === "Cultural") {
+        promptText = generateCulturalHRPrompt(jdDetails, interview.title || "Cultural Fit HR Interview", cvText)
+      } else {
+        // Fallback to behavioral HR prompt if sub-type is not recognized
+        promptText = generateBehavioralHRPrompt(jdDetails, interview.title || "Behavioral HR Interview", cvText)
       }
     } else {
       // Fallback to general prompt
-      promptText = generateGeneralPrompt(jdDetails, interview.title || "Custom Interview")
+      promptText = generateGeneralPrompt(jdDetails, interview.title || "Custom Interview", cvText)
     }
+
 
     await prisma.interviewPrompt.create({
       data: {

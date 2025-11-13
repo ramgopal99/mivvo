@@ -13,6 +13,7 @@ interface InterviewListProps {
   onViewDetails?: (interview: InterviewData) => void
   onStartInterview?: (interview: InterviewData) => void
   onDeleteInterview?: (interview: InterviewData) => void
+  deletingInterviewId?: string | null
 }
 
 export function InterviewList({
@@ -23,7 +24,8 @@ export function InterviewList({
   onSearchChange,
   onViewDetails,
   onStartInterview,
-  onDeleteInterview
+  onDeleteInterview,
+  deletingInterviewId
 }: InterviewListProps) {
   if (interviews.length === 0) {
     return (
@@ -92,6 +94,7 @@ export function InterviewList({
               onViewDetails={onViewDetails}
               onStartInterview={onStartInterview}
               onDeleteInterview={onDeleteInterview}
+              isDeleting={deletingInterviewId === interview.id}
             />
           ))}
         </div>
@@ -104,6 +107,7 @@ export function InterviewList({
               onViewDetails={onViewDetails}
               onStartInterview={onStartInterview}
               onDeleteInterview={onDeleteInterview}
+              isDeleting={deletingInterviewId === interview.id}
             />
           ))}
         </div>

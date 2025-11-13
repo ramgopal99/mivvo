@@ -237,12 +237,21 @@ export default function CollegeDashboardLayout({
         authCheckComplete
       })
 
-      // Clear any remaining session data before redirect
+      // Clear all storage data comprehensively before redirect
+      // localStorage cleanup
       localStorage.removeItem('user_data')
       localStorage.removeItem('student_token')
       localStorage.removeItem('college_data')
       localStorage.removeItem('college_token')
       localStorage.removeItem('token')
+      localStorage.removeItem('college_student_data')
+      localStorage.removeItem('sidebar_state')
+
+      // Clear sessionStorage
+      sessionStorage.clear()
+
+      // Clear sidebar cookie
+      document.cookie = 'sidebar_state=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
 
       window.location.href = '/auth/signin'
     }

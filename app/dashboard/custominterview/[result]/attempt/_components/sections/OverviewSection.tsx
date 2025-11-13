@@ -1,5 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Target, Award } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
+import { Target, Award, FileText } from "lucide-react"
+import { useState } from "react"
 
 interface InterviewAttempt {
   id: string
@@ -33,6 +42,8 @@ interface OverviewSectionProps {
 }
 
 export function OverviewSection({ attempt, totalMessages, totalSessions, overallScore }: OverviewSectionProps) {
+  const [showJDDialog, setShowJDDialog] = useState(false)
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Interview Details */}
@@ -53,6 +64,17 @@ export function OverviewSection({ attempt, totalMessages, totalSessions, overall
             <p className="text-sm text-gray-700 mt-1 line-clamp-3 leading-relaxed">
               {attempt.interview.jobDescription || 'No description available'}
             </p>
+            {attempt.interview.jobDescription && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowJDDialog(true)}
+                className="mt-2 h-7 text-xs"
+              >
+                <FileText className="w-3 h-3 mr-1" />
+                View Full JD
+              </Button>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -89,6 +111,28 @@ export function OverviewSection({ attempt, totalMessages, totalSessions, overall
           </div>
         </CardContent>
       </Card>
+
+      {/* JD Dialog */}
+      <Dialog open={showJDDialog} onOpenChange={setShowJDDialog}>
+        <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-hidden flex flex-col">
+          <DialogHeader className="flex-shrink-0">
+            <DialogTitle className="flex items-center gap-2">
+              <FileText className="w-5 h-5 text-blue-600" />
+              Job Description
+            </DialogTitle>
+            <DialogDescription>
+              Complete job description for this interview
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex-1 overflow-y-auto pr-2">
+            <div className="bg-gray-50 rounded-lg p-6">
+              <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">
+                {attempt.interview.jobDescription}
+              </p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

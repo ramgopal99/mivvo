@@ -5,41 +5,20 @@ export const contactConfig = {
   },
   contactInfo: {
     title: "Get in Touch",
-    description: "Have questions about Mivvo? We're here to help. Reach out to us through any of the channels below.",
+    description: "Have questions about Mivvo? We're here to help. Reach out to us via email.",
     methods: [
       {
         icon: "Mail",
         title: "Email Us",
-        description: "Send us an email and we'll respond within 24 hours.",
-        contact: "support@mivvo.com",
-        action: "mailto:support@mivvo.com"
-      },
-      {
-        icon: "Phone",
-        title: "Call Us",
-        description: "Speak directly with our support team.",
-        contact: "+1 (555) 123-4567",
-        action: "tel:+15551234567"
-      },
-      {
-        icon: "MapPin",
-        title: "Visit Us",
-        description: "Come say hello at our office.",
-        contact: "123 Innovation Drive\nTech City, TC 12345",
-        action: "#"
-      },
-      {
-        icon: "Clock",
-        title: "Business Hours",
-        description: "When you can reach us.",
-        contact: "Mon-Fri: 9AM-6PM PST\nSat-Sun: 10AM-4PM PST",
-        action: "#"
+        description: "Send us an email and we'll respond as soon as possible.",
+        contact: "hello@mivvo.com",
+        action: "mailto:hello@mivvo.com"
       }
     ]
   },
   form: {
     title: "Send us a message",
-    description: "Fill out the form below and we'll get back to you within 24 hours.",
+    description: "Fill out the form below and we'll get back to you as soon as possible.",
     fields: [
       {
         name: "firstName",

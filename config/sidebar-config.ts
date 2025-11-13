@@ -3,8 +3,11 @@ import {
   Settings,
   Shield,
   MessageSquare,
-  HelpCircle
+  HelpCircle,
+  Headphones,
+  BookOpen
 } from "lucide-react"
+import { siteConfig } from "./site"
 
 export interface NavigationItem {
   title: string
@@ -43,8 +46,13 @@ export const sidebarConfig: SidebarConfig = {
           url: "/dashboard/custominterview",
           icon: MessageSquare,
           description: "custom interview"
-
-        }
+        },
+        ...(siteConfig.enableCourses ? [{
+          title: "Courses",
+          url: "/dashboard/courses",
+          icon: BookOpen,
+          description: "Access programming courses"
+        }] : [])
       ]
     }
   ],
@@ -56,6 +64,12 @@ export const sidebarConfig: SidebarConfig = {
         url: "/dashboard/settings",
         icon: Settings,
         description: "Configure your preferences"
+      },
+      {
+        title: "Support",
+        url: "/dashboard/support",
+        icon: Headphones,
+        description: "Raise queries and get support"
       },
       {
         title: "Help",

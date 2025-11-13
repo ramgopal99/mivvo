@@ -7,7 +7,7 @@ export function AiInterviewsBox() {
   const featureData = landingConfig.features.mainFeatures.aiInterviews
 
   return (
-    <div className="col-span-3 lg:col-span-2 group relative flex flex-col justify-between overflow-hidden rounded-lg bg-white shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
+    <div className="col-span-1 sm:col-span-2 lg:col-span-2 group relative flex flex-col justify-between overflow-hidden rounded-lg bg-white shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
       <AnimatedBarGraph featureData={featureData} />
     </div>
   )
@@ -41,8 +41,8 @@ export function AnimatedBarGraph({ featureData }: { featureData: { title: string
   }
   
   return (
-    <div className="relative p-6 flex flex-col h-full bg-white rounded-lg">
-      <div className="flex-1 flex items-end justify-between gap-1 relative">
+    <div className="relative p-4 sm:p-5 md:p-6 flex flex-col h-full bg-white rounded-lg">
+      <div className="flex-1 flex items-end justify-between gap-1 relative min-h-[120px] sm:min-h-[150px]">
         {/* Animated Line that follows bar heights */}
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none"
@@ -93,11 +93,11 @@ export function AnimatedBarGraph({ featureData }: { featureData: { title: string
         ))}
       </div>
 
-      <div className="mt-6">
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">
+      <div className="mt-4 sm:mt-6">
+        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 leading-tight break-words">
           {featureData.title}
         </h3>
-        <p className="text-gray-600 text-sm">
+        <p className="text-gray-600 text-xs sm:text-sm leading-relaxed break-words">
           {featureData.description}
         </p>
       </div>

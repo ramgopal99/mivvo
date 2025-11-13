@@ -32,14 +32,12 @@ interface SpeechRecognition extends EventTarget {
   onend: ((event: Event) => void) | null
 }
 
-interface SpeechRecognitionConstructor {
-  new (): SpeechRecognition
-}
-
 declare global {
   interface Window {
-    SpeechRecognition: SpeechRecognitionConstructor
-    webkitSpeechRecognition: SpeechRecognitionConstructor
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    SpeechRecognition: any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    webkitSpeechRecognition: any
   }
 }
 
@@ -1054,11 +1052,12 @@ export default function VoiceActivityDetector() {
       if (SpeechRecognition) {
         speechRecognitionRef.current = new SpeechRecognition()
         const recognition = speechRecognitionRef.current
-        recognition.continuous = true
-        recognition.interimResults = true
-        recognition.lang = 'en-US'
+        if (recognition) {
+          recognition.continuous = true
+          recognition.interimResults = true
+          recognition.lang = 'en-US'
 
-        recognition.onresult = (event: SpeechRecognitionEvent) => {
+          recognition.onresult = (event: SpeechRecognitionEvent) => {
           let finalTranscript = ''
           let interimTranscript = ''
 
@@ -1088,6 +1087,7 @@ export default function VoiceActivityDetector() {
           }
 
           setCurrentLinguisticFeatures(linguistic)
+        }
         }
       }
 

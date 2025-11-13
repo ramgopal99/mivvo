@@ -48,9 +48,10 @@ interface InterviewCardProps {
   onViewDetails?: (interview: InterviewData) => void
   onStartInterview?: (interview: InterviewData) => void
   onDeleteInterview?: (interview: InterviewData) => void
+  isDeleting?: boolean
 }
 
-export function InterviewCard({ interview, onStartInterview, onDeleteInterview }: InterviewCardProps) {
+export function InterviewCard({ interview, onStartInterview, onDeleteInterview, isDeleting = false }: InterviewCardProps) {
   const router = useRouter()
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 
@@ -60,7 +61,7 @@ export function InterviewCard({ interview, onStartInterview, onDeleteInterview }
 
   const handleDelete = () => {
     onDeleteInterview?.(interview)
-    setShowDeleteDialog(false)
+    // Dialog will be closed by the parent after successful deletion
   }
 
   return (
@@ -140,7 +141,7 @@ export function InterviewCard({ interview, onStartInterview, onDeleteInterview }
               </DialogContent>
             </Dialog>
 
-            <Dialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+            <Dialog open={showDeleteDialog} onOpenChange={(open) => !isDeleting && setShowDeleteDialog(open)}>
               <DialogTrigger asChild>
                 <Button variant="ghost" size="sm" className="h-8 w-8 p-0 hover:bg-red-100 hover:text-red-600 cursor-pointer">
                   <Trash2 className="h-4 w-4 text-gray-500" />
@@ -158,9 +159,16 @@ export function InterviewCard({ interview, onStartInterview, onDeleteInterview }
                   <Button variant="outline" onClick={() => setShowDeleteDialog(false)}>
                     Cancel
                   </Button>
-                  <Button variant="destructive" onClick={handleDelete}>
-                    Delete Interview
-                  </Button>
+                <Button variant="destructive" onClick={handleDelete} disabled={isDeleting}>
+                  {isDeleting ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                      Deleting...
+                    </>
+                  ) : (
+                    'Delete Interview'
+                  )}
+                </Button>
                 </DialogFooter>
               </DialogContent>
             </Dialog>

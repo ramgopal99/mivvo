@@ -1,8 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useSession } from "next-auth/react"
-import { CreateInterviewDialog, InterviewStats, InterviewList } from "./_components"
+import CreateInterviewDialog from "./_components/CreateInterviewDialog"
+import { InterviewStats, InterviewList } from "./_components"
 import { InterviewData } from "./_components/InterviewCard"
 import { getAllInterviews, deleteInterview } from "./data"
 
@@ -37,6 +38,50 @@ export default function CustomInterviewPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [viewFormat, setViewFormat] = useState<"box" | "list">("box")
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [userTimeData, setUserTimeData] = useState<{ totalTimeAllowance: number; usedTimeMinutes: number } | null>(null)
+  const [userCvData, setUserCvData] = useState<string | null>(null)
+  const [isCreatingInterview, setIsCreatingInterview] = useState(false)
+  const [deletingInterviewId, setDeletingInterviewId] = useState<string | null>(null)
+  const createDialogRef = useRef<{ reset: () => void } | null>(null)
+
+  // Fetch user's time data
+  const fetchUserTimeData = async () => {
+    try {
+      const response = await fetch('/api/user/time-data', {
+        headers: getAuthHeaders(),
+      })
+
+      if (response.ok) {
+        const timeData = await response.json()
+        if (timeData.success && timeData.data) {
+          setUserTimeData({
+            totalTimeAllowance: timeData.data.totalTimeAllowance,
+            usedTimeMinutes: timeData.data.usedTimeMinutes,
+          })
+        }
+      }
+    } catch (error) {
+      console.error('Failed to fetch user time data:', error)
+    }
+  }
+
+  // Fetch user's CV data
+  const fetchUserCvData = async () => {
+    try {
+      const response = await fetch('/api/user/profile', {
+        headers: getAuthHeaders(),
+      })
+
+      if (response.ok) {
+        const profileData = await response.json()
+        if (profileData.success && profileData.data) {
+          setUserCvData(profileData.data.cv || null)
+        }
+      }
+    } catch (error) {
+      console.error('Failed to fetch user CV data:', error)
+    }
+  }
 
   // Check authentication status
   useEffect(() => {
@@ -45,6 +90,9 @@ export default function CustomInterviewPage() {
         // Check for NextAuth session first
         if (status === 'authenticated' && session?.user) {
           setIsAuthenticated(true)
+          // Fetch time data and CV data when authenticated
+          await fetchUserTimeData()
+          await fetchUserCvData()
           setLoading(false)
           return
         }
@@ -64,6 +112,15 @@ export default function CustomInterviewPage() {
             const sessionData = await response.json()
             if (sessionData.authenticated && sessionData.user) {
               setIsAuthenticated(true)
+              // Fetch time data for JWT-authenticated users
+              if (sessionData.user.totalTimeAllowance !== undefined && sessionData.user.usedTimeMinutes !== undefined) {
+                setUserTimeData({
+                  totalTimeAllowance: sessionData.user.totalTimeAllowance,
+                  usedTimeMinutes: sessionData.user.usedTimeMinutes,
+                })
+              }
+              // Fetch CV data for JWT-authenticated users
+              await fetchUserCvData()
               setLoading(false)
               return
             }
@@ -108,10 +165,11 @@ export default function CustomInterviewPage() {
     }
   }, [isAuthenticated])
 
-  const handleInterviewCreated = async (data: { jdDetails: string; interviewType: string; screenShare?: boolean; company?: string }) => {
+  const handleInterviewCreated = async (data: { jdDetails: string; interviewType: string; screenShare?: boolean; company?: string; customPrompt?: string; generalSubType?: string; cvText?: string }) => {
     // Handle new interview creation via API
     console.log("Creating interview with:", data)
 
+    setIsCreatingInterview(true)
     try {
       const response = await fetch('/api/custom-interviews', {
         method: 'POST',
@@ -120,7 +178,10 @@ export default function CustomInterviewPage() {
           jdDetails: data.jdDetails,
           interviewType: data.interviewType,
           screenShare: data.screenShare,
-          company: data.company
+          company: data.company,
+          customPrompt: data.customPrompt,
+          generalSubType: data.generalSubType,
+          cvText: data.cvText,
         }),
       })
 
@@ -129,6 +190,28 @@ export default function CustomInterviewPage() {
           toast.error('Please sign in to create interviews')
         })
         return
+      }
+
+      // Handle time limit exceeded error (403)
+      if (response.status === 403) {
+        const errorData = await response.json()
+        if (errorData.timeLimitExceeded) {
+          import('sonner').then(({ toast }) => {
+            toast.error(errorData.message || 'Time limit exceeded')
+          })
+          return
+        }
+      }
+
+      // Handle duplicate interview error (409)
+      if (response.status === 409) {
+        const errorData = await response.json()
+        if (errorData.duplicateFound) {
+          import('sonner').then(({ toast }) => {
+            toast.error(errorData.error || 'This interview already exists')
+          })
+          return
+        }
       }
 
       if (!response.ok) {
@@ -142,11 +225,16 @@ export default function CustomInterviewPage() {
       import('sonner').then(({ toast }) => {
         toast.success('Interview created successfully!')
       })
+
+      // Reset the form and close the dialog after successful creation
+      createDialogRef.current?.reset()
     } catch (error) {
       console.error('Error creating interview:', error)
       import('sonner').then(({ toast }) => {
         toast.error('Failed to create interview')
       })
+    } finally {
+      setIsCreatingInterview(false)
     }
   }
 
@@ -174,20 +262,25 @@ export default function CustomInterviewPage() {
   const handleDeleteInterview = async (interview: InterviewData) => {
     console.log("Deleting interview:", interview)
 
-    const success = await deleteInterview(interview.id)
+    setDeletingInterviewId(interview.id)
+    try {
+      const success = await deleteInterview(interview.id)
 
-    if (success) {
-      // Refresh the interviews list
-      const updatedInterviews = await getAllInterviews()
-      setInterviews(updatedInterviews)
+      if (success) {
+        // Refresh the interviews list
+        const updatedInterviews = await getAllInterviews()
+        setInterviews(updatedInterviews)
 
-      import('sonner').then(({ toast }) => {
-        toast.success('Interview deleted successfully!')
-      })
-    } else {
-      import('sonner').then(({ toast }) => {
-        toast.error('Failed to delete interview')
-      })
+        import('sonner').then(({ toast }) => {
+          toast.success('Interview deleted successfully!')
+        })
+      } else {
+        import('sonner').then(({ toast }) => {
+          toast.error('Failed to delete interview')
+        })
+      }
+    } finally {
+      setDeletingInterviewId(null)
     }
   }
 
@@ -248,7 +341,13 @@ export default function CustomInterviewPage() {
           </div>
 
           <div className="flex items-center gap-3">
-            <CreateInterviewDialog onInterviewCreated={handleInterviewCreated} />
+            <CreateInterviewDialog
+              ref={createDialogRef}
+              onInterviewCreated={handleInterviewCreated}
+              userTimeData={userTimeData}
+              userCvData={userCvData}
+              isCreating={isCreatingInterview}
+            />
           </div>
         </div>
 
@@ -258,6 +357,8 @@ export default function CustomInterviewPage() {
       <InterviewStats
         totalInterviews={interviews.length}
         completedInterviews={interviews.filter(interview => interview.status === "completed").length}
+        totalTimeAllowance={userTimeData?.totalTimeAllowance}
+        usedTimeMinutes={userTimeData?.usedTimeMinutes}
       />
 
       {/* Interview List */}
@@ -270,6 +371,7 @@ export default function CustomInterviewPage() {
         onViewDetails={handleViewDetails}
         onStartInterview={handleStartInterview}
         onDeleteInterview={handleDeleteInterview}
+        deletingInterviewId={deletingInterviewId}
       />
     </div>
   )

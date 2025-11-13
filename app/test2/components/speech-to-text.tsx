@@ -30,14 +30,12 @@ interface SpeechRecognition extends EventTarget {
   onend: ((event: Event) => void) | null
 }
 
-interface SpeechRecognitionConstructor {
-  new (): SpeechRecognition
-}
-
 declare global {
   interface Window {
-    SpeechRecognition: SpeechRecognitionConstructor
-    webkitSpeechRecognition: SpeechRecognitionConstructor
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    SpeechRecognition: any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    webkitSpeechRecognition: any
   }
 }
 
@@ -89,45 +87,47 @@ export default function SpeechToText() {
       recognitionRef.current = new SpeechRecognition()
 
       const recognition = recognitionRef.current
-      recognition.continuous = true
-      recognition.interimResults = true
-      recognition.lang = selectedLanguage
+      if (recognition) {
+        recognition.continuous = true
+        recognition.interimResults = true
+        recognition.lang = selectedLanguage
 
-      recognition.onstart = () => {
-        setIsListening(true)
-      }
+        recognition.onstart = () => {
+          setIsListening(true)
+        }
 
-      recognition.onresult = (event: SpeechRecognitionEvent) => {
-        let finalTranscript = ''
-        let interimTranscript = ''
+        recognition.onresult = (event: SpeechRecognitionEvent) => {
+          let finalTranscript = ''
+          let interimTranscript = ''
 
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-          const transcript = event.results[i][0].transcript
-          if (event.results[i].isFinal) {
-            finalTranscript += transcript
-          } else {
-            interimTranscript += transcript
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            const transcript = event.results[i][0].transcript
+            if (event.results[i].isFinal) {
+              finalTranscript += transcript
+            } else {
+              interimTranscript += transcript
+            }
           }
+
+          if (finalTranscript) {
+            setText(prev => prev + finalTranscript)
+            setError('') // Clear any previous errors on successful transcription
+          }
+          setInterimText(interimTranscript)
         }
 
-        if (finalTranscript) {
-          setText(prev => prev + finalTranscript)
-          setError('') // Clear any previous errors on successful transcription
+        recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
+          console.error('Speech recognition error:', event.error)
+          const errorMessage = getErrorMessage(event.error)
+          setError(errorMessage)
+          setIsListening(false)
+          setInterimText('')
         }
-        setInterimText(interimTranscript)
-      }
 
-      recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-        console.error('Speech recognition error:', event.error)
-        const errorMessage = getErrorMessage(event.error)
-        setError(errorMessage)
-        setIsListening(false)
-        setInterimText('')
-      }
-
-      recognition.onend = () => {
-        setIsListening(false)
-        setInterimText('')
+        recognition.onend = () => {
+          setIsListening(false)
+          setInterimText('')
+        }
       }
     }
 
