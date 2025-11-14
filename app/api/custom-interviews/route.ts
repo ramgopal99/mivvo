@@ -12,12 +12,14 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { generateGeneralPrompt, generateCodingPrompt, generateUIUXPrompt, generateTechnicalPrompt, generateUPSEPrompt, generateBankingPrompt, generateBehavioralHRPrompt, generateSituationalHRPrompt, generateCompetencyHRPrompt, generateLeadershipHRPrompt, generateCulturalHRPrompt } from './prompts'
+import { generateGeneralPrompt, generateCodingPrompt, generateTechnicalPrompt, generateUPSEPrompt, generateBankingPrompt, generateBehavioralHRPrompt, generateSituationalHRPrompt, generateCompetencyHRPrompt, generateLeadershipHRPrompt, generateCulturalHRPrompt } from './prompts'
 import { generateFrontendDeveloperPrompt, generateBackendDeveloperPrompt, generateFullStackDeveloperPrompt, generateReactDeveloperPrompt, generateNodeJsDeveloperPrompt, generatePythonDeveloperPrompt } from './prompts/technical'
+
+import { extractRoleAndCompanyFromJDWithAI, isOpenAIAvailable } from '@/lib/utils'
+import { generateBackendInterviewTitle } from '@/lib/interview-titles'
 
 // Type for technical prompt generator functions
 type TechnicalPromptGenerator = (jdDetails: string, title: string, experienceLevel?: string, cvText?: string) => string
-import { extractRoleAndCompanyFromJDWithAI, isOpenAIAvailable } from '@/lib/utils'
 import jwt from 'jsonwebtoken'
 
 /**
@@ -240,7 +242,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Parse request body
-    const { jdDetails, interviewType, screenShare, company, generalSubType, hrSubType, customPrompt, cvText, role, experienceLevel, title } = await request.json()
+    const { jdDetails, interviewType, screenShare, company, generalSubType, hrSubType, customPrompt, cvText, role, experienceLevel } = await request.json()
 
 
     // Validate required fields
@@ -249,11 +251,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Map frontend interview types to database enum values
-    const interviewTypeMap: Record<string, 'GENERAL_INTERVIEW' | 'TECHNICAL' | 'CODING' | 'UI_INTERVIEW' | 'HR_INTERVIEW' | 'CUSTOM_INTERVIEW'> = {
+    const interviewTypeMap: Record<string, 'GENERAL_INTERVIEW' | 'TECHNICAL' | 'CODING' | 'HR_INTERVIEW' | 'CUSTOM_INTERVIEW'> = {
       'General': 'GENERAL_INTERVIEW',
       'Technical': 'TECHNICAL',
       'Coding': 'CODING',
-      'UI/UX': 'UI_INTERVIEW',
       'HR': 'HR_INTERVIEW',
       'Custom': 'CUSTOM_INTERVIEW' // JD-based custom interviews
     }
@@ -279,20 +280,15 @@ export async function POST(request: NextRequest) {
     // Clean company name for display (remove suffixes like Pvt Ltd, Inc, etc.)
     const cleanedCompanyName = cleanCompanyNameForDisplay(finalCompanyName)
 
-    // Use title from frontend if provided, otherwise generate based on interview type
-    let baseTitle: string
-    if (title) {
-      // Use the title provided by frontend (e.g., "Python Developer Interview")
-      baseTitle = title
-    } else if (interviewType === 'General' && generalSubType) {
-      baseTitle = `${interviewType} - ${generalSubType} Interview`
-    } else if (interviewType === 'Custom') {
-      const rolePart = extractedData?.role ? `${extractedData.role} Interview` : 'Custom Interview'
-      const companyPart = cleanedCompanyName ? ` at ${cleanedCompanyName}` : ''
-      baseTitle = `${rolePart}${companyPart}`
-    } else {
-      baseTitle = `${interviewType} Interview`
-    }
+    // Generate title based on interview type and role information
+    const baseTitle = generateBackendInterviewTitle(
+      interviewType,
+      role,
+      generalSubType,
+      hrSubType,
+      extractedData,
+      cleanedCompanyName
+    )
 
     // For template-based interviews (Technical, General, HR), prevent exact duplicates
     // For custom interviews, allow duplicates since they might have different job descriptions
@@ -366,8 +362,6 @@ export async function POST(request: NextRequest) {
       promptText = customPrompt
     } else if (mappedInterviewType === "CODING") {
       promptText = generateCodingPrompt(jdDetails, interview.title || "Coding Interview", cvText)
-    } else if (mappedInterviewType === "UI_INTERVIEW") {
-      promptText = generateUIUXPrompt(jdDetails, interview.title || "UI/UX Interview", cvText)
     } else if (mappedInterviewType === "TECHNICAL") {
       // Check if a specific role is provided and has a dedicated prompt
       const selectedRole = generalSubType || role

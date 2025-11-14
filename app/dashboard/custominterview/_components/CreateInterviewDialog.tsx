@@ -82,9 +82,10 @@ import {
   getAvailableInterviewTypes,
   getGeneralInterviewSubTypes,
   getHRInterviewSubTypes
-} from "./interview-utils"
+} from "./utils/interview-utils"
 import { VoiceRecordingAnimation } from "./animations"
-import { generateInterviewTitle } from "./interview-title-utils"
+import { generateInterviewTitle } from "./utils/interview-title-utils"
+import { CreditUsageInfo } from "@/lib/credit-converter"
 
 interface VoiceProfile {
   professionalSummary: string
@@ -95,13 +96,13 @@ interface VoiceProfile {
 
 interface CreateInterviewDialogProps {
   onInterviewCreated?: (data: { jdDetails: string; interviewType: string; screenShare?: boolean; company?: string; customPrompt?: string; generalSubType?: string; hrSubType?: string; cvText?: string; title?: string; voiceProfile?: VoiceProfile }) => void
-  userTimeData?: { totalTimeAllowance: number; usedTimeMinutes: number } | null
+  creditUsage?: CreditUsageInfo | null
   userCvData?: string | null
   isCreating?: boolean
 }
 
 const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewDialogProps>(
-  ({ onInterviewCreated, userTimeData, userCvData, isCreating = false }, ref) => {
+  ({ onInterviewCreated, creditUsage, userCvData, isCreating = false }, ref) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   // Predefined Role state
@@ -129,17 +130,17 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
   const [isProcessingVoice, setIsProcessingVoice] = useState(false)
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(null)
 
-  // Check if user has time allowance remaining
-  const checkTimeLimit = () => {
-    if (!userTimeData) return true // Allow if no data (will be checked on API)
-    return userTimeData.usedTimeMinutes < userTimeData.totalTimeAllowance
+  // Check if user has credit allowance remaining
+  const checkCreditLimit = () => {
+    if (!creditUsage) return true // Allow if no data (will be checked on API)
+    return creditUsage.remainingCredits > 0
   }
 
-  // Handle button click with time limit check
+  // Handle button click with credit limit check
   const handleCreateClick = () => {
-    if (!checkTimeLimit()) {
+    if (!checkCreditLimit()) {
       import('sonner').then(({ toast }) => {
-        toast.error(`You have used all ${userTimeData?.totalTimeAllowance} minutes of your free interview time. Please upgrade to continue practicing.`)
+        toast.error(`You have used all ${creditUsage?.totalCredits} credits of your interview allowance. Please upgrade to continue practicing.`)
       })
       return
     }
@@ -432,7 +433,12 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
           title: generateInterviewTitle("Custom")
         }
 
-        onInterviewCreated?.(interviewData)
+        // For custom interviews, don't provide a title so the backend can generate one based on extracted role
+        const finalInterviewData = activeTab === "custom"
+          ? { ...interviewData, title: undefined }
+          : interviewData
+
+        onInterviewCreated?.(finalInterviewData)
 
         // Reset form
         setIsDialogOpen(false)
@@ -546,18 +552,14 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
     const interviewData = {
       jdDetails: finalJdDetails,
       interviewType: interviewType, // Pass the original interview type
-      screenShare: false, // Screen sharing disabled for now since Coding and UI/UX are coming soon
+      screenShare: false, // Screen sharing disabled for now since Coding interviews are coming soon
       generalSubType: interviewType === 'General' ? generalSubType : (interviewType === 'Technical' ? selectedRole : undefined), // Pass role as generalSubType for technical interviews
       hrSubType: interviewType === 'HR' ? hrSubType : undefined, // Pass HR sub-type for HR interviews
       role: interviewType === 'Technical' ? selectedRole : undefined, // Keep role field for backward compatibility
       experienceLevel: interviewType === 'Technical' ? selectedLevel : undefined, // Pass the selected experience level only for Technical interviews
       cvText: cvText || userCvData || undefined, // Use uploaded CV, or existing CV if available
-      title: generateInterviewTitle(
-        interviewType,
-        interviewType === 'Technical' ? selectedRole :
-        interviewType === 'General' ? generalSubType :
-        interviewType === 'HR' ? hrSubType : undefined
-      )
+      // Let backend generate title based on interview type and role/subtype
+      title: undefined
     }
 
 

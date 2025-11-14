@@ -8,6 +8,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
+import { CREDIT_PACKAGES, CREDITS_PER_MINUTE } from '@/lib/credit-converter'
 import jwt from 'jsonwebtoken'
 
 interface DecodedToken {
@@ -81,14 +82,20 @@ export async function GET(request: NextRequest) {
       }, { status: 404 })
     }
 
+    // Set default time allowance for users who don't have one (like college students)
+    // FREE tier provides CREDIT_PACKAGES.FREE credits, convert to minutes
+    const DEFAULT_FREE_TIME_MINUTES = CREDIT_PACKAGES.FREE / CREDITS_PER_MINUTE
+    const totalTimeAllowance = user.totalTimeAllowance || DEFAULT_FREE_TIME_MINUTES
+    const usedTimeMinutes = user.usedTimeMinutes || 0
+
     // Return time data
     return NextResponse.json({
       success: true,
       data: {
         userId: user.id,
-        totalTimeAllowance: user.totalTimeAllowance || 0,
-        usedTimeMinutes: user.usedTimeMinutes || 0,
-        remainingTime: Math.max(0, (user.totalTimeAllowance || 0) - (user.usedTimeMinutes || 0)),
+        totalTimeAllowance: totalTimeAllowance,
+        usedTimeMinutes: usedTimeMinutes,
+        remainingTime: Math.max(0, totalTimeAllowance - usedTimeMinutes),
         name: user.name,
         email: user.email
       }

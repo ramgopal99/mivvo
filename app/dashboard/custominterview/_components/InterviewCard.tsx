@@ -98,14 +98,16 @@ export function InterviewCard({ interview, onStartInterview, onDeleteInterview, 
 
                 <div className="space-y-6 overflow-y-auto flex-1 pr-2">
                   {/* Company & Date Info */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="flex items-center gap-2">
-                      <Building className="h-4 w-4 text-gray-500" />
-                      <div>
-                        <p className="text-sm font-medium">Company</p>
-                        <p className="text-sm text-gray-600">{interview.company}</p>
+                  <div className={`grid gap-4 ${interview.company ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                    {interview.company && (
+                      <div className="flex items-center gap-2">
+                        <Building className="h-4 w-4 text-gray-500" />
+                        <div>
+                          <p className="text-sm font-medium">Company</p>
+                          <p className="text-sm text-gray-600">{interview.company}</p>
+                        </div>
                       </div>
-                    </div>
+                    )}
                     <div className="flex items-center gap-2">
                       <Calendar className="h-4 w-4 text-gray-500" />
                       <div>

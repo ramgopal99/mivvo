@@ -6,6 +6,7 @@ import CreateInterviewDialog from "./_components/CreateInterviewDialog"
 import { InterviewStats, InterviewList } from "./_components"
 import { InterviewData } from "./_components/InterviewCard"
 import { getAllInterviews, deleteInterview } from "./data"
+import { calculateCreditUsage, minutesToCredits, CreditUsageInfo } from "@/lib/credit-converter"
 
 // Helper function to get authentication headers
 const getAuthHeaders = (): Record<string, string> => {
@@ -38,14 +39,14 @@ export default function CustomInterviewPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [viewFormat, setViewFormat] = useState<"box" | "list">("box")
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [userTimeData, setUserTimeData] = useState<{ totalTimeAllowance: number; usedTimeMinutes: number } | null>(null)
+  const [creditUsage, setCreditUsage] = useState<CreditUsageInfo | null>(null)
   const [userCvData, setUserCvData] = useState<string | null>(null)
   const [isCreatingInterview, setIsCreatingInterview] = useState(false)
   const [deletingInterviewId, setDeletingInterviewId] = useState<string | null>(null)
   const createDialogRef = useRef<{ reset: () => void } | null>(null)
 
-  // Fetch user's time data
-  const fetchUserTimeData = async () => {
+  // Fetch user's time data and convert to credit usage
+  const fetchUserCreditData = async () => {
     try {
       const response = await fetch('/api/user/time-data', {
         headers: getAuthHeaders(),
@@ -54,14 +55,15 @@ export default function CustomInterviewPage() {
       if (response.ok) {
         const timeData = await response.json()
         if (timeData.success && timeData.data) {
-          setUserTimeData({
-            totalTimeAllowance: timeData.data.totalTimeAllowance,
-            usedTimeMinutes: timeData.data.usedTimeMinutes,
-          })
+          // Convert time data to credits (12 credits = 1 minute)
+          const totalCredits = minutesToCredits(timeData.data.totalTimeAllowance || 0)
+          const usedCredits = minutesToCredits(timeData.data.usedTimeMinutes || 0)
+          const creditUsageInfo = calculateCreditUsage(totalCredits, usedCredits)
+          setCreditUsage(creditUsageInfo)
         }
       }
     } catch (error) {
-      console.error('Failed to fetch user time data:', error)
+      console.error('Failed to fetch user credit data:', error)
     }
   }
 
@@ -91,7 +93,7 @@ export default function CustomInterviewPage() {
         if (status === 'authenticated' && session?.user) {
           setIsAuthenticated(true)
           // Fetch time data and CV data when authenticated
-          await fetchUserTimeData()
+          await fetchUserCreditData()
           await fetchUserCvData()
           setLoading(false)
           return
@@ -112,13 +114,8 @@ export default function CustomInterviewPage() {
             const sessionData = await response.json()
             if (sessionData.authenticated && sessionData.user) {
               setIsAuthenticated(true)
-              // Fetch time data for JWT-authenticated users
-              if (sessionData.user.totalTimeAllowance !== undefined && sessionData.user.usedTimeMinutes !== undefined) {
-                setUserTimeData({
-                  totalTimeAllowance: sessionData.user.totalTimeAllowance,
-                  usedTimeMinutes: sessionData.user.usedTimeMinutes,
-                })
-              }
+              // Fetch credit data for JWT-authenticated users (college students)
+              await fetchUserCreditData()
               // Fetch CV data for JWT-authenticated users
               await fetchUserCvData()
               setLoading(false)
@@ -344,7 +341,7 @@ export default function CustomInterviewPage() {
             <CreateInterviewDialog
               ref={createDialogRef}
               onInterviewCreated={handleInterviewCreated}
-              userTimeData={userTimeData}
+              creditUsage={creditUsage}
               userCvData={userCvData}
               isCreating={isCreatingInterview}
             />
@@ -357,8 +354,7 @@ export default function CustomInterviewPage() {
       <InterviewStats
         totalInterviews={interviews.length}
         completedInterviews={interviews.filter(interview => interview.status === "completed").length}
-        totalTimeAllowance={userTimeData?.totalTimeAllowance}
-        usedTimeMinutes={userTimeData?.usedTimeMinutes}
+        creditUsage={creditUsage}
       />
 
       {/* Interview List */}

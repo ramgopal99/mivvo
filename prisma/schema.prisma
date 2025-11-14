@@ -91,7 +91,7 @@ model User {
   github             String?
 
   // Time allowances (in minutes)
-  totalTimeAllowance   Int      @default(30)  // 30 minutes free for new users
+  totalTimeAllowance   Int?     // Set by application logic, not database default
   usedTimeMinutes      Int      @default(0)
   timeAllowanceResetAt DateTime?               
 

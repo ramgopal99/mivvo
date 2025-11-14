@@ -82,7 +82,7 @@ export async function getDashboardData(collegeUserData?: { id: string; name: str
       type: interview.interviewType?.replace('_', ' ') || 'GENERAL',
       status: latestAttempt?.status === 'COMPLETED' ? 'COMPLETED' as const : 'IN_PROGRESS' as const,
       score: latestResult?.overallScore ? Math.round(latestResult.overallScore) : undefined,
-      duration: latestAttempt?.conversations.reduce((total, conv) => total + conv.duration, 0) || 0,
+      duration: Math.round((latestAttempt?.conversations.reduce((total, conv) => total + conv.duration, 0) || 0) / 60), // Convert seconds to minutes
       createdAt: interview.createdAt,
       companyName: interview.companyName || undefined,
       position: interview.position || undefined
