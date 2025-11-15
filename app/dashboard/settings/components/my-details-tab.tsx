@@ -36,7 +36,6 @@ export function MyDetailsTab() {
                 company: null,
                 location: null,
                 bio: null,
-                cv: parsedUserData.cv || null,
                 careerGoals: parsedUserData.careerGoals || null,
                 linkedIn: parsedUserData.linkedIn || null,
                 github: parsedUserData.github || null,

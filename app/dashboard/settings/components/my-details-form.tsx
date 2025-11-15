@@ -6,7 +6,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { FileText, X } from "lucide-react"
 import { updateUserDetails } from "../actions"
 import { UserData } from "../types"
 
@@ -20,12 +19,6 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
   const [message, setMessage] = useState("")
   const [hasChanges, setHasChanges] = useState(false)
 
-  // CV upload state
-  const [cvFile, setCvFile] = useState<File | null>(null)
-  const [isExtractingCV, setIsExtractingCV] = useState(false)
-  const [showCompressedCV, setShowCompressedCV] = useState(false)
-  const [showUploadInput, setShowUploadInput] = useState(!userData?.cv) // Only show if no CV exists
-  const cvInputRef = useRef<HTMLInputElement>(null)
 
   // Form state
   const [formData, setFormData] = useState({
@@ -37,7 +30,6 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
     company: userData?.company || "",
     location: userData?.location || "",
     bio: userData?.bio || "",
-    cv: userData?.cv || "",
     careerGoals: userData?.careerGoals || "",
     linkedIn: userData?.linkedIn || "",
     github: userData?.github || "",
@@ -59,7 +51,6 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
       company: userData?.company || "",
       location: userData?.location || "",
       bio: userData?.bio || "",
-      cv: userData?.cv || "",
       careerGoals: userData?.careerGoals || "",
       linkedIn: userData?.linkedIn || "",
       github: userData?.github || "",
@@ -71,10 +62,6 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
     })
   }, [userData])
 
-  // Update upload input visibility when userData.cv changes
-  useEffect(() => {
-    setShowUploadInput(!userData?.cv) // Hide upload input if CV exists
-  }, [userData?.cv])
 
   // Track changes
   useEffect(() => {
@@ -87,7 +74,6 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
       company: userData?.company || "",
       location: userData?.location || "",
       bio: userData?.bio || "",
-      cv: userData?.cv || "",
       careerGoals: userData?.careerGoals || "",
       linkedIn: userData?.linkedIn || "",
       github: userData?.github || "",
@@ -409,115 +395,7 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
           </CardContent>
         </Card>
 
-        {/* Hidden input for CV data */}
-        <input type="hidden" name="cv" value={formData.cv} />
 
-        {/* CV Upload Section */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Resume/CV</CardTitle>
-            <CardDescription>
-              Upload your resume to enhance your profile. This will help personalize your interview experiences.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="cv-upload">Upload CV/Resume</Label>
-                {formData.cv && !showUploadInput && (
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setShowUploadInput(true)}
-                    className="text-xs"
-                  >
-                    Change CV
-                  </Button>
-                )}
-              </div>
-              {showUploadInput && (
-                <div className="space-y-3">
-                  <Input
-                    id="cv-upload"
-                    ref={cvInputRef}
-                    type="file"
-                    accept=".pdf,.docx"
-                    onChange={handleCvFileSelect}
-                    disabled={saving || isExtractingCV}
-                    className="file:mr-4 file:py-2 file:px-4 file:rounded-l-md file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                  />
-                  <p className="text-xs text-gray-500">
-                    Upload your CV/resume (PDF or DOCX, max 10MB) to personalize your profile and interview experiences.
-                  </p>
-                </div>
-              )}
-              {!showUploadInput && formData.cv && (
-                <p className="text-xs text-gray-500">
-                  CV uploaded successfully. Click &apos;Change CV&apos; to upload a new one.
-                </p>
-              )}
-
-                {/* CV Preview */}
-                {cvFile && (
-                  <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg border">
-                    <div className="flex items-center gap-3">
-                      <FileText className="h-8 w-8 text-blue-600" />
-                      <div>
-                        <p className="font-medium text-sm text-blue-900">{cvFile.name}</p>
-                        <p className="text-xs text-blue-600">{formatFileSize(cvFile.size)}</p>
-                      </div>
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={clearCvFile}
-                      disabled={saving || isExtractingCV}
-                      className="text-red-600 hover:text-red-800 hover:bg-red-50"
-                    >
-                      <X className="h-4 w-4" />
-                    </Button>
-                  </div>
-                )}
-
-              {/* Loading indicator for CV extraction */}
-              {isExtractingCV && (
-                <div className="flex items-center gap-2 text-sm text-blue-600">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-                  Extracting text from CV...
-                </div>
-              )}
-            </div>
-
-            {/* Compressed CV Display */}
-            {formData.cv && (
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <Label className="text-sm font-medium">Compressed CV Summary</Label>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setShowCompressedCV(!showCompressedCV)}
-                    className="text-xs"
-                  >
-                    {showCompressedCV ? 'Hide' : 'Show'} Summary
-                  </Button>
-                </div>
-                {showCompressedCV && (
-                  <div className="p-4 bg-gray-50 rounded-lg border max-h-60 overflow-y-auto">
-                    <pre className="text-sm text-gray-700 whitespace-pre-wrap font-sans">
-                      {formData.cv}
-                    </pre>
-                  </div>
-                )}
-                <p className="text-xs text-gray-500">
-                  This is a compressed version of your CV that captures key information for interview personalization.
-                </p>
-              </div>
-            )}
-          </CardContent>
-        </Card>
 
         {/* College Information - Only show for college students */}
         {userData?.college && userData.college.collegeId && (

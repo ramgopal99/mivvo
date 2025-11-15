@@ -7,30 +7,7 @@ import { InterviewStats, InterviewList } from "./_components"
 import { InterviewData } from "./_components/InterviewCard"
 import { getAllInterviews, deleteInterview } from "./data"
 import { calculateCreditUsage, minutesToCredits, CreditUsageInfo } from "@/lib/credit-converter"
-
-// Helper function to get authentication headers
-const getAuthHeaders = (): Record<string, string> => {
-  const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
-  }
-
-  // Check for NextAuth session token
-  const nextAuthToken = localStorage.getItem('next-auth.session-token') ||
-                       localStorage.getItem('__Secure-next-auth.session-token')
-  if (nextAuthToken) {
-    headers['Authorization'] = `Bearer ${nextAuthToken}`
-  }
-
-  // Check for JWT tokens (college students/admins) - updated token names
-  const jwtToken = localStorage.getItem('token') ||
-                  localStorage.getItem('student_token') ||
-                  localStorage.getItem('college_token')
-  if (jwtToken) {
-    headers['Authorization'] = `Bearer ${jwtToken}`
-  }
-
-  return headers
-}
+import { getAuthHeaders } from "@/lib/auth-utils"
 
 export default function CustomInterviewPage() {
   const { data: session, status } = useSession()

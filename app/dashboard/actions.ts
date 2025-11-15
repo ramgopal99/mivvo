@@ -76,16 +76,28 @@ export async function getDashboardData(collegeUserData?: { id: string; name: str
     const latestAttempt = interview.attempts[0]
     const latestResult = latestAttempt?.results[0]
 
+    // Determine status based on attempts
+    let status: 'COMPLETED' | 'IN_PROGRESS'
+    if (interview.attempts.length === 0) {
+      // No attempts yet - not started
+      status = 'IN_PROGRESS' // Keep as IN_PROGRESS for backward compatibility with component logic
+    } else if (latestAttempt?.status === 'COMPLETED') {
+      status = 'COMPLETED'
+    } else {
+      status = 'IN_PROGRESS'
+    }
+
     return {
       id: interview.id,
       title: interview.title || `${interview.position} Interview${interview.companyName ? ` - ${interview.companyName}` : ''}`,
       type: interview.interviewType?.replace('_', ' ') || 'GENERAL',
-      status: latestAttempt?.status === 'COMPLETED' ? 'COMPLETED' as const : 'IN_PROGRESS' as const,
+      status,
       score: latestResult?.overallScore ? Math.round(latestResult.overallScore) : undefined,
       duration: Math.round((latestAttempt?.conversations.reduce((total, conv) => total + conv.duration, 0) || 0) / 60), // Convert seconds to minutes
       createdAt: interview.createdAt,
       companyName: interview.companyName || undefined,
-      position: interview.position || undefined
+      position: interview.position || undefined,
+      hasAttempts: interview.attempts.length > 0 // Add this to help with button logic
     }
   })
 

@@ -29,6 +29,12 @@ declare module "next-auth/jwt" {
 }
 
 export const authOptions: NextAuthOptions = {
+  debug: false, // Disable debug logs
+  logger: {
+    error: () => {}, // Suppress error logs
+    warn: () => {},  // Suppress warning logs
+    debug: () => {}, // Suppress debug logs
+  },
   adapter: PrismaAdapter(prisma) as Adapter,
   providers: [
     GoogleProvider({
@@ -120,5 +126,4 @@ export const authOptions: NextAuthOptions = {
       console.log("User signed out")
     },
   },
-  debug: process.env.NODE_ENV === "development",
 }

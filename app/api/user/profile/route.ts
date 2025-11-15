@@ -58,7 +58,6 @@ export async function GET(request: NextRequest) {
         company: true,
         location: true,
         bio: true,
-        cv: true, // Include CV data
         careerGoals: true,
         linkedIn: true,
         github: true,
@@ -116,7 +115,6 @@ export async function GET(request: NextRequest) {
       company: userProfile.company,
       location: userProfile.location,
       bio: userProfile.bio,
-      cv: userProfile.cv, // Include CV data
       careerGoals: userProfile.careerGoals,
       linkedIn: userProfile.linkedIn,
       github: userProfile.github,

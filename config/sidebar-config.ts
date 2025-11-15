@@ -3,7 +3,7 @@ import {
   Settings,
   Shield,
   MessageSquare,
-  HelpCircle,
+  MessageCircle,
   Headphones,
   BookOpen
 } from "lucide-react"
@@ -72,10 +72,10 @@ export const sidebarConfig: SidebarConfig = {
         description: "Raise queries and get support"
       },
       {
-        title: "Help",
-        url: "/dashboard/help",
-        icon: HelpCircle,
-        description: "Get help and support"
+        title: "Feedback",
+        url: "/dashboard/feedback",
+        icon: MessageCircle,
+        description: "Share your feedback and suggestions"
       }
     ]
   }

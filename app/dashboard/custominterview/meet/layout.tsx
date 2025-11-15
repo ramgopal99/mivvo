@@ -1,7 +1,9 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, useParams } from "next/navigation"
+import { getAuthHeaders } from "@/lib/auth-utils"
+import PermissionCheck from "./permissions"
 
 // Layout for custom interview meet room pages
 export default function CustomInterviewLayout({
@@ -10,37 +12,18 @@ export default function CustomInterviewLayout({
   children: React.ReactNode
 }) {
   const router = useRouter()
+  const params = useParams()
+  const interviewId = params.id as string
+
   const [userTimeData, setUserTimeData] = useState<{ totalTimeAllowance: number; usedTimeMinutes: number } | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [countdown, setCountdown] = useState(3)
+  const [permissionsGranted, setPermissionsGranted] = useState(false)
 
-  // Helper function to get authentication headers for API calls
-  const getAuthHeaders = (): Record<string, string> => {
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-    }
-
-    // Check for NextAuth session token
-    const nextAuthToken = typeof window !== 'undefined' ? (
-      localStorage.getItem('next-auth.session-token') ||
-      localStorage.getItem('__Secure-next-auth.session-token')
-    ) : null
-    if (nextAuthToken) {
-      headers['Authorization'] = `Bearer ${nextAuthToken}`
-    }
-
-    // Check for JWT tokens (college students/admins) - updated token names
-    const jwtToken = typeof window !== 'undefined' ? (
-      localStorage.getItem('token') ||
-      localStorage.getItem('student_token') ||
-      localStorage.getItem('college_token')
-    ) : null
-    if (jwtToken) {
-      headers['Authorization'] = `Bearer ${jwtToken}`
-    }
-
-    return headers
+  // Handle when permissions are granted
+  const handlePermissionsGranted = () => {
+    setPermissionsGranted(true)
   }
 
   // Fetch user's time data
@@ -179,7 +162,17 @@ export default function CustomInterviewLayout({
     )
   }
 
-  // Render normal layout if time limit not exceeded
+  // Render permission check or normal layout
+  if (!permissionsGranted) {
+    return (
+      <PermissionCheck
+        interviewId={interviewId}
+        onPermissionsGranted={handlePermissionsGranted}
+      />
+    )
+  }
+
+  // Render normal layout if permissions granted and time limit not exceeded
   return (
     <div className="min-h-screen bg-white">
       {children}

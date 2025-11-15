@@ -16,6 +16,7 @@ interface Interview {
   createdAt: Date
   companyName?: string
   position?: string
+  hasAttempts?: boolean
 }
 
 interface RecentInterviewsProps {
@@ -113,16 +114,18 @@ export function RecentInterviews({ interviews }: RecentInterviewsProps) {
                     )}
                   </div>
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href={`/dashboard/custominterview/${interview.id}`}>
-                        <Eye className="h-4 w-4 mr-1" />
-                        Analysis
-                      </Link>
-                    </Button>
+                    {interview.status === 'COMPLETED' && interview.score && (
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href={`/dashboard/custominterview/${interview.id}`}>
+                          <Eye className="h-4 w-4 mr-1" />
+                          Analysis
+                        </Link>
+                      </Button>
+                    )}
                     <Button size="sm" asChild>
                       <Link href={`/dashboard/custominterview/meet/${interview.id}`}>
                         <Play className="h-4 w-4 mr-1" />
-                        Retry
+                        {interview.hasAttempts ? 'Continue' : 'Start'}
                       </Link>
                     </Button>
                   </div>

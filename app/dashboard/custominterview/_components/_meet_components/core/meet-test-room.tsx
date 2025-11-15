@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/dialog'
 import { MeetTestHeader } from '../ui/meet-test-header'
 import { MeetTestControls } from '../ui/meet-test-controls'
+import { getAuthHeaders } from '@/lib/auth-utils'
 import { ScreenShareDisplay } from '../ui/screen-share-display'
 import { DraggableCodeButton } from '../ui/draggable-code-button'
 import { CodeDialog } from '../ui/code-dialog'
@@ -38,40 +39,6 @@ declare global {
   interface Window {
     getCurrentCodingCode?: () => { code: string; language: string }
   }
-}
-
-// Helper function to get authentication headers for API calls
-const getAuthHeaders = (): Record<string, string> => {
-  const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
-  }
-
-  // Check for NextAuth session token
-  const nextAuthToken = typeof window !== 'undefined' ? (
-    localStorage.getItem('next-auth.session-token') ||
-    localStorage.getItem('__Secure-next-auth.session-token')
-  ) : null
-  if (nextAuthToken) {
-    console.log('Using NextAuth token for API call')
-    headers['Authorization'] = `Bearer ${nextAuthToken}`
-  }
-
-  // Check for JWT tokens (college students/admins) - updated token names
-  const jwtToken = typeof window !== 'undefined' ? (
-    localStorage.getItem('token') ||
-    localStorage.getItem('student_token') ||
-    localStorage.getItem('college_token')
-  ) : null
-  if (jwtToken) {
-    console.log('Using JWT token for API call')
-    headers['Authorization'] = `Bearer ${jwtToken}`
-  }
-
-  if (!headers['Authorization']) {
-    console.warn('No authentication token found for API call')
-  }
-
-  return headers
 }
 
 interface MeetTestRoomProps {

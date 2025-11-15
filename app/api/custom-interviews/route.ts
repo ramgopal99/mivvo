@@ -233,7 +233,7 @@ export async function POST(request: NextRequest) {
 
     // Check if user has exceeded their time allowance
     // Only apply time limits to regular users, not admins
-    if (user.role === 'USER' && user.usedTimeMinutes >= user.totalTimeAllowance) {
+    if (user.role === 'USER' && user.totalTimeAllowance !== null && user.usedTimeMinutes >= user.totalTimeAllowance) {
       return NextResponse.json({
         error: 'Time limit exceeded',
         message: `You have used all ${user.totalTimeAllowance} minutes of your free interview time. Please upgrade to continue practicing.`,
@@ -342,7 +342,8 @@ export async function POST(request: NextRequest) {
         title: uniqueTitle,
         companyName: cleanedCompanyName,
         jobDescription: jdDetails,
-        cvText: cvText || null, // Save CV text if provided
+        // For custom interviews, don't save CV text - only use when explicitly uploaded
+        cvText: mappedInterviewType === "CUSTOM_INTERVIEW" ? null : (cvText || null),
         interviewType: mappedInterviewType,
         role: role || null, // Save specific role if provided
         screenShareEnabled: screenShare || false,
@@ -361,7 +362,8 @@ export async function POST(request: NextRequest) {
     if (customPrompt) {
       promptText = customPrompt
     } else if (mappedInterviewType === "CODING") {
-      promptText = generateCodingPrompt(jdDetails, interview.title || "Coding Interview", cvText)
+      // For coding interviews, include CV only if explicitly provided
+      promptText = generateCodingPrompt(jdDetails, interview.title || "Coding Interview", cvText || undefined)
     } else if (mappedInterviewType === "TECHNICAL") {
       // Check if a specific role is provided and has a dedicated prompt
       const selectedRole = generalSubType || role
@@ -369,42 +371,46 @@ export async function POST(request: NextRequest) {
       if (selectedRole) {
         const rolePromptGenerator = getTechnicalRolePromptGenerator(selectedRole)
         if (rolePromptGenerator) {
-          promptText = rolePromptGenerator(jdDetails, interview.title || `${selectedRole.replace('-', ' ')} Interview`, experienceLevel, cvText)
+          // For technical interviews, include CV only if explicitly provided
+          promptText = rolePromptGenerator(jdDetails, interview.title || `${selectedRole.replace('-', ' ')} Interview`, experienceLevel, cvText || undefined)
         } else {
-          promptText = generateTechnicalPrompt(jdDetails, interview.title || "Technical Interview", cvText)
+          promptText = generateTechnicalPrompt(jdDetails, interview.title || "Technical Interview", cvText || undefined)
         }
       } else {
-        promptText = generateTechnicalPrompt(jdDetails, interview.title || "Technical Interview", cvText)
+        promptText = generateTechnicalPrompt(jdDetails, interview.title || "Technical Interview", cvText || undefined)
       }
     } else if (mappedInterviewType === "GENERAL_INTERVIEW") {
       // Handle General interview sub-types (UPSE and Banking)
       if (generalSubType === "UPSE") {
-        promptText = generateUPSEPrompt(cvText)
+        promptText = generateUPSEPrompt(cvText || undefined)
       } else if (generalSubType === "Banking") {
-        promptText = generateBankingPrompt(cvText)
+        promptText = generateBankingPrompt(cvText || undefined)
       } else {
-        // Fallback to general prompt
-        promptText = generateGeneralPrompt(jdDetails, interview.title || "Custom Interview", cvText)
+        // Fallback to general prompt - include CV only if explicitly provided
+        promptText = generateGeneralPrompt(jdDetails, interview.title || "Custom Interview", cvText || undefined)
       }
     } else if (interviewType === "HR") {
       // Handle HR interview sub-types (Behavioral, Situational, Competency, Leadership, Cultural)
       if (hrSubType === "Behavioral") {
-        promptText = generateBehavioralHRPrompt(jdDetails, interview.title || "Behavioral HR Interview", cvText)
+        promptText = generateBehavioralHRPrompt(jdDetails, interview.title || "Behavioral HR Interview", cvText || undefined)
       } else if (hrSubType === "Situational") {
-        promptText = generateSituationalHRPrompt(jdDetails, interview.title || "Situational HR Interview", cvText)
+        promptText = generateSituationalHRPrompt(jdDetails, interview.title || "Situational HR Interview", cvText || undefined)
       } else if (hrSubType === "Competency") {
-        promptText = generateCompetencyHRPrompt(jdDetails, interview.title || "Competency-Based HR Interview", cvText)
+        promptText = generateCompetencyHRPrompt(jdDetails, interview.title || "Competency-Based HR Interview", cvText || undefined)
       } else if (hrSubType === "Leadership") {
-        promptText = generateLeadershipHRPrompt(jdDetails, interview.title || "Leadership HR Interview", cvText)
+        promptText = generateLeadershipHRPrompt(jdDetails, interview.title || "Leadership HR Interview", cvText || undefined)
       } else if (hrSubType === "Cultural") {
-        promptText = generateCulturalHRPrompt(jdDetails, interview.title || "Cultural Fit HR Interview", cvText)
+        promptText = generateCulturalHRPrompt(jdDetails, interview.title || "Cultural Fit HR Interview", cvText || undefined)
       } else {
         // Fallback to behavioral HR prompt if sub-type is not recognized
-        promptText = generateBehavioralHRPrompt(jdDetails, interview.title || "Behavioral HR Interview", cvText)
+        promptText = generateBehavioralHRPrompt(jdDetails, interview.title || "Behavioral HR Interview", cvText || undefined)
       }
+    } else if (mappedInterviewType === "CUSTOM_INTERVIEW") {
+      // For custom interviews, NEVER include CV automatically - only when explicitly uploaded
+      promptText = generateGeneralPrompt(jdDetails, interview.title || "Custom Interview", undefined)
     } else {
-      // Fallback to general prompt
-      promptText = generateGeneralPrompt(jdDetails, interview.title || "Custom Interview", cvText)
+      // Fallback to general prompt - include CV only if explicitly provided
+      promptText = generateGeneralPrompt(jdDetails, interview.title || "Custom Interview", cvText || undefined)
     }
 
 

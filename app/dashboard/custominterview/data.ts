@@ -1,4 +1,5 @@
 import { InterviewData } from "./_components/InterviewCard"
+import { getAuthHeaders } from "@/lib/auth-utils"
 
 /**
  * Custom Interview Data Access Layer
@@ -7,35 +8,6 @@ import { InterviewData } from "./_components/InterviewCard"
  * All functions handle authentication and error cases gracefully.
  */
 
-/**
- * Get authorization headers for API requests
- * @param includeContentType - Whether to include Content-Type header
- * @returns Headers object with authorization if available
- */
-const getAuthHeaders = (includeContentType = true): Record<string, string> => {
-  const headers: Record<string, string> = {}
-
-  if (includeContentType) {
-    headers['Content-Type'] = 'application/json'
-  }
-
-  // Check for NextAuth session token
-  const nextAuthToken = localStorage.getItem('next-auth.session-token') ||
-                       localStorage.getItem('__Secure-next-auth.session-token')
-  if (nextAuthToken) {
-    headers['Authorization'] = `Bearer ${nextAuthToken}`
-  }
-
-  // Check for JWT tokens (college students/admins) - updated token names
-  const jwtToken = localStorage.getItem('token') ||
-                  localStorage.getItem('student_token') ||
-                  localStorage.getItem('college_token')
-  if (jwtToken) {
-    headers['Authorization'] = `Bearer ${jwtToken}`
-  }
-
-  return headers
-}
 
 /**
  * Fetch a specific interview by ID

@@ -33,7 +33,7 @@ export interface CodingInterviewConfig {
 // Voice settings for speech synthesis and recognition
 export const VOICE_CONFIG = {
   language: 'hi-IN',        // Default language (Hindi)
-  speechRate: 1.4,          // Speech rate (1.2x = 20% faster)
+  speechRate: 1.25,          // Speech rate (1.2x = 20% faster)
   speechPitch: 1.0,         // Speech pitch (1.0 = normal)
   autoListenAfterAI: false  // Auto-listen after AI speaks
 }
@@ -66,7 +66,7 @@ export const UI_CONFIG = {
 
 // Timing settings for regular voice conversations
 export const VOICE_CHAT_CONFIG = {
-  SILENCE_TIMEOUT_MS: 2000, // Wait time after user stops speaking
+  SILENCE_TIMEOUT_MS: 2500, // Wait time after user stops speaking
   RECOGNITION_KEEP_ALIVE_MS: 6000, // Speech recognition keep-alive interval
   TTS_RESTART_DELAY_MS: 250, // Delay before restarting speech recognition
   USER_RESPONSE_TIMEOUT_MS: 15000, // Timeout for user responses
