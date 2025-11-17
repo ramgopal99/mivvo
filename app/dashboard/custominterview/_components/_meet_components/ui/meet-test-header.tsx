@@ -1,10 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Brain, PhoneOff, Mic, MicOff, Code } from 'lucide-react'
+import { Brain, PhoneOff, Mic, MicOff, Code, Info } from 'lucide-react'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 import { UI_CONFIG } from '../config'
+import Image from 'next/image'
 
 interface MeetTestHeaderProps {
   interviewTitle?: string
@@ -47,6 +56,8 @@ export function MeetTestHeader({
   isScreenSharing = false,
   showInterviewStartDialog = false
 }: MeetTestHeaderProps) {
+  const [isInfoDialogOpen, setIsInfoDialogOpen] = useState(false)
+
   return (
     <div className="absolute top-0 left-0 right-0 z-10 bg-background/95 backdrop-blur-sm border-b">
       <div className="flex items-center justify-between px-6 py-4">
@@ -55,11 +66,21 @@ export function MeetTestHeader({
           <Avatar className="h-10 w-10">
             <AvatarImage src={assistantAvatar} />
             <AvatarFallback>
-              <Brain className="h-5 w-5" />
+              <Brain className="h-5 w-5 text-primary" />
             </AvatarFallback>
           </Avatar>
           <div>
-            <h1 className="text-lg font-semibold">{interviewTitle}</h1>
+            <div className="flex items-center gap-2">
+              <h1 className="text-lg font-semibold">{interviewTitle}</h1>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-5 w-5 p-0 hover:bg-muted"
+                onClick={() => setIsInfoDialogOpen(true)}
+              >
+                <Info className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+              </Button>
+            </div>
             <p className="text-sm text-muted-foreground">AI Meeting Assistant</p>
           </div>
         </div>
@@ -130,6 +151,27 @@ export function MeetTestHeader({
           </Button>
         </div>
       </div>
+
+      {/* Info Dialog */}
+      <Dialog open={isInfoDialogOpen} onOpenChange={setIsInfoDialogOpen}>
+        <DialogContent className="max-w-[95vw] max-h-[95vh] w-full overflow-auto">
+          <DialogHeader>
+            <DialogTitle>Know Your Platform</DialogTitle>
+            <DialogDescription>
+              Platform information and features
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-center items-center mt-4">
+            <Image
+              src="/knowyourplatform.png"
+              alt="Know Your Platform"
+              width={1200}
+              height={900}
+              className="rounded-lg w-full h-auto"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

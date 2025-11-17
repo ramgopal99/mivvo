@@ -685,8 +685,8 @@ export function VoiceChat({
     <div className="relative h-full">
       {/* AI Icon - Always visible in center */}
       <div className="flex flex-col items-center justify-center h-full">
-        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-4">
-          <Brain className="w-12 h-12 text-white" />
+        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center mb-4">
+          <Brain className="w-12 h-12 text-primary-foreground" />
         </div>
         <div className="text-center">
           <h3 className="text-lg font-semibold text-foreground mb-2">AI Assistant</h3>
