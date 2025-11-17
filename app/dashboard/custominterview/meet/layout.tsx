@@ -4,6 +4,9 @@ import { useState, useEffect, useCallback } from "react"
 import { useRouter, useParams } from "next/navigation"
 import { getAuthHeaders } from "@/lib/auth-utils"
 import PermissionCheck from "./permissions"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Maximize, Monitor } from "lucide-react"
 
 // Layout for custom interview meet room pages
 export default function CustomInterviewLayout({
@@ -20,10 +23,28 @@ export default function CustomInterviewLayout({
   const [error, setError] = useState<string | null>(null)
   const [countdown, setCountdown] = useState(3)
   const [permissionsGranted, setPermissionsGranted] = useState(false)
+  const [fullscreenChoiceMade, setFullscreenChoiceMade] = useState(false)
 
   // Handle when permissions are granted
   const handlePermissionsGranted = () => {
     setPermissionsGranted(true)
+  }
+
+  // Handle fullscreen choice
+  const handleEnterFullscreen = async () => {
+    try {
+      if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+        await document.documentElement.requestFullscreen()
+      }
+    } catch (error) {
+      console.error('Error entering fullscreen:', error)
+    } finally {
+      setFullscreenChoiceMade(true)
+    }
+  }
+
+  const handleSkipFullscreen = () => {
+    setFullscreenChoiceMade(true)
   }
 
   // Fetch user's time data
@@ -97,7 +118,7 @@ export default function CustomInterviewLayout({
   // Show loading state
   if (loading) {
     return (
-      <div className="bg-white flex items-center justify-center py-20">
+      <div className="bg-white flex items-center justify-center h-screen overflow-hidden">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
           <p className="text-gray-600">Loading...</p>
@@ -112,7 +133,7 @@ export default function CustomInterviewLayout({
     const isAuthError = error !== null
 
     return (
-      <div className="bg-white flex items-center justify-center p-4 py-20">
+      <div className="bg-white flex items-center justify-center h-screen overflow-hidden p-4">
         <div className="max-w-md w-full text-center">
           <div className="bg-red-50 border border-red-200 rounded-lg p-6">
             <div className="text-red-600 mb-4">
@@ -162,7 +183,7 @@ export default function CustomInterviewLayout({
     )
   }
 
-  // Render permission check or normal layout
+  // Render permission check
   if (!permissionsGranted) {
     return (
       <PermissionCheck
@@ -172,9 +193,64 @@ export default function CustomInterviewLayout({
     )
   }
 
-  // Render normal layout if permissions granted and time limit not exceeded
+  // Show fullscreen permission dialog if choice not made yet
+  if (!fullscreenChoiceMade) {
+    return (
+      <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center min-h-screen p-4">
+        <Card className="w-full max-w-md">
+          <CardHeader className="text-center">
+            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
+              <Maximize className="h-8 w-8 text-blue-600" />
+            </div>
+            <CardTitle className="text-xl">Interview Experience</CardTitle>
+            <CardDescription>
+              For the best interview experience, we recommend using fullscreen mode
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="text-sm text-gray-600 space-y-2">
+              <div className="flex items-center gap-2">
+                <Monitor className="h-4 w-4" />
+                <span>Maximized screen space</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Maximize className="h-4 w-4" />
+                <span>Distraction-free environment</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <Button
+                onClick={handleEnterFullscreen}
+                className="w-full cursor-pointer"
+                size="lg"
+              >
+                <Maximize className="h-4 w-4 mr-2" />
+                Enter Fullscreen Mode
+              </Button>
+
+              <Button
+                onClick={handleSkipFullscreen}
+                variant="outline"
+                className="w-full cursor-pointer"
+                size="lg"
+              >
+                Continue in Normal View
+              </Button>
+            </div>
+
+            <p className="text-xs text-gray-500 text-center">
+              You can exit fullscreen anytime by pressing the Escape key
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
+  // Render normal layout if permissions granted, time limit not exceeded, and fullscreen choice made
   return (
-    <div className="bg-white">
+    <div className="bg-white h-screen overflow-hidden">
       {children}
     </div>
   )

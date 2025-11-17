@@ -196,7 +196,7 @@ export default function CustomInterviewMeetPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center h-screen overflow-hidden">
         <div className="text-center text-gray-900">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
           <p>Loading interview...</p>
@@ -207,7 +207,7 @@ export default function CustomInterviewMeetPage() {
 
   if (!interview) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center h-screen overflow-hidden">
         <div className="text-center text-gray-900">
           <p className="mb-4">Interview not found</p>
           <button
@@ -225,7 +225,7 @@ export default function CustomInterviewMeetPage() {
   if (showPermissionDialog || !permissionChecked) {
     return (
       <>
-        <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <div className="flex items-center justify-center h-screen overflow-hidden bg-gray-50">
           <div className="text-center text-gray-900">
             {checkingPermissions ? (
               <>
