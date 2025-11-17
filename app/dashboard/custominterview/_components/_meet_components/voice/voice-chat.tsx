@@ -92,6 +92,7 @@ interface VoiceChatProps {
   voiceChatMessages?: { AI_GREETING_MESSAGE: string; USER_RESPONSE_TIMEOUT_MESSAGE: string } // Optional custom voice chat messages
   showLiveTranscription?: boolean // Optional override for live transcription display
   customPrompt?: string // Custom AI interviewer prompt
+  isAudioEnabled?: boolean // Whether microphone is enabled
 }
 
 export function VoiceChat({
@@ -111,7 +112,8 @@ export function VoiceChat({
   voiceChatConfig,
   voiceChatMessages,
   showLiveTranscription,
-  customPrompt
+  customPrompt,
+  isAudioEnabled = true // Default to true for backward compatibility
 }: VoiceChatProps) {
   // Use provided voice chat config or default
   const currentVoiceChatConfig = voiceChatConfig || VOICE_CHAT_CONFIG
@@ -136,6 +138,7 @@ export function VoiceChat({
   const isListeningRef = useRef<boolean>(false)
   const isConversationModeRef = useRef<boolean>(false)
   const autoListenAfterAIRef = useRef<boolean>(false)
+  const isAudioEnabledRef = useRef<boolean>(true)
 
   // New refs for accumulating speech over time
   const accumulatedSpeechRef = useRef<string>('')
@@ -181,8 +184,8 @@ export function VoiceChat({
 
   // Ensure recognition stays active by restarting if needed
   const ensureRecognitionActive = useCallback(() => {
-    // Don't restart if not in conversation mode, currently processing speech, or AI is speaking
-    if (!isConversationModeRef.current || isProcessingSpeechRef.current) return
+    // Don't restart if not in conversation mode, currently processing speech, AI is speaking, or mic is disabled
+    if (!isConversationModeRef.current || isProcessingSpeechRef.current || !isAudioEnabledRef.current) return
 
     if (!isListeningRef.current && startListeningRef.current) {
       console.log('Recognition not active, restarting...')
@@ -255,6 +258,12 @@ export function VoiceChat({
 
   const startListening = useCallback(async () => {
     if (!recognitionRef.current || isListening) return
+    
+    // Critical: Check if microphone is enabled before starting recognition
+    if (!isAudioEnabled) {
+      console.log('Microphone is disabled, cannot start recognition')
+      return
+    }
 
     try {
       setError('')
@@ -264,7 +273,7 @@ export function VoiceChat({
       console.error('Error accessing microphone:', error)
       setError('Microphone access is required for speech recognition. Please allow microphone access and try again.')
     }
-  }, [isListening])
+  }, [isListening, isAudioEnabled])
 
   const speakText = useCallback((text: string) => {
     if (!speechSynthesisRef.current) return
@@ -299,7 +308,8 @@ export function VoiceChat({
       // Start user response timeout - wait for user to respond
       startUserResponseTimeout()
       // Restart speech recognition after AI finishes speaking (with delay to avoid immediate recapture)
-      if (isConversationModeRef.current || autoListenAfterAIRef.current) {
+      // Only restart if microphone is enabled
+      if ((isConversationModeRef.current || autoListenAfterAIRef.current) && isAudioEnabled) {
         setTimeout(() => {
           if (!isListeningRef.current && startListeningRef.current && !isProcessingSpeechRef.current) {
             startListeningRef.current()
@@ -311,7 +321,8 @@ export function VoiceChat({
       setIsSpeaking(false)
       onVoiceChatStateChange?.(false)
       // Restart speech recognition on error as well
-      if (isConversationModeRef.current || autoListenAfterAIRef.current) {
+      // Only restart if microphone is enabled
+      if ((isConversationModeRef.current || autoListenAfterAIRef.current) && isAudioEnabled) {
         setTimeout(() => {
           if (!isListeningRef.current && startListeningRef.current && !isProcessingSpeechRef.current) {
             startListeningRef.current()
@@ -321,7 +332,7 @@ export function VoiceChat({
     }
 
     speechSynthesisRef.current.speak(utterance)
-  }, [selectedVoice, speechRate, speechPitch, availableVoices, onVoiceChatStateChange, clearSilenceTimeout, startUserResponseTimeout, currentVoiceChatConfig.TTS_RESTART_DELAY_MS])
+  }, [selectedVoice, speechRate, speechPitch, availableVoices, onVoiceChatStateChange, clearSilenceTimeout, startUserResponseTimeout, currentVoiceChatConfig.TTS_RESTART_DELAY_MS, isAudioEnabled])
 
   const handleSendMessage = useCallback(async (messageText: string) => {
     if (!messageText.trim()) return
@@ -493,6 +504,12 @@ export function VoiceChat({
       }
 
       recognition.onresult = (event: SpeechRecognitionEvent) => {
+        // Critical: Ignore speech results if microphone is disabled
+        if (!isAudioEnabledRef.current) {
+          console.log('Microphone is disabled, ignoring speech results')
+          return
+        }
+
         let finalTranscript = ''
         let interimTranscript = ''
 
@@ -596,6 +613,25 @@ export function VoiceChat({
   useEffect(() => {
     autoListenAfterAIRef.current = autoListenAfterAI
   }, [autoListenAfterAI])
+
+  // Update audio enabled ref
+  useEffect(() => {
+    isAudioEnabledRef.current = isAudioEnabled
+  }, [isAudioEnabled])
+
+  // Critical: Stop recognition when microphone is disabled
+  useEffect(() => {
+    if (!isAudioEnabled && recognitionRef.current && isListeningRef.current) {
+      console.log('Microphone disabled, stopping recognition')
+      recognitionRef.current.stop()
+      setIsListening(false)
+      isListeningRef.current = false
+      setLiveTranscript('')
+      clearSilenceTimeout()
+      clearUserResponseTimeout()
+      accumulatedSpeechRef.current = ''
+    }
+  }, [isAudioEnabled, clearSilenceTimeout, clearUserResponseTimeout])
 
   // Listen for custom events from header
   useEffect(() => {

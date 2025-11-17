@@ -5,12 +5,14 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Mic, MicOff, Video, VideoOff, CheckCircle, XCircle, AlertCircle, ArrowRight } from "lucide-react"
+import { Mic, MicOff, Video, VideoOff, ArrowRight } from "lucide-react"
 import { toast } from "sonner"
 
-interface PermissionState {
-  microphone: PermissionState
-  camera: PermissionState
+type PermissionStatus = 'granted' | 'denied' | 'prompt'
+
+interface PermissionsState {
+  microphone: PermissionStatus
+  camera: PermissionStatus
 }
 
 interface PermissionCheckProps {
@@ -18,9 +20,9 @@ interface PermissionCheckProps {
   onPermissionsGranted: () => void
 }
 
-export default function PermissionCheck({ interviewId, onPermissionsGranted }: PermissionCheckProps) {
+export default function PermissionCheck({ interviewId: _interviewId, onPermissionsGranted }: PermissionCheckProps) {
   const router = useRouter()
-  const [permissions, setPermissions] = useState<PermissionState>({
+  const [permissions, setPermissions] = useState<PermissionsState>({
     microphone: 'prompt',
     camera: 'prompt'
   })
@@ -35,8 +37,8 @@ export default function PermissionCheck({ interviewId, onPermissionsGranted }: P
       const cameraPermission = await navigator.permissions.query({ name: 'camera' as PermissionName })
 
       setPermissions({
-        microphone: micPermission.state,
-        camera: cameraPermission.state
+        microphone: micPermission.state as PermissionStatus,
+        camera: cameraPermission.state as PermissionStatus
       })
 
       // If both permissions are granted, proceed automatically
@@ -135,22 +137,10 @@ export default function PermissionCheck({ interviewId, onPermissionsGranted }: P
         streamRef.current.getTracks().forEach(track => track.stop())
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const getPermissionIcon = (state: PermissionState) => {
-    switch (state) {
-      case 'granted':
-        return <CheckCircle className="w-5 h-5 text-green-500" />
-      case 'denied':
-        return <XCircle className="w-5 h-5 text-red-500" />
-      case 'prompt':
-        return <AlertCircle className="w-5 h-5 text-yellow-500" />
-      default:
-        return <AlertCircle className="w-5 h-5 text-gray-500" />
-    }
-  }
-
-  const getPermissionBadgeVariant = (state: PermissionState) => {
+  const getPermissionBadgeVariant = (state: PermissionStatus) => {
     switch (state) {
       case 'granted':
         return 'default'
@@ -163,7 +153,7 @@ export default function PermissionCheck({ interviewId, onPermissionsGranted }: P
     }
   }
 
-  const getPermissionText = (state: PermissionState) => {
+  const getPermissionText = (state: PermissionStatus) => {
     switch (state) {
       case 'granted':
         return 'Granted'
@@ -180,7 +170,7 @@ export default function PermissionCheck({ interviewId, onPermissionsGranted }: P
 
   if (isChecking) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="bg-background flex items-center justify-center py-20">
         <Card className="w-full max-w-md">
           <CardContent className="pt-6">
             <div className="text-center">
@@ -194,7 +184,7 @@ export default function PermissionCheck({ interviewId, onPermissionsGranted }: P
   }
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+    <div className="bg-background flex items-center justify-center p-4 py-20">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="flex items-center justify-center gap-2">
@@ -245,7 +235,7 @@ export default function PermissionCheck({ interviewId, onPermissionsGranted }: P
                 How to enable permissions:
               </h4>
               <ul className="text-sm text-primary/80 space-y-1">
-                <li>• Click "Allow Access" when prompted by your browser</li>
+                <li>• Click &quot;Allow Access&quot; when prompted by your browser</li>
                 <li>• Or click the camera/microphone icon in your address bar</li>
                 <li>• Check your browser settings if permissions are blocked</li>
               </ul>

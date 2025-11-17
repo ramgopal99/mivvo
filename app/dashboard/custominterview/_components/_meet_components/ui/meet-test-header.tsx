@@ -2,24 +2,27 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Brain, PhoneOff, Mic, MicOff, Code, Info } from 'lucide-react'
+import { Brain, Mic, MicOff, Code, Info } from 'lucide-react'
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog'
 import { UI_CONFIG } from '../config'
-import Image from 'next/image'
+import { KnowYourPlatformDialog } from './know-your-platform-dialog'
 
 interface MeetTestHeaderProps {
   interviewTitle?: string
   assistantName?: string
   assistantAvatar?: string
-  onEndCall?: () => void
   isConversationMode?: boolean
   isLoading?: boolean
   onStartConversation?: () => void
@@ -40,7 +43,6 @@ export function MeetTestHeader({
   interviewTitle = 'Interview',
   assistantName = 'Mivvo',
   assistantAvatar,
-  onEndCall,
   isConversationMode = false,
   isLoading = false,
   onStartConversation,
@@ -56,7 +58,25 @@ export function MeetTestHeader({
   isScreenSharing = false,
   showInterviewStartDialog = false
 }: MeetTestHeaderProps) {
-  const [isInfoDialogOpen, setIsInfoDialogOpen] = useState(false)
+  const router = useRouter()
+  const [showEndInterviewDialog, setShowEndInterviewDialog] = useState(false)
+
+  const handleStopConversation = () => {
+    onStopConversation?.()
+    if (UI_CONFIG.redirectOnStop) {
+      router.push('/dashboard/custominterview')
+    }
+    setShowEndInterviewDialog(false)
+  }
+
+  // Default time formatter if not provided
+  const defaultFormatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
+    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
+  }
+
+  const displayTime = formatTime ? formatTime(elapsedTime) : defaultFormatTime(elapsedTime)
 
   return (
     <div className="absolute top-0 left-0 right-0 z-10 bg-background/95 backdrop-blur-sm border-b">
@@ -72,14 +92,7 @@ export function MeetTestHeader({
           <div>
             <div className="flex items-center gap-2">
               <h1 className="text-lg font-semibold">{interviewTitle}</h1>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-5 w-5 p-0 hover:bg-muted"
-                onClick={() => setIsInfoDialogOpen(true)}
-              >
-                <Info className="h-4 w-4 text-muted-foreground hover:text-foreground" />
-              </Button>
+              <KnowYourPlatformDialog />
             </div>
             <p className="text-sm text-muted-foreground">AI Meeting Assistant</p>
           </div>
@@ -87,12 +100,10 @@ export function MeetTestHeader({
 
         {/* Right side - Voice chat and call controls */}
         <div className="flex items-center gap-2">
-          {/* Timer Display */}
-          {isTimerRunning && formatTime && (
+          {/* Timer Display - Always visible */}
             <div className="bg-black/80 text-white px-3 py-1 rounded-full text-sm font-mono font-semibold shadow-lg border border-white/20">
-              {formatTime(elapsedTime)}
+            {displayTime}
             </div>
-          )}
 
           {/* Voice Chat Controls */}
           {!showInterviewStartDialog && (
@@ -105,18 +116,39 @@ export function MeetTestHeader({
                   size="sm"
                 >
                   <Mic className="h-4 w-4" />
-                  Start Voice Chat
+                  Start Interview
                 </Button>
               ) : (
+                <>
                 <Button
-                  onClick={onStopConversation}
+                    onClick={() => setShowEndInterviewDialog(true)}
                   variant="destructive"
                   size="sm"
                   className="gap-2 cursor-pointer"
                 >
                   <MicOff className="h-4 w-4" />
-                  Stop Chat
+                  End Interview
                 </Button>
+                  <AlertDialog open={showEndInterviewDialog} onOpenChange={setShowEndInterviewDialog}>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>End Interview?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          Are you sure you want to end this interview? This action cannot be undone and the interview session will be terminated.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel className="cursor-pointer">Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={handleStopConversation}
+                          className="bg-red-600 hover:bg-red-700 cursor-pointer"
+                        >
+                          End Interview
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </>
               )}
             </>
           )}
@@ -138,40 +170,8 @@ export function MeetTestHeader({
               {isCodingInterviewActive ? "Stop Coding" : "Coding Interview"}
             </Button>
           )}
-
-          {/* End Call Button */}
-          <Button
-            onClick={onEndCall}
-            variant="destructive"
-            size="sm"
-            className="gap-2 cursor-pointer"
-          >
-            <PhoneOff className="h-4 w-4" />
-            End Call
-          </Button>
         </div>
       </div>
-
-      {/* Info Dialog */}
-      <Dialog open={isInfoDialogOpen} onOpenChange={setIsInfoDialogOpen}>
-        <DialogContent className="max-w-[95vw] max-h-[95vh] w-full overflow-auto">
-          <DialogHeader>
-            <DialogTitle>Know Your Platform</DialogTitle>
-            <DialogDescription>
-              Platform information and features
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex justify-center items-center mt-4">
-            <Image
-              src="/knowyourplatform.png"
-              alt="Know Your Platform"
-              width={1200}
-              height={900}
-              className="rounded-lg w-full h-auto"
-            />
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   )
 }

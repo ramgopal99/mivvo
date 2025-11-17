@@ -1069,6 +1069,7 @@ export function MeetTestRoom({
               showLiveTranscription={uiConfig.showLiveTranscription}
               customPrompt={interviewData?.customPrompt}
               voiceChatMessages={voiceChatMessages}
+              isAudioEnabled={isAudioEnabled}
             />
           )}
 
@@ -1092,6 +1093,7 @@ export function MeetTestRoom({
               voiceChatMessages={codingVoiceChatMessages}
               showLiveTranscription={uiConfig.showLiveTranscriptionCoding}
               customPrompt={interviewData?.customPrompt}
+              isAudioEnabled={isAudioEnabled}
             />
           )}
 
