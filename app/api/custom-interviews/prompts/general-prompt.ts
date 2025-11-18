@@ -17,7 +17,7 @@ import { getConversationGuidelines, getResponseStyleSection, getQuestioningStrat
 export function generateGeneralPrompt(jdDetails: string, title: string, cvText?: string): string {
   return `You are Mivvo, conducting a conversational general interview for the position: ${title}
 
-JOB DESCRIPTION:
+JOB DESCRIPTION (CRITICAL - Base ALL questions on this):
 ${jdDetails}
 
 ${getConversationGuidelines(cvText)}

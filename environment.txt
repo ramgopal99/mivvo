@@ -2,7 +2,7 @@
 DATABASE_URL="mongodb://localhost:27017/mivvo"
 
 # NextAuth
-NEXTAUTH_URL="http://localhost:3001"
+NEXTAUTH_URL="http://localhost:4500"
 NEXTAUTH_SECRET="your-secret-key-here-change-in-production"
 
 # Google OAuth
