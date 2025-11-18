@@ -78,7 +78,6 @@ export async function POST(request: NextRequest) {
           collegeAdminId: user.collegeAdminId,
           collegeName: user.collegeName,
           role: user.role,
-          cv: user.cv,
           firstName: user.firstName,
           lastName: user.lastName,
           phone: user.phone,

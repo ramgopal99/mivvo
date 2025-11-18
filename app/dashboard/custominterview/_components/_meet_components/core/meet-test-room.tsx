@@ -952,7 +952,6 @@ export function MeetTestRoom({
           interviewTitle={interviewTitle}
           assistantName={assistantName}
           assistantAvatar={assistantAvatar}
-          onEndCall={handleEndCall}
           isConversationMode={isConversationMode}
           isLoading={false}
           hasTranscriptData={voiceTranscript.length > 0}
@@ -970,6 +969,8 @@ export function MeetTestRoom({
             // Trigger voice chat stop - this will be handled by the VoiceChat component
             const event = new CustomEvent('stopVoiceChat')
             window.dispatchEvent(event)
+            // Call the comprehensive end call handler
+            handleEndCall()
           }}
           onStartCodingInterview={handleStartCodingInterview}
           onStopCodingInterview={handleStopCodingInterview}

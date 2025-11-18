@@ -1,7 +1,29 @@
 import { PrismaClient } from '@prisma/client';
 import { loadModules } from '../utils/moduleLoader';
+import { SubLesson, Exercise, MCQQuestion, CodeQuestion } from '../app/dashboard/courses/[courseId]/data/lessonsData';
 
 const prisma = new PrismaClient();
+
+// Interface for transformed exercise data
+interface TransformedExercise {
+  title: string;
+  status: 'DEMO' | 'LOCKED' | 'COMPLETED';
+  content?: string;
+  type: 'MCQ' | 'CODE';
+  order: number;
+  mcqQuestions: {
+    question: string;
+    options: string[];
+    correctAnswer: number;
+    explanation?: string;
+    order: number;
+  }[];
+  codeQuestions: {
+    question: string;
+    solution: string;
+    order: number;
+  }[];
+}
 
 // Transform functions to match database schema
 const transformLessonStatus = (status: string): 'DEMO' | 'LOCKED' | 'COMPLETED' => {
@@ -43,11 +65,12 @@ async function migrateModulesToDatabase() {
 
     console.log('📚 Created/Updated course:', course.title);
 
-    for (const staticModule of staticModules) {
+    for (let moduleIndex = 0; moduleIndex < staticModules.length; moduleIndex++) {
+      const staticModule = staticModules[moduleIndex];
       console.log(`\n📖 Processing Module ${staticModule.id}: ${staticModule.title}...`);
 
       // Transform sub-lessons
-      const subLessons = staticModule.subLessons.map((lesson, index) => ({
+      const subLessons = staticModule.subLessons.map((lesson: SubLesson, index: number) => ({
         title: lesson.title,
         status: transformLessonStatus(lesson.status),
         content: lesson.content,
@@ -55,20 +78,20 @@ async function migrateModulesToDatabase() {
       }));
 
       // Transform exercises
-      const exercises = staticModule.exercises.map((exercise, index) => ({
+      const exercises: TransformedExercise[] = staticModule.exercises.map((exercise: Exercise, index: number) => ({
         title: exercise.title,
         status: transformLessonStatus(exercise.status),
         content: exercise.content,
         type: transformExerciseType(exercise.type || 'mcq'),
         order: index,
-        mcqQuestions: exercise.mcqQuestions ? exercise.mcqQuestions.map((q, qIndex) => ({
+        mcqQuestions: exercise.mcqQuestions ? exercise.mcqQuestions.map((q: MCQQuestion, qIndex: number) => ({
           question: q.question,
           options: q.options,
           correctAnswer: q.correctAnswer,
           explanation: q.explanation,
           order: qIndex
         })) : [],
-        codeQuestions: exercise.codeQuestions ? exercise.codeQuestions.map((q, qIndex) => ({
+        codeQuestions: exercise.codeQuestions ? exercise.codeQuestions.map((q: CodeQuestion, qIndex: number) => ({
           question: q.question,
           solution: q.solution,
           order: qIndex
@@ -76,7 +99,7 @@ async function migrateModulesToDatabase() {
       }));
 
       // Create/update module in database
-      const module = await prisma.module.upsert({
+      await prisma.module.upsert({
         where: {
           id: `module-${staticModule.id}`
         },
@@ -85,14 +108,14 @@ async function migrateModulesToDatabase() {
           hasDemo: staticModule.hasDemo,
           isExpanded: staticModule.isExpanded,
           isActive: staticModule.isActive,
-          order: staticModule.id,
+          order: moduleIndex,
           subLessons: {
             deleteMany: {},
             create: subLessons
           },
           exercises: {
             deleteMany: {},
-            create: exercises.map(ex => ({
+            create: exercises.map((ex: TransformedExercise) => ({
               ...ex,
               mcqQuestions: ex.mcqQuestions.length > 0 ? {
                 create: ex.mcqQuestions
@@ -110,12 +133,12 @@ async function migrateModulesToDatabase() {
           hasDemo: staticModule.hasDemo,
           isExpanded: staticModule.isExpanded,
           isActive: staticModule.isActive,
-          order: staticModule.id,
+          order: moduleIndex,
           subLessons: {
             create: subLessons
           },
           exercises: {
-            create: exercises.map(ex => ({
+            create: exercises.map((ex: TransformedExercise) => ({
               ...ex,
               mcqQuestions: ex.mcqQuestions.length > 0 ? {
                 create: ex.mcqQuestions

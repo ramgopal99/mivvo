@@ -97,7 +97,6 @@ export async function POST(request: NextRequest) {
           company: user.company,
           location: user.location,
           bio: user.bio,
-          cv: user.cv,
           careerGoals: user.careerGoals,
           linkedIn: user.linkedIn,
           github: user.github,

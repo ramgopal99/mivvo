@@ -189,8 +189,6 @@ export async function GET(request: NextRequest) {
         lastMonthTimeSpent, // in minutes
         lastActive: new Date().toISOString(), // Default to now
         avatar: null,
-        // CV data
-        cv: student.cv,
         // Additional fields from the database
         firstName: student.firstName,
         lastName: student.lastName,

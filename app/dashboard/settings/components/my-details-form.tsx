@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -97,111 +97,6 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
     }))
   }
 
-  // Handle CV file selection
-  const handleCvFileSelect = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = event.target.files?.[0]
-    if (!selectedFile) return
-
-    // Validate file type
-    const allowedTypes = [
-      'application/pdf',
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-    ]
-
-    if (!allowedTypes.includes(selectedFile.type)) {
-      import('sonner').then(({ toast }) => {
-        toast.error('Please select a PDF or DOCX file only.')
-      })
-      return
-    }
-
-    // Validate file size (max 10MB)
-    if (selectedFile.size > 10 * 1024 * 1024) {
-      import('sonner').then(({ toast }) => {
-        toast.error('File size must be less than 10MB.')
-      })
-      return
-    }
-
-    setCvFile(selectedFile)
-    setIsExtractingCV(true)
-
-    try {
-      const formData = new FormData()
-      formData.append('file', selectedFile)
-
-      const response = await fetch('/api/extract-file', {
-        method: 'POST',
-        body: formData,
-      })
-
-      const result = await response.json()
-
-      if (response.ok && result.success) {
-        const extractedText = result.data.extractedText
-        handleInputChange("cv", extractedText)
-
-        // Compress the CV text
-        try {
-          const compressionResponse = await fetch('/api/compress-cv', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ cvText: extractedText }),
-          })
-
-          const compressionResult = await compressionResponse.json()
-
-          if (compressionResponse.ok && compressionResult.success) {
-            handleInputChange("cv", compressionResult.data.compressedCV)
-            import('sonner').then(({ toast }) => {
-              toast.success(`CV extracted and compressed successfully (${compressionResult.data.compressionRatio}% reduction)`)
-            })
-          } else {
-            // Still save the original CV even if compression fails
-            import('sonner').then(({ toast }) => {
-              toast.success('CV extracted successfully (compression failed, but CV saved)')
-            })
-          }
-        } catch (compressionError) {
-          console.error('CV compression error:', compressionError)
-          // Still save the original CV even if compression fails
-          import('sonner').then(({ toast }) => {
-            toast.success('CV extracted successfully (compression failed, but CV saved)')
-          })
-        }
-      } else {
-        throw new Error(result.message || 'Failed to extract text from CV')
-      }
-    } catch (error) {
-      console.error('CV extraction error:', error)
-      import('sonner').then(({ toast }) => {
-        toast.error('Failed to extract text from CV. Please try again.')
-      })
-      setCvFile(null)
-    } finally {
-      setIsExtractingCV(false)
-    }
-  }
-
-  // Clear CV file
-  const clearCvFile = () => {
-    setCvFile(null)
-    handleInputChange("cv", "")
-    setShowUploadInput(true) // Show upload input when CV is cleared
-    if (cvInputRef.current) {
-      cvInputRef.current.value = ''
-    }
-  }
-
-  const formatFileSize = (bytes: number) => {
-    if (bytes === 0) return '0 Bytes'
-    const k = 1024
-    const sizes = ['Bytes', 'KB', 'MB']
-    const i = Math.floor(Math.log(bytes) / Math.log(k))
-    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i]
-  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
