@@ -6,6 +6,9 @@ import sha256 from "crypto-js/sha256";
 export async function initiatePayment(amount: number, name: string, mobile: string, muid?: string) {
   const transactionId = "Tr-" + uuidv4().toString().slice(-6);
 
+  // Get base URL from environment or use localhost as fallback
+  const baseUrl = process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_URL || "http://localhost:3001";
+
   const payload = {
     merchantId: process.env.NEXT_PUBLIC_MERCHANT_ID,
     merchantTransactionId: transactionId,
@@ -13,9 +16,9 @@ export async function initiatePayment(amount: number, name: string, mobile: stri
     name: name,
     mobileNumber: mobile,
     amount: Math.round(amount * 100), // Amount in paise
-    redirectUrl: `${process.env.NEXT_URL}/status/${transactionId}`,
+    redirectUrl: `${baseUrl}/status/${transactionId}`,
     redirectMode: "REDIRECT",
-    callbackUrl: `${process.env.NEXT_URL}/status/${transactionId}`,
+    callbackUrl: `${baseUrl}/status/${transactionId}`,
     paymentInstrument: {
       type: "PAY_PAGE",
     },

@@ -39,6 +39,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
         if (responseData.code === "PAYMENT_SUCCESS") {
             return new NextResponse("PAYMENT_SUCCESS", { status: 200 });
+        } else if (responseData.code === "PAYMENT_PENDING" || responseData.code === "PAYMENT_INITIATED") {
+            return new NextResponse("PAYMENT_PENDING", { status: 200 });
         } else {
             return new NextResponse("PAYMENT_FAILED", { status: 200 });
         }

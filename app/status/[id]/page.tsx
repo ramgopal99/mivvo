@@ -28,10 +28,12 @@ const StatusPage = () => {
         // Redirect immediately to appropriate page
         if (result === "PAYMENT_SUCCESS") {
           router.replace(`/success/${params?.id}`)
+        } else if (result === "PAYMENT_PENDING") {
+          router.replace(`/pending/${params?.id}`)
         } else {
           router.replace(`/failed/${params?.id}`)
         }
-      } catch (error) {
+      } catch {
         // On error, redirect to failed page
         router.replace(`/failed/${params?.id}`)
       }
