@@ -43,8 +43,8 @@ interface DashboardStats {
     email: string
     rollNumber: string
     createdAt: string
-    totalTimeAllowance: number
-    usedTimeMinutes: number
+    totalCreditAllocation: number
+    usedCredits: number
     interviewCount: number
     averageScore: number
   }>

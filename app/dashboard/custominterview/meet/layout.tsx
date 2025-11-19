@@ -18,7 +18,7 @@ export default function CustomInterviewLayout({
   const params = useParams()
   const interviewId = params.id as string
 
-  const [userTimeData, setUserTimeData] = useState<{ totalTimeAllowance: number; usedTimeMinutes: number } | null>(null)
+  const [userTimeData, setUserTimeData] = useState<{ totalCreditAllocation: number; usedCredits: number } | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [countdown, setCountdown] = useState(3)
@@ -59,8 +59,8 @@ export default function CustomInterviewLayout({
         const timeData = await response.json()
         if (timeData.success && timeData.data) {
           setUserTimeData({
-            totalTimeAllowance: timeData.data.totalTimeAllowance,
-            usedTimeMinutes: timeData.data.usedTimeMinutes
+            totalCreditAllocation: timeData.data.totalCreditAllocation,
+            usedCredits: timeData.data.usedCredits
           })
         } else {
           setError(timeData.message || 'Unable to retrieve time data from database')
@@ -89,7 +89,7 @@ export default function CustomInterviewLayout({
   // Check if user has time allowance remaining
   const checkTimeLimit = useCallback(() => {
     if (!userTimeData) return false // Block access if no data available
-    return userTimeData.usedTimeMinutes < userTimeData.totalTimeAllowance
+    return userTimeData.usedCredits < userTimeData.totalCreditAllocation
   }, [userTimeData])
 
   // Check if access should be blocked
@@ -146,7 +146,7 @@ export default function CustomInterviewLayout({
               <>
                 <h2 className="text-xl font-semibold text-gray-900 mb-2">Time Limit Exceeded</h2>
                 <p className="text-gray-600 mb-4">
-                  You have used all {userTimeData?.totalTimeAllowance} minutes of your interview time credits.
+                  You have used all {userTimeData?.totalCreditAllocation} credits of your interview credits.
                 </p>
                 <p className="text-sm text-gray-500 mb-4">
                   Upgrade your plan to access more time credits.

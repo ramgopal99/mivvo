@@ -71,8 +71,8 @@ export default function Dashboard() {
         const timeData = await response.json()
         if (timeData.success && timeData.data) {
           // Convert time data to credits (12 credits = 1 minute)
-          const totalCredits = minutesToCredits(timeData.data.totalTimeAllowance || 0)
-          const usedCredits = minutesToCredits(timeData.data.usedTimeMinutes || 0)
+          const totalCredits = minutesToCredits(timeData.data.totalCreditAllocation || 0)
+          const usedCredits = minutesToCredits(timeData.data.usedCredits || 0)
           const creditUsageInfo = calculateCreditUsage(totalCredits, usedCredits)
           setCreditUsage(creditUsageInfo)
         }

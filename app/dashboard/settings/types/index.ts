@@ -16,10 +16,10 @@ export interface UserData {
   careerGoals?: string | null
   linkedIn?: string | null
   github?: string | null
-  // Time management fields
-  totalTimeAllowance?: number
-  usedTimeMinutes?: number
-  timeAllowanceResetAt?: Date | null
+  // Credit management fields
+  totalCreditAllocation?: number
+  usedCredits?: number
+  creditResetAt?: Date | null
   // Academic fields for college students
   rollNumber?: string | null
   branch?: string | null

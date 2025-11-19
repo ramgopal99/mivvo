@@ -89,10 +89,10 @@ model User {
   linkedIn           String?
   github             String?
 
-  // Time allowances (in minutes)
-  totalTimeAllowance   Int?     // Set by application logic, not database default
-  usedTimeMinutes      Int      @default(0)
-  timeAllowanceResetAt DateTime?               
+  // Credit allocation (in credits)
+  totalCreditAllocation   Int?     // Set by application logic, not database default
+  usedCredits             Int      @default(0)
+  creditResetAt           DateTime?             
 
   // Relations
   accounts       Account[]

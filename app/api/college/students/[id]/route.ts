@@ -118,7 +118,7 @@ export async function GET(
       : 0
 
     // Calculate total time usage
-    const totalTimeMinutes = student.usedTimeMinutes || 0
+    const totalCredits = student.usedCredits || 0
     const hours = Math.floor(totalTimeMinutes / 60)
     const minutes = totalTimeMinutes % 60
     const seconds = 0 // We don't track seconds in the current schema

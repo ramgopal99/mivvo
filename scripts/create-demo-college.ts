@@ -81,8 +81,8 @@ async function createDemoCollegeAndAdmin(): Promise<void> {
         careerGoals: 'Become a software engineer',
         linkedIn: 'https://linkedin.com/in/demostudent',
         github: 'https://github.com/demostudent',
-        totalTimeAllowance: 45,
-        usedTimeMinutes: 12
+        totalCreditAllocation: 45,
+        usedCredits: 12
       }
     ]
 

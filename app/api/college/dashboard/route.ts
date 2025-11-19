@@ -95,8 +95,8 @@ export async function GET(request: NextRequest) {
         email: true,
         rollNumber: true,
         createdAt: true,
-        totalTimeAllowance: true,
-        usedTimeMinutes: true,
+        totalCreditAllocation: true,
+        usedCredits: true,
         _count: {
           select: {
             interviewAttempts: true
@@ -137,8 +137,8 @@ export async function GET(request: NextRequest) {
       sum + student.interviewAttempts.filter(attempt => attempt.status === 'COMPLETED').length, 0
     )
     
-    const totalTimeUsed = studentsWithStats.reduce((sum, student) => sum + (student.usedTimeMinutes || 0), 0)
-    const totalTimeAllowed = studentsWithStats.reduce((sum, student) => sum + (student.totalTimeAllowance || 0), 0)
+    const totalCreditsUsed = studentsWithStats.reduce((sum, student) => sum + (student.usedCredits || 0), 0)
+    const totalCreditsAllowed = studentsWithStats.reduce((sum, student) => sum + (student.totalCreditAllocation || 0), 0)
 
     // Calculate average scores
     const allScores = studentsWithStats.flatMap(student => 
@@ -236,8 +236,8 @@ export async function GET(request: NextRequest) {
         email: student.email,
         rollNumber: student.rollNumber,
         createdAt: student.createdAt,
-        totalTimeAllowance: student.totalTimeAllowance,
-        usedTimeMinutes: student.usedTimeMinutes,
+        totalCreditAllocation: student.totalCreditAllocation,
+        usedCredits: student.usedCredits,
         interviewCount: student._count.interviewAttempts,
         averageScore: (() => {
           const scores = student.interviewAttempts

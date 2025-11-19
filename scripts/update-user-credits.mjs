@@ -24,8 +24,8 @@ async function updateUserCredits() {
       select: {
         id: true,
         email: true,
-        totalTimeAllowance: true,
-        usedTimeMinutes: true,
+        totalCreditAllocation: true,
+        usedCredits: true,
         name: true
       }
     })
@@ -43,9 +43,9 @@ async function updateUserCredits() {
       await prisma.user.update({
         where: { id: user.id },
         data: {
-          totalTimeAllowance: defaultCredits,
-          usedTimeMinutes: 0, // Reset used credits
-          timeAllowanceResetAt: new Date() // Reset the allocation timestamp
+          totalCreditAllocation: defaultCredits,
+          usedCredits: 0, // Reset used credits
+          creditResetAt: new Date() // Reset the allocation timestamp
         }
       })
 

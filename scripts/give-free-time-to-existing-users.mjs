@@ -1,8 +1,8 @@
 /**
- * Script to give 30 minutes of free time to all existing users
+ * Script to give 30 credits of free allocation to all existing users
  *
- * This script updates all users who currently have 0 totalTimeAllowance
- * to give them 30 minutes of free interview time.
+ * This script updates all users who currently have 0 totalCreditAllocation
+ * to give them 30 credits of free interview allocation.
  *
  * Usage: node scripts/give-free-time-to-existing-users.mjs
  */
@@ -20,12 +20,12 @@ async function giveFreeTimeToExistingUsers() {
       const testUser = await prisma.user.findFirst({
         select: {
           id: true,
-          totalTimeAllowance: true
+          totalCreditAllocation: true
         }
       })
-      console.log('✅ totalTimeAllowance field exists in database')
+      console.log('✅ totalCreditAllocation field exists in database')
     } catch (error) {
-      console.error('❌ totalTimeAllowance field does not exist in database yet')
+      console.error('❌ totalCreditAllocation field does not exist in database yet')
       console.log('💡 Please run: npx prisma migrate dev --name give-30-min-free-time')
       return
     }
@@ -34,25 +34,25 @@ async function giveFreeTimeToExistingUsers() {
     const totalUsers = await prisma.user.count()
     console.log(`📊 Total users in database: ${totalUsers}`)
 
-    // Update all users to have 30 minutes (this will work even if they already have time)
+    // Update all users to have 30 credits (this will work even if they already have credits)
     const result = await prisma.user.updateMany({
       data: {
-        totalTimeAllowance: 30
+        totalCreditAllocation: 30
       }
     })
 
-    console.log(`✅ Successfully updated ${result.count} users with 30 minutes of free time`)
+    console.log(`✅ Successfully updated ${result.count} users with 30 credits of free allocation`)
 
     // Verify the update
-    const usersWithTime = await prisma.user.count({
+    const usersWithCredits = await prisma.user.count({
       where: {
-        totalTimeAllowance: {
+        totalCreditAllocation: {
           gte: 1 // Any positive value
         }
       }
     })
 
-    console.log(`📈 Users with time allowance: ${usersWithTime}/${totalUsers}`)
+    console.log(`📈 Users with credit allocation: ${usersWithCredits}/${totalUsers}`)
 
   } catch (error) {
     console.error('❌ Error updating users:', error)

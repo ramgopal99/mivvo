@@ -15,8 +15,8 @@ export interface UserData {
 }
 
 export interface TimeData {
-  totalTimeAllowance: number
-  usedTimeMinutes: number
+  totalCreditAllocation: number
+  usedCredits: number
 }
 
 export interface SessionUser {

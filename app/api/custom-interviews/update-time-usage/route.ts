@@ -75,8 +75,8 @@ export async function POST(request: NextRequest) {
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: {
-        totalTimeAllowance: true,
-        usedTimeMinutes: true
+        totalCreditAllocation: true,
+        usedCredits: true
       }
     })
 
@@ -84,17 +84,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
 
-    const currentAllowance = user.totalTimeAllowance || 0
-    const currentUsed = user.usedTimeMinutes || 0
+    const currentAllowance = user.totalCreditAllocation || 0
+    const currentUsed = user.usedCredits || 0
 
-    // Calculate new used time (don't exceed total allowance)
-    const newUsedTime = Math.min(currentUsed + timeUsedMinutes, currentAllowance)
+    // Calculate new used credits (don't exceed total allowance)
+    const newUsedCredits = Math.min(currentUsed + timeUsedMinutes, currentAllowance)
 
-    // Update user's used time
+    // Update user's used credits
     await prisma.user.update({
       where: { id: userId },
       data: {
-        usedTimeMinutes: newUsedTime
+        usedCredits: newUsedCredits
       }
     })
 

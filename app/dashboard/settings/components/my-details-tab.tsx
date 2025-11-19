@@ -39,9 +39,9 @@ export function MyDetailsTab() {
                 careerGoals: parsedUserData.careerGoals || null,
                 linkedIn: parsedUserData.linkedIn || null,
                 github: parsedUserData.github || null,
-                totalTimeAllowance: parsedUserData.totalTimeAllowance || 30,
-                usedTimeMinutes: parsedUserData.usedTimeMinutes || 0,
-                timeAllowanceResetAt: null,
+                totalCreditAllocation: parsedUserData.totalCreditAllocation || 30,
+                usedCredits: parsedUserData.usedCredits || 0,
+                creditResetAt: null,
                 // Academic fields
                 rollNumber: parsedUserData.rollNumber || null,
                 branch: parsedUserData.branch || null,

@@ -221,8 +221,8 @@ export async function POST(request: NextRequest) {
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: {
-        totalTimeAllowance: true,
-        usedTimeMinutes: true,
+        totalCreditAllocation: true,
+        usedCredits: true,
         role: true
       }
     })
@@ -233,10 +233,10 @@ export async function POST(request: NextRequest) {
 
     // Check if user has exceeded their time allowance
     // Only apply time limits to regular users, not admins
-    if (user.role === 'USER' && user.totalTimeAllowance !== null && user.usedTimeMinutes >= user.totalTimeAllowance) {
+    if (user.role === 'USER' && user.totalCreditAllocation !== null && user.usedCredits >= user.totalCreditAllocation) {
       return NextResponse.json({
-        error: 'Time limit exceeded',
-        message: `You have used all ${user.totalTimeAllowance} minutes of your free interview time. Please upgrade to continue practicing.`,
+        error: 'Credit limit exceeded',
+        message: `You have used all ${user.totalCreditAllocation} credits of your free interview credits. Please upgrade to continue practicing.`,
         timeLimitExceeded: true
       }, { status: 403 })
     }

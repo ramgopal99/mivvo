@@ -196,8 +196,8 @@ export async function GET(request: NextRequest) {
         careerGoals: student.careerGoals,
         linkedIn: student.linkedIn,
         github: student.github,
-        totalTimeAllowance: student.totalTimeAllowance,
-        usedTimeMinutes: student.usedTimeMinutes,
+        totalCreditAllocation: student.totalCreditAllocation,
+        usedCredits: student.usedCredits,
         createdAt: student.createdAt?.toISOString(),
         updatedAt: student.updatedAt?.toISOString()
       }
