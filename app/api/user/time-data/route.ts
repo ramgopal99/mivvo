@@ -110,10 +110,10 @@ export async function GET(request: NextRequest) {
       console.log(`Credits expired for user ${userId} at ${now.toISOString()} (${timeSinceAllocation}ms since allocation)`)
     }
 
-    // Set default time allowance for users who don't have one (like college students)
-    // FREE tier provides CREDIT_PACKAGES.FREE credits, convert to minutes
-    const DEFAULT_FREE_TIME_MINUTES = CREDIT_PACKAGES.FREE / CREDITS_PER_MINUTE
-    const totalCreditAllocation = shouldExpireCredits ? 0 : (user.totalCreditAllocation || DEFAULT_FREE_TIME_MINUTES)
+    // Set default credit allocation for users who don't have one (like college students)
+    // FREE tier provides CREDIT_PACKAGES.FREE credits
+    const DEFAULT_FREE_CREDITS = CREDIT_PACKAGES.FREE
+    const totalCreditAllocation = shouldExpireCredits ? 0 : (user.totalCreditAllocation || DEFAULT_FREE_CREDITS)
     const usedCredits = shouldExpireCredits ? 0 : (user.usedCredits || 0)
 
     // Time since allocation is already calculated above

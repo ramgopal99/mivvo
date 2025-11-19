@@ -1,6 +1,5 @@
 /**
  * Credit conversion utility
- * 12 credits = 1 minute of interview time
  */
 
 import { CREDIT_PACKAGE_MINUTES } from '@/config/site'

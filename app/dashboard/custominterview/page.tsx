@@ -32,7 +32,7 @@ export default function CustomInterviewPage() {
       if (response.ok) {
         const timeData = await response.json()
         if (timeData.success && timeData.data) {
-          // Convert time data to credits (12 credits = 1 minute)
+          // Convert time data to credits
           const totalCredits = minutesToCredits(timeData.data.totalCreditAllocation || 0)
           const usedCredits = minutesToCredits(timeData.data.usedCredits || 0)
           const creditUsageInfo = calculateCreditUsage(totalCredits, usedCredits)

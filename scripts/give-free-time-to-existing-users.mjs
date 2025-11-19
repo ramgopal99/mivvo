@@ -1,8 +1,8 @@
 /**
- * Script to give 30 credits of free allocation to all existing users
+ * Script to give 1200 credits of free allocation to all existing users
  *
- * This script updates all users who currently have 0 totalCreditAllocation
- * to give them 30 credits of free interview allocation.
+ * This script updates all users to give them 1200 credits of free interview allocation.
+ * Credits are allocated today (current date) for fresh active credits.
  *
  * Usage: node scripts/give-free-time-to-existing-users.mjs
  */
@@ -13,7 +13,7 @@ const prisma = new PrismaClient()
 
 async function giveFreeTimeToExistingUsers() {
   try {
-    console.log('🔄 Starting to give free time to existing users...')
+    console.log('🔄 Starting to give 1200 credits to all users (allocated today)...')
 
     // First, let's try a simple query to see if the field exists
     try {
@@ -26,7 +26,7 @@ async function giveFreeTimeToExistingUsers() {
       console.log('✅ totalCreditAllocation field exists in database')
     } catch (error) {
       console.error('❌ totalCreditAllocation field does not exist in database yet')
-      console.log('💡 Please run: npx prisma migrate dev --name give-30-min-free-time')
+      console.log('💡 Please run: npx prisma migrate dev --name update-credit-allocation-fields')
       return
     }
 
@@ -34,14 +34,17 @@ async function giveFreeTimeToExistingUsers() {
     const totalUsers = await prisma.user.count()
     console.log(`📊 Total users in database: ${totalUsers}`)
 
-    // Update all users to have 30 credits (this will work even if they already have credits)
+    // Update all users to have 1200 credits (this will work even if they already have credits)
+    // Set allocation date to today for fresh credits
+    const allocationDate = new Date()
     const result = await prisma.user.updateMany({
       data: {
-        totalCreditAllocation: 30
+        totalCreditAllocation: 1200,
+        creditResetAt: allocationDate // Set the reset timestamp to Nov 11, 2025
       }
     })
 
-    console.log(`✅ Successfully updated ${result.count} users with 30 credits of free allocation`)
+    console.log(`✅ Successfully updated ${result.count} users with 1200 credits of free allocation`)
 
     // Verify the update
     const usersWithCredits = await prisma.user.count({

@@ -37,7 +37,7 @@ export function PlanTab() {
   // =============================================================================
 
   /**
-   * Fetch user's time data from the API and convert to credit usage
+   * Fetch user's credit data from the API
    */
   const fetchUserCreditData = async (): Promise<void> => {
     try {
@@ -48,7 +48,7 @@ export function PlanTab() {
       if (response.ok) {
         const timeData = await response.json()
         if (timeData.success && timeData.data) {
-          // Convert time data to credits (12 credits = 1 minute)
+          // Convert time data to credits
           const totalCredits = minutesToCredits(timeData.data.totalCreditAllocation || 0)
           const usedCredits = minutesToCredits(timeData.data.usedCredits || 0)
           const creditUsageInfo = calculateCreditUsage(totalCredits, usedCredits)
@@ -185,22 +185,28 @@ export function PlanTab() {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span>Credit Progress</span>
-                    <span>{formatCredits(creditUsage.remainingCredits)} / {formatCredits(creditUsage.totalCredits)} remaining</span>
+                    <span>
+                      <span title={`${creditUsage.remainingCredits} credits`}>{formatCredits(creditUsage.remainingCredits)}</span> /{' '}
+                      <span title={`${creditUsage.totalCredits} credits`}>{formatCredits(creditUsage.totalCredits)}</span> remaining
+                    </span>
                   </div>
                   <div className="w-full bg-secondary rounded-full h-3">
                     <div
                       className={`h-3 rounded-full transition-all duration-500 ${
+                        creditUsage.totalCredits === 0 ? 'bg-gray-300' :
                         creditUsage.remainingCredits === 0 ? 'bg-red-500' :
                         creditUsage.usagePercentage > 90 ? 'bg-orange-500' :
                         creditUsage.usagePercentage > 75 ? 'bg-yellow-500' :
                         'bg-green-500'
                       }`}
-                      style={{ width: `${Math.max(0, 100 - creditUsage.usagePercentage)}%` }}
+                      style={{ width: `${creditUsage.totalCredits === 0 ? 0 : Math.max(0, 100 - creditUsage.usagePercentage)}%` }}
                     />
                   </div>
                   <div className="flex justify-between text-xs text-muted-foreground">
-                    <span>Credits available</span>
-                    <span>{creditUsage.usagePercentage.toFixed(1)}% used</span>
+                    <span>{creditUsage.totalCredits === 0 ? 'No credits allocated' : 'Credits available'}</span>
+                    <span title={creditUsage.totalCredits === 0 ? undefined : `${creditUsage.usedCredits} of ${creditUsage.totalCredits} credits used`}>
+                      {creditUsage.totalCredits === 0 ? 'Expired' : `${creditUsage.usagePercentage.toFixed(1)}% used`}
+                    </span>
                   </div>
                 </div>
               )}
@@ -211,11 +217,11 @@ export function PlanTab() {
               {creditUsage && (
                 <div className="grid grid-cols-3 gap-4">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-primary">{formatCredits(creditUsage.totalCredits)}</div>
+                    <div className="text-2xl font-bold text-primary" title={`${creditUsage.totalCredits} credits`}>{formatCredits(creditUsage.totalCredits)}</div>
                     <div className="text-sm text-muted-foreground">Total Credits</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-orange-600">{formatCredits(creditUsage.usedCredits)}</div>
+                    <div className="text-2xl font-bold text-orange-600" title={`${creditUsage.usedCredits} credits`}>{formatCredits(creditUsage.usedCredits)}</div>
                     <div className="text-sm text-muted-foreground">Credits Used</div>
                   </div>
                   <div className="text-center">
@@ -223,7 +229,7 @@ export function PlanTab() {
                       creditInfo?.statusColor === 'danger' ? 'text-red-600' :
                       creditInfo?.statusColor === 'warning' ? 'text-orange-600' :
                       'text-green-600'
-                    }`}>
+                    }`} title={`${creditUsage.remainingCredits} credits`}>
                       {creditInfo?.text || formatCredits(creditUsage.remainingCredits)}
                     </div>
                     <div className="text-sm text-muted-foreground">Remaining</div>

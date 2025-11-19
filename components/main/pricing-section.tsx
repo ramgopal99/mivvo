@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Check, ArrowRight, Info } from "lucide-react"
+import { Check, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { landingConfig } from "../../config/landing-config"
 
@@ -38,16 +38,6 @@ export function PricingSection() {
                 </div>
               )}
 
-              {/* Info Icon for Free Plan */}
-              {plan.name === "Free" && (
-                <div className="absolute top-4 right-4 group">
-                  <Info className="h-5 w-5 text-gray-400 hover:text-primary cursor-help transition-colors" />
-                  <div className="absolute right-0 top-6 w-40 bg-gray-900 text-white text-xs rounded-lg px-3 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 shadow-lg">
-                    <div className="absolute -top-1 right-4 w-2 h-2 bg-gray-900 transform rotate-45"></div>
-                    1 min = 12 credits
-                  </div>
-                </div>
-              )}
 
               <CardHeader className="text-center pb-8">
                 <CardTitle className="text-2xl font-bold text-gray-900 mb-2">
