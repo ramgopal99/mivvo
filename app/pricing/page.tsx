@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Check, Star, Users, Target, Zap } from "lucide-react"
+import { Check, Star, Users, Target, Zap, MessageSquare } from "lucide-react"
 import {
   Accordion,
   AccordionContent,
@@ -12,11 +12,13 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { landingConfig } from "../../config/landing-config"
+import { Navbar } from "@/components/main"
 
 export default function PricingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <Navbar />
       {/* Hero Section */}
       <section className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -168,13 +170,22 @@ export default function PricingPage() {
           <p className="text-xl mb-8 opacity-90">Start with 180 free credits and see the difference AI-powered practice makes.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/auth/signup">
-              <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-gray-100">
+              <Button
+                size="lg"
+                className="bg-white text-primary hover:bg-gray-50 hover:shadow-xl hover:shadow-white/30 hover:scale-105 transition-all duration-300 font-semibold cursor-pointer"
+              >
+                <Zap className="w-5 h-5 mr-2" />
                 Start Free Trial
               </Button>
             </Link>
             <Link href="/contact">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
-                Contact Sales
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-white/30 text-white bg-white/10 backdrop-blur-sm hover:bg-white hover:border-white hover:shadow-lg hover:shadow-white/25 transition-all duration-300 cursor-pointer"
+              >
+                <MessageSquare className="w-5 h-5 mr-2" />
+                Contact Us
               </Button>
             </Link>
           </div>
