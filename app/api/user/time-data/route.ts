@@ -9,6 +9,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { CREDIT_PACKAGES, CREDITS_PER_MINUTE } from '@/lib/credit-converter'
+import { CREDIT_RESET_CONFIG } from '@/config/site'
 import jwt from 'jsonwebtoken'
 
 interface DecodedToken {
@@ -70,6 +71,8 @@ export async function GET(request: NextRequest) {
         id: true,
         totalTimeAllowance: true,
         usedTimeMinutes: true,
+        timeAllowanceResetAt: true,
+        createdAt: true,
         name: true,
         email: true
       }
@@ -82,11 +85,38 @@ export async function GET(request: NextRequest) {
       }, { status: 404 })
     }
 
+    // Check if credits should expire based on allocation time
+    const now = new Date()
+    let allocationTime: Date
+
+    if (user.timeAllowanceResetAt) {
+      allocationTime = new Date(user.timeAllowanceResetAt.toISOString())
+    } else {
+      allocationTime = new Date(user.createdAt!)
+    }
+
+    const timeSinceAllocation = now.getTime() - allocationTime.getTime()
+    const shouldExpireCredits = timeSinceAllocation >= CREDIT_RESET_CONFIG.RESET_PERIOD_MS
+
+    // Expire credits if more than reset period has passed since allocation
+    if (shouldExpireCredits && user.totalTimeAllowance && user.totalTimeAllowance > 0) {
+      await prisma.user.update({
+        where: { id: userId },
+        data: {
+          totalTimeAllowance: 0,
+          usedTimeMinutes: 0 // Also reset used time for consistency
+        }
+      })
+      console.log(`Credits expired for user ${userId} at ${now.toISOString()} (${timeSinceAllocation}ms since allocation)`)
+    }
+
     // Set default time allowance for users who don't have one (like college students)
     // FREE tier provides CREDIT_PACKAGES.FREE credits, convert to minutes
     const DEFAULT_FREE_TIME_MINUTES = CREDIT_PACKAGES.FREE / CREDITS_PER_MINUTE
-    const totalTimeAllowance = user.totalTimeAllowance || DEFAULT_FREE_TIME_MINUTES
-    const usedTimeMinutes = user.usedTimeMinutes || 0
+    const totalTimeAllowance = shouldExpireCredits ? 0 : (user.totalTimeAllowance || DEFAULT_FREE_TIME_MINUTES)
+    const usedTimeMinutes = shouldExpireCredits ? 0 : (user.usedTimeMinutes || 0)
+
+    // Time since allocation is already calculated above
 
     // Return time data
     return NextResponse.json({
@@ -96,6 +126,9 @@ export async function GET(request: NextRequest) {
         totalTimeAllowance: totalTimeAllowance,
         usedTimeMinutes: usedTimeMinutes,
         remainingTime: Math.max(0, totalTimeAllowance - usedTimeMinutes),
+        allocatedAt: allocationTime,
+        timeSinceAllocationMs: timeSinceAllocation,
+        creditsExpired: shouldExpireCredits,
         name: user.name,
         email: user.email
       }

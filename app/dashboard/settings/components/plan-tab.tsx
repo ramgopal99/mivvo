@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { Coins } from "lucide-react"
+import { Coins, Clock, RotateCcw } from "lucide-react"
 import {
   calculateCreditUsage,
   formatCredits,
@@ -13,6 +14,7 @@ import {
   CreditUsageInfo
 } from "@/lib/credit-converter"
 import { getAuthHeaders, getUserData } from "@/lib/auth-utils"
+import { CREDIT_RESET_CONFIG } from "@/config/site"
 
 // =============================================================================
 // MAIN COMPONENT
@@ -25,7 +27,10 @@ export function PlanTab() {
 
   const { data: session, status } = useSession()
   const [loading, setLoading] = useState(true)
+  const [refreshing, setRefreshing] = useState(false)
   const [creditUsage, setCreditUsage] = useState<CreditUsageInfo | null>(null)
+  const [creditsExpired, setCreditsExpired] = useState(false)
+  const [allocatedAt, setAllocatedAt] = useState<Date | null>(null)
 
   // =============================================================================
   // API FUNCTIONS
@@ -48,10 +53,26 @@ export function PlanTab() {
           const usedCredits = minutesToCredits(timeData.data.usedTimeMinutes || 0)
           const creditUsageInfo = calculateCreditUsage(totalCredits, usedCredits)
           setCreditUsage(creditUsageInfo)
+
+          // Set credits expired status
+          setCreditsExpired(timeData.data.creditsExpired || false)
+          setAllocatedAt(timeData.data.allocatedAt ? new Date(timeData.data.allocatedAt) : null)
         }
       }
     } catch (error) {
       console.error('Failed to fetch user credit data:', error)
+    }
+  }
+
+  /**
+   * Refresh credit data manually
+   */
+  const refreshCreditData = async (): Promise<void> => {
+    setRefreshing(true)
+    try {
+      await fetchUserCreditData()
+    } finally {
+      setRefreshing(false)
     }
   }
 
@@ -79,6 +100,44 @@ export function PlanTab() {
     loadCreditData()
   }, [session, status])
 
+  // Auto-refresh mechanism - check for credit expiration every 30 seconds
+  useEffect(() => {
+    const autoRefreshInterval = setInterval(async () => {
+      try {
+        const userData = getUserData(session, status)
+        if (userData && !refreshing) {
+          await fetchUserCreditData()
+        }
+      } catch (error) {
+        console.error('Auto-refresh error:', error)
+      }
+    }, 30000) // Check every 30 seconds
+
+    return () => clearInterval(autoRefreshInterval)
+  }, [session, status, refreshing])
+
+
+
+  // Helper function to format date as "15 Dec 2025"
+  const formatDate = (date: Date): string => {
+    const day = date.getDate()
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const month = monthNames[date.getMonth()]
+    const year = date.getFullYear()
+    return `${day} ${month} ${year}`
+  }
+
+  // Helper function to format allocation date
+  const formatAllocationDate = (date: Date): string => {
+    return formatDate(date)
+  }
+
+  // Helper function to format expiration date
+  const formatExpirationDate = (allocationDate: Date): string => {
+    const expirationTime = new Date(allocationDate.getTime() + CREDIT_RESET_CONFIG.RESET_PERIOD_MS)
+    return formatDate(expirationTime)
+  }
+
   // Get credit usage information
   const creditInfo = creditUsage ? formatRemainingCredits(creditUsage) : null
 
@@ -89,13 +148,27 @@ export function PlanTab() {
       {/* Credit Allowance & Usage */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Coins className="h-5 w-5" />
-            Credit Allowance & Usage
-          </CardTitle>
-          <CardDescription>
-            Your interview credit usage and remaining allowance
-          </CardDescription>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle className="flex items-center gap-2">
+                <Coins className="h-5 w-5" />
+                Credit Allowance & Usage
+              </CardTitle>
+              <CardDescription>
+                Your interview credit usage and remaining allowance
+              </CardDescription>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={refreshCreditData}
+              disabled={refreshing}
+              className="flex items-center gap-2"
+            >
+              <RotateCcw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
+              {refreshing ? 'Refreshing...' : 'Refresh'}
+            </Button>
+          </div>
         </CardHeader>
         <CardContent className="space-y-4">
           {loading ? (
@@ -107,26 +180,27 @@ export function PlanTab() {
             </div>
           ) : (
             <>
-              {/* Credit Usage Progress */}
+              {/* Credit Usage Progress - Full bar that decreases when used */}
               {creditUsage && (
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span>Credits Used</span>
-                    <span>{formatCredits(creditUsage.usedCredits)} / {formatCredits(creditUsage.totalCredits)}</span>
+                    <span>Credit Progress</span>
+                    <span>{formatCredits(creditUsage.remainingCredits)} / {formatCredits(creditUsage.totalCredits)} remaining</span>
                   </div>
-                  <div className="w-full bg-secondary rounded-full h-2">
+                  <div className="w-full bg-secondary rounded-full h-3">
                     <div
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        creditUsage.usagePercentage > 90 ? 'bg-destructive' :
-                        creditUsage.usagePercentage > 75 ? 'bg-orange-500' :
-                        'bg-primary'
+                      className={`h-3 rounded-full transition-all duration-500 ${
+                        creditUsage.remainingCredits === 0 ? 'bg-red-500' :
+                        creditUsage.usagePercentage > 90 ? 'bg-orange-500' :
+                        creditUsage.usagePercentage > 75 ? 'bg-yellow-500' :
+                        'bg-green-500'
                       }`}
-                      style={{ width: `${Math.min(creditUsage.usagePercentage, 100)}%` }}
+                      style={{ width: `${Math.max(0, 100 - creditUsage.usagePercentage)}%` }}
                     />
                   </div>
                   <div className="flex justify-between text-xs text-muted-foreground">
+                    <span>Credits available</span>
                     <span>{creditUsage.usagePercentage.toFixed(1)}% used</span>
-                    <span>{creditInfo?.text || formatCredits(creditUsage.remainingCredits)} remaining</span>
                   </div>
                 </div>
               )}
@@ -157,8 +231,36 @@ export function PlanTab() {
                 </div>
               )}
 
+              {/* Credit Allocation Info */}
+              <div className={`border rounded-lg p-4 ${creditsExpired ? 'bg-red-50 border-red-200' : 'bg-blue-50 border-blue-200'}`}>
+                <div className="flex items-center gap-3">
+                  <Clock className="h-5 w-5 text-blue-600" />
+                  <div className="flex-1">
+                    {allocatedAt && (
+                      <div className="flex justify-between items-center w-full">
+                        <span className="text-sm text-blue-700">
+                          Allocated on {formatAllocationDate(allocatedAt)}
+                        </span>
+                        <span className="text-sm text-blue-700">
+                          Credits expire on {formatExpirationDate(allocatedAt)}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Warning for expired credits */}
+              {creditsExpired && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                  <p className="text-sm text-red-700 font-medium">
+                    ⏰ Your credits have expired. You need to upgrade your plan to get more credits.
+                  </p>
+                </div>
+              )}
+
               {/* Warning for low credits */}
-              {creditUsage && creditUsage.usagePercentage > 90 && (
+              {creditUsage && creditUsage.usagePercentage > 90 && !creditsExpired && (
                 <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-3">
                   <p className="text-sm text-destructive font-medium">
                     ⚠️ You&apos;re running low on interview credits. Consider upgrading your plan.
