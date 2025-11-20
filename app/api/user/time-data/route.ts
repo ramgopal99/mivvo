@@ -8,7 +8,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { CREDIT_PACKAGES, CREDITS_PER_MINUTE } from '@/lib/credit-converter'
+import { CREDIT_PACKAGES } from '@/lib/credit-converter'
 import { CREDIT_RESET_CONFIG } from '@/config/site'
 import jwt from 'jsonwebtoken'
 
@@ -104,10 +104,11 @@ export async function GET(request: NextRequest) {
         where: { id: userId },
         data: {
           totalCreditAllocation: 0,
-          usedCredits: 0 // Also reset used credits for consistency
+          usedCredits: 0, // Also reset used credits for consistency
+          userType: 'FREE' // Downgrade PRO users to FREE when credits expire
         }
       })
-      console.log(`Credits expired for user ${userId} at ${now.toISOString()} (${timeSinceAllocation}ms since allocation)`)
+      console.log(`Credits expired for user ${userId} at ${now.toISOString()} (${timeSinceAllocation}ms since allocation) - User downgraded to FREE`)
     }
 
     // Set default credit allocation for users who don't have one (like college students)

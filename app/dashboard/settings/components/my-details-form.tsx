@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { Badge } from "@/components/ui/badge"
 import { updateUserDetails } from "../actions"
 import { UserData } from "../types"
 
@@ -126,6 +127,32 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
 
   return (
     <div className="space-y-8">
+      {/* User Type Display */}
+      <Card className="border-primary/20 bg-primary/5">
+        <CardContent className="pt-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-lg font-semibold text-primary">Account Type</h3>
+              <p className="text-sm text-primary/80">
+                Your current subscription plan
+              </p>
+            </div>
+            <div className="text-right">
+              <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
+                userData.userType === 'PRO'
+                  ? 'bg-green-100 text-green-800'
+                  : 'bg-blue-100 text-blue-800'
+              }`}>
+                {userData.userType || 'FREE'}
+              </div>
+              {userData.userType === 'FREE' && (
+                <p className="text-xs text-gray-600 mt-1">Upgrade to unlock premium features</p>
+              )}
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Personal Information */}
         <Card>

@@ -16,6 +16,8 @@ export interface UserData {
   careerGoals?: string | null
   linkedIn?: string | null
   github?: string | null
+  // User type (FREE/PRO)
+  userType?: 'FREE' | 'PRO'
   // Credit management fields
   totalCreditAllocation?: number
   usedCredits?: number

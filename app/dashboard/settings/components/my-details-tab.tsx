@@ -39,6 +39,7 @@ export function MyDetailsTab() {
                 careerGoals: parsedUserData.careerGoals || null,
                 linkedIn: parsedUserData.linkedIn || null,
                 github: parsedUserData.github || null,
+                userType: parsedUserData.userType || 'FREE',
                 totalCreditAllocation: parsedUserData.totalCreditAllocation || 30,
                 usedCredits: parsedUserData.usedCredits || 0,
                 creditResetAt: null,

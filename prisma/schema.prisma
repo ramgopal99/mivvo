@@ -10,6 +10,88 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// =============================================================================
+// ENUMS
+// =============================================================================
+
+enum UserRole {
+  USER
+  COLLEGE_ADMIN
+  COLLEGE_STUDENT
+  SUPERADMIN
+}
+
+enum UserType {
+  FREE
+  PRO
+}
+
+enum InterviewStatus {
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum InterviewType {
+  GENERAL_INTERVIEW
+  TECHNICAL
+  CODING
+  UI_INTERVIEW
+  HR_INTERVIEW
+  CUSTOM_INTERVIEW
+}
+
+enum SupportTicketStatus {
+  PENDING
+  COMPLETED
+}
+
+enum SupportTicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum SupportTicketCategory {
+  TECHNICAL_ISSUE
+  BILLING_PAYMENT
+  ACCOUNT_PROFILE
+  FEATURE_REQUEST
+  GENERAL_INQUIRY
+}
+
+enum LessonStatus {
+  DEMO
+  LOCKED
+  COMPLETED
+}
+
+enum ExerciseType {
+  MCQ
+  CODE
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentCategory {
+  MONTHLY
+  ADDON
+  SUBSCRIPTION
+  CREDITS
+  ENTERPRISE
+  REFUND
+  OTHER
+}
+
+// =============================================================================
+// MODELS
+// =============================================================================
+
 model Account {
   id                String  @id @default(cuid()) @map("_id")
   userId            String
@@ -38,13 +120,6 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("sessions")
-}
-
-enum UserRole {
-  USER
-  COLLEGE_ADMIN
-  COLLEGE_STUDENT
-  SUPERADMIN
 }
 
 model User {
@@ -76,6 +151,9 @@ model User {
   year            String?
   password      String?
 
+  // User type (free/pro)
+  userType      UserType  @default(FREE)
+
   // College Admin fields (for users with COLLEGE_ADMIN role)
   collegeAdminId  String?  // Unique ID for college admin login (e.g., TECH_UNIV_001)
   collegeAdminPassword String?  // Password for college admin login
@@ -102,6 +180,7 @@ model User {
   supportTickets SupportTicket[]
   userProgress   UserProgress[]
   feedback       Feedback[]
+  payments       Payment[]
 
   @@map("users")
 }
@@ -146,20 +225,6 @@ model VerificationToken {
   @@map("verificationtokens")
 }
 
-
-enum InterviewStatus {
-  IN_PROGRESS
-  COMPLETED
-}
-
-enum InterviewType {
-  GENERAL_INTERVIEW
-  TECHNICAL
-  CODING
-  UI_INTERVIEW
-  HR_INTERVIEW
-  CUSTOM_INTERVIEW
-}
 
 model MockInterview {
   id                String   @id @default(cuid()) @map("_id")
@@ -258,25 +323,6 @@ model InterviewConversation {
   @@map("interviewconversations")
 }
 
-enum SupportTicketStatus {
-  PENDING
-  COMPLETED
-}
-
-enum SupportTicketPriority {
-  LOW
-  MEDIUM
-  HIGH
-}
-
-enum SupportTicketCategory {
-  TECHNICAL_ISSUE
-  BILLING_PAYMENT
-  ACCOUNT_PROFILE
-  FEATURE_REQUEST
-  GENERAL_INQUIRY
-}
-
 model SupportTicket {
   id          String   @id @default(cuid()) @map("_id")
   ticketId    String   @unique // Human-readable ID like "SUP-20240115-001"
@@ -316,17 +362,6 @@ model TicketReply {
 }
 
 // Course/Learning Management Models
-enum LessonStatus {
-  DEMO
-  LOCKED
-  COMPLETED
-}
-
-enum ExerciseType {
-  MCQ
-  CODE
-}
-
 model Course {
   id          String   @id @default(cuid()) @map("_id")
   title       String
@@ -492,4 +527,26 @@ model Feedback {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("feedbacks")
+}
+
+model Payment {
+  id             String         @id @default(cuid()) @map("_id")
+  userId         String
+  amount         Float
+  currency       String         @default("INR")
+  paymentCategory PaymentCategory
+  status         PaymentStatus  @default(PENDING)
+  paymentDate    DateTime
+  transactionId  String?
+  description    String?
+  value          Int?           // For addon payments - number of credits or items
+  metadata       Json?
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("payments")
 }

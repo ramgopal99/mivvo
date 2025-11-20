@@ -21,8 +21,9 @@ async function seedCollegeAndStudents() {
         careerGoals: 'Become a full-stack developer',
         linkedIn: 'https://linkedin.com/in/rahulsharma',
         github: 'https://github.com/rahulsharma',
-        totalCreditAllocation: 45,
-        usedCredits: 15
+        userType: 'FREE',
+        totalCreditAllocation: 180,
+        usedCredits: 0
       },
       {
         name: 'Priya Patel',
@@ -36,8 +37,9 @@ async function seedCollegeAndStudents() {
         careerGoals: 'Pursue data science career',
         linkedIn: 'https://linkedin.com/in/priyapatel',
         github: 'https://github.com/priyapatel',
-        totalCreditAllocation: 45,
-        usedCredits: 22
+        userType: 'FREE',
+        totalCreditAllocation: 180,
+        usedCredits: 0
       },
       {
         name: 'Amit Kumar',
@@ -51,8 +53,9 @@ async function seedCollegeAndStudents() {
         careerGoals: 'Mobile app development specialist',
         linkedIn: 'https://linkedin.com/in/amitkumar',
         github: 'https://github.com/amitkumar',
-        totalCreditAllocation: 45,
-        usedCredits: 8
+        userType: 'FREE',
+        totalCreditAllocation: 180,
+        usedCredits: 0
       },
       {
         name: 'Sneha Reddy',

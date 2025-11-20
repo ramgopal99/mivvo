@@ -12,10 +12,12 @@ export const siteConfig = {
   },
 }
 
-// Credit package configuration (in minutes)
-export const CREDIT_PACKAGE_MINUTES = {
-  FREE: 15, // 15 minutes free for new users
-  PRO: 360, // 6 hours (360 minutes) for pro users
+
+
+// Auto-calculated credit packages (minutes × 12 credits per minute)
+export const CREDIT_PACKAGES = {
+  FREE: 15,   // 15 × 12 = 180 credits
+  PRO: 360,     // 360 × 12 = 4320 credits
 } as const
 
 // Credit expiration configuration - set ONE of these values, others will be automatically calculated
@@ -40,4 +42,24 @@ const calculateResetPeriod = () => {
 // Credit expiration configuration (in milliseconds) - credits expire after this time from allocation
 export const CREDIT_RESET_CONFIG = {
   RESET_PERIOD_MS: calculateResetPeriod(),
+} as const
+
+// Pricing configuration (in INR)
+export const PRICING_CONFIG = {
+  // Monthly PRO plan pricing
+  MONTHLY_PRO: {
+    PRICE_INR: 249,
+    CREDITS: CREDIT_PACKAGES.PRO,
+    DESCRIPTION: 'Pro Plan'
+  },
+
+  // Addon credit pricing (input time in minutes, display as credits, store time in DB)
+  ADDON_CREDITS: {
+    PRICE_PER_CREDIT_PAISA: 10, // 10 paise = ₹0.10 per credit
+    AVAILABLE_PACKAGES: [
+      { rupees: 50, minutes: 40, display: `₹50 (${40 * 12} credits)` },    // 15 minutes = 180 credits
+      { rupees: 100, minutes: 80, display: `₹100 (${80 * 12} credits)` },  // 30 minutes = 360 credits
+      { rupees: 150, minutes: 125, display: `₹150 (${125 * 12} credits)` }   // 45 minutes = 540 credits
+    ]
+  }
 } as const

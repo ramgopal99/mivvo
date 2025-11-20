@@ -32,6 +32,7 @@ export async function getUserDetails(): Promise<ServerActionResponse<UserData>> 
         totalCreditAllocation: true,
         usedCredits: true,
         creditResetAt: true,
+        userType: true,
         rollNumber: true,
         branch: true,
         course: true,
@@ -93,6 +94,7 @@ export async function getUserDetails(): Promise<ServerActionResponse<UserData>> 
       totalCreditAllocation: userProfile.totalCreditAllocation || undefined,
       usedCredits: userProfile.usedCredits,
       creditResetAt: userProfile.creditResetAt,
+      userType: userProfile.userType,
       // Academic fields
       rollNumber: userProfile.rollNumber,
       branch: userProfile.branch,
