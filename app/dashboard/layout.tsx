@@ -42,7 +42,10 @@ export default function DashboardLayout({
       name: string;
       collegeId: string;
     };
-  } | null>(null)
+    status?: string;
+    suspendedAt?: string;
+    suspendReason?: string;
+  } | null | undefined>(undefined)
   const [authCheckComplete, setAuthCheckComplete] = useState(false)
   const [authAttempted, setAuthAttempted] = useState(false)
 
@@ -100,6 +103,36 @@ export default function DashboardLayout({
         }
 
         if (status === 'authenticated' && session?.user) {
+          try {
+            // Fetch user profile to check suspension status
+            const response = await fetch('/api/user/profile')
+            if (response.ok) {
+              const profileData = await response.json()
+              if (profileData.success && profileData.data) {
+                const userProfile = profileData.data
+
+                setUserData({
+                  id: session.user.id || 'unknown',
+                  name: session.user.name || 'User',
+                  email: session.user.email || '',
+                  role: (session.user as { role?: string })?.role || 'USER',
+                  firstName: session.user.name?.split(' ')[0] || '',
+                  lastName: session.user.name?.split(' ').slice(1).join(' ') || '',
+                  rollNumber: undefined,
+                  college: undefined,
+                  status: userProfile.status,
+                  suspendedAt: userProfile.suspendedAt,
+                  suspendReason: userProfile.suspendReason
+                })
+                console.log('Dashboard: User profile loaded, status:', userProfile.status)
+                return
+              }
+            }
+          } catch (error) {
+            console.error('Error fetching user profile:', error)
+          }
+
+          // Fallback if profile fetch fails
           setUserData({
             id: session.user.id || 'unknown',
             name: session.user.name || 'User',
@@ -144,7 +177,7 @@ export default function DashboardLayout({
       }
     }, [status])
 
-  if (status === "loading") {
+  if (status === "loading" || userData === undefined) {
     return (
       <LoadingCompound
         text="Loading"
@@ -155,7 +188,8 @@ export default function DashboardLayout({
     )
   }
 
-  if ((status === 'authenticated' || status === 'unauthenticated') && authCheckComplete && authAttempted) {
+  // Wait for both authentication and user data to be loaded before checking suspension
+  if ((status === 'authenticated' || status === 'unauthenticated') && authCheckComplete && authAttempted && userData !== undefined) {
     const hasNextAuthSession = status === 'authenticated' && !!session?.user
     const nextAuthRole = hasNextAuthSession ? (session?.user as { role?: string })?.role : undefined
 
@@ -172,6 +206,66 @@ export default function DashboardLayout({
 
     const validRoles = ['USER', 'COLLEGE_STUDENT', 'SUPERADMIN', 'COLLEGE_ADMIN']
     const hasValidRole = effectiveRole && validRoles.includes(effectiveRole)
+
+    // Check if user is suspended BEFORE allowing dashboard access
+    // For NextAuth users, check userData.status directly (loaded synchronously)
+    const isUserSuspended = userData?.status === 'SUSPENDED'
+    console.log('Dashboard: Auth check:', {
+      isAuthenticated,
+      hasValidRole,
+      isUserSuspended,
+      userDataStatus: userData?.status,
+      effectiveRole
+    })
+
+    if (isAuthenticated && hasValidRole && isUserSuspended) {
+      console.log('Dashboard: User is suspended, showing suspension screen')
+      return (
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+          <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
+          <div className="mb-6">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
+            </div>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">Account Suspended</h1>
+            <p className="text-gray-600 mb-4">
+              Your account has been suspended by an administrator.
+              {userData?.suspendReason && (
+                <span className="block mt-2 text-sm text-primary font-medium">
+                  Reason: {userData.suspendReason}
+                </span>
+              )}
+              {userData?.suspendedAt && (
+                <span className="block mt-1 text-xs text-gray-500">
+                  Suspended on: {new Date(userData.suspendedAt).toLocaleDateString()}
+                </span>
+              )}
+            </p>
+          </div>
+            <div className="space-y-3">
+              <button
+                onClick={() => window.location.href = '/contact'}
+                className="w-full bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors cursor-pointer"
+              >
+                Contact Us
+              </button>
+              <button
+                onClick={() => {
+                  localStorage.clear()
+                  sessionStorage.clear()
+                  window.location.href = '/auth/signin'
+                }}
+                className="w-full bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors cursor-pointer"
+              >
+                Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+      )
+    }
 
     if (!isAuthenticated || !hasValidRole) {
       if (typeof window !== 'undefined') {

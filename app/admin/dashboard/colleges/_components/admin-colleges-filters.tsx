@@ -15,8 +15,6 @@ interface AdminCollegesFiltersProps {
   onSearchChange: (value: string) => void
   statusFilter: string
   onStatusFilterChange: (value: string) => void
-  planFilter: string
-  onPlanFilterChange: (value: string) => void
   onAddCollege: () => void
   onExportColleges: () => void
 }
@@ -26,8 +24,6 @@ export function AdminCollegesFilters({
   onSearchChange,
   statusFilter,
   onStatusFilterChange,
-  planFilter,
-  onPlanFilterChange,
   onAddCollege,
   onExportColleges
 }: AdminCollegesFiltersProps) {
@@ -58,19 +54,6 @@ export function AdminCollegesFilters({
               <SelectItem value="pending">Pending</SelectItem>
               <SelectItem value="suspended">Suspended</SelectItem>
               <SelectItem value="inactive">Inactive</SelectItem>
-            </SelectContent>
-          </Select>
-
-          <Select value={planFilter} onValueChange={onPlanFilterChange}>
-            <SelectTrigger className="w-full lg:w-40">
-              <SelectValue placeholder="Plan" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Plans</SelectItem>
-              <SelectItem value="free">Free</SelectItem>
-              <SelectItem value="basic">Basic</SelectItem>
-              <SelectItem value="professional">Professional</SelectItem>
-              <SelectItem value="enterprise">Enterprise</SelectItem>
             </SelectContent>
           </Select>
 

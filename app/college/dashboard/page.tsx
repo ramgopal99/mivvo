@@ -79,9 +79,34 @@ export default function CollegeDashboardPage() {
         })
 
         if (!response.ok) {
-          const errorData = await response.json().catch(() => ({}))
-          console.error('Dashboard API error:', errorData)
-          throw new Error(errorData.error || `Failed to fetch dashboard stats (${response.status})`)
+          // Try to parse error response, but handle cases where it's not JSON
+          let errorMessage = `Failed to fetch dashboard stats (${response.status})`
+          
+          try {
+            const contentType = response.headers.get('content-type')
+            if (contentType && contentType.includes('application/json')) {
+              const errorData = await response.json()
+              errorMessage = errorData.error || errorData.message || errorMessage
+              console.error('Dashboard API error:', errorData)
+            } else {
+              // Response is not JSON, try to get text
+              const text = await response.text()
+              console.error('Dashboard API error (non-JSON):', {
+                status: response.status,
+                statusText: response.statusText,
+                body: text.substring(0, 200) // First 200 chars
+              })
+              errorMessage = text || errorMessage
+            }
+          } catch (parseError) {
+            console.error('Dashboard API error (parse failed):', {
+              status: response.status,
+              statusText: response.statusText,
+              parseError
+            })
+          }
+          
+          throw new Error(errorMessage)
         }
 
         const data = await response.json()

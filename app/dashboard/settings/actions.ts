@@ -16,6 +16,7 @@ export async function getUserDetails(): Promise<ServerActionResponse<UserData>> 
         id: true,
         name: true,
         email: true,
+        role: true,
         image: true,
         createdAt: true,
         firstName: true,
@@ -77,6 +78,7 @@ export async function getUserDetails(): Promise<ServerActionResponse<UserData>> 
       id: userProfile.id,
       name: userProfile.name,
       email: userProfile.email,
+      role: userProfile.role,
       image: userProfile.image,
       createdAt: userProfile.createdAt || new Date(),
       firstName,
@@ -311,6 +313,58 @@ export async function deleteAccount(): Promise<ServerActionResponse> {
     return {
       success: false,
       error: "Failed to delete account"
+    }
+  }
+}
+
+export async function getAllColleges(): Promise<ServerActionResponse<any[]>> {
+  try {
+    const colleges = await prisma.college.findMany({
+      select: {
+        id: true,
+        collegeId: true,
+        name: true,
+        description: true,
+        location: true,
+        website: true,
+        phone: true,
+        establishedYear: true,
+        isActive: true,
+        maxStudents: true,
+        currentStudents: true,
+        monthlyRatePerUser: true,
+        billingCycle: true,
+        nextBillingDate: true,
+        lastBillingAmount: true,
+        createdAt: true,
+        updatedAt: true,
+        // Include admin users (users with COLLEGE_ADMIN role)
+        users: {
+          where: {
+            role: "COLLEGE_ADMIN"
+          },
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            role: true
+          }
+        }
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    })
+
+    return {
+      success: true,
+      data: colleges
+    }
+  } catch (error) {
+    console.error("Error fetching colleges:", error)
+    return {
+      success: false,
+      error: "Failed to fetch colleges"
     }
   }
 } 

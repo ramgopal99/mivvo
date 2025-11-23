@@ -26,7 +26,7 @@ import {
   Trash2,
   Ban,
   CheckCircle,
-  Mail
+  Maximize2
 } from "lucide-react"
 
 interface AdminUser {
@@ -49,7 +49,8 @@ interface AdminUsersTableProps {
   onDeleteUser: (userId: string) => void
   onSuspendUser: (userId: string) => void
   onActivateUser: (userId: string) => void
-  onSendEmail: (userId: string) => void
+  isExpanded?: boolean
+  onToggleExpand?: () => void
 }
 
 export function AdminUsersTable({
@@ -58,7 +59,8 @@ export function AdminUsersTable({
   onDeleteUser,
   onSuspendUser,
   onActivateUser,
-  onSendEmail
+  isExpanded = false,
+  onToggleExpand
 }: AdminUsersTableProps) {
   const getRoleBadge = (role: AdminUser['role']) => {
     switch (role) {
@@ -89,10 +91,25 @@ export function AdminUsersTable({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>User Management</CardTitle>
-        <CardDescription>
-          View and manage all platform users
-        </CardDescription>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle>User Management</CardTitle>
+            <CardDescription>
+              View and manage all platform users
+            </CardDescription>
+          </div>
+          {onToggleExpand && !isExpanded && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onToggleExpand}
+              className="cursor-pointer"
+            >
+              <Maximize2 className="h-4 w-4 mr-2" />
+              Expand
+            </Button>
+          )}
+        </div>
       </CardHeader>
       <CardContent>
         <Table>
@@ -150,29 +167,25 @@ export function AdminUsersTable({
                 <TableCell>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="h-8 w-8 p-0">
+                      <Button variant="ghost" className="h-8 w-8 p-0 cursor-pointer">
                         <span className="sr-only">Open menu</span>
                         <MoreHorizontal className="h-4 w-4" />
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                      <DropdownMenuItem onClick={() => onEditUser(user.id)}>
+                      <DropdownMenuItem onClick={() => onEditUser(user.id)} className="cursor-pointer">
                         <Edit className="mr-2 h-4 w-4" />
                         Edit User
                       </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => onSendEmail(user.id)}>
-                        <Mail className="mr-2 h-4 w-4" />
-                        Send Email
-                      </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       {user.status === 'active' ? (
-                        <DropdownMenuItem onClick={() => onSuspendUser(user.id)}>
+                        <DropdownMenuItem onClick={() => onSuspendUser(user.id)} className="cursor-pointer">
                           <Ban className="mr-2 h-4 w-4" />
                           Suspend User
                         </DropdownMenuItem>
                       ) : (
-                        <DropdownMenuItem onClick={() => onActivateUser(user.id)}>
+                        <DropdownMenuItem onClick={() => onActivateUser(user.id)} className="cursor-pointer">
                           <CheckCircle className="mr-2 h-4 w-4" />
                           Activate User
                         </DropdownMenuItem>
@@ -180,7 +193,7 @@ export function AdminUsersTable({
                       <DropdownMenuSeparator />
                       <DropdownMenuItem
                         onClick={() => onDeleteUser(user.id)}
-                        className="text-red-600"
+                        className="text-red-600 cursor-pointer"
                       >
                         <Trash2 className="mr-2 h-4 w-4" />
                         Delete User

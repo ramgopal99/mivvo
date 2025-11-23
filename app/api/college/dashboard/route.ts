@@ -140,6 +140,17 @@ export async function GET(request: NextRequest) {
     const totalCreditsUsed = studentsWithStats.reduce((sum, student) => sum + (student.usedCredits || 0), 0)
     const totalCreditsAllowed = studentsWithStats.reduce((sum, student) => sum + (student.totalCreditAllocation || 0), 0)
 
+    // Calculate total time used and allowed (in minutes)
+    const totalTimeUsed = studentsWithStats.reduce((sum, student) => {
+      const studentTime = student.interviewAttempts.reduce((attemptSum, attempt) => {
+        return attemptSum + (attempt.duration || 0)
+      }, 0)
+      return sum + studentTime
+    }, 0)
+    
+    // Total time allowed is based on credits (assuming 1 credit = 30 minutes)
+    const totalTimeAllowed = totalCreditsAllowed * 30
+
     // Calculate average scores
     const allScores = studentsWithStats.flatMap(student => 
       student.interviewAttempts
@@ -254,8 +265,12 @@ export async function GET(request: NextRequest) {
 
   } catch (error) {
     console.error('Error fetching college dashboard stats:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Internal server error'
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { 
+        error: errorMessage,
+        details: process.env.NODE_ENV === 'development' ? String(error) : undefined
+      },
       { status: 500 }
     )
   }

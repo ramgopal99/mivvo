@@ -2,6 +2,7 @@ export interface UserData {
   id: string
   name: string | null
   email: string | null
+  role?: string | null
   image: string | null
   createdAt: Date | null
   firstName: string | null

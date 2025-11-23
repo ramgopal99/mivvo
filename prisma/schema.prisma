@@ -21,6 +21,12 @@ enum UserRole {
   SUPERADMIN
 }
 
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
 enum UserType {
   FREE
   PRO
@@ -129,6 +135,10 @@ model User {
   emailVerified DateTime?
   image         String?
   role          UserRole  @default(USER)
+  status        UserStatus @default(ACTIVE)
+  suspendedAt   DateTime?
+  suspendedBy   String?
+  suspendReason String?
   createdAt     DateTime? @default(now())
   updatedAt     DateTime? @updatedAt
 
