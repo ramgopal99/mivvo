@@ -6,9 +6,9 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
   Search,
-  Download,
   Building2
 } from "lucide-react"
+import { AddCollegeDialog } from "./add-college-dialog"
 
 interface AdminCollegesFiltersProps {
   searchTerm: string
@@ -16,7 +16,9 @@ interface AdminCollegesFiltersProps {
   statusFilter: string
   onStatusFilterChange: (value: string) => void
   onAddCollege: () => void
-  onExportColleges: () => void
+  showAddCollegeDialog: boolean
+  onAddCollegeDialogChange: (open: boolean) => void
+  onCollegeCreated?: () => void
 }
 
 export function AdminCollegesFilters({
@@ -24,8 +26,9 @@ export function AdminCollegesFilters({
   onSearchChange,
   statusFilter,
   onStatusFilterChange,
-  onAddCollege,
-  onExportColleges
+  showAddCollegeDialog,
+  onAddCollegeDialogChange,
+  onCollegeCreated
 }: AdminCollegesFiltersProps) {
   return (
     <Card>
@@ -58,17 +61,19 @@ export function AdminCollegesFilters({
           </Select>
 
           <div className="flex gap-2">
-            <Button onClick={onAddCollege}>
+            <Button onClick={() => onAddCollegeDialogChange(true)} className="cursor-pointer">
               <Building2 className="mr-2 h-4 w-4" />
               Add College
-            </Button>
-            <Button variant="outline" onClick={onExportColleges}>
-              <Download className="mr-2 h-4 w-4" />
-              Export
             </Button>
           </div>
         </div>
       </CardContent>
+
+      <AddCollegeDialog
+        open={showAddCollegeDialog}
+        onOpenChange={onAddCollegeDialogChange}
+        onCollegeCreated={onCollegeCreated}
+      />
     </Card>
   )
 }

@@ -137,7 +137,6 @@ export async function GET(request: NextRequest) {
       sum + student.interviewAttempts.filter(attempt => attempt.status === 'COMPLETED').length, 0
     )
     
-    const totalCreditsUsed = studentsWithStats.reduce((sum, student) => sum + (student.usedCredits || 0), 0)
     const totalCreditsAllowed = studentsWithStats.reduce((sum, student) => sum + (student.totalCreditAllocation || 0), 0)
 
     // Calculate total time used and allowed (in minutes)

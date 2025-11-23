@@ -22,17 +22,17 @@ class Logger {
     const originalError = console.error
     const originalWarn = console.warn
 
-    console.log = (...args: any[]) => {
+    console.log = (...args: unknown[]) => {
       this.addLog('info', 'Application Log', args.join(' '), 'INFO')
       originalLog.apply(console, args)
     }
 
-    console.error = (...args: any[]) => {
+    console.error = (...args: unknown[]) => {
       this.addLog('error', 'Application Error', args.join(' '), 'ERROR')
       originalError.apply(console, args)
     }
 
-    console.warn = (...args: any[]) => {
+    console.warn = (...args: unknown[]) => {
       this.addLog('warning', 'Application Warning', args.join(' '), 'WARN')
       originalWarn.apply(console, args)
     }

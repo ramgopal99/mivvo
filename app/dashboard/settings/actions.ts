@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
-import { UserData, ServerActionResponse } from "./types"
+import { UserData, CollegeData, ServerActionResponse } from "./types"
 import { getSessionUserData } from "@/lib/session"
 
 export async function getUserDetails(): Promise<ServerActionResponse<UserData>> {
@@ -317,7 +317,7 @@ export async function deleteAccount(): Promise<ServerActionResponse> {
   }
 }
 
-export async function getAllColleges(): Promise<ServerActionResponse<any[]>> {
+export async function getAllColleges(): Promise<ServerActionResponse<CollegeData[]>> {
   try {
     const colleges = await prisma.college.findMany({
       select: {

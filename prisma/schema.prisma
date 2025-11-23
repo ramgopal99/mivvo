@@ -207,17 +207,18 @@ model College {
 
   // Status and billing (managed by college admins who are users)
   isActive          Boolean   @default(true)
-  maxStudents       Int       @default(100)
+  maxStudents       Int       @default(0)
   currentStudents   Int       @default(0)
 
   // Billing based on user count
-  monthlyRatePerUser Float     @default(150.0) 
+  monthlyRatePerUser Float     @default(150.0)
   billingCycle       String    @default("monthly")
   nextBillingDate    DateTime?
   lastBillingAmount  Float     @default(0.0)
 
   // Relations - college admins are now users with COLLEGE_ADMIN role
   users             User[]
+  enterprisePayments EnterprisePayment[]
 
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
@@ -559,4 +560,30 @@ model Payment {
   updatedAt DateTime @updatedAt
 
   @@map("payments")
+}
+
+model EnterprisePayment {
+  id                String            @id @default(cuid()) @map("_id")
+  collegeId         String
+  amount            Float
+  currency          String            @default("INR")
+  status            PaymentStatus     @default(PENDING)
+  paymentDate       DateTime
+  billingPeriod     String            // e.g., "2024-11", "2024-Q4"
+  studentCount      Int               // Number of students at time of billing
+  ratePerStudent    Float             // Rate per student
+  transactionId     String?
+  description       String?
+  invoiceNumber     String?           @unique
+  dueDate           DateTime?
+  paidAt            DateTime?
+  metadata          Json?
+
+  // Relations
+  college College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("enterprise_payments")
 }

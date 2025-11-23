@@ -2,7 +2,7 @@
  * Credit conversion utility
  */
 
-import { CREDIT_PACKAGES as SITE_CREDIT_PACKAGES, CREDIT_PACKAGE_MINUTES } from '@/config/site'
+import { CREDIT_PACKAGES as SITE_CREDIT_PACKAGES } from '@/config/site'
 
 export const CREDITS_PER_MINUTE = 12
 

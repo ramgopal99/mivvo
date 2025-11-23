@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import { AdminUsersStats, AdminUsersTable, AdminUsersFilters, AddUserDialog } from "./"
+import { AdminUsersStats, AdminUsersTable, AdminUsersFilters } from "./"
 import { getFilteredAdminUsers, suspendUser, activateUser, getAdminUsersStats } from "@/app/actions/user"
 import { Button } from "@/components/ui/button"
 import {
@@ -54,7 +54,6 @@ export function AdminUsersClient({ initialUsers }: AdminUsersClientProps) {
   const [roleFilter, setRoleFilter] = useState("all")
   const [statusFilter, setStatusFilter] = useState("all")
   const [currentPage, setCurrentPage] = useState(1)
-  const [showAddUserDialog, setShowAddUserDialog] = useState(false)
   const [showSuspendDialog, setShowSuspendDialog] = useState(false)
   const [showEditUserDialog, setShowEditUserDialog] = useState(false)
   const [suspendUserId, setSuspendUserId] = useState<string | null>(null)
@@ -144,19 +143,6 @@ export function AdminUsersClient({ initialUsers }: AdminUsersClientProps) {
     setCurrentPage(page)
   }
 
-  const handleAddUser = () => {
-    setShowAddUserDialog(true)
-  }
-
-  const handleUserCreated = () => {
-    // Refresh the user list after creating a new user
-    fetchUsers({
-      searchTerm,
-      role: roleFilter,
-      status: statusFilter,
-      page: currentPage
-    })
-  }
 
 
   const handleEditUser = (userId: string) => {
@@ -256,7 +242,6 @@ export function AdminUsersClient({ initialUsers }: AdminUsersClientProps) {
   const activeUsers = userStats?.activeUsers || users.filter(u => u.status === 'active').length
   const inactiveUsers = userStats?.inactiveUsers || users.filter(u => u.status === 'inactive').length
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const suspendedUsers = userStats?.suspendedUsers || users.filter(u => u.status === 'suspended').length
   const adminUsers = userStats?.superAdmins || users.filter(u => u.role === 'super_admin').length
 
   if (isExpanded) {
@@ -372,7 +357,6 @@ export function AdminUsersClient({ initialUsers }: AdminUsersClientProps) {
         onRoleFilterChange={setRoleFilter}
         statusFilter={statusFilter}
         onStatusFilterChange={setStatusFilter}
-        onAddUser={handleAddUser}
       />
 
       {/* Loading State */}
@@ -423,13 +407,6 @@ export function AdminUsersClient({ initialUsers }: AdminUsersClientProps) {
         </div>
       )}
 
-
-      {/* Add User Dialog */}
-      <AddUserDialog
-        open={showAddUserDialog}
-        onOpenChange={setShowAddUserDialog}
-        onUserCreated={handleUserCreated}
-      />
 
       {/* Suspend User Dialog */}
       <Dialog open={showSuspendDialog} onOpenChange={setShowSuspendDialog}>

@@ -1,8 +1,19 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { AdminCollegesStats, AdminCollegesTable, AdminCollegesFilters } from "./_components"
-import { getAllColleges } from "../../../dashboard/settings/actions"
+import { AdminCollegesStats, AdminCollegesTable, AdminCollegesFilters, EditCollegeDialog } from "./_components"
+import { getAllColleges, deleteCollege } from "@/app/actions/college"
+import { toast } from "sonner"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog"
 
 // College data types
 interface CollegeData {
@@ -34,9 +45,15 @@ interface CollegeData {
 export default function AdminCollegesPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
-  const [colleges, setColleges] = useState<any[]>([])
+  const [colleges, setColleges] = useState<CollegeData[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [showAddCollegeDialog, setShowAddCollegeDialog] = useState(false)
+  const [showEditCollegeDialog, setShowEditCollegeDialog] = useState(false)
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+  const [editingCollegeId, setEditingCollegeId] = useState<string | null>(null)
+  const [deletingCollegeId, setDeletingCollegeId] = useState<string | null>(null)
+  const [deleting, setDeleting] = useState(false)
 
   useEffect(() => {
     const fetchColleges = async () => {
@@ -48,7 +65,8 @@ export default function AdminCollegesPage() {
         } else {
           setError(result.error || "Failed to load colleges")
         }
-      } catch (err) {
+      } catch (error) {
+        console.error("Error loading colleges:", error)
         setError("An error occurred while loading colleges")
       } finally {
         setLoading(false)
@@ -60,7 +78,7 @@ export default function AdminCollegesPage() {
 
   // Transform database colleges to match the expected format
   const transformedColleges = colleges.map(college => {
-    const adminUser = college.users.find((user: any) => user.role === "COLLEGE_ADMIN")
+    const adminUser = college.users.find((user) => user.role === "COLLEGE_ADMIN")
     const monthlyRevenue = college.currentStudents * college.monthlyRatePerUser
 
     return {
@@ -68,7 +86,7 @@ export default function AdminCollegesPage() {
       name: college.name,
       logo: undefined,
       domain: college.website || `${college.collegeId.toLowerCase()}.edu`,
-      status: college.isActive ? "active" : "inactive" as const,
+      status: college.isActive ? ("active" as const) : ("inactive" as const),
       adminName: adminUser?.name || "No Admin Assigned",
       adminEmail: adminUser?.email || "admin@example.com",
       totalUsers: college.currentStudents,
@@ -76,7 +94,7 @@ export default function AdminCollegesPage() {
       createdAt: college.createdAt.toISOString(),
       lastActivity: college.updatedAt.toISOString(),
       plan: "professional" as const // Default plan for now
-    }
+    } as const
   })
 
   const filteredColleges = transformedColleges.filter(college => {
@@ -89,44 +107,76 @@ export default function AdminCollegesPage() {
     return matchesSearch && matchesStatus
   })
 
-  const handleAddCollege = () => {
-    // Simulate adding new college
-    console.log("Adding new college...")
+  const refreshColleges = async () => {
+    // Refresh the colleges list
+    try {
+      const result = await getAllColleges()
+      if (result.success && result.data) {
+        setColleges(result.data)
+      }
+    } catch (error) {
+      console.error("Error refreshing colleges:", error)
+    }
   }
 
-  const handleExportColleges = () => {
-    // Simulate exporting colleges
-    console.log("Exporting colleges...")
-  }
+  const handleCollegeCreated = () => refreshColleges()
+  const handleCollegeUpdated = () => refreshColleges()
+
 
   const handleEditCollege = (collegeId: string) => {
-    // Simulate editing college
-    console.log("Editing college:", collegeId)
+    setEditingCollegeId(collegeId)
+    setShowEditCollegeDialog(true)
   }
 
   const handleDeleteCollege = (collegeId: string) => {
-    // Simulate deleting college
-    console.log("Deleting college:", collegeId)
+    setDeletingCollegeId(collegeId)
+    setShowDeleteDialog(true)
   }
 
-  const handleApproveCollege = (collegeId: string) => {
-    // Simulate approving college
-    console.log("Approving college:", collegeId)
+  const handleConfirmDeleteCollege = async () => {
+    if (!deletingCollegeId) return
+
+    setDeleting(true)
+    try {
+      const result = await deleteCollege(deletingCollegeId)
+      if (result.success) {
+        toast.success("College deleted successfully")
+        await refreshColleges()
+        setShowDeleteDialog(false)
+        setDeletingCollegeId(null)
+      } else {
+        toast.error(result.error || "Failed to delete college")
+      }
+    } catch (error) {
+      console.error("Error deleting college:", error)
+      toast.error("An error occurred while deleting the college")
+    } finally {
+      setDeleting(false)
+    }
   }
 
-  const handleSuspendCollege = (collegeId: string) => {
-    // Simulate suspending college
-    console.log("Suspending college:", collegeId)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleApproveCollege = (_collegeId: string) => {
+    // TODO: Implement college approval logic
+    toast.info("College approval feature coming soon")
   }
 
-  const handleViewCollege = (collegeId: string) => {
-    // Simulate viewing college details
-    console.log("Viewing college:", collegeId)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleSuspendCollege = (_collegeId: string) => {
+    // TODO: Implement college suspension logic
+    toast.info("College suspension feature coming soon")
   }
 
-  const handleViewBilling = (collegeId: string) => {
-    // Simulate viewing college billing
-    console.log("Viewing billing for college:", collegeId)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleViewCollege = (_collegeId: string) => {
+    // This is now handled by the table's direct navigation
+    // Navigation is handled directly in the table component
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleViewBilling = (_collegeId: string) => {
+    // TODO: Implement billing view logic
+    toast.info("Billing view feature coming soon")
   }
 
   // Calculate stats
@@ -182,8 +232,10 @@ export default function AdminCollegesPage() {
         onSearchChange={setSearchTerm}
         statusFilter={statusFilter}
         onStatusFilterChange={setStatusFilter}
-        onAddCollege={handleAddCollege}
-        onExportColleges={handleExportColleges}
+        onAddCollege={() => setShowAddCollegeDialog(true)}
+        showAddCollegeDialog={showAddCollegeDialog}
+        onAddCollegeDialogChange={setShowAddCollegeDialog}
+        onCollegeCreated={handleCollegeCreated}
       />
 
       {/* Colleges Table */}
@@ -196,6 +248,42 @@ export default function AdminCollegesPage() {
         onViewCollege={handleViewCollege}
         onViewBilling={handleViewBilling}
       />
+
+      {/* Edit College Dialog */}
+      <EditCollegeDialog
+        open={showEditCollegeDialog}
+        onOpenChange={setShowEditCollegeDialog}
+        collegeId={editingCollegeId}
+        onCollegeUpdated={handleCollegeUpdated}
+      />
+
+      {/* Delete College Confirmation Dialog */}
+      <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete College</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete this college? This action cannot be undone.
+              All associated users will be permanently deleted along with the college.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={deleting} onClick={() => {
+              setShowDeleteDialog(false)
+              setDeletingCollegeId(null)
+            }}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleConfirmDeleteCollege}
+              disabled={deleting}
+              className="bg-red-600 hover:bg-red-700"
+            >
+              {deleting ? "Deleting..." : "Delete College"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   )
 }

@@ -465,15 +465,17 @@ export async function getFilteredAdminUsers(filters: {
     // Build where clause for efficient database filtering
     const where: Prisma.UserWhereInput = {}
 
-    // Role filter with proper mapping
+    // Always exclude COLLEGE_ADMIN and COLLEGE_STUDENT roles from admin users view
+    where.role = {
+      in: [UserRole.USER, UserRole.SUPERADMIN]
+    }
+
+    // Role filter with proper mapping (only for USER and SUPERADMIN roles)
     if (role !== "all") {
       let dbRole: UserRole
       switch (role) {
         case "super_admin":
           dbRole = UserRole.SUPERADMIN
-          break
-        case "college_admin":
-          dbRole = UserRole.COLLEGE_ADMIN
           break
         case "user":
           dbRole = UserRole.USER

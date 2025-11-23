@@ -8,9 +8,11 @@ import { Label } from "@/components/ui/label"
 import { User } from "lucide-react"
 import { useState, useEffect } from "react"
 import { updateUserDetails, getUserDetails } from "../../../../dashboard/settings/actions"
+import { SessionData } from "@/app/dashboard/types"
+import { UserData } from "../../../../dashboard/settings/types"
 
 interface AdminGeneralSettingsProps {
-  session?: any
+  session?: SessionData
 }
 
 export function AdminGeneralSettings({ session }: AdminGeneralSettingsProps) {
@@ -18,7 +20,7 @@ export function AdminGeneralSettings({ session }: AdminGeneralSettingsProps) {
   const [message, setMessage] = useState("")
   const [hasChanges, setHasChanges] = useState(false)
   const [loading, setLoading] = useState(true)
-  const [userData, setUserData] = useState<any>(null)
+  const [userData, setUserData] = useState<UserData | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   const [formData, setFormData] = useState({
@@ -40,7 +42,8 @@ export function AdminGeneralSettings({ session }: AdminGeneralSettingsProps) {
         } else {
           setError(result.error || "Failed to load user data")
         }
-      } catch (err) {
+      } catch (error) {
+        console.error("Error loading user data:", error)
         setError("An error occurred while loading user data")
       } finally {
         setLoading(false)

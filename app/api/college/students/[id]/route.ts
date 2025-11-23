@@ -105,23 +105,25 @@ export async function GET(
 
     // Calculate statistics
     const totalInterviewsCreated = student.mockInterviews.length
-    
+
     // Count attempts from all interviews created by this student
     const allAttempts = student.mockInterviews.flatMap(interview => interview.attempts)
     const totalAttempts = allAttempts.length
     const completedAttempts = allAttempts.filter(attempt => attempt.results.length > 0).length
-    
+
     // Calculate average score from all results
     const allResults = allAttempts.flatMap(attempt => attempt.results)
-    const averageScore = allResults.length > 0 
-      ? allResults.reduce((sum, result) => sum + (result.overallScore || 0), 0) / allResults.length 
+    const averageScore = allResults.length > 0
+      ? allResults.reduce((sum, result) => sum + (result.overallScore || 0), 0) / allResults.length
       : 0
 
-    // Calculate total time usage
-    const totalCredits = student.usedCredits || 0
+    // Calculate total time usage (in minutes)
+    const totalTimeMinutes = allAttempts.reduce((total, attempt) => {
+      return total + (attempt.duration || 0) / 60 // Convert seconds to minutes
+    }, 0)
     const hours = Math.floor(totalTimeMinutes / 60)
-    const minutes = totalTimeMinutes % 60
-    const seconds = 0 // We don't track seconds in the current schema
+    const minutes = Math.floor(totalTimeMinutes % 60)
+    const seconds = Math.floor((totalTimeMinutes * 60) % 60) // Calculate remaining seconds
 
     // Format interviews data for the table
     const interviewsData = student.mockInterviews.map(interview => {

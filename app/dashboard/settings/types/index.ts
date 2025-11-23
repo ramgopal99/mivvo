@@ -37,6 +37,32 @@ export interface UserData {
   } | null
 }
 
+export interface CollegeData {
+  id: string
+  collegeId: string
+  name: string
+  description: string | null
+  location: string | null
+  website: string | null
+  phone: string | null
+  establishedYear: number | null
+  isActive: boolean
+  maxStudents: number
+  currentStudents: number
+  monthlyRatePerUser: number
+  billingCycle: string
+  nextBillingDate: Date | null
+  lastBillingAmount: number
+  createdAt: Date
+  updatedAt: Date
+  users: Array<{
+    id: string
+    name: string | null
+    email: string | null
+    role: string
+  }>
+}
+
 export interface ServerActionResponse<T = unknown> {
   success: boolean
   data?: T

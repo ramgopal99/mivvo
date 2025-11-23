@@ -98,17 +98,17 @@ export async function POST(request: NextRequest) {
       }
     })
 
-    console.log(`Updated user ${userId} time usage: ${currentUsed} → ${newUsedTime} minutes (added ${timeUsedMinutes})`)
+    console.log(`Updated user ${userId} time usage: ${currentUsed} → ${newUsedCredits} minutes (added ${timeUsedMinutes})`)
 
     return NextResponse.json({
       success: true,
       message: 'Time usage updated successfully',
       data: {
         previousUsed: currentUsed,
-        newUsed: newUsedTime,
+        newUsed: newUsedCredits,
         timeAdded: timeUsedMinutes,
         totalAllowance: currentAllowance,
-        remainingTime: Math.max(0, currentAllowance - newUsedTime)
+        remainingTime: Math.max(0, currentAllowance - newUsedCredits)
       }
     })
 

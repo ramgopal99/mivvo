@@ -1,12 +1,10 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
-  Search,
-  UserPlus
+  Search
 } from "lucide-react"
 
 interface AdminUsersFiltersProps {
@@ -16,7 +14,6 @@ interface AdminUsersFiltersProps {
   onRoleFilterChange: (value: string) => void
   statusFilter: string
   onStatusFilterChange: (value: string) => void
-  onAddUser: () => void
 }
 
 export function AdminUsersFilters({
@@ -25,8 +22,7 @@ export function AdminUsersFilters({
   roleFilter,
   onRoleFilterChange,
   statusFilter,
-  onStatusFilterChange,
-  onAddUser
+  onStatusFilterChange
 }: AdminUsersFiltersProps) {
   return (
     <Card>
@@ -69,12 +65,6 @@ export function AdminUsersFilters({
             </SelectContent>
           </Select>
 
-          <div className="flex gap-2">
-            <Button onClick={onAddUser}>
-              <UserPlus className="mr-2 h-4 w-4" />
-              Add User
-            </Button>
-          </div>
         </div>
       </CardContent>
     </Card>
