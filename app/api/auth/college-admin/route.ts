@@ -95,8 +95,6 @@ export async function POST(request: NextRequest) {
           phone: user.college.phone,
           establishedYear: user.college.establishedYear,
           isActive: user.college.isActive,
-          maxStudents: user.college.maxStudents,
-          currentStudents: user.college.currentStudents,
           monthlyRatePerUser: user.college.monthlyRatePerUser,
           billingCycle: user.college.billingCycle
         } : null,

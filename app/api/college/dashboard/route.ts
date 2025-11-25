@@ -64,8 +64,6 @@ export async function GET(request: NextRequest) {
         id: true,
         name: true,
         collegeId: true,
-        maxStudents: true,
-        currentStudents: true,
         isActive: true,
         createdAt: true
       }
@@ -216,8 +214,6 @@ export async function GET(request: NextRequest) {
         id: college.id,
         name: college.name,
         collegeId: college.collegeId,
-        maxStudents: college.maxStudents,
-        currentStudents: college.currentStudents,
         isActive: college.isActive,
         createdAt: college.createdAt
       },

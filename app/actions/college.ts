@@ -52,8 +52,6 @@ export async function createCollegeWithAdmin(data: {
           phone: data.phone,
           establishedYear: data.establishedYear,
           isActive: true,
-          maxStudents: 0, // Default max students
-          currentStudents: 0,
           monthlyRatePerUser: data.monthlyRatePerUser,
           billingCycle: "monthly",
           nextBillingDate: null, // Will be set when college makes first payment

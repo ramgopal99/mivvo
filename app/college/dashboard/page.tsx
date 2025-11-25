@@ -13,8 +13,6 @@ interface DashboardStats {
     id: string
     name: string
     collegeId: string
-    maxStudents: number
-    currentStudents: number
     isActive: boolean
     createdAt: string
   }
@@ -189,7 +187,7 @@ export default function CollegeDashboardPage() {
         <div className="text-right">
           <p className="text-sm text-gray-500">Students</p>
           <p className="text-2xl font-bold">
-            {stats.students.total} / {stats.college.maxStudents}
+            {stats.students.total} enrolled
           </p>
         </div>
       </div>

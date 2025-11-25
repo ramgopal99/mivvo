@@ -3,14 +3,11 @@
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Alert, AlertDescription } from "@/components/ui/alert"
 import {
   CreditCard,
   DollarSign,
-  AlertTriangle,
   Receipt,
   Save,
   Loader2,
@@ -22,8 +19,6 @@ interface CollegeBillingSettings {
   id: string
   collegeId: string
   name: string
-  maxStudents: number
-  currentStudents: number
   totalAssociatedStudents: number
   monthlyRatePerUser: number
   billingCycle: string
@@ -106,7 +101,7 @@ export function BillingSettings({
           'Authorization': `Bearer ${localStorage.getItem('college_token')}`
         },
         body: JSON.stringify({
-          maxStudents: collegeData.maxStudents
+          // No settings to update - billing is handled via individual enrollments
         })
       })
 
@@ -218,25 +213,6 @@ export function BillingSettings({
             </p>
           </div>
 
-          {/* Max Students Setting */}
-          <div className="space-y-2">
-            <Label htmlFor="max-students" className="text-base font-medium flex items-center gap-2">
-              <Users className="h-4 w-4" />
-              Maximum Students
-            </Label>
-            <p className="text-sm text-muted-foreground">
-              Set the maximum number of students that can be enrolled in your college. Current enrollment: {collegeData.currentStudents || 0}
-            </p>
-            <Input
-              id="max-students"
-              type="number"
-              min="1"
-              max="10000"
-              value={collegeData.maxStudents}
-              onChange={(e) => handleInputChange('maxStudents', parseInt(e.target.value) || 100)}
-              className="max-w-xs"
-            />
-          </div>
 
           {/* Billing Information Display */}
           <div className="p-4 bg-muted/50 rounded-lg">
@@ -306,50 +282,6 @@ export function BillingSettings({
         </CardContent>
       </Card>
 
-      {/* Usage Statistics */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <DollarSign className="h-5 w-5" />
-            Usage Statistics
-          </CardTitle>
-          <CardDescription>
-            Track your current student enrollment
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="space-y-2">
-            <div className="flex justify-between text-sm">
-              <span>Student Enrollment</span>
-              <span className="font-medium">
-                {collegeData.currentStudents || 0} / {collegeData.maxStudents}
-              </span>
-            </div>
-            <Progress
-              value={(collegeData.currentStudents || 0) / collegeData.maxStudents * 100}
-              className="h-2"
-            />
-          </div>
-
-          {((collegeData.currentStudents || 0) / collegeData.maxStudents) > 0.8 && (
-            <div className="flex items-center gap-2 p-3 bg-yellow-50 dark:bg-yellow-950/20 rounded-lg">
-              <AlertTriangle className="h-4 w-4 text-yellow-600" />
-              <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                You&apos;re approaching your maximum student limit. Consider increasing the limit.
-              </p>
-            </div>
-          )}
-
-          {((collegeData.currentStudents || 0) / collegeData.maxStudents) >= 1 && (
-            <div className="flex items-center gap-2 p-3 bg-red-50 dark:bg-red-950/20 rounded-lg">
-              <AlertTriangle className="h-4 w-4 text-red-600" />
-              <p className="text-sm text-red-800 dark:text-red-200">
-                You have reached your maximum student limit. No more students can be added until you increase the limit.
-              </p>
-            </div>
-          )}
-        </CardContent>
-      </Card>
 
       {/* Billing History Placeholder */}
       <Card>

@@ -47,8 +47,6 @@ export interface CollegeData {
   phone: string | null
   establishedYear: number | null
   isActive: boolean
-  maxStudents: number
-  currentStudents: number
   monthlyRatePerUser: number
   billingCycle: string
   nextBillingDate: Date | null

@@ -6,7 +6,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Save } from "lucide-react"
 import {
   ProfileSettings,
-  BillingSettings
+  BillingSettings,
+  StudentSettings
 } from "./_components"
 
 export default function SettingsPage() {
@@ -38,14 +39,19 @@ export default function SettingsPage() {
 
       {/* Settings Tabs */}
       <Tabs defaultValue="profile" className="space-y-4">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="profile">Profile</TabsTrigger>
+          <TabsTrigger value="students">Students</TabsTrigger>
           <TabsTrigger value="security">Security</TabsTrigger>
           <TabsTrigger value="billing">Billing</TabsTrigger>
         </TabsList>
 
         <TabsContent value="profile" className="space-y-4">
           <ProfileSettings />
+        </TabsContent>
+
+        <TabsContent value="students" className="space-y-4">
+          <StudentSettings />
         </TabsContent>
 
         <TabsContent value="security" className="space-y-4">

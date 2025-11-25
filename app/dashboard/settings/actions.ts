@@ -330,8 +330,6 @@ export async function getAllColleges(): Promise<ServerActionResponse<CollegeData
         phone: true,
         establishedYear: true,
         isActive: true,
-        maxStudents: true,
-        currentStudents: true,
         monthlyRatePerUser: true,
         billingCycle: true,
         nextBillingDate: true,

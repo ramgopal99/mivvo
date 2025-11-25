@@ -3,17 +3,8 @@
 
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
+import { Badge } from "@/components/ui/badge"
 import {
   ArrowLeft,
   Users,
@@ -25,6 +16,7 @@ import {
   Building
 } from "lucide-react"
 import { getCollegeById } from "@/app/actions/college"
+import { CollegeUsersTable } from "."
 
 interface CollegeDetailsProps {
   collegeId: string
@@ -39,6 +31,11 @@ interface CollegeUser {
   status?: string | null
   emailVerified?: Date | null
   createdAt?: Date
+  studentEnrollment?: {
+    id: string
+    isActive: boolean
+    expirationDate: string
+  }
 }
 
 interface CollegeData {
@@ -51,8 +48,6 @@ interface CollegeData {
   phone?: string | null
   establishedYear?: number | null
   isActive: boolean
-  maxStudents: number
-  currentStudents: number
   monthlyRatePerUser: number
   billingCycle: string
   nextBillingDate?: Date | null
@@ -66,6 +61,9 @@ export function CollegeDetails({ collegeId, onBack }: CollegeDetailsProps) {
   const [college, setCollege] = useState<CollegeData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [isUsersExpanded, setIsUsersExpanded] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1)
+  const usersPerPage = isUsersExpanded ? 50 : 10
 
   useEffect(() => {
     const fetchCollegeDetails = async () => {
@@ -87,33 +85,16 @@ export function CollegeDetails({ collegeId, onBack }: CollegeDetailsProps) {
     fetchCollegeDetails()
   }, [collegeId])
 
-  const getRoleBadge = (role?: string | null) => {
-    switch (role) {
-      case 'COLLEGE_ADMIN':
-        return <Badge className="bg-blue-100 text-blue-800">College Admin</Badge>
-      case 'COLLEGE_STUDENT':
-        return <Badge className="bg-green-100 text-green-800">College Student</Badge>
-      case 'SUPERADMIN':
-        return <Badge className="bg-red-100 text-red-800">Super Admin</Badge>
-      case 'USER':
-        return <Badge variant="outline">User</Badge>
-      default:
-        return <Badge variant="outline">Unknown</Badge>
+  // Reset pagination when college data changes or expanded state changes
+  useEffect(() => {
+    if (college) {
+      const newTotalPages = Math.ceil(college.users.length / usersPerPage)
+      if (currentPage > newTotalPages && newTotalPages > 0) {
+        setCurrentPage(1)
+      }
     }
-  }
+  }, [college, currentPage, usersPerPage, isUsersExpanded])
 
-  const getStatusBadge = (status?: string | null) => {
-    switch (status) {
-      case 'ACTIVE':
-        return <Badge className="bg-green-100 text-green-800">Active</Badge>
-      case 'INACTIVE':
-        return <Badge className="bg-yellow-100 text-yellow-800">Inactive</Badge>
-      case 'SUSPENDED':
-        return <Badge className="bg-red-100 text-red-800">Suspended</Badge>
-      default:
-        return <Badge variant="outline">Unknown</Badge>
-    }
-  }
 
   if (loading) {
     return (
@@ -143,8 +124,38 @@ export function CollegeDetails({ collegeId, onBack }: CollegeDetailsProps) {
   const collegeAdmins = college.users.filter(user => user.role === 'COLLEGE_ADMIN')
   const collegeStudents = college.users.filter(user => user.role === 'COLLEGE_STUDENT')
   const totalUsers = college.users.length
-  const monthlyRevenue = college.currentStudents * college.monthlyRatePerUser
+  // Calculate monthly revenue based on active enrollments
+  const monthlyRevenue = college.users.filter(user =>
+    user.role === 'COLLEGE_STUDENT' &&
+    user.studentEnrollment &&
+    user.studentEnrollment.isActive &&
+    new Date(user.studentEnrollment.expirationDate) > new Date()
+  ).length * college.monthlyRatePerUser
 
+  // Pagination calculations for expanded view
+  const totalPages = Math.ceil(college.users.length / usersPerPage)
+  const startIndex = (currentPage - 1) * usersPerPage
+  const endIndex = startIndex + usersPerPage
+  const paginatedUsers = college.users.slice(startIndex, endIndex)
+
+  // Expanded users view
+  if (isUsersExpanded) {
+    return (
+      <CollegeUsersTable
+        users={paginatedUsers}
+        isExpanded={true}
+        onToggleExpand={() => {
+          setIsUsersExpanded(false)
+          setCurrentPage(1)
+        }}
+        totalUsers={totalUsers}
+        collegeName={college.name}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
+    )
+  }
 
   return (
     <div className="space-y-6">
@@ -179,13 +190,20 @@ export function CollegeDetails({ collegeId, onBack }: CollegeDetailsProps) {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Current Students</CardTitle>
+            <CardTitle className="text-sm font-medium">Active Enrollments</CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{college.currentStudents}</div>
+            <div className="text-2xl font-bold">
+              {college.users.filter(user =>
+                user.role === 'COLLEGE_STUDENT' &&
+                user.studentEnrollment &&
+                user.studentEnrollment.isActive &&
+                new Date(user.studentEnrollment.expirationDate) > new Date()
+              ).length}
+            </div>
             <p className="text-xs text-muted-foreground">
-              of {college.maxStudents} max capacity
+              Active student enrollments
             </p>
           </CardContent>
         </Card>
@@ -364,67 +382,19 @@ export function CollegeDetails({ collegeId, onBack }: CollegeDetailsProps) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>User</TableHead>
-                <TableHead>Role</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Email Verified</TableHead>
-                <TableHead>Joined</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {college.users.map((user) => (
-                <TableRow key={user.id} className={user.role === 'COLLEGE_ADMIN' ? 'bg-blue-50' : ''}>
-                  <TableCell>
-                    <div className="flex items-center gap-3">
-                      <Avatar className="h-8 w-8">
-                        <AvatarFallback>
-                          {user.name?.split(' ').map(n => n[0]).join('') || user.email?.[0]?.toUpperCase() || 'U'}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <p className="font-medium">
-                          {user.name || 'No name'}
-                          {user.role === 'COLLEGE_ADMIN' && (
-                            <span className="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
-                              Admin
-                            </span>
-                          )}
-                        </p>
-                        <p className="text-sm text-muted-foreground">{user.email}</p>
-                      </div>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    {getRoleBadge(user.role)}
-                  </TableCell>
-                  <TableCell>
-                    {getStatusBadge(user.status)}
-                  </TableCell>
-                  <TableCell>
-                    {user.emailVerified ? (
-                      <Badge className="bg-green-100 text-green-800">Verified</Badge>
-                    ) : (
-                      <Badge variant="outline">Unverified</Badge>
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    <span className="text-sm text-muted-foreground">
-                      {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'Unknown'}
-                    </span>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-
-          {college.users.length === 0 && (
-            <div className="text-center py-8 text-muted-foreground">
-              No users found for this college.
-            </div>
-          )}
+          <CollegeUsersTable
+            users={paginatedUsers}
+            isExpanded={false}
+            onToggleExpand={() => {
+              setIsUsersExpanded(true)
+              setCurrentPage(1)
+            }}
+            totalUsers={totalUsers}
+            collegeName={college.name}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
         </CardContent>
       </Card>
 

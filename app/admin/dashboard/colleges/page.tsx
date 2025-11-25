@@ -26,8 +26,6 @@ interface CollegeData {
   phone?: string | null
   establishedYear?: number | null
   isActive: boolean
-  maxStudents: number
-  currentStudents: number
   monthlyRatePerUser: number
   billingCycle: string
   nextBillingDate?: Date | null
@@ -79,7 +77,13 @@ export default function AdminCollegesPage() {
   // Transform database colleges to match the expected format
   const transformedColleges = colleges.map(college => {
     const adminUser = college.users.find((user) => user.role === "COLLEGE_ADMIN")
-    const monthlyRevenue = college.currentStudents * college.monthlyRatePerUser
+    // Calculate monthly revenue based on active enrollments
+    const monthlyRevenue = college.users.filter(user =>
+      user.role === 'COLLEGE_STUDENT' &&
+      user.studentEnrollment &&
+      user.studentEnrollment.isActive &&
+      new Date(user.studentEnrollment.expirationDate) > new Date()
+    ).length * college.monthlyRatePerUser
 
     return {
       id: college.id,
@@ -89,7 +93,12 @@ export default function AdminCollegesPage() {
       status: college.isActive ? ("active" as const) : ("inactive" as const),
       adminName: adminUser?.name || "No Admin Assigned",
       adminEmail: adminUser?.email || "admin@example.com",
-      totalUsers: college.currentStudents,
+      totalUsers: college.users.filter(user =>
+        user.role === 'COLLEGE_STUDENT' &&
+        user.studentEnrollment &&
+        user.studentEnrollment.isActive &&
+        new Date(user.studentEnrollment.expirationDate) > new Date()
+      ).length,
       monthlyRevenue: Math.round(monthlyRevenue),
       createdAt: college.createdAt.toISOString(),
       lastActivity: college.updatedAt.toISOString(),

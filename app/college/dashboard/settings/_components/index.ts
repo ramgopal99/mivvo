@@ -1,4 +1,5 @@
 export { ProfileSettings } from './profile-settings'
+export { StudentSettings } from './student-settings'
 export { NotificationsSettings } from './notifications-settings'
 export { PreferencesSettings } from './preferences-settings'
 export { SecuritySettings } from './security-settings'

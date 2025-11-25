@@ -191,6 +191,7 @@ model User {
   userProgress   UserProgress[]
   feedback       Feedback[]
   payments       Payment[]
+  studentEnrollment StudentEnrollment?
 
   @@map("users")
 }
@@ -207,8 +208,6 @@ model College {
 
   // Status and billing (managed by college admins who are users)
   isActive          Boolean   @default(true)
-  maxStudents       Int       @default(0)
-  currentStudents   Int       @default(0)
 
   // Billing based on user count
   monthlyRatePerUser Float     @default(150.0)
@@ -219,6 +218,7 @@ model College {
   // Relations - college admins are now users with COLLEGE_ADMIN role
   users             User[]
   enterprisePayments EnterprisePayment[]
+  studentEnrollments StudentEnrollment[]
 
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
@@ -586,4 +586,27 @@ model EnterprisePayment {
   updatedAt DateTime @updatedAt
 
   @@map("enterprise_payments")
+}
+
+model StudentEnrollment {
+  id                String        @id @default(cuid()) @map("_id")
+  collegeId         String
+  userId            String        @unique // The created student user account
+  rollNumber        String
+  enrollmentMonths  Int           // Number of months (1, 3, 6, 12)
+  enrollmentDate    DateTime      @default(now())
+  expirationDate    DateTime
+  paymentAmount     Float
+  paymentStatus     PaymentStatus @default(PENDING)
+  paymentId         String?       // Reference to Payment model
+  isActive          Boolean       @default(true)
+
+  // Relations
+  college           College       @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@map("student_enrollments")
 }

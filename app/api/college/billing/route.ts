@@ -12,7 +12,6 @@ interface JWTPayload {
 }
 
 interface CollegeUpdateData {
-  maxStudents?: number
   updatedAt: Date
 }
 
@@ -76,20 +75,9 @@ export async function PUT(request: NextRequest) {
       )
     }
 
-    const { maxStudents } = await request.json()
-
-    // Validate maxStudents
-    if (maxStudents !== undefined && (typeof maxStudents !== 'number' || maxStudents < 1)) {
-      return NextResponse.json(
-        { error: 'Maximum students must be a positive number' },
-        { status: 400 }
-      )
-    }
-
-    // Get current college data to check current students
+    // Get current college data (no updates allowed)
     const currentCollege = await prisma.college.findUnique({
-      where: { id: collegeId },
-      select: { currentStudents: true, maxStudents: true }
+      where: { id: collegeId }
     })
 
     if (!currentCollege) {
@@ -99,38 +87,15 @@ export async function PUT(request: NextRequest) {
       )
     }
 
-    // If reducing maxStudents, ensure it's not below current students
-    if (maxStudents !== undefined && maxStudents < currentCollege.currentStudents) {
-      return NextResponse.json(
-        { error: `Cannot set maximum students below current enrollment (${currentCollege.currentStudents})` },
-        { status: 400 }
-      )
-    }
-
-    // Update college billing settings
-    const updateData: CollegeUpdateData = {
-      maxStudents,
-      updatedAt: new Date()
-    }
-
-    const updatedCollege = await prisma.college.update({
-      where: {
-        id: collegeId
-      },
-      data: updateData
-    })
-
-    // Return updated college billing data
+    // Return current college billing data (read-only)
     const responseData = {
-      id: updatedCollege.id,
-      collegeId: updatedCollege.collegeId,
-      name: updatedCollege.name,
-      maxStudents: updatedCollege.maxStudents,
-      currentStudents: updatedCollege.currentStudents,
-      monthlyRatePerUser: updatedCollege.monthlyRatePerUser,
-      billingCycle: updatedCollege.billingCycle,
-      nextBillingDate: updatedCollege.nextBillingDate,
-      lastBillingAmount: updatedCollege.lastBillingAmount
+      id: currentCollege.id,
+      collegeId: currentCollege.collegeId,
+      name: currentCollege.name,
+      monthlyRatePerUser: currentCollege.monthlyRatePerUser,
+      billingCycle: currentCollege.billingCycle,
+      nextBillingDate: currentCollege.nextBillingDate,
+      lastBillingAmount: currentCollege.lastBillingAmount
     }
 
     return NextResponse.json({
@@ -236,8 +201,6 @@ export async function GET(request: NextRequest) {
       id: college.id,
       collegeId: college.collegeId,
       name: college.name,
-      maxStudents: college.maxStudents,
-      currentStudents: college.currentStudents,
       totalAssociatedStudents: college._count.users,
       monthlyRatePerUser: college.monthlyRatePerUser,
       billingCycle: college.billingCycle,
