@@ -5,4 +5,3 @@
  */
 
 export { generateUPSEPrompt } from './upse-prompt'
-export { generateBankingPrompt } from './banking-prompt'

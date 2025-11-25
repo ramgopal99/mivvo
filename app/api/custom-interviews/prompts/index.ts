@@ -11,9 +11,6 @@ export * from './technical'
 export * from './hr'
 
 // General Interview Prompts
-export { generateGeneralPrompt } from './general-prompt'
-export { generateCodingPrompt } from './coding-prompt'
-export { generateTechnicalPrompt } from './technical-prompt'
 export { generateCustomInterviewPrompt } from './custom-interview-prompt'
 export { generateVoiceProfilePrompt, generateVoiceInterviewPrompt } from './voice-profile-prompt'
 export * from './general'

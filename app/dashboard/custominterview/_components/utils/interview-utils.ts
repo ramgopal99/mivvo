@@ -5,18 +5,13 @@
  * including role selection, experience levels, interview types, and JD generation.
  */
 
-import { generateUPSEPrompt, generateBankingPrompt } from '@/app/api/custom-interviews/prompts/general'
+import { generateUPSEPrompt } from '@/app/api/custom-interviews/prompts/general'
 
 /**
  * Gets the available role options for interview creation
  */
 export const getAvailableRoles = () => [
   // Roles with specific prompts available
-  { value: 'frontend-developer', label: 'Frontend Developer' },
-  { value: 'backend-developer', label: 'Backend Developer' },
-  { value: 'fullstack-developer', label: 'Full Stack Developer' },
-  { value: 'react-developer', label: 'React Developer' },
-  { value: 'nodejs-developer', label: 'Node.js Developer' },
   { value: 'python-developer', label: 'Python Developer' }
 ]
 
@@ -42,41 +37,24 @@ export const getAvailableInterviewTypes = () => [
  * Gets the available General interview sub-types
  */
 export const getGeneralInterviewSubTypes = () => [
-  { value: 'UPSE', label: 'UPSE' },
-  { value: 'Banking', label: 'Banking' }
+  { value: 'UPSE', label: 'UPSE' }
 ]
 
 /**
  * Gets the available HR interview sub-types
  */
 export const getHRInterviewSubTypes = () => [
-  { value: 'Behavioral', label: 'Behavioral' },
-  { value: 'Situational', label: 'Situational' },
-  { value: 'Competency', label: 'Competency-Based' },
-  { value: 'Leadership', label: 'Leadership' },
-  { value: 'Cultural', label: 'Cultural Fit' }
+  { value: 'Behavioral', label: 'Behavioral' }
 ]
 
 /**
  * Gets the detailed prompt for General interview types
  * This is used for the actual interview, not the UI display
  */
-export const getGeneralInterviewPrompt = (generalSubType: string, cvText?: string): string => {
+export const getGeneralInterviewPrompt = (generalSubType: string): string => {
   if (generalSubType === 'UPSE') {
-    return generateUPSEPrompt(cvText)
-  } else if (generalSubType === 'Banking') {
-    return generateBankingPrompt(cvText)
+    return generateUPSEPrompt()
   }
   return ''
 }
 
-/**
- * Generates a job description based on predefined role and experience level
- * @param role - The role value (e.g., 'frontend-developer')
- * @param level - The experience level (e.g., '2-5 years')
- * @param interviewType - The interview type (optional)
- * @param generalSubType - General interview subtype (optional)
- * @param hrSubType - HR interview subtype (optional)
- * @returns A formatted job description string
- */
-export { generateJDFromPredefined } from './jd-generation'

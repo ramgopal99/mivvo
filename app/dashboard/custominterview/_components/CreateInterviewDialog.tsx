@@ -76,13 +76,13 @@ import {
 } from "@/components/ui/tabs"
 import { Plus, FileText, X, Mic, Square } from "lucide-react"
 import {
-  generateJDFromPredefined,
   getAvailableRoles,
   getAvailableLevels,
   getAvailableInterviewTypes,
   getGeneralInterviewSubTypes,
   getHRInterviewSubTypes
 } from "./utils/interview-utils"
+import { getJDTemplate } from "./utils/jd-templates"
 import { VoiceRecordingAnimation } from "./animations"
 import { generateInterviewTitle } from "./utils/interview-title-utils"
 import { CreditUsageInfo } from "@/lib/credit-converter"
@@ -537,14 +537,13 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
     // Generate JD details based on interview type
     let finalJdDetails = ""
     if (interviewType === 'General') {
-      // For General interviews, use the updated JD generation with interview type and sub-type
-      finalJdDetails = generateJDFromPredefined("", "", interviewType, generalSubType)
-  } else if (interviewType === 'HR') {
-    // For HR interviews, use JD generation with interview type and HR sub-type
-    finalJdDetails = generateJDFromPredefined("", "", interviewType, undefined, hrSubType)
+      finalJdDetails = getJDTemplate(interviewType, generalSubType) || `General Interview: ${generalSubType || 'General Topics'}`
+    } else if (interviewType === 'HR') {
+      finalJdDetails = getJDTemplate(interviewType, hrSubType) || `HR Interview: ${hrSubType || 'HR Topics'}`
+    } else if (interviewType === 'Technical') {
+      finalJdDetails = getJDTemplate(interviewType, selectedRole) || `Technical Interview: ${selectedRole?.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()) || 'Technical Topics'}`
     } else {
-    // For Technical interviews, use the existing JD generation
-      finalJdDetails = generateJDFromPredefined(selectedRole, selectedLevel, interviewType)
+      finalJdDetails = getJDTemplate(interviewType) || "Custom Interview"
     }
 
 
