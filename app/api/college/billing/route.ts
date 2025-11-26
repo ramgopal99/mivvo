@@ -11,9 +11,6 @@ interface JWTPayload {
   [key: string]: unknown
 }
 
-interface CollegeUpdateData {
-  updatedAt: Date
-}
 
 export async function PUT(request: NextRequest) {
   try {

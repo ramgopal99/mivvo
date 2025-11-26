@@ -104,6 +104,14 @@ export async function getAllColleges() {
             status: true,
             emailVerified: true,
             createdAt: true,
+            studentEnrollment: {
+              select: {
+                isActive: true,
+                expirationDate: true,
+                enrollmentMonths: true,
+                paymentStatus: true,
+              }
+            }
           }
         }
       },

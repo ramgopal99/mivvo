@@ -41,8 +41,6 @@ async function createDemoCollegeAndAdmin(): Promise<void> {
         website: 'https://democollege.edu',
         phone: '+91-9876543210',
         establishedYear: 2020,
-        maxStudents: 100,
-        currentStudents: 0,
         monthlyRatePerUser: 150.0,
         billingCycle: 'monthly',
         nextBillingDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
@@ -92,19 +90,13 @@ async function createDemoCollegeAndAdmin(): Promise<void> {
         data: {
           ...studentInfo,
           password: await bcrypt.hash('student123', 10),
-          role: 'USER',
+          role: 'COLLEGE_STUDENT',
           collegeId: college.id
         }
       })
       createdStudents.push(student)
       console.log(`✅ Created student: ${student.name} (${student.rollNumber})`)
     }
-
-    // Update college student count
-    await prisma.college.update({
-      where: { id: college.id },
-      data: { currentStudents: createdStudents.length }
-    })
 
     console.log('\n🎉 Demo College, Admin, and Students created successfully!')
     console.log(`📊 Summary:`)

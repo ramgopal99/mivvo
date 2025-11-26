@@ -37,6 +37,15 @@ interface CollegeData {
     name?: string | null
     email?: string | null
     role?: string | null
+    status?: string | null
+    emailVerified?: Date | null
+    createdAt?: Date | null
+    studentEnrollment?: {
+      isActive: boolean
+      expirationDate: Date
+      enrollmentMonths: number
+      paymentStatus: string
+    } | null
   }>
 }
 

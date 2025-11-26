@@ -241,7 +241,7 @@ export function AdminUsersClient({ initialUsers }: AdminUsersClientProps) {
   const totalUsers = userStats?.totalUsers || pagination?.totalCount || users.length
   const activeUsers = userStats?.activeUsers || users.filter(u => u.status === 'active').length
   const inactiveUsers = userStats?.inactiveUsers || users.filter(u => u.status === 'inactive').length
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   const adminUsers = userStats?.superAdmins || users.filter(u => u.role === 'super_admin').length
 
   if (isExpanded) {

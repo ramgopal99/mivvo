@@ -3,17 +3,16 @@
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
   CreditCard,
-  DollarSign,
   Receipt,
   Save,
   Loader2,
   Users,
   TestTube
 } from "lucide-react"
+import { AlertDialog, AlertDialogTitle, AlertDialogHeader, AlertDialogContent } from "@/components/ui/alert-dialog"
 
 interface CollegeBillingSettings {
   id: string
@@ -80,12 +79,6 @@ export function BillingSettings({
     }
   }
 
-  const handleInputChange = (field: keyof CollegeBillingSettings, value: string | number | boolean) => {
-    if (!collegeData) return
-    setCollegeData(prev => prev ? { ...prev, [field]: value } : null)
-    setHasChanges(true)
-    setMessage(null)
-  }
 
   const handleSave = async () => {
     if (!collegeData) return
@@ -192,9 +185,13 @@ export function BillingSettings({
         </CardHeader>
         <CardContent className="space-y-6">
           {message && (
-            <Alert variant={message.type === 'success' ? 'default' : 'destructive'}>
-              <AlertDescription>{message.text}</AlertDescription>
-            </Alert>
+            <AlertDialog>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>{message.text}</AlertDialogTitle>
+                </AlertDialogHeader>
+              </AlertDialogContent>
+            </AlertDialog>
           )}
 
 
