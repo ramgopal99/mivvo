@@ -376,7 +376,7 @@ export async function POST(request: NextRequest) {
     } else if (mappedInterviewType === "GENERAL_INTERVIEW") {
       // Handle General interview sub-types (only UPSE is supported)
       if (generalSubType === "UPSE") {
-        promptText = generateUPSEPrompt()
+        promptText = generateUPSEPrompt(jdDetails, interview.title || "UPSE Civil Service Interview")
       } else {
         // Fallback if unsupported general sub-type
         promptText = "General interview sub-type not supported."

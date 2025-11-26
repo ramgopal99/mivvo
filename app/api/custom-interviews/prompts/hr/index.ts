@@ -5,3 +5,6 @@
  */
 
 export { generateBehavioralHRPrompt } from './behavioral'
+export { generateSituationalHRPrompt } from './situational'
+export { generateCompetencyBasedHRPrompt } from './competency-based'
+export { generateCaseStudyHRPrompt } from './case-study'

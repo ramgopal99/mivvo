@@ -13,7 +13,10 @@
  * Technical role titles mapping (only available roles)
  */
 export const TECHNICAL_ROLE_TITLES: Record<string, string> = {
-  "python-developer": "Python Developer Interview"
+  "python-developer": "Python Developer Interview",
+  "full-stack-developer": "Full Stack Developer Interview",
+  "react-developer": "React Developer Interview",
+  "frontend-developer": "Frontend Developer Interview"
 }
 
 /**
@@ -27,7 +30,10 @@ export const GENERAL_SUBTYPE_TITLES: Record<string, string> = {
  * HR interview subtype titles mapping
  */
 export const HR_SUBTYPE_TITLES: Record<string, string> = {
-  "Behavioral": "Behavioral Interview"
+  "Behavioral": "Behavioral Interview",
+  "Situational": "Situational Interview",
+  "CompetencyBased": "Competency-Based Interview",
+  "CaseStudy": "Case Study Interview"
 }
 
 // =============================================================================

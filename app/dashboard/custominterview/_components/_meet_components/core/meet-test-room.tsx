@@ -138,64 +138,41 @@ export function MeetTestRoom({
 
   // Handle end call - save conversation data and perform analysis if interview is active
   const handleEndCall = async () => {
-    // If there's an active conversation, save it and perform analysis before ending
-    if (isConversationMode && voiceTranscript.length > 0 && interviewData?.id) {
-      console.log('End call clicked with active conversation, saving data and performing analysis...')
+    // Prevent multiple end call attempts
+    if (isEndingCall) {
+      console.log('End call already in progress, skipping duplicate call')
+      return
+    }
 
-      try {
-        // Save conversation data
+    setIsEndingCall(true) // Prevent double saving and multiple calls
+
+    try {
+      // If there's an active conversation, save it and perform analysis before ending
+      if (isConversationMode && voiceTranscript.length > 0 && interviewData?.id) {
+        console.log('End call clicked with active conversation, saving data and performing analysis...')
+
+        // Save conversation data (this already includes analysis)
+        console.log('💾 handleEndCall: Calling handleSaveConversation')
         await handleSaveConversation()
+        console.log('💾 handleEndCall: Calling handleUpdateTimeUsage')
         await handleUpdateTimeUsage()
-
-        // Perform AI analysis
-        const analysisResponse = await fetch('/api/analysis', {
-          method: 'POST',
-          headers: getAuthHeaders(),
-          body: JSON.stringify({
-            conversation: voiceTranscript,
-            topic: interviewData.customPrompt || interviewData.jd
-          })
-        })
-
-        if (analysisResponse.ok) {
-          const analysis = await analysisResponse.json()
-          console.log('Analysis completed, saving results...')
-
-          // Save analysis results to database
-          const saveAnalysisResponse = await fetch('/api/custom-interviews/save-analysis', {
-            method: 'POST',
-            headers: getAuthHeaders(),
-            body: JSON.stringify({
-              interviewId: interviewData.id,
-              analysis: analysis,
-              duration: elapsedTime
-            })
-          })
-
-          if (saveAnalysisResponse.ok) {
-            console.log('Analysis results saved successfully')
-          } else {
-            console.error('Failed to save analysis results:', saveAnalysisResponse.status)
-          }
-        } else {
-          console.error('Failed to analyze conversation:', analysisResponse.status)
-        }
-      } catch (error) {
-        console.error('Error during end call processing:', error)
       }
-    }
 
-    // Stop any active conversations
-    if (isConversationMode) {
-      setIsConversationMode(false)
-    }
-    if (isCodingInterviewActive) {
-      setIsCodingInterviewActive(false)
-    }
+      // Stop any active conversations AFTER saving (to prevent state change triggers)
+      if (isConversationMode) {
+        setIsConversationMode(false)
+      }
+      if (isCodingInterviewActive) {
+        setIsCodingInterviewActive(false)
+      }
 
-    // Call the original onEndCall
-    if (onEndCall) {
-      onEndCall()
+      // Call the original onEndCall
+      if (onEndCall) {
+        onEndCall()
+      }
+    } finally {
+      // Reset flag after everything is done
+      setIsEndingCall(false)
     }
   }
 
@@ -216,6 +193,15 @@ export function MeetTestRoom({
   // State for code dialog
   const [showCodeDialog, setShowCodeDialog] = useState(false)
   const [currentCodingQuestion, setCurrentCodingQuestion] = useState<CodingQuestion | null>(null)
+
+  // State to prevent double saving when ending call
+  const [isEndingCall, setIsEndingCall] = useState(false)
+
+  // Ref to prevent multiple simultaneous save operations (using ref for synchronous access)
+  const isSavingConversationRef = useRef(false)
+
+  // Ref to prevent multiple simultaneous time usage updates
+  const isUpdatingTimeUsageRef = useRef(false)
 
   // State for media stream
   const [stream, setStream] = useState<MediaStream | null>(null)
@@ -684,7 +670,7 @@ export function MeetTestRoom({
     } else if (!isConversationMode && !isCodingInterviewActive && isTimerRunning) {
       setIsTimerRunning(false)
     }
-  }, [isConversationMode, isCodingInterviewActive, isTimerRunning])
+  }, [isConversationMode, isCodingInterviewActive, isTimerRunning, isEndingCall])
 
   const handleTranscriptUpdate = (transcript: { role: string; text: string; timestamp: string }[]) => {
     setVoiceTranscript(transcript)
@@ -726,11 +712,17 @@ export function MeetTestRoom({
       }
     }
 
-    // Save conversation data when conversation stops
-    if (!isActive && isConversationMode) {
-      console.log('Conversation stopped, saving data and updating time usage...')
+    // Save conversation data when conversation stops naturally (not when user ends call)
+    // Note: Only save here if conversation stops without user explicitly ending it
+    if (!isActive && isConversationMode && !isEndingCall && !isSavingConversationRef.current) {
+      console.log('🎤 handleConversationModeChange: Calling handleSaveConversation')
       await handleSaveConversation()
-      await handleUpdateTimeUsage()
+      if (!isUpdatingTimeUsageRef.current) {
+        console.log('🎤 handleConversationModeChange: Calling handleUpdateTimeUsage')
+        await handleUpdateTimeUsage()
+      } else {
+        console.log('🎤 handleConversationModeChange: Skipping handleUpdateTimeUsage (already in progress)')
+      }
     }
 
     setIsConversationMode(isActive)
@@ -753,10 +745,18 @@ export function MeetTestRoom({
   }
 
   const handleSaveConversation = useCallback(async () => {
+    // Prevent multiple simultaneous save operations using ref (synchronous)
+    if (isSavingConversationRef.current) {
+      console.log('Save already in progress, skipping duplicate save')
+      return
+    }
+
     // Save conversation data to database
     if (voiceTranscript.length > 0 && interviewData?.id) {
       try {
-        console.log('Saving conversation data to database...')
+        isSavingConversationRef.current = true
+        console.log('🔄 Saving conversation data to database...')
+        console.log('Current state - isEndingCall:', isEndingCall, 'isConversationMode:', isConversationMode, 'isCodingInterviewActive:', isCodingInterviewActive)
 
         const conversationData = {
           interviewId: interviewData.id,
@@ -821,11 +821,23 @@ export function MeetTestRoom({
         }
       } catch (error) {
         console.error('Error saving conversation data:', error)
+      } finally {
+        isSavingConversationRef.current = false
       }
+    } else {
+      isSavingConversationRef.current = false
     }
-  }, [voiceTranscript, interviewData?.id, interviewData?.customPrompt, interviewData?.jd, messages, elapsedTime])
+  }, [voiceTranscript, interviewData?.id, interviewData?.customPrompt, interviewData?.jd, messages, elapsedTime, isEndingCall, isConversationMode, isCodingInterviewActive])
 
   const handleUpdateTimeUsage = useCallback(async () => {
+    console.log('⏰ handleUpdateTimeUsage called, ref status:', isUpdatingTimeUsageRef.current)
+
+    // Prevent multiple simultaneous time usage updates
+    if (isUpdatingTimeUsageRef.current) {
+      console.log('⏰ BLOCKED: Time usage update already in progress, skipping duplicate update')
+      return
+    }
+
     // Update user's time allowance based on interview duration
     if (!interviewData?.id) {
       console.log('No interview data available for time update')
@@ -833,7 +845,8 @@ export function MeetTestRoom({
     }
 
     try {
-      console.log('Updating user time usage...')
+      isUpdatingTimeUsageRef.current = true
+      console.log('⏰ STARTING: Updating user time usage...')
 
       // Calculate time used in minutes (round up to nearest minute)
       const timeUsedMinutes = Math.ceil(elapsedTime / 60)
@@ -843,7 +856,7 @@ export function MeetTestRoom({
         return
       }
 
-      console.log(`Time used: ${timeUsedMinutes} minutes (${elapsedTime} seconds)`)
+      console.log(`⏰ EXECUTING: Time used: ${timeUsedMinutes} minutes (${elapsedTime} seconds)`)
 
       // Update user's used time in database
       const response = await fetch('/api/custom-interviews/update-time-usage', {
@@ -856,13 +869,16 @@ export function MeetTestRoom({
       })
 
       if (response.ok) {
-        console.log('User time usage updated successfully')
+        console.log('⏰ SUCCESS: User time usage updated successfully')
       } else {
         const errorData = await response.json()
         console.error('Failed to update time usage:', response.status, errorData)
       }
     } catch (error) {
       console.error('Error updating time usage:', error)
+    } finally {
+      isUpdatingTimeUsageRef.current = false
+      console.log('⏰ COMPLETED: Time usage update completed, ref reset to false')
     }
   }, [elapsedTime, interviewData?.id])
 
@@ -895,10 +911,16 @@ export function MeetTestRoom({
 
   const handleStopCodingInterview = useCallback(async () => {
     // Save conversation data and update time usage before stopping (for coding interviews)
-    if (isCodingInterviewActive) {
-      console.log('Coding interview stopped, saving conversation data and updating time usage...')
+    // But don't save if we're already ending the call (preventing double saves)
+    if (isCodingInterviewActive && !isEndingCall && !isSavingConversationRef.current) {
+      console.log('💻 handleStopCodingInterview: Calling handleSaveConversation')
       await handleSaveConversation()
-      await handleUpdateTimeUsage()
+      if (!isUpdatingTimeUsageRef.current) {
+        console.log('💻 handleStopCodingInterview: Calling handleUpdateTimeUsage')
+        await handleUpdateTimeUsage()
+      } else {
+        console.log('💻 handleStopCodingInterview: Skipping handleUpdateTimeUsage (already in progress)')
+      }
     }
 
     // Stop coding interview voice chat
@@ -917,7 +939,7 @@ export function MeetTestRoom({
 
     // Clear global code function
     delete window.getCurrentCodingCode
-  }, [isCodingInterviewActive, handleSaveConversation, handleUpdateTimeUsage])
+  }, [isCodingInterviewActive, handleSaveConversation, handleUpdateTimeUsage, isEndingCall])
 
 
   // Format elapsed time as MM:SS
