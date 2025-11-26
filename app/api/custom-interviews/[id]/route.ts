@@ -94,6 +94,10 @@ export async function GET(
       jd: interview.jobDescription || "",
       interviewType: interview.interviewType, // Add interview type for greeting selection
       foreignLanguageSubType: interview.interviewType === 'GENERAL_INTERVIEW' && ['English', 'Spanish', 'French', 'German'].includes(interview.role || '') ? interview.role : null, // Get foreign language from role field
+      user: {
+        name: interview.user.name,
+        email: interview.user.email
+      },
       createdAt: interview.createdAt.toISOString(),
       status: interview.status === "IN_PROGRESS" ? "in_progress" : "completed",
       screenShareEnabled: interview.screenShareEnabled,

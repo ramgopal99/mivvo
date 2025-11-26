@@ -3,8 +3,9 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, BarChart3, MessageCircle, Brain, TrendingUp } from "lucide-react"
+import { ArrowLeft, BarChart3, MessageCircle, Brain, TrendingUp, Download } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { generateInterviewPDF } from "@/app/dashboard/custominterview/_components/utils/pdf-generator"
 import { OverviewSection } from "./sections/OverviewSection"
 import { ConversationSection } from "./sections/ConversationSection"
 import { AnalysisSection } from "./sections/AnalysisSection"
@@ -61,6 +62,10 @@ interface InterviewAttempt {
     jobDescription: string | null
     interviewType: string | null
     createdAt: Date
+    user?: {
+      name: string
+      email: string
+    }
   }
   results: InterviewResult[]
   conversations: InterviewConversation[]
@@ -108,6 +113,24 @@ export function AttemptDetailsContent({ attempt, resultId }: AttemptDetailsConte
   const totalMessages = allMessages.length
   const totalSessions = attempt.conversations.length
 
+  const handleDownloadData = async () => {
+    try {
+      // Transform the data to match PDF generator interface
+      const pdfData = {
+        ...attempt,
+        conversations: attempt.conversations.map(conversation => ({
+          ...conversation,
+          messages: parseMessages(conversation.messages)
+        }))
+      }
+      await generateInterviewPDF(pdfData)
+    } catch (error) {
+      console.error('Error generating PDF:', error)
+      // Fallback to alert if PDF generation fails
+      alert('Error generating PDF. Please try again.')
+    }
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -116,26 +139,35 @@ export function AttemptDetailsContent({ attempt, resultId }: AttemptDetailsConte
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Result
         </Button>
-        <div className="flex flex-col text-center flex-1 mx-8">
-          <h1 className="text-3xl font-bold text-gray-900 leading-tight">{attempt.interview.title || 'Untitled Interview'}</h1>
-          {/* <p className="text-gray-600 text-lg mt-1">
-            {attempt.interview.companyName && attempt.interview.position
-              ? `${attempt.interview.position} at ${attempt.interview.companyName}`
-              : attempt.interview.companyName || attempt.interview.position || 'No company specified'
-            }
-          </p> */}
-          <div className="flex items-center justify-center space-x-4 mt-3 text-sm text-gray-500">
-            <div className="flex items-center">
-              <span>Started: {formatDate(attempt.startedAt)}</span>
-            </div>
-            {attempt.duration && (
-              <div className="flex items-center">
-                <span>Duration: {Math.round(attempt.duration / 60)}min</span>
-              </div>
-            )}
+        <Button
+          onClick={handleDownloadData}
+          variant="outline"
+          className="cursor-pointer flex items-center gap-2"
+        >
+          <Download className="w-4 h-4" />
+          Download PDF Report
+        </Button>
+      </div>
+
+      {/* Interview Title Section */}
+      <div className="flex flex-col text-center flex-1 mx-8">
+        <h1 className="text-3xl font-bold text-gray-900 leading-tight">{attempt.interview.title || 'Untitled Interview'}</h1>
+        {/* <p className="text-gray-600 text-lg mt-1">
+          {attempt.interview.companyName && attempt.interview.position
+            ? `${attempt.interview.position} at ${attempt.interview.companyName}`
+            : attempt.interview.companyName || attempt.interview.position || 'No company specified'
+          }
+        </p> */}
+        <div className="flex items-center justify-center space-x-4 mt-3 text-sm text-gray-500">
+          <div className="flex items-center">
+            <span>Started: {formatDate(attempt.startedAt)}</span>
           </div>
+          {attempt.duration && (
+            <div className="flex items-center">
+              <span>Duration: {Math.round(attempt.duration / 60)}min</span>
+            </div>
+          )}
         </div>
-        <div className="w-32"></div>
       </div>
 
       {/* Main Content with Tabs */}

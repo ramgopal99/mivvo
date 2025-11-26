@@ -44,6 +44,10 @@ interface Interview {
   jobDescription: string | null
   interviewType: string | null
   createdAt: Date
+  user?: {
+    name: string
+    email: string
+  }
 }
 
 interface AttemptData {
@@ -112,7 +116,11 @@ export default function AttemptDetailsPage({ params }: AttemptDetailsPageProps) 
               position: String(detailedData.interview?.position || null),
               jobDescription: String(detailedData.interview?.jobDescription || null),
               interviewType: String(detailedData.interview?.interviewType || null),
-              createdAt: new Date(String(detailedData.interview?.createdAt || Date.now()))
+              createdAt: new Date(String(detailedData.interview?.createdAt || Date.now())),
+              user: detailedData.interview?.user && typeof detailedData.interview.user === 'object' && 'name' in detailedData.interview.user && 'email' in detailedData.interview.user ? {
+                name: String((detailedData.interview.user as { name?: unknown; email?: unknown }).name || ''),
+                email: String((detailedData.interview.user as { name?: unknown; email?: unknown }).email || '')
+              } : undefined
             },
             results: (detailedData.results || []).map((result: Record<string, unknown>) => ({
               id: String(result.id || ''),
@@ -164,7 +172,11 @@ export default function AttemptDetailsPage({ params }: AttemptDetailsPageProps) 
                   position: null,
                   jobDescription: interviewData.jd || null,
                   interviewType: null,
-                  createdAt: new Date(interviewData.createdAt)
+                  createdAt: new Date(interviewData.createdAt),
+                  user: (interviewData as unknown as { user?: { name: string; email: string } }).user ? {
+                    name: (interviewData as unknown as { user: { name: string; email: string } }).user!.name,
+                    email: (interviewData as unknown as { user: { name: string; email: string } }).user!.email
+                  } : undefined
                 },
                 results: [],
                 conversations: []

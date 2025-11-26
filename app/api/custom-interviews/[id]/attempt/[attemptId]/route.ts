@@ -76,6 +76,12 @@ export async function GET(
             jobDescription: true,
             interviewType: true,
             createdAt: true,
+            user: {
+              select: {
+                name: true,
+                email: true
+              }
+            }
           }
         },
         results: {
@@ -138,7 +144,11 @@ export async function GET(
         position: attempt.interview.position,
         jobDescription: attempt.interview.jobDescription,
         interviewType: attempt.interview.interviewType,
-        createdAt: attempt.interview.createdAt.toISOString()
+        createdAt: attempt.interview.createdAt.toISOString(),
+        user: attempt.interview.user ? {
+          name: attempt.interview.user.name,
+          email: attempt.interview.user.email
+        } : undefined
       },
       results: attempt.results.map(result => ({
         id: result.id,

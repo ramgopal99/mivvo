@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "Mivvo",
   description: "AI-powered mock interviews that help you practice, improve, and land your dream job.",
-  url: "https://mivvo.com",
+  url: "https://mivvo.live",
   logo: "/mivvo.svg",
-  email: "support@mivvo.com",
+  email: "hi@mivvo.live",
   enableCourses: false, // Set to false to hide courses and prevent access
   links: {
     twitter: "https://twitter.com/mivvo",
