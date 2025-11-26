@@ -1,3 +1,5 @@
+import { CREDIT_PACKAGES } from './site'
+
 export const landingConfig = {
   hero: {
     newTag: {
@@ -26,7 +28,7 @@ export const landingConfig = {
     },
     links: [
       { text: "Features", href: "/#features" },
-      { text: "Pricing", href: "/#pricing" },
+      { text: "Pricing", href: "/pricing" },
       // { text: "Courses", href: "/courses" },
       // { text: "Blog", href: "/blog" },
       { text: "About", href: "/about" },
@@ -325,7 +327,7 @@ export const landingConfig = {
       title: "Company",
       links: [
         { text: "Features", href: "/#features" },
-        { text: "Pricing", href: "/#pricing" },
+        { text: "Pricing", href: "/pricing" },
         // { text: "Blog", href: "/blog" },
         { text: "About Us", href: "/about" }
       ]
@@ -350,18 +352,18 @@ export const landingConfig = {
     header: {
       title: "Simple pricing for all your needs",
       subtitle: "Choose the plan that's right for you and start practicing today.",
-      additionalInfo: "180 credits free • No credit card required"
+      additionalInfo: `${CREDIT_PACKAGES.FREE} credits free • No credit card required`
     },
     plans: [
       {
         name: "Free",
         isPopular: false,
-        price: "180",
+        price: CREDIT_PACKAGES.FREE.toString(),
         currency: "",
         billingPeriod: "credits",
         description: "Perfect for getting started with AI mock interviews.",
         features: [
-          "180 credits free",
+          `${CREDIT_PACKAGES.FREE} credits free`,
           "Basic AI feedback",
           "Performance summary",
           "Email support",
@@ -378,10 +380,10 @@ export const landingConfig = {
         isPopular: true,
         price: "249",
         currency: "₹",
-        billingPeriod: "/4.3K credits",
+        billingPeriod: `/${CREDIT_PACKAGES.PRO} credits`,
         description: "Best for serious job seekers and career changers.",
         features: [
-          "4,320 credits total",
+          `${CREDIT_PACKAGES.PRO} credits total`,
           "Advanced AI analysis",
           "Detailed performance reports",
           "Company-specific practice",

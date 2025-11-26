@@ -1,10 +1,17 @@
 "use server"
 
 import { prisma } from "@/lib/prisma"
-import { requireRole } from "@/lib/session"
+import { requireRole, getSessionUserData } from "@/lib/session"
 import { UserRole, Prisma } from "@prisma/client"
 import { revalidatePath } from "next/cache"
 import bcrypt from "bcryptjs"
+
+interface ServerActionResponse<T = unknown> {
+  success: boolean
+  data?: T
+  error?: string
+  message?: string
+}
 
 export async function updateUserRole(userId: string, role: UserRole) {
   // Only SUPERADMIN can update roles
@@ -76,11 +83,15 @@ export async function getAdminUsers() {
         name: true,
         email: true,
         role: true,
+        status: true,
         emailVerified: true,
         createdAt: true,
         image: true,
         collegeName: true,
         collegeAdminId: true,
+        suspendedAt: true,
+        suspendedBy: true,
+        suspendReason: true,
         sessions: {
           select: {
             expires: true,
@@ -112,10 +123,23 @@ export async function getAdminUsers() {
           break
       }
 
-      // Determine status based on email verification and activity
+      // Use database status with fallback to activity-based logic
       let status: 'active' | 'inactive' | 'suspended' = 'inactive'
-      if (user.emailVerified) {
-        status = 'active' // Consider verified users as active
+
+      if (user.status === 'SUSPENDED') {
+        status = 'suspended'
+      } else if (user.status === 'ACTIVE') {
+        status = 'active'
+      } else {
+        // Fallback to activity-based logic for legacy data
+        const now = new Date()
+        const lastActivity = user.sessions.length > 0
+          ? new Date(user.sessions[0].expires)
+          : new Date(user.createdAt || now)
+
+        const daysSinceActivity = Math.floor((now.getTime() - lastActivity.getTime()) / (1000 * 60 * 60 * 24))
+        const isRecentlyActive = daysSinceActivity <= 30
+        status = isRecentlyActive ? 'active' : 'inactive'
       }
 
       // Get last login from most recent session
@@ -145,6 +169,96 @@ export async function getAdminUsers() {
   } catch (error) {
     console.error('Error fetching admin users:', error)
     return { success: false, error: "Failed to fetch users" }
+  }
+}
+
+export async function getAdminUsersStats() {
+  // Only SUPERADMIN can view user stats
+  await requireRole(UserRole.SUPERADMIN)
+
+  try {
+    // Get counts for each status using activity-based logic
+    const [
+      totalUsers,
+      activeUsers,
+      inactiveUsers,
+      suspendedUsers,
+      superAdmins
+    ] = await Promise.all([
+      // Total users count
+      prisma.user.count(),
+
+      // Active users (status = ACTIVE or recently active based on sessions)
+      prisma.user.count({
+        where: {
+          OR: [
+            { status: 'ACTIVE' },
+            {
+              status: { not: 'SUSPENDED' },
+              sessions: {
+                some: {
+                  expires: {
+                    gt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) // Last 30 days
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }),
+
+      // Inactive users (not suspended, not active, no recent activity)
+      prisma.user.count({
+        where: {
+          AND: [
+            { status: { not: 'SUSPENDED' } },
+            { status: { not: 'ACTIVE' } },
+            {
+              OR: [
+                { sessions: { none: {} } },
+                {
+                  sessions: {
+                    every: {
+                      expires: {
+                        lte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }),
+
+      // Suspended users
+      prisma.user.count({
+        where: {
+          status: 'SUSPENDED'
+        }
+      }),
+
+      // Super admins count
+      prisma.user.count({
+        where: {
+          role: 'SUPERADMIN'
+        }
+      })
+    ])
+
+    return {
+      success: true,
+      stats: {
+        totalUsers,
+        activeUsers,
+        inactiveUsers,
+        suspendedUsers,
+        superAdmins
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching admin users stats:', error)
+    return { success: false, error: "Failed to fetch user stats" }
   }
 }
 
@@ -351,9 +465,25 @@ export async function getFilteredAdminUsers(filters: {
     // Build where clause for efficient database filtering
     const where: Prisma.UserWhereInput = {}
 
-    // Role filter
+    // Always exclude COLLEGE_ADMIN and COLLEGE_STUDENT roles from admin users view
+    where.role = {
+      in: [UserRole.USER, UserRole.SUPERADMIN]
+    }
+
+    // Role filter with proper mapping (only for USER and SUPERADMIN roles)
     if (role !== "all") {
-      where.role = role.toUpperCase() as UserRole
+      let dbRole: UserRole
+      switch (role) {
+        case "super_admin":
+          dbRole = UserRole.SUPERADMIN
+          break
+        case "user":
+          dbRole = UserRole.USER
+          break
+        default:
+          dbRole = UserRole.USER
+      }
+      where.role = dbRole
     }
 
     // Search filter (name or email)
@@ -364,14 +494,51 @@ export async function getFilteredAdminUsers(filters: {
       ]
     }
 
-    // Status filter (emailVerified determines status)
+    // Status filter using activity-based logic (last 30 days)
     if (status !== "all") {
+      const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+
       if (status === "active") {
-        where.emailVerified = { not: null }
+        // Active: either explicitly ACTIVE status OR recent session activity
+        const existingOR = Array.isArray(where.OR) ? where.OR : []
+        where.OR = [
+          ...existingOR,
+          { status: 'ACTIVE' },
+          {
+            sessions: {
+              some: {
+                expires: {
+                  gt: thirtyDaysAgo
+                }
+              }
+            }
+          }
+        ]
       } else if (status === "inactive") {
-        where.emailVerified = null
+        // Inactive: not suspended AND no recent activity AND not explicitly ACTIVE
+        const existingAND = Array.isArray(where.AND) ? where.AND : []
+        where.AND = [
+          ...existingAND,
+          { status: { not: 'SUSPENDED' } },
+          { status: { not: 'ACTIVE' } },
+          {
+            OR: [
+              { sessions: { none: {} } },
+              {
+                sessions: {
+                  every: {
+                    expires: {
+                      lte: thirtyDaysAgo
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      } else if (status === "suspended") {
+        where.status = 'SUSPENDED'
       }
-      // Note: "suspended" status is not implemented in current schema
     }
 
     // College filter
@@ -390,11 +557,15 @@ export async function getFilteredAdminUsers(filters: {
         name: true,
         email: true,
         role: true,
+        status: true,
         emailVerified: true,
         createdAt: true,
         image: true,
         collegeName: true,
         collegeAdminId: true,
+        suspendedAt: true,
+        suspendedBy: true,
+        suspendReason: true,
         sessions: {
           select: {
             expires: true,
@@ -429,8 +600,24 @@ export async function getFilteredAdminUsers(filters: {
           break
       }
 
-      // Determine status based on email verification
-      const status: 'active' | 'inactive' = user.emailVerified ? 'active' : 'inactive'
+      // Use database status with fallback to activity-based logic
+      let status: 'active' | 'inactive' | 'suspended' = 'inactive'
+
+      if (user.status === 'SUSPENDED') {
+        status = 'suspended'
+      } else if (user.status === 'ACTIVE') {
+        status = 'active'
+      } else {
+        // Fallback to activity-based logic for legacy data
+        const now = new Date()
+        const lastActivity = user.sessions.length > 0
+          ? new Date(user.sessions[0].expires)
+          : new Date(user.createdAt || now)
+
+        const daysSinceActivity = Math.floor((now.getTime() - lastActivity.getTime()) / (1000 * 60 * 60 * 24))
+        const isRecentlyActive = daysSinceActivity <= 30
+        status = isRecentlyActive ? 'active' : 'inactive'
+      }
 
       // Get last login from most recent session
       const lastLogin = user.sessions.length > 0
@@ -493,9 +680,23 @@ export async function exportUsersToCSV(filters: {
     // Build where clause for database filtering
     const where: Prisma.UserWhereInput = {}
 
-    // Role filter
+    // Role filter with proper mapping
     if (role !== "all") {
-      where.role = role.toUpperCase() as UserRole
+      let dbRole: UserRole
+      switch (role) {
+        case "super_admin":
+          dbRole = UserRole.SUPERADMIN
+          break
+        case "college_admin":
+          dbRole = UserRole.COLLEGE_ADMIN
+          break
+        case "user":
+          dbRole = UserRole.USER
+          break
+        default:
+          dbRole = UserRole.USER
+      }
+      where.role = dbRole
     }
 
     // Search filter (name or email)
@@ -506,12 +707,55 @@ export async function exportUsersToCSV(filters: {
       ]
     }
 
-    // Status filter (emailVerified determines status)
+    // College filter
+    if (college !== "all") {
+      where.collegeName = { contains: college, mode: 'insensitive' }
+    }
+
+    // Status filter using activity-based logic (last 30 days)
     if (status !== "all") {
+      const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+
       if (status === "active") {
-        where.emailVerified = { not: null }
+        // Active: either explicitly ACTIVE status OR recent session activity
+        const existingOR = Array.isArray(where.OR) ? where.OR : []
+        where.OR = [
+          ...existingOR,
+          { status: 'ACTIVE' },
+          {
+            sessions: {
+              some: {
+                expires: {
+                  gt: thirtyDaysAgo
+                }
+              }
+            }
+          }
+        ]
       } else if (status === "inactive") {
-        where.emailVerified = null
+        // Inactive: not suspended AND no recent activity AND not explicitly ACTIVE
+        const existingAND = Array.isArray(where.AND) ? where.AND : []
+        where.AND = [
+          ...existingAND,
+          { status: { not: 'SUSPENDED' } },
+          { status: { not: 'ACTIVE' } },
+          {
+            OR: [
+              { sessions: { none: {} } },
+              {
+                sessions: {
+                  every: {
+                    expires: {
+                      lte: thirtyDaysAgo
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      } else if (status === "suspended") {
+        where.status = 'SUSPENDED'
       }
     }
 
@@ -528,10 +772,14 @@ export async function exportUsersToCSV(filters: {
         name: true,
         email: true,
         role: true,
+        status: true,
         emailVerified: true,
         createdAt: true,
         collegeName: true,
         collegeAdminId: true,
+        suspendedAt: true,
+        suspendedBy: true,
+        suspendReason: true,
         sessions: {
           select: {
             expires: true,
@@ -565,8 +813,23 @@ export async function exportUsersToCSV(filters: {
           break
       }
 
-      // Determine status
-      const status = user.emailVerified ? 'Active' : 'Inactive'
+      // Determine status using database status field
+      let status = 'Inactive'
+      if (user.status === 'SUSPENDED') {
+        status = 'Suspended'
+      } else if (user.status === 'ACTIVE') {
+        status = 'Active'
+      } else {
+        // Fallback to activity-based logic for legacy data
+        const now = new Date()
+        const lastActivity = user.sessions.length > 0
+          ? new Date(user.sessions[0].expires)
+          : new Date(user.createdAt || now)
+
+        const daysSinceActivity = Math.floor((now.getTime() - lastActivity.getTime()) / (1000 * 60 * 60 * 24))
+        const isRecentlyActive = daysSinceActivity <= 30
+        status = isRecentlyActive ? 'Active' : 'Inactive'
+      }
 
       // Get last login
       const lastLogin = user.sessions.length > 0
@@ -720,5 +983,82 @@ export async function createUser(data: {
   } catch (error) {
     console.error('Error creating user:', error)
     return { success: false, error: "Failed to create user" }
+  }
+}
+
+export async function suspendUser(userId: string, reason?: string): Promise<ServerActionResponse> {
+  // Only SUPERADMIN can suspend users
+  await requireRole(UserRole.SUPERADMIN)
+
+  try {
+    const admin = await getSessionUserData()
+
+    const updatedUser = await prisma.user.update({
+      where: { id: userId },
+      data: {
+        status: 'SUSPENDED',
+        suspendedAt: new Date(),
+        suspendedBy: admin.id,
+        suspendReason: reason || null
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        status: true,
+        suspendedAt: true,
+        suspendedBy: true,
+        suspendReason: true
+      }
+    })
+
+    revalidatePath("/admin/dashboard/users")
+    return {
+      success: true,
+      data: updatedUser,
+      message: "User suspended successfully"
+    }
+  } catch (error) {
+    console.error("Error suspending user:", error)
+    return {
+      success: false,
+      error: "Failed to suspend user"
+    }
+  }
+}
+
+export async function activateUser(userId: string): Promise<ServerActionResponse> {
+  // Only SUPERADMIN can activate suspended users
+  await requireRole(UserRole.SUPERADMIN)
+
+  try {
+    const updatedUser = await prisma.user.update({
+      where: { id: userId },
+      data: {
+        status: 'ACTIVE',
+        suspendedAt: null,
+        suspendedBy: null,
+        suspendReason: null
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        status: true
+      }
+    })
+
+    revalidatePath("/admin/dashboard/users")
+    return {
+      success: true,
+      data: updatedUser,
+      message: "User activated successfully"
+    }
+  } catch (error) {
+    console.error("Error activating user:", error)
+    return {
+      success: false,
+      error: "Failed to activate user"
+    }
   }
 }

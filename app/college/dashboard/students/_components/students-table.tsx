@@ -18,8 +18,8 @@ interface Student {
   careerGoals?: string
   linkedIn?: string
   github?: string
-  totalTimeAllowance?: number
-  usedTimeMinutes?: number
+  totalCreditAllocation?: number
+  usedCredits?: number
   createdAt?: string
   updatedAt?: string
 }

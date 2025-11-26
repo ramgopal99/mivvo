@@ -1,312 +1,303 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   CreditCard,
-  Calendar,
   DollarSign,
-  Download,
-  AlertTriangle,
-  CheckCircle,
-  Receipt
+  Receipt,
+  Save,
+  Loader2,
+  Users,
+  TestTube
 } from "lucide-react"
 
-interface BillingPlan {
+interface CollegeBillingSettings {
+  id: string
+  collegeId: string
   name: string
-  price: number
-  period: string
-  features: string[]
-  current: boolean
+  totalAssociatedStudents: number
+  monthlyRatePerUser: number
+  billingCycle: string
+  nextBillingDate?: Date
+  lastBillingAmount: number
 }
 
 interface BillingSettingsProps {
-  currentPlan?: BillingPlan
-  usageStats?: {
-    studentsUsed: number
-    studentsLimit: number
-    interviewsUsed: number
-    interviewsLimit: number
-    storageUsed: number
-    storageLimit: number
-  }
-  billingHistory?: {
-    id: string
-    date: string
-    amount: number
-    status: 'paid' | 'pending' | 'failed'
-    description: string
-  }[]
+  collegeData?: CollegeBillingSettings
 }
 
 export function BillingSettings({
-  currentPlan = {
-    name: "Professional",
-    price: 49,
-    period: "month",
-    features: [
-      "Up to 200 students",
-      "Unlimited interviews",
-      "Advanced analytics",
-      "Priority support",
-      "API access"
-    ],
-    current: true
-  },
-  usageStats = {
-    studentsUsed: 145,
-    studentsLimit: 200,
-    interviewsUsed: 1250,
-    interviewsLimit: -1, // -1 means unlimited
-    storageUsed: 2.3,
-    storageLimit: 10
-  },
-  billingHistory = [
-    {
-      id: "inv-001",
-      date: "2024-01-01",
-      amount: 49.00,
-      status: "paid",
-      description: "Professional Plan - January 2024"
-    },
-    {
-      id: "inv-002",
-      date: "2023-12-01",
-      amount: 49.00,
-      status: "paid",
-      description: "Professional Plan - December 2023"
-    },
-    {
-      id: "inv-003",
-      date: "2023-11-01",
-      amount: 49.00,
-      status: "paid",
-      description: "Professional Plan - November 2023"
-    }
-  ]
+  collegeData: initialCollegeData
 }: BillingSettingsProps) {
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case 'paid':
-        return <Badge className="bg-green-100 text-green-800">Paid</Badge>
-      case 'pending':
-        return <Badge className="bg-yellow-100 text-yellow-800">Pending</Badge>
-      case 'failed':
-        return <Badge className="bg-red-100 text-red-800">Failed</Badge>
-      default:
-        return <Badge variant="outline">Unknown</Badge>
+  const [collegeData, setCollegeData] = useState<CollegeBillingSettings | null>(initialCollegeData || null)
+  const [isSaving, setIsSaving] = useState(false)
+  const [isCreatingTestPayment, setIsCreatingTestPayment] = useState(false)
+  const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
+  const [hasChanges, setHasChanges] = useState(false)
+
+  useEffect(() => {
+    if (!initialCollegeData) {
+      loadCollegeData()
     }
+  }, [initialCollegeData])
+
+  const loadCollegeData = async () => {
+    try {
+      // First try to load from localStorage for immediate display
+      const collegeData = localStorage.getItem('college_data')
+      if (collegeData) {
+        const college = JSON.parse(collegeData)
+        setCollegeData(college)
+      }
+
+      // Then fetch fresh data from API
+      const token = localStorage.getItem('token') ||
+                   localStorage.getItem('college_token') ||
+                   localStorage.getItem('student_token')
+      if (token) {
+        const response = await fetch('/api/college/profile', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+
+        if (response.ok) {
+          const data = await response.json()
+          if (data.success) {
+            setCollegeData(data.data)
+            // Update localStorage with fresh data
+            localStorage.setItem('college_data', JSON.stringify(data.data))
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Error loading college data:', error)
+      setMessage({ type: 'error', text: 'Failed to load college billing data' })
+    }
+  }
+
+  const handleInputChange = (field: keyof CollegeBillingSettings, value: string | number | boolean) => {
+    if (!collegeData) return
+    setCollegeData(prev => prev ? { ...prev, [field]: value } : null)
+    setHasChanges(true)
+    setMessage(null)
+  }
+
+  const handleSave = async () => {
+    if (!collegeData) return
+
+    setIsSaving(true)
+    setMessage(null)
+
+    try {
+      const response = await fetch('/api/college/billing', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('college_token')}`
+        },
+        body: JSON.stringify({
+          // No settings to update - billing is handled via individual enrollments
+        })
+      })
+
+      const data = await response.json()
+
+      if (response.ok && data.success) {
+        // Update localStorage with new data
+        localStorage.setItem('college_data', JSON.stringify(data.data))
+        setCollegeData(data.data)
+        setHasChanges(false)
+        setMessage({ type: 'success', text: 'Billing settings updated successfully!' })
+      } else {
+        setMessage({ type: 'error', text: data.error || 'Failed to update billing settings' })
+      }
+    } catch (error) {
+      console.error('Save error:', error)
+      setMessage({ type: 'error', text: 'An error occurred while saving' })
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  const handleTestPayment = async () => {
+    if (!collegeData) return
+
+    setIsCreatingTestPayment(true)
+    setMessage(null)
+
+    try {
+      const studentCount = collegeData.totalAssociatedStudents || 0
+      const amount = studentCount * collegeData.monthlyRatePerUser
+
+      const response = await fetch('/api/college/enterprise-payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('college_token')}`
+        },
+        body: JSON.stringify({
+          amount,
+          studentCount,
+          ratePerStudent: collegeData.monthlyRatePerUser,
+          description: `Enterprise billing for ${studentCount} associated students at ₹${collegeData.monthlyRatePerUser} per student`
+        })
+      })
+
+      const data = await response.json()
+
+      if (response.ok && data.success) {
+        setMessage({
+          type: 'success',
+          text: `Test payment created successfully! Amount: ₹${amount} for ${studentCount} students`
+        })
+      } else {
+        setMessage({ type: 'error', text: data.error || 'Failed to create test payment' })
+      }
+    } catch (error) {
+      console.error('Test payment error:', error)
+      setMessage({ type: 'error', text: 'An error occurred while creating test payment' })
+    } finally {
+      setIsCreatingTestPayment(false)
+    }
+  }
+
+  if (!collegeData) {
+    return (
+      <Card>
+        <CardContent className="flex items-center justify-center py-8">
+          <Loader2 className="h-6 w-6 animate-spin" />
+          <span className="ml-2">Loading billing settings...</span>
+        </CardContent>
+      </Card>
+    )
   }
 
   return (
     <div className="space-y-6">
-      {/* Current Plan */}
+      {/* Billing Preferences */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <CreditCard className="h-5 w-5" />
-            Current Plan
+            Billing Preferences
           </CardTitle>
           <CardDescription>
-            Your current subscription and billing information
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-lg font-semibold">{currentPlan.name} Plan</h3>
-              <p className="text-2xl font-bold text-primary">
-                ${currentPlan.price}
-                <span className="text-sm font-normal text-muted-foreground">
-                  /{currentPlan.period}
-                </span>
-              </p>
-            </div>
-            <Badge className="bg-green-100 text-green-800">
-              <CheckCircle className="mr-1 h-3 w-3" />
-              Active
-            </Badge>
-          </div>
-
-          <div className="space-y-2">
-            <h4 className="text-sm font-medium">Plan Features:</h4>
-            <ul className="text-sm text-muted-foreground space-y-1">
-              {currentPlan.features.map((feature, index) => (
-                <li key={index} className="flex items-center gap-2">
-                  <CheckCircle className="h-3 w-3 text-green-500" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="flex gap-2 pt-4">
-            <Button>Upgrade Plan</Button>
-            <Button variant="outline">Change Plan</Button>
-            <Button variant="outline">Cancel Subscription</Button>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Usage Statistics */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <DollarSign className="h-5 w-5" />
-            Usage Statistics
-          </CardTitle>
-          <CardDescription>
-            Track your current usage against plan limits
+            Configure your college billing settings and preferences
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className="space-y-2">
-            <div className="flex justify-between text-sm">
-              <span>Students</span>
-              <span className="font-medium">
-                {usageStats.studentsUsed} / {usageStats.studentsLimit === -1 ? 'Unlimited' : usageStats.studentsLimit}
-              </span>
-            </div>
-            <Progress
-              value={usageStats.studentsLimit === -1 ? 0 : (usageStats.studentsUsed / usageStats.studentsLimit) * 100}
-              className="h-2"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <div className="flex justify-between text-sm">
-              <span>Interviews</span>
-              <span className="font-medium">
-                {usageStats.interviewsUsed} / {usageStats.interviewsLimit === -1 ? 'Unlimited' : usageStats.interviewsLimit}
-              </span>
-            </div>
-            <Progress
-              value={usageStats.interviewsLimit === -1 ? 0 : (usageStats.interviewsUsed / usageStats.interviewsLimit) * 100}
-              className="h-2"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <div className="flex justify-between text-sm">
-              <span>Storage (GB)</span>
-              <span className="font-medium">
-                {usageStats.storageUsed} / {usageStats.storageLimit}
-              </span>
-            </div>
-            <Progress
-              value={(usageStats.storageUsed / usageStats.storageLimit) * 100}
-              className="h-2"
-            />
-          </div>
-
-          {(usageStats.studentsUsed / usageStats.studentsLimit > 0.8 ||
-            usageStats.interviewsUsed / usageStats.interviewsLimit > 0.8 ||
-            usageStats.storageUsed / usageStats.storageLimit > 0.8) && (
-            <div className="flex items-center gap-2 p-3 bg-yellow-50 dark:bg-yellow-950/20 rounded-lg">
-              <AlertTriangle className="h-4 w-4 text-yellow-600" />
-              <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                You&apos;re approaching your plan limits. Consider upgrading.
-              </p>
-            </div>
+          {message && (
+            <Alert variant={message.type === 'success' ? 'default' : 'destructive'}>
+              <AlertDescription>{message.text}</AlertDescription>
+            </Alert>
           )}
-        </CardContent>
-      </Card>
 
-      {/* Billing History */}
-      <Card>
-        <CardHeader>
-          <div className="flex items-center justify-between">
-            <div>
-              <CardTitle className="flex items-center gap-2">
-                <Receipt className="h-5 w-5" />
-                Billing History
-              </CardTitle>
-              <CardDescription>
-                View and download your past invoices
-              </CardDescription>
+
+          {/* Student Statistics Display */}
+          <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
+            <Label className="text-base font-medium flex items-center gap-2 text-primary">
+              <Users className="h-4 w-4" />
+              Associated Students
+            </Label>
+            <div className="mt-3">
+              <p className="text-sm text-primary/80">Total Users</p>
+              <p className="text-2xl font-bold text-primary">{collegeData.totalAssociatedStudents || 0}</p>
             </div>
-            <Button variant="outline" size="sm">
-              <Download className="mr-2 h-4 w-4" />
-              Export
-            </Button>
+            <p className="text-xs text-primary/60 mt-2">
+              Number of users associated with this college
+            </p>
           </div>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {billingHistory.map((invoice) => (
-              <div key={invoice.id} className="flex items-center justify-between p-4 border rounded-lg">
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center justify-center w-10 h-10 bg-muted rounded-lg">
-                    <Receipt className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="font-medium">{invoice.description}</p>
-                    <p className="text-sm text-muted-foreground flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
-                      {new Date(invoice.date).toLocaleDateString()}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="text-right">
-                    <p className="font-medium">${invoice.amount.toFixed(2)}</p>
-                    {getStatusBadge(invoice.status)}
-                  </div>
-                  <Button variant="ghost" size="sm">
-                    <Download className="h-4 w-4" />
-                  </Button>
-                </div>
+
+
+          {/* Billing Information Display */}
+          <div className="p-4 bg-muted/50 rounded-lg">
+            <h4 className="font-medium mb-2">Current Billing Configuration</h4>
+            <div className="grid gap-2 text-sm">
+              <div className="flex justify-between">
+                <span>Monthly Rate per User:</span>
+                <span className="font-medium">₹{collegeData.monthlyRatePerUser}</span>
               </div>
-            ))}
+              <div className="flex justify-between">
+                <span>Billing Cycle:</span>
+                <span className="font-medium capitalize">{collegeData.billingCycle}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Next Billing Date:</span>
+                <span className="font-medium">
+                  {collegeData.nextBillingDate
+                    ? new Date(collegeData.nextBillingDate).toLocaleDateString('en-IN')
+                    : 'Not set'
+                  }
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span>Last Billing Amount:</span>
+                <span className="font-medium">₹{collegeData.lastBillingAmount}</span>
+              </div>
+            </div>
           </div>
 
-          {billingHistory.length === 0 && (
-            <div className="text-center py-8 text-muted-foreground">
-              No billing history available.
-            </div>
-          )}
+          {/* Action Buttons */}
+          <div className="flex gap-3 pt-4">
+            <Button
+              onClick={handleTestPayment}
+              disabled={isCreatingTestPayment}
+              variant="outline"
+              className="flex-1"
+            >
+              {isCreatingTestPayment ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Creating Test Payment...
+                </>
+              ) : (
+                <>
+                  <TestTube className="mr-2 h-4 w-4" />
+                  Create Test Payment
+                </>
+              )}
+            </Button>
+
+            {hasChanges && (
+              <Button onClick={handleSave} disabled={isSaving}>
+                {isSaving ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Saving...
+                  </>
+                ) : (
+                  <>
+                    <Save className="mr-2 h-4 w-4" />
+                    Save Changes
+                  </>
+                )}
+              </Button>
+            )}
+          </div>
         </CardContent>
       </Card>
 
-      {/* Payment Method */}
+
+      {/* Billing History Placeholder */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <CreditCard className="h-5 w-5" />
-            Payment Method
+            <Receipt className="h-5 w-5" />
+            Billing History
           </CardTitle>
           <CardDescription>
-            Manage your payment information
+            View and download your past invoices
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex items-center justify-between p-4 border rounded-lg">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-6 bg-blue-600 rounded text-white text-xs flex items-center justify-center font-bold">
-                ••••
-              </div>
-              <div>
-                <p className="font-medium">•••• •••• •••• 4242</p>
-                <p className="text-sm text-muted-foreground">Expires 12/26</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <Badge className="bg-green-100 text-green-800">
-                <CheckCircle className="mr-1 h-3 w-3" />
-                Primary
-              </Badge>
-              <Button variant="outline" size="sm">
-                Edit
-              </Button>
-            </div>
+        <CardContent>
+          <div className="text-center py-8 text-muted-foreground">
+            Billing history will be available once you have active subscriptions.
           </div>
-
-          <Button variant="outline" className="w-full">
-            <CreditCard className="mr-2 h-4 w-4" />
-            Add Payment Method
-          </Button>
         </CardContent>
       </Card>
     </div>

@@ -64,8 +64,6 @@ export async function GET(request: NextRequest) {
         id: true,
         name: true,
         collegeId: true,
-        maxStudents: true,
-        currentStudents: true,
         isActive: true,
         createdAt: true
       }
@@ -95,8 +93,8 @@ export async function GET(request: NextRequest) {
         email: true,
         rollNumber: true,
         createdAt: true,
-        totalTimeAllowance: true,
-        usedTimeMinutes: true,
+        totalCreditAllocation: true,
+        usedCredits: true,
         _count: {
           select: {
             interviewAttempts: true
@@ -137,8 +135,18 @@ export async function GET(request: NextRequest) {
       sum + student.interviewAttempts.filter(attempt => attempt.status === 'COMPLETED').length, 0
     )
     
-    const totalTimeUsed = studentsWithStats.reduce((sum, student) => sum + (student.usedTimeMinutes || 0), 0)
-    const totalTimeAllowed = studentsWithStats.reduce((sum, student) => sum + (student.totalTimeAllowance || 0), 0)
+    const totalCreditsAllowed = studentsWithStats.reduce((sum, student) => sum + (student.totalCreditAllocation || 0), 0)
+
+    // Calculate total time used and allowed (in minutes)
+    const totalTimeUsed = studentsWithStats.reduce((sum, student) => {
+      const studentTime = student.interviewAttempts.reduce((attemptSum, attempt) => {
+        return attemptSum + (attempt.duration || 0)
+      }, 0)
+      return sum + studentTime
+    }, 0)
+    
+    // Total time allowed is based on credits (assuming 1 credit = 30 minutes)
+    const totalTimeAllowed = totalCreditsAllowed * 30
 
     // Calculate average scores
     const allScores = studentsWithStats.flatMap(student => 
@@ -206,8 +214,6 @@ export async function GET(request: NextRequest) {
         id: college.id,
         name: college.name,
         collegeId: college.collegeId,
-        maxStudents: college.maxStudents,
-        currentStudents: college.currentStudents,
         isActive: college.isActive,
         createdAt: college.createdAt
       },
@@ -236,8 +242,8 @@ export async function GET(request: NextRequest) {
         email: student.email,
         rollNumber: student.rollNumber,
         createdAt: student.createdAt,
-        totalTimeAllowance: student.totalTimeAllowance,
-        usedTimeMinutes: student.usedTimeMinutes,
+        totalCreditAllocation: student.totalCreditAllocation,
+        usedCredits: student.usedCredits,
         interviewCount: student._count.interviewAttempts,
         averageScore: (() => {
           const scores = student.interviewAttempts
@@ -254,8 +260,12 @@ export async function GET(request: NextRequest) {
 
   } catch (error) {
     console.error('Error fetching college dashboard stats:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Internal server error'
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { 
+        error: errorMessage,
+        details: process.env.NODE_ENV === 'development' ? String(error) : undefined
+      },
       { status: 500 }
     )
   }

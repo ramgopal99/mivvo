@@ -5,7 +5,9 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Save } from "lucide-react"
 import {
-  ProfileSettings
+  ProfileSettings,
+  BillingSettings,
+  StudentSettings
 } from "./_components"
 
 export default function SettingsPage() {
@@ -37,14 +39,19 @@ export default function SettingsPage() {
 
       {/* Settings Tabs */}
       <Tabs defaultValue="profile" className="space-y-4">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="profile">Profile</TabsTrigger>
+          <TabsTrigger value="students">Students</TabsTrigger>
           <TabsTrigger value="security">Security</TabsTrigger>
           <TabsTrigger value="billing">Billing</TabsTrigger>
         </TabsList>
 
         <TabsContent value="profile" className="space-y-4">
           <ProfileSettings />
+        </TabsContent>
+
+        <TabsContent value="students" className="space-y-4">
+          <StudentSettings />
         </TabsContent>
 
         <TabsContent value="security" className="space-y-4">
@@ -58,13 +65,7 @@ export default function SettingsPage() {
         </TabsContent>
 
         <TabsContent value="billing" className="space-y-4">
-          <div className="flex items-center justify-center py-12">
-            <div className="text-center">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Billing Settings</h3>
-              <p className="text-gray-600">Coming Soon</p>
-              <p className="text-sm text-gray-500 mt-2">Billing management will be available in a future update</p>
-            </div>
-          </div>
+          <BillingSettings />
         </TabsContent>
       </Tabs>
     </div>

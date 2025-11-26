@@ -29,8 +29,8 @@ interface ApiStudentData {
   thisMonthTimeSpent?: number
   lastMonthTimeSpent?: number
   averageScore?: number
-  totalTimeAllowance?: number
-  usedTimeMinutes?: number
+  totalCreditAllocation?: number
+  usedCredits?: number
   branch?: string
   course?: string
 }
@@ -104,8 +104,8 @@ export default function TimePage() {
             totalHours: Math.round(student.totalTimeSpent || 0), // Keep in minutes as integer
             thisMonthHours: Math.round(student.thisMonthTimeSpent || 0), // Keep in minutes as integer
             lastMonthHours: Math.round(student.lastMonthTimeSpent || 0), // Keep in minutes as integer
-            targetHours: Math.round(student.totalTimeAllowance || 30), // Keep totalTimeAllowance in minutes as integer (default 30 minutes)
-            usedHours: Math.round(student.usedTimeMinutes || 0), // Keep usedTimeMinutes in minutes as integer
+            targetHours: Math.round(student.totalCreditAllocation || 30), // Keep totalCreditAllocation in credits as integer (default 30 credits)
+            usedHours: Math.round(student.usedCredits || 0), // Keep usedCredits in credits as integer
             efficiency: Math.round(student.averageScore || 0), // Use average score as efficiency
             branch: student.branch,
             course: student.course
@@ -164,9 +164,9 @@ export default function TimePage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Student Time Allowance Analysis</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Student Credit Allocation Analysis</h1>
           <p className="text-muted-foreground">
-            View student time usage in minutes against their allocated allowances
+            View student credit usage against their allocated allowances
           </p>
         </div>
       </div>

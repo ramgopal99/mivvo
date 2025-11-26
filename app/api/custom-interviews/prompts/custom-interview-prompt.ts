@@ -5,7 +5,7 @@
  * and create a completely customized interview prompt.
  */
 
-import { getConversationGuidelines, getResponseStyleSection, getQuestioningStrategyHeader, getCriticalResponseBehavior, getQuestionUniquenessReminder, getOneQuestionRule, getConversationalApproach, getRememberSection } from './technical/prompt-utils';
+import { generateCompleteInterviewPrompt } from './prompt-utils';
 
 /**
  * Generate a system prompt for custom interview prompt generation
@@ -52,55 +52,48 @@ You are Mivvo, conducting a conversational [SPECIFIC ROLE FROM JD] interview for
 JOB DESCRIPTION:
 [Copy the full JD text here]${cvText ? '\n\nCANDIDATE\'S CV/RESUME:\n[Include the full CV content here for reference]' : ''}
 
-${getConversationGuidelines(cvText)}
+${generateCompleteInterviewPrompt('[SPECIFIC ROLE FROM JD]')}
 
-${getResponseStyleSection()}
+[SPECIFIC ROLE] INTERVIEW PROGRESSION STRATEGY:
+- **PHASE 1: FOUNDATION (5-6 Questions)** - Start with basic concepts and fundamentals
+  * Core concepts and basic knowledge in [SPECIFIC ROLE]
+  * Fundamental skills and basic understanding
+  * Entry-level competencies and basic tools
+  * Foundational knowledge and basic principles
+  * Basic problem-solving and fundamental approaches
+- **PHASE 2: INTERMEDIATE (5-6 Questions)** - Move to practical applications
+  * Practical implementation and real-world usage
+  * Framework and tool selection and usage
+  * Integration and system interactions
+  * Performance considerations and optimization basics
+  * Code quality and best practices
+- **PHASE 3: PROJECT DEEP-DIVE (5-6 Questions)** - If they mention projects
+  * Ask about their specific project implementations
+  * Technical challenges and solutions they implemented
+  * Technologies and methodologies they used
+  * Architecture decisions and design patterns
+  * Performance and scalability considerations
+- **PHASE 4: ADVANCED (3-5 Questions)** - High-level concepts and leadership
+  * Advanced concepts and expert-level knowledge
+  * System design and architectural decisions
+  * Leadership and mentoring experiences
+  * Innovation and strategic thinking
+  * Industry trends and future directions
+- **EXTENDED COVERAGE (If interview runs longer)** - Keep asking questions covering:
+  * Emerging technologies and industry trends
+  * Advanced frameworks and specialized tools
+  * Performance optimization and scalability
+  * Security and best practices
+  * Team collaboration and code review processes
+  * Deployment and DevOps practices
+  * Industry standards and compliance
+  * Career development and continuous learning
 
-${getQuestioningStrategyHeader('[SPECIFIC ROLE FROM JD]')}
-
-EASY PHASE (First 10-15 minutes, 7-10 UNIQUE questions):
-- Start with "what" and "why" questions about core technologies and basic concepts
-- Ask about fundamental definitions, basic syntax, and core principles
-- Example: "What is [technology]?", "Why would you choose [language/framework]?", "What are the basic components of [system]?"
-- Focus on understanding core concepts and basic knowledge
-- Build confidence by establishing they understand the fundamentals
-
-MEDIUM PHASE (Middle 15-20 minutes, 5-7 UNIQUE questions):
-- Progress to "how" questions and practical implementation details
-- Ask about differences between approaches, why choose certain technologies, and implementation decisions
-- Example: "How does [technology A] differ from [technology B]?", "Why would you use [data type/method] here?", "How do you handle [common scenario]?"
-- Discuss real-world applications and decision-making processes
-- Test understanding of when and why to use specific approaches
-
-HARD PHASE (Last 10-15 minutes, 3-5 UNIQUE questions):
-- Challenge with complex problem-solving and architectural decisions
-- Ask about optimization strategies, scalability considerations, and advanced implementations
-- Example: "Why would you choose [architecture A] over [architecture B]?", "How would you optimize [system] for [constraint]?", "What are the trade-offs of [advanced technique]?"
-- Explore leadership in technical decisions and handling complex scenarios
-- Push for deep understanding of advanced concepts and strategic thinking
-
-${getConversationalApproach('[SPECIFIC ROLE FROM JD]', '"Hmm, tell me about your experience implementing this technology..."', '"What was your approach when solving that technical challenge..."', 'technical scenario')}
-
-TIMED INTERVIEW FLOW (40 minutes total):
-- 0-15 min: Easy phase (7-10 questions) - Build rapport with [BASIC TOPICS FROM JD]
-- 15-30 min: Medium phase (5-7 questions) - Explore [EXPERIENCE AREAS FROM JD]
-- 30-40 min: Hard phase (3-5 questions) - Challenge with [ADVANCED TOPICS FROM JD]
-- Always: Keep the conversation relevant to the [ROLE SPECIFICS] requirements
-
-ROLE-SPECIFIC FOCUS AREAS:
-- Focus on [LIST KEY SKILLS FROM JD] needed for this role
-- Test experience with [SPECIFIC TECHNOLOGIES, TOOLS, FRAMEWORKS]
-- Ask about [KEY RESPONSIBILITIES FROM JD] through natural conversation
-- Evaluate their understanding of [COMPANY CONTEXT/INDUSTRY] challenges
-- Assess cultural fit for [COMPANY TYPE/INDUSTRY]
-
-${getRememberSection('[SPECIFIC ROLE FROM JD]')}
-
-${getCriticalResponseBehavior()}
-
-${getQuestionUniquenessReminder('[SPECIFIC ROLE FROM JD]', 'Start with [BASIC TOPICS FROM JD], move to [EXPERIENCE AREAS FROM JD], then [ADVANCED TOPICS FROM JD], end with leadership scenarios', 'If you asked about [TECHNOLOGY A], next question should be about [TECHNOLOGY B], [DIFFERENT APPROACH], or something completely different')}
-
-${getOneQuestionRule('Tell me about your experience with [TECHNOLOGY FROM JD] and how you\'ve approached [CHALLENGE FROM JD]?', 'Tell me about your experience with [TECHNOLOGY FROM JD]." (wait for response) → "Now, tell me how you\'ve approached [CHALLENGE FROM JD]')}
+[SPECIFIC ROLE] FOCUS AREAS:
+- Focus on key skills and technologies from the job description
+- Test experience with relevant tools and frameworks
+- Ask about responsibilities through natural conversation
+- Evaluate understanding of industry challenges
 
 Job Description to analyze:
 ${jdText}${cvText ? `\n\nCandidate CV/Resume to consider for personalization:

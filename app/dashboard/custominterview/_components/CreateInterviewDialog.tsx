@@ -76,13 +76,13 @@ import {
 } from "@/components/ui/tabs"
 import { Plus, FileText, X, Mic, Square } from "lucide-react"
 import {
-  generateJDFromPredefined,
   getAvailableRoles,
   getAvailableLevels,
   getAvailableInterviewTypes,
   getGeneralInterviewSubTypes,
   getHRInterviewSubTypes
 } from "./utils/interview-utils"
+import { getJDTemplate } from "./utils/jd-templates"
 import { VoiceRecordingAnimation } from "./animations"
 import { generateInterviewTitle } from "./utils/interview-title-utils"
 import { CreditUsageInfo } from "@/lib/credit-converter"
@@ -99,10 +99,11 @@ interface CreateInterviewDialogProps {
   creditUsage?: CreditUsageInfo | null
   userCvData?: string | null
   isCreating?: boolean
+  showVoiceTab?: boolean
 }
 
 const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewDialogProps>(
-  ({ onInterviewCreated, creditUsage, userCvData, isCreating = false }, ref) => {
+  ({ onInterviewCreated, creditUsage, userCvData, isCreating = false, showVoiceTab = false }, ref) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   // Predefined Role state
@@ -537,14 +538,13 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
     // Generate JD details based on interview type
     let finalJdDetails = ""
     if (interviewType === 'General') {
-      // For General interviews, use the updated JD generation with interview type and sub-type
-      finalJdDetails = generateJDFromPredefined("", "", interviewType, generalSubType)
-  } else if (interviewType === 'HR') {
-    // For HR interviews, use JD generation with interview type and HR sub-type
-    finalJdDetails = generateJDFromPredefined("", "", interviewType, undefined, hrSubType)
+      finalJdDetails = getJDTemplate(interviewType, generalSubType) || `General Interview: ${generalSubType || 'General Topics'}`
+    } else if (interviewType === 'HR') {
+      finalJdDetails = getJDTemplate(interviewType, hrSubType) || `HR Interview: ${hrSubType || 'HR Topics'}`
+    } else if (interviewType === 'Technical') {
+      finalJdDetails = getJDTemplate(interviewType, selectedRole) || `Technical Interview: ${selectedRole?.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()) || 'Technical Topics'}`
     } else {
-    // For Technical interviews, use the existing JD generation
-      finalJdDetails = generateJDFromPredefined(selectedRole, selectedLevel, interviewType)
+      finalJdDetails = getJDTemplate(interviewType) || "Custom Interview"
     }
 
 
@@ -588,10 +588,10 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
         </DialogHeader>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className={`grid w-full ${showVoiceTab ? 'grid-cols-3' : 'grid-cols-2'}`}>
             <TabsTrigger value="predefined">Templates</TabsTrigger>
             <TabsTrigger value="custom">Custom JD</TabsTrigger>
-            <TabsTrigger value="voice">Voice</TabsTrigger>
+            {showVoiceTab && <TabsTrigger value="voice">Voice</TabsTrigger>}
           </TabsList>
 
           <TabsContent value="predefined" className="space-y-6 mt-6">
@@ -875,6 +875,83 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
               )}
             </div>
           </TabsContent>
+
+          {showVoiceTab && (
+            <TabsContent value="voice" className="space-y-6 mt-6">
+              {/* Voice Input Section */}
+              <div className="space-y-4">
+                <Label className="text-sm font-medium">
+                  Voice Input *
+                </Label>
+
+                {/* Voice Recording Controls */}
+                <div className="flex items-center gap-4">
+                  {!isRecording ? (
+                    <Button
+                      type="button"
+                      onClick={startRecording}
+                      disabled={isProcessingVoice}
+                      className="flex items-center gap-2 bg-red-600 hover:bg-red-700"
+                    >
+                      <Mic className="w-4 h-4" />
+                      Start Recording
+                    </Button>
+                  ) : (
+                    <Button
+                      type="button"
+                      onClick={stopRecording}
+                      className="flex items-center gap-2 bg-red-600 hover:bg-red-700 animate-pulse"
+                    >
+                      <Square className="w-4 h-4" />
+                      Stop Recording
+                    </Button>
+                  )}
+
+                  {refinedText && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => setRefinedText("")}
+                      disabled={isProcessingVoice}
+                      className="flex items-center gap-2"
+                    >
+                      <X className="w-4 h-4" />
+                      Clear
+                    </Button>
+                  )}
+                </div>
+
+                {/* Recording Status */}
+                <VoiceRecordingAnimation isRecording={isRecording} />
+
+                {/* Interview Request */}
+                <div className="space-y-2">
+                  <Label htmlFor="voice-text" className="text-sm font-medium">
+                    Interview Request
+                  </Label>
+                  <Textarea
+                    id="voice-text"
+                    placeholder="Your AI-refined interview request will appear here after you stop recording. You can also edit this text manually if needed."
+                    value={refinedText}
+                    onChange={(e) => setRefinedText(e.target.value)}
+                    className="h-[200px] overflow-y-auto resize-none"
+                    disabled={isProcessingVoice}
+                  />
+                  <p className="text-xs text-gray-500">
+                    Simply mention what type of interview you want to conduct. For example: &quot;I want a Python developer interview&quot; or &quot;Give me a junior frontend developer interview&quot;
+                  </p>
+                </div>
+
+                {/* Processing indicator */}
+                {isProcessingVoice && (
+                  <div className="flex items-center gap-2 text-sm text-blue-600">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                    AI is refining your voice request...
+                  </div>
+                )}
+              </div>
+            </TabsContent>
+          )}
         </Tabs>
 
         {/* Action Buttons */}
@@ -896,7 +973,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
                       interviewType === 'Technical' ? (!selectedRole || !selectedLevel) : false))
                   : activeTab === 'custom'
                   ? (!customJD.trim() || isAnalyzingJD || isExtractingCV)
-                  : activeTab === 'voice'
+                  : activeTab === 'voice' && showVoiceTab
                   ? (!refinedText.trim() || isProcessingVoice || isRecording)
                   : false
               )
@@ -918,7 +995,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
                 <FileText className="w-4 h-4 mr-2" />
                 Create Custom Interview
               </>
-            ) : activeTab === 'voice' ? (
+            ) : activeTab === 'voice' && showVoiceTab ? (
               <>
                 <Mic className="w-4 h-4 mr-2" />
                 Create Interview

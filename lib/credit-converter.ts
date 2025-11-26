@@ -1,9 +1,8 @@
 /**
  * Credit conversion utility
- * 12 credits = 1 minute of interview time
  */
 
-import { CREDIT_PACKAGE_MINUTES } from '@/config/site'
+import { CREDIT_PACKAGES as SITE_CREDIT_PACKAGES } from '@/config/site'
 
 export const CREDITS_PER_MINUTE = 12
 
@@ -38,12 +37,9 @@ export function formatCredits(credits: number): string {
 }
 
 /**
- * Get credit package details
+ * Get credit package details (imported from site.ts configuration)
  */
-export const CREDIT_PACKAGES = {
-  FREE: minutesToCredits(CREDIT_PACKAGE_MINUTES.FREE), // FREE tier credits
-  PRO: minutesToCredits(CREDIT_PACKAGE_MINUTES.PRO), // PRO tier credits
-} as const
+export const CREDIT_PACKAGES = SITE_CREDIT_PACKAGES
 
 // =============================================================================
 // CREDIT USAGE DISPLAY FUNCTIONS

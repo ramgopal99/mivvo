@@ -1,3 +1,5 @@
 export { AdminCollegesStats } from './admin-colleges-stats'
 export { AdminCollegesTable } from './admin-colleges-table'
 export { AdminCollegesFilters } from './admin-colleges-filters'
+export { AddCollegeDialog } from './add-college-dialog'
+export { EditCollegeDialog } from './edit-college-dialog'

@@ -8,7 +8,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { CREDIT_PACKAGES, CREDITS_PER_MINUTE } from '@/lib/credit-converter'
+import { CREDIT_PACKAGES } from '@/lib/credit-converter'
+import { CREDIT_RESET_CONFIG } from '@/config/site'
 import jwt from 'jsonwebtoken'
 
 interface DecodedToken {
@@ -68,8 +69,10 @@ export async function GET(request: NextRequest) {
       where: { id: userId },
       select: {
         id: true,
-        totalTimeAllowance: true,
-        usedTimeMinutes: true,
+        totalCreditAllocation: true,
+        usedCredits: true,
+        creditResetAt: true,
+        createdAt: true,
         name: true,
         email: true
       }
@@ -82,20 +85,51 @@ export async function GET(request: NextRequest) {
       }, { status: 404 })
     }
 
-    // Set default time allowance for users who don't have one (like college students)
-    // FREE tier provides CREDIT_PACKAGES.FREE credits, convert to minutes
-    const DEFAULT_FREE_TIME_MINUTES = CREDIT_PACKAGES.FREE / CREDITS_PER_MINUTE
-    const totalTimeAllowance = user.totalTimeAllowance || DEFAULT_FREE_TIME_MINUTES
-    const usedTimeMinutes = user.usedTimeMinutes || 0
+    // Check if credits should expire based on allocation time
+    const now = new Date()
+    let allocationTime: Date
+
+    if (user.creditResetAt) {
+      allocationTime = new Date(user.creditResetAt.toISOString())
+    } else {
+      allocationTime = new Date(user.createdAt!)
+    }
+
+    const timeSinceAllocation = now.getTime() - allocationTime.getTime()
+    const shouldExpireCredits = timeSinceAllocation >= CREDIT_RESET_CONFIG.RESET_PERIOD_MS
+
+    // Expire credits if more than reset period has passed since allocation
+    if (shouldExpireCredits && user.totalCreditAllocation && user.totalCreditAllocation > 0) {
+      await prisma.user.update({
+        where: { id: userId },
+        data: {
+          totalCreditAllocation: 0,
+          usedCredits: 0, // Also reset used credits for consistency
+          userType: 'FREE' // Downgrade PRO users to FREE when credits expire
+        }
+      })
+      console.log(`Credits expired for user ${userId} at ${now.toISOString()} (${timeSinceAllocation}ms since allocation) - User downgraded to FREE`)
+    }
+
+    // Set default credit allocation for users who don't have one (like college students)
+    // FREE tier provides CREDIT_PACKAGES.FREE credits
+    const DEFAULT_FREE_CREDITS = CREDIT_PACKAGES.FREE
+    const totalCreditAllocation = shouldExpireCredits ? 0 : (user.totalCreditAllocation || DEFAULT_FREE_CREDITS)
+    const usedCredits = shouldExpireCredits ? 0 : (user.usedCredits || 0)
+
+    // Time since allocation is already calculated above
 
     // Return time data
     return NextResponse.json({
       success: true,
       data: {
         userId: user.id,
-        totalTimeAllowance: totalTimeAllowance,
-        usedTimeMinutes: usedTimeMinutes,
-        remainingTime: Math.max(0, totalTimeAllowance - usedTimeMinutes),
+        totalCreditAllocation: totalCreditAllocation,
+        usedCredits: usedCredits,
+        remainingTime: Math.max(0, totalCreditAllocation - usedCredits),
+        allocatedAt: allocationTime,
+        timeSinceAllocationMs: timeSinceAllocation,
+        creditsExpired: shouldExpireCredits,
         name: user.name,
         email: user.email
       }

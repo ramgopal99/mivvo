@@ -16,40 +16,6 @@ interface ExtendedInterviewData extends InterviewData {
   interviewType?: string
 }
 
-// Extract job title from job description
-const extractJobTitle = (jd: string): string => {
-  if (!jd || !jd.includes('We are looking for a')) {
-    return 'Developer'
-  }
-
-  // Match everything between "We are looking for a " and " to join"
-  const jdMatch = jd.match(/We are looking for a (.+?) to join/)
-  if (jdMatch && jdMatch[1]) {
-    // Remove the level description (first few words) to get just the role
-    const fullMatch = jdMatch[1]
-    const parts = fullMatch.split(' ')
-
-    if (parts.length > 2) {
-      // Remove level words like "junior", "mid-level", "senior"
-      const levelWords = ['junior', 'mid-level', 'mid', 'senior', 'level']
-      let roleStartIndex = 0
-      if (levelWords.includes(parts[0].toLowerCase())) {
-        roleStartIndex = 1
-        if (parts[1] && parts[1].toLowerCase() === 'level') {
-          roleStartIndex = 2
-        }
-      }
-      return parts.slice(roleStartIndex).join(' ')
-    } else if (parts.length === 2) {
-      // Just remove the first word (level) and take the second (role)
-      return parts[1]
-    } else {
-      return fullMatch
-    }
-  }
-
-  return 'Developer'
-}
 
 export default function CustomInterviewMeetPage() {
   const params = useParams()
@@ -293,7 +259,7 @@ export default function CustomInterviewMeetPage() {
 
   return (
     <MeetTestRoom
-      interviewTitle={`${extractJobTitle(interview.jd) || interview.title || "Developer"} Interview`}
+      interviewTitle={interview.title}
       assistantName={"Mivvo"}
       assistantAvatar={siteConfig.logo}
       onEndCall={handleEndCall}

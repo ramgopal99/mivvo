@@ -1,5 +1,6 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -64,6 +65,8 @@ export function AdminCollegesTable({
   onViewCollege,
   onViewBilling
 }: AdminCollegesTableProps) {
+  const router = useRouter()
+
   const getStatusBadge = (status: AdminCollege['status']) => {
     switch (status) {
       case 'active':
@@ -119,7 +122,10 @@ export function AdminCollegesTable({
             {colleges.map((college) => (
               <TableRow key={college.id}>
                 <TableCell>
-                  <div className="flex items-center gap-3">
+                  <div
+                    className="flex items-center gap-3 cursor-pointer hover:bg-gray-50 rounded-md p-2 -m-2 transition-colors"
+                    onClick={() => router.push(`/admin/dashboard/colleges/${college.id}`)}
+                  >
                     <Avatar className="h-10 w-10">
                       <AvatarImage src={college.logo} />
                       <AvatarFallback>
@@ -159,27 +165,27 @@ export function AdminCollegesTable({
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                      <DropdownMenuItem onClick={() => onViewCollege(college.id)}>
+                      <DropdownMenuItem onClick={() => onViewCollege(college.id)} className="cursor-pointer">
                         <Eye className="mr-2 h-4 w-4" />
                         View Details
                       </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => onEditCollege(college.id)}>
+                      <DropdownMenuItem onClick={() => onEditCollege(college.id)} className="cursor-pointer">
                         <Edit className="mr-2 h-4 w-4" />
                         Edit College
                       </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => onViewBilling(college.id)}>
+                      <DropdownMenuItem onClick={() => onViewBilling(college.id)} className="cursor-pointer">
                         <DollarSign className="mr-2 h-4 w-4" />
                         View Billing
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       {college.status === 'pending' && (
-                        <DropdownMenuItem onClick={() => onApproveCollege(college.id)}>
+                        <DropdownMenuItem onClick={() => onApproveCollege(college.id)} className="cursor-pointer">
                           <CheckCircle className="mr-2 h-4 w-4" />
                           Approve College
                         </DropdownMenuItem>
                       )}
                       {college.status === 'active' && (
-                        <DropdownMenuItem onClick={() => onSuspendCollege(college.id)}>
+                        <DropdownMenuItem onClick={() => onSuspendCollege(college.id)} className="cursor-pointer">
                           <XCircle className="mr-2 h-4 w-4" />
                           Suspend College
                         </DropdownMenuItem>
@@ -187,7 +193,7 @@ export function AdminCollegesTable({
                       <DropdownMenuSeparator />
                       <DropdownMenuItem
                         onClick={() => onDeleteCollege(college.id)}
-                        className="text-red-600"
+                        className="text-red-600 cursor-pointer"
                       >
                         <Trash2 className="mr-2 h-4 w-4" />
                         Delete College

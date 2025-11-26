@@ -21,8 +21,9 @@ async function seedCollegeAndStudents() {
         careerGoals: 'Become a full-stack developer',
         linkedIn: 'https://linkedin.com/in/rahulsharma',
         github: 'https://github.com/rahulsharma',
-        totalTimeAllowance: 45,
-        usedTimeMinutes: 15
+        userType: 'FREE',
+        totalCreditAllocation: 180,
+        usedCredits: 0
       },
       {
         name: 'Priya Patel',
@@ -36,8 +37,9 @@ async function seedCollegeAndStudents() {
         careerGoals: 'Pursue data science career',
         linkedIn: 'https://linkedin.com/in/priyapatel',
         github: 'https://github.com/priyapatel',
-        totalTimeAllowance: 45,
-        usedTimeMinutes: 22
+        userType: 'FREE',
+        totalCreditAllocation: 180,
+        usedCredits: 0
       },
       {
         name: 'Amit Kumar',
@@ -51,8 +53,9 @@ async function seedCollegeAndStudents() {
         careerGoals: 'Mobile app development specialist',
         linkedIn: 'https://linkedin.com/in/amitkumar',
         github: 'https://github.com/amitkumar',
-        totalTimeAllowance: 45,
-        usedTimeMinutes: 8
+        userType: 'FREE',
+        totalCreditAllocation: 180,
+        usedCredits: 0
       },
       {
         name: 'Sneha Reddy',
@@ -66,8 +69,8 @@ async function seedCollegeAndStudents() {
         careerGoals: 'UI/UX design and frontend development',
         linkedIn: 'https://linkedin.com/in/snehareddy',
         github: 'https://github.com/snehareddy',
-        totalTimeAllowance: 45,
-        usedTimeMinutes: 31
+        totalCreditAllocation: 45,
+        usedCredits: 31
       },
       {
         name: 'Vikram Singh',
@@ -81,8 +84,8 @@ async function seedCollegeAndStudents() {
         careerGoals: 'DevOps and cloud engineering',
         linkedIn: 'https://linkedin.com/in/vikramsingh',
         github: 'https://github.com/vikramsingh',
-        totalTimeAllowance: 45,
-        usedTimeMinutes: 19
+        totalCreditAllocation: 45,
+        usedCredits: 19
       }
     ]
 

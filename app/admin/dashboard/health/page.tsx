@@ -1,134 +1,241 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import {
-  Activity,
-  Wifi,
-  AlertTriangle,
-  CheckCircle,
-  XCircle,
-  RefreshCw,
-  Settings,
-} from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
+import { RefreshCw, Server, Database as DatabaseIcon, Activity, Cpu, MemoryStick, HardDrive } from "lucide-react"
+import { StatusCard, ServiceCard, ResourceCard, LogEntry } from "./_components"
 
-// Dummy system health data
-const systemStatus = {
-  overall: {
-    status: "healthy",
-    uptime: "99.7%",
-    lastIncident: "15 days ago"
-  },
-  services: [
-    {
-      name: "Web Application",
-      status: "healthy",
-      uptime: "99.9%",
-      responseTime: "145ms",
-      location: "US-East"
-    },
-    {
-      name: "API Gateway",
-      status: "healthy",
-      uptime: "99.8%",
-      responseTime: "89ms",
-      location: "US-East"
-    },
-    {
-      name: "Database",
-      status: "healthy",
-      uptime: "99.95%",
-      responseTime: "23ms",
-      location: "US-East"
-    },
-    {
-      name: "File Storage",
-      status: "warning",
-      uptime: "98.2%",
-      responseTime: "450ms",
-      location: "US-West"
-    },
-    {
-      name: "Email Service",
-      status: "healthy",
-      uptime: "99.1%",
-      responseTime: "120ms",
-      location: "EU-West"
-    },
-    {
-      name: "Background Jobs",
-      status: "healthy",
-      uptime: "99.7%",
-      responseTime: "N/A",
-      location: "US-East"
-    }
-  ]
-}
-
-const resourceUsage = {
-  cpu: { used: 45, total: 100, status: "normal" },
-  memory: { used: 6.2, total: 16, status: "normal" },
-  disk: { used: 234, total: 500, status: "normal" },
-  bandwidth: { used: 2.1, total: 10, status: "normal" }
-}
-
-const recentAlerts = [
-  {
-    id: "1",
-    type: "warning",
-    title: "High Memory Usage",
-    message: "Server-2 memory usage exceeded 85%",
-    time: "2 hours ago",
-    resolved: true
-  },
-  {
-    id: "2",
-    type: "info",
-    title: "Scheduled Maintenance",
-    message: "Database optimization completed successfully",
-    time: "1 day ago",
-    resolved: true
-  },
-  {
-    id: "3",
-    type: "error",
-    title: "API Timeout",
-    message: "External payment API timeout for 30 seconds",
-    time: "2 days ago",
-    resolved: true
-  },
-  {
-    id: "4",
-    type: "warning",
-    title: "Disk Space Alert",
-    message: "Storage server approaching 80% capacity",
-    time: "3 days ago",
-    resolved: false
+interface HealthData {
+  system: {
+    cpu: { cores: number; usage: number; model: string }
+    memory: { total: number; used: number; usage: number }
+    disk: { total: number; used: number; usage: number }
+    uptime: string
+    platform: string
+    arch: string
+    hostname: string
   }
-]
-
-const performanceMetrics = {
-  averageResponseTime: 145,
-  requestsPerMinute: 1250,
-  errorRate: 0.3,
-  throughput: 98.5
+  applications: Array<{
+    name: string
+    status: string
+    uptime: string
+    responseTime: string
+    port: number
+  }>
+  database: {
+    name: string
+    status: string
+    uptime: string
+    responseTime: string
+    connectionCount: number
+  }
+  logs: Array<{
+    id: string
+    type: string
+    title: string
+    message: string
+    time: string
+    level: string
+  }>
+  performance: {
+    averageResponseTime: number
+    activeConnections: number
+    totalRequests: number
+    requestsPerMinute: number
+    errorRate: number
+    serverLoad: number
+    timestamp: string
+  }
 }
 
 export default function AdminHealthPage() {
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'healthy':
-        return <CheckCircle className="h-5 w-5 text-green-500" />
-      case 'warning':
-        return <AlertTriangle className="h-5 w-5 text-yellow-500" />
-      case 'error':
-        return <XCircle className="h-5 w-5 text-red-500" />
-      default:
-        return <Activity className="h-5 w-5 text-gray-500" />
+  // Control variable - set to true to show real data, false to show empty state
+  // Option 1: Change the value below directly (true or false)
+  // Option 2: Set NEXT_PUBLIC_ENABLE_HEALTH_MONITORING=true in .env.local
+  const ENABLE_HEALTH_MONITORING_VALUE = false // ← Change to true to enable, false to disable
+  const ENABLE_HEALTH_MONITORING = process.env.NEXT_PUBLIC_ENABLE_HEALTH_MONITORING === 'true' 
+    ? true 
+    : ENABLE_HEALTH_MONITORING_VALUE
+
+  const [healthData, setHealthData] = useState<HealthData | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  const fetchHealthData = async () => {
+    // If monitoring is disabled, set empty data
+    if (!ENABLE_HEALTH_MONITORING) {
+      setHealthData(null)
+      setLoading(false)
+      return
     }
+
+    try {
+      setLoading(true)
+      setError(null)
+
+      const response = await fetch('/api/health')
+      const result = await response.json()
+
+      if (result.success) {
+        setHealthData(result.data)
+      } else {
+        setError(result.error || 'Failed to fetch health data')
+      }
+    } catch (err) {
+      setError('Failed to connect to health monitoring service')
+      console.error('Health data fetch error:', err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (ENABLE_HEALTH_MONITORING) {
+      fetchHealthData()
+
+      // Refresh data every 30 seconds
+      const interval = setInterval(fetchHealthData, 30000)
+
+      return () => clearInterval(interval)
+    } else {
+      setLoading(false)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  if (loading && !healthData) {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">VPS Health Monitor</h1>
+            <p className="text-muted-foreground">
+              Loading system health data...
+            </p>
+          </div>
+        </div>
+        <div className="grid gap-4 md:grid-cols-4">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="h-24 bg-muted animate-pulse rounded-lg"></div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  if (error && !healthData) {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">VPS Health Monitor</h1>
+            <p className="text-muted-foreground">
+              Monitor your Hostinger VPS performance and application health
+            </p>
+          </div>
+          <Button onClick={fetchHealthData} variant="outline" size="sm">
+            <RefreshCw className="mr-2 h-4 w-4" />
+            Retry
+          </Button>
+        </div>
+        <div className="text-center py-8">
+          <p className="text-red-600 mb-4">Error loading health data: {error}</p>
+          <Button onClick={fetchHealthData}>
+            Try Again
+          </Button>
+        </div>
+      </div>
+    )
+  }
+
+  // If monitoring is disabled, show empty state
+  if (!ENABLE_HEALTH_MONITORING) {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">VPS Health Monitor</h1>
+            <p className="text-muted-foreground">
+              Monitor your Hostinger VPS performance and application health
+            </p>
+          </div>
+        </div>
+        <div className="text-center py-12">
+          <p className="text-muted-foreground text-lg mb-2">Health monitoring is currently disabled</p>
+          <p className="text-sm text-muted-foreground">
+            Enable health monitoring to view system metrics and application status
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!healthData) return null
+
+  // Transform data for components
+  const systemStatus = {
+    overall: {
+      status: healthData.applications.every(app => app.status === 'healthy') &&
+              healthData.database.status === 'healthy' ? 'healthy' : 'warning',
+      uptime: healthData.system.uptime,
+      lastRestart: "Unknown"
+    },
+    services: [
+      ...healthData.applications.map(app => ({
+        name: app.name,
+        status: app.status as "healthy" | "warning" | "error",
+        uptime: app.uptime,
+        responseTime: app.responseTime,
+        icon: app.name.includes('Next.js') ? Server : DatabaseIcon
+      })),
+      {
+        name: healthData.database.name,
+        status: healthData.database.status as "healthy" | "warning" | "error",
+        uptime: healthData.database.uptime,
+        responseTime: healthData.database.responseTime,
+        icon: DatabaseIcon
+      }
+    ]
+  }
+
+  const resourceUsage = {
+    cpu: {
+      used: healthData.system.cpu.usage,
+      cores: healthData.system.cpu.cores,
+      status: "normal" as const
+    },
+    memory: {
+      used: healthData.system.memory.used,
+      total: healthData.system.memory.total,
+      status: "normal" as const
+    },
+    disk: {
+      used: healthData.system.disk.used,
+      total: healthData.system.disk.total,
+      status: "normal" as const
+    },
+    bandwidth: {
+      used: 45, // This would need a separate API endpoint
+      total: 1000,
+      status: "normal" as const
+    }
+  }
+
+  const recentLogs = healthData.logs.map(log => ({
+    ...log,
+    time: new Date(log.time).toLocaleString()
+  }))
+
+  const vpsMetrics = {
+    averageResponseTime: healthData.performance.averageResponseTime,
+    activeConnections: healthData.performance.activeConnections,
+    totalRequests: healthData.performance.totalRequests,
+    requestsPerMinute: healthData.performance.requestsPerMinute,
+    errorRate: healthData.performance.errorRate,
+    serverLoad: healthData.performance.serverLoad
   }
 
 
@@ -137,113 +244,93 @@ export default function AdminHealthPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">System Health</h1>
+          <h1 className="text-3xl font-bold tracking-tight">VPS Health Monitor</h1>
           <p className="text-muted-foreground">
-            Monitor system performance, services, and infrastructure health
+            Monitor your Hostinger VPS performance and application health
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm">
-            <RefreshCw className="mr-2 h-4 w-4" />
-            Refresh
-          </Button>
-          <Button size="sm">
-            <Settings className="mr-2 h-4 w-4" />
-            Configure Alerts
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={fetchHealthData}
+            disabled={loading}
+          >
+            <RefreshCw className={`mr-2 h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+            {loading ? 'Refreshing...' : 'Refresh'}
           </Button>
         </div>
       </div>
 
-      {/* Overall Status */}
+      {/* VPS Status Overview */}
       <div className="grid gap-4 md:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Overall Status</CardTitle>
-            {getStatusIcon(systemStatus.overall.status)}
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold capitalize">{systemStatus.overall.status}</div>
-            <p className="text-xs text-muted-foreground">
-              All systems operational
-            </p>
-          </CardContent>
-        </Card>
+        <StatusCard
+          title="VPS Status"
+          value={systemStatus.overall.status}
+          description="Hostinger VPS running"
+          status="healthy"
+        />
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Uptime</CardTitle>
-            <Activity className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{systemStatus.overall.uptime}</div>
-            <p className="text-xs text-muted-foreground">
-              Last 30 days
-            </p>
-          </CardContent>
-        </Card>
+        <StatusCard
+          title="Uptime"
+          value={systemStatus.overall.uptime}
+          description="Since last restart"
+          icon={<Activity className="h-4 w-4 text-muted-foreground" />}
+        />
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Response Time</CardTitle>
-            <Wifi className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{performanceMetrics.averageResponseTime}ms</div>
-            <p className="text-xs text-muted-foreground">
-              Average across all services
-            </p>
-          </CardContent>
-        </Card>
+        <StatusCard
+          title="Response Time"
+          value={`${vpsMetrics.averageResponseTime}ms`}
+          description="App response time"
+          icon={<Server className="h-4 w-4 text-muted-foreground" />}
+        />
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Error Rate</CardTitle>
-            <AlertTriangle className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{performanceMetrics.errorRate}%</div>
-            <p className="text-xs text-muted-foreground">
-              Last 24 hours
-            </p>
-          </CardContent>
-        </Card>
+        <StatusCard
+          title="Request Rate"
+          value={`${vpsMetrics.requestsPerMinute}/min`}
+          description="Requests per minute"
+          icon={<Activity className="h-4 w-4 text-muted-foreground" />}
+        />
       </div>
 
-      {/* System Health Tabs */}
+      {/* VPS Health Tabs */}
       <Tabs defaultValue="services" className="space-y-4">
         <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="services">Services</TabsTrigger>
           <TabsTrigger value="resources">Resources</TabsTrigger>
-          <TabsTrigger value="alerts">Alerts</TabsTrigger>
+          <TabsTrigger value="logs">Logs</TabsTrigger>
           <TabsTrigger value="performance">Performance</TabsTrigger>
         </TabsList>
 
         <TabsContent value="services" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Service Status</CardTitle>
+              <CardTitle>Application Services</CardTitle>
               <CardDescription>
-                Real-time status of all platform services
+                Status of your VPS applications and database
               </CardDescription>
+              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium text-blue-700">Database Health Check</span>
+                </div>
+                <p className="text-xs text-blue-600 mt-1">
+                  Real-time monitoring of MongoDB connection, response times, and active connections.
+                  Green indicates healthy status, red indicates connection issues.
+                </p>
+              </div>
             </CardHeader>
             <CardContent>
               <div className="grid gap-4 md:grid-cols-2">
                 {systemStatus.services.map((service) => (
-                  <div key={service.name} className="flex items-center justify-between p-4 border rounded-lg">
-                    <div className="flex items-center gap-3">
-                      {getStatusIcon(service.status)}
-                      <div>
-                        <p className="font-medium">{service.name}</p>
-                        <p className="text-sm text-muted-foreground">{service.location}</p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm font-medium">{service.uptime} uptime</p>
-                      <p className="text-xs text-muted-foreground">
-                        {service.responseTime} response
-                      </p>
-                    </div>
-                  </div>
+                  <ServiceCard
+                    key={service.name}
+                    name={service.name}
+                    status={service.status as "healthy" | "warning" | "error"}
+                    uptime={service.uptime}
+                    responseTime={service.responseTime}
+                    icon={service.icon}
+                  />
                 ))}
               </div>
             </CardContent>
@@ -252,72 +339,71 @@ export default function AdminHealthPage() {
 
         <TabsContent value="resources" className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
+            <ResourceCard
+              title="VPS Resources"
+              description="CPU, memory, and disk usage on your Hostinger VPS"
+              resources={[
+                {
+                  label: "CPU Usage",
+                  used: resourceUsage.cpu.used,
+                  unit: "%",
+                  icon: Cpu,
+                  description: `${resourceUsage.cpu.cores} cores, low load`
+                },
+                {
+                  label: "Memory Usage",
+                  used: resourceUsage.memory.used,
+                  total: resourceUsage.memory.total,
+                  unit: "GB",
+                  icon: MemoryStick,
+                  description: `${Math.round((resourceUsage.memory.used / resourceUsage.memory.total) * 100)}% utilization`
+                },
+                {
+                  label: "Disk Usage",
+                  used: resourceUsage.disk.used,
+                  total: resourceUsage.disk.total,
+                  unit: "GB",
+                  icon: HardDrive,
+                  description: `${Math.round((resourceUsage.disk.used / resourceUsage.disk.total) * 100)}% utilization`
+                }
+              ]}
+            />
+
             <Card>
               <CardHeader>
-                <CardTitle>Server Resources</CardTitle>
+                <CardTitle>Bandwidth Usage</CardTitle>
                 <CardDescription>
-                  CPU, memory, and disk usage across servers
+                  Monthly data transfer on your Hostinger VPS plan
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span>CPU Usage</span>
-                    <span className="font-medium">{resourceUsage.cpu.used}%</span>
-                  </div>
-                  <Progress value={resourceUsage.cpu.used} className="h-2" />
-                  <p className="text-xs text-muted-foreground">4 cores, normal load</p>
-                </div>
-
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span>Memory Usage</span>
-                    <span className="font-medium">{resourceUsage.memory.used}GB / {resourceUsage.memory.total}GB</span>
-                  </div>
-                  <Progress value={(resourceUsage.memory.used / resourceUsage.memory.total) * 100} className="h-2" />
-                  <p className="text-xs text-muted-foreground">38% utilization</p>
-                </div>
-
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span>Disk Usage</span>
-                    <span className="font-medium">{resourceUsage.disk.used}GB / {resourceUsage.disk.total}GB</span>
-                  </div>
-                  <Progress value={(resourceUsage.disk.used / resourceUsage.disk.total) * 100} className="h-2" />
-                  <p className="text-xs text-muted-foreground">47% utilization</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Network & Bandwidth</CardTitle>
-                <CardDescription>
-                  Network performance and bandwidth usage
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span>Bandwidth Usage</span>
-                    <span className="font-medium">{resourceUsage.bandwidth.used}TB / {resourceUsage.bandwidth.total}TB</span>
+                    <span>Monthly Bandwidth</span>
+                    <span className="font-medium">{resourceUsage.bandwidth.used}GB / {resourceUsage.bandwidth.total}GB</span>
                   </div>
                   <Progress value={(resourceUsage.bandwidth.used / resourceUsage.bandwidth.total) * 100} className="h-2" />
-                  <p className="text-xs text-muted-foreground">21% of monthly limit</p>
+                  <p className="text-xs text-muted-foreground">{Math.round((resourceUsage.bandwidth.used / resourceUsage.bandwidth.total) * 100)}% of monthly limit</p>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-2 mt-6">
+                <div className="grid gap-4 md:grid-cols-3 mt-6">
                   <div className="text-center p-4 bg-muted/50 rounded-lg">
                     <div className="text-2xl font-bold text-green-600">
-                      {performanceMetrics.requestsPerMinute}
+                      {vpsMetrics.activeConnections}
                     </div>
-                    <div className="text-sm text-muted-foreground">Requests/min</div>
+                    <div className="text-sm text-muted-foreground">Active Connections</div>
                   </div>
                   <div className="text-center p-4 bg-muted/50 rounded-lg">
                     <div className="text-2xl font-bold text-blue-600">
-                      {performanceMetrics.throughput}%
+                      {vpsMetrics.requestsPerMinute}/min
                     </div>
-                    <div className="text-sm text-muted-foreground">Throughput</div>
+                    <div className="text-sm text-muted-foreground">Request Rate</div>
+                  </div>
+                  <div className="text-center p-4 bg-muted/50 rounded-lg">
+                    <div className="text-2xl font-bold text-red-600">
+                      {vpsMetrics.errorRate}%
+                    </div>
+                    <div className="text-sm text-muted-foreground">Error Rate</div>
                   </div>
                 </div>
               </CardContent>
@@ -325,36 +411,25 @@ export default function AdminHealthPage() {
           </div>
         </TabsContent>
 
-        <TabsContent value="alerts" className="space-y-4">
+        <TabsContent value="logs" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Recent System Alerts</CardTitle>
+              <CardTitle>Application Logs</CardTitle>
               <CardDescription>
-                System notifications, warnings, and incidents
+                Recent logs from your VPS applications and services
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {recentAlerts.map((alert) => (
-                  <div key={alert.id} className="flex items-start gap-4 p-4 border rounded-lg">
-                    <div className="flex-shrink-0 mt-0.5">
-                      {alert.type === 'error' && <XCircle className="h-5 w-5 text-red-500" />}
-                      {alert.type === 'warning' && <AlertTriangle className="h-5 w-5 text-yellow-500" />}
-                      {alert.type === 'info' && <CheckCircle className="h-5 w-5 text-blue-500" />}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <p className="font-medium">{alert.title}</p>
-                        {alert.resolved ? (
-                          <Badge className="bg-green-100 text-green-800">Resolved</Badge>
-                        ) : (
-                          <Badge className="bg-yellow-100 text-yellow-800">Active</Badge>
-                        )}
-                      </div>
-                      <p className="text-sm text-muted-foreground">{alert.message}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{alert.time}</p>
-                    </div>
-                  </div>
+                {recentLogs.map((log) => (
+                  <LogEntry
+                    key={log.id}
+                    title={log.title}
+                    message={log.message}
+                    time={log.time}
+                    type={log.type as "info" | "warning" | "error"}
+                    level={log.level}
+                  />
                 ))}
               </div>
             </CardContent>
@@ -365,44 +440,27 @@ export default function AdminHealthPage() {
           <div className="grid gap-4 md:grid-cols-3">
             <Card>
               <CardHeader>
-                <CardTitle>API Performance</CardTitle>
+                <CardTitle>Application Performance</CardTitle>
                 <CardDescription>
-                  API response times and throughput
+                  Response times and request handling
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
                   <div className="text-2xl font-bold text-blue-600">
-                    {performanceMetrics.averageResponseTime}ms
+                    {vpsMetrics.averageResponseTime}ms
                   </div>
                   <div className="text-sm text-muted-foreground">Avg Response Time</div>
                 </div>
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
-                  <div className="text-2xl font-bold text-green-600">
-                    {performanceMetrics.requestsPerMinute}
+                  <div className="text-2xl font-bold text-blue-600">
+                    {vpsMetrics.requestsPerMinute}/min
                   </div>
-                  <div className="text-sm text-muted-foreground">Requests/Minute</div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>System Reliability</CardTitle>
-                <CardDescription>
-                  Uptime and error tracking
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="text-center p-4 bg-muted/50 rounded-lg">
-                  <div className="text-2xl font-bold text-green-600">
-                    {systemStatus.overall.uptime}
-                  </div>
-                  <div className="text-sm text-muted-foreground">System Uptime</div>
+                  <div className="text-sm text-muted-foreground">Request Rate</div>
                 </div>
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
                   <div className="text-2xl font-bold text-red-600">
-                    {performanceMetrics.errorRate}%
+                    {vpsMetrics.errorRate}%
                   </div>
                   <div className="text-sm text-muted-foreground">Error Rate</div>
                 </div>
@@ -411,24 +469,55 @@ export default function AdminHealthPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Health Score</CardTitle>
+                <CardTitle>VPS Load</CardTitle>
                 <CardDescription>
-                  Overall system health rating
+                  Server load and resource utilization
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="text-center p-4 bg-muted/50 rounded-lg">
+                  <div className="text-2xl font-bold text-green-600">
+                    {vpsMetrics.serverLoad}
+                  </div>
+                  <div className="text-sm text-muted-foreground">Server Load Average</div>
+                </div>
+                <div className="text-center p-4 bg-muted/50 rounded-lg">
+                  <div className="text-2xl font-bold text-orange-600">
+                    {systemStatus.overall.uptime}
+                  </div>
+                  <div className="text-sm text-muted-foreground">Uptime</div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>VPS Health Status</CardTitle>
+                <CardDescription>
+                  Overall health of your Hostinger VPS
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="text-center">
                   <div className="text-6xl font-bold text-green-600 mb-2">
-                    {performanceMetrics.throughput}
+                    ✓
                   </div>
-                  <div className="text-sm text-muted-foreground mb-4">Health Score</div>
-                  <div className="w-full bg-gray-200 rounded-full h-3">
-                    <div
-                      className="bg-green-500 h-3 rounded-full"
-                      style={{ width: `${performanceMetrics.throughput}%` }}
-                    ></div>
+                  <div className="text-sm text-muted-foreground mb-4">System Status</div>
+                  <div className="grid gap-2">
+                    <div className="flex justify-between text-sm">
+                      <span>Applications</span>
+                      <span className="text-green-600">Running</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span>Database</span>
+                      <span className="text-green-600">Connected</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span>Resources</span>
+                      <span className="text-green-600">Normal</span>
+                    </div>
                   </div>
-                  <p className="text-xs text-muted-foreground mt-2">Excellent performance</p>
+                  <p className="text-xs text-muted-foreground mt-4">All systems operational</p>
                 </div>
               </CardContent>
             </Card>

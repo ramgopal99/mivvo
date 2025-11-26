@@ -77,12 +77,6 @@ export const adminSidebarConfig: AdminSidebarConfig = {
       title: "SYSTEM",
       items: [
         {
-          title: "User Permissions",
-          url: "/admin/dashboard/permissions",
-          icon: UserCheck,
-          description: "Manage user roles and permissions"
-        },
-        {
           title: "System Health",
           url: "/admin/dashboard/health",
           icon: Shield,

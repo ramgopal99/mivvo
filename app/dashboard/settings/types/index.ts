@@ -2,6 +2,7 @@ export interface UserData {
   id: string
   name: string | null
   email: string | null
+  role?: string | null
   image: string | null
   createdAt: Date | null
   firstName: string | null
@@ -16,10 +17,12 @@ export interface UserData {
   careerGoals?: string | null
   linkedIn?: string | null
   github?: string | null
-  // Time management fields
-  totalTimeAllowance?: number
-  usedTimeMinutes?: number
-  timeAllowanceResetAt?: Date | null
+  // User type (FREE/PRO)
+  userType?: 'FREE' | 'PRO'
+  // Credit management fields
+  totalCreditAllocation?: number
+  usedCredits?: number
+  creditResetAt?: Date | null
   // Academic fields for college students
   rollNumber?: string | null
   branch?: string | null
@@ -32,6 +35,30 @@ export interface UserData {
     name: string
     collegeId: string
   } | null
+}
+
+export interface CollegeData {
+  id: string
+  collegeId: string
+  name: string
+  description: string | null
+  location: string | null
+  website: string | null
+  phone: string | null
+  establishedYear: number | null
+  isActive: boolean
+  monthlyRatePerUser: number
+  billingCycle: string
+  nextBillingDate: Date | null
+  lastBillingAmount: number
+  createdAt: Date
+  updatedAt: Date
+  users: Array<{
+    id: string
+    name: string | null
+    email: string | null
+    role: string
+  }>
 }
 
 export interface ServerActionResponse<T = unknown> {

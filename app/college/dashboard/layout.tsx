@@ -31,8 +31,6 @@ export default function CollegeDashboardLayout({
     id: string
     name: string
     collegeId: string
-    maxStudents: number
-    currentStudents: number
     isActive: boolean
   } | null>(null)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -141,8 +139,6 @@ export default function CollegeDashboardLayout({
                   id: profileData.data.id,
                   name: profileData.data.name,
                   collegeId: profileData.data.collegeId,
-                  maxStudents: profileData.data.maxStudents,
-                  currentStudents: profileData.data.currentStudents,
                   isActive: profileData.data.isActive
                 })
                 console.log('College dashboard: College data loaded for NextAuth user')
@@ -171,8 +167,6 @@ export default function CollegeDashboardLayout({
               id: profileData.data.id,
               name: profileData.data.name,
               collegeId: profileData.data.collegeId,
-              maxStudents: profileData.data.maxStudents,
-              currentStudents: profileData.data.currentStudents,
               isActive: profileData.data.isActive
             })
             console.log('College dashboard: College data loaded from profile API')

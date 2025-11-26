@@ -6,7 +6,7 @@ export default async function AdminUsersPage() {
   // Fetch initial users from database with pagination
   const result = await getFilteredAdminUsers({
     page: 1,
-    limit: 50
+    limit: 5
   })
 
   if (!result.success) {

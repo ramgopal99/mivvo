@@ -46,7 +46,7 @@ export function AdminSidebar() {
           variant="ghost"
           size="sm"
           onClick={() => setCollapsed(!collapsed)}
-          className="h-8 w-8 p-0"
+          className="h-8 w-8 p-0 cursor-pointer"
         >
           <ChevronLeft className={cn(
             "h-4 w-4 transition-transform",
@@ -73,7 +73,7 @@ export function AdminSidebar() {
                       <Button
                         variant={isActive ? "secondary" : "ghost"}
                         className={cn(
-                          "w-full justify-start h-10",
+                          "w-full justify-start h-10 cursor-pointer",
                           collapsed && "px-2",
                           isActive && "bg-primary/10 text-primary hover:bg-primary/20"
                         )}
@@ -115,7 +115,7 @@ export function AdminSidebar() {
                     <Button
                       variant={isActive ? "secondary" : "ghost"}
                       className={cn(
-                        "w-full justify-start h-10",
+                        "w-full justify-start h-10 cursor-pointer",
                         collapsed && "px-2",
                         isActive && "bg-primary/10 text-primary hover:bg-primary/20"
                       )}
@@ -146,7 +146,7 @@ export function AdminSidebar() {
           variant="ghost"
           onClick={handleLogout}
           className={cn(
-            "w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50",
+            "w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50 cursor-pointer",
             collapsed && "px-2"
           )}
         >

@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
-import { UserData, ServerActionResponse } from "./types"
+import { UserData, CollegeData, ServerActionResponse } from "./types"
 import { getSessionUserData } from "@/lib/session"
 
 export async function getUserDetails(): Promise<ServerActionResponse<UserData>> {
@@ -16,6 +16,7 @@ export async function getUserDetails(): Promise<ServerActionResponse<UserData>> 
         id: true,
         name: true,
         email: true,
+        role: true,
         image: true,
         createdAt: true,
         firstName: true,
@@ -29,9 +30,10 @@ export async function getUserDetails(): Promise<ServerActionResponse<UserData>> 
         careerGoals: true,
         linkedIn: true,
         github: true,
-        totalTimeAllowance: true,
-        usedTimeMinutes: true,
-        timeAllowanceResetAt: true,
+        totalCreditAllocation: true,
+        usedCredits: true,
+        creditResetAt: true,
+        userType: true,
         rollNumber: true,
         branch: true,
         course: true,
@@ -76,6 +78,7 @@ export async function getUserDetails(): Promise<ServerActionResponse<UserData>> 
       id: userProfile.id,
       name: userProfile.name,
       email: userProfile.email,
+      role: userProfile.role,
       image: userProfile.image,
       createdAt: userProfile.createdAt || new Date(),
       firstName,
@@ -90,9 +93,10 @@ export async function getUserDetails(): Promise<ServerActionResponse<UserData>> 
       careerGoals: userProfile.careerGoals,
       linkedIn: userProfile.linkedIn,
       github: userProfile.github,
-      totalTimeAllowance: userProfile.totalTimeAllowance || undefined,
-      usedTimeMinutes: userProfile.usedTimeMinutes,
-      timeAllowanceResetAt: userProfile.timeAllowanceResetAt,
+      totalCreditAllocation: userProfile.totalCreditAllocation || undefined,
+      usedCredits: userProfile.usedCredits,
+      creditResetAt: userProfile.creditResetAt,
+      userType: userProfile.userType,
       // Academic fields
       rollNumber: userProfile.rollNumber,
       branch: userProfile.branch,
@@ -203,9 +207,9 @@ export async function updateUserDetails(formData: FormData, userId?: string): Pr
         careerGoals: true,
         linkedIn: true,
         github: true,
-        totalTimeAllowance: true,
-        usedTimeMinutes: true,
-        timeAllowanceResetAt: true,
+        totalCreditAllocation: true,
+        usedCredits: true,
+        creditResetAt: true,
         // Academic fields
         rollNumber: true,
         branch: true,
@@ -241,9 +245,9 @@ export async function updateUserDetails(formData: FormData, userId?: string): Pr
       careerGoals: updatedUser.careerGoals,
       linkedIn: updatedUser.linkedIn,
       github: updatedUser.github,
-      totalTimeAllowance: updatedUser.totalTimeAllowance || undefined,
-      usedTimeMinutes: updatedUser.usedTimeMinutes,
-      timeAllowanceResetAt: updatedUser.timeAllowanceResetAt,
+      totalCreditAllocation: updatedUser.totalCreditAllocation || undefined,
+      usedCredits: updatedUser.usedCredits,
+      creditResetAt: updatedUser.creditResetAt,
       // Academic fields
       rollNumber: updatedUser.rollNumber,
       branch: updatedUser.branch,
@@ -309,6 +313,56 @@ export async function deleteAccount(): Promise<ServerActionResponse> {
     return {
       success: false,
       error: "Failed to delete account"
+    }
+  }
+}
+
+export async function getAllColleges(): Promise<ServerActionResponse<CollegeData[]>> {
+  try {
+    const colleges = await prisma.college.findMany({
+      select: {
+        id: true,
+        collegeId: true,
+        name: true,
+        description: true,
+        location: true,
+        website: true,
+        phone: true,
+        establishedYear: true,
+        isActive: true,
+        monthlyRatePerUser: true,
+        billingCycle: true,
+        nextBillingDate: true,
+        lastBillingAmount: true,
+        createdAt: true,
+        updatedAt: true,
+        // Include admin users (users with COLLEGE_ADMIN role)
+        users: {
+          where: {
+            role: "COLLEGE_ADMIN"
+          },
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            role: true
+          }
+        }
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    })
+
+    return {
+      success: true,
+      data: colleges
+    }
+  } catch (error) {
+    console.error("Error fetching colleges:", error)
+    return {
+      success: false,
+      error: "Failed to fetch colleges"
     }
   }
 } 

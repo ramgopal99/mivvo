@@ -108,8 +108,6 @@ export async function PUT(request: NextRequest) {
       phone: updatedCollege.phone,
       establishedYear: updatedCollege.establishedYear,
       isActive: updatedCollege.isActive,
-      maxStudents: updatedCollege.maxStudents,
-      currentStudents: updatedCollege.currentStudents,
       monthlyRatePerUser: updatedCollege.monthlyRatePerUser,
       billingCycle: updatedCollege.billingCycle
     }
@@ -225,8 +223,6 @@ export async function GET(request: NextRequest) {
       phone: college.phone,
       establishedYear: college.establishedYear,
       isActive: college.isActive,
-      maxStudents: college.maxStudents,
-      currentStudents: college.currentStudents,
       monthlyRatePerUser: college.monthlyRatePerUser,
       billingCycle: college.billingCycle
     }

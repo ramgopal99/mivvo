@@ -1,4 +1,5 @@
 import type { UserData, SessionData } from "@/app/dashboard/types"
+import jwt from 'jsonwebtoken'
 
 /**
  * Get authentication headers for API requests
@@ -80,4 +81,57 @@ export const getUserData = (session: SessionData | null, status: string): UserDa
   }
 
   return null
+}
+
+/**
+ * Verify college JWT token and return college data
+ */
+export async function verifyCollegeToken(token: string) {
+  try {
+    // Check if token is empty or null
+    if (!token || token.trim() === '') {
+      return null
+    }
+
+    // Decode token exactly like the session API does
+    const decoded = jwt.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret') as {
+      type?: string
+      role?: string
+      userId?: string
+      collegeId?: string
+      name?: string
+      email?: string
+      [key: string]: unknown
+    }
+
+    // Check if it's a college admin token (exactly like session API)
+    if (decoded.type === 'college_admin' && decoded.userId) {
+      // Get collegeId from user relationship (same as session API)
+      const { prisma } = await import('@/lib/prisma')
+      const user = await prisma.user.findUnique({
+        where: { id: decoded.userId },
+        select: { collegeId: true }
+      })
+
+      if (!user || !user.collegeId) {
+        return null
+      }
+
+      // Get college data
+      const college = await prisma.college.findUnique({
+        where: { id: user.collegeId }
+      })
+
+      if (!college) {
+        return null
+      }
+
+      return college
+    }
+
+    return null
+  } catch (error) {
+    console.error('College token verification error:', error instanceof Error ? error.message : 'Unknown error')
+    return null
+  }
 }

@@ -24,8 +24,8 @@ interface Student {
   careerGoals?: string
   linkedIn?: string
   github?: string
-  totalTimeAllowance?: number
-  usedTimeMinutes?: number
+  totalCreditAllocation?: number
+  usedCredits?: number
   createdAt?: string
   updatedAt?: string
 }
@@ -281,15 +281,15 @@ function DialogContentComponent({ student }: DialogContentProps) {
                   </div>
                 </div>
 
-      {/* Time Information */}
+      {/* Credit Information */}
                   <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="text-sm font-medium text-muted-foreground">Total Time Allowance</label>
-          <p className="text-sm">{student.totalTimeAllowance || 0} minutes</p>
+          <label className="text-sm font-medium text-muted-foreground">Total Credit Allocation</label>
+          <p className="text-sm">{student.totalCreditAllocation || 0} credits</p>
                     </div>
         <div>
-          <label className="text-sm font-medium text-muted-foreground">Used Time</label>
-          <p className="text-sm">{student.usedTimeMinutes || 0} minutes</p>
+          <label className="text-sm font-medium text-muted-foreground">Used Credits</label>
+          <p className="text-sm">{student.usedCredits || 0} credits</p>
                     </div>
                   </div>
 
