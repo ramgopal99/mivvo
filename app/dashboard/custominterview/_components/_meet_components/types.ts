@@ -53,4 +53,5 @@ export interface InterviewData {
   customPrompt?: string
   jd?: string
   interviewType?: string
+  foreignLanguageSubType?: string
 }

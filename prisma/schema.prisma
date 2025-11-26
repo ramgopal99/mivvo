@@ -247,7 +247,7 @@ model MockInterview {
   cvText            String?  // Optional CV/resume text extracted from uploaded file
   interviewType     InterviewType?
   experienceLevel   String?
-  role              String?  // Specific technical role (e.g., 'frontend-developer', 'react-developer')
+  role              String?  // Specific technical role (e.g., 'frontend-developer', 'react-developer') or HR/foreign language subtype
   attemptCount     Int      @default(0)
   screenShareEnabled Boolean @default(false)
   status            InterviewStatus @default(IN_PROGRESS)

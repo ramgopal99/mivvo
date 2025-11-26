@@ -30,10 +30,20 @@ export const GENERAL_SUBTYPE_TITLES: Record<string, string> = {
  * HR interview subtype titles mapping
  */
 export const HR_SUBTYPE_TITLES: Record<string, string> = {
-  "Behavioral": "Behavioral Interview",
-  "Situational": "Situational Interview",
-  "CompetencyBased": "Competency-Based Interview",
-  "CaseStudy": "Case Study Interview"
+  "Behavioral": "Behavioral HR Interview",
+  "Situational": "Situational HR Interview",
+  "CompetencyBased": "Competency-Based HR Interview",
+  "CaseStudy": "Case Study HR Interview"
+}
+
+/**
+ * Foreign Language interview subtype titles mapping
+ */
+export const FOREIGN_LANGUAGE_SUBTYPE_TITLES: Record<string, string> = {
+  "English": "English Proficiency Interview",
+  "Spanish": "Spanish Proficiency Interview",
+  "French": "French Proficiency Interview",
+  "German": "German Proficiency Interview"
 }
 
 // =============================================================================
@@ -72,12 +82,20 @@ export function generateInterviewTitle(interviewType: string, role?: string): st
     return getHRSubtypeTitle(role)
   }
 
+  if (interviewType === "Foreign Language" && role) {
+    return getForeignLanguageSubtypeTitle(role)
+  }
+
   if (interviewType === "General") {
     return "General Interview"
   }
 
   if (interviewType === "HR") {
     return "HR Interview"
+  }
+
+  if (interviewType === "Foreign Language") {
+    return "Foreign Language Interview"
   }
 
   return `${interviewType} Interview`
@@ -105,6 +123,13 @@ export function getHRSubtypeTitle(subtype: string): string {
 }
 
 /**
+ * Gets the proper title for Foreign Language interview subtypes
+ */
+export function getForeignLanguageSubtypeTitle(subtype: string): string {
+  return FOREIGN_LANGUAGE_SUBTYPE_TITLES[subtype] || "Foreign Language Interview"
+}
+
+/**
  * Generates interview title for backend API based on interview type and role information
  * This is used in the API route for creating interviews
  */
@@ -114,8 +139,10 @@ export function generateBackendInterviewTitle(
   generalSubType?: string,
   hrSubType?: string,
   extractedData?: { role: string | null; company: string | null } | null,
-  cleanedCompanyName?: string | null
+  cleanedCompanyName?: string | null,
+  foreignLanguageSubType?: string
 ): string {
+
   if (interviewType === 'Technical' && (role || generalSubType)) {
     const actualRole = role || generalSubType
     return TECHNICAL_ROLE_TITLES[actualRole!] || `${actualRole!.charAt(0).toUpperCase() + actualRole!.slice(1).replace(/-/g, ' ')} Interview`
@@ -125,8 +152,22 @@ export function generateBackendInterviewTitle(
     return GENERAL_SUBTYPE_TITLES[generalSubType] || `${generalSubType} Interview`
   }
 
-  if (interviewType === 'HR' && hrSubType) {
-    return HR_SUBTYPE_TITLES[hrSubType] || `${hrSubType} Interview`
+  if (interviewType === 'HR') {
+    if (role) {
+      return HR_SUBTYPE_TITLES[role] || `${role} Interview`
+    } else {
+      // Fallback for when role is not provided
+      return 'HR Interview'
+    }
+  }
+
+  if (interviewType === 'Foreign Language') {
+    if (foreignLanguageSubType) {
+      return FOREIGN_LANGUAGE_SUBTYPE_TITLES[foreignLanguageSubType] || `${foreignLanguageSubType} Proficiency Interview`
+    } else {
+      // Fallback for when foreignLanguageSubType is not provided
+      return 'Foreign Language Interview'
+    }
   }
 
   if (interviewType === 'Custom') {

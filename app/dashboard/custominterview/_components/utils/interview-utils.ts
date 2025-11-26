@@ -18,58 +18,42 @@ import {
   generateReactDeveloperPrompt,
   generateFrontendDeveloperPrompt
 } from '@/app/api/custom-interviews/prompts/technical'
+import {
+  generateEnglishProficiencyPrompt,
+  generateSpanishProficiencyPrompt,
+  generateFrenchProficiencyPrompt,
+  generateGermanProficiencyPrompt
+} from '@/app/api/custom-interviews/prompts/foreign-language'
+import {
+  getAvailableInterviewTypes,
+  getAvailableRoles,
+  getAvailableLevels,
+  getHRInterviewSubTypes,
+  getGeneralInterviewSubTypes,
+  getForeignLanguageSubTypes,
+  shouldPreventDuplicate
+} from './interview-config'
 
-/**
- * Gets the available role options for interview creation
- */
-export const getAvailableRoles = () => [
-  // Roles with specific prompts available
-  { value: 'python-developer', label: 'Python Developer' },
-  { value: 'full-stack-developer', label: 'Full Stack Developer' },
-  { value: 'react-developer', label: 'React Developer' },
-  { value: 'frontend-developer', label: 'Frontend Developer' }
-]
+// Re-export functions for backward compatibility with other files
+export {
+  getAvailableInterviewTypes,
+  getAvailableRoles,
+  getAvailableLevels,
+  getHRInterviewSubTypes,
+  getGeneralInterviewSubTypes,
+  getForeignLanguageSubTypes,
+  shouldPreventDuplicate
+}
 
-/**
- * Gets the available experience level options
- */
-export const getAvailableLevels = () => [
-  { value: '0-2 years', label: '0-2 years' },
-  { value: '2-5 years', label: '2-5 years' },
-  { value: '5+ years', label: '5+ years' }
-]
-
-/**
- * Gets the available interview type options
- */
-export const getAvailableInterviewTypes = () => [
-  { value: 'Technical', label: 'Technical' },
-  { value: 'HR', label: 'HR' },
-  { value: 'General', label: 'General' }
-]
-
-/**
- * Gets the available General interview sub-types
- */
-export const getGeneralInterviewSubTypes = () => [
-  { value: 'UPSE', label: 'UPSE' }
-]
-
-/**
- * Gets the available HR interview sub-types
- */
-export const getHRInterviewSubTypes = () => [
-  { value: 'Behavioral', label: 'Behavioral' },
-  { value: 'Situational', label: 'Situational' },
-  { value: 'CompetencyBased', label: 'Competency-Based' },
-  { value: 'CaseStudy', label: 'Case Study' }
-]
 
 /**
  * Gets the detailed prompt for General interview types
  * This is used for the actual interview, not the UI display
  */
-export const getGeneralInterviewPrompt = (generalSubType: string, jdDetails?: string, title?: string): string => {
+export const getGeneralInterviewPrompt = (generalSubType: string | null | undefined, jdDetails?: string, title?: string): string => {
+  if (!generalSubType) {
+    return "General interview sub-type not supported."
+  }
   if (generalSubType === 'UPSE') {
     return generateUPSEPrompt(jdDetails, title)
   }
@@ -80,7 +64,10 @@ export const getGeneralInterviewPrompt = (generalSubType: string, jdDetails?: st
  * Gets the detailed prompt for HR interview types
  * This is used for the actual interview, not the UI display
  */
-export const getHRInterviewPrompt = (hrSubType: string, jdDetails: string, title: string): string => {
+export const getHRInterviewPrompt = (hrSubType: string | null | undefined, jdDetails: string, title: string): string => {
+  if (!hrSubType) {
+    return "HR interview sub-type not supported. Only Behavioral interviews are available."
+  }
   switch (hrSubType) {
     case 'Behavioral':
       return generateBehavioralHRPrompt(jdDetails, title)
@@ -99,7 +86,10 @@ export const getHRInterviewPrompt = (hrSubType: string, jdDetails: string, title
  * Gets the detailed prompt for Technical interview types
  * This is used for the actual interview, not the UI display
  */
-export const getTechnicalInterviewPrompt = (role: string, jdDetails: string, title: string, experienceLevel?: string): string => {
+export const getTechnicalInterviewPrompt = (role: string | null | undefined, jdDetails: string, title: string, experienceLevel?: string): string => {
+  if (!role) {
+    return "Technical interview requires selecting a supported role."
+  }
   switch (role) {
     case 'python-developer':
       return generatePythonDeveloperPrompt(jdDetails, title, experienceLevel)
@@ -113,4 +103,90 @@ export const getTechnicalInterviewPrompt = (role: string, jdDetails: string, tit
       return ''
   }
 }
+
+/**
+ * Gets the detailed prompt for Foreign Language interview types
+ * This is used for the actual interview, not the UI display
+ */
+export const getForeignLanguagePrompt = (languageSubType: string | null | undefined, jdDetails?: string, title?: string): string => {
+  if (!languageSubType) {
+    return "Foreign language interview sub-type not supported."
+  }
+  switch (languageSubType) {
+    case 'English':
+      return generateEnglishProficiencyPrompt(jdDetails, title)
+    case 'Spanish':
+      return generateSpanishProficiencyPrompt(jdDetails, title)
+    case 'French':
+      return generateFrenchProficiencyPrompt(jdDetails, title)
+    case 'German':
+      return generateGermanProficiencyPrompt(jdDetails, title)
+    default:
+      return ''
+  }
+}
+
+
+/**
+ * Clean company name by removing common business suffixes for more natural display
+ */
+export function cleanCompanyNameForDisplay(companyName: string | null): string | null {
+  if (!companyName) return null
+
+  // Common business suffixes to remove (case insensitive)
+  const suffixesToRemove = [
+    'pvt\\. ltd\\.',
+    'pvt ltd',
+    'private limited',
+    'ltd\\.',
+    'ltd',
+    'limited',
+    'inc\\.',
+    'inc',
+    'incorporated',
+    'llc',
+    'llp',
+    'corp\\.',
+    'corp',
+    'corporation',
+    'co\\.',
+    'co',
+    'company',
+    'technologies',
+    'tech',
+    'solutions',
+    'systems',
+    'group',
+    'international',
+    'global'
+  ]
+
+  let cleaned = companyName.trim()
+
+  // Remove suffixes from the end of the company name
+  const suffixPattern = new RegExp(`\\s+(${suffixesToRemove.join('|')})$`, 'i')
+  cleaned = cleaned.replace(suffixPattern, '')
+
+  // Clean up extra spaces and return
+  return cleaned.trim() || null
+}
+
+/**
+ * Process company name with fallback logic
+ */
+export function processCompanyName(
+  company: string | undefined,
+  extractedData?: { role: string | null; company: string | null } | null
+): { finalCompanyName: string | null; cleanedCompanyName: string | null } {
+  // Determine company name: use manual input first, then AI extraction as fallback
+  // Treat "Custom Company" as null (user didn't provide real company name)
+  const normalizedCompany = (company && company.toLowerCase() !== 'custom company') ? company : null
+  const finalCompanyName = normalizedCompany || extractedData?.company || null
+
+  // Clean company name for display (remove suffixes like Pvt Ltd, Inc, etc.)
+  const cleanedCompanyName = cleanCompanyNameForDisplay(finalCompanyName)
+
+  return { finalCompanyName, cleanedCompanyName }
+}
+
 

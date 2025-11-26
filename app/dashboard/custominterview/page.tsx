@@ -139,7 +139,7 @@ export default function CustomInterviewPage() {
     }
   }, [isAuthenticated])
 
-  const handleInterviewCreated = async (data: { jdDetails: string; interviewType: string; screenShare?: boolean; company?: string; customPrompt?: string; generalSubType?: string; cvText?: string }) => {
+  const handleInterviewCreated = async (data: { jdDetails: string; interviewType: string; screenShare?: boolean; company?: string; customPrompt?: string; generalSubType?: string; hrSubType?: string; foreignLanguageSubType?: string; role?: string; experienceLevel?: string; cvText?: string }) => {
     // Handle new interview creation via API
     console.log("Creating interview with:", data)
 
@@ -155,6 +155,10 @@ export default function CustomInterviewPage() {
           company: data.company,
           customPrompt: data.customPrompt,
           generalSubType: data.generalSubType,
+          hrSubType: data.hrSubType,
+          foreignLanguageSubType: data.foreignLanguageSubType,
+          role: data.role,
+          experienceLevel: data.experienceLevel,
           cvText: data.cvText,
         }),
       })

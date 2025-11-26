@@ -117,6 +117,80 @@ Requirements:
 - Commitment to public service`
   },
 
+  'foreign-language': {
+    english: `English Language Proficiency Assessment
+
+This assessment evaluates English language skills required for effective communication in professional environments. The role requires clear verbal communication, understanding of workplace discussions, and ability to express ideas confidently in English.
+
+Key Communication Requirements:
+- Professional verbal communication in meetings and presentations
+- Understanding and responding to workplace discussions
+- Clear expression of ideas and opinions
+- Effective collaboration with international teams
+- Professional email and report writing skills
+
+Assessment Focus:
+- Speaking fluency and natural expression
+- Vocabulary range and appropriateness
+- Listening comprehension and response accuracy
+- Confidence in professional communication contexts
+- Ability to discuss complex topics clearly`,
+
+    spanish: `Evaluación de Competencia en Español
+
+Esta evaluación mide las habilidades en español requeridas para una comunicación efectiva en entornos profesionales. El rol requiere comunicación verbal clara, comprensión de discusiones laborales y capacidad para expresar ideas con confianza en español.
+
+Requisitos de Comunicación Clave:
+- Comunicación verbal profesional en reuniones y presentaciones
+- Comprensión y respuesta a discusiones laborales
+- Expresión clara de ideas y opiniones
+- Colaboración efectiva con equipos internacionales
+- Redacción profesional de correos electrónicos e informes
+
+Enfoque de la Evaluación:
+- Fluidez verbal y expresión natural
+- Rango de vocabulario y adecuación
+- Comprensión auditiva y precisión de respuesta
+- Confianza en contextos de comunicación profesional
+- Capacidad para discutir temas complejos claramente`,
+
+    french: `Évaluation de Compétence en Français
+
+Cette évaluation mesure les compétences linguistiques en français requises pour une communication efficace dans des environnements professionnels. Le rôle nécessite une communication verbale claire, la compréhension des discussions de travail et la capacité d'exprimer des idées avec assurance en français.
+
+Exigences de Communication Clés:
+- Communication verbale professionnelle lors de réunions et présentations
+- Compréhension et réponse aux discussions professionnelles
+- Expression claire des idées et opinions
+- Collaboration efficace avec des équipes internationales
+- Rédaction professionnelle d'emails et rapports
+
+Focus de l'Évaluation:
+- Fluidité de parole et expression naturelle
+- Étendue du vocabulaire et pertinence
+- Compréhension auditive et précision des réponses
+- Confiance dans les contextes de communication professionnelle
+- Capacité à discuter clairement de sujets complexes`,
+
+    german: `Deutsche Sprachkompetenzbewertung
+
+Diese Bewertung misst die deutschen Sprachkenntnisse, die für eine effektive Kommunikation in professionellen Umgebungen erforderlich sind. Die Rolle erfordert klare verbale Kommunikation, das Verständnis von Arbeitsdiskussionen und die Fähigkeit, Ideen sicher auf Deutsch auszudrücken.
+
+Wichtige Kommunikationsanforderungen:
+- Professionelle verbale Kommunikation in Meetings und Präsentationen
+- Verständnis und Reaktion auf Arbeitsdiskussionen
+- Klare Ausdrucksweise von Ideen und Meinungen
+- Effektive Zusammenarbeit mit internationalen Teams
+- Professionelle E-Mail- und Berichtsschreibung
+
+Bewertungsschwerpunkt:
+- Sprechflüssigkeit und natürlicher Ausdruck
+- Wortschatzumfang und Angemessenheit
+- Hörverständnis und Antwortgenauigkeit
+- Selbstvertrauen in professionellen Kommunikationskontexten
+- Fähigkeit, komplexe Themen klar zu diskutieren`
+  },
+
   hr: {
     behavioral: `HR Management Position
 
@@ -223,6 +297,19 @@ export const getJDTemplate = (
     }
   } else if (interviewType === 'General' && subType === 'UPSE') {
     return JD_TEMPLATES.general.upse
+  } else if (interviewType === 'Foreign Language') {
+    switch (subType) {
+      case 'English':
+        return JD_TEMPLATES['foreign-language'].english
+      case 'Spanish':
+        return JD_TEMPLATES['foreign-language'].spanish
+      case 'French':
+        return JD_TEMPLATES['foreign-language'].french
+      case 'German':
+        return JD_TEMPLATES['foreign-language'].german
+      default:
+        return JD_TEMPLATES['foreign-language'].english
+    }
   } else if (interviewType === 'HR') {
     switch (subType) {
       case 'Behavioral':

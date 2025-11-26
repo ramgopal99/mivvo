@@ -12,59 +12,14 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { generateUPSEPrompt, generateBehavioralHRPrompt, generateCustomInterviewPrompt } from './prompts'
-import { generatePythonDeveloperPrompt } from './prompts/technical'
 
 import { extractRoleAndCompanyFromJDWithAI, isOpenAIAvailable } from '@/lib/utils'
 import { generateBackendInterviewTitle } from '@/app/dashboard/custominterview/_components/utils/interview-title-utils'
-
-// Type for technical prompt generator functions
-type TechnicalPromptGenerator = (jdDetails: string, title: string, experienceLevel?: string, cvText?: string) => string
+import { processCompanyName, shouldPreventDuplicate } from '@/app/dashboard/custominterview/_components/utils/interview-utils'
+import { selectInterviewPrompt, PromptSelectionData } from '@/app/dashboard/custominterview/_components/utils/prompt-selector'
 import jwt from 'jsonwebtoken'
 
-/**
- * Clean company name by removing common business suffixes for more natural display
- */
-function cleanCompanyNameForDisplay(companyName: string | null): string | null {
-  if (!companyName) return null
 
-  // Common business suffixes to remove (case insensitive)
-  const suffixesToRemove = [
-    'pvt\\. ltd\\.',
-    'pvt ltd',
-    'private limited',
-    'ltd\\.',
-    'ltd',
-    'limited',
-    'inc\\.',
-    'inc',
-    'incorporated',
-    'llc',
-    'llp',
-    'corp\\.',
-    'corp',
-    'corporation',
-    'co\\.',
-    'co',
-    'company',
-    'technologies',
-    'tech',
-    'solutions',
-    'systems',
-    'group',
-    'international',
-    'global'
-  ]
-
-  let cleaned = companyName.trim()
-
-  // Remove suffixes from the end of the company name
-  const suffixPattern = new RegExp(`\\s+(${suffixesToRemove.join('|')})$`, 'i')
-  cleaned = cleaned.replace(suffixPattern, '')
-
-  // Clean up extra spaces and return
-  return cleaned.trim() || null
-}
 
 interface InterviewWhereClause {
   createdBy: string
@@ -72,20 +27,6 @@ interface InterviewWhereClause {
 }
 
 
-/**
- * Get specific technical role prompt generator function if available
- * @param role - The role value (e.g., 'python-developer')
- * @returns The prompt generator function or null if not found
- */
-function getTechnicalRolePromptGenerator(role: string): TechnicalPromptGenerator | null {
-  // Map role values to their corresponding prompt generator functions
-  const roleToPromptFunction: Record<string, TechnicalPromptGenerator> = {
-    'python-developer': generatePythonDeveloperPrompt
-  }
-
-  const promptFunction = roleToPromptFunction[role]
-  return promptFunction || null
-}
 
 /**
  * Authenticate user from NextAuth session or JWT token
@@ -166,6 +107,8 @@ export async function GET(request: NextRequest) {
       title: interview.title || `${interview.interviewType?.replace('_', ' ')} - Custom Interview`,
       company: interview.companyName || "",
       jd: interview.jobDescription || "",
+      interviewType: interview.interviewType,
+      foreignLanguageSubType: interview.interviewType === 'GENERAL_INTERVIEW' && ['English', 'Spanish', 'French', 'German'].includes(interview.role || '') ? interview.role : null,
       createdAt: interview.createdAt.toISOString(),
       status: interview.status === "IN_PROGRESS" ? "in_progress" : "completed",
       screenShareEnabled: interview.screenShareEnabled,
@@ -237,13 +180,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Parse request body
-    const { jdDetails, interviewType, screenShare, company, generalSubType, hrSubType, customPrompt, cvText, role } = await request.json()
-
+    const { jdDetails, interviewType, screenShare, company, generalSubType, hrSubType, foreignLanguageSubType, customPrompt, cvText, role } = await request.json()
 
     // Validate required fields
     if (!jdDetails || !interviewType) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
+
 
     // Map frontend interview types to database enum values
     const interviewTypeMap: Record<string, 'GENERAL_INTERVIEW' | 'TECHNICAL' | 'CODING' | 'HR_INTERVIEW' | 'CUSTOM_INTERVIEW'> = {
@@ -251,11 +194,13 @@ export async function POST(request: NextRequest) {
       'Technical': 'TECHNICAL',
       'Coding': 'CODING',
       'HR': 'HR_INTERVIEW',
+      'Foreign Language': 'GENERAL_INTERVIEW', // Map to GENERAL_INTERVIEW for now
       'Custom': 'CUSTOM_INTERVIEW' // JD-based custom interviews
     }
 
     // Convert interview type and prepare data
     const mappedInterviewType = interviewTypeMap[interviewType] || 'GENERAL_INTERVIEW'
+
 
     // Extract AI data for custom interviews (used for both title and company)
     let extractedData: { role: string | null; company: string | null } | null = null
@@ -267,27 +212,24 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Determine company name: use manual input first, then AI extraction as fallback
-    // Treat "Custom Company" as null (user didn't provide real company name)
-    const normalizedCompany = (company && company.toLowerCase() !== 'custom company') ? company : null
-    const finalCompanyName = normalizedCompany || extractedData?.company || null
+    // Process company name with fallback logic and cleaning
+    const { cleanedCompanyName } = processCompanyName(company, extractedData)
 
-    // Clean company name for display (remove suffixes like Pvt Ltd, Inc, etc.)
-    const cleanedCompanyName = cleanCompanyNameForDisplay(finalCompanyName)
-
+    // Generate title based on interview type and role information
     // Generate title based on interview type and role information
     const baseTitle = generateBackendInterviewTitle(
       interviewType,
-      role,
+      interviewType === 'HR' ? hrSubType : role, // Use hrSubType as role for HR interviews
       generalSubType,
-      hrSubType,
+      undefined, // hrSubType no longer needed separately
       extractedData,
-      cleanedCompanyName
+      cleanedCompanyName,
+      foreignLanguageSubType
     )
 
-    // For template-based interviews (Technical, General, HR), prevent exact duplicates
-    // For custom interviews, allow duplicates since they might have different job descriptions
-    if (interviewType === 'Technical' || interviewType === 'General' || interviewType === 'HR') {
+
+    // Check for duplicate interviews based on interview type
+    if (shouldPreventDuplicate(interviewType)) {
       const existingInterview = await prisma.mockInterview.findFirst({
         where: {
           createdBy: userId,
@@ -332,6 +274,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create interview in database
+    // Create interview in database
     const interview = await prisma.mockInterview.create({
       data: {
         title: uniqueTitle,
@@ -340,7 +283,7 @@ export async function POST(request: NextRequest) {
         // For custom interviews, don't save CV text - only use when explicitly uploaded
         cvText: mappedInterviewType === "CUSTOM_INTERVIEW" ? null : (cvText || null),
         interviewType: mappedInterviewType,
-        role: role || null, // Save specific role if provided
+        role: role || hrSubType || (interviewType === 'Foreign Language' ? foreignLanguageSubType : null), // Save role, HR subtype, or foreign language subtype
         screenShareEnabled: screenShare || false,
         createdBy: userId
       },
@@ -351,51 +294,20 @@ export async function POST(request: NextRequest) {
     })
 
     // Generate and save interview prompt based on type
-    let promptText: string
-
-    // Use custom prompt if provided (for custom JD interviews)
-    if (customPrompt) {
-      promptText = customPrompt
-    } else if (mappedInterviewType === "TECHNICAL") {
-      // Check if a specific role is provided and has a dedicated prompt
-      const selectedRole = generalSubType || role
-
-      if (selectedRole === "python-developer") {
-        const rolePromptGenerator = getTechnicalRolePromptGenerator(selectedRole)
-        if (rolePromptGenerator) {
-          // For technical interviews, no CV text included
-          promptText = rolePromptGenerator(jdDetails, interview.title || `${selectedRole.replace('-', ' ')} Interview`)
-        } else {
-          // Fallback if no specific prompt generator found
-          promptText = "Technical interview prompt not available for this role."
-        }
-      } else {
-        // Fallback if no supported role is selected
-        promptText = "Technical interview requires selecting a supported role."
-      }
-    } else if (mappedInterviewType === "GENERAL_INTERVIEW") {
-      // Handle General interview sub-types (only UPSE is supported)
-      if (generalSubType === "UPSE") {
-        promptText = generateUPSEPrompt(jdDetails, interview.title || "UPSE Civil Service Interview")
-      } else {
-        // Fallback if unsupported general sub-type
-        promptText = "General interview sub-type not supported."
-      }
-    } else if (interviewType === "HR") {
-      // Handle HR interview sub-types (only Behavioral is supported)
-      if (hrSubType === "Behavioral") {
-        promptText = generateBehavioralHRPrompt(jdDetails, interview.title || "Behavioral HR Interview")
-      } else {
-        // Fallback if unsupported HR sub-type
-        promptText = "HR interview sub-type not supported. Only Behavioral interviews are available."
-      }
-    } else if (mappedInterviewType === "CUSTOM_INTERVIEW") {
-      // For custom interviews, use the custom interview prompt
-      promptText = generateCustomInterviewPrompt(jdDetails, cvText || undefined)
-    } else {
-      // Fallback for unsupported interview types
-      promptText = "Interview type not supported."
+    const promptSelectionData: PromptSelectionData = {
+      interviewType,
+      mappedInterviewType,
+      generalSubType,
+      hrSubType: hrSubType || (interview.role && interview.interviewType === 'HR_INTERVIEW' ? interview.role : null),
+      foreignLanguageSubType: foreignLanguageSubType || null,
+      role: role || null,
+      jdDetails,
+      title: interview.title || undefined,
+      customPrompt,
+      experienceLevel: undefined // Not used in current implementation
     }
+
+    const promptText = selectInterviewPrompt(promptSelectionData)
 
 
     await prisma.interviewPrompt.create({

@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack -p 4500",
+    "dev": "next dev --turbopack -p 3001",
     "build": "prisma generate && next build --turbopack",
-    "start": "next start -p 4500",
+    "start": "next start -p 3001",
     "lint": "eslint",
     "promote-admin": "tsx scripts/promote-admin.ts",
     "clean-collections": "tsx scripts/clean-unused-collections.ts",
