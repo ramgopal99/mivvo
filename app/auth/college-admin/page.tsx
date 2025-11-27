@@ -12,7 +12,7 @@ import Link from "next/link"
 
 export default function CollegeAdminLoginPage() {
   const [formData, setFormData] = useState({
-    collegeId: '',
+    email: '',
     password: ''
   })
   const [showPassword, setShowPassword] = useState(false)
@@ -40,7 +40,10 @@ export default function CollegeAdminLoginPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password
+        }),
       })
 
       const data = await response.json()
@@ -74,15 +77,15 @@ export default function CollegeAdminLoginPage() {
         {/* College Admin Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="collegeId">College ID</Label>
+            <Label htmlFor="email">Email</Label>
             <div className="relative">
               <GraduationCap className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
               <Input
-                id="collegeId"
-                name="collegeId"
-                type="text"
-                placeholder="Enter your college ID (e.g., TECH_UNIV_001)"
-                value={formData.collegeId}
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Enter your admin email (e.g., admin@college.edu)"
+                value={formData.email}
                 onChange={handleInputChange}
                 className="pl-10"
                 required
@@ -149,9 +152,9 @@ export default function CollegeAdminLoginPage() {
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
           <h4 className="text-sm font-medium text-blue-900 mb-2">Demo Credentials</h4>
           <div className="text-xs text-blue-700 space-y-1">
-            <p><strong>College Admin ID:</strong> demo</p>
+            <p><strong>Email:</strong> demo@gmail.com</p>
             <p><strong>Password:</strong> college123</p>
-            <p><strong>Note:</strong> College admins can also log in via regular email authentication</p>
+            <p><strong>Note:</strong> Use your college admin email to log in</p>
           </div>
         </div>
 

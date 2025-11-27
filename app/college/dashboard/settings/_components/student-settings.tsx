@@ -2,15 +2,9 @@
 
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import {
-  Upload,
-  UserPlus,
   Users,
   Loader2
 } from "lucide-react"
@@ -45,13 +39,7 @@ export function StudentSettings() {
   const [collegeData, setCollegeData] = useState<CollegeData | null>(null)
   const [enrollments, setEnrollments] = useState<StudentEnrollment[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [isEnrolling, setIsEnrolling] = useState(false)
 
-  // Enrollment form state
-  const [rollNumber, setRollNumber] = useState("")
-  const [enrollmentMonths, setEnrollmentMonths] = useState("1")
-  const [studentName, setStudentName] = useState("")
-  const [studentEmail, setStudentEmail] = useState("")
 
   useEffect(() => {
     let retryCount = 0
@@ -163,82 +151,19 @@ export function StudentSettings() {
     }
   }
 
-  const handleEnrollStudent = async (e: React.FormEvent) => {
-    e.preventDefault()
 
-    if (!collegeData) {
-      toast.error('College data not loaded')
-      return
-    }
 
-    // No capacity limits - unlimited enrollments allowed
 
-    if (!rollNumber.trim() || !studentName.trim() || !studentEmail.trim()) {
-      toast.error('Please fill in all required fields')
-      return
-    }
 
-    setIsEnrolling(true)
-
-    try {
-      const months = parseInt(enrollmentMonths)
-      const amount = months * collegeData.monthlyRatePerUser
-
-      const response = await fetch('/api/college/enroll-student', {
-        method: 'POST',
-        headers: {
-          ...getAuthHeaders(true) // Include Content-Type for POST request
-        },
-        body: JSON.stringify({
-          rollNumber: rollNumber.trim(),
-          studentName: studentName.trim(),
-          studentEmail: studentEmail.trim(),
-          enrollmentMonths: months,
-          paymentAmount: amount
-        })
-      })
-
-      const data = await response.json()
-
-      if (response.ok && data.success) {
-        toast.success('Student enrolled successfully!')
-        // Reset form
-        setRollNumber("")
-        setStudentName("")
-        setStudentEmail("")
-        setEnrollmentMonths("1")
-        // Reload data
-        loadCollegeData()
-        loadEnrollments()
-      } else {
-        toast.error(data.error || 'Failed to enroll student')
-      }
-    } catch (error) {
-      console.error('Enrollment error:', error)
-      toast.error('An error occurred while enrolling the student')
-    } finally {
-      setIsEnrolling(false)
-    }
-  }
-
-  const handleRollNumberUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-
-    const reader = new FileReader()
-    reader.onload = (event) => {
-      const csv = event.target?.result as string
-      // Parse CSV - assuming format: rollNumber,name,email
-      const lines = csv.split('\n').filter(line => line.trim())
-      if (lines.length > 0) {
-        // For now, just set the first roll number
-        const firstLine = lines[0].split(',')[0]?.trim()
-        if (firstLine) {
-          setRollNumber(firstLine)
-        }
-      }
-    }
-    reader.readAsText(file)
+  if (isLoading) {
+    return (
+      <Card>
+        <CardContent className="flex items-center justify-center py-8">
+          <Loader2 className="h-6 w-6 animate-spin mr-2" />
+          <span>Loading student settings...</span>
+        </CardContent>
+      </Card>
+    )
   }
 
   const getStatusBadge = (status: string) => {
@@ -252,17 +177,6 @@ export function StudentSettings() {
       default:
         return <Badge variant="outline">{status}</Badge>
     }
-  }
-
-  if (isLoading) {
-    return (
-      <Card>
-        <CardContent className="flex items-center justify-center py-8">
-          <Loader2 className="h-6 w-6 animate-spin mr-2" />
-          <span>Loading student settings...</span>
-        </CardContent>
-      </Card>
-    )
   }
 
   if (!collegeData) {
@@ -279,155 +193,7 @@ export function StudentSettings() {
   return (
     <div className="space-y-6">
       {/* Enrollment Stats */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Users className="h-5 w-5" />
-            Student Enrollment
-          </CardTitle>
-          <CardDescription>
-            Manage student enrollments - unlimited capacity
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="text-center py-8">
-            <Users className="h-12 w-12 text-primary mx-auto mb-4" />
-            <h3 className="text-lg font-semibold mb-2">Unlimited Enrollment</h3>
-            <p className="text-muted-foreground">
-              Enroll as many students as needed. Each student gets their own account with expiration dates.
-            </p>
-          </div>
-        </CardContent>
-      </Card>
 
-      {/* Enroll New Student */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <UserPlus className="h-5 w-5" />
-            Enroll New Student
-          </CardTitle>
-          <CardDescription>
-            Add a new student to your college with roll number and payment details
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleEnrollStudent} className="space-y-4">
-            {/* Roll Number Upload */}
-            <div className="space-y-2">
-              <Label htmlFor="roll-number">Roll Number *</Label>
-              <div className="flex gap-2">
-                <Input
-                  id="roll-number"
-                  type="text"
-                  placeholder="Enter roll number or upload CSV"
-                  value={rollNumber}
-                  onChange={(e) => setRollNumber(e.target.value)}
-                  required
-                />
-                <div className="relative">
-                  <input
-                    type="file"
-                    accept=".csv,.txt"
-                    onChange={handleRollNumberUpload}
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                    id="roll-upload"
-                  />
-                  <Button type="button" variant="outline" asChild>
-                    <label htmlFor="roll-upload" className="cursor-pointer flex items-center gap-2">
-                      <Upload className="h-4 w-4" />
-                      Upload
-                    </label>
-                  </Button>
-                </div>
-              </div>
-              <p className="text-xs text-muted-foreground">
-                Upload a CSV file with columns: rollNumber, name, email
-              </p>
-            </div>
-
-            {/* Student Details */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="student-name">Student Name *</Label>
-                <Input
-                  id="student-name"
-                  type="text"
-                  placeholder="Enter student full name"
-                  value={studentName}
-                  onChange={(e) => setStudentName(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="student-email">Student Email *</Label>
-                <Input
-                  id="student-email"
-                  type="email"
-                  placeholder="Enter student email"
-                  value={studentEmail}
-                  onChange={(e) => setStudentEmail(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
-
-            {/* Enrollment Period */}
-            <div className="space-y-2">
-              <Label htmlFor="enrollment-months">Enrollment Period *</Label>
-              <Select value={enrollmentMonths} onValueChange={setEnrollmentMonths}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select enrollment period" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1">1 Month - ₹{collegeData.monthlyRatePerUser}</SelectItem>
-                  <SelectItem value="3">3 Months - ₹{collegeData.monthlyRatePerUser * 3}</SelectItem>
-                  <SelectItem value="6">6 Months - ₹{collegeData.monthlyRatePerUser * 6}</SelectItem>
-                  <SelectItem value="12">12 Months - ₹{collegeData.monthlyRatePerUser * 12}</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Payment Summary */}
-            <div className="p-4 bg-muted/50 rounded-lg">
-              <h4 className="font-medium mb-2">Payment Summary</h4>
-              <div className="space-y-1 text-sm">
-                <div className="flex justify-between">
-                  <span>Monthly Rate:</span>
-                  <span>₹{collegeData.monthlyRatePerUser}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Enrollment Period:</span>
-                  <span>{enrollmentMonths} month{enrollmentMonths !== "1" ? "s" : ""}</span>
-                </div>
-                <div className="flex justify-between font-medium border-t pt-2">
-                  <span>Total Amount:</span>
-                  <span>₹{parseInt(enrollmentMonths) * collegeData.monthlyRatePerUser}</span>
-                </div>
-              </div>
-            </div>
-
-            <Button
-              type="submit"
-              disabled={isEnrolling}
-              className="w-full"
-            >
-              {isEnrolling ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Enrolling Student...
-                </>
-              ) : (
-                <>
-                  <UserPlus className="mr-2 h-4 w-4" />
-                  Enroll Student & Process Payment
-                </>
-              )}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
 
       {/* Current Enrollments */}
       <Card>

@@ -98,9 +98,42 @@ export const authOptions: NextAuthOptions = {
             }
             return true
           } else {
-            // New user - deny access (only existing students can login)
-            console.log(`Login denied: New user ${user.email} attempted to sign up. Only existing students allowed.`)
-            return false
+            // New user - create account and allow signup
+            console.log(`New user signup: Creating account for ${user.email}`)
+            try {
+              const newUser = await prisma.user.create({
+                data: {
+                  name: user.name,
+                  email: user.email!,
+                  image: user.image,
+                  role: "USER", // Default role for new signups
+                  status: "ACTIVE",
+                  userType: "FREE",
+                  totalCreditAllocation: 0, // Will be set by application logic
+                }
+              })
+
+              // Create the account link
+              await prisma.account.create({
+                data: {
+                  userId: newUser.id,
+                  type: account.type,
+                  provider: account.provider,
+                  providerAccountId: account.providerAccountId,
+                  access_token: account.access_token,
+                  expires_at: account.expires_at,
+                  token_type: account.token_type,
+                  scope: account.scope,
+                  id_token: account.id_token,
+                }
+              })
+
+              console.log(`New user created successfully: ${user.email} with ID ${newUser.id}`)
+              return true
+            } catch (createError) {
+              console.error("Error creating new user:", createError)
+              return false
+            }
           }
         } catch (error) {
           console.error("Error in signIn callback:", error)

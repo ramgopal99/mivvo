@@ -43,7 +43,7 @@ export default function StudentsPage() {
         const result = await response.json()
 
         if (result.success) {
-          setStudents(result.data.students)
+          setStudents(result.data?.students || [])
         } else {
           setError(result.error || 'Failed to load students data')
         }

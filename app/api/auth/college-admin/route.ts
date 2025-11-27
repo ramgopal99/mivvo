@@ -7,19 +7,19 @@ const prisma = new PrismaClient()
 
 export async function POST(request: NextRequest) {
   try {
-    const { collegeId, password } = await request.json()
+    const { email, password } = await request.json()
 
-    if (!collegeId || !password) {
+    if (!email || !password) {
       return NextResponse.json(
-        { error: 'College ID and password are required' },
+        { error: 'Email and password are required' },
         { status: 400 }
       )
     }
 
-    // Find user by collegeAdminId with COLLEGE_ADMIN role
+    // Find user by email with COLLEGE_ADMIN role
     const user = await prisma.user.findFirst({
       where: {
-        collegeAdminId: collegeId,
+        email: email,
         role: 'COLLEGE_ADMIN'
       },
       include: {
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
 
     if (!user) {
       return NextResponse.json(
-        { error: 'Invalid college ID or not a college admin' },
+        { error: 'Invalid email or not a college admin' },
         { status: 401 }
       )
     }

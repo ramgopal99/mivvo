@@ -74,7 +74,16 @@ export async function GET(request: NextRequest) {
         creditResetAt: true,
         createdAt: true,
         name: true,
-        email: true
+        email: true,
+        role: true,
+        // Include college enrollment data for COLLEGE_STUDENT role
+        studentEnrollment: {
+          select: {
+            enrollmentDate: true,
+            expirationDate: true,
+            isActive: true
+          }
+        }
       }
     })
 
@@ -85,30 +94,58 @@ export async function GET(request: NextRequest) {
       }, { status: 404 })
     }
 
-    // Check if credits should expire based on allocation time
+    // Check if credits should expire based on allocation time or enrollment
     const now = new Date()
+    let shouldExpireCredits = false
     let allocationTime: Date
+    let timeSinceAllocation: number
 
-    if (user.creditResetAt) {
-      allocationTime = new Date(user.creditResetAt.toISOString())
+    // Special handling for college students - check enrollment expiration instead of 30-day period
+    if (user.role === 'COLLEGE_STUDENT' && user.studentEnrollment && user.studentEnrollment.isActive) {
+      allocationTime = new Date(user.studentEnrollment.enrollmentDate)
+      timeSinceAllocation = now.getTime() - allocationTime.getTime()
+      shouldExpireCredits = now > new Date(user.studentEnrollment.expirationDate)
+      console.log(`College student ${userId} - Enrollment expires: ${user.studentEnrollment.expirationDate}, Current time: ${now.toISOString()}, Should expire: ${shouldExpireCredits}`)
     } else {
-      allocationTime = new Date(user.createdAt!)
+      // Regular users - check 30-day reset period
+      if (user.creditResetAt) {
+        allocationTime = new Date(user.creditResetAt.toISOString())
+      } else {
+        allocationTime = new Date(user.createdAt!)
+      }
+
+      timeSinceAllocation = now.getTime() - allocationTime.getTime()
+      shouldExpireCredits = timeSinceAllocation >= CREDIT_RESET_CONFIG.RESET_PERIOD_MS
+      console.log(`Regular user ${userId} - Time since allocation: ${timeSinceAllocation}ms, Reset period: ${CREDIT_RESET_CONFIG.RESET_PERIOD_MS}ms, Should expire: ${shouldExpireCredits}`)
     }
 
-    const timeSinceAllocation = now.getTime() - allocationTime.getTime()
-    const shouldExpireCredits = timeSinceAllocation >= CREDIT_RESET_CONFIG.RESET_PERIOD_MS
-
-    // Expire credits if more than reset period has passed since allocation
+    // Expire credits if they should expire and user has credits
     if (shouldExpireCredits && user.totalCreditAllocation && user.totalCreditAllocation > 0) {
+      // Don't downgrade college students to FREE - they remain PRO until enrollment expires
+      const shouldDowngradeToFree = user.role !== 'COLLEGE_STUDENT'
+
       await prisma.user.update({
         where: { id: userId },
         data: {
           totalCreditAllocation: 0,
           usedCredits: 0, // Also reset used credits for consistency
-          userType: 'FREE' // Downgrade PRO users to FREE when credits expire
+          ...(shouldDowngradeToFree && { userType: 'FREE' }) // Only downgrade non-college students
         }
       })
-      console.log(`Credits expired for user ${userId} at ${now.toISOString()} (${timeSinceAllocation}ms since allocation) - User downgraded to FREE`)
+
+      const action = shouldDowngradeToFree ? 'downgraded to FREE' : 'credits expired (PRO status maintained)'
+      console.log(`Credits expired for user ${userId} at ${now.toISOString()} - ${action}`)
+    }
+
+    // Additional check for college students: downgrade to FREE if enrollment has expired
+    if (user.role === 'COLLEGE_STUDENT' && user.studentEnrollment && !user.studentEnrollment.isActive) {
+      await prisma.user.update({
+        where: { id: userId },
+        data: {
+          userType: 'FREE' // Downgrade college students when enrollment expires
+        }
+      })
+      console.log(`College student ${userId} enrollment expired - downgraded to FREE`)
     }
 
     // Set default credit allocation for users who don't have one (like college students)
@@ -116,8 +153,6 @@ export async function GET(request: NextRequest) {
     const DEFAULT_FREE_CREDITS = CREDIT_PACKAGES.FREE
     const totalCreditAllocation = shouldExpireCredits ? 0 : (user.totalCreditAllocation || DEFAULT_FREE_CREDITS)
     const usedCredits = shouldExpireCredits ? 0 : (user.usedCredits || 0)
-
-    // Time since allocation is already calculated above
 
     // Return time data
     return NextResponse.json({

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Eye, EyeOff } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -49,6 +49,19 @@ interface AddCollegeDialogProps {
   onCollegeCreated?: () => void
 }
 
+// Generate a random college ID with numbers and letters
+function generateRandomCollegeId(): string {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+  let result = ''
+
+  // Generate a 10-character random alphanumeric ID
+  for (let i = 0; i < 10; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length))
+  }
+
+  return result
+}
+
 export function AddCollegeDialog({ open, onOpenChange, onCollegeCreated }: AddCollegeDialogProps) {
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
@@ -69,6 +82,14 @@ export function AddCollegeDialog({ open, onOpenChange, onCollegeCreated }: AddCo
       adminPassword: "",
     },
   })
+
+  // Generate random college ID when dialog opens
+  useEffect(() => {
+    if (open) {
+      const randomId = generateRandomCollegeId()
+      form.setValue("collegeId", randomId)
+    }
+  }, [open, form])
 
   const onSubmit = async (data: FormData) => {
     setLoading(true)
@@ -141,7 +162,7 @@ export function AddCollegeDialog({ open, onOpenChange, onCollegeCreated }: AddCo
                     <FormItem>
                       <FormLabel>College ID *</FormLabel>
                       <FormControl>
-                        <Input placeholder="ABC_UNIV" {...field} />
+                        <Input placeholder="ABC_UNIV" {...field} readOnly className="bg-muted cursor-not-allowed" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

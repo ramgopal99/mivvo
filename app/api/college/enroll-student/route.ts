@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { verifyCollegeToken } from "@/lib/auth-utils"
 import bcrypt from "bcryptjs"
+import { CREDIT_PACKAGES } from "@/config/site"
 
 export async function POST(request: NextRequest) {
   try {
@@ -18,11 +19,15 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json()
-    const { rollNumber, studentName, studentEmail, enrollmentMonths, paymentAmount } = body
+    const { rollNumber, studentName, studentEmail, studentPassword, enrollmentMonths, paymentAmount } = body
 
     // Validate required fields
-    if (!rollNumber || !studentName || !studentEmail || !enrollmentMonths || !paymentAmount) {
+    if (!rollNumber || !studentName || !studentEmail || !studentPassword || !enrollmentMonths || !paymentAmount) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+    }
+
+    if (studentPassword.length < 6) {
+      return NextResponse.json({ error: 'Password must be at least 6 characters long' }, { status: 400 })
     }
 
     // No capacity limits - unlimited enrollments allowed
@@ -53,15 +58,14 @@ export async function POST(request: NextRequest) {
       }, { status: 400 })
     }
 
-    // Generate password and expiration date
-    const password = Math.random().toString(36).slice(-8) // Generate random 8-char password
-    const hashedPassword = await bcrypt.hash(password, 12)
+    // Hash the provided password and calculate expiration date
+    const hashedPassword = await bcrypt.hash(studentPassword, 12)
     const expirationDate = new Date()
     expirationDate.setMonth(expirationDate.getMonth() + enrollmentMonths)
 
     // Start transaction
     const result = await prisma.$transaction(async (tx) => {
-      // Create user account
+      // Create user account with PRO credits
       const user = await tx.user.create({
         data: {
           name: studentName,
@@ -72,11 +76,13 @@ export async function POST(request: NextRequest) {
           rollNumber: rollNumber,
           collegeName: collegeData.name,
           collegeId: collegeData.id,
-          userType: 'FREE' // Students start as free users
+          userType: 'PRO', // College students get PRO access
+          totalCreditAllocation: CREDIT_PACKAGES.PRO, // Allocate PRO credits (360)
+          usedCredits: 0 // Start with 0 used credits
         }
       })
 
-      // Create payment record
+      // Create payment record for individual student
       const payment = await tx.payment.create({
         data: {
           userId: user.id,
@@ -86,6 +92,29 @@ export async function POST(request: NextRequest) {
           status: 'COMPLETED', // Assume payment is successful for now
           paymentDate: new Date(),
           description: `Student enrollment for ${enrollmentMonths} months`
+        }
+      })
+
+      // Generate billing period (current month)
+      const now = new Date()
+      const billingPeriod = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`
+
+      // Generate invoice number for enterprise payment
+      const invoiceNumber = `ENROLL-${collegeData.id.substring(0, 8).toUpperCase()}-${Date.now()}`
+
+      // Create enterprise payment record for billing history
+      const enterprisePayment = await tx.enterprisePayment.create({
+        data: {
+          collegeId: collegeData.id,
+          amount: paymentAmount,
+          paymentDate: new Date(),
+          billingPeriod,
+          studentCount: 1, // Single student enrollment
+          ratePerStudent: collegeData.monthlyRatePerUser,
+          description: `Student enrollment: ${studentName} (${rollNumber}) - ${enrollmentMonths} months`,
+          invoiceNumber,
+          status: 'COMPLETED',
+          paidAt: new Date()
         }
       })
 
@@ -107,7 +136,7 @@ export async function POST(request: NextRequest) {
 
       // No need to update college student count - we track enrollments individually
 
-      return { user, payment, enrollment }
+      return { user, payment, enrollment, enterprisePayment }
     })
 
     return NextResponse.json({
@@ -116,7 +145,9 @@ export async function POST(request: NextRequest) {
       data: {
         userId: result.user.id,
         enrollmentId: result.enrollment.id,
-        password: password, // Send plain password to college admin
+        paymentId: result.payment.id,
+        enterprisePaymentId: result.enterprisePayment.id,
+        invoiceNumber: result.enterprisePayment.invoiceNumber,
         expirationDate: expirationDate.toISOString()
       }
     })

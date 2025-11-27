@@ -4,12 +4,55 @@ import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { CREDIT_PACKAGES } from '@/lib/credit-converter'
 import { CREDIT_RESET_CONFIG } from '@/config/site'
+import jwt from 'jsonwebtoken'
+
+/**
+ * Authenticate user from NextAuth session or JWT token
+ * @param request - NextRequest object
+ * @returns User ID if authenticated, null otherwise
+ */
+async function authenticateUser(request: NextRequest): Promise<string | null> {
+  // First, try NextAuth session
+  const session = await getServerSession(authOptions)
+  if (session?.user?.id) {
+    return session.user.id
+  }
+
+  // If no NextAuth session, try JWT token from Authorization header
+  const authHeader = request.headers.get('authorization')
+  if (authHeader?.startsWith('Bearer ')) {
+    const token = authHeader.substring(7)
+    try {
+      // Decode the JWT token to check its type
+      const decoded = jwt.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret') as {
+        userId?: string
+        type?: string
+        role?: string
+      }
+
+      // Handle college student tokens
+      if (decoded.type === 'college_student' && decoded.userId) {
+        return decoded.userId
+      }
+
+      // Handle standard JWT tokens
+      if (decoded.userId) {
+        return decoded.userId
+      }
+    } catch (error) {
+      console.error('JWT verification failed:', error)
+    }
+  }
+
+  return null
+}
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user?.id) {
+    // Verify user authentication (NextAuth or JWT token)
+    const authenticatedUserId = await authenticateUser(request)
+    if (!authenticatedUserId) {
+      console.error('Payment creation failed: No authenticated user')
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
@@ -30,8 +73,11 @@ export async function POST(request: NextRequest) {
       metadata
     } = body
 
+    // Use authenticated user ID if userId is not provided (for JWT users)
+    const finalUserId = userId || authenticatedUserId
+
     // Verify the user is creating payment for themselves
-    if (userId !== session.user.id) {
+    if (finalUserId !== authenticatedUserId) {
       return NextResponse.json(
         { error: 'Cannot create payment for another user' },
         { status: 403 }
@@ -41,12 +87,22 @@ export async function POST(request: NextRequest) {
     // For addon payments, check if user has active plan (not expired)
     if (paymentCategory === 'ADDON') {
       const user = await prisma.user.findUnique({
-        where: { id: userId },
+        where: { id: finalUserId },
         select: {
           userType: true,
           creditResetAt: true,
           totalCreditAllocation: true,
-          createdAt: true
+          createdAt: true,
+          role: true,
+          studentEnrollment: {
+            where: {
+              isActive: true
+            },
+            select: {
+              expirationDate: true,
+              isActive: true
+            }
+          }
         }
       })
 
@@ -65,24 +121,28 @@ export async function POST(request: NextRequest) {
         )
       }
 
-      // Check if credits are expired
-      const now = new Date()
-      const creditResetAt = user.creditResetAt ? new Date(user.creditResetAt) : new Date(user.createdAt!)
-      const timeSinceReset = now.getTime() - creditResetAt.getTime()
-      const isExpired = timeSinceReset >= CREDIT_RESET_CONFIG.RESET_PERIOD_MS
+      // Check if user can purchase addon credits
+      if (user.role !== 'COLLEGE_STUDENT') {
+        // For regular users, check credit expiration
+        const now = new Date()
+        const creditResetAt = user.creditResetAt ? new Date(user.creditResetAt) : new Date(user.createdAt!)
+        const timeSinceReset = now.getTime() - creditResetAt.getTime()
+        const isExpired = timeSinceReset >= CREDIT_RESET_CONFIG.RESET_PERIOD_MS
 
-      if (isExpired) {
-        return NextResponse.json(
-          { error: 'Cannot purchase addon credits. Your current plan has expired. Please renew your subscription first.' },
-          { status: 400 }
-        )
+        if (isExpired) {
+          return NextResponse.json(
+            { error: 'Cannot purchase addon credits. Your current plan has expired. Please renew your subscription first.' },
+            { status: 400 }
+          )
+        }
       }
+      // College students can always purchase addon credits, regular users only if not expired
     }
 
     // Create the payment record
     const payment = await prisma.payment.create({
       data: {
-        userId,
+        userId: finalUserId,
         amount: parseFloat(amount),
         currency,
         paymentCategory,
@@ -100,7 +160,7 @@ export async function POST(request: NextRequest) {
       if (paymentCategory === 'ADDON' && value) {
         // Add purchased credits to existing allocation (don't reset credit date)
         await prisma.user.update({
-          where: { id: userId },
+          where: { id: finalUserId },
           data: {
             totalCreditAllocation: {
               increment: parseInt(value)
@@ -111,7 +171,7 @@ export async function POST(request: NextRequest) {
       } else if (paymentCategory === 'MONTHLY') {
         // Set fresh credit allocation for monthly subscription and upgrade user to PRO
         await prisma.user.update({
-          where: { id: userId },
+          where: { id: finalUserId },
           data: {
             totalCreditAllocation: CREDIT_PACKAGES.PRO, // Use PRO package credits from site.ts
             usedCredits: 0, // Reset used credits for fresh month
@@ -138,9 +198,9 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user?.id) {
+    // Verify user authentication (NextAuth or JWT token)
+    const authenticatedUserId = await authenticateUser(request)
+    if (!authenticatedUserId) {
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
@@ -154,7 +214,7 @@ export async function GET(request: NextRequest) {
     // Get user's payments
     const payments = await prisma.payment.findMany({
       where: {
-        userId: session.user.id
+        userId: authenticatedUserId
       },
       orderBy: {
         createdAt: 'desc'
@@ -165,7 +225,7 @@ export async function GET(request: NextRequest) {
 
     const totalCount = await prisma.payment.count({
       where: {
-        userId: session.user.id
+        userId: authenticatedUserId
       }
     })
 

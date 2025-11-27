@@ -239,7 +239,7 @@ export function ProfileSettings() {
         </div>
 
         <div className="flex justify-end">
-          <Button onClick={handleSave} disabled={isSaving}>
+          <Button onClick={handleSave} disabled={isSaving} className="cursor-pointer">
             {isSaving ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
