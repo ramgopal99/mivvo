@@ -5,7 +5,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { CheckCircle, XCircle, AlertTriangle, FileText, X, Upload, Zap } from "lucide-react"
-import { CVValidator } from "./_components/cv-validator"
 import { convertToMarkdown } from "./_components/markdown-converter"
 import { validateStructure } from "./_components/structure-validator"
 
@@ -93,7 +92,6 @@ export default function TestCVPage() {
     }
 
     const setCV = side === 'left' ? setLeftCV : setRightCV
-    const currentCV = side === 'left' ? leftCV : rightCV
 
     setCV({
       file: selectedFile,
@@ -232,14 +230,12 @@ export default function TestCVPage() {
 
       // Check section order (standard CV flow)
       const userOrder = validateStructure(userMarkdown.markdown, userSections).sectionsOrder
-      const standardOrder = ['contact', 'summary', 'experience', 'education', 'skills', 'certifications', 'projects']
 
       const orderIssues = []
-      let contactIndex = -1, summaryIndex = -1, experienceIndex = -1, educationIndex = -1
+      let summaryIndex = -1, experienceIndex = -1, educationIndex = -1
 
       userOrder.forEach((section, index) => {
         const sectionLower = section.toLowerCase()
-        if (sectionLower.includes('contact')) contactIndex = index
         if (sectionLower.includes('summary')) summaryIndex = index
         if (sectionLower.includes('experience')) experienceIndex = index
         if (sectionLower.includes('education')) educationIndex = index
@@ -297,7 +293,6 @@ export default function TestCVPage() {
       const baseScore = 100
       const essentialPenalty = 20 // Higher penalty for missing essential sections
       const recommendedBonus = 5 // Bonus for having recommended sections
-      const contentPenalty = 10
 
       console.log('Score calculation:', {
         baseScore,
@@ -336,11 +331,8 @@ export default function TestCVPage() {
 
       const finalScore = Math.max(0, Math.min(100, score))
 
-      console.log('Final score:', score, 'Raw score:', rawScore)
+      console.log('Final score:', finalScore, 'Raw score:', score)
 
-      // Calculate total cost (both conversions)
-      const totalTokens = templateMarkdown.tokensUsed + userMarkdown.tokensUsed
-      const totalCost = totalTokens * 0.000012
 
       // If no critical issues found, add success feedback
       if (issues.length === 0) {
@@ -428,6 +420,7 @@ export default function TestCVPage() {
                     onChange={(e) => handleFileSelect(e, 'left')}
                     disabled={leftCV.isExtracting}
                     className="hidden"
+                    aria-label="Upload Your CV"
                   />
                   <div className="space-y-3">
                     <Button
@@ -499,6 +492,7 @@ export default function TestCVPage() {
                     onChange={(e) => handleFileSelect(e, 'right')}
                     disabled={rightCV.isExtracting}
                     className="hidden"
+                    aria-label="Upload Reference CV"
                   />
                   <div className="space-y-3">
                     <Button
@@ -788,7 +782,7 @@ export default function TestCVPage() {
 
               <div className="mt-6 p-4 bg-gray-50 rounded-lg">
                 <div className="text-sm text-gray-600">
-                  <strong>💡 What we're checking:</strong>
+                  <strong>💡 What we&apos;re checking:</strong>
                   <ul className="mt-2 space-y-1 text-xs">
                     <li>• Missing sections compared to template</li>
                     <li>• Section order alignment</li>
