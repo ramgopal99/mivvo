@@ -5,7 +5,8 @@ import {
   MessageSquare,
   MessageCircle,
   Headphones,
-  BookOpen
+  BookOpen,
+  Globe
 } from "lucide-react"
 import { siteConfig } from "./site"
 
@@ -47,6 +48,12 @@ export const sidebarConfig: SidebarConfig = {
           icon: MessageSquare,
           description: "custom interview"
         },
+        ...(siteConfig.enableForeignLanguage ? [{
+          title: "Foreign Language",
+          url: "/dashboard/foreign-lang",
+          icon: Globe,
+          description: "Practice foreign language"
+        }] : []),
         ...(siteConfig.enableCourses ? [{
           title: "Courses",
           url: "/dashboard/courses",

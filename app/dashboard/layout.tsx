@@ -331,9 +331,10 @@ export default function DashboardLayout({
   const isCourseDetailPage = pathname.match(/\/courses\/[^\/]+$/)
   const isMockInterviewPage = pathname.match(/\/mockinterview\/[^\/]+$/)
   const isCustomInterviewMeetPage = pathname.match(/\/custominterview\/meet\/[^\/]+$/)
+  const isForeignLanguagePracticePage = pathname.match(/\/foreign-lang\/practice\/[^\/]+$/)
 
   // Check if sidebar should be shown
-  const showSidebar = !isCourseDetailPage && !isMockInterviewPage && !isCustomInterviewMeetPage
+  const showSidebar = !isCourseDetailPage && !isMockInterviewPage && !isCustomInterviewMeetPage && !isForeignLanguagePracticePage
 
   return showSidebar ? (
     <SidebarProvider>

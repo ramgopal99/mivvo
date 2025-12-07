@@ -5,6 +5,7 @@ export const siteConfig = {
   logo: "/mivvo.svg",
   email: "hi@mivvo.live",
   enableCourses: false, // Set to false to hide courses and prevent access
+  enableForeignLanguage: true, // Set to false to hide foreign language and prevent access
   links: {
     twitter: "https://twitter.com/mivvo",
     github: "https://github.com/mivvo",
