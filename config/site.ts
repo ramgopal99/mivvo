@@ -14,10 +14,13 @@ export const siteConfig = {
 
 
 
-// Auto-calculated credit packages (minutes × 12 credits per minute)
+// Credit calculation base multiplier (credits per minute)
+export const CREDIT_MULTIPLIER = 12 as const
+
+// Auto-calculated credit packages (minutes × CREDIT_MULTIPLIER credits per minute)
 export const CREDIT_PACKAGES = {
   FREE: 15,   // 15 × 12 = 180 credits
-  PRO: 360,     // 360 × 12 = 4320 credits
+  PRO: 300,     // 300 × 12 = 3600 credits
 } as const
 
 // Credit expiration configuration - set ONE of these values, others will be automatically calculated
@@ -57,9 +60,9 @@ export const PRICING_CONFIG = {
   ADDON_CREDITS: {
     PRICE_PER_CREDIT_PAISA: 10, // 10 paise = ₹0.10 per credit
     AVAILABLE_PACKAGES: [
-      { rupees: 50, minutes: 40, display: `₹50 (${40 * 12} credits)` },    // 15 minutes = 180 credits
-      { rupees: 100, minutes: 80, display: `₹100 (${80 * 12} credits)` },  // 30 minutes = 360 credits
-      { rupees: 150, minutes: 125, display: `₹150 (${125 * 12} credits)` }   // 45 minutes = 540 credits
+      { rupees: 50, minutes: 40, display: `₹50 (${40 * CREDIT_MULTIPLIER} credits)` },    // 15 minutes = 180 credits
+      { rupees: 100, minutes: 80, display: `₹100 (${80 * CREDIT_MULTIPLIER} credits)` },  // 30 minutes = 360 credits
+      { rupees: 150, minutes: 125, display: `₹150 (${125 * CREDIT_MULTIPLIER} credits)` }   // 45 minutes = 540 credits
     ]
   }
 } as const

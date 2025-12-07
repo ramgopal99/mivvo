@@ -11,7 +11,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { CREDIT_PACKAGES } from "@/config/site"
+import { CREDIT_PACKAGES, CREDIT_MULTIPLIER } from "@/config/site"
 import { landingConfig } from "../../config/landing-config"
 import { Navbar } from "@/components/main"
 
@@ -32,7 +32,7 @@ export default function PricingPage() {
             </p>
             <div className="flex items-center justify-center gap-4 text-sm text-gray-600 mb-8">
               <Zap className="h-4 w-4 text-green-500" />
-              <span>{CREDIT_PACKAGES.FREE} credits free • No credit card required</span>
+              <span>{CREDIT_PACKAGES.FREE * CREDIT_MULTIPLIER} credits free • No credit card required</span>
             </div>
           </div>
         </div>
@@ -168,7 +168,7 @@ export default function PricingPage() {
       <section className="py-16 bg-primary text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to ace your next interview?</h2>
-          <p className="text-xl mb-8 opacity-90">Start with {CREDIT_PACKAGES.FREE} free credits and see the difference AI-powered practice makes.</p>
+          <p className="text-xl mb-8 opacity-90">Start with {CREDIT_PACKAGES.FREE * CREDIT_MULTIPLIER} free credits and see the difference AI-powered practice makes.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/auth/signup">
               <Button

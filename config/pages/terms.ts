@@ -117,7 +117,7 @@ export const termsConfig = {
           title: "Billing Terms",
           content: [
             "Subscription fees are billed in advance on a monthly or annual basis",
-            "All fees are non-refundable except as required by law",
+            "If approved, refunds will be credited to the original method of payment within 7-10 business days",
             "You may cancel your subscription at any time",
             "Access to paid features continues until the end of the current billing period"
           ]

@@ -1,4 +1,4 @@
-import { CREDIT_PACKAGES } from './site'
+import { CREDIT_PACKAGES, CREDIT_MULTIPLIER } from './site'
 
 export const landingConfig = {
   hero: {
@@ -352,18 +352,17 @@ export const landingConfig = {
     header: {
       title: "Simple pricing for all your needs",
       subtitle: "Choose the plan that's right for you and start practicing today.",
-      additionalInfo: `${CREDIT_PACKAGES.FREE} credits free • No credit card required`
+      additionalInfo: `${CREDIT_PACKAGES.FREE * CREDIT_MULTIPLIER} credits free • No credit card required`
     },
     plans: [
       {
         name: "Free",
         isPopular: false,
-        price: CREDIT_PACKAGES.FREE.toString(),
+        price: "180",
         currency: "",
-        billingPeriod: "credits",
+        billingPeriod: `credits`,
         description: "Perfect for getting started with AI mock interviews.",
         features: [
-          `${CREDIT_PACKAGES.FREE} credits free`,
           "Basic AI feedback",
           "Performance summary",
           "Email support",
@@ -380,10 +379,10 @@ export const landingConfig = {
         isPopular: true,
         price: "249",
         currency: "₹",
-        billingPeriod: `/${CREDIT_PACKAGES.PRO} credits`,
+        billingPeriod: `/month`,
         description: "Best for serious job seekers and career changers.",
         features: [
-          `${CREDIT_PACKAGES.PRO} credits total`,
+          `${CREDIT_PACKAGES.PRO * CREDIT_MULTIPLIER} credits included`,
           "Advanced AI analysis",
           "Detailed performance reports",
           "Company-specific practice",
