@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { type ReadingComprehensionData } from "../data/practice-data";
 
 interface ReadingComprehensionPracticeProps {

@@ -6,4 +6,4 @@ export { WritingPractice } from "./writing-practice";
 export { WritingPractice as WritingPracticeInterface } from "./writing-practice-interface";
 
 // Re-export types
-export type { WritingTopicData } from "../../data/practice-data";
+export type { WritingTopicData } from "../data/practice-data";

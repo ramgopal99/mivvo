@@ -35,7 +35,6 @@ export function SpeakingPracticeDialog({
 
   const languageLabel = languageLabels[selectedLanguage] || "English";
 
-  const selectedPracticeConfig = speakingPracticeTypes.find(type => type.id === selectedSpeakingType);
 
   const handleGenerate = () => {
     // TODO: Implement the generation logic
@@ -72,6 +71,7 @@ export function SpeakingPracticeDialog({
                     value={practiceType.id}
                     checked={selectedSpeakingType === practiceType.id}
                     onChange={(e) => onSpeakingTypeChange(e.target.value)}
+                    title={`Select ${practiceType.title} practice type`}
                     className="h-4 w-4"
                   />
                   <Label htmlFor={practiceType.id} className="flex-1 cursor-pointer">

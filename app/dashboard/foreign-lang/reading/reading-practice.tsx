@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen } from "lucide-react";
-import { levelDescriptions, skillConfig, type SkillType, type LanguageValue } from "../config";
+import { levelDescriptions, skillConfig, type LanguageValue } from "../config";
 import { ReadingPracticeDialog } from "./reading-practice-dialog";
 
 interface ReadingPracticeProps {

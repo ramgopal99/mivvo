@@ -7,4 +7,4 @@ export { ReadingComprehensionPractice } from "./reading-comprehension-practice";
 export { RearrangeSentencesPractice } from "./rearrange-sentences-practice";
 
 // Re-export types
-export type { ReadingComprehensionData, RearrangeSentenceData } from "../../data/practice-data";
+export type { ReadingComprehensionData, RearrangeSentenceData } from "../data/practice-data";
