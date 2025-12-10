@@ -49,7 +49,7 @@ const Pay = () => {
     setIsSubmitting(true)
 
     try {
-      const response = await fetch('/api/payment', {
+      const response = await fetch('/api/initiate-payment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
