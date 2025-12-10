@@ -45,13 +45,17 @@ interface MessageDialogProps {
   onOpenChange: (open: boolean) => void
   message?: ContactMessage | null
   ticket?: SupportTicket | null
+  onMarkComplete?: (messageId: string) => void
+  isMarkingComplete?: boolean
 }
 
 export function MessageDialog({
   open,
   onOpenChange,
   message,
-  ticket
+  ticket,
+  onMarkComplete,
+  isMarkingComplete = false
 }: MessageDialogProps) {
   const isContactMessage = !!message
   const item = message || ticket
@@ -203,6 +207,19 @@ export function MessageDialog({
 
         {/* Actions */}
         <div className="flex justify-end gap-3 pt-4 border-t border-gray-200 mt-4 flex-shrink-0">
+          {isContactMessage && onMarkComplete && (message as ContactMessage).status !== 'COMPLETED' && (
+            <Button
+              onClick={() => {
+                if (message) {
+                  onMarkComplete(message.id)
+                }
+              }}
+              disabled={isMarkingComplete}
+              className="px-6 bg-green-600 hover:bg-green-700 text-white"
+            >
+              {isMarkingComplete ? 'Marking...' : 'Mark Complete'}
+            </Button>
+          )}
           <Button variant="outline" onClick={() => onOpenChange(false)} className="px-6">
             Close
           </Button>

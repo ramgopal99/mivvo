@@ -25,25 +25,22 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check if user has already submitted feedback today
-    const today = new Date()
-    today.setHours(0, 0, 0, 0)
-    const tomorrow = new Date(today)
-    tomorrow.setDate(tomorrow.getDate() + 1)
+    // Check rate limit: 2 feedback per 24 hours
+    const twentyFourHoursAgo = new Date()
+    twentyFourHoursAgo.setHours(twentyFourHoursAgo.getHours() - 24)
 
-    const existingFeedback = await prisma.feedback.findFirst({
+    const recentFeedbackCount = await prisma.feedback.count({
       where: {
         userId: user.id,
         createdAt: {
-          gte: today,
-          lt: tomorrow,
-        },
-      },
+          gte: twentyFourHoursAgo
+        }
+      }
     })
 
-    if (existingFeedback) {
+    if (recentFeedbackCount >= 2) {
       return NextResponse.json(
-        { success: false, message: "You can only submit feedback once per day. Please try again tomorrow." },
+        { success: false, message: "You have already submitted 2 feedback messages in the last 24 hours. Please wait before submitting another." },
         { status: 429 }
       )
     }
@@ -80,7 +77,7 @@ export async function GET(request: NextRequest) {
   try {
     const user = await getSessionUserData()
 
-    if (!user || user.role !== "SUPERADMIN") {
+    if (!user || (user.role !== "ADMIN" && user.role !== "SUPERADMIN")) {
       return NextResponse.json(
         { success: false, message: "Admin access required" },
         { status: 403 }

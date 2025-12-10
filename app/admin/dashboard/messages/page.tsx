@@ -2,16 +2,18 @@
 
 import { useState, useEffect } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { MessageSquare, HelpCircle } from "lucide-react"
+import { MessageSquare, HelpCircle, MessageCircle } from "lucide-react"
 import { toast } from "sonner"
 import {
   MessagesStats,
   MessagesFilters,
   ContactMessagesList,
   SupportTicketsList,
+  FeedbackList,
   Pagination,
   MessageDialog,
-  ReplyDialog
+  ReplyDialog,
+  FeedbackDialog
 } from "./_components"
 
 interface ContactMessage {
@@ -49,9 +51,24 @@ interface SupportTicket {
   }
 }
 
+interface Feedback {
+  id: string
+  title: string
+  message: string
+  userId: string
+  createdAt: string
+  updatedAt: string
+  user?: {
+    id: string
+    name?: string
+    email: string
+  }
+}
+
 export default function AdminMessagesPage() {
   const [contactMessages, setContactMessages] = useState<ContactMessage[]>([])
   const [supportTickets, setSupportTickets] = useState<SupportTicket[]>([])
+  const [feedbacks, setFeedbacks] = useState<Feedback[]>([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
   const [filterStatus, setFilterStatus] = useState("all")
@@ -67,6 +84,13 @@ export default function AdminMessagesPage() {
   const [selectedTicketForReply, setSelectedTicketForReply] = useState<SupportTicket | null>(null)
   const [replyLoading, setReplyLoading] = useState(false)
 
+  // Feedback dialog state
+  const [feedbackDialogOpen, setFeedbackDialogOpen] = useState(false)
+  const [selectedFeedback, setSelectedFeedback] = useState<Feedback | null>(null)
+
+  // Mark complete state
+  const [isMarkingComplete, setIsMarkingComplete] = useState(false)
+
   // Pagination state for contact messages
   const [contactPagination, setContactPagination] = useState({
     page: 1,
@@ -79,6 +103,16 @@ export default function AdminMessagesPage() {
 
   // Pagination state for support tickets
   const [supportPagination, setSupportPagination] = useState({
+    page: 1,
+    limit: 10,
+    totalCount: 0,
+    totalPages: 0,
+    hasNextPage: false,
+    hasPrevPage: false
+  })
+
+  // Pagination state for feedback
+  const [feedbackPagination, setFeedbackPagination] = useState({
     page: 1,
     limit: 10,
     totalCount: 0,
@@ -123,6 +157,28 @@ export default function AdminMessagesPage() {
     }
   }
 
+  const fetchFeedbacks = async (page = 1) => {
+    try {
+      const response = await fetch(`/api/feedback?page=${page}&limit=10`)
+      if (response.ok) {
+        const data = await response.json()
+        if (data.success) {
+          setFeedbacks(data.data.feedback)
+          setFeedbackPagination({
+            page: data.data.pagination.page,
+            limit: data.data.pagination.limit,
+            totalCount: data.data.pagination.total,
+            totalPages: data.data.pagination.pages,
+            hasNextPage: data.data.pagination.page < data.data.pagination.pages,
+            hasPrevPage: data.data.pagination.page > 1
+          })
+        }
+      }
+    } catch (error) {
+      console.error('Failed to fetch feedbacks:', error)
+    }
+  }
+
   const fetchData = async () => {
     setLoading(true)
     try {
@@ -131,6 +187,9 @@ export default function AdminMessagesPage() {
 
       // Fetch support tickets (first page)
       await fetchSupportTickets(1)
+
+      // Fetch feedbacks (first page)
+      await fetchFeedbacks(1)
     } catch (error) {
       console.error('Failed to fetch data:', error)
     } finally {
@@ -138,7 +197,10 @@ export default function AdminMessagesPage() {
     }
   }
 
-  const completedTickets = supportTickets.filter(ticket => ticket.status === 'COMPLETED').length
+  // Count completed items from both contact messages and support tickets
+  const completedContactMessages = contactMessages.filter(message => message.status === 'COMPLETED').length
+  const completedSupportTickets = supportTickets.filter(ticket => ticket.status === 'COMPLETED').length
+  const totalCompleted = completedContactMessages + completedSupportTickets
 
   const filteredContactMessages = contactMessages.filter(message => {
     const matchesSearch = searchTerm === "" ||
@@ -160,6 +222,12 @@ export default function AdminMessagesPage() {
   const handleSupportPageChange = async (newPage: number) => {
     setLoading(true)
     await fetchSupportTickets(newPage)
+    setLoading(false)
+  }
+
+  const handleFeedbackPageChange = async (newPage: number) => {
+    setLoading(true)
+    await fetchFeedbacks(newPage)
     setLoading(false)
   }
 
@@ -226,6 +294,42 @@ export default function AdminMessagesPage() {
     }
   }
 
+  const handleMarkComplete = async (messageId: string) => {
+    setIsMarkingComplete(true)
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: messageId,
+          status: 'COMPLETED'
+        })
+      })
+
+      if (response.ok) {
+        toast.success('Contact message marked as complete!')
+        // Update the message status in the list
+        setContactMessages(prev => prev.map(msg => 
+          msg.id === messageId ? { ...msg, status: 'COMPLETED' } : msg
+        ))
+        // Update selected message if it's the one being marked
+        if (selectedMessage?.id === messageId) {
+          setSelectedMessage({ ...selectedMessage, status: 'COMPLETED' })
+        }
+        // Refresh data
+        await fetchContactMessages(contactPagination.page)
+      } else {
+        toast.error('Failed to mark message as complete')
+      }
+    } catch (error) {
+      console.error('Error marking message as complete:', error)
+      toast.error('Failed to mark message as complete')
+    } finally {
+      setIsMarkingComplete(false)
+    }
+  }
 
   const filteredSupportTickets = supportTickets.filter(ticket => {
     const matchesSearch = searchTerm === "" ||
@@ -234,6 +338,16 @@ export default function AdminMessagesPage() {
       ticket.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
       ticket.user?.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       ticket.user?.name?.toLowerCase().includes(searchTerm.toLowerCase())
+
+    return matchesSearch
+  })
+
+  const filteredFeedbacks = feedbacks.filter(feedback => {
+    const matchesSearch = searchTerm === "" ||
+      feedback.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      feedback.message.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      feedback.user?.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      feedback.user?.name?.toLowerCase().includes(searchTerm.toLowerCase())
 
     return matchesSearch
   })
@@ -292,15 +406,16 @@ export default function AdminMessagesPage() {
 
       {/* Stats Cards */}
       <MessagesStats
-        totalCount={contactPagination.totalCount + (supportPagination?.totalCount || 0)}
+        totalCount={contactPagination.totalCount + (supportPagination?.totalCount || 0) + (feedbackPagination?.totalCount || 0)}
         contactMessageCount={contactPagination.totalCount}
         supportTicketCount={supportPagination?.totalCount || 0}
-        completedTickets={completedTickets}
+        completedTickets={totalCompleted}
+        feedbackCount={feedbackPagination?.totalCount || 0}
       />
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
         <div className="bg-gray-50 border border-gray-200 rounded-xl p-1">
-          <TabsList className="grid w-full grid-cols-2 bg-transparent h-auto p-0">
+          <TabsList className="grid w-full grid-cols-3 bg-transparent h-auto p-0">
             <TabsTrigger
               value="contact"
               className="flex items-center gap-3 px-6 py-3 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm transition-all duration-200 text-gray-600 data-[state=active]:text-gray-900"
@@ -327,6 +442,19 @@ export default function AdminMessagesPage() {
                 </div>
               </div>
             </TabsTrigger>
+            <TabsTrigger
+              value="feedback"
+              className="flex items-center gap-3 px-6 py-3 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm transition-all duration-200 text-gray-600 data-[state=active]:text-gray-900"
+            >
+              <div className="flex items-center gap-2">
+                <div className="p-1.5 rounded-lg bg-green-100 text-green-600">
+                  <MessageCircle className="h-4 w-4" />
+                </div>
+                <div className="text-left">
+                  <div className="font-medium">Feedback</div>
+                </div>
+              </div>
+            </TabsTrigger>
           </TabsList>
         </div>
 
@@ -338,8 +466,20 @@ export default function AdminMessagesPage() {
           onFilterChange={setFilterStatus}
           activeTab={activeTab}
           onRefresh={fetchData}
-          totalCount={activeTab === 'contact' ? contactPagination.totalCount : (supportPagination?.totalCount || 0)}
-          filteredCount={activeTab === 'contact' ? filteredContactMessages.length : filteredSupportTickets.length}
+          totalCount={
+            activeTab === 'contact' 
+              ? contactPagination.totalCount 
+              : activeTab === 'support' 
+              ? (supportPagination?.totalCount || 0)
+              : (feedbackPagination?.totalCount || 0)
+          }
+          filteredCount={
+            activeTab === 'contact' 
+              ? filteredContactMessages.length 
+              : activeTab === 'support'
+              ? filteredSupportTickets.length
+              : filteredFeedbacks.length
+          }
         />
 
         <TabsContent value="contact" className="space-y-4">
@@ -370,6 +510,23 @@ export default function AdminMessagesPage() {
             loading={loading}
           />
         </TabsContent>
+
+        <TabsContent value="feedback" className="space-y-4">
+          <FeedbackList
+            feedbacks={filteredFeedbacks}
+            onFeedbackClick={(feedback) => {
+              setSelectedFeedback(feedback)
+              setFeedbackDialogOpen(true)
+            }}
+          />
+
+          <Pagination
+            currentPage={feedbackPagination?.page || 1}
+            totalPages={feedbackPagination?.totalPages || 0}
+            onPageChange={handleFeedbackPageChange}
+            loading={loading}
+          />
+        </TabsContent>
       </Tabs>
 
       {/* Message Dialog */}
@@ -378,6 +535,8 @@ export default function AdminMessagesPage() {
         onOpenChange={setDialogOpen}
         message={selectedMessage}
         ticket={selectedTicket}
+        onMarkComplete={handleMarkComplete}
+        isMarkingComplete={isMarkingComplete}
       />
 
       {/* Reply Dialog */}
@@ -387,6 +546,13 @@ export default function AdminMessagesPage() {
         ticket={selectedTicketForReply}
         onSubmit={handleReplySubmit}
         loading={replyLoading}
+      />
+
+      {/* Feedback Dialog */}
+      <FeedbackDialog
+        open={feedbackDialogOpen}
+        onOpenChange={setFeedbackDialogOpen}
+        feedback={selectedFeedback}
       />
     </div>
   )

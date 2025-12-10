@@ -92,6 +92,14 @@ export async function GET(request: NextRequest) {
       data: {
         pending,
         completed
+      },
+      pagination: {
+        page,
+        limit,
+        totalCount,
+        totalPages,
+        hasNextPage: page < totalPages,
+        hasPrevPage: page > 1
       }
     })
   } catch (error) {

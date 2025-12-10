@@ -39,7 +39,7 @@ export function MessagesFilters({
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
           <Input
-            placeholder={`Search ${activeTab === 'contact' ? 'contact messages' : 'support tickets'}...`}
+            placeholder={`Search ${activeTab === 'contact' ? 'contact messages' : activeTab === 'support' ? 'support tickets' : 'feedback'}...`}
             value={searchTerm}
             onChange={(e) => onSearchChange(e.target.value)}
             className="pl-10"
@@ -52,7 +52,7 @@ export function MessagesFilters({
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All {activeTab === 'contact' ? 'Messages' : 'Tickets'}</SelectItem>
+            <SelectItem value="all">All {activeTab === 'contact' ? 'Messages' : activeTab === 'support' ? 'Tickets' : 'Feedback'}</SelectItem>
             <SelectItem value="unread">Unread</SelectItem>
             <SelectItem value="read">Read</SelectItem>
             {activeTab === 'support' && (
