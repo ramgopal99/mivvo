@@ -14,11 +14,12 @@ import { Module } from './types';
 
 interface CourseModuleProps {
   module: Module;
+  moduleIndex: number;
   isExpanded: boolean;
   onToggle: () => void;
 }
 
-export default function CourseModule({ module, isExpanded, onToggle }: CourseModuleProps) {
+export default function CourseModule({ module, moduleIndex, isExpanded, onToggle }: CourseModuleProps) {
   const totalItems = (module.subLessons?.length || 0) + (module.exercises?.length || 0);
 
   return (
@@ -27,12 +28,12 @@ export default function CourseModule({ module, isExpanded, onToggle }: CourseMod
         {/* Module Header */}
         <button
           onClick={onToggle}
-          className="w-full flex items-center justify-between p-4 hover:bg-muted/50 transition-colors"
+          className="w-full flex items-center justify-between p-4 hover:bg-muted/50 transition-colors cursor-pointer"
         >
           <div className="flex items-center gap-3">
             <Folder className="w-5 h-5 text-primary" />
             <span className="font-semibold text-left">{module.title}</span>
-            {module.hasDemo && (
+            {moduleIndex < 2 && (
               <Badge variant="secondary" className="ml-2">
                 <Star className="w-3 h-3 mr-1" />
                 Demo

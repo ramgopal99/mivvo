@@ -24,10 +24,11 @@ export default function CourseOverview({
 
         {/* Modules List */}
         <div className="space-y-2">
-          {modules?.map((module) => (
+          {modules?.map((module, index) => (
             <CourseModule
               key={module.id}
               module={module}
+              moduleIndex={index}
               isExpanded={expandedModules.has(module.id)}
               onToggle={() => onToggleModule(module.id)}
             />

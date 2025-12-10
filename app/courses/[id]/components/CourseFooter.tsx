@@ -11,9 +11,14 @@ export default function CourseFooter() {
             <h3 className="font-semibold">Go from Zero to Hero</h3>
             <p className="text-sm text-muted-foreground">Start your learning journey today</p>
           </div>
-          <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-            Buy now for ₹399
-          </Button>
+          <div className="flex gap-3">
+            <Button variant="outline" size="lg" className="cursor-pointer">
+              Demo
+            </Button>
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer">
+              Buy now for ₹399
+            </Button>
+          </div>
         </div>
       </div>
     </div>

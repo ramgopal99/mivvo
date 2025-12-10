@@ -19,7 +19,7 @@ export default function CourseHeader({ course, stats }: CourseHeaderProps) {
         <Button
           variant="ghost"
           onClick={() => router.push('/courses')}
-          className="mb-6"
+          className="mb-6 cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Courses
@@ -37,7 +37,7 @@ export default function CourseHeader({ course, stats }: CourseHeaderProps) {
           </p>
 
           {/* CTA Button */}
-          <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 mb-8">
+          <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer mb-8">
             Buy now for ₹399
           </Button>
 
