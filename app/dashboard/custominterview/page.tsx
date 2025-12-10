@@ -179,6 +179,12 @@ export default function CustomInterviewPage() {
           })
           return
         }
+        if (errorData.insufficientCredits) {
+          import('sonner').then(({ toast }) => {
+            toast.error(errorData.message || 'Insufficient credits')
+          })
+          return
+        }
       }
 
       // Handle duplicate interview error (409)
@@ -187,6 +193,17 @@ export default function CustomInterviewPage() {
         if (errorData.duplicateFound) {
           import('sonner').then(({ toast }) => {
             toast.error(errorData.error || 'This interview already exists')
+          })
+          return
+        }
+      }
+
+      // Handle rate limit exceeded error (429)
+      if (response.status === 429) {
+        const errorData = await response.json()
+        if (errorData.rateLimitExceeded) {
+          import('sonner').then(({ toast }) => {
+            toast.error(errorData.message || 'Rate limit exceeded')
           })
           return
         }

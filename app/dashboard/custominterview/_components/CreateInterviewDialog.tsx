@@ -422,6 +422,14 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
           return // Don't proceed with interview creation
         }
 
+        // Handle rate limit exceeded error (429)
+        if (response.status === 429 && responseData.rateLimitExceeded) {
+          import('sonner').then(({ toast }) => {
+            toast.error(responseData.message || 'Rate limit exceeded. You can only create one custom interview per 24 hours.')
+          })
+          return // Don't proceed with interview creation
+        }
+
         if (!response.ok || responseData.error) {
           throw new Error(responseData.error || 'Failed to analyze job description')
         }
@@ -811,7 +819,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
                 placeholder="Paste your job description here. The system will analyze it and create a tailored interview prompt."
                 value={customJD}
                 onChange={(e) => setCustomJD(e.target.value)}
-                className="h-[200px] overflow-y-auto resize-none"
+                className="h-[120px] overflow-y-auto resize-none"
                 disabled={isAnalyzingJD}
               />
               <p className="text-xs text-gray-500">
@@ -1049,7 +1057,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
                   : false
               )
             }
-            className="bg-primary hover:bg-primary/90"
+            className="bg-primary hover:bg-primary/90 cursor-pointer"
           >
             {isCreating ? (
               <>

@@ -17,6 +17,7 @@ import { extractRoleAndCompanyFromJDWithAI, isOpenAIAvailable } from '@/lib/util
 import { generateBackendInterviewTitle } from '@/app/dashboard/custominterview/_components/utils/interview-title-utils'
 import { processCompanyName, shouldPreventDuplicate } from '@/app/dashboard/custominterview/_components/utils/interview-utils'
 import { selectInterviewPrompt, PromptSelectionData } from '@/app/dashboard/custominterview/_components/utils/prompt-selector'
+import { INTERVIEW_CONFIG } from '@/config/site'
 import jwt from 'jsonwebtoken'
 
 
@@ -180,7 +181,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Parse request body
-    const { jdDetails, interviewType, screenShare, company, generalSubType, hrSubType, foreignLanguageSubType, customPrompt, cvText, role } = await request.json()
+    const { jdDetails, interviewType, screenShare, company, generalSubType, hrSubType, foreignLanguageSubType, customPrompt, cvText, role, experienceLevel } = await request.json()
+
+    // Rate limit check moved to analyze-jd route to prevent token waste
 
     // Validate required fields
     if (!jdDetails || !interviewType) {
@@ -216,7 +219,6 @@ export async function POST(request: NextRequest) {
     const { cleanedCompanyName } = processCompanyName(company, extractedData)
 
     // Generate title based on interview type and role information
-    // Generate title based on interview type and role information
     const baseTitle = generateBackendInterviewTitle(
       interviewType,
       interviewType === 'HR' ? hrSubType : role, // Use hrSubType as role for HR interviews
@@ -224,7 +226,8 @@ export async function POST(request: NextRequest) {
       undefined, // hrSubType no longer needed separately
       extractedData,
       cleanedCompanyName,
-      foreignLanguageSubType
+      foreignLanguageSubType,
+      experienceLevel // Include experience level for Technical interviews
     )
 
 
@@ -273,6 +276,33 @@ export async function POST(request: NextRequest) {
       } while (existingTitles.includes(uniqueTitle))
     }
 
+    // Determine credits to deduct based on interview type
+    const creditsToDeduct = interviewType === 'Custom'
+      ? INTERVIEW_CONFIG.CUSTOM_CREDITS_REQUIRED
+      : INTERVIEW_CONFIG.TEMPLATE_CREDITS_REQUIRED
+
+    // Check if user has enough credits for this interview type
+    const currentUsedCredits = user.usedCredits || 0
+    const totalCredits = user.totalCreditAllocation || 0
+    const availableCredits = totalCredits - currentUsedCredits
+
+    if (availableCredits < creditsToDeduct) {
+      return NextResponse.json({
+        error: 'Insufficient credits',
+        message: `Creating a ${interviewType.toLowerCase()} interview requires ${creditsToDeduct} credits. You have ${availableCredits} credits remaining. Please upgrade to continue creating interviews.`,
+        insufficientCredits: true,
+        requiredCredits: creditsToDeduct,
+        availableCredits
+      }, { status: 403 })
+    }
+
+    // Deduct credits for interview creation
+    const newUsedCredits = currentUsedCredits + creditsToDeduct
+    await prisma.user.update({
+      where: { id: userId },
+      data: { usedCredits: newUsedCredits }
+    })
+
     // Create interview in database
     // Create interview in database
     const interview = await prisma.mockInterview.create({
@@ -304,7 +334,7 @@ export async function POST(request: NextRequest) {
       jdDetails,
       title: interview.title || undefined,
       customPrompt,
-      experienceLevel: undefined // Not used in current implementation
+      experienceLevel: experienceLevel || undefined
     }
 
     const promptText = selectInterviewPrompt(promptSelectionData)

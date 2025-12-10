@@ -4,8 +4,8 @@ export const siteConfig = {
   url: "https://mivvo.live",
   logo: "/mivvo.svg",
   email: "hello@mivvo.com",
-  enableCourses: true, // Set to false to hide courses and prevent access
-  enableForeignLanguage: true, // Set to false to hide foreign language and prevent access
+  enableCourses: false,
+  enableForeignLanguage: false,
   links: {
     twitter: "https://twitter.com/mivvo",
     github: "https://github.com/mivvo",
@@ -18,6 +18,13 @@ export const siteConfig = {
 // Credit calculation base multiplier (credits per minute)
 export const CREDIT_MULTIPLIER = 12 as const
 
+// Interview creation limits and costs
+export const INTERVIEW_CONFIG = {
+  MAX_INTERVIEWS_PER_DAY: 3,        // Maximum custom interviews per 24 hours
+  TEMPLATE_CREDITS_REQUIRED: 1,     // Credits required for template interviews
+  CUSTOM_CREDITS_REQUIRED: 1,       // Credits required for custom interviews
+} as const
+
 // Auto-calculated credit packages (minutes × CREDIT_MULTIPLIER credits per minute)
 export const CREDIT_PACKAGES = {
   FREE: 15,   // 15 × 12 = 180 credits
@@ -27,10 +34,10 @@ export const CREDIT_PACKAGES = {
 // Credit expiration configuration - set ONE of these values, others will be automatically calculated
 const CREDIT_EXPIRATION = {
   SECONDS: 0,      // Set this for seconds
-  MINUTES: 1,      // Set this for minutes
+  MINUTES: 0,      // Set this for minutes
   HOURS: 0,        // Set this for hours
   DAYS: 0,        // Set this for days (currently active)
-  MONTHS: 0,       // Set this for months (approximated as 30 days)
+  MONTHS: 1,       // Set this for months (approximated as 30 days)
 } as const
 
 // Automatically calculate milliseconds based on the set value

@@ -57,6 +57,16 @@ Provide only the cleaned up request phrase without quotes:`
       temperature: 0.2, // Very low temperature for consistency
     })
 
+    // Log token usage for voice text refinement
+    console.log('🎤 Voice Text Refinement - Token Usage:', {
+      prompt_tokens: completion.usage?.prompt_tokens || 0,
+      completion_tokens: completion.usage?.completion_tokens || 0,
+      total_tokens: completion.usage?.total_tokens || 0,
+      model: 'gpt-4o-mini',
+      operation: 'voice_refinement',
+      input_length: voiceText.length
+    })
+
     const refinedText = completion.choices[0]?.message?.content?.trim() || voiceText
 
     return NextResponse.json({

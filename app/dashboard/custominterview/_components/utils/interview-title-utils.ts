@@ -140,12 +140,20 @@ export function generateBackendInterviewTitle(
   hrSubType?: string,
   extractedData?: { role: string | null; company: string | null } | null,
   cleanedCompanyName?: string | null,
-  foreignLanguageSubType?: string
+  foreignLanguageSubType?: string,
+  experienceLevel?: string
 ): string {
 
   if (interviewType === 'Technical' && (role || generalSubType)) {
     const actualRole = role || generalSubType
-    return TECHNICAL_ROLE_TITLES[actualRole!] || `${actualRole!.charAt(0).toUpperCase() + actualRole!.slice(1).replace(/-/g, ' ')} Interview`
+    const baseTitle = TECHNICAL_ROLE_TITLES[actualRole!] || `${actualRole!.charAt(0).toUpperCase() + actualRole!.slice(1).replace(/-/g, ' ')} Interview`
+
+    // Include experience level in title for Technical interviews to prevent duplicates
+    if (experienceLevel) {
+      return `${baseTitle} (${experienceLevel})`
+    }
+
+    return baseTitle
   }
 
   if (interviewType === 'General' && generalSubType) {
