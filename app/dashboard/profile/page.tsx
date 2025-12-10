@@ -16,6 +16,7 @@ export default function ProfilePage() {
     email?: string | null
     image?: string | null
     role?: UserRole
+    userType?: 'FREE' | 'PRO'
     college?: {
       id: string
       name: string
@@ -42,12 +43,43 @@ export default function ProfilePage() {
             if (response.ok) {
               const sessionData = await response.json()
               if (sessionData.authenticated && sessionData.user) {
-                // College student session is valid
+                // Fetch full profile data for college students to get userType
+                try {
+                  const profileResponse = await fetch('/api/user/profile', {
+                    headers: {
+                      'Authorization': `Bearer ${token}`
+                    }
+                  })
+                  if (profileResponse.ok) {
+                    const profileData = await profileResponse.json()
+                    // API returns data in profileData.data structure
+                    const userType = (profileData.data?.userType || profileData.userType) as 'FREE' | 'PRO' | undefined
+                    const collegeUser = {
+                      id: sessionData.user.id,
+                      name: sessionData.user.name,
+                      email: sessionData.user.email,
+                      image: null, // College students don't have images
+                      role: UserRole.COLLEGE_STUDENT,
+                      userType: userType,
+                      college: sessionData.user.collegeId ? {
+                        id: sessionData.user.collegeId,
+                        name: sessionData.user.collegeName,
+                        collegeId: sessionData.user.collegeId
+                      } : undefined
+                    }
+                    setUserData(collegeUser)
+                    setLoading(false)
+                    return
+                  }
+                } catch (error) {
+                  console.error('Error fetching college student profile:', error)
+                }
+                // Fallback if profile fetch fails
                 const collegeUser = {
                   id: sessionData.user.id,
                   name: sessionData.user.name,
                   email: sessionData.user.email,
-                  image: null, // College students don't have images
+                  image: null,
                   role: UserRole.COLLEGE_STUDENT,
                   college: sessionData.user.collegeId ? {
                     id: sessionData.user.collegeId,
@@ -67,14 +99,42 @@ export default function ProfilePage() {
 
         // If no college student session, check NextAuth session
         if (status === 'authenticated' && session?.user) {
-          // Use NextAuth session data
-          setUserData({
-            id: session.user.id || 'unknown',
-            name: session.user.name,
-            email: session.user.email,
-            image: session.user.image,
-            role: UserRole.USER
-          })
+          // Fetch full user profile data including userType
+          try {
+            const profileResponse = await fetch('/api/user/profile')
+            if (profileResponse.ok) {
+              const profileData = await profileResponse.json()
+              // API returns data in profileData.data structure
+              const userType = profileData.data?.userType || profileData.userType
+              setUserData({
+                id: session.user.id || 'unknown',
+                name: session.user.name,
+                email: session.user.email,
+                image: session.user.image,
+                role: UserRole.USER,
+                userType: userType
+              })
+            } else {
+              // Fallback to session data only
+              setUserData({
+                id: session.user.id || 'unknown',
+                name: session.user.name,
+                email: session.user.email,
+                image: session.user.image,
+                role: UserRole.USER
+              })
+            }
+          } catch (error) {
+            console.error('Error fetching user profile:', error)
+            // Fallback to session data only
+            setUserData({
+              id: session.user.id || 'unknown',
+              name: session.user.name,
+              email: session.user.email,
+              image: session.user.image,
+              role: UserRole.USER
+            })
+          }
           setLoading(false)
           return
         }
@@ -93,6 +153,7 @@ export default function ProfilePage() {
                   email: parsedUserData.email,
                   image: null,
                   role: UserRole.COLLEGE_STUDENT,
+                  userType: parsedUserData.userType,
                   college: parsedUserData.college
                 }
                 setUserData(collegeUser)

@@ -25,13 +25,24 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check rate limit: 2 feedback per 24 hours
+    // Get user email for rate limiting
+    const userEmail = user.email
+    if (!userEmail) {
+      return NextResponse.json(
+        { success: false, message: "User email is required for feedback submission" },
+        { status: 400 }
+      )
+    }
+
+    // Check rate limit: 2 feedback per email per 24 hours
     const twentyFourHoursAgo = new Date()
     twentyFourHoursAgo.setHours(twentyFourHoursAgo.getHours() - 24)
 
     const recentFeedbackCount = await prisma.feedback.count({
       where: {
-        userId: user.id,
+        user: {
+          email: userEmail.toLowerCase().trim()
+        },
         createdAt: {
           gte: twentyFourHoursAgo
         }

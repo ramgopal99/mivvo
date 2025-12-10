@@ -10,6 +10,7 @@ interface ProfileDetailsProps {
     email?: string | null
     image?: string | null
     role?: UserRole
+    userType?: 'FREE' | 'PRO'
     college?: {
       id: string
       name: string
@@ -119,6 +120,25 @@ export function ProfileDetails({ user }: ProfileDetailsProps) {
                 <div className="flex items-center gap-2 mt-1">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                   <span className="text-sm text-muted-foreground">Active</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <Shield className="h-4 w-4 text-muted-foreground" />
+              <div className="flex-1">
+                <p className="text-sm font-medium text-foreground">Account Type</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <Badge 
+                    variant={user.userType === 'PRO' ? 'default' : 'outline'}
+                    className={
+                      user.userType === 'PRO' 
+                        ? 'bg-green-600 hover:bg-green-700 text-white border-green-600' 
+                        : 'bg-blue-100 text-blue-800 border-blue-300'
+                    }
+                  >
+                    {user.userType || 'FREE'}
+                  </Badge>
                 </div>
               </div>
             </div>

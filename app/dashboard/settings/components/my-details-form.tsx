@@ -1,13 +1,24 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
 import { updateUserDetails } from "../actions"
 import { UserData } from "../types"
+import { settingsFormSchema, SettingsFormValues } from "../schema"
 
 interface MyDetailsFormProps {
   userData: UserData
@@ -17,55 +28,10 @@ interface MyDetailsFormProps {
 export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsFormProps) {
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState("")
-  const [hasChanges, setHasChanges] = useState(false)
 
-
-  // Form state
-  const [formData, setFormData] = useState({
-    firstName: userData?.firstName || "",
-    lastName: userData?.lastName || "",
-    phone: userData?.phone || "",
-    dateOfBirth: userData?.dateOfBirth ? new Date(userData.dateOfBirth).toISOString().split('T')[0] : "",
-    jobTitle: userData?.jobTitle || "",
-    company: userData?.company || "",
-    location: userData?.location || "",
-    bio: userData?.bio || "",
-    careerGoals: userData?.careerGoals || "",
-    linkedIn: userData?.linkedIn || "",
-    github: userData?.github || "",
-    rollNumber: userData?.rollNumber || "",
-    branch: userData?.branch || "",
-    course: userData?.course || "",
-    courseDuration: userData?.courseDuration || "",
-    year: userData?.year || ""
-  })
-
-  // Update form state when userData changes (for async loading)
-  useEffect(() => {
-    setFormData({
-      firstName: userData?.firstName || "",
-      lastName: userData?.lastName || "",
-      phone: userData?.phone || "",
-      dateOfBirth: userData?.dateOfBirth ? new Date(userData.dateOfBirth).toISOString().split('T')[0] : "",
-      jobTitle: userData?.jobTitle || "",
-      company: userData?.company || "",
-      location: userData?.location || "",
-      bio: userData?.bio || "",
-      careerGoals: userData?.careerGoals || "",
-      linkedIn: userData?.linkedIn || "",
-      github: userData?.github || "",
-      rollNumber: userData?.rollNumber || "",
-      branch: userData?.branch || "",
-      course: userData?.course || "",
-      courseDuration: userData?.courseDuration || "",
-      year: userData?.year || ""
-    })
-  }, [userData])
-
-
-  // Track changes
-  useEffect(() => {
-    const originalData = {
+  const form = useForm<SettingsFormValues>({
+    resolver: zodResolver(settingsFormSchema),
+    defaultValues: {
       firstName: userData?.firstName || "",
       lastName: userData?.lastName || "",
       phone: userData?.phone || "",
@@ -83,34 +49,69 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
       courseDuration: userData?.courseDuration || "",
       year: userData?.year || ""
     }
+  })
 
-    const hasAnyChanges = Object.keys(formData).some(key =>
-      formData[key as keyof typeof formData] !== originalData[key as keyof typeof originalData]
-    )
-    setHasChanges(hasAnyChanges)
-  }, [formData, userData])
+  // Update form when userData changes
+  useEffect(() => {
+    form.reset({
+      firstName: userData?.firstName || "",
+      lastName: userData?.lastName || "",
+      phone: userData?.phone || "",
+      dateOfBirth: userData?.dateOfBirth ? new Date(userData.dateOfBirth).toISOString().split('T')[0] : "",
+      jobTitle: userData?.jobTitle || "",
+      company: userData?.company || "",
+      location: userData?.location || "",
+      bio: userData?.bio || "",
+      careerGoals: userData?.careerGoals || "",
+      linkedIn: userData?.linkedIn || "",
+      github: userData?.github || "",
+      rollNumber: userData?.rollNumber || "",
+      branch: userData?.branch || "",
+      course: userData?.course || "",
+      courseDuration: userData?.courseDuration || "",
+      year: userData?.year || ""
+    })
+  }, [userData, form])
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }))
-  }
-
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const onSubmit = async (data: SettingsFormValues) => {
     setSaving(true)
     setMessage("")
 
     try {
-      const formData = new FormData(e.currentTarget)
+      // Normalize GitHub and LinkedIn URLs
+      let githubUrl = data.github?.trim() || ""
+      let linkedInUrl = data.linkedIn?.trim() || ""
+
+      // Convert username to full URL if needed
+      if (githubUrl && !githubUrl.startsWith("http")) {
+        githubUrl = `https://github.com/${githubUrl}`
+      }
+      if (linkedInUrl && !linkedInUrl.startsWith("http")) {
+        linkedInUrl = `https://linkedin.com/in/${linkedInUrl}`
+      }
+
+      const formData = new FormData()
+      formData.append("firstName", data.firstName)
+      formData.append("lastName", data.lastName)
+      formData.append("phone", data.phone || "")
+      formData.append("dateOfBirth", data.dateOfBirth || "")
+      formData.append("jobTitle", data.jobTitle || "")
+      formData.append("company", data.company || "")
+      formData.append("location", data.location || "")
+      formData.append("bio", data.bio || "")
+      formData.append("careerGoals", data.careerGoals || "")
+      formData.append("linkedIn", linkedInUrl)
+      formData.append("github", githubUrl)
+      formData.append("rollNumber", data.rollNumber || "")
+      formData.append("branch", data.branch || "")
+      formData.append("course", data.course || "")
+      formData.append("courseDuration", data.courseDuration || "")
+      formData.append("year", data.year || "")
 
       const result = await updateUserDetails(formData, isCollegeStudent ? userData.id : undefined)
 
       if (result.success) {
         setMessage("Profile updated successfully!")
-        // Optionally redirect or refresh the page
         setTimeout(() => {
           window.location.reload()
         }, 1500)
@@ -152,7 +153,8 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
         </CardContent>
       </Card>
 
-      <form onSubmit={handleSubmit} className="space-y-8">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {/* Personal Information */}
         <Card>
           <CardHeader>
@@ -163,28 +165,32 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="firstName">First Name *</Label>
-                <Input
-                  id="firstName"
-                  name="firstName"
-                  placeholder="John"
-                  value={formData.firstName}
-                  onChange={(e) => handleInputChange("firstName", e.target.value)}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="lastName">Last Name *</Label>
-                <Input
-                  id="lastName"
-                  name="lastName"
-                  placeholder="Doe"
-                  value={formData.lastName}
-                  onChange={(e) => handleInputChange("lastName", e.target.value)}
-                  required
-                />
-              </div>
+              <FormField
+                control={form.control}
+                name="firstName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>First Name *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="John" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="lastName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Last Name *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Doe" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
@@ -196,26 +202,32 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
                 disabled
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="phone">Phone Number</Label>
-              <Input
-                id="phone"
-                name="phone"
-                placeholder="+1 (555) 123-4567"
-                value={formData.phone}
-                onChange={(e) => handleInputChange("phone", e.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="dateOfBirth">Date of Birth</Label>
-              <Input
-                id="dateOfBirth"
-                name="dateOfBirth"
-                type="date"
-                value={formData.dateOfBirth}
-                onChange={(e) => handleInputChange("dateOfBirth", e.target.value)}
-              />
-            </div>
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Phone Number</FormLabel>
+                  <FormControl>
+                    <Input placeholder="+1 (555) 123-4567" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="dateOfBirth"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Date of Birth</FormLabel>
+                  <FormControl>
+                    <Input type="date" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </CardContent>
         </Card>
 
@@ -228,36 +240,45 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="jobTitle">Current Job Title</Label>
-              <Input
-                id="jobTitle"
-                name="jobTitle"
-                placeholder="Software Engineer"
-                value={formData.jobTitle}
-                onChange={(e) => handleInputChange("jobTitle", e.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="company">Current Company</Label>
-              <Input
-                id="company"
-                name="company"
-                placeholder="Tech Corp"
-                value={formData.company}
-                onChange={(e) => handleInputChange("company", e.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="location">Location</Label>
-              <Input
-                id="location"
-                name="location"
-                placeholder="San Francisco, CA"
-                value={formData.location}
-                onChange={(e) => handleInputChange("location", e.target.value)}
-              />
-            </div>
+            <FormField
+              control={form.control}
+              name="jobTitle"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Current Job Title</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Software Engineer" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="company"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Current Company</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Tech Corp" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="location"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Location</FormLabel>
+                  <FormControl>
+                    <Input placeholder="San Francisco, CA" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </CardContent>
         </Card>
 
@@ -271,48 +292,72 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="careerGoals">Career Goals</Label>
-              <Textarea
-                id="careerGoals"
-                name="careerGoals"
-                placeholder="What are your career goals? What roles are you targeting?"
-                rows={3}
-                value={formData.careerGoals}
-                onChange={(e) => handleInputChange("careerGoals", e.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="bio">Professional Bio</Label>
-              <Textarea
-                id="bio"
-                name="bio"
-                placeholder="Tell us about your professional background, achievements, and what makes you unique..."
-                rows={4}
-                value={formData.bio}
-                onChange={(e) => handleInputChange("bio", e.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="linkedIn">LinkedIn Profile</Label>
-              <Input
-                id="linkedIn"
-                name="linkedIn"
-                placeholder="https://linkedin.com/in/yourprofile"
-                value={formData.linkedIn}
-                onChange={(e) => handleInputChange("linkedIn", e.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="github">GitHub Profile</Label>
-              <Input
-                id="github"
-                name="github"
-                placeholder="https://github.com/yourusername"
-                value={formData.github}
-                onChange={(e) => handleInputChange("github", e.target.value)}
-              />
-            </div>
+            <FormField
+              control={form.control}
+              name="careerGoals"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Career Goals</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="What are your career goals? What roles are you targeting?"
+                      rows={3}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="bio"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Professional Bio</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Tell us about your professional background, achievements, and what makes you unique..."
+                      rows={4}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="linkedIn"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>LinkedIn Profile</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="https://linkedin.com/in/yourprofile or username"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="github"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>GitHub Profile</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="https://github.com/yourusername or username"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </CardContent>
         </Card>
 
@@ -358,59 +403,74 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="rollNumber">Roll Number</Label>
-                <Input
-                  id="rollNumber"
-                  name="rollNumber"
-                  placeholder="DEMO2024001"
-                  value={formData.rollNumber}
-                  onChange={(e) => handleInputChange("rollNumber", e.target.value)}
+              <FormField
+                control={form.control}
+                name="rollNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Roll Number</FormLabel>
+                    <FormControl>
+                      <Input placeholder="DEMO2024001" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="grid grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="branch"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Branch</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Computer Science" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="course"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Course</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Bachelor of Technology" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="branch">Branch</Label>
-                  <Input
-                    id="branch"
-                    name="branch"
-                    placeholder="Computer Science"
-                    value={formData.branch}
-                    onChange={(e) => handleInputChange("branch", e.target.value)}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="course">Course</Label>
-                  <Input
-                    id="course"
-                    name="course"
-                    placeholder="Bachelor of Technology"
-                    value={formData.course}
-                    onChange={(e) => handleInputChange("course", e.target.value)}
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="courseDuration">Course Duration</Label>
-                  <Input
-                    id="courseDuration"
-                    name="courseDuration"
-                    placeholder="4 years"
-                    value={formData.courseDuration}
-                    onChange={(e) => handleInputChange("courseDuration", e.target.value)}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="year">Current Year</Label>
-                  <Input
-                    id="year"
-                    name="year"
-                    placeholder="3rd Year"
-                    value={formData.year}
-                    onChange={(e) => handleInputChange("year", e.target.value)}
-                  />
-                </div>
+                <FormField
+                  control={form.control}
+                  name="courseDuration"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Course Duration</FormLabel>
+                      <FormControl>
+                        <Input placeholder="4 years" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="year"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Current Year</FormLabel>
+                      <FormControl>
+                        <Input placeholder="3rd Year" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
             </CardContent>
           </Card>
@@ -423,11 +483,12 @@ export function MyDetailsForm({ userData, isCollegeStudent = false }: MyDetailsF
         )}
 
         <div className="flex justify-end pt-6">
-          <Button type="submit" disabled={saving || !hasChanges} className="px-8">
+          <Button type="submit" disabled={saving} className="px-8">
             {saving ? "Saving..." : "Save Profile"}
           </Button>
         </div>
       </form>
+      </Form>
     </div>
   )
 }

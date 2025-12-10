@@ -10,6 +10,7 @@ interface ProfileHeaderProps {
     email?: string | null
     image?: string | null
     role?: UserRole
+    userType?: 'FREE' | 'PRO'
   }
 }
 
@@ -67,11 +68,23 @@ export function ProfileHeader({ user }: ProfileHeaderProps) {
               </p>
             </div>
 
-            {/* Role Badge */}
-            <div className="flex justify-center lg:justify-start">
+            {/* Role and Account Type Badges */}
+            <div className="flex justify-center lg:justify-start gap-2 flex-wrap">
               <Badge variant={getRoleBadgeVariant(user.role || UserRole.USER)}>
                 {getRoleLabel(user.role || UserRole.USER)}
               </Badge>
+              {user.userType && (
+                <Badge 
+                  variant={user.userType === 'PRO' ? 'default' : 'outline'}
+                  className={
+                    user.userType === 'PRO' 
+                      ? 'bg-green-600 hover:bg-green-700 text-white border-green-600' 
+                      : 'bg-blue-100 text-blue-800 border-blue-300'
+                  }
+                >
+                  {user.userType}
+                </Badge>
+              )}
             </div>
           </div>
         </div>

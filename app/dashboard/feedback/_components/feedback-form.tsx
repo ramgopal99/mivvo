@@ -70,10 +70,10 @@ export function FeedbackForm({ children, onSuccess }: FeedbackFormProps) {
         setMessage("")
         onSuccess?.()
       } else {
-        if (data.message?.includes('once per day')) {
-          toast.error("You can only submit feedback once per day. Please try again tomorrow.")
+        if (response.status === 429) {
+          toast.error(data.message || "You have already submitted 2 feedback messages in the last 24 hours. Please wait before submitting another.")
         } else {
-          toast.error("Failed to submit feedback. Please try again.")
+          toast.error(data.message || "Failed to submit feedback. Please try again.")
         }
       }
     } catch (error) {
