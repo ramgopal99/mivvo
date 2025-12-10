@@ -29,7 +29,7 @@ export function DownloadReceiptButton({
   userEmail,
   payment
 }: DownloadReceiptButtonProps) {
-  const downloadReceipt = () => {
+  const downloadReceipt = async () => {
     const doc = new jsPDF()
 
     const pageWidth = doc.internal.pageSize.getWidth()
@@ -62,10 +62,56 @@ export function DownloadReceiptButton({
       return `INR ${amount.toFixed(2)}`
     }
 
+    // Load and add logo in top right
+    try {
+      const logoPath = siteConfig.logo || '/mivvo.svg'
+      const img = new Image()
+      img.crossOrigin = 'anonymous'
+      
+      const logoData = await new Promise<string>((resolve) => {
+        const timeout = setTimeout(() => {
+          resolve('') // Timeout after 2 seconds
+        }, 2000)
+        
+        img.onload = () => {
+          clearTimeout(timeout)
+          try {
+            const canvas = document.createElement('canvas')
+            canvas.width = img.naturalWidth || img.width || 100
+            canvas.height = img.naturalHeight || img.height || 100
+            const ctx = canvas.getContext('2d')
+            if (ctx) {
+              ctx.drawImage(img, 0, 0)
+              resolve(canvas.toDataURL('image/png'))
+            } else {
+              resolve('')
+            }
+          } catch {
+            resolve('')
+          }
+        }
+        img.onerror = () => {
+          clearTimeout(timeout)
+          resolve('')
+        }
+        img.src = logoPath
+      })
+
+      if (logoData && logoData.length > 0) {
+        // Add logo in top right corner (smaller size)
+        const logoSize = 20
+        const logoX = pageWidth - margin - logoSize
+        const logoY = margin
+        doc.addImage(logoData, 'PNG', logoX, logoY, logoSize, logoSize)
+      }
+    } catch {
+      // Logo failed to load, continue without it
+    }
+
     // Header - Receipt title and info
     addText('Receipt', margin, yPosition, 20, 'bold')
     
-    // Receipt number and date on the right
+    // Receipt number and date on the left (below "Receipt" title)
     // Use transactionId if available, otherwise use payment ID formatted
     const receiptNumber = payment.transactionId 
       ? payment.transactionId.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 12)
@@ -77,15 +123,16 @@ export function DownloadReceiptButton({
       year: 'numeric'
     })
     
-    // Receipt number appears above "Date paid" in top right
-    const receiptNumberWidth = getTextWidth(receiptNumber, 10, 'normal')
-    addText(receiptNumber, pageWidth - margin - receiptNumberWidth, yPosition, 10, 'normal')
+    // Receipt number appears below "Receipt" title on the left
+    yPosition += 10
+    addText(receiptNumber, margin, yPosition, 10, 'normal')
     
-    yPosition += 8
-    // "Date paid" appears below receipt number
+    // "Date paid" appears below receipt number on the left (closer spacing)
+    yPosition += 5
     const datePaidText = `Date paid: ${datePaid}`
-    const datePaidWidth = getTextWidth(datePaidText, 9, 'normal')
-    addText(datePaidText, pageWidth - margin - datePaidWidth, yPosition, 9, 'normal')
+    addText(datePaidText, margin, yPosition, 9, 'normal')
+    
+    // Set yPosition for next section (after header)
     yPosition += 20
 
     // Sender information (Mivvo)
