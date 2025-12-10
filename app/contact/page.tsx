@@ -48,7 +48,12 @@ export default function ContactPage() {
           formRef.current.reset()
         }
       } else {
-        setMessage({ type: "error", text: result.error || "Failed to send message. Please try again." })
+        // Show specific error message, especially for rate limiting
+        const errorMessage = result.error || "Failed to send message. Please try again."
+        setMessage({ 
+          type: "error", 
+          text: errorMessage
+        })
       }
     } catch (error) {
       console.error("Error submitting contact form:", error)

@@ -16,10 +16,8 @@ export default function PracticePage() {
   const params = useParams();
   const router = useRouter();
 
-  // Handle the case where sessionIds might be a string or array
-  const sessionIds = Array.isArray(params.sessionIds)
-    ? params.sessionIds
-    : params.sessionIds?.split(',') || [];
+  // With [...sessionIds], params.sessionIds is already an array
+  const sessionIds = Array.isArray(params.sessionIds) ? params.sessionIds : [];
 
   const handlePracticeComplete = (results: PracticeResult[]) => {
     console.log("Practice completed with results:", results);

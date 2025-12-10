@@ -1,57 +1,78 @@
 "use client";
 
-import { type ReadingComprehensionData } from "../data/practice-data";
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { type ReadingComprehensionData } from "../data/reading-practice-data";
 
 interface ReadingComprehensionPracticeProps {
+  sessionId: string;
   data: ReadingComprehensionData;
   userAnswer?: number;
-  onAnswer: (answer: number) => void;
+  onAnswer: (sessionId: string, answer: number) => void;
 }
 
 export function ReadingComprehensionPractice({
+  sessionId,
   data,
   userAnswer,
   onAnswer
 }: ReadingComprehensionPracticeProps) {
+  const [selectedAnswer, setSelectedAnswer] = useState<number | undefined>(userAnswer);
+
+  const handleAnswerChange = (value: string) => {
+    const answerIndex = parseInt(value);
+    setSelectedAnswer(answerIndex);
+    onAnswer(sessionId, answerIndex);
+  };
+
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 h-full overflow-hidden p-8">
-      {/* Left side - Reading Passage */}
-      <div className="space-y-4 pr-4">
-        <h3 className="text-xl font-semibold text-center lg:text-left">Reading Passage</h3>
-        <div className="p-6 bg-muted rounded-lg h-[calc(100vh-250px)] overflow-hidden">
-          <p className="text-sm leading-relaxed">{data.passage}</p>
-        </div>
-      </div>
-
-      {/* Right side - Question and Options */}
-      <div className="space-y-6 pl-4">
-        <div className="space-y-4">
-          <h3 className="text-xl font-semibold text-center lg:text-left">Question</h3>
-          <div className="p-4 bg-muted/20 rounded-lg">
-            <p className="font-medium leading-relaxed">{data.question}</p>
+    <div className="space-y-6">
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-xl">Reading Comprehension</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {/* Passage */}
+          <div className="p-4 bg-muted/50 rounded-lg">
+            <h3 className="font-semibold mb-3">Read the following passage:</h3>
+            <p className="text-sm leading-relaxed">{data.passage}</p>
           </div>
-        </div>
 
-        <div className="space-y-4">
-          <label className="block text-sm font-medium">Select your answer:</label>
-          <div className="space-y-2 h-[calc(100vh-350px)] overflow-hidden">
-            {data.options.map((option, index) => (
-              <button
-                key={index}
-                onClick={() => onAnswer(index)}
-                className={`w-full p-4 text-left border rounded-lg hover:bg-muted transition-colors ${
-                  userAnswer === index
-                    ? 'border-primary bg-primary/5'
-                    : 'border-border'
-                }`}
-              >
-                <span className="font-medium mr-3 text-lg">{String.fromCharCode(65 + index)}.</span>
-                <span>{option}</span>
-              </button>
-            ))}
+          {/* Question */}
+          <div>
+            <h3 className="font-semibold mb-3">{data.question}</h3>
+
+            {/* Answer Options */}
+            <RadioGroup
+              value={selectedAnswer?.toString()}
+              onValueChange={handleAnswerChange}
+              className="space-y-3"
+            >
+              {data.options.map((option, index) => (
+                <div key={index} className="flex items-center space-x-2 p-3 border rounded-lg hover:bg-muted/50 transition-colors">
+                  <RadioGroupItem value={index.toString()} id={`option-${index}`} />
+                  <Label
+                    htmlFor={`option-${index}`}
+                    className="flex-1 cursor-pointer text-sm"
+                  >
+                    {option}
+                  </Label>
+                </div>
+              ))}
+            </RadioGroup>
           </div>
-        </div>
-      </div>
+
+          {/* Show explanation if answer is selected */}
+          {selectedAnswer !== undefined && (
+            <div className="p-4 bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+              <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">Explanation:</h4>
+              <p className="text-sm text-blue-700 dark:text-blue-300">{data.explanation}</p>
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }

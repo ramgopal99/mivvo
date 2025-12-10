@@ -1,10 +1,10 @@
-// Reading Compound Component
+// Reading Dialog Component
 export { ReadingPracticeDialog } from "./reading-practice-dialog";
-export { ReadingPractice } from "./reading-practice";
 
-// Practice Interface Components
+// Practice Components
 export { ReadingComprehensionPractice } from "./reading-comprehension-practice";
 export { RearrangeSentencesPractice } from "./rearrange-sentences-practice";
 
-// Re-export types
-export type { ReadingComprehensionData, RearrangeSentenceData } from "../data/practice-data";
+// Re-export data and types
+export { readingSessionsData, readingComprehensionData, rearrangeSentencesData } from "../data/reading-practice-data";
+export type { ReadingSessionData, ReadingComprehensionData, RearrangeSentenceData } from "../data/reading-practice-data";

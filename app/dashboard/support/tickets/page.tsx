@@ -24,7 +24,6 @@ interface PendingTicket {
   id: string
   subject: string
   category: string
-  priority: string
   status: string
   createdAt: string
   lastUpdate: string
@@ -199,9 +198,6 @@ export default function TicketsPage() {
                             <span>Ticket #{ticket.id}</span>
                             <span>Created: {new Date(ticket.createdAt).toLocaleDateString()}</span>
                           </div>
-                          <Badge variant="outline" className="text-xs">
-                            {ticket.priority} Priority
-                          </Badge>
                         </div>
                       </CardContent>
                     </Card>

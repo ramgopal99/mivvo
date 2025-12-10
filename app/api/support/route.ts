@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { SupportTicketCategory, SupportTicketPriority } from '@prisma/client'
+import { SupportTicketCategory } from '@prisma/client'
 
 // Generate a human-readable ticket ID
 function generateTicketId(): string {
@@ -30,17 +30,6 @@ function mapCategory(category: string): SupportTicketCategory {
   }
 }
 
-function mapPriority(priority: string): SupportTicketPriority {
-  switch (priority.toLowerCase()) {
-    case 'high':
-      return SupportTicketPriority.HIGH
-    case 'medium':
-      return SupportTicketPriority.MEDIUM
-    default:
-      return SupportTicketPriority.LOW
-  }
-}
-
 export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions)
@@ -52,20 +41,43 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { name, email, category, subject, message, priority } = await request.json()
+    const { name, email, category, subject, message } = await request.json()
 
     // Basic validation
-    if (!name || !email || !category || !subject || !message || !priority) {
+    if (!name || !email || !category || !subject || !message) {
       return NextResponse.json(
         { error: 'All fields are required' },
         { status: 400 }
       )
     }
 
+    // Check ticket limit: 3 tickets per 24 hours
+    const twentyFourHoursAgo = new Date()
+    twentyFourHoursAgo.setHours(twentyFourHoursAgo.getHours() - 24)
+
+    const recentTicketsCount = await prisma.supportTicket.count({
+      where: {
+        userId: session.user.id,
+        createdAt: {
+          gte: twentyFourHoursAgo
+        }
+      }
+    })
+
+    if (recentTicketsCount >= 3) {
+      return NextResponse.json(
+        { 
+          error: 'You have reached the limit of 3 support tickets per 24 hours. Please wait before submitting another ticket.',
+          limitReached: true,
+          ticketsRemaining: 0
+        },
+        { status: 429 } // Too Many Requests
+      )
+    }
+
     // Generate ticket ID and map enums
     const ticketId = generateTicketId()
     const ticketCategory = mapCategory(category)
-    const ticketPriority = mapPriority(priority)
 
     // Create the support ticket in the database
     const supportTicket = await prisma.supportTicket.create({
@@ -73,7 +85,7 @@ export async function POST(request: NextRequest) {
         ticketId,
         subject,
         category: ticketCategory,
-        priority: ticketPriority,
+        priority: null,
         description: message, // Using message as description
         userId: session.user.id,
       },
@@ -88,7 +100,6 @@ export async function POST(request: NextRequest) {
       ticketId: supportTicket.ticketId,
       userId: session.user.id,
       category: ticketCategory,
-      priority: ticketPriority,
       subject,
     })
 
@@ -121,17 +132,6 @@ function mapCategoryToString(category: SupportTicketCategory): string {
       return 'Feature Request'
     default:
       return 'General Inquiry'
-  }
-}
-
-function mapPriorityToString(priority: SupportTicketPriority): string {
-  switch (priority) {
-    case SupportTicketPriority.HIGH:
-      return 'High'
-    case SupportTicketPriority.MEDIUM:
-      return 'Medium'
-    default:
-      return 'Low'
   }
 }
 
@@ -175,7 +175,6 @@ export async function GET() {
         id: ticket.ticketId,
         subject: ticket.subject,
         category: mapCategoryToString(ticket.category),
-        priority: mapPriorityToString(ticket.priority),
         status: mapStatusToString(ticket.status),
         createdAt: ticket.createdAt.toISOString(),
         lastUpdate: ticket.updatedAt.toISOString(),
@@ -188,7 +187,6 @@ export async function GET() {
         id: ticket.ticketId,
         subject: ticket.subject,
         category: mapCategoryToString(ticket.category),
-        priority: mapPriorityToString(ticket.priority),
         status: mapStatusToString(ticket.status),
         createdAt: ticket.createdAt.toISOString(),
         lastUpdate: ticket.updatedAt.toISOString(),

@@ -5,20 +5,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { BookOpen, PenTool, Volume2, HelpCircle } from "lucide-react";
 import { levelDescriptions, skillConfig, type SkillType, type LanguageValue } from "../config";
-import { ReadingPracticeDialog } from "../reading/reading-practice-dialog";
-import { WritingPracticeDialog } from "../writing/writing-practice-dialog";
-import { SpeakingPracticeDialog } from "./speaking-practice-dialog";
-import { McqPracticeDialog } from "./mcq-practice-dialog";
-import { PracticeInterface } from "./practice-interface";
-
-// Import the result type
-interface PracticeResult {
-  sessionId: string;
-  userAnswer?: string | number | string[];
-  isCorrect?: boolean;
-  timeSpent: number;
-  completedAt: Date;
-}
+import { ReadingPracticeDialog } from "../reading";
+import { WritingPracticeDialog } from "../writing";
+import { SpeakingPracticeDialog } from "../speaking";
+import { McqPracticeDialog } from "../mcq";
 
 interface SkillCardProps {
   type: SkillType;
@@ -40,16 +30,6 @@ export function SkillCard({ type, level, selectedLanguage }: SkillCardProps) {
   const [isWritingDialogOpen, setIsWritingDialogOpen] = useState(false);
   const [isSpeakingDialogOpen, setIsSpeakingDialogOpen] = useState(false);
   const [isMcqDialogOpen, setIsMcqDialogOpen] = useState(false);
-  const [isPracticeInterfaceOpen, setIsPracticeInterfaceOpen] = useState(false);
-  const [practiceSessionIds, setPracticeSessionIds] = useState<string[]>([]);
-  const [selectedPracticeTypes, setSelectedPracticeTypes] = useState<string[]>([]);
-  const [selectedMcqTypes, setSelectedMcqTypes] = useState<string[]>([]);
-  const [selectedSpeakingType, setSelectedSpeakingType] = useState("listen-speak-response");
-  const [readingComprehensionCount, setReadingComprehensionCount] = useState("1");
-  const [rearrangeSentencesCount, setRearrangeSentencesCount] = useState("1");
-  const [writingTopicCount, setWritingTopicCount] = useState("1");
-  const [speakingResponseCount, setSpeakingResponseCount] = useState("5");
-  const [mcqQuestionCount, setMcqQuestionCount] = useState("10");
 
   const config = skillConfig[type];
   const Icon = iconMap[config.icon as keyof typeof iconMap];
@@ -66,23 +46,6 @@ export function SkillCard({ type, level, selectedLanguage }: SkillCardProps) {
     } else if (type === "mcq") {
       setIsMcqDialogOpen(true);
     }
-  };
-
-  const handleGeneratePractice = (sessionIds: string[]) => {
-    setPracticeSessionIds(sessionIds);
-    setIsPracticeInterfaceOpen(true);
-  };
-
-  const handlePracticeComplete = (results: PracticeResult[]) => {
-    console.log("Practice completed with results:", results);
-    setIsPracticeInterfaceOpen(false);
-    setPracticeSessionIds([]);
-    // Here you could save results, show completion screen, etc.
-  };
-
-  const handleExitPractice = () => {
-    setIsPracticeInterfaceOpen(false);
-    setPracticeSessionIds([]);
   };
 
   return (
@@ -124,13 +87,6 @@ export function SkillCard({ type, level, selectedLanguage }: SkillCardProps) {
           isOpen={isReadingDialogOpen}
           onOpenChange={setIsReadingDialogOpen}
           selectedLanguage={selectedLanguage}
-          selectedPracticeTypes={selectedPracticeTypes}
-          onPracticeTypesChange={setSelectedPracticeTypes}
-          readingComprehensionCount={readingComprehensionCount}
-          onReadingComprehensionCountChange={setReadingComprehensionCount}
-          rearrangeSentencesCount={rearrangeSentencesCount}
-          onRearrangeSentencesCountChange={setRearrangeSentencesCount}
-          onGeneratePractice={handleGeneratePractice}
         />
       )}
 
@@ -140,9 +96,6 @@ export function SkillCard({ type, level, selectedLanguage }: SkillCardProps) {
           isOpen={isWritingDialogOpen}
           onOpenChange={setIsWritingDialogOpen}
           selectedLanguage={selectedLanguage}
-          topicCount={writingTopicCount}
-          onTopicCountChange={setWritingTopicCount}
-          onGeneratePractice={handleGeneratePractice}
         />
       )}
 
@@ -152,10 +105,6 @@ export function SkillCard({ type, level, selectedLanguage }: SkillCardProps) {
           isOpen={isSpeakingDialogOpen}
           onOpenChange={setIsSpeakingDialogOpen}
           selectedLanguage={selectedLanguage}
-          selectedSpeakingType={selectedSpeakingType}
-          onSpeakingTypeChange={setSelectedSpeakingType}
-          responseCount={speakingResponseCount}
-          onResponseCountChange={setSpeakingResponseCount}
         />
       )}
 
@@ -165,19 +114,6 @@ export function SkillCard({ type, level, selectedLanguage }: SkillCardProps) {
           isOpen={isMcqDialogOpen}
           onOpenChange={setIsMcqDialogOpen}
           selectedLanguage={selectedLanguage}
-          selectedMcqTypes={selectedMcqTypes}
-          onMcqTypesChange={setSelectedMcqTypes}
-          questionCount={mcqQuestionCount}
-          onQuestionCountChange={setMcqQuestionCount}
-        />
-      )}
-
-      {/* Practice Interface */}
-      {isPracticeInterfaceOpen && (
-        <PracticeInterface
-          sessionIds={practiceSessionIds}
-          onComplete={handlePracticeComplete}
-          onExit={handleExitPractice}
         />
       )}
     </>

@@ -1,18 +1,32 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { Clock, CheckCircle, ArrowRight, ArrowLeft } from "lucide-react";
+import { Clock, CheckCircle, ArrowRight, ArrowLeft, Home } from "lucide-react";
 import {
-  practiceSessionsData,
+  ReadingComprehensionPractice,
+  RearrangeSentencesPractice,
+  readingSessionsData,
   type ReadingComprehensionData,
-  type RearrangeSentenceData,
+  type RearrangeSentenceData
+} from "../reading";
+import {
+  WritingPracticeInterface,
+  writingTopicData,
   type WritingTopicData
-} from "../data/practice-data";
-import { ReadingComprehensionPractice, RearrangeSentencesPractice } from "../reading";
-import { WritingPracticeInterface } from "../writing";
+} from "../writing";
+import {
+  McqPracticeInterface,
+  mcqSessionsData,
+  type McqSessionData
+} from "../mcq";
+import {
+  SpeakingPracticeInterface,
+  speakingSessionsData,
+  type SpeakingSessionData
+} from "../speaking";
 
 interface PracticeInterfaceProps {
   sessionIds: string[];
@@ -22,30 +36,55 @@ interface PracticeInterfaceProps {
 
 interface PracticeResult {
   sessionId: string;
-  userAnswer?: string | number | string[];
+  userAnswer?: string | number;
   isCorrect?: boolean;
   timeSpent: number;
   completedAt: Date;
 }
 
-type UserAnswer = string | number | string[];
-
 export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeInterfaceProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [timeRemaining, setTimeRemaining] = useState(0);
-  const [userAnswers, setUserAnswers] = useState<Record<string, UserAnswer>>({});
+  const [timeRemaining, setTimeRemaining] = useState(300); // 5 minutes default
+  const [userAnswers, setUserAnswers] = useState<Record<string, string | number>>({});
+  const [startTime] = useState(Date.now());
 
-  const sessions = practiceSessionsData.filter(session => sessionIds.includes(session.id));
-  const currentSession = sessions[currentIndex];
-  const progress = ((currentIndex + 1) / sessions.length) * 100;
+  // Create practice sessions from session IDs
+  const sessions: Array<{
+    id: string;
+    type: 'reading-comprehension' | 'rearrange-sentences' | 'writing' | 'mcq' | 'speaking';
+    data: ReadingComprehensionData | RearrangeSentenceData | WritingTopicData | McqSessionData | SpeakingSessionData;
+  }> = [];
 
-  // Initialize timer for current session
-  useEffect(() => {
-    if (currentSession) {
-      const timeLimit = 'timeLimit' in currentSession.data ? (currentSession.data as WritingTopicData).timeLimit * 60 : 300; // 5 minutes default
-      setTimeRemaining(timeLimit);
+  sessionIds.forEach(id => {
+    if (id.startsWith('reading-session-')) {
+      // Handle combined reading sessions
+      const sessionData = readingSessionsData.find(session => session.id === id);
+      if (sessionData) {
+        sessions.push(
+          { id: `${id}-comprehension`, type: 'reading-comprehension', data: sessionData.comprehension },
+          { id: `${id}-rearranging`, type: 'rearrange-sentences', data: sessionData.rearranging }
+        );
+      }
+    } else if (id.startsWith('writing-')) {
+      const data = writingTopicData.find(item => item.id === id);
+      if (data) {
+        sessions.push({ id, type: 'writing', data });
+      }
+    } else if (id.startsWith('mcq-session-')) {
+      const data = mcqSessionsData.find(session => session.id === id);
+      if (data) {
+        sessions.push({ id, type: 'mcq', data });
+      }
+    } else if (id.startsWith('speaking-session-')) {
+      const data = speakingSessionsData.find(session => session.id === id);
+      if (data) {
+        sessions.push({ id, type: 'speaking', data });
+      }
     }
-  }, [currentIndex, currentSession]);
+  });
+
+  const currentSession = sessions[currentIndex];
+  const progress = sessions.length > 0 ? ((currentIndex + 1) / sessions.length) * 100 : 0;
 
   // Timer countdown
   useEffect(() => {
@@ -61,12 +100,19 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const handleAnswer = (answer: string | number | string[]) => {
+  const handleAnswer = useCallback((sessionId: string, answer: string | number) => {
     setUserAnswers(prev => ({
       ...prev,
-      [currentSession.id]: answer
+      [sessionId]: answer
     }));
-  };
+  }, []);
+
+  const handleMcqAnswer = useCallback((sessionId: string, questionId: string, answer: number) => {
+    setUserAnswers(prev => ({
+      ...prev,
+      [questionId]: answer
+    }));
+  }, []);
 
   const handleNext = () => {
     if (currentIndex < sessions.length - 1) {
@@ -75,18 +121,24 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
       // Complete the practice session
       const results: PracticeResult[] = sessions.map(session => {
         const userAnswer = userAnswers[session.id];
-        let isCorrect = undefined;
+        let isCorrect = false;
 
         if (session.type === 'reading-comprehension' && typeof userAnswer === 'number') {
           const correctAnswer = (session.data as ReadingComprehensionData).correctAnswer;
           isCorrect = userAnswer === correctAnswer;
+        } else if (session.type === 'rearrange-sentences' && typeof userAnswer === 'string') {
+          const correctAnswer = (session.data as RearrangeSentenceData).correctOrder.join(' ');
+          isCorrect = userAnswer === correctAnswer;
+        } else if (session.type === 'writing' && typeof userAnswer === 'string') {
+          // For writing, consider it completed if they wrote something
+          isCorrect = userAnswer.trim().length > 10;
         }
 
         return {
           sessionId: session.id,
           userAnswer,
           isCorrect,
-          timeSpent: 0, // Would calculate actual time spent per question
+          timeSpent: Math.floor((Date.now() - startTime) / 1000),
           completedAt: new Date()
         };
       });
@@ -101,11 +153,41 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
     }
   };
 
-
-
+  // Check if data is loaded
+  if (readingSessionsData.length === 0 || writingTopicData.length === 0 || mcqSessionsData.length === 0 || speakingSessionsData.length === 0) {
+    return (
+      <div className="h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-red-500">Error: Practice data not loaded</p>
+          <div className="mt-4 text-xs text-muted-foreground">
+            <p>Data Status:</p>
+            <p>Reading Sessions: {readingSessionsData.length} items</p>
+            <p>Writing: {writingTopicData.length} items</p>
+            <p>MCQ Sessions: {mcqSessionsData.length} items</p>
+            <p>Speaking Sessions: {speakingSessionsData.length} items</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (!currentSession) {
-    return <div>Loading...</div>;
+    return (
+      <div className="h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading practice session...</p>
+          <div className="mt-4 text-xs text-muted-foreground">
+            <p>Debug Info:</p>
+            <p>SessionIds: {JSON.stringify(sessionIds)}</p>
+            <p>Sessions length: {sessions.length}</p>
+            <p>CurrentIndex: {currentIndex}</p>
+            <p>Data loaded: ✓</p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -114,12 +196,17 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
       <div className="sticky top-0 bg-background border-b z-10 w-full">
         <div className="px-4 py-4 flex items-center justify-between w-full">
           <div className="flex items-center gap-4">
-            <Button variant="ghost" onClick={onExit}>
+            <Button variant="ghost" onClick={onExit} className="flex items-center gap-2">
+              <Home className="h-4 w-4" />
               Exit Practice
             </Button>
             <div className="flex items-center gap-2">
-              <Badge variant="outline">{currentSession.level}</Badge>
-              <Badge variant="outline">{currentSession.language}</Badge>
+              <Badge variant="outline">
+                {currentSession.type === 'reading-comprehension' ? 'Reading' :
+                 currentSession.type === 'rearrange-sentences' ? 'Reading' :
+                 currentSession.type === 'writing' ? 'Writing' : 'MCQ'}
+              </Badge>
+              <Badge variant="outline">Question {currentIndex + 1} of {sessions.length}</Badge>
             </div>
           </div>
 
@@ -130,13 +217,10 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
                 {formatTime(timeRemaining)}
               </span>
             </div>
-            <span className="text-sm">
-              {currentIndex + 1} of {sessions.length}
-            </span>
           </div>
         </div>
 
-        <div className="mt-4 w-full">
+        <div className="mt-4 w-full px-4">
           <Progress value={progress} className="w-full" />
         </div>
       </div>
@@ -144,28 +228,59 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
       {/* Main Content */}
       <div className="flex flex-col h-[calc(100vh-73px)]">
         {/* Practice Content Area */}
-        <div className="flex-1 overflow-hidden p-8 pb-20">
+        <div className="flex-1 overflow-y-auto p-8 pb-20">
           {currentSession.type === 'reading-comprehension' && (
             <ReadingComprehensionPractice
+              sessionId={currentSession.id}
               data={currentSession.data as ReadingComprehensionData}
               userAnswer={typeof userAnswers[currentSession.id] === 'number' ? userAnswers[currentSession.id] as number : undefined}
-              onAnswer={(answer) => handleAnswer(answer)}
+              onAnswer={handleAnswer}
             />
           )}
 
           {currentSession.type === 'rearrange-sentences' && (
             <RearrangeSentencesPractice
+              sessionId={currentSession.id}
               data={currentSession.data as RearrangeSentenceData}
               userAnswer={typeof userAnswers[currentSession.id] === 'string' ? userAnswers[currentSession.id] as string : undefined}
-              onAnswer={(answer) => handleAnswer(answer)}
+              onAnswer={handleAnswer}
             />
           )}
 
           {currentSession.type === 'writing' && (
             <WritingPracticeInterface
+              sessionId={currentSession.id}
               data={currentSession.data as WritingTopicData}
               userAnswer={typeof userAnswers[currentSession.id] === 'string' ? userAnswers[currentSession.id] as string : undefined}
-              onAnswer={(answer) => handleAnswer(answer)}
+              onAnswer={handleAnswer}
+            />
+          )}
+
+          {currentSession.type === 'mcq' && (
+            <McqPracticeInterface
+              sessionId={currentSession.id}
+              data={currentSession.data as McqSessionData}
+              userAnswers={userAnswers as Record<string, number>}
+              onAnswer={handleMcqAnswer}
+              onComplete={(sessionId, results) => {
+                console.log("MCQ completed with results:", results);
+                // Mark as completed and move to next
+                handleNext();
+              }}
+            />
+          )}
+
+          {currentSession.type === 'speaking' && (
+            <SpeakingPracticeInterface
+              sessionId={currentSession.id}
+              data={currentSession.data as SpeakingSessionData}
+              userAnswers={userAnswers as Record<string, string>}
+              onAnswer={handleAnswer}
+              onComplete={(sessionId, results) => {
+                console.log("Speaking completed with results:", results);
+                // Mark as completed and move to next
+                handleNext();
+              }}
             />
           )}
         </div>

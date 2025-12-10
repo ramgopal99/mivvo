@@ -1,23 +1,22 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { readingPracticeTypes, type LanguageValue } from "../config";
+import { Label } from "@/components/ui/label";
+import { speakingPracticeTypes, type LanguageValue } from "../config";
 
-interface ReadingPracticeDialogProps {
+interface SpeakingPracticeDialogProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   selectedLanguage: LanguageValue;
 }
 
-export function ReadingPracticeDialog({
+export function SpeakingPracticeDialog({
   isOpen,
   onOpenChange,
   selectedLanguage,
-}: ReadingPracticeDialogProps) {
+}: SpeakingPracticeDialogProps) {
   const router = useRouter();
 
   const languageLabels = {
@@ -31,37 +30,34 @@ export function ReadingPracticeDialog({
   const languageLabel = languageLabels[selectedLanguage] || "English";
 
   const handleStartPractice = () => {
-    // Navigate to practice interface with single session ID
-    router.push(`/dashboard/foreign-lang/practice/reading-session-1`);
+    // Navigate to practice interface with speaking session ID
+    router.push(`/dashboard/foreign-lang/practice/speaking-session-1`);
     onOpenChange(false);
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle className="text-xl">
-            Reading Practice for {languageLabel}
+            Speaking + Listening Practice for {languageLabel}
           </DialogTitle>
           <DialogDescription>
-            Start a comprehensive reading practice session with comprehension and sentence rearrangement exercises.
+            Practice your speaking and listening skills with interactive audio exercises.
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6 py-4">
           {/* Available Practice Types */}
           <div className="space-y-3">
-            <Label className="text-sm font-medium">Practice includes:</Label>
+            <Label className="text-sm font-medium">Available Speaking + Listening Practice:</Label>
             <div className="space-y-3">
-              {readingPracticeTypes.map((practiceType) => (
+              {speakingPracticeTypes.map((practiceType) => (
                 <div key={practiceType.id} className="flex items-start space-x-3 p-3 border rounded-lg bg-muted/30">
                   <span className="text-lg">{practiceType.icon}</span>
                   <div className="flex-1">
                     <div className="font-medium">{practiceType.title}</div>
                     <div className="text-xs text-muted-foreground">{practiceType.description}</div>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      1 {practiceType.id === "reading-comprehension" ? "reading comprehension" : "sentence rearrangement"} question
-                    </p>
                   </div>
                 </div>
               ))}

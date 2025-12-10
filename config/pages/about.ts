@@ -18,9 +18,9 @@ export const aboutConfig = {
       "Personalized improvement recommendations"
     ],
     statsDisplay: {
-      number: "0",
+      number: "574",
       label: "Mock Interviews",
-      sublabel: "We're just getting started!"
+      sublabel: "And growing every day!"
     }
   },
   values: {

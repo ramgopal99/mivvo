@@ -2,8 +2,6 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SkillCard } from "./skill-card";
-import { ReadingPractice } from "../reading";
-import { WritingPractice } from "../writing";
 import { levels, type LanguageValue } from "../config";
 
 interface LevelTabsProps {
@@ -24,14 +22,8 @@ export function LevelTabs({ selectedLanguage }: LevelTabsProps) {
       {levels.map((level) => (
         <TabsContent key={level} value={level} className="space-y-6">
           <div className="grid gap-6 md:grid-cols-2">
-            <ReadingPractice
-              level={level}
-              selectedLanguage={selectedLanguage}
-            />
-            <WritingPractice
-              level={level}
-              selectedLanguage={selectedLanguage}
-            />
+            <SkillCard type="reading" level={level} selectedLanguage={selectedLanguage} />
+            <SkillCard type="writing" level={level} selectedLanguage={selectedLanguage} />
             <SkillCard type="speaking" level={level} selectedLanguage={selectedLanguage} />
             <SkillCard type="mcq" level={level} selectedLanguage={selectedLanguage} />
           </div>

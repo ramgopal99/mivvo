@@ -91,7 +91,7 @@ export default function PricingPage() {
                     <Button
                       variant={plan.buttonVariant}
                       size="lg"
-                      className="w-full"
+                      className="w-full cursor-pointer"
                     >
                       {plan.cta.text}
                     </Button>
@@ -104,7 +104,7 @@ export default function PricingPage() {
       </section>
 
       {/* Trust Indicators */}
-      <section className="pb-16 bg-gray-50">
+      <section className="pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center gap-8">
@@ -126,14 +126,14 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16">
+      <section className="pt-16 pb-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
             <p className="text-gray-600">Everything you need to know about our pricing</p>
           </div>
 
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion type="single" collapsible className="space-y-4 mb-4">
             <AccordionItem value="credits" className="border border-gray-200 rounded-lg px-6">
               <AccordionTrigger className="text-left hover:no-underline py-6">
                 <span className="text-lg font-semibold text-gray-900">What are credits?</span>
@@ -145,14 +145,14 @@ export default function PricingPage() {
 
             <AccordionItem value="upgrade" className="border border-gray-200 rounded-lg px-6">
               <AccordionTrigger className="text-left hover:no-underline py-6">
-                <span className="text-lg font-semibold text-gray-900">Can I change my plan?</span>
+                <span className="text-lg font-semibold text-gray-900">What happens when credits finish?</span>
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 pb-6">
-                Yes, you can change your plan at any time. Credits are added immediately when you upgrade.
+                You can add on credits anytime.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="expire" className="border border-gray-200 rounded-lg px-6">
+            <AccordionItem value="expire" className="border border-gray-200 rounded-lg px-6 mb-4">
               <AccordionTrigger className="text-left hover:no-underline py-6">
                 <span className="text-lg font-semibold text-gray-900">What happens to unused credits?</span>
               </AccordionTrigger>

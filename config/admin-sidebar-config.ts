@@ -7,7 +7,8 @@ import {
   HelpCircle,
   Shield,
   UserCheck,
-  TrendingUp
+  TrendingUp,
+  MessageSquare
 } from "lucide-react"
 
 export interface NavigationItem {
@@ -53,6 +54,12 @@ export const adminSidebarConfig: AdminSidebarConfig = {
           url: "/admin/dashboard/colleges",
           icon: Building2,
           description: "Manage colleges and institutions"
+        },
+        {
+          title: "Messages",
+          url: "/admin/dashboard/messages",
+          icon: MessageSquare,
+          description: "View and manage contact messages"
         }
       ]
     },

@@ -339,7 +339,7 @@ model SupportTicket {
   ticketId    String   @unique // Human-readable ID like "SUP-20240115-001"
   subject     String
   category    SupportTicketCategory
-  priority    SupportTicketPriority
+  priority    SupportTicketPriority?
   status      SupportTicketStatus @default(PENDING)
   description String
 
@@ -520,10 +520,17 @@ model Contact {
   email       String
   subject     String
   message     String
+  ipAddress   String?  // IP address for spam protection
+  status      ContactStatus @default(PENDING)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   @@map("contacts")
+}
+
+enum ContactStatus {
+  PENDING
+  COMPLETED
 }
 
 model Feedback {

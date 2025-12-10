@@ -1,9 +1,9 @@
-// Writing Compound Component
+// Writing Dialog Component
 export { WritingPracticeDialog } from "./writing-practice-dialog";
-export { WritingPractice } from "./writing-practice";
 
-// Practice Interface Components
-export { WritingPractice as WritingPracticeInterface } from "./writing-practice-interface";
+// Writing Practice Components
+export { WritingPracticeInterface } from "./writing-practice-interface";
 
-// Re-export types
-export type { WritingTopicData } from "../data/practice-data";
+// Re-export data and types
+export { writingTopicData } from "../data/writing-practice-data";
+export type { WritingTopicData } from "../data/writing-practice-data";

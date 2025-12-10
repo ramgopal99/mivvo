@@ -1,28 +1,24 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { questionCountOptions, type LanguageValue } from "../config";
+import { type LanguageValue } from "../config";
 
 interface WritingPracticeDialogProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   selectedLanguage: LanguageValue;
-  topicCount: string;
-  onTopicCountChange: (count: string) => void;
-  onGeneratePractice: (sessionIds: string[]) => void;
 }
 
 export function WritingPracticeDialog({
   isOpen,
   onOpenChange,
   selectedLanguage,
-  topicCount,
-  onTopicCountChange,
-  onGeneratePractice,
 }: WritingPracticeDialogProps) {
+  const router = useRouter();
+
   const languageLabels = {
     english: "English",
     french: "French",
@@ -33,16 +29,12 @@ export function WritingPracticeDialog({
 
   const languageLabel = languageLabels[selectedLanguage] || "English";
 
-  const handleGenerate = () => {
-    const sessionIds: string[] = [];
-    const count = parseInt(topicCount);
+  const handleStartPractice = () => {
+    const sessionIds: string[] = ["writing-1"]; // Always show the writing topic
 
-    // Generate multiple instances of the same writing topic ID
-    for (let i = 0; i < Math.min(count, 2); i++) {
-      sessionIds.push('writing-topic');
-    }
-
-    onGeneratePractice(sessionIds);
+    // Navigate to practice interface with session IDs
+    // With [...sessionIds], each ID becomes a path segment
+    router.push(`/dashboard/foreign-lang/practice/${sessionIds.join('/')}`);
     onOpenChange(false);
   };
 
@@ -59,29 +51,25 @@ export function WritingPracticeDialog({
         </DialogHeader>
 
         <div className="space-y-6 py-4">
-          {/* Topic Count Selection */}
+          {/* Writing Practice Info */}
           <div className="space-y-3">
-            <Label className="text-sm font-medium">Number of Topics:</Label>
-            <Select value={topicCount} onValueChange={onTopicCountChange}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select number of topics" />
-              </SelectTrigger>
-              <SelectContent>
-                {questionCountOptions.writing.map((count) => (
-                  <SelectItem key={count} value={count.toString()}>
-                    {count} Topic{count > 1 ? 's' : ''}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <p className="text-xs text-muted-foreground">
-              Select 1 or 2 topics to practice your writing skills
-            </p>
+            <Label className="text-sm font-medium">Writing Practice Features:</Label>
+            <div className="p-3 border rounded-lg bg-muted/30">
+              <div className="font-medium mb-2">Topic-Based Writing</div>
+              <div className="text-xs text-muted-foreground">
+                Practice writing on various topics to improve your composition skills, vocabulary, and grammar.
+                Topics range from everyday conversations to academic subjects.
+              </div>
+            </div>
           </div>
 
-          {/* Generate Button */}
-          <Button className="w-full cursor-pointer" size="lg" onClick={handleGenerate}>
-            Generate Writing Practice
+          {/* Start Practice Button */}
+          <Button
+            className="w-full cursor-pointer"
+            size="lg"
+            onClick={handleStartPractice}
+          >
+            Start Practice
           </Button>
         </div>
       </DialogContent>

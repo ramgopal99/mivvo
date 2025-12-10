@@ -1,93 +1,154 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { type RearrangeSentenceData } from "../data/practice-data";
+import { CheckCircle, RotateCcw } from "lucide-react";
+import { type RearrangeSentenceData } from "../data/reading-practice-data";
 
 interface RearrangeSentencesPracticeProps {
+  sessionId: string;
   data: RearrangeSentenceData;
   userAnswer?: string;
-  onAnswer: (answer: string) => void;
+  onAnswer: (sessionId: string, answer: string) => void;
 }
 
 export function RearrangeSentencesPractice({
+  sessionId,
   data,
-  userAnswer = "",
+  userAnswer,
   onAnswer
 }: RearrangeSentencesPracticeProps) {
-  const [usedWords, setUsedWords] = useState<Set<number>>(new Set());
+  const [scrambledWords, setScrambledWords] = useState<string[]>(data.scrambledSentence);
+  const [arrangedWords, setArrangedWords] = useState<string[]>(userAnswer ? userAnswer.split(' ') : []);
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
-  const handleWordClick = (word: string, index: number) => {
-    // Add word to the answer with proper spacing
-    const newAnswer = userAnswer.trim() ? `${userAnswer.trim()} ${word}` : word;
-    onAnswer(newAnswer);
+  // Check if the current arrangement is correct
+  useEffect(() => {
+    if (arrangedWords.length === data.correctOrder.length) {
+      const currentAnswer = arrangedWords.join(' ');
+      const correctAnswer = data.correctOrder.join(' ');
+      const correct = currentAnswer === correctAnswer;
+      setIsCorrect(correct);
 
-    // Mark word as used
-    setUsedWords(prev => new Set([...prev, index]));
+      // Call onAnswer with the arranged sentence
+      onAnswer(sessionId, currentAnswer);
+    } else {
+      setIsCorrect(null);
+    }
+  }, [arrangedWords, data.correctOrder, onAnswer]);
+
+  const addWord = (word: string, index: number) => {
+    setArrangedWords([...arrangedWords, word]);
+    setScrambledWords(scrambledWords.filter((_, i) => i !== index));
   };
 
-  const handleClear = () => {
-    onAnswer("");
-    setUsedWords(new Set());
+  const removeWord = (index: number) => {
+    const word = arrangedWords[index];
+    setArrangedWords(arrangedWords.filter((_, i) => i !== index));
+    setScrambledWords([...scrambledWords, word]);
+  };
+
+  const resetArrangement = () => {
+    setScrambledWords(data.scrambledSentence);
+    setArrangedWords([]);
+    setIsCorrect(null);
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 h-full overflow-hidden p-8">
-      {/* Left side - Title and Instructions */}
-      <div className="space-y-6 pr-4">
-        <div className="space-y-4">
-          <h3 className="text-2xl font-semibold text-center lg:text-left">Rearrange the words to form a correct sentence</h3>
-          <p className="text-muted-foreground leading-relaxed">
-            Click on the words below to build your sentence. Words can only be used once.
+    <div className="space-y-6">
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-xl">Rearrange Sentences</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Drag and drop the words to form a grammatically correct sentence.
           </p>
-          <p className="text-xs text-muted-foreground">💡 {data.hint}</p>
-        </div>
-      </div>
-
-      {/* Right side - Interactive Area */}
-      <div className="space-y-6 pl-4">
-        {/* Word Selection Area */}
-        <div className="space-y-4">
-          <label className="block text-sm font-medium">Available Words:</label>
-          <div className="flex flex-wrap gap-2 p-4 border rounded-lg min-h-[150px] bg-muted/20 h-[calc(50vh-120px)] overflow-hidden">
-            {data.scrambled.map((word, index) => {
-              const isUsed = usedWords.has(index);
-              return (
+        </CardHeader>
+        <CardContent className="space-y-6">
+          {/* Scrambled Words Pool */}
+          <div>
+            <h3 className="font-semibold mb-3">Available Words:</h3>
+            <div className="flex flex-wrap gap-2 min-h-[60px] p-4 border-2 border-dashed border-muted-foreground/30 rounded-lg bg-muted/20">
+              {scrambledWords.map((word, index) => (
                 <Badge
-                  key={index}
-                  variant={isUsed ? "secondary" : "outline"}
-                  className={`px-3 py-1 text-sm cursor-pointer transition-all hover:scale-105 ${
-                    isUsed
-                      ? 'opacity-50 cursor-not-allowed'
-                      : 'hover:bg-primary/10 hover:border-primary/50'
-                  }`}
-                  onClick={() => !isUsed && handleWordClick(word, index)}
+                  key={`scrambled-${index}`}
+                  variant="outline"
+                  className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors px-3 py-1 text-sm"
+                  onClick={() => addWord(word, index)}
                 >
                   {word}
                 </Badge>
-              );
-            })}
+              ))}
+              {scrambledWords.length === 0 && (
+                <p className="text-sm text-muted-foreground self-center">All words used!</p>
+              )}
+            </div>
           </div>
-          <button
-            onClick={handleClear}
-            className="text-xs text-muted-foreground hover:text-foreground transition-colors underline"
-          >
-            Clear all
-          </button>
-        </div>
 
-        {/* Answer Area */}
-        <div className="space-y-4">
-          <label className="block text-sm font-medium">Your answer:</label>
-          <textarea
-            className="w-full p-4 border rounded-lg h-[calc(50vh-140px)] resize-none overflow-y-auto"
-            placeholder="Click on words above or type here..."
-            value={userAnswer}
-            onChange={(e) => onAnswer(e.target.value)}
-            style={{ height: 'calc(50vh - 140px)', resize: 'none' }}
-          />
-        </div>
-      </div>
+          {/* Arrangement Area */}
+          <div>
+            <h3 className="font-semibold mb-3">Your Sentence:</h3>
+            <div className="min-h-[60px] p-4 border-2 border-dashed border-primary/30 rounded-lg bg-primary/5">
+              <div className="flex flex-wrap gap-2">
+                {arrangedWords.map((word, index) => (
+                  <Badge
+                    key={`arranged-${index}`}
+                    variant="default"
+                    className="cursor-pointer hover:bg-destructive hover:text-destructive-foreground transition-colors px-3 py-1 text-sm"
+                    onClick={() => removeWord(index)}
+                    title="Click to remove"
+                  >
+                    {word}
+                  </Badge>
+                ))}
+                {arrangedWords.length === 0 && (
+                  <p className="text-sm text-muted-foreground self-center">Click words above to build your sentence</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Result and Actions */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              {isCorrect === true && (
+                <div className="flex items-center gap-2 text-green-600">
+                  <CheckCircle className="h-5 w-5" />
+                  <span className="text-sm font-medium">Correct!</span>
+                </div>
+              )}
+              {isCorrect === false && (
+                <div className="flex items-center gap-2 text-red-600">
+                  <span className="text-sm font-medium">Try again</span>
+                </div>
+              )}
+            </div>
+
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={resetArrangement}
+              className="flex items-center gap-2"
+            >
+              <RotateCcw className="h-4 w-4" />
+              Reset
+            </Button>
+          </div>
+
+          {/* Show correct answer and explanation */}
+          {isCorrect === true && (
+            <div className="p-4 bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg">
+              <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">Correct Answer:</h4>
+              <p className="text-sm text-green-700 dark:text-green-300 mb-3">
+                "{data.correctOrder.join(' ')}"
+              </p>
+              <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">Explanation:</h4>
+              <p className="text-sm text-green-700 dark:text-green-300">{data.explanation}</p>
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }

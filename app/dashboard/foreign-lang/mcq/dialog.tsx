@@ -1,23 +1,22 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { readingPracticeTypes, type LanguageValue } from "../config";
+import { mcqPracticeTypes, type LanguageValue } from "../config";
 
-interface ReadingPracticeDialogProps {
+interface McqPracticeDialogProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   selectedLanguage: LanguageValue;
 }
 
-export function ReadingPracticeDialog({
+export function McqPracticeDialog({
   isOpen,
   onOpenChange,
   selectedLanguage,
-}: ReadingPracticeDialogProps) {
+}: McqPracticeDialogProps) {
   const router = useRouter();
 
   const languageLabels = {
@@ -31,37 +30,34 @@ export function ReadingPracticeDialog({
   const languageLabel = languageLabels[selectedLanguage] || "English";
 
   const handleStartPractice = () => {
-    // Navigate to practice interface with single session ID
-    router.push(`/dashboard/foreign-lang/practice/reading-session-1`);
+    // Navigate to practice interface with MCQ session ID
+    router.push(`/dashboard/foreign-lang/practice/mcq-session-1`);
     onOpenChange(false);
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="sm:max-w-[800px]">
         <DialogHeader>
           <DialogTitle className="text-xl">
-            Reading Practice for {languageLabel}
+            MCQ Practice for {languageLabel}
           </DialogTitle>
           <DialogDescription>
-            Start a comprehensive reading practice session with comprehension and sentence rearrangement exercises.
+            Test your grammar and vocabulary knowledge with comprehensive MCQ practice including sentence completion and word replacement exercises.
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6 py-4">
-          {/* Available Practice Types */}
+          {/* Available MCQ Types */}
           <div className="space-y-3">
-            <Label className="text-sm font-medium">Practice includes:</Label>
-            <div className="space-y-3">
-              {readingPracticeTypes.map((practiceType) => (
-                <div key={practiceType.id} className="flex items-start space-x-3 p-3 border rounded-lg bg-muted/30">
-                  <span className="text-lg">{practiceType.icon}</span>
+            <Label className="text-sm font-medium">Available MCQ Practice Types:</Label>
+            <div className="grid grid-cols-2 gap-4">
+              {mcqPracticeTypes.map((mcqType) => (
+                <div key={mcqType.id} className="flex items-start space-x-3 p-3 border rounded-lg bg-muted/30">
+                  <span className="text-lg">{mcqType.icon}</span>
                   <div className="flex-1">
-                    <div className="font-medium">{practiceType.title}</div>
-                    <div className="text-xs text-muted-foreground">{practiceType.description}</div>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      1 {practiceType.id === "reading-comprehension" ? "reading comprehension" : "sentence rearrangement"} question
-                    </p>
+                    <div className="font-medium">{mcqType.title}</div>
+                    <div className="text-xs text-muted-foreground">{mcqType.description}</div>
                   </div>
                 </div>
               ))}

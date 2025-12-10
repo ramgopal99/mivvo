@@ -34,7 +34,7 @@ export default function AboutPage() {
       {/* Mission Section */}
       <div className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="max-w-4xl mx-auto">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 {aboutConfig.mission.title}
@@ -54,21 +54,12 @@ export default function AboutPage() {
                 ))}
               </div>
             </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl p-8">
-                <div className="text-center">
-                  <div className="text-6xl font-bold text-primary mb-4">{aboutConfig.mission.statsDisplay.number}</div>
-                  <div className="text-xl text-gray-700">{aboutConfig.mission.statsDisplay.label}</div>
-                  <div className="text-sm text-gray-500 mt-2">{aboutConfig.mission.statsDisplay.sublabel}</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
 
       {/* Values Section */}
-      <div className="py-20 bg-gray-50">
+      <div className="py-20 bg-white border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -150,7 +141,7 @@ export default function AboutPage() {
           <p className="text-xl text-white/90 mb-8">
             {aboutConfig.cta.description}
           </p>
-          <Button size="lg" className="bg-white text-primary hover:bg-white/90">
+          <Button size="lg" className="bg-white text-primary hover:bg-white/90 cursor-pointer">
             {aboutConfig.cta.buttonText}
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
