@@ -148,10 +148,8 @@ export async function GET(request: NextRequest) {
       console.log(`College student ${userId} enrollment expired - downgraded to FREE`)
     }
 
-    // Set default credit allocation for users who don't have one (like college students)
-    // FREE tier provides CREDIT_PACKAGES.FREE credits
-    const DEFAULT_FREE_CREDITS = CREDIT_PACKAGES.FREE
-    const totalCreditAllocation = shouldExpireCredits ? 0 : (user.totalCreditAllocation || DEFAULT_FREE_CREDITS)
+    // Use actual credit allocation, or 0 if not set
+    const totalCreditAllocation = shouldExpireCredits ? 0 : (user.totalCreditAllocation ?? 0)
     const usedCredits = shouldExpireCredits ? 0 : (user.usedCredits || 0)
 
     // Return time data

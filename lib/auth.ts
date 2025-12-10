@@ -4,6 +4,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter"
 import GoogleProvider from "next-auth/providers/google"
 import { prisma } from "./prisma"
 import type { Adapter } from "next-auth/adapters"
+import { CREDIT_PACKAGES } from "./credit-converter"
 
 declare module "next-auth" {
   interface Session {
@@ -109,7 +110,7 @@ export const authOptions: NextAuthOptions = {
                   role: "USER", // Default role for new signups
                   status: "ACTIVE",
                   userType: "FREE",
-                  totalCreditAllocation: 0, // Will be set by application logic
+                  totalCreditAllocation: CREDIT_PACKAGES.FREE,
                 }
               })
 

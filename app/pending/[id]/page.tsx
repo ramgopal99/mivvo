@@ -109,10 +109,10 @@ const PendingPage = () => {
                 {isChecking ? 'Checking...' : 'Check Status'}
               </Button>
 
-              <Link href="/" passHref>
+              <Link href="/dashboard" passHref>
                 <Button variant="outline" className="flex items-center gap-2">
                   <Home className="h-4 w-4" />
-                  Return to Home
+                  Return to Dashboard
                 </Button>
               </Link>
             </div>

@@ -1,14 +1,34 @@
 import { NextRequest, NextResponse } from "next/server";
 import { initiatePayment } from "@/app/actions/initiatePayment";
+import { prisma } from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, mobile, amount, muid } = await req.json();
+    // Get authenticated user
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.id) {
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      );
+    }
+
+    const { name, mobile, amount, paymentType, creditValue } = await req.json();
 
     // Validate required fields
-    if (!name || !mobile || !amount) {
+    if (!name || !mobile || !amount || !paymentType) {
       return NextResponse.json(
-        { error: "Missing required fields: name, mobile, amount" },
+        { error: "Missing required fields: name, mobile, amount, paymentType" },
+        { status: 400 }
+      );
+    }
+
+    // Validate payment type
+    if (!["MONTHLY", "ADDON"].includes(paymentType)) {
+      return NextResponse.json(
+        { error: "Invalid payment type. Must be MONTHLY or ADDON" },
         { status: 400 }
       );
     }
@@ -22,12 +42,31 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const result = await initiatePayment(amountNum, name, mobile, muid);
+    // Initiate PhonePe payment first to get transaction ID
+    const result = await initiatePayment(amountNum, name, mobile);
+
+    // Create pending payment record in database
+    const payment = await prisma.payment.create({
+      data: {
+        userId: session.user.id,
+        amount: amountNum,
+        currency: 'INR',
+        paymentCategory: paymentType,
+        status: 'PENDING',
+        paymentDate: new Date(),
+        transactionId: result.transactionId,
+        description: paymentType === 'MONTHLY'
+          ? 'Monthly PRO Subscription'
+          : `Addon Credits Purchase (${Math.floor(creditValue || 0) * 12} credits)`,
+        value: paymentType === 'ADDON' ? Math.floor((creditValue || 0) * 12) : null, // Convert minutes to credits
+      }
+    });
 
     return NextResponse.json({
       success: true,
       redirectUrl: result.redirectUrl,
-      transactionId: result.transactionId
+      transactionId: result.transactionId,
+      paymentId: payment.id
     });
 
   } catch (error) {

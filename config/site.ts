@@ -3,7 +3,7 @@ export const siteConfig = {
   description: "AI-powered mock interviews that help you practice, improve, and land your dream job.",
   url: "https://mivvo.live",
   logo: "/mivvo.svg",
-  email: "hi@mivvo.live",
+  email: "hello@mivvo.com",
   enableCourses: true, // Set to false to hide courses and prevent access
   enableForeignLanguage: true, // Set to false to hide foreign language and prevent access
   links: {
@@ -27,10 +27,10 @@ export const CREDIT_PACKAGES = {
 // Credit expiration configuration - set ONE of these values, others will be automatically calculated
 const CREDIT_EXPIRATION = {
   SECONDS: 0,      // Set this for seconds
-  MINUTES: 0,      // Set this for minutes
+  MINUTES: 1,      // Set this for minutes
   HOURS: 0,        // Set this for hours
   DAYS: 0,        // Set this for days (currently active)
-  MONTHS: 1,       // Set this for months (approximated as 30 days)
+  MONTHS: 0,       // Set this for months (approximated as 30 days)
 } as const
 
 // Automatically calculate milliseconds based on the set value

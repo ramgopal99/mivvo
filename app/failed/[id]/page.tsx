@@ -18,8 +18,8 @@ const FailedPage = () => {
   }, [params?.id])
 
   const handleRetryPayment = () => {
-    // Redirect back to payment page
-    window.location.href = '/testp'
+    // Redirect back to dashboard settings for retry
+    window.location.href = '/dashboard/settings'
   }
 
   return (
@@ -81,10 +81,10 @@ const FailedPage = () => {
                 Try Again
               </Button>
 
-              <Link href="/" passHref>
+              <Link href="/dashboard" passHref>
                 <Button variant="outline" className="flex items-center gap-2">
                   <Home className="h-4 w-4" />
-                  Return to Home
+                  Return to Dashboard
                 </Button>
               </Link>
             </div>

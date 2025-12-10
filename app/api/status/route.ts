@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import sha256 from "crypto-js/sha256";
+import { prisma } from "@/lib/prisma";
+import { CREDIT_PACKAGES } from "@/config/site";
+import { CREDIT_MULTIPLIER } from "@/config/site";
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
     try {
@@ -37,11 +40,58 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
         const responseData = await response.json();
 
+        // Find the payment record
+        const payment = await prisma.payment.findFirst({
+            where: { transactionId: transactionId },
+            include: { user: true }
+        });
+
         if (responseData.code === "PAYMENT_SUCCESS") {
+            // Update payment status to COMPLETED
+            if (payment) {
+                await prisma.payment.update({
+                    where: { id: payment.id },
+                    data: { status: 'COMPLETED' }
+                });
+
+                // Update user credits and status based on payment type
+                if (payment.paymentCategory === 'MONTHLY') {
+                    // Upgrade user to PRO and reset credits
+                    await prisma.user.update({
+                        where: { id: payment.userId },
+                        data: {
+                            totalCreditAllocation: CREDIT_PACKAGES.PRO,
+                            usedCredits: 0,
+                            creditResetAt: new Date(),
+                            userType: 'PRO'
+                        }
+                    });
+                } else if (payment.paymentCategory === 'ADDON' && payment.value) {
+                    // Add purchased credits to existing allocation
+                    await prisma.user.update({
+                        where: { id: payment.userId },
+                        data: {
+                            totalCreditAllocation: {
+                                increment: payment.value / CREDIT_MULTIPLIER
+                            }
+                        }
+                    });
+                }
+            }
+
             return new NextResponse("PAYMENT_SUCCESS", { status: 200 });
         } else if (responseData.code === "PAYMENT_PENDING" || responseData.code === "PAYMENT_INITIATED") {
+            // Keep payment status as PENDING (already set when created)
             return new NextResponse("PAYMENT_PENDING", { status: 200 });
         } else {
+            // Update payment status to FAILED
+            if (payment) {
+                await prisma.payment.update({
+                    where: { id: payment.id },
+                    data: { status: 'FAILED' }
+                });
+            }
+
             return new NextResponse("PAYMENT_FAILED", { status: 200 });
         }
     } catch (error) {
