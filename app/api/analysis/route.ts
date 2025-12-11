@@ -56,9 +56,22 @@ export async function POST(request: NextRequest) {
       .map(msg => `${msg.role === 'user' ? 'Candidate' : 'Interviewer'}: ${msg.text}`)
       .join('\n\n')
 
+    // Log input statistics
+    console.log('🔍 ANALYSIS INPUT STATS:', {
+      conversation_length: conversation.length,
+      total_characters: conversationText.length,
+      topic: topic?.substring(0, 100) + (topic?.length > 100 ? '...' : ''),
+      estimated_input_tokens: Math.ceil(conversationText.length / 4) // Rough estimate
+    })
+
     const systemPrompt = getAnalysisPrompt({
       conversationText,
       topic
+    })
+
+    console.log('🔍 ANALYSIS SYSTEM PROMPT LENGTH:', {
+      system_prompt_tokens: Math.ceil(systemPrompt.length / 4), // Rough estimate
+      system_prompt_chars: systemPrompt.length
     })
 
     const completion = await openai.chat.completions.create({
@@ -68,6 +81,16 @@ export async function POST(request: NextRequest) {
       ],
       max_tokens: 1000,
       temperature: 0.3, // Lower temperature for more consistent analysis
+    })
+
+    // Log token usage
+    const usage = completion.usage
+    console.log('🔍 ANALYSIS TOKEN USAGE:', {
+      prompt_tokens: usage?.prompt_tokens || 0,
+      completion_tokens: usage?.completion_tokens || 0,
+      total_tokens: usage?.total_tokens || 0,
+      model: 'gpt-4o-mini',
+      response_characters: completion.choices[0]?.message?.content?.length || 0
     })
 
     const aiResponse = completion.choices[0]?.message?.content?.trim()
@@ -93,35 +116,35 @@ export async function POST(request: NextRequest) {
 
     } catch {
       console.error('Failed to parse AI response:', aiResponse)
-      // Return conservative analysis if AI response is malformed
+      // Return realistic analysis for failed parsing - assume minimal participation
       return NextResponse.json({
-        sentiment: "Neutral",
+        sentiment: "Negative",
         confidence_level: "Low",
         communication_skills: {
-          clarity: "Moderate",
-          grammar: "Average",
-          filler_words: "Medium"
+          clarity: "Confusing",
+          grammar: "Poor",
+          filler_words: "High"
         },
         technical_knowledge: {
-          accuracy: "Partially correct",
+          accuracy: "Wrong",
           depth: "Basic"
         },
         soft_skills: {
-          problem_solving: "Average",
-          attitude: "Neutral"
+          problem_solving: "Weak",
+          attitude: "Negative"
         },
-        strengths: ["Completed the interview process"],
-        weaknesses: ["Response quality could not be fully evaluated", "Technical demonstration unclear"],
-        final_score: 3,
-        recommendation: "Maybe",
-        vocabularyComplexity: 45,
-        emotionalTone: "Neutral",
-        wordCountAnalysis: "Appropriate",
-        questionAnsweringQuality: 50,
-        followUpHandling: true,
-        answerStructure: "Average",
-        exampleUsage: true,
-        relevantTopicAnswer: true
+        strengths: ["Showed up for interview"],
+        weaknesses: ["Failed to demonstrate any technical knowledge", "Poor communication skills", "No meaningful responses provided", "Unable to answer basic questions"],
+        final_score: 5,
+        recommendation: "Reject",
+        vocabularyComplexity: 15,
+        emotionalTone: "Negative",
+        wordCountAnalysis: "Too Brief",
+        questionAnsweringQuality: 10,
+        followUpHandling: false,
+        answerStructure: "Poor",
+        exampleUsage: false,
+        relevantTopicAnswer: false
       })
     }
 

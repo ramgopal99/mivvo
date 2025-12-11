@@ -346,10 +346,10 @@ export function VoiceChat({
     console.log('Is Coding Interview:', isCoding)
     setIsLoading(true)
 
-    // Special handling for NEXT_QUESTION trigger - don't add to conversation, directly ask AI to continue
+    // Special handling for NEXT_QUESTION trigger - direct fresh question generation
     if (messageText === 'NEXT_QUESTION') {
       try {
-        // Get current messages for API call (excluding the trigger message)
+        // Get current messages to analyze conversation context (but don't send them to AI)
         const currentMessages = await new Promise<Message[]>((resolve) => {
           setMessages(prev => {
             resolve(prev)
@@ -357,7 +357,15 @@ export function VoiceChat({
           })
         })
 
-        // Call OpenAI API with a direct instruction to ask the next question
+        // Extract key context from conversation without sending full history
+        const questionCount = currentMessages.filter(m => m.role === 'assistant').length
+        const lastTopics = currentMessages
+          .filter(m => m.role === 'assistant')
+          .slice(-3) // Get last 3 AI messages
+          .map(m => m.content.substring(0, 100)) // First 100 chars of each
+          .join(' ')
+
+        // Call OpenAI API with fresh context - no conversation history to avoid acknowledgments
         const response = await fetch('/api/chat', {
           method: 'POST',
           headers: {
@@ -367,13 +375,17 @@ export function VoiceChat({
             messages: [
               {
                 role: 'system',
-                content: (customPrompt || 'You are an AI interviewer conducting a professional interview. Ask relevant questions and provide constructive feedback.') +
-                         ' IMPORTANT: Ask the next relevant question immediately without any acknowledgment or introduction.'
+                content: `${customPrompt || 'You are an AI interviewer conducting a professional interview. Ask relevant questions and provide constructive feedback.'}
+
+CONVERSATION CONTEXT (for reference only):
+- Questions asked so far: ${questionCount}
+- Recent topics discussed: ${lastTopics}
+
+INSTRUCTION: Generate the next logical interview question based on the conversation context above. Ask ONE question directly without any introduction, acknowledgment, or transition phrases.`
               },
-              ...currentMessages.map(m => ({ role: m.role, content: m.content })),
               {
                 role: 'user',
-                content: 'Please ask me your next interview question.'
+                content: 'Ask the next interview question now.'
               }
             ]
           })
@@ -385,13 +397,26 @@ export function VoiceChat({
 
         const data = await response.json()
         const aiResponse = data.choices[0].message.content
-        console.log('AI Response (Next Question):', aiResponse.substring(0, 300) + '...')
+
+        // Clean the response - remove any potential acknowledgments
+        let cleanResponse = aiResponse.trim()
+
+        // Remove common acknowledgment patterns
+        cleanResponse = cleanResponse.replace(/^(sure|of course|certainly|okay|alright|got it|understood|let's continue|moving on|next|following up)[\s,.-]*/i, '')
+        cleanResponse = cleanResponse.replace(/^(i'll|let me|now|then|so|well)[\s,.-]*/i, '')
+
+        // If the response is too short after cleaning, it might be just acknowledgment - regenerate
+        if (cleanResponse.length < 10) {
+          cleanResponse = aiResponse // Use original if cleaning removed too much
+        }
+
+        console.log('AI Response (Next Question):', cleanResponse.substring(0, 300) + '...')
 
         // Add AI message
         const aiMessage: Message = {
           id: Date.now().toString(),
           role: 'assistant',
-          content: aiResponse,
+          content: cleanResponse,
           timestamp: new Date()
         }
 
@@ -411,7 +436,7 @@ export function VoiceChat({
         })
 
         // Speak the AI response
-        speakText(aiResponse)
+        speakText(cleanResponse)
 
       } catch (error) {
         console.error('Error:', error)
