@@ -6,7 +6,7 @@ export const topic_1_2: SubLesson = {
   status: 'completed',
   content: `# 🛠️ Setting Up Java on Your Local Machine
 
-Learn how to install Java Development Kit (JDK) and set up your development environment for coding.
+Learn how to install Java and set up your development environment for coding.
 
 ---
 
@@ -19,65 +19,59 @@ Before installing Java, make sure your system meets these requirements:
 - Administrator privileges for installation
 
 ### macOS Requirements
-- macOS 10.10 or later
+- macOS 10.9 or later
 - Command Line Tools for Xcode
 
 ### Linux Requirements
-- Most Linux distributions support Java installation
+- Most Linux distributions come with Java pre-installed
 - Package manager access (apt, yum, etc.)
 
 ---
 
 ## 🪟 Windows Installation
 
-### Method 1: Oracle JDK (Recommended)
+### Method 1: Official Oracle JDK (Recommended)
 
-1. **Download JDK**
-   - Visit [oracle.com/java](https://www.oracle.com/java/technologies/downloads/)
-   - Click "Download JDK" for your platform
-   - Choose the latest LTS (Long Term Support) version
+1. **Download Java**
+   - Visit [oracle.com/java](https://oracle.com/java)
+   - Click "Download Java" → "JDK Download"
+   - Choose the latest LTS version (Java 17 or 21)
 
 2. **Run the Installer**
    - Double-click the downloaded .exe file
-   - Follow the installation wizard
-   - Note the installation directory
+   - Follow installation wizard
+   - Note the installation path
 
-3. **Set Environment Variables**
-   - Search for "Environment Variables" in Windows search
-   - Click "Edit the system environment variables"
-   - Click "Environment Variables" button
-   - Add new system variable:
-     - Variable name: \`JAVA_HOME\`
-     - Variable value: \`C:\\Program Files\\Java\\jdk-17\` (your JDK path)
-   - Edit "Path" variable and add: \`%JAVA_HOME%\\bin\`
-
-4. **Verify Installation**
-   - Open Command Prompt
+3. **Verify Installation**
+   - Open Command Prompt (search for "cmd")
    - Type: \`java -version\`
    - Type: \`javac -version\`
 
 ### Method 2: OpenJDK (Free Alternative)
 
 1. **Download OpenJDK**
-   - Visit [adoptium.net](https://adoptium.net/)
+   - Visit [adoptium.net](https://adoptium.net)
    - Download Eclipse Temurin JDK
-   - Choose the latest LTS version
+   - Choose LTS version
 
-2. **Install and configure** same as Oracle JDK
+2. **Install and Verify**
+   - Extract to a folder (e.g., C:\\Java)
+   - Add to PATH environment variable
 
 ---
 
 ## 🍎 macOS Installation
 
-### Method 1: Oracle JDK
+### Method 1: Official Oracle JDK
 
-1. **Download JDK**
-   - Visit [oracle.com/java](https://www.oracle.com/java/technologies/downloads/)
-   - Download macOS installer (.dmg)
+1. **Download Java**
+   - Visit [oracle.com/java](https://oracle.com/java)
+   - Click "Download Java" → "JDK Download"
+   - Choose macOS installer
 
 2. **Install Java**
    - Open the downloaded .dmg file
-   - Run the installer package
+   - Follow installation wizard
    - Java will be installed in \`/Library/Java/JavaVirtualMachines/\`
 
 3. **Verify Installation**
@@ -95,7 +89,7 @@ Before installing Java, make sure your system meets these requirements:
 2. **Install OpenJDK**:
    \`\`\`bash
    brew install openjdk
-   sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+   sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
    \`\`\`
 
 3. **Verify Installation**:
@@ -125,10 +119,10 @@ javac -version
 ### CentOS/RHEL/Fedora
 
 \`\`\`bash
-# CentOS/RHEL 7
+# CentOS/RHEL
 sudo yum install java-17-openjdk-devel
 
-# CentOS/RHEL 8+ / Fedora
+# Fedora
 sudo dnf install java-17-openjdk-devel
 
 # Verify installation
@@ -146,17 +140,22 @@ javac -version
 
 ---
 
-## 🆚 JDK vs JRE
-
-### JRE (Java Runtime Environment)
-- **Purpose**: Run Java applications only
-- **Contents**: JVM + core libraries
-- **Use case**: End users running Java apps
+## 🆚 JDK vs JRE vs JVM
 
 ### JDK (Java Development Kit)
-- **Purpose**: Develop AND run Java applications
-- **Contents**: JRE + development tools (javac, javadoc, etc.)
-- **Use case**: Developers creating Java applications
+- **Contains**: JRE + development tools (javac, javadoc, etc.)
+- **Purpose**: Develop Java applications
+- **Required for**: Compiling and running Java code
+
+### JRE (Java Runtime Environment)
+- **Contains**: JVM + core libraries
+- **Purpose**: Run Java applications
+- **Required for**: End users running Java programs
+
+### JVM (Java Virtual Machine)
+- **Purpose**: Execute Java bytecode
+- **Platform**: Specific to each operating system
+- **Features**: Garbage collection, security, performance optimization
 
 **Always install JDK for development!** 🚀
 
@@ -168,29 +167,53 @@ javac -version
 
 #### Visual Studio Code (Recommended)
 1. Download from [code.visualstudio.com](https://code.visualstudio.com)
-2. Install Java extensions:
-   - "Extension Pack for Java" by Microsoft
-   - "Java Language Support" by Red Hat
+2. Install Java Extension Pack by Microsoft
+3. Install Gradle/Maven extensions for project management
 
 #### Other Popular Options
-- IntelliJ IDEA (Professional IDE)
-- Eclipse IDE
-- NetBeans
-- Sublime Text
+- **Eclipse**: Free, open-source, widely used for Java
+- **IntelliJ IDEA**: Powerful, modern IDE (Community Edition is free)
+- **NetBeans**: Official Oracle IDE, good for beginners
 
-### 2. Install Build Tools (Optional)
+### 2. Environment Variables Setup
+
+#### Windows - Adding Java to PATH
+
+1. **Search for "Environment Variables"** in Windows search
+2. **Click "Edit the system environment variables"**
+3. **Click "Environment Variables"** button
+4. **Find "Path" in System variables** and click "Edit"
+5. **Add these paths** (replace with your Java installation path):
+   - \`C:\\Program Files\\Java\\jdk-17\\bin\` (for Oracle JDK)
+   - \`C:\\Java\\jdk-17\\bin\` (for OpenJDK)
+
+#### macOS/Linux Environment Variables
+
+\`\`\`bash
+# Set JAVA_HOME
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+
+# Add to PATH
+export PATH=$JAVA_HOME/bin:$PATH
+
+# Make permanent (add to ~/.bashrc or ~/.zshrc)
+echo 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64' >> ~/.bashrc
+echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ~/.bashrc
+\`\`\`
+
+### 3. Install Build Tools (Optional but Recommended)
 
 #### Maven (Project management and build tool)
 \`\`\`bash
 # Download from maven.apache.org
-# Add to PATH environment variable
+# Add to PATH after installation
 mvn -version
 \`\`\`
 
 #### Gradle (Modern build tool)
 \`\`\`bash
 # Download from gradle.org
-# Add to PATH environment variable
+# Add to PATH after installation
 gradle -version
 \`\`\`
 
@@ -206,27 +229,28 @@ public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello, Java!");
         System.out.println("Java version: " + System.getProperty("java.version"));
-        System.out.println("Java home: " + System.getProperty("java.home"));
     }
 }
 \`\`\`
 
-### Compile and Run the Program
+### Compile and Run
 
-#### Windows/macOS/Linux
+#### Windows
 \`\`\`bash
-# Compile the program
 javac HelloWorld.java
-
-# Run the program
 java HelloWorld
 \`\`\`
 
-**Expected Output:**
+#### macOS/Linux
+\`\`\`bash
+javac HelloWorld.java
+java HelloWorld
+\`\`\`
+
+#### Expected Output
 \`\`\`
 Hello, Java!
-Java version: 17.0.5
-Java home: /path/to/java/home
+Java version: 17.0.8
 \`\`\`
 
 ---
@@ -234,79 +258,57 @@ Java home: /path/to/java/home
 ## 🐛 Troubleshooting Common Issues
 
 ### "java is not recognized" (Windows)
-- Check if JAVA_HOME is set correctly
-- Add \`%JAVA_HOME%\\bin\` to PATH
-- Restart command prompt
-
-### "JAVA_HOME is not defined correctly" (Windows)
-\`\`\`bash
-# Check current JAVA_HOME
-echo %JAVA_HOME%
-
-# Verify java executable exists
-dir "%JAVA_HOME%\bin\java.exe"
-\`\`\`
+- Reinstall JDK and ensure PATH is set correctly
+- Restart command prompt after PATH changes
+- Check if you're using the right java command
 
 ### Permission Errors (macOS/Linux)
 \`\`\`bash
-# Check Java installation
-which java
-ls -la /usr/bin/java
+# Use sudo if needed
+sudo apt install openjdk-17-jdk
+
+# Or adjust permissions
+chmod +x java
 \`\`\`
 
 ### Multiple Java Versions
 \`\`\`bash
-# List all installed Java versions
-/usr/libexec/java_home -V
+# Check installed versions
+java -version
+javac -version
 
-# Set specific version (macOS)
-/usr/libexec/java_home -v 17
-
-# Update alternatives (Linux)
+# Use update-alternatives (Linux)
 sudo update-alternatives --config java
 sudo update-alternatives --config javac
 \`\`\`
 
 ---
 
-## 🔧 Setting Up Environment Variables
+## 🎯 Java Versions and Compatibility
 
-Environment variables help your computer find Java and its tools.
+### Long-Term Support (LTS) Versions
+- **Java 8** (2014): Most widely used, LTS until 2030
+- **Java 11** (2018): Modern LTS with many improvements
+- **Java 17** (2021): Latest LTS, recommended for new projects
+- **Java 21** (2023): Next LTS with latest features
 
-### Windows - Setting JAVA_HOME
-
-1. **Right-click "This PC"** → **Properties**
-2. **Click "Advanced system settings"**
-3. **Click "Environment Variables"**
-4. **Add new system variable**:
-   - Variable name: \`JAVA_HOME\`
-   - Variable value: \`C:\\Program Files\\Java\\jdk-17.0.5\` (your actual path)
-
-5. **Edit PATH variable** and add:
-   - \`%JAVA_HOME%\\bin\`
-
-### Verifying Environment Setup
-
-After setting up environment variables, restart your command prompt:
-
-\`\`\`bash
-# Test Java commands
-java -version
-javac -version
-echo %JAVA_HOME%
-\`\`\`
-
-### macOS/Linux Environment Variables
-
-Java is usually available system-wide. Add to your shell profile:
-
-\`\`\`bash
-# Add to ~/.bashrc or ~/.zshrc
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
-export PATH=$JAVA_HOME/bin:$PATH
-\`\`\`
+### Version Compatibility
+- **Backward Compatible**: Newer JVMs can run older bytecode
+- **Forward Compatible**: Older JVMs cannot run newer bytecode
+- **Source Compatibility**: Code usually compiles across versions
 
 ---
 
-🎉 **Congratulations!** You now have Java set up on your local machine. Time to start coding! 🚀`
+## 🚀 Next Steps
+
+Now that Java is set up, you're ready to:
+
+1. **Learn Java Syntax** (Module 2)
+2. **Understand Variables and Data Types** (Module 3)
+3. **Master Operators and Expressions** (Module 4)
+
+Remember: **Practice regularly** and **experiment with code**. Java has excellent documentation and a supportive community!
+
+Happy coding! 🎉
+`
 };

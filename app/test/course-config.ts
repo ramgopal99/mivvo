@@ -5,7 +5,7 @@
 
 // Available courses: 'python', 'java', 'c', 'cpp', 'javascript'
 // Future courses will be added here
-export const CURRENT_COURSE: 'python' | 'java' | 'c' | 'cpp' | 'javascript' = 'javascript';
+export const CURRENT_COURSE: 'python' | 'java' | 'c' | 'cpp' | 'javascript' = 'c';
 
 // 🚀 QUICK START: Change the line above to switch courses!
 // Examples:

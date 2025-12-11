@@ -15,66 +15,66 @@ export const exercise_1_3: Exercise = {
     },
     {
       id: "q2",
-      question: "In which year was the C programming language first released?",
-      options: ["1969", "1972", "1978", "1989"],
+      question: "What is the most popular C compiler used for learning and development?",
+      options: ["Visual Studio Compiler", "GCC (GNU Compiler Collection)", "Intel C Compiler", "Borland C Compiler"],
       correctAnswer: 1,
-      explanation: "C was first released in 1972 by Dennis Ritchie at Bell Labs."
+      explanation: "GCC (GNU Compiler Collection) is the most widely used C compiler, available on Windows, macOS, and Linux."
     },
     {
       id: "q3",
-      question: "What is the correct way to declare the main function in C?",
-      options: ["void main()", "int main(void)", "main()", "int main(int argc, char *argv[])"],
-      correctAnswer: 1,
-      explanation: "The standard way to declare main in C is 'int main(void)' for programs that don't use command line arguments."
+      question: "Which command installs GCC on Ubuntu/Debian Linux?",
+      options: ["sudo apt install gcc", "sudo yum install gcc", "sudo pacman -S gcc", "brew install gcc"],
+      correctAnswer: 0,
+      explanation: "On Ubuntu and Debian systems, GCC is installed using 'sudo apt install build-essential' which includes GCC."
     },
     {
       id: "q4",
-      question: "Which of the following is NOT a valid C data type?",
-      options: ["int", "float", "string", "char"],
-      correctAnswer: 2,
-      explanation: "C does not have a built-in 'string' data type. Strings are represented as arrays of characters (char arrays)."
+      question: "What is the recommended code editor for beginners learning C?",
+      options: ["Notepad", "Visual Studio Code", "Microsoft Word", "Paint"],
+      correctAnswer: 1,
+      explanation: "Visual Studio Code is recommended for beginners due to its C/C++ extensions, syntax highlighting, and integrated terminal."
     },
     {
       id: "q5",
-      question: "What does the 'printf' function do in C?",
-      options: ["Read input from keyboard", "Print formatted output to screen", "Calculate mathematical expressions", "Allocate memory"],
+      question: "Which of the following is the correct way to compile a C program named 'hello.c'?",
+      options: ["compile hello.c", "gcc hello.c -o hello", "run hello.c", "execute hello.c"],
       correctAnswer: 1,
-      explanation: "'printf' is used to print formatted output to the standard output (usually the screen)."
+      explanation: "The correct command is 'gcc -o hello hello.c' where -o specifies the output filename and hello.c is the source file."
     },
     {
       id: "q6",
+      question: "What does the -Wall flag do when compiling with GCC?",
+      options: ["Creates a window", "Enables all warning messages", "Links all libraries", "Optimizes for speed"],
+      correctAnswer: 1,
+      explanation: "-Wall enables most warning messages that GCC can generate, helping catch potential bugs."
+    },
+    {
+      id: "q7",
       question: "Which header file must be included to use the 'printf' function?",
       options: ["<stdlib.h>", "<stdio.h>", "<string.h>", "<math.h>"],
       correctAnswer: 1,
       explanation: "'printf' is declared in <stdio.h> (standard input/output header)."
     },
     {
-      id: "q7",
+      id: "q8",
       question: "What is the purpose of the 'return 0;' statement at the end of main()?",
       options: ["Exit the program", "Return success status to the operating system", "Free memory", "Close all files"],
       correctAnswer: 1,
       explanation: "Returning 0 from main() indicates successful program execution to the operating system."
     },
     {
-      id: "q8",
+      id: "q9",
       question: "Which symbol is used for single-line comments in C?",
       options: ["//", "/* */", "#", "--"],
       correctAnswer: 0,
       explanation: "C supports single-line comments using '//' (this was added in C99 standard)."
     },
     {
-      id: "q9",
-      question: "What does the 'include' directive do in C?",
-      options: ["Executes external programs", "Links to external libraries", "Includes header files with function declarations", "Imports data from files"],
-      correctAnswer: 2,
-      explanation: "#include tells the preprocessor to include the contents of the specified header file."
-    },
-    {
       id: "q10",
-      question: "Which of these is the correct way to declare a variable in C?",
-      options: ["variable int x;", "int x variable;", "int x;", "x int;"],
+      question: "What is MinGW-w64 used for on Windows?",
+      options: ["Web browsing", "Running Linux commands", "Providing GCC compiler for Windows", "Creating graphics"],
       correctAnswer: 2,
-      explanation: "In C, variables are declared with the data type first, followed by the variable name: 'int x;'"
+      explanation: "MinGW-w64 provides the GCC compiler suite for Windows, allowing compilation of C programs on Windows."
     }
   ]
 };
