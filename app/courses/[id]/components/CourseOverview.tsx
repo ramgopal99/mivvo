@@ -7,12 +7,14 @@ interface CourseOverviewProps {
   modules: Module[];
   expandedModules: Set<string>;
   onToggleModule: (moduleId: string) => void;
+  isDemo?: boolean;
 }
 
 export default function CourseOverview({ 
   modules, 
   expandedModules, 
-  onToggleModule 
+  onToggleModule,
+  isDemo = false
 }: CourseOverviewProps) {
   return (
     <div className="container mx-auto px-4 py-12">
@@ -31,6 +33,7 @@ export default function CourseOverview({
               moduleIndex={index}
               isExpanded={expandedModules.has(module.id)}
               onToggle={() => onToggleModule(module.id)}
+              isDemo={isDemo}
             />
           ))}
         </div>

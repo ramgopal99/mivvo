@@ -21,6 +21,7 @@ interface MiddleSectionProps {
   onAI?: () => void;
   isChatOpen?: boolean;
   onCloseChat?: () => void;
+  isDemo?: boolean;
 }
 
 // Helper function to parse MCQ questions from content
@@ -74,7 +75,7 @@ const parseMCQQuestions = (content: string): MCQQuestion[] => {
 };
 
 
-const MiddleSection = ({ selectedTopic, onPrevious, onNext, onAI, isChatOpen, onCloseChat }: MiddleSectionProps) => {
+const MiddleSection = ({ selectedTopic, onPrevious, onNext, onAI, isChatOpen, onCloseChat, isDemo = false }: MiddleSectionProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Scroll to top whenever selectedTopic changes

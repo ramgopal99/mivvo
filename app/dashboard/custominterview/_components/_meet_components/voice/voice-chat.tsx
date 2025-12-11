@@ -89,7 +89,7 @@ interface VoiceChatProps {
   currentQuestion?: { title: string; description: string } // For coding interviews
   eventName?: string // Custom event name for starting/stopping voice chat
   voiceChatConfig?: { SILENCE_TIMEOUT_MS: number; RECOGNITION_KEEP_ALIVE_MS: number; TTS_RESTART_DELAY_MS: number; USER_RESPONSE_TIMEOUT_MS: number } // Optional custom voice chat config
-  voiceChatMessages?: { AI_GREETING_MESSAGE: string; USER_RESPONSE_TIMEOUT_MESSAGE: string } // Optional custom voice chat messages
+  voiceChatMessages?: { AI_GREETING_MESSAGE: string; USER_RESPONSE_TIMEOUT_MESSAGE: string; NEXT_QUESTION_TRIGGER_MESSAGE?: string } // Optional custom voice chat messages
   showLiveTranscription?: boolean // Optional override for live transcription display
   customPrompt?: string // Custom AI interviewer prompt
   isAudioEnabled?: boolean // Whether microphone is enabled
@@ -224,32 +224,38 @@ export function VoiceChat({
     setIsWaitingForUserResponse(true)
     userResponseTimeoutRef.current = setTimeout(async () => {
       setIsWaitingForUserResponse(false)
-      // Send timeout message directly as AI response instead of user message
-      setIsLoading(true)
 
-      const timeoutMessage: Message = {
-        id: Date.now().toString(),
-        role: 'assistant',
-        content: currentVoiceChatMessages.USER_RESPONSE_TIMEOUT_MESSAGE,
-        timestamp: new Date()
+      if (!isCoding) {
+        // For regular interviews: trigger AI to ask next question
+        handleSendMessageRef.current?.(currentVoiceChatMessages.NEXT_QUESTION_TRIGGER_MESSAGE || "Please ask me your next question.")
+      } else {
+        // For coding interviews: send timeout message
+        setIsLoading(true)
+
+        const timeoutMessage: Message = {
+          id: Date.now().toString(),
+          role: 'assistant',
+          content: currentVoiceChatMessages.USER_RESPONSE_TIMEOUT_MESSAGE,
+          timestamp: new Date()
+        }
+
+        setMessages(prev => [...prev, timeoutMessage])
+
+        // Update transcript
+        const updatedMessages = [...messages, timeoutMessage]
+        onTranscriptUpdate?.(updatedMessages.map(m => ({
+          role: m.role,
+          text: m.content,
+          timestamp: m.timestamp.toISOString()
+        })))
+
+        // Speak the timeout message
+        speakTextRef.current?.(currentVoiceChatMessages.USER_RESPONSE_TIMEOUT_MESSAGE)
+
+        setIsLoading(false)
       }
-
-      setMessages(prev => [...prev, timeoutMessage])
-
-      // Update transcript
-      const updatedMessages = [...messages, timeoutMessage]
-      onTranscriptUpdate?.(updatedMessages.map(m => ({
-        role: m.role,
-        text: m.content,
-        timestamp: m.timestamp.toISOString()
-      })))
-
-      // Speak the timeout message
-      speakTextRef.current?.(currentVoiceChatMessages.USER_RESPONSE_TIMEOUT_MESSAGE)
-
-      setIsLoading(false)
     }, currentVoiceChatConfig.USER_RESPONSE_TIMEOUT_MS)
-  }, [clearUserResponseTimeout, currentVoiceChatConfig.USER_RESPONSE_TIMEOUT_MS, currentVoiceChatMessages.USER_RESPONSE_TIMEOUT_MESSAGE, onTranscriptUpdate, messages])
+  }, [clearUserResponseTimeout, currentVoiceChatConfig.USER_RESPONSE_TIMEOUT_MS, currentVoiceChatMessages.USER_RESPONSE_TIMEOUT_MESSAGE, onTranscriptUpdate, messages, isCoding])
 
   // Notify parent when waiting state changes
   useEffect(() => {

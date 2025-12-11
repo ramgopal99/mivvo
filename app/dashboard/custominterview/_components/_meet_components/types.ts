@@ -37,6 +37,7 @@ export interface VoiceChatConfig {
 export interface VoiceChatMessages {
   AI_GREETING_MESSAGE: string
   USER_RESPONSE_TIMEOUT_MESSAGE: string
+  NEXT_QUESTION_TRIGGER_MESSAGE?: string
   QUESTION_INSTRUCTIONS?: string
 }
 

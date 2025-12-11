@@ -8,9 +8,10 @@ import { Course, CourseStats } from './types';
 interface CourseHeaderProps {
   course: Course;
   stats: CourseStats;
+  isDemo?: boolean;
 }
 
-export default function CourseHeader({ course, stats }: CourseHeaderProps) {
+export default function CourseHeader({ course, stats, isDemo = false }: CourseHeaderProps) {
   const router = useRouter();
 
   return (
@@ -18,7 +19,7 @@ export default function CourseHeader({ course, stats }: CourseHeaderProps) {
       <div className="container mx-auto px-4 py-12">
         <Button
           variant="ghost"
-          onClick={() => router.push('/courses')}
+          onClick={() => router.push(isDemo ? '/courses/demo' : '/courses')}
           className="mb-6 cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />

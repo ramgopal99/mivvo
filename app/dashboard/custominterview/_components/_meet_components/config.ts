@@ -70,7 +70,7 @@ export const VOICE_CHAT_CONFIG = {
   SILENCE_TIMEOUT_MS: 2500, // Wait time after user stops speaking
   RECOGNITION_KEEP_ALIVE_MS: 6000, // Speech recognition keep-alive interval
   TTS_RESTART_DELAY_MS: 250, // Delay before restarting speech recognition
-  USER_RESPONSE_TIMEOUT_MS: 15000, // Timeout for user responses
+  USER_RESPONSE_TIMEOUT_MS: 10000, // Timeout for user responses
 }
 
 // Separate timing for coding interviews (longer timeouts for thinking)
@@ -89,7 +89,8 @@ export const CODING_VOICE_CHAT_CONFIG = {
 // Note: AI_GREETING_MESSAGE is now dynamically generated based on interview data
 export const VOICE_CHAT_MESSAGES = {
   AI_GREETING_MESSAGE: "", // This will be generated dynamically
-  USER_RESPONSE_TIMEOUT_MESSAGE: "I'm still here. Please continue with your thoughts.",
+  USER_RESPONSE_TIMEOUT_MESSAGE: "Do you have any other questions for me?",
+  NEXT_QUESTION_TRIGGER_MESSAGE: "Please ask me your next question.", // Message sent to AI to trigger next question
 }
 
 // Special messages for coding interviews

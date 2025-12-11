@@ -14,7 +14,7 @@ import {
   SidebarMenuSubItem,
   SidebarMenuSubButton
 } from '@/components/ui/sidebar';
-import { ChevronDown, ChevronRight } from 'lucide-react';
+import { ChevronDown, ChevronRight, Lock } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { modules } from '../data/lessonsData';
@@ -23,9 +23,10 @@ interface LeftSidebarProps {
   onSubtopicClick?: (moduleId: string, subtopicId: string, title: string, moduleTitle: string) => void;
   selectedTopic?: { moduleId: string; subtopicId: string; title: string; moduleTitle: string } | null;
   onCheckedItemsChange?: (count: number) => void;
+  isDemo?: boolean;
 }
 
-const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, selectedTopic, onCheckedItemsChange }) => {
+const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, selectedTopic, onCheckedItemsChange, isDemo = false }) => {
   const sidebarScrollRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const params = useParams();
@@ -295,20 +296,24 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, selectedTopi
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {modules.map((module) => (
+              {modules.map((module, index) => {
+                const isLocked = isDemo && index >= 2;
+                return (
                 <SidebarMenuItem key={module.id}>
                   <SidebarMenuButton
-                    onClick={() => toggleModule(module.id)}
-                    isActive={module.isActive}
-                    className="w-full justify-between min-w-0 cursor-pointer"
+                    onClick={isLocked ? undefined : () => toggleModule(module.id)}
+                    isActive={module.isActive && !isLocked}
+                    className={`w-full justify-between min-w-0 ${isLocked ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
                   >
                     <div className="flex items-center gap-3 min-w-0 flex-1">
                       <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 ${
-                        selectedModule === module.id
+                        selectedModule === module.id && !isLocked
                           ? 'bg-primary text-primary-foreground'
+                          : isLocked
+                          ? 'bg-muted text-muted-foreground'
                           : 'bg-muted text-muted-foreground'
                       }`}>
-                        {module.id.replace('module-', '')}
+                        {isLocked ? <Lock className="w-3 h-3" /> : module.id.replace('module-', '')}
                       </div>
                       <span
                         className="truncate text-xs max-w-[140px] font-bold mt-1"
@@ -403,7 +408,8 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ onSubtopicClick, selectedTopi
                     </SidebarMenuSub>
                   )}
                 </SidebarMenuItem>
-              ))}
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

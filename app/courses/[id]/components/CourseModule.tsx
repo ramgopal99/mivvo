@@ -8,7 +8,8 @@ import {
   CheckCircle2,
   Star,
   Folder,
-  FileQuestion
+  FileQuestion,
+  Lock
 } from 'lucide-react';
 import { Module } from './types';
 
@@ -17,18 +18,25 @@ interface CourseModuleProps {
   moduleIndex: number;
   isExpanded: boolean;
   onToggle: () => void;
+  isDemo?: boolean;
 }
 
-export default function CourseModule({ module, moduleIndex, isExpanded, onToggle }: CourseModuleProps) {
+export default function CourseModule({ module, moduleIndex, isExpanded, onToggle, isDemo = false }: CourseModuleProps) {
   const totalItems = (module.subLessons?.length || 0) + (module.exercises?.length || 0);
+  const isLocked = isDemo && moduleIndex >= 2;
 
   return (
-    <Card className="border-2 hover:border-primary/20 transition-colors">
+    <Card className={`border-2 transition-colors ${isLocked ? 'opacity-60' : 'hover:border-primary/20'}`}>
       <CardContent className="p-0">
         {/* Module Header */}
         <button
-          onClick={onToggle}
-          className="w-full flex items-center justify-between p-4 hover:bg-muted/50 transition-colors cursor-pointer"
+          onClick={isLocked ? undefined : onToggle}
+          disabled={isLocked}
+          className={`w-full flex items-center justify-between p-4 transition-colors ${
+            isLocked
+              ? 'cursor-not-allowed opacity-75'
+              : 'hover:bg-muted/50 cursor-pointer'
+          }`}
         >
           <div className="flex items-center gap-3">
             <Folder className="w-5 h-5 text-primary" />
@@ -44,7 +52,9 @@ export default function CourseModule({ module, moduleIndex, isExpanded, onToggle
             <span className="text-sm text-muted-foreground">
               {totalItems} items
             </span>
-            {isExpanded ? (
+            {isLocked ? (
+              <Lock className="w-5 h-5 text-muted-foreground" />
+            ) : isExpanded ? (
               <ChevronDown className="w-5 h-5 text-muted-foreground" />
             ) : (
               <ChevronRight className="w-5 h-5 text-muted-foreground" />

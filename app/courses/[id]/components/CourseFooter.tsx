@@ -1,8 +1,17 @@
 "use client";
 
 import { Button } from '@/components/ui/button';
+import { useParams, useRouter } from 'next/navigation';
 
 export default function CourseFooter() {
+  const router = useRouter();
+  const params = useParams();
+  const courseId = params.id as string;
+
+  const handleDemoClick = () => {
+    router.push(`/courses/demo/${courseId}`);
+  };
+
   return (
     <div className="sticky bottom-0 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 py-4">
@@ -12,7 +21,12 @@ export default function CourseFooter() {
             <p className="text-sm text-muted-foreground">Start your learning journey today</p>
           </div>
           <div className="flex gap-3">
-            <Button variant="outline" size="lg" className="cursor-pointer">
+            <Button
+              variant="outline"
+              size="lg"
+              className="cursor-pointer"
+              onClick={handleDemoClick}
+            >
               Demo
             </Button>
             <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer">

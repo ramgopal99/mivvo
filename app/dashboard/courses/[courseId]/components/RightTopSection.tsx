@@ -27,10 +27,11 @@ interface CodeTemplate {
 
 interface RightTopSectionProps {
   onConsoleOutput: (output: string) => void;
+  isDemo?: boolean;
 }
 
 
-const RightTopSection = ({ onConsoleOutput }: RightTopSectionProps) => {
+const RightTopSection = ({ onConsoleOutput, isDemo = false }: RightTopSectionProps) => {
   const editorRef = useRef<MonacoEditorRef>(null);
   const { data: session, status } = useSession();
   const [isRunning, setIsRunning] = useState(false);
@@ -278,42 +279,44 @@ const RightTopSection = ({ onConsoleOutput }: RightTopSectionProps) => {
           </Tooltip>
           </div>
 
-          {/* User Profile Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 px-2 gap-1">
-                <Avatar className="h-6 w-6">
-                  <AvatarImage
-                    src={session?.user?.image || undefined}
-                    alt={userData?.name || session?.user?.name || "User"}
-                  />
-                  <AvatarFallback className="text-xs">
-                    {(userData?.name || session?.user?.name || "User").charAt(0).toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
-                <ChevronDown className="h-3 w-3" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuLabel className="font-normal">
-                <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">
-                    {userData?.name || session?.user?.name || "User"}
-                  </p>
-                  <p className="text-xs leading-none text-muted-foreground">
-                    {userData?.email || session?.user?.email || ""}
-                  </p>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <a href="/dashboard/profile" className="cursor-pointer">
-                  <User className="mr-2 h-4 w-4" />
-                  Profile
-                </a>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {/* User Profile Dropdown - Hidden in demo mode */}
+          {!isDemo && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="h-8 px-2 gap-1">
+                  <Avatar className="h-6 w-6">
+                    <AvatarImage
+                      src={session?.user?.image || undefined}
+                      alt={userData?.name || session?.user?.name || "User"}
+                    />
+                    <AvatarFallback className="text-xs">
+                      {(userData?.name || session?.user?.name || "User").charAt(0).toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+                  <ChevronDown className="h-3 w-3" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">
+                      {userData?.name || session?.user?.name || "User"}
+                    </p>
+                    <p className="text-xs leading-none text-muted-foreground">
+                      {userData?.email || session?.user?.email || ""}
+                    </p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <a href="/dashboard/profile" className="cursor-pointer">
+                    <User className="mr-2 h-4 w-4" />
+                    Profile
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </div>
       </div>
       <div className="flex-1 flex flex-col">

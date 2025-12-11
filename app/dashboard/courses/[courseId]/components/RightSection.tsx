@@ -4,7 +4,11 @@ import { useState } from 'react';
 import RightTopSection from './RightTopSection';
 import RightBottomSection from './RightBottomSection';
 
-const RightSection = () => {
+interface RightSectionProps {
+  isDemo?: boolean;
+}
+
+const RightSection = ({ isDemo = false }: RightSectionProps) => {
   const [consoleOutput, setConsoleOutput] = useState<string>('');
 
   const handleConsoleOutput = (output: string) => {
@@ -15,7 +19,7 @@ const RightSection = () => {
     <div className="h-full bg-muted/20 border-l border-border overflow-hidden flex flex-col">
       {/* Top Section - Monaco Editor */}
       <div className="flex-1 border-b border-border">
-        <RightTopSection onConsoleOutput={handleConsoleOutput} />
+        <RightTopSection onConsoleOutput={handleConsoleOutput} isDemo={isDemo} />
       </div>
 
       {/* Bottom Section - Console Output */}
