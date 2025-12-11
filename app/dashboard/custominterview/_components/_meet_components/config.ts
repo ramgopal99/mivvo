@@ -90,7 +90,7 @@ export const CODING_VOICE_CHAT_CONFIG = {
 export const VOICE_CHAT_MESSAGES = {
   AI_GREETING_MESSAGE: "", // This will be generated dynamically
   USER_RESPONSE_TIMEOUT_MESSAGE: "Do you have any other questions for me?",
-  NEXT_QUESTION_TRIGGER_MESSAGE: "Please ask me your next question.", // Message sent to AI to trigger next question
+  NEXT_QUESTION_TRIGGER_MESSAGE: "NEXT_QUESTION", // Direct trigger for AI to ask next question
 }
 
 // Special messages for coding interviews

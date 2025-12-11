@@ -717,12 +717,8 @@ export function MeetTestRoom({
     if (!isActive && isConversationMode && !isEndingCall && !isSavingConversationRef.current) {
       console.log('🎤 handleConversationModeChange: Calling handleSaveConversation')
       await handleSaveConversation()
-      if (!isUpdatingTimeUsageRef.current) {
-        console.log('🎤 handleConversationModeChange: Calling handleUpdateTimeUsage')
-        await handleUpdateTimeUsage()
-      } else {
-        console.log('🎤 handleConversationModeChange: Skipping handleUpdateTimeUsage (already in progress)')
-      }
+      // Don't update time usage here - it's already handled by handleEndCall
+      console.log('🎤 handleConversationModeChange: Skipping handleUpdateTimeUsage (handled by handleEndCall)')
     }
 
     setIsConversationMode(isActive)

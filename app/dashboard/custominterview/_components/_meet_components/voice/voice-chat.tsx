@@ -346,6 +346,88 @@ export function VoiceChat({
     console.log('Is Coding Interview:', isCoding)
     setIsLoading(true)
 
+    // Special handling for NEXT_QUESTION trigger - don't add to conversation, directly ask AI to continue
+    if (messageText === 'NEXT_QUESTION') {
+      try {
+        // Get current messages for API call (excluding the trigger message)
+        const currentMessages = await new Promise<Message[]>((resolve) => {
+          setMessages(prev => {
+            resolve(prev)
+            return prev
+          })
+        })
+
+        // Call OpenAI API with a direct instruction to ask the next question
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            messages: [
+              {
+                role: 'system',
+                content: (customPrompt || 'You are an AI interviewer conducting a professional interview. Ask relevant questions and provide constructive feedback.') +
+                         ' IMPORTANT: Ask the next relevant question immediately without any acknowledgment or introduction.'
+              },
+              ...currentMessages.map(m => ({ role: m.role, content: m.content })),
+              {
+                role: 'user',
+                content: 'Please ask me your next interview question.'
+              }
+            ]
+          })
+        })
+
+        if (!response.ok) {
+          throw new Error('Failed to get response from AI')
+        }
+
+        const data = await response.json()
+        const aiResponse = data.choices[0].message.content
+        console.log('AI Response (Next Question):', aiResponse.substring(0, 300) + '...')
+
+        // Add AI message
+        const aiMessage: Message = {
+          id: Date.now().toString(),
+          role: 'assistant',
+          content: aiResponse,
+          timestamp: new Date()
+        }
+
+        setMessages(prev => {
+          const finalMessages = [...prev, aiMessage]
+
+          // Defer transcript update to avoid setState during render
+          setTimeout(() => {
+            onTranscriptUpdate?.(finalMessages.map(m => ({
+              role: m.role,
+              text: m.content,
+              timestamp: m.timestamp.toISOString()
+            })))
+          }, 0)
+
+          return finalMessages
+        })
+
+        // Speak the AI response
+        speakText(aiResponse)
+
+      } catch (error) {
+        console.error('Error:', error)
+        const errorMessage: Message = {
+          id: Date.now().toString(),
+          role: 'assistant',
+          content: 'Sorry, I encountered an error. Please try again.',
+          timestamp: new Date()
+        }
+        setMessages(prev => [...prev, errorMessage])
+      } finally {
+        setIsLoading(false)
+      }
+      return
+    }
+
     // Add user message
     const userMessage: Message = {
       id: Date.now().toString(),
