@@ -95,7 +95,7 @@ export function MessagesFilters({
           {hasActiveFilters && (
             <div className="flex items-center gap-2">
               <span className="text-sm text-gray-600">Active filters:</span>
-              {searchTerm && <Badge variant="secondary" className="text-xs bg-gray-100 text-gray-700">Search: "{searchTerm}"</Badge>}
+              {searchTerm && <Badge variant="secondary" className="text-xs bg-gray-100 text-gray-700">Search: &quot;{searchTerm}&quot;</Badge>}
               {filterStatus !== "all" && <Badge variant="secondary" className="text-xs bg-gray-100 text-gray-700">Status: {filterStatus}</Badge>}
             </div>
           )}

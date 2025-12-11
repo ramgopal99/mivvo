@@ -3,6 +3,12 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 
+type TicketUpdateData = {
+  status: 'COMPLETED'
+  updatedAt: Date
+  resolution?: string
+}
+
 export async function GET(request: NextRequest) {
   try {
     // Check if user is authenticated and is admin
@@ -181,7 +187,7 @@ export async function PATCH(request: NextRequest) {
 
     } else if (action === 'complete') {
       // Mark ticket as completed
-      const updateData: any = {
+      const updateData: TicketUpdateData = {
         status: 'COMPLETED',
         updatedAt: new Date()
       }
@@ -222,7 +228,7 @@ export async function PATCH(request: NextRequest) {
       })
 
       // Update ticket as completed with resolution
-      const updateData: any = {
+      const updateData: TicketUpdateData = {
         status: 'COMPLETED',
         updatedAt: new Date()
       }

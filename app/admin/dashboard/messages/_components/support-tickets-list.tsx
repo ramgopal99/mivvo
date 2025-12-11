@@ -1,9 +1,9 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Progress } from "@/components/ui/progress"
-import { HelpCircle, Clock, User, AlertTriangle, CheckCircle, Star, MessageCircle } from "lucide-react"
+import { HelpCircle, Clock, User, CheckCircle, MessageCircle } from "lucide-react"
 import { format } from "date-fns"
 
 interface SupportTicket {

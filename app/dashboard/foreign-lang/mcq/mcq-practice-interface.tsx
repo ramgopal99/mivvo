@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Clock, CheckCircle, ArrowRight, ArrowLeft } from "lucide-react";
-import { type McqSessionData, type McqQuestionData } from "../data/mcq-practice-data";
+import { type McqSessionData } from "../data/mcq-practice-data";
 
 interface McqPracticeInterfaceProps {
   sessionId: string;
@@ -36,7 +36,6 @@ export function McqPracticeInterface({
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(data.timeLimit * 60); // Convert to seconds
   const [startTime] = useState(Date.now());
-  const [questionStartTime] = useState(Date.now());
 
   const currentQuestion = data.questions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / data.questions.length) * 100;

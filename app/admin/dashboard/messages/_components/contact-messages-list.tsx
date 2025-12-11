@@ -1,8 +1,8 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { MessageSquare, Mail, User, Clock, Eye, Reply, Star, Flag } from "lucide-react"
+import { MessageSquare, Mail, User, Clock, Eye } from "lucide-react"
 import { format } from "date-fns"
 
 interface ContactMessage {

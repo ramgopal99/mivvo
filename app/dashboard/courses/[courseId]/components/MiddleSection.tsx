@@ -75,7 +75,7 @@ const parseMCQQuestions = (content: string): MCQQuestion[] => {
 };
 
 
-const MiddleSection = ({ selectedTopic, onPrevious, onNext, onAI, isChatOpen, onCloseChat, isDemo = false }: MiddleSectionProps) => {
+const MiddleSection = ({ selectedTopic, onPrevious, onNext, onAI, isChatOpen, onCloseChat }: MiddleSectionProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Scroll to top whenever selectedTopic changes

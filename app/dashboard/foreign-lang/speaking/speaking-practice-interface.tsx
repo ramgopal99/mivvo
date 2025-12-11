@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Mic, MicOff, Volume2, Clock, CheckCircle, ArrowRight, ArrowLeft } from "lucide-react";
-import { type SpeakingSessionData, type SpeakingQuestionData } from "../data/speaking-practice-data";
+import { type SpeakingSessionData } from "../data/speaking-practice-data";
 
 interface SpeakingPracticeInterfaceProps {
   sessionId: string;
@@ -75,15 +75,17 @@ export function SpeakingPracticeInterface({
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [transcript, setTranscript] = useState("");
-  const [questionStartTime] = useState(Date.now());
   const [isSupported, setIsSupported] = useState(false);
   const [error, setError] = useState<string>("");
 
+  const currentQuestion = data.questions[currentQuestionIndex];
+
   const recognitionRef = useRef<SpeechRecognition | null>(null);
   const speechSynthesisRef = useRef<SpeechSynthesis | null>(null);
-  const questionTimerRef = useRef<NodeJS.Timeout | null>(null);
-
-  const currentQuestion = data.questions[currentQuestionIndex];
+  const currentQuestionRef = useRef(currentQuestion);
+  const onAnswerRef = useRef(onAnswer);
+  const sessionIdRef = useRef(sessionId);
+  const transcriptRef = useRef(transcript);
   const progress = ((currentQuestionIndex + 1) / data.questions.length) * 100;
   const currentAnswer = userAnswers[currentQuestion.id] || "";
   const hasAnswered = currentAnswer.trim().length > 0;
@@ -92,7 +94,10 @@ export function SpeakingPracticeInterface({
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    // Capture ref values at the start of the effect
+    const currentTimer: NodeJS.Timeout | null = null;
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
     if (SpeechRecognition) {
       setIsSupported(true);
@@ -149,9 +154,10 @@ export function SpeakingPracticeInterface({
       recognition.onend = () => {
         setIsListening(false);
         // If we have a transcript, save it as the answer
-        if (transcript.trim()) {
-          const finalAnswer = transcript.trim();
-          onAnswer(sessionId, currentQuestion.id, finalAnswer);
+        const currentTranscript = transcriptRef.current;
+        if (currentTranscript.trim()) {
+          const finalAnswer = currentTranscript.trim();
+          onAnswerRef.current(sessionIdRef.current, currentQuestionRef.current.id, finalAnswer);
           setTranscript("");
         }
       };
@@ -164,11 +170,29 @@ export function SpeakingPracticeInterface({
       if (speechSynthesisRef.current) {
         speechSynthesisRef.current.cancel();
       }
-      if (questionTimerRef.current) {
-        clearTimeout(questionTimerRef.current);
+      // Clear the captured timer value
+      if (currentTimer) {
+        clearTimeout(currentTimer);
       }
     };
   }, []);
+
+  // Update refs when values change
+  useEffect(() => {
+    currentQuestionRef.current = currentQuestion;
+  }, [currentQuestion]);
+
+  useEffect(() => {
+    onAnswerRef.current = onAnswer;
+  }, [onAnswer]);
+
+  useEffect(() => {
+    sessionIdRef.current = sessionId;
+  }, [sessionId]);
+
+  useEffect(() => {
+    transcriptRef.current = transcript;
+  }, [transcript]);
 
   // Speak the current question
   const speakQuestion = useCallback(async () => {

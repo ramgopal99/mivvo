@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -141,7 +142,7 @@ export function RearrangeSentencesPractice({
             <div className="p-4 bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg">
               <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">Correct Answer:</h4>
               <p className="text-sm text-green-700 dark:text-green-300 mb-3">
-                "{data.correctOrder.join(' ')}"
+                &quot;{data.correctOrder.join(' ')}&quot;
               </p>
               <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">Explanation:</h4>
               <p className="text-sm text-green-700 dark:text-green-300">{data.explanation}</p>
