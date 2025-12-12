@@ -108,7 +108,7 @@ export const privacyConfig = {
         "Objection: Object to certain types of data processing"
       ],
       additionalContent: [
-        "To exercise these rights, please contact us at privacy@mivvo.com. We will respond to your request within 30 days."
+        "To exercise these rights, please contact us at hello@mivvo.com. We will respond to your request within 30 days."
       ]
     },
     {
@@ -147,6 +147,9 @@ export const privacyConfig = {
   contact: {
     title: "Contact Us",
     description: "If you have any questions about this Privacy Policy or our data practices, please contact us:",
-    email: "hello@mivvo.com"
+    email: "hello@mivvo.com",
+    operator: "Operated by Ramgopal Bagh",
+    operatorEmail: "ramgopalbagh009@gmail.com",
+    operatorPhone: "8280993756"
   }
 }

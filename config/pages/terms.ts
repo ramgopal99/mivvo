@@ -209,6 +209,9 @@ export const termsConfig = {
   contact: {
     title: "Contact Information",
     description: "If you have any questions about these Terms of Service, please contact us:",
-    email: "hello@mivvo.com"
+    email: "hello@mivvo.com",
+    operator: "Operated by Ramgopal Bagh",
+    operatorEmail: "ramgopalbagh009@gmail.com",
+    operatorPhone: "8280993756"
   }
 }

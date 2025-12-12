@@ -79,8 +79,11 @@ export default function TermsPage() {
               {termsConfig.contact.description}
             </p>
 
-            <div className="bg-gray-50 p-6 rounded-lg">
+            <div className="bg-gray-50 p-6 rounded-lg space-y-2">
               <p className="text-gray-700"><strong>Email:</strong> {termsConfig.contact.email}</p>
+              <p className="text-gray-700"><strong>Operator:</strong> {termsConfig.contact.operator}</p>
+              <p className="text-gray-700"><strong>Operator Email:</strong> {termsConfig.contact.operatorEmail}</p>
+              <p className="text-gray-700"><strong>Phone:</strong> {termsConfig.contact.operatorPhone}</p>
             </div>
           </CardContent>
         </Card>
