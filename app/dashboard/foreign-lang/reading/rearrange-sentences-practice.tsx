@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -25,20 +24,39 @@ export function RearrangeSentencesPractice({
   const [arrangedWords, setArrangedWords] = useState<string[]>(userAnswer ? userAnswer.split(' ') : []);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
-  // Check if the current arrangement is correct
+  // Sync with userAnswer prop when it changes
   useEffect(() => {
-    if (arrangedWords.length === data.correctOrder.length) {
-      const currentAnswer = arrangedWords.join(' ');
-      const correctAnswer = data.correctOrder.join(' ');
-      const correct = currentAnswer === correctAnswer;
-      setIsCorrect(correct);
+    if (userAnswer) {
+      const words = userAnswer.split(' ');
+      setArrangedWords(words);
+      // Reconstruct scrambled words
+      const usedWords = new Set(words);
+      const remaining = data.scrambledSentence.filter(word => !usedWords.has(word));
+      setScrambledWords(remaining);
+    } else {
+      setScrambledWords(data.scrambledSentence);
+      setArrangedWords([]);
+    }
+  }, [userAnswer, data.scrambledSentence]);
 
-      // Call onAnswer with the arranged sentence
+  // Check if the current arrangement is correct and mark as answered
+  useEffect(() => {
+    if (arrangedWords.length > 0) {
+      const currentAnswer = arrangedWords.join(' ');
+      // Always call onAnswer when arrangement changes (marks as answered)
       onAnswer(sessionId, currentAnswer);
+      
+      if (arrangedWords.length === data.correctOrder.length) {
+        const correctAnswer = data.correctOrder.join(' ');
+        const correct = currentAnswer === correctAnswer;
+        setIsCorrect(correct);
+      } else {
+        setIsCorrect(null);
+      }
     } else {
       setIsCorrect(null);
     }
-  }, [arrangedWords, data.correctOrder, onAnswer]);
+  }, [arrangedWords, data.correctOrder, sessionId, onAnswer]);
 
   const addWord = (word: string, index: number) => {
     setArrangedWords([...arrangedWords, word]);
@@ -119,35 +137,19 @@ export function RearrangeSentencesPractice({
                   <span className="text-sm font-medium">Correct!</span>
                 </div>
               )}
-              {isCorrect === false && (
-                <div className="flex items-center gap-2 text-red-600">
-                  <span className="text-sm font-medium">Try again</span>
-                </div>
-              )}
             </div>
 
             <Button
               variant="outline"
               size="sm"
               onClick={resetArrangement}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 cursor-pointer"
             >
               <RotateCcw className="h-4 w-4" />
               Reset
             </Button>
           </div>
 
-          {/* Show correct answer and explanation */}
-          {isCorrect === true && (
-            <div className="p-4 bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg">
-              <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">Correct Answer:</h4>
-              <p className="text-sm text-green-700 dark:text-green-300 mb-3">
-                &quot;{data.correctOrder.join(' ')}&quot;
-              </p>
-              <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">Explanation:</h4>
-              <p className="text-sm text-green-700 dark:text-green-300">{data.explanation}</p>
-            </div>
-          )}
         </CardContent>
       </Card>
     </div>

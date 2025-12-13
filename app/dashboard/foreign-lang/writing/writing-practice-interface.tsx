@@ -1,12 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Clock, Save, Eye } from "lucide-react";
+import { Save } from "lucide-react";
 import { type WritingTopicData } from "../data/writing-practice-data";
 
 interface WritingPracticeInterfaceProps {
@@ -22,50 +19,59 @@ export function WritingPracticeInterface({
   userAnswer = "",
   onAnswer
 }: WritingPracticeInterfaceProps) {
-  const [text, setText] = useState(userAnswer);
-  const [timeRemaining, setTimeRemaining] = useState(data.timeLimit * 60); // Convert to seconds
-  const [isPreviewMode, setIsPreviewMode] = useState(false);
+  const localStorageKey = `writing-${sessionId}`;
 
-  // Timer countdown
-  useEffect(() => {
-    if (timeRemaining > 0) {
-      const timer = setTimeout(() => setTimeRemaining(timeRemaining - 1), 1000);
-      return () => clearTimeout(timer);
+  // Load from localStorage or use userAnswer
+  const [text, setText] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem(localStorageKey);
+      return saved || userAnswer;
     }
-  }, [timeRemaining]);
+    return userAnswer;
+  });
 
-  // Auto-save the answer
+  const [isSaving, setIsSaving] = useState(false);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+
+  // Auto-save every 5 seconds when there are unsaved changes
   useEffect(() => {
-    onAnswer(sessionId, text);
-  }, [text, onAnswer]);
+    if (!hasUnsavedChanges) return;
 
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
+    const saveTimer = setTimeout(async () => {
+      setIsSaving(true);
 
-  const wordCount = text.trim().split(/\s+/).filter(word => word.length > 0).length;
-  const isOverLimit = data.wordLimit ? wordCount > data.wordLimit : false;
+      // Save to localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(localStorageKey, text);
+      }
+
+      // Call onAnswer callback
+      onAnswer(sessionId, text);
+
+      // Simulate save delay for animation effect
+      setTimeout(() => {
+        setIsSaving(false);
+        setHasUnsavedChanges(false);
+      }, 500);
+    }, 5000);
+
+    return () => clearTimeout(saveTimer);
+  }, [text, hasUnsavedChanges, sessionId, onAnswer, localStorageKey]);
 
   const handleTextChange = (value: string) => {
     setText(value);
+    setHasUnsavedChanges(true);
   };
+
+
+  const wordCount = text.trim().split(/\s+/).filter(word => word.length > 0).length;
+  const isOverLimit = data.wordLimit ? wordCount > data.wordLimit : false;
 
   return (
     <div className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle className="text-xl">Writing Practice</CardTitle>
-          <div className="flex items-center justify-between">
-            <Badge variant="outline">Time Limit: {data.timeLimit} minutes</Badge>
-            <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4" />
-              <span className={`text-sm ${timeRemaining < 300 ? 'text-red-500 font-bold' : ''}`}>
-                {formatTime(timeRemaining)}
-              </span>
-            </div>
-          </div>
         </CardHeader>
         <CardContent className="space-y-4">
           {/* Topic Information */}
@@ -87,34 +93,17 @@ export function WritingPracticeInterface({
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold">Your Response:</h3>
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setIsPreviewMode(!isPreviewMode)}
-                  className="flex items-center gap-2"
-                >
-                  <Eye className="h-4 w-4" />
-                  {isPreviewMode ? 'Edit' : 'Preview'}
-                </Button>
-                <div className={`text-sm ${isOverLimit ? 'text-red-500' : 'text-muted-foreground'}`}>
-                  {wordCount} {data.wordLimit ? `/ ${data.wordLimit}` : ''} words
-                </div>
+              <div className={`text-sm ${isOverLimit ? 'text-red-500' : 'text-muted-foreground'}`}>
+                {wordCount} {data.wordLimit ? `/ ${data.wordLimit}` : ''} words
               </div>
             </div>
 
-            {isPreviewMode ? (
-              <div className="p-4 border rounded-lg bg-muted/20 min-h-[300px] whitespace-pre-wrap">
-                {text || <span className="text-muted-foreground">Your writing will appear here...</span>}
-              </div>
-            ) : (
-              <Textarea
-                value={text}
-                onChange={(e) => handleTextChange(e.target.value)}
-                placeholder="Start writing your response here..."
-                className={`min-h-[300px] resize-none ${isOverLimit ? 'border-red-500' : ''}`}
-              />
-            )}
+            <Textarea
+              value={text}
+              onChange={(e) => handleTextChange(e.target.value)}
+              placeholder="Start writing your response here..."
+              className={`min-h-[300px] resize-none ${isOverLimit ? 'border-red-500' : ''}`}
+            />
 
             {isOverLimit && (
               <p className="text-sm text-red-500">
@@ -124,9 +113,22 @@ export function WritingPracticeInterface({
           </div>
 
           {/* Auto-save indicator */}
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Save className="h-4 w-4" />
-            Auto-saved
+          <div className={`flex items-center gap-2 text-sm transition-colors duration-200 ${
+            isSaving
+              ? 'text-blue-600'
+              : hasUnsavedChanges
+                ? 'text-orange-600'
+                : 'text-green-600'
+          }`}>
+            <Save className={`h-4 w-4 transition-transform duration-200 ${
+              isSaving ? 'animate-pulse scale-110' : ''
+            }`} />
+            {isSaving
+              ? 'Saving...'
+              : hasUnsavedChanges
+                ? 'Unsaved changes'
+                : 'Auto-saved'
+            }
           </div>
         </CardContent>
       </Card>

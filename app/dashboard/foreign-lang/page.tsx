@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Header } from "./components/header";
-import { LevelTabs } from "./components/level-tabs";
+import { SkillCard } from "./components/skill-card";
 import { type LanguageValue } from "./config";
 
 export default function ForeignLanguagePage() {
@@ -13,11 +13,14 @@ export default function ForeignLanguagePage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 space-y-8">
+    <div className="container mx-auto px-4 py-4 space-y-4">
       <Header selectedLanguage={selectedLanguage} onLanguageChange={handleLanguageChange} />
-      <LevelTabs
-        selectedLanguage={selectedLanguage}
-      />
+      <div className="grid gap-4 grid-cols-2">
+        <SkillCard type="reading" selectedLanguage={selectedLanguage} />
+        <SkillCard type="writing" selectedLanguage={selectedLanguage} />
+        <SkillCard type="speaking" selectedLanguage={selectedLanguage} />
+        <SkillCard type="mcq" selectedLanguage={selectedLanguage} />
+      </div>
     </div>
   );
 }

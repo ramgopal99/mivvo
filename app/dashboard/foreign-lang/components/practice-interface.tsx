@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
-import { Clock, CheckCircle, ArrowRight, ArrowLeft, Home } from "lucide-react";
+import { Clock, ArrowRight, ArrowLeft, User } from "lucide-react";
 import {
   ReadingComprehensionPractice,
   RearrangeSentencesPractice,
@@ -14,8 +13,13 @@ import {
 } from "../reading";
 import {
   WritingPracticeInterface,
+  AIChatPractice,
   writingTopicData,
-  type WritingTopicData
+  writingSessionsData,
+  chatScenarios,
+  type WritingTopicData,
+  type WritingSessionData,
+  type ChatScenario
 } from "../writing";
 import {
   McqPracticeInterface,
@@ -25,7 +29,9 @@ import {
 import {
   SpeakingPracticeInterface,
   speakingSessionsData,
-  type SpeakingSessionData
+  speakingQuestionSessions,
+  type SpeakingSessionData,
+  type SpeakingQuestionSessionData
 } from "../speaking";
 
 interface PracticeInterfaceProps {
@@ -42,49 +48,172 @@ interface PracticeResult {
   completedAt: Date;
 }
 
+type QuestionStatus = 'answered' | 'not-answered' | 'marked' | 'not-visited';
+
+interface McqQuestionData {
+  id: string;
+  question: string;
+  options: string[];
+  correctAnswer: number;
+  explanation: string;
+  category: string;
+}
+
+interface McqQuestionSession {
+  id: string;
+  title: string;
+  timeLimit: number;
+  questions: McqQuestionData[];
+  currentQuestion: McqQuestionData;
+  questionIndex: number;
+  totalQuestions: number;
+}
+
+
+
 export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeInterfaceProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(300); // 5 minutes default
   const [userAnswers, setUserAnswers] = useState<Record<string, string | number>>({});
+  const [markedQuestions, setMarkedQuestions] = useState<Set<number>>(new Set());
+  const [questionStatus, setQuestionStatus] = useState<Record<number, QuestionStatus>>({});
+  const { data: session } = useSession();
+  const [userName, setUserName] = useState<string>("User");
   const [startTime] = useState(Date.now());
 
-  // Create practice sessions from session IDs
-  const sessions: Array<{
-    id: string;
-    type: 'reading-comprehension' | 'rearrange-sentences' | 'writing' | 'mcq' | 'speaking';
-    data: ReadingComprehensionData | RearrangeSentenceData | WritingTopicData | McqSessionData | SpeakingSessionData;
-  }> = [];
+  // Load user data
+  useEffect(() => {
+    const loadUserData = async () => {
+      try {
+        const token = localStorage.getItem('token') ||
+                     localStorage.getItem('student_token') ||
+                     localStorage.getItem('college_token');
+        if (token) {
+          const response = await fetch('/api/auth/session', {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          if (response.ok) {
+            const sessionData = await response.json();
+            if (sessionData.authenticated && sessionData.user) {
+              setUserName(sessionData.user.name || sessionData.user.email || "User");
+              return;
+            }
+          }
+        }
+        // Fallback to NextAuth session
+        if (session?.user) {
+          setUserName(session.user.name || session.user.email || "User");
+        }
+      } catch (error) {
+        console.error('Error loading user data:', error);
+      }
+    };
+    loadUserData();
+  }, [session]);
 
-  sessionIds.forEach(id => {
-    if (id.startsWith('reading-session-')) {
-      // Handle combined reading sessions
-      const sessionData = readingSessionsData.find(session => session.id === id);
-      if (sessionData) {
-        sessions.push(
-          { id: `${id}-comprehension`, type: 'reading-comprehension', data: sessionData.comprehension },
-          { id: `${id}-rearranging`, type: 'rearrange-sentences', data: sessionData.rearranging }
-        );
+  // Create practice sessions from session IDs
+  const sessions = useMemo(() => {
+    const sessionArray: Array<{
+      id: string;
+      type: 'reading-comprehension' | 'rearrange-sentences' | 'writing' | 'mcq' | 'speaking' | 'chat';
+      data: ReadingComprehensionData | RearrangeSentenceData | WritingTopicData | McqSessionData | SpeakingSessionData | McqQuestionSession | SpeakingQuestionSessionData | WritingSessionData | ChatScenario;
+    }> = [];
+
+    sessionIds.forEach(id => {
+      if (id.startsWith('reading-session-')) {
+        const sessionData = readingSessionsData.find(session => session.id === id);
+        if (sessionData) {
+          sessionArray.push(
+            { id: `${id}-comprehension`, type: 'reading-comprehension', data: sessionData.comprehension },
+            { id: `${id}-rearranging`, type: 'rearrange-sentences', data: sessionData.rearranging }
+          );
+        }
+      } else if (id.startsWith('writing-session-')) {
+        const sessionData = writingSessionsData.find(session => session.id === id);
+        if (sessionData) {
+          // Create individual sessions for each writing topic
+          sessionData.topics.forEach((topic, index) => {
+            sessionArray.push({
+              id: `${id}-topic-${index}`,
+              type: 'writing',
+              data: topic
+            });
+          });
+
+          // Create individual sessions for each chat scenario
+          sessionData.chatScenarios.forEach((scenario, index) => {
+            sessionArray.push({
+              id: `${id}-chat-${index}`,
+              type: 'chat',
+              data: scenario
+            });
+          });
+        }
+      } else if (id.startsWith('writing-') && !id.includes('session')) {
+        // Handle individual writing topics (backward compatibility)
+        const data = writingTopicData.find(item => item.id === id);
+        if (data) {
+          sessionArray.push({ id, type: 'writing', data });
+        }
+      } else if (id.startsWith('chat-')) {
+        // Handle AI chat scenarios
+        const scenario = chatScenarios.find(item => `chat-${item.id}` === id);
+        if (scenario) {
+          sessionArray.push({ id, type: 'chat', data: scenario });
+        }
+      } else if (id.startsWith('mcq-session-')) {
+        const data = mcqSessionsData.find(session => session.id === id);
+        if (data) {
+          // Create individual sessions for each MCQ question
+          data.questions.forEach((question, index) => {
+            sessionArray.push({
+              id: `${id}-question-${index}`,
+              type: 'mcq',
+              data: { ...data, currentQuestion: question, questionIndex: index, totalQuestions: data.questions.length }
+            });
+          });
+        }
+      } else if (id.startsWith('speaking-session-')) {
+        const sessionData = speakingSessionsData.find(session => session.id === id);
+        if (sessionData) {
+          // Create individual sessions for each speaking question
+          sessionData.questions.forEach((question, index) => {
+            sessionArray.push({
+              id: `${id}-question-${index}`,
+              type: 'speaking',
+              data: {
+                id: `${id}-question-${index}`,
+                title: `${question.category.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} - Question ${index + 1}`,
+                question,
+                timeLimit: sessionData.timeLimit
+              } as SpeakingQuestionSessionData
+            });
+          });
+        }
+      } else if (id.startsWith('speaking-question-')) {
+        // Handle individual speaking questions
+        const questionSession = speakingQuestionSessions.find(session => session.id === id);
+        if (questionSession) {
+          sessionArray.push({ id, type: 'speaking', data: questionSession });
+        }
       }
-    } else if (id.startsWith('writing-')) {
-      const data = writingTopicData.find(item => item.id === id);
-      if (data) {
-        sessions.push({ id, type: 'writing', data });
-      }
-    } else if (id.startsWith('mcq-session-')) {
-      const data = mcqSessionsData.find(session => session.id === id);
-      if (data) {
-        sessions.push({ id, type: 'mcq', data });
-      }
-    } else if (id.startsWith('speaking-session-')) {
-      const data = speakingSessionsData.find(session => session.id === id);
-      if (data) {
-        sessions.push({ id, type: 'speaking', data });
-      }
-    }
-  });
+    });
+
+    return sessionArray;
+  }, [sessionIds]);
+
+  // Initialize question status
+  useEffect(() => {
+    const initialStatus: Record<number, QuestionStatus> = {};
+    sessions.forEach((_, index) => {
+      initialStatus[index] = 'not-visited';
+    });
+    initialStatus[0] = 'not-answered';
+    setQuestionStatus(initialStatus);
+  }, [sessions]);
+
 
   const currentSession = sessions[currentIndex];
-  const progress = sessions.length > 0 ? ((currentIndex + 1) / sessions.length) * 100 : 0;
 
   // Timer countdown
   useEffect(() => {
@@ -105,51 +234,182 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
       ...prev,
       [sessionId]: answer
     }));
-  }, []);
+
+    // If question was marked for review, unmark it
+    setMarkedQuestions(prev => {
+      if (prev.has(currentIndex)) {
+        const newSet = new Set(prev);
+        newSet.delete(currentIndex);
+        return newSet;
+      }
+      return prev;
+    });
+
+    // Always set status to 'answered' when an answer is provided
+    setQuestionStatus(prev => ({ ...prev, [currentIndex]: 'answered' }));
+  }, [currentIndex]);
 
   const handleMcqAnswer = useCallback((sessionId: string, questionId: string, answer: number) => {
     setUserAnswers(prev => ({
       ...prev,
       [questionId]: answer
     }));
-  }, []);
+
+    // Update question status to 'answered' when MCQ question is answered
+    setQuestionStatus(prev => ({ ...prev, [currentIndex]: 'answered' }));
+
+    // If question was marked for review, unmark it
+    setMarkedQuestions(prev => {
+      if (prev.has(currentIndex)) {
+        const newSet = new Set(prev);
+        newSet.delete(currentIndex);
+        return newSet;
+      }
+      return prev;
+    });
+  }, [currentIndex]);
+
+  const handleQuestionClick = (index: number) => {
+    setCurrentIndex(index);
+    if (questionStatus[index] === 'not-visited') {
+      setQuestionStatus(prev => ({ ...prev, [index]: 'not-answered' }));
+    }
+  };
+
+  const handleMarkForReview = () => {
+    const session = sessions[currentIndex];
+    const isCurrentlyMarked = markedQuestions.has(currentIndex);
+
+    if (isCurrentlyMarked) {
+      // Unmark the question - remove from marked set and restore previous status
+      setMarkedQuestions(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(currentIndex);
+        return newSet;
+      });
+      // Restore to answered status if it had an answer, otherwise not-answered
+      setQuestionStatus(prev => ({
+        ...prev,
+        [currentIndex]: userAnswers[session?.id] !== undefined ? 'answered' : 'not-answered'
+      }));
+    } else {
+      // Mark for review - add to marked set and clear any answer
+      setMarkedQuestions(prev => new Set([...prev, currentIndex]));
+      setQuestionStatus(prev => ({ ...prev, [currentIndex]: 'marked' }));
+
+      // Clear the answer for this question
+      if (session) {
+        setUserAnswers(prev => {
+          const newAnswers = { ...prev };
+
+          if (session.type === 'mcq') {
+            // For MCQ, clear the answer using questionId
+            const mcqData = session.data as McqQuestionSession;
+            if (mcqData.currentQuestion) {
+              delete newAnswers[mcqData.currentQuestion.id];
+            }
+          } else {
+            // For other types, clear by session ID
+            delete newAnswers[session.id];
+          }
+
+          return newAnswers;
+        });
+      }
+    }
+  };
+
+  const handleClearResponse = () => {
+    const session = sessions[currentIndex];
+    if (session) {
+      setUserAnswers(prev => {
+        const newAnswers = { ...prev };
+
+        if (session.type === 'mcq') {
+          // For MCQ, clear the current question's answer
+          const mcqData = session.data as McqQuestionSession;
+          if (mcqData.currentQuestion) {
+            delete newAnswers[mcqData.currentQuestion.id];
+          }
+        } else {
+          // For other types, clear by session ID
+          delete newAnswers[session.id];
+        }
+
+        return newAnswers;
+      });
+      setQuestionStatus(prev => ({ ...prev, [currentIndex]: 'not-answered' }));
+    }
+  };
 
   const handleNext = () => {
     if (currentIndex < sessions.length - 1) {
       setCurrentIndex(currentIndex + 1);
-    } else {
-      // Complete the practice session
-      const results: PracticeResult[] = sessions.map(session => {
-        const userAnswer = userAnswers[session.id];
-        let isCorrect = false;
-
-        if (session.type === 'reading-comprehension' && typeof userAnswer === 'number') {
-          const correctAnswer = (session.data as ReadingComprehensionData).correctAnswer;
-          isCorrect = userAnswer === correctAnswer;
-        } else if (session.type === 'rearrange-sentences' && typeof userAnswer === 'string') {
-          const correctAnswer = (session.data as RearrangeSentenceData).correctOrder.join(' ');
-          isCorrect = userAnswer === correctAnswer;
-        } else if (session.type === 'writing' && typeof userAnswer === 'string') {
-          // For writing, consider it completed if they wrote something
-          isCorrect = userAnswer.trim().length > 10;
-        }
-
-        return {
-          sessionId: session.id,
-          userAnswer,
-          isCorrect,
-          timeSpent: Math.floor((Date.now() - startTime) / 1000),
-          completedAt: new Date()
-        };
-      });
-
-      onComplete(results);
+      if (questionStatus[currentIndex + 1] === 'not-visited') {
+        setQuestionStatus(prev => ({ ...prev, [currentIndex + 1]: 'not-answered' }));
+      }
     }
   };
 
   const handlePrevious = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+
+  const handleComplete = () => {
+    const results: PracticeResult[] = sessions.map(session => {
+      const userAnswer = userAnswers[session.id];
+      let isCorrect = false;
+
+      if (session.type === 'reading-comprehension' && typeof userAnswer === 'number') {
+        const correctAnswer = (session.data as ReadingComprehensionData).correctAnswer;
+        isCorrect = userAnswer === correctAnswer;
+      } else if (session.type === 'rearrange-sentences' && typeof userAnswer === 'string') {
+        const correctAnswer = (session.data as RearrangeSentenceData).correctOrder.join(' ');
+        isCorrect = userAnswer === correctAnswer;
+      } else if (session.type === 'writing' && typeof userAnswer === 'string') {
+        isCorrect = userAnswer.trim().length > 10;
+      } else if (session.type === 'chat') {
+        // Chat sessions are always considered completed (no right/wrong answers)
+        isCorrect = true;
+      }
+
+      return {
+        sessionId: session.id,
+        userAnswer,
+        isCorrect,
+        timeSpent: Math.floor((Date.now() - startTime) / 1000),
+        completedAt: new Date()
+      };
+    });
+
+    onComplete(results);
+  };
+
+  // Calculate status counts
+  const statusCounts = {
+    answered: Object.values(questionStatus).filter(s => s === 'answered').length,
+    notAnswered: Object.values(questionStatus).filter(s => s === 'not-answered').length,
+    marked: Object.values(questionStatus).filter(s => s === 'marked').length,
+    notVisited: Object.values(questionStatus).filter(s => s === 'not-visited').length,
+  };
+
+  const getQuestionStatusColor = (index: number) => {
+    const status = questionStatus[index] || 'not-visited';
+    if (index === currentIndex) {
+      return 'bg-red-500 text-white border-red-600';
+    }
+    switch (status) {
+      case 'answered':
+        return 'bg-green-500 text-white border-green-600';
+      case 'not-answered':
+        return 'bg-red-500 text-white border-red-600';
+      case 'marked':
+        return 'bg-yellow-500 text-white border-yellow-600';
+      default:
+        return 'bg-gray-300 text-gray-700 border-gray-400';
     }
   };
 
@@ -160,13 +420,6 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
           <p className="text-red-500">Error: Practice data not loaded</p>
-          <div className="mt-4 text-xs text-muted-foreground">
-            <p>Data Status:</p>
-            <p>Reading Sessions: {readingSessionsData.length} items</p>
-            <p>Writing: {writingTopicData.length} items</p>
-            <p>MCQ Sessions: {mcqSessionsData.length} items</p>
-            <p>Speaking Sessions: {speakingSessionsData.length} items</p>
-          </div>
         </div>
       </div>
     );
@@ -178,138 +431,172 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
           <p className="text-muted-foreground">Loading practice session...</p>
-          <div className="mt-4 text-xs text-muted-foreground">
-            <p>Debug Info:</p>
-            <p>SessionIds: {JSON.stringify(sessionIds)}</p>
-            <p>Sessions length: {sessions.length}</p>
-            <p>CurrentIndex: {currentIndex}</p>
-            <p>Data loaded: ✓</p>
-          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="h-screen bg-background overflow-hidden">
-      {/* Header */}
-      <div className="sticky top-0 bg-background border-b z-10 w-full">
-        <div className="px-4 py-4 flex items-center justify-between w-full">
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" onClick={onExit} className="flex items-center gap-2">
-              <Home className="h-4 w-4" />
-              Exit Practice
-            </Button>
-            <div className="flex items-center gap-2">
-              <Badge variant="outline">
-                {currentSession.type === 'reading-comprehension' ? 'Reading' :
-                 currentSession.type === 'rearrange-sentences' ? 'Reading' :
-                 currentSession.type === 'writing' ? 'Writing' : 'MCQ'}
-              </Badge>
-              <Badge variant="outline">Question {currentIndex + 1} of {sessions.length}</Badge>
-            </div>
+    <div className="h-screen bg-background overflow-hidden flex flex-col">
+      {/* Top Header Bar */}
+      <div className="bg-background border-b px-6 py-6 flex items-center justify-between">
+        <div className="text-lg font-semibold">Foreign Language Practice</div>
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2">
+            <Clock className="h-5 w-5" />
+            <span className="font-semibold">Time Left: {formatTime(timeRemaining)}</span>
           </div>
-
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 text-sm">
-              <Clock className="h-4 w-4" />
-              <span className={timeRemaining < 60 ? 'text-red-500 font-bold' : ''}>
-                {formatTime(timeRemaining)}
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-4 w-full px-4">
-          <Progress value={progress} className="w-full" />
+          <Button
+            size="sm"
+            onClick={handleComplete}
+            className="bg-green-600 hover:bg-green-700 cursor-pointer"
+          >
+            Submit Test
+          </Button>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex flex-col h-[calc(100vh-73px)]">
-        {/* Practice Content Area */}
-        <div className="flex-1 overflow-y-auto p-8 pb-20">
-          {currentSession.type === 'reading-comprehension' && (
-            <ReadingComprehensionPractice
-              sessionId={currentSession.id}
-              data={currentSession.data as ReadingComprehensionData}
-              userAnswer={typeof userAnswers[currentSession.id] === 'number' ? userAnswers[currentSession.id] as number : undefined}
-              onAnswer={handleAnswer}
-            />
-          )}
+      {/* Main Content Area */}
+      <div className="flex flex-1 overflow-hidden">
+        {/* Left Panel - Question Content */}
+        <div className="flex-1 overflow-y-auto bg-white flex flex-col">
+          {/* Sticky Question Header */}
+          <div className="sticky top-0 bg-white border-b px-6 py-4 z-10 flex items-center justify-between">
+            <h2 className="text-2xl font-bold">Question No {currentIndex + 1}</h2>
+            {currentSession?.type !== 'writing' && currentSession?.type !== 'speaking' && currentSession?.type !== 'chat' && (
+              <Button variant="outline" size="sm" onClick={handleClearResponse} className="cursor-pointer">
+                Clear Response
+              </Button>
+            )}
+          </div>
+          
+          {/* Scrollable Question Content */}
+          <div className="flex-1 overflow-y-auto p-6">
+            <div className="space-y-4">
+                {currentSession.type === 'reading-comprehension' && (
+                  <ReadingComprehensionPractice
+                    sessionId={currentSession.id}
+                    data={currentSession.data as ReadingComprehensionData}
+                    userAnswer={typeof userAnswers[currentSession.id] === 'number' ? userAnswers[currentSession.id] as number : undefined}
+                    onAnswer={handleAnswer}
+                  />
+                )}
 
-          {currentSession.type === 'rearrange-sentences' && (
-            <RearrangeSentencesPractice
-              sessionId={currentSession.id}
-              data={currentSession.data as RearrangeSentenceData}
-              userAnswer={typeof userAnswers[currentSession.id] === 'string' ? userAnswers[currentSession.id] as string : undefined}
-              onAnswer={handleAnswer}
-            />
-          )}
+                {currentSession.type === 'rearrange-sentences' && (
+                  <RearrangeSentencesPractice
+                    sessionId={currentSession.id}
+                    data={currentSession.data as RearrangeSentenceData}
+                    userAnswer={typeof userAnswers[currentSession.id] === 'string' ? userAnswers[currentSession.id] as string : undefined}
+                    onAnswer={handleAnswer}
+                  />
+                )}
 
-          {currentSession.type === 'writing' && (
-            <WritingPracticeInterface
-              sessionId={currentSession.id}
-              data={currentSession.data as WritingTopicData}
-              userAnswer={typeof userAnswers[currentSession.id] === 'string' ? userAnswers[currentSession.id] as string : undefined}
-              onAnswer={handleAnswer}
-            />
-          )}
+                {currentSession.type === 'writing' && (
+                  <WritingPracticeInterface
+                    sessionId={currentSession.id}
+                    data={currentSession.data as WritingTopicData}
+                    userAnswer={typeof userAnswers[currentSession.id] === 'string' ? userAnswers[currentSession.id] as string : undefined}
+                    onAnswer={handleAnswer}
+                  />
+                )}
 
-          {currentSession.type === 'mcq' && (
-            <McqPracticeInterface
-              sessionId={currentSession.id}
-              data={currentSession.data as McqSessionData}
-              userAnswers={userAnswers as Record<string, number>}
-              onAnswer={handleMcqAnswer}
-              onComplete={(sessionId, results) => {
-                console.log("MCQ completed with results:", results);
-                // Mark as completed and move to next
-                handleNext();
-              }}
-            />
-          )}
+                {currentSession.type === 'chat' && (
+                  <AIChatPractice
+                    scenario={currentSession.data as ChatScenario}
+                  />
+                )}
 
-          {currentSession.type === 'speaking' && (
-            <SpeakingPracticeInterface
-              sessionId={currentSession.id}
-              data={currentSession.data as SpeakingSessionData}
-              userAnswers={userAnswers as Record<string, string>}
-              onAnswer={handleAnswer}
-              onComplete={(sessionId, results) => {
-                console.log("Speaking completed with results:", results);
-                // Mark as completed and move to next
-                handleNext();
-              }}
-            />
-          )}
-        </div>
+                {currentSession.type === 'mcq' && (
+                  <McqPracticeInterface
+                    sessionId={currentSession.id}
+                    data={currentSession.data as McqQuestionSession}
+                    userAnswers={userAnswers as Record<string, number>}
+                    onAnswer={handleMcqAnswer}
+                  />
+                )}
 
-        {/* Fixed Navigation */}
-        <div className="fixed bottom-0 left-0 right-0 bg-background border-t p-4">
-          <div className="flex justify-between max-w-full mx-auto">
-            <Button
-              variant="outline"
-              onClick={handlePrevious}
-              disabled={currentIndex === 0}
-            >
+                {currentSession.type === 'speaking' && (
+                  <SpeakingPracticeInterface
+                    sessionId={currentSession.id}
+                    data={currentSession.data as SpeakingQuestionSessionData}
+                    userAnswers={userAnswers as Record<string, string>}
+                    onAnswer={handleAnswer}
+                    onComplete={(sessionId, results) => {
+                      console.log("Speaking completed with results:", results);
+                      handleNext();
+                    }}
+                  />
+                )}
+            </div>
+          </div>
+
+          {/* Bottom Navigation Buttons */}
+          <div className="sticky bottom-0 bg-white border-t p-4 flex justify-between">
+            <Button variant="outline" onClick={handlePrevious} disabled={currentIndex === 0} className="cursor-pointer">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Previous
             </Button>
+            {currentIndex < sessions.length - 1 && (
+              <Button onClick={handleNext} className="cursor-pointer">
+                Next
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </Button>
+            )}
+          </div>
+        </div>
 
-            <Button onClick={handleNext}>
-              {currentIndex === sessions.length - 1 ? (
-                <>
-                  Complete Practice
-                  <CheckCircle className="h-4 w-4 ml-2" />
-                </>
-              ) : (
-                <>
-                  Next
-                  <ArrowRight className="h-4 w-4 ml-2" />
-                </>
-              )}
-            </Button>
+        {/* Right Panel - Question Palette */}
+        <div className="w-80 bg-gray-50 border-l overflow-y-auto">
+          <div className="p-4 space-y-6">
+            {/* User Name */}
+            <div className="flex items-center gap-2 pb-4 border-b">
+              <User className="h-5 w-5" />
+              <span className="font-medium">{userName}</span>
+            </div>
+
+            {/* Legend */}
+            <div className="space-y-2">
+              <h3 className="font-semibold text-sm mb-3">Legend</h3>
+              <div className="flex items-center gap-2 text-xs">
+                <div className="w-4 h-4 rounded-full bg-green-500"></div>
+                <span>{statusCounts.answered} Answered</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs">
+                <div className="w-4 h-4 rounded-full bg-red-500"></div>
+                <span>{statusCounts.notAnswered} Not Answered</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs">
+                <div className="w-4 h-4 rounded-full bg-yellow-500"></div>
+                <span>{statusCounts.marked} Marked</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs">
+                <div className="w-4 h-4 rounded-full bg-gray-300"></div>
+                <span>{statusCounts.notVisited} Not Visited</span>
+              </div>
+            </div>
+
+            {/* Question Palette */}
+            <div>
+              <h3 className="font-semibold text-sm mb-3">Question Palette</h3>
+              <div className="grid grid-cols-5 gap-2">
+                {sessions.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleQuestionClick(index)}
+                    className={`w-10 h-10 rounded border-2 font-semibold text-sm transition-all hover:scale-110 cursor-pointer ${getQuestionStatusColor(index)}`}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Additional Actions */}
+            <div className="space-y-2">
+              <Button variant="outline" className="w-full cursor-pointer" onClick={handleMarkForReview}>
+                {markedQuestions.has(currentIndex) ? 'Unmark for Review' : 'Mark for Review & Next'}
+              </Button>
+            </div>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, PenTool, Volume2, HelpCircle } from "lucide-react";
-import { levelDescriptions, skillConfig, type SkillType, type LanguageValue } from "../config";
+import { skillConfig, type SkillType, type LanguageValue } from "../config";
 import { ReadingPracticeDialog } from "../reading";
 import { WritingPracticeDialog } from "../writing";
 import { SpeakingPracticeDialog } from "../speaking";
@@ -12,7 +12,6 @@ import { McqPracticeDialog } from "../mcq";
 
 interface SkillCardProps {
   type: SkillType;
-  level: string;
   selectedLanguage: LanguageValue;
 }
 
@@ -25,7 +24,7 @@ const iconMap = {
   HelpCircle,
 };
 
-export function SkillCard({ type, level, selectedLanguage }: SkillCardProps) {
+export function SkillCard({ type, selectedLanguage }: SkillCardProps) {
   const [isReadingDialogOpen, setIsReadingDialogOpen] = useState(false);
   const [isWritingDialogOpen, setIsWritingDialogOpen] = useState(false);
   const [isSpeakingDialogOpen, setIsSpeakingDialogOpen] = useState(false);
@@ -33,8 +32,7 @@ export function SkillCard({ type, level, selectedLanguage }: SkillCardProps) {
 
   const config = skillConfig[type];
   const Icon = iconMap[config.icon as keyof typeof iconMap];
-  const levelDesc = levelDescriptions[level as keyof typeof levelDescriptions] || levelDescriptions.A1;
-  const description = levelDesc[type as keyof typeof levelDesc];
+  const description = config.description;
 
   const handlePracticeClick = () => {
     if (type === "reading") {
@@ -50,8 +48,8 @@ export function SkillCard({ type, level, selectedLanguage }: SkillCardProps) {
 
   return (
     <>
-      <Card className="hover:shadow-lg transition-all duration-200 min-h-[280px] flex flex-col">
-        <CardHeader className="pb-4">
+      <Card className="hover:shadow-lg transition-all duration-200 min-h-[200px] flex flex-col">
+        <CardHeader className="pb-2">
           <div className="flex items-start gap-4">
             <div className={`p-3 rounded-xl ${config.bgColor} flex-shrink-0`}>
               <Icon className={`h-7 w-7 ${config.color}`} />
@@ -64,7 +62,7 @@ export function SkillCard({ type, level, selectedLanguage }: SkillCardProps) {
             </div>
           </div>
         </CardHeader>
-        <CardContent className="pt-0 mt-auto">
+        <CardContent className="pt-0">
           <div className="flex gap-3">
             <Button variant="outline" size="default" className="flex-1 h-10 cursor-pointer">
               Analysis

@@ -30,7 +30,8 @@ export function SpeakingPracticeDialog({
   const languageLabel = languageLabels[selectedLanguage] || "English";
 
   const handleStartPractice = () => {
-    // Navigate to practice interface with speaking session ID
+    // Navigate to practice interface with the complete speaking session
+    // This gives access to all 4 questions (2 speak + 2 repeat) with next/previous navigation
     router.push(`/dashboard/foreign-lang/practice/speaking-session-1`);
     onOpenChange(false);
   };

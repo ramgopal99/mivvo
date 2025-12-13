@@ -30,11 +30,9 @@ export function WritingPracticeDialog({
   const languageLabel = languageLabels[selectedLanguage] || "English";
 
   const handleStartPractice = () => {
-    const sessionIds: string[] = ["writing-1"]; // Always show the writing topic
-
-    // Navigate to practice interface with session IDs
-    // With [...sessionIds], each ID becomes a path segment
-    router.push(`/dashboard/foreign-lang/practice/${sessionIds.join('/')}`);
+    // Navigate to practice interface with the complete writing session
+    // This gives access to all writing topics and chat scenarios with next/previous navigation
+    router.push(`/dashboard/foreign-lang/practice/writing-session-1`);
     onOpenChange(false);
   };
 
@@ -51,14 +49,26 @@ export function WritingPracticeDialog({
         </DialogHeader>
 
         <div className="space-y-6 py-4">
-          {/* Writing Practice Info */}
+          {/* Writing & Chat Practice Info */}
           <div className="space-y-3">
-            <Label className="text-sm font-medium">Writing Practice Features:</Label>
-            <div className="p-3 border rounded-lg bg-muted/30">
-              <div className="font-medium mb-2">Topic-Based Writing</div>
-              <div className="text-xs text-muted-foreground">
-                Practice writing on various topics to improve your composition skills, vocabulary, and grammar.
-                Topics range from everyday conversations to academic subjects.
+            <Label className="text-sm font-medium">Complete Writing & Communication Practice:</Label>
+            <div className="space-y-3">
+              <div className="p-3 border rounded-lg bg-muted/30">
+                <div className="font-medium mb-2 flex items-center gap-2">
+                  ✍️ Topic-Based Writing (2 topics)
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  Practice writing on various topics including hobbies and travel experiences.
+                </div>
+              </div>
+
+              <div className="p-3 border rounded-lg bg-muted/30">
+                <div className="font-medium mb-2 flex items-center gap-2">
+                  💬 AI Conversation Practice
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  Have natural conversations with AI in real scenarios like ordering pizza.
+                </div>
               </div>
             </div>
           </div>
@@ -69,7 +79,7 @@ export function WritingPracticeDialog({
             size="lg"
             onClick={handleStartPractice}
           >
-            Start Practice
+            🚀 Start Complete Practice Session
           </Button>
         </div>
       </DialogContent>
