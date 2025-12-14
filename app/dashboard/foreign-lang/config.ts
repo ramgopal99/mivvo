@@ -32,9 +32,6 @@ export const skillConfig = {
 export const languages = [
   { value: "english", label: "English" },
   { value: "french", label: "French" },
-  { value: "german", label: "German" },
-  { value: "spanish", label: "Spanish" },
-  { value: "japanese", label: "Japanese" },
 ];
 
 export const readingPracticeTypes = [
@@ -104,4 +101,4 @@ export const questionCountOptions = {
 };
 
 export type SkillType = "reading" | "writing" | "speaking" | "mcq";
-export type LanguageValue = "english" | "french" | "german" | "spanish" | "japanese";
+export type LanguageValue = "english" | "french";

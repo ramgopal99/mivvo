@@ -1,0 +1,1 @@
+export { McqAttemptDetailsContent } from './McqAttemptDetailsContent'

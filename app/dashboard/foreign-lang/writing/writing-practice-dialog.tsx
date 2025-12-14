@@ -32,7 +32,8 @@ export function WritingPracticeDialog({
   const handleStartPractice = () => {
     // Navigate to practice interface with the complete writing session
     // This gives access to all writing topics and chat scenarios with next/previous navigation
-    router.push(`/dashboard/foreign-lang/practice/writing-session-1`);
+    const languagePrefix = selectedLanguage === "french" ? "-french" : "-english";
+    router.push(`/dashboard/foreign-lang/practice/writing-session${languagePrefix}-1`);
     onOpenChange(false);
   };
 
@@ -55,7 +56,7 @@ export function WritingPracticeDialog({
             <div className="space-y-3">
               <div className="p-3 border rounded-lg bg-muted/30">
                 <div className="font-medium mb-2 flex items-center gap-2">
-                  ✍️ Topic-Based Writing (2 topics)
+                  ✍️ Topic-Based Writing
                 </div>
                 <div className="text-xs text-muted-foreground">
                   Practice writing on various topics including hobbies and travel experiences.

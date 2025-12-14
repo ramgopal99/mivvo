@@ -197,26 +197,28 @@ export function AIChatPractice({ scenario = pizzaScenario }: AIChatPracticeProps
         </div>
       </div>
 
-      {/* Task Description */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg flex items-center gap-2">
-            <Bot className="h-5 w-5" />
-            Your Task
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm">
-            Your task is to buy pizza like this. Practice ordering food naturally in conversation!
-          </p>
-        </CardContent>
-      </Card>
+      {/* Left and Right Interface */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[600px]">
+        {/* Left Side - Task */}
+        <div className="flex flex-col">
+          <Card className="flex-1">
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center gap-2">
+                <Bot className="h-5 w-5" />
+                Your Task
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm">
+                Your task is to buy pizza like this. Practice ordering food naturally in conversation!
+              </p>
+            </CardContent>
+          </Card>
+        </div>
 
-      {/* Chat Interface */}
-      <div className="max-w-4xl mx-auto">
-        {/* Chat Area */}
-        <div>
-          <Card className="h-[500px] flex flex-col">
+        {/* Right Side - Chat */}
+        <div className="flex flex-col">
+          <Card className="flex-1 flex flex-col">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Bot className="h-5 w-5" />

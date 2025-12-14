@@ -5,5 +5,5 @@ export { SpeakingPracticeDialog } from "./dialog";
 export { SpeakingPracticeInterface } from "./speaking-practice-interface";
 
 // Re-export data and types
-export { speakingSessionsData, speakingQuestionsData, speakingQuestionSessions } from "../data/speaking-practice-data";
-export type { SpeakingSessionData, SpeakingQuestionData, SpeakingQuestionSessionData } from "../data/speaking-practice-data";
+export { speakingSessionsData, speakingQuestionsData, speakingQuestionSessions, speakingAnalysisData } from "../data/speaking-practice-data";
+export type { SpeakingSessionData, SpeakingQuestionData, SpeakingQuestionSessionData, SpeakingAnalysisData, SpeakingAnalysisAttempt, SpeakingAnalysisResult } from "../data/speaking-practice-data";

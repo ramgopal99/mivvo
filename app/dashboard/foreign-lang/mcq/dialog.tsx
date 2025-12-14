@@ -31,7 +31,8 @@ export function McqPracticeDialog({
 
   const handleStartPractice = () => {
     // Navigate to practice interface with MCQ session ID
-    router.push(`/dashboard/foreign-lang/practice/mcq-session-1`);
+    const languagePrefix = selectedLanguage === "french" ? "-french" : "-english";
+    router.push(`/dashboard/foreign-lang/practice/mcq-session${languagePrefix}-1`);
     onOpenChange(false);
   };
 

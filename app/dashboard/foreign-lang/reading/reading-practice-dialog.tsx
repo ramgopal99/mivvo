@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { readingPracticeTypes, type LanguageValue } from "../config";
+import { allReadingData } from "../data/reading-practice-data";
 
 interface ReadingPracticeDialogProps {
   isOpen: boolean;
@@ -30,8 +31,9 @@ export function ReadingPracticeDialog({
   const languageLabel = languageLabels[selectedLanguage] || "English";
 
   const handleStartPractice = () => {
-    // Navigate to practice interface with single session ID
-    router.push(`/dashboard/foreign-lang/practice/reading-session-1`);
+    // Navigate to practice interface with language-specific session ID
+    const languagePrefix = selectedLanguage === "french" ? "-french" : "-english";
+    router.push(`/dashboard/foreign-lang/practice/reading-session${languagePrefix}-1`);
     onOpenChange(false);
   };
 
@@ -58,9 +60,6 @@ export function ReadingPracticeDialog({
                   <div className="flex-1">
                     <div className="font-medium">{practiceType.title}</div>
                     <div className="text-xs text-muted-foreground">{practiceType.description}</div>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      1 {practiceType.id === "reading-comprehension" ? "reading comprehension" : "sentence rearrangement"} question
-                    </p>
                   </div>
                 </div>
               ))}

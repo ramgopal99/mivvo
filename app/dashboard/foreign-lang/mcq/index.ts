@@ -5,5 +5,5 @@ export { McqPracticeDialog } from "./dialog";
 export { McqPracticeInterface } from "./mcq-practice-interface";
 
 // Re-export data and types
-export { mcqSessionsData, mcqQuestionsData } from "../data/mcq-practice-data";
-export type { McqSessionData, McqQuestionData } from "../data/mcq-practice-data";
+export { mcqSessionsData, mcqQuestionsData, mcqAnalysisData } from "../data/mcq-practice-data";
+export type { McqSessionData, McqQuestionData, McqAnalysisData, McqAnalysisAttempt, McqAnalysisResult } from "../data/mcq-practice-data";

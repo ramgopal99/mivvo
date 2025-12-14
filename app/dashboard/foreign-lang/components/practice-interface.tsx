@@ -121,7 +121,9 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
 
     sessionIds.forEach(id => {
       if (id.startsWith('reading-session-')) {
-        const sessionData = readingSessionsData.find(session => session.id === id);
+        // Parse language from session ID (e.g., "reading-session-english-1" -> "english")
+        const language = id.includes('french') ? 'french' : 'english';
+        const sessionData = readingSessionsData[language]?.find(session => session.id === id);
         if (sessionData) {
           sessionArray.push(
             { id: `${id}-comprehension`, type: 'reading-comprehension', data: sessionData.comprehension },
@@ -129,7 +131,9 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
           );
         }
       } else if (id.startsWith('writing-session-')) {
-        const sessionData = writingSessionsData.find(session => session.id === id);
+        // Parse language from session ID (e.g., "writing-session-french-1" -> "french")
+        const language = id.includes('french') ? 'french' : 'english';
+        const sessionData = writingSessionsData[language]?.find(session => session.id === id);
         if (sessionData) {
           // Create individual sessions for each writing topic
           sessionData.topics.forEach((topic, index) => {
@@ -151,18 +155,24 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
         }
       } else if (id.startsWith('writing-') && !id.includes('session')) {
         // Handle individual writing topics (backward compatibility)
-        const data = writingTopicData.find(item => item.id === id);
+        // Search through both English and French topic data
+        const data = writingTopicData.english?.find(item => item.id === id) ||
+                    writingTopicData.french?.find(item => item.id === id);
         if (data) {
           sessionArray.push({ id, type: 'writing', data });
         }
       } else if (id.startsWith('chat-')) {
         // Handle AI chat scenarios
-        const scenario = chatScenarios.find(item => `chat-${item.id}` === id);
+        // Search through both English and French chat scenarios
+        const scenario = chatScenarios.english?.find(item => `chat-${item.id}` === id) ||
+                        chatScenarios.french?.find(item => `chat-${item.id}` === id);
         if (scenario) {
           sessionArray.push({ id, type: 'chat', data: scenario });
         }
       } else if (id.startsWith('mcq-session-')) {
-        const data = mcqSessionsData.find(session => session.id === id);
+        // Parse language from session ID
+        const language = id.includes('french') ? 'french' : 'english';
+        const data = mcqSessionsData[language]?.find(session => session.id === id);
         if (data) {
           // Create individual sessions for each MCQ question
           data.questions.forEach((question, index) => {
@@ -174,7 +184,9 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
           });
         }
       } else if (id.startsWith('speaking-session-')) {
-        const sessionData = speakingSessionsData.find(session => session.id === id);
+        // Parse language from session ID
+        const language = id.includes('french') ? 'french' : 'english';
+        const sessionData = speakingSessionsData[language]?.find(session => session.id === id);
         if (sessionData) {
           // Create individual sessions for each speaking question
           sessionData.questions.forEach((question, index) => {
@@ -192,7 +204,9 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
         }
       } else if (id.startsWith('speaking-question-')) {
         // Handle individual speaking questions
-        const questionSession = speakingQuestionSessions.find(session => session.id === id);
+        // Search through both English and French question sessions
+        const questionSession = speakingQuestionSessions.english?.find(session => session.id === id) ||
+                               speakingQuestionSessions.french?.find(session => session.id === id);
         if (questionSession) {
           sessionArray.push({ id, type: 'speaking', data: questionSession });
         }
@@ -413,13 +427,18 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
     }
   };
 
-  // Check if data is loaded
-  if (readingSessionsData.length === 0 || writingTopicData.length === 0 || mcqSessionsData.length === 0 || speakingSessionsData.length === 0) {
+  // Check if reading data is loaded only when reading sessions are present
+  const hasReadingSessions = sessionIds.some(id => id.startsWith('reading-session-'));
+
+  if (hasReadingSessions && (
+    (!readingSessionsData.english || readingSessionsData.english.length === 0) ||
+    (!readingSessionsData.french || readingSessionsData.french.length === 0)
+  )) {
     return (
       <div className="h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-red-500">Error: Practice data not loaded</p>
+          <p className="text-gray-600">Loading practice session...</p>
         </div>
       </div>
     );

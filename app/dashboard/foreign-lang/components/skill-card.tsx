@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, PenTool, Volume2, HelpCircle } from "lucide-react";
@@ -25,6 +26,7 @@ const iconMap = {
 };
 
 export function SkillCard({ type, selectedLanguage }: SkillCardProps) {
+  const router = useRouter();
   const [isReadingDialogOpen, setIsReadingDialogOpen] = useState(false);
   const [isWritingDialogOpen, setIsWritingDialogOpen] = useState(false);
   const [isSpeakingDialogOpen, setIsSpeakingDialogOpen] = useState(false);
@@ -33,6 +35,20 @@ export function SkillCard({ type, selectedLanguage }: SkillCardProps) {
   const config = skillConfig[type];
   const Icon = iconMap[config.icon as keyof typeof iconMap];
   const description = config.description;
+
+  const handleAnalysisClick = () => {
+    const languagePrefix = selectedLanguage === "french" ? "-french" : "-english";
+
+    if (type === "reading") {
+      router.push(`/dashboard/foreign-lang/reading/reading-session${languagePrefix}-1`);
+    } else if (type === "writing") {
+      router.push(`/dashboard/foreign-lang/writing/writing-session${languagePrefix}-1`);
+    } else if (type === "speaking") {
+      router.push(`/dashboard/foreign-lang/speaking/speaking-session${languagePrefix}-1`);
+    } else if (type === "mcq") {
+      router.push(`/dashboard/foreign-lang/mcq/mcq-session${languagePrefix}-1`);
+    }
+  };
 
   const handlePracticeClick = () => {
     if (type === "reading") {
@@ -64,7 +80,12 @@ export function SkillCard({ type, selectedLanguage }: SkillCardProps) {
         </CardHeader>
         <CardContent className="pt-0">
           <div className="flex gap-3">
-            <Button variant="outline" size="default" className="flex-1 h-10 cursor-pointer">
+            <Button
+              variant="outline"
+              size="default"
+              className="flex-1 h-10 cursor-pointer"
+              onClick={handleAnalysisClick}
+            >
               Analysis
             </Button>
             <Button

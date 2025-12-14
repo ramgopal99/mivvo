@@ -1,0 +1,1 @@
+export { SpeakingAttemptDetailsContent } from './SpeakingAttemptDetailsContent'
