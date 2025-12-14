@@ -16,7 +16,7 @@ export interface McqSessionData {
   timeLimit: number; // in minutes
 }
 
-// Dummy MCQ Questions Data - English
+// Dummy MCQ Questions Data - English (5 questions total, 1 from each category)
 export const mcqQuestionsDataEnglish: McqQuestionData[] = [
   // Grammar Questions
   {
@@ -32,24 +32,9 @@ export const mcqQuestionsDataEnglish: McqQuestionData[] = [
     explanation: "'Went' is the correct past tense form of 'go' for this sentence.",
     category: "grammar"
   },
-  // Synonyms & Antonyms Questions
-  {
-    id: "mcq-2",
-    question: "What is the synonym of 'happy'?",
-    options: [
-      "Sad",
-      "Joyful",
-      "Angry",
-      "Tired"
-    ],
-    correctAnswer: 1, // "joyful"
-    explanation: "'Joyful' means feeling or showing great pleasure, which is similar to 'happy'.",
-    category: "synonyms-antonyms"
-  },
-
   // Error Detection Questions
   {
-    id: "mcq-3",
+    id: "mcq-en-2",
     question: "Identify the error: 'She don't like apples.'",
     options: [
       "She",
@@ -61,10 +46,23 @@ export const mcqQuestionsDataEnglish: McqQuestionData[] = [
     explanation: "With the third person singular 'she', the verb should be 'doesn't', not 'don't'.",
     category: "error-detection"
   },
-
+  // Synonyms & Antonyms Questions
+  {
+    id: "mcq-en-3",
+    question: "What is the synonym of 'happy'?",
+    options: [
+      "Sad",
+      "Joyful",
+      "Angry",
+      "Tired"
+    ],
+    correctAnswer: 1, // "joyful"
+    explanation: "'Joyful' means feeling or showing great pleasure, which is similar to 'happy'.",
+    category: "synonyms-antonyms"
+  },
   // Sentence Completion Questions
   {
-    id: "mcq-4",
+    id: "mcq-en-4",
     question: "Complete the sentence: 'I _____ my homework every day.'",
     options: [
       "do",
@@ -76,49 +74,9 @@ export const mcqQuestionsDataEnglish: McqQuestionData[] = [
     explanation: "The correct present simple form with 'I' is 'do'.",
     category: "sentence-completion"
   },
-  {
-    id: "mcq-9",
-    question: "Complete the sentence: 'They _____ playing football now.'",
-    options: [
-      "is",
-      "are",
-      "am",
-      "be"
-    ],
-    correctAnswer: 1, // "are"
-    explanation: "'Are' is the correct present continuous form for the plural subject 'they'.",
-    category: "sentence-completion"
-  },
-  {
-    id: "mcq-10",
-    question: "Complete the sentence: 'She _____ a beautiful song yesterday.'",
-    options: [
-      "sing",
-      "sang",
-      "singing",
-      "sings"
-    ],
-    correctAnswer: 1, // "sang"
-    explanation: "'Sang' is the correct past simple form of 'sing'.",
-    category: "sentence-completion"
-  },
-  {
-    id: "mcq-11",
-    question: "Complete the sentence: 'We _____ to the party last night.'",
-    options: [
-      "go",
-      "went",
-      "going",
-      "gone"
-    ],
-    correctAnswer: 1, // "went"
-    explanation: "'Went' is the correct past simple form for the plural subject 'we'.",
-    category: "sentence-completion"
-  },
-
   // Word Replacement Questions
   {
-    id: "mcq-5",
+    id: "mcq-en-5",
     question: "Replace the incorrect word: 'The weather is very hotly today.'",
     options: [
       "weather",
@@ -128,45 +86,6 @@ export const mcqQuestionsDataEnglish: McqQuestionData[] = [
     ],
     correctAnswer: 2, // "hotly" should be "hot"
     explanation: "'Hot' is the correct adjective form. 'Hotly' is an adverb and doesn't fit here.",
-    category: "word-replacement"
-  },
-  {
-    id: "mcq-12",
-    question: "Replace the incorrect word: 'She sings very good.'",
-    options: [
-      "sings",
-      "very",
-      "good",
-      "No replacement needed"
-    ],
-    correctAnswer: 2, // "good" should be "well"
-    explanation: "'Well' is the correct adverb form to modify 'sings'. 'Good' is an adjective.",
-    category: "word-replacement"
-  },
-  {
-    id: "mcq-13",
-    question: "Replace the incorrect word: 'He is more taller than me.'",
-    options: [
-      "is",
-      "more",
-      "taller",
-      "than"
-    ],
-    correctAnswer: 2, // "taller" should be "tall"
-    explanation: "With comparative adjectives using 'more', we don't add '-er'. It should be 'more tall'.",
-    category: "word-replacement"
-  },
-  {
-    id: "mcq-14",
-    question: "Replace the incorrect word: 'I have been there since two years.'",
-    options: [
-      "have",
-      "been",
-      "since",
-      "two"
-    ],
-    correctAnswer: 2, // "since" should be "for"
-    explanation: "'For' is used with periods of time. 'Since' is used with specific points in time.",
     category: "word-replacement"
   }
 ];
@@ -257,14 +176,14 @@ export const mcqSessionsDataEnglish: McqSessionData[] = [
     id: "mcq-session-english-1",
     title: "Complete Grammar & Vocabulary Practice",
     questions: [
-      // Include 1 question from each category
+      // Include 1 question from each category (5 total)
       mcqQuestionsDataEnglish.find(q => q.id === "mcq-en-1")!, // grammar
-      mcqQuestionsDataEnglish.find(q => q.id === "mcq-en-2")!, // synonyms-antonyms
-      mcqQuestionsDataEnglish.find(q => q.id === "mcq-en-3")!, // error-detection
+      mcqQuestionsDataEnglish.find(q => q.id === "mcq-en-2")!, // error-detection
+      mcqQuestionsDataEnglish.find(q => q.id === "mcq-en-3")!, // synonyms-antonyms
       mcqQuestionsDataEnglish.find(q => q.id === "mcq-en-4")!, // sentence-completion
       mcqQuestionsDataEnglish.find(q => q.id === "mcq-en-5")!  // word-replacement
     ].filter(Boolean), // Filter out any undefined values
-    timeLimit: 10 // 10 minutes for 5 questions
+    timeLimit: 15 // 15 minutes for 5 questions (matches config)
   },
   {
     id: "mcq-sentence-completion-en",

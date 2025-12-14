@@ -23,18 +23,39 @@ interface McqSessionResult {
 
 interface McqAttempt {
   id: string
+  sessionId: string
+  sessionTitle: string
   startedAt: Date
   completedAt: Date | null
   duration: number | null
   status: string
+  cefrLevel: string
+  sessionType: string
   createdAt: Date
-  session: {
+  questions: Array<{
     id: string
-    title: string | null
-    language: string | null
-    createdAt: Date
-  }
-  results: McqSessionResult[]
+    question: string
+    options: string[]
+    correctAnswer: number
+    explanation: string
+    category: string
+    userAnswer: number | null
+    isCorrect: boolean
+    timeSpent: number
+  }>
+  overallResult: {
+    id: string
+    overallScore: number | null
+    totalQuestions: number | null
+    correctAnswers: number | null
+    accuracyPercentage: number | null
+    feedback: string | null
+    overallFeedback: string | null
+    strengths: string[]
+    weaknesses: string[]
+    recommendations: string[]
+    timeSpent: number
+  } | null
 }
 
 interface McqAttemptDetailsContentProps {
@@ -67,7 +88,7 @@ export function McqAttemptDetailsContent({ attempt, resultId }: McqAttemptDetail
     return labels[language || ''] || "English"
   }
 
-  const result = attempt.results[0] // Get the latest result
+  const result = attempt.overallResult // Get the overall result
   const overallScore = result?.overallScore || 0
 
   const handleDownloadData = async () => {
@@ -166,7 +187,7 @@ export function McqAttemptDetailsContent({ attempt, resultId }: McqAttemptDetail
 
 // Overview Section Component
 function OverviewSection({ attempt, overallScore }: { attempt: McqAttempt; overallScore: number }) {
-  const result = attempt.results[0]
+  const result = attempt.overallResult
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

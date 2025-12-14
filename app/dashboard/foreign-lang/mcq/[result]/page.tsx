@@ -90,19 +90,20 @@ export default function McqResultPage() {
 
         setAuthenticated(isAuthenticated)
 
-        // Load MCQ session data from data file
+        // Load MCQ session data from API
         if (params.result && isAuthenticated) {
           try {
             const sessionId = Array.isArray(params.result) ? params.result[0] : params.result
 
-            // Determine language from session ID
-            const language = sessionId.includes('french') ? 'french' : 'english'
+            const response = await fetch(`/api/foreign-language/mcq/sessions/${sessionId}/results`)
 
-            // Find the analysis data for this session from the appropriate language data
-            const sessionAnalysis = mcqAnalysisData[language]?.find(session => session.id === sessionId)
-
-            if (sessionAnalysis) {
-              setSessionData(sessionAnalysis)
+            if (response.ok) {
+              const result = await response.json()
+              if (result.success) {
+                setSessionData(result.data)
+              } else {
+                notFound()
+              }
             } else {
               notFound()
             }

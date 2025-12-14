@@ -9,6 +9,8 @@
     "lint": "eslint",
     "promote-admin": "tsx scripts/promote-admin.ts",
     "clean-collections": "tsx scripts/clean-unused-collections.ts",
+    "clear-reading-data": "node scripts/clear-reading-data.js",
+    "clear-mcq-data": "node scripts/clear-mcq-data.js",
     "deploy": "./scripts/deploy.sh",
     "start-app": "./scripts/start.sh",
     "stop-app": "./scripts/stop.sh",

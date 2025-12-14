@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useParams, notFound } from "next/navigation"
 import { ReadingResultsContent } from "./_components/ReadingResultsContent"
-import { readingAnalysisData } from "../../data/reading-practice-data"
 
 interface ReadingSessionResult {
   id: string
@@ -44,6 +43,7 @@ export default function ReadingResultPage() {
   const [sessionData, setSessionData] = useState<ReadingSessionData | null>(null)
   const [loading, setLoading] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
+  const [userLanguage, setUserLanguage] = useState<string>('english')
 
   useEffect(() => {
     const checkAuthAndLoadData = async () => {
@@ -89,20 +89,50 @@ export default function ReadingResultPage() {
 
         setAuthenticated(isAuthenticated)
 
-        // Load reading session data (mock data for now)
+        // Load user's preferred language and reading session data
         if (params.result && isAuthenticated) {
           try {
+            // First, get user's preferred language
+            let preferredLanguage: string | null = null;
+            try {
+              const langResponse = await fetch('/api/foreign-language/user/preferences/language');
+              if (langResponse.ok) {
+                const langResult = await langResponse.json();
+                if (langResult.success && langResult.data.preferredLanguage) {
+                  preferredLanguage = langResult.data.preferredLanguage;
+                  setUserLanguage(preferredLanguage.toLowerCase());
+                }
+              }
+            } catch (langError) {
+              console.error('Error loading user language:', langError);
+            }
+
+            // Only proceed if we have a valid language
+            if (!preferredLanguage) {
+              console.error('No user language preference found');
+              notFound();
+              return;
+            }
+
             const sessionId = Array.isArray(params.result) ? params.result[0] : params.result
 
-            // Determine language from session ID
-            const language = sessionId.includes('french') ? 'french' : 'english'
+            // Fetch actual session results from API with language filter
+            const response = await fetch(`/api/foreign-language/reading/sessions/${sessionId}/results?language=${preferredLanguage}`)
 
-            // Find the analysis data for this session from the appropriate language data
-            const sessionAnalysis = readingAnalysisData[language]?.find(session => session.id === sessionId)
-
-            if (sessionAnalysis) {
-              setSessionData(sessionAnalysis)
+            if (response.ok) {
+              const result = await response.json()
+              if (result.success) {
+                setSessionData(result.data)
+                // Show message if no data available
+                if (result.message) {
+                  console.info('No analysis data:', result.message)
+                }
+              } else {
+                console.error('API returned error:', result.error)
+                notFound()
+              }
             } else {
+              console.error('Failed to fetch session results:', response.status)
               notFound()
             }
           } catch (error) {

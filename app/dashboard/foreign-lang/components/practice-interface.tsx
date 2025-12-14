@@ -7,7 +7,6 @@ import { Clock, ArrowRight, ArrowLeft, User } from "lucide-react";
 import {
   ReadingComprehensionPractice,
   RearrangeSentencesPractice,
-  readingSessionsData,
   type ReadingComprehensionData,
   type RearrangeSentenceData
 } from "../reading";
@@ -23,8 +22,7 @@ import {
 } from "../writing";
 import {
   McqPracticeInterface,
-  mcqSessionsData,
-  type McqSessionData
+  mcqSessionsData
 } from "../mcq";
 import {
   SpeakingPracticeInterface,
@@ -42,7 +40,7 @@ interface PracticeInterfaceProps {
 
 interface PracticeResult {
   sessionId: string;
-  userAnswer?: string | number;
+  userAnswer?: string | number | string[];
   isCorrect?: boolean;
   timeSpent: number;
   completedAt: Date;
@@ -56,7 +54,7 @@ interface McqQuestionData {
   options: string[];
   correctAnswer: number;
   explanation: string;
-  category: string;
+  category: 'grammar' | 'vocabulary' | 'error-detection' | 'synonyms-antonyms' | 'sentence-completion' | 'word-replacement';
 }
 
 interface McqQuestionSession {
@@ -80,6 +78,22 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
   const { data: session } = useSession();
   const [userName, setUserName] = useState<string>("User");
   const [startTime] = useState(Date.now());
+  const [sessionData, setSessionData] = useState<{
+    questions?: Array<{
+      type: string;
+      data: {
+        id: string;
+        passage?: string;
+        question?: string;
+        options?: string[];
+        correctAnswer?: number;
+        explanation?: string;
+        scrambledWords?: string[];
+        correctOrder?: string[];
+      };
+    }>;
+  } | null>(null);
+  const [loadingSession, setLoadingSession] = useState(true);
 
   // Load user data
   useEffect(() => {
@@ -111,26 +125,142 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
     loadUserData();
   }, [session]);
 
+  // Load session data from API
+  useEffect(() => {
+    const loadSessionData = async () => {
+      if (sessionIds.length === 0) return;
+
+      try {
+        setLoadingSession(true);
+        // For now, assume the first session ID is the reading session ID
+        const sessionId = sessionIds[0];
+
+        if (sessionId.startsWith('reading-session-')) {
+          const response = await fetch(`/api/foreign-language/reading/sessions/${sessionId}`);
+          const result = await response.json();
+
+          if (result.success) {
+            setSessionData(result.data);
+          }
+        } else         if (sessionId.startsWith('mcq-session-')) {
+          const response = await fetch(`/api/foreign-language/mcq/sessions/${sessionId}`);
+          const result = await response.json();
+
+          if (result.success) {
+            setSessionData(result.data);
+          }
+        }
+      } catch (error) {
+        console.error('Error loading session data:', error);
+      } finally {
+        setLoadingSession(false);
+      }
+    };
+
+    loadSessionData();
+  }, [sessionIds]);
+
   // Create practice sessions from session IDs
   const sessions = useMemo(() => {
     const sessionArray: Array<{
       id: string;
-      type: 'reading-comprehension' | 'rearrange-sentences' | 'writing' | 'mcq' | 'speaking' | 'chat';
-      data: ReadingComprehensionData | RearrangeSentenceData | WritingTopicData | McqSessionData | SpeakingSessionData | McqQuestionSession | SpeakingQuestionSessionData | WritingSessionData | ChatScenario;
+      type: 'reading-comprehension' | 'rearrange-sentences' | 'writing' | 'mcq' | 'grammar-mcq' | 'error-detection' | 'synonyms-antonyms' | 'sentence-completion' | 'word-replacement' | 'speaking' | 'chat';
+      data: ReadingComprehensionData | RearrangeSentenceData | WritingTopicData | McqQuestionData | SpeakingSessionData | McqQuestionSession | SpeakingQuestionSessionData | WritingSessionData | ChatScenario;
     }> = [];
 
-    sessionIds.forEach(id => {
-      if (id.startsWith('reading-session-')) {
-        // Parse language from session ID (e.g., "reading-session-english-1" -> "english")
-        const language = id.includes('french') ? 'french' : 'english';
-        const sessionData = readingSessionsData[language]?.find(session => session.id === id);
-        if (sessionData) {
-          sessionArray.push(
-            { id: `${id}-comprehension`, type: 'reading-comprehension', data: sessionData.comprehension },
-            { id: `${id}-rearranging`, type: 'rearrange-sentences', data: sessionData.rearranging }
-          );
-        }
-      } else if (id.startsWith('writing-session-')) {
+    if (sessionData && sessionIds.length > 0) {
+      const sessionId = sessionIds[0];
+
+      if (sessionId.startsWith('reading-session-') && sessionData.questions) {
+        // Handle API-generated reading sessions
+        sessionData.questions.forEach((question, index: number) => {
+          if (question.type === 'comprehension' && question.data) {
+            const data = question.data;
+            if (data.passage && data.question && data.options && data.correctAnswer !== undefined && data.explanation) {
+              sessionArray.push({
+                id: `${sessionId}-comprehension-${index}`,
+                type: 'reading-comprehension',
+                data: {
+                  id: data.id,
+                  passage: data.passage,
+                  question: data.question,
+                  options: data.options,
+                  correctAnswer: data.correctAnswer,
+                  explanation: data.explanation
+                }
+              });
+            }
+          } else if (question.type === 'rearrange' && question.data) {
+            const data = question.data;
+            if (data.scrambledWords && data.correctOrder && data.explanation) {
+              sessionArray.push({
+                id: `${sessionId}-rearrange-${index}`,
+                type: 'rearrange-sentences',
+                data: {
+                  id: data.id,
+                  scrambledSentence: data.scrambledWords,
+                  correctOrder: data.correctOrder,
+                  explanation: data.explanation
+                }
+              });
+            }
+          }
+        });
+      } else if (sessionId.startsWith('mcq-session-') && sessionData.questions) {
+        // Handle API-generated MCQ sessions
+        const allQuestions = sessionData.questions
+          .filter(q => q.type === 'mcq' && q.data)
+          .map(q => q.data);
+
+        allQuestions.forEach((questionData, index) => {
+          if (questionData.question && questionData.options && questionData.correctAnswer !== undefined && questionData.explanation) {
+            const category = ((questionData as { category?: string }).category || 'grammar').toLowerCase();
+            let questionType: 'grammar-mcq' | 'error-detection' | 'synonyms-antonyms' | 'sentence-completion' | 'word-replacement' = 'grammar-mcq';
+
+            // Map category to specific MCQ type (matching config)
+            switch (category) {
+              case 'grammar':
+                questionType = 'grammar-mcq';
+                break;
+              case 'error-detection':
+              case 'error_detection':
+                questionType = 'error-detection';
+                break;
+              case 'synonyms-antonyms':
+              case 'synonyms_antonyms':
+                questionType = 'synonyms-antonyms';
+                break;
+              case 'sentence-completion':
+              case 'sentence_completion':
+                questionType = 'sentence-completion';
+                break;
+              case 'word-replacement':
+              case 'word_replacement':
+                questionType = 'word-replacement';
+                break;
+              default:
+                questionType = 'grammar-mcq';
+            }
+
+            sessionArray.push({
+              id: `${sessionId}-mcq-${index}`,
+              type: questionType,
+              data: {
+                id: questionData.id,
+                question: questionData.question,
+                options: questionData.options,
+                correctAnswer: questionData.correctAnswer,
+                explanation: questionData.explanation,
+                category: category as 'grammar' | 'error-detection' | 'synonyms-antonyms' | 'sentence-completion' | 'word-replacement'
+              }
+            });
+          }
+        });
+      }
+    } else {
+      // Fallback to dummy data for other session types
+      sessionIds.forEach(id => {
+        if (id.startsWith('writing-session-')) {
         // Parse language from session ID (e.g., "writing-session-french-1" -> "french")
         const language = id.includes('french') ? 'french' : 'english';
         const sessionData = writingSessionsData[language]?.find(session => session.id === id);
@@ -212,9 +342,10 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
         }
       }
     });
+    }
 
     return sessionArray;
-  }, [sessionIds]);
+  }, [sessionIds, sessionData]);
 
   // Initialize question status
   useEffect(() => {
@@ -302,10 +433,21 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
         return newSet;
       });
       // Restore to answered status if it had an answer, otherwise not-answered
-      setQuestionStatus(prev => ({
-        ...prev,
-        [currentIndex]: userAnswers[session?.id] !== undefined ? 'answered' : 'not-answered'
-      }));
+      setQuestionStatus(prev => {
+        let hasAnswer = false;
+        if (session) {
+          if (session.type === 'mcq' || session.type === 'grammar-mcq' || session.type === 'error-detection' || session.type === 'synonyms-antonyms' || session.type === 'sentence-completion' || session.type === 'word-replacement') {
+            const mcqData = session.data as McqQuestionData;
+            hasAnswer = userAnswers[mcqData.id] !== undefined;
+          } else {
+            hasAnswer = userAnswers[session.id] !== undefined;
+          }
+        }
+        return {
+          ...prev,
+          [currentIndex]: hasAnswer ? 'answered' : 'not-answered'
+        };
+      });
     } else {
       // Mark for review - add to marked set and clear any answer
       setMarkedQuestions(prev => new Set([...prev, currentIndex]));
@@ -316,12 +458,10 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
         setUserAnswers(prev => {
           const newAnswers = { ...prev };
 
-          if (session.type === 'mcq') {
-            // For MCQ, clear the answer using questionId
-            const mcqData = session.data as McqQuestionSession;
-            if (mcqData.currentQuestion) {
-              delete newAnswers[mcqData.currentQuestion.id];
-            }
+          if (session.type === 'mcq' || session.type === 'grammar-mcq' || session.type === 'error-detection' || session.type === 'synonyms-antonyms' || session.type === 'sentence-completion' || session.type === 'word-replacement') {
+            // For MCQ, clear by question ID
+            const mcqData = session.data as McqQuestionData;
+            delete newAnswers[mcqData.id];
           } else {
             // For other types, clear by session ID
             delete newAnswers[session.id];
@@ -339,12 +479,10 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
       setUserAnswers(prev => {
         const newAnswers = { ...prev };
 
-        if (session.type === 'mcq') {
-          // For MCQ, clear the current question's answer
-          const mcqData = session.data as McqQuestionSession;
-          if (mcqData.currentQuestion) {
-            delete newAnswers[mcqData.currentQuestion.id];
-          }
+        if (session.type === 'mcq' || session.type === 'grammar-mcq' || session.type === 'error-detection' || session.type === 'synonyms-antonyms' || session.type === 'sentence-completion' || session.type === 'word-replacement') {
+          // For MCQ, clear by question ID
+          const mcqData = session.data as McqQuestionData;
+          delete newAnswers[mcqData.id];
         } else {
           // For other types, clear by session ID
           delete newAnswers[session.id];
@@ -374,7 +512,15 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
 
   const handleComplete = () => {
     const results: PracticeResult[] = sessions.map(session => {
-      const userAnswer = userAnswers[session.id];
+      // For MCQ questions, answers are stored with question ID as key
+      // For other types, answers are stored with session ID as key
+      const answerKey = (session.type === 'mcq' || session.type === 'grammar-mcq' || session.type === 'error-detection' ||
+                        session.type === 'synonyms-antonyms' || session.type === 'sentence-completion' ||
+                        session.type === 'word-replacement')
+        ? (session.data as { id: string }).id  // Use question ID for MCQ
+        : session.id; // Use session ID for others
+
+      const userAnswer = userAnswers[answerKey];
       let isCorrect = false;
 
       if (session.type === 'reading-comprehension' && typeof userAnswer === 'number') {
@@ -382,6 +528,9 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
         isCorrect = userAnswer === correctAnswer;
       } else if (session.type === 'rearrange-sentences' && typeof userAnswer === 'string') {
         const correctAnswer = (session.data as RearrangeSentenceData).correctOrder.join(' ');
+        isCorrect = userAnswer === correctAnswer;
+      } else if (session.type === 'mcq' || session.type === 'grammar-mcq' || session.type === 'error-detection' || session.type === 'synonyms-antonyms' || session.type === 'sentence-completion' || session.type === 'word-replacement') {
+        const correctAnswer = (session.data as McqQuestionData).correctAnswer;
         isCorrect = userAnswer === correctAnswer;
       } else if (session.type === 'writing' && typeof userAnswer === 'string') {
         isCorrect = userAnswer.trim().length > 10;
@@ -391,7 +540,7 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
       }
 
       return {
-        sessionId: session.id,
+        sessionId: (session.data as { id: string }).id, // Use the actual database question/task ID
         userAnswer,
         isCorrect,
         timeSpent: Math.floor((Date.now() - startTime) / 1000),
@@ -427,18 +576,15 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
     }
   };
 
-  // Check if reading data is loaded only when reading sessions are present
+  // Check if data is loading
   const hasReadingSessions = sessionIds.some(id => id.startsWith('reading-session-'));
 
-  if (hasReadingSessions && (
-    (!readingSessionsData.english || readingSessionsData.english.length === 0) ||
-    (!readingSessionsData.french || readingSessionsData.french.length === 0)
-  )) {
+  if (loadingSession && hasReadingSessions) {
     return (
       <div className="h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading practice session...</p>
+          <p className="text-gray-600">Generating your personalized practice session...</p>
         </div>
       </div>
     );
@@ -465,13 +611,23 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
             <Clock className="h-5 w-5" />
             <span className="font-semibold">Time Left: {formatTime(timeRemaining)}</span>
           </div>
-          <Button
-            size="sm"
-            onClick={handleComplete}
-            className="bg-green-600 hover:bg-green-700 cursor-pointer"
-          >
-            Submit Test
-          </Button>
+          <div className="flex items-center gap-3">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onExit}
+              className="cursor-pointer"
+            >
+              Exit
+            </Button>
+            <Button
+              size="sm"
+              onClick={handleComplete}
+              className="bg-green-600 hover:bg-green-700 cursor-pointer"
+            >
+              Submit Test
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -525,10 +681,10 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
                   />
                 )}
 
-                {currentSession.type === 'mcq' && (
+                {(currentSession.type === 'mcq' || currentSession.type === 'grammar-mcq' || currentSession.type === 'error-detection' || currentSession.type === 'synonyms-antonyms' || currentSession.type === 'sentence-completion' || currentSession.type === 'word-replacement') && (
                   <McqPracticeInterface
                     sessionId={currentSession.id}
-                    data={currentSession.data as McqQuestionSession}
+                    data={currentSession.data as McqQuestionData}
                     userAnswers={userAnswers as Record<string, number>}
                     onAnswer={handleMcqAnswer}
                   />

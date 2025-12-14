@@ -1,28 +1,105 @@
 "use client";
 
-import { Progress } from "@/components/ui/progress";
-
-const levels = ["A1"];
+import { useState } from "react";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { getCEFRLevel } from "../config";
+import { DetailedProgressDialog } from "./detailed-progress-dialog";
 
 interface ProgressBarProps {
-  currentProgress?: { [key: string]: number };
+  currentLevel?: string;
+  levelProgress?: Record<string, {
+    completedSkills: number;
+    totalSkills: number;
+    isCompleted: boolean;
+    skills: Array<{
+      skillType: string;
+      currentAverageScore?: number;
+      isCompleted: boolean;
+    }>;
+    totalPoints: number;
+    skillPoints: Record<string, number>;
+  }>;
 }
 
-export function ProgressBar({ currentProgress = { A1: 40 } }: ProgressBarProps) {
-  const progress = currentProgress.A1 || 0;
-  const isActive = progress > 0 && progress < 100;
-  const isCompleted = progress === 100;
+export function ProgressBar({ currentLevel = 'A1', levelProgress }: ProgressBarProps) {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const levelConfig = getCEFRLevel(currentLevel);
+  const levelData = levelProgress?.[currentLevel];
 
+  // Ensure we have a valid level config
+  if (!levelConfig) {
   return (
     <div className="flex items-center gap-3">
-      <div className="h-9 px-4 bg-muted/50 rounded-md border flex items-center justify-between min-w-[140px]">
+        <div className="h-9 px-4 bg-muted/50 rounded-md border flex items-center justify-between min-w-[180px]">
+          <div className="flex items-center gap-2">
+            <div className="text-sm font-semibold text-muted-foreground">
+              {currentLevel}
+            </div>
+            <div className="relative w-16 h-2 bg-muted rounded-full overflow-hidden">
+              <div className="h-full bg-gray-300" style={{ width: '0%' }} />
+            </div>
+            <div className="text-xs font-medium text-muted-foreground">
+              Loading...
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!levelData) {
+    return (
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogTrigger asChild>
+          <div className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+            <div className="h-9 px-4 bg-muted/50 rounded-md border flex items-center justify-between min-w-[180px]">
+                <div className="flex items-center gap-2">
+                  <div className="text-sm font-semibold text-muted-foreground">
+                    {levelConfig?.name || currentLevel}
+                  </div>
+                  <div className="relative w-16 h-2 bg-muted rounded-full overflow-hidden">
+                    <div className="h-full bg-gray-300" style={{ width: '0%' }} />
+                  </div>
+                  <div className="text-xs font-medium text-muted-foreground">
+                    0/{levelConfig?.totalTargetScore || 200}
+                  </div>
+                </div>
+              </div>
+            </div>
+        </DialogTrigger>
+        <DetailedProgressDialog currentLevel={currentLevel} levelProgress={levelProgress} />
+      </Dialog>
+    );
+  }
+
+  // Calculate combined progress across all skills
+  const skills = levelData.skills || [];
+  const totalSkills = skills.length;
+  const completedSkills = skills.filter(s => s.isCompleted).length;
+  const averageScore = totalSkills > 0
+    ? skills.reduce((sum, s) => sum + (s.currentAverageScore || 0), 0) / totalSkills
+    : 0;
+
+  const progress = Math.min(Math.round(averageScore), 100);
+  const targetScore = levelConfig.skillTargetScore;
+  const totalPoints = levelData.totalPoints || 0;
+  const pointsProgressPercentage = Math.min(Math.round((totalPoints / levelConfig.totalTargetScore) * 100), 100);
+
+  const isActive = progress > 0 && progress < targetScore;
+  const isCompleted = progress >= targetScore;
+
+  return (
+    <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+      <DialogTrigger asChild>
+        <div className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+          <div className="h-9 px-4 bg-muted/50 rounded-md border flex items-center justify-between min-w-[180px]">
         <div className="flex items-center gap-2">
           <div className={`text-sm font-semibold ${
             isCompleted ? 'text-green-600' :
             isActive ? 'text-blue-600' :
             'text-muted-foreground'
           }`}>
-            A1
+            {levelConfig.name}
           </div>
           <div className="relative w-16 h-2 bg-muted rounded-full overflow-hidden">
             <div
@@ -31,7 +108,7 @@ export function ProgressBar({ currentProgress = { A1: 40 } }: ProgressBarProps) 
                 isActive ? 'bg-blue-500' :
                 'bg-gray-300'
               }`}
-              style={{ width: `${progress}%` }}
+                  style={{ width: `${pointsProgressPercentage}%` }}
             />
           </div>
           <div className={`text-xs font-medium ${
@@ -39,10 +116,13 @@ export function ProgressBar({ currentProgress = { A1: 40 } }: ProgressBarProps) 
             isActive ? 'text-blue-600' :
             'text-muted-foreground'
           }`}>
-            {progress}%
+                {totalPoints}/{levelConfig.totalTargetScore}
           </div>
         </div>
       </div>
     </div>
+      </DialogTrigger>
+      <DetailedProgressDialog currentLevel={currentLevel} levelProgress={levelProgress} />
+    </Dialog>
   );
 }

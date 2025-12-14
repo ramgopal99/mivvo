@@ -1,11 +1,11 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { type McqSessionData } from "../data/mcq-practice-data";
+import { type McqQuestionData, type McqSessionData } from "../data/mcq-practice-data";
 
 interface McqPracticeInterfaceProps {
   sessionId: string;
-  data: any;
+  data: McqQuestionData | McqSessionData;
   userAnswers?: Record<string, number>;
   onAnswer: (sessionId: string, questionId: string, answer: number) => void;
 }
@@ -17,7 +17,8 @@ export function McqPracticeInterface({
   userAnswers = {},
   onAnswer
 }: McqPracticeInterfaceProps) {
-  const currentQuestion = data.currentQuestion;
+  // Handle both McqQuestionData and McqSessionData formats
+  const currentQuestion = 'question' in data ? data : (data as any).currentQuestion;
 
   const handleAnswerSelect = (answerIndex: string) => {
     const answer = parseInt(answerIndex);

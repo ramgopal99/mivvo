@@ -38,13 +38,56 @@ interface ReadingAttempt {
 }
 
 interface ReadingAttemptDetailsContentProps {
-  attempt: ReadingAttempt
+  attempt: ReadingAttempt | null
   resultId: string
 }
 
 export function ReadingAttemptDetailsContent({ attempt, resultId }: ReadingAttemptDetailsContentProps) {
   const router = useRouter()
   const [activeTab, setActiveTab] = useState("overview")
+
+  // Check if there's no analysis data
+  if (!attempt) {
+    return (
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="flex items-start justify-between">
+          <Button variant="ghost" onClick={() => router.back()} className="cursor-pointer">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back
+          </Button>
+          <div className="flex flex-col text-center flex-1 mx-8">
+            <h1 className="text-3xl font-bold text-gray-900 leading-tight">Reading Attempt Details</h1>
+            <p className="text-gray-600 text-lg mt-1">
+              Attempt Analysis
+            </p>
+          </div>
+          <div className="w-32"></div> {/* Spacer for balance */}
+        </div>
+
+        {/* No Data Message */}
+        <div className="flex flex-col items-center justify-center py-12">
+          <div className="text-center space-y-4">
+            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
+              <BookOpen className="h-8 w-8 text-gray-400" />
+            </div>
+            <div>
+              <h3 className="text-lg font-medium text-gray-900">No Analysis Data Available</h3>
+              <p className="text-gray-500 mt-1">
+                Detailed analysis data for this attempt is not available.
+              </p>
+            </div>
+            <Button
+              onClick={() => router.push('/dashboard/foreign-lang')}
+              className="mt-4"
+            >
+              Back to Practice
+            </Button>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   const formatDate = (date: Date) => {
     return new Date(date).toLocaleDateString('en-US', {

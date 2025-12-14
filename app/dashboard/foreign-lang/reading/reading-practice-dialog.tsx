@@ -1,24 +1,26 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { readingPracticeTypes, type LanguageValue } from "../config";
-import { allReadingData } from "../data/reading-practice-data";
+import { getActiveLanguages } from "../config";
 
 interface ReadingPracticeDialogProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   selectedLanguage: LanguageValue;
+  onStartPractice?: () => Promise<void>;
 }
 
 export function ReadingPracticeDialog({
   isOpen,
   onOpenChange,
   selectedLanguage,
+  onStartPractice,
 }: ReadingPracticeDialogProps) {
-  const router = useRouter();
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const languageLabels = {
     english: "English",
@@ -30,11 +32,21 @@ export function ReadingPracticeDialog({
 
   const languageLabel = languageLabels[selectedLanguage] || "English";
 
-  const handleStartPractice = () => {
-    // Navigate to practice interface with language-specific session ID
-    const languagePrefix = selectedLanguage === "french" ? "-french" : "-english";
-    router.push(`/dashboard/foreign-lang/practice/reading-session${languagePrefix}-1`);
+  const handleStartPractice = async () => {
+    if (onStartPractice) {
+      setIsGenerating(true);
+      try {
+        await onStartPractice();
+        // Dialog will be closed by the parent component
+      } catch (error) {
+        console.error('Error starting practice:', error);
+      } finally {
+        setIsGenerating(false);
+      }
+    } else {
+      // Fallback to old behavior
     onOpenChange(false);
+    }
   };
 
   return (
@@ -71,8 +83,16 @@ export function ReadingPracticeDialog({
             className="w-full cursor-pointer"
             size="lg"
             onClick={handleStartPractice}
+            disabled={isGenerating}
           >
-            Start Practice
+            {isGenerating ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                Generating Practice Session...
+              </>
+            ) : (
+              'Start Practice'
+            )}
           </Button>
         </div>
       </DialogContent>

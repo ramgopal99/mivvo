@@ -14,6 +14,7 @@ import { McqPracticeDialog } from "../mcq";
 interface SkillCardProps {
   type: SkillType;
   selectedLanguage: LanguageValue;
+  level?: string; // CEFR level (A1, A2, B1, etc.)
 }
 
 
@@ -25,7 +26,7 @@ const iconMap = {
   HelpCircle,
 };
 
-export function SkillCard({ type, selectedLanguage }: SkillCardProps) {
+export function SkillCard({ type, selectedLanguage, level }: SkillCardProps) {
   const router = useRouter();
   const [isReadingDialogOpen, setIsReadingDialogOpen] = useState(false);
   const [isWritingDialogOpen, setIsWritingDialogOpen] = useState(false);
@@ -37,16 +38,14 @@ export function SkillCard({ type, selectedLanguage }: SkillCardProps) {
   const description = config.description;
 
   const handleAnalysisClick = () => {
-    const languagePrefix = selectedLanguage === "french" ? "-french" : "-english";
-
     if (type === "reading") {
-      router.push(`/dashboard/foreign-lang/reading/reading-session${languagePrefix}-1`);
+      router.push('/dashboard/foreign-lang/reading');
     } else if (type === "writing") {
-      router.push(`/dashboard/foreign-lang/writing/writing-session${languagePrefix}-1`);
+      router.push('/dashboard/foreign-lang/writing');
     } else if (type === "speaking") {
-      router.push(`/dashboard/foreign-lang/speaking/speaking-session${languagePrefix}-1`);
+      router.push('/dashboard/foreign-lang/speaking');
     } else if (type === "mcq") {
-      router.push(`/dashboard/foreign-lang/mcq/mcq-session${languagePrefix}-1`);
+      router.push('/dashboard/foreign-lang/mcq');
     }
   };
 
@@ -59,6 +58,58 @@ export function SkillCard({ type, selectedLanguage }: SkillCardProps) {
       setIsSpeakingDialogOpen(true);
     } else if (type === "mcq") {
       setIsMcqDialogOpen(true);
+    }
+  };
+
+  const handleStartPractice = async (skillType: SkillType) => {
+    if (skillType === "reading") {
+      try {
+        // Generate reading practice session using OpenAI
+        const response = await fetch('/api/foreign-language/reading/generate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            language: selectedLanguage.toUpperCase(),
+          }),
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          // Close dialog and redirect to practice
+          setIsReadingDialogOpen(false);
+          router.push(`/dashboard/foreign-lang/practice/${result.data.sessionId}`);
+        } else {
+          console.error('Failed to generate practice:', result.error);
+        }
+      } catch (error) {
+        console.error('Error generating practice:', error);
+      }
+    } else if (skillType === "mcq") {
+      try {
+        // Generate MCQ practice session using OpenAI
+        const response = await fetch('/api/foreign-language/mcq/generate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            language: selectedLanguage.toUpperCase(),
+          }),
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          // Close dialog and redirect to practice
+          setIsMcqDialogOpen(false);
+          router.push(`/dashboard/foreign-lang/practice/${result.data.sessionId}`);
+        } else {
+          console.error('Failed to generate MCQ practice:', result.error);
+        }
+      } catch (error) {
+        console.error('Error generating MCQ practice:', error);
+      }
     }
   };
 
@@ -106,6 +157,7 @@ export function SkillCard({ type, selectedLanguage }: SkillCardProps) {
           isOpen={isReadingDialogOpen}
           onOpenChange={setIsReadingDialogOpen}
           selectedLanguage={selectedLanguage}
+          onStartPractice={() => handleStartPractice("reading")}
         />
       )}
 
@@ -133,6 +185,7 @@ export function SkillCard({ type, selectedLanguage }: SkillCardProps) {
           isOpen={isMcqDialogOpen}
           onOpenChange={setIsMcqDialogOpen}
           selectedLanguage={selectedLanguage}
+          onStartPractice={() => handleStartPractice("mcq")}
         />
       )}
     </>

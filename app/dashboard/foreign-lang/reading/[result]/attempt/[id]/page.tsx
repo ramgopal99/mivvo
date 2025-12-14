@@ -4,7 +4,6 @@ import { useEffect, useState, use } from "react"
 import { useSession } from "next-auth/react"
 import { notFound } from "next/navigation"
 import { ReadingAttemptDetailsContent } from "../_components/ReadingAttemptDetailsContent"
-import { readingAnalysisData } from "../../../index"
 
 interface ReadingSessionResult {
   id: string
@@ -50,6 +49,7 @@ export default function ReadingAttemptDetailsPage({ params }: AttemptDetailsPage
   const [attempt, setAttempt] = useState<ReadingAttempt | null>(null)
   const [loading, setLoading] = useState(true)
   const [authenticated, setAuthenticated] = useState(false)
+  const [userLanguage, setUserLanguage] = useState<string>('english')
 
   useEffect(() => {
     const checkAuthAndLoadData = async () => {
@@ -70,27 +70,52 @@ export default function ReadingAttemptDetailsPage({ params }: AttemptDetailsPage
 
       setAuthenticated(true)
 
-      // Load attempt data from data file
+      // Load user's preferred language and attempt data
       try {
-        // Determine language from session ID
-        const language = result.includes('french') ? 'french' : 'english'
-
-        // Find the session and attempt from the appropriate language data
-        const sessionAnalysis = readingAnalysisData[language]?.find(session => session.id === result)
-        const attemptData = sessionAnalysis?.attempts.find(attempt => attempt.id === id)
-
-        if (sessionAnalysis && attemptData) {
-          const attemptWithSession: ReadingAttempt = {
-            ...attemptData,
-            session: {
-              id: result,
-              title: sessionAnalysis.title,
-              language: sessionAnalysis.language,
-              createdAt: sessionAnalysis.createdAt
+        // First, get user's preferred language
+        let preferredLanguage: string | null = null;
+        try {
+          const langResponse = await fetch('/api/foreign-language/user/preferences/language');
+          if (langResponse.ok) {
+            const langResult = await langResponse.json();
+            if (langResult.success && langResult.data.preferredLanguage) {
+              preferredLanguage = langResult.data.preferredLanguage;
+              setUserLanguage(preferredLanguage.toLowerCase());
             }
           }
-          setAttempt(attemptWithSession)
+        } catch (langError) {
+          console.error('Error loading user language:', langError);
+        }
+
+        // Only proceed if we have a valid language
+        if (!preferredLanguage) {
+          console.error('No user language preference found');
+          notFound();
+          return;
+        }
+
+        // Fetch actual attempt data from API with language filter
+        const response = await fetch(`/api/foreign-language/reading/attempts/${id}?language=${preferredLanguage}`)
+
+        if (response.ok) {
+          const result = await response.json()
+          if (result.success) {
+            if (result.data) {
+              setAttempt(result.data)
+            } else {
+              // No data available, but show the page with a message
+              setAttempt(null)
+            }
+            // Show message if no data available
+            if (result.message) {
+              console.info('No analysis data:', result.message)
+            }
+          } else {
+            console.error('API returned error:', result.error)
+            notFound()
+          }
         } else {
+          console.error('Failed to fetch attempt data:', response.status)
           notFound()
         }
       } catch (error) {
@@ -115,7 +140,7 @@ export default function ReadingAttemptDetailsPage({ params }: AttemptDetailsPage
     )
   }
 
-  if (!authenticated || !attempt) {
+  if (!authenticated) {
     notFound()
   }
 

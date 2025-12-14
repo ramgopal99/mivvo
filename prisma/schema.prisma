@@ -177,6 +177,9 @@ model User {
   linkedIn           String?
   github             String?
 
+  // Foreign Language Learning Preferences
+  preferredLanguage  String?  // User's preferred language (e.g., "ENGLISH", "FRENCH")
+
   // Credit allocation (in credits)
   totalCreditAllocation   Int?     // Set by application logic, not database default
   usedCredits             Int      @default(0)
@@ -192,6 +195,11 @@ model User {
   feedback       Feedback[]
   payments       Payment[]
   studentEnrollment StudentEnrollment?
+
+  // Foreign Language Learning Relations
+  readingAttempts      ReadingAttempt[]
+  mcqAttempts          McqAttempt[]
+  levelProgress        UserLevelProgress[]
 
   @@map("users")
 }
@@ -617,3 +625,387 @@ model StudentEnrollment {
 
   @@map("student_enrollments")
 }
+
+// =============================================================================
+// FOREIGN LANGUAGE LEARNING SYSTEM - READING
+// =============================================================================
+
+
+enum CEFRLevel {
+  A1
+  A2
+  B1
+  B2
+  C1
+  C2
+}
+
+enum SkillType {
+  READING
+  WRITING
+  SPEAKING
+  MCQ
+}
+
+enum ReadingSessionType {
+  READING_COMPREHENSION
+  REARRANGE_SENTENCES
+}
+
+enum AttemptStatus {
+  IN_PROGRESS
+  COMPLETED
+  ABANDONED
+}
+
+enum McqSessionType {
+  VOCABULARY
+  GRAMMAR
+  ERROR_DETECTION
+  SYNONYMS_ANTONYMS
+  SENTENCE_COMPLETION
+  WORD_REPLACEMENT
+  MIXED
+}
+
+enum McqQuestionCategory {
+  GRAMMAR
+  VOCABULARY
+  ERROR_DETECTION
+  SYNONYMS_ANTONYMS
+  SENTENCE_COMPLETION
+  WORD_REPLACEMENT
+}
+
+// Language configuration - configurable languages
+model LanguageConfig {
+  id          String   @id @default(cuid()) @map("_id")
+  language    String   @unique // "ENGLISH", "FRENCH", etc.
+  name        String   // "English", "French"
+  code        String   // "en", "fr"
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  skills            SkillConfig[]
+  readingSessions   ReadingSession[]
+  mcqSessions       McqSession[]
+  userLevelProgress UserLevelProgress[]
+  readingAttempts   ReadingAttempt[]
+  mcqAttempts       McqAttempt[]
+
+  @@map("language_configs")
+}
+
+
+// Skill configuration
+model SkillConfig {
+  id          String     @id @default(cuid()) @map("_id")
+  skill       SkillType
+  name        String     // "Reading", "Writing", etc.
+  description String
+  weight      Float      @default(0.25) // 25% contribution to level
+  isActive    Boolean    @default(true)
+  languageId  String
+
+  // Relations
+  language    LanguageConfig @relation(fields: [languageId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([skill, languageId])
+  @@map("skill_configs")
+}
+
+// Reading practice sessions
+model ReadingSession {
+  id                String             @id @default(cuid()) @map("_id")
+  title             String
+  sessionType       ReadingSessionType
+  languageId        String
+  cefrLevel         String             // CEFR level (e.g., "A1", "A2", etc.)
+  timeLimit         Int?               // Time limit in minutes
+  isActive          Boolean            @default(true)
+
+  // Relations
+  language          LanguageConfig     @relation(fields: [languageId], references: [id], onDelete: Cascade)
+  comprehensionData ReadingComprehension[]
+  rearrangingData   ReadingRearrange[]
+  attempts          ReadingAttempt[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("reading_sessions")
+}
+
+// Reading comprehension questions
+model ReadingComprehension {
+  id          String   @id @default(cuid()) @map("_id")
+  sessionId   String
+  passage     String
+  question    String
+  options     String[] // Array of 4 options
+  correctAnswer Int    // Index of correct answer (0-3)
+  explanation String
+  order       Int      // Question order in session
+
+  // Relations
+  session     ReadingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  results     ReadingComprehensionResult[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([sessionId, order])
+  @@map("reading_comprehensions")
+}
+
+// Reading sentence rearrangement tasks
+model ReadingRearrange {
+  id              String   @id @default(cuid()) @map("_id")
+  sessionId       String
+  scrambledWords  String[] // Array of scrambled words
+  correctOrder    String[] // Array of words in correct order
+  explanation     String
+  order           Int      // Task order in session
+
+  // Relations
+  session         ReadingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  results         ReadingRearrangeResult[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([sessionId, order])
+  @@map("reading_rearranges")
+}
+
+// User's reading attempts
+model ReadingAttempt {
+  id              String         @id @default(cuid()) @map("_id")
+  userId          String
+  sessionId       String
+  languageId      String         // Language for this attempt (redundant but for performance)
+  status          AttemptStatus  @default(IN_PROGRESS)
+  startedAt       DateTime       @default(now())
+  completedAt     DateTime?
+  duration        Int?           // Duration in seconds
+
+  // Relations
+  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  session         ReadingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  language        LanguageConfig @relation(fields: [languageId], references: [id], onDelete: Cascade)
+  comprehensionResults ReadingComprehensionResult[]
+  rearrangingResults   ReadingRearrangeResult[]
+  overallResult        ReadingOverallResult?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([userId, sessionId, startedAt]) // Prevent duplicate attempts
+  @@map("reading_attempts")
+}
+
+// Results for comprehension questions
+model ReadingComprehensionResult {
+  id              String  @id @default(cuid()) @map("_id")
+  attemptId       String
+  questionId      String
+  userAnswer      Int     // User's selected answer (0-3)
+  isCorrect       Boolean
+  timeSpent       Int     // Time spent on this question in seconds
+
+  // Relations
+  attempt         ReadingAttempt       @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question        ReadingComprehension @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  createdAt       DateTime @default(now())
+
+  @@unique([attemptId, questionId])
+  @@map("reading_comprehension_results")
+}
+
+// Results for rearrangement tasks
+model ReadingRearrangeResult {
+  id              String  @id @default(cuid()) @map("_id")
+  attemptId       String
+  taskId          String
+  userAnswer      String[] // User's arranged words
+  isCorrect       Boolean
+  timeSpent       Int     // Time spent on this task in seconds
+
+  // Relations
+  attempt         ReadingAttempt   @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  task            ReadingRearrange @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  createdAt       DateTime @default(now())
+
+  @@unique([attemptId, taskId])
+  @@map("reading_rearrange_results")
+}
+
+// Overall result for reading attempt
+model ReadingOverallResult {
+  id                    String  @id @default(cuid()) @map("_id")
+  attemptId             String  @unique
+  overallScore          Int     // Overall score (0-100)
+  comprehensionScore    Int     // Comprehension score (0-100)
+  rearrangingScore      Int     // Rearranging score (0-100)
+  feedback              String
+  overallFeedback       String
+  strengths             String[] // Array of strengths
+  weaknesses            String[] // Array of weaknesses
+  recommendations       String[] // Array of recommendations
+  timeSpent             Json     // { comprehension: number, rearranging: number }
+
+  // Relations
+  attempt               ReadingAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@map("reading_overall_results")
+}
+
+// MCQ Session
+model McqSession {
+  id                String             @id @default(cuid()) @map("_id")
+  title             String
+  sessionType       McqSessionType
+  languageId        String
+  cefrLevel         String             // CEFR level (e.g., "A1", "A2", etc.)
+  timeLimit         Int?               // Time limit in minutes
+  isActive          Boolean            @default(true)
+
+  // Relations
+  language          LanguageConfig     @relation(fields: [languageId], references: [id], onDelete: Cascade)
+  questions         McqQuestion[]
+  attempts          McqAttempt[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("mcq_sessions")
+}
+
+// MCQ questions
+model McqQuestion {
+  id          String             @id @default(cuid()) @map("_id")
+  sessionId   String
+  question    String
+  options     String[]           // Array of 4 options
+  correctAnswer Int              // Index of correct answer (0-3)
+  explanation String
+  category    McqQuestionCategory
+  order       Int                // Question order in session
+
+  // Relations
+  session     McqSession         @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  results     McqResult[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([sessionId, order])
+  @@map("mcq_questions")
+}
+
+// User's MCQ attempts
+model McqAttempt {
+  id              String         @id @default(cuid()) @map("_id")
+  userId          String
+  sessionId       String
+  languageId      String         // Language for this attempt (redundant but for performance)
+  status          AttemptStatus  @default(IN_PROGRESS)
+  startedAt       DateTime       @default(now())
+  completedAt     DateTime?
+  duration        Int?           // Duration in seconds
+
+  // Relations
+  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  session         McqSession     @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  language        LanguageConfig @relation(fields: [languageId], references: [id], onDelete: Cascade)
+  results         McqResult[]
+  overallResult   McqOverallResult?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([userId, sessionId, startedAt]) // Prevent duplicate attempts
+  @@map("mcq_attempts")
+}
+
+// Results for MCQ questions
+model McqResult {
+  id              String  @id @default(cuid()) @map("_id")
+  attemptId       String
+  questionId      String
+  userAnswer      Int?    // User's selected answer (0-3), null if not answered
+  isCorrect       Boolean
+  timeSpent       Int     // Time spent on this question in seconds
+
+  // Relations
+  attempt         McqAttempt   @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question        McqQuestion  @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  createdAt       DateTime @default(now())
+
+  @@unique([attemptId, questionId])
+  @@map("mcq_results")
+}
+
+// Overall result for MCQ attempt
+model McqOverallResult {
+  id                    String  @id @default(cuid()) @map("_id")
+  attemptId             String  @unique
+  overallScore          Int     // Overall score (0-100)
+  totalQuestions        Int     // Total number of questions
+  correctAnswers        Int     // Number of correct answers
+  accuracyPercentage    Int     // Accuracy percentage (0-100)
+  feedback              String
+  overallFeedback       String
+  strengths             String[] // Array of strengths
+  weaknesses            String[] // Array of weaknesses
+  recommendations       String[] // Array of recommendations
+  timeSpent             Int      // Total time spent in seconds
+
+  // Relations
+  attempt               McqAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@map("mcq_overall_results")
+}
+
+// User's level progress tracking
+model UserLevelProgress {
+  id                    String     @id @default(cuid()) @map("_id")
+  userId                String
+  languageId            String     // Language for this progress tracking
+  cefrLevel             String     // CEFR level (e.g., "A1", "A2", etc.)
+  skillType             SkillType
+  currentAverageScore   Float      @default(0) // Average score across all attempts
+  requiredTargetScore   Int        // Target score for this skill in this level
+  attemptsCount         Int        @default(0) // Number of attempts made
+  isCompleted           Boolean    @default(false) // Whether this skill is completed for the level
+  completedAt           DateTime?
+  lastAttemptAt         DateTime?
+
+  // Relations
+  user                  User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  language              LanguageConfig @relation(fields: [languageId], references: [id], onDelete: Cascade)
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@unique([userId, languageId, cefrLevel, skillType])
+  @@map("user_level_progress")
+}
+
+// =============================================================================
+// RELATIONS
+// =============================================================================

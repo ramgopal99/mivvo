@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
@@ -10,14 +11,17 @@ interface McqPracticeDialogProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   selectedLanguage: LanguageValue;
+  onStartPractice?: () => Promise<void>;
 }
 
 export function McqPracticeDialog({
   isOpen,
   onOpenChange,
   selectedLanguage,
+  onStartPractice,
 }: McqPracticeDialogProps) {
   const router = useRouter();
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const languageLabels = {
     english: "English",
@@ -29,11 +33,21 @@ export function McqPracticeDialog({
 
   const languageLabel = languageLabels[selectedLanguage] || "English";
 
-  const handleStartPractice = () => {
-    // Navigate to practice interface with MCQ session ID
-    const languagePrefix = selectedLanguage === "french" ? "-french" : "-english";
-    router.push(`/dashboard/foreign-lang/practice/mcq-session${languagePrefix}-1`);
-    onOpenChange(false);
+  const handleStartPractice = async () => {
+    if (onStartPractice) {
+      setIsGenerating(true);
+      try {
+        await onStartPractice();
+        // Dialog will be closed by the parent component
+      } catch (error) {
+        console.error('Error starting MCQ practice:', error);
+      } finally {
+        setIsGenerating(false);
+      }
+    } else {
+      // Fallback to old behavior
+      onOpenChange(false);
+    }
   };
 
   return (
@@ -70,8 +84,16 @@ export function McqPracticeDialog({
             className="w-full cursor-pointer"
             size="lg"
             onClick={handleStartPractice}
+            disabled={isGenerating}
           >
-            Start Practice
+            {isGenerating ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                Generating Practice Session...
+              </>
+            ) : (
+              'Start Practice'
+            )}
           </Button>
         </div>
       </DialogContent>

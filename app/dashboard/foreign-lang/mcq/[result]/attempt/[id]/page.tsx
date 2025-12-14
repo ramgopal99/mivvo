@@ -4,7 +4,6 @@ import { useEffect, useState, use } from "react"
 import { useSession } from "next-auth/react"
 import { notFound } from "next/navigation"
 import { McqAttemptDetailsContent } from "../_components/McqAttemptDetailsContent"
-import { mcqAnalysisData } from "../../../index"
 
 interface McqSessionResult {
   id: string
@@ -23,18 +22,39 @@ interface McqSessionResult {
 
 interface McqAttempt {
   id: string
+  sessionId: string
+  sessionTitle: string
   startedAt: Date
   completedAt: Date | null
   duration: number | null
   status: string
+  cefrLevel: string
+  sessionType: string
   createdAt: Date
-  session: {
+  questions: Array<{
     id: string
-    title: string | null
-    language: string | null
-    createdAt: Date
-  }
-  results: McqSessionResult[]
+    question: string
+    options: string[]
+    correctAnswer: number
+    explanation: string
+    category: string
+    userAnswer: number | null
+    isCorrect: boolean
+    timeSpent: number
+  }>
+  overallResult: {
+    id: string
+    overallScore: number | null
+    totalQuestions: number | null
+    correctAnswers: number | null
+    accuracyPercentage: number | null
+    feedback: string | null
+    overallFeedback: string | null
+    strengths: string[]
+    weaknesses: string[]
+    recommendations: string[]
+    timeSpent: number
+  } | null
 }
 
 interface AttemptDetailsPageProps {
@@ -70,26 +90,17 @@ export default function McqAttemptDetailsPage({ params }: AttemptDetailsPageProp
 
       setAuthenticated(true)
 
-      // Load attempt data from data file
+      // Load attempt data from API
       try {
-        // Determine language from session ID
-        const language = result.includes('french') ? 'french' : 'english'
+        const response = await fetch(`/api/foreign-language/mcq/attempts/${id}`)
 
-        // Find the session and attempt from the appropriate language data
-        const sessionAnalysis = mcqAnalysisData[language]?.find(session => session.id === result)
-        const attemptData = sessionAnalysis?.attempts.find(attempt => attempt.id === id)
-
-        if (sessionAnalysis && attemptData) {
-          const attemptWithSession: McqAttempt = {
-            ...attemptData,
-            session: {
-              id: result,
-              title: sessionAnalysis.title,
-              language: sessionAnalysis.language,
-              createdAt: sessionAnalysis.createdAt
-            }
+        if (response.ok) {
+          const result = await response.json()
+          if (result.success) {
+            setAttempt(result.data)
+          } else {
+            notFound()
           }
-          setAttempt(attemptWithSession)
         } else {
           notFound()
         }
