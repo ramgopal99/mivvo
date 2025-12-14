@@ -646,8 +646,8 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
           </div>
           
           {/* Scrollable Question Content */}
-          <div className="flex-1 overflow-y-auto p-6">
-            <div className="space-y-4">
+          <div className="flex-1 overflow-y-auto p-4 md:p-6 min-h-0">
+            <div className="h-full">
                 {currentSession.type === 'reading-comprehension' && (
                   <ReadingComprehensionPractice
                     sessionId={currentSession.id}

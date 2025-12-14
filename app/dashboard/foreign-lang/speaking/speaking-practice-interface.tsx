@@ -7,6 +7,147 @@ import { Badge } from "@/components/ui/badge";
 import { Mic, MicOff, Volume2, CheckCircle } from "lucide-react";
 import { type SpeakingQuestionSessionData } from "../data/speaking-practice-data";
 
+// Audio Waveform Component
+interface AudioWaveformProps {
+  isActive: boolean;
+  analyser?: AnalyserNode | null;
+}
+
+function AudioWaveform({ isActive, analyser }: AudioWaveformProps) {
+  const animationFrameRef = useRef<number | null>(null);
+  const [waveformData, setWaveformData] = useState<number[]>([]);
+
+  useEffect(() => {
+    if (!isActive) {
+      setWaveformData([]);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+      return;
+    }
+
+    if (!analyser) {
+      // Simulate waveform when no analyser (for TTS playback)
+      const points = 60;
+      let time = 0;
+      
+      const simulate = () => {
+        const newWaveform: number[] = [];
+        for (let i = 0; i < points; i++) {
+          const position = (i / points) * 2 * Math.PI;
+          // Create animated zigzag pattern
+          const amplitude = 30 + Math.sin(time + position * 2) * 20;
+          const value = Math.sin(position * 4 + time) * amplitude;
+          newWaveform.push(value);
+        }
+        time += 0.1;
+        setWaveformData(newWaveform);
+        animationFrameRef.current = requestAnimationFrame(simulate);
+      };
+      
+      simulate();
+      return () => {
+        if (animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current);
+        }
+      };
+    }
+
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+    const waveformArray = new Uint8Array(bufferLength);
+
+    const draw = () => {
+      if (!analyser) return;
+
+      // Get time domain data for waveform
+      analyser.getByteTimeDomainData(waveformArray);
+      
+      // Also get frequency data for volume
+      analyser.getByteFrequencyData(dataArray);
+      
+      // Calculate average volume
+      let sum = 0;
+      for (let i = 0; i < bufferLength; i++) {
+        sum += dataArray[i];
+      }
+      const average = sum / bufferLength;
+      const normalizedVolume = Math.min(average / 255, 1);
+      
+      // Create waveform data points (zigzag pattern based on actual audio)
+      const points = 60;
+      const newWaveform: number[] = [];
+      const step = Math.floor(bufferLength / points);
+      
+      for (let i = 0; i < points; i++) {
+        const index = i * step;
+        // Normalize waveform data (0-255 to -40 to 40)
+        const normalized = (waveformArray[index] - 128) / 128;
+        // Scale based on volume
+        const amplitude = normalized * 40 * (0.5 + normalizedVolume * 0.5);
+        newWaveform.push(amplitude);
+      }
+      
+      setWaveformData(newWaveform);
+      animationFrameRef.current = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+    };
+  }, [isActive, analyser]);
+
+  if (!isActive || waveformData.length === 0) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <p className="text-sm text-muted-foreground">Ready...</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full h-full flex items-center justify-center p-4">
+      <svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 600 120"
+        className="overflow-visible"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <defs>
+          <linearGradient id="waveformGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="currentColor" stopOpacity="0.8" />
+            <stop offset="50%" stopColor="currentColor" stopOpacity="1" />
+            <stop offset="100%" stopColor="currentColor" stopOpacity="0.8" />
+          </linearGradient>
+        </defs>
+        <polyline
+          points={waveformData
+            .map((value, index) => {
+              const x = (index / (waveformData.length - 1)) * 600;
+              const y = 60 + value; // Center at 60, adjust by value
+              return `${x},${y}`;
+            })
+            .join(" ")}
+          fill="none"
+          stroke="url(#waveformGradient)"
+          strokeWidth="3"
+          className="text-primary"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
+    </div>
+  );
+}
+
 interface SpeakingResult {
   questionId: string;
   userAnswer: string;
@@ -70,7 +211,7 @@ export function SpeakingPracticeInterface({
   data,
   userAnswers = {},
   onAnswer,
-  onComplete
+  onComplete // eslint-disable-line @typescript-eslint/no-unused-vars
 }: SpeakingPracticeInterfaceProps) {
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
@@ -88,6 +229,11 @@ export function SpeakingPracticeInterface({
   const transcriptRef = useRef(transcript);
   const currentAnswer = userAnswers[currentQuestion.id] || "";
   const hasAnswered = currentAnswer.trim().length > 0;
+  
+  // Audio analysis refs for waveform
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const analyserRef = useRef<AnalyserNode | null>(null);
+  const streamRef = useRef<MediaStream | null>(null);
 
   // Initialize speech recognition and synthesis
   useEffect(() => {
@@ -221,7 +367,23 @@ export function SpeakingPracticeInterface({
 
     try {
       setError("");
-      await navigator.mediaDevices.getUserMedia({ audio: true });
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      streamRef.current = stream;
+      
+      // Set up audio analysis for waveform
+      const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      const audioContext = new AudioContextClass();
+      const analyser = audioContext.createAnalyser();
+      const microphone = audioContext.createMediaStreamSource(stream);
+      
+      analyser.smoothingTimeConstant = 0.8;
+      analyser.fftSize = 256;
+      
+      microphone.connect(analyser);
+      
+      audioContextRef.current = audioContext;
+      analyserRef.current = analyser;
+      
       recognitionRef.current.start();
     } catch (error) {
       console.error('Error accessing microphone:', error);
@@ -234,6 +396,17 @@ export function SpeakingPracticeInterface({
     if (recognitionRef.current && isListening) {
       recognitionRef.current.stop();
     }
+    
+    // Clean up audio analysis
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop());
+      streamRef.current = null;
+    }
+    if (audioContextRef.current && audioContextRef.current.state !== 'closed') {
+      audioContextRef.current.close();
+      audioContextRef.current = null;
+    }
+    analyserRef.current = null;
   }, [isListening]);
 
 
@@ -261,9 +434,9 @@ export function SpeakingPracticeInterface({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="h-full flex flex-col">
       {/* Header */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 mb-4 flex-shrink-0">
         <Badge variant="outline">
           Speaking Question
         </Badge>
@@ -273,44 +446,53 @@ export function SpeakingPracticeInterface({
       </div>
 
       {/* Two Column Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1 min-h-0">
 
         {/* Left Box - Listen Button */}
-        <Card>
+        <Card className="h-[500px] flex flex-col">
           <CardHeader>
             <CardTitle className="text-xl flex items-center gap-3">
               <Volume2 className="h-6 w-6 text-primary" />
               {currentQuestion.category === 'listen-repeat' ? 'Listen & Repeat' : 'Listen to Question'}
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="flex flex-col items-center space-y-2">
-              {currentQuestion.category === 'listen-repeat' && (
-                <p className="text-sm text-muted-foreground text-center">
-                  Listen to the audio and repeat what you hear
-                </p>
-              )}
-              <Button
-                onClick={speakQuestion}
-                disabled={isSpeaking}
-                className="flex items-center gap-2"
-              >
-                <Volume2 className="h-4 w-4" />
-                {isSpeaking ? 'Playing...' : 'Listen'}
-              </Button>
-            </div>
+          <CardContent className="flex-1 flex flex-col items-center justify-center space-y-6">
+            {currentQuestion.category === 'listen-repeat' && (
+              <p className="text-sm text-muted-foreground text-center">
+                Listen to the audio and repeat what you hear
+              </p>
+            )}
+            <Button
+              onClick={speakQuestion}
+              disabled={isSpeaking}
+              className="flex items-center gap-2"
+            >
+              <Volume2 className="h-4 w-4" />
+              {isSpeaking ? 'Playing...' : 'Listen'}
+            </Button>
+            {/* Waveform Animation for Listening */}
+            {isSpeaking && (
+              <div className="w-full flex-1 flex items-center justify-center min-h-0">
+                <AudioWaveform isActive={isSpeaking} />
+              </div>
+            )}
+            {!isSpeaking && (
+              <div className="w-full flex-1 flex items-center justify-center min-h-0">
+                <p className="text-sm text-muted-foreground text-center px-4">Click Listen to hear the question</p>
+              </div>
+            )}
           </CardContent>
         </Card>
 
         {/* Right Box - Recording */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-xl flex items-center gap-3">
-              <Mic className={`h-6 w-6 ${isListening ? 'text-red-500' : 'text-primary'}`} />
+        <Card className="flex flex-col h-full min-h-0">
+          <CardHeader className="flex-shrink-0">
+            <CardTitle className="text-lg md:text-xl flex items-center gap-3">
+              <Mic className={`h-5 w-5 md:h-6 md:w-6 ${isListening ? 'text-red-500' : 'text-primary'}`} />
               {currentQuestion.category === 'listen-repeat' ? 'Record Your Repetition' : 'Your Answer'}
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="flex-1 flex flex-col space-y-3 md:space-y-4 min-h-0 overflow-hidden">
             {/* Recording Controls */}
             <div className="flex justify-center gap-4">
               {!isListening ? (
@@ -334,11 +516,18 @@ export function SpeakingPracticeInterface({
               )}
             </div>
 
+            {/* Waveform Animation for Recording */}
+            {isListening && (
+              <div className="w-full flex-1 flex items-center justify-center min-h-0">
+                <AudioWaveform isActive={isListening} analyser={analyserRef.current} />
+              </div>
+            )}
+
             {/* Live Transcript */}
             {isListening && (
-              <div className="p-4 border-2 border-red-200 bg-red-50 dark:bg-red-950/20 rounded-lg">
-                <p className="text-sm text-muted-foreground mb-2">Live Transcript:</p>
-                <p className="text-lg">
+              <div className="p-3 md:p-4 border-2 border-red-200 bg-red-50 dark:bg-red-950/20 rounded-lg flex-shrink-0">
+                <p className="text-xs md:text-sm text-muted-foreground mb-1 md:mb-2">Live Transcript:</p>
+                <p className="text-sm md:text-lg break-words">
                   {transcript || 'Listening...'}
                   {isListening && <span className="animate-pulse text-red-500">|</span>}
                 </p>
@@ -373,10 +562,10 @@ export function SpeakingPracticeInterface({
 
       {/* Completion indicator */}
       {hasAnswered && (
-        <div className="flex justify-center">
-          <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
-            <CheckCircle className="h-5 w-5" />
-            <span className="font-medium">Question completed! Use the Next button in the footer to continue.</span>
+        <div className="flex justify-center mt-4 flex-shrink-0">
+          <div className="flex items-center gap-2 text-green-600 dark:text-green-400 text-sm md:text-base">
+            <CheckCircle className="h-4 w-4 md:h-5 md:w-5" />
+            <span className="font-medium text-center">Question completed! Use the Next button in the footer to continue.</span>
           </div>
         </div>
       )}

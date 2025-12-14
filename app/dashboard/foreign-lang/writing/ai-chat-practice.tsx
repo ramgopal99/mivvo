@@ -52,6 +52,9 @@ interface AIChatPracticeProps {
   scenario?: PizzaScenario;
 }
 
+// Maximum number of messages allowed in the chat (including both AI and user messages)
+const MAX_MESSAGES = 6;
+
 export function AIChatPractice({ scenario = pizzaScenario }: AIChatPracticeProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -129,6 +132,12 @@ export function AIChatPractice({ scenario = pizzaScenario }: AIChatPracticeProps
   const handleSendMessage = async () => {
     if (!currentMessage.trim()) return;
 
+    // Check if adding the user message would exceed the limit
+    // Allow user to send if messages.length + 1 <= MAX_MESSAGES
+    if (messages.length + 1 > MAX_MESSAGES) {
+      return;
+    }
+
     const userMessage: ChatMessage = {
       id: Date.now().toString(),
       sender: 'user',
@@ -138,21 +147,35 @@ export function AIChatPractice({ scenario = pizzaScenario }: AIChatPracticeProps
 
     setMessages(prev => [...prev, userMessage]);
     setCurrentMessage("");
-    setIsTyping(true);
+    
+    // Check if we can still add AI response after user message
+    const willExceedLimit = messages.length + 1 >= MAX_MESSAGES;
+    
+    if (!willExceedLimit) {
+      setIsTyping(true);
 
-    // Simulate AI thinking time
-    setTimeout(() => {
-      const aiResponse = generateAIResponse(userMessage.message);
-      const aiMessage: ChatMessage = {
-        id: (Date.now() + 1).toString(),
-        sender: 'ai',
-        message: aiResponse,
-        timestamp: new Date()
-      };
+      // Simulate AI thinking time
+      setTimeout(() => {
+        // Check again before adding AI response
+        setMessages(prev => {
+          if (prev.length >= MAX_MESSAGES) {
+            setIsTyping(false);
+            return prev;
+          }
+          
+          const aiResponse = generateAIResponse(userMessage.message);
+          const aiMessage: ChatMessage = {
+            id: (Date.now() + 1).toString(),
+            sender: 'ai',
+            message: aiResponse,
+            timestamp: new Date()
+          };
 
-      setMessages(prev => [...prev, aiMessage]);
-      setIsTyping(false);
-    }, 1000 + Math.random() * 2000); // 1-3 second delay
+          setIsTyping(false);
+          return [...prev, aiMessage];
+        });
+      }, 1000 + Math.random() * 2000); // 1-3 second delay
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -160,19 +183,6 @@ export function AIChatPractice({ scenario = pizzaScenario }: AIChatPracticeProps
       e.preventDefault();
       handleSendMessage();
     }
-  };
-
-  const resetConversation = () => {
-    setMessages([
-      {
-        id: '1',
-        sender: 'ai',
-        message: scenario.initialMessage,
-        timestamp: new Date()
-      }
-    ]);
-    setCurrentMessage("");
-    setIsTyping(false);
   };
 
   const speakMessage = (message: string) => {
@@ -220,10 +230,15 @@ export function AIChatPractice({ scenario = pizzaScenario }: AIChatPracticeProps
         <div className="flex flex-col">
           <Card className="flex-1 flex flex-col">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Bot className="h-5 w-5" />
-                Conversation
-              </CardTitle>
+              <div className="flex items-center justify-between">
+                <CardTitle className="flex items-center gap-2">
+                  <Bot className="h-5 w-5" />
+                  Conversation
+                </CardTitle>
+                <Badge variant="outline" className="text-xs">
+                  {messages.length}/{MAX_MESSAGES} messages
+                </Badge>
+              </div>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col p-0">
               {/* Messages */}
@@ -301,13 +316,17 @@ export function AIChatPractice({ scenario = pizzaScenario }: AIChatPracticeProps
                     value={currentMessage}
                     onChange={(e) => setCurrentMessage(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    placeholder="Type your message here... (Press Enter to send)"
+                    placeholder={
+                      messages.length >= MAX_MESSAGES
+                        ? "Limit reached"
+                        : `Type your message here... (Press Enter to send) - ${messages.length}/${MAX_MESSAGES} messages`
+                    }
                     className="min-h-[60px] resize-none"
-                    disabled={isTyping}
+                    disabled={isTyping || messages.length >= MAX_MESSAGES}
                   />
                   <Button
                     onClick={handleSendMessage}
-                    disabled={!currentMessage.trim() || isTyping}
+                    disabled={!currentMessage.trim() || isTyping || messages.length >= MAX_MESSAGES}
                     className="self-end"
                   >
                     <Send className="h-4 w-4" />
