@@ -107,8 +107,12 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    // Combine filtered attempts
-    const allAttempts = [...filteredReadingAttempts, ...filteredMcqAttempts];
+    // Combine filtered attempts with skill type identification
+    const allAttempts = [
+      ...filteredReadingAttempts.map(attempt => ({ ...attempt, skillType: 'reading' })),
+      ...filteredMcqAttempts.map(attempt => ({ ...attempt, skillType: 'mcq' }))
+    ];
+
 
 
     // Calculate current level and progress
@@ -120,6 +124,14 @@ export async function GET(request: NextRequest) {
       skills: typeof userProgress;
       totalPoints: number;
       skillPoints: Record<string, number>;
+      levelTotalPoints?: number;
+      levelSkillPoints?: Record<string, number>;
+      levelSpecificTotalEarned?: number;
+      levelSpecificTotalTarget?: number;
+      levelSpecificSkillPoints?: Record<string, number>;
+      cumulativeTotalTarget?: number;
+      cumulativeSkillTarget?: number;
+      totalRange?: { min: number; max: number };
     }> = {};
 
     // Group progress by level
@@ -155,8 +167,8 @@ export async function GET(request: NextRequest) {
     allAttempts.forEach(attempt => {
       if (attempt.overallResult?.overallScore) {
         const level = attempt.session.cefrLevel;
-        // Determine skill type based on whether it's a reading or MCQ attempt
-        const skill = 'readingAttempt' in attempt ? 'reading' : 'mcq'; // Use lowercase to match config keys
+        // Use the skill type that was added during combination
+        const skill = attempt.skillType;
         const points = calculatePointsFromScore(attempt.overallResult.overallScore);
 
         // Accumulate level total points
@@ -170,22 +182,92 @@ export async function GET(request: NextRequest) {
     });
 
 
+    // Calculate cumulative points across levels
+    const cumulativeTotalPoints: Record<string, number> = {};
+    const cumulativeSkillPoints: Record<string, Record<string, number>> = {};
+
+    // Initialize cumulative tracking
+    levels.forEach(level => {
+      cumulativeTotalPoints[level] = 0;
+      cumulativeSkillPoints[level] = {};
+      availableSkills.forEach(skill => {
+        cumulativeSkillPoints[level][skill] = 0;
+      });
+    });
+
+    // Calculate cumulative points for each level (including all previous levels)
+    for (let i = 0; i < levels.length; i++) {
+      const level = levels[i];
+      const previousLevel = i > 0 ? levels[i - 1] : null;
+
+      // Start with previous level's cumulative points, or 0 for first level
+      cumulativeTotalPoints[level] = previousLevel ? cumulativeTotalPoints[previousLevel] : 0;
+      availableSkills.forEach(skill => {
+        cumulativeSkillPoints[level][skill] = previousLevel 
+          ? cumulativeSkillPoints[previousLevel][skill] 
+          : 0;
+      });
+
+      // Add current level's points
+      cumulativeTotalPoints[level] += levelPoints[level] || 0;
+      availableSkills.forEach(skill => {
+        cumulativeSkillPoints[level][skill] += skillPoints[level]?.[skill] || 0;
+      });
+    }
+
     // Find the highest level where all skills are completed, or the current level being worked on
-    for (const level of levels) {
+    for (let i = 0; i < levels.length; i++) {
+      const level = levels[i];
       const levelData = progressByLevel[level] || [];
       const completedSkills = levelData.filter((p) => p.isCompleted).length;
 
       const levelTotalPoints = levelPoints[level] || 0;
       const levelSkillPoints = skillPoints[level] || {};
 
+      // Get cumulative values for this level
+      const cumulativeTotal = cumulativeTotalPoints[level] || 0;
+      const cumulativeSkills = cumulativeSkillPoints[level] || {};
+
+      // Get level config to get cumulative target and ranges
+      const levelConfig = cefrLevels.find(l => l.level === level);
+      const cumulativeTotalTarget = levelConfig?.totalTargetScore || 0;
+      const cumulativeSkillTarget = levelConfig?.skillTargetScore || 0;
+      const totalRange = levelConfig?.totalRange || { min: 0, max: 0 };
+
+      // Calculate level-specific progress (points earned in THIS level only)
+      const previousLevel = i > 0 ? levels[i - 1] : null;
+      const previousCumulativeTotal = previousLevel ? cumulativeTotalPoints[previousLevel] || 0 : 0;
+      const previousCumulativeSkills = previousLevel ? cumulativeSkillPoints[previousLevel] || {} : {};
+      
+      // Level-specific total: how many points earned in this level, out of this level's range
+      const levelSpecificTotalEarned = cumulativeTotal - previousCumulativeTotal;
+      const levelSpecificTotalTarget = totalRange.max - totalRange.min;
+
+      // Level-specific skill points: how many points earned in this level for each skill
+      const levelSpecificSkillPoints: Record<string, number> = {};
+      availableSkills.forEach(skill => {
+        const previousSkillPoints = previousCumulativeSkills[skill] || 0;
+        const currentSkillPoints = cumulativeSkills[skill] || 0;
+        levelSpecificSkillPoints[skill] = currentSkillPoints - previousSkillPoints;
+      });
 
       levelProgress[level] = {
         completedSkills,
         totalSkills,
         isCompleted: completedSkills === totalSkills,
         skills: levelData,
-        totalPoints: levelTotalPoints,
-        skillPoints: levelSkillPoints
+        totalPoints: cumulativeTotal, // Cumulative total
+        skillPoints: cumulativeSkills, // Cumulative skill points
+        // Level-specific values (for display in current level)
+        levelTotalPoints: levelTotalPoints,
+        levelSkillPoints: levelSkillPoints,
+        levelSpecificTotalEarned, // Points earned in THIS level
+        levelSpecificTotalTarget, // Target for THIS level (range size)
+        levelSpecificSkillPoints, // Points earned in THIS level per skill
+        // Include targets and ranges for display
+        cumulativeTotalTarget,
+        cumulativeSkillTarget,
+        totalRange
       };
 
       if (completedSkills < totalSkills) {
@@ -200,6 +282,25 @@ export async function GET(request: NextRequest) {
     const currentLevelDetails = cefrLevels.find(level => level.level === currentLevel);
 
 
+    // Prepare scores by category
+    const readingScores = readingAttempts.map(attempt => ({
+      level: attempt.session.cefrLevel,
+      score: attempt.overallResult?.overallScore || 0,
+      points: attempt.overallResult?.overallScore ? calculatePointsFromScore(attempt.overallResult.overallScore) : 0,
+      completedAt: attempt.completedAt || attempt.createdAt,
+      sessionId: attempt.sessionId,
+      attemptId: attempt.id
+    }));
+
+    const mcqScores = mcqAttempts.map(attempt => ({
+      level: attempt.session.cefrLevel,
+      score: attempt.overallResult?.overallScore || 0,
+      points: attempt.overallResult?.overallScore ? calculatePointsFromScore(attempt.overallResult.overallScore) : 0,
+      completedAt: attempt.completedAt || attempt.createdAt,
+      sessionId: attempt.sessionId,
+      attemptId: attempt.id
+    }));
+
     return NextResponse.json({
       success: true,
       data: {
@@ -210,7 +311,11 @@ export async function GET(request: NextRequest) {
         availableSkills: Object.keys(skillConfig).map(skill => ({
           key: skill,
           ...skillConfig[skill as keyof typeof skillConfig]
-        }))
+        })),
+        scores: {
+          reading: readingScores,
+          mcq: mcqScores
+        }
       }
     });
   } catch (error) {

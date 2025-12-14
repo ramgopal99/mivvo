@@ -42,7 +42,7 @@ export function Header({ selectedLanguage, onLanguageChange, languages, skillTyp
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold text-foreground">Foreign Language</h1>
         <div className="flex items-center gap-4">
-          <ProgressBar currentLevel={userProgress?.currentLevel} levelProgress={userProgress?.levelProgress} />
+          <ProgressBar currentLevel={userProgress?.currentLevel} levelProgress={userProgress?.levelProgress} scores={userProgress?.scores} />
           <Select value={selectedLanguage} onValueChange={onLanguageChange}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Select language" />

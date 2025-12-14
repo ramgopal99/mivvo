@@ -18,10 +18,32 @@ interface ProgressBarProps {
     }>;
     totalPoints: number;
     skillPoints: Record<string, number>;
+    cumulativeTotalTarget?: number;
+    cumulativeSkillTarget?: number;
+    levelTotalPoints?: number;
+    levelSkillPoints?: Record<string, number>;
   }>;
+  scores?: {
+    reading: Array<{
+      level: string;
+      score: number;
+      points: number;
+      completedAt: string;
+      sessionId: string;
+      attemptId: string;
+    }>;
+    mcq: Array<{
+      level: string;
+      score: number;
+      points: number;
+      completedAt: string;
+      sessionId: string;
+      attemptId: string;
+    }>;
+  };
 }
 
-export function ProgressBar({ currentLevel = 'A1', levelProgress }: ProgressBarProps) {
+export function ProgressBar({ currentLevel = 'A1', levelProgress, scores }: ProgressBarProps) {
   const [dialogOpen, setDialogOpen] = useState(false);
   const levelConfig = getCEFRLevel(currentLevel);
   const levelData = levelProgress?.[currentLevel];
@@ -67,7 +89,7 @@ export function ProgressBar({ currentLevel = 'A1', levelProgress }: ProgressBarP
               </div>
             </div>
         </DialogTrigger>
-        <DetailedProgressDialog currentLevel={currentLevel} levelProgress={levelProgress} />
+        <DetailedProgressDialog currentLevel={currentLevel} levelProgress={levelProgress} scores={scores} />
       </Dialog>
     );
   }
@@ -83,7 +105,9 @@ export function ProgressBar({ currentLevel = 'A1', levelProgress }: ProgressBarP
   const progress = Math.min(Math.round(averageScore), 100);
   const targetScore = levelConfig.skillTargetScore;
   const totalPoints = levelData.totalPoints || 0;
-  const pointsProgressPercentage = Math.min(Math.round((totalPoints / levelConfig.totalTargetScore) * 100), 100);
+  // Use cumulative target if available, otherwise fall back to level-specific target
+  const cumulativeTotalTarget = levelData.cumulativeTotalTarget || levelConfig.totalTargetScore;
+  const pointsProgressPercentage = Math.min(Math.round((totalPoints / cumulativeTotalTarget) * 100), 100);
 
   const isActive = progress > 0 && progress < targetScore;
   const isCompleted = progress >= targetScore;
@@ -116,13 +140,13 @@ export function ProgressBar({ currentLevel = 'A1', levelProgress }: ProgressBarP
             isActive ? 'text-blue-600' :
             'text-muted-foreground'
           }`}>
-                {totalPoints}/{levelConfig.totalTargetScore}
+                {totalPoints}/{cumulativeTotalTarget}
           </div>
         </div>
       </div>
     </div>
       </DialogTrigger>
-      <DetailedProgressDialog currentLevel={currentLevel} levelProgress={levelProgress} />
+      <DetailedProgressDialog currentLevel={currentLevel} levelProgress={levelProgress} scores={scores} />
     </Dialog>
   );
 }

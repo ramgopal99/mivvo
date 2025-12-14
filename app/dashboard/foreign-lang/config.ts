@@ -53,8 +53,9 @@ export interface CEFRLevelDefinition {
   level: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
   name: string;
   description: string;
-  totalTargetScore: number;  // Total points needed for level
-  skillTargetScore: number;  // Points needed per skill (25% of total)
+  totalTargetScore: number;  // Total points needed for level (cumulative)
+  skillTargetScore: number;  // Points needed per skill (cumulative)
+  totalRange: { min: number; max: number };  // Cumulative range for total points
   order: number;
   vocabulary: string;
   grammar: string;
@@ -68,6 +69,7 @@ export const cefrLevels: CEFRLevelDefinition[] = [
     description: 'Basic vocabulary and simple sentences',
     totalTargetScore: 200,
     skillTargetScore: 50,
+    totalRange: { min: 0, max: 200 },
     order: 1,
     vocabulary: 'basic words, numbers, colors, family members, food, daily routines',
     grammar: 'present simple, basic questions, possessive adjectives',
@@ -79,6 +81,7 @@ export const cefrLevels: CEFRLevelDefinition[] = [
     description: 'Simple everyday communication',
     totalTargetScore: 400,
     skillTargetScore: 100,
+    totalRange: { min: 200, max: 600 },
     order: 2,
     vocabulary: 'extended basic vocabulary, hobbies, jobs, weather, shopping',
     grammar: 'past simple, future with going to, comparatives, basic modals',
@@ -90,6 +93,7 @@ export const cefrLevels: CEFRLevelDefinition[] = [
     description: 'Independent communication',
     totalTargetScore: 600,
     skillTargetScore: 150,
+    totalRange: { min: 400, max: 600 },
     order: 3,
     vocabulary: 'wider range of vocabulary, abstract concepts, opinions',
     grammar: 'present perfect, past continuous, conditionals, relative clauses',
@@ -101,6 +105,7 @@ export const cefrLevels: CEFRLevelDefinition[] = [
     description: 'Fluent communication',
     totalTargetScore: 800,
     skillTargetScore: 200,
+    totalRange: { min: 600, max: 800 },
     order: 4,
     vocabulary: 'wide range of vocabulary, idiomatic expressions, specialized terms',
     grammar: 'all tenses, complex structures, passive voice, advanced modals',
@@ -112,6 +117,7 @@ export const cefrLevels: CEFRLevelDefinition[] = [
     description: 'Effective operational proficiency',
     totalTargetScore: 1000,
     skillTargetScore: 250,
+    totalRange: { min: 800, max: 1000 },
     order: 5,
     vocabulary: 'rich vocabulary, formal/informal registers, figurative language',
     grammar: 'sophisticated structures, advanced grammar patterns',
@@ -123,6 +129,7 @@ export const cefrLevels: CEFRLevelDefinition[] = [
     description: 'Mastery',
     totalTargetScore: 1200,
     skillTargetScore: 300,
+    totalRange: { min: 1000, max: 1200 },
     order: 6,
     vocabulary: 'extensive vocabulary, literary language, cultural references',
     grammar: 'all grammar structures, creative use of language',
