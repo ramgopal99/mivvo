@@ -16,21 +16,28 @@ interface SpeakingQuestionResult {
   confidence: number | null
 }
 
-interface SpeakingOverallResult {
+interface SpeakingSessionResult {
   id: string
-  fluencyScore: number
-  pronunciationScore: number
-  vocabularyScore: number
-  grammarScore: number
-  overallScore: number
-  feedback: string
-  overallFeedback: string
+  fluencyScore: number | null
+  pronunciationScore: number | null
+  vocabularyScore: number | null
+  grammarScore: number | null
+  overallScore: number | null
+  feedback: string | null
+  overallFeedback: string | null
   strengths: string[]
   weaknesses: string[]
   recommendations: string[]
-  totalWords: number
-  averageAudioDuration: number
-  timeSpent: number
+  totalWords: number | null
+  averageAudioDuration: number | null
+  timeSpent: number | null
+  speakingScore: number | null
+  listeningScore: number | null
+  duration: number | null
+  createdAt: Date
+  comprehensionScore: number | null
+  listeningAccuracy: number | null
+  responseTime: number | null
 }
 
 interface SpeakingAttempt {
@@ -46,13 +53,12 @@ interface SpeakingAttempt {
   createdAt: Date
   session: {
     id: string
-    title: string
-    cefrLevel: string
-    sessionType: string
-    language: string
+    title: string | null
+    language: string | null
+    createdAt: Date
   }
   questions: SpeakingQuestionResult[]
-  overallResult: SpeakingOverallResult | null
+  overallResult: SpeakingSessionResult | null
 }
 
 interface AttemptDetailsPageProps {
@@ -63,7 +69,7 @@ interface AttemptDetailsPageProps {
 }
 
 export default function SpeakingAttemptDetailsPage({ params }: AttemptDetailsPageProps) {
-  const { result, id } = use(params as unknown as Promise<{ result: string; id: string }>)
+  const { id } = use(params as unknown as Promise<{ result: string; id: string }>)
   const { data: session, status } = useSession()
   const [attempt, setAttempt] = useState<SpeakingAttempt | null>(null)
   const [loading, setLoading] = useState(true)
@@ -127,7 +133,7 @@ export default function SpeakingAttemptDetailsPage({ params }: AttemptDetailsPag
     }
 
     checkAuthAndLoadData()
-  }, [result, id, session, status])
+  }, [id, session, status])
 
   if (loading || status === 'loading') {
     return (
@@ -144,5 +150,5 @@ export default function SpeakingAttemptDetailsPage({ params }: AttemptDetailsPag
     notFound()
   }
 
-  return <SpeakingAttemptDetailsContent attempt={attempt} resultId={result} />
+  return <SpeakingAttemptDetailsContent attempt={attempt} />
 }

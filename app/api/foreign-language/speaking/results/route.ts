@@ -131,7 +131,7 @@ export async function POST(request: NextRequest) {
 
     // Generate AI-powered analysis for speaking performance
     const analysisPrompt = `
-ANALYZE THIS SPEAKING PRACTICE SESSION BASED ON ACTUAL USER RESPONSES:
+ANALYZE THIS SPEAKING PRACTICE SESSION BASED ON QUESTIONS AND RESPONSES:
 
 SESSION SUMMARY:
 - Total Words Spoken: ${totalWords}
@@ -140,18 +140,27 @@ SESSION SUMMARY:
 - Number of Responses: ${savedSpeakingResults.length}
 - CEFR Level: ${cefrLevel} (${levelInfo?.name || 'Unknown'})
 
-ANALYSIS REQUIREMENTS:
-1. Examine the actual transcribed responses provided below
-2. Evaluate fluency, pronunciation, vocabulary, and grammar based on REAL speech content
-3. If responses contain actual speech: analyze quality, coherence, and language use
-4. If responses are empty/minimal: clearly identify this as a problem
-5. Provide specific, evidence-based feedback referencing the actual responses
+CRITICAL ANALYSIS REQUIREMENTS:
+1. Compare each RESPONSE to its corresponding QUESTION
+2. Evaluate if the response ANSWERS the question appropriately
+3. Assess content relevance, completeness, and accuracy
+4. Evaluate language quality: fluency, pronunciation, vocabulary, grammar
+5. Penalize responses that don't address the question asked
+6. Give low scores for irrelevant or off-topic answers
 
-SCORE THESE ASPECTS BASED ON THE ACTUAL RESPONSES:
-- Fluency: How smoothly and continuously the speech flows
-- Pronunciation: Clarity of individual sounds and word stress
-- Vocabulary: Range and appropriateness of words used
-- Grammar: Accuracy of grammatical structures
+EVALUATION CRITERIA:
+- **Content/Relevance**: Does the response actually answer the question?
+- **Fluency**: How smoothly and continuously the speech flows
+- **Pronunciation**: Clarity and correctness of spoken sounds
+- **Vocabulary**: Appropriate word choice and range
+- **Grammar**: Accuracy of sentence structures and grammar
+
+SCORE GUIDELINES:
+- 90-100: Excellent - directly answers question + good language
+- 70-89: Good - mostly relevant + decent language quality
+- 50-69: Fair - somewhat relevant or language issues
+- 30-49: Poor - minimally relevant or major language problems
+- 0-29: Very Poor - irrelevant answer or severe language issues
 
 REQUIRED JSON RESPONSE FORMAT:
 {
@@ -161,9 +170,9 @@ REQUIRED JSON RESPONSE FORMAT:
   "grammarScore": 85,
   "overallScore": 78,
   "strengths": ["Good fluency in connected speech", "Clear pronunciation of most words"],
-  "weaknesses": ["Some hesitation in complex sentences", "Limited vocabulary range"],
-  "recommendations": ["Practice speaking for longer periods", "Focus on expanding vocabulary"],
-  "overallFeedback": "Good performance with room for improvement in vocabulary range."
+  "weaknesses": ["Response was not relevant to the question asked", "Limited vocabulary range"],
+  "recommendations": ["Ensure answers directly address the questions", "Focus on expanding vocabulary"],
+  "overallFeedback": "Performance needs improvement - responses must be relevant to questions asked."
 }
 `;
 
@@ -193,12 +202,16 @@ REQUIRED JSON RESPONSE FORMAT:
 
       let sampleResponsesText = '';
       if (sampleResults.length > 0) {
-        sampleResponsesText = '\n\nACTUAL USER RESPONSES FOR ANALYSIS:\n' +
-          sampleResults.map((r, i) =>
-            `Response ${i+1} (${r.wordCount} words, ${r.timeSpent}s): "${r.userAnswer || 'No response recorded'}"`
-          ).join('\n\n');
+        sampleResponsesText = '\n\nQUESTION-RESPONSE PAIRS FOR ANALYSIS:\n' +
+          sampleResults.map((r, i) => {
+            // Find the corresponding question for this result
+            const question = speakingQuestions.find(q => q.id === r.questionId);
+            return `PAIR ${i+1}:
+QUESTION: "${question?.question || 'Question not found'}"
+RESPONSE (${r.wordCount} words, ${r.timeSpent}s): "${r.userAnswer || 'No response recorded'}"`;
+          }).join('\n\n');
       } else {
-        sampleResponsesText = '\n\nACTUAL USER RESPONSES FOR ANALYSIS:\nNo responses available for analysis.';
+        sampleResponsesText = '\n\nQUESTION-RESPONSE PAIRS FOR ANALYSIS:\nNo responses available for analysis.';
       }
 
       // Add more detailed analysis instructions
@@ -212,7 +225,12 @@ IMPORTANT ANALYSIS REQUIREMENTS:
 - Don't give generic feedback - base analysis on the real data`;
 
       const enhancedPrompt = analysisPrompt + sampleResponsesText + detailedAnalysisInstructions +
-        '\n\nCRITICAL: Analyze the ACTUAL user responses shown above. If responses contain real speech, evaluate it specifically. If responses are empty/minimal, clearly state "No spoken words detected" in weaknesses. Respond with ONLY a valid JSON object in the exact format specified above. Do not include any other text, explanations, or formatting.';
+        '\n\nCRITICAL REQUIREMENTS:\n' +
+        '- COMPARE each response to its question - penalize irrelevant answers heavily\n' +
+        '- Give LOW scores (0-40) for responses that don\'t address the question\n' +
+        '- Content relevance is MORE important than language quality\n' +
+        '- If responses are completely off-topic, mention "Response not relevant to question" in weaknesses\n' +
+        '- Respond with ONLY a valid JSON object in the exact format specified above. No other text.';
 
       console.log('=== SENDING TO OPENAI FOR ANALYSIS ===');
       console.log('Total words in session:', totalWords);
@@ -264,27 +282,8 @@ IMPORTANT ANALYSIS REQUIREMENTS:
 
     } catch (error) {
       console.error('Error generating AI analysis:', error);
-      // Intelligent fallback based on actual response data
-      const hasActualResponses = savedSpeakingResults.some(r =>
-        r.userAnswer && r.userAnswer.trim().length > 0 && r.wordCount > 0
-      );
-
-      if (hasActualResponses && totalWords > 20) {
-        // User actually spoke some meaningful content
-        strengths = ["Active participation in speaking exercises"];
-        recommendations = ["Continue building confidence in spoken responses"];
-        overallFeedback = `Good effort! You spoke ${totalWords} words across ${savedSpeakingResults.length} exercises. Keep practicing to improve fluency and confidence.`;
-      } else if (totalWords > 0) {
-        // Some words were recorded but minimal content
-        weaknesses = ["Limited speaking content"];
-        recommendations = ["Try to provide more detailed spoken responses", "Practice speaking out loud regularly"];
-        overallFeedback = `You completed the speaking exercises but provided minimal responses (${totalWords} words total). Focus on speaking more to improve your skills.`;
-      } else {
-        // No actual speech detected
-        weaknesses = ["No spoken words detected"];
-        recommendations = ["Ensure your microphone is working and try again", "Practice speaking out loud"];
-        overallFeedback = `Unable to evaluate performance due to lack of spoken responses. Please check your microphone and try the speaking exercises again.`;
-      }
+      // AI analysis is mandatory - fail the entire request if it doesn't work
+      throw new Error(`AI analysis failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
 
     // Create overall result with AI analysis data

@@ -56,10 +56,9 @@ interface SpeakingAttempt {
 
 interface SpeakingAttemptDetailsContentProps {
   attempt: SpeakingAttempt
-  resultId: string
 }
 
-export function SpeakingAttemptDetailsContent({ attempt, resultId }: SpeakingAttemptDetailsContentProps) {
+export function SpeakingAttemptDetailsContent({ attempt }: SpeakingAttemptDetailsContentProps) {
   const router = useRouter()
   const [activeTab, setActiveTab] = useState("overview")
 
@@ -96,9 +95,9 @@ export function SpeakingAttemptDetailsContent({ attempt, resultId }: SpeakingAtt
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-start justify-between">
-        <Button variant="ghost" onClick={() => router.push(`/dashboard/foreign-lang/speaking/${resultId}`)} className="cursor-pointer">
+        <Button variant="ghost" onClick={() => router.push('/dashboard/foreign-lang/speaking')} className="cursor-pointer">
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Result
+          Back to Speaking History
         </Button>
         <Button
           onClick={handleDownloadData}
@@ -170,19 +169,12 @@ export function SpeakingAttemptDetailsContent({ attempt, resultId }: SpeakingAtt
       </Tabs>
 
       {/* Action Buttons */}
-      <div className="flex justify-center space-x-4 pt-6">
+      <div className="flex justify-center pt-6">
         <Button
-          variant="outline"
-          onClick={() => router.push(`/dashboard/foreign-lang/speaking/${resultId}`)}
+          onClick={() => router.push('/dashboard/foreign-lang/speaking')}
           className="cursor-pointer"
         >
-          Back to Result
-        </Button>
-        <Button
-          onClick={() => router.push('/dashboard/foreign-lang')}
-          className="cursor-pointer"
-        >
-          Back to Speaking
+          Back to Speaking History
         </Button>
       </div>
     </div>

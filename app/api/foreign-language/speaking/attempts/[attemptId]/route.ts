@@ -72,7 +72,8 @@ export async function GET(
         title: attempt.session.title,
         cefrLevel: attempt.session.cefrLevel,
         sessionType: attempt.session.sessionType,
-        language: attempt.session.language?.name?.toLowerCase() || 'english'
+        language: attempt.session.language?.name?.toLowerCase() || 'english',
+        createdAt: attempt.session.createdAt
       },
 
       // Questions with user answers
