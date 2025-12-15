@@ -73,7 +73,7 @@ export function WritingAttemptDetailsContent({ attempt, resultId }: WritingAttem
   }
 
   const result = attempt.results[0] // Get the latest result
-  const overallScore = result?.overallScore || 0
+  const overallScore = result?.overallScore
 
   const handleDownloadData = async () => {
     // Mock PDF download - in real app this would generate actual PDF
@@ -170,7 +170,7 @@ export function WritingAttemptDetailsContent({ attempt, resultId }: WritingAttem
 }
 
 // Overview Section Component
-function OverviewSection({ attempt, overallScore }: { attempt: WritingAttempt; overallScore: number }) {
+function OverviewSection({ attempt, overallScore }: { attempt: WritingAttempt; overallScore: number | null }) {
   const result = attempt.results[0]
 
   return (
@@ -179,16 +179,16 @@ function OverviewSection({ attempt, overallScore }: { attempt: WritingAttempt; o
       <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 border">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Overall Performance</h3>
-          <div className="text-3xl font-bold text-blue-600">{Math.round(overallScore)}</div>
+          <div className="text-3xl font-bold text-blue-600">{overallScore ? Math.round(overallScore) : 'N/A'}</div>
         </div>
         <div className="space-y-3">
           <div className="flex justify-between items-center">
             <span className="text-sm text-gray-600">Topic-Based Writing</span>
-            <span className="text-sm font-medium text-green-600">{result?.topicWritingScore || 0}/100</span>
+            <span className="text-sm font-medium text-green-600">{result?.topicWritingScore}/100</span>
           </div>
           <div className="flex justify-between items-center">
             <span className="text-sm text-gray-600">AI Conversation</span>
-            <span className="text-sm font-medium text-purple-600">{result?.aiConversationScore || 0}/100</span>
+            <span className="text-sm font-medium text-purple-600">{result?.aiConversationScore}/100</span>
           </div>
         </div>
       </div>
@@ -196,22 +196,26 @@ function OverviewSection({ attempt, overallScore }: { attempt: WritingAttempt; o
       {/* Time Breakdown Card */}
       <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-6 border">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">Session Details</h3>
+          <h3 className="text-lg font-semibold text-gray-900">Time Breakdown</h3>
           <Clock className="w-6 h-6 text-gray-400" />
         </div>
         <div className="space-y-3">
           <div className="flex justify-between items-center">
             <span className="text-sm text-gray-600">Total Time</span>
-            <span className="text-sm font-medium">{Math.round((attempt.duration || 0) / 60)}min</span>
+            <span className="text-sm font-medium">{attempt.duration ? Math.round(attempt.duration / 60) : 'N/A'}min</span>
           </div>
-          <div className="flex justify-between items-center">
-            <span className="text-sm text-gray-600">Topics Written</span>
-            <span className="text-sm font-medium">2</span>
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="text-sm text-gray-600">Conversations</span>
-            <span className="text-sm font-medium">1</span>
-          </div>
+          {result?.timeSpent && (
+            <>
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-gray-600">Topic Writing</span>
+                <span className="text-sm font-medium">{Math.round((result.timeSpent as any).topics / 60)}min</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-gray-600">AI Conversations</span>
+                <span className="text-sm font-medium">{Math.round((result.timeSpent as any).chat / 60)}min</span>
+              </div>
+            </>
+          )}
         </div>
       </div>
 
@@ -292,42 +296,42 @@ function MetricsSection({ result }: { result: WritingSessionResult }) {
   const metrics = [
     {
       label: "Creativity Score",
-      value: result?.creativityScore ? `${result.creativityScore}%` : "N/A",
+      value: result?.creativityScore ? `${result.creativityScore}%` : result?.creativityScore,
       description: "Originality and engagement in writing",
       color: "text-pink-600",
       icon: Sparkles
     },
     {
       label: "Grammar Accuracy",
-      value: result?.grammarAccuracy ? `${result.grammarAccuracy}%` : "N/A",
+      value: result?.grammarAccuracy ? `${result.grammarAccuracy}%` : result?.grammarAccuracy,
       description: "Correctness of grammar usage",
       color: "text-green-600",
       icon: Target
     },
     {
       label: "Vocabulary Usage",
-      value: result?.vocabularyUsage ? `${result.vocabularyUsage}%` : "N/A",
+      value: result?.vocabularyUsage ? `${result.vocabularyUsage}%` : result?.vocabularyUsage,
       description: "Diversity and appropriateness of words",
       color: "text-purple-600",
       icon: Zap
     },
     {
       label: "Conversation Flow",
-      value: result?.conversationFlow ? `${result.conversationFlow}%` : "N/A",
+      value: result?.conversationFlow ? `${result.conversationFlow}%` : result?.conversationFlow,
       description: "Naturalness of dialogue",
       color: "text-blue-600",
       icon: MessageCircle
     },
     {
       label: "Topic Coverage",
-      value: result?.topicCoverage ? `${result.topicCoverage}%` : "N/A",
+      value: result?.topicCoverage ? `${result.topicCoverage}%` : result?.topicCoverage,
       description: "Completeness of topic exploration",
       color: "text-orange-600",
       icon: PenTool
     },
     {
       label: "Response Length",
-      value: result?.responseLength ? `${result.responseLength}%` : "N/A",
+      value: result?.responseLength ? `${result.responseLength}%` : result?.responseLength,
       description: "Appropriate response detail",
       color: "text-indigo-600",
       icon: TrendingUp

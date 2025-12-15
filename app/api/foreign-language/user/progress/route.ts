@@ -95,22 +95,50 @@ export async function GET(request: NextRequest) {
       }
     });
 
+    // Get all writing attempts with scores to calculate points
+    const writingAttempts = await prisma.writingAttempt.findMany({
+      where: {
+        userId: session.user.id,
+        languageId: languageConfigId
+      },
+      include: {
+        session: {
+          select: {
+            cefrLevel: true,
+            languageId: true
+          }
+        },
+        overallResult: {
+          select: {
+            overallScore: true
+          }
+        }
+      }
+    });
+
     // Filter attempts by skill type if specified
     let filteredReadingAttempts = readingAttempts;
     let filteredMcqAttempts = mcqAttempts;
+    let filteredWritingAttempts = writingAttempts;
 
     if (skillType) {
       if (skillType.toLowerCase() === 'reading') {
         filteredMcqAttempts = []; // Only show reading attempts
+        filteredWritingAttempts = [];
       } else if (skillType.toLowerCase() === 'mcq') {
         filteredReadingAttempts = []; // Only show MCQ attempts
+        filteredWritingAttempts = [];
+      } else if (skillType.toLowerCase() === 'writing') {
+        filteredReadingAttempts = []; // Only show writing attempts
+        filteredMcqAttempts = [];
       }
     }
 
     // Combine filtered attempts with skill type identification
     const allAttempts = [
       ...filteredReadingAttempts.map(attempt => ({ ...attempt, skillType: 'reading' })),
-      ...filteredMcqAttempts.map(attempt => ({ ...attempt, skillType: 'mcq' }))
+      ...filteredMcqAttempts.map(attempt => ({ ...attempt, skillType: 'mcq' })),
+      ...filteredWritingAttempts.map(attempt => ({ ...attempt, skillType: 'writing' }))
     ];
 
 
@@ -301,6 +329,15 @@ export async function GET(request: NextRequest) {
       attemptId: attempt.id
     }));
 
+    const writingScores = writingAttempts.map(attempt => ({
+      level: attempt.session.cefrLevel,
+      score: attempt.overallResult?.overallScore || 0,
+      points: attempt.overallResult?.overallScore ? calculatePointsFromScore(attempt.overallResult.overallScore) : 0,
+      completedAt: attempt.completedAt || attempt.createdAt,
+      sessionId: attempt.sessionId,
+      attemptId: attempt.id
+    }));
+
     return NextResponse.json({
       success: true,
       data: {
@@ -314,7 +351,8 @@ export async function GET(request: NextRequest) {
         })),
         scores: {
           reading: readingScores,
-          mcq: mcqScores
+          mcq: mcqScores,
+          writing: writingScores
         }
       }
     });

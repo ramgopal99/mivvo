@@ -15,47 +15,26 @@ interface ChatMessage {
   timestamp: Date;
 }
 
-interface PizzaScenario {
+interface ChatScenario {
   id: string;
   title: string;
   description: string;
   initialMessage: string;
-  aiResponses: Record<string, string>;
   vocabulary: string[];
+  context?: string;
 }
 
-// Pizza ordering scenario data
-const pizzaScenario: PizzaScenario = {
-  id: "pizza-booking",
-  title: "Pizza Ordering",
-  description: "Practice ordering pizza at a restaurant",
-  initialMessage: "Hello! Welcome to Mario's Pizza. How can I help you today?",
-  aiResponses: {
-    "hello": "Hi there! What would you like to order?",
-    "hi": "Hello! What can I get for you today?",
-    "pizza": "Great choice! What size would you like? Small, medium, or large?",
-    "small": "Small pizza is $12.99. What toppings would you like?",
-    "medium": "Medium pizza is $16.99. What toppings would you like?",
-    "large": "Large pizza is $20.99. What toppings would you like?",
-    "pepperoni": "Pepperoni is $2 extra. Would you like any other toppings?",
-    "cheese": "Extra cheese is $1.50. Any other toppings?",
-    "mushroom": "Mushrooms are $1.25. Any other toppings?",
-    "delivery": "Delivery is $3.99. What's your address?",
-    "pickup": "Pickup will be ready in 15 minutes. See you soon!",
-    "bye": "Thank you for your order! Goodbye!",
-    "thank": "You're welcome! Enjoy your pizza!"
-  },
-  vocabulary: ["pizza", "order", "size", "toppings", "pepperoni", "cheese", "mushrooms", "delivery", "pickup", "address"]
-};
-
 interface AIChatPracticeProps {
-  scenario?: PizzaScenario;
+  scenario: ChatScenario;
+  language: string;
+  cefrLevel: string;
+  onConversationUpdate?: (conversation: ChatMessage[]) => void;
 }
 
 // Maximum number of messages allowed in the chat (including both AI and user messages)
 const MAX_MESSAGES = 6;
 
-export function AIChatPractice({ scenario = pizzaScenario }: AIChatPracticeProps) {
+export function AIChatPractice({ scenario, language, cefrLevel, onConversationUpdate }: AIChatPracticeProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: '1',
@@ -76,57 +55,52 @@ export function AIChatPractice({ scenario = pizzaScenario }: AIChatPracticeProps
     }
   }, [messages]);
 
-  // Simulate AI response based on keywords
-  const generateAIResponse = (userMessage: string): string => {
-    const message = userMessage.toLowerCase();
+  // Notify parent component of conversation updates
+  useEffect(() => {
+    if (onConversationUpdate) {
+      onConversationUpdate(messages);
+    }
+  }, [messages, onConversationUpdate]);
 
-    // Check for specific keywords and return appropriate responses
-    if (message.includes('hello') || message.includes('hi')) {
-      return scenario.aiResponses.hello;
-    }
-    if (message.includes('pizza')) {
-      return scenario.aiResponses.pizza;
-    }
-    if (message.includes('small')) {
-      return scenario.aiResponses.small;
-    }
-    if (message.includes('medium')) {
-      return scenario.aiResponses.medium;
-    }
-    if (message.includes('large')) {
-      return scenario.aiResponses.large;
-    }
-    if (message.includes('pepperoni')) {
-      return scenario.aiResponses.pepperoni;
-    }
-    if (message.includes('cheese')) {
-      return scenario.aiResponses.cheese;
-    }
-    if (message.includes('mushroom')) {
-      return scenario.aiResponses.mushroom;
-    }
-    if (message.includes('delivery')) {
-      return scenario.aiResponses.delivery;
-    }
-    if (message.includes('pickup')) {
-      return scenario.aiResponses.pickup;
-    }
-    if (message.includes('bye') || message.includes('goodbye')) {
-      return scenario.aiResponses.bye;
-    }
-    if (message.includes('thank')) {
-      return scenario.aiResponses.thank;
-    }
+  // Generate AI response using OpenAI API
+  const generateAIResponse = async (userMessage: string, conversationHistory: ChatMessage[]): Promise<string> => {
+    try {
+      // Prepare conversation history for context
+      const conversationContext = conversationHistory
+        .slice(-10) // Keep last 10 messages for context
+        .map(msg => `${msg.sender === 'user' ? 'User' : 'Assistant'}: ${msg.message}`)
+        .join('\n');
 
-    // Default responses for unrecognized input
-    const defaultResponses = [
-      "I'm sorry, I didn't understand that. Could you please repeat?",
-      "Could you say that again please?",
-      "I'm not sure what you mean. Can you clarify?",
-      "Let me help you with your order. What would you like?"
-    ];
+      const response = await fetch('/api/foreign-language/writing/chat-response', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userMessage,
+          conversationHistory: conversationContext,
+          scenario: {
+            title: scenario.title,
+            description: scenario.description,
+            context: scenario.context,
+            vocabulary: scenario.vocabulary
+          },
+          language: language.toUpperCase(),
+          cefrLevel
+        }),
+      });
 
-    return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+      if (response.ok) {
+        const result = await response.json();
+        return result.response;
+      } else {
+        console.error('Failed to get AI response:', response.statusText);
+        return "I'm sorry, I didn't understand that. Could you please try again?";
+      }
+    } catch (error) {
+      console.error('Error generating AI response:', error);
+      return "I'm sorry, I'm having trouble responding right now. Could you please try again?";
+    }
   };
 
   const handleSendMessage = async () => {
@@ -147,34 +121,37 @@ export function AIChatPractice({ scenario = pizzaScenario }: AIChatPracticeProps
 
     setMessages(prev => [...prev, userMessage]);
     setCurrentMessage("");
-    
+
     // Check if we can still add AI response after user message
     const willExceedLimit = messages.length + 1 >= MAX_MESSAGES;
-    
+
     if (!willExceedLimit) {
       setIsTyping(true);
 
-      // Simulate AI thinking time
-      setTimeout(() => {
-        // Check again before adding AI response
-        setMessages(prev => {
-          if (prev.length >= MAX_MESSAGES) {
-            setIsTyping(false);
-            return prev;
-          }
-          
-          const aiResponse = generateAIResponse(userMessage.message);
-          const aiMessage: ChatMessage = {
-            id: (Date.now() + 1).toString(),
-            sender: 'ai',
-            message: aiResponse,
-            timestamp: new Date()
-          };
+      try {
+        // Generate AI response using OpenAI
+        const aiResponse = await generateAIResponse(userMessage.message, [...messages, userMessage]);
+        const aiMessage: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          sender: 'ai',
+          message: aiResponse,
+          timestamp: new Date()
+        };
 
-          setIsTyping(false);
-          return [...prev, aiMessage];
-        });
-      }, 1000 + Math.random() * 2000); // 1-3 second delay
+        setMessages(prev => [...prev, aiMessage]);
+      } catch (error) {
+        console.error('Error getting AI response:', error);
+        // Add a fallback message
+        const fallbackMessage: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          sender: 'ai',
+          message: "I'm sorry, I'm having trouble responding right now. Could you please try again?",
+          timestamp: new Date()
+        };
+        setMessages(prev => [...prev, fallbackMessage]);
+      } finally {
+        setIsTyping(false);
+      }
     }
   };
 

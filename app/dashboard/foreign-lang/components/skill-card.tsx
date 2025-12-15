@@ -86,6 +86,30 @@ export function SkillCard({ type, selectedLanguage, level }: SkillCardProps) {
       } catch (error) {
         console.error('Error generating practice:', error);
       }
+    } else if (skillType === "writing") {
+      try {
+        // Generate writing practice session using OpenAI
+        const response = await fetch('/api/foreign-language/writing/generate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            language: selectedLanguage.toUpperCase(),
+          }),
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          // Close dialog and redirect to practice
+          setIsWritingDialogOpen(false);
+          router.push(`/dashboard/foreign-lang/practice/${result.data.sessionId}`);
+        } else {
+          console.error('Failed to generate writing practice:', result.error);
+        }
+      } catch (error) {
+        console.error('Error generating writing practice:', error);
+      }
     } else if (skillType === "mcq") {
       try {
         // Generate MCQ practice session using OpenAI
@@ -167,6 +191,7 @@ export function SkillCard({ type, selectedLanguage, level }: SkillCardProps) {
           isOpen={isWritingDialogOpen}
           onOpenChange={setIsWritingDialogOpen}
           selectedLanguage={selectedLanguage}
+          onStartPractice={() => handleStartPractice("writing")}
         />
       )}
 

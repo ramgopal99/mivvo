@@ -27,14 +27,7 @@ export async function GET(
     const attempt = await prisma.readingAttempt.findUnique({
       where: {
         id: attemptId,
-        userId: session.user.id, // Ensure user can only access their own attempts
-        ...(language && {
-          session: {
-            language: {
-              name: language.toUpperCase()
-            }
-          }
-        })
+        userId: session.user.id // Ensure user can only access their own attempts
       },
       include: {
         session: {

@@ -102,8 +102,15 @@ export async function POST(request: NextRequest) {
     }
     const targetLanguage = language === 'ENGLISH' ? 'English' : 'French';
 
-    // Generate reading comprehension question
-    const comprehensionPrompt = `
+    // Get generation counts from config
+    const readingConfig = practiceConfig.questionCounts.reading;
+    const comprehensionCount = readingConfig.comprehension;
+    const rearrangeCount = readingConfig.rearrange;
+
+    // Generate reading comprehension questions
+    const comprehensionQuestions = [];
+    for (let i = 0; i < comprehensionCount; i++) {
+      const comprehensionPrompt = `
 Generate a reading comprehension question for ${targetLanguage} learners at ${levelInfo.level} level.
 
 Level details:
@@ -129,17 +136,21 @@ Format your response as JSON:
 }
 `;
 
-    const comprehensionResponse = await openai.chat.completions.create({
-      model: practiceConfig.openai.model,
-      messages: [{ role: 'user', content: comprehensionPrompt }],
-      temperature: practiceConfig.openai.temperature,
-      max_tokens: practiceConfig.openai.maxTokens,
-    });
+      const comprehensionResponse = await openai.chat.completions.create({
+        model: practiceConfig.openai.model,
+        messages: [{ role: 'user', content: comprehensionPrompt }],
+        temperature: practiceConfig.openai.temperature,
+        max_tokens: practiceConfig.openai.maxTokens,
+      });
 
-    const comprehensionData = JSON.parse(comprehensionResponse.choices[0].message.content || '{}');
+      const comprehensionData = JSON.parse(comprehensionResponse.choices[0].message.content || '{}');
+      comprehensionQuestions.push(comprehensionData);
+    }
 
-    // Generate sentence rearrangement task
-    const rearrangePrompt = `
+    // Generate sentence rearrangement tasks
+    const rearrangeTasks = [];
+    for (let i = 0; i < rearrangeCount; i++) {
+      const rearrangePrompt = `
 Generate a sentence rearrangement task for ${targetLanguage} learners at ${levelInfo.level} level.
 
 Level details:
@@ -169,7 +180,9 @@ Format your response as JSON:
       max_tokens: practiceConfig.openai.maxTokens,
     });
 
-    const rearrangeData = JSON.parse(rearrangeResponse.choices[0].message.content || '{}');
+      const rearrangeData = JSON.parse(rearrangeResponse.choices[0].message.content || '{}');
+      rearrangeTasks.push(rearrangeData);
+    }
 
     // Create reading session
     const sessionId = `reading-session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
@@ -184,29 +197,37 @@ Format your response as JSON:
       }
     });
 
-    // Create comprehension question
-    const comprehension = await prisma.readingComprehension.create({
-      data: {
-        sessionId: readingSession.id,
-        passage: comprehensionData.passage,
-        question: comprehensionData.question,
-        options: comprehensionData.options,
-        correctAnswer: comprehensionData.correctAnswer,
-        explanation: comprehensionData.explanation,
-        order: 1
-      }
-    });
+    // Create comprehension questions
+    const comprehensionRecords = [];
+    for (let i = 0; i < comprehensionQuestions.length; i++) {
+      const comprehension = await prisma.readingComprehension.create({
+        data: {
+          sessionId: readingSession.id,
+          passage: comprehensionQuestions[i].passage,
+          question: comprehensionQuestions[i].question,
+          options: comprehensionQuestions[i].options,
+          correctAnswer: comprehensionQuestions[i].correctAnswer,
+          explanation: comprehensionQuestions[i].explanation,
+          order: i + 1
+        }
+      });
+      comprehensionRecords.push(comprehension);
+    }
 
-    // Create rearrange task
-    const rearrange = await prisma.readingRearrange.create({
-      data: {
-        sessionId: readingSession.id,
-        scrambledWords: rearrangeData.scrambledWords,
-        correctOrder: rearrangeData.correctOrder,
-        explanation: rearrangeData.explanation,
-        order: 1
-      }
-    });
+    // Create rearrange tasks
+    const rearrangeTasksCreated = [];
+    for (let i = 0; i < rearrangeTasks.length; i++) {
+      const rearrange = await prisma.readingRearrange.create({
+        data: {
+          sessionId: readingSession.id,
+          scrambledWords: rearrangeTasks[i].scrambledWords,
+          correctOrder: rearrangeTasks[i].correctOrder,
+          explanation: rearrangeTasks[i].explanation,
+          order: i + 1
+        }
+      });
+      rearrangeTasksCreated.push(rearrange);
+    }
 
     return NextResponse.json({
       success: true,
@@ -215,14 +236,14 @@ Format your response as JSON:
         level: currentLevel,
         language: languageConfig,
         questions: [
-          {
+          ...comprehensionRecords.map(record => ({
             type: 'comprehension',
-            data: comprehension
-          },
-          {
+            data: record
+          })),
+          ...rearrangeTasksCreated.map(record => ({
             type: 'rearrange',
-            data: rearrange
-          }
+            data: record
+          }))
         ]
       }
     });

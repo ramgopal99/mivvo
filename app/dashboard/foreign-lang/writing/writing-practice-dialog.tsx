@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
@@ -10,14 +11,17 @@ interface WritingPracticeDialogProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   selectedLanguage: LanguageValue;
+  onStartPractice?: () => Promise<void>;
 }
 
 export function WritingPracticeDialog({
   isOpen,
   onOpenChange,
   selectedLanguage,
+  onStartPractice,
 }: WritingPracticeDialogProps) {
   const router = useRouter();
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const languageLabels = {
     english: "English",
@@ -29,12 +33,44 @@ export function WritingPracticeDialog({
 
   const languageLabel = languageLabels[selectedLanguage] || "English";
 
-  const handleStartPractice = () => {
-    // Navigate to practice interface with the complete writing session
-    // This gives access to all writing topics and chat scenarios with next/previous navigation
-    const languagePrefix = selectedLanguage === "french" ? "-french" : "-english";
-    router.push(`/dashboard/foreign-lang/practice/writing-session${languagePrefix}-1`);
-    onOpenChange(false);
+  const handleStartPractice = async () => {
+    if (onStartPractice) {
+      setIsGenerating(true);
+      try {
+        await onStartPractice();
+        // Dialog will be closed by the parent component
+      } catch (error) {
+        console.error('Error starting practice:', error);
+      } finally {
+        setIsGenerating(false);
+      }
+    } else {
+      // Fallback to old behavior - generate session directly
+      try {
+        setIsGenerating(true);
+        const response = await fetch('/api/foreign-language/writing/generate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            language: selectedLanguage.toUpperCase(),
+          }),
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          router.push(`/dashboard/foreign-lang/practice/${result.data.sessionId}`);
+          onOpenChange(false);
+        } else {
+          console.error('Failed to generate writing practice:', result.error);
+        }
+      } catch (error) {
+        console.error('Error generating writing practice:', error);
+      } finally {
+        setIsGenerating(false);
+      }
+    }
   };
 
   return (
@@ -79,8 +115,16 @@ export function WritingPracticeDialog({
             className="w-full cursor-pointer"
             size="lg"
             onClick={handleStartPractice}
+            disabled={isGenerating}
           >
-            🚀 Start Complete Practice Session
+            {isGenerating ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                Generating Practice Session...
+              </>
+            ) : (
+              '🚀 Start Complete Practice Session'
+            )}
           </Button>
         </div>
       </DialogContent>

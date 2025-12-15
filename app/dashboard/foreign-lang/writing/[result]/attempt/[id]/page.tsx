@@ -4,7 +4,6 @@ import { useEffect, useState, use } from "react"
 import { useSession } from "next-auth/react"
 import { notFound } from "next/navigation"
 import { WritingAttemptDetailsContent } from "../_components/WritingAttemptDetailsContent"
-import { writingAnalysisData } from "../../../index"
 
 interface WritingSessionResult {
   id: string
@@ -18,6 +17,7 @@ interface WritingSessionResult {
   feedback: string | null
   duration: number | null
   createdAt: Date
+  timeSpent: { topics: number; chat: number } | null
   creativityScore: number | null
   grammarAccuracy: number | null
   vocabularyUsage: number | null
@@ -25,6 +25,7 @@ interface WritingSessionResult {
   topicCoverage: number | null
   responseLength: number | null
 }
+
 
 interface WritingAttempt {
   id: string
@@ -58,44 +59,112 @@ export default function WritingAttemptDetailsPage({ params }: AttemptDetailsPage
 
   useEffect(() => {
     const checkAuthAndLoadData = async () => {
-      // Check authentication
-      const isAuthenticated = status === 'authenticated' && session?.user
-      const hasJwtToken = typeof window !== 'undefined' && (
-        localStorage.getItem('token') ||
-        localStorage.getItem('student_token') ||
-        localStorage.getItem('college_token')
-      )
-
-      if (!isAuthenticated && !hasJwtToken) {
-        if (status !== 'loading') {
-          notFound()
-        }
-        return
-      }
-
-      setAuthenticated(true)
-
-      // Load attempt data from data file
       try {
-        // Determine language from session ID
-        const language = result.includes('french') ? 'french' : 'english'
+        let isAuthenticated = false
+        let userInfo: { id?: string; name?: string | null; email?: string | null; role?: string; collegeId?: string } | null = null
 
-        // Find the session and attempt from the appropriate language data
-        const sessionAnalysis = writingAnalysisData[language]?.find(session => session.id === result)
-        const attemptData = sessionAnalysis?.attempts.find(attempt => attempt.id === id)
+        // Check NextAuth session first
+        if (status === 'authenticated' && session?.user) {
+          isAuthenticated = true
+          userInfo = session.user
+        } else {
+          // Check session API for JWT-authenticated users (college students/admins)
+          const token = typeof window !== 'undefined' ? (
+            localStorage.getItem('token') ||
+            localStorage.getItem('student_token') ||
+            localStorage.getItem('college_token')
+          ) : null
+          if (token) {
+            const response = await fetch('/api/auth/session', {
+              headers: {
+                'Authorization': `Bearer ${token}`
+              }
+            })
 
-        if (sessionAnalysis && attemptData) {
-          const attemptWithSession: WritingAttempt = {
-            ...attemptData,
-            session: {
-              id: result,
-              title: sessionAnalysis.title,
-              language: sessionAnalysis.language,
-              createdAt: sessionAnalysis.createdAt
+            if (response.ok) {
+              const sessionData = await response.json()
+              if (sessionData.authenticated && sessionData.user) {
+                isAuthenticated = true
+                userInfo = sessionData.user
+              } else {
+                notFound()
+                return
+              }
+            } else {
+              notFound()
+              return
+            }
+          } else if (status !== 'loading') {
+            notFound()
+            return
+          } else {
+            return // Still loading
+          }
+        }
+
+        setAuthenticated(isAuthenticated)
+
+        // Load user's preferred language and attempt data
+        // First, get user's preferred language (optional)
+        let preferredLanguage: string | null = null;
+        try {
+          const langResponse = await fetch('/api/foreign-language/user/preferences/language');
+          if (langResponse.ok) {
+            const langResult = await langResponse.json();
+            if (langResult.success && langResult.data.preferredLanguage) {
+              const lang = langResult.data.preferredLanguage;
+              preferredLanguage = lang;
             }
           }
-          setAttempt(attemptWithSession)
+        } catch (langError) {
+          console.warn('Could not load user language preference, proceeding without it:', langError);
+        }
+
+        // Fetch actual attempt data from API (language filter is optional)
+        const url = preferredLanguage
+          ? `/api/foreign-language/writing/attempts/${id}?language=${preferredLanguage}`
+          : `/api/foreign-language/writing/attempts/${id}`;
+
+        // Prepare headers with JWT token if using JWT authentication
+        const headers: Record<string, string> = {};
+        if (userInfo?.collegeId || (typeof window !== 'undefined' && (
+          localStorage.getItem('token') ||
+          localStorage.getItem('student_token') ||
+          localStorage.getItem('college_token')
+        ))) {
+          const token = typeof window !== 'undefined' ? (
+            localStorage.getItem('token') ||
+            localStorage.getItem('student_token') ||
+            localStorage.getItem('college_token')
+          ) : null;
+          if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+          }
+        }
+
+        const response = await fetch(url, {
+          headers: Object.keys(headers).length > 0 ? headers : undefined
+        });
+
+        if (response.ok) {
+          const result = await response.json()
+          if (result.success) {
+            if (result.data) {
+              setAttempt(result.data)
+            } else {
+              // No data available, but show the page with a message
+              setAttempt(null)
+            }
+            // Show message if no data available
+            if (result.message) {
+              console.info('No analysis data:', result.message)
+            }
+          } else {
+            console.error('API returned error:', result.error)
+            notFound()
+          }
         } else {
+          console.error('Failed to fetch attempt data:', response.status, response.statusText)
           notFound()
         }
       } catch (error) {
@@ -120,9 +189,10 @@ export default function WritingAttemptDetailsPage({ params }: AttemptDetailsPage
     )
   }
 
-  if (!authenticated || !attempt) {
+  if (!authenticated) {
     notFound()
   }
 
-  return <WritingAttemptDetailsContent attempt={attempt} resultId={result} />
+
+  return <WritingAttemptDetailsContent attempt={attempt!} resultId={result} />
 }

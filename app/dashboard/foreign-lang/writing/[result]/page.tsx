@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useParams, notFound } from "next/navigation"
 import { WritingResultsContent } from "./_components/WritingResultsContent"
-import { writingAnalysisData } from "../../data/writing-practice-data"
 
 interface WritingSessionResult {
   id: string
@@ -89,20 +88,51 @@ export default function WritingResultPage() {
 
         setAuthenticated(isAuthenticated)
 
-        // Load writing session data from data file
+        // Load user's preferred language and writing session data
         if (params.result && isAuthenticated) {
           try {
+            // First, get user's preferred language (optional for writing)
+            let preferredLanguage: string | null = null;
+            try {
+              const langResponse = await fetch('/api/foreign-language/user/preferences/language');
+              if (langResponse.ok) {
+                const langResult = await langResponse.json();
+                if (langResult.success && langResult.data.preferredLanguage) {
+                  preferredLanguage = langResult.data.preferredLanguage;
+                }
+              }
+            } catch (langError) {
+              console.error('Error loading user language:', langError);
+            }
+
+            // Set default language if none found (writing can work without language filter)
+            if (!preferredLanguage) {
+              console.warn('No user language preference found, proceeding without language filter');
+            }
+
             const sessionId = Array.isArray(params.result) ? params.result[0] : params.result
 
-            // Determine language from session ID
-            const language = sessionId.includes('french') ? 'french' : 'english'
+            // Fetch actual session results from API (language filter is optional)
+            const url = preferredLanguage
+              ? `/api/foreign-language/writing/sessions/${sessionId}/results?language=${preferredLanguage}`
+              : `/api/foreign-language/writing/sessions/${sessionId}/results`;
 
-            // Find the analysis data for this session from the appropriate language data
-            const sessionAnalysis = writingAnalysisData[language]?.find(session => session.id === sessionId)
+            const response = await fetch(url)
 
-            if (sessionAnalysis) {
-              setSessionData(sessionAnalysis)
+            if (response.ok) {
+              const result = await response.json()
+              if (result.success && result.data) {
+                setSessionData(result.data)
+                // Show message if no data available
+                if (result.message) {
+                  console.info('No analysis data:', result.message)
+                }
+              } else {
+                console.error('API returned error:', result.error)
+                notFound()
+              }
             } else {
+              console.error('Failed to fetch session results:', response.status)
               notFound()
             }
           } catch (error) {

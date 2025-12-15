@@ -47,6 +47,49 @@ export function WritingResultsContent({ session }: WritingResultsContentProps) {
 
   const attempts = session.attempts || []
 
+  // Check if there's no analysis data
+  if (attempts.length === 0) {
+    return (
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="flex items-start justify-between">
+          <Button variant="ghost" onClick={() => router.push('/dashboard/foreign-lang')} className="cursor-pointer">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back
+          </Button>
+          <div className="flex flex-col text-center flex-1 mx-8">
+            <h1 className="text-3xl font-bold text-gray-900 leading-tight">{session.title || 'Writing Session'}</h1>
+            <p className="text-gray-600 text-lg mt-1">
+              Writing Practice in {getLanguageLabel(session.language)}
+            </p>
+          </div>
+          <div className="w-32"></div> {/* Spacer for balance */}
+        </div>
+
+        {/* No Data Message */}
+        <div className="flex flex-col items-center justify-center py-12">
+          <div className="text-center space-y-4">
+            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
+              <PenTool className="h-8 w-8 text-gray-400" />
+            </div>
+            <div>
+              <h3 className="text-lg font-medium text-gray-900">No Analysis Data Available</h3>
+              <p className="text-gray-500 mt-1">
+                Complete writing practice sessions to see detailed analysis and progress tracking.
+              </p>
+            </div>
+            <Button
+              onClick={() => router.push('/dashboard/foreign-lang')}
+              className="mt-4"
+            >
+              Start Practicing
+            </Button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   // Get scores from results
   const getAttemptScore = (attempt: WritingSessionAttempt) => {
     const result = attempt.results?.[0] // Get first result (overall analysis)

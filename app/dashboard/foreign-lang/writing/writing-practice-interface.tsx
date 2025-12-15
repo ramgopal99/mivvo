@@ -53,7 +53,7 @@ export function WritingPracticeInterface({
         setIsSaving(false);
         setHasUnsavedChanges(false);
       }, 500);
-    }, 5000);
+    }, 1000);
 
     return () => clearTimeout(saveTimer);
   }, [text, hasUnsavedChanges, sessionId, onAnswer, localStorageKey]);

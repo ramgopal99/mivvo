@@ -32,15 +32,22 @@ import {
   type SpeakingQuestionSessionData
 } from "../speaking";
 
+interface ChatMessage {
+  id: string;
+  sender: 'user' | 'ai';
+  message: string;
+  timestamp: Date;
+}
+
 interface PracticeInterfaceProps {
   sessionIds: string[];
-  onComplete: (results: PracticeResult[]) => void;
+  onComplete: (results: PracticeResult[]) => void | Promise<void>;
   onExit: () => void;
 }
 
 interface PracticeResult {
   sessionId: string;
-  userAnswer?: string | number | string[];
+  userAnswer?: string | number | string[] | ChatMessage[];
   isCorrect?: boolean;
   timeSpent: number;
   completedAt: Date;
@@ -75,7 +82,16 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
   const [userAnswers, setUserAnswers] = useState<Record<string, string | number>>({});
   const [markedQuestions, setMarkedQuestions] = useState<Set<number>>(new Set());
   const [questionStatus, setQuestionStatus] = useState<Record<number, QuestionStatus>>({});
+  const [conversations, setConversations] = useState<Record<string, ChatMessage[]>>({});
   const { data: session } = useSession();
+
+  // Handle conversation updates from AI chat practice
+  const handleConversationUpdate = useCallback((scenarioId: string, conversation: ChatMessage[]) => {
+    setConversations(prev => ({
+      ...prev,
+      [scenarioId]: conversation
+    }));
+  }, []);
   const [userName, setUserName] = useState<string>("User");
   const [startTime] = useState(Date.now());
   const [sessionData, setSessionData] = useState<{
@@ -92,6 +108,25 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
         correctOrder?: string[];
       };
     }>;
+    writingTopics?: Array<{
+      id: string;
+      topic: string;
+      description: string;
+      instructions: string;
+      wordLimit?: number;
+    }>;
+    chatScenarios?: Array<{
+      id: string;
+      title: string;
+      description: string;
+      initialMessage: string;
+      vocabulary?: string[];
+      context?: string;
+    }>;
+    language?: {
+      code: string;
+    };
+    level?: string;
   } | null>(null);
   const [loadingSession, setLoadingSession] = useState(true);
 
@@ -142,7 +177,14 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
           if (result.success) {
             setSessionData(result.data);
           }
-        } else         if (sessionId.startsWith('mcq-session-')) {
+        } else if (sessionId.startsWith('writing-session-')) {
+          const response = await fetch(`/api/foreign-language/writing/sessions/${sessionId}`);
+          const result = await response.json();
+
+          if (result.success) {
+            setSessionData(result.data);
+          }
+        } else if (sessionId.startsWith('mcq-session-')) {
           const response = await fetch(`/api/foreign-language/mcq/sessions/${sessionId}`);
           const result = await response.json();
 
@@ -256,6 +298,39 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
             });
           }
         });
+      } else if (sessionId.startsWith('writing-session-') && sessionData.writingTopics && sessionData.chatScenarios) {
+        // Handle API-generated writing sessions
+        // Add writing topics
+        sessionData.writingTopics.forEach((topic, index) => {
+          sessionArray.push({
+            id: `${sessionId}-writing-${index}`,
+            type: 'writing',
+            data: {
+              id: topic.id,
+              topic: topic.topic,
+              description: topic.description,
+              instructions: topic.instructions,
+              wordLimit: topic.wordLimit,
+              timeLimit: 900 // 15 minutes default
+            }
+          });
+        });
+
+        // Add chat scenarios
+        sessionData.chatScenarios.forEach((scenario, index) => {
+          sessionArray.push({
+            id: `${sessionId}-chat-${index}`,
+            type: 'chat',
+            data: {
+              id: scenario.id,
+              title: scenario.title,
+              description: scenario.description,
+              initialMessage: scenario.initialMessage,
+              vocabulary: scenario.vocabulary || [],
+              context: scenario.context
+            }
+          });
+        });
       }
     } else {
       // Fallback to dummy data for other session types
@@ -359,6 +434,15 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
 
 
   const currentSession = sessions[currentIndex];
+
+  // Create a stable callback for the current session's conversation updates
+  const currentSessionConversationCallback = useMemo(() => {
+    return (conversation: ChatMessage[]) => {
+      if (currentSession) {
+        handleConversationUpdate(currentSession.id, conversation);
+      }
+    };
+  }, [currentSession, handleConversationUpdate]);
 
   // Timer countdown
   useEffect(() => {
@@ -520,7 +604,7 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
         ? (session.data as { id: string }).id  // Use question ID for MCQ
         : session.id; // Use session ID for others
 
-      const userAnswer = userAnswers[answerKey];
+      let userAnswer: string | number | string[] | ChatMessage[] = userAnswers[answerKey];
       let isCorrect = false;
 
       if (session.type === 'reading-comprehension' && typeof userAnswer === 'number') {
@@ -536,6 +620,9 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
         isCorrect = userAnswer.trim().length > 10;
       } else if (session.type === 'chat') {
         // Chat sessions are always considered completed (no right/wrong answers)
+        // Use the conversation data as the user answer
+        const conversation = conversations[session.id];
+        userAnswer = conversation || [];
         isCorrect = true;
       }
 
@@ -648,7 +735,7 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
           {/* Scrollable Question Content */}
           <div className="flex-1 overflow-y-auto p-4 md:p-6 min-h-0">
             <div className="h-full">
-                {currentSession.type === 'reading-comprehension' && (
+                {currentSession && currentSession.type === 'reading-comprehension' && (
                   <ReadingComprehensionPractice
                     sessionId={currentSession.id}
                     data={currentSession.data as ReadingComprehensionData}
@@ -657,7 +744,7 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
                   />
                 )}
 
-                {currentSession.type === 'rearrange-sentences' && (
+                {currentSession && currentSession.type === 'rearrange-sentences' && (
                   <RearrangeSentencesPractice
                     sessionId={currentSession.id}
                     data={currentSession.data as RearrangeSentenceData}
@@ -666,7 +753,7 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
                   />
                 )}
 
-                {currentSession.type === 'writing' && (
+                {currentSession && currentSession.type === 'writing' && (
                   <WritingPracticeInterface
                     sessionId={currentSession.id}
                     data={currentSession.data as WritingTopicData}
@@ -675,13 +762,21 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
                   />
                 )}
 
-                {currentSession.type === 'chat' && (
+                {currentSession && currentSession.type === 'chat' && (
                   <AIChatPractice
                     scenario={currentSession.data as ChatScenario}
+                    language={(() => {
+                      const code = sessionData?.language?.code;
+                      if (code === 'en') return 'ENGLISH';
+                      if (code === 'fr') return 'FRENCH';
+                      return 'ENGLISH'; // default
+                    })()}
+                    cefrLevel={sessionData?.level || 'A1'}
+                    onConversationUpdate={currentSessionConversationCallback}
                   />
                 )}
 
-                {(currentSession.type === 'mcq' || currentSession.type === 'grammar-mcq' || currentSession.type === 'error-detection' || currentSession.type === 'synonyms-antonyms' || currentSession.type === 'sentence-completion' || currentSession.type === 'word-replacement') && (
+                {currentSession && (currentSession.type === 'mcq' || currentSession.type === 'grammar-mcq' || currentSession.type === 'error-detection' || currentSession.type === 'synonyms-antonyms' || currentSession.type === 'sentence-completion' || currentSession.type === 'word-replacement') && (
                   <McqPracticeInterface
                     sessionId={currentSession.id}
                     data={currentSession.data as McqQuestionData}
@@ -690,7 +785,7 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
                   />
                 )}
 
-                {currentSession.type === 'speaking' && (
+                {currentSession && currentSession.type === 'speaking' && (
                   <SpeakingPracticeInterface
                     sessionId={currentSession.id}
                     data={currentSession.data as SpeakingQuestionSessionData}

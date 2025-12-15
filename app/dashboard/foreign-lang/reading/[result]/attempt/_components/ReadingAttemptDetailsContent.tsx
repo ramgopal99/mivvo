@@ -111,7 +111,7 @@ export function ReadingAttemptDetailsContent({ attempt, resultId }: ReadingAttem
   }
 
   const result = attempt.results[0] // Get the latest result
-  const overallScore = result?.overallScore || 0
+  const overallScore = result?.overallScore
 
   const handleDownloadData = async () => {
     // Mock PDF download - in real app this would generate actual PDF
@@ -208,7 +208,7 @@ export function ReadingAttemptDetailsContent({ attempt, resultId }: ReadingAttem
 }
 
 // Overview Section Component
-function OverviewSection({ attempt, overallScore }: { attempt: ReadingAttempt; overallScore: number }) {
+function OverviewSection({ attempt, overallScore }: { attempt: ReadingAttempt; overallScore: number | null }) {
   const result = attempt.results[0]
 
   return (
@@ -217,16 +217,16 @@ function OverviewSection({ attempt, overallScore }: { attempt: ReadingAttempt; o
       <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 border">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Overall Performance</h3>
-          <div className="text-3xl font-bold text-blue-600">{Math.round(overallScore)}</div>
+          <div className="text-3xl font-bold text-blue-600">{overallScore ? Math.round(overallScore) : 'N/A'}</div>
         </div>
         <div className="space-y-3">
           <div className="flex justify-between items-center">
             <span className="text-sm text-gray-600">Reading Comprehension</span>
-            <span className="text-sm font-medium text-green-600">{result?.comprehensionScore || 0}/100</span>
+            <span className="text-sm font-medium text-green-600">{result?.comprehensionScore}/100</span>
           </div>
           <div className="flex justify-between items-center">
             <span className="text-sm text-gray-600">Sentence Rearranging</span>
-            <span className="text-sm font-medium text-purple-600">{result?.rearrangingScore || 0}/100</span>
+            <span className="text-sm font-medium text-purple-600">{result?.rearrangingScore}/100</span>
           </div>
         </div>
       </div>
@@ -240,7 +240,7 @@ function OverviewSection({ attempt, overallScore }: { attempt: ReadingAttempt; o
         <div className="space-y-3">
           <div className="flex justify-between items-center">
             <span className="text-sm text-gray-600">Total Time</span>
-            <span className="text-sm font-medium">{Math.round((attempt.duration || 0) / 60)}min</span>
+            <span className="text-sm font-medium">{attempt.duration ? Math.round(attempt.duration / 60) : 'N/A'}min</span>
           </div>
           {result?.timeSpent && (
             <>
@@ -334,19 +334,19 @@ function MetricsSection({ result }: { result: ReadingSessionResult }) {
   const metrics = [
     {
       label: "Comprehension Accuracy",
-      value: result?.comprehensionScore ? `${result.comprehensionScore}%` : "N/A",
+      value: result?.comprehensionScore ? `${result.comprehensionScore}%` : result?.comprehensionScore,
       description: "Correct answers on reading comprehension",
       color: "text-green-600"
     },
     {
       label: "Rearrangement Success",
-      value: result?.rearrangingScore ? `${result.rearrangingScore}%` : "N/A",
+      value: result?.rearrangingScore ? `${result.rearrangingScore}%` : result?.rearrangingScore,
       description: "Success rate on sentence rearrangement",
       color: "text-blue-600"
     },
     {
       label: "Completion Rate",
-      value: result?.overallScore ? "100%" : "Incomplete",
+      value: result?.overallScore ? "100%" : result?.overallScore,
       description: "Session completion status",
       color: "text-purple-600"
     }
