@@ -3,6 +3,16 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Clock, ArrowRight, ArrowLeft, User } from "lucide-react";
 import {
   ReadingComprehensionPractice,
@@ -42,7 +52,7 @@ interface ChatMessage {
 interface PracticeInterfaceProps {
   sessionIds: string[];
   onComplete: (results: PracticeResult[]) => void | Promise<void>;
-  onExit: () => void;
+  onExit?: () => void;
 }
 
 interface PracticeResult {
@@ -85,6 +95,7 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
   const [markedQuestions, setMarkedQuestions] = useState<Set<number>>(new Set());
   const [questionStatus, setQuestionStatus] = useState<Record<number, QuestionStatus>>({});
   const [conversations, setConversations] = useState<Record<string, ChatMessage[]>>({});
+  const [showSubmitDialog, setShowSubmitDialog] = useState(false);
   const { data: session } = useSession();
 
   // Handle conversation updates from AI chat practice
@@ -673,6 +684,10 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
   };
 
 
+  const handleSubmitClick = () => {
+    setShowSubmitDialog(true);
+  };
+
   const handleComplete = () => {
     console.log("All sessions before filtering:", sessions.map(s => ({ id: s.id, type: s.type })));
     // Filter out speaking sessions since they save results immediately when recording completes
@@ -722,6 +737,7 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
       };
     });
 
+    setShowSubmitDialog(false);
     onComplete(results);
   };
 
@@ -787,16 +803,8 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
           </div>
           <div className="flex items-center gap-3">
             <Button
-              variant="outline"
               size="sm"
-              onClick={onExit}
-              className="cursor-pointer"
-            >
-              Exit
-            </Button>
-            <Button
-              size="sm"
-              onClick={handleComplete}
+              onClick={handleSubmitClick}
               className="bg-green-600 hover:bg-green-700 cursor-pointer"
             >
               Submit Test
@@ -954,6 +962,24 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
           </div>
         </div>
       </div>
+
+      {/* Submit Confirmation Dialog */}
+      <AlertDialog open={showSubmitDialog} onOpenChange={setShowSubmitDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirm Submission</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to submit your test? Once submitted, you cannot make any further changes to your answers.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleComplete} className="bg-green-600 hover:bg-green-700">
+              Submit Test
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

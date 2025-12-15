@@ -135,14 +135,6 @@ export function McqAttemptDetailsContent({ attempt }: McqAttemptDetailsContentPr
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to MCQ History
         </Button>
-        <Button
-          onClick={handleDownloadData}
-          variant="outline"
-          className="cursor-pointer flex items-center gap-2"
-        >
-          <Download className="w-4 h-4" />
-          Download PDF Report
-        </Button>
       </div>
 
       {/* MCQ Session Title Section */}
@@ -196,22 +188,6 @@ export function McqAttemptDetailsContent({ attempt }: McqAttemptDetailsContentPr
         </TabsContent>
       </Tabs>
 
-      {/* Action Buttons */}
-      <div className="flex justify-center space-x-4 pt-6">
-        <Button
-          variant="outline"
-          onClick={() => router.push('/dashboard/foreign-lang/mcq/page')}
-          className="cursor-pointer"
-        >
-          Back to MCQ History
-        </Button>
-        <Button
-          onClick={() => router.push('/dashboard/foreign-lang')}
-          className="cursor-pointer"
-        >
-          Back to MCQ
-        </Button>
-      </div>
     </div>
   )
 }
@@ -376,15 +352,6 @@ function MetricsSection({ result }: { result: McqSessionResult }) {
         })}
       </div>
 
-      {/* Question Breakdown Placeholder */}
-      <div className="bg-gray-50 rounded-lg p-6 border">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Question Breakdown</h3>
-        <div className="text-center py-8">
-          <HelpCircle className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <p className="text-gray-600">Detailed question-by-question analysis would be displayed here</p>
-          <p className="text-sm text-gray-500 mt-2">Review which topics you excel at and which need more practice</p>
-        </div>
-      </div>
     </div>
   )
 }

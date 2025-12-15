@@ -142,7 +142,7 @@ export function SpeakingPracticeInterface({
       <SpeakingPracticeHeader currentQuestion={currentQuestion} />
 
       {/* Two Column Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1 min-h-0">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 flex-1 min-h-0 px-2">
         <ListenSection
           currentQuestion={currentQuestion}
           isSpeaking={isSpeaking}
@@ -151,12 +151,10 @@ export function SpeakingPracticeInterface({
 
         <RecordingSection
           currentQuestion={currentQuestion}
-          currentAnswer={currentAnswer}
           hasAnswered={hasAnswered}
           isListening={speechRecognition.isListening}
           recordingTimeLeft={speechRecognition.recordingTimeLeft}
           recordingCompleted={speechRecognition.recordingCompleted}
-          transcript={speechRecognition.accumulatedTranscript}
           isSaving={speechRecognition.isSaving}
           error={speechRecognition.error}
           analyser={analyser}

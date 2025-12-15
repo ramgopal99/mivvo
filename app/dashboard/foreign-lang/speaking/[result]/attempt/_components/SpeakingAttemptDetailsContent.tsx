@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, BarChart3, Volume2, TrendingUp, Download, Clock, Target, Zap, Mic, Headphones } from "lucide-react"
+import { ArrowLeft, BarChart3, Volume2, TrendingUp, Clock, Target, Zap, Mic } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface SpeakingQuestionResult {
@@ -32,9 +32,11 @@ interface SpeakingSessionResult {
   pronunciationScore: number | null
   fluencyScore: number | null
   vocabularyScore: number | null
+  grammarScore: number | null
   comprehensionScore: number | null
   listeningAccuracy: number | null
   responseTime: number | null
+  totalWords: number | null
 }
 
 interface SpeakingAttempt {
@@ -86,10 +88,6 @@ export function SpeakingAttemptDetailsContent({ attempt }: SpeakingAttemptDetail
   const result = attempt.overallResult // Get the overall result
   const overallScore = result?.overallScore || 0
 
-  const handleDownloadData = async () => {
-    // Mock PDF download - in real app this would generate actual PDF
-    alert('PDF report download would be implemented here')
-  }
 
   return (
     <div className="space-y-6">
@@ -98,14 +96,6 @@ export function SpeakingAttemptDetailsContent({ attempt }: SpeakingAttemptDetail
         <Button variant="ghost" onClick={() => router.push('/dashboard/foreign-lang/speaking')} className="cursor-pointer">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Speaking History
-        </Button>
-        <Button
-          onClick={handleDownloadData}
-          variant="outline"
-          className="cursor-pointer flex items-center gap-2"
-        >
-          <Download className="w-4 h-4" />
-          Download PDF Report
         </Button>
       </div>
 
@@ -168,15 +158,7 @@ export function SpeakingAttemptDetailsContent({ attempt }: SpeakingAttemptDetail
         </TabsContent>
       </Tabs>
 
-      {/* Action Buttons */}
-      <div className="flex justify-center pt-6">
-        <Button
-          onClick={() => router.push('/dashboard/foreign-lang/speaking')}
-          className="cursor-pointer"
-        >
-          Back to Speaking History
-        </Button>
-      </div>
+
     </div>
   )
 }
@@ -247,7 +229,7 @@ function OverviewSection({ attempt, overallScore }: { attempt: SpeakingAttempt; 
 }
 
 // Analysis Section Component
-function AnalysisSection({ result }: { result: SpeakingSessionResult }) {
+function AnalysisSection({ result }: { result: SpeakingSessionResult | null }) {
   return (
     <div className="space-y-6">
       {/* Strengths */}
@@ -340,7 +322,7 @@ function ResponsesSection({ attempt }: { attempt: SpeakingAttempt }) {
                 {question.userAnswer ? (
                   <div className="bg-gray-50 rounded p-3">
                     <p className="text-sm text-gray-700 leading-relaxed">
-                      "{question.userAnswer}"
+                      &ldquo;{question.userAnswer}&rdquo;
                     </p>
                   </div>
                 ) : (
@@ -360,7 +342,7 @@ function ResponsesSection({ attempt }: { attempt: SpeakingAttempt }) {
 }
 
 // Metrics Section Component
-function MetricsSection({ result }: { result: SpeakingSessionResult }) {
+function MetricsSection({ result }: { result: SpeakingSessionResult | null }) {
   const metrics = [
     {
       label: "Fluency",
@@ -426,15 +408,6 @@ function MetricsSection({ result }: { result: SpeakingSessionResult }) {
         })}
       </div>
 
-      {/* Audio Analysis Placeholder */}
-      <div className="bg-gray-50 rounded-lg p-6 border">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Audio Analysis</h3>
-        <div className="text-center py-8">
-          <Volume2 className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <p className="text-gray-600">Audio waveform and speech analysis would be displayed here</p>
-          <p className="text-sm text-gray-500 mt-2">Review your pronunciation patterns and speaking pace</p>
-        </div>
-      </div>
     </div>
   )
 }

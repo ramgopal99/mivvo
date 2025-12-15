@@ -131,14 +131,6 @@ export function WritingAttemptDetailsContent({ attempt }: WritingAttemptDetailsC
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Writing History
         </Button>
-        <Button
-          onClick={handleDownloadData}
-          variant="outline"
-          className="cursor-pointer flex items-center gap-2"
-        >
-          <Download className="w-4 h-4" />
-          Download PDF Report
-        </Button>
       </div>
 
       {/* Writing Session Title Section */}
@@ -192,22 +184,7 @@ export function WritingAttemptDetailsContent({ attempt }: WritingAttemptDetailsC
         </TabsContent>
       </Tabs>
 
-      {/* Action Buttons */}
-      <div className="flex justify-center space-x-4 pt-6">
-        <Button
-          variant="outline"
-          onClick={() => router.push('/dashboard/foreign-lang/writing')}
-          className="cursor-pointer"
-        >
-          Back to Writing History
-        </Button>
-        <Button
-          onClick={() => router.push('/dashboard/foreign-lang')}
-          className="cursor-pointer"
-        >
-          Back to Writing
-        </Button>
-      </div>
+
     </div>
   )
 }
@@ -401,15 +378,6 @@ function MetricsSection({ result }: { result: WritingSessionResult }) {
         })}
       </div>
 
-      {/* Writing Samples Placeholder */}
-      <div className="bg-gray-50 rounded-lg p-6 border">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Writing Samples</h3>
-        <div className="text-center py-8">
-          <PenTool className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <p className="text-gray-600">Writing samples and conversation transcripts would be displayed here</p>
-          <p className="text-sm text-gray-500 mt-2">Review your actual writing and conversation content</p>
-        </div>
-      </div>
     </div>
   )
 }

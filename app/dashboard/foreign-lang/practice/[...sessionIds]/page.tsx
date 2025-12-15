@@ -1,7 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { PracticeInterface } from "../../components/practice-interface";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 
 // Import the result type from practice interface
 interface ChatMessage {
@@ -22,11 +26,18 @@ interface PracticeResult {
 export default function PracticePage() {
   const params = useParams();
   const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [submitMessage, setSubmitMessage] = useState('');
 
   // With [...sessionIds], params.sessionIds is already an array
   const sessionIds = Array.isArray(params.sessionIds) ? params.sessionIds : [params.sessionIds as string];
 
   const handlePracticeComplete = async (results: PracticeResult[]) => {
+    setIsSubmitting(true);
+    setSubmitStatus('submitting');
+    setSubmitMessage('Submitting your practice results...');
+
     try {
       // Determine session type by checking if it's an MCQ or reading session
       const mainSessionId = sessionIds[0];
@@ -155,32 +166,70 @@ export default function PracticePage() {
 
       const result = await response.json();
       if (result.success) {
-        // Always redirect to main foreign language page
-        router.push('/dashboard/foreign-lang');
+        setSubmitStatus('success');
+        setSubmitMessage('Practice completed successfully! Redirecting...');
+
+        // Redirect after a short delay to show success message
+        setTimeout(() => {
+          router.push('/dashboard/foreign-lang');
+        }, 2000);
       } else {
-        // Redirect back to main page on error
-        router.push('/dashboard/foreign-lang');
+        setSubmitStatus('error');
+        setSubmitMessage('Failed to submit results. Please try again.');
+        setIsSubmitting(false);
       }
     } catch (_error) { // eslint-disable-line @typescript-eslint/no-unused-vars
-      // Redirect back to main page on error
-      router.push('/dashboard/foreign-lang');
+      setSubmitStatus('error');
+      setSubmitMessage('Network error occurred. Please check your connection and try again.');
+      setIsSubmitting(false);
     }
   };
 
-  const handleExitPractice = () => {
-    // Redirect back to main foreign language page
-    router.push('/dashboard/foreign-lang');
-  };
 
   if (sessionIds.length === 0) {
     return <div>Invalid practice session</div>;
+  }
+
+  // Show submission status overlay when submitting
+  if (isSubmitting || submitStatus !== 'idle') {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
+        <Card className="w-full max-w-md">
+          <CardHeader className="text-center">
+            <CardTitle className="flex items-center justify-center gap-2">
+              {submitStatus === 'submitting' && <Loader2 className="h-5 w-5 animate-spin" />}
+              {submitStatus === 'success' && <CheckCircle className="h-5 w-5 text-green-500" />}
+              {submitStatus === 'error' && <AlertCircle className="h-5 w-5 text-red-500" />}
+              {submitStatus === 'submitting' ? 'Submitting...' : submitStatus === 'success' ? 'Success!' : 'Error'}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="text-center space-y-4">
+            <p className="text-muted-foreground">{submitMessage}</p>
+            {submitStatus === 'success' && (
+              <p className="text-sm text-muted-foreground">You will be redirected shortly...</p>
+            )}
+            {submitStatus === 'error' && (
+              <Button
+                onClick={() => {
+                  setSubmitStatus('idle');
+                  setIsSubmitting(false);
+                  setSubmitMessage('');
+                }}
+                variant="outline"
+              >
+                Try Again
+              </Button>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    );
   }
 
   return (
     <PracticeInterface
       sessionIds={sessionIds}
       onComplete={handlePracticeComplete}
-      onExit={handleExitPractice}
     />
   );
 }

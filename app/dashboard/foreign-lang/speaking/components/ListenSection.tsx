@@ -12,7 +12,7 @@ interface ListenSectionProps {
 
 export function ListenSection({ currentQuestion, isSpeaking, onSpeakQuestion }: ListenSectionProps) {
   return (
-    <Card className="h-[500px] flex flex-col">
+    <Card className="h-[400px] flex flex-col w-full max-w-full">
       <CardHeader>
         <CardTitle className="text-xl flex items-center gap-3">
           <Volume2 className="h-6 w-6 text-primary" />

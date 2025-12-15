@@ -17,8 +17,8 @@ interface UseSpeechRecognitionProps {
 
 // Voice chat timing configurations (from custominterview)
 const SPEAKING_VOICE_CONFIG = {
-  SILENCE_TIMEOUT_MS: 2500, // Wait time after user stops speaking (2.5 seconds)
-  RECOGNITION_KEEP_ALIVE_MS: 6000, // Speech recognition keep-alive interval (6 seconds)
+  SILENCE_TIMEOUT_MS: 200, // Wait time after user stops speaking (200ms for immediate restart)
+  RECOGNITION_KEEP_ALIVE_MS: 1000, // Speech recognition keep-alive interval (1 second for more frequent checks)
 };
 
 export function useSpeechRecognition({
@@ -118,8 +118,20 @@ export function useSpeechRecognition({
 
         switch (event.error) {
           case 'no-speech':
-            // Don't restart automatically - let silence timeout handle it
-            console.log('No speech detected - waiting for silence timeout');
+            // Auto-restart immediately when no speech detected
+            console.log('No speech detected - restarting immediately');
+            if (!isRecordingManuallyStoppedRef.current && !recordingCompleted) {
+              setTimeout(() => {
+                if (recognitionRef.current && !isRecordingManuallyStoppedRef.current && !recordingCompleted) {
+                  try {
+                    recognitionRef.current.start();
+                    console.log('Restarted speech recognition after no-speech error');
+                  } catch (restartError) {
+                    console.warn('Failed to restart speech recognition:', restartError);
+                  }
+                }
+              }, SPEAKING_VOICE_CONFIG.SILENCE_TIMEOUT_MS);
+            }
             return;
 
           case 'audio-capture':
@@ -155,35 +167,34 @@ export function useSpeechRecognition({
         // Recording has ended (manually stopped, time up, or natural end)
         setIsListening(false);
 
-        // Clear timers immediately
-        if (recordingTimerRef.current) {
-          clearInterval(recordingTimerRef.current);
-          recordingTimerRef.current = null;
-        }
+        // If manually stopped or time is up, save results and stop
+        if (isRecordingManuallyStoppedRef.current || recordingTimeLeft <= 0) {
+          // Clear timers immediately
+          if (recordingTimerRef.current) {
+            clearInterval(recordingTimerRef.current);
+            recordingTimerRef.current = null;
+          }
 
-        // Clear silence timeout and accumulated speech when recognition ends
-        clearSilenceTimeout();
-        accumulatedSpeechRef.current = '';
-        setAccumulatedTranscript('');
+          // Clear silence timeout and accumulated speech when recognition ends
+          clearSilenceTimeout();
+          accumulatedSpeechRef.current = '';
+          setAccumulatedTranscript('');
 
-        // If time's up (not manually stopped), save results
-        // Manual stops are handled in stopListening function
-        if (!isRecordingManuallyStoppedRef.current && recordingTimeLeft <= 0) {
           // Get current transcript from state as backup, ref as primary
           const transcriptFromState = accumulatedTranscript;
           const transcriptFromRef = finalTranscriptRef.current;
           const finalAnswer = (transcriptFromRef || transcriptFromState).trim();
 
-          console.log('Auto-stop transcript from state:', transcriptFromState);
-          console.log('Auto-stop transcript from ref:', transcriptFromRef);
-          console.log('Auto-stop using transcript:', transcriptFromRef || transcriptFromState);
-          console.log('Auto-stop final answer:', finalAnswer);
+          console.log('Recording ended - transcript from state:', transcriptFromState);
+          console.log('Recording ended - transcript from ref:', transcriptFromRef);
+          console.log('Recording ended - using transcript:', transcriptFromRef || transcriptFromState);
+          console.log('Recording ended - final answer:', finalAnswer);
 
           const hasValidAnswer = finalAnswer.length > 0;
-          console.log('Auto-stop has valid answer:', hasValidAnswer);
+          console.log('Recording ended - has valid answer:', hasValidAnswer);
           const wordCount = hasValidAnswer ? finalAnswer.split(/\s+/).length : 0;
           const duration = Math.floor((Date.now() - questionStartTimeRef.current) / 1000);
-          console.log('Auto-stop word count:', wordCount, 'Duration:', duration);
+          console.log('Recording ended - word count:', wordCount, 'Duration:', duration);
 
           // Always save to localStorage as backup, even for empty recordings
           const speakingBackup: SpeakingBackup = {
@@ -224,6 +235,19 @@ export function useSpeechRecognition({
           setAccumulatedTranscript("");
           finalTranscriptRef.current = ""; // Also clear the ref
           setRecordingCompleted(true);
+        } else {
+          // Auto-restart recognition if recording should continue (not manually stopped and time not up)
+          console.log('Recognition ended naturally - auto-restarting in 200ms');
+          setTimeout(() => {
+            if (recognitionRef.current && !isRecordingManuallyStoppedRef.current && recordingTimeLeft > 0 && !recordingCompleted) {
+              try {
+                recognitionRef.current.start();
+                console.log('Auto-restarted speech recognition');
+              } catch (restartError) {
+                console.warn('Failed to auto-restart speech recognition:', restartError);
+              }
+            }
+          }, SPEAKING_VOICE_CONFIG.SILENCE_TIMEOUT_MS);
         }
       };
     }
@@ -292,7 +316,7 @@ export function useSpeechRecognition({
     if (isRecordingManuallyStoppedRef.current || recordingCompleted) return;
 
     if (!isListening && recognitionRef.current) {
-      console.log('Recognition not active, restarting...');
+      console.log('Recognition not active, restarting immediately...');
       try {
         recognitionRef.current.start();
       } catch (error) {

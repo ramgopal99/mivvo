@@ -125,14 +125,6 @@ export function ReadingAttemptDetailsContent({ attempt }: ReadingAttemptDetailsC
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Reading History
         </Button>
-        <Button
-          onClick={handleDownloadData}
-          variant="outline"
-          className="cursor-pointer flex items-center gap-2"
-        >
-          <Download className="w-4 h-4" />
-          Download PDF Report
-        </Button>
       </div>
 
       {/* Reading Session Title Section */}
@@ -185,23 +177,6 @@ export function ReadingAttemptDetailsContent({ attempt }: ReadingAttemptDetailsC
           <MetricsSection result={result} />
         </TabsContent>
       </Tabs>
-
-      {/* Action Buttons */}
-      <div className="flex justify-center space-x-4 pt-6">
-        <Button
-          variant="outline"
-          onClick={() => router.push('/dashboard/foreign-lang/reading/page')}
-          className="cursor-pointer"
-        >
-          Back to Reading History
-        </Button>
-        <Button
-          onClick={() => router.push('/dashboard/foreign-lang')}
-          className="cursor-pointer"
-        >
-          Back to Reading
-        </Button>
-      </div>
     </div>
   )
 }
@@ -368,15 +343,6 @@ function MetricsSection({ result }: { result: ReadingSessionResult }) {
         ))}
       </div>
 
-      {/* Performance Chart Placeholder */}
-      <div className="bg-gray-50 rounded-lg p-6 border">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Trends</h3>
-        <div className="text-center py-8">
-          <BarChart3 className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <p className="text-gray-600">Performance chart visualization would be displayed here</p>
-          <p className="text-sm text-gray-500 mt-2">Track your improvement over time</p>
-        </div>
-      </div>
     </div>
   )
 }

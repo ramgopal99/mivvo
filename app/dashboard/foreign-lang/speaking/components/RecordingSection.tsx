@@ -7,12 +7,10 @@ import type { SpeakingQuestion } from "../types";
 
 interface RecordingSectionProps {
   currentQuestion: SpeakingQuestion;
-  currentAnswer: string;
   hasAnswered: boolean;
   isListening: boolean;
   recordingTimeLeft: number;
   recordingCompleted: boolean;
-  transcript: string;
   isSaving: boolean;
   error: string;
   analyser: AnalyserNode | null;
@@ -22,12 +20,10 @@ interface RecordingSectionProps {
 
 export function RecordingSection({
   currentQuestion,
-  currentAnswer,
   hasAnswered,
   isListening,
   recordingTimeLeft,
   recordingCompleted,
-  transcript,
   isSaving,
   error,
   analyser,
@@ -35,7 +31,7 @@ export function RecordingSection({
   onStopListening,
 }: RecordingSectionProps) {
   return (
-    <Card className="flex flex-col h-full min-h-0">
+    <Card className="flex flex-col h-full min-h-0 w-full max-w-full">
       <CardHeader className="flex-shrink-0">
         <CardTitle className="text-lg md:text-xl flex items-center gap-3">
           <Mic className={`h-5 w-5 md:h-6 md:w-6 ${isListening ? 'text-red-500' : 'text-primary'}`} />
@@ -89,39 +85,13 @@ export function RecordingSection({
           </div>
         )}
 
-        {/* Waveform Animation for Recording */}
-        {isListening && (
+        {/* Waveform Animation for Recording - Hide when recording is completed */}
+        {isListening && !recordingCompleted && (
           <div className="w-full flex-1 flex items-center justify-center min-h-0">
             <AudioWaveform isActive={isListening} analyser={analyser} />
           </div>
         )}
 
-        {/* Live Transcript */}
-        {isListening && (
-          <div className="p-3 md:p-4 border-2 border-red-200 bg-red-50 dark:bg-red-950/20 rounded-lg flex-shrink-0">
-            <p className="text-xs md:text-sm text-muted-foreground mb-1 md:mb-2">Live Transcript:</p>
-            <p className="text-sm md:text-lg break-words">
-              {transcript || 'Listening...'}
-              {isListening && <span className="animate-pulse text-red-500">|</span>}
-            </p>
-          </div>
-        )}
-
-        {/* Recorded Answer */}
-        {hasAnswered && (
-          <div className="p-4 border-2 border-green-200 bg-green-50 dark:bg-green-950/20 rounded-lg">
-            <p className="text-sm text-muted-foreground mb-2">Your Recorded Answer:</p>
-            <p className="text-lg text-green-700 dark:text-green-300">{currentAnswer}</p>
-            <div className="flex gap-2 mt-2">
-              <span className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 rounded">
-                {currentAnswer.split(' ').length} words
-              </span>
-              <span className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 rounded">
-                {Math.round(currentAnswer.length / 5)} sec estimated
-              </span>
-            </div>
-          </div>
-        )}
 
         {/* Saving Feedback */}
         {isSaving && (
