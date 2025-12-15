@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Calendar, Clock, TrendingUp, Award, Eye, Volume2, Mic } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { getCEFRLevel } from "../../../config"
 
 interface SpeakingSessionResult {
   id: string
@@ -38,12 +39,18 @@ interface SpeakingSessionData {
   id: string
   title: string | null
   language: string | null
+  cefrLevel: string
   createdAt: Date
   attempts: SpeakingSessionAttempt[]
 }
 
 interface SpeakingResultsContentProps {
   session: SpeakingSessionData
+}
+
+  const getLevelLabel = (level: string | null) => {
+  const levelInfo = getCEFRLevel(level || '')
+  return levelInfo ? levelInfo.name : "Unknown Level"
 }
 
 export function SpeakingResultsContent({ session }: SpeakingResultsContentProps) {
@@ -63,11 +70,8 @@ export function SpeakingResultsContent({ session }: SpeakingResultsContentProps)
   }
 
   const bestScore = attempts.length > 0 ? Math.max(...attempts.map(a => getAttemptScore(a))) : 0
-  const averageScore = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + getAttemptScore(a), 0) / attempts.length) : 0
   const averageFluency = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + (getAttemptAnalysis(a)?.fluencyScore || 0), 0) / attempts.length) : 0
   const averagePronunciation = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + (getAttemptAnalysis(a)?.pronunciationScore || 0), 0) / attempts.length) : 0
-  const averageVocabulary = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + (getAttemptAnalysis(a)?.vocabularyScore || 0), 0) / attempts.length) : 0
-  const averageGrammar = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + (getAttemptAnalysis(a)?.grammarScore || 0), 0) / attempts.length) : 0
 
   const formatDate = (date: Date) => {
     return new Date(date).toLocaleDateString('en-US', {
@@ -101,7 +105,7 @@ export function SpeakingResultsContent({ session }: SpeakingResultsContentProps)
         <div className="flex flex-col text-center flex-1 mx-8">
           <h1 className="text-3xl font-bold text-gray-900 leading-tight">{session.title || 'Untitled Speaking Session'}</h1>
           <p className="text-gray-600 text-lg mt-1">
-            Speaking & Listening Practice in {getLanguageLabel(session.language)}
+            Speaking & Listening Practice in {getLanguageLabel(session.language)} - {getLevelLabel(session.cefrLevel)}
           </p>
         </div>
         <div className="w-32"></div> {/* Spacer for balance */}

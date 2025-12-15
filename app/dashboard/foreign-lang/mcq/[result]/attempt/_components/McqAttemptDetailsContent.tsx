@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, BarChart3, HelpCircle, TrendingUp, Download, Clock, Target, CheckCircle, XCircle } from "lucide-react"
+import { ArrowLeft, BarChart3, HelpCircle, TrendingUp, Clock, Target, CheckCircle, XCircle } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface McqSessionResult {
@@ -79,10 +79,6 @@ export function McqAttemptDetailsContent({ attempt }: McqAttemptDetailsContentPr
   const result = attempt.overallResult // Get the overall result
   const overallScore = result?.overallScore || 0
 
-  const handleDownloadData = async () => {
-    // Mock PDF download - in real app this would generate actual PDF
-    alert('PDF report download would be implemented here')
-  }
 
   // Check if there's no analysis data
   if (!result) {

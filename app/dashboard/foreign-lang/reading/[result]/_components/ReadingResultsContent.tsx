@@ -113,7 +113,6 @@ export function ReadingResultsContent({ session }: ReadingResultsContentProps) {
   }
 
   const bestScore = attempts.length > 0 ? Math.max(...attempts.map(a => getAttemptScore(a))) : 0
-  const averageScore = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + getAttemptScore(a), 0) / attempts.length) : 0
   const averageComprehension = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + (getAttemptAnalysis(a)?.comprehensionScore || 0), 0) / attempts.length) : 0
   const averageRearranging = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + (getAttemptAnalysis(a)?.rearrangingScore || 0), 0) / attempts.length) : 0
 

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ProgressBar } from "./progress-bar";
-import { LanguageDefinition, getCEFRLevel } from "../config";
+import { LanguageDefinition } from "../config";
 
 interface HeaderProps {
   selectedLanguage: string;
@@ -12,8 +12,86 @@ interface HeaderProps {
   skillType?: 'reading' | 'mcq'; // Optional: filter progress by specific skill type
 }
 
+interface UserProgressData {
+  language: {
+    id: string;
+    name: string;
+    code: string;
+  };
+  currentLevel: string;
+  currentLevelDetails: {
+    level: string;
+    name: string;
+    description: string;
+    totalTargetScore: number;
+    skillTargetScore: number;
+    totalRange: { min: number; max: number };
+    order: number;
+    vocabulary: string;
+    grammar: string;
+    complexity: string;
+  };
+  levelProgress: Record<string, {
+    completedSkills: number;
+    totalSkills: number;
+    isCompleted: boolean;
+    skills: Array<{
+      skillType: string;
+      currentAverageScore?: number;
+      isCompleted: boolean;
+    }>;
+    totalPoints: number;
+    skillPoints: Record<string, number>;
+    cumulativeTotalTarget?: number;
+    cumulativeSkillTarget?: number;
+    levelTotalPoints?: number;
+    levelSkillPoints?: Record<string, number>;
+  }>;
+  availableSkills: Array<{
+    key: string;
+    name: string;
+    description: string;
+    weight: number;
+    isActive: boolean;
+  }>;
+  scores: {
+    reading: Array<{
+      level: string;
+      score: number;
+      points: number;
+      completedAt: string;
+      sessionId: string;
+      attemptId: string;
+    }>;
+    mcq: Array<{
+      level: string;
+      score: number;
+      points: number;
+      completedAt: string;
+      sessionId: string;
+      attemptId: string;
+    }>;
+    writing: Array<{
+      level: string;
+      score: number;
+      points: number;
+      completedAt: string;
+      sessionId: string;
+      attemptId: string;
+    }>;
+    speaking: Array<{
+      level: string;
+      score: number;
+      points: number;
+      completedAt: string;
+      sessionId: string;
+      attemptId: string;
+    }>;
+  };
+}
+
 export function Header({ selectedLanguage, onLanguageChange, languages, skillType }: HeaderProps) {
-  const [userProgress, setUserProgress] = useState<any>(null);
+  const [userProgress, setUserProgress] = useState<UserProgressData | null>(null);
 
   useEffect(() => {
     const fetchUserProgress = async () => {

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, CheckCircle, Calendar, Clock, Target, TrendingUp, FileQuestion } from "lucide-react"
+import { ArrowLeft, Calendar, Clock, Target, TrendingUp, FileQuestion } from "lucide-react"
 
 interface McqAttemptSummary {
   id: string

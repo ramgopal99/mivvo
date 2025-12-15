@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Calendar, Clock, TrendingUp, Award, Eye, PenTool, MessageCircle } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { getCEFRLevel } from "../../../config"
 
 interface WritingSessionResult {
   id: string
@@ -34,12 +35,29 @@ interface WritingSessionData {
   id: string
   title: string | null
   language: string | null
+  cefrLevel: string
   createdAt: Date
   attempts: WritingSessionAttempt[]
 }
 
 interface WritingResultsContentProps {
   session: WritingSessionData
+}
+
+const getLanguageLabel = (language: string | null) => {
+  const labels: Record<string, string> = {
+    english: "English",
+    french: "French",
+    german: "German",
+    spanish: "Spanish",
+    japanese: "Japanese"
+  }
+  return labels[language || ''] || "English"
+}
+
+const getLevelLabel = (level: string | null) => {
+  const levelInfo = getCEFRLevel(level || '')
+  return levelInfo ? levelInfo.name : "Unknown Level"
 }
 
 export function WritingResultsContent({ session }: WritingResultsContentProps) {
@@ -60,7 +78,7 @@ export function WritingResultsContent({ session }: WritingResultsContentProps) {
           <div className="flex flex-col text-center flex-1 mx-8">
             <h1 className="text-3xl font-bold text-gray-900 leading-tight">{session.title || 'Writing Session'}</h1>
             <p className="text-gray-600 text-lg mt-1">
-              Writing Practice in {getLanguageLabel(session.language)}
+              Writing Practice in {getLanguageLabel(session.language)} - {getLevelLabel(session.cefrLevel)}
             </p>
           </div>
           <div className="w-32"></div> {/* Spacer for balance */}
@@ -102,7 +120,6 @@ export function WritingResultsContent({ session }: WritingResultsContentProps) {
   }
 
   const bestScore = attempts.length > 0 ? Math.max(...attempts.map(a => getAttemptScore(a))) : 0
-  const averageScore = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + getAttemptScore(a), 0) / attempts.length) : 0
   const averageTopicWriting = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + (getAttemptAnalysis(a)?.topicWritingScore || 0), 0) / attempts.length) : 0
   const averageConversation = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + (getAttemptAnalysis(a)?.aiConversationScore || 0), 0) / attempts.length) : 0
 
@@ -116,17 +133,6 @@ export function WritingResultsContent({ session }: WritingResultsContentProps) {
     })
   }
 
-  const getLanguageLabel = (language: string | null) => {
-    const labels: Record<string, string> = {
-      english: "English",
-      french: "French",
-      german: "German",
-      spanish: "Spanish",
-      japanese: "Japanese"
-    }
-    return labels[language || ''] || "English"
-  }
-
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -138,7 +144,7 @@ export function WritingResultsContent({ session }: WritingResultsContentProps) {
         <div className="flex flex-col text-center flex-1 mx-8">
           <h1 className="text-3xl font-bold text-gray-900 leading-tight">{session.title || 'Untitled Writing Session'}</h1>
           <p className="text-gray-600 text-lg mt-1">
-            Writing Practice in {getLanguageLabel(session.language)}
+            Writing Practice in {getLanguageLabel(session.language)} - {getLevelLabel(session.cefrLevel)}
           </p>
         </div>
         <div className="w-32"></div> {/* Spacer for balance */}

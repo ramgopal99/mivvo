@@ -113,7 +113,6 @@ export function ProgressBar({ currentLevel = 'A1', levelProgress, scores }: Prog
   // Calculate combined progress across all skills
   const skills = levelData.skills || [];
   const totalSkills = skills.length;
-  const completedSkills = skills.filter(s => s.isCompleted).length;
   const averageScore = totalSkills > 0
     ? skills.reduce((sum, s) => sum + (s.currentAverageScore || 0), 0) / totalSkills
     : 0;

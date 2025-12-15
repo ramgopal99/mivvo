@@ -88,7 +88,7 @@ interface McqQuestionSession {
 
 
 
-export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeInterfaceProps) {
+export function PracticeInterface({ sessionIds, onComplete }: PracticeInterfaceProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(300); // 5 minutes default
   const [userAnswers, setUserAnswers] = useState<Record<string, string | number>>({});

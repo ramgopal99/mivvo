@@ -101,6 +101,7 @@ export async function GET(
         id: attempt.session.id,
         title: attempt.session.title,
         language: attempt.session.language?.name?.toLowerCase() || 'unknown',
+        cefrLevel: attempt.session.cefrLevel,
         createdAt: attempt.session.createdAt,
         topics: attempt.session.topics.map(topic => ({
           id: topic.id,

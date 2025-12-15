@@ -3,8 +3,9 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, BarChart3, PenTool, TrendingUp, Download, Clock, Target, Zap, MessageCircle, Sparkles } from "lucide-react"
+import { ArrowLeft, BarChart3, PenTool, TrendingUp, Clock, Target, Zap, MessageCircle, Sparkles } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { getCEFRLevel } from "../../../../config"
 
 interface WritingSessionResult {
   id: string
@@ -38,6 +39,7 @@ interface WritingAttempt {
     id: string
     title: string | null
     language: string | null
+    cefrLevel: string
     createdAt: Date
   }
   results: WritingSessionResult[]
@@ -72,13 +74,13 @@ export function WritingAttemptDetailsContent({ attempt }: WritingAttemptDetailsC
     return labels[language || ''] || "English"
   }
 
+  const getLevelLabel = (level: string | null) => {
+    const levelInfo = getCEFRLevel(level || '')
+    return levelInfo ? levelInfo.name : "Unknown Level"
+  }
+
   const result = attempt.results[0] // Get the latest result
   const overallScore = result?.overallScore
-
-  const handleDownloadData = async () => {
-    // Mock PDF download - in real app this would generate actual PDF
-    alert('PDF report download would be implemented here')
-  }
 
   // Check if there's no analysis data
   if (!result) {
@@ -137,7 +139,7 @@ export function WritingAttemptDetailsContent({ attempt }: WritingAttemptDetailsC
       <div className="flex flex-col text-center flex-1 mx-8">
         <h1 className="text-3xl font-bold text-gray-900 leading-tight">{attempt.session.title || 'Untitled Writing Session'}</h1>
         <p className="text-gray-600 text-lg mt-1">
-          Writing Practice in {getLanguageLabel(attempt.session.language)}
+          Writing Practice in {getLanguageLabel(attempt.session.language)} - {getLevelLabel(attempt.session.cefrLevel)}
         </p>
         <div className="flex items-center justify-center space-x-4 mt-3 text-sm text-gray-500">
           <div className="flex items-center">

@@ -48,6 +48,7 @@ export async function GET(
       id: speakingSession.id,
       title: speakingSession.title,
       language: speakingSession.languageId === 'ENGLISH' ? 'english' : 'french',
+      cefrLevel: speakingSession.cefrLevel,
       createdAt: speakingSession.createdAt,
       attempts: speakingSession.attempts.map(attempt => ({
         id: attempt.id,

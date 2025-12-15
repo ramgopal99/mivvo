@@ -26,7 +26,7 @@ const iconMap = {
   HelpCircle,
 };
 
-export function SkillCard({ type, selectedLanguage, level }: SkillCardProps) {
+export function SkillCard({ type, selectedLanguage }: SkillCardProps) {
   const router = useRouter();
   const [isReadingDialogOpen, setIsReadingDialogOpen] = useState(false);
   const [isWritingDialogOpen, setIsWritingDialogOpen] = useState(false);

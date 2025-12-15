@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, BarChart3, BookOpen, TrendingUp, Download, Clock, Target, Zap } from "lucide-react"
+import { ArrowLeft, BarChart3, BookOpen, TrendingUp, Clock, Target, Zap } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface ReadingSessionResult {
@@ -112,10 +112,6 @@ export function ReadingAttemptDetailsContent({ attempt }: ReadingAttemptDetailsC
   const result = attempt.results[0] // Get the latest result
   const overallScore = result?.overallScore
 
-  const handleDownloadData = async () => {
-    // Mock PDF download - in real app this would generate actual PDF
-    alert('PDF report download would be implemented here')
-  }
 
   return (
     <div className="space-y-6">

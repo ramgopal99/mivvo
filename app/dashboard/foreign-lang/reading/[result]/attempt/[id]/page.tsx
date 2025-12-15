@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
 import { useEffect, useState, use } from "react"
@@ -80,7 +81,9 @@ export default function ReadingAttemptDetailsPage({ params }: AttemptDetailsPage
             const langResult = await langResponse.json();
             if (langResult.success && langResult.data.preferredLanguage) {
               preferredLanguage = langResult.data.preferredLanguage;
-              setUserLanguage(preferredLanguage.toLowerCase());
+              if (preferredLanguage) {
+                setUserLanguage(preferredLanguage.toLowerCase());
+              }
             }
           }
         } catch (langError) {

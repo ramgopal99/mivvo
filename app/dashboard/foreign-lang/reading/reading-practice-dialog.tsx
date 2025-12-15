@@ -5,7 +5,6 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { readingPracticeTypes, type LanguageValue } from "../config";
-import { getActiveLanguages } from "../config";
 
 interface ReadingPracticeDialogProps {
   isOpen: boolean;

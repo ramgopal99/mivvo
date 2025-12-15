@@ -22,15 +22,16 @@ interface McqSessionResult {
 
 interface McqAttempt {
   id: string
-  sessionId: string
-  sessionTitle: string
   startedAt: Date
   completedAt: Date | null
   duration: number | null
   status: string
-  cefrLevel: string
-  sessionType: string
   createdAt: Date
+  session: {
+    id: string
+    title: string | null
+    language: string | null
+  }
   questions: Array<{
     id: string
     question: string
@@ -42,19 +43,7 @@ interface McqAttempt {
     isCorrect: boolean
     timeSpent: number
   }>
-  overallResult: {
-    id: string
-    overallScore: number | null
-    totalQuestions: number | null
-    correctAnswers: number | null
-    accuracyPercentage: number | null
-    feedback: string | null
-    overallFeedback: string | null
-    strengths: string[]
-    weaknesses: string[]
-    recommendations: string[]
-    timeSpent: number
-  } | null
+  overallResult: McqSessionResult | null
 }
 
 interface AttemptDetailsPageProps {

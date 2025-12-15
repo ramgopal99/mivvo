@@ -1,11 +1,11 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { type McqQuestionData, type McqSessionData } from "../data/mcq-practice-data";
+import { type McqQuestionData } from "../data/mcq-practice-data";
 
 interface McqPracticeInterfaceProps {
   sessionId: string;
-  data: McqQuestionData | McqSessionData;
+  data: McqQuestionData;
   userAnswers?: Record<string, number>;
   onAnswer: (sessionId: string, questionId: string, answer: number) => void;
 }
@@ -17,8 +17,7 @@ export function McqPracticeInterface({
   userAnswers = {},
   onAnswer
 }: McqPracticeInterfaceProps) {
-  // Handle both McqQuestionData and McqSessionData formats
-  const currentQuestion = 'question' in data ? data : (data as any).currentQuestion;
+  const currentQuestion = data;
 
   const handleAnswerSelect = (answerIndex: string) => {
     const answer = parseInt(answerIndex);
@@ -48,7 +47,7 @@ export function McqPracticeInterface({
 
             {/* Answer Options */}
             <div className="space-y-3">
-              {currentQuestion.options.map((option, index) => (
+              {currentQuestion.options.map((option: string, index: number) => (
                 <div
                   key={index}
                   className={`flex items-center space-x-2 p-3 border rounded-lg transition-colors cursor-pointer ${

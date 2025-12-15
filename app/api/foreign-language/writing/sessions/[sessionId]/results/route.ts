@@ -64,6 +64,7 @@ export async function GET(
           id: sessionId,
           title: 'Writing Session',
           language: 'english',
+          cefrLevel: 'A1',
           createdAt: new Date(),
           attempts: []
         },
@@ -76,6 +77,7 @@ export async function GET(
       id: writingSession.id,
       title: writingSession.title,
       language: writingSession.language.name.toLowerCase(),
+      cefrLevel: writingSession.cefrLevel,
       createdAt: writingSession.createdAt,
       attempts: writingSession.attempts.map(attempt => ({
         id: attempt.id,

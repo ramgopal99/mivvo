@@ -38,6 +38,7 @@ interface WritingAttempt {
     id: string
     title: string | null
     language: string | null
+    cefrLevel: string
     createdAt: Date
   }
   results: WritingSessionResult[]

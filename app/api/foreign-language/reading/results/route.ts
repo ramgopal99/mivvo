@@ -151,9 +151,6 @@ export async function POST(request: NextRequest) {
       : 0;
 
     const overallScore = Math.round((comprehensionScore + rearrangingScore) / 2);
-    const totalQuestions = savedComprehensionResults.length + savedRearrangingResults.length;
-    const correctAnswers = savedComprehensionResults.filter(r => r.isCorrect).length + savedRearrangingResults.filter(r => r.isCorrect).length;
-    const accuracyPercentage = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
 
     // Get CEFR level info for context
     const cefrLevel = readingSession.cefrLevel;

@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 import OpenAI from 'openai';
-import { practiceConfig, getCEFRLevel } from '@/app/dashboard/foreign-lang/config';
+import { practiceConfig, getCEFRLevel, type CEFRLevelDefinition } from '@/app/dashboard/foreign-lang/config';
 
 const prisma = new PrismaClient();
 const openai = new OpenAI({
@@ -147,7 +147,7 @@ export async function POST(request: NextRequest) {
         languageId: languageConfig.id,
         cefrLevel: currentLevel,
         timeLimit: practiceConfig.timeLimits.speaking,
-        totalTimeLimit: practiceConfig.questionCounts.speaking['listen-speak'] + practiceConfig.questionCounts.speaking['listen-repeat']
+        totalTimeLimit: practiceConfig.timeLimits.speaking
       }
     });
 
@@ -158,7 +158,7 @@ export async function POST(request: NextRequest) {
         data: {
           sessionId: speakingSession.id,
           question: question.question,
-          category: question.category,
+          category: question.category as 'LISTEN_SPEAK' | 'LISTEN_REPEAT',
           order: i + 1
         }
       });
@@ -233,7 +233,7 @@ async function generateSpeakingQuestion(prompt: string): Promise<{ question: str
   }
 }
 
-function generateQuestionPrompt(category: string, targetLanguage: string, levelInfo: any): string {
+function generateQuestionPrompt(category: string, targetLanguage: string, levelInfo: CEFRLevelDefinition): string {
   const categoryPrompts = {
     'listen-speak': `
 Generate a listen-and-speak question for ${targetLanguage} learners at ${levelInfo.level} level.
