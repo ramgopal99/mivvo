@@ -12,18 +12,39 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
             return NextResponse.json({ error: "Transaction ID is required" }, { status: 400 });
         }
 
-        const merchantId = process.env.NEXT_PUBLIC_MERCHANT_ID;
         const transactionId = id;
 
-        if (!merchantId || !process.env.NEXT_PUBLIC_SALT_KEY || !process.env.NEXT_PUBLIC_SALT_INDEX) {
+        // Handle test/mock transactions
+        if (transactionId.startsWith('TEST_TXN_')) {
+            console.log('Handling test transaction:', transactionId);
+
+            // For test transactions, simulate successful payment
+            // Find if there's a test payment record (though we don't create one for tests)
+            const payment = await prisma.payment.findFirst({
+                where: { transactionId: transactionId },
+                include: { user: true }
+            });
+
+            // Return success for test transactions
+            return new NextResponse("PAYMENT_SUCCESS", { status: 200 });
+        }
+
+        const merchantId = process.env.NEXT_PUBLIC_PHONE_PAY_CLIENT_ID;
+        const saltKey = process.env.NEXT_PUBLIC_PHONE_PAY_CLIENT_SECRET;
+        const saltIndex = process.env.NEXT_PUBLIC_PHONE_PAY_CLIENT_VERSION || "1";
+
+        if (!merchantId || !saltKey) {
             return NextResponse.json({ error: "Payment configuration missing" }, { status: 500 });
         }
 
-        const st = `/pg/v1/status/${merchantId}/${transactionId}` + process.env.NEXT_PUBLIC_SALT_KEY;
+        // Create checksum for status check
+        const st = `/status/${merchantId}/${transactionId}` + saltKey;
         const dataSha256 = sha256(st).toString();
-        const checksum = dataSha256 + "###" + process.env.NEXT_PUBLIC_SALT_INDEX;
+        const checksum = dataSha256 + "###" + saltIndex;
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_PHONE_PAY_HOST_URL}/pg/v1/status/${merchantId}/${transactionId}`, {
+        const apiUrl = process.env.NEXT_PUBLIC_PHONE_PAY_HOST_URL || "https://api-preprod.phonepe.com/apis/merchant/pg/v1";
+
+        const response = await fetch(`${apiUrl}/status/${merchantId}/${transactionId}`, {
             method: "GET",
             headers: {
                 accept: "application/json",
@@ -72,7 +93,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
                         where: { id: payment.userId },
                         data: {
                             totalCreditAllocation: {
-                                increment: payment.value / CREDIT_MULTIPLIER
+                                increment: payment.value
                             }
                         }
                     });

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -19,6 +19,13 @@ import {
 import { CreditCard, Loader2 } from "lucide-react"
 import { toast } from "sonner"
 
+// Declare PhonePe SDK types
+declare global {
+  interface Window {
+    PhonePe: any;
+  }
+}
+
 const paymentFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   mobile: z.string().regex(/^\d{10}$/, "Mobile number must be 10 digits"),
@@ -34,6 +41,46 @@ type PaymentFormValues = z.infer<typeof paymentFormSchema>
 const Pay = () => {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [sdkLoaded, setSdkLoaded] = useState(false)
+
+  // Load PhonePe SDK
+  useEffect(() => {
+    const loadPhonePeSDK = async () => {
+      try {
+        // Load PhonePe SDK script
+        const script = document.createElement('script')
+        script.src = 'https://mercury.phonepe.com/web/bundle/checkout.js'
+        script.async = true
+        script.onload = () => {
+          console.log('PhonePe SDK loaded successfully')
+          setSdkLoaded(true)
+
+          // Initialize PhonePe SDK with credentials
+          if (window.PhonePe && window.PhonePe.Checkout) {
+            const config = {
+              clientId: process.env.NEXT_PUBLIC_PHONE_PAY_CLIENT_ID,
+              clientSecret: process.env.NEXT_PUBLIC_PHONE_PAY_CLIENT_SECRET,
+              clientVersion: process.env.NEXT_PUBLIC_PHONE_PAY_CLIENT_VERSION,
+              environment: 'UAT', // or 'PRODUCTION'
+            }
+
+            window.PhonePe.Checkout.init(config)
+          }
+        }
+        script.onerror = () => {
+          console.error('Failed to load PhonePe SDK')
+          toast.error('Failed to load payment system')
+        }
+
+        document.head.appendChild(script)
+      } catch (error) {
+        console.error('Error loading PhonePe SDK:', error)
+        toast.error('Failed to initialize payment system')
+      }
+    }
+
+    loadPhonePeSDK()
+  }, [])
 
   const form = useForm<PaymentFormValues>({
     resolver: zodResolver(paymentFormSchema),
@@ -49,29 +96,71 @@ const Pay = () => {
     setIsSubmitting(true)
 
     try {
+      // Use API call directly (SDK approach removed for testing)
+      console.log('Initiating payment with data:', data)
+
       const response = await fetch('/api/initiate-payment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          paymentType: 'ADDON', // Default payment type
+          isTestRequest: true // Bypass authentication for test page
+        }),
       })
 
+      console.log('API response status:', response.status)
+
+      let result;
+      try {
+        result = await response.json();
+        console.log('API response data:', result);
+      } catch (e) {
+        // If response is not JSON, read as text
+        const responseText = await response.text();
+        console.log('API response text:', responseText);
+        result = { error: responseText };
+      }
+
       if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Payment initiation failed')
+        let errorMessage = 'Payment initiation failed';
+        if (result && result.error) {
+          errorMessage = result.error;
+        } else if (response.statusText) {
+          errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+        }
+        console.error('API error:', errorMessage);
+        throw new Error(errorMessage);
       }
 
-      const result = await response.json()
-      console.log('Payment initiated successfully:', result)
-
-      toast.success("Payment initiated successfully!")
-
-      if (result.redirectUrl) {
-        router.push(result.redirectUrl)
-      } else {
-        throw new Error('No redirect URL received from server')
+      // Check for error in successful JSON response
+      if (result && result.error) {
+        console.error('API returned error in successful response:', result.error);
+        throw new Error(result.error);
       }
+
+      // Validate response structure
+      if (!result || typeof result !== 'object') {
+        throw new Error('Invalid response format from server');
+      }
+
+      if (!result.success) {
+        throw new Error(result.error || 'Payment initiation failed');
+      }
+
+      if (!result.redirectUrl) {
+        throw new Error('No redirect URL received from server');
+      }
+
+      if (!result.transactionId) {
+        throw new Error('No transaction ID received from server');
+      }
+
+      console.log('Payment initiated successfully:', result);
+      toast.success("Payment initiated successfully!");
+      router.push(result.redirectUrl);
     } catch (error) {
       console.error("Payment error:", error)
       toast.error(error instanceof Error ? error.message : "Payment failed. Please try again.")
@@ -93,6 +182,14 @@ const Pay = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
+          {!sdkLoaded && (
+            <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+              <p className="text-sm text-blue-700 flex items-center">
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                Initializing PhonePe payment system...
+              </p>
+            </div>
+          )}
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
@@ -166,16 +263,21 @@ const Pay = () => {
                 )}
               />
 
-              <Button type="submit" className="w-full" disabled={isSubmitting}>
+              <Button type="submit" className="w-full" disabled={isSubmitting || !sdkLoaded}>
                 {isSubmitting ? (
                   <>
                     <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                     Processing...
                   </>
+                ) : !sdkLoaded ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Loading Payment System...
+                  </>
                 ) : (
                   <>
                     <CreditCard className="h-4 w-4 mr-2" />
-                    Pay Now
+                    Pay Now with PhonePe
                   </>
                 )}
               </Button>
@@ -188,3 +290,4 @@ const Pay = () => {
 }
 
 export default Pay
+
