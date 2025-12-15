@@ -6,6 +6,17 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ArrowLeft, BarChart3, Volume2, TrendingUp, Download, Clock, Target, Zap, Mic, Headphones } from "lucide-react"
 import { useRouter } from "next/navigation"
 
+interface SpeakingQuestionResult {
+  id: string
+  question: string
+  category: string
+  userAnswer: string | null
+  wordCount: number
+  timeSpent: number
+  audioDuration: number | null
+  confidence: number | null
+}
+
 interface SpeakingSessionResult {
   id: string
   overallScore: number | null
@@ -39,7 +50,8 @@ interface SpeakingAttempt {
     language: string | null
     createdAt: Date
   }
-  results: SpeakingSessionResult[]
+  questions: SpeakingQuestionResult[]
+  overallResult: SpeakingSessionResult | null
 }
 
 interface SpeakingAttemptDetailsContentProps {
@@ -72,7 +84,7 @@ export function SpeakingAttemptDetailsContent({ attempt, resultId }: SpeakingAtt
     return labels[language || ''] || "English"
   }
 
-  const result = attempt.results[0] // Get the latest result
+  const result = attempt.overallResult // Get the overall result
   const overallScore = result?.overallScore || 0
 
   const handleDownloadData = async () => {
@@ -118,10 +130,14 @@ export function SpeakingAttemptDetailsContent({ attempt, resultId }: SpeakingAtt
 
       {/* Main Content with Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="overview" className="flex items-center space-x-2">
             <BarChart3 className="w-4 h-4" />
             <span>Overview</span>
+          </TabsTrigger>
+          <TabsTrigger value="responses" className="flex items-center space-x-2">
+            <Mic className="w-4 h-4" />
+            <span>Responses</span>
           </TabsTrigger>
           <TabsTrigger value="analysis" className="flex items-center space-x-2">
             <Volume2 className="w-4 h-4" />
@@ -138,6 +154,10 @@ export function SpeakingAttemptDetailsContent({ attempt, resultId }: SpeakingAtt
             attempt={attempt}
             overallScore={overallScore}
           />
+        </TabsContent>
+
+        <TabsContent value="responses" className="space-y-6">
+          <ResponsesSection attempt={attempt} />
         </TabsContent>
 
         <TabsContent value="analysis" className="space-y-6">
@@ -171,7 +191,7 @@ export function SpeakingAttemptDetailsContent({ attempt, resultId }: SpeakingAtt
 
 // Overview Section Component
 function OverviewSection({ attempt, overallScore }: { attempt: SpeakingAttempt; overallScore: number }) {
-  const result = attempt.results[0]
+  const result = attempt.overallResult
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -183,12 +203,20 @@ function OverviewSection({ attempt, overallScore }: { attempt: SpeakingAttempt; 
         </div>
         <div className="space-y-3">
           <div className="flex justify-between items-center">
-            <span className="text-sm text-gray-600">Speaking Skills</span>
-            <span className="text-sm font-medium text-green-600">{result?.speakingScore || 0}/100</span>
+            <span className="text-sm text-gray-600">Fluency</span>
+            <span className="text-sm font-medium text-green-600">{result?.fluencyScore || 0}/100</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-sm text-gray-600">Listening Skills</span>
-            <span className="text-sm font-medium text-purple-600">{result?.listeningScore || 0}/100</span>
+            <span className="text-sm text-gray-600">Pronunciation</span>
+            <span className="text-sm font-medium text-purple-600">{result?.pronunciationScore || 0}/100</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-sm text-gray-600">Vocabulary</span>
+            <span className="text-sm font-medium text-orange-600">{result?.vocabularyScore || 0}/100</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-sm text-gray-600">Grammar</span>
+            <span className="text-sm font-medium text-red-600">{result?.grammarScore || 0}/100</span>
           </div>
         </div>
       </div>
@@ -205,12 +233,12 @@ function OverviewSection({ attempt, overallScore }: { attempt: SpeakingAttempt; 
             <span className="text-sm font-medium">{Math.round((attempt.duration || 0) / 60)}min</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-sm text-gray-600">Exercises Completed</span>
-            <span className="text-sm font-medium">8</span>
+            <span className="text-sm text-gray-600">Questions Completed</span>
+            <span className="text-sm font-medium">{attempt.questions.length}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-sm text-gray-600">Conversations</span>
-            <span className="text-sm font-medium">3</span>
+            <span className="text-sm text-gray-600">Total Words</span>
+            <span className="text-sm font-medium">{result?.totalWords || 0}</span>
           </div>
         </div>
       </div>
@@ -287,16 +315,61 @@ function AnalysisSection({ result }: { result: SpeakingSessionResult }) {
   )
 }
 
+// Responses Section Component
+function ResponsesSection({ attempt }: { attempt: SpeakingAttempt }) {
+  return (
+    <div className="space-y-6">
+      <div className="bg-white rounded-lg border">
+        <div className="p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Your Speaking Responses</h3>
+          <div className="space-y-4">
+            {attempt.questions.map((question, index) => (
+              <div key={question.id} className="border rounded-lg p-4">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded">
+                        Question {index + 1}
+                      </span>
+                      <span className="text-xs text-gray-500">
+                        {question.category}
+                      </span>
+                    </div>
+                    <p className="text-sm font-medium text-gray-900 mb-2">
+                      {question.question}
+                    </p>
+                  </div>
+                  <div className="text-right text-xs text-gray-500">
+                    <div>{question.wordCount} words</div>
+                    <div>{question.timeSpent}s</div>
+                  </div>
+                </div>
+
+                {question.userAnswer ? (
+                  <div className="bg-gray-50 rounded p-3">
+                    <p className="text-sm text-gray-700 leading-relaxed">
+                      "{question.userAnswer}"
+                    </p>
+                  </div>
+                ) : (
+                  <div className="bg-yellow-50 border border-yellow-200 rounded p-3">
+                    <p className="text-sm text-yellow-800">
+                      No response recorded for this question.
+                    </p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // Metrics Section Component
 function MetricsSection({ result }: { result: SpeakingSessionResult }) {
   const metrics = [
-    {
-      label: "Pronunciation",
-      value: result?.pronunciationScore ? `${result.pronunciationScore}%` : "N/A",
-      description: "Clarity and accuracy of spoken sounds",
-      color: "text-green-600",
-      icon: Mic
-    },
     {
       label: "Fluency",
       value: result?.fluencyScore ? `${result.fluencyScore}%` : "N/A",
@@ -305,32 +378,39 @@ function MetricsSection({ result }: { result: SpeakingSessionResult }) {
       icon: Zap
     },
     {
-      label: "Vocabulary Usage",
+      label: "Pronunciation",
+      value: result?.pronunciationScore ? `${result.pronunciationScore}%` : "N/A",
+      description: "Clarity and accuracy of spoken sounds",
+      color: "text-green-600",
+      icon: Mic
+    },
+    {
+      label: "Vocabulary",
       value: result?.vocabularyScore ? `${result.vocabularyScore}%` : "N/A",
       description: "Appropriate word choice and variety",
       color: "text-purple-600",
       icon: Target
     },
     {
-      label: "Listening Comprehension",
-      value: result?.comprehensionScore ? `${result.comprehensionScore}%` : "N/A",
-      description: "Understanding of spoken content",
+      label: "Grammar",
+      value: result?.grammarScore ? `${result.grammarScore}%` : "N/A",
+      description: "Accuracy of grammatical structures",
       color: "text-orange-600",
-      icon: Headphones
-    },
-    {
-      label: "Listening Accuracy",
-      value: result?.listeningAccuracy ? `${result.listeningAccuracy}%` : "N/A",
-      description: "Correct interpretation of heard information",
-      color: "text-red-600",
       icon: Volume2
     },
     {
-      label: "Response Time",
-      value: result?.responseTime ? `${result.responseTime}%` : "N/A",
-      description: "Speed and appropriateness of responses",
+      label: "Overall Score",
+      value: result?.overallScore ? `${result.overallScore}%` : "N/A",
+      description: "Combined performance across all areas",
       color: "text-indigo-600",
       icon: TrendingUp
+    },
+    {
+      label: "Words Spoken",
+      value: result?.totalWords ? `${result.totalWords}` : "N/A",
+      description: "Total number of words in responses",
+      color: "text-gray-600",
+      icon: BarChart3
     }
   ]
 

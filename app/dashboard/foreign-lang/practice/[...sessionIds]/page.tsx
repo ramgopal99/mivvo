@@ -27,50 +27,105 @@ export default function PracticePage() {
   const sessionIds = Array.isArray(params.sessionIds) ? params.sessionIds : [params.sessionIds as string];
 
   const handlePracticeComplete = async (results: PracticeResult[]) => {
-    console.log("Practice completed with results:", results);
-    console.log("Session IDs:", sessionIds);
-
     try {
       // Determine session type by checking if it's an MCQ or reading session
       const mainSessionId = sessionIds[0];
-      console.log("Using main session ID:", mainSessionId);
 
-      // Check if it's a writing session first (since writing sessions include both writing and chat)
-      const writingResponse = await fetch(`/api/foreign-language/writing/sessions/${mainSessionId}`, {
+      // Check if it's a speaking session first
+      const speakingResponse = await fetch(`/api/foreign-language/speaking/sessions/${mainSessionId}`, {
         method: 'HEAD' // Just check if it exists
       });
 
       let apiEndpoint: string;
-      if (writingResponse.ok) {
-        // It's a writing session
-        apiEndpoint = '/api/foreign-language/writing/results';
-        console.log("Detected writing session, using endpoint:", apiEndpoint);
+      if (speakingResponse.ok) {
+        // It's a speaking session
+        apiEndpoint = '/api/foreign-language/speaking/results';
       } else {
-        // Check if it's an MCQ session
-        const mcqResponse = await fetch(`/api/foreign-language/mcq/sessions/${mainSessionId}`, {
+        // Check if it's a writing session (since writing sessions include both writing and chat)
+        const writingResponse = await fetch(`/api/foreign-language/writing/sessions/${mainSessionId}`, {
           method: 'HEAD' // Just check if it exists
         });
 
-        if (mcqResponse.ok) {
-          // It's an MCQ session
-          apiEndpoint = '/api/foreign-language/mcq/results';
-          console.log("Detected MCQ session, using endpoint:", apiEndpoint);
+        if (writingResponse.ok) {
+          // It's a writing session
+          apiEndpoint = '/api/foreign-language/writing/results';
         } else {
-          // Check if it's a reading session
-          const readingResponse = await fetch(`/api/foreign-language/reading/sessions/${mainSessionId}`, {
+          // Check if it's an MCQ session
+          const mcqResponse = await fetch(`/api/foreign-language/mcq/sessions/${mainSessionId}`, {
             method: 'HEAD' // Just check if it exists
           });
 
-          if (readingResponse.ok) {
-            // It's a reading session
-            apiEndpoint = '/api/foreign-language/reading/results';
-            console.log("Detected reading session, using endpoint:", apiEndpoint);
+          if (mcqResponse.ok) {
+            // It's an MCQ session
+            apiEndpoint = '/api/foreign-language/mcq/results';
           } else {
-            // Fallback to the old combined endpoint
-            apiEndpoint = '/api/foreign-language/user/results';
-            console.log("Could not determine session type, using fallback endpoint:", apiEndpoint);
+            // Check if it's a reading session
+            const readingResponse = await fetch(`/api/foreign-language/reading/sessions/${mainSessionId}`, {
+              method: 'HEAD' // Just check if it exists
+            });
+
+            if (readingResponse.ok) {
+              // It's a reading session
+              apiEndpoint = '/api/foreign-language/reading/results';
+            } else {
+              // Fallback to the old combined endpoint
+              apiEndpoint = '/api/foreign-language/user/results';
+            }
           }
         }
+      }
+
+      // Enhance results with localStorage data for speaking sessions
+      let enhancedResults = results;
+      if (apiEndpoint === '/api/foreign-language/speaking/results' && typeof window !== 'undefined') {
+        enhancedResults = results.map(result => {
+          const resultKey = `speaking-result-${result.sessionId}`;
+          const resultData = localStorage.getItem(resultKey);
+
+          console.log('Enhancing result for sessionId:', result.sessionId);
+          console.log('Looking for localStorage key:', resultKey);
+          console.log('localStorage data found:', !!resultData);
+
+          if (resultData) {
+            try {
+              const savedResult = JSON.parse(resultData);
+              console.log('Parsed saved result:', savedResult);
+              console.log('Saved userAnswer:', savedResult.userAnswer);
+              console.log('Saved duration:', savedResult.duration);
+
+              // Only use saved result if it's recent (within last 24 hours)
+              if (Date.now() - savedResult.timestamp < 24 * 60 * 60 * 1000) {
+                // Calculate word count from user answer
+                const userAnswer = savedResult.userAnswer || result.userAnswer || '';
+                const wordCount = userAnswer.trim().length > 0 ? userAnswer.trim().split(/\s+/).filter((word: string) => word.length > 0).length : 0;
+
+                const enhanced = {
+                  ...result,
+                  userAnswer: userAnswer,
+                  timeSpent: savedResult.duration || result.timeSpent,
+                  wordCount: wordCount
+                };
+                console.log('Enhanced result:', enhanced);
+                return enhanced;
+              } else {
+                console.log('Saved result is too old');
+              }
+            } catch (error) {
+              console.warn('Failed to parse speaking result:', error);
+            }
+          } else {
+            console.log('No localStorage data found for key:', resultKey);
+          }
+
+          console.log('Returning original result:', result);
+          return result;
+        });
+
+        // Clean up saved results after submission
+        enhancedResults.forEach(result => {
+          const resultKey = `speaking-result-${result.sessionId}`;
+          localStorage.removeItem(resultKey);
+        });
       }
 
       // Prepare headers with JWT token if using JWT authentication
@@ -93,23 +148,20 @@ export default function PracticePage() {
         method: 'POST',
         headers,
         body: JSON.stringify({
-          results,
+          results: enhancedResults,
           sessionId: mainSessionId
         }),
       });
 
       const result = await response.json();
       if (result.success) {
-        console.log('Results saved successfully:', result.data);
         // Always redirect to main foreign language page
         router.push('/dashboard/foreign-lang');
       } else {
-        console.error('Failed to save results:', result.error);
         // Redirect back to main page on error
         router.push('/dashboard/foreign-lang');
       }
-    } catch (error) {
-      console.error('Error saving practice results:', error);
+    } catch (_error) { // eslint-disable-line @typescript-eslint/no-unused-vars
       // Redirect back to main page on error
       router.push('/dashboard/foreign-lang');
     }

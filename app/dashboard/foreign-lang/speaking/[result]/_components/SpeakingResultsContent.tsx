@@ -10,13 +10,17 @@ interface SpeakingSessionResult {
   id: string
   duration: number | null
   feedback: string | null
-  speakingScore: number | null
-  listeningScore: number | null
+  fluencyScore: number | null
+  pronunciationScore: number | null
+  vocabularyScore: number | null
+  grammarScore: number | null
   overallScore: number | null
   overallFeedback: string | null
   strengths: string[]
   weaknesses: string[]
   recommendations: string[]
+  totalWords: number | null
+  averageAudioDuration: number | null
   createdAt: Date
 }
 
@@ -60,8 +64,10 @@ export function SpeakingResultsContent({ session }: SpeakingResultsContentProps)
 
   const bestScore = attempts.length > 0 ? Math.max(...attempts.map(a => getAttemptScore(a))) : 0
   const averageScore = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + getAttemptScore(a), 0) / attempts.length) : 0
-  const averageSpeaking = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + (getAttemptAnalysis(a)?.speakingScore || 0), 0) / attempts.length) : 0
-  const averageListening = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + (getAttemptAnalysis(a)?.listeningScore || 0), 0) / attempts.length) : 0
+  const averageFluency = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + (getAttemptAnalysis(a)?.fluencyScore || 0), 0) / attempts.length) : 0
+  const averagePronunciation = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + (getAttemptAnalysis(a)?.pronunciationScore || 0), 0) / attempts.length) : 0
+  const averageVocabulary = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + (getAttemptAnalysis(a)?.vocabularyScore || 0), 0) / attempts.length) : 0
+  const averageGrammar = attempts.length > 0 ? Math.round(attempts.reduce((sum, a) => sum + (getAttemptAnalysis(a)?.grammarScore || 0), 0) / attempts.length) : 0
 
   const formatDate = (date: Date) => {
     return new Date(date).toLocaleDateString('en-US', {
@@ -125,21 +131,21 @@ export function SpeakingResultsContent({ session }: SpeakingResultsContentProps)
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg Speaking</CardTitle>
+            <CardTitle className="text-sm font-medium">Avg Fluency</CardTitle>
             <Mic className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-600">{averageSpeaking}</div>
+            <div className="text-2xl font-bold text-blue-600">{averageFluency}</div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg Listening</CardTitle>
+            <CardTitle className="text-sm font-medium">Avg Pronunciation</CardTitle>
             <Volume2 className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-purple-600">{averageListening}</div>
+            <div className="text-2xl font-bold text-purple-600">{averagePronunciation}</div>
           </CardContent>
         </Card>
       </div>
@@ -229,16 +235,28 @@ export function SpeakingResultsContent({ session }: SpeakingResultsContentProps)
                                 <div className="text-xl font-bold text-blue-600">{Math.round(analysis.overallScore!)}</div>
                                 <div className="text-xs text-gray-600">Overall</div>
                               </div>
-                              {analysis.speakingScore && (
+                              {analysis.fluencyScore && (
                                 <div className="text-center">
-                                  <div className="text-lg font-semibold text-green-600">{Math.round(analysis.speakingScore)}</div>
-                                  <div className="text-xs text-gray-600">Speaking</div>
+                                  <div className="text-lg font-semibold text-green-600">{Math.round(analysis.fluencyScore)}</div>
+                                  <div className="text-xs text-gray-600">Fluency</div>
                                 </div>
                               )}
-                              {analysis.listeningScore && (
+                              {analysis.pronunciationScore && (
                                 <div className="text-center">
-                                  <div className="text-lg font-semibold text-purple-600">{Math.round(analysis.listeningScore)}</div>
-                                  <div className="text-xs text-gray-600">Listening</div>
+                                  <div className="text-lg font-semibold text-purple-600">{Math.round(analysis.pronunciationScore)}</div>
+                                  <div className="text-xs text-gray-600">Pronunciation</div>
+                                </div>
+                              )}
+                              {analysis.vocabularyScore && (
+                                <div className="text-center">
+                                  <div className="text-lg font-semibold text-orange-600">{Math.round(analysis.vocabularyScore)}</div>
+                                  <div className="text-xs text-gray-600">Vocabulary</div>
+                                </div>
+                              )}
+                              {analysis.grammarScore && (
+                                <div className="text-center">
+                                  <div className="text-lg font-semibold text-red-600">{Math.round(analysis.grammarScore)}</div>
+                                  <div className="text-xs text-gray-600">Grammar</div>
                                 </div>
                               )}
                             </div>

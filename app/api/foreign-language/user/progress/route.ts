@@ -116,21 +116,50 @@ export async function GET(request: NextRequest) {
       }
     });
 
+    // Get all speaking attempts with scores to calculate points
+    const speakingAttempts = await prisma.speakingAttempt.findMany({
+      where: {
+        userId: session.user.id,
+        languageId: languageConfigId
+      },
+      include: {
+        session: {
+          select: {
+            cefrLevel: true,
+            languageId: true
+          }
+        },
+        overallResult: {
+          select: {
+            overallScore: true
+          }
+        }
+      }
+    });
+
     // Filter attempts by skill type if specified
     let filteredReadingAttempts = readingAttempts;
     let filteredMcqAttempts = mcqAttempts;
     let filteredWritingAttempts = writingAttempts;
+    let filteredSpeakingAttempts = speakingAttempts;
 
     if (skillType) {
       if (skillType.toLowerCase() === 'reading') {
         filteredMcqAttempts = []; // Only show reading attempts
         filteredWritingAttempts = [];
+        filteredSpeakingAttempts = [];
       } else if (skillType.toLowerCase() === 'mcq') {
         filteredReadingAttempts = []; // Only show MCQ attempts
         filteredWritingAttempts = [];
+        filteredSpeakingAttempts = [];
       } else if (skillType.toLowerCase() === 'writing') {
         filteredReadingAttempts = []; // Only show writing attempts
         filteredMcqAttempts = [];
+        filteredSpeakingAttempts = [];
+      } else if (skillType.toLowerCase() === 'speaking') {
+        filteredReadingAttempts = []; // Only show speaking attempts
+        filteredMcqAttempts = [];
+        filteredWritingAttempts = [];
       }
     }
 
@@ -138,7 +167,8 @@ export async function GET(request: NextRequest) {
     const allAttempts = [
       ...filteredReadingAttempts.map(attempt => ({ ...attempt, skillType: 'reading' })),
       ...filteredMcqAttempts.map(attempt => ({ ...attempt, skillType: 'mcq' })),
-      ...filteredWritingAttempts.map(attempt => ({ ...attempt, skillType: 'writing' }))
+      ...filteredWritingAttempts.map(attempt => ({ ...attempt, skillType: 'writing' })),
+      ...filteredSpeakingAttempts.map(attempt => ({ ...attempt, skillType: 'speaking' }))
     ];
 
 
@@ -338,6 +368,15 @@ export async function GET(request: NextRequest) {
       attemptId: attempt.id
     }));
 
+    const speakingScores = speakingAttempts.map(attempt => ({
+      level: attempt.session.cefrLevel,
+      score: attempt.overallResult?.overallScore || 0,
+      points: attempt.overallResult?.overallScore ? calculatePointsFromScore(attempt.overallResult.overallScore) : 0,
+      completedAt: attempt.completedAt || attempt.createdAt,
+      sessionId: attempt.sessionId,
+      attemptId: attempt.id
+    }));
+
     return NextResponse.json({
       success: true,
       data: {
@@ -352,7 +391,8 @@ export async function GET(request: NextRequest) {
         scores: {
           reading: readingScores,
           mcq: mcqScores,
-          writing: writingScores
+          writing: writingScores,
+          speaking: speakingScores
         }
       }
     });

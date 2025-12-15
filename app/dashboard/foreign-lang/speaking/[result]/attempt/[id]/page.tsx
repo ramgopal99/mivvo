@@ -4,42 +4,55 @@ import { useEffect, useState, use } from "react"
 import { useSession } from "next-auth/react"
 import { notFound } from "next/navigation"
 import { SpeakingAttemptDetailsContent } from "../_components/SpeakingAttemptDetailsContent"
-import { speakingAnalysisData } from "../../../index"
 
-interface SpeakingSessionResult {
+interface SpeakingQuestionResult {
   id: string
-  overallScore: number | null
-  overallFeedback: string | null
+  question: string
+  category: string
+  userAnswer: string | null
+  wordCount: number
+  timeSpent: number
+  audioDuration: number | null
+  confidence: number | null
+}
+
+interface SpeakingOverallResult {
+  id: string
+  fluencyScore: number
+  pronunciationScore: number
+  vocabularyScore: number
+  grammarScore: number
+  overallScore: number
+  feedback: string
+  overallFeedback: string
   strengths: string[]
   weaknesses: string[]
   recommendations: string[]
-  speakingScore: number | null
-  listeningScore: number | null
-  feedback: string | null
-  duration: number | null
-  createdAt: Date
-  pronunciationScore: number | null
-  fluencyScore: number | null
-  vocabularyScore: number | null
-  comprehensionScore: number | null
-  listeningAccuracy: number | null
-  responseTime: number | null
+  totalWords: number
+  averageAudioDuration: number
+  timeSpent: number
 }
 
 interface SpeakingAttempt {
   id: string
+  sessionId: string
+  sessionTitle: string
   startedAt: Date
   completedAt: Date | null
   duration: number | null
   status: string
+  cefrLevel: string
+  sessionType: string
   createdAt: Date
   session: {
     id: string
-    title: string | null
-    language: string | null
-    createdAt: Date
+    title: string
+    cefrLevel: string
+    sessionType: string
+    language: string
   }
-  results: SpeakingSessionResult[]
+  questions: SpeakingQuestionResult[]
+  overallResult: SpeakingOverallResult | null
 }
 
 interface AttemptDetailsPageProps {
@@ -75,34 +88,41 @@ export default function SpeakingAttemptDetailsPage({ params }: AttemptDetailsPag
 
       setAuthenticated(true)
 
-      // Load attempt data from data file
+      // Load attempt data from API
       try {
-        // Determine language from session ID
-        const language = result.includes('french') ? 'french' : 'english'
+        // Prepare headers with JWT token if using JWT authentication
+        const headers: Record<string, string> = {
+          'Content-Type': 'application/json',
+        };
 
-        // Find the session and attempt from the appropriate language data
-        const sessionAnalysis = speakingAnalysisData[language]?.find(session => session.id === result)
-        const attemptData = sessionAnalysis?.attempts.find(attempt => attempt.id === id)
+        // Check for JWT tokens in localStorage
+        const token = typeof window !== 'undefined' ? (
+          localStorage.getItem('token') ||
+          localStorage.getItem('student_token') ||
+          localStorage.getItem('college_token')
+        ) : null;
 
-        if (sessionAnalysis && attemptData) {
-          const attemptWithSession: SpeakingAttempt = {
-            ...attemptData,
-            session: {
-              id: result,
-              title: sessionAnalysis.title,
-              language: sessionAnalysis.language,
-              createdAt: sessionAnalysis.createdAt
-            }
-          }
-          setAttempt(attemptWithSession)
+        if (token) {
+          headers['Authorization'] = `Bearer ${token}`;
+        }
+
+        const response = await fetch(`/api/foreign-language/speaking/attempts/${id}`, {
+          headers
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          setAttempt(result.data);
         } else {
-          notFound()
+          console.error('Failed to load speaking attempt:', result.error);
+          notFound();
         }
       } catch (error) {
-        console.error('Error loading speaking attempt:', error)
-        notFound()
+        console.error('Error loading speaking attempt:', error);
+        notFound();
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     }
 

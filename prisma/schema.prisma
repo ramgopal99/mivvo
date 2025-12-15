@@ -199,6 +199,7 @@ model User {
   // Foreign Language Learning Relations
   readingAttempts      ReadingAttempt[]
   mcqAttempts          McqAttempt[]
+  speakingAttempts     SpeakingAttempt[]
   writingAttempts      WritingAttempt[]
   levelProgress        UserLevelProgress[]
 
@@ -678,6 +679,17 @@ enum McqQuestionCategory {
   WORD_REPLACEMENT
 }
 
+enum SpeakingSessionType {
+  LISTEN_SPEAK
+  LISTEN_REPEAT
+  MIXED
+}
+
+enum SpeakingQuestionCategory {
+  LISTEN_SPEAK
+  LISTEN_REPEAT
+}
+
 // Language configuration - configurable languages
 model LanguageConfig {
   id          String   @id @default(cuid()) @map("_id")
@@ -692,10 +704,12 @@ model LanguageConfig {
   skills            SkillConfig[]
   readingSessions   ReadingSession[]
   mcqSessions       McqSession[]
+  speakingSessions  SpeakingSession[]
   writingSessions   WritingSession[]
   userLevelProgress UserLevelProgress[]
   readingAttempts   ReadingAttempt[]
   mcqAttempts       McqAttempt[]
+  speakingAttempts  SpeakingAttempt[]
   writingAttempts   WritingAttempt[]
 
   @@map("language_configs")
@@ -982,6 +996,124 @@ model McqOverallResult {
   updatedAt             DateTime @updatedAt
 
   @@map("mcq_overall_results")
+}
+
+// =============================================================================
+// SPEAKING PRACTICE MODELS
+// =============================================================================
+
+// Speaking session
+model SpeakingSession {
+  id                String              @id @default(cuid()) @map("_id")
+  title             String
+  sessionType       SpeakingSessionType
+  languageId        String
+  cefrLevel         String              // CEFR level (e.g., "A1", "A2", etc.)
+  timeLimit         Int?                // Time limit in minutes per question
+  totalTimeLimit    Int?                // Total time limit in minutes for entire session
+  isActive          Boolean             @default(true)
+
+  // Relations
+  language          LanguageConfig      @relation(fields: [languageId], references: [id], onDelete: Cascade)
+  questions         SpeakingQuestion[]
+  attempts          SpeakingAttempt[]
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("speaking_sessions")
+}
+
+// Speaking questions
+model SpeakingQuestion {
+  id          String                  @id @default(cuid()) @map("_id")
+  sessionId   String
+  question    String
+  category    SpeakingQuestionCategory
+  order       Int                     // Question order in session
+
+  // Relations
+  session     SpeakingSession         @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  results     SpeakingResult[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([sessionId, order])
+  @@map("speaking_questions")
+}
+
+// Speaking attempt
+model SpeakingAttempt {
+  id              String         @id @default(cuid()) @map("_id")
+  userId          String
+  sessionId       String
+  languageId      String         // Language for this attempt (redundant but for performance)
+  status          AttemptStatus  @default(IN_PROGRESS)
+  startedAt       DateTime       @default(now())
+  completedAt     DateTime?
+  duration        Int?           // Duration in seconds
+
+  // Relations
+  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  session         SpeakingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  language        LanguageConfig @relation(fields: [languageId], references: [id], onDelete: Cascade)
+  results         SpeakingResult[]
+  overallResult   SpeakingOverallResult?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([userId, sessionId, startedAt]) // Prevent duplicate attempts
+  @@map("speaking_attempts")
+}
+
+// Speaking result for individual questions
+model SpeakingResult {
+  id              String  @id @default(cuid()) @map("_id")
+  attemptId       String
+  questionId      String
+  userAnswer      String  // User's spoken answer (transcription)
+  wordCount       Int     // Word count of the answer
+  timeSpent       Int     // Time spent speaking in seconds
+  audioDuration   Float?  // Duration of the audio recording in seconds
+  confidence      Float?  // Speech recognition confidence (0-1)
+
+  // Relations
+  attempt         SpeakingAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question        SpeakingQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  createdAt       DateTime @default(now())
+
+  @@unique([attemptId, questionId])
+  @@map("speaking_results")
+}
+
+// Overall result for speaking attempt
+model SpeakingOverallResult {
+  id                    String  @id @default(cuid()) @map("_id")
+  attemptId             String  @unique
+  fluencyScore          Int     // Fluency score (0-100)
+  pronunciationScore    Int     // Pronunciation score (0-100)
+  vocabularyScore       Int     // Vocabulary score (0-100)
+  grammarScore          Int     // Grammar score (0-100)
+  overallScore          Int     // Overall score (0-100)
+  feedback              String
+  overallFeedback       String
+  strengths             String[] // Array of strengths
+  weaknesses            String[] // Array of weaknesses
+  recommendations       String[] // Array of recommendations
+  totalWords            Int      // Total words spoken
+  averageAudioDuration  Float    // Average audio duration per response
+  timeSpent             Int      // Total time spent in seconds
+
+  // Relations
+  attempt               SpeakingAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@map("speaking_overall_results")
 }
 
 // User's level progress tracking

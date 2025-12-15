@@ -51,6 +51,8 @@ interface PracticeResult {
   isCorrect?: boolean;
   timeSpent: number;
   completedAt: Date;
+  wordCount?: number; // For speaking results
+  audioDuration?: number; // For speaking results
 }
 
 type QuestionStatus = 'answered' | 'not-answered' | 'marked' | 'not-visited';
@@ -191,6 +193,13 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
           if (result.success) {
             setSessionData(result.data);
           }
+        } else if (sessionId.startsWith('speaking-session-')) {
+          const response = await fetch(`/api/foreign-language/speaking/sessions/${sessionId}`);
+          const result = await response.json();
+
+          if (result.success) {
+            setSessionData(result.data);
+          }
         }
       } catch (error) {
         console.error('Error loading session data:', error);
@@ -206,8 +215,8 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
   const sessions = useMemo(() => {
     const sessionArray: Array<{
       id: string;
-      type: 'reading-comprehension' | 'rearrange-sentences' | 'writing' | 'mcq' | 'grammar-mcq' | 'error-detection' | 'synonyms-antonyms' | 'sentence-completion' | 'word-replacement' | 'speaking' | 'chat';
-      data: ReadingComprehensionData | RearrangeSentenceData | WritingTopicData | McqQuestionData | SpeakingSessionData | McqQuestionSession | SpeakingQuestionSessionData | WritingSessionData | ChatScenario;
+      type: 'reading-comprehension' | 'rearrange-sentences' | 'writing' | 'mcq' | 'grammar-mcq' | 'error-detection' | 'synonyms-antonyms' | 'sentence-completion' | 'word-replacement' | 'speaking' | 'listen-speak' | 'listen-repeat' | 'chat';
+      data: ReadingComprehensionData | RearrangeSentenceData | WritingTopicData | McqQuestionData | SpeakingSessionData | McqQuestionSession | SpeakingQuestionSessionData | WritingSessionData | ChatScenario | { id: string; question: string; category: 'listen-speak' | 'listen-repeat' };
     }> = [];
 
     if (sessionData && sessionIds.length > 0) {
@@ -294,6 +303,41 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
                 correctAnswer: questionData.correctAnswer,
                 explanation: questionData.explanation,
                 category: category as 'grammar' | 'error-detection' | 'synonyms-antonyms' | 'sentence-completion' | 'word-replacement'
+              }
+            });
+          }
+        });
+      } else if (sessionId.startsWith('speaking-session-') && sessionData.questions) {
+        // Handle API-generated speaking sessions
+        const allQuestions = sessionData.questions
+          .filter(q => q.type === 'speaking' && q.data)
+          .map(q => q.data);
+
+        allQuestions.forEach((questionData, index) => {
+          if (questionData.question) {
+            const category = (questionData as { category?: string }).category?.toLowerCase() || 'listen_speak';
+            let questionType: 'listen-speak' | 'listen-repeat' = 'listen-speak';
+
+            // Map category to specific speaking type
+            switch (category) {
+              case 'listen_speak':
+                questionType = 'listen-speak';
+                break;
+              case 'listen-repeat':
+              case 'listen_repeat':
+                questionType = 'listen-repeat';
+                break;
+              default:
+                questionType = 'listen-speak';
+            }
+
+            sessionArray.push({
+              id: `${sessionId}-speaking-${index}`,
+              type: questionType,
+              data: {
+                id: questionData.id,
+                question: questionData.question,
+                category: questionType
               }
             });
           }
@@ -458,10 +502,40 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const handleAnswer = useCallback((sessionId: string, answer: string | number) => {
+  const handleAnswer = useCallback((sessionId: string, questionIdOrAnswer?: string | number, answer?: string | number) => {
+    // Handle different calling patterns:
+    // MCQ: (sessionId, questionId, answer)
+    // Speaking: (sessionId, questionId, answer) or (sessionId, answer)
+    // Others: (sessionId, answer)
+
+    let answerKey: string;
+    let answerValue: string | number;
+
+    if (typeof questionIdOrAnswer === 'string' && answer !== undefined) {
+      // MCQ or Speaking with questionId: (sessionId, questionId, answer)
+      answerKey = questionIdOrAnswer;
+      answerValue = answer;
+      console.log('Setting answer for key:', answerKey, 'value:', answerValue);
+    } else if (typeof questionIdOrAnswer !== 'undefined') {
+      // Speaking without explicit questionId or other types: (sessionId, answer)
+      const currentSession = sessions[currentIndex];
+      if (currentSession && (currentSession.type === 'listen-speak' || currentSession.type === 'listen-repeat')) {
+        // For speaking, use question ID as key
+        answerKey = (currentSession.data as { id: string }).id;
+      } else {
+        // For others, use session ID as key
+        answerKey = sessionId;
+      }
+      answerValue = questionIdOrAnswer;
+    } else {
+      // Fallback
+      answerKey = sessionId;
+      answerValue = sessionId;
+    }
+
     setUserAnswers(prev => ({
       ...prev,
-      [sessionId]: answer
+      [answerKey]: answerValue
     }));
 
     // If question was marked for review, unmark it
@@ -476,7 +550,7 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
 
     // Always set status to 'answered' when an answer is provided
     setQuestionStatus(prev => ({ ...prev, [currentIndex]: 'answered' }));
-  }, [currentIndex]);
+  }, [currentIndex, sessions]);
 
   const handleMcqAnswer = useCallback((sessionId: string, questionId: string, answer: number) => {
     setUserAnswers(prev => ({
@@ -517,10 +591,14 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
         return newSet;
       });
       // Restore to answered status if it had an answer, otherwise not-answered
+      // For speaking questions, always keep as answered since they can't be cleared
       setQuestionStatus(prev => {
         let hasAnswer = false;
         if (session) {
-          if (session.type === 'mcq' || session.type === 'grammar-mcq' || session.type === 'error-detection' || session.type === 'synonyms-antonyms' || session.type === 'sentence-completion' || session.type === 'word-replacement') {
+          if (session.type === 'listen-speak' || session.type === 'listen-repeat') {
+            // Speaking questions are always answered once recorded
+            hasAnswer = true;
+          } else if (session.type === 'mcq' || session.type === 'grammar-mcq' || session.type === 'error-detection' || session.type === 'synonyms-antonyms' || session.type === 'sentence-completion' || session.type === 'word-replacement') {
             const mcqData = session.data as McqQuestionData;
             hasAnswer = userAnswers[mcqData.id] !== undefined;
           } else {
@@ -537,8 +615,8 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
       setMarkedQuestions(prev => new Set([...prev, currentIndex]));
       setQuestionStatus(prev => ({ ...prev, [currentIndex]: 'marked' }));
 
-      // Clear the answer for this question
-      if (session) {
+      // Clear the answer for this question (except for speaking questions which are final once recorded)
+      if (session && !(session.type === 'listen-speak' || session.type === 'listen-repeat')) {
         setUserAnswers(prev => {
           const newAnswers = { ...prev };
 
@@ -559,7 +637,8 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
 
   const handleClearResponse = () => {
     const session = sessions[currentIndex];
-    if (session) {
+    // Don't allow clearing speaking responses once they've been recorded
+    if (session && !(session.type === 'listen-speak' || session.type === 'listen-repeat')) {
       setUserAnswers(prev => {
         const newAnswers = { ...prev };
 
@@ -595,13 +674,16 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
 
 
   const handleComplete = () => {
+    console.log("All sessions before filtering:", sessions.map(s => ({ id: s.id, type: s.type })));
+    // Filter out speaking sessions since they save results immediately when recording completes
+    // Include all sessions, speaking sessions will be enhanced with localStorage data later
     const results: PracticeResult[] = sessions.map(session => {
-      // For MCQ questions, answers are stored with question ID as key
+      // For MCQ and speaking questions, answers are stored with question ID as key
       // For other types, answers are stored with session ID as key
       const answerKey = (session.type === 'mcq' || session.type === 'grammar-mcq' || session.type === 'error-detection' ||
                         session.type === 'synonyms-antonyms' || session.type === 'sentence-completion' ||
-                        session.type === 'word-replacement')
-        ? (session.data as { id: string }).id  // Use question ID for MCQ
+                        session.type === 'word-replacement' || session.type === 'listen-speak' || session.type === 'listen-repeat')
+        ? (session.data as { id: string }).id  // Use question ID for MCQ and speaking
         : session.id; // Use session ID for others
 
       let userAnswer: string | number | string[] | ChatMessage[] = userAnswers[answerKey];
@@ -624,6 +706,11 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
         const conversation = conversations[session.id];
         userAnswer = conversation || [];
         isCorrect = true;
+      } else if (session.type === 'listen-speak' || session.type === 'listen-repeat') {
+        // Speaking sessions are always considered completed once recorded
+        // The actual answer will be enhanced with localStorage data during submission
+        userAnswer = userAnswer || ""; // Use stored answer or empty string
+        isCorrect = true; // Speaking sessions don't have right/wrong answers
       }
 
       return {
@@ -725,7 +812,7 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
           {/* Sticky Question Header */}
           <div className="sticky top-0 bg-white border-b px-6 py-4 z-10 flex items-center justify-between">
             <h2 className="text-2xl font-bold">Question No {currentIndex + 1}</h2>
-            {currentSession?.type !== 'writing' && currentSession?.type !== 'speaking' && currentSession?.type !== 'chat' && (
+            {currentSession?.type !== 'writing' && currentSession?.type !== 'chat' && !(currentSession?.type === 'listen-speak' || currentSession?.type === 'listen-repeat') && (
               <Button variant="outline" size="sm" onClick={handleClearResponse} className="cursor-pointer">
                 Clear Response
               </Button>
@@ -785,18 +872,15 @@ export function PracticeInterface({ sessionIds, onComplete, onExit }: PracticeIn
                   />
                 )}
 
-                {currentSession && currentSession.type === 'speaking' && (
+                {currentSession && (currentSession.type === 'listen-speak' || currentSession.type === 'listen-repeat') && (
                   <SpeakingPracticeInterface
                     sessionId={currentSession.id}
-                    data={currentSession.data as SpeakingQuestionSessionData}
+                    data={currentSession.data as { id: string; question: string; category: 'listen-speak' | 'listen-repeat' }}
                     userAnswers={userAnswers as Record<string, string>}
                     onAnswer={handleAnswer}
-                    onComplete={(sessionId, results) => {
-                      console.log("Speaking completed with results:", results);
-                      handleNext();
-                    }}
                   />
                 )}
+
             </div>
           </div>
 

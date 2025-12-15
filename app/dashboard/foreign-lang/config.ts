@@ -153,7 +153,8 @@ export const practiceConfig = {
       chat: 1,          // 1 chat scenario
     },
     speaking: {
-      questions: 1,     // 1 speaking question
+      'listen-speak': 1,   
+      'listen-repeat': 1,   
     },
     mcq: {
       grammar: 1,              // 1 grammar question
@@ -170,6 +171,12 @@ export const practiceConfig = {
     writing: 45,
     speaking: 20,
     mcq: 15,
+  },
+
+  // Speaking recording configuration
+  speakingRecording: {
+    maxRecordingTime: 30, // 30 seconds
+    apiRestartInterval: 6, // Restart API every 6 seconds
   },
 
   // OpenAI configuration

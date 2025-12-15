@@ -40,6 +40,22 @@ interface ProgressBarProps {
       sessionId: string;
       attemptId: string;
     }>;
+    writing: Array<{
+      level: string;
+      score: number;
+      points: number;
+      completedAt: string;
+      sessionId: string;
+      attemptId: string;
+    }>;
+    speaking: Array<{
+      level: string;
+      score: number;
+      points: number;
+      completedAt: string;
+      sessionId: string;
+      attemptId: string;
+    }>;
   };
 }
 

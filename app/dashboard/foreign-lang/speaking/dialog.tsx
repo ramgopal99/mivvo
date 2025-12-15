@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,7 @@ export function SpeakingPracticeDialog({
   selectedLanguage,
 }: SpeakingPracticeDialogProps) {
   const router = useRouter();
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const languageLabels = {
     english: "English",
@@ -29,12 +31,42 @@ export function SpeakingPracticeDialog({
 
   const languageLabel = languageLabels[selectedLanguage] || "English";
 
-  const handleStartPractice = () => {
-    // Navigate to practice interface with the complete speaking session
-    // This gives access to all 4 questions (2 speak + 2 repeat) with next/previous navigation
-    const languagePrefix = selectedLanguage === "french" ? "-french" : "-english";
-    router.push(`/dashboard/foreign-lang/practice/speaking-session${languagePrefix}-1`);
-    onOpenChange(false);
+  const handleStartPractice = async () => {
+    setIsGenerating(true);
+    try {
+      // Generate a new speaking session
+      const response = await fetch('/api/foreign-language/speaking/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          language: selectedLanguage.toUpperCase(),
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Navigate to practice interface with the generated session
+        router.push(`/dashboard/foreign-lang/practice/${result.data.sessionId}`);
+        onOpenChange(false);
+      } else {
+        console.error('Failed to generate speaking session:', result.error);
+        // Fallback to old behavior for now
+        const languagePrefix = selectedLanguage === "french" ? "-french" : "-english";
+        router.push(`/dashboard/foreign-lang/practice/speaking-session${languagePrefix}-1`);
+        onOpenChange(false);
+      }
+    } catch (error) {
+      console.error('Error generating speaking session:', error);
+      // Fallback to old behavior
+      const languagePrefix = selectedLanguage === "french" ? "-french" : "-english";
+      router.push(`/dashboard/foreign-lang/practice/speaking-session${languagePrefix}-1`);
+      onOpenChange(false);
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   return (
@@ -71,8 +103,16 @@ export function SpeakingPracticeDialog({
             className="w-full cursor-pointer"
             size="lg"
             onClick={handleStartPractice}
+            disabled={isGenerating}
           >
-            Start Practice
+            {isGenerating ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                Generating Practice Session...
+              </>
+            ) : (
+              'Start Practice'
+            )}
           </Button>
         </div>
       </DialogContent>

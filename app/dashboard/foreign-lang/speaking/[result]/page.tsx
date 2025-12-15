@@ -4,19 +4,22 @@ import { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useParams, notFound } from "next/navigation"
 import { SpeakingResultsContent } from "./_components/SpeakingResultsContent"
-import { speakingAnalysisData } from "../../data/speaking-practice-data"
 
 interface SpeakingSessionResult {
   id: string
   duration: number | null
   feedback: string | null
-  speakingScore: number | null
-  listeningScore: number | null
+  fluencyScore: number | null
+  pronunciationScore: number | null
+  vocabularyScore: number | null
+  grammarScore: number | null
   overallScore: number | null
   overallFeedback: string | null
   strengths: string[]
   weaknesses: string[]
   recommendations: string[]
+  totalWords: number | null
+  averageAudioDuration: number | null
   createdAt: Date
 }
 
@@ -32,8 +35,8 @@ interface SpeakingSessionAttempt {
 
 interface SpeakingSessionData {
   id: string
-  title: string | null
-  language: string | null
+  title: string
+  language: string
   createdAt: Date
   attempts: SpeakingSessionAttempt[]
 }
@@ -89,27 +92,44 @@ export default function SpeakingResultPage() {
 
         setAuthenticated(isAuthenticated)
 
-        // Load speaking session data from data file
+        // Load speaking session data from API
         if (params.result && isAuthenticated) {
           try {
             const sessionId = Array.isArray(params.result) ? params.result[0] : params.result
 
-            // Determine language from session ID
-            const language = sessionId.includes('french') ? 'french' : 'english'
+            // Prepare headers with JWT token if using JWT authentication
+            const headers: Record<string, string> = {
+              'Content-Type': 'application/json',
+            };
 
-            // Find the analysis data for this session from the appropriate language data
-            const sessionAnalysis = speakingAnalysisData[language]?.find(session => session.id === sessionId)
+            // Check for JWT tokens in localStorage
+            const token = typeof window !== 'undefined' ? (
+              localStorage.getItem('token') ||
+              localStorage.getItem('student_token') ||
+              localStorage.getItem('college_token')
+            ) : null;
 
-            if (sessionAnalysis) {
-              setSessionData(sessionAnalysis)
+            if (token) {
+              headers['Authorization'] = `Bearer ${token}`;
+            }
+
+            const response = await fetch(`/api/foreign-language/speaking/sessions/${sessionId}/results`, {
+              headers
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+              setSessionData(result.data);
             } else {
-              notFound()
+              console.error('Failed to load speaking session:', result.error);
+              notFound();
             }
           } catch (error) {
-            console.error('Error loading speaking session:', error)
-            notFound()
+            console.error('Error loading speaking session:', error);
+            notFound();
           } finally {
-            setLoading(false)
+            setLoading(false);
           }
         }
       } catch (error) {
