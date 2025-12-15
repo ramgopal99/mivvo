@@ -17,7 +17,7 @@ interface WritingSessionResult {
   feedback: string | null
   duration: number | null
   createdAt: Date
-  timeSpent: { topics: number; chat: number } | null
+  timeSpent?: { topics: number; chat: number } | null
   creativityScore: number | null
   grammarAccuracy: number | null
   vocabularyUsage: number | null
@@ -194,5 +194,5 @@ export default function WritingAttemptDetailsPage({ params }: AttemptDetailsPage
   }
 
 
-  return <WritingAttemptDetailsContent attempt={attempt!} resultId={result} />
+  return <WritingAttemptDetailsContent attempt={attempt!} />
 }

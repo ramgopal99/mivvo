@@ -18,6 +18,7 @@ interface WritingSessionResult {
   feedback: string | null
   duration: number | null
   createdAt: Date
+  timeSpent?: { topics: number; chat: number } | null
   creativityScore: number | null
   grammarAccuracy: number | null
   vocabularyUsage: number | null
@@ -44,10 +45,9 @@ interface WritingAttempt {
 
 interface WritingAttemptDetailsContentProps {
   attempt: WritingAttempt
-  resultId: string
 }
 
-export function WritingAttemptDetailsContent({ attempt, resultId }: WritingAttemptDetailsContentProps) {
+export function WritingAttemptDetailsContent({ attempt }: WritingAttemptDetailsContentProps) {
   const router = useRouter()
   const [activeTab, setActiveTab] = useState("overview")
 
@@ -80,13 +80,56 @@ export function WritingAttemptDetailsContent({ attempt, resultId }: WritingAttem
     alert('PDF report download would be implemented here')
   }
 
+  // Check if there's no analysis data
+  if (!result) {
+    return (
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="flex items-start justify-between">
+          <Button variant="ghost" onClick={() => router.push('/dashboard/foreign-lang/writing')} className="cursor-pointer">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Writing History
+          </Button>
+          <div className="flex flex-col text-center flex-1 mx-8">
+            <h1 className="text-3xl font-bold text-gray-900 leading-tight">Writing Attempt Details</h1>
+            <p className="text-gray-600 text-lg mt-1">
+              Attempt Analysis
+            </p>
+          </div>
+          <div className="w-32"></div> {/* Spacer for balance */}
+        </div>
+
+        {/* No Data Message */}
+        <div className="flex flex-col items-center justify-center py-12">
+          <div className="text-center space-y-4">
+            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
+              <PenTool className="h-8 w-8 text-gray-400" />
+            </div>
+            <div>
+              <h3 className="text-lg font-medium text-gray-900">No Analysis Data Available</h3>
+              <p className="text-gray-500 mt-1">
+                Detailed analysis data for this attempt is not available.
+              </p>
+            </div>
+            <Button
+              onClick={() => router.push('/dashboard/foreign-lang')}
+              className="mt-4"
+            >
+              Back to Practice
+            </Button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-start justify-between">
-        <Button variant="ghost" onClick={() => router.push(`/dashboard/foreign-lang/writing/${resultId}`)} className="cursor-pointer">
+        <Button variant="ghost" onClick={() => router.push('/dashboard/foreign-lang/writing')} className="cursor-pointer">
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Result
+          Back to Writing History
         </Button>
         <Button
           onClick={handleDownloadData}
@@ -153,10 +196,10 @@ export function WritingAttemptDetailsContent({ attempt, resultId }: WritingAttem
       <div className="flex justify-center space-x-4 pt-6">
         <Button
           variant="outline"
-          onClick={() => router.push(`/dashboard/foreign-lang/writing/${resultId}`)}
+          onClick={() => router.push('/dashboard/foreign-lang/writing')}
           className="cursor-pointer"
         >
-          Back to Result
+          Back to Writing History
         </Button>
         <Button
           onClick={() => router.push('/dashboard/foreign-lang')}
@@ -208,11 +251,11 @@ function OverviewSection({ attempt, overallScore }: { attempt: WritingAttempt; o
             <>
               <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-600">Topic Writing</span>
-                <span className="text-sm font-medium">{Math.round((result.timeSpent as any).topics / 60)}min</span>
+                <span className="text-sm font-medium">{Math.round(result.timeSpent.topics / 60)}min</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-600">AI Conversations</span>
-                <span className="text-sm font-medium">{Math.round((result.timeSpent as any).chat / 60)}min</span>
+                <span className="text-sm font-medium">{Math.round(result.timeSpent.chat / 60)}min</span>
               </div>
             </>
           )}

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { speakingPracticeTypes, type LanguageValue } from "../config";
+import { type LanguageValue } from "../config";
 
 interface SpeakingPracticeDialogProps {
   isOpen: boolean;
@@ -86,15 +86,20 @@ export function SpeakingPracticeDialog({
           <div className="space-y-3">
             <Label className="text-sm font-medium">Available Speaking + Listening Practice:</Label>
             <div className="space-y-3">
-              {speakingPracticeTypes.map((practiceType) => (
-                <div key={practiceType.id} className="flex items-start space-x-3 p-3 border rounded-lg bg-muted/30">
-                  <span className="text-lg">{practiceType.icon}</span>
-                  <div className="flex-1">
-                    <div className="font-medium">{practiceType.title}</div>
-                    <div className="text-xs text-muted-foreground">{practiceType.description}</div>
-                  </div>
+              <div className="flex items-start space-x-3 p-3 border rounded-lg bg-muted/30">
+                <span className="text-lg">🎧</span>
+                <div className="flex-1">
+                  <div className="font-medium">Listen and Speaking</div>
+                  <div className="text-xs text-muted-foreground">Practice speaking by responding to audio prompts and conversations.</div>
                 </div>
-              ))}
+              </div>
+              <div className="flex items-start space-x-3 p-3 border rounded-lg bg-muted/30">
+                <span className="text-lg">🔄</span>
+                <div className="flex-1">
+                  <div className="font-medium">Listen and Repeat</div>
+                  <div className="text-xs text-muted-foreground">Listen to audio clips and repeat them accurately to improve pronunciation.</div>
+                </div>
+              </div>
             </div>
           </div>
 

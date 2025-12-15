@@ -130,5 +130,5 @@ export default function McqAttemptDetailsPage({ params }: AttemptDetailsPageProp
     notFound()
   }
 
-  return <McqAttemptDetailsContent attempt={attempt} resultId={result} />
+  return <McqAttemptDetailsContent attempt={attempt} />
 }

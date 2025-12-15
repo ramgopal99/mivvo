@@ -123,7 +123,7 @@ export function WritingPracticeDialog({
                 Generating Practice Session...
               </>
             ) : (
-              '🚀 Start Complete Practice Session'
+              'Start Practice'
             )}
           </Button>
         </div>

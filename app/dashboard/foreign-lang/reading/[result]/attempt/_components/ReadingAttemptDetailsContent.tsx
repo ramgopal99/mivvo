@@ -39,10 +39,9 @@ interface ReadingAttempt {
 
 interface ReadingAttemptDetailsContentProps {
   attempt: ReadingAttempt | null
-  resultId: string
 }
 
-export function ReadingAttemptDetailsContent({ attempt, resultId }: ReadingAttemptDetailsContentProps) {
+export function ReadingAttemptDetailsContent({ attempt }: ReadingAttemptDetailsContentProps) {
   const router = useRouter()
   const [activeTab, setActiveTab] = useState("overview")
 
@@ -122,9 +121,9 @@ export function ReadingAttemptDetailsContent({ attempt, resultId }: ReadingAttem
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-start justify-between">
-        <Button variant="ghost" onClick={() => router.push(`/dashboard/foreign-lang/reading/${resultId}`)} className="cursor-pointer">
+        <Button variant="ghost" onClick={() => router.push('/dashboard/foreign-lang/reading')} className="cursor-pointer">
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Result
+          Back to Reading History
         </Button>
         <Button
           onClick={handleDownloadData}
@@ -191,10 +190,10 @@ export function ReadingAttemptDetailsContent({ attempt, resultId }: ReadingAttem
       <div className="flex justify-center space-x-4 pt-6">
         <Button
           variant="outline"
-          onClick={() => router.push(`/dashboard/foreign-lang/reading/${resultId}`)}
+          onClick={() => router.push('/dashboard/foreign-lang/reading/page')}
           className="cursor-pointer"
         >
-          Back to Result
+          Back to Reading History
         </Button>
         <Button
           onClick={() => router.push('/dashboard/foreign-lang')}

@@ -144,5 +144,5 @@ export default function ReadingAttemptDetailsPage({ params }: AttemptDetailsPage
     notFound()
   }
 
-  return <ReadingAttemptDetailsContent attempt={attempt} resultId={result} />
+  return <ReadingAttemptDetailsContent attempt={attempt} />
 }

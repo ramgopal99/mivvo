@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, BarChart3, HelpCircle, TrendingUp, Download, Clock, Target, Zap, CheckCircle, XCircle } from "lucide-react"
+import { ArrowLeft, BarChart3, HelpCircle, TrendingUp, Download, Clock, Target, CheckCircle, XCircle } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface McqSessionResult {
@@ -23,15 +23,16 @@ interface McqSessionResult {
 
 interface McqAttempt {
   id: string
-  sessionId: string
-  sessionTitle: string
   startedAt: Date
   completedAt: Date | null
   duration: number | null
   status: string
-  cefrLevel: string
-  sessionType: string
   createdAt: Date
+  session: {
+    id: string
+    title: string | null
+    language: string | null
+  }
   questions: Array<{
     id: string
     question: string
@@ -43,27 +44,14 @@ interface McqAttempt {
     isCorrect: boolean
     timeSpent: number
   }>
-  overallResult: {
-    id: string
-    overallScore: number | null
-    totalQuestions: number | null
-    correctAnswers: number | null
-    accuracyPercentage: number | null
-    feedback: string | null
-    overallFeedback: string | null
-    strengths: string[]
-    weaknesses: string[]
-    recommendations: string[]
-    timeSpent: number
-  } | null
+  overallResult: McqSessionResult | null
 }
 
 interface McqAttemptDetailsContentProps {
   attempt: McqAttempt
-  resultId: string
 }
 
-export function McqAttemptDetailsContent({ attempt, resultId }: McqAttemptDetailsContentProps) {
+export function McqAttemptDetailsContent({ attempt }: McqAttemptDetailsContentProps) {
   const router = useRouter()
   const [activeTab, setActiveTab] = useState("overview")
 
@@ -96,13 +84,56 @@ export function McqAttemptDetailsContent({ attempt, resultId }: McqAttemptDetail
     alert('PDF report download would be implemented here')
   }
 
+  // Check if there's no analysis data
+  if (!result) {
+    return (
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="flex items-start justify-between">
+          <Button variant="ghost" onClick={() => router.push('/dashboard/foreign-lang/mcq')} className="cursor-pointer">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to MCQ History
+          </Button>
+          <div className="flex flex-col text-center flex-1 mx-8">
+            <h1 className="text-3xl font-bold text-gray-900 leading-tight">MCQ Attempt Details</h1>
+            <p className="text-gray-600 text-lg mt-1">
+              Attempt Analysis
+            </p>
+          </div>
+          <div className="w-32"></div> {/* Spacer for balance */}
+        </div>
+
+        {/* No Data Message */}
+        <div className="flex flex-col items-center justify-center py-12">
+          <div className="text-center space-y-4">
+            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
+              <HelpCircle className="h-8 w-8 text-gray-400" />
+            </div>
+            <div>
+              <h3 className="text-lg font-medium text-gray-900">No Analysis Data Available</h3>
+              <p className="text-gray-500 mt-1">
+                Detailed analysis data for this attempt is not available.
+              </p>
+            </div>
+            <Button
+              onClick={() => router.push('/dashboard/foreign-lang')}
+              className="mt-4"
+            >
+              Back to Practice
+            </Button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-start justify-between">
-        <Button variant="ghost" onClick={() => router.push(`/dashboard/foreign-lang/mcq/${resultId}`)} className="cursor-pointer">
+        <Button variant="ghost" onClick={() => router.push('/dashboard/foreign-lang/mcq')} className="cursor-pointer">
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Result
+          Back to MCQ History
         </Button>
         <Button
           onClick={handleDownloadData}
@@ -169,10 +200,10 @@ export function McqAttemptDetailsContent({ attempt, resultId }: McqAttemptDetail
       <div className="flex justify-center space-x-4 pt-6">
         <Button
           variant="outline"
-          onClick={() => router.push(`/dashboard/foreign-lang/mcq/${resultId}`)}
+          onClick={() => router.push('/dashboard/foreign-lang/mcq/page')}
           className="cursor-pointer"
         >
-          Back to Result
+          Back to MCQ History
         </Button>
         <Button
           onClick={() => router.push('/dashboard/foreign-lang')}
