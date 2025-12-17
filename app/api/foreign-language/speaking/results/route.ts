@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
+import { verifyCollegeToken } from '@/lib/auth-utils';
 import OpenAI from 'openai';
 import { practiceConfig, getCEFRLevel } from '@/app/dashboard/foreign-lang/config';
 
@@ -21,8 +22,33 @@ interface SpeakingResult {
 
 export async function POST(request: NextRequest) {
   try {
+    // Authentication check - support both NextAuth and JWT
     const session = await getServerSession(authOptions);
-    if (!session?.user?.id) {
+    let userId: string | null = null;
+
+    // Check NextAuth session first
+    if (session?.user?.id) {
+      userId = session.user.id;
+    } else {
+      // Check for college JWT token
+      const authHeader = request.headers.get('authorization');
+      if (authHeader?.startsWith('Bearer ')) {
+        const token = authHeader.substring(7);
+        const jwt = await import('jsonwebtoken');
+        try {
+          const decoded = jwt.default.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret') as any;
+
+          // Check if it's a college student or admin token
+          if ((decoded.type === 'college_student' || decoded.type === 'college_admin') && decoded.userId) {
+            userId = decoded.userId;
+          }
+        } catch (error) {
+          console.error('JWT verification failed:', error);
+        }
+      }
+    }
+
+    if (!userId) {
       return NextResponse.json(
         { success: false, error: 'Unauthorized' },
         { status: 401 }
@@ -69,7 +95,7 @@ export async function POST(request: NextRequest) {
     await prisma.speakingAttempt.create({
       data: {
         id: attemptId,
-        userId: session.user.id,
+        userId: userId,
         sessionId: speakingSession.id,
         languageId: speakingSession.languageId,
         status: 'COMPLETED',
@@ -319,7 +345,7 @@ IMPORTANT ANALYSIS REQUIREMENTS:
 
     const existingProgress = await prisma.userLevelProgress.findFirst({
       where: {
-        userId: session.user.id,
+        userId: userId,
         languageId: speakingSession.languageId,
         cefrLevel: currentLevel,
         skillType: skillType
@@ -328,7 +354,7 @@ IMPORTANT ANALYSIS REQUIREMENTS:
 
     const allAttempts = await prisma.speakingAttempt.findMany({
       where: {
-        userId: session.user.id,
+        userId: userId,
         languageId: speakingSession.languageId,
         session: {
           cefrLevel: currentLevel
@@ -364,7 +390,7 @@ IMPORTANT ANALYSIS REQUIREMENTS:
       } else {
         await prisma.userLevelProgress.create({
           data: {
-            userId: session.user.id,
+            userId: userId,
             languageId: speakingSession.languageId,
             cefrLevel: currentLevel,
             skillType: skillType,

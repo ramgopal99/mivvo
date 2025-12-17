@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
+import { verifyCollegeToken } from '@/lib/auth-utils';
 import OpenAI from 'openai';
 import { practiceConfig, getCEFRLevel } from '@/app/dashboard/foreign-lang/config';
 
@@ -32,8 +33,33 @@ interface ChatMessage {
 
 export async function POST(request: NextRequest) {
   try {
+    // Authentication check - support both NextAuth and JWT
     const session = await getServerSession(authOptions);
-    if (!session?.user?.id) {
+    let userId: string | null = null;
+
+    // Check NextAuth session first
+    if (session?.user?.id) {
+      userId = session.user.id;
+    } else {
+      // Check for college JWT token
+      const authHeader = request.headers.get('authorization');
+      if (authHeader?.startsWith('Bearer ')) {
+        const token = authHeader.substring(7);
+        const jwt = await import('jsonwebtoken');
+        try {
+          const decoded = jwt.default.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret') as any;
+
+          // Check if it's a college student or admin token
+          if ((decoded.type === 'college_student' || decoded.type === 'college_admin') && decoded.userId) {
+            userId = decoded.userId;
+          }
+        } catch (error) {
+          console.error('JWT verification failed:', error);
+        }
+      }
+    }
+
+    if (!userId) {
       return NextResponse.json(
         { success: false, error: 'Unauthorized' },
         { status: 401 }
@@ -137,7 +163,7 @@ export async function POST(request: NextRequest) {
       await prisma.writingAttempt.create({
         data: {
           id: attemptId,
-          userId: session.user.id,
+          userId: userId,
           sessionId: writingSession.id,
           languageId: writingSession.languageId,
           status: 'COMPLETED',
@@ -188,7 +214,7 @@ export async function POST(request: NextRequest) {
       await prisma.mcqAttempt.create({
         data: {
           id: attemptId,
-          userId: session.user.id,
+          userId: userId,
           sessionId: mcqSession.id,
           languageId: mcqSession.languageId,
           status: 'COMPLETED',
@@ -233,7 +259,7 @@ export async function POST(request: NextRequest) {
     await prisma.readingAttempt.create({
       data: {
         id: attemptId,
-        userId: session.user.id,
+        userId: userId,
         sessionId: sessionId,
           languageId: readingSession!.languageId,
         status: 'COMPLETED',
@@ -768,7 +794,7 @@ Guidelines:
                              (isMcqSession && mcqSession ? mcqSession.languageId : readingSession!.languageId);
     const existingProgress = await prisma.userLevelProgress.findFirst({
       where: {
-          userId: session.user.id,
+          userId: userId,
         languageId: currentLanguageId,
           cefrLevel: currentLevel,
         skillType: skillType as 'READING' | 'MCQ' | 'WRITING'
@@ -781,7 +807,7 @@ Guidelines:
     if (isWritingSession && writingSession) {
       allAttempts = await prisma.writingAttempt.findMany({
         where: {
-          userId: session.user.id,
+          userId: userId,
           languageId: currentLanguageId,
           session: {
             cefrLevel: currentLevel
@@ -794,7 +820,7 @@ Guidelines:
     } else if (isMcqSession && mcqSession) {
       allAttempts = await prisma.mcqAttempt.findMany({
         where: {
-          userId: session.user.id,
+          userId: userId,
           languageId: currentLanguageId,
           session: {
             cefrLevel: currentLevel
@@ -807,7 +833,7 @@ Guidelines:
     } else {
       allAttempts = await prisma.readingAttempt.findMany({
       where: {
-        userId: session.user.id,
+        userId: userId,
           languageId: currentLanguageId,
         session: {
           cefrLevel: currentLevel
@@ -847,7 +873,7 @@ Guidelines:
         // Create new progress entry
         await prisma.userLevelProgress.create({
           data: {
-            userId: session.user.id,
+            userId: userId,
             languageId: isWritingSession && writingSession ? writingSession.languageId :
                        (isMcqSession && mcqSession ? mcqSession.languageId : readingSession!.languageId),
             cefrLevel: currentLevel,

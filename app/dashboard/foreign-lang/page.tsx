@@ -5,6 +5,7 @@ import { Header } from "./components/header";
 import { SkillCard } from "./components/skill-card";
 import { type LanguageValue } from "./config";
 import { getActiveLanguages } from "./config";
+import { getAuthHeaders } from "@/lib/auth-utils";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -26,7 +27,9 @@ export default function ForeignLanguagePage() {
   useEffect(() => {
     const loadUserLanguagePreference = async () => {
       try {
-        const response = await fetch('/api/foreign-language/user/preferences/language');
+        const response = await fetch('/api/foreign-language/user/preferences/language', {
+          headers: getAuthHeaders()
+        });
         const result = await response.json();
 
         if (result.success && result.data.preferredLanguage) {

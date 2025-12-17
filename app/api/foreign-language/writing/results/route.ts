@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
+import { verifyCollegeToken } from '@/lib/auth-utils';
+import jwt from 'jsonwebtoken';
 import OpenAI from 'openai';
 import jwt from 'jsonwebtoken';
 import { practiceConfig, getCEFRLevel } from '@/app/dashboard/foreign-lang/config';
@@ -37,18 +39,20 @@ interface ChatMessage {
 
 export async function POST(request: NextRequest) {
   try {
-    // First, try to get NextAuth session
+    // Authentication check - support both NextAuth and JWT
     const session = await getServerSession(authOptions);
-    let userId = session?.user?.id;
+    let userId: string | null = null;
 
-    // If no NextAuth session, check for JWT tokens
-    if (!userId) {
+    // Check NextAuth session first
+    if (session?.user?.id) {
+      userId = session.user.id;
+    } else {
+      // Check for college JWT token
       const authHeader = request.headers.get('authorization');
       if (authHeader?.startsWith('Bearer ')) {
         const token = authHeader.substring(7);
-
         try {
-          const decoded = jwt.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret') as DecodedToken;
+          const decoded = jwt.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret') as any;
 
           // Check if it's a college student or admin token
           if ((decoded.type === 'college_student' || decoded.type === 'college_admin') && decoded.userId) {
