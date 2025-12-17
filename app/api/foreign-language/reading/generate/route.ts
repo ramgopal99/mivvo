@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
-import { verifyCollegeToken } from '@/lib/auth-utils';
 import OpenAI from 'openai';
 import { practiceConfig, getCEFRLevel } from '@/app/dashboard/foreign-lang/config';
 
@@ -15,29 +14,8 @@ const openai = new OpenAI({
 
 export async function POST(request: NextRequest) {
   try {
-    // Authentication check - support both NextAuth and JWT
     const session = await getServerSession(authOptions);
-    let userId: string | null = null;
-
-    // Check NextAuth session first
-    if (session?.user?.id) {
-      userId = session.user.id;
-    } else {
-      // Check for college JWT token
-      const authHeader = request.headers.get('authorization');
-      if (authHeader?.startsWith('Bearer ')) {
-        const token = authHeader.substring(7);
-        const jwt = await import('jsonwebtoken');
-        const decoded = jwt.default.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret') as any;
-
-        // Check if it's a college student or admin token
-        if ((decoded.type === 'college_student' || decoded.type === 'college_admin') && decoded.userId) {
-          userId = decoded.userId;
-        }
-      }
-    }
-
-    if (!userId) {
+    if (!session?.user?.id) {
       return NextResponse.json(
         { success: false, error: 'Unauthorized' },
         { status: 401 }
@@ -50,7 +28,7 @@ export async function POST(request: NextRequest) {
     // If no language specified, use user's preferred language
     if (!language) {
       const user = await prisma.user.findUnique({
-        where: { id: userId },
+        where: { id: session.user.id },
         select: { preferredLanguage: true }
       });
       language = user?.preferredLanguage || 'ENGLISH';
@@ -89,7 +67,7 @@ export async function POST(request: NextRequest) {
     // Find user's current reading level for this language
     const userProgress = await prisma.userLevelProgress.findMany({
       where: {
-        userId: userId,
+        userId: session.user.id,
         languageId: languageConfig.id,
         skillType: 'READING'
       },

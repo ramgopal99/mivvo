@@ -18,7 +18,6 @@ export const getAuthHeaders = (includeContentType = true): Record<string, string
   ) : null
   if (nextAuthToken) {
     headers['Authorization'] = `Bearer ${nextAuthToken}`
-    console.log('getAuthHeaders: Using NextAuth token')
   }
 
   // Check for JWT tokens (college students/admins) - updated token names
@@ -29,11 +28,6 @@ export const getAuthHeaders = (includeContentType = true): Record<string, string
   ) : null
   if (jwtToken) {
     headers['Authorization'] = `Bearer ${jwtToken}`
-    console.log('getAuthHeaders: Using JWT token')
-  }
-
-  if (!nextAuthToken && !jwtToken) {
-    console.log('getAuthHeaders: No auth tokens found')
   }
 
   return headers

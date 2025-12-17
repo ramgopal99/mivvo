@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useSession } from "next-auth/react";
-import { getAuthHeaders } from "@/lib/auth-utils";
 import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
@@ -185,36 +184,28 @@ export function PracticeInterface({ sessionIds, onComplete }: PracticeInterfaceP
         const sessionId = sessionIds[0];
 
         if (sessionId.startsWith('reading-session-')) {
-          const response = await fetch(`/api/foreign-language/reading/sessions/${sessionId}`, {
-            headers: getAuthHeaders()
-          });
+          const response = await fetch(`/api/foreign-language/reading/sessions/${sessionId}`);
           const result = await response.json();
 
           if (result.success) {
             setSessionData(result.data);
           }
         } else if (sessionId.startsWith('writing-session-')) {
-          const response = await fetch(`/api/foreign-language/writing/sessions/${sessionId}`, {
-            headers: getAuthHeaders()
-          });
+          const response = await fetch(`/api/foreign-language/writing/sessions/${sessionId}`);
           const result = await response.json();
 
           if (result.success) {
             setSessionData(result.data);
           }
         } else if (sessionId.startsWith('mcq-session-')) {
-          const response = await fetch(`/api/foreign-language/mcq/sessions/${sessionId}`, {
-            headers: getAuthHeaders()
-          });
+          const response = await fetch(`/api/foreign-language/mcq/sessions/${sessionId}`);
           const result = await response.json();
 
           if (result.success) {
             setSessionData(result.data);
           }
         } else if (sessionId.startsWith('speaking-session-')) {
-          const response = await fetch(`/api/foreign-language/speaking/sessions/${sessionId}`, {
-            headers: getAuthHeaders()
-          });
+          const response = await fetch(`/api/foreign-language/speaking/sessions/${sessionId}`);
           const result = await response.json();
 
           if (result.success) {

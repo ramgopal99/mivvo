@@ -8,29 +8,8 @@ const prisma = new PrismaClient();
 
 export async function GET(request: NextRequest) {
   try {
-    // Authentication check - support both NextAuth and JWT
     const session = await getServerSession(authOptions);
-    let userId: string | null = null;
-
-    // Check NextAuth session first
-    if (session?.user?.id) {
-      userId = session.user.id;
-    } else {
-      // Check for college JWT token
-      const authHeader = request.headers.get('authorization');
-      if (authHeader?.startsWith('Bearer ')) {
-        const token = authHeader.substring(7);
-        const jwt = await import('jsonwebtoken');
-        const decoded = jwt.default.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret') as any;
-
-        // Check if it's a college student or admin token
-        if ((decoded.type === 'college_student' || decoded.type === 'college_admin') && decoded.userId) {
-          userId = decoded.userId;
-        }
-      }
-    }
-
-    if (!userId) {
+    if (!session?.user?.id) {
       return NextResponse.json(
         { success: false, error: 'Unauthorized' },
         { status: 401 }
@@ -66,7 +45,7 @@ export async function GET(request: NextRequest) {
     // Get user's level progress for this language
     const userProgress = await prisma.userLevelProgress.findMany({
       where: {
-        userId: userId,
+        userId: session.user.id,
         languageId: languageConfigId
       },
       orderBy: {
@@ -77,7 +56,7 @@ export async function GET(request: NextRequest) {
     // Get all reading attempts with scores to calculate points
     const readingAttempts = await prisma.readingAttempt.findMany({
       where: {
-        userId: userId,
+        userId: session.user.id,
         languageId: languageConfigId
       },
       include: {
@@ -98,7 +77,7 @@ export async function GET(request: NextRequest) {
     // Get all MCQ attempts with scores to calculate points
     const mcqAttempts = await prisma.mcqAttempt.findMany({
       where: {
-        userId: userId,
+        userId: session.user.id,
         languageId: languageConfigId
       },
       include: {
@@ -119,7 +98,7 @@ export async function GET(request: NextRequest) {
     // Get all writing attempts with scores to calculate points
     const writingAttempts = await prisma.writingAttempt.findMany({
       where: {
-        userId: userId,
+        userId: session.user.id,
         languageId: languageConfigId
       },
       include: {
@@ -140,7 +119,7 @@ export async function GET(request: NextRequest) {
     // Get all speaking attempts with scores to calculate points
     const speakingAttempts = await prisma.speakingAttempt.findMany({
       where: {
-        userId: userId,
+        userId: session.user.id,
         languageId: languageConfigId
       },
       include: {

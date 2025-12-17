@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ProgressBar } from "./progress-bar";
 import { LanguageDefinition } from "../config";
-import { getAuthHeaders } from "@/lib/auth-utils";
 
 interface HeaderProps {
   selectedLanguage: string;
@@ -103,9 +102,7 @@ export function Header({ selectedLanguage, onLanguageChange, languages, skillTyp
         if (skillType) {
           params.append('skillType', skillType);
         }
-        const response = await fetch(`/api/foreign-language/user/progress?${params.toString()}`, {
-          headers: getAuthHeaders()
-        });
+        const response = await fetch(`/api/foreign-language/user/progress?${params.toString()}`);
         const result = await response.json();
         if (result.success) {
           setUserProgress(result.data);

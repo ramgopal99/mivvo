@@ -6,7 +6,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { BookOpen, PenTool, Volume2, HelpCircle } from "lucide-react";
 import { skillConfig, type SkillType, type LanguageValue } from "../config";
-import { getAuthHeaders } from "@/lib/auth-utils";
 import { ReadingPracticeDialog } from "../reading";
 import { WritingPracticeDialog } from "../writing";
 import { SpeakingPracticeDialog } from "../speaking";
@@ -68,7 +67,9 @@ export function SkillCard({ type, selectedLanguage }: SkillCardProps) {
         // Generate reading practice session using OpenAI
         const response = await fetch('/api/foreign-language/reading/generate', {
           method: 'POST',
-          headers: getAuthHeaders(true),
+          headers: {
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify({
             language: selectedLanguage.toUpperCase(),
           }),
@@ -90,7 +91,9 @@ export function SkillCard({ type, selectedLanguage }: SkillCardProps) {
         // Generate writing practice session using OpenAI
         const response = await fetch('/api/foreign-language/writing/generate', {
           method: 'POST',
-          headers: getAuthHeaders(true),
+          headers: {
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify({
             language: selectedLanguage.toUpperCase(),
           }),
@@ -112,7 +115,9 @@ export function SkillCard({ type, selectedLanguage }: SkillCardProps) {
         // Generate MCQ practice session using OpenAI
         const response = await fetch('/api/foreign-language/mcq/generate', {
           method: 'POST',
-          headers: getAuthHeaders(true),
+          headers: {
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify({
             language: selectedLanguage.toUpperCase(),
           }),
