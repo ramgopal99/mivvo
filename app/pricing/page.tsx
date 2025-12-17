@@ -41,8 +41,8 @@ export default function PricingPage() {
       {/* Pricing Cards */}
       <section className="pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {landingConfig.pricing.plans.map((plan) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {landingConfig.pricing.plans.filter(plan => plan.name !== "Pro").map((plan) => (
               <Card
                 key={plan.name}
                 className={`relative ${
@@ -143,7 +143,7 @@ export default function PricingPage() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="upgrade" className="border border-gray-200 rounded-lg px-6">
+            {/* <AccordionItem value="upgrade" className="border border-gray-200 rounded-lg px-6">
               <AccordionTrigger className="text-left hover:no-underline py-6">
                 <span className="text-lg font-semibold text-gray-900">What happens when credits finish?</span>
               </AccordionTrigger>
@@ -159,7 +159,7 @@ export default function PricingPage() {
               <AccordionContent className="text-gray-600 pb-6">
                 Credits expire 30 days after allocation. We recommend using them regularly to get the most value from your plan.
               </AccordionContent>
-            </AccordionItem>
+            </AccordionItem> */}
           </Accordion>
         </div>
       </section>

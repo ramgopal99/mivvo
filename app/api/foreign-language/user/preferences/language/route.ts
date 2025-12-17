@@ -91,19 +91,19 @@ export async function GET(request: NextRequest) {
 
     // If authenticated, get user's preferred language
     if (userId) {
-      const user = await prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
         where: { id: userId },
-        select: {
-          id: true,
-          preferredLanguage: true
-        }
-      });
+      select: {
+        id: true,
+        preferredLanguage: true
+      }
+    });
 
       if (user) {
-        return NextResponse.json({
-          success: true,
-          data: {
-            preferredLanguage: user.preferredLanguage || 'ENGLISH' // Default to English
+    return NextResponse.json({
+      success: true,
+      data: {
+        preferredLanguage: user.preferredLanguage || 'ENGLISH' // Default to English
           }
         });
       }
