@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { type LanguageValue } from "../config";
+import { getAuthHeaders } from "@/lib/auth-utils";
 
 interface SpeakingPracticeDialogProps {
   isOpen: boolean;
@@ -37,9 +38,7 @@ export function SpeakingPracticeDialog({
       // Generate a new speaking session
       const response = await fetch('/api/foreign-language/speaking/generate', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: getAuthHeaders(),
         body: JSON.stringify({
           language: selectedLanguage.toUpperCase(),
         }),

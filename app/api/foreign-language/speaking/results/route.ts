@@ -4,12 +4,48 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 import OpenAI from 'openai';
 import { practiceConfig, getCEFRLevel } from '@/app/dashboard/foreign-lang/config';
+import jwt from 'jsonwebtoken';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
 const prisma = new PrismaClient();
+
+async function authenticateUser(request: NextRequest): Promise<string | null> {
+  console.log('Authenticating user...')
+
+  // First, try NextAuth session
+  const session = await getServerSession(authOptions)
+  if (session?.user?.id) {
+    console.log('Using NextAuth session for user:', session.user.id)
+    return session.user.id
+  }
+
+  // If no NextAuth session, try JWT token from Authorization header
+  const authHeader = request.headers.get('authorization')
+  console.log('Auth header:', authHeader ? 'present' : 'missing')
+
+  if (authHeader?.startsWith('Bearer ')) {
+    const token = authHeader.substring(7)
+    console.log('JWT token present, attempting verification...')
+    try {
+      const decoded = jwt.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret') as { userId?: string; email?: string }
+      console.log('JWT decoded:', { userId: decoded.userId, email: decoded.email })
+      if (decoded.userId) {
+        console.log('Using JWT token for user:', decoded.userId)
+        return decoded.userId
+      }
+    } catch (error) {
+      console.error('JWT verification failed:', error)
+    }
+  } else {
+    console.log('No Bearer token found in authorization header')
+  }
+
+  console.log('Authentication failed - returning null')
+  return null
+}
 
 interface SpeakingResult {
   sessionId: string; // This is the question ID
@@ -21,8 +57,8 @@ interface SpeakingResult {
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.id) {
+    const userId = await authenticateUser(request)
+    if (!userId) {
       return NextResponse.json(
         { success: false, error: 'Unauthorized' },
         { status: 401 }
@@ -69,7 +105,7 @@ export async function POST(request: NextRequest) {
     await prisma.speakingAttempt.create({
       data: {
         id: attemptId,
-        userId: session.user.id,
+        userId: userId,
         sessionId: speakingSession.id,
         languageId: speakingSession.languageId,
         status: 'COMPLETED',
@@ -319,7 +355,7 @@ IMPORTANT ANALYSIS REQUIREMENTS:
 
     const existingProgress = await prisma.userLevelProgress.findFirst({
       where: {
-        userId: session.user.id,
+        userId: userId,
         languageId: speakingSession.languageId,
         cefrLevel: currentLevel,
         skillType: skillType
@@ -328,7 +364,7 @@ IMPORTANT ANALYSIS REQUIREMENTS:
 
     const allAttempts = await prisma.speakingAttempt.findMany({
       where: {
-        userId: session.user.id,
+        userId: userId,
         languageId: speakingSession.languageId,
         session: {
           cefrLevel: currentLevel
@@ -364,7 +400,7 @@ IMPORTANT ANALYSIS REQUIREMENTS:
       } else {
         await prisma.userLevelProgress.create({
           data: {
-            userId: session.user.id,
+            userId: userId,
             languageId: speakingSession.languageId,
             cefrLevel: currentLevel,
             skillType: skillType,

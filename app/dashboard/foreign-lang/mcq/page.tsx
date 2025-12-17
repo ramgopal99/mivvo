@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Calendar, Clock, Target, TrendingUp, FileQuestion } from "lucide-react"
+import { getAuthHeaders } from "@/lib/auth-utils"
 
 interface McqAttemptSummary {
   id: string
@@ -81,7 +82,9 @@ export default function McqHistoryPage() {
           // First, get user's preferred language
           let userLanguage: string | null = null;
           try {
-            const langResponse = await fetch('/api/foreign-language/user/preferences/language');
+            const langResponse = await fetch('/api/foreign-language/user/preferences/language', {
+              headers: getAuthHeaders()
+            });
             if (langResponse.ok) {
               const langResult = await langResponse.json();
               if (langResult.success && langResult.data.preferredLanguage) {
@@ -96,7 +99,9 @@ export default function McqHistoryPage() {
           if (userLanguage) {
             // Load attempts with the user's preferred language
           try {
-            const response = await fetch(`/api/foreign-language/mcq/user-attempts?language=${userLanguage}`)
+            const response = await fetch(`/api/foreign-language/mcq/user-attempts?language=${userLanguage}`, {
+              headers: getAuthHeaders()
+            })
 
             if (response.ok) {
               const result = await response.json()

@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { type LanguageValue } from "../config";
+import { getAuthHeaders } from "@/lib/auth-utils";
 
 interface WritingPracticeDialogProps {
   isOpen: boolean;
@@ -50,9 +51,7 @@ export function WritingPracticeDialog({
         setIsGenerating(true);
         const response = await fetch('/api/foreign-language/writing/generate', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: getAuthHeaders(),
           body: JSON.stringify({
             language: selectedLanguage.toUpperCase(),
           }),

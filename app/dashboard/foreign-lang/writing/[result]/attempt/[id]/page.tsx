@@ -109,7 +109,25 @@ export default function WritingAttemptDetailsPage({ params }: AttemptDetailsPage
         // First, get user's preferred language (optional)
         let preferredLanguage: string | null = null;
         try {
-          const langResponse = await fetch('/api/foreign-language/user/preferences/language');
+          // Prepare headers with JWT token if available
+          const langHeaders: Record<string, string> = {
+            'Content-Type': 'application/json'
+          };
+
+          // Check for JWT tokens in localStorage
+          const langToken = typeof window !== 'undefined' ? (
+            localStorage.getItem('token') ||
+            localStorage.getItem('student_token') ||
+            localStorage.getItem('college_token')
+          ) : null;
+
+          if (langToken) {
+            langHeaders['Authorization'] = `Bearer ${langToken}`;
+          }
+
+          const langResponse = await fetch('/api/foreign-language/user/preferences/language', {
+            headers: langHeaders
+          });
           if (langResponse.ok) {
             const langResult = await langResponse.json();
             if (langResult.success && langResult.data.preferredLanguage) {
@@ -127,7 +145,9 @@ export default function WritingAttemptDetailsPage({ params }: AttemptDetailsPage
           : `/api/foreign-language/writing/attempts/${id}`;
 
         // Prepare headers with JWT token if using JWT authentication
-        const headers: Record<string, string> = {};
+        const headers: Record<string, string> = {
+          'Content-Type': 'application/json'
+        };
         if (userInfo?.collegeId || (typeof window !== 'undefined' && (
           localStorage.getItem('token') ||
           localStorage.getItem('student_token') ||
@@ -144,7 +164,7 @@ export default function WritingAttemptDetailsPage({ params }: AttemptDetailsPage
         }
 
         const response = await fetch(url, {
-          headers: Object.keys(headers).length > 0 ? headers : undefined
+          headers
         });
 
         if (response.ok) {

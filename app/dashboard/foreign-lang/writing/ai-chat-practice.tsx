@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Send, Bot, User, Volume2 } from "lucide-react";
+import { getAuthHeaders } from "@/lib/auth-utils";
 
 interface ChatMessage {
   id: string;
@@ -73,9 +74,7 @@ export function AIChatPractice({ scenario, language, cefrLevel, onConversationUp
 
       const response = await fetch('/api/foreign-language/writing/chat-response', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: getAuthHeaders(),
         body: JSON.stringify({
           userMessage,
           conversationHistory: conversationContext,

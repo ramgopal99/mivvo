@@ -81,7 +81,25 @@ export default function McqAttemptDetailsPage({ params }: AttemptDetailsPageProp
 
       // Load attempt data from API
       try {
-        const response = await fetch(`/api/foreign-language/mcq/attempts/${id}`)
+        // Prepare headers with JWT token if available
+        const headers: Record<string, string> = {
+          'Content-Type': 'application/json'
+        };
+
+        // Check for JWT tokens in localStorage
+        const token = typeof window !== 'undefined' ? (
+          localStorage.getItem('token') ||
+          localStorage.getItem('student_token') ||
+          localStorage.getItem('college_token')
+        ) : null;
+
+        if (token) {
+          headers['Authorization'] = `Bearer ${token}`;
+        }
+
+        const response = await fetch(`/api/foreign-language/mcq/attempts/${id}`, {
+          headers
+        })
 
         if (response.ok) {
           const result = await response.json()

@@ -86,7 +86,25 @@ export default function ReadingAttemptDetailsPage({ params }: AttemptDetailsPage
         // First, get user's preferred language
         let preferredLanguage: string | null = null;
         try {
-          const langResponse = await fetch('/api/foreign-language/user/preferences/language');
+          // Prepare headers with JWT token if available
+          const headers: Record<string, string> = {
+            'Content-Type': 'application/json'
+          };
+
+          // Check for JWT tokens in localStorage
+          const token = typeof window !== 'undefined' ? (
+            localStorage.getItem('token') ||
+            localStorage.getItem('student_token') ||
+            localStorage.getItem('college_token')
+          ) : null;
+
+          if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+          }
+
+          const langResponse = await fetch('/api/foreign-language/user/preferences/language', {
+            headers
+          });
           if (langResponse.ok) {
             const langResult = await langResponse.json();
             if (langResult.success && langResult.data.preferredLanguage) {
@@ -108,7 +126,24 @@ export default function ReadingAttemptDetailsPage({ params }: AttemptDetailsPage
         }
 
         // Fetch actual attempt data from API with language filter
-        const response = await fetch(`/api/foreign-language/reading/attempts/${id}?language=${preferredLanguage}`)
+        const attemptHeaders: Record<string, string> = {
+          'Content-Type': 'application/json'
+        };
+
+        // Check for JWT tokens in localStorage for the attempt fetch
+        const attemptToken = typeof window !== 'undefined' ? (
+          localStorage.getItem('token') ||
+          localStorage.getItem('student_token') ||
+          localStorage.getItem('college_token')
+        ) : null;
+
+        if (attemptToken) {
+          attemptHeaders['Authorization'] = `Bearer ${attemptToken}`;
+        }
+
+        const response = await fetch(`/api/foreign-language/reading/attempts/${id}?language=${preferredLanguage}`, {
+          headers: attemptHeaders
+        })
 
         if (response.ok) {
           const result = await response.json()

@@ -10,6 +10,7 @@ import { ReadingPracticeDialog } from "../reading";
 import { WritingPracticeDialog } from "../writing";
 import { SpeakingPracticeDialog } from "../speaking";
 import { McqPracticeDialog } from "../mcq";
+import { getAuthHeaders } from "@/lib/auth-utils";
 
 interface SkillCardProps {
   type: SkillType;
@@ -67,9 +68,7 @@ export function SkillCard({ type, selectedLanguage }: SkillCardProps) {
         // Generate reading practice session using OpenAI
         const response = await fetch('/api/foreign-language/reading/generate', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: getAuthHeaders(),
           body: JSON.stringify({
             language: selectedLanguage.toUpperCase(),
           }),
@@ -91,9 +90,7 @@ export function SkillCard({ type, selectedLanguage }: SkillCardProps) {
         // Generate writing practice session using OpenAI
         const response = await fetch('/api/foreign-language/writing/generate', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: getAuthHeaders(),
           body: JSON.stringify({
             language: selectedLanguage.toUpperCase(),
           }),
@@ -115,9 +112,7 @@ export function SkillCard({ type, selectedLanguage }: SkillCardProps) {
         // Generate MCQ practice session using OpenAI
         const response = await fetch('/api/foreign-language/mcq/generate', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: getAuthHeaders(),
           body: JSON.stringify({
             language: selectedLanguage.toUpperCase(),
           }),

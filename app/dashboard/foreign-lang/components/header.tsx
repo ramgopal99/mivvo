@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ProgressBar } from "./progress-bar";
 import { LanguageDefinition } from "../config";
+import { getAuthHeaders } from "@/lib/auth-utils";
 
 interface HeaderProps {
   selectedLanguage: string;
   onLanguageChange: (language: string) => void;
   languages: LanguageDefinition[];
   skillType?: 'reading' | 'mcq'; // Optional: filter progress by specific skill type
+  refreshTrigger?: number; // Trigger to refresh progress data
 }
 
 interface UserProgressData {
@@ -90,7 +92,7 @@ interface UserProgressData {
   };
 }
 
-export function Header({ selectedLanguage, onLanguageChange, languages, skillType }: HeaderProps) {
+export function Header({ selectedLanguage, onLanguageChange, languages, skillType, refreshTrigger }: HeaderProps) {
   const [userProgress, setUserProgress] = useState<UserProgressData | null>(null);
 
   useEffect(() => {
@@ -102,7 +104,9 @@ export function Header({ selectedLanguage, onLanguageChange, languages, skillTyp
         if (skillType) {
           params.append('skillType', skillType);
         }
-        const response = await fetch(`/api/foreign-language/user/progress?${params.toString()}`);
+        const response = await fetch(`/api/foreign-language/user/progress?${params.toString()}`, {
+          headers: getAuthHeaders()
+        });
         const result = await response.json();
         if (result.success) {
           setUserProgress(result.data);
@@ -112,9 +116,9 @@ export function Header({ selectedLanguage, onLanguageChange, languages, skillTyp
       }
     };
 
-    // Fetch progress when language or skill type changes
+    // Fetch progress when language, skill type, or refresh trigger changes
     fetchUserProgress();
-  }, [selectedLanguage, skillType]); // Re-fetch when language or skill type changes
+  }, [selectedLanguage, skillType, refreshTrigger]); // Re-fetch when language, skill type, or refresh trigger changes
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">

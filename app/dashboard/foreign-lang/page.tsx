@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Header } from "./components/header";
 import { SkillCard } from "./components/skill-card";
 import { type LanguageValue } from "./config";
@@ -17,10 +18,13 @@ import {
 } from "@/components/ui/alert-dialog";
 
 export default function ForeignLanguagePage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [selectedLanguage, setSelectedLanguage] = useState<LanguageValue>("english");
   const [loading, setLoading] = useState(true);
   const [languageDialogOpen, setLanguageDialogOpen] = useState(false);
   const [pendingLanguage, setPendingLanguage] = useState<string | null>(null);
+  const [progressRefreshTrigger, setProgressRefreshTrigger] = useState<number>(Date.now());
 
   // Load user's preferred language on component mount
   useEffect(() => {
@@ -50,6 +54,25 @@ export default function ForeignLanguagePage() {
 
     loadUserLanguagePreference();
   }, []);
+
+  // Check for refresh parameter to update progress after practice completion
+  useEffect(() => {
+    const refresh = searchParams.get('refresh');
+    if (refresh === 'progress') {
+      // Remove the refresh parameter from URL
+      const newSearchParams = new URLSearchParams(searchParams);
+      newSearchParams.delete('refresh');
+      const newUrl = newSearchParams.toString()
+        ? `${window.location.pathname}?${newSearchParams.toString()}`
+        : window.location.pathname;
+
+      // Update URL without refresh parameter
+      window.history.replaceState({}, '', newUrl);
+
+      // Trigger progress refresh
+      setProgressRefreshTrigger(Date.now());
+    }
+  }, [searchParams]);
 
   const handleLanguageChange = (language: string) => {
     // Show confirmation dialog
@@ -109,7 +132,7 @@ export default function ForeignLanguagePage() {
 
   return (
     <div className="container mx-auto px-4 py-4 space-y-4">
-      <Header selectedLanguage={selectedLanguage} onLanguageChange={handleLanguageChange} languages={getActiveLanguages()} />
+      <Header selectedLanguage={selectedLanguage} onLanguageChange={handleLanguageChange} languages={getActiveLanguages()} refreshTrigger={progressRefreshTrigger} />
       <div className="grid gap-4 grid-cols-2">
         <SkillCard type="reading" selectedLanguage={selectedLanguage} />
         <SkillCard type="writing" selectedLanguage={selectedLanguage} />

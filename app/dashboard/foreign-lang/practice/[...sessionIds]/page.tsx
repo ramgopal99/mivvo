@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { PracticeInterface } from "../../components/practice-interface";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
 
@@ -41,7 +40,7 @@ export default function PracticePage() {
 
     // Start redirect timer (3 seconds)
     const redirectTimer = setTimeout(() => {
-      router.push('/dashboard/foreign-lang');
+      router.push('/dashboard/foreign-lang?refresh=progress');
     }, 3000);
 
     // Submit results in background (fire and forget)
@@ -50,9 +49,22 @@ export default function PracticePage() {
         // Determine session type by checking if it's an MCQ or reading session
         const mainSessionId = sessionIds[0];
 
+        // Get authentication headers for session checks
+        const authHeaders: Record<string, string> = {};
+        const checkToken = typeof window !== 'undefined' ? (
+          localStorage.getItem('token') ||
+          localStorage.getItem('student_token') ||
+          localStorage.getItem('college_token')
+        ) : null;
+
+        if (checkToken) {
+          authHeaders['Authorization'] = `Bearer ${checkToken}`;
+        }
+
         // Check if it's a speaking session first
         const speakingResponse = await fetch(`/api/foreign-language/speaking/sessions/${mainSessionId}`, {
-          method: 'HEAD' // Just check if it exists
+          method: 'HEAD', // Just check if it exists
+          headers: authHeaders
         });
 
         let apiEndpoint: string;
@@ -62,7 +74,8 @@ export default function PracticePage() {
         } else {
           // Check if it's a writing session (since writing sessions include both writing and chat)
           const writingResponse = await fetch(`/api/foreign-language/writing/sessions/${mainSessionId}`, {
-            method: 'HEAD' // Just check if it exists
+            method: 'HEAD', // Just check if it exists
+            headers: authHeaders
           });
 
           if (writingResponse.ok) {
@@ -71,7 +84,8 @@ export default function PracticePage() {
           } else {
             // Check if it's an MCQ session
             const mcqResponse = await fetch(`/api/foreign-language/mcq/sessions/${mainSessionId}`, {
-              method: 'HEAD' // Just check if it exists
+              method: 'HEAD', // Just check if it exists
+              headers: authHeaders
             });
 
             if (mcqResponse.ok) {
@@ -80,7 +94,8 @@ export default function PracticePage() {
             } else {
               // Check if it's a reading session
               const readingResponse = await fetch(`/api/foreign-language/reading/sessions/${mainSessionId}`, {
-                method: 'HEAD' // Just check if it exists
+                method: 'HEAD', // Just check if it exists
+                headers: authHeaders
               });
 
               if (readingResponse.ok) {

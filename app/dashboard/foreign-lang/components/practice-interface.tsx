@@ -183,29 +183,49 @@ export function PracticeInterface({ sessionIds, onComplete }: PracticeInterfaceP
         // For now, assume the first session ID is the reading session ID
         const sessionId = sessionIds[0];
 
+        // Prepare authentication headers
+        const authHeaders: Record<string, string> = {};
+        const token = typeof window !== 'undefined' ? (
+          localStorage.getItem('token') ||
+          localStorage.getItem('student_token') ||
+          localStorage.getItem('college_token')
+        ) : null;
+
+        if (token) {
+          authHeaders['Authorization'] = `Bearer ${token}`;
+        }
+
         if (sessionId.startsWith('reading-session-')) {
-          const response = await fetch(`/api/foreign-language/reading/sessions/${sessionId}`);
+          const response = await fetch(`/api/foreign-language/reading/sessions/${sessionId}`, {
+            headers: authHeaders
+          });
           const result = await response.json();
 
           if (result.success) {
             setSessionData(result.data);
           }
         } else if (sessionId.startsWith('writing-session-')) {
-          const response = await fetch(`/api/foreign-language/writing/sessions/${sessionId}`);
+          const response = await fetch(`/api/foreign-language/writing/sessions/${sessionId}`, {
+            headers: authHeaders
+          });
           const result = await response.json();
 
           if (result.success) {
             setSessionData(result.data);
           }
         } else if (sessionId.startsWith('mcq-session-')) {
-          const response = await fetch(`/api/foreign-language/mcq/sessions/${sessionId}`);
+          const response = await fetch(`/api/foreign-language/mcq/sessions/${sessionId}`, {
+            headers: authHeaders
+          });
           const result = await response.json();
 
           if (result.success) {
             setSessionData(result.data);
           }
         } else if (sessionId.startsWith('speaking-session-')) {
-          const response = await fetch(`/api/foreign-language/speaking/sessions/${sessionId}`);
+          const response = await fetch(`/api/foreign-language/speaking/sessions/${sessionId}`, {
+            headers: authHeaders
+          });
           const result = await response.json();
 
           if (result.success) {

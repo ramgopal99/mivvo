@@ -4,16 +4,52 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 import OpenAI from 'openai';
 import { practiceConfig, getCEFRLevel, type CEFRLevelDefinition } from '@/app/dashboard/foreign-lang/config';
+import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+async function authenticateUser(request: NextRequest): Promise<string | null> {
+  console.log('Authenticating user...')
+
+  // First, try NextAuth session
+  const session = await getServerSession(authOptions)
+  if (session?.user?.id) {
+    console.log('Using NextAuth session for user:', session.user.id)
+    return session.user.id
+  }
+
+  // If no NextAuth session, try JWT token from Authorization header
+  const authHeader = request.headers.get('authorization')
+  console.log('Auth header:', authHeader ? 'present' : 'missing')
+
+  if (authHeader?.startsWith('Bearer ')) {
+    const token = authHeader.substring(7)
+    console.log('JWT token present, attempting verification...')
+    try {
+      const decoded = jwt.verify(token, process.env.NEXTAUTH_SECRET || 'fallback-secret') as { userId?: string; email?: string }
+      console.log('JWT decoded:', { userId: decoded.userId, email: decoded.email })
+      if (decoded.userId) {
+        console.log('Using JWT token for user:', decoded.userId)
+        return decoded.userId
+      }
+    } catch (error) {
+      console.error('JWT verification failed:', error)
+    }
+  } else {
+    console.log('No Bearer token found in authorization header')
+  }
+
+  console.log('Authentication failed - returning null')
+  return null
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.id) {
+    const userId = await authenticateUser(request)
+    if (!userId) {
       return NextResponse.json(
         { success: false, error: 'Unauthorized' },
         { status: 401 }
@@ -27,7 +63,7 @@ export async function POST(request: NextRequest) {
     // If no language specified, use user's preferred language
     if (!language) {
       const user = await prisma.user.findUnique({
-        where: { id: session.user.id },
+        where: { id: userId },
         select: { preferredLanguage: true }
       });
       language = user?.preferredLanguage || 'ENGLISH';
@@ -66,7 +102,7 @@ export async function POST(request: NextRequest) {
     // Find user's current MCQ level for this language
     const userProgress = await prisma.userLevelProgress.findMany({
       where: {
-        userId: session.user.id,
+        userId: userId,
         languageId: languageConfig.id,
         skillType: 'MCQ'
       },
