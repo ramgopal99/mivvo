@@ -3,9 +3,11 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, BarChart3, PenTool, TrendingUp, Clock, Target, Zap, MessageCircle, Sparkles } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { ArrowLeft, BarChart3, PenTool, TrendingUp, Clock, Target, Zap, MessageCircle, Sparkles, PieChart } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { getCEFRLevel } from "../../../../config"
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart as RechartsPieChart, Pie, Cell, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, RadialBarChart, RadialBar } from 'recharts'
 
 interface WritingSessionResult {
   id: string
@@ -155,10 +157,18 @@ export function WritingAttemptDetailsContent({ attempt }: WritingAttemptDetailsC
 
       {/* Main Content with Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="overview" className="flex items-center space-x-2">
             <BarChart3 className="w-4 h-4" />
             <span>Overview</span>
+          </TabsTrigger>
+          <TabsTrigger value="responses" className="flex items-center space-x-2">
+            <PenTool className="w-4 h-4" />
+            <span>Responses</span>
+          </TabsTrigger>
+          <TabsTrigger value="graphs" className="flex items-center space-x-2">
+            <PieChart className="w-4 h-4" />
+            <span>Graphs</span>
           </TabsTrigger>
           <TabsTrigger value="analysis" className="flex items-center space-x-2">
             <PenTool className="w-4 h-4" />
@@ -175,6 +185,14 @@ export function WritingAttemptDetailsContent({ attempt }: WritingAttemptDetailsC
             attempt={attempt}
             overallScore={overallScore}
           />
+        </TabsContent>
+
+        <TabsContent value="responses" className="space-y-6">
+          <ResponsesSection result={result} />
+        </TabsContent>
+
+        <TabsContent value="graphs" className="space-y-6">
+          <GraphsSection result={result} />
         </TabsContent>
 
         <TabsContent value="analysis" className="space-y-6">
@@ -309,6 +327,203 @@ function AnalysisSection({ result }: { result: WritingSessionResult }) {
           </ul>
         </div>
       )}
+    </div>
+  )
+}
+
+// Responses Section Component
+function ResponsesSection({ result }: { result: WritingSessionResult }) {
+  return (
+    <div className="space-y-6">
+      <div className="bg-white rounded-lg border">
+        <div className="p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Writing Assessment Results</h3>
+          <div className="space-y-4">
+            {/* Topic Writing */}
+            <div className="border rounded-lg p-4">
+              <div className="flex items-center justify-between">
+                <div className="text-sm text-gray-700">Topic Writing</div>
+                <div className="text-right">
+                  <div className="text-xl font-bold text-green-600">{result?.topicWritingScore || 0}%</div>
+                  <div className="text-xs text-gray-500">Score</div>
+                </div>
+              </div>
+            </div>
+
+            {/* AI Conversation */}
+            <div className="border rounded-lg p-4">
+              <div className="flex items-center justify-between">
+                <div className="text-sm text-gray-700">AI Conversation</div>
+                <div className="text-right">
+                  <div className="text-xl font-bold text-blue-600">{result?.aiConversationScore || 0}%</div>
+                  <div className="text-xs text-gray-500">Score</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Key Skills - Simple Row */}
+            <div className="flex gap-4">
+              <div className="flex-1 border rounded-lg p-3 text-center">
+                <div className="text-lg font-bold text-purple-600">{result?.creativityScore || 0}%</div>
+                <div className="text-xs text-gray-600">Creativity</div>
+              </div>
+              <div className="flex-1 border rounded-lg p-3 text-center">
+                <div className="text-lg font-bold text-green-600">{result?.grammarAccuracy || 0}%</div>
+                <div className="text-xs text-gray-600">Grammar</div>
+              </div>
+              <div className="flex-1 border rounded-lg p-3 text-center">
+                <div className="text-lg font-bold text-blue-600">{result?.vocabularyUsage || 0}%</div>
+                <div className="text-xs text-gray-600">Vocabulary</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Graphs Section Component
+function GraphsSection({ result }: { result: WritingSessionResult }) {
+  // Prepare data for graphs
+  const topicWritingScore = result?.topicWritingScore || 0
+  const aiConversationScore = result?.aiConversationScore || 0
+
+  // Graph 1: Main Scores Comparison (Bar Chart)
+  const mainScoresData = [
+    {
+      category: 'Topic Writing',
+      score: topicWritingScore,
+      color: '#10B981'
+    },
+    {
+      category: 'AI Conversation',
+      score: aiConversationScore,
+      color: '#3B82F6'
+    }
+  ]
+
+  // Graph 2: Detailed Skills Breakdown (Radar Chart)
+  const skillsData = [
+    { skill: 'Creativity', score: result?.creativityScore || 0 },
+    { skill: 'Grammar', score: result?.grammarAccuracy || 0 },
+    { skill: 'Vocabulary', score: result?.vocabularyUsage || 0 },
+    { skill: 'Flow', score: result?.conversationFlow || 0 },
+    { skill: 'Coverage', score: result?.topicCoverage || 0 },
+    { skill: 'Length', score: result?.responseLength || 0 }
+  ]
+
+  // Graph 3: Time Distribution (Pie Chart)
+  const timeSpent = result?.timeSpent
+  const topicsTime = timeSpent?.topics || 0
+  const chatTime = timeSpent?.chat || 0
+
+  const timeDistributionData = [
+    { name: 'Topic Writing', value: topicsTime, color: '#10B981' },
+    { name: 'AI Conversation', value: chatTime, color: '#3B82F6' }
+  ]
+
+  // Graph 4: Skills Performance (Horizontal Bar Chart)
+  const skillsPerformanceData = [
+    { name: 'Creativity', score: result?.creativityScore || 0 },
+    { name: 'Grammar', score: result?.grammarAccuracy || 0 },
+    { name: 'Vocabulary', score: result?.vocabularyUsage || 0 },
+    { name: 'Flow', score: result?.conversationFlow || 0 },
+    { name: 'Coverage', score: result?.topicCoverage || 0 },
+    { name: 'Length', score: result?.responseLength || 0 }
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Graph 1: Main Scores Comparison */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Writing Task Scores</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={mainScoresData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="category" />
+                <YAxis domain={[0, 100]} />
+                <Tooltip formatter={(value) => [`${value}%`, 'Score']} />
+                <Bar dataKey="score" fill="#10B981" />
+              </BarChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        {/* Graph 2: Skills Radar */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Writing Skills Overview</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <RadarChart data={skillsData}>
+                <PolarGrid />
+                <PolarAngleAxis dataKey="skill" />
+                <PolarRadiusAxis domain={[0, 100]} />
+                <Radar
+                  name="Score"
+                  dataKey="score"
+                  stroke="#3B82F6"
+                  fill="#3B82F6"
+                  fillOpacity={0.3}
+                />
+                <Tooltip formatter={(value) => [`${value}%`, 'Score']} />
+              </RadarChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        {/* Graph 3: Time Distribution */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Time Distribution</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <RechartsPieChart>
+                <Pie
+                  data={timeDistributionData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                  outerRadius={80}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {timeDistributionData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip formatter={(value) => [`${Math.round(Number(value) / 60)}min`, 'Time Spent']} />
+              </RechartsPieChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        {/* Graph 4: Skills Performance */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Detailed Skills Breakdown</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={skillsPerformanceData} layout="horizontal">
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis type="number" domain={[0, 100]} />
+                <YAxis dataKey="name" type="category" width={80} />
+                <Tooltip formatter={(value) => [`${value}%`, 'Score']} />
+                <Bar dataKey="score" fill="#8B5CF6" />
+              </BarChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }

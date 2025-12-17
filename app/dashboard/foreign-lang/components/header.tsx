@@ -118,12 +118,12 @@ export function Header({ selectedLanguage, onLanguageChange, languages, skillTyp
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-foreground">Foreign Language</h1>
+        <h1 className="text-3xl font-bold text-foreground">Language Learning Journey</h1>
         <div className="flex items-center gap-4">
           <ProgressBar currentLevel={userProgress?.currentLevel} levelProgress={userProgress?.levelProgress} scores={userProgress?.scores} />
           <Select value={selectedLanguage} onValueChange={onLanguageChange}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select language" />
+              <SelectValue placeholder="Choose your language" />
             </SelectTrigger>
             <SelectContent>
               {languages.map((language) => (

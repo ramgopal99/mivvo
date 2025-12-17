@@ -3,8 +3,10 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, BarChart3, Volume2, TrendingUp, Clock, Target, Zap, Mic } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { ArrowLeft, BarChart3, Volume2, TrendingUp, Clock, Target, Zap, Mic, PieChart } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart as RechartsPieChart, Pie, Cell, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, LineChart, Line } from 'recharts'
 
 interface SpeakingQuestionResult {
   id: string
@@ -119,10 +121,14 @@ export function SpeakingAttemptDetailsContent({ attempt }: SpeakingAttemptDetail
 
       {/* Main Content with Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="overview" className="flex items-center space-x-2">
             <BarChart3 className="w-4 h-4" />
             <span>Overview</span>
+          </TabsTrigger>
+          <TabsTrigger value="graphs" className="flex items-center space-x-2">
+            <PieChart className="w-4 h-4" />
+            <span>Graphs</span>
           </TabsTrigger>
           <TabsTrigger value="responses" className="flex items-center space-x-2">
             <Mic className="w-4 h-4" />
@@ -143,6 +149,10 @@ export function SpeakingAttemptDetailsContent({ attempt }: SpeakingAttemptDetail
             attempt={attempt}
             overallScore={overallScore}
           />
+        </TabsContent>
+
+        <TabsContent value="graphs" className="space-y-6">
+          <GraphsSection result={result} questions={attempt.questions} />
         </TabsContent>
 
         <TabsContent value="responses" className="space-y-6">
@@ -342,6 +352,150 @@ function ResponsesSection({ attempt }: { attempt: SpeakingAttempt }) {
 }
 
 // Metrics Section Component
+// Graphs Section Component
+function GraphsSection({ result, questions }: { result: SpeakingSessionResult | null; questions: SpeakingQuestionResult[] }) {
+  // Graph 1: Speaking vs Listening Scores (Bar Chart)
+  const speakingScore = result?.speakingScore || 0
+  const listeningScore = result?.listeningScore || 0
+
+  const mainScoresData = [
+    {
+      category: 'Speaking',
+      score: speakingScore,
+      color: '#10B981'
+    },
+    {
+      category: 'Listening',
+      score: listeningScore,
+      color: '#3B82F6'
+    }
+  ]
+
+  // Graph 2: Detailed Skills Breakdown (Radar Chart)
+  const skillsData = [
+    { skill: 'Pronunciation', score: result?.pronunciationScore || 0 },
+    { skill: 'Fluency', score: result?.fluencyScore || 0 },
+    { skill: 'Vocabulary', score: result?.vocabularyScore || 0 },
+    { skill: 'Grammar', score: result?.grammarScore || 0 },
+    { skill: 'Comprehension', score: result?.comprehensionScore || 0 },
+    { skill: 'Listening Acc.', score: result?.listeningAccuracy || 0 }
+  ]
+
+  // Graph 3: Question Performance Trend (Line Chart)
+  const questionTrendData = questions.map((question, index) => ({
+    question: index + 1,
+    confidence: question.confidence || 0,
+    wordCount: question.wordCount || 0,
+    timeSpent: Math.round((question.timeSpent || 0) / 1000) // convert to seconds
+  }))
+
+  // Graph 4: Response Time Distribution (Bar Chart)
+  const responseTimes = questions.map(q => Math.round((q.timeSpent || 0) / 1000))
+  const avgResponseTime = responseTimes.length > 0 ? responseTimes.reduce((a, b) => a + b, 0) / responseTimes.length : 0
+
+  const timeBuckets = [
+    { range: 'Fast (0-5s)', count: responseTimes.filter(t => t <= 5).length, color: '#10B981' },
+    { range: 'Medium (6-15s)', count: responseTimes.filter(t => t > 5 && t <= 15).length, color: '#F59E0B' },
+    { range: 'Slow (15s+)', count: responseTimes.filter(t => t > 15).length, color: '#EF4444' }
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Graph 1: Speaking vs Listening Scores */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Speaking vs Listening Scores</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={mainScoresData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="category" />
+                <YAxis domain={[0, 100]} />
+                <Tooltip formatter={(value) => [`${value}%`, 'Score']} />
+                <Bar dataKey="score" fill="#10B981" />
+              </BarChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        {/* Graph 2: Skills Radar */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Speaking Skills Overview</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <RadarChart data={skillsData}>
+                <PolarGrid />
+                <PolarAngleAxis dataKey="skill" />
+                <PolarRadiusAxis domain={[0, 100]} />
+                <Radar
+                  name="Score"
+                  dataKey="score"
+                  stroke="#3B82F6"
+                  fill="#3B82F6"
+                  fillOpacity={0.3}
+                />
+                <Tooltip formatter={(value) => [`${value}%`, 'Score']} />
+              </RadarChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        {/* Graph 3: Question Performance Trend */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Response Confidence Trend</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={questionTrendData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="question" />
+                <YAxis domain={[0, 100]} />
+                <Tooltip />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="confidence"
+                  stroke="#10B981"
+                  strokeWidth={2}
+                  name="Confidence (%)"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        {/* Graph 4: Response Time Distribution */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Response Time Distribution</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={timeBuckets}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="range" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="count" fill="#8B5CF6" />
+              </BarChart>
+            </ResponsiveContainer>
+            <div className="text-center mt-2">
+              <p className="text-sm text-muted-foreground">
+                Average response time: {avgResponseTime.toFixed(1)}s
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}
+
 function MetricsSection({ result }: { result: SpeakingSessionResult | null }) {
   const metrics = [
     {

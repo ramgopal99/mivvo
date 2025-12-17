@@ -3,8 +3,10 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, BarChart3, HelpCircle, TrendingUp, Clock, Target, CheckCircle, XCircle } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { ArrowLeft, BarChart3, HelpCircle, TrendingUp, Clock, Target, CheckCircle, XCircle, PieChart } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart as RechartsPieChart, Pie, Cell, LineChart, Line, Area, AreaChart } from 'recharts'
 
 interface McqSessionResult {
   id: string
@@ -153,10 +155,18 @@ export function McqAttemptDetailsContent({ attempt }: McqAttemptDetailsContentPr
 
       {/* Main Content with Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="overview" className="flex items-center space-x-2">
             <BarChart3 className="w-4 h-4" />
             <span>Overview</span>
+          </TabsTrigger>
+          <TabsTrigger value="responses" className="flex items-center space-x-2">
+            <HelpCircle className="w-4 h-4" />
+            <span>Responses</span>
+          </TabsTrigger>
+          <TabsTrigger value="graphs" className="flex items-center space-x-2">
+            <PieChart className="w-4 h-4" />
+            <span>Graphs</span>
           </TabsTrigger>
           <TabsTrigger value="analysis" className="flex items-center space-x-2">
             <HelpCircle className="w-4 h-4" />
@@ -173,6 +183,14 @@ export function McqAttemptDetailsContent({ attempt }: McqAttemptDetailsContentPr
             attempt={attempt}
             overallScore={overallScore}
           />
+        </TabsContent>
+
+        <TabsContent value="responses" className="space-y-6">
+          <ResponsesSection attempt={attempt} />
+        </TabsContent>
+
+        <TabsContent value="graphs" className="space-y-6">
+          <GraphsSection attempt={attempt} />
         </TabsContent>
 
         <TabsContent value="analysis" className="space-y-6">
@@ -298,6 +316,266 @@ function AnalysisSection({ result }: { result: McqSessionResult }) {
           </ul>
         </div>
       )}
+    </div>
+  )
+}
+
+// Responses Section Component
+function ResponsesSection({ attempt }: { attempt: McqAttempt }) {
+  return (
+    <div className="space-y-6">
+      <div className="bg-white rounded-lg border">
+        <div className="p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Your MCQ Responses</h3>
+          <div className="space-y-4">
+            {attempt.questions.map((question, index) => (
+              <div key={question.id} className="border rounded-lg p-4">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded">
+                        Question {index + 1}
+                      </span>
+                      <span className="text-xs text-gray-500">
+                        {question.category}
+                      </span>
+                      {question.isCorrect ? (
+                        <span className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded">
+                          ✓ Correct
+                        </span>
+                      ) : (
+                        <span className="bg-red-100 text-red-800 text-xs font-medium px-2 py-1 rounded">
+                          ✗ Incorrect
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-sm font-medium text-gray-900 mb-3">
+                      {question.question}
+                    </p>
+                  </div>
+                  <div className="text-right text-xs text-gray-500">
+                    <div>{Math.round((question.timeSpent || 0) / 1000)}s</div>
+                  </div>
+                </div>
+
+                {/* Options */}
+                <div className="space-y-2 mb-3">
+                  {question.options.map((option, optionIndex) => (
+                    <div
+                      key={optionIndex}
+                      className={`p-2 rounded text-sm ${
+                        optionIndex === question.correctAnswer
+                          ? 'bg-green-100 border border-green-300 text-green-800'
+                          : optionIndex === question.userAnswer && optionIndex !== question.correctAnswer
+                          ? 'bg-red-100 border border-red-300 text-red-800'
+                          : optionIndex === question.userAnswer && optionIndex === question.correctAnswer
+                          ? 'bg-green-100 border border-green-300 text-green-800'
+                          : 'bg-gray-50 text-gray-700'
+                      }`}
+                    >
+                      <div className="flex items-center">
+                        <span className="font-medium mr-2">
+                          {String.fromCharCode(65 + optionIndex)}.
+                        </span>
+                        <span>{option}</span>
+                        {optionIndex === question.correctAnswer && (
+                          <span className="ml-auto text-green-600 font-medium">✓ Correct Answer</span>
+                        )}
+                        {optionIndex === question.userAnswer && optionIndex !== question.correctAnswer && (
+                          <span className="ml-auto text-red-600 font-medium">✗ Your Answer</span>
+                        )}
+                        {optionIndex === question.userAnswer && optionIndex === question.correctAnswer && (
+                          <span className="ml-auto text-green-600 font-medium">✓ Your Correct Answer</span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Explanation */}
+                {question.explanation && (
+                  <div className="bg-blue-50 border border-blue-200 rounded p-3">
+                    <h4 className="text-sm font-medium text-blue-800 mb-1">Explanation</h4>
+                    <p className="text-sm text-blue-700">{question.explanation}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Graphs Section Component
+function GraphsSection({ attempt }: { attempt: McqAttempt }) {
+  // Prepare data for graphs
+  const questions = attempt.questions || []
+
+  // Graph 1: Performance by Category (Bar Chart)
+  const categoryData = questions.reduce((acc, question) => {
+    const category = question.category || 'General'
+    if (!acc[category]) {
+      acc[category] = { category, correct: 0, incorrect: 0, total: 0 }
+    }
+    acc[category].total++
+    if (question.isCorrect) {
+      acc[category].correct++
+    } else {
+      acc[category].incorrect++
+    }
+    return acc
+  }, {} as Record<string, { category: string; correct: number; incorrect: number; total: number }>)
+
+  const categoryChartData = Object.values(categoryData)
+
+  // Graph 2: Time Distribution (Pie Chart)
+  const correctQuestions = questions.filter(q => q.isCorrect)
+  const incorrectQuestions = questions.filter(q => !q.isCorrect)
+
+  const totalCorrectTime = correctQuestions.reduce((sum, q) => sum + (q.timeSpent || 0), 0)
+  const totalIncorrectTime = incorrectQuestions.reduce((sum, q) => sum + (q.timeSpent || 0), 0)
+
+  const timeDistributionData = [
+    { name: 'Correct Answers', value: totalCorrectTime, color: '#10B981' },
+    { name: 'Incorrect Answers', value: totalIncorrectTime, color: '#EF4444' }
+  ]
+
+  // Graph 3: Question Difficulty Analysis (Bar Chart)
+  // Group questions by time spent (assuming faster = easier, slower = harder)
+  const timeBuckets = [
+    { range: '0-10s', min: 0, max: 10 },
+    { range: '11-30s', min: 11, max: 30 },
+    { range: '31-60s', min: 31, max: 60 },
+    { range: '60s+', min: 61, max: Infinity }
+  ]
+
+  const difficultyData = timeBuckets.map(bucket => {
+    const questionsInBucket = questions.filter(q => {
+      const time = q.timeSpent || 0
+      return time >= bucket.min && time <= bucket.max
+    })
+
+    const correctInBucket = questionsInBucket.filter(q => q.isCorrect).length
+    const totalInBucket = questionsInBucket.length
+
+    return {
+      timeRange: bucket.range,
+      correct: correctInBucket,
+      incorrect: totalInBucket - correctInBucket,
+      accuracy: totalInBucket > 0 ? Math.round((correctInBucket / totalInBucket) * 100) : 0
+    }
+  })
+
+  // Graph 4: Performance Trend (Line Chart)
+  const trendData = questions.map((question, index) => ({
+    question: index + 1,
+    score: question.isCorrect ? 1 : 0,
+    timeSpent: question.timeSpent || 0
+  }))
+
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Graph 1: Performance by Category */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Performance by Category</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={categoryChartData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="category" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="correct" stackId="a" fill="#10B981" name="Correct" />
+                <Bar dataKey="incorrect" stackId="a" fill="#EF4444" name="Incorrect" />
+              </BarChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        {/* Graph 2: Time Distribution */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Time Distribution</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <RechartsPieChart>
+                <Pie
+                  data={timeDistributionData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                  outerRadius={80}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {timeDistributionData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip formatter={(value) => [`${Math.round(Number(value) / 1000)}s`, 'Time Spent']} />
+              </RechartsPieChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        {/* Graph 3: Question Difficulty */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Performance by Time Spent</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={difficultyData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="timeRange" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="correct" fill="#10B981" name="Correct" />
+                <Bar dataKey="incorrect" fill="#EF4444" name="Incorrect" />
+              </BarChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        {/* Graph 4: Performance Trend */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Performance Trend</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <AreaChart data={trendData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="question" />
+                <YAxis domain={[0, 1]} />
+                <Tooltip
+                  formatter={(value, name) => [
+                    name === 'score' ? (value === 1 ? 'Correct' : 'Incorrect') : `${value}s`,
+                    name === 'score' ? 'Result' : 'Time Spent'
+                  ]}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="score"
+                  stroke="#10B981"
+                  fill="#10B981"
+                  fillOpacity={0.3}
+                  name="score"
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }

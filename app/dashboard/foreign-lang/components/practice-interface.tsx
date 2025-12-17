@@ -795,7 +795,7 @@ export function PracticeInterface({ sessionIds, onComplete }: PracticeInterfaceP
     <div className="h-screen bg-background overflow-hidden flex flex-col">
       {/* Top Header Bar */}
       <div className="bg-background border-b px-6 py-6 flex items-center justify-between">
-        <div className="text-lg font-semibold">Foreign Language Practice</div>
+        <div className="text-lg font-semibold">Language Practice</div>
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <Clock className="h-5 w-5" />

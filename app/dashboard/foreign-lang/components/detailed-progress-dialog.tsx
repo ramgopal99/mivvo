@@ -84,6 +84,8 @@ export function DetailedProgressDialog({ currentLevel, levelProgress, scores }: 
     // Get scores for this level only (for display of latest/best scores)
     const levelReadingScores = scores?.reading.filter(score => score.level === level.level) || [];
     const levelMcqScores = scores?.mcq.filter(score => score.level === level.level) || [];
+    const levelWritingScores = scores?.writing.filter(score => score.level === level.level) || [];
+    const levelSpeakingScores = scores?.speaking.filter(score => score.level === level.level) || [];
 
     return (
       <div className="space-y-4 h-full flex flex-col">
@@ -122,12 +124,10 @@ export function DetailedProgressDialog({ currentLevel, levelProgress, scores }: 
               
               // Get level-specific attempts for display
               const levelSkillAttempts = skillKey === 'reading' ? levelReadingScores :
-                                        skillKey === 'mcq' ? levelMcqScores : [];
+                                        skillKey === 'mcq' ? levelMcqScores :
+                                        skillKey === 'writing' ? levelWritingScores :
+                                        skillKey === 'speaking' ? levelSpeakingScores : [];
               const totalAttempts = levelSkillAttempts.length;
-
-              // Get latest and best scores from current level attempts only
-              const bestScore = levelSkillAttempts.length > 0 ? Math.max(...levelSkillAttempts.map(a => a.score)) : 0;
-              const latestScore = levelSkillAttempts.length > 0 ? levelSkillAttempts[levelSkillAttempts.length - 1].score : 0;
 
               return (
                 <div key={skillKey} className="text-center p-4 bg-muted/30 rounded-lg border flex flex-col justify-between">
@@ -140,10 +140,8 @@ export function DetailedProgressDialog({ currentLevel, levelProgress, scores }: 
                     <Progress value={skillProgressPercent} className="h-2 mb-2" />
                   </div>
                   {totalAttempts > 0 ? (
-                    <div className="text-xs text-muted-foreground space-y-0.5">
-                      <div>Latest: {latestScore}%</div>
-                      {bestScore !== latestScore && <div>Best: {bestScore}%</div>}
-                      <div>{totalAttempts} attempt{totalAttempts > 1 ? 's' : ''}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {totalAttempts} attempt{totalAttempts > 1 ? 's' : ''}
                     </div>
                   ) : (
                     <div className="text-xs text-muted-foreground">

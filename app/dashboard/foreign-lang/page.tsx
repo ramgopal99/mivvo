@@ -92,7 +92,7 @@ export default function ForeignLanguagePage() {
         <div className="flex items-center justify-center min-h-[200px]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-            <p className="text-muted-foreground">Loading your preferences...</p>
+            <p className="text-muted-foreground">Preparing your learning experience...</p>
           </div>
         </div>
       </div>
@@ -123,16 +123,16 @@ export default function ForeignLanguagePage() {
           <AlertDialogHeader>
             <AlertDialogTitle>Change Language</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to change your learning language to <strong>{getPendingLanguageName()}</strong>?
+              Ready to switch your learning journey to <strong>{getPendingLanguageName()}</strong>?
               <br />
               <br />
-              This will update your preferred language and may affect your current progress tracking.
+              Your preferred language will be updated, and this may reset your current progress tracking for a fresh start in your new language.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel onClick={cancelLanguageChange}>Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={confirmLanguageChange}>
-              Change Language
+              Start Learning
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

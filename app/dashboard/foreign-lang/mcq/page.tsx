@@ -141,6 +141,15 @@ export default function McqHistoryPage() {
     return 'text-red-600'
   }
 
+  const getOrdinalSuffix = (num: number) => {
+    const j = num % 10;
+    const k = num % 100;
+    if (j === 1 && k !== 11) return num + 'st';
+    if (j === 2 && k !== 12) return num + 'nd';
+    if (j === 3 && k !== 13) return num + 'rd';
+    return num + 'th';
+  }
+
 
   const getSessionTypeLabel = (type: string) => {
     const typeMap: { [key: string]: string } = {
@@ -208,8 +217,11 @@ export default function McqHistoryPage() {
             <CardContent>
               <div className="text-2xl font-bold">
                 {attempts.length > 0
-                  ? Math.round(attempts.reduce((sum, a) => sum + (a.overallScore || 0), 0) / attempts.length)
-                  : 0}%
+                  ? `${(() => {
+                      const avg = attempts.reduce((sum, a) => sum + (a.overallScore || 0), 0) / attempts.length / 20;
+                      return avg === 0 ? '0' : avg.toFixed(1);
+                    })()}/5`
+                  : '0/5'}
               </div>
             </CardContent>
           </Card>
@@ -221,7 +233,10 @@ export default function McqHistoryPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {attempts.length > 0 ? Math.max(...attempts.map(a => a.overallScore || 0)) : 0}%
+                {attempts.length > 0 ? `${(() => {
+                    const best = Math.max(...attempts.map(a => a.overallScore || 0)) / 20;
+                    return best === 0 ? '0' : best.toFixed(1);
+                  })()}/5` : '0/5'}
               </div>
             </CardContent>
           </Card>
@@ -261,12 +276,14 @@ export default function McqHistoryPage() {
         ) : (
           <div className="space-y-4">
             <h2 className="text-xl font-semibold">Your MCQ Attempts</h2>
-            {attempts.map((attempt) => (
+            {attempts.map((attempt, index) => (
               <Card key={attempt.id} className="hover:shadow-md transition-shadow">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
-                      <CardTitle className="text-lg">{attempt.sessionTitle}</CardTitle>
+                      <CardTitle className="text-lg">
+                        {getOrdinalSuffix(attempts.length - index)} attempt: {attempt.sessionTitle}
+                      </CardTitle>
                       <CardDescription className="flex items-center gap-4 mt-2">
                         <span className="flex items-center gap-1">
                           <Calendar className="h-4 w-4" />
@@ -286,7 +303,7 @@ export default function McqHistoryPage() {
                     </div>
                     <div className="text-right">
                       <div className={`text-2xl font-bold ${getScoreColor(attempt.overallScore)}`}>
-                        {attempt.overallScore !== null ? `${attempt.overallScore}%` : 'N/A'}
+                        {attempt.overallScore !== null ? `${attempt.overallScore === 0 ? '0' : (attempt.overallScore / 20).toFixed(1)}/5` : '0/5'}
                       </div>
                       <div className="text-sm text-muted-foreground">Score</div>
                       {attempt.accuracyPercentage !== null && (

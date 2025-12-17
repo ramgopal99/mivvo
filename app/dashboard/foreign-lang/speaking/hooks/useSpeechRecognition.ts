@@ -15,10 +15,10 @@ interface UseSpeechRecognitionProps {
   questionStartTimeRef: React.MutableRefObject<number>;
 }
 
-// Voice chat timing configurations (from custominterview)
+// Speaking practice timing configurations (different from voice chat)
 const SPEAKING_VOICE_CONFIG = {
-  SILENCE_TIMEOUT_MS: 200, // Wait time after user stops speaking (200ms for immediate restart)
-  RECOGNITION_KEEP_ALIVE_MS: 1000, // Speech recognition keep-alive interval (1 second for more frequent checks)
+  SILENCE_TIMEOUT_MS: 1000, // Wait time after user stops speaking (1 second for speaking practice)
+  RECOGNITION_KEEP_ALIVE_MS: 3000, // Speech recognition keep-alive interval (3 seconds, less aggressive)
 };
 
 export function useSpeechRecognition({
@@ -118,20 +118,10 @@ export function useSpeechRecognition({
 
         switch (event.error) {
           case 'no-speech':
-            // Auto-restart immediately when no speech detected
-            console.log('No speech detected - restarting immediately');
-            if (!isRecordingManuallyStoppedRef.current && !recordingCompleted) {
-              setTimeout(() => {
-                if (recognitionRef.current && !isRecordingManuallyStoppedRef.current && !recordingCompleted) {
-                  try {
-                    recognitionRef.current.start();
-                    console.log('Restarted speech recognition after no-speech error');
-                  } catch (restartError) {
-                    console.warn('Failed to restart speech recognition:', restartError);
-                  }
-                }
-              }, SPEAKING_VOICE_CONFIG.SILENCE_TIMEOUT_MS);
-            }
+            // For speaking practice, treat no-speech as end of recording
+            console.log('No speech detected - ending recording for speaking practice');
+            setIsListening(false);
+            // Don't auto-restart - let the user manually start if needed
             return;
 
           case 'audio-capture':
@@ -236,18 +226,9 @@ export function useSpeechRecognition({
           finalTranscriptRef.current = ""; // Also clear the ref
           setRecordingCompleted(true);
         } else {
-          // Auto-restart recognition if recording should continue (not manually stopped and time not up)
-          console.log('Recognition ended naturally - auto-restarting in 200ms');
-          setTimeout(() => {
-            if (recognitionRef.current && !isRecordingManuallyStoppedRef.current && recordingTimeLeft > 0 && !recordingCompleted) {
-              try {
-                recognitionRef.current.start();
-                console.log('Auto-restarted speech recognition');
-              } catch (restartError) {
-                console.warn('Failed to auto-restart speech recognition:', restartError);
-              }
-            }
-          }, SPEAKING_VOICE_CONFIG.SILENCE_TIMEOUT_MS);
+          // For speaking practice, don't auto-restart when recognition ends naturally
+          // Let the user manually start recording for the next attempt if needed
+          console.log('Recognition ended naturally - staying stopped for speaking practice');
         }
       };
     }
@@ -273,6 +254,15 @@ export function useSpeechRecognition({
   useEffect(() => {
     isRecordingManuallyStoppedRef.current = isRecordingManuallyStopped;
   }, [isRecordingManuallyStopped]);
+
+  // Additional safeguard: when question changes, ensure we clean up any auto-restart timers
+  useEffect(() => {
+    // Clear any pending timeouts when component unmounts or question changes
+    return () => {
+      clearSilenceTimeout();
+      stopRecognitionKeepAlive();
+    };
+  }, [currentQuestion.id]); // This will run when question changes
 
   // Clear existing silence timeout
   const clearSilenceTimeout = useCallback(() => {
@@ -310,28 +300,36 @@ export function useSpeechRecognition({
     }, SPEAKING_VOICE_CONFIG.SILENCE_TIMEOUT_MS);
   }, [clearSilenceTimeout, processAccumulatedSpeech]);
 
-  // Ensure recognition stays active by restarting if needed
+  // Ensure recognition stays active by restarting if needed (more conservative for speaking practice)
   const ensureRecognitionActive = useCallback(() => {
-    // Don't restart if recording is manually stopped or completed
-    if (isRecordingManuallyStoppedRef.current || recordingCompleted) return;
+    // Don't restart if recording is manually stopped, completed, or if we're not supposed to be recording
+    if (isRecordingManuallyStoppedRef.current || recordingCompleted || recordingTimeLeft <= 0) return;
 
+    // Only restart if we're actively supposed to be listening and recognition stopped unexpectedly
     if (!isListening && recognitionRef.current) {
-      console.log('Recognition not active, restarting immediately...');
+      console.log('Recognition not active during recording, restarting...');
       try {
         recognitionRef.current.start();
       } catch (error) {
         console.warn("Failed to restart speech recognition:", error);
       }
     }
-  }, [isListening, recordingCompleted]);
+  }, [isListening, recordingCompleted, recordingTimeLeft]);
 
-  // Start periodic check to keep recognition active (every 6 seconds)
+  // Start periodic check to keep recognition active (less aggressive for speaking practice)
   const startRecognitionKeepAlive = useCallback(() => {
     if (recognitionActiveTimeoutRef.current) {
       clearInterval(recognitionActiveTimeoutRef.current);
     }
-    recognitionActiveTimeoutRef.current = setInterval(ensureRecognitionActive, SPEAKING_VOICE_CONFIG.RECOGNITION_KEEP_ALIVE_MS);
-  }, [ensureRecognitionActive]);
+    // Only start keep-alive when actively recording, and less frequently
+    recognitionActiveTimeoutRef.current = setInterval(() => {
+      // Only ensure recognition is active if we're supposed to be listening
+      // and not completed, but be much more conservative for speaking practice
+      if (isListening && !isRecordingManuallyStoppedRef.current && !recordingCompleted && recordingTimeLeft > 0) {
+        ensureRecognitionActive();
+      }
+    }, SPEAKING_VOICE_CONFIG.RECOGNITION_KEEP_ALIVE_MS);
+  }, [ensureRecognitionActive, isListening, recordingCompleted, recordingTimeLeft]);
 
   // Stop periodic check
   const stopRecognitionKeepAlive = useCallback(() => {
@@ -343,6 +341,7 @@ export function useSpeechRecognition({
 
   const startListening = useCallback(async () => {
     if (!recognitionRef.current || isListening || recordingCompleted) {
+      console.log('Cannot start listening - already listening or completed');
       return;
     }
 

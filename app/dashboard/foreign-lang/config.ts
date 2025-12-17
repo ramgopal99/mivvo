@@ -197,28 +197,28 @@ export const skillConfig = {
     icon: "BookOpen",
     color: "text-blue-600",
     bgColor: "bg-blue-50 dark:bg-blue-950",
-    description: "Master basic vocabulary and simple sentence structures. Learn to understand familiar words, phrases, and basic texts.",
+    description: "Build a strong foundation by mastering essential vocabulary and sentence patterns. Dive into engaging passages that bring language to life through stories and practical content.",
   },
   writing: {
     title: "Writing + AI Chat",
     icon: "PenTool",
     color: "text-green-600",
     bgColor: "bg-green-50 dark:bg-green-950",
-    description: "Practice writing simple sentences and basic personal information. Learn fundamental grammar rules and common expressions.",
+    description: "Express yourself clearly and confidently. Master essential writing skills while engaging in interactive AI conversations that make learning grammar and vocabulary enjoyable.",
   },
   speaking: {
     title: "Speaking + Listening",
     icon: "Volume2",
     color: "text-purple-600",
     bgColor: "bg-purple-50 dark:bg-purple-950",
-    description: "Build confidence in basic conversations. Practice simple greetings, introductions, and everyday expressions with proper pronunciation.",
+    description: "Develop natural speaking skills through interactive listening and speaking exercises. Perfect your pronunciation while mastering everyday conversations and building communication confidence.",
   },
   mcq: {
     title: "MCQ-Based Section",
     icon: "HelpCircle",
     color: "text-orange-600",
     bgColor: "bg-orange-50 dark:bg-orange-950",
-    description: "Test your language skills with multiple-choice questions covering grammar, error detection, synonyms/antonyms, sentence completion, and word replacement.",
+    description: "Sharpen your language precision through targeted multiple-choice challenges. Master grammar rules, vocabulary nuances, and sentence construction with instant feedback and detailed explanations.",
   },
 };
 

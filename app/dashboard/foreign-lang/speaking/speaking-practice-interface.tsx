@@ -34,6 +34,15 @@ export function SpeakingPracticeInterface({
 
   // Reset question start time and recording state when question changes
   useEffect(() => {
+    console.log('Question changed to:', currentQuestion.id, '- resetting recording state');
+
+    // First, stop any ongoing recording to prevent interference
+    if (speechRecognition.isListening) {
+      console.log('Stopping ongoing recording before question change');
+      speechRecognition.stopListening();
+    }
+
+    // Reset all recording-related state for the new question
     questionStartTimeRef.current = Date.now();
     speechRecognition.setRecordingTimeLeft(practiceConfig.speakingRecording.maxRecordingTime);
     speechRecognition.setIsRecordingManuallyStopped(false);
@@ -55,9 +64,13 @@ export function SpeakingPracticeInterface({
       }
     }
 
+    // For speaking practice, we want to ensure recordings NEVER start automatically
+    // Only set as completed if there's a definitive existing answer or recent backup
     if (hasExistingAnswer || hasRecentBackup) {
+      console.log('Found existing answer or backup for question:', currentQuestion.id, '- marking as completed');
       speechRecognition.setRecordingCompleted(true);
     } else {
+      console.log('No existing answer for question:', currentQuestion.id, '- marking as not completed');
       speechRecognition.setRecordingCompleted(false);
     }
 
@@ -68,14 +81,19 @@ export function SpeakingPracticeInterface({
         // Only restore if it's recent (within last 24 hours)
         if (Date.now() - backup.timestamp < 24 * 60 * 60 * 1000) {
           speechRecognition.setAccumulatedTranscript(backup.answer);
+          console.log('Restored backup transcript for question:', currentQuestion.id);
         } else {
           // Remove old backup
           localStorage.removeItem(backupKey);
+          console.log('Removed old backup for question:', currentQuestion.id);
         }
       } catch (_error) { // eslint-disable-line @typescript-eslint/no-unused-vars
         localStorage.removeItem(backupKey);
+        console.log('Removed invalid backup for question:', currentQuestion.id);
       }
     }
+
+    console.log('Question state reset complete for:', currentQuestion.id, '- recording will NOT start automatically');
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentQuestion.id, userAnswers]);
 

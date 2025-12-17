@@ -35,6 +35,16 @@ interface ReadingAttempt {
     createdAt: Date
   }
   results: ReadingSessionResult[]
+  questions?: Array<{
+    id: string
+    type: 'comprehension' | 'rearranging'
+    question: string
+    userAnswer: string | null
+    correctAnswer: string | null
+    explanation: string | null
+    isCorrect: boolean
+    timeSpent: number
+  }>
 }
 
 interface AttemptDetailsPageProps {

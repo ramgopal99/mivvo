@@ -94,14 +94,14 @@ export function RecordingSection({
 
 
         {/* Saving Feedback */}
-        {isSaving && (
+        {/* {isSaving && (
           <div className="p-3 bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg">
             <div className="flex items-center gap-2">
               <div className="text-green-600 dark:text-green-400">✓</div>
               <p className="text-sm text-green-700 dark:text-green-300">Your answer is saved</p>
             </div>
           </div>
-        )}
+        )} */}
 
         {/* Error Display */}
         {error && (
