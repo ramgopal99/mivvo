@@ -1,118 +1,184 @@
-# Dynamic Language System for Test Modules
+# Mivvo Test Platform - Unified Configuration System
 
-This system allows you to dynamically load different programming language modules and content without changing multiple files.
+A comprehensive learning platform with modular course management, dynamic language support, and intelligent AI assistance.
 
-## ⚡ Quick Start
+## 🎯 Architecture Overview
 
-**To switch courses, change ONE variable:**
-
-1. Open `app/test/config/course.ts`
-2. Change: `export const CURRENT_COURSE = 'java';`
-3. To: `export const CURRENT_COURSE = 'python';`
-4. Save - the entire app now shows Python content! 🎉
-
-## 🚀 How It Works
-
-### Core Components:
-- **`app/test/config/course.ts`** - 🎯 **Single variable to switch courses!**
-- **`moduleLoader.ts`** - Dynamically loads modules based on language
-- **`headerDataLoader.ts`** - Dynamically loads header data based on language
-- **`TestPage`** - Accepts `language` prop to display appropriate content
-- **`LanguageTestWrapper`** - UI component with course switching buttons
-
-### Usage:
-
-#### **Method 1: Course Config (Easiest)**
-```tsx
-// 1. Change this line in app/test/config/course.ts:
-// export const CURRENT_COURSE: 'python' | 'java' = 'java'; // Change to 'python' for Python
-
-// 2. Use TestPage normally - it automatically uses the config
-<TestPage /> // Will use whatever is set in config/course.ts
+### **Modular Configuration System**
+```
+app/test/config/
+├── config.ts          # Main export hub
+├── types/
+│   └── course.ts      # TypeScript interfaces
+├── courses/
+│   └── registry.ts    # Course definitions
+└── utils/
+    └── courseUtils.ts # Helper functions
 ```
 
-#### **Method 2: Direct Language Prop**
-```tsx
-// Override the config for specific cases
-<TestPage language="java" />
-<TestPage language="python" />
+### **Course Model Structure**
+Each course encapsulates everything needed for that language:
+```typescript
+interface CourseModel {
+  id: string;
+  displayName: string;
+  headerData: { title: string; completionPercentage: string };
+  codeEditor?: { monacoLanguage: string; defaultCode: string; /* ... */ };
+  aiAssistant: { systemPrompt: string; name: string; /* ... */ };
+  showCodeEditor: boolean;
+  // ... UI and behavior settings
+}
 ```
 
-#### **Method 3: With Course Switcher**
-```tsx
-<LanguageTestWrapper /> // Includes UI buttons to switch between courses
+## 🚀 Quick Start
+
+### **Adding a New Course**
+1. **Define the course** in `config/courses/registry.ts`:
+```typescript
+javascript: {
+  id: 'javascript',
+  displayName: 'JavaScript Programming',
+  headerData: {
+    title: 'JavaScript Programming Course',
+    completionPercentage: '0% Completed',
+  },
+  codeEditor: {
+    monacoLanguage: 'javascript',
+    displayName: 'JavaScript',
+    defaultCode: 'console.log("Hello, World!");',
+    executionLanguage: 'javascript',
+    executionVersion: '18.15.0'
+  },
+  aiAssistant: {
+    name: 'Mivvo JavaScript Assistant',
+    description: 'JavaScript Programming Learning Assistant',
+    systemPrompt: `You are Mivvo, a helpful JavaScript programming assistant...`
+  },
+  showCodeEditor: true,
+  // ... other properties
+}
 ```
 
-#### **Method 4: Advanced Examples**
-See `app/test/docs/examples.tsx` for more usage patterns!
-
-## 📁 Adding a New Language
-
-### Step 1: Create Module Structure
+2. **Create course content** structure:
 ```
-app/test/modules-{language}/
+app/test/modules-javascript/
 ├── module1/
 │   ├── module-info.ts
-│   ├── topics/
-│   │   ├── topic-1.1.ts
-│   │   └── topic-1.2.ts
-│   └── mcq/
-│       └── exercise-1.3.ts
-└── module2/
-    └── ...
+│   └── topics/
+└── ...
 ```
 
-### Step 2: Create Header Data
-```tsx
-// app/test/data/headerData-{language}.ts
-export const headerData = {
-  title: 'Master {Language}',
-  completionPercentage: '0% Completed',
-};
+3. **Update module loader** in `loaders/moduleLoader.ts`:
+```typescript
+// Add import
+import { loadJavascriptModules } from './javascriptModuleLoader';
+
+// Add to loader logic
+if (language === 'javascript') {
+  return loadJavascriptModules();
+}
 ```
 
-### Step 3: Update Loaders
+4. **That's it!** The course is now fully integrated with:
+- ✅ Dynamic course loading
+- ✅ AI assistant with language-specific prompts
+- ✅ Code editor with proper syntax highlighting
+- ✅ Header data and UI customization
+- ✅ Automatic integration with all existing features
 
-#### In `moduleLoader.ts`:
-1. Add imports for the new language modules
-2. Add entry to `MODULE_CONFIGS` object
+## 🎨 Key Features
 
-#### In `headerDataLoader.ts`:
-1. Add import for the new header data
-2. Add entry to `HEADER_DATA_CONFIG` object
+### **🏗️ Modular Architecture**
+- **Separation of Concerns**: Types, data, and logic in separate modules
+- **Single Source of Truth**: Everything flows from the `COURSES` registry
+- **Type Safety**: Full TypeScript support throughout
+- **Easy Maintenance**: Clear file organization and responsibilities
 
-### Step 4: Test
-The new language will be automatically available in the language selector!
+### **🎓 Intelligent Course Management**
+- **Dynamic Loading**: Courses load based on URL parameters
+- **Flexible UI**: Code editors show/hide per course type
+- **Course-Specific AI**: Each language has tailored AI prompts
+- **Progress Tracking**: Individual completion states per course
 
-## 📊 Current Languages
+### **💬 AI Assistant System**
+- **Language-Specific Prompts**: Python, Java, and future languages
+- **Context-Aware**: Understands the current course context
+- **Educational Focus**: Tailored responses for learning
+- **Multi-Language Support**: Different prompts for different languages
 
-- **Python** - 20 modules with full content
-- **Java** - 1 module (intro) with exercises
-- **C** - 1 module (intro) with exercises
-- **C++** - 1 module (intro) with exercises
-- **JavaScript** - 1 module (intro) with exercises
+### **⚙️ Configuration-Driven**
+- **No Hardcoding**: All settings come from course definitions
+- **Runtime Flexibility**: Change courses without code changes
+- **Extensible**: Add new properties to courses easily
+- **Validation**: Built-in type checking and error handling
+
+## 📊 Current Courses
+
+| Language | Code Editor | AI Assistant | Status |
+|----------|-------------|--------------|--------|
+| **Python** | ✅ Full | ✅ Specialized | Complete |
+| **Java** | ✅ Full | ✅ Specialized | Complete |
+| *JavaScript* | ⏳ Planned | ⏳ Planned | Coming Soon |
+| *Theory* | ❌ Hidden | ✅ Specialized | For future |
 
 ## 🔧 API Reference
 
-### `loadModules(language: string)`
-```tsx
-const modules = await loadModules('java'); // Returns Java modules
+### **Course Registry**
+```typescript
+import { COURSES, CURRENT_COURSE } from './config';
+
+// Access course data
+const pythonCourse = COURSES.python;
+const currentCourse = COURSES[CURRENT_COURSE];
 ```
 
-### `getHeaderData(language: string)`
-```tsx
-const header = getHeaderData('python'); // Returns Python header data
+### **Utility Functions**
+```typescript
+import {
+  getCourse,              // Get course by ID
+  getAvailableCourses,    // List all course IDs
+  getCourseDisplayName,   // Get display name
+  shouldShowCodeEditor,   // Check if course has code editor
+  getCodeEditorConfig,    // Get editor settings
+  getAIAssistantPrompt,   // Get AI system prompt
+} from './config';
 ```
 
-### `getAvailableLanguages()`
-```tsx
-const languages = getAvailableLanguages(); // Returns ['python', 'java', ...]
+### **Course-Specific AI**
+```typescript
+// Each course defines its own AI assistant
+const aiConfig = getCourse('python').aiAssistant;
+// Returns: { name, description, systemPrompt }
 ```
 
 ## 🎯 Benefits
 
-- ✅ **Single file changes** - Add new languages by updating just 2 loader files
-- ✅ **Type safety** - Full TypeScript support
-- ✅ **Performance** - Static imports, no dynamic loading overhead
-- ✅ **Extensible** - Easy to add new languages following the same pattern
-- ✅ **Clean architecture** - Separation of concerns between languages
+### **For Developers**
+- ✅ **Rapid Course Addition**: Add new languages in minutes
+- ✅ **Type-Safe Configuration**: Compile-time error checking
+- ✅ **Modular Organization**: Easy to understand and modify
+- ✅ **Zero Breaking Changes**: Add features without affecting existing code
+
+### **For Content Creators**
+- ✅ **Flexible Course Design**: Mix coding and theory courses
+- ✅ **Custom AI Behavior**: Tailored assistance per language
+- ✅ **Rich Configuration**: Comprehensive course customization
+- ✅ **Easy Content Management**: Clear separation of concerns
+
+### **For Students**
+- ✅ **Personalized Experience**: Course-specific UI and AI help
+- ✅ **Multiple Learning Paths**: Coding + theory options
+- ✅ **Consistent Interface**: Familiar experience across courses
+- ✅ **Progress Preservation**: Individual tracking per course
+
+## 🚀 Future Enhancements
+
+- **Multi-Course Progress**: Combined progress across courses
+- **Learning Paths**: Recommended course sequences
+- **Advanced AI**: Context-aware hints and explanations
+- **Collaborative Features**: Shared progress and achievements
+- **Mobile Optimization**: Responsive design improvements
+
+---
+
+**Built with ❤️ for the Mivvo Learning Platform**

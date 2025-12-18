@@ -120,5 +120,4 @@ export const authOptions: NextAuthOptions = {
       console.log("User signed out")
     },
   },
-  debug: process.env.NODE_ENV === "development",
 }
