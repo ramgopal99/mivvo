@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { X, Send, Brain } from 'lucide-react';
 import { getChatResponse } from '../actions/chat';
+import { getAIAssistantName, getAIAssistantDescription } from '../config';
 
 interface Message {
   id: string;
@@ -17,13 +18,17 @@ interface Message {
 interface ChatBoxProps {
   isOpen: boolean;
   onClose: () => void;
+  language?: string;
 }
 
-const ChatBox: React.FC<ChatBoxProps> = ({ isOpen, onClose }) => {
+const ChatBox: React.FC<ChatBoxProps> = ({ isOpen, onClose, language = 'python' }) => {
+  const assistantName = getAIAssistantName(language);
+  const assistantDescription = getAIAssistantDescription(language);
+
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hello! I'm Mivvo, your Python learning assistant. I can help you with Python programming questions, syntax, libraries, best practices, and more. What would you like to know about Python?",
+      text: `Hello! I'm ${assistantName}, your ${assistantDescription}. I can help you with programming questions, syntax, best practices, and more. What would you like to know?`,
       sender: 'ai',
       timestamp: new Date(),
     },
@@ -66,7 +71,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ isOpen, onClose }) => {
 
     try {
       // Call the AI service
-      const response = await getChatResponse(userMessage.text);
+      const response = await getChatResponse(userMessage.text, language);
 
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),

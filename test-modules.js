@@ -1,5 +1,5 @@
 // Quick test to verify module loading
-import { loadModules } from './utils/moduleLoader.js';
+import { loadModules } from './app/test/loaders/moduleLoader.js';
 
 async function testModules() {
   try {

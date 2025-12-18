@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { loadModules } from '../utils/moduleLoader';
+import { loadModules } from '../app/test/loaders/moduleLoader';
 
 const prisma = new PrismaClient();
 

@@ -10,9 +10,10 @@ interface MiddleBottomProps {
   onAI?: () => void;
   isChatOpen?: boolean;
   onCloseChat?: () => void;
+  language?: string;
 }
 
-const MiddleBottom = ({ onPrevious, onNext, onAI, isChatOpen, onCloseChat }: MiddleBottomProps) => (
+const MiddleBottom = ({ onPrevious, onNext, onAI, isChatOpen, onCloseChat, language }: MiddleBottomProps) => (
   <div className="border-t bg-muted/30">
     {/* Chat Box */}
     {isChatOpen && (
@@ -22,6 +23,7 @@ const MiddleBottom = ({ onPrevious, onNext, onAI, isChatOpen, onCloseChat }: Mid
             <ChatBox
               isOpen={isChatOpen}
               onClose={onCloseChat || (() => {})}
+              language={language}
             />
           </div>
         </div>

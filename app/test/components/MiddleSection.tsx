@@ -22,6 +22,7 @@ interface MiddleSectionProps {
   onAI?: () => void;
   isChatOpen?: boolean;
   onCloseChat?: () => void;
+  language?: string;
 }
 
 // Helper function to parse MCQ questions from content
@@ -75,7 +76,7 @@ const parseMCQQuestions = (content: string): MCQQuestion[] => {
 };
 
 
-const MiddleSection = ({ modules, selectedTopic, onPrevious, onNext, onAI, isChatOpen, onCloseChat }: MiddleSectionProps) => {
+const MiddleSection = ({ modules, selectedTopic, onPrevious, onNext, onAI, isChatOpen, onCloseChat, language }: MiddleSectionProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Scroll to top whenever selectedTopic changes
@@ -175,6 +176,7 @@ const MiddleSection = ({ modules, selectedTopic, onPrevious, onNext, onAI, isCha
         onAI={onAI}
         isChatOpen={isChatOpen}
         onCloseChat={onCloseChat}
+        language={language}
       />
     </div>
   );

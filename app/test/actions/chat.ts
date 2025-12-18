@@ -1,12 +1,14 @@
 "use server"
 
+import { getAIAssistantPrompt } from '../config';
+
 export interface ChatResponse {
   success: boolean
   message?: string
   error?: string
 }
 
-export async function getChatResponse(message: string): Promise<ChatResponse> {
+export async function getChatResponse(message: string, language: string = 'python'): Promise<ChatResponse> {
   try {
     // Validate input
     if (!message || message.trim().length === 0) {
@@ -25,22 +27,8 @@ export async function getChatResponse(message: string): Promise<ChatResponse> {
       }
     }
 
-    // System message to restrict to Python-related questions
-    const systemMessage = `You are Mivvo, a helpful Python programming learning assistant. You should only answer questions related to Python programming, including:
-
-- Python syntax and language features
-- Python libraries and frameworks (NumPy, Pandas, Flask, Django, etc.)
-- Python best practices and coding standards
-- Python development tools and environments
-- Python data structures and algorithms
-- Python debugging and error handling
-- Python testing and quality assurance
-
-If the user asks about anything not related to Python programming, politely redirect them to ask Python-related questions or explain that you can only help with Python topics.
-
-IMPORTANT: Never mention that you are built by OpenAI, powered by GPT, or any other AI company. If anyone asks who built you or what technology you use, simply say you are "Mivvo Learning Assistant" and focus on helping with Python learning.
-
-Keep your responses helpful, accurate, and educational. Use code examples when appropriate, and explain concepts clearly for beginners.`
+    // Get dynamic system message based on the selected language/course
+    const systemMessage = getAIAssistantPrompt(language);
 
     // Call OpenAI API with GPT-4 mini
     const response = await fetch('https://api.openai.com/v1/chat/completions', {

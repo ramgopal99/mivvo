@@ -5,28 +5,21 @@ import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Play, RotateCcw, Code, Info } from 'lucide-react';
 import MonacoEditor, { MonacoEditorRef } from './MonacoEditor';
+import { getCodeEditorConfig, getDefaultCode, getCodeEditorDisplayName } from '../config';
 
 interface RightTopSectionProps {
   onConsoleOutput: (output: string) => void;
+  language?: string;
 }
 
-// Language configurations for Piston API
-const SUPPORTED_LANGUAGES = {
-  python: { name: 'Python', version: '3.12.0' },
-};
-
-const RightTopSection = ({ onConsoleOutput }: RightTopSectionProps) => {
+const RightTopSection = ({ onConsoleOutput, language = 'python' }: RightTopSectionProps) => {
   const editorRef = useRef<MonacoEditorRef>(null);
   const [isRunning, setIsRunning] = useState(false);
 
+  const editorConfig = getCodeEditorConfig(language);
+
   const getDefaultValue = () => {
-    return `# Welcome to Python
-print("Hello, World!")
-
-def greet(name):
-    return f"Hello, {name}!"
-
-print(greet("Developer"))`;
+    return getDefaultCode(language);
   };
 
   const handleRun = async () => {
@@ -45,7 +38,8 @@ print(greet("Developer"))`;
       // Prepare the request for Piston API
       const requestBody = {
         code: code,
-        language: 'python'
+        language: editorConfig.executionLanguage,
+        version: editorConfig.executionVersion
       };
 
       // Call the API
@@ -108,16 +102,26 @@ print(greet("Developer"))`;
         <h3 className="text-sm font-medium text-foreground">Code Editor</h3>
         <div className="flex items-center gap-2">
           <Code className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm font-medium text-foreground">Python</span>
+          <span className="text-sm font-medium text-foreground">{getCodeEditorDisplayName(language)}</span>
           <Tooltip>
             <TooltipTrigger asChild>
               <Info className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-help" />
             </TooltipTrigger>
             <TooltipContent className="max-w-xs">
               <div className="space-y-1">
-                <p className="font-medium">Python Code Execution</p>
-                <p className="text-xs">No GUI libraries (PyGame, Tkinter)</p>
-                <p className="text-xs">No web frameworks or complex dependencies</p>
+                <p className="font-medium">{getCodeEditorDisplayName(language)} Code Execution</p>
+                {language === 'python' && (
+                  <>
+                    <p className="text-xs">No GUI libraries (PyGame, Tkinter)</p>
+                    <p className="text-xs">No web frameworks or complex dependencies</p>
+                  </>
+                )}
+                {language === 'java' && (
+                  <>
+                    <p className="text-xs">Standard Java syntax supported</p>
+                    <p className="text-xs">No external libraries or frameworks</p>
+                  </>
+                )}
                 <p className="text-xs">Time limit: ~3 seconds</p>
               </div>
             </TooltipContent>
@@ -130,7 +134,7 @@ print(greet("Developer"))`;
             ref={editorRef}
             defaultValue={getDefaultValue()}
             height="100%"
-            language="python"
+            language={editorConfig.monacoLanguage}
           />
         </div>
         <div className="flex items-center justify-between px-6 py-3 border-t bg-muted/30">

@@ -1,4 +1,4 @@
-import { loadModules } from '../../../utils/moduleLoader';
+import { loadModules } from '../loaders/moduleLoader';
 
 export interface SubLesson {
   id: number;

@@ -1,201 +1,88 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { ResizablePanelGroup, ResizableHandle, ResizablePanel } from '@/components/ui/resizable';
-import { SidebarProvider } from '@/components/ui/sidebar';
-import LeftSidebar from './components/LeftSidebar';
-import Header from './components/Header';
-import MiddleSection from './components/MiddleSection';
-import RightSection from './components/RightSection';
-import { loadModules } from '../../utils/moduleLoader';
-import { getHeaderData } from '../../utils/headerDataLoader';
-import { SubLesson, Exercise } from './data/lessonsData';
-import { CURRENT_COURSE } from './course-config';
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { getCourseDisplayName, getAvailableCourses } from './config';
+import { Code, BookOpen, Users } from 'lucide-react';
 
-interface SelectedTopic {
-  moduleId: number;
-  subtopicId: number;
-  title: string;
-  moduleTitle: string;
-}
+export default function TestHomePage() {
+  const router = useRouter();
+  const availableLanguages = getAvailableCourses();
 
-interface TestPageProps {
-  language?: string;
-}
-
-export default function TestPage({ language = CURRENT_COURSE }: TestPageProps) {
-  const [modules, setModules] = useState<any[]>([]);
-  const [headerData, setHeaderData] = useState<any>(null);
-  const [selectedTopic, setSelectedTopic] = useState<SelectedTopic | null>(null);
-  const [checkedItemsCount, setCheckedItemsCount] = useState<number>(0);
-  const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
-
-  // Load modules and header data when component mounts or language changes
-  useEffect(() => {
-    const loadDataAsync = async () => {
-      try {
-        // Load modules for the specified language
-        const loadedModules = await loadModules(language);
-        setModules(loadedModules);
-
-        // Load header data for the specified language
-        const loadedHeaderData = getHeaderData(language);
-        setHeaderData(loadedHeaderData);
-
-        // Auto-select the first lesson after modules are loaded
-        if (loadedModules.length > 0 && loadedModules[0].subLessons.length > 0) {
-          setSelectedTopic({
-            moduleId: loadedModules[0].id,
-            subtopicId: loadedModules[0].subLessons[0].id,
-            title: loadedModules[0].subLessons[0].title,
-            moduleTitle: loadedModules[0].title
-          });
-        }
-      } catch (error) {
-        console.error(`Error loading ${language} modules:`, error);
-      }
-    };
-
-    loadDataAsync();
-  }, [language]);
-
-  const handleSubtopicClick = (moduleId: number, subtopicId: number, title: string, moduleTitle: string) => {
-    setSelectedTopic({
-      moduleId,
-      subtopicId,
-      title,
-      moduleTitle
-    });
+  const handleLanguageSelect = (language: string) => {
+    router.push(`/test/${language}`);
   };
 
-  const handleCheckedItemsChange = (count: number) => {
-    setCheckedItemsCount(count);
-  };
-
-  // Create a flat list of all navigable items (subtopics and exercises)
-  const getAllNavigableItems = () => {
-    const items: SelectedTopic[] = [];
-    modules.forEach(module => {
-      // Add subtopics
-      module.subLessons?.forEach((subLesson: SubLesson) => {
-        items.push({
-          moduleId: module.id,
-          subtopicId: subLesson.id,
-          title: subLesson.title,
-          moduleTitle: module.title
-        });
-      });
-      // Add exercises
-      module.exercises?.forEach((exercise: Exercise) => {
-        items.push({
-          moduleId: module.id,
-          subtopicId: exercise.id,
-          title: exercise.title,
-          moduleTitle: module.title
-        });
-      });
-    });
-    return items;
-  };
-
-  const handlePrevious = () => {
-    const allItems = getAllNavigableItems();
-    if (!selectedTopic || allItems.length === 0) return;
-
-    const currentIndex = allItems.findIndex(item =>
-      item.moduleId === selectedTopic.moduleId &&
-      item.subtopicId === selectedTopic.subtopicId
-    );
-
-    if (currentIndex > 0) {
-      setSelectedTopic(allItems[currentIndex - 1]);
-    } else {
-      // Go to last item if at first
-      setSelectedTopic(allItems[allItems.length - 1]);
+  const getLanguageIcon = (language: string) => {
+    switch (language.toLowerCase()) {
+      case 'python':
+        return <Code className="w-8 h-8 text-blue-500" />;
+      case 'java':
+        return <BookOpen className="w-8 h-8 text-orange-500" />;
+      case 'javascript':
+        return <Code className="w-8 h-8 text-yellow-500" />;
+      default:
+        return <Code className="w-8 h-8 text-gray-500" />;
     }
   };
-
-  const handleNext = () => {
-    const allItems = getAllNavigableItems();
-    if (!selectedTopic || allItems.length === 0) return;
-
-    const currentIndex = allItems.findIndex(item =>
-      item.moduleId === selectedTopic.moduleId &&
-      item.subtopicId === selectedTopic.subtopicId
-    );
-
-    if (currentIndex < allItems.length - 1) {
-      setSelectedTopic(allItems[currentIndex + 1]);
-    } else {
-      // Go to first item if at last
-      setSelectedTopic(allItems[0]);
-    }
-  };
-
-  const handleAI = () => {
-    setIsChatOpen(prev => !prev);
-  };
-
-
-  const calculateCompletionPercentage = () => {
-    const totalItems = modules.reduce((acc, module) => {
-      const subLessonsCount = module.subLessons.length;
-      const exercisesCount = module.exercises ? module.exercises.length : 0;
-      return acc + subLessonsCount + exercisesCount;
-    }, 0);
-    const percentage = totalItems > 0 ? Math.round((checkedItemsCount / totalItems) * 100) : 0;
-    return `${percentage}% Completed`;
-  };
-
-  // Don't render until data is loaded
-  if (!headerData || modules.length === 0) {
-    return (
-      <div className="h-screen w-full bg-background flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-xl font-semibold mb-2">Loading {language} modules...</h2>
-          <p className="text-muted-foreground">Please wait while we load the content.</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
-    <div className="h-screen w-full bg-background flex">
-      {/* Left Section - Header + Fixed Sidebar */}
-      <div className="w-65 flex flex-col flex-shrink-0">
-        <Header headerData={headerData} completionPercentage={calculateCompletionPercentage()} />
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 p-8">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-foreground mb-4">
+            Programming Courses
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Choose your programming language and start your learning journey with interactive exercises and comprehensive modules.
+          </p>
+        </div>
 
-        {/* Sidebar */}
-        <div className="flex-1 border-r border-border bg-muted/20">
-          <SidebarProvider>
-            <LeftSidebar
-              modules={modules}
-              onSubtopicClick={handleSubtopicClick}
-              onCheckedItemsChange={handleCheckedItemsChange}
-              selectedTopic={selectedTopic}
-            />
-          </SidebarProvider>
+        {/* Language Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {availableLanguages.map((language) => (
+            <Card
+              key={language}
+              className="cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 border-2 hover:border-primary/50"
+              onClick={() => handleLanguageSelect(language)}
+            >
+              <CardHeader className="text-center pb-4">
+                <div className="flex justify-center mb-4">
+                  {getLanguageIcon(language)}
+                </div>
+                <CardTitle className="text-2xl capitalize">
+                  {getCourseDisplayName(language)}
+                </CardTitle>
+                <CardDescription className="text-base">
+                  Learn {language} programming with hands-on exercises
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <Button
+                  size="lg"
+                  className="w-full"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleLanguageSelect(language);
+                  }}
+                >
+                  Start {language.charAt(0).toUpperCase() + language.slice(1)} Course
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Footer Info */}
+        <div className="mt-16 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted rounded-full text-sm text-muted-foreground">
+            <Users className="w-4 h-4" />
+            Interactive learning platform • Multiple programming languages • Hands-on exercises
+          </div>
         </div>
       </div>
-
-      {/* Middle and Right Sections - Resizable */}
-      <ResizablePanelGroup direction="horizontal" className="flex-1">
-        <ResizablePanel defaultSize={55} minSize={30}>
-          <MiddleSection
-            modules={modules}
-            selectedTopic={selectedTopic}
-            onPrevious={handlePrevious}
-            onNext={handleNext}
-            onAI={handleAI}
-            isChatOpen={isChatOpen}
-            onCloseChat={() => setIsChatOpen(false)}
-          />
-        </ResizablePanel>
-        <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={45} minSize={25}>
-          <RightSection />
-        </ResizablePanel>
-      </ResizablePanelGroup>
     </div>
   );
 }
