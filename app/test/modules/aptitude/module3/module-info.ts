@@ -1,7 +1,7 @@
 export const moduleInfo = {
-  id: 2,
-  title: 'Number System',
+  id: 3,
+  title: 'Simplification',
   hasDemo: false,
-  isExpanded: true,
+  isExpanded: false,
   isActive: true,
 };

@@ -1,6 +1,6 @@
 export const moduleInfo = {
   id: 1,
-  title: 'Number System',
+  title: 'Introduction to Quantitative Aptitude',
   hasDemo: false,
   isExpanded: true,
   isActive: true,

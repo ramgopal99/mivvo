@@ -3,17 +3,15 @@ export type { MonacoEditorRef } from './MonacoEditor';
 export { default as RightSection } from './RightSection';
 
 // Right Panels
-export { default as AptitudeRightPanel } from './right-panels/AptitudeRightPanel';
-export { default as CodingRightPanel } from './right-panels/CodingRightPanel';
+export { default as RightPanel } from './right-panels/RightPanel';
 
 // Aptitude Components
-export { default as CalculatorTab } from './right-panels/aptitude/CalculatorTab';
-export { default as FormulasTab } from './right-panels/aptitude/FormulasTab';
-export { default as PracticeTab } from './right-panels/aptitude/PracticeTab';
+export { default as CalculatorTab } from './right-panels/CalculatorTab';
+export { default as FormulasTab } from './right-panels/FormulasTab';
 
 // Coding Components
-export { default as CodeEditor } from './right-panels/coding/CodeEditor';
-export { default as ConsoleOutput } from './right-panels/coding/ConsoleOutput';
+export { default as CodeEditor } from './right-panels/_comp/CodeEditor';
+export { default as ConsoleOutput } from './right-panels/_comp/ConsoleOutput';
 
 export { default as MCQModule } from './MCQModule';
 export type { MCQQuestion, MCQModuleProps } from './MCQModule';

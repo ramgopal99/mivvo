@@ -2,258 +2,349 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_1_3: SubLesson = {
   id: "1.3",
-  title: 'Classification of Numbers',
+  title: 'Aptitude Exam Strategies',
   status: 'completed',
-  content: `# 🔢 Classification of Numbers
+  content: `# 🔢 Aptitude Exam Strategies
 
-Master the fundamental classifications of numbers and their properties. This topic covers even/odd numbers, prime/composite numbers, co-prime numbers, divisibility rules, and factors/multiples - essential concepts for quantitative aptitude.
-
----
-
-## 🎯 Even and Odd Numbers
-
-### Even Numbers
-**Definition**: Numbers that are divisible by 2 (remainder = 0)
-
-**Examples**: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, ...
-
-**Properties**:
-- Last digit is always: 0, 2, 4, 6, 8
-- Even + Even = Even
-- Even + Odd = Odd
-- Even × Even = Even
-- Even × Odd = Even
-
-### Odd Numbers
-**Definition**: Numbers that are not divisible by 2 (remainder = 1)
-
-**Examples**: 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, ...
-
-**Properties**:
-- Last digit is always: 1, 3, 5, 7, 9
-- Odd + Odd = Even
-- Odd + Even = Odd
-- Odd × Odd = Odd
-- Odd × Even = Even
-
-### 🧠 Quick Test
-**Rule**: If a number is divisible by 2 → Even, else → Odd
-
-**Trick**: Check the last digit only!
+Success in quantitative aptitude examinations requires more than just mathematical knowledge—it demands strategic thinking, time management, and smart problem-solving techniques. This topic covers essential strategies for excelling in aptitude exams.
 
 ---
 
-## 🔍 Prime and Composite Numbers
+## 🎯 Understanding Exam Patterns
 
-### Prime Numbers
-**Definition**: Numbers greater than 1 that have exactly two positive divisors: 1 and itself.
+### **Common Exam Formats:**
+- **Banking Exams**: 35-50 questions in 45-60 minutes
+- **SSC Exams**: 25-50 questions in 45-60 minutes
+- **Management Exams**: 25-34 questions in 50-60 minutes
+- **Placement Tests**: 20-30 questions in 30-45 minutes
 
-**Examples**: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, ...
-
-**Key Points**:
-- 2 is the only even prime number
-- 1 is NOT a prime number
-- Prime numbers > 2 are always odd
-
-### Composite Numbers
-**Definition**: Numbers greater than 1 that have more than two positive divisors.
-
-**Examples**: 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, ...
-
-**Key Points**:
-- 1 is neither prime nor composite
-- All even numbers > 2 are composite
-- Composite numbers can be even or odd
-
-### 🧠 Prime Number Tricks
-
-#### 1. **Sieve of Eratosthenes**
-Mark multiples of each prime starting from 2.
-
-#### 2. **Prime Checking Trick**
-For numbers > 2, check divisibility up to √n.
-
-**Example**: Check if 29 is prime
-- √29 ≈ 5.38
-- Check divisors: 2, 3, 5 (none divide 29)
-- 29 is prime!
-
-#### 3. **Prime Number Patterns**
-- Except 2 and 3, all primes are of form: 6k±1
-- Twin primes: Pairs like (3,5), (5,7), (11,13)
+### **Question Distribution:**
+- **Easy**: 40-50% (foundation questions)
+- **Medium**: 30-40% (application questions)
+- **Difficult**: 20-30% (complex problems)
 
 ---
 
-## 🤝 Co-prime Numbers
+## 📊 Time Management Strategies
 
-### Definition
-Two numbers are co-prime (or relatively prime) if their HCF (GCD) is 1.
+### **1. Question Allocation:**
+- **Easy Questions**: 30-45 seconds each
+- **Medium Questions**: 1-1.5 minutes each
+- **Hard Questions**: 2-3 minutes each (consider skipping)
 
-**Examples**:
-- (2, 3): HCF = 1 → Co-prime
-- (4, 9): HCF = 1 → Co-prime
-- (6, 8): HCF = 2 → Not co-prime
-- (15, 28): HCF = 1 → Co-prime
+### **2. Section Time Planning:**
+\`\`\`
+Total Time: 60 minutes
 
-### Properties
-- Every pair of consecutive integers is co-prime
-- 1 is co-prime with every number
-- Prime numbers are co-prime to all numbers except their multiples
+- First 10 mins: Easy questions (15-20 questions)
+- Next 30 mins: Medium questions (10-15 questions)
+- Last 20 mins: Difficult questions (5-10 questions)
+- Final 5 mins: Review and guessing
+\`\`\`
 
-### 🧠 Co-prime Trick
-**Rule**: Two numbers are co-prime if they don't share any common prime factors.
-
-**Quick Check**: If two numbers don't have any common prime factors, they're co-prime.
-
----
-
-## 📏 Divisibility Rules
-
-Master these rules to quickly check divisibility without actual division!
-
-### 1. **Divisible by 2**
-**Rule**: Last digit is even (0, 2, 4, 6, 8)
-
-**Examples**:
-- 128 → 8 is even → Yes
-- 135 → 5 is odd → No
-
-### 2. **Divisible by 3**
-**Rule**: Sum of digits is divisible by 3
-
-**Examples**:
-- 123 → 1+2+3=6 → 6÷3=2 → Yes
-- 457 → 4+5+7=16 → 16÷3=5.333 → No
-
-### 3. **Divisible by 4**
-**Rule**: Last two digits form a number divisible by 4
-
-**Examples**:
-- 128 → 28÷4=7 → Yes
-- 135 → 35÷4=8.75 → No
-
-### 4. **Divisible by 5**
-**Rule**: Last digit is 0 or 5
-
-**Examples**:
-- 125 → ends with 5 → Yes
-- 128 → ends with 8 → No
-
-### 5. **Divisible by 6**
-**Rule**: Divisible by both 2 AND 3
-
-**Examples**:
-- 126 → Even (2) AND 1+2+6=9÷3=3 → Yes
-- 135 → Odd → No
-
-### 6. **Divisible by 8**
-**Rule**: Last three digits form a number divisible by 8
-
-**Examples**:
-- 1024 → 024÷8=3 → Yes
-- 1025 → 025÷8=3.125 → No
-
-### 7. **Divisible by 7** (Osculation Method)
-**Rule**: Double the last digit and subtract from remaining number
-
-**Examples**:
-- 126 → Remove 6, double=12, 12-12=0 → Yes
-- 133 → Remove 3, double=6, 13-6=7, 7÷7=1 → Yes
-- 134 → Remove 4, double=8, 13-8=5, not 0 or 7 → No
-
-### 8. **Divisible by 9**
-**Rule**: Sum of digits is divisible by 9
-
-**Examples**:
-- 126 → 1+2+6=9 → Yes
-- 127 → 1+2+7=10 → No
-
-### 9. **Divisible by 10**
-**Rule**: Last digit is 0
-
-**Examples**:
-- 120 → ends with 0 → Yes
-- 125 → ends with 5 → No
-
-### 10. **Divisible by 11** (Alternating Sum)
-**Rule**: Alternating sum of digits is 0 or divisible by 11
-
-**Examples**:
-- 121 → 1-2+1=0 → Yes
-- 132 → 1-3+2=0 → Yes
-- 133 → 1-3+3=1 → No
+### **3. Skip Strategy:**
+- Mark difficult questions for later
+- Don't get stuck on one problem
+- Use educated guessing for unanswered questions
 
 ---
 
-## 🧩 Factors and Multiples
+## 🎯 Problem-Solving Approach
 
-### Factors (Divisors)
-**Definition**: Numbers that divide another number exactly (remainder = 0)
+### **STEP Method:**
+1. **S** - Survey the question (read carefully)
+2. **T** - Think about approach (identify method)
+3. **E** - Execute calculations (solve step-by-step)
+4. **P** - Verify answer (check reasonableness)
 
-**Example**: Factors of 12: 1, 2, 3, 4, 6, 12
-
-### Multiples
-**Definition**: Numbers obtained by multiplying a number by integers
-
-**Example**: Multiples of 3: 3, 6, 9, 12, 15, 18, ...
-
-### 🧠 Factor Finding Tricks
-
-#### 1. **Prime Factorization**
-Express number as product of prime factors.
-
-**Example**: 84 = 2 × 2 × 3 × 7 = 2² × 3 × 7
-
-#### 2. **Factor Pairs**
-For any number n, factors come in pairs (a, b) where a × b = n.
-
-**Example**: Factors of 24: (1,24), (2,12), (3,8), (4,6)
-
-#### 3. **Number of Factors Formula**
-If n = p₁^a × p₂^b × p₃^c × ...
-Then number of factors = (a+1) × (b+1) × (c+1) × ...
-
-**Example**: 84 = 2² × 3¹ × 7¹
-Number of factors = (2+1) × (1+1) × (1+1) = 3 × 2 × 2 = 12
-
-#### 4. **Sum of Factors Formula**
-Sum of factors = [(p₁^(a+1)-1)/(p₁-1)] × [(p₂^(b+1)-1)/(p₂-1)] × ...
-
-**Example**: Sum of factors of 84 = [(2³-1)/(2-1)] × [(3²-1)/(3-1)] × [(7²-1)/(7-1)]
-= [(8-1)/1] × [(9-1)/2] × [(49-1)/6]
-= 7 × 4 × 8 = 224
+### **Alternative: 4-Step Method:**
+1. **Understand** the problem
+2. **Plan** your solution
+3. **Solve** systematically
+4. **Check** your work
 
 ---
 
-## 🎯 Problem Solving Techniques
+## 🧮 Calculation Techniques
 
-### 1. **Even/Odd Problems**
-**Trick**: Use parity (even/odd) properties in equations.
+### **1. Mental Math:**
+- **Rounding**: 47 + 52 ≈ 50 + 50 = 100
+- **Compatible Numbers**: 19 × 21 ≈ 20 × 20 = 400
+- **Breaking Numbers**: 17 × 8 = 10×8 + 7×8 = 80 + 56 = 136
 
-**Example**: If x is odd, then x² is odd, x³ is odd, etc.
+### **2. Approximation:**
+- **For Large Numbers**: 999 ≈ 1000, 0.001 ≈ 0
+- **Percentage Calculations**: 98% ≈ 100%, 4.9% ≈ 5%
+- **Square Roots**: √48 ≈ √49 = 7
 
-### 2. **Prime Number Problems**
-**Trick**: Use prime factorization for quick solutions.
+### **3. Shortcut Formulas:**
+- **Multiplication by 5**: ×10 ÷ 2
+- **Multiplication by 25**: ×100 ÷ 4
+- **Multiplication by 11**: For 23×11 = 253 (2, 2+3=5, 3)
 
-**Example**: Find HCF of 84 and 90
-84 = 2² × 3 × 7
-90 = 2 × 3² × 5
-HCF = 2 × 3 = 6
+---
 
-### 3. **Divisibility Shortcuts**
-**Combined Rules**: Use multiple rules together.
+## 🎯 Question Selection Strategy
 
-**Example**: Is 123456 divisible by 6?
-- By 2: Last digit 6 → Yes
-- By 3: 1+2+3+4+5+6=21, 21÷3=7 → Yes
-- Therefore, divisible by 6
+### **1. Easy First:**
+- Scan all questions quickly
+- Answer easy ones first to build confidence
+- Mark attempted questions
 
-### 4. **Factor Counting Problems**
-**Trick**: Use the formula for counting factors.
+### **2. Difficulty-Based Approach:**
+- **Level 1**: Direct formula application
+- **Level 2**: Multiple step problems
+- **Level 3**: Complex word problems
 
-**Example**: How many factors does 360 have?
-360 = 2³ × 3² × 5¹
-Factors = (3+1) × (2+1) × (1+1) = 4 × 3 × 2 = 24
+### **3. Topic-Based Selection:**
+- Answer strong topic questions first
+- Save weak topics for later
+- Balance time across topics
 
-Master these concepts and you'll solve number classification problems with ease! 🚀`
+---
+
+## 📈 Accuracy vs Speed Balance
+
+### **Speed Development:**
+- Practice with timer
+- Learn mental calculation techniques
+- Use approximation when exact calculation is time-consuming
+
+### **Accuracy Maintenance:**
+- Double-check calculations
+- Use reverse operations to verify
+- Read questions carefully to avoid silly mistakes
+
+### **Speed-Accuracy Trade-off:**
+- Aim for 80-90% accuracy with good speed
+- Better to solve 40 questions correctly than 50 with errors
+- Practice under timed conditions regularly
+
+---
+
+## 🧠 Common Pitfalls & Solutions
+
+### **1. Calculation Errors:**
+**Problem**: Arithmetic mistakes due to hurry
+**Solution**: Use step-by-step approach, double-check
+
+### **2. Reading Comprehension:**
+**Problem**: Misinterpreting word problems
+**Solution**: Read questions 2-3 times, underline key information
+
+### **3. Formula Confusion:**
+**Problem**: Mixing up similar formulas
+**Solution**: Create formula cheat sheets, practice regularly
+
+### **4. Negative Marking Fear:**
+**Problem**: Leaving questions unattempted due to fear
+**Solution**: Use intelligent guessing for 25-50% negative marking exams
+
+---
+
+## 🎯 Topic-Wise Strategies
+
+### **Arithmetic:**
+- Master BODMAS rule
+- Learn fraction operations
+- Practice decimal conversions
+
+### **Algebra:**
+- Understand equation solving
+- Learn factorization techniques
+- Practice word problems
+
+### **Geometry:**
+- Memorize formulas
+- Draw diagrams for visualization
+- Practice angle/chord theorems
+
+### **Data Interpretation:**
+- Focus on table reading speed
+- Learn percentage calculations
+- Practice ratio analysis
+
+---
+
+## 📊 Mock Test Analysis
+
+### **Post-Test Review:**
+1. **Score Analysis**: Identify strong/weak areas
+2. **Time Analysis**: Check time spent per question
+3. **Error Analysis**: Categorize mistakes (silly, conceptual, calculation)
+
+### **Improvement Plan:**
+- **Weak Topics**: Extra practice sessions
+- **Time Management**: Adjust solving speed
+- **Accuracy**: Focus on error-prone areas
+
+### **Progress Tracking:**
+- Maintain error log
+- Track improvement in scores
+- Monitor time reduction
+
+---
+
+## 🎓 Preparation Strategies
+
+### **Daily Routine:**
+- **1 hour**: Concept learning
+- **1 hour**: Practice problems
+- **30 mins**: Revision and shortcuts
+
+### **Weekly Schedule:**
+- **3 days**: Topic-wise practice
+- **1 day**: Full-length mock test
+- **1 day**: Weak area focus
+- **2 days**: Mixed practice + revision
+
+### **Monthly Goals:**
+- Complete syllabus coverage
+- Achieve target accuracy levels
+- Improve speed gradually
+
+---
+
+## 🚀 Exam Day Strategies
+
+### **Pre-Exam Preparation:**
+- **Sleep Well**: 7-8 hours before exam
+- **Healthy Breakfast**: Maintain energy levels
+- **Arrive Early**: Avoid last-minute stress
+- **Carry Essentials**: ID, admit card, stationery
+
+### **During Exam:**
+- **First 5 Minutes**: Read instructions carefully
+- **Time Check**: Keep track of time
+- **Break Strategy**: Take short breaks if needed
+- **Confidence Building**: Answer easy questions first
+
+### **Question Attempt Strategy:**
+- **Read Twice**: Ensure proper understanding
+- **Option Elimination**: Use process of elimination
+- **Unit Checking**: Verify if answer makes sense
+- **Calculator Usage**: Use efficiently if allowed
+
+---
+
+## 🎯 Guessing Strategies
+
+### **For Negative Marking Exams:**
+- **25% negative marking**: Guess only if 25% sure
+- **33% negative marking**: Guess only if 33% sure
+- **50% negative marking**: Guess only if 50% sure
+
+### **Intelligent Guessing:**
+- Eliminate obviously wrong options
+- Look for patterns in remaining options
+- Use number properties (even/odd, positive/negative)
+- Choose options that appear less frequently
+
+---
+
+## 🎓 Success Mindset
+
+### **Positive Attitude:**
+- Believe in your preparation
+- Stay calm under pressure
+- Learn from mistakes
+- Focus on improvement
+
+### **Growth Mindset:**
+- Every practice session improves skills
+- Difficulties are learning opportunities
+- Consistent effort leads to success
+- Small daily improvements compound
+
+### **Stress Management:**
+- Deep breathing exercises
+- Positive visualization
+- Break down overwhelming tasks
+- Seek support when needed
+
+---
+
+## 🎯 Final Preparation Checklist
+
+### **One Week Before Exam:**
+- [ ] Complete syllabus revision
+- [ ] Practice 2-3 full mock tests
+- [ ] Review formula sheets
+- [ ] Focus on weak areas
+
+### **One Day Before Exam:**
+- [ ] Light revision only
+- [ ] Relax and rest well
+- [ ] Organize exam materials
+- [ ] Positive mindset preparation
+
+### **Exam Day:**
+- [ ] Arrive 30 minutes early
+- [ ] Read instructions carefully
+- [ ] Attempt easy questions first
+- [ ] Manage time effectively
+- [ ] Stay focused and confident
+
+---
+
+## 🚨 Common Mistakes to Avoid
+
+### ❌ **Poor Time Management**
+\`\`\`
+Wrong: Spending 10 minutes on one hard question
+Right: Skip and return later if time permits
+\`\`\`
+
+### ❌ **Silly Calculation Errors**
+\`\`\`
+Wrong: 15 + 8 = 22 (missing carry-over)
+Right: 15 + 8 = 23 (proper addition)
+\`\`\`
+
+### ❌ **Misreading Questions**
+\`\`\`
+Wrong: Solving for wrong variable in word problems
+Right: Read questions multiple times, identify what is asked
+\`\`\`
+
+### ❌ **Negative Marking Trap**
+\`\`\`
+Wrong: Blind guessing in high negative marking exams
+Right: Intelligent elimination and educated guessing
+\`\`\`
+
+---
+
+## 🎯 Practice Problems
+
+### **Time Management:**
+1. If you have 50 questions and 60 minutes, how much time per question?
+2. How many easy questions should you target in first 15 minutes?
+
+### **Strategy Application:**
+1. A question takes 3 minutes but you have only 2 minutes left. What should you do?
+2. You know 3 out of 4 options are wrong. Should you guess in 25% negative marking exam?
+
+### **Calculation Practice:**
+1. Quick mental calculation: 47 × 5 = ?
+2. Approximation: 98 × 102 ≈ ?
+
+**Answers:**
+Time: 72 seconds per question, 15-20 easy questions
+Strategy: Skip and return if time permits, Yes (25% chance of correct vs 25% negative)
+Calculation: 235, 10,000
+
+---
+
+## 🎓 Final Thoughts
+
+Quantitative aptitude success requires a combination of knowledge, strategy, and practice. Remember that consistent preparation, smart time management, and the right mindset are as important as mathematical skills.
+
+**Key Success Factors:**
+- **Preparation**: Regular practice and concept clarity
+- **Strategy**: Smart question selection and time management
+- **Mindset**: Confidence and stress management
+- **Persistence**: Learning from mistakes and continuous improvement
+
+Master these strategies and you'll not only solve problems faster but also achieve better results in your aptitude examinations! 🏆`
 };

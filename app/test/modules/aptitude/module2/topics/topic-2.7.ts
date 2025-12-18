@@ -2,283 +2,283 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_7: SubLesson = {
   id: "2.7",
-  title: 'Powers and Exponents',
+  title: 'Unit Digit, Last Digits & Cyclicity',
   status: 'completed',
-  content: `# 🔢 Powers and Exponents
+  content: `# 🔢 Unit Digit, Last Digits & Cyclicity
 
-Powers and exponents are fundamental concepts in mathematics that appear frequently in aptitude exams. Understanding how to work with powers efficiently is crucial for solving complex problems involving repeated multiplication and scientific notation.
-
----
-
-## 🎯 What are Powers and Exponents?
-
-**Powers** represent repeated multiplication of the same number.
-**Exponents** indicate how many times a number is multiplied by itself.
-
-### **Notation:**
-a^n = a × a × a × ... × a (n times)
-
-**Examples:**
-- 2³ = 2 × 2 × 2 = 8
-- 5² = 5 × 5 = 25
-- 10⁴ = 10 × 10 × 10 × 10 = 10,000
-
-**Components:**
-- **Base**: The number being multiplied (a)
-- **Exponent/Power**: Number of times to multiply (n)
-- **Value**: Result of the multiplication
+Understanding digit patterns and cyclicity is crucial for solving power problems, large number calculations, and competitive exam questions. These concepts help predict the behavior of numbers when raised to powers or when dealing with repetitive patterns.
 
 ---
 
-## 📊 Special Cases and Rules
+## 🎯 Unit Digit (Last Digit)
 
-### **1. Zero Exponent**
-Any non-zero number raised to power zero equals 1:
-a⁰ = 1 (where a ≠ 0)
+### Definition
+The unit digit is the rightmost digit of a number, which determines the number modulo 10.
 
-**Examples:**
-- 5⁰ = 1
-- (-3)⁰ = 1
-- (1/2)⁰ = 1
+### Powers of Numbers and Their Unit Digits
 
-### **2. Negative Exponents**
-Negative exponents mean reciprocals:
-a^(-n) = 1/a^n
+#### 1. **Powers of 2**
+Pattern: 2, 4, 8, 6, 2, 4, 8, 6...
+**Cycle**: 4 digits
 
-**Examples:**
-- 2^(-3) = 1/2³ = 1/8
-- 5^(-2) = 1/5² = 1/25
-- 10^(-1) = 1/10 = 0.1
-
-### **3. Fractional Exponents**
-Fractional exponents represent roots:
-a^(1/n) = ⁿ√a
-a^(m/n) = (ⁿ√a)^m or ^n√(a^m)
-
-**Examples:**
-- 8^(1/3) = ∛8 = 2
-- 16^(1/2) = √16 = 4
-- 27^(2/3) = (∛27)² = 3² = 9
-
----
-
-## 🧮 Laws of Exponents
-
-### **1. Multiplication Law**
-When multiplying same bases, add exponents:
-a^m × a^n = a^(m+n)
-
-**Examples:**
-- 2³ × 2⁴ = 2^(3+4) = 2⁷ = 128
-- x⁵ × x² = x^(5+2) = x⁷
-- 10² × 10³ = 10^(2+3) = 10⁵ = 100,000
-
-### **2. Division Law**
-When dividing same bases, subtract exponents:
-a^m ÷ a^n = a^(m-n)
-
-**Examples:**
-- 2⁵ ÷ 2³ = 2^(5-3) = 2² = 4
-- x⁷ ÷ x⁴ = x^(7-4) = x³
-- 10⁶ ÷ 10² = 10^(6-2) = 10⁴ = 10,000
-
-### **3. Power of a Power**
-When raising a power to another power, multiply exponents:
-(a^m)^n = a^(m×n)
-
-**Examples:**
-- (2³)⁴ = 2^(3×4) = 2¹² = 4,096
-- (x²)³ = x^(2×3) = x⁶
-- (10²)³ = 10^(2×3) = 10⁶ = 1,000,000
-
-### **4. Power of a Product**
-Power of a product equals product of powers:
-(a×b)^n = a^n × b^n
-
-**Examples:**
-- (2×3)⁴ = 2⁴ × 3⁴ = 16 × 81 = 1,296
-- (xy)³ = x³ × y³
-- (2×5)² = 2² × 5² = 4 × 25 = 100
-
-### **5. Power of a Quotient**
-Power of a quotient equals quotient of powers:
-(a/b)^n = a^n / b^n
-
-**Examples:**
-- (2/3)⁴ = 2⁴ / 3⁴ = 16/81
-- (x/y)³ = x³ / y³
-- (4/5)² = 4² / 5² = 16/25
-
----
-
-## 🔍 Scientific Notation
-
-### **What is Scientific Notation?**
-Scientific notation expresses very large or small numbers as:
-N × 10^k where 1 ≤ N < 10 and k is an integer.
-
-**Examples:**
-- 3,000 = 3 × 10³
-- 0.0005 = 5 × 10^(-4)
-- 1,500,000 = 1.5 × 10⁶
-- 0.0072 = 7.2 × 10^(-3)
-
-### **Operations with Scientific Notation**
-
-#### **Multiplication:**
-(2 × 10³) × (3 × 10²) = (2×3) × 10^(3+2) = 6 × 10⁵
-
-#### **Division:**
-(8 × 10⁴) ÷ (2 × 10²) = (8÷2) × 10^(4-2) = 4 × 10²
-
-#### **Addition/Subtraction:**
-Convert to same power of 10 first:
-2 × 10³ + 3 × 10² = 20 × 10² + 3 × 10² = 23 × 10²
-
----
-
-## 🧠 Common Powers to Remember
-
-### **Powers of 2:**
-- 2¹ = 2
-- 2² = 4
-- 2³ = 8
-- 2⁴ = 16
-- 2⁵ = 32
-- 2⁶ = 64
-- 2⁷ = 128
-- 2⁸ = 256
-- 2⁹ = 512
-- 2¹⁰ = 1,024
-
-### **Powers of 3:**
-- 3¹ = 3
-- 3² = 9
-- 3³ = 27
-- 3⁴ = 81
-- 3⁵ = 243
-
-### **Powers of 4:**
-- 4¹ = 4
-- 4² = 16
-- 4³ = 64
-- 4⁴ = 256
-
-### **Powers of 5:**
-- 5¹ = 5
-- 5² = 25
-- 5³ = 125
-- 5⁴ = 625
-
-### **Powers of 10:**
-- 10⁰ = 1
-- 10¹ = 10
-- 10² = 100
-- 10³ = 1,000
-- 10⁴ = 10,000
-- 10⁵ = 100,000
-- 10⁶ = 1,000,000
-
----
-
-## 🎯 Problem Solving with Powers
-
-### **Example 1: Simplification**
-Simplify: 2³ × 3² × 2⁴ ÷ 2²
-
-**Solution:** 2^(3+4-2) × 3² = 2^5 × 3² = 32 × 9 = 288
-
-### **Example 2: Large Numbers**
-Express 24,000,000 in scientific notation.
-
-**Solution:** 2.4 × 10⁷
-
-### **Example 3: Negative Exponents**
-Simplify: (2/3)^(-2)
-
-**Solution:** (3/2)² = 9/4
-
-### **Example 4: Fractional Exponents**
-Simplify: 8^(2/3)
-
-**Solution:** (∛8)² = 2² = 4
-
----
-
-## 🚨 Common Mistakes to Avoid
-
-### ❌ **Wrong Sign in Division**
 \`\`\`
-Wrong: 2⁵ ÷ 2³ = 2^(5+3) = 2⁸
-Right: 2⁵ ÷ 2³ = 2^(5-3) = 2²
+2¹ = 2  → 2
+2² = 4  → 4
+2³ = 8  → 8
+2⁴ = 16 → 6
+2⁵ = 32 → 2
+2⁶ = 64 → 4
+...\`\`\`
+
+#### 2. **Powers of 3**
+Pattern: 3, 9, 7, 1, 3, 9, 7, 1...
+**Cycle**: 4 digits
+
+\`\`\`
+3¹ = 3  → 3
+3² = 9  → 9
+3³ = 27 → 7
+3⁴ = 81 → 1
+3⁵ = 243 → 3
+...\`\`\`
+
+#### 3. **Powers of 4**
+Pattern: 4, 6, 4, 6, 4, 6...
+**Cycle**: 2 digits
+
+\`\`\`
+4¹ = 4  → 4
+4² = 16 → 6
+4³ = 64 → 4
+4⁴ = 256 → 6
+...\`\`\`
+
+#### 4. **Powers of 5**
+Always ends with 5.
+**Cycle**: 1 digit
+
+#### 5. **Powers of 6**
+Pattern: 6, 6, 6, 6... (always 6)
+**Cycle**: 1 digit
+
+#### 6. **Powers of 7**
+Pattern: 7, 9, 3, 1, 7, 9, 3, 1...
+**Cycle**: 4 digits
+
+#### 7. **Powers of 8**
+Pattern: 8, 4, 2, 6, 8, 4, 2, 6...
+**Cycle**: 4 digits
+
+#### 8. **Powers of 9**
+Pattern: 9, 1, 9, 1, 9, 1... (alternates)
+**Cycle**: 2 digits
+
+#### 9. **Powers of 0**
+Always ends with 0.
+
+---
+
+## 📊 Last Two Digits
+
+### Definition
+The last two digits determine the number modulo 100.
+
+### Common Patterns
+
+#### 1. **Powers of 2**
+\`\`\`
+2¹ = 02
+2² = 04
+2³ = 08
+2⁴ = 16
+2⁵ = 32
+2⁶ = 64
+2⁷ = 28
+2⁸ = 56
+2⁹ = 12
+2¹⁰ = 24
+\`\`\`
+**Cycle**: Every 4 powers: 76, 24, 76, 24...
+
+#### 2. **Powers of 3**
+\`\`\`
+3¹ = 03
+3² = 09
+3³ = 27
+3⁴ = 81
+3⁵ = 43
+3⁶ = 29
+3⁷ = 87
+3⁸ = 61
+3⁹ = 83
+3¹⁰ = 49
 \`\`\`
 
-### ❌ **Power of Product Error**
-\`\`\`
-Wrong: (2×3)⁴ = 2×3⁴ = 2×81 = 162
-Right: (2×3)⁴ = 2⁴ × 3⁴ = 16×81 = 1,296
-\`\`\`
+#### 3. **Powers of 5**
+Always ends with 25, 75, 25, 75... (alternates)
 
-### ❌ **Zero Exponent Confusion**
-\`\`\`
-Wrong: 0⁰ = 0
-Right: 0⁰ is undefined (but often taken as 1 in some contexts)
-\`\`\`
-
-### ❌ **Negative Exponent Misapplication**
-\`\`\`
-Wrong: (-2)³ = -2³ = -8 ✓
-Wrong: (-2)^(-3) = -2^(-3) = -1/8 ✗
-Right: (-2)^(-3) = 1/(-2)³ = 1/(-8) = -1/8 ✓
-\`\`\`
+#### 4. **Powers of 6**
+Pattern: 76, 56, 36, 16, 96, 76, 56...
 
 ---
 
-## 🎯 Practice Problems
+## 🔄 Cyclicity of Digits
 
-### **Basic Laws:**
-1. 2³ × 2⁴ = ?
-2. 5⁶ ÷ 5³ = ?
-3. (2²)³ = ?
-4. (3×2)⁴ = ?
+### Definition
+**Cyclicity** is the repeating pattern in the last digits of powers of a number.
 
-### **Scientific Notation:**
-1. Express 5,000,000 in scientific notation
-2. Express 0.00003 in scientific notation
-3. (2×10³) × (3×10²) = ?
+### Key Concepts
 
-### **Negative/Fractional Exponents:**
-1. 2^(-3) = ?
-2. 8^(1/3) = ?
-3. 16^(-1/2) = ?
+#### 1. **Cycle Length**
+The number of different last digits before the pattern repeats.
 
-### **Complex Problems:**
-1. Simplify: 3² × 2³ × 3⁴ ÷ 2²
-2. Find: (2/3)^(-2)
-3. Calculate: 27^(2/3)
+#### 2. **Finding Cycle for Any Number**
+To find last digit of a^b, find b mod (cycle length).
 
-### **Word Problems:**
-1. A bacteria doubles every hour. If there are 2 bacteria now, how many after 5 hours?
-2. Light travels at 3×10⁸ m/s. Express in scientific notation.
+### Complete Cyclicity Table
 
-**Answers:**
-Basic: 2⁷=128, 5³=125, 2⁶=64, 3⁴×2⁴=81×16=1,296
-Scientific: 5×10⁶, 3×10^(-5), 6×10⁵
-Negative/Fractional: 1/8, 2, 1/4
-Complex: 3^(2+4)×2^(3-2)=3⁶×2¹=729×2=1,458, 9/4, 9
-Word: 2⁶=64 bacteria, 3×10⁸ m/s
+| Number | Last Digit Cycle | Cycle Length |
+|--------|------------------|--------------|
+| 0      | 0                | 1            |
+| 1      | 1                | 1            |
+| 2      | 2, 4, 8, 6      | 4            |
+| 3      | 3, 9, 7, 1      | 4            |
+| 4      | 4, 6            | 2            |
+| 5      | 5                | 1            |
+| 6      | 6                | 1            |
+| 7      | 7, 9, 3, 1      | 4            |
+| 8      | 8, 4, 2, 6      | 4            |
+| 9      | 9, 1            | 2            |
 
 ---
 
-## 🎓 Pro Tips for Exams
+## 🎯 Advanced Digit Patterns
 
-1. **Remember exponent laws** - they save calculation time
-2. **Use scientific notation** for very large/small numbers
-3. **Memorize common powers** of 2, 3, 4, 5, 10
-4. **Be careful with negative bases** and negative exponents
-5. **Simplify expressions** before calculating final values
-6. **Check units** when working with scientific notation
-7. **Practice mental calculations** for quick simplifications
+### 1. **Last Three Digits**
+For larger powers, consider modulo 1000.
 
-Master powers and exponents to handle advanced mathematical problems with confidence! 🏆`
+### 2. **Finding Last n Digits**
+Use modular arithmetic with 10^n.
+
+### 3. **Cyclicity in Series**
+Some numbers have longer cycles for last two or three digits.
+
+---
+
+## 🧠 Problem Solving Tricks
+
+### Trick 1: **Quick Last Digit Calculation**
+**Example**: Find last digit of 7^123
+
+**Solution**: 7 has cycle 4: 7, 9, 3, 1
+123 ÷ 4 = 30 × 4 + 3, so 7^123 has last digit same as 7³ = 343 → **3**
+
+### Trick 2: **Combined Operations**
+**Example**: Find last digit of (2^3 × 3^2 × 5^4)
+
+**Solution**: Last digits: 2³=8, 3²=9, 5⁴=5
+8 × 9 × 5 = 72 × 5 = 360 → **0**
+
+### Trick 3: **Negative Exponents**
+**Example**: Find last digit of 7^{-5}
+
+**Solution**: First find cycle, then find equivalent positive exponent.
+
+### Trick 4: **Pattern Recognition**
+**Example**: Find last digit of 6^100
+
+**Solution**: 6^any power always ends with 6 → **6**
+
+---
+
+## 📊 Last Two Digits Calculation
+
+### Method 1: **Direct Calculation for Small Powers**
+For powers up to 10-15, calculate directly.
+
+### Method 2: **Using Cycles**
+Find the cycle pattern for last two digits.
+
+**Example**: Last two digits of 7^n
+\`\`\`
+7¹ = 07
+7² = 49
+7³ = 43
+7⁴ = 01
+7⁵ = 07 (cycle repeats)
+\`\`\`
+
+### Method 3: **Modular Arithmetic**
+Use modulo 100 to find last two digits.
+
+---
+
+## 🎯 Common Problem Types
+
+### Type 1: **Find Last Digit of Power**
+**Example**: Find last digit of 23^45
+
+**Solution**: Only last digit of base matters: 3^45
+3 has cycle: 3, 9, 7, 1
+45 ÷ 4 = 11 × 4 + 1, so 3^45 ≡ 3¹ ≡ 3
+
+### Type 2: **Find Last Two Digits**
+**Example**: Find last two digits of 7^25
+
+**Solution**: Find pattern of 7^n mod 100:
+7¹ ≡ 07, 7² ≡ 49, 7³ ≡ 43, 7⁴ ≡ 01, 7⁵ ≡ 07...
+25 ÷ 4 = 6 × 4 + 1, so 7^25 ≡ 7¹ ≡ 07
+
+### Type 3: **Complex Expressions**
+**Example**: Find last digit of (2^10 + 3^8 × 5^6)
+
+**Solution**: Last digits: 2^10=4, 3^8=1, 5^6=5
+4 + 1 × 5 = 4 + 5 = 9 → **9**
+
+---
+
+## 🔧 Euler's Totient Function for Large Powers
+
+### Definition
+φ(n) = number of integers k where 1 ≤ k ≤ n and gcd(k,n) = 1
+
+### Euler's Theorem
+If gcd(a,n) = 1, then a^φ(n) ≡ 1 (mod n)
+
+### Application
+For last digits, φ(10) = 4, so a^4 ≡ 1 (mod 10) for gcd(a,10)=1
+
+---
+
+## 📝 Practice Examples
+
+### Example 1: Basic Last Digit
+Find last digit of 27^15
+
+**Solution**: 7^15, cycle 4: 7,9,3,1
+15÷4=3×4+3, so 7^15 ≡ 7³ ≡ 343 → **3**
+
+### Example 2: Last Two Digits
+Find last two digits of 6^20
+
+**Solution**: 6^any power ends with 76 → **76**
+
+### Example 3: Complex Power
+Find last digit of (7^2 × 8^3 × 9^4)
+
+**Solution**: 49 × 512 × 6561
+Last digits: 9 × 2 × 1 = 18 → **8**
+
+### Example 4: Negative Base
+Find last digit of (-2)^10
+
+**Solution**: (-2)^10 = 2^10, last digit of 2^10 = 4 → **4**
+
+### Example 5: Fractional Power
+Find last digit of 7^(1/2)
+
+**Solution**: Square root of 7 is irrational, no last digit → **No last digit**
+
+Master digit patterns and cyclicity to solve power problems efficiently! 🚀`
 };
+

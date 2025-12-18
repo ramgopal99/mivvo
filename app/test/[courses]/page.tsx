@@ -225,7 +225,7 @@ export default function CoursePage() {
           <>
             <ResizableHandle withHandle />
             <ResizablePanel defaultSize={45} minSize={25}>
-              <RightSection language={course} />
+              <RightSection language={course} selectedTopic={selectedTopic} />
             </ResizablePanel>
           </>
         )}

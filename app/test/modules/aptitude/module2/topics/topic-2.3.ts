@@ -2,226 +2,259 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_3: SubLesson = {
   id: "2.3",
-  title: 'Brackets ((), {}, [])',
+  title: 'Classification of Numbers',
   status: 'completed',
-  content: `# 🔢 Understanding Brackets
+  content: `# 🔢 Classification of Numbers
 
-Brackets are essential tools in mathematics for grouping operations and clarifying the order of calculations. Different types of brackets have different priorities, and understanding their usage is crucial for accurate simplification.
-
----
-
-## 🎯 Types of Brackets and Their Priorities
-
-### 1. **Parentheses ()** - Highest Priority
-- **Also called**: Round brackets or curved brackets
-- **Priority**: First to solve
-- **Usage**: Group expressions, function arguments
-- **Examples**: (2 + 3), (a + b) × c
-
-### 2. **Square Brackets []** - Medium Priority
-- **Also called**: Box brackets
-- **Priority**: Second to solve
-- **Usage**: Group larger expressions, matrices
-- **Examples**: [2 + 3 × 4], [a + b] × [c + d]
-
-### 3. **Curly Brackets {}** - Lowest Priority
-- **Also called**: Brace brackets
-- **Priority**: Last to solve
-- **Usage**: Group multiple expressions, sets
-- **Examples**: {2 + 3} × 4, {a, b, c}
+Master the fundamental classifications of numbers and their properties. This topic covers even/odd numbers, prime/composite numbers, co-prime numbers, divisibility rules, and factors/multiples - essential concepts for quantitative aptitude.
 
 ---
 
-## 📊 Priority Order in Simplification
+## 🎯 Even and Odd Numbers
 
-**Always solve brackets in this order:**
-1. **Parentheses first**: ()
-2. **Square brackets second**: []
-3. **Curly brackets last**: {}
+### Even Numbers
+**Definition**: Numbers that are divisible by 2 (remainder = 0)
 
-### Example:
-**Simplify: 2 × {3 + [4 × (5 - 2)]}**
+**Examples**: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, ...
 
-**Step 1:** Solve parentheses: (5 - 2) = 3  
-**Step 2:** Solve square brackets: [4 × 3] = 12  
-**Step 3:** Solve curly brackets: {3 + 12} = 15  
-**Step 4:** Final multiplication: 2 × 15 = 30
+**Properties**:
+- Last digit is always: 0, 2, 4, 6, 8
+- Even + Even = Even
+- Even + Odd = Odd
+- Even × Even = Even
+- Even × Odd = Even
 
----
+### Odd Numbers
+**Definition**: Numbers that are not divisible by 2 (remainder = 1)
 
-## 🎯 Common Bracket Operations
+**Examples**: 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, ...
 
-### **Removing Brackets with Positive Signs**
-When there's a **+** before brackets, remove brackets without changing signs:
+**Properties**:
+- Last digit is always: 1, 3, 5, 7, 9
+- Odd + Odd = Even
+- Odd + Even = Odd
+- Odd × Odd = Odd
+- Odd × Even = Even
 
-**Examples:**
-- 2 + (3 + 4) = 2 + 3 + 4 = 9
-- 5 × (2 + 3) = 5 × 2 + 5 × 3 = 10 + 15 = 25
-- a + (b + c) = a + b + c
+### 🧠 Quick Test
+**Rule**: If a number is divisible by 2 → Even, else → Odd
 
-### **Removing Brackets with Negative Signs**
-When there's a **-** before brackets, change all signs inside:
-
-**Examples:**
-- 2 - (3 + 4) = 2 - 3 - 4 = 2 - 7 = -5
-- 5 - (2 + 3) = 5 - 2 - 3 = 0
-- a - (b + c) = a - b - c
-
-### **Removing Double Brackets**
-Solve inner brackets first, then outer ones:
-
-**Examples:**
-- ((2 + 3) × 4) = (5 × 4) = 20
-- 2 × ((3 + 4) - 1) = 2 × (7 - 1) = 2 × 6 = 12
+**Trick**: Check the last digit only!
 
 ---
 
-## 🧮 Expanding Expressions with Brackets
+## 🔍 Prime and Composite Numbers
 
-### **Single Bracket Expansion**
-**Examples:**
-- 2(a + b) = 2a + 2b
-- 3(2x + 5) = 6x + 15
-- -2(a + b) = -2a - 2b
+### Prime Numbers
+**Definition**: Numbers greater than 1 that have exactly two positive divisors: 1 and itself.
 
-### **Multiple Bracket Expansion**
-**Examples:**
-- (a + b)(c + d) = a(c + d) + b(c + d) = ac + ad + bc + bd
-- (x + 2)(x + 3) = x(x + 3) + 2(x + 3) = x² + 3x + 2x + 6 = x² + 5x + 6
+**Examples**: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, ...
 
-### **Nested Brackets**
-**Examples:**
-- 2[3 + (4 × 2)] = 2[3 + 8] = 2[11] = 22
-- 3{2 + [4 × (5 - 2)]} = 3{2 + [4 × 3]} = 3{2 + 12} = 3{14} = 42
+**Key Points**:
+- 2 is the only even prime number
+- 1 is NOT a prime number
+- Prime numbers > 2 are always odd
 
----
+### Composite Numbers
+**Definition**: Numbers greater than 1 that have more than two positive divisors.
 
-## 🎯 Special Bracket Rules
+**Examples**: 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, ...
 
-### **Fraction Bar as Invisible Brackets**
-The fraction bar acts like brackets for numerator and denominator:
+**Key Points**:
+- 1 is neither prime nor composite
+- All even numbers > 2 are composite
+- Composite numbers can be even or odd
 
-**Examples:**
-- \\frac{2 + 3}{4 - 1} = \\frac{5}{3}
-- \\frac{a + b}{c × d} = \\frac{a + b}{c × d}
+### 🧠 Prime Number Tricks
 
-### **Brackets in Complex Fractions**
-**Examples:**
-- \\frac{1 + \\frac{1}{2}}{3} = \\frac{\\frac{3}{2}}{3} = \\frac{1}{2}
-- \\frac{a}{b + \\frac{c}{d}} = \\frac{a}{\\frac{bd + c}{d}} = \\frac{a × d}{bd + c}
+#### 1. **Sieve of Eratosthenes**
+Mark multiples of each prime starting from 2.
 
----
+#### 2. **Prime Checking Trick**
+For numbers > 2, check divisibility up to √n.
 
-## 🚨 Common Mistakes with Brackets
+**Example**: Check if 29 is prime
+- √29 ≈ 5.38
+- Check divisors: 2, 3, 5 (none divide 29)
+- 29 is prime!
 
-### ❌ **Wrong Order of Solving**
-\`\`\`
-Wrong: 2 × [3 + (4 × 5)] = 2 × [3 + 4] × 5 = 14 × 5 = 70
-Right: 2 × [3 + (4 × 5)] = 2 × [3 + 20] = 2 × 23 = 46
-\`\`\`
-
-### ❌ **Incorrect Sign Change**
-\`\`\`
-Wrong: 5 - (2 + 3) = 5 - 2 + 3 = 6
-Right: 5 - (2 + 3) = 5 - 5 = 0
-\`\`\`
-
-### ❌ **Missing Multiplication**
-\`\`\`
-Wrong: 2(3 + 4) = 2 × 3 + 4 = 10
-Right: 2(3 + 4) = 2 × 3 + 2 × 4 = 6 + 8 = 14
-\`\`\`
-
-### ❌ **Wrong Bracket Priority**
-\`\`\`
-Wrong: {2 + [3 × (4 + 5)]} = {2 + [3 × 4 + 5]} = {2 + [12 + 5]} = 19
-Right: {2 + [3 × (4 + 5)]} = {2 + [3 × 9]} = {2 + 27} = 29
-\`\`\`
+#### 3. **Prime Number Patterns**
+- Except 2 and 3, all primes are of form: 6k±1
+- Twin primes: Pairs like (3,5), (5,7), (11,13)
 
 ---
 
-## 🎯 Advanced Bracket Problems
+## 🤝 Co-prime Numbers
 
-### **Multiple Levels**
-**Simplify: 3 - {2 + [4 × (5 - 2)] + 1}**
+### Definition
+Two numbers are co-prime (or relatively prime) if their HCF (GCD) is 1.
 
-**Step 1:** (5 - 2) = 3  
-**Step 2:** [4 × 3] = 12  
-**Step 3:** {2 + 12 + 1} = 15  
-**Step 4:** 3 - 15 = -12
+**Examples**:
+- (2, 3): HCF = 1 → Co-prime
+- (4, 9): HCF = 1 → Co-prime
+- (6, 8): HCF = 2 → Not co-prime
+- (15, 28): HCF = 1 → Co-prime
 
-### **Mixed Operations**
-**Simplify: 2 × [3 + (4 ÷ 2) × 5] - 1**
+### Properties
+- Every pair of consecutive integers is co-prime
+- 1 is co-prime with every number
+- Prime numbers are co-prime to all numbers except their multiples
 
-**Step 1:** (4 ÷ 2) = 2  
-**Step 2:** 2 × 5 = 10  
-**Step 3:** [3 + 10] = 13  
-**Step 4:** 2 × 13 = 26  
-**Step 5:** 26 - 1 = 25
+### 🧠 Co-prime Trick
+**Rule**: Two numbers are co-prime if they don't share any common prime factors.
 
-### **Fraction with Brackets**
-**Simplify: \\frac{2 + (3 × 4)}{5 - (2 + 1)}**
-
-**Step 1:** (3 × 4) = 12  
-**Step 2:** 2 + 12 = 14  
-**Step 3:** (2 + 1) = 3  
-**Step 4:** 5 - 3 = 2  
-**Step 5:** 14 ÷ 2 = 7
+**Quick Check**: If two numbers don't have any common prime factors, they're co-prime.
 
 ---
 
-## 🧠 Shortcut Techniques
+## 📏 Divisibility Rules
 
-### **Quick Bracket Removal**
-- **Positive brackets**: Just remove
-- **Negative brackets**: Change all signs
-- **Nested brackets**: Work from inside out
+Master these rules to quickly check divisibility without actual division!
 
-### **Visual Method for Sign Changes**
-\`\`\`
-Positive bracket: 2 + (a + b) = 2 + a + b
-Negative bracket: 2 - (a + b) = 2 - a - b
-\`\`\`
+### 1. **Divisible by 2**
+**Rule**: Last digit is even (0, 2, 4, 6, 8)
 
-### **Bracket Multiplication**
-\`\`\`
-2(a + b) = 2a + 2b
-(a + b)(c + d) = ac + ad + bc + bd
-\`\`\`
+**Examples**:
+- 128 → 8 is even → Yes
+- 135 → 5 is odd → No
+
+### 2. **Divisible by 3**
+**Rule**: Sum of digits is divisible by 3
+
+**Examples**:
+- 123 → 1+2+3=6 → 6÷3=2 → Yes
+- 457 → 4+5+7=16 → 16÷3=5.333 → No
+
+### 3. **Divisible by 4**
+**Rule**: Last two digits form a number divisible by 4
+
+**Examples**:
+- 128 → 28÷4=7 → Yes
+- 135 → 35÷4=8.75 → No
+
+### 4. **Divisible by 5**
+**Rule**: Last digit is 0 or 5
+
+**Examples**:
+- 125 → ends with 5 → Yes
+- 128 → ends with 8 → No
+
+### 5. **Divisible by 6**
+**Rule**: Divisible by both 2 AND 3
+
+**Examples**:
+- 126 → Even (2) AND 1+2+6=9÷3=3 → Yes
+- 135 → Odd → No
+
+### 6. **Divisible by 8**
+**Rule**: Last three digits form a number divisible by 8
+
+**Examples**:
+- 1024 → 024÷8=3 → Yes
+- 1025 → 025÷8=3.125 → No
+
+### 7. **Divisible by 7** (Osculation Method)
+**Rule**: Double the last digit and subtract from remaining number
+
+**Examples**:
+- 126 → Remove 6, double=12, 12-12=0 → Yes
+- 133 → Remove 3, double=6, 13-6=7, 7÷7=1 → Yes
+- 134 → Remove 4, double=8, 13-8=5, not 0 or 7 → No
+
+### 8. **Divisible by 9**
+**Rule**: Sum of digits is divisible by 9
+
+**Examples**:
+- 126 → 1+2+6=9 → Yes
+- 127 → 1+2+7=10 → No
+
+### 9. **Divisible by 10**
+**Rule**: Last digit is 0
+
+**Examples**:
+- 120 → ends with 0 → Yes
+- 125 → ends with 5 → No
+
+### 10. **Divisible by 11** (Alternating Sum)
+**Rule**: Alternating sum of digits is 0 or divisible by 11
+
+**Examples**:
+- 121 → 1-2+1=0 → Yes
+- 132 → 1-3+2=0 → Yes
+- 133 → 1-3+3=1 → No
 
 ---
 
-## 🎯 Practice Questions
+## 🧩 Factors and Multiples
 
-**Basic Bracket Problems:**
-1. 5 + (3 + 4) = ?
-2. 8 - (2 + 3) = ?
-3. 2 × (4 + 6) = ?
-4. 3[2 + (4 × 2)] = ?
+### Factors (Divisors)
+**Definition**: Numbers that divide another number exactly (remainder = 0)
 
-**Complex Bracket Problems:**
-1. 2 × {3 + [4 × (5 - 2)]} = ?
-2. 5 - {2 + [3 × (4 + 1)]} = ?
-3. 3 × [2 + {4 × (6 ÷ 2)}] = ?
-4. \\frac{3 + (2 × 4)}{5 - (3 + 1)} = ?
+**Example**: Factors of 12: 1, 2, 3, 4, 6, 12
 
-**Expansion Problems:**
-1. 2(a + b + c) = ?
-2. -3(x + 2y) = ?
-3. (x + 1)(x + 2) = ?
+### Multiples
+**Definition**: Numbers obtained by multiplying a number by integers
 
-**Answers:** 12, 3, 20, 22, 30, -8, 42, 2, 2a+2b+2c, -3x-6y, x²+3x+2
+**Example**: Multiples of 3: 3, 6, 9, 12, 15, 18, ...
+
+### 🧠 Factor Finding Tricks
+
+#### 1. **Prime Factorization**
+Express number as product of prime factors.
+
+**Example**: 84 = 2 × 2 × 3 × 7 = 2² × 3 × 7
+
+#### 2. **Factor Pairs**
+For any number n, factors come in pairs (a, b) where a × b = n.
+
+**Example**: Factors of 24: (1,24), (2,12), (3,8), (4,6)
+
+#### 3. **Number of Factors Formula**
+If n = p₁^a × p₂^b × p₃^c × ...
+Then number of factors = (a+1) × (b+1) × (c+1) × ...
+
+**Example**: 84 = 2² × 3¹ × 7¹
+Number of factors = (2+1) × (1+1) × (1+1) = 3 × 2 × 2 = 12
+
+#### 4. **Sum of Factors Formula**
+Sum of factors = [(p₁^(a+1)-1)/(p₁-1)] × [(p₂^(b+1)-1)/(p₂-1)] × ...
+
+**Example**: Sum of factors of 84 = [(2³-1)/(2-1)] × [(3²-1)/(3-1)] × [(7²-1)/(7-1)]
+= [(8-1)/1] × [(9-1)/2] × [(49-1)/6]
+= 7 × 4 × 8 = 224
 
 ---
 
-## 🎓 Pro Tips for Exams
+## 🎯 Problem Solving Techniques
 
-1. **Always solve inner brackets first** - work from inside out
-2. **Remember sign change rule** - minus before brackets flips all signs
-3. **Use BODMAS with brackets** - brackets come first in order of operations
-4. **Draw lines to separate levels** - helps visualize complex expressions
-5. **Practice mental expansion** - get quick at multiplying brackets
-6. **Check your work** - always verify bracket removal
+### 1. **Even/Odd Problems**
+**Trick**: Use parity (even/odd) properties in equations.
 
-Master brackets and you'll handle even the most complex simplification problems! 🏆`
+**Example**: If x is odd, then x² is odd, x³ is odd, etc.
+
+### 2. **Prime Number Problems**
+**Trick**: Use prime factorization for quick solutions.
+
+**Example**: Find HCF of 84 and 90
+84 = 2² × 3 × 7
+90 = 2 × 3² × 5
+HCF = 2 × 3 = 6
+
+### 3. **Divisibility Shortcuts**
+**Combined Rules**: Use multiple rules together.
+
+**Example**: Is 123456 divisible by 6?
+- By 2: Last digit 6 → Yes
+- By 3: 1+2+3+4+5+6=21, 21÷3=7 → Yes
+- Therefore, divisible by 6
+
+### 4. **Factor Counting Problems**
+**Trick**: Use the formula for counting factors.
+
+**Example**: How many factors does 360 have?
+360 = 2³ × 3² × 5¹
+Factors = (3+1) × (2+1) × (1+1) = 4 × 3 × 2 = 24
+
+Master these concepts and you'll solve number classification problems with ease! 🚀`
 };
+

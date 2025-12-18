@@ -2,147 +2,108 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_1: SubLesson = {
   id: "2.1",
-  title: 'BODMAS / PEMDAS Rule',
+  title: 'Introduction to Number Systems',
   status: 'completed',
-  content: `# 🔢 BODMAS / PEMDAS Rule
+  content: `# 🔢 Introduction to Number Systems
 
-Welcome to the foundation of mathematical simplification! The BODMAS/PEMDAS rule is crucial for solving complex mathematical expressions correctly. This rule ensures that everyone gets the same answer when simplifying expressions.
-
----
-
-## 🎯 What is BODMAS/PEMDAS?
-
-**BODMAS** (British) and **PEMDAS** (American) are mnemonics that help remember the order of operations in mathematics.
-
-### BODMAS = B → O → D → M → A → S
-### PEMDAS = P → E → M → D → A → S
+Welcome to the fascinating world of numbers! Number systems are the foundation of mathematics and are essential for quantitative aptitude. Let's explore the fundamental concepts that will help you master numerical problems.
 
 ---
 
-## 📊 Detailed Breakdown
+## 🎯 What is a Number System?
 
-### 1. **B/P - Brackets/Parentheses** (First Priority)
-Solve expressions inside brackets first.
+A **number system** is a way to represent and work with numbers using a set of symbols (digits) and rules for combining them.
 
-**Examples:**
-- 2 × (3 + 4) = 2 × 7 = 14
-- (8 ÷ 2) + (6 × 3) = 4 + 18 = 22
-- 5 × [2 + (3 × 4)] = 5 × [2 + 12] = 5 × 14 = 70
+### The Decimal System (Base-10)
+- **Most familiar** to us
+- Uses **10 digits**: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+- **Base/Radix**: 10
+- **Place values**: Units, Tens, Hundreds, Thousands, etc.
 
-### 2. **O/E - Orders/Exponents** (Second Priority)
-Solve powers, roots, and indices next.
-
-**Examples:**
-- 2³ + 4 = 8 + 4 = 12
-- √9 × 3 = 3 × 3 = 9
-- 2² × (5 + 1)² = 4 × 6² = 4 × 36 = 144
-
-### 3. **D/M - Division/Multiplication** (Third Priority)
-Work from left to right when both appear.
-
-**Examples:**
-- 12 ÷ 2 × 3 = 6 × 3 = 18
-- 15 ÷ 5 × 2 = 3 × 2 = 6
-- 8 × 2 ÷ 4 = 16 ÷ 4 = 4
-
-### 4. **M/D - Multiplication/Division** (Same as above)
-- 10 + 5 × 2 = 10 + 10 = 20
-- 20 ÷ 2 × 5 = 10 × 5 = 50
-
-### 5. **A - Addition** (Fourth Priority)
-- 5 + 3 × 2 = 5 + 6 = 11
-- 8 ÷ 4 + 6 = 2 + 6 = 8
-
-### 6. **S - Subtraction** (Last Priority)
-- 10 - 2 × 3 = 10 - 6 = 4
-- 15 ÷ 3 - 2 = 5 - 2 = 3
+**Example**: 2,547 = 2×10³ + 5×10² + 4×10¹ + 7×10⁰
 
 ---
 
-## 🎯 Complex Examples
+## 🌟 Types of Numbers
 
-### Example 1:
-**Simplify: 8 + 4 × (6 ÷ 2) - 3**
+### 1. **Natural Numbers (N)**
+- Counting numbers: 1, 2, 3, 4, 5, ...
+- Does **not include zero**
+- Used for counting objects
 
-**Step 1:** Brackets first → 6 ÷ 2 = 3  
-**Step 2:** Multiplication → 4 × 3 = 12  
-**Step 3:** Addition/Subtraction left to right → 8 + 12 - 3 = 17 - 3 = 14
+### 2. **Whole Numbers (W)**
+- Natural numbers plus zero: 0, 1, 2, 3, 4, ...
+- Includes zero but no negatives
 
-### Example 2:
-**Simplify: 2³ × (5 + 2) ÷ 4**
+### 3. **Integers (Z)**
+- Whole numbers plus negative numbers: ..., -3, -2, -1, 0, 1, 2, 3, ...
+- Can be positive, negative, or zero
 
-**Step 1:** Brackets → 5 + 2 = 7  
-**Step 2:** Exponents → 2³ = 8  
-**Step 3:** Multiplication → 8 × 7 = 56  
-**Step 4:** Division → 56 ÷ 4 = 14
+### 4. **Rational Numbers (Q)**
+- Numbers that can be expressed as p/q where p and q are integers, q ≠ 0
+- Examples: ½, ¾, -2/3, 0.5, 0.333..., 2.75
+- Include fractions and terminating/repeating decimals
 
-### Example 3:
-**Simplify: 10 - √(9 × 4) + 6 × 2**
+### 5. **Irrational Numbers**
+- Numbers that cannot be expressed as p/q
+- Examples: √2, √3, π, e, φ (golden ratio)
+- Non-terminating, non-repeating decimals
 
-**Step 1:** Brackets → 9 × 4 = 36  
-**Step 2:** Root → √36 = 6  
-**Step 3:** Multiplication → 6 × 2 = 12  
-**Step 4:** Subtraction/Addition → 10 - 6 + 12 = 16
+### 6. **Real Numbers (R)**
+- Union of rational and irrational numbers
+- All numbers on the number line
 
----
-
-## 🧠 Important Points to Remember
-
-### 1. **Left to Right Rule**
-When operations have same priority, work from left to right:
-- 8 ÷ 2 × 4 = (8 ÷ 2) × 4 = 16, not 8 ÷ (2 × 4) = 1
-
-### 2. **Brackets Types (Priority Order)**
-1. **Parentheses ()** - Highest priority
-2. **Square brackets []**
-3. **Curly brackets {}** - Lowest priority
-
-**Example:** 2 × {3 + [4 × (5 - 2)]} = 2 × {3 + [4 × 3]} = 2 × {3 + 12} = 2 × 15 = 30
-
-### 3. **Nested Brackets**
-Always solve innermost brackets first:
-- 3 × [(2 + 4) × (5 - 1)] = 3 × [6 × 4] = 3 × 24 = 72
-
-### 4. **Fraction Bar as Bracket**
-Expressions above and below fraction bar are treated as brackets:
-- 2 + 3/4 - 1 = (2 + 3/4) - 1 = 5/4 - 1 = 1/4
+### 7. **Complex Numbers (C)**
+- Numbers of the form a + bi, where a and b are real numbers
+- i is the imaginary unit (i² = -1)
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## 📊 Number Line Representation
 
-### ❌ Wrong: 4 + 5 × 2 = (4 + 5) × 2 = 18
-### ✅ Right: 4 + 5 × 2 = 4 + 10 = 14
+\`\`\`
+Negative Numbers    Zero    Positive Numbers
+... -3, -2, -1 | 0 | 1, 2, 3, ...
+    <━━━━━━━━━━━━━━━━━━━━━━━━━━━━>
+\`\`\`
 
-### ❌ Wrong: 8 ÷ 2 × 3 = 8 ÷ (2 × 3) = 8 ÷ 6 = 1.33
-### ✅ Right: 8 ÷ 2 × 3 = 4 × 3 = 12
-
-### ❌ Wrong: 2³ + 3² = 6² = 36
-### ✅ Right: 2³ + 3² = 8 + 9 = 17
-
----
-
-## 🎯 Practice Questions
-
-**Simplify the following:**
-
-1. 5 + 3 × (8 - 2) ÷ 2 = ?
-2. 4² × (7 + 3) - √16 = ?
-3. 15 ÷ 3 × 2 + 4 - 1 = ?
-4. 2 × [3 + (4 × 2)] - 5 = ?
-5. 9 - 2 × (6 ÷ 3) + 4 = ?
-
-**Answers:** 5, 108, 13, 18, 11
+### Key Points:
+- **Zero** is neither positive nor negative
+- Numbers increase as we move right
+- Numbers decrease as we move left
 
 ---
 
-## 🎓 Pro Tips for Exams
+## 🔧 Basic Operations
 
-1. **Always scan for brackets first** - they're your highest priority
-2. **Use brackets to avoid confusion** when writing expressions
-3. **Double-check calculations** - small arithmetic errors can change answers
-4. **Practice mental math** for quick simplifications
-5. **Remember: MD comes before AS** - multiplication/division before addition/subtraction
+### Addition (+)
+- Combining numbers: 5 + 3 = 8
+- Commutative: a + b = b + a
+- Associative: (a + b) + c = a + (b + c)
 
-Master BODMAS/PEMDAS and you'll never go wrong in simplification problems! 🏆`
+### Subtraction (-)
+- Finding difference: 8 - 3 = 5
+- Related to addition: a - b = a + (-b)
+
+### Multiplication (×)
+- Repeated addition: 4 × 3 = 4 + 4 + 4 = 12
+- Commutative: a × b = b × a
+- Associative: (a × b) × c = a × (b × c)
+
+### Division (÷)
+- Splitting into equal parts: 12 ÷ 3 = 4
+- Related to multiplication: a ÷ b = a × (1/b)
+
+---
+
+## 🎯 Why Number Systems Matter
+
+Number systems form the foundation for:
+- **Arithmetic calculations**
+- **Algebraic manipulations**
+- **Problem-solving techniques**
+- **Competitive exam preparation**
+
+Mastering these basics will make advanced topics much easier to understand! 🚀`
 };
+

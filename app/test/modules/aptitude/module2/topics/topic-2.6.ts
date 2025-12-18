@@ -2,185 +2,217 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_6: SubLesson = {
   id: "2.6",
-  title: 'Mixed Fractions',
+  title: 'Remainder Theorem & Division Algorithm',
   status: 'completed',
-  content: `# 🔢 Mixed Fractions
+  content: `# 🔢 Remainder Theorem & Division Algorithm
 
-Mixed fractions combine whole numbers with proper fractions, making them essential for real-world applications. Understanding how to work with mixed fractions is crucial for aptitude exams and practical problem-solving.
-
----
-
-## 🎯 What are Mixed Fractions?
-
-**Mixed fractions** consist of a whole number part and a fractional part. They represent numbers greater than 1.
-
-**Examples:**
-- 2\\frac{1}{3} (two and one-third)
-- 5\\frac{3}{4} (five and three-quarters)
-- 1\\frac{1}{2} (one and one-half)
-- 3\\frac{2}{5} (three and two-fifths)
-
-**Structure:**
-\`\`\`
-Whole Number  Fraction
-     ↑         ↑
-   2     1/3
-\`\`\`
+The Remainder Theorem and Division Algorithm are powerful tools in number theory. These concepts help solve complex remainder problems and are essential for competitive exams involving divisibility and modular arithmetic.
 
 ---
 
-## 🔄 Converting Mixed Fractions
+## 🎯 Division Algorithm
 
-### **Mixed Fraction to Improper Fraction**
-Multiply whole number by denominator, add numerator:
-a\\frac{b}{c} = \\frac{a × c + b}{c}
+### Definition
+When we divide an integer a by a positive integer b, we get:
+**a = b × q + r**
 
-**Examples:**
-- 2\\frac{1}{3} = \\frac{2 × 3 + 1}{3} = \\frac{7}{3}
-- 3\\frac{2}{5} = \\frac{3 × 5 + 2}{5} = \\frac{17}{5}
-- 5\\frac{3}{4} = \\frac{5 × 4 + 3}{4} = \\frac{23}{4}
+Where:
+- **a** = dividend
+- **b** = divisor (b > 0)
+- **q** = quotient
+- **r** = remainder
 
-### **Improper Fraction to Mixed Fraction**
-Divide numerator by denominator:
-\\frac{a}{b} = q\\frac{r}{b} where a = q × b + r
+### Important Properties
+- **0 ≤ r < b** (remainder is always less than divisor)
+- **r = 0** when a is divisible by b
+- **q** can be positive, negative, or zero
+- **a, b, q, r** are all integers
 
-**Examples:**
-- \\frac{7}{3} = 2\\frac{1}{3} (7 ÷ 3 = 2 remainder 1)
-- \\frac{17}{5} = 3\\frac{2}{5} (17 ÷ 5 = 3 remainder 2)
-- \\frac{23}{4} = 5\\frac{3}{4} (23 ÷ 4 = 5 remainder 3)
-
----
-
-## 🧮 Operations with Mixed Fractions
-
-### **Addition of Mixed Fractions**
-Convert to improper fractions, add, convert back:
-
-**Examples:**
-- 2\\frac{1}{3} + 1\\frac{1}{4} = \\frac{7}{3} + \\frac{5}{4} = \\frac{28 + 15}{12} = \\frac{43}{12} = 3\\frac{7}{12}
-- 3\\frac{1}{2} + 2\\frac{1}{3} = \\frac{7}{2} + \\frac{7}{3} = \\frac{21 + 14}{6} = \\frac{35}{6} = 5\\frac{5}{6}
-
-### **Subtraction of Mixed Fractions**
-Convert to improper fractions, subtract, convert back:
-
-**Examples:**
-- 3\\frac{1}{2} - 1\\frac{2}{3} = \\frac{7}{2} - \\frac{5}{3} = \\frac{21 - 10}{6} = \\frac{11}{6} = 1\\frac{5}{6}
-- 5\\frac{3}{4} - 2\\frac{1}{2} = \\frac{23}{4} - \\frac{5}{2} = \\frac{23 - 10}{4} = \\frac{13}{4} = 3\\frac{1}{4}
-
-### **Multiplication of Mixed Fractions**
-Convert to improper fractions, multiply, convert back:
-
-**Examples:**
-- 2\\frac{1}{3} × 1\\frac{1}{4} = \\frac{7}{3} × \\frac{5}{4} = \\frac{35}{12} = 2\\frac{11}{12}
-- 3\\frac{1}{2} × 2\\frac{2}{3} = \\frac{7}{2} × \\frac{8}{3} = \\frac{56}{6} = 9\\frac{2}{6} = 9\\frac{1}{3}
-
-### **Division of Mixed Fractions**
-Convert to improper fractions, divide (multiply by reciprocal), convert back:
-
-**Examples:**
-- 2\\frac{1}{3} ÷ 1\\frac{1}{4} = \\frac{7}{3} ÷ \\frac{5}{4} = \\frac{7}{3} × \\frac{4}{5} = \\frac{28}{15} = 1\\frac{13}{15}
-- 5\\frac{1}{2} ÷ 2\\frac{1}{4} = \\frac{11}{2} ÷ \\frac{9}{4} = \\frac{11}{2} × \\frac{4}{9} = \\frac{44}{18} = \\frac{22}{9} = 2\\frac{4}{9}
+**Examples**:
+- 17 ÷ 5 = 3 × 5 + 2 → q=3, r=2
+- 20 ÷ 4 = 5 × 4 + 0 → q=5, r=0
+- -17 ÷ 5 = (-4) × 5 + 3 → q=-4, r=3
 
 ---
 
-## 🧠 Simplification Techniques
+## 📋 Remainder Theorem
 
-### **1. Converting for Ease**
-Convert to improper fractions for complex operations, then back to mixed.
+### Basic Remainder Theorem
+When a number is divided by another number, the remainder is the same as the remainder obtained when the dividend's last few digits are divided.
 
-### **2. Common Denominator**
-Find LCD when adding/subtracting multiple mixed fractions.
+### Extended Remainder Theorem
+**If a ÷ b = q + r/b, then:**
+- **a ≡ r (mod b)**
+- **a and r give same remainder when divided by b**
 
-### **3. Cancellation**
-Cancel common factors before multiplying.
-
-### **4. Mixed Operations**
-Follow BODMAS rules with mixed fractions.
-
----
-
-## 🎯 Word Problems with Mixed Fractions
-
-### **Length/Distance Problems**
-A rope of 5\\frac{1}{2} meters is cut into 3 equal pieces. Find length of each piece.
-
-**Solution:** 5\\frac{1}{2} ÷ 3 = \\frac{11}{2} ÷ 3 = \\frac{11}{2} × \\frac{1}{3} = \\frac{11}{6} = 1\\frac{5}{6} meters
-
-### **Time Problems**
-John takes 2\\frac{1}{4} hours to complete a task. Mary takes 1\\frac{3}{4} hours. Who is faster?
-
-**Solution:** Compare 2\\frac{1}{4} and 1\\frac{3}{4} → 2\\frac{1}{4} = \\frac{9}{4}, 1\\frac{3}{4} = \\frac{7}{4} → Mary is faster
-
-### **Quantity Problems**
-A recipe requires 3\\frac{1}{2} cups of flour. You have 2\\frac{3}{4} cups. How much more needed?
-
-**Solution:** 3\\frac{1}{2} - 2\\frac{3}{4} = \\frac{7}{2} - \\frac{11}{4} = \\frac{14 - 11}{4} = \\frac{3}{4} cups
+**Examples**:
+- 17 ÷ 5 = 3 + 2/5 → 17 ≡ 2 (mod 5)
+- 25 ÷ 7 = 3 + 4/7 → 25 ≡ 4 (mod 7)
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## 🎯 Types of Remainder Problems
 
-### ❌ **Wrong Conversion**
-\`\`\`
-Wrong: 2\\frac{1}{3} = \\frac{2}{3}
-Right: 2\\frac{1}{3} = \\frac{7}{3}
-\`\`\`
+### Type 1: **Direct Remainder**
+Find remainder when a number is divided by another.
 
-### ❌ **Adding Without Conversion**
-\`\`\`
-Wrong: 2\\frac{1}{3} + 1\\frac{1}{4} = 3\\frac{2}{7}
-Right: Convert to \\frac{7}{3} + \\frac{5}{4} = \\frac{43}{12} = 3\\frac{7}{12}
-\`\`\`
+**Example**: Find remainder when 12345 is divided by 7.
 
-### ❌ **Wrong Reciprocal in Division**
-\`\`\`
-Wrong: 2\\frac{1}{3} ÷ 1\\frac{1}{4} = \\frac{7}{3} × \\frac{5}{4} = \\frac{35}{12} = 2\\frac{11}{12}
-Right: 2\\frac{1}{3} ÷ 1\\frac{1}{4} = \\frac{7}{3} ÷ \\frac{5}{4} = \\frac{7}{3} × \\frac{4}{5} = \\frac{28}{15} = 1\\frac{13}{15}
-\`\`\`
+**Solution**: 12345 ÷ 7
+Using long division or calculator: remainder = 4
 
-### ❌ **Improper Simplification**
-\`\`\`
-Wrong: \\frac{35}{12} = 2\\frac{11}{12} ✓ (correct)
-Wrong: \\frac{35}{12} = 2\\frac{11}{6} ✗ (wrong denominator)
-\`\`\`
+### Type 2: **Negative Numbers**
+Remainder is always positive and less than divisor.
 
----
+**Example**: What is remainder when -17 is divided by 5?
 
-## 🎯 Practice Problems
+**Solution**: -17 = -4 × 5 + 3 → remainder = 3
 
-### **Conversions:**
-1. 3\\frac{2}{5} = ?
-2. \\frac{17}{4} = ?
-3. 4\\frac{1}{3} = ?
-4. \\frac{23}{6} = ?
+### Type 3: **Large Numbers**
+Use modular arithmetic properties.
 
-### **Operations:**
-1. 2\\frac{1}{3} + 1\\frac{1}{4} = ?
-2. 3\\frac{1}{2} - 1\\frac{2}{3} = ?
-3. 2\\frac{1}{3} × 1\\frac{1}{4} = ?
-4. 3\\frac{1}{2} ÷ 2\\frac{1}{4} = ?
+**Example**: Find remainder when 2^100 is divided by 7.
 
-### **Word Problems:**
-1. A pizza is divided into 8 equal slices. If John eats 3\\frac{1}{2} slices, what fraction did he eat?
-2. A journey of 5\\frac{1}{2} km takes 1\\frac{1}{4} hours. Find average speed.
-3. Recipe needs 2\\frac{3}{4} cups flour. You have 1\\frac{1}{2} cups. How much more needed?
+**Solution**: Find pattern of powers of 2 modulo 7:
+2¹ ≡ 2, 2² ≡ 4, 2³ ≡ 1, 2⁴ ≡ 2, 2⁵ ≡ 4, 2⁶ ≡ 1, ...
 
-**Answers:**
-Conversions: \\frac{17}{5}, 4\\frac{1}{4}, \\frac{13}{3}, 3\\frac{5}{6}
-Operations: 3\\frac{7}{12}, 1\\frac{5}{6}, 2\\frac{11}{12}, 1\\frac{5}{7}
-Word: \\frac{7}{16}, 4\\frac{2}{5} km/h, 1\\frac{1}{4} cups
+Since 100 ÷ 3 = 33 × 3 + 1, so 2^100 ≡ 2¹ ≡ 2 (mod 7)
 
 ---
 
-## 🎓 Pro Tips for Exams
+## 🧠 Remainder Tricks
 
-1. **Convert to improper fractions** for complex operations
-2. **Find common denominators** for addition/subtraction
-3. **Cancel common factors** before multiplying
-4. **Use reciprocals correctly** for division
-5. **Always simplify final answers**
-6. **Estimate answers** to check reasonableness
-7. **Practice mental conversions** for speed
+### Trick 1: **Same Remainder Property**
+If a ≡ b (mod m), then a and b give same remainder when divided by m.
 
-Master mixed fractions and you'll handle complex quantitative problems confidently! 🏆`
+**Example**: 17 ≡ 3 (mod 7) since 17-3=14, 14÷7=2
+Both 17÷7 = 2*7 + 3, 3÷7 = 0*7 + 3
+
+### Trick 2: **Division by Large Numbers**
+Break into smaller parts.
+
+**Example**: Find 123456 ÷ 17
+
+**Solution**: 123456 = 123400 + 56
+123400 ÷ 17 = 7260 × 17, so work with 56
+56 ÷ 17 = 3 × 17 + 5 → remainder = 5
+
+### Trick 3: **Euler's Theorem for Large Exponents**
+For powers: a^φ(n) ≡ 1 (mod n) if gcd(a,n)=1
+
+### Trick 4: **Chinese Remainder Theorem**
+Solve simultaneous congruences.
+
+**Example**: Find x such that:
+x ≡ 1 (mod 3)
+x ≡ 2 (mod 5)
+x ≡ 3 (mod 7)
+
+---
+
+## 📊 Advanced Remainder Concepts
+
+### 1. **Wilson's Theorem**
+For prime p: (p-1)! ≡ -1 (mod p)
+
+### 2. **Fermat's Little Theorem**
+For prime p, if p doesn't divide a:
+a^(p-1) ≡ 1 (mod p)
+
+### 3. **Modular Arithmetic Properties**
+- **(a + b) mod m = ((a mod m) + (b mod m)) mod m**
+- **(a × b) mod m = ((a mod m) × (b mod m)) mod m**
+- **(a - b) mod m = ((a mod m) - (b mod m)) mod m**
+
+---
+
+## 🎯 Common Problem Patterns
+
+### Pattern 1: **Find Remainder of Large Number**
+**Example**: Find remainder when 123456789 is divided by 9.
+
+**Solution**: Sum of digits: 1+2+3+4+5+6+7+8+9 = 45, 45÷9=5 → remainder 0
+
+### Pattern 2: **Polynomial Remainder**
+**Example**: Find remainder when x³ + 2x² + 3x + 4 is divided by (x+1).
+
+**Solution**: Use Remainder Theorem: f(-1) = (-1)³ + 2(-1)² + 3(-1) + 4 = -1 + 2 - 3 + 4 = 2
+
+### Pattern 3: **Complex Remainders**
+**Example**: Find remainder when 2^50 is divided by 13.
+
+**Solution**: Find cycle: 2^1=2, 2^2=4, 2^3=8, 2^4=3, 2^5=6, 2^6=12, 2^7=11, 2^8=9, 2^9=5, 2^10=10, 2^11=7, 2^12=1, 2^13=2...
+
+Cycle length 12. 50 ÷ 12 = 4*12 + 2, so 2^50 ≡ 2^2 ≡ 4 (mod 13)
+
+---
+
+## 🔧 Remainder Theorem Applications
+
+### 1. **Factor Theorem**
+If f(a) = 0, then (x-a) is a factor of f(x).
+
+### 2. **Synthetic Division**
+Quick polynomial division method.
+
+**Example**: Divide x³ - 6x² + 11x - 6 by (x-2)
+
+Using synthetic division:
+\`\`\`
+2 | 1  -6  11  -6
+  |     2  -8   6
+  -------------
+    1  -4   3   0
+\`\`\`
+Quotient: x² - 4x + 3, Remainder: 0
+
+### 3. **Testing Divisibility**
+Use remainder theorem for large numbers.
+
+---
+
+## 🎯 Problem Solving Techniques
+
+### Technique 1: **Break and Solve**
+Break large numbers into manageable parts.
+
+### Technique 2: **Find Patterns**
+Look for cycles in remainders.
+
+### Technique 3: **Use Modular Properties**
+Apply modular arithmetic rules.
+
+### Technique 4: **Negative Remainders**
+Always convert to positive remainder.
+
+---
+
+## 📝 Practice Examples
+
+### Example 1: Basic Remainder
+Find remainder when 37 is divided by 6.
+
+**Solution**: 37 ÷ 6 = 6 × 6 + 1 → remainder = 1
+
+### Example 2: Large Power
+Find remainder when 7^25 is divided by 10.
+
+**Solution**: Cycle of 7: 7, 9, 3, 1, 7, 9, 3, 1...
+Pattern repeats every 4: 7, 9, 3, 1
+25 ÷ 4 = 6 × 4 + 1, so 7^25 ≡ 7¹ ≡ 7 (mod 10)
+
+### Example 3: Negative Number
+Find remainder when -23 is divided by 5.
+
+**Solution**: -23 = -5 × 5 + 2 → remainder = 2
+
+### Example 4: Polynomial
+Find remainder when x⁴ + 3x³ + 2x² + x + 1 is divided by (x+2).
+
+**Solution**: f(-2) = (-2)⁴ + 3(-2)³ + 2(-2)² + (-2) + 1
+= 16 + 3(-8) + 2(4) - 2 + 1
+= 16 - 24 + 8 - 2 + 1 = (16+8+1) + (-24-2) = 25 - 26 = -1
+
+Master remainder theorem and division algorithm to solve complex number problems! 🚀`
 };
+

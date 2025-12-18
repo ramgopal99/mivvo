@@ -144,30 +144,6 @@ Keep your responses helpful, accurate, and educational. Use step-by-step explana
 
     // Aptitude-specific configuration
 
-    questionGenerationPrompt: `You are a quantitative aptitude question generator. Generate practice problems based on the following criteria:
-
-Topic: {topic}
-Difficulty: {difficulty}
-Quantity: {count}
-
-Generate {count} unique quantitative aptitude problems for the topic "{topic}" at {difficulty} difficulty level. Each problem should include:
-
-1. A clear problem statement
-2. The correct answer
-3. Step-by-step solution approach
-4. Any relevant formulas used
-
-Ensure problems are:
-- Age-appropriate and educational
-- Gradually increasing in complexity for the difficulty level
-- Covering key concepts within the topic
-- Including both theoretical and numerical problems
-
-Format each problem as:
-**Problem X:** [Problem statement]
-**Answer:** [Correct answer]
-**Solution:** [Step-by-step solution]`,
-
 
     // No codeEditor for aptitude courses
     showCodeEditor: false,

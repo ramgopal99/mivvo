@@ -2,214 +2,266 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_10: SubLesson = {
   id: "2.10",
-  title: 'Indices Laws',
+  title: 'Square & Cube Numbers',
   status: 'completed',
-  content: `# 🔢 Indices Laws
+  content: `# 🔢 Square & Cube Numbers
 
-Indices laws (also called exponent laws) are fundamental rules for working with powers and exponents. These laws allow us to simplify complex expressions involving powers efficiently, which is crucial for aptitude exams.
-
----
-
-## 🎯 What are Indices?
-
-**Indices** (or exponents) indicate how many times a number is multiplied by itself.
-
-**Notation:** a^n where:
-- **a** is the base
-- **n** is the index/exponent/power
-- **a^n** means a × a × a × ... × a (n times)
-
-**Examples:**
-- 2³ = 2 × 2 × 2 = 8
-- x⁵ = x × x × x × x × x
-- 10⁴ = 10 × 10 × 10 × 10 = 10,000
+Square and cube numbers are fundamental concepts in mathematics with important properties and applications. Understanding these special numbers helps in solving various aptitude problems involving patterns, factorization, and number properties.
 
 ---
 
-## 📊 The Seven Laws of Indices
+## 🎯 Square Numbers
 
-### **Law 1: Multiplication Law**
-When multiplying powers with the same base, add the indices:
-a^m × a^n = a^(m+n)
+### Definition
+A square number (or perfect square) is the result of multiplying an integer by itself.
 
-**Examples:**
-- 2³ × 2⁴ = 2^(3+4) = 2⁷ = 128
-- x⁵ × x² = x^(5+2) = x⁷
-- 10² × 10³ = 10^(2+3) = 10⁵ = 100,000
+**Formula**: n² = n × n
 
-### **Law 2: Division Law**
-When dividing powers with the same base, subtract the indices:
-a^m ÷ a^n = a^(m-n)
-
-**Examples:**
-- 2⁵ ÷ 2³ = 2^(5-3) = 2² = 4
-- x⁷ ÷ x⁴ = x^(7-4) = x³
-- 10⁶ ÷ 10² = 10^(6-2) = 10⁴ = 10,000
-
-### **Law 3: Power of a Power**
-When raising a power to another power, multiply the indices:
-(a^m)^n = a^(m×n)
-
-**Examples:**
-- (2³)⁴ = 2^(3×4) = 2¹² = 4,096
-- (x²)³ = x^(2×3) = x⁶
-- (10²)³ = 10^(2×3) = 10⁶ = 1,000,000
-
-### **Law 4: Power of a Product**
-Power of a product equals product of powers:
-(a×b)^n = a^n × b^n
-
-**Examples:**
-- (2×3)⁴ = 2⁴ × 3⁴ = 16 × 81 = 1,296
-- (xy)³ = x³ × y³
-- (2×5)² = 2² × 5² = 4 × 25 = 100
-
-### **Law 5: Power of a Quotient**
-Power of a quotient equals quotient of powers:
-(a/b)^n = a^n / b^n
-
-**Examples:**
-- (2/3)⁴ = 2⁴ / 3⁴ = 16/81
-- (x/y)³ = x³ / y³
-- (4/5)² = 4² / 5² = 16/25
-
-### **Law 6: Zero Index**
-Any non-zero number raised to power zero equals 1:
-a⁰ = 1 (where a ≠ 0)
-
-**Examples:**
-- 5⁰ = 1
-- (-3)⁰ = 1
-- (1/2)⁰ = 1
-
-### **Law 7: Negative Indices**
-Negative indices mean reciprocals:
-a^(-n) = 1/a^n
-
-**Examples:**
-- 2^(-3) = 1/2³ = 1/8
-- x^(-2) = 1/x²
-- 10^(-1) = 1/10 = 0.1
+**Examples**:
+- 1² = 1
+- 2² = 4
+- 3² = 9
+- 4² = 16
+- 5² = 25
+- 6² = 36
+- 7² = 49
+- 8² = 64
+- 9² = 81
+- 10² = 100
 
 ---
 
-## 🔍 Fractional Indices
+## 📊 Properties of Square Numbers
 
-### **Fractional Indices as Roots**
-a^(1/n) = ^n√a
-a^(m/n) = (^n√a)^m or ^n√(a^m)
+### 1. **Last Digit Pattern**
+Square numbers end with: 0, 1, 4, 5, 6, 9
 
-**Examples:**
-- 8^(1/3) = ∛8 = 2
-- 16^(1/2) = √16 = 4
-- 27^(2/3) = (∛27)² = 3² = 9
+**Examples**:
+- Numbers ending with 1, 4, 6, 9, 0 can be perfect squares
+- Numbers ending with 2, 3, 7, 8 cannot be perfect squares
 
-### **Negative Fractional Indices**
-a^(-m/n) = 1/a^(m/n)
+### 2. **Digital Root Property**
+Square of any number has digital root 1, 4, 7, or 9.
 
-**Examples:**
-- 8^(-1/3) = 1/∛8 = 1/2
-- 16^(-1/2) = 1/√16 = 1/4
+### 3. **Even/Odd Property**
+- Even square = even number
+- Odd square = odd number
 
----
-
-## 🧮 Application of Indices Laws
-
-### **Simplifying Expressions**
-Use laws to combine and simplify complex expressions.
-
-**Examples:**
-- 2³ × 3² × 2⁴ ÷ 2² = 2^(3+4-2) × 3² = 2^5 × 3² = 32 × 9 = 288
-- (x² × y³)³ ÷ (x × y²)² = x^(2×3) × y^(3×3) ÷ (x² × y^4) = x^6 × y^9 ÷ x² × y^4 = x^(6-2) × y^(9-4) = x^4 × y^5
-
-### **Solving Equations**
-Use indices laws to solve exponential equations.
-
-**Examples:**
-- 2^x × 2^(x+1) = 2^(2x+1) = 128 = 2^7 → 2x+1 = 7 → 2x = 6 → x = 3
-- (3^x) ÷ (3^(x-1)) = 3^(x - (x-1)) = 3^1 = 3
+### 4. **Prime Factorization**
+In prime factorization of n², all exponents are even.
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## 🧮 Cube Numbers
 
-### ❌ **Wrong Operation in Division**
-\`\`\`
-Wrong: 2⁵ ÷ 2³ = 2^(5×3) = 2¹⁵
-Right: 2⁵ ÷ 2³ = 2^(5-3) = 2²
-\`\`\`
+### Definition
+A cube number (or perfect cube) is the result of multiplying an integer by itself twice.
 
-### ❌ **Power of Product Confusion**
-\`\`\`
-Wrong: (2×3)⁴ = 2×3⁴ = 2×81 = 162
-Right: (2×3)⁴ = 2⁴ × 3⁴ = 16×81 = 1,296
-\`\`\`
+**Formula**: n³ = n × n × n
 
-### ❌ **Zero Index Misapplication**
-\`\`\`
-Wrong: 0⁰ = 0
-Right: 0⁰ is undefined (though sometimes taken as 1 in limits)
-\`\`\`
-
-### ❌ **Negative Base Confusion**
-\`\`\`
-Wrong: (-2)³ = -2³ = -8 ✓
-Wrong: (-2)^(-3) = -2^(-3) = -1/8 ✗
-Right: (-2)^(-3) = 1/(-2)³ = 1/(-8) = -1/8 ✓
-\`\`\`
+**Examples**:
+- 1³ = 1
+- 2³ = 8
+- 3³ = 27
+- 4³ = 64
+- 5³ = 125
+- 6³ = 216
+- 7³ = 343
+- 8³ = 512
+- 9³ = 729
+- 10³ = 1000
 
 ---
 
-## 🎯 Practice Problems
+## 📈 Properties of Cube Numbers
 
-### **Basic Laws:**
-1. 2³ × 2⁴ = ?
-2. 5⁶ ÷ 5³ = ?
-3. (2²)³ = ?
-4. (3×2)⁴ = ?
+### 1. **Last Digit Pattern**
+Cube numbers can end with any digit (0-9).
 
-### **Complex Expressions:**
-1. 2³ × 3² × 2⁴ ÷ 2² = ?
-2. (x² × y³)³ ÷ (x × y²)² = ?
-3. 10^6 ÷ 10^2 × 10^3 = ?
+### 2. **Digital Root**
+Cubes can have any digital root.
 
-### **Negative/Zero Indices:**
-1. 2^(-3) = ?
-2. 5⁰ = ?
-3. 10^(-2) = ?
+### 3. **Prime Factorization**
+In prime factorization of n³, all exponents are divisible by 3.
 
-### **Fractional Indices:**
-1. 8^(1/3) = ?
-2. 16^(1/2) = ?
-3. 27^(2/3) = ?
-
-### **Word Problems:**
-1. A bacteria doubles every hour. If there are 2 bacteria now, how many after 5 hours?
-2. If x² × x^5 = x^12, find the value of x when x = 3.
-
-### **Equations:**
-1. Solve: 2^x × 2^(x+1) = 128
-2. Solve: 3^(2x) ÷ 3^x = 27
-
-**Answers:**
-Basic: 2⁷=128, 5³=125, 2⁶=64, 3⁴×2⁴=81×16=1,296
-Complex: 2^5×3²=32×9=288, x^(6-2)×y^(9-4)=x^4×y^5, 10^(6-2+3)=10^7
-Negative/Zero: 1/8, 1, 1/100
-Fractional: 2, 4, 9
-Word: 2^6=64, 3^12=531441
-Equations: 2^(2x+1)=2^7→2x+1=7→x=3, 3^x=27=3^3→x=3
+### 4. **Even/Odd Property**
+- Even cube = even number
+- Odd cube = odd number
 
 ---
 
-## 🎓 Pro Tips for Exams
+## 🎯 Special Square & Cube Numbers
 
-1. **Apply laws step by step** - don't rush calculations
-2. **Combine like bases** before applying laws
-3. **Use negative indices** to move terms between numerator and denominator
-4. **Remember zero index** equals 1 (except for 0⁰)
-5. **Be careful with negative bases** and fractional indices
-6. **Practice mental calculations** for common powers
-7. **Check answers** by substituting values
+### 1. **Triangular Numbers that are Square**
+Numbers that are both triangular and square.
 
-Master indices laws to simplify complex exponential expressions efficiently! 🏆`
+**Examples**: 1, 36, 1225
+
+### 2. **Square Triangular Numbers**
+Solutions to: 8x² + 1 = y²
+
+### 3. **Taxicab Numbers**
+Numbers that can be expressed as sum of two cubes in two different ways.
+
+**Example**: 1729 = 1³ + 12³ = 9³ + 10³
+
+### 4. **Palindromic Squares**
+Square numbers that are palindromes.
+
+**Example**: 121 = 11², 484 = 22²
+
+---
+
+## 🧠 Problem Solving Tricks
+
+### Trick 1: **Square Number Recognition**
+A number n is a perfect square if:
+- Its prime factors have even exponents
+- It ends with allowable digits (0,1,4,5,6,9)
+- Digital root is 1, 4, 7, or 9
+
+**Example**: Is 441 a perfect square?
+\`\`\`
+441 ends with 1 ✓
+441 = 21² = 441 ✓
+\`\`\`
+
+### Trick 2: **Cube Number Recognition**
+A number n is a perfect cube if:
+- Its prime factors have exponents divisible by 3
+- Can end with any digit
+
+**Example**: Is 512 a perfect cube?
+\`\`\`
+512 = 2^9 = (2^3)^3 = 8^3 ✓
+\`\`\`
+
+### Trick 3: **Between Squares**
+For any number n, there is exactly one perfect square between n² and (n+1)².
+
+### Trick 4: **Sum of First n Squares**
+Formula: Σk² = n(n+1)(2n+1)/6
+
+**Example**: Sum of squares from 1 to 5 = 1+4+9+16+25 = 55
+Formula: 5×6×11/6 = 55 ✓
+
+### Trick 5: **Sum of First n Cubes**
+Formula: Σk³ = [n(n+1)/2]²
+
+**Example**: Sum of cubes from 1 to 3 = 1+8+27 = 36
+Formula: (3×4/2)² = 6² = 36 ✓
+
+---
+
+## 📊 Patterns and Sequences
+
+### 1. **Square Number Pattern**
+\`\`\`
+1² = 1
+1² + 3 = 4 = 2²
+4 + 5 = 9 = 3²
+9 + 7 = 16 = 4²
+16 + 9 = 25 = 5²
+25 + 11 = 36 = 6²
+\`\`\`
+**Pattern**: Add odd numbers: 1, 3, 5, 7, 9, 11...
+
+### 2. **Cube Number Pattern**
+\`\`\`
+1³ = 1
+2³ = 8
+3³ = 27
+4³ = 64
+5³ = 125
+\`\`\`
+
+### 3. **Difference of Squares**
+a² - b² = (a - b)(a + b)
+
+### 4. **Difference of Cubes**
+a³ - b³ = (a - b)(a² + ab + b²)
+
+### 5. **Sum of Cubes**
+a³ + b³ = (a + b)(a² - ab + b²)
+
+---
+
+## 🎯 Applications in Aptitude
+
+### 1. **Finding Square Roots**
+**Example**: Find √(144) without calculator.
+
+**Solution**: 12² = 144 ✓
+
+### 2. **Cube Roots**
+**Example**: Find ∛(125).
+
+**Solution**: 5³ = 125 ✓
+
+### 3. **Pattern Recognition**
+**Example**: Find the next number: 1, 4, 9, 16, 25, ?
+
+**Solution**: 36 (6²)
+
+### 4. **Factor Analysis**
+**Example**: Is 225 a perfect square?
+
+**Solution**: 225 = 15² = 3² × 5² ✓
+
+---
+
+## 🔍 Advanced Concepts
+
+### 1. **Square-Free Numbers**
+Numbers not divisible by any perfect square other than 1.
+
+**Example**: 15 = 3×5 (square-free)
+**Example**: 12 = 4×3 (not square-free, divisible by 4)
+
+### 2. **Cube-Free Numbers**
+Numbers not divisible by any perfect cube other than 1.
+
+### 3. **Powerful Numbers**
+Numbers where every prime factor has exponent ≥2.
+
+### 4. **Achilles Numbers**
+Powerful numbers that are not perfect powers.
+
+---
+
+## 📝 Practice Examples
+
+### Example 1: Perfect Square Check
+Is 169 a perfect square?
+
+**Solution**: 169 = 13² ✓
+
+### Example 2: Perfect Cube Check
+Is 343 a perfect cube?
+
+**Solution**: 343 = 7³ ✓
+
+### Example 3: Square Pattern
+What is the sum of first 10 odd numbers?
+
+**Solution**: 10² = 100 ✓
+
+### Example 4: Cube Pattern
+What is the sum of cubes from 1 to n?
+
+**Solution**: [n(n+1)/2]²
+
+### Example 5: Difference Pattern
+Simplify: 50² - 49²
+
+**Solution**: (50-49)(50+49) = 1 × 99 = 99
+
+### Example 6: Complex Squares
+Find the square of 15.
+
+**Solution**: 15² = 225
+Or: (10+5)² = 100 + 2×10×5 + 25 = 100 + 100 + 25 = 225
+
+Master square and cube numbers to solve pattern and number problems! 🚀`
 };
+

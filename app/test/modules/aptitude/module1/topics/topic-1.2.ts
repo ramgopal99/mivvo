@@ -2,162 +2,287 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_1_2: SubLesson = {
   id: "1.2",
-  title: 'Types of Numbers',
+  title: 'Basic Mathematical Concepts',
   status: 'completed',
-  content: `# 🔢 Types of Numbers
+  content: `# 🔢 Basic Mathematical Concepts
 
-Let's dive deeper into the different types of numbers and their properties. Understanding these classifications is crucial for solving quantitative aptitude problems.
-
----
-
-## 📊 Classification of Numbers
-
-### 1. **Natural Numbers (ℕ)**
-- **Set**: {1, 2, 3, 4, 5, ...}
-- **Properties**:
-  - Start from 1
-  - Infinite set
-  - Closed under addition and multiplication
-  - Not closed under subtraction
-
-**Examples**: 1, 2, 3, 100, 5000
-
-### 2. **Whole Numbers (ℤ⁺ ∪ {0})**
-- **Set**: {0, 1, 2, 3, 4, 5, ...}
-- **Properties**:
-  - Includes zero
-  - Closed under addition, subtraction, and multiplication
-  - Not closed under division
-
-**Examples**: 0, 1, 2, 3, 50, 1000
-
-### 3. **Integers (ℤ)**
-- **Set**: {..., -3, -2, -1, 0, 1, 2, 3, ...}
-- **Properties**:
-  - Include positive, negative, and zero
-  - Closed under addition, subtraction, and multiplication
-  - Not closed under division
-
-**Examples**: -5, -1, 0, 7, 15, 100
+Before diving into complex quantitative aptitude problems, it's essential to have a solid foundation in basic mathematical concepts. This topic covers the fundamental building blocks that form the basis of all quantitative aptitude questions.
 
 ---
 
-## 🎯 Rational Numbers (ℚ)
+## 🎯 Number Systems
 
-### Definition
-Numbers that can be expressed as **p/q** where:
-- p and q are integers
-- q ≠ 0
-- p and q have no common factors other than 1
+### **Natural Numbers (N)**
+- Counting numbers: 1, 2, 3, 4, 5, ...
+- Used for counting objects
+- Infinite set with no upper limit
 
-### Types of Rational Numbers:
+### **Whole Numbers (W)**
+- Natural numbers plus zero: 0, 1, 2, 3, 4, ...
+- Includes zero but no negative numbers
+- Foundation for modern number systems
 
-#### **Positive Rational Numbers**
-- Greater than zero
-- Examples: ½, ¾, 2/3, 5/4
-
-#### **Negative Rational Numbers**
-- Less than zero
-- Examples: -½, -¾, -2/3, -5/4
-
-#### **Decimal Representation**
-- **Terminating decimals**: 0.5, 0.25, 0.75
-- **Non-terminating repeating decimals**: 0.333..., 0.1666..., 0.142857...
-
----
-
-## 🔄 Irrational Numbers
-
-### Definition
-Numbers that **cannot** be expressed as p/q (where p and q are integers)
-
-### Key Characteristics:
-- Non-terminating, non-repeating decimals
-- Cannot be written as fractions
-
-### Famous Irrational Numbers:
-
-#### **√2 (Square root of 2)**
-- ≈ 1.414213562...
-- Proof: Assume √2 = p/q in simplest terms
-- Contradiction leads to √2 being irrational
-
-#### **π (Pi)**
-- ≈ 3.141592653...
-- Ratio of circumference to diameter of a circle
-
-#### **e (Euler's number)**
-- ≈ 2.718281828...
-- Base of natural logarithm
-
-#### **φ (Golden Ratio)**
-- ≈ 1.618033988...
-- (1 + √5)/2
-
----
-
-## 🌟 Real Numbers (ℝ)
-
-### Definition
-Union of rational and irrational numbers
-
-### Properties:
-- All numbers on the number line
-- Include fractions, decimals, roots, π, e, etc.
+### **Integers (Z)**
+- Whole numbers plus negative numbers: ..., -3, -2, -1, 0, 1, 2, 3, ...
 - Can be positive, negative, or zero
+- Closed under addition, subtraction, multiplication
 
-### Number Line Representation:
+### **Rational Numbers (Q)**
+- Numbers that can be expressed as p/q where p and q are integers, q ≠ 0
+- Include fractions, decimals, and percentages
+- Most commonly used in daily life
+
+### **Irrational Numbers**
+- Cannot be expressed as p/q
+- Include √2, π, e, φ (golden ratio)
+- Non-terminating, non-repeating decimals
+
+---
+
+## 📊 Fundamental Operations
+
+### **Addition (+)** - Combining Quantities
+**Properties:**
+- Commutative: a + b = b + a
+- Associative: (a + b) + c = a + (b + c)
+- Identity: a + 0 = a
+- Inverse: a + (-a) = 0
+
+**Examples:**
+- 5 + 3 = 8
+- (-2) + 7 = 5
+- 10 + (-15) = -5
+
+### **Subtraction (-)** - Finding Difference
+**Definition:** a - b = a + (-b)
+
+**Examples:**
+- 10 - 3 = 7
+- 5 - 8 = -3
+- (-4) - (-6) = 2
+
+### **Multiplication (×)** - Repeated Addition
+**Properties:**
+- Commutative: a × b = b × a
+- Associative: (a × b) × c = a × (b × c)
+- Identity: a × 1 = a
+- Zero Property: a × 0 = 0
+- Inverse: a × (1/a) = 1 (for a ≠ 0)
+
+**Examples:**
+- 4 × 3 = 12
+- (-2) × 5 = -10
+- 6 × (-3) = -18
+
+### **Division (÷)** - Splitting into Equal Parts
+**Definition:** a ÷ b = a × (1/b) = a/b
+
+**Properties:**
+- Not commutative: a ÷ b ≠ b ÷ a
+- Inverse of multiplication: (a × b) ÷ b = a (for b ≠ 0)
+
+**Examples:**
+- 15 ÷ 3 = 5
+- (-20) ÷ 4 = -5
+- 18 ÷ (-6) = -3
+
+---
+
+## 🧮 Order of Operations (BODMAS/PEMDAS)
+
+### **Priority Order:**
+1. **B/P** - Brackets/Parentheses (First)
+2. **O/E** - Orders/Exponents (Second)
+3. **D/M** - Division/Multiplication (Third - Left to Right)
+4. **A/S** - Addition/Subtraction (Last - Left to Right)
+
+### **Examples:**
+- 2 + 3 × 4 = 2 + 12 = 14 (not 20)
+- (2 + 3) × 4 = 5 × 4 = 20
+- 8 ÷ 2 × 3 = 4 × 3 = 12 (not 12 ÷ 6 = 2)
+
+---
+
+## 📈 Understanding Percentages
+
+### **Basic Concept:**
+Percentage means "per hundred" (per centum)
+
+**Formula:** Percentage = (Part/Whole) × 100%
+
+### **Common Conversions:**
+- 25% = 25/100 = 1/4 = 0.25
+- 50% = 50/100 = 1/2 = 0.5
+- 75% = 75/100 = 3/4 = 0.75
+- 100% = 100/100 = 1 = 1.0
+
+### **Percentage Calculations:**
+- **Increase**: New Value = Old Value + (Percentage × Old Value)
+- **Decrease**: New Value = Old Value - (Percentage × Old Value)
+- **Percentage Change**: ((New - Old)/Old) × 100%
+
+---
+
+## 🎯 Ratios and Proportions
+
+### **Ratio:**
+Comparison of two quantities of the same kind.
+
+**Examples:**
+- Ratio of boys to girls: 3:2
+- Speed ratio: 60:40 or 3:2
+
+### **Proportion:**
+Equality of two ratios.
+
+**Examples:**
+- If a:b = c:d, then a, b, c, d are in proportion
+- 2:3 = 4:6 (multiply both sides by 2)
+
+### **Types of Proportion:**
+- **Direct Proportion**: If one increases, other also increases
+- **Inverse Proportion**: If one increases, other decreases
+
+---
+
+## 📏 Units and Measurements
+
+### **Length:**
+- Millimeter (mm) = 0.001 meter
+- Centimeter (cm) = 0.01 meter
+- Meter (m) = 100 cm
+- Kilometer (km) = 1000 meters
+
+### **Weight/Mass:**
+- Milligram (mg) = 0.001 gram
+- Gram (g) = 1000 mg
+- Kilogram (kg) = 1000 grams
+- Ton (t) = 1000 kg
+
+### **Time:**
+- Second (s)
+- Minute (min) = 60 seconds
+- Hour (h) = 60 minutes = 3600 seconds
+- Day = 24 hours
+
+### **Money/Currency:**
+- Penny/Paisa = 1/100 of rupee/dollar
+- Rupee/Dollar = 100 paise/pennies
+
+---
+
+## 🧠 Basic Algebraic Concepts
+
+### **Variables:**
+Symbols that represent unknown values (x, y, z, a, b, c)
+
+### **Constants:**
+Fixed values that don't change (2, 5, π, e)
+
+### **Expressions:**
+Combinations of variables, constants, and operations:
+- 2x + 3
+- a² + 2ab + b²
+- 3(x + y) - 2z
+
+### **Equations:**
+Statements that two expressions are equal:
+- 2x + 3 = 7
+- a² + b² = c² (Pythagoras theorem)
+
+---
+
+## 🎯 Types of Problems
+
+### **1. Word Problems**
+Translate verbal descriptions into mathematical equations.
+
+**Example:**
+"If John has 5 apples and gives 2 to Mary, how many does he have left?"
+- Equation: 5 - 2 = x
+- Solution: x = 3
+
+### **2. Age Problems**
+Involve relationships between ages at different times.
+
+**Example:**
+"Father is 3 times as old as son. After 5 years, father will be twice as old as son."
+- Current: Father = 3x, Son = x
+- After 5 years: Father = 3x + 5, Son = x + 5
+- Equation: 3x + 5 = 2(x + 5)
+
+### **3. Speed, Time, Distance**
+Relationship: Distance = Speed × Time
+
+**Example:**
+"Car travels at 60 km/h for 3 hours. Distance covered?"
+- Distance = 60 × 3 = 180 km
+
+---
+
+## 🚨 Common Mistakes to Avoid
+
+### ❌ **Order of Operations**
 \`\`\`
-... -√2, -π, -2, -½, 0, ½, 2, π, √2, ...
-    ←━━━━━━━━━━━━━━━━━━━━━━━━━━━━→
+Wrong: 2 + 3 × 4 = (2 + 3) × 4 = 20
+Right: 2 + 3 × 4 = 2 + 12 = 14
+\`\`\`
+
+### ❌ **Percentage Calculations**
+\`\`\`
+Wrong: 20% of 150 = 20 × 150 = 3000
+Right: 20% of 150 = 0.20 × 150 = 30
+\`\`\`
+
+### ❌ **Negative Number Operations**
+\`\`\`
+Wrong: (-3) × (-4) = +12 (thinking negative × negative = negative)
+Right: (-3) × (-4) = +12 (negative × negative = positive)
+\`\`\`
+
+### ❌ **Ratio Misinterpretation**
+\`\`\`
+Wrong: Ratio 2:3 means 2 > 3
+Right: Ratio 2:3 means 2 parts out of 5 total parts
 \`\`\`
 
 ---
 
-## 🔮 Complex Numbers (ℂ)
+## 🎯 Practice Problems
 
-### Definition
-Numbers of the form **a + bi** where:
-- a = real part
-- b = imaginary part
-- i = √(-1) (imaginary unit)
-- i² = -1
+### **Basic Operations:**
+1. Simplify: 15 + 8 × 2 - 6 ÷ 3
+2. Calculate: (-5) × (-3) + 10 ÷ 2
+3. Find: 25% of 200
 
-### Examples:
-- 3 + 2i (real part: 3, imaginary part: 2)
-- 5 - 4i (real part: 5, imaginary part: -4)
-- 7 + 0i = 7 (pure real number)
-- 0 + 3i = 3i (pure imaginary number)
+### **Ratios and Proportions:**
+1. If a:b = 3:4 and b:c = 5:6, find a:c
+2. Divide 360 in ratio 2:3:4
 
-### Operations:
-- **Addition**: (a + bi) + (c + di) = (a + c) + (b + d)i
-- **Multiplication**: (a + bi)(c + di) = (ac - bd) + (ad + bc)i
+### **Word Problems:**
+1. A man buys 5 kg apples at ₹40/kg and 3 kg oranges at ₹30/kg. Total cost?
+2. Train travels 300 km in 5 hours. Average speed?
 
----
+### **Percentages:**
+1. What is 15% of 250?
+2. If price increases by 20%, what is new price of ₹500 item?
 
-## 🧮 Key Relationships
-
-\`\`\`
-Natural Numbers ⊂ Whole Numbers ⊂ Integers ⊂ Rational Numbers ⊂ Real Numbers ⊂ Complex Numbers
-
-      ℕ ⊂ ℤ⁺ ∪ {0} ⊂ ℤ ⊂ ℚ ⊂ ℝ ⊂ ℂ
-\`\`\`
-
-### Important Notes:
-- Irrational numbers are real numbers but not rational
-- All real numbers are complex (with imaginary part = 0)
-- Rational numbers can be expressed as decimals, but not all decimals are rational
+**Answers:**
+Basic: 15 + 16 - 2 = 29, (+15) + 5 = 20, 50
+Ratios: 15:24, 72:108:144 or 2:3:4
+Word: 200 + 90 = 290, 60 km/h
+Percentages: 37.5, ₹600
 
 ---
 
-## 🎯 Applications in Aptitude
+## 🎓 Building Strong Foundations
 
-Understanding number types helps in:
-- **Simplifying calculations**
-- **Solving equations**
-- **Working with fractions and decimals**
-- **Understanding number properties**
-- **Solving word problems**
+1. **Master the Basics**: Ensure complete understanding of fundamental operations
+2. **Practice Regularly**: Daily practice of basic calculations
+3. **Learn Properties**: Understand mathematical properties and rules
+4. **Avoid Shortcuts Initially**: Build conceptual understanding first
+5. **Use Visual Aids**: Draw diagrams for word problems
+6. **Check Work**: Always verify calculations
 
-Master these classifications and you'll be well-prepared for quantitative aptitude questions! 🚀`
+Strong foundations in basic mathematical concepts will make advanced topics much easier to understand and master! 🏆`
 };

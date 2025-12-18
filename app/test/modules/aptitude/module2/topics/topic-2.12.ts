@@ -2,238 +2,261 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_12: SubLesson = {
   id: "2.12",
-  title: 'Use of Identities (basic)',
+  title: 'Powers & Exponents',
   status: 'completed',
-  content: `# 🔢 Use of Identities (Basic)
+  content: `# 🔢 Powers & Exponents
 
-Identities are mathematical equations that hold true for all values of the variables involved. Understanding and applying basic identities is crucial for simplification problems in aptitude exams. These identities help us transform complex expressions into simpler forms.
-
----
-
-## 🎯 What are Identities?
-
-**Identities** are equations that are true for all values of the variables. Unlike equations that have specific solutions, identities work universally.
-
-**Examples:**
-- (a + b)² = a² + 2ab + b² (always true)
-- (a - b)² = a² - 2ab + b² (always true)
-- a² - b² = (a - b)(a + b) (always true)
+Powers and exponents are fundamental concepts in mathematics with extensive applications in algebra, calculus, and quantitative aptitude. Understanding exponent rules and properties is essential for solving complex numerical problems efficiently.
 
 ---
 
-## 📊 Basic Algebraic Identities
+## 🎯 Basic Concepts
 
-### **1. Square of Sum**
-(a + b)² = a² + 2ab + b²
+### What is an Exponent?
+An exponent indicates how many times a number (base) is multiplied by itself.
 
-**Examples:**
-- (x + 2)² = x² + 2×x×2 + 2² = x² + 4x + 4
-- (3 + y)² = 3² + 2×3×y + y² = 9 + 6y + y²
+**Notation**: a^n (a raised to power n)
 
-### **2. Square of Difference**
-(a - b)² = a² - 2ab + b²
-
-**Examples:**
-- (x - 3)² = x² - 2×x×3 + 3² = x² - 6x + 9
-- (5 - y)² = 5² - 2×5×y + y² = 25 - 10y + y²
-
-### **3. Difference of Squares**
-a² - b² = (a - b)(a + b)
-
-**Examples:**
-- x² - 4 = (x - 2)(x + 2)
-- 9y² - 16 = (3y - 4)(3y + 4)
-
-### **4. Sum of Cubes**
-a³ + b³ = (a + b)(a² - ab + b²)
-
-**Examples:**
-- x³ + 8 = (x + 2)(x² - 2x + 4)
-- 27 + y³ = (3 + y)(9 - 3y + y²)
-
-### **5. Difference of Cubes**
-a³ - b³ = (a - b)(a² + ab + b²)
-
-**Examples:**
-- x³ - 1 = (x - 1)(x² + x + 1)
-- 8y³ - 27 = (2y - 3)(4y² + 6y + 9)
+**Examples**:
+- 2³ = 2 × 2 × 2 = 8
+- 5² = 5 × 5 = 25
+- 10⁴ = 10 × 10 × 10 × 10 = 10000
 
 ---
 
-## 🧮 Application in Simplification
+## 📊 Laws of Exponents
 
-### **Expanding Expressions**
-Use identities to expand brackets quickly.
+### 1. **Multiplication Law**
+a^m × a^n = a^(m+n)
 
-**Examples:**
-- (x + 3)² = x² + 6x + 9
-- (2y - 1)² = 4y² - 4y + 1
-- x² - 9 = (x - 3)(x + 3)
+**Example**: 2³ × 2⁴ = 2^(3+4) = 2⁷ = 128
 
-### **Simplifying Expressions**
-Recognize patterns and apply identities.
+### 2. **Division Law**
+a^m ÷ a^n = a^(m-n)
 
-**Examples:**
-- x² + 6x + 9 = (x + 3)²
-- 4y² - 4y + 1 = (2y - 1)²
-- 9 - 6x + x² = (3 - x)²
+**Example**: 5⁴ ÷ 5² = 5^(4-2) = 5² = 25
 
-### **Evaluating Expressions**
-Substitute values efficiently.
+### 3. **Power of Power**
+(a^m)^n = a^(m×n)
 
-**Examples:**
-- Find 47²: (50 - 3)² = 50² - 2×50×3 + 3² = 2500 - 300 + 9 = 2209
-- Find 98²: (100 - 2)² = 100² - 2×100×2 + 2² = 10000 - 400 + 4 = 9604
+**Example**: (2³)⁴ = 2^(3×4) = 2¹² = 4096
+
+### 4. **Product Rule**
+(a × b)^n = a^n × b^n
+
+**Example**: (2 × 3)⁴ = 2⁴ × 3⁴ = 16 × 81 = 1296
+
+### 5. **Quotient Rule**
+(a/b)^n = a^n / b^n
+
+**Example**: (4/2)³ = 4³ / 2³ = 64 / 8 = 8
+
+### 6. **Zero Exponent**
+a⁰ = 1 (for a ≠ 0)
+
+**Example**: 5⁰ = 1, 100⁰ = 1
+
+### 7. **Negative Exponent**
+a^(-n) = 1/a^n
+
+**Example**: 2^(-3) = 1/2³ = 1/8
+
+### 8. **Fractional Exponent**
+a^(m/n) = (a^m)^(1/n) = (a^(1/n))^m
+
+**Example**: 8^(2/3) = (8²)^(1/3) = 64^(1/3) = 4
+Or: 8^(2/3) = (8^(1/3))² = 2² = 4
+
+---
+
+## 🧮 Advanced Exponent Rules
+
+### 1. **Different Bases, Same Exponent**
+a^n × b^n = (a × b)^n
+
+**Example**: 2³ × 3³ = (2 × 3)³ = 6³ = 216
+
+### 2. **Same Base, Different Exponents**
+a^m / a^n = a^(m-n)
+
+### 3. **Mixed Operations**
+Combine multiple rules.
+
+**Example**: Simplify (2² × 3³)⁴ ÷ (2³ × 3²)
+
+**Solution**: = (2^(2×4) × 3^(3×4)) ÷ (2³ × 3²)
+= (2⁸ × 3¹²) ÷ (2³ × 3²)
+= 2^(8-3) × 3^(12-2)
+= 2⁵ × 3¹⁰ = 32 × 59049 = 1,889,568
 
 ---
 
 ## 🎯 Special Cases and Patterns
 
-### **Numbers Ending with 5**
-For numbers like 15, 25, 35, etc.:
-n5² = n(n+1) hundred + 25
+### 1. **Powers of 10**
+10^n follows place value system.
 
-**Examples:**
-- 15² = 1×2 × 100 + 25 = 225
-- 25² = 2×3 × 100 + 25 = 625
-- 85² = 8×9 × 100 + 25 = 7225
+**Examples**:
+- 10⁰ = 1
+- 10¹ = 10
+- 10² = 100
+- 10³ = 1000
 
-### **Numbers Close to Powers of 10**
-- 98² = (100 - 2)² = 100² - 2×100×2 + 2² = 10000 - 400 + 4 = 9604
-- 103² = (100 + 3)² = 100² + 2×100×3 + 3² = 10000 + 600 + 9 = 10609
+### 2. **Powers of 2**
+Binary system, doubling pattern.
 
-### **Difference of Squares Pattern**
-- 61² - 39² = (61 - 39)(61 + 39) = 22 × 100 = 2200
-- 75² - 25² = (75 - 25)(75 + 25) = 50 × 100 = 5000
+### 3. **Powers of Negative Numbers**
+Alternating signs based on exponent.
 
----
+**Example**: (-2)³ = -8, (-2)⁴ = 16
 
-## 🧠 Advanced Identity Applications
+### 4. **Powers of Fractions**
+Apply rules carefully.
 
-### **Multiple Variables**
-Apply identities to expressions with multiple variables.
-
-**Examples:**
-- x² + y² + 2xy = (x + y)²
-- x² + y² - 2xy = (x - y)²
-- x³ + y³ + z³ - 3xyz = (x + y + z)(x² + y² + z² - xy - yz - zx)
-
-### **Fractional Expressions**
-Use identities in fractions.
-
-**Examples:**
-- \\frac{x² - 4}{x - 2} = \\frac{(x-2)(x+2)}{x-2} = x + 2 (for x ≠ 2)
-- \\frac{x³ - 1}{x - 1} = \\frac{(x-1)(x² + x + 1)}{x-1} = x² + x + 1 (for x ≠ 1)
+**Example**: (1/2)³ = 1/8
 
 ---
 
-## 🎯 Identity-Based Problem Solving
+## 🧠 Problem Solving Tricks
 
-### **Example 1: Simplification**
-Simplify: (2x + 3)² - (2x + 1)²
+### Trick 1: **Simplify Complex Expressions**
+Break down into simpler parts.
 
-**Solution:**
-= [4x² + 12x + 9] - [4x² + 4x + 1]
-= 4x² + 12x + 9 - 4x² - 4x - 1
-= (12x - 4x) + (9 - 1) = 8x + 8
+**Example**: Simplify (2³ × 3² × 5)/(2² × 3 × 7)
 
-### **Example 2: Evaluation**
-Find 49² - 51²
+**Solution**: = 2^(3-2) × 3^(2-1) × 5/7 = 2¹ × 3¹ × 5/7 = 30/7
 
-**Solution:**
-= (49 - 51)(49 + 51) = (-2)(100) = -200
+### Trick 2: **Find Missing Exponent**
+Use known relationships.
 
-### **Example 3: Factorization**
-Factor: x² - 10x + 25
+**Example**: If 2^x × 3^y = 72, find x and y.
 
-**Solution:**
-= (x - 5)²
+**Solution**: 72 = 2³ × 3², so x=3, y=2
 
-### **Example 4: Expansion**
-Expand: (a + b)³
+### Trick 3: **Compare Powers**
+For same base, higher exponent = larger number.
 
-**Solution:**
-= (a + b)(a + b)² = (a + b)(a² + 2ab + b²) = a³ + 3a²b + 3ab² + b³
+### Trick 4: **Scientific Notation**
+Express large numbers as powers of 10.
+
+**Example**: 5000 = 5 × 10³
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## 📊 Exponent Applications
 
-### ❌ **Wrong Sign in Difference of Squares**
-\`\`\`
-Wrong: a² + b² = (a + b)(a - b)
-Right: a² - b² = (a - b)(a + b)
-\`\`\`
+### 1. **Compound Interest**
+A = P(1 + r/n)^(nt)
 
-### ❌ **Incorrect Expansion**
-\`\`\`
-Wrong: (a + b)² = a² + b²
-Right: (a + b)² = a² + 2ab + b²
-\`\`\`
+### 2. **Population Growth**
+P = P₀e^(rt)
 
-### ❌ **Missing Middle Term**
-\`\`\`
-Wrong: (a - b)² = a² - b²
-Right: (a - b)² = a² - 2ab + b²
-\`\`\`
+### 3. **Radioactive Decay**
+N = N₀e^(-λt)
 
-### ❌ **Wrong Cube Identity**
-\`\`\`
-Wrong: a³ + b³ = (a + b)(a² - ab - b²)
-Right: a³ + b³ = (a + b)(a² - ab + b²)
-\`\`\`
+### 4. **Logarithms**
+log_b(a) = x means b^x = a
 
 ---
 
-## 🎯 Practice Problems
+## 🔍 Advanced Concepts
 
-### **Expansion:**
-1. (x + 2)² = ?
-2. (y - 3)² = ?
-3. (a + b)(a - b) = ?
-4. (x + 1)³ = ?
+### 1. **Irrational Exponents**
+Like √2, π, e
 
-### **Factorization:**
-1. x² + 6x + 9 = ?
-2. y² - 8y + 16 = ?
-3. 4a² - 9 = ?
-4. x³ + 27 = ?
+### 2. **Complex Exponents**
+Euler's formula: e^(iθ) = cosθ + i sinθ
 
-### **Evaluation:**
-1. 47² = ?
-2. 98² = ?
-3. 49² - 51² = ?
-4. 15² = ?
+### 3. **Exponential Equations**
+Solve equations involving exponents.
 
-### **Simplification:**
-1. (2x + 1)² - (2x - 1)² = ?
-2. (a + b)² + (a - b)² = ?
-3. (x + y)³ - (x - y)³ = ?
-4. \\frac{x² - 4}{x - 2} = ?
+**Example**: Solve 2^x = 8
 
-### **Word Problems:**
-1. Area of square is (x + 2)². Expand to find expression.
-2. Difference between squares of 51 and 49.
-3. Simplify (√3 + 1)² - (√3 - 1)²
+**Solution**: 2^x = 2³ → x = 3
 
-**Answers:**
-Expansion: x²+4x+4, y²-6y+9, a²-b², x³+3x²+3x+1
-Factorization: (x+3)², (y-4)², (2a-3)(2a+3), (x+3)(x²-3x+9)
-Evaluation: 2209, 9604, -200, 225
-Simplification: 8x, 2(a²+b²), 6y(x²+y²), x+2
-Word: x²+4x+4, 51²-49²=(51-49)(51+49)=2×100=200, (√3+1)²-(√3-1)²=[(√3+1)-(√3-1)]×[(√3+1)+(√3-1)]=2×(2√3)=4√3
+### 4. **Exponential Inequalities**
+**Example**: Solve 3^x > 27
+
+**Solution**: 3^x > 3³ → x > 3
 
 ---
 
-## 🎓 Pro Tips for Exams
+## 🎯 Common Problem Types
 
-1. **Memorize the basic identities** - they're used repeatedly
-2. **Recognize patterns** in expressions to apply identities
-3. **Use identities for quick calculations** of squares and cubes
-4. **Apply identities** before expanding or factoring
-5. **Check your work** by expanding factored expressions
-6. **Practice mental application** for time-saving
-7. **Combine identities** for complex expressions
+### Type 1: **Simplify Expressions**
+**Example**: Simplify (2³ × 3²)⁴ ÷ (2⁵ × 3³)
 
-Master identities to simplify complex expressions and solve problems efficiently! 🏆`
+**Solution**: = 2^(12) × 3^8 ÷ 2^5 × 3^3
+= 2^(12-5) × 3^(8-3)
+= 2⁷ × 3⁵ = 128 × 243 = 31,104
+
+### Type 2: **Compare Powers**
+**Example**: Which is larger: 2^10 or 10^2?
+
+**Solution**: 2^10 = 1024, 10^2 = 100, so 2^10 > 10^2
+
+### Type 3: **Find Unknown Exponent**
+**Example**: If 3^x × 5^y = 225, find x + y.
+
+**Solution**: 225 = 3² × 5², so x=2, y=2, x+y=4
+
+### Type 4: **Fractional Powers**
+**Example**: Simplify (8^(2/3) × 4^(1/2))
+
+**Solution**: 8^(2/3) = (2³)^(2/3) = 2² = 4
+4^(1/2) = 2
+4 × 2 = 8
+
+---
+
+## 🧮 Exponential Identities
+
+### 1. **Sum of Powers**
+a^n + a^m = a^m(a^(n-m) + 1)
+
+### 2. **Difference of Powers**
+a^n - a^m = a^m(a^(n-m) - 1)
+
+### 3. **Binomial Expansion**
+(a + b)^n = Σ C(n,k) a^(n-k) b^k
+
+### 4. **Geometric Series**
+Sum = a(r^n - 1)/(r - 1) for r ≠ 1
+
+---
+
+## 📝 Practice Examples
+
+### Example 1: Basic Laws
+Simplify (3² × 2³) ÷ (3³ × 2²)
+
+**Solution**: 3^(2-3) × 2^(3-2) = 3^(-1) × 2^1 = 2/3
+
+### Example 2: Complex Expression
+Simplify (2^3 × 5^2 × 3^4) / (2^2 × 3^2 × 5)
+
+**Solution**: 2^(3-2) × 5^(2-1) × 3^(4-2) = 2^1 × 5^1 × 3^2 = 2 × 5 × 9 = 90
+
+### Example 3: Negative Exponents
+Simplify 2^3 × 3^(-2) × 5^0
+
+**Solution**: 8 × (1/9) × 1 = 8/9
+
+### Example 4: Fractional Powers
+Simplify 16^(3/4)
+
+**Solution**: 16^(3/4) = (2^4)^(3/4) = 2^(4×3/4) = 2^3 = 8
+
+### Example 5: Equation Solving
+Solve 3^(x+1) = 27
+
+**Solution**: 3^(x+1) = 3^3 → x+1 = 3 → x = 2
+
+### Example 6: Inequality
+Solve 4^x > 64
+
+**Solution**: 4^x > 4^3 → x > 3
+
+Master powers and exponents to solve complex mathematical problems! 🚀`
 };
+

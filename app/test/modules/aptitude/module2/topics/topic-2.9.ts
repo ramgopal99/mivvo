@@ -2,204 +2,201 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_9: SubLesson = {
   id: "2.9",
-  title: 'Surds (Basic)',
+  title: 'Sum of Factors',
   status: 'completed',
-  content: `# 🔢 Surds (Basic)
+  content: `# 🔢 Sum of Factors
 
-Surds are irrational square roots that cannot be simplified to rational numbers. Understanding surds is essential for aptitude exams as they appear frequently in simplification and algebra problems.
-
----
-
-## 🎯 What are Surds?
-
-**Surds** are expressions containing square roots (or other roots) of numbers that are not perfect squares.
-
-**Examples:**
-- √2, √3, √5, √6, √7, √8, √10, √11, √12, √13, √14, √15
-
-**Non-surds (rational):**
-- √4 = 2, √9 = 3, √16 = 4, √25 = 5
+The sum of factors of a number is a fundamental concept in number theory with important applications in algebra and number properties. Understanding how to calculate and work with factor sums is crucial for solving advanced aptitude problems.
 
 ---
 
-## 📊 Types of Surds
+## 🎯 Basic Concept
 
-### **1. Simple Surds**
-Single square root expressions
-- √2, √7, √11
+### What is Sum of Factors?
+The sum of all factors (divisors) of a number n, including 1 and n itself.
 
-### **2. Compound Surds**
-Expressions with multiple terms
-- 2√3, 3√5, 5√2
-
-### **3. Binomial Surds**
-Sum or difference of surds
-- √2 + √3, 2√5 - √3
-
-### **4. Similar Surds**
-Surds with same irrational part
-- 2√3 and 5√3 (both have √3)
-- √7 and 3√7 (both have √7)
+**Example**: Sum of factors of 12: 1 + 2 + 3 + 4 + 6 + 12 = 28
 
 ---
 
-## 🧮 Operations with Surds
+## 📊 Formula for Sum of Factors
 
-### **1. Addition and Subtraction**
-Only similar surds can be added/subtracted.
+### Prime Factorization Formula
+If n = p₁^a × p₂^b × p₃^c × ... × pₖ^k
+Then sum of factors = [(p₁^(a+1)-1)/(p₁-1)] × [(p₂^(b+1)-1)/(p₂-1)] × ... × [(pₖ^(k+1)-1)/(pₖ-1)]
 
-**Examples:**
-- 2√3 + 5√3 = 7√3
-- 4√5 - 2√5 = 2√5
-- √2 + √3 = √2 + √3 (cannot simplify - unlike surds)
+### Why This Works
+Each prime factor contributes a geometric series:
+- For p₁^a: Sum = 1 + p₁ + p₁² + ... + p₁^a = (p₁^(a+1) - 1)/(p₁ - 1)
+- Same for each prime factor
+- Product of all these geometric series gives total sum
 
-### **2. Multiplication**
-√a × √b = √(a × b)
-
-**Examples:**
-- √2 × √3 = √6
-- √5 × √5 = √25 = 5
-- 2√3 × 3√2 = 2×3 × √(3×2) = 6√6
-
-### **3. Division**
-√a ÷ √b = √(a/b)
-
-**Examples:**
-- √8 ÷ √2 = √(8/2) = √4 = 2
-- √15 ÷ √3 = √(15/3) = √5
-- √12 ÷ √3 = √(12/3) = √4 = 2
-
----
-
-## 🔧 Simplification of Surds
-
-### **Method 1: Prime Factorization**
-Express number under root as product of primes, simplify.
-
-**Examples:**
-- √12 = √(4 × 3) = √4 × √3 = 2√3
-- √18 = √(9 × 2) = √9 × √2 = 3√2
-- √50 = √(25 × 2) = √25 × √2 = 5√2
-
-### **Method 2: Division Method**
-Divide number by perfect squares until quotient is not divisible by perfect squares.
-
-**Examples:**
-- √72: 72 ÷ 4 = 18, 18 ÷ 9 = 2 → √(4 × 9 × 2) = 2×3×√2 = 6√2
-- √96: 96 ÷ 16 = 6 → √(16 × 6) = 4√6
-
----
-
-## 🎯 Rationalization
-
-### **Rationalizing Denominators**
-Multiply numerator and denominator by appropriate expression to eliminate surd in denominator.
-
-### **Single Term Denominator**
-Multiply by same surd:
-\\frac{1}{\\sqrt{2}} × \\frac{\\sqrt{2}}{\\sqrt{2}} = \\frac{\\sqrt{2}}{2}
-
-### **Binomial Denominator**
-Multiply by conjugate (change sign between terms):
-\\frac{1}{\\sqrt{2} + \\sqrt{3}} × \\frac{\\sqrt{2} - \\sqrt{3}}{\\sqrt{2} - \\sqrt{3}} = \\frac{\\sqrt{2} - \\sqrt{3}}{2 - 3} = \\sqrt{2} - \\sqrt{3}
-
-**Examples:**
-- \\frac{3}{\\sqrt{5}} = \\frac{3\\sqrt{5}}{5}
-- \\frac{2}{\\sqrt{3} + 1} × \\frac{\\sqrt{3} - 1}{\\sqrt{3} - 1} = \\frac{2(\\sqrt{3} - 1)}{3 - 1} = \\frac{2(\\sqrt{3} - 1)}{2} = \\sqrt{3} - 1
-
----
-
-## 🧠 Surd Identities
-
-### **Conjugate Pairs**
-For a + b√c, conjugate is a - b√c
-(a + b√c)(a - b√c) = a² - (b√c)² = a² - b²c
-
-### **Difference of Squares**
-a² - b² = (a - b)(a + b)
-This applies to surds too.
-
-### **Sum of Squares**
-Sometimes helpful: (√a + √b)² = a + b + 2√(ab)
-
----
-
-## 🚨 Common Mistakes to Avoid
-
-### ❌ **Adding Unlike Surds**
+**Example**: Sum of factors of 84
 \`\`\`
-Wrong: √2 + √3 = √5
-Right: √2 + √3 cannot be simplified
-\`\`\`
+84 = 2² × 3¹ × 7¹
+Sum = [(2³-1)/(2-1)] × [(3²-1)/(3-1)] × [(7²-1)/(7-1)]
+    = (8-1)/1 × (9-1)/2 × (49-1)/6
+    = 7 × 4 × 8 = 224
 
-### ❌ **Wrong Rationalization**
-\`\`\`
-Wrong: \\frac{1}{\\sqrt{2} + \\sqrt{3}} = \\frac{1}{\\sqrt{5}}
-Right: Use conjugate: \\frac{\\sqrt{2} - \\sqrt{3}}{2 - 3} = \\sqrt{2} - \\sqrt{3}
-\`\`\`
-
-### ❌ **Incorrect Simplification**
-\`\`\`
-Wrong: √12 = √(2×6) = √2 × √6
-Right: √12 = √(4×3) = 2√3
-\`\`\`
-
-### ❌ **Forgetting Coefficients**
-\`\`\`
-Wrong: 2√3 × 3√2 = 6√6 ✓
-Wrong: 2√3 × 3√2 = 2×3×√3×√2 = 6√6 ✓ (same as above)
+Factors: 1+2+3+4+6+7+12+14+21+28+42+84 = 224 ✓
 \`\`\`
 
 ---
 
-## 🎯 Practice Problems
+## 🧠 Sum of Factors Tricks
 
-### **Simplification:**
-1. √12 = ?
-2. √18 = ?
-3. √50 = ?
-4. √72 = ?
+### Trick 1: **For Perfect Squares**
+Sum of factors includes the square root twice in the counting, but once in the sum.
 
-### **Operations:**
-1. 3√2 + 2√2 = ?
-2. √8 × √2 = ?
-3. 2√5 - √5 = ?
-4. √12 ÷ √3 = ?
+### Trick 2: **For Prime Numbers**
+Sum of factors of prime p: 1 + p
 
-### **Rationalization:**
-1. \\frac{1}{\\sqrt{2}} = ?
-2. \\frac{2}{\\sqrt{3}} = ?
-3. \\frac{1}{\\sqrt{2} + \\sqrt{3}} = ?
-4. \\frac{3}{\\sqrt{5} - 1} = ?
+### Trick 3: **For Powers of 2**
+Sum of factors of 2^n: 1 + 2 + 4 + ... + 2^n = 2^(n+1) - 1
 
-### **Complex Problems:**
-1. Simplify: (√3 + √2)(√3 - √2)
-2. Rationalize: \\frac{5}{\\sqrt{6} + \\sqrt{2}}
-3. Calculate: (2√3 + 3√2)(2√3 - 3√2)
-4. Simplify: \\frac{\\sqrt{5} + \\sqrt{3}}{\\sqrt{5} - \\sqrt{3}}
+**Example**: Sum of factors of 16 (2^4) = 2^5 - 1 = 32 - 1 = 31
 
-### **Word Problems:**
-1. Simplify √(48) + √(12)
-2. Rationalize \\frac{1}{\\sqrt{7} + \\sqrt{3}}
+### Trick 4: **Perfect Numbers**
+A number n is perfect if sum of proper divisors equals n.
 
-**Answers:**
-Simplification: 2√3, 3√2, 5√2, 6√2
-Operations: 5√2, √16 = 4, √5, √4 = 2
-Rationalization: \\frac{\\sqrt{2}}{2}, \\frac{2\\sqrt{3}}{3}, \\sqrt{2} - \\sqrt{3}, \\frac{3(\\sqrt{5} + 1)}{4}
-Complex: (√3)² - (√2)² = 3 - 2 = 1, \\frac{5(\\sqrt{6} - \\sqrt{2})}{4}, (2√3)² - (3√2)² = 12 - 18 = -6, \\frac{(5+3) + 2\\sqrt{15}}{5-3} = \\frac{8 + 2\\sqrt{15}}{2} = 4 + \\sqrt{15}
-Word: √(16×3) + √(4×3) = 4√3 + 2√3 = 6√3, \\frac{\\sqrt{7} - \\sqrt{3}}{4}
+**Example**: 6 = 1 + 2 + 3 (proper divisors)
+28 = 1 + 2 + 4 + 7 + 14 (proper divisors)
 
 ---
 
-## 🎓 Pro Tips for Exams
+## 🎯 Types of Factor Sums
 
-1. **Identify similar surds** before adding/subtracting
-2. **Simplify surds** before performing operations
-3. **Use conjugates** for rationalization of binomial denominators
-4. **Multiply numerator and denominator** by same expression
-5. **Remember difference of squares** for conjugate multiplication
-6. **Practice simplification** of common surds (√2, √3, √5, √6, √7, √8, √10)
-7. **Check answers** by substituting approximate values
+### 1. **Sum of All Factors**
+Includes 1 and the number itself.
 
-Master surds to handle irrational numbers and complex root expressions with confidence! 🏆`
+### 2. **Sum of Proper Divisors**
+All factors except the number itself.
+
+**Example**: Proper divisors of 12: 1, 2, 3, 4, 6 → Sum = 16
+
+### 3. **Sum of Odd Factors**
+Ignore the power of 2 in prime factorization.
+
+**Example**: Sum of odd factors of 60
+\`\`\`
+60 = 2² × 3¹ × 5¹
+Odd part: 3¹ × 5¹
+Sum = (3²-1)/(3-1) × (5²-1)/(5-1) = (9-1)/2 × (25-1)/4 = 4 × 6 = 24
+\`\`\`
+
+### 4. **Sum of Even Factors**
+Total sum - sum of odd factors.
+
+---
+
+## 📈 Advanced Factor Sum Concepts
+
+### 1. **Abundant Numbers**
+Sum of proper divisors > number itself.
+
+**Example**: 12: proper divisors 1+2+3+4+6=16 > 12
+
+### 2. **Deficient Numbers**
+Sum of proper divisors < number itself.
+
+**Example**: 8: proper divisors 1+2+4=7 < 8
+
+### 3. **Multiplicative Function**
+Sum of factors is multiplicative: σ(ab) = σ(a) × σ(b) if gcd(a,b)=1
+
+### 4. **Highly Composite Numbers**
+Numbers with many factors, hence large factor sums.
+
+---
+
+## 🔍 Factor Sum Properties
+
+### Property 1: **For Powers**
+Sum of factors of p^n = (p^(n+1) - 1)/(p - 1)
+
+### Property 2: **For Products**
+If gcd(a,b)=1, then σ(a×b) = σ(a) × σ(b)
+
+### Property 3: **Perfect Squares**
+Sum of factors of perfect squares is odd.
+
+### Property 4: **Prime Factors**
+More prime factors generally mean larger factor sums.
+
+---
+
+## 🎯 Applications in Problem Solving
+
+### 1. **Finding Numbers with Given Factor Sum**
+**Example**: Find number whose sum of factors is 60.
+
+**Solution**: Possible factor sums for small numbers:
+- 12: 1+2+3+4+6+12=28
+- 14: 1+2+7+14=24
+- 15: 1+3+5+15=24
+- 16: 1+2+4+8+16=31
+- 18: 1+2+3+6+9+18=39
+- 20: 1+2+4+5+10+20=42
+- 21: 1+3+7+21=32
+- 24: 1+2+3+4+6+8+12+24=60 ✓
+
+### 2. **Checking Perfect Numbers**
+**Example**: Is 496 a perfect number?
+
+**Solution**: Sum of proper divisors of 496
+496 = 16 × 31 = 2^4 × 31
+Sum = (2^5-1)/(2-1) × (31^2-1)/(31-1) = 31 × (961-1)/30 = 31 × 960/30 = 31 × 32 = 992
+Proper divisors sum = 992 - 496 = 496 ✓
+
+### 3. **Factor Sum in Equations**
+**Example**: If σ(n) = 2n, what is n?
+
+**Solution**: Sum of factors = 2n means n is perfect number.
+
+---
+
+## 🧮 Factor Sum Formulas
+
+### Perfect Number Formula
+For even perfect numbers: n = 2^(p-1) × (2^p - 1) where 2^p - 1 is prime
+
+### Sum of Divisors Function
+σ(n) = sum of all divisors of n
+
+### Aliquot Sum
+s(n) = sum of proper divisors = σ(n) - n
+
+---
+
+## 📝 Practice Examples
+
+### Example 1: Basic Sum
+Find sum of factors of 36.
+
+**Solution**: 36 = 2² × 3²
+Sum = (2³-1)/(2-1) × (3³-1)/(3-1) = (8-1) × (27-1)/2 = 7 × 13 = 91
+
+### Example 2: Perfect Number Check
+Is 28 a perfect number?
+
+**Solution**: 28 = 2² × 7
+Sum = (2³-1) × (7²-1)/6 = 7 × 48/6 = 7 × 8 = 56
+Proper divisors sum = 56 - 28 = 28 ✓
+
+### Example 3: Odd Factor Sum
+Find sum of odd factors of 100.
+
+**Solution**: 100 = 2² × 5²
+Odd part: 5²
+Sum = (5³-1)/(5-1) = (125-1)/4 = 124/4 = 31
+
+### Example 4: Factor Sum Equation
+If σ(n) = 2n + 6, find n.
+
+**Solution**: σ(n) - n = n + 6
+Sum of proper divisors = n + 6
+This means the number is abundant by 6.
+
+Master sum of factors to understand number properties deeply! 🚀`
 };
+

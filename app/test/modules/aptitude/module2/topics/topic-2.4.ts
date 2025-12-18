@@ -2,250 +2,225 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_4: SubLesson = {
   id: "2.4",
-  title: 'Fractions (Simple & Complex)',
+  title: 'Prime Factorization',
   status: 'completed',
-  content: `# 🔢 Fractions: Simple & Complex
+  content: `# 🔢 Prime Factorization
 
-Fractions are fundamental to mathematics and appear frequently in aptitude exams. Understanding how to add, subtract, multiply, and divide fractions is essential for solving complex problems. Let's master both simple and complex fractions!
-
----
-
-## 🎯 What is a Fraction?
-
-A **fraction** represents a part of a whole number. It consists of:
-- **Numerator** (top number) - represents parts taken
-- **Denominator** (bottom number) - represents total equal parts
-- **Fraction bar** (÷ or /) - separates numerator and denominator
-
-**Examples:**
-- \\frac{3}{4} (three quarters)
-- \\frac{5}{8} (five eighths)
-- \\frac{1}{2} (one half)
+Prime factorization is the process of breaking down a composite number into its prime factors. This fundamental concept forms the basis for many number theory problems and is essential for understanding HCF, LCM, and factor-related questions.
 
 ---
 
-## 📊 Types of Fractions
+## 🎯 What is Prime Factorization?
 
-### **1. Proper Fractions**
-Numerator < Denominator
-- Examples: \\frac{2}{3}, \\frac{5}{8}, \\frac{1}{4}
-- Value less than 1
+**Prime Factorization** is the process of expressing a composite number as a product of its prime factors.
 
-### **2. Improper Fractions**
-Numerator > Denominator
-- Examples: \\frac{5}{3}, \\frac{7}{4}, \\frac{9}{2}
-- Value greater than 1
-
-### **3. Mixed Fractions**
-Whole number + proper fraction
-- Examples: 2\\frac{1}{3}, 5\\frac{3}{4}, 1\\frac{1}{2}
-- Value greater than 1
-
-### **4. Equivalent Fractions**
-Different fractions with same value
-- Examples: \\frac{1}{2} = \\frac{2}{4} = \\frac{3}{6} = \\frac{4}{8}
+### Why Prime Factors?
+- Every composite number can be uniquely expressed as a product of prime numbers
+- This representation is unique (except for the order of factors)
+- Forms the foundation for many mathematical operations
 
 ---
 
-## 🔧 Basic Operations with Fractions
+## 📊 Methods of Prime Factorization
 
-### **1. Addition of Fractions**
+### 1. **Division Method** (Factor Tree)
+Start dividing the number by smallest prime factors repeatedly.
 
-#### **Same Denominator (Like Fractions)**
-Add numerators, keep denominator same:
-\\frac{a}{c} + \\frac{b}{c} = \\frac{a + b}{c}
+**Example**: Prime factorize 84
 
-**Examples:**
-- \\frac{2}{5} + \\frac{3}{5} = \\frac{5}{5} = 1
-- \\frac{1}{4} + \\frac{2}{4} = \\frac{3}{4}
-
-#### **Different Denominator (Unlike Fractions)**
-Find LCM of denominators, convert to equivalent fractions:
-\\frac{a}{b} + \\frac{c}{d} = \\frac{a × d + c × b}{b × d}
-
-**Examples:**
-- \\frac{1}{2} + \\frac{1}{3} = \\frac{3 + 2}{6} = \\frac{5}{6}
-- \\frac{2}{3} + \\frac{1}{4} = \\frac{8 + 3}{12} = \\frac{11}{12}
-
-### **2. Subtraction of Fractions**
-
-#### **Same Denominator**
-Subtract numerators, keep denominator:
-\\frac{a}{c} - \\frac{b}{c} = \\frac{a - b}{c}
-
-#### **Different Denominator**
-\\frac{a}{b} - \\frac{c}{d} = \\frac{a × d - c × b}{b × d}
-
-**Examples:**
-- \\frac{3}{4} - \\frac{1}{4} = \\frac{2}{4} = \\frac{1}{2}
-- \\frac{2}{3} - \\frac{1}{6} = \\frac{4 - 1}{6} = \\frac{3}{6} = \\frac{1}{2}
-
-### **3. Multiplication of Fractions**
-Multiply numerators and denominators:
-\\frac{a}{b} × \\frac{c}{d} = \\frac{a × c}{b × d}
-
-**Examples:**
-- \\frac{2}{3} × \\frac{3}{4} = \\frac{6}{12} = \\frac{1}{2}
-- \\frac{1}{2} × \\frac{2}{5} × \\frac{5}{6} = \\frac{10}{60} = \\frac{1}{6}
-
-### **4. Division of Fractions**
-Multiply by reciprocal (flip second fraction):
-\\frac{a}{b} ÷ \\frac{c}{d} = \\frac{a}{b} × \\frac{d}{c} = \\frac{a × d}{b × c}
-
-**Examples:**
-- \\frac{2}{3} ÷ \\frac{4}{5} = \\frac{2}{3} × \\frac{5}{4} = \\frac{10}{12} = \\frac{5}{6}
-- \\frac{3}{4} ÷ \\frac{1}{2} = \\frac{3}{4} × \\frac{2}{1} = \\frac{6}{4} = \\frac{3}{2}
-
----
-
-## 🔄 Converting Between Fraction Types
-
-### **Mixed Fraction to Improper Fraction**
-Multiply whole number by denominator, add numerator:
-a\\frac{b}{c} = \\frac{a × c + b}{c}
-
-**Examples:**
-- 2\\frac{1}{3} = \\frac{2 × 3 + 1}{3} = \\frac{7}{3}
-- 3\\frac{2}{5} = \\frac{3 × 5 + 2}{5} = \\frac{17}{5}
-
-### **Improper Fraction to Mixed Fraction**
-Divide numerator by denominator:
-\\frac{a}{b} = q\\frac{r}{b} where a = q × b + r
-
-**Examples:**
-- \\frac{7}{3} = 2\\frac{1}{3}
-- \\frac{17}{5} = 3\\frac{2}{5}
-
-### **Decimal to Fraction**
-Move decimal places to make whole number:
-0.5 = \\frac{5}{10} = \\frac{1}{2}
-0.25 = \\frac{25}{100} = \\frac{1}{4}
-
----
-
-## 🧮 Complex Fraction Operations
-
-### **Compound Fractions**
-Fractions containing fractions within them.
-
-**Examples:**
-- \\frac{\\frac{1}{2}}{\\frac{3}{4}} = \\frac{1}{2} ÷ \\frac{3}{4} = \\frac{1}{2} × \\frac{4}{3} = \\frac{4}{6} = \\frac{2}{3}
-- \\frac{2 + \\frac{1}{3}}{4 - \\frac{1}{2}} = \\frac{\\frac{7}{3}}{\\frac{7}{2}} = \\frac{7}{3} × \\frac{2}{7} = \\frac{2}{3}
-
-### **Adding Mixed Fractions**
-Convert to improper fractions first:
-2\\frac{1}{3} + 1\\frac{1}{4} = \\frac{7}{3} + \\frac{5}{4} = \\frac{28 + 15}{12} = \\frac{43}{12} = 3\\frac{7}{12}
-
-### **Multiplying Mixed Fractions**
-Convert to improper fractions:
-2\\frac{1}{3} × 1\\frac{1}{4} = \\frac{7}{3} × \\frac{5}{4} = \\frac{35}{12} = 2\\frac{11}{12}
-
----
-
-## 🧠 Simplification Techniques
-
-### **1. Common Factor Cancellation**
-Cancel common factors before multiplying:
-
-**Example:**
-\\frac{2}{3} × \\frac{9}{10} × \\frac{5}{4} = \\frac{2 × 9 × 5}{3 × 10 × 4} = \\frac{2 × 3 × 5}{3 × 2 × 4} = \\frac{5}{4}
-
-### **2. LCM for Addition/Subtraction**
-Find LCM of denominators to add/subtract:
-
-**Example:**
-\\frac{1}{2} + \\frac{1}{3} + \\frac{1}{4} = \\frac{6 + 4 + 3}{12} = \\frac{13}{12} = 1\\frac{1}{12}
-
-### **3. Cross Multiplication**
-For comparing fractions: a/b vs c/d
-If a×d > b×c, then a/b > c/d
-
-### **4. Reciprocal Method**
-For division: flip the second fraction and multiply
-
----
-
-## 🎯 Word Problems with Fractions
-
-### **Part of a Whole**
-If a pizza is divided into 8 equal slices and John eats 3 slices, what fraction did he eat?
-**Answer:** \\frac{3}{8}
-
-### **Addition Problems**
-Mary has \\frac{2}{5} of a cake and Peter has \\frac{1}{3} of the same cake. How much do they have together?
-**Answer:** \\frac{2}{5} + \\frac{1}{3} = \\frac{6 + 5}{15} = \\frac{11}{15}
-
-### **Division Problems**
-If 5 workers complete \\frac{2}{3} of a job in one day, how much does one worker complete?
-**Answer:** \\frac{2}{3} ÷ 5 = \\frac{2}{15}
-
----
-
-## 🚨 Common Mistakes to Avoid
-
-### ❌ **Adding Without Common Denominator**
 \`\`\`
-Wrong: \\frac{1}{2} + \\frac{1}{3} = \\frac{2}{5}
-Right: \\frac{1}{2} + \\frac{1}{3} = \\frac{3 + 2}{6} = \\frac{5}{6}
+84 ÷ 2 = 42
+42 ÷ 2 = 21
+21 ÷ 3 = 7
+7 ÷ 7 = 1
+
+∴ 84 = 2 × 2 × 3 × 7 = 2² × 3¹ × 7¹
 \`\`\`
 
-### ❌ **Multiplying Instead of Dividing**
+### 2. **Factor Tree Method**
+Draw a tree structure to break down the number.
+
+**Example**: Prime factorize 120
+
 \`\`\`
-Wrong: \\frac{2}{3} ÷ \\frac{4}{5} = \\frac{2 × 4}{3 × 5} = \\frac{8}{15}
-Right: \\frac{2}{3} ÷ \\frac{4}{5} = \\frac{2}{3} × \\frac{5}{4} = \\frac{10}{12} = \\frac{5}{6}
+        120
+       /    \\
+      2      60
+            /  \\
+           2    30
+               /  \\
+              2    15
+                  /  \\
+                 3    5
+
+∴ 120 = 2 × 2 × 2 × 3 × 5 = 2³ × 3¹ × 5¹
 \`\`\`
 
-### ❌ **Wrong Reciprocal**
-\`\`\`
-Wrong: \\frac{3}{4} ÷ 2 = \\frac{3}{4} × \\frac{1}{2} = \\frac{3}{8}
-Right: \\frac{3}{4} ÷ 2 = \\frac{3}{4} × \\frac{1}{2} = \\frac{3}{8} ✓
-\`\`\`
-
-### ❌ **Mixed Fraction Conversion**
-\`\`\`
-Wrong: 2\\frac{1}{3} = \\frac{2}{3}
-Right: 2\\frac{1}{3} = \\frac{7}{3}
-\`\`\`
+### 3. **Shortcut Method for Large Numbers**
+- First check divisibility by small primes (2, 3, 5, 7, 11...)
+- Use divisibility rules to speed up the process
 
 ---
 
-## 🎯 Practice Problems
+## 🧠 Prime Factorization Tricks
 
-### **Simple Fractions:**
-1. \\frac{2}{3} + \\frac{1}{4} = ?
-2. \\frac{5}{6} - \\frac{1}{3} = ?
-3. \\frac{3}{4} × \\frac{2}{5} = ?
-4. \\frac{2}{3} ÷ \\frac{4}{5} = ?
+### Trick 1: **Check Small Primes First**
+Always start with 2, then 3, 5, 7, 11, 13, etc.
 
-### **Mixed Fractions:**
-1. 2\\frac{1}{3} + 1\\frac{1}{4} = ?
-2. 3\\frac{1}{2} - 1\\frac{2}{3} = ?
-3. 2\\frac{1}{3} × 1\\frac{1}{4} = ?
+### Trick 2: **Use Divisibility Rules**
+- For 2: Check if even
+- For 3: Sum of digits divisible by 3
+- For 5: Ends with 0 or 5
+- For 9: Sum of digits divisible by 9
 
-### **Complex Fractions:**
-1. \\frac{\\frac{1}{2} + \\frac{1}{3}}{\\frac{1}{4}} = ?
-2. \\frac{2}{\\frac{3}{4}} = ?
+### Trick 3: **Pair Factors Efficiently**
+For large numbers, work with factor pairs.
 
-### **Word Problems:**
-1. A rope of length 5\\frac{1}{2} meters is cut into 3 equal pieces. What is the length of each piece?
-2. John ate \\frac{3}{8} of a pizza and Mary ate \\frac{1}{4}. How much pizza is left?
+**Example**: Factorize 391
+- 391 ÷ 17 = 23
+- So 391 = 17 × 23
 
-**Answers:**
-Simple: \\frac{11}{12}, \\frac{3}{6}=\\frac{1}{2}, \\frac{3}{10}, \\frac{5}{6}
-Mixed: 3\\frac{7}{12}, 1\\frac{5}{6}, 2\\frac{11}{12}
-Complex: 3\\frac{1}{3}, 2\\frac{2}{3}
-Word: 1\\frac{5}{6} meters, \\frac{3}{8}
+### Trick 4: **Prime Factorization of Powers**
+For perfect powers, factorize the base first.
+
+**Example**: 512 = 2¹⁰ = (2²)⁵ = 4⁵
+But better: 512 = 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 = 2¹⁰
 
 ---
 
-## 🎓 Pro Tips for Exams
+## 🎯 Applications of Prime Factorization
 
-1. **Always find LCM** for addition/subtraction of unlike fractions
-2. **Cancel common factors** before multiplying to simplify calculations
-3. **Convert mixed to improper** for complex operations
-4. **Use reciprocals** for division problems
-5. **Simplify final answers** by dividing numerator and denominator by GCD
-6. **Check reasonableness** - improper fractions should give answers > 1
+### 1. **Finding HCF (Highest Common Factor)**
+Take the minimum powers of common prime factors.
 
-Master fractions and you'll excel in quantitative aptitude problems! 🏆`
+**Example**: Find HCF of 84 and 90
+\`\`\`
+84 = 2² × 3¹ × 7¹
+90 = 2¹ × 3² × 5¹
+
+Common factors: 2¹ × 3¹ = 6
+∴ HCF(84, 90) = 6
+\`\`\`
+
+### 2. **Finding LCM (Least Common Multiple)**
+Take the maximum powers of all prime factors.
+
+**Example**: Find LCM of 84 and 90
+\`\`\`
+84 = 2² × 3¹ × 7¹
+90 = 2¹ × 3² × 5¹
+
+Maximum powers: 2² × 3² × 5¹ × 7¹ = 4 × 9 × 5 × 7 = 1260
+∴ LCM(84, 90) = 1260
+\`\`\`
+
+### 3. **Number of Factors**
+Formula: If n = p₁^a × p₂^b × p₃^c × ...
+Then number of factors = (a+1) × (b+1) × (c+1) × ...
+
+**Example**: Factors of 84 = 2² × 3¹ × 7¹
+Number of factors = (2+1) × (1+1) × (1+1) = 3 × 2 × 2 = 12
+
+### 4. **Sum of Factors**
+Formula: Sum = [(p₁^(a+1)-1)/(p₁-1)] × [(p₂^(b+1)-1)/(p₂-1)] × ...
+
+**Example**: Sum of factors of 84
+= [(2³-1)/(2-1)] × [(3²-1)/(3-1)] × [(7²-1)/(7-1)]
+= (8-1)/1 × (9-1)/2 × (49-1)/6
+= 7 × 4 × 8 = 224
+
+---
+
+## 🔍 Special Cases and Patterns
+
+### 1. **Prime Numbers**
+A prime number has only one prime factor: itself.
+
+**Example**: 17 = 17¹
+
+### 2. **Perfect Squares**
+Numbers with even exponents in prime factorization.
+
+**Example**: 36 = 2² × 3² (perfect square)
+**Example**: 48 = 2⁴ × 3¹ (not a perfect square)
+
+### 3. **Perfect Cubes**
+Numbers with exponents divisible by 3.
+
+**Example**: 27 = 3³ (perfect cube)
+**Example**: 24 = 2³ × 3¹ (not a perfect cube)
+
+### 4. **Highly Composite Numbers**
+Numbers with many factors.
+
+**Example**: 60 = 2² × 3¹ × 5¹ has 12 factors
+**Example**: 120 = 2³ × 3¹ × 5¹ has 16 factors
+
+---
+
+## 🎯 Problem Solving Techniques
+
+### Technique 1: **Quick Prime Factorization**
+**Steps**:
+1. Check divisibility by 2
+2. Check divisibility by 3 (sum of digits)
+3. Check divisibility by 5
+4. Try primes: 7, 11, 13, 17, 19, etc.
+5. For large factors, use factor pairs
+
+### Technique 2: **Factorization by Grouping**
+For quadratic expressions: ax² + bx + c
+
+**Example**: Factorize x² + 5x + 6
+= (x + 2)(x + 3)
+
+### Technique 3: **Difference of Squares**
+a² - b² = (a - b)(a + b)
+
+**Example**: 25 - 9 = 16 = 4²
+25 - 9 = (5)² - (3)² = (5-3)(5+3) = 2 × 8 = 16
+
+---
+
+## 📝 Common Mistakes to Avoid
+
+### Mistake 1: **Forgetting to Check All Primes**
+Always continue dividing until you reach 1.
+
+### Mistake 2: **Wrong Order in Factor Tree**
+The order doesn't matter, but be systematic.
+
+### Mistake 3: **Missing Prime Factors**
+Double-check that all factors are prime.
+
+### Mistake 4: **Incorrect Exponent Calculation**
+Count the number of times each prime divides the number.
+
+---
+
+## 🎯 Practice Examples
+
+### Example 1: Basic Factorization
+Factorize 126:
+126 ÷ 2 = 63
+63 ÷ 3 = 21
+21 ÷ 3 = 7
+7 ÷ 7 = 1
+∴ 126 = 2¹ × 3² × 7¹
+
+### Example 2: Large Number
+Factorize 391:
+391 ÷ 17 = 23
+∴ 391 = 17¹ × 23¹
+
+### Example 3: Perfect Square
+Factorize 225:
+225 ÷ 5 = 45
+45 ÷ 5 = 9
+9 ÷ 3 = 3
+3 ÷ 3 = 1
+∴ 225 = 3² × 5²
+
+Master prime factorization and you'll unlock the secrets of number theory! 🔓`
 };
+

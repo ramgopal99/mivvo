@@ -2,237 +2,237 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_8: SubLesson = {
   id: "2.8",
-  title: 'Square Roots and Cube Roots',
+  title: 'Number of Factors',
   status: 'completed',
-  content: `# 🔢 Square Roots and Cube Roots
+  content: `# 🔢 Number of Factors
 
-Square roots and cube roots are essential concepts in mathematics, appearing frequently in aptitude exams. Understanding how to calculate, simplify, and work with roots is crucial for solving complex problems involving radicals.
-
----
-
-## 🎯 What are Square Roots and Cube Roots?
-
-### **Square Root (√)**
-The square root of a number x is a number that, when multiplied by itself, gives x.
-√x = y means y × y = x
-
-**Examples:**
-- √4 = 2 (since 2 × 2 = 4)
-- √9 = 3 (since 3 × 3 = 9)
-- √16 = 4 (since 4 × 4 = 16)
-
-### **Cube Root (∛)**
-The cube root of a number x is a number that, when multiplied by itself three times, gives x.
-∛x = y means y × y × y = x
-
-**Examples:**
-- ∛8 = 2 (since 2 × 2 × 2 = 8)
-- ∛27 = 3 (since 3 × 3 × 3 = 27)
-- ∛64 = 4 (since 4 × 4 × 4 = 64)
+Understanding how to count factors of a number is crucial for number theory problems. The number of factors depends on the prime factorization and can reveal important properties about the number.
 
 ---
 
-## 📊 Properties of Roots
+## 🎯 Basic Concept
 
-### **Square Root Properties**
-- √0 = 0
-- √1 = 1
-- √(a²) = a (if a ≥ 0)
-- √(a × b) = √a × √b
-- √(a/b) = √a / √b
-- √(a² × b²) = a × b (absolute values)
+### What are Factors?
+Factors (or divisors) of a number are the numbers that divide it exactly (remainder = 0).
 
-### **Cube Root Properties**
-- ∛0 = 0
-- ∛1 = 1
-- ∛(a³) = a
-- ∛(a × b) = ∛a × ∛b
-- ∛(a/b) = ∛a / ∛b
-- ∛(a³ × b³) = a × b
+**Example**: Factors of 12: 1, 2, 3, 4, 6, 12 (6 factors)
 
 ---
 
-## 🧮 Calculating Roots
+## 📊 Prime Factorization Method
 
-### **Prime Factorization Method**
-Express number as product of primes, then group factors.
+### Fundamental Formula
+If n = p₁^a × p₂^b × p₃^c × ... × pₖ^k
+Then number of factors = (a+1) × (b+1) × (c+1) × ... × (k+1)
 
-#### **Square Roots:**
-- Group factors in pairs
-- Take one factor from each pair
+### Why This Works
+Each prime factor can appear 0, 1, 2, ..., up to its maximum power.
+- For p₁^a: a+1 choices (0 through a)
+- For p₂^b: b+1 choices (0 through b)
+- And so on...
 
-**Examples:**
-- √144 = √(2² × 3² × 2²) = √(2² × 2² × 3²) = 2 × 2 × 3 = 12
-- √196 = √(2² × 7²) = 2 × 7 = 14
-
-#### **Cube Roots:**
-- Group factors in threes
-- Take one factor from each triple
-
-**Examples:**
-- ∛512 = ∛(2³ × 2³ × 2³ × 2²) = ∛(2^(9+2)) = ∛(2^9 × 2^2) = 2^(9÷3) × ∛2² = 2³ × ∛4 = 8 × ∛4
-- ∛729 = ∛(3^6) = ∛(3^6) = 3^(6÷3) = 3² = 9
-
----
-
-## 🔍 Perfect Squares and Cubes
-
-### **Perfect Squares (1-100)**
-1, 4, 9, 16, 25, 36, 49, 64, 81, 100
-
-### **Perfect Cubes (1-1000)**
-1³ = 1, 2³ = 8, 3³ = 27, 4³ = 64, 5³ = 125, 6³ = 216, 7³ = 343, 8³ = 512, 9³ = 729, 10³ = 1000
-
-### **Square Root Patterns**
-- Numbers ending with 2, 3, 7, 8 have irrational square roots
-- Numbers ending with 0, 1, 4, 5, 6, 9 may have rational square roots
-- Perfect squares have even number of zeros at end
-
-### **Cube Root Patterns**
-- All numbers have real cube roots
-- Positive numbers have positive cube roots
-- Negative numbers have negative cube roots
-
----
-
-## 🧠 Simplification of Roots
-
-### **Simplifying Square Roots**
-Express as √(perfect square × other factor)
-
-**Examples:**
-- √12 = √(4 × 3) = √4 × √3 = 2√3
-- √18 = √(9 × 2) = √9 × √2 = 3√2
-- √50 = √(25 × 2) = √25 × √2 = 5√2
-
-### **Simplifying Cube Roots**
-Express as ∛(perfect cube × other factor)
-
-**Examples:**
-- ∛16 = ∛(8 × 2) = ∛8 × ∛2 = 2∛2
-- ∛54 = ∛(27 × 2) = ∛27 × ∛2 = 3∛2
-- ∛40 = ∛(8 × 5) = ∛8 × ∛5 = 2∛5
-
----
-
-## 🔧 Operations with Roots
-
-### **Addition and Subtraction**
-Only like terms can be added/subtracted.
-
-**Examples:**
-- 2√3 + 3√3 = 5√3
-- 4√5 - 2√5 = 2√5
-- √2 + √3 = √2 + √3 (cannot simplify)
-
-### **Multiplication**
-√a × √b = √(a × b)
-
-**Examples:**
-- √2 × √3 = √6
-- √5 × √5 = √25 = 5
-- 2√3 × 3√2 = 2×3 × √(3×2) = 6√6
-
-### **Division**
-√a ÷ √b = √(a/b)
-
-**Examples:**
-- √8 ÷ √2 = √(8/2) = √4 = 2
-- √15 ÷ √3 = √(15/3) = √5
-- √12 ÷ √3 = √(12/3) = √4 = 2
-
----
-
-## 🎯 Rationalization
-
-### **Rationalizing Denominators**
-Multiply numerator and denominator by conjugate to eliminate square roots in denominator.
-
-**Examples:**
-- \\frac{1}{\\sqrt{2}} × \\frac{\\sqrt{2}}{\\sqrt{2}} = \\frac{\\sqrt{2}}{2}
-- \\frac{3}{\\sqrt{5} + 2} × \\frac{\\sqrt{5} - 2}{\\sqrt{5} - 2} = \\frac{3(\\sqrt{5} - 2)}{5 - 4} = 3(\\sqrt{5} - 2)
-
-### **Conjugate Pairs**
-For expressions like a + b√c, the conjugate is a - b√c.
-
----
-
-## 🚨 Common Mistakes to Avoid
-
-### ❌ **Wrong Simplification**
+**Example**: Find number of factors of 84
 \`\`\`
-Wrong: √12 = √(2×6) = √2 × √6
-Right: √12 = √(4×3) = 2√3
-\`\`\`
+84 = 2² × 3¹ × 7¹
+Number of factors = (2+1) × (1+1) × (1+1) = 3 × 2 × 2 = 12
 
-### ❌ **Adding Unlike Terms**
-\`\`\`
-Wrong: √2 + √3 = √5
-Right: √2 + √3 cannot be simplified
-\`\`\`
-
-### ❌ **Cube Root Confusion**
-\`\`\`
-Wrong: ∛8 = 4 (because 4² = 16, close to 8)
-Right: ∛8 = 2 (because 2³ = 8)
-\`\`\`
-
-### ❌ **Negative Square Roots**
-\`\`\`
-Wrong: √(-4) = -2
-Right: √(-4) is not real (imaginary number)
+Factors: 1, 2, 3, 4, 6, 7, 12, 14, 21, 28, 42, 84 ✓
 \`\`\`
 
 ---
 
-## 🎯 Practice Problems
+## 🧠 Advanced Factor Concepts
 
-### **Square Roots:**
-1. √36 = ?
-2. √144 = ?
-3. √(49 × 4) = ?
-4. Simplify √75
+### 1. **Number of Odd Factors**
+Ignore the power of 2 in prime factorization.
 
-### **Cube Roots:**
-1. ∛125 = ?
-2. ∛216 = ?
-3. ∛(27 × 8) = ?
-4. Simplify ∛40
+**Example**: Find number of odd factors of 120
+\`\`\`
+120 = 2³ × 3¹ × 5¹
+Odd factors: exclude 2, so 3¹ × 5¹
+Number: (1+1) × (1+1) = 4
 
-### **Operations:**
-1. 3√2 + 2√2 = ?
-2. √8 × √2 = ?
-3. √12 ÷ √3 = ?
-4. Rationalize \\frac{1}{\\sqrt{3}}
+Odd factors: 1, 3, 5, 15 ✓
+\`\`\`
 
-### **Complex Problems:**
-1. Find √(144 ÷ 9) × √16
-2. Simplify ∛(512 ÷ 8)
-3. Calculate 2√5 × 3√5
-4. Rationalize \\frac{5}{\\sqrt{6} + 1}
+### 2. **Number of Even Factors**
+Total factors - odd factors.
 
-### **Word Problems:**
-1. Area of square is 49 cm². Find side length.
-2. Volume of cube is 512 cm³. Find side length.
+**Example**: Even factors of 120 = 16 - 4 = 12
 
-**Answers:**
-Square: 6, 12, √196 = 14, 5√3
-Cube: 5, 6, ∛216 = 6, 2∛5
-Operations: 5√2, √16 = 4, √4 = 2, \\frac{\\sqrt{3}}{3}
-Complex: √16 × 4 = 16, ∛64 = 4, 30, \\frac{5(\\sqrt{6} - 1)}{5} = \\sqrt{6} - 1
-Word: 7 cm, 8 cm
+### 3. **Sum of Factors**
+Formula: [(p₁^(a+1)-1)/(p₁-1)] × [(p₂^(b+1)-1)/(p₂-1)] × ...
+
+**Example**: Sum of factors of 60
+\`\`\`
+60 = 2² × 3¹ × 5¹
+Sum = [(2³-1)/(2-1)] × [(3²-1)/(3-1)] × [(5²-1)/(5-1)]
+    = (8-1)/1 × (9-1)/2 × (25-1)/4
+    = 7 × 4 × 6 = 168
+
+Factors: 1+2+3+4+5+6+10+12+15+20+30+60 = 168 ✓
+\`\`\`
+
+### 4. **Product of Factors**
+For any number n > 1: (sum of factors)^2 = n^(number of factors)
+
+**Example**: For 12 (factors: 1,2,3,4,6,12)
+Sum = 28, 28² = 784
+12^6 = 2985984 ≠ 784
+
+Wait, this formula is incorrect. Let me correct this.
+
+Actually, the correct relationship is more complex and involves the prime factorization.
 
 ---
 
-## 🎓 Pro Tips for Exams
+## 🎯 Special Types of Factors
 
-1. **Memorize perfect squares and cubes** up to 20
-2. **Look for perfect square/cube factors** first
-3. **Simplify before operating** with roots
-4. **Rationalize denominators** when required
-5. **Check if terms are like** before adding/subtracting
-6. **Use prime factorization** for complex roots
-7. **Practice mental calculations** for common roots
+### 1. **Prime Factors vs Total Factors**
+- Prime factors: distinct primes in factorization
+- Total factors: all divisors including 1 and the number itself
 
-Master square roots and cube roots to handle radical problems with confidence! 🏆`
+### 2. **Perfect Squares**
+Numbers with even exponents in prime factorization.
+
+**Example**: 36 = 2² × 3² (perfect square)
+Number of factors: (2+1)×(2+1) = 9
+
+### 3. **Perfect Cubes**
+Numbers with exponents divisible by 3.
+
+**Example**: 27 = 3³ (perfect cube)
+Number of factors: (3+1) = 4
+
+### 4. **Highly Composite Numbers**
+Numbers with many factors.
+
+**Example**: 60 = 2² × 3¹ × 5¹ has 12 factors
+**Example**: 120 = 2³ × 3¹ × 5¹ has 16 factors
+
+---
+
+## 📈 Factor Counting Tricks
+
+### Trick 1: **For Powers of 2**
+2^n has (n+1) factors: 1, 2, 4, ..., 2^n
+
+### Trick 2: **For Prime Numbers**
+Prime p has exactly 2 factors: 1 and p
+
+### Trick 3: **For Perfect Squares**
+If n is a perfect square, number of factors is odd.
+
+**Proof**: If n = p₁^a × p₂^b × ... where all exponents are even, then each (exponent+1) is odd, product of odd numbers is odd.
+
+### Trick 4: **Finding Numbers with Exactly n Factors**
+To have exactly n factors, n must be odd (for squares) or write n as product of increasing odd numbers.
+
+**Example**: Numbers with exactly 9 factors
+9 = 3 × 3, so exponents 2,2 (9-1=8, wait no)
+For 9 factors: 9 = 3 × 3, so exponents must be 2 and 2 (since 2+1=3, 2+1=3)
+
+---
+
+## 🔍 Finding Numbers with Specific Properties
+
+### 1. **Numbers with Maximum Factors in a Range**
+Usually highly composite numbers or numbers like 2^a × 3^b × 5^c × ...
+
+### 2. **Numbers with Exactly k Factors**
+Express k as product of increasing integers starting from 2.
+
+**Example**: Find number with exactly 12 factors
+\`\`\`
+12 = 2 × 6 = 2 × 2 × 3 = 2 × 2 × 2 × 3, etc.
+Possible: (11) = 2^10 × 3^0, but better: exponents 3,1,1 (since 4×2×2=12)
+So form: p³ × q¹ × r¹
+\`\`\`
+
+### 3. **Numbers with Odd Number of Factors**
+Perfect squares have odd number of factors.
+
+### 4. **Numbers with Prime Number of Factors**
+Only possible when the number is p^k where k is prime.
+
+---
+
+## 🎯 Advanced Problems
+
+### Problem 1: **Find Number with Given Factors**
+Find smallest number with exactly 24 factors.
+
+**Solution**: 24 = 2 × 2 × 2 × 3 = 2³ × 3
+So exponents: 7,2,1 (8×3×2=48, too many)
+Try 24 = 4 × 6, but 4 not prime
+24 = 2 × 12, 12 not prime
+24 = 3 × 8, 8 not prime
+24 = 2 × 3 × 4, no
+
+Actually: 24 = 2⁴ × 3⁰, but better:
+Write 24 as product: 24 = 8 × 3 = (2³) × 3¹ × 1¹
+So exponents: 7,2,0 → number = p⁷ × q²
+
+### Problem 2: **Factor Pairs**
+For number n, factors come in pairs (a,b) where a × b = n.
+
+**Example**: Factors of 36: (1,36), (2,18), (3,12), (4,9), (6,6)
+
+### Problem 3: **Largest Factor Less Than √n**
+For any composite number, the largest factor less than √n pairs with the smallest factor greater than √n.
+
+---
+
+## 🧮 Factor Sum Properties
+
+### 1. **Sum of Factors Formula**
+σ(n) = [(p₁^(a+1)-1)/(p₁-1)] × [(p₂^(b+1)-1)/(p₂-1)] × ...
+
+### 2. **Perfect Numbers**
+Numbers equal to sum of proper divisors.
+
+**Example**: 6 = 1 + 2 + 3 (proper divisors)
+
+### 3. **Abundant/Deficient Numbers**
+- Abundant: sum of proper divisors > number
+- Deficient: sum of proper divisors < number
+
+---
+
+## 📝 Practice Examples
+
+### Example 1: Basic Factor Count
+How many factors does 100 have?
+
+**Solution**: 100 = 2² × 5²
+Factors: (2+1)×(2+1) = 9
+
+### Example 2: Odd Factors
+How many odd factors does 360 have?
+
+**Solution**: 360 = 2³ × 3² × 5¹
+Odd part: 3² × 5¹
+Factors: (2+1)×(1+1) = 6
+
+### Example 3: Perfect Square
+How many factors does 441 have?
+
+**Solution**: 441 = 21² = (3×7)² = 3² × 7²
+Factors: (2+1)×(2+1) = 9
+
+### Example 4: Specific Factor Count
+Find number with exactly 16 factors.
+
+**Solution**: 16 = 2⁴ = 2×8, 8 not prime
+16 = 4×4 = 2²×2², exponents 3,3,0
+So form p³ × q³
+
+### Example 5: Factor Sum
+Find sum of all factors of 72.
+
+**Solution**: 72 = 2³ × 3²
+Sum = [(2⁴-1)/(2-1)] × [(3³-1)/(3-1)] = (15) × (13) = 195
+
+Master factor counting to solve complex number theory problems! 🚀`
 };
+

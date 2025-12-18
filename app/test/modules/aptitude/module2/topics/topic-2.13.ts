@@ -2,233 +2,267 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_13: SubLesson = {
   id: "2.13",
-  title: 'Sign Change Rules (+ / −)',
+  title: 'Surds & Indices (Basic)',
   status: 'completed',
-  content: `# 🔢 Sign Change Rules (+ / −)
+  content: `# 🔢 Surds & Indices (Basic)
 
-Understanding how signs behave in mathematical operations is fundamental to simplification. Sign change rules determine whether results are positive or negative based on the operations and numbers involved. Mastering these rules prevents calculation errors in aptitude exams.
-
----
-
-## 🎯 What are Sign Change Rules?
-
-**Sign change rules** govern how positive (+) and negative (-) signs interact in mathematical operations. These rules are crucial for:
-- Addition and subtraction
-- Multiplication and division
-- Powers and roots
-- Complex expressions
+Surds and indices are essential concepts in mathematics dealing with irrational roots and exponential expressions. Understanding these concepts helps simplify complex expressions and solve advanced mathematical problems.
 
 ---
 
-## 📊 Basic Sign Rules
+## 🎯 What are Surds?
 
-### **Addition and Subtraction**
+### Definition
+Surds are irrational roots of numbers that cannot be expressed as finite decimals or fractions.
 
-#### **Adding Positive and Negative Numbers**
-- **Positive + Positive = Positive**: 5 + 3 = 8
-- **Positive + Negative = Depends on magnitude**:
-  - If positive > negative: 5 + (-3) = 2
-  - If negative > positive: 3 + (-5) = -2
-- **Negative + Negative = Negative**: (-5) + (-3) = -8
+**Examples**:
+- √2 ≈ 1.414213562...
+- √3 ≈ 1.732050807...
+- ∛7 ≈ 1.912931182...
+- √(5 + 2√3) (compound surd)
 
-#### **Subtracting Numbers**
-Subtraction is addition of the negative:
-- a - b = a + (-b)
-- 5 - 3 = 5 + (-3) = 2
-- 5 - (-3) = 5 + 3 = 8
-- (-5) - 3 = (-5) + (-3) = -8
+### Types of Surds
 
----
+#### 1. **Simple Surds**
+Single irrational root: √2, ∛5, ⁴√7
 
-## 🧮 Multiplication Sign Rules
+#### 2. **Compound Surds**
+Expression with multiple surds: √(3 + 2√2)
 
-### **Two Numbers**
-- **Positive × Positive = Positive**: 3 × 4 = 12
-- **Positive × Negative = Negative**: 3 × (-4) = -12
-- **Negative × Positive = Negative**: (-3) × 4 = -12
-- **Negative × Negative = Positive**: (-3) × (-4) = 12
+#### 3. **Similar Surds**
+Surds with same irrational part: 2√3, 5√3, √3
 
-### **Three or More Numbers**
-Count the negative signs:
-- **Even negatives = Positive**: (-2) × (-3) × (-4) = +24
-- **Odd negatives = Negative**: (-2) × (-3) × 4 = -24
-
-### **Practical Examples**
-- Temperature: +5°C × (-2) hours = -10°C (cools down)
-- Money: +$100 × (-3) days = -$300 (loss over 3 days)
+#### 4. **Dissimilar Surds**
+Surds with different irrational parts: √2, √3, √5
 
 ---
 
-## 🔢 Division Sign Rules
+## 📊 Laws of Surds
 
-### **Two Numbers**
-- **Positive ÷ Positive = Positive**: 12 ÷ 3 = 4
-- **Positive ÷ Negative = Negative**: 12 ÷ (-3) = -4
-- **Negative ÷ Positive = Negative**: (-12) ÷ 3 = -4
-- **Negative ÷ Negative = Positive**: (-12) ÷ (-3) = 4
+### 1. **Multiplication**
+√a × √b = √(a × b)
 
-### **Key Points**
-- Division follows the same rules as multiplication
-- Dividing by zero is undefined
-- Zero divided by any number (except zero) is zero
+**Example**: √2 × √3 = √6
 
-### **Examples**
-- Work rate: 60 pages ÷ (-2) hours = -30 pages/hour
-- Debt: -$500 ÷ 5 months = -$100/month
+### 2. **Division**
+√a ÷ √b = √(a/b)
+
+**Example**: √8 ÷ √2 = √4 = 2
+
+### 3. **Rationalization**
+Multiply numerator and denominator by conjugate to eliminate surds.
+
+**Example**: Rationalize 1/(√2 + 1)
+\`\`\`
+Multiply by √2 - 1: (√2 - 1)/((√2 + 1)(√2 - 1)) = (√2 - 1)/(2 - 1) = √2 - 1
+\`\`\`
+
+### 4. **Power Rule**
+(√a)^n = a^(n/2)
+
+**Example**: (√2)^4 = 2^(4/2) = 2² = 4
 
 ---
 
-## 🎯 Powers and Roots Sign Rules
+## 🧮 Operations with Surds
 
-### **Even Powers**
-- **Any base to even power = Positive**: (-2)² = 4, (-3)⁴ = 81
-- **Zero to even power = Zero**: 0² = 0, 0⁴ = 0
+### 1. **Addition and Subtraction**
+Only similar surds can be added/subtracted.
 
-### **Odd Powers**
-- **Positive base to odd power = Positive**: 2³ = 8
-- **Negative base to odd power = Negative**: (-2)³ = -8
-- **Zero to odd power = Zero**: 0³ = 0
+**Example**: 3√2 + 5√2 = 8√2
+**Example**: 7√3 - 2√3 = 5√3
+**Example**: 2√2 + 3√3 (cannot be simplified)
 
-### **Square Roots**
-- **Square root of positive number = Positive**: √4 = 2 (not -2)
-- **Square root of negative number = Imaginary**: √(-4) = 2i
-- **Principal square root is always non-negative**
+### 2. **Multiplication**
+√a × √b = √(a×b)
 
-### **Even Roots of Negative Numbers**
-- **Not real**: ∛(-8) = -2 (works for odd roots)
-- **Even roots of negatives are imaginary**: ⁴√(-16) is imaginary
+**Example**: 2√3 × 3√2 = 6√6
 
----
+### 3. **Division**
+√a ÷ √b = √(a/b)
 
-## 🧠 Complex Sign Operations
+**Example**: 4√6 ÷ 2√3 = 2√2
 
-### **Order of Operations with Signs**
-Follow BODMAS, considering signs at each step.
+### 4. **Simplification**
+Express surd in simplest form.
 
-**Example:** -3 + 4 × (-2) - (-5)
-1. 4 × (-2) = -8
-2. -3 + (-8) = -11
-3. -11 - (-5) = -11 + 5 = -6
-
-### **Double Negatives**
-- **Two negatives make positive**: -(-5) = +5
-- **In equations**: x = -(-3) = 3
-
-### **Absolute Value**
-- **|x| is always non-negative**: |-5| = 5, |5| = 5
-- **|-x| = |x|**: |-3| = 3 = |3|
+**Example**: √12 = √(4×3) = 2√3
 
 ---
 
-## 🎯 Sign Rules in Equations
+## 🎯 Indices (Exponents)
 
-### **Solving Linear Equations**
-Apply sign rules when isolating variables.
+### Definition
+Indices show how many times a number is multiplied by itself.
 
-**Example:** Solve 2x - 5 = -11
-- Add 5 to both sides: 2x = -6
-- Divide by 2: x = -3
+**Notation**: a^n (a is base, n is index/power)
 
-**Example:** Solve -3x + 7 = -2
-- Subtract 7: -3x = -9
-- Divide by -3: x = 3
+### Laws of Indices
 
-### **Inequalities**
-Sign changes when multiplying/dividing by negatives.
+#### 1. **Multiplication**
+a^m × a^n = a^(m+n)
 
-**Example:** Solve -2x > 6
-- Divide by -2 (flip inequality): x < -3
+#### 2. **Division**
+a^m ÷ a^n = a^(m-n)
 
----
+#### 3. **Power of Power**
+(a^m)^n = a^(m×n)
 
-## 🚨 Common Sign Mistakes to Avoid
+#### 4. **Product Rule**
+(a×b)^n = a^n × b^n
 
-### ❌ **Wrong Multiplication Signs**
-\`\`\`
-Wrong: (-3) × (-4) = -12
-Right: (-3) × (-4) = +12
-\`\`\`
+#### 5. **Quotient Rule**
+(a/b)^n = a^n / b^n
 
-### ❌ **Division Sign Errors**
-\`\`\`
-Wrong: (-12) ÷ (-3) = -4
-Right: (-12) ÷ (-3) = +4
-\`\`\`
+#### 6. **Zero Index**
+a⁰ = 1 (a ≠ 0)
 
-### ❌ **Power Sign Confusion**
-\`\`\`
-Wrong: (-2)² = -4
-Right: (-2)² = +4
-\`\`\`
+#### 7. **Negative Index**
+a^(-n) = 1/a^n
 
-### ❌ **Double Negative Misapplication**
-\`\`\`
-Wrong: 5 - (-3) = 5 - 3 = 2
-Right: 5 - (-3) = 5 + 3 = 8
-\`\`\`
-
-### ❌ **Order of Operations with Signs**
-\`\`\`
-Wrong: -3 + 4 × -2 = -3 + 4 × -2 = -3 + -8 = -11
-Right: -3 + 4 × -2 = -3 + (4 × -2) = -3 + (-8) = -11 ✓
-\`\`\`
+#### 8. **Fractional Index**
+a^(m/n) = (a^m)^(1/n) = (a^(1/n))^m
 
 ---
 
-## 🎯 Practice Problems
+## 🧠 Problem Solving Tricks
 
-### **Basic Operations:**
-1. 5 + (-3) = ?
-2. (-4) × (-6) = ?
-3. 12 ÷ (-3) = ?
-4. (-2)³ = ?
+### Trick 1: **Simplify Surds**
+Express in simplest form by factoring out perfect squares.
 
-### **Complex Expressions:**
-1. -5 + 3 × (-2) = ?
-2. (-8) ÷ (-2) × 3 = ?
-3. 4 - (-2) × (-3) = ?
+**Example**: √28 = √(4×7) = 2√7
 
-### **Powers and Roots:**
-1. (-3)² = ?
-2. (-2)⁴ = ?
-3. √(36) = ? (principal root)
-4. ∛(-27) = ?
+### Trick 2: **Rationalize Denominators**
+Use conjugates for denominators with surds.
 
-### **Word Problems:**
-1. Temperature drops 5°C per hour for 3 hours. Change?
-2. Bank balance -$200, deposit $150. New balance?
-3. Investment loses $300 over 4 months. Monthly loss?
-4. Runner completes 5 laps of -400m track. Distance?
+**Example**: √2 / (√3 + 1)
+\`\`\`
+Multiply by √3 - 1: (√2(√3 - 1))/(3 - 1) = (√6 - √2)/2
+\`\`\`
 
-### **Equations:**
-1. Solve: -2x + 5 = -7
-2. Solve: 3x - (-4) = 10
-3. Solve: -x ÷ 2 = -6
+### Trick 3: **Compare Surds**
+Convert to decimal or use known values.
 
-### **Inequalities:**
-1. Solve: -3x > 9
-2. Solve: 2x - (-1) ≤ 5
+**Example**: Compare √2 and √3
+√2 ≈ 1.41, √3 ≈ 1.73, so √2 < √3
 
-**Answers:**
-Basic: 2, 24, -4, -8
-Complex: -11, 12, 4 + 6 = 10
-Powers: 9, 16, 6, -3
-Word: -15°C, -$50, -$75, -2000m
-Equations: x=6, x=2, x=12
-Inequalities: x<-3, x≤3
+### Trick 4: **Solve Surd Equations**
+Square both sides carefully.
+
+**Example**: Solve √(x+1) = 3
+Square: x+1 = 9 → x = 8
+
+**Example**: Solve √(x+1) + √(x-1) = 2
+Square: x+1 + x-1 + 2√((x+1)(x-1)) = 4
+2x + 2√(x²-1) = 4
+x + √(x²-1) = 2
+Square again: x² + (x²-1) + 2x√(x²-1) = 4
+2x² - 1 + 2x√(x²-1) = 4
+2x² + 2x√(x²-1) = 5
 
 ---
 
-## 🎓 Pro Tips for Exams
+## 📊 Advanced Surd Concepts
 
-1. **Remember multiplication rules**: Negative × Negative = Positive
-2. **Count negative signs** in products with multiple numbers
-3. **Be careful with division** - same rules as multiplication
-4. **Watch for double negatives** - they make positive
-5. **Even powers are always positive** (except zero)
-6. **Odd powers keep the sign** of the base
-7. **Practice mental calculations** with signs
-8. **Check reasonableness** of signed answers
+### 1. **Pure Surds**
+Cannot be simplified: √2, √3, √5
 
-Master sign change rules to avoid calculation errors and solve problems confidently! 🏆`
+### 2. **Mixed Surds**
+Can be simplified: √12 = 2√3
+
+### 3. **Binomial Surds**
+Expressions like √a ± √b
+
+### 4. **Conjugate Surds**
+Pairs like √a + √b and √a - √b
+
+---
+
+## 🎯 Applications in Aptitude
+
+### 1. **Geometry Problems**
+**Example**: Diagonal of square with side √2 is 2.
+
+### 2. **Trigonometry**
+**Example**: sin45° = cos45° = 1/√2 = √2/2
+
+### 3. **Complex Calculations**
+**Example**: Simplify (√3 + 1)(√3 - 1) = 3 - 1 = 2
+
+### 4. **Equation Solving**
+**Example**: Solve √(2x+3) - √(x+1) = 1
+
+---
+
+## 🔍 Special Cases
+
+### 1. **Square Root of Negative Numbers**
+Imaginary numbers: √(-4) = 2i
+
+### 2. **Higher Order Roots**
+∛(-8) = -2, ⁴√16 = 2
+
+### 3. **Surd Conjugates**
+(√a + √b)(√a - √b) = a - b
+
+### 4. **Perfect Powers**
+Numbers that are perfect squares, cubes, etc.
+
+---
+
+## 🧮 Surd Identities
+
+### 1. **(√a + √b)² = a + b + 2√(ab)**
+**Example**: (√2 + √3)² = 2 + 3 + 2√6 = 5 + 2√6
+
+### 2. **(√a - √b)² = a + b - 2√(ab)**
+**Example**: (√5 - √2)² = 5 + 2 - 2√10 = 7 - 2√10
+
+### 3. **(a + √b)(a - √b) = a² - b**
+**Example**: (3 + √2)(3 - √2) = 9 - 2 = 7
+
+### 4. **Rationalization Factor**
+Multiply by conjugate to rationalize.
+
+---
+
+## 📝 Practice Examples
+
+### Example 1: Simplify Surds
+Simplify √75 + √12 - √27
+
+**Solution**: √(25×3) + √(4×3) - √(9×3) = 5√3 + 2√3 - 3√3 = 4√3
+
+### Example 2: Rationalize
+Rationalize 1/(2 + √3)
+
+**Solution**: Multiply by 2 - √3:
+(2 - √3)/((2 + √3)(2 - √3)) = (2 - √3)/(4 - 3) = 2 - √3
+
+### Example 3: Operations
+Simplify (3√2 + 2√3)(√2 - √3)
+
+**Solution**: 3√2×√2 + 3√2×(-√3) + 2√3×√2 + 2√3×(-√3)
+= 3×2 + 3(-√6) + 2√6 + 2(-3)
+= 6 - 3√6 + 2√6 - 6
+= (6 - 6) + (-3√6 + 2√6) = -√6
+
+### Example 4: Equation
+Solve √(x+4) - √x = 2
+
+**Solution**: Square both sides: x+4 - x + 2√(x(x+4)) = 4
+4 + 2√(x²+4x) = 4
+2√(x²+4x) = 0
+√(x²+4x) = 0
+x²+4x = 0
+x(x+4) = 0
+x = 0 or x = -4 (reject)
+
+### Example 5: Indices
+Simplify (2^3 × 3^2)^2 ÷ (2^2 × 3^3)
+
+**Solution**: (2^6 × 3^4) ÷ (2^2 × 3^3) = 2^(6-2) × 3^(4-3) = 2^4 × 3^1 = 16 × 3 = 48
+
+Master surds and indices to simplify complex mathematical expressions! 🚀`
 };
+
