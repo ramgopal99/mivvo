@@ -4,27 +4,18 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { getCourseDisplayName, getAvailableCourses } from './config';
-import { Code, BookOpen, Users } from 'lucide-react';
+import { Code, Users } from 'lucide-react';
 
 export default function TestHomePage() {
   const router = useRouter();
-  const availableLanguages = getAvailableCourses();
+  const availableCourses = getAvailableCourses();
 
-  const handleLanguageSelect = (language: string) => {
-    router.push(`/test/${language}`);
+  const handleCourseSelect = (course: string) => {
+    router.push(`/test/${course}`);
   };
 
-  const getLanguageIcon = (language: string) => {
-    switch (language.toLowerCase()) {
-      case 'python':
-        return <Code className="w-8 h-8 text-blue-500" />;
-      case 'java':
-        return <BookOpen className="w-8 h-8 text-orange-500" />;
-      case 'javascript':
-        return <Code className="w-8 h-8 text-yellow-500" />;
-      default:
-        return <Code className="w-8 h-8 text-gray-500" />;
-    }
+  const getCourseIcon = () => {
+    return <Code className="w-8 h-8 text-blue-500" />;
   };
 
   return (
@@ -40,23 +31,23 @@ export default function TestHomePage() {
           </p>
         </div>
 
-        {/* Language Cards Grid */}
+        {/* Course Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {availableLanguages.map((language) => (
+          {availableCourses.map((course) => (
             <Card
-              key={language}
+              key={course}
               className="cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 border-2 hover:border-primary/50"
-              onClick={() => handleLanguageSelect(language)}
+              onClick={() => handleCourseSelect(course)}
             >
               <CardHeader className="text-center pb-4">
                 <div className="flex justify-center mb-4">
-                  {getLanguageIcon(language)}
+                  {getCourseIcon()}
                 </div>
                 <CardTitle className="text-2xl capitalize">
-                  {getCourseDisplayName(language)}
+                  {getCourseDisplayName(course)}
                 </CardTitle>
                 <CardDescription className="text-base">
-                  Learn {language} programming with hands-on exercises
+                  Learn {course} programming with hands-on exercises
                 </CardDescription>
               </CardHeader>
               <CardContent className="text-center">
@@ -65,10 +56,10 @@ export default function TestHomePage() {
                   className="w-full"
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleLanguageSelect(language);
+                    handleCourseSelect(course);
                   }}
                 >
-                  Start {language.charAt(0).toUpperCase() + language.slice(1)} Course
+                  Start {course.charAt(0).toUpperCase() + course.slice(1)} Course
                 </Button>
               </CardContent>
             </Card>
@@ -79,7 +70,7 @@ export default function TestHomePage() {
         <div className="mt-16 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted rounded-full text-sm text-muted-foreground">
             <Users className="w-4 h-4" />
-            Interactive learning platform • Multiple programming languages • Hands-on exercises
+            Interactive learning platform • Multiple programming courses • Hands-on exercises
           </div>
         </div>
       </div>

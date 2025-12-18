@@ -20,10 +20,10 @@ interface SelectedTopic {
   moduleTitle: string;
 }
 
-export default function LanguagePage() {
+export default function CoursePage() {
   const params = useParams();
-  const language = params.language as string;
-  const [isValidLanguage, setIsValidLanguage] = useState<boolean | null>(null);
+  const course = params.courses as string;
+  const [isValidCourse, setIsValidCourse] = useState<boolean | null>(null);
   const [modules, setModules] = useState<any[]>([]);
   const [headerData, setHeaderData] = useState<any>(null);
   const [selectedTopic, setSelectedTopic] = useState<SelectedTopic | null>(null);
@@ -31,25 +31,25 @@ export default function LanguagePage() {
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    // Check if the language is valid
-    const valid = isCourseAvailable(language);
-    setIsValidLanguage(valid);
+    // Check if the course is valid
+    const valid = isCourseAvailable(course);
+    setIsValidCourse(valid);
 
-    // If invalid language, redirect to home
+    // If invalid course, redirect to home
     if (valid === false) {
       window.location.href = '/test';
       return;
     }
 
-    // Load modules and header data when language is valid
+    // Load modules and header data when course is valid
     const loadDataAsync = async () => {
       try {
-        // Load modules for the specified language
-        const loadedModules = await loadModules(language);
+        // Load modules for the specified course
+        const loadedModules = await loadModules(course);
         setModules(loadedModules);
 
-        // Load header data for the specified language
-        const loadedHeaderData = getHeaderData(language);
+        // Load header data for the specified course
+        const loadedHeaderData = getHeaderData(course);
         setHeaderData(loadedHeaderData);
 
         // Auto-select the first lesson after modules are loaded
@@ -62,37 +62,37 @@ export default function LanguagePage() {
           });
         }
       } catch (error) {
-        console.error(`Error loading ${language} modules:`, error);
+        console.error(`Error loading ${course} modules:`, error);
       }
     };
 
     if (valid === true) {
       loadDataAsync();
     }
-  }, [language]);
+  }, [course]);
 
-  // Show loading while checking language validity or loading data
-  if (isValidLanguage === null || (isValidLanguage === true && (!headerData || modules.length === 0))) {
-    const loadingMessage = isValidLanguage === null
+  // Show loading while checking course validity or loading data
+  if (isValidCourse === null || (isValidCourse === true && (!headerData || modules.length === 0))) {
+    const loadingMessage = isValidCourse === null
       ? "Checking course availability..."
-      : `Loading ${language} modules...`;
+      : `Loading ${course} modules...`;
 
     return (
       <div className="h-screen w-full bg-background flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-xl font-semibold mb-2">
-            {isValidLanguage === null ? "Loading..." : `Loading ${language} modules...`}
+            {isValidCourse === null ? "Loading..." : `Loading ${course} modules...`}
           </h2>
           <p className="text-muted-foreground">
-            {isValidLanguage === null ? "Checking course availability." : "Please wait while we load the content."}
+            {isValidCourse === null ? "Checking course availability." : "Please wait while we load the content."}
           </p>
         </div>
       </div>
     );
   }
 
-  // Don't render if language is invalid (will redirect)
-  if (isValidLanguage === false) {
+  // Don't render if course is invalid (will redirect)
+  if (isValidCourse === false) {
     return null;
   }
 
@@ -213,12 +213,12 @@ export default function LanguagePage() {
             onAI={handleAI}
             isChatOpen={isChatOpen}
             onCloseChat={() => setIsChatOpen(false)}
-            language={language}
+            language={course}
           />
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={45} minSize={25}>
-          <RightSection language={language} />
+          <RightSection language={course} />
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>

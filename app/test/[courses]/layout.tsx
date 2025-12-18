@@ -1,9 +1,16 @@
 import { Metadata } from 'next';
+import { getCourseDisplayName } from '../config';
 
-export const metadata: Metadata = {
-  title: 'Python Learning Platform - Test',
-  description: 'Interactive Python learning platform with hands-on exercises',
-};
+export async function generateMetadata({ params }: { params: Promise<{ courses: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const courseName = resolvedParams.courses;
+  const displayName = getCourseDisplayName(courseName);
+
+  return {
+    title: `${displayName} Learning Platform - Test`,
+    description: `Interactive ${courseName} learning platform with hands-on exercises`,
+  };
+}
 
 export default function TestLayout({
   children,
@@ -16,7 +23,7 @@ export default function TestLayout({
       <div className="hidden lg:block h-full">
         {children}
       </div>
-      
+
       {/* Mobile/Tablet View - Show message */}
       <div className="lg:hidden h-full flex items-center justify-center p-8">
         <div className="text-center max-w-md mx-auto">
