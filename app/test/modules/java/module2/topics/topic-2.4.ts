@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_4: SubLesson = {
-  id: 2.4,
+  id: "2.4",
   title: 'Loops',
   status: 'completed',
   content: `# 🔧 Methods in Java
@@ -487,3 +487,4 @@ public class InfiniteRecursion {
 
 Methods are the building blocks of Java programs. Master method creation, calling, and best practices to write clean, maintainable code! 🔧`
 };
+

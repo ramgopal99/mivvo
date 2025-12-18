@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_1: SubLesson = {
-  id: 6.1,
+  id: "6.1",
   title: 'What are Dictionaries?',
   status: 'demo',
   content: `# 📚 What are Python Dictionaries?
@@ -143,3 +143,4 @@ student_records = {
 
 Dictionaries are the backbone of Python programming - you'll use them everywhere! 🔑`
 };
+

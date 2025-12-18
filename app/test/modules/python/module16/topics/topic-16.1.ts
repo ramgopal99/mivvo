@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_1: SubLesson = {
-  id: 16.1,
+  id: "16.1",
   title: 'Python Modules and Packages',
   status: 'demo',
   content: `# 📦 Python Modules and Packages
@@ -395,3 +395,4 @@ print(mylib.is_palindrome("radar"))   # True
 
 **Modules and packages are essential for writing organized, maintainable Python code. They enable code reuse and help manage complexity in large projects! 📦**`
 };
+

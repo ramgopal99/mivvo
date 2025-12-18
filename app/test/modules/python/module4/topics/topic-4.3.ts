@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_3: SubLesson = {
-  id: 4.3,
+  id: "4.3",
   title: 'Accessing Tuple Elements',
   status: 'demo',
   content: `# 🎯 Accessing Tuple Elements
@@ -135,3 +135,4 @@ else:
 
 Accessing tuple elements works exactly like lists! 🔢`
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_1: SubLesson = {
-  id: 16.1,
+  id: "16.1",
   title: 'Advanced Java Concepts Overview',
   status: 'completed',
   content: `# 🚀 Advanced Java Concepts

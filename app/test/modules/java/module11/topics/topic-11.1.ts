@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_1: SubLesson = {
-  id: 11.1,
+  id: "11.1",
   title: 'Exception Handling Fundamentals',
   status: 'completed',
   content: `# 🚨 Exception Handling in Java
@@ -804,3 +804,4 @@ public static void test() {
 Output order: try → catch → finally (After finally not printed)
 `
 };
+

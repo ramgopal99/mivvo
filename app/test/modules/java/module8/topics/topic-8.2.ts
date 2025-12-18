@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_2: SubLesson = {
-  id: 8.2,
+  id: "8.2",
   title: 'Object Creation and Memory Management',
   status: 'completed',
   content: `# 🔧 Object Creation and Memory Management in Java
@@ -351,3 +351,4 @@ public class ResourceManagement {
 
 **Next:** Learn about constructors and initialization in detail! 🚀`
 };
+

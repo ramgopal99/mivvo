@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_3: SubLesson = {
-  id: 7.3,
+  id: "7.3",
   title: 'Final Classes and Methods',
   status: 'completed',
   content: `# 🔒 Final Classes and Methods in Java
@@ -672,3 +672,4 @@ public class FinalDocumentation {
 
 The \`final\` keyword is a powerful tool in Java that prevents inheritance and method overriding. Use it strategically to create secure, optimized, and well-designed classes that clearly communicate their immutability and extension restrictions! 🔒`
 };
+

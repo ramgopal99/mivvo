@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_10_8: Exercise = {
-  id: 10.8,
+  id: "10.8",
   title: "EXERCISE",
   status: 'completed',
   type: 'code',
@@ -470,3 +470,4 @@ benchmark_operations()`
     }
   ]
 };
+

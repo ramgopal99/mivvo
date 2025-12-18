@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_5: SubLesson = {
-  id: 12.5,
+  id: "12.5",
   title: 'What are Heaps?',
   status: 'demo',
   content: `# 🏔️ What are Heaps?
@@ -492,3 +492,4 @@ print("heapify is more efficient for initial construction!")
 
 Heaps are powerful for priority-based operations and efficient min/max access! 🏔️`
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_6: SubLesson = {
-  id: 2.6,
+  id: "2.6",
   title: 'Type Casting in Python',
   status: 'demo',
   content: `# 🚀 Python Type Casting
@@ -65,3 +65,4 @@ print(bool(""))    # False (empty string)
 
 Type casting converts data between types safely! 🎯`
 };
+

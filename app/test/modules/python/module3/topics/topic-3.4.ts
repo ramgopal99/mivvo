@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_4: SubLesson = {
-  id: 3.4,
+  id: "3.4",
   title: 'Adding Elements to Lists',
   status: 'demo',
   content: `# ➕ Adding Elements to Lists
@@ -105,3 +105,4 @@ print(f"Final list: {shopping}")
 
 Lists grow as you add items - use the method that fits your needs! 📝`
 };
+

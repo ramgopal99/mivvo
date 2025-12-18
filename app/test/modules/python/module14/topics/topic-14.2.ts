@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_2: SubLesson = {
-  id: 14.2,
+  id: "14.2",
   title: 'Recursion vs Iteration',
   status: 'demo',
   content: `# ⚖️ Recursion vs Iteration
@@ -319,3 +319,4 @@ sys.setrecursionlimit(2000)
 
 Master both techniques - they'll serve you well in different scenarios! 🚀`,
 };
+

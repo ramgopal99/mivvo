@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_8_9: Exercise = {
-  id: 8.9,
+  id: "8.9",
   title: "EXERCISE",
   status: 'completed',
   type: 'code',
@@ -198,3 +198,4 @@ print(f"Shortest word: {min(words, key=len)}")`
     }
   ]
 };
+

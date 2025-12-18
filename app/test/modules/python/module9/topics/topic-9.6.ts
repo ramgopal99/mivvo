@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_6: SubLesson = {
-  id: 9.6,
+  id: "9.6",
   title: 'OOP Best Practices',
   status: 'demo',
   content: `# 🏗️ OOP Best Practices
@@ -688,3 +688,4 @@ Favor object composition over class inheritance when possible.
 
 Congratulations! You've completed the comprehensive OOP concepts course. These principles will help you write better, more maintainable code! 🎉`
 };
+

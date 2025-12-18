@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_3: SubLesson = {
-  id: 8.3,
+  id: "8.3",
   title: 'Mathematical Functions',
   status: 'demo',
   content: `# 🔢 Mathematical Functions
@@ -252,3 +252,4 @@ print(f"Shortest name: {shortest_name['name']}")
 
 Mathematical functions make number crunching effortless! 🔢`
 };
+

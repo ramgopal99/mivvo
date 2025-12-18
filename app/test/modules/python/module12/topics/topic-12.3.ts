@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_3: SubLesson = {
-  id: 12.3,
+  id: "12.3",
   title: 'What are Queues?',
   status: 'demo',
   content: `# 📋 What are Queues?
@@ -425,3 +425,4 @@ print("Thread-safe queue operations completed")
 
 Queues are essential for ordered processing and sequential operations! 📋`
 };
+

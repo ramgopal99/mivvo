@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_6: SubLesson = {
-  id: 5.6,
+  id: "5.6",
   title: 'Set Methods',
   status: 'demo',
   content: `# 🔧 Set Methods
@@ -184,3 +184,4 @@ print(f"All pages superset of purchases: {all_pages.issuperset(purchases)}")
 
 Sets have powerful methods for all kinds of data operations! 🛠️`
 };
+

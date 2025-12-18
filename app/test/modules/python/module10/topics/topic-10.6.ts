@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_6: SubLesson = {
-  id: 10.6,
+  id: "10.6",
   title: 'When to Use Arrays vs Linked Lists',
   status: 'demo',
   content: `# 🤔 When to Use Arrays vs Linked Lists
@@ -355,3 +355,4 @@ print("Measure, don't assume!")
 
 The best choice depends on your specific requirements and constraints! 🎯`
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_3: SubLesson = {
-  id: 6.3,
+  id: "6.3",
   title: 'Accessing Dictionary Elements',
   status: 'demo',
   content: `# 🎯 Accessing Dictionary Elements
@@ -182,3 +182,4 @@ else:
 
 Dictionary access is powerful but requires careful key management! 🔑`
 };
+

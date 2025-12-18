@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_12_8: Exercise = {
-  id: 12.8,
+  id: "12.8",
   title: "EXERCISE",
   status: 'completed',
   type: 'code',
@@ -593,3 +593,4 @@ print("- Foundation for advanced algorithms like Dijkstra's and Huffman coding")
     }
   ]
 };
+

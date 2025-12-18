@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_7: SubLesson = {
-  id: 8.7,
+  id: "8.7",
   title: 'Inner Classes and Nested Classes',
   status: 'completed',
   content: `# 🏗️ Inner Classes and Nested Classes in Java
@@ -542,3 +542,4 @@ class OtherClass {
 
 **Ready to move on to Inheritance and Polymorphism?** 🚀`
 };
+

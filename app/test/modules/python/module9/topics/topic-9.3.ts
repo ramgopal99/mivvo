@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_3: SubLesson = {
-  id: 9.3,
+  id: "9.3",
   title: 'Inheritance',
   status: 'demo',
   content: `# 🏛️ Inheritance
@@ -384,3 +384,4 @@ print(C.__bases__)  # (<class '__main__.B'>,)
 
 Ready to explore polymorphism? Let's see how duck typing enables flexible object interactions! 🚀`,
 };
+

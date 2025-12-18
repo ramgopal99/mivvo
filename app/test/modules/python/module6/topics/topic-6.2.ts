@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_2: SubLesson = {
-  id: 6.2,
+  id: "6.2",
   title: 'Creating Dictionaries',
   status: 'demo',
   content: `# 🆕 Creating Python Dictionaries
@@ -151,3 +151,4 @@ translations = dict([
 
 Dictionaries are incredibly flexible - choose the creation method that fits your data! 🎯`
 };
+

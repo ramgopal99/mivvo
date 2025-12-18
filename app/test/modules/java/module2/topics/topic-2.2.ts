@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_2: SubLesson = {
-  id: 2.2,
+  id: "2.2",
   title: 'Variables & Data Types',
   status: 'completed',
   content: `# 📦 Java Variables and Data Types
@@ -187,4 +187,5 @@ Java variables and data types are fundamental to understanding how data is store
 
 Mastering data types is essential before moving to more advanced Java concepts like OOP!`
 };
+
 

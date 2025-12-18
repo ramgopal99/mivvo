@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_5: SubLesson = {
-  id: 12.5,
+  id: "12.5",
   title: 'Iterators and Enhanced For Loop',
   status: 'completed',
   content: `# 🔄 Iterators and Enhanced For Loop in Java Collections
@@ -671,3 +671,4 @@ System.out.println(list);
 Output: [B, C]
 `
 };
+

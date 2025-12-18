@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_2: SubLesson = {
-  id: 3.2,
+  id: "3.2",
   title: 'Creating ArrayLists',
   status: 'completed',
   content: `# 📝 Creating ArrayLists in Java
@@ -405,5 +405,6 @@ public class ConcurrentModification {
 
 ArrayList is your go-to choice for most list operations in Java. It provides fast access, dynamic sizing, and a rich set of methods for all your data manipulation needs! 🚀`
 };
+
 
 

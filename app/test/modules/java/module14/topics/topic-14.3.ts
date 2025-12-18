@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_3: SubLesson = {
-  id: 14.3,
+  id: "14.3",
   title: 'Advanced Recursion Techniques',
   status: 'completed',
   content: `# 🔄 Advanced Recursion Techniques in Java
@@ -418,3 +418,4 @@ public class TailRecursion {
 
 **Next:** Learn recursion vs iteration comparison! 🚀`
 };
+

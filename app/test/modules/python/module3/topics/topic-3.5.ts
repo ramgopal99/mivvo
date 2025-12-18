@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_5: SubLesson = {
-  id: 3.5,
+  id: "3.5",
   title: 'Removing List Elements',
   status: 'demo',
   content: `# ➖ Removing Elements from Lists
@@ -101,3 +101,4 @@ print(f"All done: {tasks}")
 
 Choose the right removal method for your needs! 🗂️`
 };
+

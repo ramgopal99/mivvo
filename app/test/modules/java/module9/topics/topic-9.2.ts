@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_2: SubLesson = {
-  id: 9.2,
+  id: "9.2",
   title: 'Types of Inheritance and Access Control',
   status: 'completed',
   content: `# 👨‍👩‍👧‍👦 Types of Inheritance and Access Control in Java
@@ -557,3 +557,4 @@ public class TemplateSubClass extends TemplateBase {
 
 **Next:** Learn about polymorphism and method overriding! 🚀`
 };
+

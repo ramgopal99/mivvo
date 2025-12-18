@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_3_8: Exercise = {
-  id: 3.8,
+  id: "3.8",
   title: "EXERCISE",
   status: 'completed',
   type: 'code',
@@ -201,3 +201,4 @@ public class ArrayListOperations {
     }
   ]
 };
+

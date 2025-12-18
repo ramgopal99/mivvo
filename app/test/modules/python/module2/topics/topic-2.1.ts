@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_1: SubLesson = {
-  id: 2.1,
+  id: "2.1",
   title: 'Syntax',
   status: 'demo',
   content: `# 📝 Python Basic Syntax
@@ -235,3 +235,4 @@ print(f"Area: {circle_area}")
 
 Python's syntax is designed to be **intuitive and readable** - it reads almost like English! 🐍✨`
 };
+

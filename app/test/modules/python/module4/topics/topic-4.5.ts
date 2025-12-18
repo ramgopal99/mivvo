@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_5: SubLesson = {
-  id: 4.5,
+  id: "4.5",
   title: 'Tuple Operations',
   status: 'demo',
   content: `# ⚡ Tuple Operations
@@ -154,3 +154,4 @@ print(f"First column: {first_column}")  # (1, 4, 7)
 
 Tuples support many operations while staying immutable! 🔒`
 };
+

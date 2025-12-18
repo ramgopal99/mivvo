@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_2: SubLesson = {
-  id: 5.2,
+  id: "5.2",
   title: 'Defining Methods',
   status: 'completed',
   content: `# 📝 Defining Methods in Java
@@ -573,5 +573,6 @@ public class MethodVisibility {
 
 Defining methods properly is fundamental to Java programming. Following consistent naming conventions, maintaining single responsibility, and using appropriate access modifiers leads to clean, maintainable, and reusable code! 📝`
 };
+
 
 

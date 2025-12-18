@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_4: SubLesson = {
-  id: 5.4,
+  id: "5.4",
   title: 'Removing Elements from Sets',
   status: 'demo',
   content: `# ➖ Removing Elements from Sets
@@ -164,3 +164,4 @@ print(f"After clear: {valid_ids}")
 
 Choose the right removal method for your needs! 🗂️`
 };
+

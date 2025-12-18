@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_2: SubLesson = {
-  id: 11.2,
+  id: "11.2",
   title: 'Hash Functions',
   status: 'demo',
   content: `# 🔢 Hash Functions
@@ -345,3 +345,4 @@ print(f"Distribution uniformity: {uniformity:.3f} (closer to 1 is better)")
 
 Hash functions are the secret sauce that makes hash tables fast and reliable! 🔑`
 };
+

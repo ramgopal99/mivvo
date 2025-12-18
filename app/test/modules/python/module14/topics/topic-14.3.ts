@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_3: SubLesson = {
-  id: 14.3,
+  id: "14.3",
   title: 'Recursive Problem Solving',
   status: 'demo',
   content: `# 🧩 Recursive Problem Solving
@@ -321,3 +321,4 @@ def missing_return(n):
 
 Recursion is a powerful tool - practice these patterns to master recursive problem solving! 🧠`,
 };
+

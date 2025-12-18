@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_4: SubLesson = {
-  id: 2.4,
+  id: "2.4",
   title: 'Loops',
   status: 'demo',
   content: `# 🚀 Python Loops - Fast Track Template
@@ -382,3 +382,4 @@ print(f"Goal reached: {'Yes' if average_steps >= 8000 else 'No'}")
 
 ---`
 };
+

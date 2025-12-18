@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_5: SubLesson = {
-  id: 3.5,
+  id: "3.5",
   title: 'Removing Elements from ArrayLists',
   status: 'completed',
   content: `# 🗑️ Removing Elements from ArrayLists in Java
@@ -543,5 +543,6 @@ public class ValidationBeforeRemoval {
 
 Removing elements from ArrayLists requires careful consideration of performance and safety. Always choose the appropriate removal method and handle concurrent modification exceptions properly! 🗑️`
 };
+
 
 

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_1: SubLesson = {
-  id: 14.1,
+  id: "14.1",
   title: 'Introduction to Recursion',
   status: 'completed',
   content: `# 🔄 Introduction to Recursion in Java
@@ -205,3 +205,4 @@ public static int power(int base, int exp) {
 
 **Next:** Learn advanced recursion techniques! 🚀`
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_2: SubLesson = {
-  id: 14.2,
+  id: "14.2",
   title: 'Recursion with Arrays & Strings',
   status: 'completed',
   content: `# 🔄 Recursion with Arrays & Strings in Java
@@ -372,3 +372,4 @@ public class NumberRecursion {
 
 **Next:** Learn advanced recursion techniques! 🚀`
 };
+

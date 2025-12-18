@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_3: SubLesson = {
-  id: 7.3,
+  id: "7.3",
   title: 'Function Parameters',
   status: 'demo',
   content: `# 📥 Function Parameters
@@ -220,3 +220,4 @@ def example(required, default="value", *args, **kwargs):
 
 Function parameters make your functions flexible and reusable! 🎛️`
 };
+

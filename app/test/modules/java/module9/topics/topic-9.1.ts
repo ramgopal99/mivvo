@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_1: SubLesson = {
-  id: 9.1,
+  id: "9.1",
   title: 'Introduction to Inheritance',
   status: 'completed',
   content: `# 🧬 Introduction to Inheritance in Java
@@ -974,4 +974,5 @@ public class Test {
 \`\`\`
 Output: ?
 `};
+
 

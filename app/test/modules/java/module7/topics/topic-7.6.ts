@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_6: SubLesson = {
-  id: 7.6,
+  id: "7.6",
   title: 'When to Use Inheritance',
   status: 'completed',
   content: `# 🎯 When to Use Inheritance in Java
@@ -1016,5 +1016,6 @@ public class InheritanceDecisionFramework {
 
 Inheritance is a powerful tool when used appropriately for true IS-A relationships and shared behavior. However, composition often provides better flexibility and maintainability. Always consider whether inheritance is the right choice for your specific design needs! 🎯`
 };
+
 
 

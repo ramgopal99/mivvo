@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_1: SubLesson = {
-  id: 6.1,
+  id: "6.1",
   title: 'Introduction to Arrays',
   status: 'completed',
   content: `# 📊 Introduction to Arrays in Java
@@ -616,3 +616,4 @@ System.out.println(arr[3]);         // 3. ?
 // System.out.println(arr[4]);      // 4. What happens?
 \`\`\``
 };
+

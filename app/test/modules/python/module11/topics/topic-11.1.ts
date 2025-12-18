@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_1: SubLesson = {
-  id: 11.1,
+  id: "11.1",
   title: 'What are Hash Tables?',
   status: 'demo',
   content: `# 🗂️ What are Hash Tables?
@@ -309,3 +309,4 @@ Hash tables provide the fastest average-case performance for lookups!
 
 Hash tables are the workhorses of modern computing - fast, flexible, and ubiquitous! 🚀`
 };
+

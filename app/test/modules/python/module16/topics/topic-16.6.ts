@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_6: SubLesson = {
-  id: 16.6,
+  id: "16.6",
   title: 'List Comprehensions and Comprehensions',
   status: 'demo',
   content: `# 📋 List Comprehensions and Comprehensions
@@ -471,3 +471,4 @@ print(formatted)  # ['a=1', 'b=2', 'c=3']
 
 **Comprehensions are a cornerstone of Pythonic code. They make data manipulation elegant, efficient, and readable! 📋**`
 };
+

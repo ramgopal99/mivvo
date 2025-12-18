@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_2_9: Exercise = {
-  id: 2.9,
+  id: "2.9",
   title: "EXERCISE",
   status: 'completed',
   type: 'code',
@@ -120,3 +120,4 @@ print(f"\nClass average: {average:.1f}")`
     }
   ]
 };
+

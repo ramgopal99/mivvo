@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_1: SubLesson = {
-  id: 13.1,
+  id: "13.1",
   title: 'Introduction to Binary Search Tree',
   status: 'completed',
   content: `# 🌳 Introduction to Binary Search Tree
@@ -128,3 +128,4 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 **Next:** Learn BST operations - Search, Insert, and Delete! 🚀`
 };
+

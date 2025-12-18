@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_2: SubLesson = {
-  id: 12.2,
+  id: "12.2",
   title: 'Stack Operations',
   status: 'demo',
   content: `# ⚙️ Stack Operations
@@ -444,3 +444,4 @@ print("Stack sorting demonstrates advanced stack manipulation")
 
 Stack operations form the foundation of many algorithmic solutions! 🧱`
 };
+

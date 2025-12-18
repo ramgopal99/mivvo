@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_6: SubLesson = {
-  id: 5.6,
+  id: "5.6",
   title: 'When to Use Methods',
   status: 'completed',
   content: `# 🎯 When to Use Methods in Java
@@ -787,5 +787,6 @@ public class WhenNotToCreateMethod {
 
 Methods are fundamental to good Java programming. Use them to organize code, eliminate duplication, improve readability, and create testable, maintainable software. The key is finding the right balance between too many small methods and methods that are too large! 🎯`
 };
+
 
 

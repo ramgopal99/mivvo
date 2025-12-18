@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_20_1: SubLesson = {
-  id: 20.1,
+  id: "20.1",
   title: 'E-Commerce Platform',
   status: 'completed',
   content: `# 🛒 Java Advanced Project: Full-Stack E-Commerce Platform
@@ -699,3 +699,4 @@ By completing this project, you'll master:
 
 This project showcases your ability to build complex, scalable software systems - a key requirement for senior software engineering roles! 🚀`
 };
+

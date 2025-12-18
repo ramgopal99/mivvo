@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_2: SubLesson = {
-  id: 8.2,
+  id: "8.2",
   title: 'Type Conversion Functions',
   status: 'demo',
   content: `# 🔄 Type Conversion Functions
@@ -284,3 +284,4 @@ print(bool(None))     # False
 
 Type conversions are essential for data processing! 🔄`
 };
+

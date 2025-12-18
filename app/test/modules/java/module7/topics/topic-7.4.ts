@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_4: SubLesson = {
-  id: 7.4,
+  id: "7.4",
   title: 'Polymorphism',
   status: 'completed',
   content: `# 🎭 Polymorphism in Java
@@ -1011,5 +1011,6 @@ public class FragileBaseClass {
 
 Polymorphism is a cornerstone of object-oriented programming that enables flexible, extensible, and maintainable code. By programming to interfaces and leveraging inheritance, you can create systems that are easy to extend and modify without changing existing code! 🎭`
 };
+
 
 

@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_9_8: Exercise = {
-  id: 9.8,
+  id: "9.8",
   title: "EXERCISE",
   status: 'completed',
   type: 'code',
@@ -362,3 +362,4 @@ print(f"Grade distribution: {grade_dist}")`
     }
   ]
 };
+

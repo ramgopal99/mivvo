@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_5: SubLesson = {
-  id: 10.5,
+  id: "10.5",
   title: 'Arrays vs Linked Lists',
   status: 'demo',
   content: `# ⚖️ Arrays vs Linked Lists
@@ -316,3 +316,4 @@ print("Skip lists: O(log n) search with linked list insertions")
 
 The choice depends on your specific performance requirements and access patterns! 🎯`
 };
+

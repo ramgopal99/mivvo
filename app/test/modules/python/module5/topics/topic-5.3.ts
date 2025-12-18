@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_3: SubLesson = {
-  id: 5.3,
+  id: "5.3",
   title: 'Adding Elements to Sets',
   status: 'demo',
   content: `# ➕ Adding Elements to Sets
@@ -137,3 +137,4 @@ print(f"With ML: {all_skills}")
 
 Sets grow by adding elements - perfect for collecting unique items! 📊`
 };
+

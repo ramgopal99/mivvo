@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_2: SubLesson = {
-  id: 5.2,
+  id: "5.2",
   title: 'Creating Sets',
   status: 'demo',
   content: `# 🆕 Creating Python Sets
@@ -144,3 +144,4 @@ words = set(text.split())
 
 Sets automatically handle uniqueness - perfect for deduplication! 🎯`
 };
+

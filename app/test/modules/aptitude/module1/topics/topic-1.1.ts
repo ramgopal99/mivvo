@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_1_1: SubLesson = {
-  id: 1.1,
+  id: "1.1",
   title: 'Introduction to Number Systems',
   status: 'completed',
   content: `# 🔢 Introduction to Number Systems

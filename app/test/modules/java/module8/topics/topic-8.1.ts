@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_1: SubLesson = {
-  id: 8.1,
+  id: "8.1",
   title: 'Introduction to Classes and Objects',
   status: 'completed',
   content: `# 🏗️ Introduction to Classes and Objects in Java
@@ -633,4 +633,5 @@ public class Test {
 2. Second output: ?
 3. Third output: ?
 `};
+
 

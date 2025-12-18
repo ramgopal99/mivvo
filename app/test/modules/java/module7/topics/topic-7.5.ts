@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_5: SubLesson = {
-  id: 7.5,
+  id: "7.5",
   title: 'Abstract Classes and Methods',
   status: 'completed',
   content: `# 📐 Abstract Classes and Methods in Java
@@ -905,5 +905,6 @@ public class AvoidingDeepHierarchies {
 
 Abstract classes and methods provide a powerful way to define incomplete implementations that serve as templates for subclasses. They enable code reuse while ensuring that critical methods are implemented by concrete classes. Use them when you need to define a common structure with some implementation flexibility! 📐`
 };
+
 
 

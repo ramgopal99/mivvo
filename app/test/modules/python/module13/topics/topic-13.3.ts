@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_3: SubLesson = {
-  id: 13.3,
+  id: "13.3",
   title: 'BST Traversal Algorithms',
   status: 'demo',
   content: `# 🚶 BST Traversal Algorithms
@@ -214,3 +214,4 @@ def height(root):
 
 Master these traversals to unlock BST's full potential! 🌟`,
 };
+

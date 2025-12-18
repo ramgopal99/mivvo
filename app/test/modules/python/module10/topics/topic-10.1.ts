@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_1: SubLesson = {
-  id: 10.1,
+  id: "10.1",
   title: 'What are Arrays?',
   status: 'demo',
   content: `# 📊 What are Arrays?
@@ -176,3 +176,4 @@ Arrays provide fast, predictable access but require careful size management!
 
 🚀 **Next**: We'll explore array operations and algorithms!`
 };
+

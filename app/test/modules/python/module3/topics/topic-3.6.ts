@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_6: SubLesson = {
-  id: 3.6,
+  id: "3.6",
   title: 'Simple List Operations',
   status: 'demo',
   content: `# 🔧 Simple List Operations
@@ -181,3 +181,4 @@ print(f"Reversed: {grades}")
 
 Lists have many useful operations - experiment with them! 🧮`
 };
+

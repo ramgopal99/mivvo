@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_2: SubLesson = {
-  id: 2.2,
+  id: "2.2",
   title: 'Variables & Data Types',
   status: 'demo',
   content: `# 📦 Python Variables and Data Types
@@ -185,3 +185,4 @@ calculate_total = lambda x, y: x + y
 
 Python's dynamic typing makes it easy to learn, but understanding data types is crucial for writing robust code! 🐍✨`
 };
+

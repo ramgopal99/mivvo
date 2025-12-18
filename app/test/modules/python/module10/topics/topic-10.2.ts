@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_2: SubLesson = {
-  id: 10.2,
+  id: "10.2",
   title: 'Array Operations',
   status: 'demo',
   content: `# ⚙️ Array Operations
@@ -230,3 +230,4 @@ print(f"Missing number: {find_missing_number(numbers, 10)}")
 
 Array operations are fundamental to computer science and form the basis of many algorithms! 🔬`
 };
+

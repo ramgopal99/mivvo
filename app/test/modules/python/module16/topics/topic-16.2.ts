@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_2: SubLesson = {
-  id: 16.2,
+  id: "16.2",
   title: 'Lambda Functions and Functional Programming',
   status: 'demo',
   content: `# λ Lambda Functions and Functional Programming
@@ -432,3 +432,4 @@ print(f"List comprehension: {time.time() - start:.4f}s")
 
 **Lambda functions and functional programming provide elegant solutions for data transformation and processing tasks. Use them wisely to write clean, concise Python code! λ**`
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_6: SubLesson = {
-  id: 2.6,
+  id: "2.6",
   title: 'Type Casting',
   status: 'completed',
   content: `# 🔄 Type Casting and Conversions in Java
@@ -607,4 +607,5 @@ public class GenericSafety {
 
 Type casting and conversions are fundamental to Java programming. Always be aware of potential data loss, use explicit casting when narrowing, and check object types before casting references! 🔄`
 };
+
 

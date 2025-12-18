@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_1: SubLesson = {
-  id: 3.1,
+  id: "3.1",
   title: 'What are Lists?',
   status: 'demo',
   content: `# 📋 What are Python Lists?
@@ -64,3 +64,4 @@ student = ["Alice", 25, "Computer Science", True]
 
 Lists are perfect for storing collections of related data! 🛒`
 };
+

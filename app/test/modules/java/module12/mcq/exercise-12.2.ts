@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_12_2: Exercise = {
-  id: 12.2,
+  id: "12.2",
   title: 'ArrayList and HashMap MCQ',
   status: 'completed',
   mcqQuestions: [
@@ -57,4 +57,5 @@ export const exercise_12_2: Exercise = {
     }
   ]
 };
+
 

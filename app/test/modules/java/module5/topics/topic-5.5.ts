@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_5: SubLesson = {
-  id: 5.5,
+  id: "5.5",
   title: 'Method Overloading',
   status: 'completed',
   content: `# 🔄 Method Overloading in Java
@@ -709,5 +709,6 @@ public class AvoidOverloading {
 
 Method overloading is a powerful feature that enables more intuitive and flexible APIs. Use it when methods perform conceptually similar operations but with different inputs, and avoid it when the operations are fundamentally different! 🔄`
 };
+
 
 

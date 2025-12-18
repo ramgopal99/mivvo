@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_17_2: SubLesson = {
-  id: 17.2,
+  id: "17.2",
   title: 'GUI Programming with Tkinter',
   status: 'demo',
   content: `# 🖥️ GUI Programming with Tkinter
@@ -148,3 +148,4 @@ root.mainloop()
 
 **Tkinter lets you create simple desktop apps with Python! 🖥️**`
 };
+

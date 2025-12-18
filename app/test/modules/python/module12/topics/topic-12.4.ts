@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_4: SubLesson = {
-  id: 12.4,
+  id: "12.4",
   title: 'Queue Operations',
   status: 'demo',
   content: `# ⚙️ Queue Operations
@@ -522,3 +522,4 @@ print(f"Left end: {deque_queue[0]}, Right end: {deque_queue[-1]}")
 
 Queue operations are fundamental to ordered processing and sequential algorithms! 📋`
 };
+

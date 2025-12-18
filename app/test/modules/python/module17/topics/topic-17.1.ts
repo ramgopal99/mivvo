@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_17_1: SubLesson = {
-  id: 17.1,
+  id: "17.1",
   title: 'File Input/Output Operations',
   status: 'demo',
   content: `# 📁 File Input/Output Operations in Python
@@ -183,3 +183,4 @@ except FileNotFoundError:
 
 **Mastering file I/O operations is essential for building robust, efficient Python applications that can handle real-world data processing tasks! 📁**`
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_7: SubLesson = {
-  id: 16.7,
+  id: "16.7",
   title: 'Context Managers',
   status: 'demo',
   content: `# 🔐 Context Managers
@@ -585,3 +585,4 @@ with SafeResource() as res:
 
 **Context managers make resource management elegant, safe, and maintainable. They're essential for writing robust Python code! 🔐**`
 };
+

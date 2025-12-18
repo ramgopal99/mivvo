@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_5: SubLesson = {
-  id: 2.5,
+  id: "2.5",
   title: 'String Validation',
   status: 'completed',
   content: `# 🚨 Exception Handling in Java
@@ -578,4 +578,5 @@ public class Rethrowing {
 
 Exception handling is essential for robust Java applications. Use try-catch-finally blocks appropriately, throw meaningful exceptions, and always handle errors gracefully! 🚨`
 };
+
 

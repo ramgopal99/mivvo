@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_4: SubLesson = {
-  id: 3.4,
+  id: "3.4",
   title: 'Adding Elements to ArrayLists',
   status: 'completed',
   content: `# ➕ Adding Elements to ArrayLists in Java
@@ -444,5 +444,6 @@ public class ValidationBestPractice {
 
 Adding elements to ArrayLists is straightforward but understanding the performance implications and choosing the right method is crucial for efficient Java code! ➕`
 };
+
 
 

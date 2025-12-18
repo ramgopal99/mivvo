@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_7: SubLesson = {
-  id: 15.7,
+  id: "15.7",
   title: 'Heap Sort Algorithm',
   status: 'demo',
   content: `# 🏗️ Heap Sort Algorithm
@@ -414,3 +414,4 @@ class MaxHeap:
 
 **Heap Sort provides guaranteed performance with minimal memory usage. Now let's compare all the sorting algorithms we've learned! 🚀**`
 };
+

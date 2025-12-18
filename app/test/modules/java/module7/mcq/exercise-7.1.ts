@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_7_1: Exercise = {
-  id: 7.1,
+  id: "7.1",
   title: "EXERCISE",
   status: 'completed',
   type: 'code',
@@ -450,5 +450,6 @@ final class FinalClass {
 
 // Cannot extend final class (compilation error if uncommented)
 // class TryingToExtendFinal extends FinalClass { } // Error!
+
 
 

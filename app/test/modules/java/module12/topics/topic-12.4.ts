@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_4: SubLesson = {
-  id: 12.4,
+  id: "12.4",
   title: 'Map Interface and HashMap',
   status: 'completed',
   content: `# 🗺️ Map Interface and HashMap in Java
@@ -969,3 +969,4 @@ System.out.println(map.size() + " " + map.get("A"));
 Output: 2 3
 `
 };
+

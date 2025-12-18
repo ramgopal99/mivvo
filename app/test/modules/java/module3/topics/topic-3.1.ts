@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_1: SubLesson = {
-  id: 3.1,
+  id: "3.1",
   title: 'Introduction to Variables',
   status: 'completed',
   content: `# 📊 Introduction to Variables in Java
@@ -441,3 +441,4 @@ public class Quiz {
 }
 \`\`\``
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_2: SubLesson = {
-  id: 13.2,
+  id: "13.2",
   title: 'BST Operations: Search, Insert, Delete',
   status: 'demo',
   content: `# 🔍 BST Operations: Search, Insert, Delete
@@ -211,3 +211,4 @@ def find_maximum(root):
 
 Practice these operations to master BST implementation! 💪`,
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_1: SubLesson = {
-  id: 5.1,
+  id: "5.1",
   title: 'What are Sets?',
   status: 'demo',
   content: `# 🎲 What are Python Sets?
@@ -116,3 +116,4 @@ print(50000 in large_list)  # Slower!
 
 Sets are perfect for unique collections and fast lookups! ⚡`
 };
+

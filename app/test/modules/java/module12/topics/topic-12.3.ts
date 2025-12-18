@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_3: SubLesson = {
-  id: 12.3,
+  id: "12.3",
   title: 'Set Interface and HashSet',
   status: 'completed',
   content: `# 🎯 Set Interface and HashSet in Java
@@ -760,3 +760,4 @@ System.out.println(set.size() + " " + set.contains("A"));
 Output: 4 true
 `
 };
+

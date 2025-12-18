@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_3: SubLesson = {
-  id: 6.3,
+  id: "6.3",
   title: 'Creating Objects',
   status: 'completed',
   content: `# 🆕 Creating Objects in Java
@@ -657,3 +657,4 @@ public class ConstructorOverloadingLimits {
 
 Object creation is a fundamental aspect of Java programming. Understanding constructors, initialization patterns, and object lifecycle enables you to create robust and maintainable applications! 🆕`
 };
+

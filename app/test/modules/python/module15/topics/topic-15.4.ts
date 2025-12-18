@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_4: SubLesson = {
-  id: 15.4,
+  id: "15.4",
   title: 'Insertion Sort Algorithm',
   status: 'demo',
   content: `# 🔧 Insertion Sort Algorithm
@@ -308,3 +308,4 @@ A more complex variation that uses gaps to improve insertion sort.
 
 **Insertion Sort is efficient and practical for many real-world scenarios. Now let's explore the more powerful divide-and-conquer algorithms like Merge Sort! 🚀**`
 };
+

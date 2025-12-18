@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_3: SubLesson = {
-  id: 3.3,
+  id: "3.3",
   title: 'Accessing ArrayList Elements',
   status: 'completed',
   content: `# 🎯 Accessing ArrayList Elements in Java
@@ -480,3 +480,4 @@ public class DefensiveCopying {
 
 Accessing ArrayList elements is straightforward but requires attention to bounds checking and null handling. Master these patterns to write robust and safe Java code! 🎯`
 };
+

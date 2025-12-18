@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_20_2: SubLesson = {
-  id: 20.2,
+  id: "20.2",
   title: 'Snake Game - Snake Movement and Controls',
   status: 'demo',
   content: `# 🐍 Snake Game Project - Part 2: Snake Movement
@@ -234,3 +234,4 @@ Run the game now and you should see:
 
 **Great progress - our snake can now move and be controlled! 🎮**`
 };
+

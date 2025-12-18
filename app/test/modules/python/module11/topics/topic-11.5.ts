@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_5: SubLesson = {
-  id: 11.5,
+  id: "11.5",
   title: 'Hash Table Applications',
   status: 'demo',
   content: `# 🎯 Hash Table Applications
@@ -497,3 +497,4 @@ print("Back to global x:", symbols.lookup_symbol("x"))
 
 Hash tables are fundamental to modern software systems - they're everywhere! 🏗️`
 };
+

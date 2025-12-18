@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_1: SubLesson = {
-  id: 2.1,
+  id: "2.1",
   title: 'Basic Syntax',
   status: 'completed',
   content: `# 📝 Java Basic Syntax
@@ -858,6 +858,7 @@ public class DemoProgram {  // 4. Class declaration
 }
 `
 };
+
 
 
 

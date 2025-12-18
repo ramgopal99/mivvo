@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_7: SubLesson = {
-  id: 2.7,
+  id: "2.7",
   title: 'Input & User Interaction',
   status: 'completed',
   content: `# 📁 Input/Output and File Handling in Java
@@ -643,4 +643,5 @@ public class IOPerformance {
 
 Java I/O provides powerful and flexible ways to work with files and data streams. Always use try-with-resources for automatic cleanup, handle exceptions properly, and consider using buffered I/O for better performance! 📁`
 };
+
 

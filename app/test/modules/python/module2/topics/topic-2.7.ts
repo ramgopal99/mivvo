@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_7: SubLesson = {
-  id: 2.7,
+  id: "2.7",
   title: 'Input & User Interaction',
   status: 'demo',
   content: `# 🚀 Python Input & User Interaction
@@ -92,3 +92,4 @@ print(f"Sum: {result}")
 
 Input handling with proper type conversion is essential for interactive programs! 🎯`
 };
+

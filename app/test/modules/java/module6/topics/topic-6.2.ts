@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_2: SubLesson = {
-  id: 6.2,
+  id: "6.2",
   title: 'Creating Classes',
   status: 'completed',
   content: `# 🏭 Creating Classes in Java
@@ -747,5 +747,6 @@ public class ConstructorPatterns {
 
 Creating classes properly is essential for building robust Java applications. Following encapsulation principles, using appropriate constructors, and maintaining clean design patterns leads to maintainable and reusable code! 🏭`
 };
+
 
 

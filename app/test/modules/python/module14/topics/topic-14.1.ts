@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_1: SubLesson = {
-  id: 14.1,
+  id: "14.1",
   title: 'Introduction to Recursion',
   status: 'demo',
   content: `# 🔄 Introduction to Recursion
@@ -190,3 +190,4 @@ def infinite_loop(n):
 
 Recursion is a mind-bending but powerful technique - practice these basics before moving to advanced patterns! 🧠`,
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_2: SubLesson = {
-  id: 12.2,
+  id: "12.2",
   title: 'List Interface and ArrayList',
   status: 'completed',
   content: `# 📋 List Interface and ArrayList in Java
@@ -747,3 +747,4 @@ System.out.println(list);
 Output: [A, X, C]
 `
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_5: SubLesson = {
-  id: 7.5,
+  id: "7.5",
   title: 'Scope and Variables',
   status: 'demo',
   content: `# 🌍 Scope and Variables
@@ -263,3 +263,4 @@ print(good_function())  # ['new item'] - Fresh list each time
 
 Understanding scope prevents bugs and makes code predictable! 🎯`
 };
+

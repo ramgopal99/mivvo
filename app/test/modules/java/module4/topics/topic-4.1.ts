@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_1: SubLesson = {
-  id: 4.1,
+  id: "4.1",
   title: 'Arithmetic Operators',
   status: 'completed',
   content: `# ➕ Arithmetic Operators in Java
@@ -500,3 +500,4 @@ System.out.println(a + b * 2); // 6. ?
 System.out.println((a + b) * 2); // 7. ?
 \`\`\``
 };
+

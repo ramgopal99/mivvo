@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_6_8: Exercise = {
-  id: 6.8,
+  id: "6.8",
   title: "EXERCISE",
   status: 'completed',
   type: 'code',
@@ -258,3 +258,4 @@ print(f"Total students: {len(students)}")`
     }
   ]
 };
+

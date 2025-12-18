@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_5: SubLesson = {
-  id: 4.5,
+  id: "4.5",
   title: 'Map Operations',
   status: 'completed',
   content: `# 🔄 Map Operations in Java
@@ -585,5 +585,6 @@ public class PerformanceConsiderations {
 
 Map operations in Java provide powerful ways to manipulate key-value data. From simple iterations to complex transformations and aggregations, understanding these operations enables efficient and elegant solutions! 🔄`
 };
+
 
 

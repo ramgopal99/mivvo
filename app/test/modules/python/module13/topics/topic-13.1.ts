@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_1: SubLesson = {
-  id: 13.1,
+  id: "13.1",
   title: 'Introduction to Binary Search Tree',
   status: 'demo',
   content: `# 🌳 Introduction to Binary Search Tree
@@ -110,3 +110,4 @@ class TreeNode:
 
 Ready to dive into BST operations? Let's explore how to search, insert, and delete nodes in the next topic! 🚀`,
 };
+

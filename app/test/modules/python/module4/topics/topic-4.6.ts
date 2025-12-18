@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_6: SubLesson = {
-  id: 4.6,
+  id: "4.6",
   title: 'When to Use Tuples',
   status: 'demo',
   content: `# 🤔 When to Use Tuples
@@ -185,3 +185,4 @@ directions[0] = "North"  # Works!
 
 Tuples shine when data should stay constant! ✨`
 };
+

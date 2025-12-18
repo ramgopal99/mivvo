@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_18_1: SubLesson = {
-  id: 18.1,
+  id: "18.1",
   title: 'Guess Number Game Project',
   status: 'demo',
   content: `# 🎯 Guess Number Game Project
@@ -300,3 +300,4 @@ Would you like to play again? (yes/no): yes
 
 **This project provides a solid foundation in Python programming while creating an engaging, interactive game! 🎯**`
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_4: SubLesson = {
-  id: 6.4,
+  id: "6.4",
   title: 'Adding/Updating Dictionary Elements',
   status: 'demo',
   content: `# ➕ Adding & Updating Dictionary Elements
@@ -202,3 +202,4 @@ print(f"Final config: {app_config}")
 
 Dictionaries make data updates intuitive and efficient! 📝`
 };
+

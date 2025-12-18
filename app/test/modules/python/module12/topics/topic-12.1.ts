@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_1: SubLesson = {
-  id: 12.1,
+  id: "12.1",
   title: 'What are Stacks?',
   status: 'demo',
   content: `# 📚 What are Stacks?
@@ -397,3 +397,4 @@ except IndexError as e:
 
 Stacks are simple yet powerful - the foundation of many algorithms! 🏗️`
 };
+

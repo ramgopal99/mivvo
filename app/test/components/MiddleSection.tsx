@@ -9,7 +9,7 @@ import { useEffect, useRef } from 'react';
 
 interface SelectedTopic {
   moduleId: number;
-  subtopicId: number;
+  subtopicId: string;
   title: string;
   moduleTitle: string;
 }

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_3: SubLesson = {
-  id: 16.3,
+  id: "16.3",
   title: 'Decorators',
   status: 'demo',
   content: `# 🎨 Python Decorators
@@ -550,3 +550,4 @@ print(documented_function.__doc__)   # This docstring will be preserved
 
 **Decorators are a powerful tool for extending functionality elegantly. Use them to separate concerns and keep your code clean and maintainable! 🎨**`
 };
+

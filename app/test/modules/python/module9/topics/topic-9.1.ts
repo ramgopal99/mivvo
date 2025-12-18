@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_1: SubLesson = {
-  id: 9.1,
+  id: "9.1",
   title: 'Introduction to Object-Oriented Programming',
   status: 'demo',
   content: `# 🎯 Introduction to Object-Oriented Programming
@@ -222,3 +222,4 @@ print(len(numbers))        # 6
 
 Ready to dive deep into classes and objects? Let's explore the \`__init__\` method, instance attributes, and more OOP features! 🚀`,
 };
+

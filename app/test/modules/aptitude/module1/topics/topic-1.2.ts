@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_1_2: SubLesson = {
-  id: 1.2,
+  id: "1.2",
   title: 'Types of Numbers',
   status: 'completed',
   content: `# 🔢 Types of Numbers

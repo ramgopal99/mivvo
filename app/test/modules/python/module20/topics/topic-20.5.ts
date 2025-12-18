@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_20_5: SubLesson = {
-  id: 20.5,
+  id: "20.5",
   title: 'Snake Game - Complete Code & Enhancements',
   status: 'demo',
   content: `# 🐍 Snake Game - Complete Project
@@ -522,3 +522,4 @@ You now have a **complete, professional Snake game** that demonstrates:
 
 **Congratulations! You've built a fully-featured game from scratch! 🐍🎮✨**`
 };
+

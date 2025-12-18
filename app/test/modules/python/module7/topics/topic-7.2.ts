@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_2: SubLesson = {
-  id: 7.2,
+  id: "7.2",
   title: 'Defining Functions',
   status: 'demo',
   content: `# 🆕 Defining Python Functions
@@ -208,3 +208,4 @@ for pwd in test_passwords:
 
 Functions make your code organized, reusable, and maintainable! 📝`
 };
+

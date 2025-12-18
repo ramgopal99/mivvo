@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_5: SubLesson = {
-  id: 2.5,
+  id: "2.5",
   title: 'String Validation: isalpha() & isdigit()',
   status: 'demo',
   content: `# 🚀 Python String Validation
@@ -87,3 +87,4 @@ print(f"Hello {name}, age {age}!")
 
 String validation methods help ensure data integrity! 🎯`
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_4: SubLesson = {
-  id: 9.4,
+  id: "9.4",
   title: 'Polymorphism',
   status: 'demo',
   content: `# 🎭 Polymorphism
@@ -419,3 +419,4 @@ for processor in processors:
 
 Polymorphism is about **flexibility and practicality** - if it works, use it! This approach leads to cleaner, more maintainable code. 🚀`,
 };
+

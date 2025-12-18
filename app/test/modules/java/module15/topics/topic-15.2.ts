@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_2: SubLesson = {
-  id: 15.2,
+  id: "15.2",
   title: 'Quick Sort & Heap Sort',
   status: 'completed',
   content: `# ⚡ Quick Sort & Heap Sort in Java
@@ -307,3 +307,4 @@ public class RadixSort {
 
 **Master these algorithms for optimal sorting performance!** 🚀`
 };
+

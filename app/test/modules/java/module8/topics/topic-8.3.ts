@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_3: SubLesson = {
-  id: 8.3,
+  id: "8.3",
   title: 'Constructors and Initialization',
   status: 'completed',
   content: `# 🏗️ Constructors and Initialization in Java
@@ -476,3 +476,4 @@ public class FactoryExample {
 
 **Next:** Learn about methods and encapsulation! 🚀`
 };
+

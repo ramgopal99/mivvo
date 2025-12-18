@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_4: SubLesson = {
-  id: 13.4,
+  id: "13.4",
   title: 'BST Properties and Applications',
   status: 'demo',
   content: `# 🏗️ BST Properties and Applications
@@ -259,3 +259,4 @@ Solutions:
 
 BSTs are fundamental to computer science - understanding them deeply will serve you well! 🚀`,
 };
+

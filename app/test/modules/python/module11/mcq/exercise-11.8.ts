@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_11_8: Exercise = {
-  id: 11.8,
+  id: "11.8",
   title: "EXERCISE",
   status: 'completed',
   type: 'code',
@@ -515,3 +515,4 @@ print(f"- Lower max bucket size = Better performance")`
     }
   ]
 };
+

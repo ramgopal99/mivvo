@@ -18,9 +18,9 @@ import { Module } from '../data/lessonsData';
 
 interface LeftSidebarProps {
   modules: Module[];
-  onSubtopicClick?: (moduleId: number, subtopicId: number, title: string, moduleTitle: string) => void;
+  onSubtopicClick?: (moduleId: number, subtopicId: string, title: string, moduleTitle: string) => void;
   onCheckedItemsChange?: (count: number) => void;
-  selectedTopic?: { moduleId: number; subtopicId: number; title: string; moduleTitle: string } | null;
+  selectedTopic?: { moduleId: number; subtopicId: string; title: string; moduleTitle: string } | null;
 }
 
 const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, onSubtopicClick, onCheckedItemsChange, selectedTopic }) => {
@@ -30,8 +30,8 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, onSubtopicClick, onC
   // const [activeLesson, setActiveLesson] = useState<number | null>(null);
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
   const [selectedModule, setSelectedModule] = useState<number | null>(null);
-  const [selectedSubtopic, setSelectedSubtopic] = useState<{moduleId: number, subtopicId: number} | null>(null);
-  const [selectedExercise, setSelectedExercise] = useState<{moduleId: number, exerciseId: number} | null>(null);
+  const [selectedSubtopic, setSelectedSubtopic] = useState<{moduleId: number, subtopicId: string} | null>(null);
+  const [selectedExercise, setSelectedExercise] = useState<{moduleId: number, exerciseId: string} | null>(null);
 
   // Update sidebar highlighting when selectedTopic changes (from navigation buttons)
   useEffect(() => {
@@ -77,7 +77,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, onSubtopicClick, onC
     // setActiveModule(moduleId);
   };
 
-  const handleLessonClick = (moduleId: number, lessonId: number) => {
+  const handleLessonClick = (moduleId: number, lessonId: string) => {
     const currentModule = modules.find(m => m.id === moduleId);
     const subLesson = currentModule?.subLessons.find(sl => sl.id === lessonId);
 
@@ -93,7 +93,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, onSubtopicClick, onC
     console.log(`Clicked lesson: Module ${moduleId}, Lesson ${lessonId}`);
   };
 
-  const handleExerciseClick = (exerciseId: number, moduleId: number) => {
+  const handleExerciseClick = (exerciseId: string, moduleId: number) => {
     const currentModule = modules.find(m => m.id === moduleId);
     const exercise = currentModule?.exercises?.find(ex => ex.id === exerciseId);
 
@@ -216,8 +216,8 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, onSubtopicClick, onC
                   {/* Sub-lessons */}
                   {expandedModules.includes(module.id) && (
                     <SidebarMenuSub>
-                      {module.subLessons.map((subLesson) => (
-                        <SidebarMenuSubItem key={subLesson.id}>
+                      {module.subLessons.map((subLesson, index) => (
+                        <SidebarMenuSubItem key={`${module.id}-sublesson-${index}`}>
                           <div className={`flex items-center gap-3 w-full p-1 rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${
                             selectedSubtopic?.moduleId === module.id && selectedSubtopic?.subtopicId === subLesson.id
                               ? 'bg-primary/10 dark:bg-primary/20'
@@ -260,8 +260,8 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, onSubtopicClick, onC
                   {/* Module Exercises */}
                   {expandedModules.includes(module.id) && module.exercises && module.exercises.length > 0 && (
                     <SidebarMenuSub>
-                      {module.exercises.map((exercise) => (
-                        <SidebarMenuSubItem key={exercise.id}>
+                      {module.exercises.map((exercise, index) => (
+                        <SidebarMenuSubItem key={`${module.id}-exercise-${index}`}>
                           <div className={`flex items-center gap-3 w-full p-1 rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${
                             selectedExercise?.moduleId === module.id && selectedExercise?.exerciseId === exercise.id
                               ? 'bg-emerald-100 dark:bg-emerald-900/20'

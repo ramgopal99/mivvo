@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_17_3: SubLesson = {
-  id: 17.3,
+  id: "17.3",
   title: 'Game Development with Pygame',
   status: 'demo',
   content: `# 🎮 Game Development with Pygame
@@ -506,3 +506,4 @@ Ensuring games work on different systems:
 
 **Pygame serves as a powerful foundation for creating engaging 2D games and interactive multimedia applications with Python! 🎮**`
 };
+

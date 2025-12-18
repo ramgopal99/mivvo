@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_1_2: SubLesson = {
-  id: 1.2,
+  id: "1.2",
   title: 'Setting Up Java Locally',
   status: 'completed',
   content: `# 🛠️ Setting Up Java on Your Local Machine
@@ -312,3 +312,4 @@ Remember: **Practice regularly** and **experiment with code**. Java has excellen
 Happy coding! 🎉
 `
 };
+

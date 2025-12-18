@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_6: SubLesson = {
-  id: 3.6,
+  id: "3.6",
   title: 'Simple Collection Operations',
   status: 'completed',
   content: `# 🔧 Simple Collection Operations in Java
@@ -568,5 +568,6 @@ public class StreamOperations {
 
 Collection operations in Java provide powerful ways to manipulate data efficiently. Understanding these operations helps you write cleaner and more performant code! 🔧`
 };
+
 
 

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_1_1: SubLesson = {
-  id: 1.1,
+  id: "1.1",
   title: 'Why Python?',
   status: 'completed',
   content: `# 🐍 Why Python?
@@ -80,3 +80,4 @@ import this
 
 Python's philosophy of simplicity and readability makes it the perfect first programming language! 🚀✨`
 };
+

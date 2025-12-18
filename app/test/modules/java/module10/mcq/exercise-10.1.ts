@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_10_1: Exercise = {
-  id: 10.1,
+  id: "10.1",
   title: 'Abstract Classes & Interfaces MCQ',
   status: 'completed',
   questions: [
@@ -19,5 +19,6 @@ export const exercise_10_1: Exercise = {
     }
   ]
 };
+
 
 

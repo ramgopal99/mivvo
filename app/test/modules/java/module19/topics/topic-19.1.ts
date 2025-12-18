@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_19_1: SubLesson = {
-  id: 19.1,
+  id: "19.1",
   title: 'Task Management System',
   status: 'completed',
   content: `# 📋 Java Intermediate Project: Task Management System
@@ -497,3 +497,4 @@ server.port=8080
 
 **Congratulations!** 🎉 You've built a professional-grade task management system!`
 };
+

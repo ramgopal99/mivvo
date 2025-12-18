@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_3: SubLesson = {
-  id: 10.3,
+  id: "10.3",
   title: 'What are Linked Lists?',
   status: 'demo',
   content: `# 🔗 What are Linked Lists?
@@ -306,3 +306,4 @@ print("After back:", browser.current.data)
 
 Linked lists are perfect for dynamic collections where insertions and deletions are frequent! 🔗`
 };
+

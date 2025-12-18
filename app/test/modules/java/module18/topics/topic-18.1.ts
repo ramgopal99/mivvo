@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_18_1: SubLesson = {
-  id: 18.1,
+  id: "18.1",
   title: 'Simple Calculator Application',
   status: 'completed',
   content: `# 🧮 Java Beginner Project: Simple Calculator
@@ -329,3 +329,4 @@ By completing this project, you'll learn:
 
 **Ready for more challenging projects?** 🚀`
 };
+

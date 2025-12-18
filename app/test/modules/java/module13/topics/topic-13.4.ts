@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_4: SubLesson = {
-  id: 13.4,
+  id: "13.4",
   title: 'BST Properties and Applications',
   status: 'completed',
   content: `# 🏗️ BST Properties and Applications
@@ -433,3 +433,4 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 **Congratulations!** You've mastered Binary Search Trees in Java! 🎉`
 };
+

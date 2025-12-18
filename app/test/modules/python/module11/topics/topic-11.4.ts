@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_4: SubLesson = {
-  id: 11.4,
+  id: "11.4",
   title: 'Hash Table Operations',
   status: 'demo',
   content: `# ⚙️ Hash Table Operations
@@ -401,3 +401,4 @@ print(f"Merged with **: {merged}")
 
 Hash table operations are the foundation of efficient data manipulation! ⚡`
 };
+

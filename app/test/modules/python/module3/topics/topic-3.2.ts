@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_2: SubLesson = {
-  id: 3.2,
+  id: "3.2",
   title: 'Creating Lists',
   status: 'demo',
   content: `# 🆕 Creating Python Lists
@@ -95,3 +95,4 @@ days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 
 Lists can be created in many ways - choose the method that fits your needs! 🎯`
 };
+

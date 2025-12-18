@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_3: SubLesson = {
-  id: 15.3,
+  id: "15.3",
   title: 'Selection Sort Algorithm',
   status: 'demo',
   content: `# 🎯 Selection Sort Algorithm
@@ -301,3 +301,4 @@ Final:   [10, 13, 14, 29, 37]
 
 **Selection Sort is simple and predictable, but not the most efficient. Next, let's explore Insertion Sort, which performs better on nearly sorted data! 🚀**`
 };
+

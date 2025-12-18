@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_13_6: Exercise = {
-  id: 13.6,
+  id: "13.6",
   title: "EXERCISE",
   status: 'completed',
   type: 'code',
@@ -905,3 +905,4 @@ print("- Perfect for understanding BST concepts!")`
     }
   ]
 };
+

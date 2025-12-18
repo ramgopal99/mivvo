@@ -1,7 +1,7 @@
 import { loadModules } from '../loaders/moduleLoader';
 
 export interface SubLesson {
-  id: number;
+  id: string;
   title: string;
   status: 'demo' | 'locked' | 'completed';
   content?: string;
@@ -22,7 +22,7 @@ export interface CodeQuestion {
 }
 
 export interface Exercise {
-  id: number;
+  id: string;
   title: string;
   status: 'demo' | 'locked' | 'completed';
   content?: string;

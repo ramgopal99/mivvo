@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_6: SubLesson = {
-  id: 8.6,
+  id: "8.6",
   title: 'Final Keyword and Immutability',
   status: 'completed',
   content: `# 🔒 Final Keyword and Immutability in Java
@@ -468,3 +468,4 @@ public class CollectionsImmutability {
 
 **Next:** Learn about inner classes and nested classes! 🚀`
 };
+

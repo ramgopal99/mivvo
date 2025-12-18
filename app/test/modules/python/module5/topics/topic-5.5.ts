@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_5: SubLesson = {
-  id: 5.5,
+  id: "5.5",
   title: 'Set Operations',
   status: 'demo',
   content: `# ⚡ Set Operations
@@ -176,3 +176,4 @@ print(f"Multiple languages: {multiple}")
 
 Set operations are incredibly powerful for data analysis! 📊`
 };
+

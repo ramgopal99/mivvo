@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_17_1: SubLesson = {
-  id: 17.1,
+  id: "17.1",
   title: 'Spring Framework & Hibernate',
   status: 'completed',
   content: `# 🌱 Spring Framework & Hibernate
@@ -333,3 +333,4 @@ public class UserControllerIntegrationTest {
 
 **Build enterprise-grade Java applications with these frameworks!** 🚀`
 };
+

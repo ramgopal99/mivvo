@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_5: SubLesson = {
-  id: 8.5,
+  id: "8.5",
   title: 'Input/Output Functions',
   status: 'demo',
   content: `# 💬 Input/Output Functions
@@ -276,3 +276,4 @@ print(content)
 
 I/O functions connect your programs to the outside world! 🌍`
 };
+

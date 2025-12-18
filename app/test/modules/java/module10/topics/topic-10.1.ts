@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_1: SubLesson = {
-  id: 10.1,
+  id: "10.1",
   title: 'Abstract Classes and Interfaces',
   status: 'completed',
   content: `# 🎯 Abstract Classes and Interfaces in Java
@@ -1187,3 +1187,4 @@ Which of these can be instantiated directly?
 Answer: Only #3
 `
 };
+

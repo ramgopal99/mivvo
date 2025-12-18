@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_4: SubLesson = {
-  id: 5.4,
+  id: "5.4",
   title: 'Return Values',
   status: 'completed',
   content: `# ↩️ Return Values in Java Methods
@@ -762,5 +762,6 @@ public class PerformanceConsiderations {
 
 Return values are a critical part of method design. Choosing appropriate return types, ensuring immutability when needed, and providing clear documentation leads to robust and usable APIs! ↩️`
 };
+
 
 

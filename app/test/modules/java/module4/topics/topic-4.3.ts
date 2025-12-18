@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_3: SubLesson = {
-  id: 4.3,
+  id: "4.3",
   title: 'Accessing HashMap Elements',
   status: 'completed',
   content: `# 🔍 Accessing HashMap Elements in Java
@@ -642,5 +642,6 @@ public class ViewBestPractices {
 
 Accessing HashMap elements efficiently requires understanding the different access methods and views available. Proper null handling and concurrent modification awareness leads to robust and safe code! 🔍`
 };
+
 
 

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_4: SubLesson = {
-  id: 7.4,
+  id: "7.4",
   title: 'Return Values',
   status: 'demo',
   content: `# ↩️ Return Values
@@ -247,3 +247,4 @@ print(f"BMI: {bmi}, Category: {category}")
 
 Return values make functions useful and composable! 🔄`
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_4: SubLesson = {
-  id: 8.4,
+  id: "8.4",
   title: 'Methods and Encapsulation',
   status: 'completed',
   content: `# 📦 Methods and Encapsulation in Java
@@ -478,3 +478,4 @@ public class Test {
 
 **Next:** Learn about inheritance and polymorphism! 🚀`
 };
+

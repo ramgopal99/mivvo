@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_1_2: SubLesson = {
-  id: 1.2,
+  id: "1.2",
   title: 'Setting Up Python Locally',
   status: 'completed',
   content: `# 🛠️ Setting Up Python on Your Local Machine
@@ -308,3 +308,4 @@ which python3
 
 🎉 **Congratulations!** You now have Python set up on your local machine. Time to start coding! 🚀`
 };
+

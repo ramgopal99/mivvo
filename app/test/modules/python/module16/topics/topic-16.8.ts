@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_8: SubLesson = {
-  id: 16.8,
+  id: "16.8",
   title: 'Advanced Python Features',
   status: 'demo',
   content: `# 🚀 Advanced Python Features
@@ -645,3 +645,4 @@ except ValueError as e:
 
 **These advanced features enable sophisticated Python programming patterns and are essential for building robust, maintainable applications! 🚀**`
 };
+

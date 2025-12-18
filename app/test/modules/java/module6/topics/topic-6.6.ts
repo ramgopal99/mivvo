@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_6: SubLesson = {
-  id: 6.6,
+  id: "6.6",
   title: 'When to Use Classes',
   status: 'completed',
   content: `# 🎯 When to Use Classes in Java
@@ -757,5 +757,6 @@ public class ClassChecklist {
 
 Classes are the fundamental building blocks of Java applications. Use them to model meaningful concepts with clear responsibilities, proper encapsulation, and well-designed interfaces. Always consider the broader architectural context and follow established design principles! 🎯`
 };
+
 
 

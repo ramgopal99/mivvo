@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_20_3: SubLesson = {
-  id: 20.3,
+  id: "20.3",
   title: 'Snake Game - Food and Collision Detection',
   status: 'demo',
   content: `# 🍎 Snake Game Project - Part 3: Food & Collision
@@ -285,3 +285,4 @@ Now you should have a fully playable Snake game:
 
 **Excellent! You now have a complete, playable Snake game! 🎮**`
 };
+

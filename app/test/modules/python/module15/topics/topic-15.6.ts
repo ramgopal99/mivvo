@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_6: SubLesson = {
-  id: 15.6,
+  id: "15.6",
   title: 'Quick Sort Algorithm',
   status: 'demo',
   content: `# ⚡ Quick Sort Algorithm
@@ -391,3 +391,4 @@ Modern implementations use:
 
 **Quick Sort is the go-to algorithm for general-purpose sorting, but watch out for its worst-case behavior! Next, let's explore Heap Sort for guaranteed performance! 🚀**`
 };
+

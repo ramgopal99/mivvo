@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_6: SubLesson = {
-  id: 12.6,
+  id: "12.6",
   title: 'Collections Utility Class',
   status: 'completed',
   content: `# 🛠️ Collections Utility Class in Java
@@ -685,3 +685,4 @@ System.out.println(list);
 Output: [C, B, A]
 `
 };
+

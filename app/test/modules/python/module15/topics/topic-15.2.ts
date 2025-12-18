@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_2: SubLesson = {
-  id: 15.2,
+  id: "15.2",
   title: 'Bubble Sort Algorithm',
   status: 'demo',
   content: `# 🫧 Bubble Sort Algorithm
@@ -286,3 +286,4 @@ print("Sorted:  ", arr)
 
 **Bubble Sort may be slow, but it's the foundation for understanding more complex sorting algorithms! Next, let's explore Selection Sort! 🚀**`
 };
+

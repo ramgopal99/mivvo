@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_1: SubLesson = {
-  id: 7.1,
+  id: "7.1",
   title: 'Introduction to Methods',
   status: 'completed',
   content: `# 🔧 Introduction to Methods in Java
@@ -785,3 +785,4 @@ public static int calculateSum(int a, int b) {
 5. Method body: ?
 `
 };
+

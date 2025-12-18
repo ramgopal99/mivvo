@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_14_6: Exercise = {
-  id: 14.6,
+  id: "14.6",
   title: "EXERCISE",
   status: 'completed',
   type: 'code',
@@ -1088,3 +1088,4 @@ print("- When recursion depth isn't too large")`
     }
   ]
 };
+

@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_7_8: Exercise = {
-  id: 7.8,
+  id: "7.8",
   title: 'Java Inheritance - Advanced Concepts',
   type: 'mcq',
   questions: [
@@ -227,5 +227,6 @@ export const exercise_7_8: Exercise = {
     }
   ]
 };
+
 
 

@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_4_8: Exercise = {
-  id: 4.8,
+  id: "4.8",
   title: "EXERCISE",
   status: 'completed',
   type: 'code',
@@ -227,3 +227,4 @@ public class HashMapUtilities {
     }
   ]
 };
+

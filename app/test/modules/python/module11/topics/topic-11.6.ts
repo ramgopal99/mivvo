@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_6: SubLesson = {
-  id: 11.6,
+  id: "11.6",
   title: 'Hash Table Performance',
   status: 'demo',
   content: `# ⚡ Hash Table Performance
@@ -429,3 +429,4 @@ for data_type, metrics in results.items():
 
 Hash table performance is exceptional when properly implemented and used! 🏃‍♂️`
 };
+

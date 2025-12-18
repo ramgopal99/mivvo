@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_6: SubLesson = {
-  id: 7.6,
+  id: "7.6",
   title: 'Advanced Functions',
   status: 'demo',
   content: `# 🚀 Advanced Functions
@@ -269,3 +269,4 @@ print(f"Manual result: {manual}")
 
 Advanced functions unlock Python's full potential! 🚀`
 };
+

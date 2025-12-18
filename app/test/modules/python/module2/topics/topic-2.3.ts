@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_3: SubLesson = {
-  id: 2.3,
+  id: "2.3",
   title: 'Conditions',
   status: 'demo',
   content: `# 🚀 Python Conditionals - Fast Track Template
@@ -236,3 +236,4 @@ def authenticate(username, password, is_admin=False):
 
 ---`
 };
+

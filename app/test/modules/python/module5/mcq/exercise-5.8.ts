@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_5_8: Exercise = {
-  id: 5.8,
+  id: "5.8",
   title: "EXERCISE",
   status: 'completed',
   type: 'code',
@@ -285,3 +285,4 @@ print(f"Most popular genre: {most_popular_genre}")`
     }
   ]
 };
+

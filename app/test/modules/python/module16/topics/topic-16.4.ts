@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_4: SubLesson = {
-  id: 16.4,
+  id: "16.4",
   title: 'Iterators and Generators',
   status: 'demo',
   content: `# 🔄 Iterators and Generators
@@ -559,3 +559,4 @@ for item in iterator:
 
 **Iterators and generators are essential for writing memory-efficient, scalable Python code. They enable processing of large datasets and create elegant data processing pipelines! 🔄**`
 };
+

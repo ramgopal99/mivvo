@@ -15,7 +15,7 @@ import { isCourseAvailable, shouldShowCodeEditor } from '../config';
 
 interface SelectedTopic {
   moduleId: number;
-  subtopicId: number;
+  subtopicId: string;
   title: string;
   moduleTitle: string;
 }
@@ -101,7 +101,7 @@ export default function CoursePage() {
     return null;
   }
 
-  const handleSubtopicClick = (moduleId: number, subtopicId: number, title: string, moduleTitle: string) => {
+  const handleSubtopicClick = (moduleId: number, subtopicId: string, title: string, moduleTitle: string) => {
     setSelectedTopic({
       moduleId,
       subtopicId,

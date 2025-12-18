@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_6: SubLesson = {
-  id: 4.6,
+  id: "4.6",
   title: 'When to Use Maps',
   status: 'completed',
   content: `# 🎯 When to Use Maps in Java
@@ -524,5 +524,6 @@ public class MapSelectionGuide {
 
 Maps are incredibly powerful and flexible, but choosing the right implementation and using them appropriately is key to writing efficient Java code. Consider your specific requirements and constraints when selecting a Map type! 🎯`
 };
+
 
 

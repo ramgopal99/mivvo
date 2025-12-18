@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_3: SubLesson = {
-  id: 11.3,
+  id: "11.3",
   title: 'Collision Handling',
   status: 'demo',
   content: `# 💥 Collision Handling
@@ -443,3 +443,4 @@ print("Cuckoo: Multiple homes for each item")
 
 Collision resolution is what makes hash tables practical and efficient! 🎯`
 };
+

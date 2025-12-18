@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_19_1: SubLesson = {
-  id: 19.1,
+  id: "19.1",
   title: 'Bank Account System Project',
   status: 'demo',
   content: `# 🏦 Bank Account System Project
@@ -442,3 +442,4 @@ if __name__ == "__main__":
 
 **This project showcases professional-level OOP design with real-world banking functionality! 🏦✨**`
 };
+

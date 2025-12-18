@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_7: SubLesson = {
-  id: 8.7,
+  id: "8.7",
   title: 'Importing Useful Modules',
   status: 'demo',
   content: `# 📦 Importing Useful Modules
@@ -260,3 +260,4 @@ print(f"Level: {loaded_game['level']}, Score: {loaded_game['score']}")
 
 **Importing modules gives you access to powerful tools that extend Python's capabilities! 📦**`
 };
+

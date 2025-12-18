@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_2: SubLesson = {
-  id: 10.2,
+  id: "10.2",
   title: 'Abstract Classes vs Interfaces',
   status: 'completed',
   content: `# ⚖️ Abstract Classes vs Interfaces in Java
@@ -461,3 +461,4 @@ public class StrategyPatternDemo {
 
 **Next:** Learn about exception handling and polymorphism! 🚀`
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_5: SubLesson = {
-  id: 6.5,
+  id: "6.5",
   title: 'Removing Dictionary Elements',
   status: 'demo',
   content: `# ➖ Removing Dictionary Elements
@@ -187,3 +187,4 @@ for key, value in config.items():
 
 Choose the right removal method for your specific needs! 🗂️`
 };
+

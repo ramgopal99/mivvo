@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_1: SubLesson = {
-  id: 8.1,
+  id: "8.1",
   title: 'Introduction to Built-in Functions',
   status: 'demo',
   content: `# 🏗️ Introduction to Built-in Functions
@@ -215,3 +215,4 @@ print(max(large_list))  # Fast enough
 
 Built-in functions are your Python superpower! 🦸‍♂️`
 };
+

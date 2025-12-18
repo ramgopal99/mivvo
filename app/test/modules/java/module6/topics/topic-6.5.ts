@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_5: SubLesson = {
-  id: 6.5,
+  id: "6.5",
   title: 'Access Modifiers',
   status: 'completed',
   content: `# 🔐 Access Modifiers in Java
@@ -602,5 +602,6 @@ public class AccessModifierSummary {
 
 Access modifiers are essential for creating well-encapsulated, maintainable Java classes. They control visibility and help establish clear contracts between different parts of your code! 🔐`
 };
+
 
 

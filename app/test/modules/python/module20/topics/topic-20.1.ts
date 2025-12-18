@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_20_1: SubLesson = {
-  id: 20.1,
+  id: "20.1",
   title: 'Snake Game - Basic Setup and Window',
   status: 'demo',
   content: `# 🐍 Snake Game Project - Part 1: Basic Setup
@@ -174,3 +174,4 @@ You should see a black window with "Snake Game" text in the center!
 
 **This establishes the foundation for our Snake game! 🎯**`
 };
+

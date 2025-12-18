@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_7_8: Exercise = {
-  id: 7.8,
+  id: "7.8",
   title: "EXERCISE",
   status: 'completed',
   type: 'code',
@@ -400,3 +400,4 @@ print("\nTo run the interactive calculator, uncomment main() at the bottom.")`
     }
   ]
 };
+

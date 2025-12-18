@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_3: SubLesson = {
-  id: 5.3,
+  id: "5.3",
   title: 'Method Parameters',
   status: 'completed',
   content: `# 📥 Method Parameters in Java
@@ -637,5 +637,6 @@ public class ParameterObjectPattern {
 
 Method parameters are essential for creating flexible and reusable methods. Understanding parameter passing mechanisms, using appropriate validation, and following naming conventions leads to robust and maintainable code! 📥`
 };
+
 
 

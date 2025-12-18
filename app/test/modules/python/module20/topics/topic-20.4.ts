@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_20_4: SubLesson = {
-  id: 20.4,
+  id: "20.4",
   title: 'Snake Game - Scoring and Advanced Features',
   status: 'demo',
   content: `# 🏆 Snake Game Project - Part 4: Scoring & Polish
@@ -354,3 +354,4 @@ snake_game/
 
 **Congratulations! You now have a complete, professional-quality Snake game! 🐍🎮**`
 };
+

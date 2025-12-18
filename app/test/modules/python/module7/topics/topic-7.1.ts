@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_1: SubLesson = {
-  id: 7.1,
+  id: "7.1",
   title: 'What are Functions?',
   status: 'demo',
   content: `# 🔧 What are Python Functions?
@@ -172,3 +172,4 @@ def get_user_choice():
 
 Functions are essential for writing clean, maintainable Python code! 🏗️`
 };
+

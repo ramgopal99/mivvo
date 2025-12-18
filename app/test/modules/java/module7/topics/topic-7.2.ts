@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_2: SubLesson = {
-  id: 7.2,
+  id: "7.2",
   title: 'Extending Classes',
   status: 'completed',
   content: `# 🔗 Extending Classes in Java
@@ -873,3 +873,4 @@ public class AbstractClassUsage {
 
 Extending classes with the \`extends\` keyword is fundamental to inheritance. Always ensure proper constructor chaining with \`super()\`, follow method overriding rules, and consider whether inheritance or composition is more appropriate for your design! 🔗`
 };
+

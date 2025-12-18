@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_2: SubLesson = {
-  id: 9.2,
+  id: "9.2",
   title: 'Classes and Objects',
   status: 'demo',
   content: `# 🏗️ Classes and Objects
@@ -328,3 +328,4 @@ print(len(v1))      # 5
 
 Ready to explore inheritance? Let's see how classes can inherit and extend functionality from other classes! 🚀`,
 };
+

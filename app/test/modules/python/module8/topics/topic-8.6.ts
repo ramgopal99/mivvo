@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_6: SubLesson = {
-  id: 8.6,
+  id: "8.6",
   title: 'Utility Functions',
   status: 'demo',
   content: `# 🛠️ Utility Functions
@@ -410,3 +410,4 @@ def safe_open(filename, mode="r"):
 
 Utility functions provide powerful introspection and dynamic capabilities! 🔍`
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_8: SubLesson = {
-  id: 15.8,
+  id: "15.8",
   title: 'Sorting Algorithm Comparison and Analysis',
   status: 'demo',
   content: `# 📊 Sorting Algorithm Comparison and Analysis
@@ -381,3 +381,4 @@ Least → Heap Sort → Quick Sort → Insertion/Selection/Bubble → Merge Sort
 
 **Congratulations! You've mastered sorting algorithms. Each algorithm has its place in the programmer's toolkit. Choose wisely based on your specific requirements! 🎉**`
 };
+

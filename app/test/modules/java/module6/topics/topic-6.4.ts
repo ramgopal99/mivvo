@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_4: SubLesson = {
-  id: 6.4,
+  id: "6.4",
   title: 'Class Members',
   status: 'completed',
   content: `# 👥 Class Members in Java
@@ -558,5 +558,6 @@ public class NestedClassPatterns {
 
 Class members form the structure and behavior of your classes. Proper use of access modifiers, understanding static vs instance members, and appropriate use of nested classes leads to well-designed, maintainable Java code! 👥`
 };
+
 
 

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_3: SubLesson = {
-  id: 3.3,
+  id: "3.3",
   title: 'Accessing List Elements',
   status: 'demo',
   content: `# 🎯 Accessing List Elements
@@ -91,3 +91,4 @@ else:
 
 Accessing list elements is fundamental - always remember indices start at 0! 🔢`
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_2: SubLesson = {
-  id: 4.2,
+  id: "4.2",
   title: 'Creating Tuples',
   status: 'demo',
   content: `# 🆕 Creating Python Tuples
@@ -123,3 +123,4 @@ my_tuple = tuple(my_list)
 
 Tuples are created similarly to lists but with parentheses! 📦`
 };
+

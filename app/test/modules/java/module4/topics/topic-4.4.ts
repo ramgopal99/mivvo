@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_4: SubLesson = {
-  id: 4.4,
+  id: "4.4",
   title: 'Map Methods',
   status: 'completed',
   content: `# 🔧 Map Methods in Java
@@ -525,5 +525,6 @@ public class MethodReferences {
 
 Map methods in Java provide powerful and flexible ways to work with key-value data. Understanding the different method families (basic CRUD, conditional, bulk, functional) enables you to write clean and efficient code! 🔧`
 };
+
 
 

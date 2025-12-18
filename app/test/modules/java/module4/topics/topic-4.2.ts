@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_2: SubLesson = {
-  id: 4.2,
+  id: "4.2",
   title: 'Creating HashMaps',
   status: 'completed',
   content: `# 🏗️ Creating HashMaps in Java
@@ -528,4 +528,5 @@ public class NullHandling {
 
 HashMap is your primary tool for key-value mappings in Java. Understanding capacity, load factors, and proper key implementation leads to efficient and reliable code! 🏗️`
 };
+
 

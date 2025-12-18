@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_6: SubLesson = {
-  id: 12.6,
+  id: "12.6",
   title: 'Heap Operations',
   status: 'demo',
   content: `# ⚙️ Heap Operations
@@ -468,3 +468,4 @@ while True:
 
 Heap operations provide efficient priority-based access and are fundamental to many algorithms! 🏔️`
 };
+

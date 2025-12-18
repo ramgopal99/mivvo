@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_4: SubLesson = {
-  id: 10.4,
+  id: "10.4",
   title: 'Linked List Operations',
   status: 'demo',
   content: `# ⚙️ Linked List Operations
@@ -390,3 +390,4 @@ print(f"Has cycle after creating: {ll9.has_cycle()}")  # True
 
 Linked list operations are efficient for dynamic collections but slow for random access! 🔗`
 };
+

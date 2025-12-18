@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_5: SubLesson = {
-  id: 9.5,
+  id: "9.5",
   title: 'Encapsulation and Abstraction',
   status: 'demo',
   content: `# 🔒 Encapsulation and Abstraction
@@ -166,3 +166,4 @@ result = process_data("hello")  # Simple, abstracted interface
 The philosophy: *"We're all consenting adults here"* - use the tools wisely! 🚀
 `,
 };
+

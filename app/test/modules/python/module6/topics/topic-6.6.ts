@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_6: SubLesson = {
-  id: 6.6,
+  id: "6.6",
   title: 'Dictionary Methods',
   status: 'demo',
   content: `# 🔧 Dictionary Methods
@@ -216,3 +216,4 @@ print(f"Grade distribution: {dict(grade_counts)}")
 
 Dictionary methods provide powerful data manipulation capabilities! 🛠️`
 };
+

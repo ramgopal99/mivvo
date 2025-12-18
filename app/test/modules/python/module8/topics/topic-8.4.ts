@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_4: SubLesson = {
-  id: 8.4,
+  id: "8.4",
   title: 'Sequence Functions',
   status: 'demo',
   content: `# 📋 Sequence Functions
@@ -265,3 +265,4 @@ for stat in stats:
 
 Sequence functions make data manipulation powerful! 📋`
 };
+

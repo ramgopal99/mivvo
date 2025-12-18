@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_3: SubLesson = {
-  id: 2.3,
+  id: "2.3",
   title: 'Conditions',
   status: 'completed',
   content: `# 📊 Arrays and Strings in Java
@@ -484,4 +484,5 @@ public class StringBestPractices {
 
 Arrays and strings are fundamental to Java programming. Master these concepts, and you'll handle data effectively in your Java applications! 📊📝`
 };
+
 

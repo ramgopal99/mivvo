@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_1: SubLesson = {
-  id: 15.1,
+  id: "15.1",
   title: 'Introduction to Sorting Algorithms',
   status: 'completed',
   content: `# 🔄 Introduction to Sorting Algorithms in Java
@@ -326,3 +326,4 @@ public class SortingComparison {
 
 **Next:** Learn Quick Sort and Heap Sort! 🚀`
 };
+

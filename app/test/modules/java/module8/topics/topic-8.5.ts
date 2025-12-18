@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_5: SubLesson = {
-  id: 8.5,
+  id: "8.5",
   title: 'Static Members and Class Variables',
   status: 'completed',
   content: `# 📊 Static Members and Class Variables in Java
@@ -461,3 +461,4 @@ public class MemoryLeak {
 
 **Next:** Learn about the final keyword and immutability! 🚀`
 };
+

@@ -1,7 +1,7 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_1: SubLesson = {
-  id: 12.1,
+  id: "12.1",
   title: 'Introduction to Collections',
   status: 'completed',
   content: `# 📚 Java Collections Framework
@@ -868,3 +868,4 @@ System.out.println("Set size: " + set.size());
 Output: List size: 3, Set size: 2
 `
 };
+
