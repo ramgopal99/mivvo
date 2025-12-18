@@ -1,4 +1,4 @@
-import { Exercise } from '../../../data/lessonsData';
+import { Exercise } from '../../../../data/lessonsData';
 
 export const exercise_11_8: Exercise = {
   id: 11.8,

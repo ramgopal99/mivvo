@@ -1,4 +1,4 @@
-import { SubLesson } from '../../../data/lessonsData';
+import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_17_3: SubLesson = {
   id: 17.3,

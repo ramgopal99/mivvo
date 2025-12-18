@@ -29,6 +29,9 @@ export interface CourseModel {
     description: string;
   };
 
+  // Aptitude-specific configuration (optional)
+  questionGenerationPrompt?: string;
+
   // UI configuration
   showCodeEditor: boolean;
 

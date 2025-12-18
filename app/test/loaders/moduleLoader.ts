@@ -1,6 +1,7 @@
 import { Module } from '../data/lessonsData';
 import { loadPythonModules } from './pythonModuleLoader';
 import { loadJavaModules } from './javaModuleLoader';
+import { loadAptitudeModules } from './aptitudeModuleLoader';
 import { getAvailableCourses } from '../config';
 
 // =============================================================================
@@ -19,6 +20,8 @@ export async function loadModules(language: string = 'python'): Promise<Module[]
     return loadPythonModules();
   } else if (language === 'java') {
     return loadJavaModules();
+  } else if (language === 'aptitude') {
+    return loadAptitudeModules();
   }
 
   console.error(`❌ Language '${language}' not found. Available languages: ${getAvailableCourses().join(', ')}`);

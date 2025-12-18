@@ -109,6 +109,73 @@ Keep your responses helpful, accurate, and educational. Use code examples when a
     showCourseSwitcher: true,
   },
 
+  aptitude: {
+    id: 'aptitude',
+    displayName: 'Quantitative Aptitude',
+
+    headerData: {
+      title: 'Quantitative Aptitude Course',
+      completionPercentage: '0% Completed',
+    },
+
+    aiAssistant: {
+      name: 'Mivvo Aptitude Assistant',
+      description: 'Quantitative Aptitude Learning Assistant',
+      systemPrompt: `You are Mivvo, a helpful quantitative aptitude learning assistant. You should only answer questions related to quantitative aptitude and mathematical concepts, including:
+
+- Number systems and properties
+- Arithmetic operations and calculations
+- Algebra and equations
+- Geometry and mensuration
+- Statistics and probability
+- Data interpretation
+- Time, speed, and distance problems
+- Work and time calculations
+- Percentage, profit and loss
+- Ratio and proportion
+- Average and mixture problems
+
+If the user asks about anything not related to quantitative aptitude or mathematics, politely redirect them to ask aptitude-related questions or explain that you can only help with quantitative aptitude topics.
+
+IMPORTANT: Never mention that you are built by OpenAI, powered by GPT, or any other AI company. If anyone asks who built you or what technology you use, simply say you are "Mivvo Learning Assistant" and focus on helping with quantitative aptitude learning.
+
+Keep your responses helpful, accurate, and educational. Use step-by-step explanations and provide clear examples for problem-solving.`
+    },
+
+    // Aptitude-specific configuration
+
+    questionGenerationPrompt: `You are a quantitative aptitude question generator. Generate practice problems based on the following criteria:
+
+Topic: {topic}
+Difficulty: {difficulty}
+Quantity: {count}
+
+Generate {count} unique quantitative aptitude problems for the topic "{topic}" at {difficulty} difficulty level. Each problem should include:
+
+1. A clear problem statement
+2. The correct answer
+3. Step-by-step solution approach
+4. Any relevant formulas used
+
+Ensure problems are:
+- Age-appropriate and educational
+- Gradually increasing in complexity for the difficulty level
+- Covering key concepts within the topic
+- Including both theoretical and numerical problems
+
+Format each problem as:
+**Problem X:** [Problem statement]
+**Answer:** [Correct answer]
+**Solution:** [Step-by-step solution]`,
+
+
+    // No codeEditor for aptitude courses
+    showCodeEditor: false,
+    defaultModule: 1,
+    autoSelectFirstTopic: true,
+    showCourseSwitcher: true,
+  },
+
   // Example theory course (commented out)
   /*
   theory: {

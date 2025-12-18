@@ -10,8 +10,8 @@ import MiddleSection from '../components/MiddleSection';
 import RightSection from '../components/RightSection';
 import { loadModules } from '../loaders/moduleLoader';
 import { getHeaderData } from '../loaders/headerDataLoader';
-import { SubLesson, Exercise } from '../data/lessonsData';
-import { isCourseAvailable } from '../config';
+import { SubLesson, Exercise, Module } from '../data/lessonsData';
+import { isCourseAvailable, shouldShowCodeEditor } from '../config';
 
 interface SelectedTopic {
   moduleId: number;
@@ -20,12 +20,17 @@ interface SelectedTopic {
   moduleTitle: string;
 }
 
+interface HeaderData {
+  title: string;
+  completionPercentage: string;
+}
+
 export default function CoursePage() {
   const params = useParams();
   const course = params.courses as string;
   const [isValidCourse, setIsValidCourse] = useState<boolean | null>(null);
-  const [modules, setModules] = useState<any[]>([]);
-  const [headerData, setHeaderData] = useState<any>(null);
+  const [modules, setModules] = useState<Module[]>([]);
+  const [headerData, setHeaderData] = useState<HeaderData | null>(null);
   const [selectedTopic, setSelectedTopic] = useState<SelectedTopic | null>(null);
   const [checkedItemsCount, setCheckedItemsCount] = useState<number>(0);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
@@ -187,7 +192,7 @@ export default function CoursePage() {
     <div className="h-screen w-full bg-background flex">
       {/* Left Section - Header + Fixed Sidebar */}
       <div className="w-65 flex flex-col flex-shrink-0">
-        <Header headerData={headerData} completionPercentage={calculateCompletionPercentage()} />
+        <Header headerData={headerData!} completionPercentage={calculateCompletionPercentage()} />
 
         {/* Sidebar */}
         <div className="flex-1 border-r border-border bg-muted/20">
@@ -204,7 +209,7 @@ export default function CoursePage() {
 
       {/* Middle and Right Sections - Resizable */}
       <ResizablePanelGroup direction="horizontal" className="flex-1">
-        <ResizablePanel defaultSize={55} minSize={30}>
+        <ResizablePanel defaultSize={shouldShowCodeEditor(course) || course === 'aptitude' ? 55 : 100} minSize={30}>
           <MiddleSection
             modules={modules}
             selectedTopic={selectedTopic}
@@ -216,10 +221,14 @@ export default function CoursePage() {
             language={course}
           />
         </ResizablePanel>
-        <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={45} minSize={25}>
-          <RightSection language={course} />
-        </ResizablePanel>
+        {(shouldShowCodeEditor(course) || course === 'aptitude') && (
+          <>
+            <ResizableHandle withHandle />
+            <ResizablePanel defaultSize={45} minSize={25}>
+              <RightSection language={course} />
+            </ResizablePanel>
+          </>
+        )}
       </ResizablePanelGroup>
     </div>
   );

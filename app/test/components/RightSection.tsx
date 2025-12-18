@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from 'react';
-import RightTopSection from './RightTopSection';
-import RightBottomSection from './RightBottomSection';
+import CodingRightPanel from './right-panels/CodingRightPanel';
+import AptitudeRightPanel from './right-panels/AptitudeRightPanel';
 import { shouldShowCodeEditor } from '../config';
 
 interface RightSectionProps {
@@ -19,10 +19,12 @@ const RightSection = ({ language }: RightSectionProps) => {
 
   return (
     <div className="h-full bg-muted/20 border-l border-border overflow-hidden flex flex-col">
-      {/* Top Section - Monaco Editor or Placeholder */}
-      <div className="flex-1 border-b border-border">
+      {/* Top Section - Monaco Editor, Aptitude Panel, or Placeholder */}
+      <div className={`${language === 'aptitude' ? 'flex-1' : 'flex-1'}`}>
         {showCodeEditor ? (
-          <RightTopSection onConsoleOutput={handleConsoleOutput} language={language} />
+          <CodingRightPanel language={language} onConsoleOutput={handleConsoleOutput} />
+        ) : language === 'aptitude' ? (
+          <AptitudeRightPanel />
         ) : (
           <div className="h-full flex items-center justify-center p-8">
             <div className="text-center max-w-md mx-auto">
@@ -38,11 +40,6 @@ const RightSection = ({ language }: RightSectionProps) => {
             </div>
           </div>
         )}
-      </div>
-
-      {/* Bottom Section - Console Output */}
-      <div className="h-64">
-        <RightBottomSection consoleOutput={consoleOutput} />
       </div>
     </div>
   );

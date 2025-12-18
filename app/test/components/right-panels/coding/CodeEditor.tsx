@@ -4,15 +4,15 @@ import { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Play, RotateCcw, Code, Info } from 'lucide-react';
-import MonacoEditor, { MonacoEditorRef } from './MonacoEditor';
-import { getCodeEditorConfig, getDefaultCode, getCodeEditorDisplayName } from '../config';
+import MonacoEditor, { MonacoEditorRef } from '../../MonacoEditor';
+import { getCodeEditorConfig, getDefaultCode, getCodeEditorDisplayName } from '../../../config';
 
-interface RightTopSectionProps {
+interface CodeEditorProps {
   onConsoleOutput: (output: string) => void;
   language?: string;
 }
 
-const RightTopSection = ({ onConsoleOutput, language = 'python' }: RightTopSectionProps) => {
+const CodeEditor = ({ onConsoleOutput, language = 'python' }: CodeEditorProps) => {
   const editorRef = useRef<MonacoEditorRef>(null);
   const [isRunning, setIsRunning] = useState(false);
 
@@ -58,7 +58,7 @@ const RightTopSection = ({ onConsoleOutput, language = 'python' }: RightTopSecti
 
       const result = await response.json();
 
-      // Pass the raw result to be displayed by RightBottomSection
+      // Pass the raw result to be displayed by ConsoleOutput
       onConsoleOutput(JSON.stringify(result));
 
     } catch (error: unknown) {
@@ -86,7 +86,6 @@ const RightTopSection = ({ onConsoleOutput, language = 'python' }: RightTopSecti
       setIsRunning(false);
     }
   };
-
 
   const handleReset = () => {
     if (editorRef.current) {
@@ -165,4 +164,4 @@ const RightTopSection = ({ onConsoleOutput, language = 'python' }: RightTopSecti
   );
 };
 
-export default RightTopSection;
+export default CodeEditor;

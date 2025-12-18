@@ -11,11 +11,11 @@ interface ExecutionResult {
   exitCode?: number;
 }
 
-interface RightBottomSectionProps {
+interface ConsoleOutputProps {
   consoleOutput: string;
 }
 
-const RightBottomSection = ({ consoleOutput }: RightBottomSectionProps) => {
+const ConsoleOutput = ({ consoleOutput }: ConsoleOutputProps) => {
   // Try to parse the consoleOutput as JSON (API response)
   let parsedResult: ExecutionResult | null = null;
   let isJsonResponse = false;
@@ -117,4 +117,4 @@ const RightBottomSection = ({ consoleOutput }: RightBottomSectionProps) => {
   );
 };
 
-export default RightBottomSection;
+export default ConsoleOutput;
