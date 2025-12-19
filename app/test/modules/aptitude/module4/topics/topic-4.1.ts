@@ -1,241 +1,241 @@
 import { SubLesson } from '../../../../data/lessonsData';
 
-export const topic_5_1: SubLesson = {
-  id: "5.1",
-  title: 'Concept of Ratio',
+export const topic_4_1: SubLesson = {
+  id: "4.1",
+  title: 'Concept of Percentage',
   status: 'completed',
-  content: `# 📏 Concept of Ratio
+  content: `# 📊 Concept of Percentage
 
-Welcome to the fundamental world of ratios! Ratios are everywhere in mathematics and real life, helping us compare quantities and understand relationships. Master the basic concepts and you'll find ratios in everything from cooking recipes to financial planning.
+Welcome to the world of percentages! Percentages are fundamental to quantitative aptitude and appear in almost every competitive exam. Understanding percentages means understanding "parts per hundred" and how they relate to fractions, decimals, and real-world applications.
 
 ---
 
-## 🎯 What is a Ratio?
+## 🎯 What is a Percentage?
 
-**Ratio** is a mathematical expression that compares two or more quantities of the same kind. It shows how many times one quantity contains another, or the relative sizes of two or more values.
+**Percentage** is a way of expressing a number as a fraction of 100. It represents "parts per hundred" and is denoted by the symbol "%".
 
 ### **Basic Definition**
-- Ratio compares two quantities by division
-- Written as a:b or a/b
-- Represents relative magnitudes
+- Percentage = (Part / Whole) × 100
+- "Per cent" means "per hundred"
+- Symbol: %
 
-### **Key Symbol**
+### **Key Formula**
 \`\`\`
-a:b or a/b (read as "a is to b")
+Percentage (%) = (Part ÷ Whole) × 100
 \`\`\`
 
 ---
 
-## 📊 Understanding Ratios
+## 📊 Understanding Percentages
 
-### **Example 1: Simple Ratio**
-**Problem:** In a class of 30 students, 18 are boys. What is the ratio of boys to girls?
+### **Example 1: Basic Percentage**
+**Problem:** In a class of 50 students, 35 passed. What percentage passed?
 
 **Solution:**
-- Boys = 18
-- Girls = 30 - 18 = 12
-- Ratio of boys to girls = 18:12
-- Simplified = 3:2
+- Part (passed) = 35
+- Whole (total) = 50
+- Percentage = (35 ÷ 50) × 100 = 70%
 
-### **Example 2: Three Quantities**
-**Problem:** A mixture contains 2 kg sugar, 3 kg flour, 1 kg butter. Find the ratio.
+### **Example 2: Real-World Application**
+**Problem:** A shop offers 20% discount on a ₹1000 item. What is the discount amount?
 
 **Solution:**
-- Ratio = 2:3:1 (sugar:flour:butter)
+- Percentage = 20%
+- Whole = ₹1000
+- Discount = 20% of ₹1000 = (20/100) × 1000 = ₹200
 
 ---
 
-## 🔢 Types of Ratios
+## 🔢 Percentage Components
 
-### **1. Simple Ratio**
-- Compares two quantities
-- Example: 3:4, 5:7
+### **1. The Whole (100%)**
+- The complete quantity
+- Reference point for calculation
+- Example: Total marks = 100, Total students = 50
 
-### **2. Compound Ratio**
-- Compares more than two quantities
-- Example: 2:3:5, 1:4:2:3
+### **2. The Part**
+- Portion we're interested in
+- What we're finding the percentage of
+- Example: Marks obtained = 85, Students passed = 35
 
-### **3. Duplicate Ratio**
-- Square of the original ratio
-- Example: Duplicate of 2:3 is 4:9
-
-### **4. Triplicate Ratio**
-- Cube of the original ratio
-- Example: Triplicate of 2:3 is 8:27
-
-### **5. Sub-duplicate Ratio**
-- Square root of the ratio
-- Example: Sub-duplicate of 4:9 is 2:3
-
-### **6. Sub-triplicate Ratio**
-- Cube root of the ratio
-- Example: Sub-triplicate of 8:27 is 2:3
+### **3. The Percentage**
+- Result of the calculation
+- Always expressed with % symbol
+- Example: 85%, 70%
 
 ---
 
-## 🎯 Important Properties
+## 🧮 Converting Between Forms
 
-### **1. Ratio Remains Same**
-- Multiplying or dividing both terms by same number doesn't change ratio
-- 2:4 = 1:2 (divide by 2)
-- 3:6 = 6:12 (multiply by 2)
+### **Percentage to Decimal**
+- Remove % symbol and divide by 100
+- 25% = 0.25
+- 150% = 1.50
 
-### **2. Order Matters**
-- a:b ≠ b:a
-- 2:3 ≠ 3:2
+### **Decimal to Percentage**
+- Multiply by 100 and add % symbol
+- 0.75 = 75%
+- 1.25 = 125%
 
-### **3. Ratio of Zero**
-- 0:a = 0:1 (but usually written as 0:a)
-- a:0 is undefined (infinity)
+### **Percentage to Fraction**
+- Write as fraction over 100, then simplify
+- 25% = 25/100 = 1/4
+- 75% = 75/100 = 3/4
 
-### **4. Negative Ratios**
-- Usually work with positive quantities
-- Can be negative in some contexts
-
----
-
-## 🧮 Basic Operations with Ratios
-
-### **1. Equivalent Ratios**
-\`\`\`
-a:b = c:d means a×d = b×c
-\`\`\`
-
-**Example:** 2:3 = 4:6 because 2×6 = 3×4 = 12
-
-### **2. Finding Missing Term**
-\`\`\`
-If a:b = c:d, then d = (b×c)÷a
-\`\`\`
-
-**Example:** 3:4 = 6:? → ? = (4×6)÷3 = 8
-
-### **3. Ratio of Ratios**
-\`\`\`
-Ratio of a:b and c:d is (a×d):(b×c)
-\`\`\`
+### **Fraction to Percentage**
+- Divide numerator by denominator, multiply by 100
+- 3/4 = (3÷4)×100 = 75%
 
 ---
 
-## 📈 Real-Life Applications
+## 💰 Real-Life Applications
 
-### **1. Cooking & Recipes**
-- Cake recipe: 2:3:1 (flour:sugar:butter)
-- Scaling recipes up or down
+### **1. Shopping & Discounts**
+- "30% off" = 30% discount
+- "Buy 1 get 1 free" = 50% effective discount
+- Sale: "Up to 70% off"
 
-### **2. Finance & Business**
-- Profit sharing: 2:3 (partner A:B)
-- Investment ratios: 3:2:1 (stocks:bonds:cash)
+### **2. Finance & Banking**
+- Interest rates: "5% annual interest"
+- Loan EMIs: "12% interest rate"
+- Credit card charges: "2.5% processing fee"
 
-### **3. Sports & Games**
-- Score ratios: 3:2 (wins:losses)
-- Performance metrics
+### **3. Academics & Grades**
+- Exam scores: "85% marks"
+- Grade boundaries: "60% for pass"
+- Attendance: "75% required"
 
-### **4. Maps & Scales**
-- Map scale: 1:100,000 (1 cm = 100,000 cm on ground)
-- Model scales: 1:50 (model:actual)
+### **4. Business & Economics**
+- Profit margins: "20% profit"
+- Market share: "15% of market"
+- Tax rates: "18% GST"
 
-### **5. Speed & Distance**
-- Gear ratios in vehicles
-- Speed comparisons
-
----
-
-## 🔄 Ratios vs. Fractions
-
-| Aspect | Ratio | Fraction |
-|--------|-------|----------|
-| Purpose | Compare quantities | Part of whole |
-| Notation | a:b | a/b |
-| Meaning | Relative comparison | Portion/part |
-| Example | 2:3 | 2/3 |
-| Usage | Comparisons | Divisions |
+### **5. Health & Fitness**
+- Body fat: "15% body fat"
+- Weight loss: "10% reduction"
+- Success rate: "95% accuracy"
 
 ---
 
-## 🎯 Common Ratio Patterns
+## 📈 Percentage Increase/Decrease
 
-### **1. Age Ratios**
-- Present ages: 5:7
-- After years: (5+x):(7+x)
+### **Percentage Increase**
+**Formula:** Increase % = [(New Value - Old Value) ÷ Old Value] × 100
 
-### **2. Speed Ratios**
-- Distance covered in same time
-- Time taken for same distance
+**Example:** Price increases from ₹100 to ₹120
+- Increase = 120 - 100 = ₹20
+- Increase % = (20 ÷ 100) × 100 = 20%
 
-### **3. Work Ratios**
-- Efficiency ratios = 1/(time ratios)
-- Work done in same time
+### **Percentage Decrease**
+**Formula:** Decrease % = [(Old Value - New Value) ÷ Old Value] × 100
 
-### **4. Mixture Ratios**
-- Component proportions
-- Final mixture concentrations
+**Example:** Price decreases from ₹200 to ₹160
+- Decrease = 200 - 160 = ₹40
+- Decrease % = (40 ÷ 200) × 100 = 20%
+
+---
+
+## 🔄 Successive Percentage Changes
+
+### **Two Successive Changes**
+**Formula:** Net % = A + B + (A×B)/100
+
+**Example:** 10% increase then 20% increase
+- Net % = 10 + 20 + (10×20)/100 = 30 + 2 = 32%
+
+### **Increase then Decrease**
+**Example:** 25% increase then 20% decrease
+- Net % = 25 + (-20) + (25×-20)/100 = 5 - 5 = 0%
+
+---
+
+## 🎯 Types of Percentage Problems
+
+### **1. Finding Percentage**
+- What % of A is B?
+- Formula: (B ÷ A) × 100
+
+### **2. Finding Part**
+- What is X% of Y?
+- Formula: (X/100) × Y
+
+### **3. Finding Whole**
+- X is Y% of what number?
+- Formula: (X × 100) ÷ Y
+
+### **4. Percentage Change**
+- By what % did it change?
+- Formula: [(New - Old) ÷ Old] × 100
 
 ---
 
 ## 🚨 Common Mistakes to Avoid
 
-### **Mistake 1: Wrong Order**
-❌ "Ratio of boys to total students = 18:30"
-- Should specify clearly: boys:total or boys:girls
+### **Mistake 1: Wrong Base**
+❌ "30% of 200 is 60, so 30% of 400 is 120"
+- Correct! 30% of 400 = 120
 
-### **Mistake 2: Not Simplifying**
-❌ "Ratio = 6:9" (leave as is)
-- Should simplify: 6:9 = 2:3
+### **Mistake 2: Confusing Increase/Decrease**
+❌ "Price increased by 20% to ₹120, then decreased by 20% to ₹96"
+- Correct! 120 × 0.8 = ₹96
 
-### **Mistake 3: Different Units**
-❌ "Compare 2 kg and 2000 grams"
-- Convert to same units first: 2 kg = 2000g, ratio 1:1
+### **Mistake 3: Multiple Percentages**
+❌ "10% of 10% of 100 = 1%"
+- Wrong! 10% of 10% of 100 = 0.1% of 100 = 0.1
 
-### **Mistake 4: Zero Quantities**
-❌ "Ratio when one quantity is zero"
-- Handle carefully: 0:5 = 0:1
+### **Mistake 4: Percentage vs. Amount**
+❌ "20% discount means ₹20 off"
+- Wrong! Depends on original price
 
 ---
 
 ## 🎯 Practice Questions
 
-### **Basic Ratios:**
-1. In a bag of 50 marbles, 30 are red. Find ratio of red to total marbles.
-2. Divide ₹100 in ratio 3:2. How much each gets?
-3. Ratio of boys to girls is 5:3. If boys are 25, how many girls?
+### **Basic Percentage Calculations:**
+1. What is 25% of 400?
+2. Express 3/5 as percentage.
+3. Convert 0.75 to percentage.
+4. What percentage is 45 out of 60?
 
-### **Comparison Ratios:**
-1. Compare 2 kg and 600g.
-2. Express 3 hours as ratio to 1 day.
-3. Ratio of 25 paise to ₹2.
+### **Real-Life Applications:**
+1. A shirt costs ₹800. Shop offers 15% discount. Find selling price.
+2. Student scored 420 out of 500. What percentage?
+3. Population increased from 10,000 to 12,000. Find percentage increase.
 
-### **Application Problems:**
-1. Recipe needs flour:sugar = 2:1. For 4 cups flour, how much sugar?
-2. Map scale 1:50,000. 5 cm on map = ? km on ground.
-3. Gear ratio 3:1. If driver gear turns 90 times, driven gear turns?
+### **Advanced Problems:**
+1. Price increased by 10%, then decreased by 10%. Net effect?
+2. Two successive discounts of 20% and 10%. Find equivalent single discount.
+3. Income is ₹50,000. Expenses are 60% of income. Find savings.
 
 **Answers:**
-Basic: 3:5, ₹60 and ₹40, 15
-Comparison: 10:3, 3:24, 1:8
-Applications: 2 cups, 2.5 km, 30 times
+Basic: 100, 60%, 75%, 75%
+Applications: ₹680, 84%, 20%
+Advanced: 1% decrease, 28%, ₹20,000
 
 ---
 
 ## 🎓 Pro Tips for Exams
 
-1. **Always simplify ratios** to lowest terms
-2. **Check units** - convert to same units before comparing
-3. **Be clear about order** - a:b vs b:a means different things
-4. **Use cross multiplication** to find missing terms
-5. **Look for equivalent ratios** in word problems
-6. **Practice mental calculation** for common ratios
+1. **Memorize key conversions** - 1/4=25%, 1/3≈33.33%, 1/2=50%, 3/4=75%
+2. **Use fraction equivalents** - 10%=1/10, 20%=1/5, 25%=1/4, 50%=1/2
+3. **Understand the base** - Always identify what the percentage is of
+4. **Check increase/decrease formulas** - Positive for increase, negative for decrease
+5. **Practice mental math** - Calculate 10%, 5%, 1% quickly
+6. **Watch for compound changes** - Use successive change formula
 
 ---
 
-## 🔢 Quick Reference
+## 🔢 Quick Reference Table
 
-| Ratio Type | Example | Meaning |
-|------------|---------|---------|
-| Simple | 2:3 | 2 parts to 3 parts |
-| Compound | 2:3:5 | 2, 3, and 5 parts |
-| Equivalent | 2:3 = 4:6 | Same relationship |
-| Inverse | 2:3 → 3:2 | Reversed relationship |
+| Percentage | Decimal | Fraction | Common Use |
+|------------|---------|----------|------------|
+| 10% | 0.1 | 1/10 | Tax, fees |
+| 20% | 0.2 | 1/5 | Discounts |
+| 25% | 0.25 | 1/4 | Quarters |
+| 33.33% | 0.333 | 1/3 | Thirds |
+| 50% | 0.5 | 1/2 | Half |
+| 75% | 0.75 | 3/4 | Three-quarters |
+| 100% | 1.0 | 1/1 | Whole |
 
-Master the concept of ratio and you'll handle comparative problems with confidence! 🏆`
+Master percentages and you'll excel in quantitative aptitude problems! 🏆`
 };

@@ -1,6 +1,6 @@
 export const moduleInfo = {
-  id: 8,
-  title: 'Simple Interest',
+  id: 7,
+  title: 'Profit & Loss',
   hasDemo: false,
   isExpanded: false,
   isActive: true,

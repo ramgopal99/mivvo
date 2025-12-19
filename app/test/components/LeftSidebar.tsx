@@ -227,7 +227,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, onSubtopicClick, onC
                               onClick={() => handleLessonClick(module.id, subLesson.id)}
                               className="flex items-center gap-3 min-w-0 flex-1 p-0 bg-transparent hover:bg-transparent cursor-pointer"
                             >
-                              <div className="w-6 h-6 text-muted-foreground flex items-center justify-center text-[10px] font-semibold flex-shrink-0">
+                              <div className="w-8 h-6 text-muted-foreground flex items-center justify-center text-[9px] font-semibold flex-shrink-0 px-1">
                                 {subLesson.id}
                               </div>
                               <span
@@ -271,7 +271,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, onSubtopicClick, onC
                               onClick={() => handleExerciseClick(exercise.id, module.id)}
                               className="flex items-center gap-3 min-w-0 flex-1 p-0 bg-transparent hover:bg-transparent cursor-pointer"
                             >
-                              <div className="w-6 h-6 text-muted-foreground flex items-center justify-center text-[10px] font-semibold flex-shrink-0">
+                              <div className="w-8 h-6 text-muted-foreground flex items-center justify-center text-[9px] font-semibold flex-shrink-0 px-1">
                                 {exercise.id}
                               </div>
                               <span
