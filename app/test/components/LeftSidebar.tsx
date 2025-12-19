@@ -21,9 +21,10 @@ interface LeftSidebarProps {
   onSubtopicClick?: (moduleId: number, subtopicId: string, title: string, moduleTitle: string) => void;
   onCheckedItemsChange?: (count: number) => void;
   selectedTopic?: { moduleId: number; subtopicId: string; title: string; moduleTitle: string } | null;
+  hasRightSection?: boolean;
 }
 
-const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, onSubtopicClick, onCheckedItemsChange, selectedTopic }) => {
+const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, onSubtopicClick, onCheckedItemsChange, selectedTopic, hasRightSection = true }) => {
   const sidebarScrollRef = useRef<HTMLDivElement>(null);
   const [expandedModules, setExpandedModules] = useState<number[]>([1]);
   // const [activeModule, setActiveModule] = useState<number>(1);
@@ -61,9 +62,9 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, onSubtopicClick, onC
     }
   }, [selectedTopic]);
 
-  // Scroll to top when changing modules
+  // Scroll to top when changing modules (except for module 15)
   useEffect(() => {
-    if (sidebarScrollRef.current && selectedTopic) {
+    if (sidebarScrollRef.current && selectedTopic && selectedTopic.moduleId !== 15) {
       sidebarScrollRef.current.scrollTop = 0;
     }
   }, [selectedTopic]);
@@ -177,7 +178,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, onSubtopicClick, onC
     <>
       <SidebarContent
         ref={sidebarScrollRef}
-        className="overflow-auto scrollbar-hide max-h-[calc(100vh-8rem)] w-48"
+        className={`overflow-auto scrollbar-hide max-h-[calc(100vh-8rem)] ${hasRightSection ? 'w-48' : 'w-64'}`}
       >
         <SidebarGroup>
           <SidebarGroupContent>
@@ -198,7 +199,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, onSubtopicClick, onC
                         {module.id}
                       </div>
                       <span
-                        className="truncate text-xs max-w-[140px] font-bold mt-1"
+                        className={`truncate text-xs font-bold mt-1 ${hasRightSection ? 'max-w-[140px]' : 'max-w-[200px]'}`}
                         title={module.title}
                       >
                         {module.title}
@@ -231,7 +232,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, onSubtopicClick, onC
                                 {subLesson.id}
                               </div>
                               <span
-                                className="truncate text-[11px] max-w-[120px] text-foreground mt-0.5"
+                                className={`truncate text-[11px] text-foreground mt-0.5 ${hasRightSection ? 'max-w-[120px]' : 'max-w-[180px]'}`}
                                 title={subLesson.title}
                               >
                                 {subLesson.title}
@@ -275,7 +276,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, onSubtopicClick, onC
                                 {exercise.id}
                               </div>
                               <span
-                                className="truncate text-[11px] max-w-[120px] text-foreground mt-0.5"
+                                className={`truncate text-[11px] text-foreground mt-0.5 ${hasRightSection ? 'max-w-[120px]' : 'max-w-[180px]'}`}
                                 title={exercise.title}
                               >
                                 {exercise.title}

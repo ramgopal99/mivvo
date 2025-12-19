@@ -2,36 +2,39 @@ import { Module } from '../data/lessonsData';
 import { loadPythonModules } from './pythonModuleLoader';
 import { loadJavaModules } from './javaModuleLoader';
 import { loadAptitudeModules } from './aptitudeModuleLoader';
-import { getAvailableCourses } from '../config';
+import { loadLogicalModules } from './logicalModuleLoader';
+import { getAvailableCourses as getCoursesFromConfig } from '../config';
 
 // =============================================================================
 // MODULE CONFIGURATIONS AND DELEGATION
 // =============================================================================
 
 /**
- * Loads modules for a specific programming language
- * @param language - The programming language ('python', 'java')
- * @returns Promise<Module[]> - Array of loaded modules for the specified language
+ * Loads modules for a specific course
+ * @param language - The course type ('python', 'java', 'aptitude', 'logical')
+ * @returns Promise<Module[]> - Array of loaded modules for the specified course
  */
-export async function loadModules(language: string = 'python'): Promise<Module[]> {
-  console.log(`🔍 Loading ${language} modules...`);
+export async function loadModules(course: string = 'python'): Promise<Module[]> {
+  console.log(`🔍 Loading ${course} modules...`);
 
-  if (language === 'python') {
+  if (course === 'python') {
     return loadPythonModules();
-  } else if (language === 'java') {
+  } else if (course === 'java') {
     return loadJavaModules();
-  } else if (language === 'aptitude') {
+  } else if (course === 'aptitude') {
     return loadAptitudeModules();
+  } else if (course === 'logical') {
+    return loadLogicalModules();
   }
 
-  console.error(`❌ Language '${language}' not found. Available languages: ${getAvailableCourses().join(', ')}`);
+  console.error(`❌ Course '${course}' not found. Available courses: ${getCoursesFromConfig().join(', ')}`);
   return [];
 }
 
 /**
- * Gets available languages
- * @returns string[] - Array of available programming languages
+ * Gets available courses
+ * @returns string[] - Array of available courses
  */
-export function getAvailableLanguages(): string[] {
-  return [...getAvailableCourses()];
+export function getAvailableCourses(): string[] {
+  return [...getCoursesFromConfig()];
 }
