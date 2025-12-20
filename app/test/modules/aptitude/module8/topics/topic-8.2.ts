@@ -208,3 +208,4 @@ Applications: 9.6%, 1%, 9.125%
 
 Master rate of interest concepts to make informed financial decisions! 🏆`
 };
+

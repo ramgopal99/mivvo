@@ -180,3 +180,4 @@ Applications: 25% on CP, 16.67% on SP; CP ₹750, loss 33.33% on SP; SP ₹1600,
 
 Master both profit/loss percentage methods for comprehensive business analysis! 🏆`
 };
+

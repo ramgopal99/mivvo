@@ -155,3 +155,4 @@ Complex: ₹1450, 9.67%
 
 Master variable rate calculations for realistic financial scenarios! 🏆`
 };
+

@@ -177,3 +177,4 @@ Required Volume Increase = Loss % / Profit Margin %
 
 Master loss percentage calculations to assess and minimize business risks! 🏆`
 };
+

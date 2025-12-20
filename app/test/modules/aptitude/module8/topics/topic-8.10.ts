@@ -169,3 +169,4 @@ Complex: ₹4800 + ₹10,800 = ₹14,280; ₹7000 + ₹12,000 = ₹19,000
 
 Master SI word problems for comprehensive aptitude solving! 🏆`
 };
+

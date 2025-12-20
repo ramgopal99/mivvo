@@ -188,3 +188,4 @@ Applications: 10%, 10%, ₹2000
 
 Master the simple interest formula for all basic interest calculations! 🏆`
 };
+

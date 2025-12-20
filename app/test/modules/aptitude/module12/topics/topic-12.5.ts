@@ -186,3 +186,4 @@ Calculate cost per unit, then average
 
 Master mean price calculations and handle all mixture costing problems! 🏆`
 };
+

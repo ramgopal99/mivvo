@@ -165,3 +165,4 @@ Three: ₹3825, 31.5%
 
 Master successive discounts to calculate accurate promotional pricing! 🏆`
 };
+

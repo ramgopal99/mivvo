@@ -180,3 +180,4 @@ Max Loss % = (Profit Margin % × Safety Factor)
 
 Master loss calculations to minimize business risks and optimize pricing! 🏆`
 };
+

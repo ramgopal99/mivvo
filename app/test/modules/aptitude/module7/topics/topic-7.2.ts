@@ -218,3 +218,4 @@ Advanced: 20%, ₹640, ₹800
 
 Master selling price calculations to optimize business profitability and pricing strategies! 🏆`
 };
+

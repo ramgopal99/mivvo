@@ -179,3 +179,4 @@ Operating Margin % = (Operating Profit / Sales) × 100%
 
 Master profit percentage calculations to evaluate business profitability! 🏆`
 };
+

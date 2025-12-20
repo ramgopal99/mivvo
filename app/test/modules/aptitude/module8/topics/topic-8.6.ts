@@ -198,3 +198,4 @@ Time: 1 year, 2.5 years, 2 years
 
 Master reverse calculations to solve any simple interest problem! 🏆`
 };
+

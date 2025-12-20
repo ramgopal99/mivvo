@@ -189,3 +189,4 @@ Required volume increase = (Discount % / Profit Margin %)
 
 Master discount calculations for effective pricing strategies! 🏆`
 };
+

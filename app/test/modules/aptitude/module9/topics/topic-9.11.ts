@@ -149,3 +149,4 @@ Rate: 15%, 20%
 
 Master growth and depreciation calculations for real-world value changes! 🏆`
 };
+

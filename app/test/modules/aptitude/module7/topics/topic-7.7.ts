@@ -157,3 +157,4 @@ MP includes taxes or separate
 
 Master marked price calculations for effective retail pricing! 🏆`
 };
+

@@ -164,3 +164,4 @@ Applications: 5.26%, 5.26%, 11.11%
 
 Master false weight calculations to understand and prevent fraudulent practices! 🏆`
 };
+
