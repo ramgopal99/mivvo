@@ -10,6 +10,94 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// =============================================================================
+// ENUMS
+// =============================================================================
+
+enum UserRole {
+  USER
+  COLLEGE_ADMIN
+  COLLEGE_STUDENT
+  SUPERADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+enum UserType {
+  FREE
+  PRO
+}
+
+enum InterviewStatus {
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum InterviewType {
+  GENERAL_INTERVIEW
+  TECHNICAL
+  CODING
+  UI_INTERVIEW
+  HR_INTERVIEW
+  CUSTOM_INTERVIEW
+}
+
+enum SupportTicketStatus {
+  PENDING
+  COMPLETED
+}
+
+enum SupportTicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum SupportTicketCategory {
+  TECHNICAL_ISSUE
+  BILLING_PAYMENT
+  ACCOUNT_PROFILE
+  FEATURE_REQUEST
+  GENERAL_INQUIRY
+}
+
+enum LessonStatus {
+  DEMO
+  LOCKED
+  COMPLETED
+}
+
+enum ExerciseType {
+  MCQ
+  CODE
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentCategory {
+  MONTHLY
+  ADDON
+  SUBSCRIPTION
+  CREDITS
+  ENTERPRISE
+  REFUND
+  OTHER
+}
+
+// =============================================================================
+// MODELS
+// =============================================================================
+
 model Account {
   id                String  @id @default(cuid()) @map("_id")
   userId            String
@@ -40,98 +128,110 @@ model Session {
   @@map("sessions")
 }
 
-enum UserRole {
-  USER
-  COLLEGE_ADMIN
-  COLLEGE_STUDENT
-  SUPERADMIN
-}
-
 model User {
-  id            String    @id @default(cuid()) @map("_id")
+  id            String     @id @default(cuid()) @map("_id")
   name          String?
-  email         String    @unique
+  email         String     @unique
   emailVerified DateTime?
   image         String?
-  role          UserRole  @default(USER)
-  createdAt     DateTime? @default(now())
-  updatedAt     DateTime? @updatedAt
+  role          UserRole   @default(USER)
+  status        UserStatus @default(ACTIVE)
+  suspendedAt   DateTime?
+  suspendedBy   String?
+  suspendReason String?
+  createdAt     DateTime?  @default(now())
+  updatedAt     DateTime?  @updatedAt
 
   // Profile fields
-  firstName     String?
-  lastName      String?
-  phone         String?
-  dateOfBirth   DateTime?
-  jobTitle      String?
-  company       String?
-  location      String?
-  bio           String?
-  cv            String?
+  firstName   String?
+  lastName    String?
+  phone       String?
+  dateOfBirth DateTime?
+  jobTitle    String?
+  company     String?
+  location    String?
+  bio         String?
 
   // Academic fields
-  rollNumber      String?
-  collegeName     String?
-  branch          String?
-  course          String?
-  courseDuration  String?
-  year            String?
-  password      String?
+  rollNumber     String?
+  collegeName    String?
+  branch         String?
+  course         String?
+  courseDuration String?
+  year           String?
+  password       String?
+
+  // User type (free/pro)
+  userType UserType @default(FREE)
 
   // College Admin fields (for users with COLLEGE_ADMIN role)
-  collegeAdminId  String?  // Unique ID for college admin login (e.g., TECH_UNIV_001)
-  collegeAdminPassword String?  // Password for college admin login
+  collegeAdminId       String? // Unique ID for college admin login (e.g., TECH_UNIV_001)
+  collegeAdminPassword String? // Password for college admin login
 
   // College relationship
-  collegeId     String?
-  college       College?  @relation(fields: [collegeId], references: [id], onDelete: SetNull)
+  collegeId String?
+  college   College? @relation(fields: [collegeId], references: [id], onDelete: SetNull)
 
   // SaaS platform fields
-  careerGoals         String?
-  linkedIn           String?
-  github             String?
+  careerGoals String?
+  linkedIn    String?
+  github      String?
 
-  // Time allowances (in minutes)
-  totalTimeAllowance   Int      @default(30)  // 30 minutes free for new users
-  usedTimeMinutes      Int      @default(0)
-  timeAllowanceResetAt DateTime?               
+  // Foreign Language Learning Preferences
+  preferredLanguage String? // User's preferred language (e.g., "ENGLISH", "FRENCH")
+
+  // Credit allocation (in credits)
+  totalCreditAllocation Int? // Set by application logic, not database default
+  usedCredits           Int       @default(0)
+  creditResetAt         DateTime?
 
   // Relations
-  accounts       Account[]
-  sessions       Session[]
-  mockInterviews MockInterview[]
+  accounts          Account[]
+  sessions          Session[]
+  mockInterviews    MockInterview[]
   interviewAttempts InterviewAttempt[]
-  supportTickets SupportTicket[]
-  courseUserProgress CourseUserProgress[]
+  supportTickets    SupportTicket[]
+  userProgress      CourseUserProgress[]
+  feedback          Feedback[]
+  payments          Payment[]
+  studentEnrollment StudentEnrollment?
+
+  // Foreign Language Learning Relations
+  readingAttempts  ReadingAttempt[]
+  mcqAttempts      McqAttempt[]
+  speakingAttempts SpeakingAttempt[]
+  writingAttempts  WritingAttempt[]
+  levelProgress    UserLevelProgress[]
 
   @@map("users")
 }
 
 model College {
-  id                String    @id @default(cuid()) @map("_id")
-  collegeId         String    @unique
-  name              String
-  description       String?
-  location          String?
-  website           String?
-  phone             String?
-  establishedYear   Int?
+  id              String  @id @default(cuid()) @map("_id")
+  collegeId       String  @unique
+  name            String
+  description     String?
+  location        String?
+  website         String?
+  phone           String?
+  establishedYear Int?
 
   // Status and billing (managed by college admins who are users)
-  isActive          Boolean   @default(true)
-  maxStudents       Int       @default(100)
-  currentStudents   Int       @default(0)
+  isActive Boolean @default(true)
 
   // Billing based on user count
-  monthlyRatePerUser Float     @default(150.0) 
+  monthlyRatePerUser Float     @default(150.0)
   billingCycle       String    @default("monthly")
   nextBillingDate    DateTime?
   lastBillingAmount  Float     @default(0.0)
 
   // Relations - college admins are now users with COLLEGE_ADMIN role
-  users             User[]
+  users              User[]
+  enterprisePayments EnterprisePayment[]
+  studentEnrollments StudentEnrollment[]
 
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("colleges")
 }
@@ -146,332 +246,1110 @@ model VerificationToken {
   @@map("verificationtokens")
 }
 
-
-enum InterviewStatus {
-  IN_PROGRESS
-  COMPLETED
-}
-
-enum InterviewType {
-  GENERAL_INTERVIEW
-  TECHNICAL
-  CODING
-  UI_INTERVIEW
-  HR_INTERVIEW
-  CUSTOM_INTERVIEW
-}
-
 model MockInterview {
-  id                String   @id @default(cuid()) @map("_id")
-  title             String?
-  companyName       String?
-  position          String?
-  companyDescription String?  @default("")
-  jobDescription    String?  @default("")
-  cvText            String?  // Optional CV/resume text extracted from uploaded file
-  interviewType     InterviewType?
-  experienceLevel   String?
-  role              String?  // Specific technical role (e.g., 'frontend-developer', 'react-developer')
-  attemptCount     Int      @default(0)
-  screenShareEnabled Boolean @default(false)
-  status            InterviewStatus @default(IN_PROGRESS)
-  timeLimitMinutes  Int?     @default(0)
-  createdBy         String
-  user              User     @relation(fields: [createdBy], references: [id], onDelete: Cascade)
-  attempts          InterviewAttempt[]
-  prompts           InterviewPrompt[]
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  id                 String             @id @default(cuid()) @map("_id")
+  title              String?
+  companyName        String?
+  position           String?
+  companyDescription String?            @default("")
+  jobDescription     String?            @default("")
+  cvText             String? // Optional CV/resume text extracted from uploaded file
+  interviewType      InterviewType?
+  experienceLevel    String?
+  role               String? // Specific technical role (e.g., 'frontend-developer', 'react-developer') or HR/foreign language subtype
+  attemptCount       Int                @default(0)
+  screenShareEnabled Boolean            @default(false)
+  status             InterviewStatus    @default(IN_PROGRESS)
+  timeLimitMinutes   Int?               @default(0)
+  createdBy          String
+  user               User               @relation(fields: [createdBy], references: [id], onDelete: Cascade)
+  attempts           InterviewAttempt[]
+  prompts            InterviewPrompt[]
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
 
   @@map("mockinterviews")
 }
 
 model InterviewAttempt {
-  id                String   @id @default(cuid()) @map("_id")
-  startedAt         DateTime @default(now())
-  completedAt       DateTime?
-  duration          Int?
-  status            InterviewStatus @default(IN_PROGRESS)
-  interviewId       String
-  interview         MockInterview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
-  candidateId       String?
-  candidate         User?    @relation(fields: [candidateId], references: [id], onDelete: SetNull)
-  results           InterviewResult[]
-  conversations     InterviewConversation[]
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  id            String                  @id @default(cuid()) @map("_id")
+  startedAt     DateTime                @default(now())
+  completedAt   DateTime?
+  duration      Int?
+  status        InterviewStatus         @default(IN_PROGRESS)
+  interviewId   String
+  interview     MockInterview           @relation(fields: [interviewId], references: [id], onDelete: Cascade)
+  candidateId   String?
+  candidate     User?                   @relation(fields: [candidateId], references: [id], onDelete: SetNull)
+  results       InterviewResult[]
+  conversations InterviewConversation[]
+  createdAt     DateTime                @default(now())
+  updatedAt     DateTime                @updatedAt
 
   @@map("interviewattempts")
 }
 
 model InterviewResult {
-  id                String   @id @default(cuid()) @map("_id")
-  duration          Int?
-  feedback          String?
-  knowledge         Float?
-  overallScore      Float?
-  overallFeedback   String?
-  strengths         String[]
-  weaknesses        String[]
-  recommendations    String[]
-  communication     Float?
-  notes             String?
+  id                       String   @id @default(cuid()) @map("_id")
+  duration                 Int?
+  feedback                 String?
+  knowledge                Float?
+  overallScore             Float?
+  overallFeedback          String?
+  strengths                String[]
+  weaknesses               String[]
+  recommendations          String[]
+  communication            Float?
+  notes                    String?
   vocabularyComplexity     Float?
-  emotionalTone           String?
-  wordCountAnalysis       String?
+  emotionalTone            String?
+  wordCountAnalysis        String?
   questionAnsweringQuality Float?
-  followUpHandling        Boolean?
-  answerStructure         String?
-  exampleUsage            Boolean?
-  relevantTopicAnswer     Boolean?
+  followUpHandling         Boolean?
+  answerStructure          String?
+  exampleUsage             Boolean?
+  relevantTopicAnswer      Boolean?
 
-  attemptId         String
-  attempt           InterviewAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  attemptId String
+  attempt   InterviewAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
 
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("interviewresults")
 }
 
 model InterviewPrompt {
-  id                String   @id @default(cuid()) @map("_id")
-  promptText        String
-  isActive          Boolean  @default(true)
-  interviewId       String
-  interview         MockInterview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  id          String        @id @default(cuid()) @map("_id")
+  promptText  String
+  isActive    Boolean       @default(true)
+  interviewId String
+  interview   MockInterview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 
   @@map("interviewprompts")
 }
 
 model InterviewConversation {
-  id                String   @id @default(cuid()) @map("_id")
-  attemptId         String
-  attempt           InterviewAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
-  transcript        String
-  messages          String
-  duration          Int
-  createdAt         DateTime @default(now())
+  id         String           @id @default(cuid()) @map("_id")
+  attemptId  String
+  attempt    InterviewAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  transcript String
+  messages   String
+  duration   Int
+  createdAt  DateTime         @default(now())
 
   @@map("interviewconversations")
 }
 
-enum SupportTicketStatus {
-  PENDING
-  COMPLETED
-}
-
-enum SupportTicketPriority {
-  LOW
-  MEDIUM
-  HIGH
-}
-
-enum SupportTicketCategory {
-  TECHNICAL_ISSUE
-  BILLING_PAYMENT
-  ACCOUNT_PROFILE
-  FEATURE_REQUEST
-  GENERAL_INQUIRY
-}
-
 model SupportTicket {
-  id          String   @id @default(cuid()) @map("_id")
-  ticketId    String   @unique // Human-readable ID like "SUP-20240115-001"
+  id          String                 @id @default(cuid()) @map("_id")
+  ticketId    String                 @unique // Human-readable ID like "SUP-20240115-001"
   subject     String
   category    SupportTicketCategory
-  priority    SupportTicketPriority
-  status      SupportTicketStatus @default(PENDING)
+  priority    SupportTicketPriority?
+  status      SupportTicketStatus    @default(PENDING)
   description String
 
   // For completed tickets
-  resolution  String?
+  resolution String?
 
   // Relations
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  replies     TicketReply[]
+  userId  String
+  user    User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  replies TicketReply[]
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("supporttickets")
 }
 
 model TicketReply {
-  id          String   @id @default(cuid()) @map("_id")
-  subject     String
-  message     String
-  from        String   // "Support Team", "Product Team", etc.
+  id      String @id @default(cuid()) @map("_id")
+  subject String
+  message String
+  from    String // "Support Team", "Product Team", etc.
 
   // Relations
-  ticketId    String
-  ticket      SupportTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  ticketId String
+  ticket   SupportTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
 
-  createdAt   DateTime @default(now())
+  createdAt DateTime @default(now())
 
   @@map("ticketreplies")
 }
 
-// Course/Learning Management Models - Updated for Test App Structure
-enum LessonStatus {
-  DEMO
-  LOCKED
-  COMPLETED
-}
-
-enum ExerciseType {
-  MCQ
-  CODE
-}
-
-enum CourseType {
-  PROGRAMMING
-  APTITUDE
-  LOGICAL
-  THEORY
-}
-
+// Course/Learning Management Models
 model Course {
-  id          String     @id @default(cuid()) @map("_id")
+  id          String  @id @default(cuid()) @map("_id")
   title       String
   description String?
-  courseType  CourseType @default(PROGRAMMING)
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  courseId    String  @unique // Unique identifier for course (e.g., 'python', 'java', 'aptitude')
+  displayName String // Display name for the course
+
+  // Course configuration matching test app structure
+  headerTitle          String?
+  completionPercentage String  @default("0% Completed")
+
+  // Code editor configuration (optional for theory courses)
+  monacoLanguage    String?
+  codeDisplayName   String?
+  defaultCode       String?
+  executionLanguage String?
+  executionVersion  String?
+
+  // AI Assistant configuration
+  aiAssistantName        String?
+  aiAssistantDescription String?
+  aiAssistantPrompt      String?
+
+  // UI configuration
+  showCodeEditor       Boolean @default(false)
+  defaultModule        Int     @default(1)
+  autoSelectFirstTopic Boolean @default(true)
+  showCourseSwitcher   Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relations
-  modules      CourseModule[]
-  codeTemplates CourseCodeTemplate[]
-  courseUserProgress CourseUserProgress[]
+  modules       CourseModule[]
+  codeTemplates CodeTemplate[]
+  userProgress  CourseUserProgress[]
 
   @@map("courses")
 }
 
 model CourseModule {
-  id          String   @id @default(cuid()) @map("_id")
-  title       String
-  courseId    String
-  order       Int      @default(0)
-  hasDemo     Boolean  @default(false)
-  isExpanded  Boolean  @default(false)
-  isActive    Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id         String   @id @default(cuid()) @map("_id")
+  title      String
+  courseId   String
+  order      Int      @default(0)
+  hasDemo    Boolean  @default(false)
+  isExpanded Boolean  @default(false)
+  isActive   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   // Relations
-  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  topics      CourseTopic[]
-  exercises   CourseExercise[]
+  course       Course           @relation(fields: [courseId], references: [courseId], onDelete: Cascade)
+  topics       CourseTopic[]
+  exercises    CourseExercise[]
+  formulas     CourseFormula[]
   userProgress CourseUserProgress[]
 
+  @@unique([courseId, order])
   @@map("course_modules")
 }
 
 model CourseTopic {
-  id          String       @id @default(cuid()) @map("_id")
-  title       String
-  moduleId    String
-  order       Int          @default(0)
-  status      LessonStatus @default(LOCKED)
-  content     String?      // Markdown content
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  id             String       @id @default(cuid()) @map("_id")
+  title          String
+  courseModuleId String
+  order          Int          @default(0)
+  status         LessonStatus @default(LOCKED)
+  content        String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
 
   // Relations
-  module      CourseModule @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  module CourseModule @relation(fields: [courseModuleId], references: [id], onDelete: Cascade)
 
   @@map("course_topics")
 }
 
 model CourseExercise {
-  id            String        @id @default(cuid()) @map("_id")
-  title         String
-  moduleId      String
-  order         Int           @default(0)
-  status        LessonStatus  @default(LOCKED)
-  content       String?       // Optional exercise description
-  type          ExerciseType?
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  id             String        @id @default(cuid()) @map("_id")
+  title          String
+  courseModuleId String
+  order          Int           @default(0)
+  status         LessonStatus  @default(LOCKED)
+  content        String?
+  type           ExerciseType?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
 
   // Relations
-  module        CourseModule  @relation(fields: [moduleId], references: [id], onDelete: Cascade)
-  mcqQuestions  CourseMCQQuestion[]
+  module        CourseModule         @relation(fields: [courseModuleId], references: [id], onDelete: Cascade)
+  mcqQuestions  CourseMcqQuestion[]
   codeQuestions CourseCodeQuestion[]
 
   @@map("course_exercises")
 }
 
-model CourseMCQQuestion {
-  id            String   @id @default(cuid()) @map("_id")
-  exerciseId    String
-  question      String
-  options       String[] // Array of option strings (4 options typically)
-  correctAnswer Int      // Index of correct answer (0-based)
-  explanation   String?  // Explanation for the correct answer
-  order         Int      @default(0)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+// Course formulas for aptitude modules
+model CourseFormula {
+  id          String   @id @default(cuid()) @map("_id")
+  courseModuleId String
+  formulaId   String   // Unique identifier for the formula (e.g., 'module2-quadratic')
+  category    String   // Category like 'algebra', 'geometry', 'statistics'
+  name        String   // Display name of the formula
+  formula     String   // The actual formula expression
+  description String   // Description of when to use the formula
+  variables   Json?    // Array of {symbol: string, description: string} pairs
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   // Relations
-  exercise      CourseExercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  module      CourseModule @relation(fields: [courseModuleId], references: [id], onDelete: Cascade)
+
+  @@unique([courseModuleId, formulaId])
+  @@map("course_formulas")
+}
+
+model CourseMcqQuestion {
+  id               String   @id @default(cuid()) @map("_id")
+  courseExerciseId String
+  question         String
+  options          String[] // Array of option strings (4 options)
+  correctAnswer    Int // Index of correct answer (0-based)
+  explanation      String?
+  order            Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Relations
+  exercise CourseExercise @relation(fields: [courseExerciseId], references: [id], onDelete: Cascade)
 
   @@map("course_mcq_questions")
 }
 
 model CourseCodeQuestion {
-  id         String   @id @default(cuid()) @map("_id")
-  exerciseId String
-  question   String   // Programming problem description
-  solution   String   // Correct code solution
-  order      Int      @default(0)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id               String   @id @default(cuid()) @map("_id")
+  courseExerciseId String
+  question         String
+  solution         String
+  order            Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 
   // Relations
-  exercise   CourseExercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  exercise CourseExercise @relation(fields: [courseExerciseId], references: [id], onDelete: Cascade)
 
   @@map("course_code_questions")
 }
 
-model CourseCodeTemplate {
+model CodeTemplate {
   id          String   @id @default(cuid()) @map("_id")
   courseId    String
-  language    String   // Programming language (python, java, javascript, etc.)
-  code        String   // Default code template
+  language    String
+  code        String
   description String?
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   // Relations
-  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   @@unique([courseId, language])
-  @@map("course_code_templates")
+  @@map("codetemplates")
 }
 
 model CourseUserProgress {
-  id            String   @id @default(cuid()) @map("_id")
-  userId        String
-  courseId      String
-  moduleId      String
-  itemType      String   // "topic" or "exercise"
-  itemKey       String   // Unique key for the item (e.g., "module-1-topic-1" or "module-1-exercise-1")
-  isCompleted   Boolean  @default(false)
-  completedAt   DateTime?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id             String    @id @default(cuid()) @map("_id")
+  userId         String
+  courseId       String
+  courseModuleId String
+  itemType       String // "topic" or "exercise"
+  itemKey        String // Unique key for the item (e.g., "module-1-topic-1" or "module-1-exercise-1")
+  isCompleted    Boolean   @default(false)
+  completedAt    DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 
   // Relations
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  course        Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  module        CourseModule @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  user   User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course Course       @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  module CourseModule @relation(fields: [courseModuleId], references: [id], onDelete: Cascade)
 
   @@unique([userId, itemKey])
   @@map("course_user_progress")
 }
 
+// Course attempt tracking for exercises
+
+model Contact {
+  id        String        @id @default(cuid()) @map("_id")
+  firstName String
+  lastName  String
+  email     String
+  subject   String
+  message   String
+  ipAddress String? // IP address for spam protection
+  status    ContactStatus @default(PENDING)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@map("contacts")
+}
+
+enum ContactStatus {
+  PENDING
+  COMPLETED
+}
+
+model Feedback {
+  id        String   @id @default(cuid()) @map("_id")
+  userId    String
+  title     String
+  message   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("feedbacks")
+}
+
+model Payment {
+  id              String          @id @default(cuid()) @map("_id")
+  userId          String
+  amount          Float
+  currency        String          @default("INR")
+  paymentCategory PaymentCategory
+  status          PaymentStatus   @default(PENDING)
+  paymentDate     DateTime
+  transactionId   String?
+  description     String?
+  value           Int? // For addon payments - number of credits or items
+  metadata        Json?
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("payments")
+}
+
+model EnterprisePayment {
+  id             String        @id @default(cuid()) @map("_id")
+  collegeId      String
+  amount         Float
+  currency       String        @default("INR")
+  status         PaymentStatus @default(PENDING)
+  paymentDate    DateTime
+  billingPeriod  String // e.g., "2024-11", "2024-Q4"
+  studentCount   Int // Number of students at time of billing
+  ratePerStudent Float // Rate per student
+  transactionId  String?
+  description    String?
+  invoiceNumber  String?       @unique
+  dueDate        DateTime?
+  paidAt         DateTime?
+  metadata       Json?
+
+  // Relations
+  college College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("enterprise_payments")
+}
+
+model StudentEnrollment {
+  id               String        @id @default(cuid()) @map("_id")
+  collegeId        String
+  userId           String        @unique // The created student user account
+  rollNumber       String
+  enrollmentMonths Int // Number of months (1, 3, 6, 12)
+  enrollmentDate   DateTime      @default(now())
+  expirationDate   DateTime
+  paymentAmount    Float
+  paymentStatus    PaymentStatus @default(PENDING)
+  paymentId        String? // Reference to Payment model
+  isActive         Boolean       @default(true)
+
+  // Relations
+  college College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("student_enrollments")
+}
+
+// =============================================================================
+// FOREIGN LANGUAGE LEARNING SYSTEM - READING
+// =============================================================================
+
+enum CEFRLevel {
+  A1
+  A2
+  B1
+  B2
+  C1
+  C2
+}
+
+enum SkillType {
+  READING
+  WRITING
+  SPEAKING
+  MCQ
+}
+
+enum ReadingSessionType {
+  READING_COMPREHENSION
+  REARRANGE_SENTENCES
+}
+
+enum AttemptStatus {
+  IN_PROGRESS
+  COMPLETED
+  ABANDONED
+}
+
+enum McqSessionType {
+  VOCABULARY
+  GRAMMAR
+  ERROR_DETECTION
+  SYNONYMS_ANTONYMS
+  SENTENCE_COMPLETION
+  WORD_REPLACEMENT
+  MIXED
+}
+
+enum McqQuestionCategory {
+  GRAMMAR
+  VOCABULARY
+  ERROR_DETECTION
+  SYNONYMS_ANTONYMS
+  SENTENCE_COMPLETION
+  WORD_REPLACEMENT
+}
+
+enum SpeakingSessionType {
+  LISTEN_SPEAK
+  LISTEN_REPEAT
+  MIXED
+}
+
+enum SpeakingQuestionCategory {
+  LISTEN_SPEAK
+  LISTEN_REPEAT
+}
+
+// Language configuration - configurable languages
+model LanguageConfig {
+  id        String   @id @default(cuid()) @map("_id")
+  language  String   @unique // "ENGLISH", "FRENCH", etc.
+  name      String // "English", "French"
+  code      String // "en", "fr"
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  skills            SkillConfig[]
+  readingSessions   ReadingSession[]
+  mcqSessions       McqSession[]
+  speakingSessions  SpeakingSession[]
+  writingSessions   WritingSession[]
+  userLevelProgress UserLevelProgress[]
+  readingAttempts   ReadingAttempt[]
+  mcqAttempts       McqAttempt[]
+  speakingAttempts  SpeakingAttempt[]
+  writingAttempts   WritingAttempt[]
+
+  @@map("language_configs")
+}
+
+// Skill configuration
+model SkillConfig {
+  id          String    @id @default(cuid()) @map("_id")
+  skill       SkillType
+  name        String // "Reading", "Writing", etc.
+  description String
+  weight      Float     @default(0.25) // 25% contribution to level
+  isActive    Boolean   @default(true)
+  languageId  String
+
+  // Relations
+  language LanguageConfig @relation(fields: [languageId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([skill, languageId])
+  @@map("skill_configs")
+}
+
+// Reading practice sessions
+model ReadingSession {
+  id          String             @id @default(cuid()) @map("_id")
+  title       String
+  sessionType ReadingSessionType
+  languageId  String
+  cefrLevel   String // CEFR level (e.g., "A1", "A2", etc.)
+  timeLimit   Int? // Time limit in minutes
+  isActive    Boolean            @default(true)
+
+  // Relations
+  language          LanguageConfig         @relation(fields: [languageId], references: [id], onDelete: Cascade)
+  comprehensionData ReadingComprehension[]
+  rearrangingData   ReadingRearrange[]
+  attempts          ReadingAttempt[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("reading_sessions")
+}
+
+// Reading comprehension questions
+model ReadingComprehension {
+  id            String   @id @default(cuid()) @map("_id")
+  sessionId     String
+  passage       String
+  question      String
+  options       String[] // Array of 4 options
+  correctAnswer Int // Index of correct answer (0-3)
+  explanation   String
+  order         Int // Question order in session
+
+  // Relations
+  session ReadingSession               @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  results ReadingComprehensionResult[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([sessionId, order])
+  @@map("reading_comprehensions")
+}
+
+// Reading sentence rearrangement tasks
+model ReadingRearrange {
+  id             String   @id @default(cuid()) @map("_id")
+  sessionId      String
+  scrambledWords String[] // Array of scrambled words
+  correctOrder   String[] // Array of words in correct order
+  explanation    String
+  order          Int // Task order in session
+
+  // Relations
+  session ReadingSession           @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  results ReadingRearrangeResult[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([sessionId, order])
+  @@map("reading_rearranges")
+}
+
+// User's reading attempts
+model ReadingAttempt {
+  id          String        @id @default(cuid()) @map("_id")
+  userId      String
+  sessionId   String
+  languageId  String // Language for this attempt (redundant but for performance)
+  status      AttemptStatus @default(IN_PROGRESS)
+  startedAt   DateTime      @default(now())
+  completedAt DateTime?
+  duration    Int? // Duration in seconds
+
+  // Relations
+  user                 User                         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  session              ReadingSession               @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  language             LanguageConfig               @relation(fields: [languageId], references: [id], onDelete: Cascade)
+  comprehensionResults ReadingComprehensionResult[]
+  rearrangingResults   ReadingRearrangeResult[]
+  overallResult        ReadingOverallResult?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, sessionId, startedAt]) // Prevent duplicate attempts
+  @@map("reading_attempts")
+}
+
+// Results for comprehension questions
+model ReadingComprehensionResult {
+  id         String  @id @default(cuid()) @map("_id")
+  attemptId  String
+  questionId String
+  userAnswer Int // User's selected answer (0-3)
+  isCorrect  Boolean
+  timeSpent  Int // Time spent on this question in seconds
+
+  // Relations
+  attempt  ReadingAttempt       @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question ReadingComprehension @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([attemptId, questionId])
+  @@map("reading_comprehension_results")
+}
+
+// Results for rearrangement tasks
+model ReadingRearrangeResult {
+  id         String   @id @default(cuid()) @map("_id")
+  attemptId  String
+  taskId     String
+  userAnswer String[] // User's arranged words
+  isCorrect  Boolean
+  timeSpent  Int // Time spent on this task in seconds
+
+  // Relations
+  attempt ReadingAttempt   @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  task    ReadingRearrange @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([attemptId, taskId])
+  @@map("reading_rearrange_results")
+}
+
+// Overall result for reading attempt
+model ReadingOverallResult {
+  id                 String   @id @default(cuid()) @map("_id")
+  attemptId          String   @unique
+  overallScore       Int // Overall score (0-100)
+  comprehensionScore Int // Comprehension score (0-100)
+  rearrangingScore   Int // Rearranging score (0-100)
+  feedback           String
+  overallFeedback    String
+  strengths          String[] // Array of strengths
+  weaknesses         String[] // Array of weaknesses
+  recommendations    String[] // Array of recommendations
+  timeSpent          Json // { comprehension: number, rearranging: number }
+
+  // Relations
+  attempt ReadingAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("reading_overall_results")
+}
+
+// MCQ Session
+model McqSession {
+  id          String         @id @default(cuid()) @map("_id")
+  title       String
+  sessionType McqSessionType
+  languageId  String
+  cefrLevel   String // CEFR level (e.g., "A1", "A2", etc.)
+  timeLimit   Int? // Time limit in minutes
+  isActive    Boolean        @default(true)
+
+  // Relations
+  language  LanguageConfig @relation(fields: [languageId], references: [id], onDelete: Cascade)
+  questions McqQuestion[]
+  attempts  McqAttempt[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("mcq_sessions")
+}
+
+// MCQ questions
+model McqQuestion {
+  id            String              @id @default(cuid()) @map("_id")
+  sessionId     String
+  question      String
+  options       String[] // Array of 4 options
+  correctAnswer Int // Index of correct answer (0-3)
+  explanation   String
+  category      McqQuestionCategory
+  order         Int // Question order in session
+
+  // Relations
+  session McqSession  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  results McqResult[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([sessionId, order])
+  @@map("mcq_questions")
+}
+
+// User's MCQ attempts
+model McqAttempt {
+  id          String        @id @default(cuid()) @map("_id")
+  userId      String
+  sessionId   String
+  languageId  String // Language for this attempt (redundant but for performance)
+  status      AttemptStatus @default(IN_PROGRESS)
+  startedAt   DateTime      @default(now())
+  completedAt DateTime?
+  duration    Int? // Duration in seconds
+
+  // Relations
+  user          User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  session       McqSession        @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  language      LanguageConfig    @relation(fields: [languageId], references: [id], onDelete: Cascade)
+  results       McqResult[]
+  overallResult McqOverallResult?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, sessionId, startedAt]) // Prevent duplicate attempts
+  @@map("mcq_attempts")
+}
+
+// Results for MCQ questions
+model McqResult {
+  id         String  @id @default(cuid()) @map("_id")
+  attemptId  String
+  questionId String
+  userAnswer Int? // User's selected answer (0-3), null if not answered
+  isCorrect  Boolean
+  timeSpent  Int // Time spent on this question in seconds
+
+  // Relations
+  attempt  McqAttempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question McqQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([attemptId, questionId])
+  @@map("mcq_results")
+}
+
+// Overall result for MCQ attempt
+model McqOverallResult {
+  id                 String   @id @default(cuid()) @map("_id")
+  attemptId          String   @unique
+  overallScore       Int // Overall score (0-100)
+  totalQuestions     Int // Total number of questions
+  correctAnswers     Int // Number of correct answers
+  accuracyPercentage Int // Accuracy percentage (0-100)
+  feedback           String
+  overallFeedback    String
+  strengths          String[] // Array of strengths
+  weaknesses         String[] // Array of weaknesses
+  recommendations    String[] // Array of recommendations
+  timeSpent          Int // Total time spent in seconds
+
+  // Relations
+  attempt McqAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("mcq_overall_results")
+}
+
+// =============================================================================
+// SPEAKING PRACTICE MODELS
+// =============================================================================
+
+// Speaking session
+model SpeakingSession {
+  id             String              @id @default(cuid()) @map("_id")
+  title          String
+  sessionType    SpeakingSessionType
+  languageId     String
+  cefrLevel      String // CEFR level (e.g., "A1", "A2", etc.)
+  timeLimit      Int? // Time limit in minutes per question
+  totalTimeLimit Int? // Total time limit in minutes for entire session
+  isActive       Boolean             @default(true)
+
+  // Relations
+  language  LanguageConfig     @relation(fields: [languageId], references: [id], onDelete: Cascade)
+  questions SpeakingQuestion[]
+  attempts  SpeakingAttempt[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("speaking_sessions")
+}
+
+// Speaking questions
+model SpeakingQuestion {
+  id        String                   @id @default(cuid()) @map("_id")
+  sessionId String
+  question  String
+  category  SpeakingQuestionCategory
+  order     Int // Question order in session
+
+  // Relations
+  session SpeakingSession  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  results SpeakingResult[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([sessionId, order])
+  @@map("speaking_questions")
+}
+
+// Speaking attempt
+model SpeakingAttempt {
+  id          String        @id @default(cuid()) @map("_id")
+  userId      String
+  sessionId   String
+  languageId  String // Language for this attempt (redundant but for performance)
+  status      AttemptStatus @default(IN_PROGRESS)
+  startedAt   DateTime      @default(now())
+  completedAt DateTime?
+  duration    Int? // Duration in seconds
+
+  // Relations
+  user          User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  session       SpeakingSession        @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  language      LanguageConfig         @relation(fields: [languageId], references: [id], onDelete: Cascade)
+  results       SpeakingResult[]
+  overallResult SpeakingOverallResult?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, sessionId, startedAt]) // Prevent duplicate attempts
+  @@map("speaking_attempts")
+}
+
+// Speaking result for individual questions
+model SpeakingResult {
+  id            String @id @default(cuid()) @map("_id")
+  attemptId     String
+  questionId    String
+  userAnswer    String // User's spoken answer (transcription)
+  wordCount     Int // Word count of the answer
+  timeSpent     Int // Time spent speaking in seconds
+  audioDuration Float? // Duration of the audio recording in seconds
+  confidence    Float? // Speech recognition confidence (0-1)
+
+  // Relations
+  attempt  SpeakingAttempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question SpeakingQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([attemptId, questionId])
+  @@map("speaking_results")
+}
+
+// Overall result for speaking attempt
+model SpeakingOverallResult {
+  id                   String   @id @default(cuid()) @map("_id")
+  attemptId            String   @unique
+  fluencyScore         Int // Fluency score (0-100)
+  pronunciationScore   Int // Pronunciation score (0-100)
+  vocabularyScore      Int // Vocabulary score (0-100)
+  grammarScore         Int // Grammar score (0-100)
+  overallScore         Int // Overall score (0-100)
+  feedback             String
+  overallFeedback      String
+  strengths            String[] // Array of strengths
+  weaknesses           String[] // Array of weaknesses
+  recommendations      String[] // Array of recommendations
+  totalWords           Int // Total words spoken
+  averageAudioDuration Float // Average audio duration per response
+  timeSpent            Int // Total time spent in seconds
+
+  // Relations
+  attempt SpeakingAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("speaking_overall_results")
+}
+
+// User's level progress tracking
+model UserLevelProgress {
+  id                  String    @id @default(cuid()) @map("_id")
+  userId              String
+  languageId          String // Language for this progress tracking
+  cefrLevel           String // CEFR level (e.g., "A1", "A2", etc.)
+  skillType           SkillType
+  currentAverageScore Float     @default(0) // Average score across all attempts
+  requiredTargetScore Int // Target score for this skill in this level
+  attemptsCount       Int       @default(0) // Number of attempts made
+  isCompleted         Boolean   @default(false) // Whether this skill is completed for the level
+  completedAt         DateTime?
+  lastAttemptAt       DateTime?
+
+  // Relations
+  user     User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  language LanguageConfig @relation(fields: [languageId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, languageId, cefrLevel, skillType])
+  @@map("user_level_progress")
+}
+
+enum WritingSessionType {
+  WRITING_COMPREHENSIVE
+}
+
+// Writing Session
+model WritingSession {
+  id          String             @id @default(cuid()) @map("_id")
+  title       String
+  sessionType WritingSessionType
+  languageId  String
+  cefrLevel   String // CEFR level (e.g., "A1", "A2", etc.)
+  timeLimit   Int? // Time limit in minutes
+  isActive    Boolean            @default(true)
+
+  // Relations
+  language      LanguageConfig        @relation(fields: [languageId], references: [id], onDelete: Cascade)
+  topics        WritingTopic[]
+  chatScenarios WritingChatScenario[]
+  attempts      WritingAttempt[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("writing_sessions")
+}
+
+// Writing topics for practice
+model WritingTopic {
+  id           String @id @default(cuid()) @map("_id")
+  sessionId    String
+  topic        String
+  description  String
+  instructions String
+  wordLimit    Int?
+  order        Int // Topic order in session
+
+  // Relations
+  session WritingSession       @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  results WritingTopicResult[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([sessionId, order])
+  @@map("writing_topics")
+}
+
+// Writing chat scenarios
+model WritingChatScenario {
+  id             String   @id @default(cuid()) @map("_id")
+  sessionId      String
+  title          String
+  description    String
+  initialMessage String
+  vocabulary     String[] // Array of relevant vocabulary words
+  context        String? // Context for the conversation
+  order          Int // Scenario order in session
+
+  // Relations
+  session WritingSession      @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  results WritingChatResult[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([sessionId, order])
+  @@map("writing_chat_scenarios")
+}
+
+// Writing Attempt
+model WritingAttempt {
+  id          String        @id @default(cuid()) @map("_id")
+  userId      String
+  sessionId   String
+  languageId  String // Language for this attempt (redundant but for performance)
+  status      AttemptStatus @default(IN_PROGRESS)
+  startedAt   DateTime      @default(now())
+  completedAt DateTime?
+  duration    Int? // Duration in seconds
+
+  // Relations
+  user          User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  session       WritingSession        @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  language      LanguageConfig        @relation(fields: [languageId], references: [id], onDelete: Cascade)
+  topicResults  WritingTopicResult[]
+  chatResults   WritingChatResult[]
+  overallResult WritingOverallResult?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, sessionId, startedAt]) // Prevent duplicate attempts
+  @@map("writing_attempts")
+}
+
+// Results for writing topics
+model WritingTopicResult {
+  id         String @id @default(cuid()) @map("_id")
+  attemptId  String
+  topicId    String
+  userAnswer String // User's written response
+  wordCount  Int? // Word count of the response
+  timeSpent  Int // Time spent on this topic in seconds
+
+  // Relations
+  attempt WritingAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  topic   WritingTopic   @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([attemptId, topicId])
+  @@map("writing_topic_results")
+}
+
+// Results for chat conversations
+model WritingChatResult {
+  id           String @id @default(cuid()) @map("_id")
+  attemptId    String
+  scenarioId   String
+  conversation Json // Array of {sender: 'user'|'ai', message: string, timestamp: Date}
+  messageCount Int // Number of messages in conversation
+  timeSpent    Int // Time spent on this chat in seconds
+
+  // Relations
+  attempt  WritingAttempt      @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  scenario WritingChatScenario @relation(fields: [scenarioId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([attemptId, scenarioId])
+  @@map("writing_chat_results")
+}
+
+// Overall result for writing attempt
+model WritingOverallResult {
+  id                  String   @id @default(cuid()) @map("_id")
+  attemptId           String   @unique
+  overallScore        Int // Overall score (0-100)
+  topicWritingScore   Int? // Writing topics score (0-100)
+  aiConversationScore Int? // AI conversation score (0-100)
+  feedback            String
+  overallFeedback     String
+  strengths           String[] // Array of strengths
+  weaknesses          String[] // Array of weaknesses
+  recommendations     String[] // Array of recommendations
+  timeSpent           Json // { topics: number, chat: number }
+  creativityScore     Int? // Creativity score (0-100)
+  grammarAccuracy     Int? // Grammar accuracy score (0-100)
+  vocabularyUsage     Int? // Vocabulary usage score (0-100)
+  conversationFlow    Int? // Conversation flow score (0-100)
+  topicCoverage       Int? // Topic coverage score (0-100)
+  responseLength      Int? // Response length score (0-100)
+
+  // Relations
+  attempt WritingAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("writing_overall_results")
+}
+
+// =============================================================================
+// RELATIONS
+// =============================================================================

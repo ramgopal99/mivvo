@@ -1,67 +1,74 @@
 import { PrismaClient } from '@prisma/client';
+import * as dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 const prisma = new PrismaClient();
 
 async function cleanCourseData() {
-  console.log('🧹 Starting cleanup of all course-related data...');
-
   try {
+    console.log('🧹 Starting course data cleanup...');
+
     // Delete in reverse order of dependencies to avoid foreign key constraints
 
-    console.log('🗑️  Deleting MCQ questions...');
-    const mcqQuestionsDeleted = await prisma.mCQQuestion.deleteMany();
-    console.log(`✅ Deleted ${mcqQuestionsDeleted.count} MCQ questions`);
+    // 1. Delete course user progress (no dependencies)
+    console.log('🗑️ Deleting course user progress...');
+    const deletedProgress = await prisma.courseUserProgress.deleteMany({});
+    console.log(`✅ Deleted ${deletedProgress.count} user progress records`);
 
-    console.log('🗑️  Deleting code questions...');
-    const codeQuestionsDeleted = await prisma.codeQuestion.deleteMany();
-    console.log(`✅ Deleted ${codeQuestionsDeleted.count} code questions`);
+    // 2. Delete MCQ questions (depend on course exercises)
+    console.log('🗑️ Deleting MCQ questions...');
+    const deletedMcqQuestions = await prisma.courseMcqQuestion.deleteMany({});
+    console.log(`✅ Deleted ${deletedMcqQuestions.count} MCQ questions`);
 
-    console.log('🗑️  Deleting exercises...');
-    const exercisesDeleted = await prisma.exercise.deleteMany();
-    console.log(`✅ Deleted ${exercisesDeleted.count} exercises`);
+    // 3. Delete code questions (depend on course exercises)
+    console.log('🗑️ Deleting code questions...');
+    const deletedCodeQuestions = await prisma.courseCodeQuestion.deleteMany({});
+    console.log(`✅ Deleted ${deletedCodeQuestions.count} code questions`);
 
-    console.log('🗑️  Deleting sub-lessons...');
-    const subLessonsDeleted = await prisma.subLesson.deleteMany();
-    console.log(`✅ Deleted ${subLessonsDeleted.count} sub-lessons`);
+    // 4. Delete formulas (depend on course modules)
+    console.log('🗑️ Deleting course formulas...');
+    const deletedFormulas = await prisma.courseFormula.deleteMany({});
+    console.log(`✅ Deleted ${deletedFormulas.count} formulas`);
 
-    console.log('🗑️  Deleting modules...');
-    const modulesDeleted = await prisma.module.deleteMany();
-    console.log(`✅ Deleted ${modulesDeleted.count} modules`);
+    // 5. Delete course exercises (depend on course modules)
+    console.log('🗑️ Deleting course exercises...');
+    const deletedExercises = await prisma.courseExercise.deleteMany({});
+    console.log(`✅ Deleted ${deletedExercises.count} exercises`);
 
-    console.log('🗑️  Deleting courses...');
-    const coursesDeleted = await prisma.course.deleteMany();
-    console.log(`✅ Deleted ${coursesDeleted.count} courses`);
+    // 6. Delete course topics (depend on course modules)
+    console.log('🗑️ Deleting course topics...');
+    const deletedTopics = await prisma.courseTopic.deleteMany({});
+    console.log(`✅ Deleted ${deletedTopics.count} topics`);
 
-    console.log('\n🎉 Database cleanup completed successfully!');
+    // 7. Delete course modules (depend on courses)
+    console.log('🗑️ Deleting course modules...');
+    const deletedModules = await prisma.courseModule.deleteMany({});
+    console.log(`✅ Deleted ${deletedModules.count} modules`);
+
+    // 8. Delete courses (no remaining dependencies)
+    console.log('🗑️ Deleting courses...');
+    const deletedCourses = await prisma.course.deleteMany({});
+    console.log(`✅ Deleted ${deletedCourses.count} courses`);
+
+    console.log('\n🎉 Course data cleanup completed successfully!');
     console.log('📊 Summary:');
-    console.log(`   - Courses deleted: ${coursesDeleted.count}`);
-    console.log(`   - Modules deleted: ${modulesDeleted.count}`);
-    console.log(`   - Sub-lessons deleted: ${subLessonsDeleted.count}`);
-    console.log(`   - Exercises deleted: ${exercisesDeleted.count}`);
-    console.log(`   - MCQ questions deleted: ${mcqQuestionsDeleted.count}`);
-    console.log(`   - Code questions deleted: ${codeQuestionsDeleted.count}`);
-
-    const totalDeleted = coursesDeleted.count + modulesDeleted.count +
-                        subLessonsDeleted.count + exercisesDeleted.count +
-                        mcqQuestionsDeleted.count + codeQuestionsDeleted.count;
-
-    console.log(`   - Total records deleted: ${totalDeleted}`);
+    console.log(`   - ${deletedCourses.count} Courses deleted`);
+    console.log(`   - ${deletedModules.count} Modules deleted`);
+    console.log(`   - ${deletedTopics.count} Topics deleted`);
+    console.log(`   - ${deletedExercises.count} Exercises deleted`);
+    console.log(`   - ${deletedMcqQuestions.count} MCQ questions deleted`);
+    console.log(`   - ${deletedCodeQuestions.count} Code questions deleted`);
+    console.log(`   - ${deletedFormulas.count} Formulas deleted`);
+    console.log(`   - ${deletedProgress.count} User progress records deleted`);
 
   } catch (error) {
-    console.error('❌ Cleanup failed:', error);
-    throw error;
+    console.error('❌ Error during course data cleanup:', error);
   } finally {
     await prisma.$disconnect();
   }
 }
 
-// Run the cleanup
-cleanCourseData()
-  .then(() => {
-    console.log('✅ Cleanup script completed');
-    process.exit(0);
-  })
-  .catch((error) => {
-    console.error('❌ Cleanup script failed:', error);
-    process.exit(1);
-  });
+// Run the cleanup script
+cleanCourseData();
