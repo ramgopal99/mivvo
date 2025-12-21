@@ -101,7 +101,7 @@ model User {
   mockInterviews MockInterview[]
   interviewAttempts InterviewAttempt[]
   supportTickets SupportTicket[]
-  userProgress   UserProgress[]
+  courseUserProgress CourseUserProgress[]
 
   @@map("users")
 }
@@ -315,7 +315,7 @@ model TicketReply {
   @@map("ticketreplies")
 }
 
-// Course/Learning Management Models
+// Course/Learning Management Models - Updated for Test App Structure
 enum LessonStatus {
   DEMO
   LOCKED
@@ -327,22 +327,30 @@ enum ExerciseType {
   CODE
 }
 
+enum CourseType {
+  PROGRAMMING
+  APTITUDE
+  LOGICAL
+  THEORY
+}
+
 model Course {
-  id          String   @id @default(cuid()) @map("_id")
+  id          String     @id @default(cuid()) @map("_id")
   title       String
   description String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  courseType  CourseType @default(PROGRAMMING)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 
   // Relations
-  modules      Module[]
-  codeTemplates CodeTemplate[]
-  userProgress UserProgress[]
+  modules      CourseModule[]
+  codeTemplates CourseCodeTemplate[]
+  courseUserProgress CourseUserProgress[]
 
   @@map("courses")
 }
 
-model Module {
+model CourseModule {
   id          String   @id @default(cuid()) @map("_id")
   title       String
   courseId    String
@@ -355,85 +363,85 @@ model Module {
 
   // Relations
   course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  subLessons  SubLesson[]
-  exercises   Exercise[]
-  userProgress UserProgress[]
+  topics      CourseTopic[]
+  exercises   CourseExercise[]
+  userProgress CourseUserProgress[]
 
-  @@map("modules")
+  @@map("course_modules")
 }
 
-model SubLesson {
+model CourseTopic {
   id          String       @id @default(cuid()) @map("_id")
   title       String
   moduleId    String
   order       Int          @default(0)
   status      LessonStatus @default(LOCKED)
-  content     String?
+  content     String?      // Markdown content
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
 
   // Relations
-  module      Module       @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  module      CourseModule @relation(fields: [moduleId], references: [id], onDelete: Cascade)
 
-  @@map("sublessons")
+  @@map("course_topics")
 }
 
-model Exercise {
+model CourseExercise {
   id            String        @id @default(cuid()) @map("_id")
   title         String
   moduleId      String
   order         Int           @default(0)
   status        LessonStatus  @default(LOCKED)
-  content       String?
+  content       String?       // Optional exercise description
   type          ExerciseType?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
 
   // Relations
-  module        Module        @relation(fields: [moduleId], references: [id], onDelete: Cascade)
-  mcqQuestions  MCQQuestion[]
-  codeQuestions CodeQuestion[]
+  module        CourseModule  @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  mcqQuestions  CourseMCQQuestion[]
+  codeQuestions CourseCodeQuestion[]
 
-  @@map("exercises")
+  @@map("course_exercises")
 }
 
-model MCQQuestion {
+model CourseMCQQuestion {
   id            String   @id @default(cuid()) @map("_id")
   exerciseId    String
   question      String
-  options       String[] // Array of option strings
+  options       String[] // Array of option strings (4 options typically)
   correctAnswer Int      // Index of correct answer (0-based)
-  explanation   String?
+  explanation   String?  // Explanation for the correct answer
   order         Int      @default(0)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
   // Relations
-  exercise      Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  exercise      CourseExercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
 
-  @@map("mcqquestions")
+  @@map("course_mcq_questions")
 }
 
-model CodeQuestion {
+model CourseCodeQuestion {
   id         String   @id @default(cuid()) @map("_id")
   exerciseId String
-  question   String
-  solution   String
+  question   String   // Programming problem description
+  solution   String   // Correct code solution
   order      Int      @default(0)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
   // Relations
-  exercise   Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  exercise   CourseExercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
 
-  @@map("codequestions")
+  @@map("course_code_questions")
 }
 
-model CodeTemplate {
+model CourseCodeTemplate {
   id          String   @id @default(cuid()) @map("_id")
   courseId    String
-  language    String
-  code        String
+  language    String   // Programming language (python, java, javascript, etc.)
+  code        String   // Default code template
   description String?
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
@@ -443,16 +451,16 @@ model CodeTemplate {
   course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   @@unique([courseId, language])
-  @@map("codetemplates")
+  @@map("course_code_templates")
 }
 
-model UserProgress {
+model CourseUserProgress {
   id            String   @id @default(cuid()) @map("_id")
   userId        String
   courseId      String
   moduleId      String
-  itemType      String   // "lesson" or "exercise"
-  itemKey       String   // Unique key for the item (e.g., "module-1-lesson-1" or "module-1-exercise-1")
+  itemType      String   // "topic" or "exercise"
+  itemKey       String   // Unique key for the item (e.g., "module-1-topic-1" or "module-1-exercise-1")
   isCompleted   Boolean  @default(false)
   completedAt   DateTime?
   createdAt     DateTime @default(now())
@@ -461,8 +469,9 @@ model UserProgress {
   // Relations
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   course        Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  module        Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  module        CourseModule @relation(fields: [moduleId], references: [id], onDelete: Cascade)
 
   @@unique([userId, itemKey])
-  @@map("userprogress")
+  @@map("course_user_progress")
 }
+
