@@ -20,6 +20,7 @@ export interface UiConfig {
   showCodeButtonOnlyOnScreenShare: boolean
   showCodingInterviewOnlyOnScreenShare: boolean
   showInterviewStartDialog: boolean
+  redirectOnStop: boolean
   screenShareSuccessMessage: string
   screenShareDialogTitle: string
   screenShareDialogDescription: string

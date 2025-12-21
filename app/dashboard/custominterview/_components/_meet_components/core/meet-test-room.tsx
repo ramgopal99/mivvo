@@ -19,7 +19,7 @@ import { DraggableCodeButton } from '../ui/draggable-code-button'
 import { CodeDialog } from '../ui/code-dialog'
 import { VoiceChat } from '../voice/voice-chat'
 import { VoiceSettings } from '../voice/voice-settings'
-import { VoiceActivityIndicator } from '@/components/meet/ui/voice-activity-indicator'
+import { LiveWaveform } from '../ui/live-waveform'
 import { Chat } from '@/components/meet/chat'
 import { CodingQuestion } from '../config'
 import { getRandomStaticQuestion } from '../static-questions'
@@ -75,6 +75,7 @@ export function MeetTestRoom({
     showCodeButtonOnlyOnScreenShare: true,
     showCodingInterviewOnlyOnScreenShare: true,
     showInterviewStartDialog: false,
+    redirectOnStop: false,
     screenShareSuccessMessage: "Screen sharing started successfully!",
     screenShareDialogTitle: "Screen Sharing Active",
     screenShareDialogDescription: "Your entire screen is now being shared. Others can see everything on your screen in the bottom-right corner of their view.\n\nTips:\n• Click the monitor button again to stop sharing\n• Your entire screen content is visible to others",
@@ -169,6 +170,11 @@ export function MeetTestRoom({
       // Call the original onEndCall
       if (onEndCall) {
         onEndCall()
+      }
+
+      // Redirect to custom interview page if enabled in config
+      if (uiConfig.redirectOnStop) {
+        window.location.href = '/dashboard/custominterview'
       }
     } finally {
       // Reset flag after everything is done
@@ -324,13 +330,14 @@ export function MeetTestRoom({
       if (!analyserRef.current) return
 
       analyserRef.current.getByteFrequencyData(dataArray)
-      
+
       // Calculate average volume
       const average = dataArray.reduce((sum, value) => sum + value, 0) / bufferLength
       const normalizedLevel = average / 255
-      
+
       // Determine if speaking (threshold can be adjusted)
-      const isCurrentlySpeaking = normalizedLevel > 0.1
+      // But don't detect as speaking if AI is currently speaking to prevent feedback
+      const isCurrentlySpeaking = normalizedLevel > 0.1 && !(isVoiceChatActive || isCodingVoiceChatActive)
       setIsUserSpeaking(isCurrentlySpeaking)
 
       requestAnimationFrame(detectVoice)
@@ -346,7 +353,7 @@ export function MeetTestRoom({
         audioContextRef.current.close()
       }
     }
-  }, [stream, isAudioEnabled])
+  }, [stream, isAudioEnabled, isVoiceChatActive, isCodingVoiceChatActive])
 
   // Manage media stream
   useEffect(() => {
@@ -1059,11 +1066,18 @@ export function MeetTestRoom({
             )}
           </div>
 
-          {/* Voice Activity Indicator */}
-          <div className="absolute bottom-4 right-4">
-            <VoiceActivityIndicator 
-              isAudioEnabled={isAudioEnabled}
-              isSpeaking={isUserSpeaking}
+          {/* Voice Activity Waveform */}
+          <div className="absolute bottom-4 right-4 w-32 h-8">
+            <LiveWaveform
+              active={isAudioEnabled && isUserSpeaking}
+              mode="static"
+              barWidth={2}
+              barGap={1}
+              barHeight={6}
+              height={32}
+              sensitivity={2}
+              updateRate={60}
+              barColor="#1f2937"
             />
           </div>
         </div>
@@ -1083,6 +1097,7 @@ export function MeetTestRoom({
               availableVoices={availableVoices}
               autoListenAfterAI={voiceConfig.autoListenAfterAI}
               isAISpeaking={isVoiceChatActive}
+              isUserSpeaking={isUserSpeaking}
               onWaitingForResponseChange={handleWaitingForResponseChange}
               isCoding={false}
               showLiveTranscription={uiConfig.showLiveTranscription}
@@ -1104,6 +1119,7 @@ export function MeetTestRoom({
               availableVoices={availableVoices}
               autoListenAfterAI={voiceConfig.autoListenAfterAI}
               isAISpeaking={isCodingVoiceChatActive}
+              isUserSpeaking={isUserSpeaking}
               onWaitingForResponseChange={handleCodingWaitingForResponseChange}
               isCoding={true}
               currentQuestion={currentCodingQuestion ? { title: currentCodingQuestion.title, description: currentCodingQuestion.description } : undefined}
@@ -1135,13 +1151,6 @@ export function MeetTestRoom({
             </div>
           )}
 
-          {/* AI Voice Activity Indicator */}
-          <div className="absolute bottom-4 right-4">
-            <VoiceActivityIndicator
-              isAudioEnabled={true}
-              isSpeaking={isVoiceChatActive || isCodingVoiceChatActive}
-            />
-          </div>
 
         </div>
       </div>

@@ -69,7 +69,7 @@ export const UI_CONFIG = {
 export const VOICE_CHAT_CONFIG = {
   SILENCE_TIMEOUT_MS: 2500, // Wait time after user stops speaking
   RECOGNITION_KEEP_ALIVE_MS: 6000, // Speech recognition keep-alive interval
-  TTS_RESTART_DELAY_MS: 250, // Delay before restarting speech recognition
+  TTS_RESTART_DELAY_MS: 1500, // Delay before restarting speech recognition (increased to prevent feedback)
   USER_RESPONSE_TIMEOUT_MS: 10000, // Timeout for user responses
 }
 
@@ -77,7 +77,7 @@ export const VOICE_CHAT_CONFIG = {
 export const CODING_VOICE_CHAT_CONFIG = {
   SILENCE_TIMEOUT_MS: 3500, // Longer timeout for coding interviews
   RECOGNITION_KEEP_ALIVE_MS: 6000, // Same keep-alive interval
-  TTS_RESTART_DELAY_MS: 250, // Delay for coding context
+  TTS_RESTART_DELAY_MS: 1500, // Delay for coding context (increased to prevent feedback)
   USER_RESPONSE_TIMEOUT_MS: 60000, // Much longer timeout for coding discussions
 }
 

@@ -91,7 +91,8 @@ export default function CustomInterviewMeetPage() {
   }, [interview, loading, permissionChecked])
 
   const handleEndCall = () => {
-    router.push('/dashboard/custominterview')
+    // Disable redirection for testing
+    // router.push('/dashboard/custominterview')
   }
 
   // Check video and microphone permissions

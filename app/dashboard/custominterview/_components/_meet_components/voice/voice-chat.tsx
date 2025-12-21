@@ -4,6 +4,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Brain } from 'lucide-react'
 import { VOICE_CHAT_CONFIG, VOICE_CHAT_MESSAGES, UI_CONFIG } from '../config'
+import { Orb } from '../ui/orb'
 
 
 
@@ -84,6 +85,7 @@ interface VoiceChatProps {
   availableVoices?: SpeechSynthesisVoice[]
   autoListenAfterAI?: boolean
   isAISpeaking?: boolean
+  isUserSpeaking?: boolean // Whether user is currently speaking
   onWaitingForResponseChange?: (isWaiting: boolean) => void
   isCoding?: boolean // Whether this is a coding interview
   currentQuestion?: { title: string; description: string } // For coding interviews
@@ -105,6 +107,7 @@ export function VoiceChat({
   availableVoices = [],
   autoListenAfterAI = false,
   isAISpeaking = false,
+  isUserSpeaking = false,
   onWaitingForResponseChange,
   isCoding = false, // Simple boolean to distinguish coding vs regular interviews
   currentQuestion,
@@ -146,6 +149,7 @@ export function VoiceChat({
   const isProcessingSpeechRef = useRef<boolean>(false)
   const recognitionActiveTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const userResponseTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const aiSpeechCooldownRef = useRef<NodeJS.Timeout | null>(null)
 
   // Clear existing timeout
   const clearSilenceTimeout = useCallback(() => {
@@ -216,6 +220,18 @@ export function VoiceChat({
       userResponseTimeoutRef.current = null
     }
     setIsWaitingForUserResponse(false)
+  }, [])
+
+  // Start AI speech cooldown to prevent immediate processing after AI finishes speaking
+  const startAISpeechCooldown = useCallback(() => {
+    // Clear any existing cooldown
+    if (aiSpeechCooldownRef.current) {
+      clearTimeout(aiSpeechCooldownRef.current)
+    }
+    // Set cooldown for 500ms after AI speech ends
+    aiSpeechCooldownRef.current = setTimeout(() => {
+      aiSpeechCooldownRef.current = null
+    }, 500)
   }, [])
 
   // Start user response timeout after AI speaks
@@ -298,26 +314,51 @@ export function VoiceChat({
     }
 
     utterance.onstart = () => {
-      // Stop speech recognition while AI is speaking to prevent feedback
-      if (recognitionRef.current && isListeningRef.current) {
-        recognitionRef.current.stop()
+      // Aggressively stop speech recognition while AI is speaking to prevent feedback
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.stop()
+        } catch (error) {
+          // Ignore errors if already stopped
+          console.log('Speech recognition already stopped or error:', error)
+        }
       }
       // Clear live transcript and any pending silence timeout - accumulated speech will be sent after AI finishes
       setLiveTranscript('')
       clearSilenceTimeout()
+      // Clear any AI speech cooldown
+      if (aiSpeechCooldownRef.current) {
+        clearTimeout(aiSpeechCooldownRef.current)
+        aiSpeechCooldownRef.current = null
+      }
+      // Clear any accumulated speech to prevent processing during AI speech
+      accumulatedSpeechRef.current = ''
       setIsSpeaking(true)
       onVoiceChatStateChange?.(true)
+      // Ensure listening state is false
+      setIsListening(false)
+      isListeningRef.current = false
     }
     utterance.onend = () => {
       setIsSpeaking(false)
       onVoiceChatStateChange?.(false)
+      // Clear any accumulated speech that might have come through during AI speech
+      accumulatedSpeechRef.current = ''
+      // Clear any pending silence timeout to prevent processing old speech
+      clearSilenceTimeout()
+      // Start cooldown period to prevent immediate speech processing
+      startAISpeechCooldown()
       // Start user response timeout - wait for user to respond
       startUserResponseTimeout()
       // Restart speech recognition after AI finishes speaking (with delay to avoid immediate recapture)
       // Only restart if microphone is enabled
       if ((isConversationModeRef.current || autoListenAfterAIRef.current) && isAudioEnabled) {
         setTimeout(() => {
-          if (!isListeningRef.current && startListeningRef.current && !isProcessingSpeechRef.current) {
+          // Double-check that AI is still not speaking before restarting
+          if (!isAISpeaking && !isListeningRef.current && startListeningRef.current && !isProcessingSpeechRef.current) {
+            console.log('Restarting speech recognition after AI finished speaking')
+            // Clear accumulated speech again just before restarting to be safe
+            accumulatedSpeechRef.current = ''
             startListeningRef.current()
           }
         }, currentVoiceChatConfig.TTS_RESTART_DELAY_MS)
@@ -330,7 +371,9 @@ export function VoiceChat({
       // Only restart if microphone is enabled
       if ((isConversationModeRef.current || autoListenAfterAIRef.current) && isAudioEnabled) {
         setTimeout(() => {
-          if (!isListeningRef.current && startListeningRef.current && !isProcessingSpeechRef.current) {
+          // Double-check that AI is still not speaking before restarting
+          if (!isAISpeaking && !isListeningRef.current && startListeningRef.current && !isProcessingSpeechRef.current) {
+            console.log('Restarting speech recognition after AI speech error')
             startListeningRef.current()
           }
         }, currentVoiceChatConfig.TTS_RESTART_DELAY_MS)
@@ -614,12 +657,26 @@ INSTRUCTION: Generate the next logical interview question based on the conversat
         isListeningRef.current = true
         setError('')
         accumulatedSpeechRef.current = ''  // Reset accumulated speech
+        // Clear any pending silence timeout when starting fresh recognition
+        clearSilenceTimeout()
       }
 
       recognition.onresult = (event: SpeechRecognitionEvent) => {
-        // Critical: Ignore speech results if microphone is disabled
+        // Critical: Ignore speech results if microphone is disabled or AI is speaking
         if (!isAudioEnabledRef.current) {
           console.log('Microphone is disabled, ignoring speech results')
+          return
+        }
+
+        // Additional safeguard: Ignore speech results while AI is speaking to prevent feedback
+        if (isAISpeaking) {
+          console.log('AI is speaking, ignoring speech results to prevent feedback')
+          return
+        }
+
+        // Additional safeguard: Ignore speech results during AI speech cooldown period
+        if (aiSpeechCooldownRef.current) {
+          console.log('AI speech cooldown active, ignoring speech results to prevent processing residual audio')
           return
         }
 
@@ -706,6 +763,10 @@ INSTRUCTION: Generate the next logical interview question based on the conversat
       // Clear timeouts on cleanup
       clearSilenceTimeout()
       clearUserResponseTimeout()
+      if (aiSpeechCooldownRef.current) {
+        clearTimeout(aiSpeechCooldownRef.current)
+        aiSpeechCooldownRef.current = null
+      }
       stopRecognitionKeepAlive()
     }
   }, [clearSilenceTimeout, startSilenceTimeout, clearUserResponseTimeout, stopRecognitionKeepAlive])
@@ -832,11 +893,27 @@ INSTRUCTION: Generate the next logical interview question based on the conversat
 
   return (
     <div className="relative h-full">
-      {/* AI Icon - Always visible in center */}
+      {/* AI Icon - Show Brain when idle, Orb when interview active */}
       <div className="flex flex-col items-center justify-center h-full">
-        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center mb-4">
-          <Brain className="w-12 h-12 text-primary-foreground" />
-        </div>
+        {isConversationMode ? (
+          // Interview active - show Orb with dynamic states
+          <div className="w-24 h-24 mb-4">
+            <Orb
+              agentState={
+                isAISpeaking ? "talking" :
+                isUserSpeaking ? "listening" :
+                "thinking" // Default state when neither is speaking
+              }
+              colors={["#CADCFC", "#A0B9D1"]}
+              className="w-full h-full"
+            />
+          </div>
+        ) : (
+          // Interview not started - show Brain icon
+          <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center mb-4">
+            <Brain className="w-12 h-12 text-primary-foreground" />
+          </div>
+        )}
         <div className="text-center">
           <h3 className="text-lg font-semibold text-foreground mb-2">AI Assistant</h3>
           {!isConversationMode ? (
