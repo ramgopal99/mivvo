@@ -125,6 +125,21 @@ const unescapeMarkdown = (text: string): string => {
     .replace(/\u201D/g, '"');        // Right double quotation mark
 };
 
+// Convert literal escape sequences to actual characters
+const convertEscapeSequences = (text: string): string => {
+  if (!text) return text;
+  
+  // Convert literal escape sequences to actual characters
+  // This handles cases where \n is stored as a literal string instead of a newline
+  return text
+    .replace(/\\n/g, '\n')           // Literal \n to actual newline
+    .replace(/\\t/g, '\t')           // Literal \t to actual tab
+    .replace(/\\r/g, '\r')           // Literal \r to actual carriage return
+    .replace(/\\"/g, '"')            // Literal \" to actual double quote
+    .replace(/\\'/g, "'")             // Literal \' to actual single quote
+    .replace(/\\\\/g, '\\');         // Literal \\ to actual backslash (must be last)
+};
+
 const MiddleSection = ({
   modules,
   selectedTopic,
@@ -150,20 +165,29 @@ const MiddleSection = ({
   const convertMcqQuestions = (dbQuestions: CourseMcqQuestion[]): MCQQuestion[] => {
     return dbQuestions.map(q => ({
       id: q.id,
-      question: q.question,
-      options: q.options,
+      question: decodeHtmlEntities(unescapeMarkdown(q.question)),
+      options: q.options.map(option => decodeHtmlEntities(unescapeMarkdown(option))),
       correctAnswer: q.correctAnswer,
-      explanation: q.explanation || undefined
+      explanation: q.explanation ? decodeHtmlEntities(unescapeMarkdown(q.explanation)) : undefined
     }));
   };
 
   // Convert database code questions to component format
   const convertCodeQuestions = (dbQuestions: CourseCodeQuestion[]): CodeQuestion[] => {
-    return dbQuestions.map(q => ({
-      id: q.id,
-      question: q.question,
-      solution: q.solution
-    }));
+    return dbQuestions.map(q => {
+      let question = decodeHtmlEntities(unescapeMarkdown(q.question));
+      let solution = decodeHtmlEntities(unescapeMarkdown(q.solution));
+      
+      // Convert escape sequences to actual characters
+      question = convertEscapeSequences(question);
+      solution = convertEscapeSequences(solution);
+      
+      return {
+        id: q.id,
+        question,
+        solution
+      };
+    });
   };
 
   const renderContent = () => {
@@ -188,6 +212,9 @@ const MiddleSection = ({
       // Unescape markdown characters (especially backticks)
       content = unescapeMarkdown(content);
       
+      // Convert escape sequences to actual characters
+      content = convertEscapeSequences(content);
+      
       // Normalize line endings and remove any problematic characters
       content = content
         .replace(/\r\n/g, '\n')  // Normalize Windows line endings
@@ -208,15 +235,30 @@ const MiddleSection = ({
 
     if (selectedExerciseData) {
       const exercise = selectedExerciseData;
+
       const content = exercise.content || `# ${selectedTopic.title}\n\nContent for this exercise is coming soon!`;
 
-      // Check if it's an MCQ exercise with database questions
+      // Check if it has MCQ questions (prioritize this over type check)
+      if (exercise.mcqQuestions && exercise.mcqQuestions.length > 0) {
+        const questions = convertMcqQuestions(exercise.mcqQuestions);
+        return <MCQModule questions={questions} title={selectedTopic.title} />;
+      }
+
+      // Check if it has CODE questions
+      if (exercise.codeQuestions && exercise.codeQuestions.length > 0) {
+        const questions = convertCodeQuestions(exercise.codeQuestions);
+        return <CodeExercise
+          title={selectedTopic.title}
+          questions={questions}
+        />;
+      }
+
+      // Fallback: Check type-based conditions (for backward compatibility)
       if (exercise.type === 'MCQ' && exercise.mcqQuestions && exercise.mcqQuestions.length > 0) {
         const questions = convertMcqQuestions(exercise.mcqQuestions);
         return <MCQModule questions={questions} title={selectedTopic.title} />;
       }
 
-      // Check if it's a CODE exercise with database questions
       if (exercise.type === 'CODE' && exercise.codeQuestions && exercise.codeQuestions.length > 0) {
         const questions = convertCodeQuestions(exercise.codeQuestions);
         return <CodeExercise
@@ -231,18 +273,32 @@ const MiddleSection = ({
         return <MCQModule questions={questions} title={selectedTopic.title} />;
       }
 
-      // Decode HTML entities and unescape markdown
-      let processedContent = decodeHtmlEntities(content);
-      processedContent = unescapeMarkdown(processedContent);
+      // If we have content, show it instead of the placeholder
+      if (exercise.content && exercise.content.trim()) {
+        // Decode HTML entities and unescape markdown
+        let processedContent = decodeHtmlEntities(exercise.content);
+        processedContent = unescapeMarkdown(processedContent);
+        processedContent = convertEscapeSequences(processedContent);
 
-      // Fallback to markdown for other content
+        return (
+          <MarkdownCompound
+            size="lg"
+            variant="rich"
+            allowHtml={true}
+          >
+            {processedContent}
+          </MarkdownCompound>
+        );
+      }
+
+      // Final fallback with better message
       return (
         <MarkdownCompound
           size="lg"
           variant="rich"
           allowHtml={true}
         >
-          {processedContent}
+          {`# ${selectedTopic.title}\n\nThis exercise is currently being prepared. Check back soon!`}
         </MarkdownCompound>
       );
     }
@@ -254,12 +310,12 @@ const MiddleSection = ({
         id?: number;
         subLessons?: Array<{ id: string; content?: string }>;
         topics?: Array<{ id: string; content?: string }>;
-        exercises?: Array<{ 
-          id: string; 
-          content?: string; 
-          type?: string; 
-          mcqQuestions?: CourseMcqQuestion[]; 
-          codeQuestions?: CourseCodeQuestion[] 
+        exercises?: Array<{
+          id: string;
+          content?: string;
+          type?: string;
+          mcqQuestions?: CourseMcqQuestion[];
+          codeQuestions?: CourseCodeQuestion[]
         }>;
       }
 
@@ -310,6 +366,7 @@ const MiddleSection = ({
           // Decode HTML entities and unescape markdown
           let processedContent = decodeHtmlEntities(content);
           processedContent = unescapeMarkdown(processedContent);
+          processedContent = convertEscapeSequences(processedContent);
 
           // Fallback to markdown for other content
           return (

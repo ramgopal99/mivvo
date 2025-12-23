@@ -6,15 +6,19 @@ import ConsoleOutput from './_comp/ConsoleOutput';
 
 interface CodingTabProps {
   language?: string;
+  courseData?: any;
 }
 
-const CodingTab = ({ language }: CodingTabProps) => {
+const CodingTab = ({ language, courseData: passedCourseData }: CodingTabProps) => {
   const [consoleOutput, setConsoleOutput] = useState<string>('');
-  const [courseData, setCourseData] = useState<any>(null);
+  const [courseData, setCourseData] = useState<any>(passedCourseData || null);
 
   useEffect(() => {
-    const fetchCourseData = async () => {
-      if (language) {
+    // Use passed course data if available, otherwise fetch it
+    if (passedCourseData) {
+      setCourseData(passedCourseData);
+    } else if (language) {
+      const fetchCourseData = async () => {
         try {
           const response = await fetch(`/api/courses/${language}`);
           if (response.ok) {
@@ -24,11 +28,10 @@ const CodingTab = ({ language }: CodingTabProps) => {
         } catch (error) {
           console.error('Failed to fetch course data:', error);
         }
-      }
-    };
-
-    fetchCourseData();
-  }, [language]);
+      };
+      fetchCourseData();
+    }
+  }, [language, passedCourseData]);
 
   const handleConsoleOutput = (output: string) => {
     setConsoleOutput(output);

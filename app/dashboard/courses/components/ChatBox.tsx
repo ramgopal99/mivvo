@@ -141,7 +141,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ isOpen, onClose, language = 'python' 
       <div className="flex items-center justify-between p-4 border-b bg-muted/30 flex-shrink-0">
         <div className="flex items-center gap-2">
           <Brain className="h-5 w-5 text-primary" />
-          <span className="font-semibold">Mivvo Assistant</span>
+          <span className="font-semibold">{assistantName}</span>
         </div>
         <Button
           variant="ghost"

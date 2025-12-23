@@ -25,6 +25,68 @@ interface MiddleSectionProps {
   language?: string;
 }
 
+// HTML entity decoder and markdown unescaper
+const decodeHtmlEntities = (text: string): string => {
+  if (!text) return text;
+
+  if (typeof document === 'undefined') {
+    // Server-side: use string replacement
+    return text
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&amp;/g, '&')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&#96;/g, '`')
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&#x60;/g, '`') // Hex encoded backtick
+      .replace(/&#x27;/g, "'") // Hex encoded single quote
+      .replace(/&#x22;/g, '"'); // Hex encoded double quote
+  }
+  // Client-side: use textarea method
+  const textarea = document.createElement('textarea');
+  textarea.innerHTML = text;
+  return textarea.value;
+};
+
+// Unescape markdown backticks and other escaped characters
+const unescapeMarkdown = (text: string): string => {
+  if (!text) return text;
+
+  // Unescape escaped backticks (\\` becomes `)
+  // Unescape escaped backslashes (\\ becomes \)
+  // Handle various escape patterns
+  return text
+    .replace(/\\`/g, '`')           // Escaped backtick
+    .replace(/\\\*/g, '*')           // Escaped asterisk
+    .replace(/\\#/g, '#')            // Escaped hash
+    .replace(/\\\[/g, '[')           // Escaped bracket
+    .replace(/\\\]/g, ']')           // Escaped bracket
+    .replace(/\\\(/g, '(')           // Escaped parenthesis
+    .replace(/\\\)/g, ')')           // Escaped parenthesis
+    .replace(/\\\\/g, '\\')          // Escaped backslash (do this last)
+    .replace(/\u0060/g, '`')        // Unicode backtick
+    .replace(/\u2018/g, "'")         // Left single quotation mark
+    .replace(/\u2019/g, "'")         // Right single quotation mark
+    .replace(/\u201C/g, '"')         // Left double quotation mark
+    .replace(/\u201D/g, '"');        // Right double quotation mark
+};
+
+// Convert literal escape sequences to actual characters
+const convertEscapeSequences = (text: string): string => {
+  if (!text) return text;
+  
+  // Convert literal escape sequences to actual characters
+  // This handles cases where \n is stored as a literal string instead of a newline
+  return text
+    .replace(/\\n/g, '\n')           // Literal \n to actual newline
+    .replace(/\\t/g, '\t')           // Literal \t to actual tab
+    .replace(/\\r/g, '\r')           // Literal \r to actual carriage return
+    .replace(/\\"/g, '"')            // Literal \" to actual double quote
+    .replace(/\\'/g, "'")             // Literal \' to actual single quote
+    .replace(/\\\\/g, '\\');         // Literal \\ to actual backslash (must be last)
+};
+
 // Helper function to parse MCQ questions from content
 const parseMCQQuestions = (content: string): MCQQuestion[] => {
   const questions: MCQQuestion[] = [];
@@ -103,17 +165,29 @@ const MiddleSection = ({ modules, selectedTopic, onPrevious, onNext, onAI, isCha
     const exercise = currentModule?.exercises.find((e: Exercise) => e.id === selectedTopic.subtopicId);
     
     if (lesson) {
+      let content = lesson.content || `# ${selectedTopic.title}\n\nContent for this lesson is coming soon!`;
+
+      // Process content for display (same as dashboard component)
+      content = decodeHtmlEntities(content);
+      content = unescapeMarkdown(content);
+      content = convertEscapeSequences(content);
+      content = content
+        .replace(/\r\n/g, '\n')  // Normalize Windows line endings
+        .replace(/\r/g, '\n')     // Normalize Mac line endings
+        .replace(/\u200B/g, '')   // Remove zero-width spaces
+        .replace(/\uFEFF/g, '');  // Remove BOM
+
       return (
         <MarkdownCompound
           size="lg"
           variant="rich"
           allowHtml={true}
         >
-          {lesson.content || `# ${selectedTopic.title}\n\nContent for this lesson is coming soon!`}
+          {content}
         </MarkdownCompound>
       );
     } else if (exercise) {
-      const content = exercise.content || `# ${selectedTopic.title}\n\nContent for this exercise is coming soon!`;
+      let content = exercise.content || `# ${selectedTopic.title}\n\nContent for this exercise is coming soon!`;
 
       // Check if it's a new MCQ exercise format
       if (exercise.type === 'mcq' && exercise.mcqQuestions) {
@@ -134,6 +208,15 @@ const MiddleSection = ({ modules, selectedTopic, onPrevious, onNext, onAI, isCha
         />;
       }
 
+      // Process content for display (same as dashboard component)
+      content = decodeHtmlEntities(content);
+      content = unescapeMarkdown(content);
+      content = convertEscapeSequences(content);
+      content = content
+        .replace(/\r\n/g, '\n')  // Normalize Windows line endings
+        .replace(/\r/g, '\n')     // Normalize Mac line endings
+        .replace(/\u200B/g, '')   // Remove zero-width spaces
+        .replace(/\uFEFF/g, '');  // Remove BOM
 
       // Fallback to markdown for other content
       return (

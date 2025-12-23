@@ -12,6 +12,7 @@ interface RightPanelProps {
   selectedTopic?: { moduleId: number; subtopicId: string; title: string; moduleTitle: string } | null;
   courseData?: any;
   selectedModuleData?: any;
+  showCodeEditor?: boolean;
 }
 
 const RightPanel = ({ language = 'python', selectedTopic, courseData, selectedModuleData }: RightPanelProps) => {
@@ -87,7 +88,7 @@ const RightPanel = ({ language = 'python', selectedTopic, courseData, selectedMo
   if (isOnlyCodeTab) {
     return (
       <div className="h-full bg-background flex flex-col">
-        <CodingTab language={language} />
+        <CodingTab language={language} courseData={courseData} />
       </div>
     );
   }
@@ -121,7 +122,7 @@ const RightPanel = ({ language = 'python', selectedTopic, courseData, selectedMo
           {/* Coding Tab */}
           {showCodeEditor && (
             <TabsContent value="code" className="h-full m-0">
-              <CodingTab language={language} />
+              <CodingTab language={language} courseData={courseData} />
             </TabsContent>
           )}
 

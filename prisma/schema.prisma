@@ -76,6 +76,7 @@ enum ExerciseType {
   CODE
 }
 
+
 enum PaymentStatus {
   PENDING
   COMPLETED
@@ -416,7 +417,6 @@ model Course {
 
   // Relations
   modules       CourseModule[]
-  codeTemplates CodeTemplate[]
   userProgress  CourseUserProgress[]
 
   @@map("courses")
@@ -530,23 +530,6 @@ model CourseCodeQuestion {
   exercise CourseExercise @relation(fields: [courseExerciseId], references: [id], onDelete: Cascade)
 
   @@map("course_code_questions")
-}
-
-model CodeTemplate {
-  id          String   @id @default(cuid()) @map("_id")
-  courseId    String
-  language    String
-  code        String
-  description String?
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  // Relations
-  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
-
-  @@unique([courseId, language])
-  @@map("codetemplates")
 }
 
 model CourseUserProgress {

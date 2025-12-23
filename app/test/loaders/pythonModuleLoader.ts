@@ -180,8 +180,8 @@ import { topic_20_5 } from '../modules/python/module20/topics/topic-20.5';
 import { exercise_1_3 } from '../modules/python/module1/mcq/exercise-1.3';
 
 // Module 2
-import { exercise_2_8 } from '../modules/python/module2/mcq/exercise-2.8';
-import { exercise_2_9 } from '../modules/python/module2/mcq/exercise-2.9';
+import { exercise_2_8 } from '../modules/python/module2/mcq/excercise-2.8';
+import { exercise_2_9 } from '../modules/python/module2/mcq/excercise-2.9';
 
 // Module 3
 import { exercise_3_7 } from '../modules/python/module3/mcq/exercise-3.7';

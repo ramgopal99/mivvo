@@ -11,7 +11,6 @@
     "clean-collections": "tsx scripts/clean-unused-collections.ts",
     "migrate-modules": "tsx scripts/migrate-test-modules-to-db.ts",
     "clean-courses": "tsx scripts/clean-course-data.ts",
-    "seed-templates": "tsx scripts/seed-code-templates.ts",
     "upload-python-course": "tsx scripts/upload-python-course.ts",
     "fix-course-data": "tsx scripts/fix-course-data.ts",
     "clean-course-data": "tsx scripts/clean-course-data.ts",

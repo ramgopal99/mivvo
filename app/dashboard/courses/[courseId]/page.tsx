@@ -233,6 +233,9 @@ export default function CourseDetailPage() {
     selectedExerciseData: selectedExerciseData ? {
       id: selectedExerciseData.id,
       title: selectedExerciseData.title,
+      type: selectedExerciseData.type,
+      mcqQuestionsCount: selectedExerciseData.mcqQuestions?.length || 0,
+      codeQuestionsCount: selectedExerciseData.codeQuestions?.length || 0,
       contentLength: selectedExerciseData.content?.length || 0
     } : null
   });

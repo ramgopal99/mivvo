@@ -1,457 +1,546 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { PrismaClient } from '@prisma/client';
 import * as fs from 'fs';
 import * as path from 'path';
-import { fileURLToPath } from 'url';
+import { COURSES } from '../app/test/config/courses';
 
 const prisma = new PrismaClient();
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Load Python configuration from test registry
-function getPythonConfig() {
-  const registryPath = path.join(__dirname, '..', 'app', 'test', 'config', 'courses', 'registry.ts');
-  const registryContent = fs.readFileSync(registryPath, 'utf-8');
-
-  // Extract Python configuration
-  const pythonMatch = registryContent.match(/python:\s*(\{[\s\S]*?\n\s*\}),/);
-  if (!pythonMatch) {
-    throw new Error('Could not find Python configuration in test registry');
-  }
-
-  // Simple parsing - extract key values
-  const pythonConfig = pythonMatch[1];
-
-  return {
-    courseId: 'python',
-    displayName: pythonConfig.match(/displayName:\s*'([^']+)'/)?.[1] || 'Python Programming',
-    headerTitle: pythonConfig.match(/title:\s*'([^']+)'/)?.[1] || 'Python Programming Course',
-    completionPercentage: '0% Completed',
-    monacoLanguage: pythonConfig.match(/monacoLanguage:\s*'([^']+)'/)?.[1] || 'python',
-    codeDisplayName: pythonConfig.match(/displayName:\s*'([^']+)'\s*\}\s*,/)?.[1] || 'Python',
-    defaultCode: pythonConfig.match(/defaultCode:\s*`([^`]*)`/)?.[1] || '# Python code',
-    executionLanguage: pythonConfig.match(/executionLanguage:\s*'([^']+)'/)?.[1] || 'python',
-    executionVersion: pythonConfig.match(/executionVersion:\s*'([^']+)'/)?.[1] || '3.12.0',
-    aiAssistantName: pythonConfig.match(/name:\s*'([^']+)'/)?.[1] || 'Mivvo Python Assistant',
-    aiAssistantDescription: pythonConfig.match(/description:\s*'([^']+)'/)?.[1] || 'Python Learning Assistant',
-    aiAssistantPrompt: pythonConfig.match(/systemPrompt:\s*`([^`]*)`/)?.[1] || 'You are a Python assistant',
-    showCodeEditor: pythonConfig.match(/showCodeEditor:\s*true/) !== null,
-    defaultModule: 1,
-    autoSelectFirstTopic: pythonConfig.match(/autoSelectFirstTopic:\s*true/) !== null,
-    showCourseSwitcher: pythonConfig.match(/showCourseSwitcher:\s*true/) !== null,
-  };
+interface ModuleInfo {
+  id: number;
+  title: string;
+  hasDemo: boolean;
+  isExpanded: boolean;
+  isActive: boolean;
 }
 
-function loadModuleData(modulePath: string, moduleNumber: number) {
-  try {
-    const moduleInfoPath = path.join(modulePath, 'module-info.ts');
-    const content = fs.readFileSync(moduleInfoPath, 'utf-8');
+interface SubLesson {
+  id: string;
+  title: string;
+  status: 'demo' | 'locked' | 'completed';
+  content?: string;
+}
 
-    // Simple extraction of key values
-    const title = content.match(/title:\s*'([^']+)'/)?.[1] || `Module ${moduleNumber}`;
-    const hasDemo = content.includes('hasDemo: true');
-    const isExpanded = content.includes('isExpanded: true');
-    const isActive = content.includes('isActive: true');
+interface MCQQuestion {
+  id: string;
+  question: string;
+  options: string[];
+  correctAnswer: number;
+  explanation?: string;
+}
+
+interface CodeQuestion {
+  id: string;
+  question: string;
+  solution: string;
+}
+
+interface Exercise {
+  id: string;
+  title: string;
+  status: 'demo' | 'locked' | 'completed';
+  content?: string;
+  type?: 'mcq' | 'code';
+  mcqQuestions?: MCQQuestion[];
+  codeQuestions?: CodeQuestion[];
+}
+
+// Helper function to parse module info
+function parseModuleInfo(content: string): ModuleInfo | null {
+  try {
+    // Extract the object content from TypeScript export
+    const objectMatch = content.match(/export\s+const\s+\w+\s*=\s*\{([\s\S]*?)\};?\s*$/);
+    if (!objectMatch) {
+      console.error('Could not find export object in module-info.ts');
+      return null;
+    }
+
+    const objectContent = objectMatch[1];
+
+    const idMatch = objectContent.match(/id:\s*(\d+)/);
+    const titleMatch = objectContent.match(/title:\s*['"]([^'"]+)['"]/);
+    const hasDemoMatch = objectContent.match(/hasDemo:\s*(true|false)/);
+    const isExpandedMatch = objectContent.match(/isExpanded:\s*(true|false)/);
+    const isActiveMatch = objectContent.match(/isActive:\s*(true|false)/);
+
+    if (!idMatch || !titleMatch || !hasDemoMatch || !isExpandedMatch || !isActiveMatch) {
+      console.error('Missing required fields in module-info.ts:', { idMatch, titleMatch, hasDemoMatch, isExpandedMatch, isActiveMatch });
+      return null;
+    }
 
     return {
-      title,
-      hasDemo,
-      isExpanded,
-      isActive,
+      id: parseInt(idMatch[1]),
+      title: titleMatch[1],
+      hasDemo: hasDemoMatch[1] === 'true',
+      isExpanded: isExpandedMatch[1] === 'true',
+      isActive: isActiveMatch[1] === 'true'
     };
   } catch (error) {
-    console.error(`Error loading module ${moduleNumber}:`, error);
-    return {
-      title: `Module ${moduleNumber}`,
-      hasDemo: moduleNumber === 1,
-      isExpanded: moduleNumber === 1,
-      isActive: moduleNumber === 1,
-    };
+    console.error('Failed to parse module info:', error);
+    return null;
   }
 }
 
-function loadTopicsForModule(modulePath: string, _moduleNumber: number) {
-  const topicsPath = path.join(modulePath, 'topics');
-  const topics: Array<{
-    title: string;
-    status: 'DEMO' | 'LOCKED' | 'COMPLETED';
-    content: string | null;
-    order: number;
-  }> = [];
+// Helper function to parse topic data
+function parseTopicData(contentStr: string): SubLesson | null {
+  try {
+    // Extract the object content from TypeScript export
+    const objectMatch = contentStr.match(/export\s+const\s+[^=]+=\s*\{([\s\S]*)\}\s*;?\s*$/);
+    if (!objectMatch) {
+      console.error('Could not find export object in topic file');
+      return null;
+    }
 
-  if (!fs.existsSync(topicsPath)) {
-    return topics;
+    const objectContent = objectMatch[1];
+
+    const idMatch = objectContent.match(/id:\s*['"]([^'"]+)['"]/);
+    const titleMatch = objectContent.match(/title:\s*['"]([^'"]+)['"]/);
+    const statusMatch = objectContent.match(/status:\s*['"]([^'"]+)['"]/);
+
+    if (!idMatch || !titleMatch || !statusMatch) {
+      console.error('Missing required fields in topic file');
+      return null;
+    }
+
+    // Extract content (multiline string in backticks) - find the matching closing backtick
+    const contentFieldMatch = objectContent.match(/content:\s*`/);
+    let content = '';
+
+    if (contentFieldMatch) {
+      const contentStart = contentFieldMatch.index! + contentFieldMatch[0].length;
+      let i = contentStart;
+
+      // Find the matching closing backtick
+      while (i < objectContent.length) {
+        const char = objectContent[i];
+
+        if (char === '`') {
+          // Check if this backtick is escaped
+          let escapeCount = 0;
+          let j = i - 1;
+          while (j >= contentStart && objectContent[j] === '\\') {
+            escapeCount++;
+            j--;
+          }
+
+          if (escapeCount % 2 === 0) {
+            // Not escaped, this is the closing backtick
+            content = objectContent.substring(contentStart, i);
+            break;
+          }
+        }
+
+        i++;
+      }
+    }
+
+    if (!content) {
+      console.warn('No content found in topic file');
+    }
+
+    return {
+      id: idMatch[1],
+      title: titleMatch[1],
+      status: statusMatch[1] as 'demo' | 'locked' | 'completed',
+      content: content
+    };
+  } catch (error) {
+    console.error('❌ Failed to parse topic data:', error);
+    return null;
   }
+}
 
-  const topicFiles = fs.readdirSync(topicsPath)
-    .filter(file => file.endsWith('.ts'))
-    .sort();
+// Helper function to parse exercise data
+function parseExerciseData(content: string): Exercise | null {
+  try {
+    console.log('🔍 Parsing exercise content...');
+    // Extract the object content from TypeScript export
+    const objectMatch = content.match(/export\s+const\s+[^=]+=\s*\{([\s\S]*)\}\s*;?\s*$/);
+    if (!objectMatch) {
+      console.error('Could not find export object in exercise file');
+      return null;
+    }
 
-  for (let i = 0; i < topicFiles.length; i++) {
-    try {
-      const filePath = path.join(topicsPath, topicFiles[i]);
-      const content = fs.readFileSync(filePath, 'utf-8');
+    const objectContent = objectMatch[1];
 
-      // Extract basic info
-      const title = content.match(/title:\s*'([^']+)'/)?.[1] || `Topic ${i + 1}`;
-      const statusMatch = content.match(/status:\s*'([^']+)'/);
-      const status = statusMatch ? statusMatch[1].toUpperCase() : 'LOCKED';
+    const idMatch = objectContent.match(/id:\s*['"]([^'"]+)['"]/);
+    const titleMatch = objectContent.match(/title:\s*['"]([^'"]+)['"]/);
+    const statusMatch = objectContent.match(/status:\s*['"]([^'"]+)['"]/);
+    const typeMatch = objectContent.match(/type:\s*['"]([^'"]+)['"]/);
 
-      // Extract content (everything between the content: ` markers)
-      const contentMatch = content.match(/content:\s*`([\s\S]*?)`,?\s*\};?\s*$/);
-      const topicContent = contentMatch ? contentMatch[1] : null;
+    console.log(`📋 Found: id=${idMatch?.[1]}, title=${titleMatch?.[1]}, type=${typeMatch?.[1]}`);
 
-      topics.push({
-        title,
-        status: status as 'DEMO' | 'LOCKED' | 'COMPLETED',
-        content: topicContent,
-        order: i + 1,
+    if (!idMatch || !titleMatch || !statusMatch) {
+      console.error('Missing required fields in exercise file');
+      return null;
+    }
+
+    // Extract content
+    const contentMatch = objectContent.match(/content:\s*`([\s\S]*?)`/);
+    const exerciseContent = contentMatch ? contentMatch[1] : undefined;
+
+    // Extract MCQ questions if they exist
+    const mcqQuestions: MCQQuestion[] = [];
+
+    // Use regex to extract mcqQuestions array content
+    const mcqRegex = /mcqQuestions:\s*\[([\s\S]*)\]/;
+    const mcqMatch = objectContent.match(mcqRegex);
+    const mcqContent = mcqMatch ? mcqMatch[1] : '';
+
+    console.log(`🔍 mcqContent found: ${mcqContent.length > 0}, length: ${mcqContent.length}`);
+
+    console.log(`🔍 mcqContent found: ${mcqContent.length > 0}, length: ${mcqContent.length}`);
+    if (mcqContent) {
+      // Split by question objects (look for opening braces)
+      const questionBlocks = mcqContent.split(/},\s*{/).map((block, index, arr) => {
+        if (index > 0) block = '{' + block;
+        if (index < arr.length - 1) block = block + '}';
+        return block.trim();
       });
-    } catch (error) {
-      console.error(`Error loading topic ${topicFiles[i]}:`, error);
-    }
-  }
 
-  return topics;
-}
+      for (const questionBlock of questionBlocks) {
+        if (questionBlock.trim()) {
+          // Parse question - properly handle quotes (single or double) with matching closing quote
+          let question = '';
+          const questionFieldMatch = questionBlock.match(/question:\s*([`'"])/);
+          if (questionFieldMatch) {
+            const quoteChar = questionFieldMatch[1];
+            const questionStart = questionFieldMatch.index! + questionFieldMatch[0].length;
+            let i = questionStart;
+            
+            // Find the matching closing quote (not escaped)
+            while (i < questionBlock.length) {
+              const char = questionBlock[i];
+              
+              if (char === quoteChar) {
+                // Check if this quote is escaped
+                let escapeCount = 0;
+                let j = i - 1;
+                while (j >= questionStart && questionBlock[j] === '\\') {
+                  escapeCount++;
+                  j--;
+                }
+                
+                if (escapeCount % 2 === 0) {
+                  // Not escaped, this is the closing quote
+                  question = questionBlock.substring(questionStart, i);
+                  break;
+                }
+              }
+              
+              i++;
+            }
+          }
+          
+          // Parse options array - need to find matching closing bracket, not just first ]
+          let optionsStr = '';
+          const optionsArrayMatch = questionBlock.match(/options:\s*\[/);
+          if (optionsArrayMatch) {
+            const arrayStart = optionsArrayMatch.index! + optionsArrayMatch[0].length;
+            let i = arrayStart;
+            let bracketDepth = 1; // We're inside the opening bracket
+            let inString = false;
+            let stringQuote: string | null = null;
+            
+            while (i < questionBlock.length && bracketDepth > 0) {
+              const char = questionBlock[i];
+              
+              if (!inString) {
+                if (char === '[') {
+                  bracketDepth++;
+                } else if (char === ']') {
+                  bracketDepth--;
+                  if (bracketDepth === 0) {
+                    // Found the matching closing bracket
+                    optionsStr = questionBlock.substring(arrayStart, i);
+                    break;
+                  }
+                } else if (char === '"' || char === "'") {
+                  inString = true;
+                  stringQuote = char;
+                }
+              } else {
+                // We're inside a string
+                if (char === stringQuote) {
+                  // Check if this quote is escaped
+                  let escapeCount = 0;
+                  let j = i - 1;
+                  while (j >= arrayStart && questionBlock[j] === '\\') {
+                    escapeCount++;
+                    j--;
+                  }
+                  
+                  if (escapeCount % 2 === 0) {
+                    // Not escaped, this is the closing quote
+                    inString = false;
+                    stringQuote = null;
+                  }
+                }
+              }
+              
+              i++;
+            }
+          }
+          
+          const correctAnswerMatch = questionBlock.match(/correctAnswer:\s*(\d+)/);
+          
+          // Parse explanation - properly handle quotes
+          let explanation = '';
+          const explanationFieldMatch = questionBlock.match(/explanation:\s*([`'"])/);
+          if (explanationFieldMatch) {
+            const quoteChar = explanationFieldMatch[1];
+            const explanationStart = explanationFieldMatch.index! + explanationFieldMatch[0].length;
+            let i = explanationStart;
+            
+            // Find the matching closing quote (not escaped)
+            while (i < questionBlock.length) {
+              const char = questionBlock[i];
+              
+              if (char === quoteChar) {
+                // Check if this quote is escaped
+                let escapeCount = 0;
+                let j = i - 1;
+                while (j >= explanationStart && questionBlock[j] === '\\') {
+                  escapeCount++;
+                  j--;
+                }
+                
+                if (escapeCount % 2 === 0) {
+                  // Not escaped, this is the closing quote
+                  explanation = questionBlock.substring(explanationStart, i);
+                  break;
+                }
+              }
+              
+              i++;
+            }
+          }
 
-function loadExercisesForModule(modulePath: string, _moduleNumber: number) {
-  const mcqPath = path.join(modulePath, 'mcq');
-  const exercises: Array<{
-    title: string;
-    status: 'DEMO' | 'LOCKED' | 'COMPLETED';
-    type: 'MCQ' | 'CODE';
-    content: string | null;
-    order: number;
-    mcqQuestions?: Array<{
-      question: string;
-      options: string[];
-      correctAnswer: number;
-      explanation?: string;
-      order: number;
-    }>;
-    codeQuestions?: Array<{
-      id: string;
-      question: string;
-      solution: string;
-      order: number;
-    }>;
-  }> = [];
+          if (question && optionsStr && correctAnswerMatch !== null) {
+            // Parse options array - properly handle quotes in option strings
+            const options: string[] = [];
+            let i = 0;
+            
+            while (i < optionsStr.length) {
+              // Skip whitespace and commas
+              while (i < optionsStr.length && (optionsStr[i] === ' ' || optionsStr[i] === '\t' || optionsStr[i] === '\n' || optionsStr[i] === ',')) {
+                i++;
+              }
+              
+              if (i >= optionsStr.length) break;
+              
+              // Check if we have a quoted string
+              const quoteChar = optionsStr[i];
+              if (quoteChar === '"' || quoteChar === "'") {
+                const optionStart = i + 1;
+                i++;
+                
+                // Find the matching closing quote (not escaped)
+                while (i < optionsStr.length) {
+                  if (optionsStr[i] === quoteChar) {
+                    // Check if this quote is escaped
+                    let escapeCount = 0;
+                    let j = i - 1;
+                    while (j >= optionStart && optionsStr[j] === '\\') {
+                      escapeCount++;
+                      j--;
+                    }
+                    
+                    if (escapeCount % 2 === 0) {
+                      // Not escaped, this is the closing quote
+                      const option = optionsStr.substring(optionStart, i);
+                      options.push(option.replace(/\\n/g, '\n'));
+                      i++;
+                      break;
+                    }
+                  }
+                  i++;
+                }
+              } else {
+                // Not a quoted string, skip to next comma or end
+                while (i < optionsStr.length && optionsStr[i] !== ',') {
+                  i++;
+                }
+              }
+            }
 
-  if (!fs.existsSync(mcqPath)) {
-    return exercises;
-  }
+            // Unescape newlines in question and explanation
+            question = question.replace(/\\n/g, '\n');
+            explanation = explanation ? explanation.replace(/\\n/g, '\n') : undefined;
 
-  const exerciseFiles = fs.readdirSync(mcqPath)
-    .filter(file => file.endsWith('.ts'))
-    .sort();
-
-  for (let i = 0; i < exerciseFiles.length; i++) {
-    try {
-      const filePath = path.join(mcqPath, exerciseFiles[i]);
-      const content = fs.readFileSync(filePath, 'utf-8');
-
-      // Use dynamic import approach or eval to parse the TypeScript object
-      // Extract the object content between the export and the closing brace
-      const objectMatch = content.match(/export const \w+:\s*\w+\s*=\s*({[\s\S]*});?\s*$/);
-      if (!objectMatch) {
-        console.error(`Could not parse exercise object in ${exerciseFiles[i]}`);
-        continue;
-      }
-
-      // Create a safe evaluation context
-      const objectStr = objectMatch[1];
-
-      // Extract key properties using regex for safety
-      const title = content.match(/title:\s*'([^']+)'/)?.[1] || `Exercise ${i + 1}`;
-      const typeMatch = content.match(/type:\s*'([^']+)'/);
-      const type = typeMatch ? typeMatch[1].toUpperCase() : 'MCQ';
-      const statusMatch = content.match(/status:\s*'([^']+)'/);
-      const status = statusMatch ? statusMatch[1].toUpperCase() : 'LOCKED';
-
-      const exercise: {
-        title: string;
-        status: 'DEMO' | 'LOCKED' | 'COMPLETED';
-        type: 'MCQ' | 'CODE';
-        content: string | null;
-        order: number;
-        mcqQuestions?: Array<{
-          question: string;
-          options: string[];
-          correctAnswer: number;
-          explanation?: string;
-          order: number;
-        }>;
-        codeQuestions?: Array<{
-          id: string;
-          question: string;
-          solution: string;
-          order: number;
-        }>;
-      } = {
-        title,
-        status: status as 'DEMO' | 'LOCKED' | 'COMPLETED',
-        type: type as 'MCQ' | 'CODE',
-        content: null,
-        order: i + 1,
-      };
-
-      // Extract MCQ questions directly from the structured data
-      if (type === 'MCQ') {
-        const mcqQuestions = extractMCQQuestionsFromObject(content);
-        if (mcqQuestions.length > 0) {
-          exercise.mcqQuestions = mcqQuestions;
-        }
-      } else if (type === 'CODE') {
-        const codeQuestions = extractCodeQuestionsFromObject(content);
-        if (codeQuestions.length > 0) {
-          exercise.codeQuestions = codeQuestions;
-        }
-      }
-
-      exercises.push(exercise);
-    } catch (error) {
-      console.error(`Error loading exercise ${exerciseFiles[i]}:`, error);
-    }
-  }
-
-  return exercises;
-}
-
-function extractMCQQuestionsFromObject(content: string) {
-  const questions = [];
-
-  try {
-    // Extract the mcqQuestions array from the structured object
-    const mcqMatch = content.match(/mcqQuestions:\s*\[([\s\S]*?)\](?=\s*,?\s*\};?\s*$)/);
-
-    if (mcqMatch) {
-      const questionsStr = mcqMatch[1];
-
-      // Split by question objects - each starts with { and ends with }
-      const questionBlocks = questionsStr.split(/},\s*(?=\{)/);
-
-      for (let i = 0; i < questionBlocks.length; i++) {
-        const block = questionBlocks[i].trim();
-        if (!block.startsWith('{')) continue;
-
-        // Extract question (handle both single and double quotes)
-        const questionMatch = block.match(/question:\s*["']([^"']+)["']/);
-        const question = questionMatch ? questionMatch[1] : '';
-
-        // Extract options array (handle both single and double quotes)
-        const optionsMatch = block.match(/options:\s*\[([^\]]*)\]/);
-        let options: string[] = [];
-        if (optionsMatch) {
-          const optionsStr = optionsMatch[1];
-          // Split by comma and clean up quotes
-          options = optionsStr.split(',').map(opt => {
-            return opt.trim().replace(/^["']|["']$/g, '');
-          });
-        }
-
-        // Extract correct answer
-        const correctMatch = block.match(/correctAnswer:\s*(\d+)/);
-        const correctAnswer = correctMatch ? parseInt(correctMatch[1]) : 0;
-
-        // Extract explanation (handle both single and double quotes)
-        const explanationMatch = block.match(/explanation:\s*["']([^"']*)["']/);
-        const explanation = explanationMatch ? explanationMatch[1] : '';
-
-        if (question && options.length > 0) {
-          questions.push({
-            question,
-            options,
-            correctAnswer,
-            explanation: explanation || undefined,
-            order: i + 1,
-          });
-        }
-      }
-    }
-  } catch (error) {
-    console.error('Error extracting MCQ questions from object:', error);
-  }
-
-  return questions;
-}
-
-function extractMCQQuestions(content: string) {
-  const questions = [];
-
-  try {
-    // Look for mcqQuestions array in the content
-    const mcqMatch = content.match(/mcqQuestions:\s*\[([\s\S]*?)\]/);
-
-    if (mcqMatch) {
-      const questionsStr = mcqMatch[1];
-
-      // Split by question objects - each starts with { and ends with }
-      const questionBlocks = questionsStr.split(/},\s*(?=\{)/);
-
-      for (let i = 0; i < questionBlocks.length; i++) {
-        const block = questionBlocks[i].trim();
-        if (!block.startsWith('{')) continue;
-
-        // Extract question
-        const questionMatch = block.match(/question:\s*"([^"]+)"/);
-        const question = questionMatch ? questionMatch[1] : '';
-
-        // Extract options array
-        const optionsMatch = block.match(/options:\s*\[([^\]]*)\]/);
-        let options: string[] = [];
-        if (optionsMatch) {
-          // Parse the options string - handle quoted strings properly
-          const optionsStr = optionsMatch[1];
-          options = optionsStr.split(',').map(opt => {
-            return opt.trim().replace(/^"|"$/g, '');
-          });
-        }
-
-        // Extract correct answer
-        const correctMatch = block.match(/correctAnswer:\s*(\d+)/);
-        const correctAnswer = correctMatch ? parseInt(correctMatch[1]) : 0;
-
-        // Extract explanation
-        const explanationMatch = block.match(/explanation:\s*"([^"]+)"/);
-        const explanation = explanationMatch ? explanationMatch[1] : '';
-
-        if (question && options.length > 0) {
-          questions.push({
-            question,
-            options,
-            correctAnswer,
-            explanation,
-            order: i + 1,
-          });
+            mcqQuestions.push({
+              id: `q${mcqQuestions.length + 1}`,
+              question: question,
+              options: options,
+              correctAnswer: parseInt(correctAnswerMatch[1]),
+              explanation: explanation || undefined
+            });
+          }
         }
       }
     }
-  } catch (error) {
-    console.error('Error extracting MCQ questions:', error);
-  }
 
-  return questions;
-}
+    // Extract CODE questions if they exist
+    const codeQuestions: CodeQuestion[] = [];
 
-function extractCodeQuestionsFromObject(content: string) {
-  const questions = [];
+    // Use regex to extract codeQuestions array content
+    const codeRegex = /codeQuestions:\s*\[([\s\S]*)\]/;
+    const codeMatch = objectContent.match(codeRegex);
+    const codeContent = codeMatch ? codeMatch[1] : '';
 
-  try {
-    // Extract the codeQuestions array from the structured object
-    const codeMatch = content.match(/codeQuestions:\s*\[([\s\S]*?)\](?=\s*,?\s*\};?\s*$)/);
+    console.log(`🔍 codeContent found: ${codeContent.length > 0}, length: ${codeContent.length}`);
+    if (codeContent) {
+      // Split by question objects (look for opening braces)
+      const questionBlocks = codeContent.split(/},\s*{/).map((block, index, arr) => {
+        if (index > 0) block = '{' + block;
+        if (index < arr.length - 1) block = block + '}';
+        return block.trim();
+      });
 
-    if (codeMatch) {
-      const questionsStr = codeMatch[1];
+      for (const questionBlock of questionBlocks) {
+        if (questionBlock.trim()) {
+          // Parse question - properly handle quotes (single or double) with matching closing quote
+          let question = '';
+          const questionFieldMatch = questionBlock.match(/question:\s*([`'"])/);
+          if (questionFieldMatch) {
+            const quoteChar = questionFieldMatch[1];
+            const questionStart = questionFieldMatch.index! + questionFieldMatch[0].length;
+            let i = questionStart;
+            
+            // Find the matching closing quote (not escaped)
+            while (i < questionBlock.length) {
+              const char = questionBlock[i];
+              
+              if (char === quoteChar) {
+                // Check if this quote is escaped
+                let escapeCount = 0;
+                let j = i - 1;
+                while (j >= questionStart && questionBlock[j] === '\\') {
+                  escapeCount++;
+                  j--;
+                }
+                
+                if (escapeCount % 2 === 0) {
+                  // Not escaped, this is the closing quote
+                  question = questionBlock.substring(questionStart, i);
+                  break;
+                }
+              }
+              
+              i++;
+            }
+          }
+          
+          // Parse solution - properly handle template literals with matching backticks
+          let solution = '';
+          const solutionFieldMatch = questionBlock.match(/solution:\s*`/);
+          if (solutionFieldMatch) {
+            const solutionStart = solutionFieldMatch.index! + solutionFieldMatch[0].length;
+            let i = solutionStart;
+            
+            // Find the matching closing backtick (not escaped)
+            while (i < questionBlock.length) {
+              const char = questionBlock[i];
+              
+              if (char === '`') {
+                // Check if this backtick is escaped
+                let escapeCount = 0;
+                let j = i - 1;
+                while (j >= solutionStart && questionBlock[j] === '\\') {
+                  escapeCount++;
+                  j--;
+                }
+                
+                if (escapeCount % 2 === 0) {
+                  // Not escaped, this is the closing backtick
+                  solution = questionBlock.substring(solutionStart, i);
+                  break;
+                }
+              }
+              
+              i++;
+            }
+          }
 
-      // Split by question objects - each starts with { and ends with }
-      const questionBlocks = questionsStr.split(/},\s*(?=\{)/);
-
-      for (let i = 0; i < questionBlocks.length; i++) {
-        const block = questionBlocks[i].trim();
-        if (!block.startsWith('{')) continue;
-
-        // Extract id (handle both single and double quotes)
-        const idMatch = block.match(/id:\s*["']([^"']+)["']/);
-        const id = idMatch ? idMatch[1] : `ex${i + 1}`;
-
-        // Extract question (backticks)
-        const questionMatch = block.match(/question:\s*`([^`]*)`/);
-        const question = questionMatch ? questionMatch[1] : '';
-
-        // Extract solution (backticks)
-        const solutionMatch = block.match(/solution:\s*`([^`]*)`/);
-        const solution = solutionMatch ? solutionMatch[1] : '';
-
-        if (question && solution) {
-          questions.push({
-            id,
-            question,
-            solution,
-            order: i + 1,
-          });
+          if (question && solution) {
+            // Unescape newlines in question
+            question = question.replace(/\\n/g, '\n');
+            codeQuestions.push({
+              id: `ex${codeQuestions.length + 1}`,
+              question: question,
+              solution: solution
+            });
+            console.log(`  ✅ Parsed code question ${codeQuestions.length}: "${question.substring(0, 50)}${question.length > 50 ? '...' : ''}"`);
+            console.log(`     Solution length: ${solution.length} chars, preview: "${solution.substring(0, 80).replace(/\n/g, '\\n')}${solution.length > 80 ? '...' : ''}"`);
+          } else {
+            console.log(`  ⚠️  Failed to parse code question block:`);
+            console.log(`     question: ${question.length > 0 ? `"${question.substring(0, 30)}..."` : 'NOT FOUND'}`);
+            console.log(`     solution: ${solution.length > 0 ? `${solution.length} chars` : 'NOT FOUND'}`);
+          }
         }
       }
     }
-  } catch (error) {
-    console.error('Error extracting CODE questions from object:', error);
-  }
 
-  return questions;
-}
-
-function extractCodeQuestions(content: string) {
-  const questions = [];
-
-  try {
-    // Look for codeQuestions array in the content
-    const codeMatch = content.match(/codeQuestions:\s*\[([\s\S]*?)\]/);
-
-    if (codeMatch) {
-      const questionsStr = codeMatch[1];
-
-      // Split by question objects - each starts with { and ends with }
-      const questionBlocks = questionsStr.split(/},\s*(?=\{)/);
-
-      for (let i = 0; i < questionBlocks.length; i++) {
-        const block = questionBlocks[i].trim();
-        if (!block.startsWith('{')) continue;
-
-        // Extract id
-        const idMatch = block.match(/id:\s*"([^"]+)"/);
-        const id = idMatch ? idMatch[1] : `ex${i + 1}`;
-
-        // Extract question
-        const questionMatch = block.match(/question:\s*`([^`]*)`/);
-        const question = questionMatch ? questionMatch[1] : '';
-
-        // Extract solution
-        const solutionMatch = block.match(/solution:\s*`([^`]*)`/);
-        const solution = solutionMatch ? solutionMatch[1] : '';
-
-        if (question && solution) {
-          questions.push({
-            id,
-            question,
-            solution,
-            order: i + 1,
-          });
-        }
-      }
-    }
-  } catch (error) {
-    console.error('Error extracting CODE questions:', error);
-  }
-
-  return questions;
-}
-
-async function uploadPythonCourse() {
-  try {
-    console.log('🚀 Starting Python course upload from test data...');
-
-    // Get Python configuration from test registry
-    const pythonCourse = getPythonConfig();
-
-    // Add additional course fields
-    const fullPythonCourse = {
-      ...pythonCourse,
-      title: pythonCourse.displayName,
-      description: 'Learn Python programming from basics to advanced concepts with interactive exercises.',
+    return {
+      id: idMatch[1],
+      title: titleMatch[1],
+      status: statusMatch[1] as 'demo' | 'locked' | 'completed',
+      content: exerciseContent,
+      type: typeMatch ? typeMatch[1] as 'mcq' | 'code' : undefined,
+      mcqQuestions: mcqQuestions.length > 0 ? mcqQuestions : undefined,
+      codeQuestions: codeQuestions.length > 0 ? codeQuestions : undefined
     };
+  } catch (error) {
+    console.error('Failed to parse exercise data:', error);
+    return null;
+  }
+}
 
-    // Create the course
-    console.log('📚 Creating Python course from test registry config...');
-    const course = await prisma.course.upsert({
-      where: { courseId: 'python' },
-      update: fullPythonCourse,
-      create: fullPythonCourse,
+async function uploadPythonCourseData() {
+  try {
+    console.log('🚀 Starting Python course data upload...');
+    console.log('⚠️  This process may take several minutes. Please do not interrupt.\n');
+
+    // First, ensure the Python course exists
+    const courseId = 'python';
+    let course = await prisma.course.findUnique({
+      where: { courseId }
     });
 
-    console.log('✅ Course created/updated:', course.id);
+    if (!course) {
+      console.log('📚 Creating Python course...');
+      const pythonConfig = COURSES.python;
 
-    // Load modules from the test directory
-    const pythonModulesPath = path.join(__dirname, '..', 'app', 'test', 'modules', 'python');
-    const moduleDirs = fs.readdirSync(pythonModulesPath)
+      course = await prisma.course.create({
+        data: {
+          courseId: pythonConfig.id,
+          title: pythonConfig.displayName,
+          displayName: pythonConfig.displayName,
+          description: 'Learn Python programming from basics to advanced concepts',
+          headerTitle: pythonConfig.headerData.title,
+          completionPercentage: pythonConfig.headerData.completionPercentage,
+          showCodeEditor: pythonConfig.showCodeEditor,
+          defaultModule: pythonConfig.defaultModule,
+          autoSelectFirstTopic: pythonConfig.autoSelectFirstTopic,
+          showCourseSwitcher: pythonConfig.showCourseSwitcher,
+          monacoLanguage: pythonConfig.codeEditor?.monacoLanguage || 'python',
+          codeDisplayName: pythonConfig.codeEditor?.displayName || 'Python',
+          defaultCode: pythonConfig.codeEditor?.defaultCode || '# Write your Python code here\nprint("Hello, World!")',
+          executionLanguage: pythonConfig.codeEditor?.executionLanguage || 'python3',
+          executionVersion: pythonConfig.codeEditor?.executionVersion || '3.10.0',
+          aiAssistantName: pythonConfig.aiAssistant.name,
+          aiAssistantDescription: pythonConfig.aiAssistant.description,
+          aiAssistantPrompt: pythonConfig.aiAssistant.systemPrompt
+        }
+      });
+      console.log('✅ Created Python course');
+    } else {
+      console.log('✅ Python course already exists');
+    }
+
+    // Get all module directories
+    const modulesPath = path.join(process.cwd(), 'app', 'test', 'modules', 'python');
+    const moduleDirs = fs.readdirSync(modulesPath)
+      .filter(dir => fs.statSync(path.join(modulesPath, dir)).isDirectory())
       .filter(dir => dir.startsWith('module'))
       .sort((a, b) => {
         const aNum = parseInt(a.replace('module', ''));
@@ -459,115 +548,263 @@ async function uploadPythonCourse() {
         return aNum - bNum;
       });
 
-    console.log(`📖 Found ${moduleDirs.length} modules to process from test data`);
+    console.log(`📂 Found ${moduleDirs.length} modules: ${moduleDirs.join(', ')}`);
+    console.log(`\n🔄 Processing modules in batches to prevent timeouts...\n`);
 
-    for (const moduleDir of moduleDirs) {
-      const modulePath = path.join(pythonModulesPath, moduleDir);
-      const moduleNumber = parseInt(moduleDir.replace('module', ''));
+    // Process modules in batches of 3 to prevent timeouts
+    const batchSize = 3;
+    let processedCount = 0;
 
-      try {
-        console.log(`📖 Processing module ${moduleNumber}...`);
+    for (let batchStart = 0; batchStart < moduleDirs.length; batchStart += batchSize) {
+      const batchEnd = Math.min(batchStart + batchSize, moduleDirs.length);
+      const batch = moduleDirs.slice(batchStart, batchEnd);
 
-        // Load module data from test files
-        const moduleData = loadModuleData(modulePath, moduleNumber);
+      console.log(`📦 Processing batch ${Math.floor(batchStart / batchSize) + 1}/${Math.ceil(moduleDirs.length / batchSize)}: ${batch.join(', ')}`);
 
-        // Create module in database
-        const courseModule = await prisma.courseModule.upsert({
-          where: {
-            courseId_order: {
-              courseId: 'python',
-              order: moduleNumber,
-            },
-          },
-          update: moduleData,
-          create: {
-            ...moduleData,
-            courseId: 'python',
-            order: moduleNumber,
-          },
-        });
+      for (const moduleDir of batch) {
+        try {
+          const moduleNumber = parseInt(moduleDir.replace('module', ''));
+          const modulePath = path.join(modulesPath, moduleDir);
 
-        console.log(`✅ Module ${moduleNumber} created: ${courseModule.title}`);
+          console.log(`  📖 Processing ${moduleDir} (${++processedCount}/${moduleDirs.length})...`);
 
-        // Load and create topics
-        const topics = loadTopicsForModule(modulePath, moduleNumber);
-        console.log(`📝 Found ${topics.length} topics for module ${moduleNumber}`);
+          // Read module info
+          const moduleInfoPath = path.join(modulePath, 'module-info.ts');
+          if (!fs.existsSync(moduleInfoPath)) {
+            console.log(`  ⚠️  Skipping ${moduleDir} - no module-info.ts found`);
+            continue;
+          }
 
-        for (const topic of topics) {
-          await prisma.courseTopic.create({
-            data: {
-              courseModuleId: courseModule.id,
-              title: topic.title,
-              status: topic.status,
-              content: topic.content,
-              order: topic.order,
-            },
-          });
-        }
+          const moduleInfoContent = fs.readFileSync(moduleInfoPath, 'utf-8');
+          const moduleInfo = parseModuleInfo(moduleInfoContent);
 
-        // Load and create exercises
-        const exercises = loadExercisesForModule(modulePath, moduleNumber);
-        console.log(`🎯 Found ${exercises.length} exercises for module ${moduleNumber}`);
+          if (!moduleInfo) {
+            console.log(`  ⚠️  Skipping ${moduleDir} - failed to parse module-info.ts`);
+            continue;
+          }
 
-        for (const exercise of exercises) {
-          const exerciseData = await prisma.courseExercise.create({
-            data: {
-              courseModuleId: courseModule.id,
-              title: exercise.title,
-              status: exercise.status,
-              type: exercise.type,
-              content: exercise.content,
-              order: exercise.order,
-            },
-          });
-
-          // Create questions for the exercise
-          if (exercise.type === 'MCQ' && exercise.mcqQuestions) {
-            for (const question of exercise.mcqQuestions) {
-              await prisma.courseMcqQuestion.create({
-                data: {
-                  courseExerciseId: exerciseData.id,
-                  question: question.question,
-                  options: question.options,
-                  correctAnswer: question.correctAnswer,
-                  explanation: question.explanation,
-                  order: question.order,
-                },
-              });
+          // Create or update module
+          let courseModule = await prisma.courseModule.findFirst({
+            where: {
+              courseId: courseId,
+              order: moduleNumber
             }
-          } else if (exercise.type === 'CODE' && exercise.codeQuestions) {
-            for (const question of exercise.codeQuestions) {
-              await prisma.courseCodeQuestion.create({
-                data: {
-                  courseExerciseId: exerciseData.id,
-                  question: question.question,
-                  solution: question.solution,
-                  order: question.order,
-                },
+          });
+
+          if (!courseModule) {
+            courseModule = await prisma.courseModule.create({
+              data: {
+                courseId: courseId,
+                title: moduleInfo.title,
+                order: moduleNumber,
+                hasDemo: moduleInfo.hasDemo,
+                isExpanded: moduleInfo.isExpanded,
+                isActive: moduleInfo.isActive
+              }
+            });
+            console.log(`  ✅ Created module: ${moduleInfo.title}`);
+          } else {
+            console.log(`  ✅ Module ${moduleInfo.title} already exists`);
+          }
+
+          // Process topics
+          const topicsPath = path.join(modulePath, 'topics');
+          if (fs.existsSync(topicsPath)) {
+            const topicFiles = fs.readdirSync(topicsPath)
+              .filter(file => file.endsWith('.ts'))
+              .sort();
+
+            console.log(`  📝 Processing ${topicFiles.length} topics...`);
+
+            for (let i = 0; i < topicFiles.length; i++) {
+              const topicFile = topicFiles[i];
+              const topicPath = path.join(topicsPath, topicFile);
+              const topicContent = fs.readFileSync(topicPath, 'utf-8');
+
+              const topicData = parseTopicData(topicContent);
+              if (!topicData) {
+                console.log(`  ⚠️  Skipping topic ${topicFile} - failed to parse`);
+                continue;
+              }
+
+              // Map status to LessonStatus enum
+              const statusMap: { [key: string]: 'DEMO' | 'LOCKED' | 'COMPLETED' } = {
+                'demo': 'DEMO',
+                'locked': 'LOCKED',
+                'completed': 'COMPLETED'
+              };
+
+              let courseTopic = await prisma.courseTopic.findFirst({
+                where: {
+                  courseModuleId: courseModule.id,
+                  order: i + 1
+                }
               });
+
+              if (!courseTopic) {
+                courseTopic = await prisma.courseTopic.create({
+                  data: {
+                    courseModuleId: courseModule.id,
+                    title: topicData.title,
+                    order: i + 1,
+                    status: statusMap[topicData.status] || 'LOCKED',
+                    content: topicData.content
+                  }
+                });
+                console.log(`  ✅ Created topic: ${topicData.title}`);
+              } else {
+                console.log(`  ✅ Topic ${topicData.title} already exists`);
+              }
             }
           }
+
+          // Process exercises
+          const mcqPath = path.join(modulePath, 'mcq');
+          if (fs.existsSync(mcqPath)) {
+            const exerciseFiles = fs.readdirSync(mcqPath)
+              .filter(file => file.endsWith('.ts'))
+              .sort();
+
+            console.log(`  ❓ Processing ${exerciseFiles.length} exercises...`);
+
+            for (let i = 0; i < exerciseFiles.length; i++) {
+              try {
+                const exerciseFile = exerciseFiles[i];
+                const exercisePath = path.join(mcqPath, exerciseFile);
+                const exerciseContent = fs.readFileSync(exercisePath, 'utf-8');
+
+                const exerciseData = parseExerciseData(exerciseContent);
+                if (!exerciseData) {
+                  console.log(`  ⚠️  Skipping exercise ${exerciseFile} - failed to parse`);
+                  continue;
+                }
+
+                console.log(`  📊 Parsed exercise ${exerciseFile}: type=${exerciseData.type}, mcqQuestions=${exerciseData.mcqQuestions?.length || 0}, codeQuestions=${exerciseData.codeQuestions?.length || 0}`);
+
+                // Map status to LessonStatus enum
+                const statusMap: { [key: string]: 'DEMO' | 'LOCKED' | 'COMPLETED' } = {
+                  'demo': 'DEMO',
+                  'locked': 'LOCKED',
+                  'completed': 'COMPLETED'
+                };
+
+                let courseExercise = await prisma.courseExercise.findFirst({
+                  where: {
+                    courseModuleId: courseModule.id,
+                    order: i + 1
+                  }
+                });
+
+                // Determine exercise type
+                const exerciseType = exerciseData.type?.toUpperCase() === 'CODE' ? 'CODE' : 'MCQ';
+
+                if (!courseExercise) {
+                  courseExercise = await prisma.courseExercise.create({
+                    data: {
+                      courseModuleId: courseModule.id,
+                      title: exerciseData.title,
+                      order: i + 1,
+                      status: statusMap[exerciseData.status] || 'LOCKED',
+                      content: exerciseData.content,
+                      type: exerciseType
+                    }
+                  });
+                  console.log(`  ✅ Created ${exerciseType} exercise: ${exerciseData.title}`);
+                } else {
+                  console.log(`  ✅ Exercise ${exerciseData.title} already exists`);
+                }
+
+                // Add questions (unified for both MCQ and CODE)
+                const allQuestions = [
+                  ...(exerciseData.mcqQuestions || []).map(q => ({ ...q, questionType: 'MCQ' as const })),
+                  ...(exerciseData.codeQuestions || []).map(q => ({ ...q, questionType: 'CODE' as const }))
+                ];
+
+                if (allQuestions.length > 0) {
+                  console.log(`  📋 Adding ${allQuestions.length} questions (${exerciseData.mcqQuestions?.length || 0} MCQ, ${exerciseData.codeQuestions?.length || 0} CODE)...`);
+
+                  for (let j = 0; j < allQuestions.length; j++) {
+                    const question = allQuestions[j];
+
+                    // Check if question already exists (different check based on type)
+                    let existingQuestion;
+                    if (question.questionType === 'MCQ') {
+                      existingQuestion = await prisma.courseMcqQuestion.findFirst({
+                        where: {
+                          courseExerciseId: courseExercise.id,
+                          order: j + 1
+                        }
+                      });
+                    } else {
+                      existingQuestion = await prisma.courseCodeQuestion.findFirst({
+                        where: {
+                          courseExerciseId: courseExercise.id,
+                          order: j + 1
+                        }
+                      });
+                    }
+
+                    if (!existingQuestion) {
+                      if (question.questionType === 'MCQ') {
+                        await prisma.courseMcqQuestion.create({
+                          data: {
+                            courseExerciseId: courseExercise.id,
+                            question: question.question,
+                            options: question.options,
+                            correctAnswer: question.correctAnswer,
+                            explanation: question.explanation,
+                            order: j + 1
+                          }
+                        });
+                      } else if (question.questionType === 'CODE') {
+                        await prisma.courseCodeQuestion.create({
+                          data: {
+                            courseExerciseId: courseExercise.id,
+                            question: question.question,
+                            solution: question.solution,
+                            order: j + 1
+                          }
+                        });
+                      }
+                    }
+                  }
+                }
+              } catch (exerciseError) {
+                console.error(`  ❌ Error processing exercise ${i + 1} in ${moduleDir}:`, exerciseError);
+                // Continue with next exercise instead of failing completely
+              }
+            }
+          }
+
+          console.log(`  ✅ Completed processing ${moduleDir}`);
+
+        } catch (moduleError) {
+          console.error(`❌ Error processing module ${moduleDir}:`, moduleError);
+          // Continue with next module instead of failing completely
         }
-
-        console.log(`✅ Module ${moduleNumber} completed with ${topics.length} topics and ${exercises.length} exercises`);
-
-      } catch (error) {
-        console.error(`❌ Error processing module ${moduleNumber}:`, error);
       }
+
+      console.log(`✅ Completed batch ${Math.floor(batchStart / batchSize) + 1}/${Math.ceil(moduleDirs.length / batchSize)}\n`);
     }
 
-    console.log('🎉 Python course upload completed successfully!');
-    console.log('📊 Summary:');
-    console.log(`   - 1 Course created/updated`);
-    console.log(`   - ${moduleDirs.length} Modules processed from test data`);
-    console.log('   - All topics, exercises, and questions uploaded to database');
-
+    console.log('\n🎉 Python course data upload completed successfully!');
+    console.log('✅ All modules, topics, exercises, and questions have been processed.');
   } catch (error) {
-    console.error('❌ Error uploading Python course:', error);
+    console.error('❌ Error uploading Python course data:', error);
+    console.log('⚠️  The upload may be incomplete. You can run the script again to resume from where it left off.');
+    throw error;
   } finally {
     await prisma.$disconnect();
   }
 }
 
-// Run the upload script
-uploadPythonCourse();
+// Run the script
+uploadPythonCourseData()
+  .then(() => {
+    console.log('✅ Script completed');
+    process.exit(0);
+  })
+  .catch((error) => {
+    console.error('❌ Script failed:', error);
+    process.exit(1);
+  });
