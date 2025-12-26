@@ -34,7 +34,7 @@ export interface SubLesson {
   title: string;
   status: 'demo' | 'locked' | 'completed';
   content?: string;
-  order?: number;
+  order: number;
 }
 
 export interface Exercise {
@@ -44,7 +44,7 @@ export interface Exercise {
   type?: 'mcq' | 'code';
   mcqQuestions?: MCQQuestion[];
   codeQuestions?: CodeQuestion[];
-  order?: number;
+  order: number;
 }
 
 export interface MCQQuestion {

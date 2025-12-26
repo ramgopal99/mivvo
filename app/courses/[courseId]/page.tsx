@@ -22,6 +22,8 @@ export default function CourseDetailsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [expandedModules, setExpandedModules] = useState<Set<string>>(new Set());
+  const [isEnrolled, setIsEnrolled] = useState<boolean>(false);
+  const [checkingEnrollment, setCheckingEnrollment] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -72,8 +74,24 @@ export default function CourseDetailsPage() {
       }
     };
 
+    const checkEnrollment = async () => {
+      try {
+        setCheckingEnrollment(true);
+        const response = await fetch(`/api/courses/enroll?courseId=${courseId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setIsEnrolled(data.isEnrolled);
+        }
+      } catch (error) {
+        console.error('Error checking enrollment:', error);
+      } finally {
+        setCheckingEnrollment(false);
+      }
+    };
+
     if (courseId) {
       fetchCourse();
+      checkEnrollment();
     }
   }, [courseId]);
 
@@ -176,9 +194,22 @@ export default function CourseDetailsPage() {
 
             {/* Action Buttons */}
             <div className="flex items-center gap-3">
-              <button className="px-6 py-2 border border-border bg-card text-card-foreground rounded-lg hover:bg-muted transition-colors text-sm font-medium cursor-pointer">
-                Buy Now
-              </button>
+              {checkingEnrollment ? (
+                <div className="px-6 py-2 border border-border bg-card text-card-foreground rounded-lg text-sm font-medium">
+                  Loading...
+                </div>
+              ) : isEnrolled ? (
+                <button
+                  onClick={() => window.location.href = `/dashboard/courses/${courseId}`}
+                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium cursor-pointer"
+                >
+                  Go to Course
+                </button>
+              ) : (
+                <button className="px-6 py-2 border border-border bg-card text-card-foreground rounded-lg hover:bg-muted transition-colors text-sm font-medium cursor-pointer">
+                  Buy Now
+                </button>
+              )}
               <button
                 onClick={() => window.location.href = `/courses/${courseId}/demo`}
                 className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium cursor-pointer"

@@ -20,7 +20,7 @@ export default function CoursesPage() {
         const response = await fetch('/api/courses');
         if (response.ok) {
           const data = await response.json();
-          setCourses(data);
+          setCourses(data as Course[]);
         }
       } catch (error) {
         console.error('Error fetching courses:', error);
@@ -126,7 +126,7 @@ export default function CoursesPage() {
 
         {/* Courses Grid */}
         <CoursesGrid
-          courses={sortedCourses}
+          courses={sortedCourses as Course[]}
           userProgress={userProgress}
           onCourseClick={handleCourseGridClick}
           loading={loading}

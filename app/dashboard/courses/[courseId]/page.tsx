@@ -24,6 +24,15 @@ interface CourseData {
   modules: CourseModule[];
 }
 
+interface EnrollmentData {
+  isEnrolled: boolean;
+  enrollment: {
+    id: string;
+    enrolledAt: string;
+    isActive: boolean;
+  } | null;
+}
+
 interface SelectedTopic {
   moduleId: number;
   subtopicId: string;
@@ -58,6 +67,29 @@ export default function CourseDetailPage() {
         }
 
         const data = await response.json();
+
+        // Check if user is enrolled and adjust hasDemo for all modules
+        const enrollmentResponse = await fetch(`/api/courses/enroll?courseId=${courseId}`);
+        let isEnrolled = false;
+
+        if (enrollmentResponse.ok) {
+          const enrollmentData: EnrollmentData = await enrollmentResponse.json();
+          isEnrolled = enrollmentData.isEnrolled;
+        }
+
+        // If user is enrolled, ensure all modules have hasDemo = false
+        if (isEnrolled && data.modules) {
+          const allModulesHaveDemoFalse = data.modules.every((module: CourseModule) => module.hasDemo === false);
+
+          if (!allModulesHaveDemoFalse) {
+            // Update all modules to have hasDemo = false
+            data.modules = data.modules.map((module: CourseModule) => ({
+              ...module,
+              hasDemo: false
+            }));
+          }
+        }
+
         setCourseData(data);
 
         // Auto-select the first topic after data is loaded
