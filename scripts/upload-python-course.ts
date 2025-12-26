@@ -284,7 +284,7 @@ function parseExerciseData(content: string): Exercise | null {
           const correctAnswerMatch = questionBlock.match(/correctAnswer:\s*(\d+)/);
           
           // Parse explanation - properly handle quotes
-          let explanation = '';
+          let explanation: string | undefined = '';
           const explanationFieldMatch = questionBlock.match(/explanation:\s*([`'"])/);
           if (explanationFieldMatch) {
             const quoteChar = explanationFieldMatch[1];
@@ -389,14 +389,59 @@ function parseExerciseData(content: string): Exercise | null {
 
     console.log(`🔍 codeContent found: ${codeContent.length > 0}, length: ${codeContent.length}`);
     if (codeContent) {
-      // Split by question objects (look for opening braces)
-      const questionBlocks = codeContent.split(/},\s*{/).map((block, index, arr) => {
-        if (index > 0) block = '{' + block;
-        if (index < arr.length - 1) block = block + '}';
-        return block.trim();
+      // Parse question objects more robustly by finding object boundaries
+      const questionBlocks: string[] = [];
+      let currentBlock = '';
+      let braceDepth = 0;
+      let inString = false;
+      let stringChar: string | null = null;
+      let i = 0;
+
+      while (i < codeContent.length) {
+        const char = codeContent[i];
+        const prevChar = i > 0 ? codeContent[i - 1] : null;
+
+        // Handle string literals
+        if (!inString && (char === '"' || char === "'" || char === '`')) {
+          inString = true;
+          stringChar = char;
+        } else if (inString && char === stringChar && prevChar !== '\\') {
+          inString = false;
+          stringChar = null;
+        }
+
+        // Only count braces when not inside strings
+        if (!inString) {
+          if (char === '{') {
+            braceDepth++;
+            if (braceDepth === 1) {
+              // Start of a new object
+              currentBlock = '';
+            }
+          } else if (char === '}') {
+            braceDepth--;
+            if (braceDepth === 0) {
+              // End of current object
+              questionBlocks.push(currentBlock.trim());
+              currentBlock = '';
+            }
+          }
+        }
+
+        // Add character to current block if we're inside an object
+        if (braceDepth > 0) {
+          currentBlock += char;
+        }
+
+        i++;
+      }
+
+      // Remove the outer braces from each block
+      const cleanedBlocks = questionBlocks.map(block => {
+        return block.replace(/^\s*{\s*/, '').replace(/\s*}\s*$/, '');
       });
 
-      for (const questionBlock of questionBlocks) {
+      for (const questionBlock of cleanedBlocks) {
         if (questionBlock.trim()) {
           // Parse question - properly handle quotes (single or double) with matching closing quote
           let question = '';
@@ -405,11 +450,11 @@ function parseExerciseData(content: string): Exercise | null {
             const quoteChar = questionFieldMatch[1];
             const questionStart = questionFieldMatch.index! + questionFieldMatch[0].length;
             let i = questionStart;
-            
+
             // Find the matching closing quote (not escaped)
             while (i < questionBlock.length) {
               const char = questionBlock[i];
-              
+
               if (char === quoteChar) {
                 // Check if this quote is escaped
                 let escapeCount = 0;
@@ -418,29 +463,29 @@ function parseExerciseData(content: string): Exercise | null {
                   escapeCount++;
                   j--;
                 }
-                
+
                 if (escapeCount % 2 === 0) {
                   // Not escaped, this is the closing quote
                   question = questionBlock.substring(questionStart, i);
                   break;
                 }
               }
-              
+
               i++;
             }
           }
-          
+
           // Parse solution - properly handle template literals with matching backticks
           let solution = '';
           const solutionFieldMatch = questionBlock.match(/solution:\s*`/);
           if (solutionFieldMatch) {
             const solutionStart = solutionFieldMatch.index! + solutionFieldMatch[0].length;
             let i = solutionStart;
-            
+
             // Find the matching closing backtick (not escaped)
             while (i < questionBlock.length) {
               const char = questionBlock[i];
-              
+
               if (char === '`') {
                 // Check if this backtick is escaped
                 let escapeCount = 0;
@@ -449,14 +494,14 @@ function parseExerciseData(content: string): Exercise | null {
                   escapeCount++;
                   j--;
                 }
-                
+
                 if (escapeCount % 2 === 0) {
                   // Not escaped, this is the closing backtick
                   solution = questionBlock.substring(solutionStart, i);
                   break;
                 }
               }
-              
+
               i++;
             }
           }
