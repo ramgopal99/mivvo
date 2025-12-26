@@ -3,6 +3,7 @@ import { loadPythonModules } from './pythonModuleLoader';
 import { loadJavaModules } from './javaModuleLoader';
 import { loadAptitudeModules } from './aptitudeModuleLoader';
 import { loadLogicalModules } from './logicalModuleLoader';
+import { loadVerbalModules } from './verbalModuleLoader';
 import { getAvailableCourses as getCoursesFromConfig } from '../config';
 
 // =============================================================================
@@ -25,6 +26,8 @@ export async function loadModules(course: string = 'python'): Promise<Module[]> 
     return loadAptitudeModules();
   } else if (course === 'logical') {
     return loadLogicalModules();
+  } else if (course === 'verbal') {
+    return loadVerbalModules();
   }
 
   console.error(`❌ Course '${course}' not found. Available courses: ${getCoursesFromConfig().join(', ')}`);
