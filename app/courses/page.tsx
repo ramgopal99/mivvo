@@ -1,50 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import { useState, useEffect, useMemo } from "react"
 import { useRouter } from "next/navigation"
 import { CoursesHeader, CoursesGrid } from "./_components"
+import type { Course, UserProgress } from "./types"
 
-interface SubLesson {
-  id: string;
-  title: string;
-  status: string;
-  order: number;
-}
-
-interface Exercise {
-  id: string;
-  title: string;
-  status: string;
-  order: number;
-}
-
-interface Module {
-  id: string;
-  title: string;
-  hasDemo: boolean;
-  isExpanded: boolean;
-  isActive: boolean;
-  subLessons: SubLesson[];
-  exercises: Exercise[];
-}
-
-interface Course {
-  id: string;
-  title: string;
-  description?: string;
-  hasDemo: boolean;
-  isExpanded: boolean;
-  modules: Module[];
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface UserProgress {
-  courseId: string;
-  completedCount: number;
-  totalCount: number;
-  percentage: number;
-}
 
 export default function CoursesPage() {
   const [courses, setCourses] = useState<Course[]>([]);
@@ -74,8 +35,9 @@ export default function CoursesPage() {
   const calculateTotalItems = (course: Course): number => {
     let total = 0;
     course.modules?.forEach(module => {
-      module.subLessons?.forEach((lesson) => {
-        if (lesson.status !== 'locked') total++;
+      module.topics?.forEach(() => {
+        // Topics don't have status, so count them all
+        total++;
       });
       module.exercises?.forEach((exercise) => {
         if (exercise.status !== 'locked') total++;
@@ -133,9 +95,13 @@ export default function CoursesPage() {
     fetchUserProgress();
   }, [courses]);
 
-  const handleCourseClick = (courseId: string) => {
-    router.push(`/courses/${courseId}`);
+  const handleCourseClick = (course: Course) => {
+    // Use courseId instead of id for navigation
+    router.push(`/courses/${course.courseId || course.id}`);
   };
+
+  // Type assertion to match CoursesGrid expectations
+  const handleCourseGridClick = (course: any) => handleCourseClick(course);
 
   // Sort courses by creation date (newest first)
   const sortedCourses = useMemo(() => {
@@ -159,10 +125,10 @@ export default function CoursesPage() {
         </div>
 
         {/* Courses Grid */}
-        <CoursesGrid 
-          courses={sortedCourses} 
+        <CoursesGrid
+          courses={sortedCourses}
           userProgress={userProgress}
-          onCourseClick={handleCourseClick}
+          onCourseClick={handleCourseGridClick}
           loading={loading}
         />
       </main>

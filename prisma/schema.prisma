@@ -193,6 +193,7 @@ model User {
   interviewAttempts InterviewAttempt[]
   supportTickets    SupportTicket[]
   userProgress      CourseUserProgress[]
+  courseEnrollments CourseEnrollment[]
   feedback          Feedback[]
   payments          Payment[]
   studentEnrollment StudentEnrollment?
@@ -389,6 +390,7 @@ model Course {
   description String?
   courseId    String  @unique // Unique identifier for course (e.g., 'python', 'java', 'aptitude')
   displayName String // Display name for the course
+  price       Float   @default(99.99) // Price in Rupees
 
   // Course configuration matching test app structure
   headerTitle          String?
@@ -418,8 +420,27 @@ model Course {
   // Relations
   modules       CourseModule[]
   userProgress  CourseUserProgress[]
+  enrollments   CourseEnrollment[]
 
   @@map("courses")
+}
+
+model CourseEnrollment {
+  id         String   @id @default(cuid()) @map("_id")
+  userId     String
+  courseId   String
+  enrolledAt DateTime @default(now())
+  isActive   Boolean  @default(true)
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [courseId], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, courseId])
+  @@map("course_enrollments")
 }
 
 model CourseModule {
@@ -427,7 +448,7 @@ model CourseModule {
   title      String
   courseId   String
   order      Int      @default(0)
-  hasDemo    Boolean  @default(false)
+  hasDemo    Boolean  @default(true)
   isExpanded Boolean  @default(false)
   isActive   Boolean  @default(false)
   createdAt  DateTime @default(now())

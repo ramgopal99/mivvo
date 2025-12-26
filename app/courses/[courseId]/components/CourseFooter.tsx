@@ -1,41 +1,33 @@
 "use client";
 
-import { Button } from '@/components/ui/button';
-import { useParams, useRouter } from 'next/navigation';
-
 export default function CourseFooter() {
-  const router = useRouter();
-  const params = useParams();
-  const courseId = params.courseId as string;
-
-  const handleDemoClick = () => {
-    router.push(`/courses/demo/${courseId}`);
-  };
-
   return (
-    <div className="sticky bottom-0 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between max-w-4xl mx-auto">
-          <div>
-            <h3 className="font-semibold">Go from Zero to Hero</h3>
-            <p className="text-sm text-muted-foreground">Start your learning journey today</p>
+    <footer className="bg-muted/50 border-t border-border">
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        <div className="text-center">
+          <h3 className="text-xl font-semibold text-foreground mb-4">
+            Ready to Start Your Learning Journey?
+          </h3>
+          <p className="text-muted-foreground mb-8">
+            Join thousands of students who have transformed their careers through our courses.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors">
+              Start Learning Now
+            </button>
+            <button className="px-8 py-3 border border-border bg-card text-card-foreground rounded-lg font-medium hover:bg-muted transition-colors">
+              View Course Preview
+            </button>
           </div>
-          <div className="flex gap-3">
-            <Button
-              variant="outline"
-              size="lg"
-              className="cursor-pointer"
-              onClick={handleDemoClick}
-            >
-              Demo
-            </Button>
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer">
-              Buy now for ₹399
-            </Button>
+
+          <div className="mt-12 pt-8 border-t border-border">
+            <p className="text-sm text-muted-foreground">
+              © 2024 Learning Platform. All rights reserved.
+            </p>
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
-

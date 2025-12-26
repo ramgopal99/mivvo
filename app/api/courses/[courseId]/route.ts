@@ -1,13 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 
 interface RouteParams {
   params: Promise<{ courseId: string }>;
 }
 
+
 export async function GET(request: NextRequest, { params }: RouteParams) {
   const resolvedParams = await params;
   try {
+    const session = await getServerSession(authOptions);
+    const userId = session?.user?.id;
+
     const course = await prisma.course.findUnique({
       where: { courseId: resolvedParams.courseId },
       include: {

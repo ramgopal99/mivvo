@@ -5,41 +5,8 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { Play, BookOpen, Star, ChevronRight } from 'lucide-react'
+import type { Course, UserProgress } from '../types'
 
-interface SubLesson {
-  id: string;
-  title: string;
-  status: string;
-  order: number;
-}
-
-interface Exercise {
-  id: string;
-  title: string;
-  status: string;
-  order: number;
-}
-
-interface Module {
-  id: string;
-  title: string;
-  hasDemo: boolean;
-  isExpanded: boolean;
-  isActive: boolean;
-  subLessons: SubLesson[];
-  exercises: Exercise[];
-}
-
-interface Course {
-  id: string;
-  title: string;
-  description?: string;
-  hasDemo: boolean;
-  isExpanded: boolean;
-  modules: Module[];
-  createdAt: string;
-  updatedAt: string;
-}
 
 interface UserProgress {
   courseId: string;
@@ -51,15 +18,16 @@ interface UserProgress {
 interface CourseCardProps {
   course: Course
   progress?: UserProgress
-  onCourseClick: (courseId: string) => void
+  onCourseClick: (course: Course) => void
 }
 
 export function CourseCard({ course, progress, onCourseClick }: CourseCardProps) {
   const calculateTotalItems = (course: Course): number => {
     let total = 0;
     course.modules?.forEach(module => {
-      module.subLessons?.forEach((lesson) => {
-        if (lesson.status !== 'locked') total++;
+      module.topics?.forEach(() => {
+        // Topics don't have status, so count them all
+        total++;
       });
       module.exercises?.forEach((exercise) => {
         if (exercise.status !== 'locked') total++;
@@ -98,6 +66,16 @@ export function CourseCard({ course, progress, onCourseClick }: CourseCardProps)
           <CardDescription className="line-clamp-3 mb-4">
             {course.description || "Comprehensive learning experience with hands-on exercises and real-world applications."}
           </CardDescription>
+
+          {/* Price */}
+          <div className="flex items-center justify-between">
+            <div className="text-2xl font-bold text-primary">
+              ₹{course.price}
+            </div>
+            <div className="text-xs text-muted-foreground">
+              One-time payment
+            </div>
+          </div>
         </div>
       </CardHeader>
 
@@ -132,7 +110,7 @@ export function CourseCard({ course, progress, onCourseClick }: CourseCardProps)
 
         {/* Action Button */}
         <Button
-          onClick={() => onCourseClick(course.id)}
+          onClick={() => onCourseClick(course)}
           className="w-full group-hover:bg-primary/90 transition-colors"
         >
           View Course
