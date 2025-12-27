@@ -2,53 +2,12 @@
 
 import { CourseCard } from "./course-card"
 import { BookOpen } from "lucide-react"
-
-interface SubLesson {
-  id: string;
-  title: string;
-  status: string;
-  order: number;
-}
-
-interface Exercise {
-  id: string;
-  title: string;
-  status: string;
-  order: number;
-}
-
-interface Module {
-  id: string;
-  title: string;
-  hasDemo: boolean;
-  isExpanded: boolean;
-  isActive: boolean;
-  subLessons: SubLesson[];
-  exercises: Exercise[];
-}
-
-interface Course {
-  id: string;
-  title: string;
-  description?: string;
-  hasDemo: boolean;
-  isExpanded: boolean;
-  modules: Module[];
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface UserProgress {
-  courseId: string;
-  completedCount: number;
-  totalCount: number;
-  percentage: number;
-}
+import type { Course, UserProgress } from '../types'
 
 interface CoursesGridProps {
   courses: Course[]
   userProgress: Record<string, UserProgress>
-  onCourseClick: (courseId: string) => void
+  onCourseClick: (course: Course) => void
   loading?: boolean
 }
 

@@ -1,100 +1,180 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 
-// Transform database enums to match frontend expectations
-const transformLessonStatus = (status: string) => {
-  switch (status) {
-    case 'DEMO': return 'demo';
-    case 'LOCKED': return 'locked';
-    case 'COMPLETED': return 'completed';
-    default: return 'locked';
-  }
-};
-
-const transformExerciseType = (type: string | null) => {
-  switch (type) {
-    case 'MCQ': return 'mcq';
-    case 'CODE': return 'code';
-    default: return undefined;
-  }
-};
+interface CourseWithProgress {
+  id: string;
+  courseId: string;
+  title: string;
+  displayName: string;
+  description: string | null;
+  headerTitle: string | null;
+  completionPercentage: string;
+  price: number;
+  createdAt: Date;
+  updatedAt: Date;
+  modules?: Array<{
+    id: string;
+    title: string;
+    hasDemo: boolean;
+    isExpanded: boolean;
+    isActive: boolean;
+    order: number;
+    topics?: Array<{
+      id: string;
+      title: string;
+      order: number;
+      status: 'DEMO' | 'LOCKED' | 'COMPLETED';
+    }>;
+    exercises?: Array<{
+      id: string;
+      title: string;
+      status: 'DEMO' | 'LOCKED' | 'COMPLETED';
+      order: number;
+    }>;
+  }>;
+  _count?: {
+    modules: number;
+  };
+  userProgress?: {
+    completedItems: number;
+    totalItems: number;
+    progressPercentage: number;
+    isEnrolled: boolean;
+  };
+}
 
 export async function GET() {
   try {
-    // Fetch all courses with their modules, sublessons, and exercises
+    const session = await getServerSession(authOptions);
+    const userId = session?.user?.id;
+
     const courses = await prisma.course.findMany({
-      include: {
+      select: {
+        id: true,
+        courseId: true,
+        title: true,
+        displayName: true,
+        description: true,
+        price: true,
+        headerTitle: true,
+        completionPercentage: true,
+        createdAt: true,
+        updatedAt: true,
         modules: {
-          include: {
-            subLessons: {
-              orderBy: { order: 'asc' }
+          select: {
+            id: true,
+            title: true,
+            hasDemo: true,
+            isExpanded: true,
+            isActive: true,
+            order: true,
+            topics: {
+              select: {
+                id: true,
+                title: true,
+                order: true,
+                status: true,
+              },
             },
             exercises: {
-              include: {
-                mcqQuestions: {
-                  orderBy: { order: 'asc' }
-                },
-                codeQuestions: {
-                  orderBy: { order: 'asc' }
-                }
+              select: {
+                id: true,
+                title: true,
+                status: true,
+                order: true,
               },
-              orderBy: { order: 'asc' }
-            }
+            },
           },
-          orderBy: { order: 'asc' }
-        }
+          orderBy: { order: 'asc' },
+        },
+        _count: {
+          select: {
+            modules: true,
+          },
+        },
       },
-      orderBy: { createdAt: 'desc' }
+      orderBy: { createdAt: 'desc' },
     });
 
-    // Transform the data to match the frontend interface
-    const transformedCourses = courses.map(course => ({
-      id: course.id,
-      title: course.title,
-      description: course.description,
-      hasDemo: false, // Will be calculated based on modules
-      isExpanded: false,
-      isActive: false,
-      subLessons: [], // Will be populated from modules
-      exercises: [], // Will be populated from modules
-      modules: course.modules.map(module => ({
-        id: module.id,
-        title: module.title,
-        hasDemo: module.hasDemo,
-        isExpanded: module.isExpanded,
-        isActive: module.isActive,
-        subLessons: module.subLessons.map(subLesson => ({
-          id: subLesson.id,
-          title: subLesson.title,
-          status: transformLessonStatus(subLesson.status),
-          content: subLesson.content,
-          order: subLesson.order
+    // Add progress tracking and enrollment status for authenticated users
+    let coursesWithProgress: CourseWithProgress[] = courses;
+    if (userId) {
+      coursesWithProgress = await Promise.all(
+        courses.map(async (course: CourseWithProgress) => {
+          // Check if user is enrolled in this course
+          const enrollment = await prisma.courseEnrollment.findUnique({
+            where: {
+              userId_courseId: {
+                userId: userId,
+                courseId: course.id,
+              },
+            },
+          });
+
+
+          // Get user's progress for this course
+          const progressRecords = await prisma.courseUserProgress.findMany({
+            where: {
+              userId: userId,
+              courseId: course.id,
+              isCompleted: true,
+            },
+          });
+
+          // Calculate total items in course
+          let totalItems = 0;
+          course.modules?.forEach((module) => {
+            totalItems += module.topics?.length || 0;
+            totalItems += module.exercises?.length || 0;
+          });
+
+          // Calculate completion percentage
+          const completedItems = progressRecords.length;
+          const progressPercentage = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
+
+          // Set hasDemo based on enrollment status
+          // If enrolled (enrollment exists and is active), hasDemo = false
+          // If not enrolled, hasDemo = true (default behavior for demo access)
+          const isEnrolled = enrollment?.isActive ?? false;
+
+
+          return {
+            ...course,
+            userProgress: {
+              completedItems,
+              totalItems,
+              progressPercentage,
+              isEnrolled,
+            },
+            // Override module hasDemo based on enrollment AND module active status
+            modules: course.modules?.map(module => ({
+              ...module,
+              hasDemo: !(isEnrolled && module.isActive), // If enrolled AND module is active, hasDemo = false; otherwise hasDemo = true
+            })),
+          };
+        })
+      );
+    }
+
+    // Transform the response to match the Course interface (convert status to lowercase)
+    const transformedCourses = coursesWithProgress.map(course => ({
+      ...course,
+      modules: course.modules?.map(module => ({
+        ...module,
+        topics: module.topics?.map(topic => ({
+          ...topic,
+          status: topic.status.toLowerCase() as 'demo' | 'locked' | 'completed'
         })),
-        exercises: module.exercises.map(exercise => ({
-          id: exercise.id,
-          title: exercise.title,
-          status: transformLessonStatus(exercise.status),
-          content: exercise.content,
-          type: transformExerciseType(exercise.type),
-          order: exercise.order,
-          mcqQuestions: exercise.mcqQuestions.map(q => ({
-            id: q.id,
-            question: q.question,
-            options: q.options,
-            correctAnswer: q.correctAnswer,
-            explanation: q.explanation
-          })),
-          codeQuestions: exercise.codeQuestions.map(q => ({
-            id: q.id,
-            question: q.question,
-            solution: q.solution
-          }))
+        exercises: module.exercises?.map(exercise => ({
+          ...exercise,
+          status: exercise.status.toLowerCase() as 'demo' | 'locked' | 'completed'
         }))
       }))
     }));
 
     return NextResponse.json(transformedCourses);
-
   } catch (error) {
     console.error('Error fetching courses:', error);
     return NextResponse.json(
@@ -104,76 +184,48 @@ export async function GET() {
   }
 }
 
-// POST endpoint to create sample course data (for testing)
-export async function POST() {
+export async function POST(request: NextRequest) {
   try {
-    // Create a sample course for testing
+    const body = await request.json();
+
     const course = await prisma.course.create({
       data: {
-        title: 'Sample Programming Course',
-        description: 'A comprehensive programming course with Python',
-        modules: {
-          create: [
-            {
-              title: 'Introduction to Python',
-              order: 1,
-              hasDemo: true,
-              subLessons: {
-                create: [
-                  {
-                    title: 'What is Python?',
-                    order: 1,
-                    status: 'DEMO',
-                    content: '# What is Python?\n\nPython is a high-level programming language...'
-                  },
-                  {
-                    title: 'Setting up Python',
-                    order: 2,
-                    status: 'LOCKED',
-                    content: '# Setting up Python\n\nLearn how to install Python on your system...'
-                  }
-                ]
-              },
-              exercises: {
-                create: [
-                  {
-                    title: 'Basic Python Exercises',
-                    order: 1,
-                    status: 'LOCKED',
-                    type: 'CODE',
-                    codeQuestions: {
-                      create: [
-                        {
-                          question: 'Write a Python function that prints "Hello, World!"',
-                          solution: 'print("Hello, World!")',
-                          order: 1
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-          ]
-        }
+        courseId: body.courseId,
+        title: body.title,
+        displayName: body.displayName,
+        description: body.description,
+        headerTitle: body.headerTitle,
+        completionPercentage: body.completionPercentage || '0% Completed',
+        monacoLanguage: body.monacoLanguage,
+        codeDisplayName: body.codeDisplayName,
+        defaultCode: body.defaultCode,
+        executionLanguage: body.executionLanguage,
+        executionVersion: body.executionVersion,
+        aiAssistantName: body.aiAssistantName,
+        aiAssistantDescription: body.aiAssistantDescription,
+        aiAssistantPrompt: body.aiAssistantPrompt,
+        showCodeEditor: body.showCodeEditor ?? false,
+        defaultModule: body.defaultModule ?? 1,
+        autoSelectFirstTopic: body.autoSelectFirstTopic ?? true,
+        showCourseSwitcher: body.showCourseSwitcher ?? true,
       },
       include: {
         modules: {
           include: {
-            subLessons: true,
+            topics: true,
             exercises: {
               include: {
                 mcqQuestions: true,
-                codeQuestions: true
-              }
-            }
-          }
-        }
-      }
+                codeQuestions: true,
+              },
+            },
+            formulas: true,
+          },
+        },
+      },
     });
 
-    return NextResponse.json(course);
-
+    return NextResponse.json(course, { status: 201 });
   } catch (error) {
     console.error('Error creating course:', error);
     return NextResponse.json(

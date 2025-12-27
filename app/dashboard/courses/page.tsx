@@ -1,48 +1,36 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { BookOpen, Clock, Eye } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { siteConfig } from '@/config/site';
-
-interface CourseModule {
-  id: string;
-  title: string;
-  subLessons: unknown[];
-  exercises: unknown[];
-}
+import { Code, Users } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { getAvailableCourses, getCourseDisplayName } from '../../test/config';
 
 interface Course {
   id: string;
-  title: string;
+  courseId: string;
+  displayName: string;
   description?: string;
-  modules: CourseModule[];
-  createdAt: string;
+  modules: Array<{
+    id: string;
+    title: string;
+    order: number;
+  }>;
+  showCodeEditor?: boolean;
+  monacoLanguage?: string;
+  codeDisplayName?: string;
+  aiAssistantName?: string;
+  aiAssistantDescription?: string;
 }
 
 export default function CoursePage() {
+  const router = useRouter();
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
-
-  // Check if courses are enabled
-  useEffect(() => {
-    if (!siteConfig.enableCourses) {
-      router.push('/dashboard');
-      return;
-    }
-  }, [router]);
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('all');
 
   useEffect(() => {
-    // Don't fetch courses if they're disabled
-    if (!siteConfig.enableCourses) {
-      setLoading(false);
-      return;
-    }
-
     const fetchCourses = async () => {
       try {
         const response = await fetch('/api/courses');
@@ -60,9 +48,19 @@ export default function CoursePage() {
     fetchCourses();
   }, []);
 
-  const handleViewCourse = (courseId: string) => {
-    router.push(`/courses/${courseId}`);
+  const handleCourseSelect = (courseId: string) => {
+    router.push(`/dashboard/courses/${courseId}`);
   };
+
+  const getCourseIcon = () => {
+    return <Code className="w-8 h-8 text-blue-500" />;
+  };
+
+  const availableLanguages = ['all', ...getAvailableCourses()];
+
+  const filteredCourses = selectedLanguage === 'all'
+    ? courses
+    : courses.filter(course => course.courseId === selectedLanguage);
 
   if (loading) {
     return (
@@ -75,148 +73,90 @@ export default function CoursePage() {
     );
   }
 
-  // Split courses - for now assuming all are explore courses
-  // TODO: Add logic to separate enrolled vs explore courses
-  const enrolledCourses: Course[] = [];
-  const exploreCourses = courses.slice(0, 6); // Limit to 6 courses
-
   return (
-    <div className="space-y-8">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Courses</h1>
-          <p className="text-muted-foreground">
-            Access and learn from our comprehensive programming courses
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 p-8">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-foreground mb-4">
+            Programming Courses
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Choose your programming language and start your learning journey with interactive exercises and comprehensive modules.
           </p>
         </div>
-        <Badge variant="secondary" className="text-sm">
-          {courses.length} Courses Available
-        </Badge>
-      </div>
 
-      {/* Enrolled Courses Section */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold">Enrolled Courses</h2>
-        {enrolledCourses.length === 0 ? (
-          <div className="text-center py-8 bg-muted/20 rounded-lg">
-            <BookOpen className="mx-auto h-8 w-8 text-muted-foreground mb-2" />
-            <p className="text-muted-foreground">No enrolled courses yet</p>
-            <p className="text-sm text-muted-foreground mt-1">
-              Browse and enroll in courses below
-            </p>
-          </div>
-        ) : (
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {enrolledCourses.map((course) => (
-              <Card key={course.id} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="space-y-1">
-                      <CardTitle className="text-lg">{course.title}</CardTitle>
-                      {course.description && (
-                        <CardDescription>{course.description}</CardDescription>
-                      )}
-                    </div>
-                    <Badge variant="outline" className="text-xs">
-                      {course.modules.length} Modules
-                    </Badge>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <BookOpen className="h-4 w-4" />
-                        <span>{course.modules.length} modules</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock className="h-4 w-4" />
-                        <span>Self-paced</span>
-                      </div>
-                    </div>
-                    <Button
-                      onClick={() => handleViewCourse(course.id)}
-                      className="w-full flex items-center gap-2"
-                    >
-                      <Eye className="h-4 w-4" />
-                      Continue Learning
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Explore Courses Section */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-semibold">Explore Courses</h2>
-          <Button variant="outline" className="flex items-center gap-2">
-            <Eye className="h-4 w-4" />
-            View More Courses
-          </Button>
+        {/* Language Selector */}
+        <div className="flex gap-2 justify-center mb-8 p-4 border border-border rounded-lg bg-muted/20">
+          <span className="text-sm font-medium text-muted-foreground mr-2 self-center">Filter by Course:</span>
+          {availableLanguages.map((language) => (
+            <Button
+              key={language}
+              variant={selectedLanguage === language ? "default" : "outline"}
+              size="sm"
+              onClick={() => setSelectedLanguage(language)}
+              className="capitalize"
+            >
+              {language === 'all' ? 'All Courses' : getCourseDisplayName(language)}
+            </Button>
+          ))}
         </div>
 
-        {exploreCourses.length === 0 ? (
-          <div className="text-center py-12">
-            <BookOpen className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
-            <h3 className="text-lg font-semibold mb-2">No Courses Available</h3>
-            <p className="text-muted-foreground">
-              Check back later for new programming courses.
-            </p>
-          </div>
-        ) : (
-          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {exploreCourses.map((course) => (
-              <Card key={course.id} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="space-y-1">
-                      <CardTitle className="text-xl">{course.title}</CardTitle>
-                      {course.description && (
-                        <CardDescription>{course.description}</CardDescription>
-                      )}
-                    </div>
-                    <Badge variant="outline" className="text-xs">
-                      {course.modules.length} Modules
-                    </Badge>
+        {/* Course Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredCourses.map((course) => (
+            <Card
+              key={course.courseId}
+              className="cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 border-2 hover:border-primary/50"
+              onClick={() => handleCourseSelect(course.courseId)}
+            >
+              <CardHeader className="text-center pb-4">
+                <div className="flex justify-center mb-4">
+                  {getCourseIcon()}
+                </div>
+                <CardTitle className="text-2xl capitalize">
+                  {course.displayName}
+                </CardTitle>
+                <CardDescription className="text-base">
+                  {course.showCodeEditor
+                    ? `Learn ${course.displayName.toLowerCase()} programming with interactive coding exercises`
+                    : `Learn ${course.displayName.toLowerCase()} with comprehensive exercises and practice questions`
+                  }
+                  {course.codeDisplayName && (
+                    <span className="block text-sm text-muted-foreground mt-1">
+                      Includes {course.codeDisplayName} code editor and {course.aiAssistantName || 'AI assistant'}
+                    </span>
+                  )}
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <Button
+                  size="lg"
+                  className="w-full"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleCourseSelect(course.courseId);
+                  }}
+                >
+                  Start {course.displayName} Course
+                </Button>
+                {course.showCodeEditor && (
+                  <div className="mt-2 text-xs text-muted-foreground">
+                    🖥️ Interactive coding • 🤖 AI assistant • 📚 {course.modules?.length || 0} modules
                   </div>
-                </CardHeader>
+                )}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
 
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <BookOpen className="h-4 w-4" />
-                        <span>{course.modules.length} modules</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock className="h-4 w-4" />
-                        <span>Self-paced</span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between pt-2">
-                      <div className="text-xs text-muted-foreground">
-                        Created {new Date(course.createdAt).toLocaleDateString()}
-                      </div>
-                      <Button
-                        onClick={() => handleViewCourse(course.id)}
-                        className="flex items-center gap-2"
-                      >
-                        <Eye className="h-4 w-4" />
-                        View Now
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+        {/* Footer Info */}
+        <div className="mt-16 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted rounded-full text-sm text-muted-foreground">
+            <Users className="w-4 h-4" />
+            Interactive learning platform • {filteredCourses.length} {selectedLanguage === 'all' ? 'programming courses' : `${getCourseDisplayName(selectedLanguage)} course`} • Hands-on exercises
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

@@ -1,51 +1,24 @@
 import { Metadata } from 'next';
-import { prisma } from '@/lib/prisma';
-import { siteConfig } from '@/config/site';
-import { redirect } from 'next/navigation';
 
-type Props = {
-  params: Promise<{ courseId: string }>;
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { courseId } = await params;
-
-  try {
-    const course = await prisma.course.findUnique({
-      where: { id: courseId },
-      select: { title: true },
-    });
-
-    if (course) {
-      return {
-        title: `${course.title} - Learning Platform`,
-        description: `Interactive learning platform for ${course.title} with hands-on exercises`,
-      };
-    }
-  } catch (error) {
-    console.error('Error fetching course metadata:', error);
-  }
+export async function generateMetadata({ params }: { params: Promise<{ courseId: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const courseId = resolvedParams.courseId;
 
   return {
-    title: 'Learning Platform',
-    description: 'Interactive learning platform with hands-on exercises',
+    title: `${courseId} Course - Dashboard`,
+    description: `Interactive ${courseId} learning platform with hands-on exercises`,
   };
 }
 
-export default function TestLayout({
+export default function CourseLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Redirect if courses are disabled
-  if (!siteConfig.enableCourses) {
-    redirect('/dashboard');
-  }
-
   return (
     <div className="h-screen overflow-hidden bg-background">
       {/* Desktop/Laptop View */}
-      <div className="hidden lg:block h-full pl-0 ml-0">
+      <div className="hidden lg:block h-full">
         {children}
       </div>
 
@@ -60,7 +33,7 @@ export default function TestLayout({
             </div>
             <h1 className="text-2xl font-bold text-foreground mb-2">Desktop Required</h1>
             <p className="text-muted-foreground mb-4">
-              This demo is optimized for laptop and desktop screens. Please switch to a larger screen for the best experience.
+              This course interface is optimized for laptop and desktop screens. Please switch to a larger screen for the best experience.
             </p>
           </div>
         </div>
@@ -68,3 +41,12 @@ export default function TestLayout({
     </div>
   );
 }
+
+
+
+
+
+
+
+
+

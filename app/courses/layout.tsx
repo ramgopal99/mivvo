@@ -20,12 +20,12 @@ export default function CoursesLayout({
     }
   }, []);
 
-  // Check if current path is for demo courses
-  const isDemoPath = pathname?.includes('/demo');
+  // Hide navbar for demo pages
+  const isDemoPage = pathname?.includes('/demo');
 
   return (
     <div className="min-h-screen bg-background">
-      {!isDemoPath && <Navbar />}
+      {!isDemoPage && <Navbar />}
       {children}
     </div>
   );

@@ -5,11 +5,11 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ResizablePanelGroup, ResizableHandle, ResizablePanel } from '@/components/ui/resizable';
 import { SidebarProvider } from '@/components/ui/sidebar';
-import Header from '../components/Header';
-import LeftSidebar from '../components/LeftSidebar';
-import MiddleSection from '../components/MiddleSection';
-import RightSection from '../components/RightSection';
-import { CourseTopic, CourseExercise, CourseModule } from '../data/lessonsData';
+import Header from '../../../dashboard/courses/components/Header';
+import LeftSidebar from '../../../dashboard/courses/components/LeftSidebar';
+import MiddleSection from '../../../dashboard/courses/components/MiddleSection';
+import RightSection from '../../../dashboard/courses/components/RightSection';
+import { CourseModule, CourseMcqQuestion, CourseCodeQuestion } from '../../../dashboard/courses/data/lessonsData';
 
 interface CourseData {
   id: string;
@@ -24,15 +24,6 @@ interface CourseData {
   modules: CourseModule[];
 }
 
-interface EnrollmentData {
-  isEnrolled: boolean;
-  enrollment: {
-    id: string;
-    enrolledAt: string;
-    isActive: boolean;
-  } | null;
-}
-
 interface SelectedTopic {
   moduleId: number;
   subtopicId: string;
@@ -45,7 +36,40 @@ interface HeaderData {
   completionPercentage: string;
 }
 
-export default function CourseDetailPage() {
+interface ApiModule {
+  id: number | string;
+  title: string;
+  order: number;
+  hasDemo?: boolean;
+  topics?: {
+    id: string;
+    title: string;
+    content?: string;
+  }[];
+  exercises?: {
+    id: string;
+    title: string;
+    type?: string;
+    content?: string;
+    mcqQuestions?: unknown[];
+    codeQuestions?: unknown[];
+  }[];
+}
+
+interface ApiCourseData {
+  id: string;
+  courseId: string;
+  displayName: string;
+  headerTitle: string;
+  completionPercentage: string;
+  showCodeEditor: boolean;
+  monacoLanguage?: string;
+  codeDisplayName?: string;
+  defaultCode?: string;
+  modules: ApiModule[];
+}
+
+export default function CourseDemoPage() {
   const params = useParams();
   const courseId = params.courseId as string;
 
@@ -68,29 +92,39 @@ export default function CourseDetailPage() {
 
         const data = await response.json();
 
-        // Check if user is enrolled and adjust hasDemo for all modules
-        const enrollmentResponse = await fetch(`/api/courses/enroll?courseId=${courseId}`);
-        let isEnrolled = false;
+        // Transform the data to match dashboard component expectations
+        const apiData = data as ApiCourseData;
+        const transformedData = {
+          ...apiData,
+          modules: apiData.modules?.map((module: ApiModule) => ({
+            id: module.id.toString(),
+            title: module.title,
+            order: module.order,
+            hasDemo: module.hasDemo ?? true, // Use API hasDemo value
+            isExpanded: false,
+            isActive: true,
+            topics: module.topics?.map((topic, index: number) => ({
+              id: topic.id,
+              title: topic.title,
+              order: index + 1,
+              status: (module.hasDemo ?? true) ? 'LOCKED' as const : 'DEMO' as const, // Lock if hasDemo is true
+              content: topic.content || ''
+            })) || [],
+            exercises: module.exercises?.map((exercise, index: number) => ({
+              id: exercise.id,
+              title: exercise.title,
+              order: index + 1,
+              status: (module.hasDemo ?? true) ? 'LOCKED' as const : 'DEMO' as const, // Lock if hasDemo is true
+              content: exercise.content || '',
+              type: (exercise.type?.toUpperCase() || 'CODE') as 'MCQ' | 'CODE',
+              mcqQuestions: (exercise.mcqQuestions || []) as CourseMcqQuestion[],
+              codeQuestions: (exercise.codeQuestions || []) as CourseCodeQuestion[]
+            })) || [],
+            formulas: [] // No formulas in demo
+          })) || []
+        };
 
-        if (enrollmentResponse.ok) {
-          const enrollmentData: EnrollmentData = await enrollmentResponse.json();
-          isEnrolled = enrollmentData.isEnrolled;
-        }
-
-        // If user is enrolled, ensure all modules have hasDemo = false
-        if (isEnrolled && data.modules) {
-          const allModulesHaveDemoFalse = data.modules.every((module: CourseModule) => module.hasDemo === false);
-
-          if (!allModulesHaveDemoFalse) {
-            // Update all modules to have hasDemo = false
-            data.modules = data.modules.map((module: CourseModule) => ({
-              ...module,
-              hasDemo: false
-            }));
-          }
-        }
-
-        setCourseData(data);
+        setCourseData(transformedData);
 
         // Auto-select the first topic after data is loaded
         if (data.modules && data.modules.length > 0) {
@@ -119,36 +153,6 @@ export default function CourseDetailPage() {
     }
   }, [courseId]);
 
-  // Show loading while fetching data
-  if (loading) {
-    return (
-      <div className="h-screen w-full bg-background flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-xl font-semibold mb-2">Loading...</h2>
-          <p className="text-muted-foreground">
-            Loading {courseId} course content...
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  // Show error if course not found
-  if (error || !courseData) {
-    return (
-      <div className="h-screen w-full bg-background flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-red-500 mb-4">
-            {error || 'Course not found'}
-          </div>
-          <Link href="/dashboard/courses" className="text-blue-500 hover:underline">
-            ← Back to Courses
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
   const handleSubtopicClick = (moduleId: number, subtopicId: string, title: string, moduleTitle: string) => {
     setSelectedTopic({
       moduleId,
@@ -165,9 +169,9 @@ export default function CourseDetailPage() {
   // Create a flat list of all navigable items (topics and exercises)
   const getAllNavigableItems = () => {
     const items: SelectedTopic[] = [];
-    courseData.modules.forEach(module => {
+    courseData!.modules.forEach(module => {
       // Add topics
-      module.topics?.forEach((topic: CourseTopic) => {
+      module.topics?.forEach((topic) => {
         items.push({
           moduleId: module.order,
           subtopicId: topic.id,
@@ -176,7 +180,7 @@ export default function CourseDetailPage() {
         });
       });
       // Add exercises
-      module.exercises?.forEach((exercise: CourseExercise) => {
+      module.exercises?.forEach((exercise) => {
         items.push({
           moduleId: module.order,
           subtopicId: exercise.id,
@@ -226,6 +230,36 @@ export default function CourseDetailPage() {
     setIsChatOpen(prev => !prev);
   };
 
+  // Show loading while fetching data
+  if (loading) {
+    return (
+      <div className="h-screen w-full bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <h2 className="text-xl font-semibold mb-2">Loading Demo...</h2>
+          <p className="text-muted-foreground">
+            Preparing course demo content...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error if course not found or failed to load
+  if (error || !courseData) {
+    return (
+      <div className="h-screen w-full bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-red-500 mb-4">
+            {error || 'Course not found'}
+          </div>
+          <Link href="/courses" className="text-blue-500 hover:underline">
+            ← Back to Courses
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   const calculateCompletionPercentage = () => {
     const totalItems = courseData.modules.reduce((acc, module) => {
@@ -245,18 +279,18 @@ export default function CourseDetailPage() {
 
   // Find selected topic/exercise data
   const selectedModule = courseData.modules.find(m => m.order === selectedTopic?.moduleId);
-  const selectedTopicData = selectedModule?.topics.find(t => t.id === selectedTopic?.subtopicId);
-  const selectedExerciseData = selectedModule?.exercises.find(e => e.id === selectedTopic?.subtopicId);
+  const selectedTopicData = selectedModule?.topics?.find(t => t.id === selectedTopic?.subtopicId);
+  const selectedExerciseData = selectedModule?.exercises?.find(e => e.id === selectedTopic?.subtopicId);
 
   // Debug logging
-  console.log('Dashboard Debug:', {
+  console.log('Demo Debug:', {
     selectedTopic,
     selectedModule: selectedModule ? {
       id: selectedModule.id,
       title: selectedModule.title,
       order: selectedModule.order,
-      topicsCount: selectedModule.topics.length,
-      exercisesCount: selectedModule.exercises.length
+      topicsCount: selectedModule.topics?.length || 0,
+      exercisesCount: selectedModule.exercises?.length || 0
     } : null,
     selectedTopicData: selectedTopicData ? {
       id: selectedTopicData.id,
@@ -284,7 +318,6 @@ export default function CourseDetailPage() {
           <SidebarProvider>
             <LeftSidebar
               modules={courseData.modules}
-              courseId={courseId}
               onSubtopicClick={handleSubtopicClick}
               onCheckedItemsChange={handleCheckedItemsChange}
               selectedTopic={selectedTopic}
@@ -295,9 +328,9 @@ export default function CourseDetailPage() {
 
       {/* Middle and Right Sections - Resizable */}
       <ResizablePanelGroup direction="horizontal" className="flex-1">
-        <ResizablePanel defaultSize={courseData.showCodeEditor ? 55 : 100} minSize={30}>
+        <ResizablePanel defaultSize={courseData!.showCodeEditor ? 55 : 100} minSize={30}>
           <MiddleSection
-            modules={courseData.modules}
+            modules={courseData!.modules}
             selectedTopic={selectedTopic}
             onPrevious={handlePrevious}
             onNext={handleNext}
@@ -309,21 +342,20 @@ export default function CourseDetailPage() {
             selectedExerciseData={selectedExerciseData}
           />
         </ResizablePanel>
-        {courseData.showCodeEditor && (
+        {courseData!.showCodeEditor && (
           <>
             <ResizableHandle withHandle />
             <ResizablePanel defaultSize={45} minSize={25}>
               <RightSection
                 language={courseId}
                 selectedTopic={selectedTopic}
-                courseData={courseData}
+                courseData={courseData!}
                 selectedModuleData={selectedModule}
               />
             </ResizablePanel>
           </>
         )}
       </ResizablePanelGroup>
-
     </div>
   );
 }
