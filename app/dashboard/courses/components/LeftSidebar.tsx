@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   SidebarContent,
   SidebarGroup,
@@ -12,19 +12,30 @@ import {
   SidebarMenuSubItem,
   SidebarMenuSubButton
 } from '@/components/ui/sidebar';
-import { ChevronDown, ChevronRight, Lock } from 'lucide-react';
+import { ChevronDown, ChevronRight, Lock, Award } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { LoginDialog } from '@/components/ui/login-dialog';
 import { useSession } from 'next-auth/react';
 import { CourseModule } from '../data/lessonsData';
 
 interface ProgressModule {
+  moduleId: string;
+  moduleTitle: string;
   moduleOrder: number;
-  topics?: Array<{ id: string; order: number; isCompleted: boolean }>;
-  exercises?: Array<{ id: string; order: number; isCompleted: boolean }>;
+  totalItems: number;
+  completedItems: number;
+  progressPercentage: number;
+  topics?: Array<{ id: string; title: string; order: number; isCompleted: boolean }>;
+  exercises?: Array<{ id: string; title: string; order: number; isCompleted: boolean }>;
 }
 
 interface ProgressData {
+  courseId: string;
+  courseTitle: string;
+  displayName: string;
+  overallProgress: number;
+  totalItems: number;
+  totalCompleted: number;
   modules?: ProgressModule[];
 }
 
@@ -47,7 +58,10 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, courseId, onSubtopic
   const [selectedSubtopic, setSelectedSubtopic] = useState<{moduleId: number, subtopicId: string} | null>(null);
   const [selectedExercise, setSelectedExercise] = useState<{moduleId: number, exerciseId: string} | null>(null);
   const [showLoginDialog, setShowLoginDialog] = useState(false);
+  const [completionPercentage, setCompletionPercentage] = useState<number>(0);
+  const [isGeneratingCertificate, setIsGeneratingCertificate] = useState(false);
   const { data: session } = useSession();
+
 
   // Update sidebar highlighting when selectedTopic changes (from navigation buttons)
   useEffect(() => {
@@ -100,23 +114,37 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, courseId, onSubtopic
         })();
 
         const response = await fetch(`/api/courses/progress?courseId=${finalCourseId}`);
+        console.log('Loading progress, response status:', response.status);
+
         if (response.ok) {
           const progressData: ProgressData = await response.json();
+          console.log('Progress data loaded:', {
+            overallProgress: progressData.overallProgress,
+            totalCompleted: progressData.totalCompleted,
+            totalItems: progressData.totalItems,
+            modulesCount: progressData.modules?.length
+          });
 
           // Build checked items set from progress data
           const newCheckedItems = new Set<string>();
           progressData.modules?.forEach((moduleProgress) => {
+            console.log(`Module ${moduleProgress.moduleOrder}: ${moduleProgress.completedItems}/${moduleProgress.totalItems} completed`);
             moduleProgress.topics?.forEach((topic) => {
               if (topic.isCompleted) {
-                newCheckedItems.add(`module-${moduleProgress.moduleOrder}-topic-${topic.order}`);
+                const itemKey = `module-${moduleProgress.moduleOrder}-topic-${topic.order}`;
+                console.log('Adding completed topic:', itemKey);
+                newCheckedItems.add(itemKey);
               }
             });
             moduleProgress.exercises?.forEach((exercise) => {
               if (exercise.isCompleted) {
-                newCheckedItems.add(`module-${moduleProgress.moduleOrder}-exercise-${exercise.order}`);
+                const itemKey = `module-${moduleProgress.moduleOrder}-exercise-${exercise.order}`;
+                console.log('Adding completed exercise:', itemKey);
+                newCheckedItems.add(itemKey);
               }
             });
           });
+          console.log('Total checked items loaded:', newCheckedItems.size);
 
           setCheckedItems(newCheckedItems);
         }
@@ -158,7 +186,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, courseId, onSubtopic
       onSubtopicClick(moduleId, lessonId, subLesson.title, moduleData.title);
     }
 
-    console.log(`Clicked lesson: Module ${moduleId}, Lesson ${lessonId}`);
+    console.log(`Clicked lesson: Module ${moduleId}, Lesson ${lessonId}${subLesson ? `, itemKey: module-${moduleId}-topic-${subLesson.order}` : ''}`);
   };
 
   const handleExerciseClick = (exerciseId: string, moduleId: number) => {
@@ -234,21 +262,44 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, courseId, onSubtopic
       if (!currentModule) return;
 
       // Call API to update progress
-      const response = await fetch('/api/courses/progress', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          courseId: finalCourseId,
-          moduleId: currentModule.id,
-          itemType,
-          itemKey,
-          isCompleted: newCheckedState,
-        }),
-      });
 
-      if (!response.ok) {
+      console.log('Sending progress update:', { itemKey, newCheckedState, courseId: finalCourseId, moduleId: currentModule.id });
+
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
+        const response = await fetch('/api/courses/progress', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            courseId: finalCourseId,
+            moduleId: currentModule.id,
+            itemType,
+            itemKey,
+            isCompleted: newCheckedState,
+          }),
+          signal: controller.signal,
+        });
+
+        clearTimeout(timeoutId);
+
+        console.log('Progress API response status:', response.status);
+
+        if (response.status >= 200 && response.status < 300) {
+          console.log('Progress update successful for:', itemKey);
+        } else {
+          const errorText = await response.text();
+          console.error('Failed to update progress:', response.status, errorText);
+        }
+      } catch (fetchError) {
+        if (fetchError instanceof Error && fetchError.name === 'AbortError') {
+          console.error('Fetch request timed out after 10 seconds');
+        } else {
+          console.error('Fetch error:', fetchError instanceof Error ? fetchError.message : fetchError);
+        }
         // Revert the optimistic update on error
         setCheckedItems(prev => {
           const newSet = new Set(prev);
@@ -259,7 +310,6 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, courseId, onSubtopic
           }
           return newSet;
         });
-        console.error('Failed to update progress');
       }
     } catch (error) {
       // Revert the optimistic update on error
@@ -276,12 +326,72 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, courseId, onSubtopic
     }
   };
 
+  // Calculate completion percentage
+  const calculateCompletionPercentage = useCallback(() => {
+    const totalItems = modules.reduce((acc, module) => {
+      const topicsCount = module.topics?.length || 0;
+      const exercisesCount = module.exercises?.length || 0;
+      return acc + topicsCount + exercisesCount;
+    }, 0);
+    const percentage = totalItems > 0 ? Math.round((checkedItems.size / totalItems) * 100) : 0;
+    return percentage;
+  }, [modules, checkedItems.size]);
+
+  // Update completion percentage when checked items change
+  useEffect(() => {
+    const percentage = calculateCompletionPercentage();
+    setCompletionPercentage(percentage);
+  }, [checkedItems.size, modules, calculateCompletionPercentage]);
+
   // Notify parent when checked items count changes
   useEffect(() => {
     if (onCheckedItemsChange) {
       onCheckedItemsChange(checkedItems.size);
     }
   }, [checkedItems.size, onCheckedItemsChange]);
+
+  const handleCertificateDownload = async () => {
+    const userName = session?.user?.name || 'Student';
+
+    setIsGeneratingCertificate(true);
+    try {
+      const res = await fetch("/api/generate-certificate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: userName }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to generate certificate");
+      }
+
+      const blob = await res.blob();
+
+      // Create URL for the blob
+      const url = window.URL.createObjectURL(blob);
+
+      // Open PDF in new tab
+      window.open(url, '_blank');
+
+      // Also trigger download
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${userName}-${courseId || 'course'}-certificate.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Clean up the URL object after a delay to ensure the new tab has time to load
+      setTimeout(() => {
+        window.URL.revokeObjectURL(url);
+      }, 2000);
+    } catch (error) {
+      console.error("Error generating certificate:", error);
+      alert("Failed to generate certificate. Please try again.");
+    } finally {
+      setIsGeneratingCertificate(false);
+    }
+  };
 
 
   const getStatusIndicator = (status: string, title: string, itemKey: string) => {
@@ -336,12 +446,30 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, courseId, onSubtopic
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
+              {/* Certificate Tab - Only show when course is 100% complete */}
+              {completionPercentage === 100 && (
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    onClick={handleCertificateDownload}
+                    disabled={isGeneratingCertificate}
+                    className="w-full justify-center min-w-0 bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-white font-semibold border border-yellow-500 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Award className="h-4 w-4 flex-shrink-0" />
+                      <span className="text-sm">
+                        {isGeneratingCertificate ? "Generating..." : "Certificate"}
+                      </span>
+                    </div>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              )}
               {modules.map((module) => (
                 <SidebarMenuItem key={module.order}>
                   <SidebarMenuButton
                     onClick={module.hasDemo ? undefined : () => toggleModule(module.order)}
                     isActive={module.isActive}
                     className={`w-full justify-between min-w-0 ${module.hasDemo ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
+                    title={module.hasDemo ? 'Demo module - not available' : module.title}
                   >
                     <div className="flex items-center gap-3 min-w-0 flex-1">
                       <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 ${

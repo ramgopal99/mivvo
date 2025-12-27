@@ -226,6 +226,7 @@ export default function CourseDetailPage() {
     setIsChatOpen(prev => !prev);
   };
 
+
   const calculateCompletionPercentage = () => {
     const totalItems = courseData.modules.reduce((acc, module) => {
       const topicsCount = module.topics?.length || 0;
@@ -322,6 +323,7 @@ export default function CourseDetailPage() {
           </>
         )}
       </ResizablePanelGroup>
+
     </div>
   );
 }

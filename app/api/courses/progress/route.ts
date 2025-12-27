@@ -88,14 +88,14 @@ export async function GET(request: NextRequest) {
       // Find completed items for this module
       const completedTopics = moduleTopics.filter(topic =>
         progressRecords.some(record =>
-          record.itemKey.includes(`module-${module.order}-topic-${topic.order}`) &&
+          record.itemKey === `module-${module.order}-topic-${topic.order}` &&
           record.isCompleted
         )
       );
 
       const completedExercises = moduleExercises.filter(exercise =>
         progressRecords.some(record =>
-          record.itemKey.includes(`module-${module.order}-exercise-${exercise.order}`) &&
+          record.itemKey === `module-${module.order}-exercise-${exercise.order}` &&
           record.isCompleted
         )
       );
@@ -115,7 +115,7 @@ export async function GET(request: NextRequest) {
           title: topic.title,
           order: topic.order,
           isCompleted: progressRecords.some(record =>
-            record.itemKey.includes(`module-${module.order}-topic-${topic.order}`) &&
+            record.itemKey === `module-${module.order}-topic-${topic.order}` &&
             record.isCompleted
           ),
         })),
@@ -124,7 +124,7 @@ export async function GET(request: NextRequest) {
           title: exercise.title,
           order: exercise.order,
           isCompleted: progressRecords.some(record =>
-            record.itemKey.includes(`module-${module.order}-exercise-${exercise.order}`) &&
+            record.itemKey === `module-${module.order}-exercise-${exercise.order}` &&
             record.isCompleted
           ),
         })),
@@ -156,9 +156,12 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  console.log('🚀 Progress API POST triggered from frontend');
+
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user?.id) {
+      console.log('❌ Progress API: User not authenticated');
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
@@ -169,6 +172,8 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { courseId, moduleId, itemType, itemKey, isCompleted } = body;
 
+    console.log('📥 Progress API received:', { courseId, moduleId, itemType, itemKey, isCompleted });
+
     if (!courseId || !itemKey || typeof isCompleted !== 'boolean') {
       return NextResponse.json(
         { error: 'Missing required fields' },
@@ -177,41 +182,58 @@ export async function POST(request: NextRequest) {
     }
 
     // Get course to verify it exists
+    console.log('🔍 Looking up course:', courseId);
     const course = await prisma.course.findUnique({
       where: { courseId },
       select: { id: true },
     });
 
     if (!course) {
+      console.log('❌ Course not found:', courseId);
       return NextResponse.json(
         { error: 'Course not found' },
         { status: 404 }
       );
     }
 
-    // Upsert progress record
-    const progress = await prisma.courseUserProgress.upsert({
-      where: {
-        userId_itemKey: {
-          userId,
-          itemKey,
-        },
-      },
-      update: {
-        isCompleted,
-        completedAt: isCompleted ? new Date() : null,
-      },
-      create: {
-        userId,
-        courseId: course.id,
-        courseModuleId: moduleId,
-        itemType,
-        itemKey,
-        isCompleted,
-        completedAt: isCompleted ? new Date() : null,
-      },
-    });
+    console.log('✅ Course found:', course.id);
 
+    // Upsert progress record
+    console.log('💾 Saving progress to database...');
+    let progress;
+    try {
+      progress = await prisma.courseUserProgress.upsert({
+        where: {
+          userId_itemKey: {
+            userId,
+            itemKey,
+          },
+        },
+        update: {
+          isCompleted,
+          completedAt: isCompleted ? new Date() : null,
+        },
+        create: {
+          userId,
+          courseId: course.id,
+          courseModuleId: moduleId,
+          itemType,
+          itemKey,
+          isCompleted,
+          completedAt: isCompleted ? new Date() : null,
+        },
+      });
+      console.log('✅ Progress saved successfully:', progress.id);
+    } catch (dbError) {
+      const errorMessage = dbError instanceof Error ? dbError.message : 'Unknown database error';
+      console.error('❌ Database error:', errorMessage);
+      return NextResponse.json(
+        { error: 'Database error' },
+        { status: 500 }
+      );
+    }
+
+    console.log('🎉 Progress API POST completed successfully');
     return NextResponse.json(progress);
 
   } catch (error) {

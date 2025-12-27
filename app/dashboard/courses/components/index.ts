@@ -17,3 +17,5 @@ export { default as MCQModule } from './MCQModule';
 export type { MCQQuestion, MCQModuleProps } from './MCQModule';
 export { default as CodeExercise } from './CodeExercise';
 export type { CodeExerciseProps, CodeQuestion } from './CodeExercise';
+
+export { default as Certificate } from './Certificate';
