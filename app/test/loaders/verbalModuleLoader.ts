@@ -8,6 +8,8 @@ import { moduleInfo as module2Info } from '../modules/verbal/module2/module-info
 import { moduleInfo as module3Info } from '../modules/verbal/module3/module-info';
 import { moduleInfo as module4Info } from '../modules/verbal/module4/module-info';
 import { moduleInfo as module5Info } from '../modules/verbal/module5/module-info';
+import { moduleInfo as module6Info } from '../modules/verbal/module6/module-info';
+import { moduleInfo as module7Info } from '../modules/verbal/module7/module-info';
 
 // =============================================================================
 // VERBAL ABILITY TOPIC IMPORTS (Grouped by Module)
@@ -48,6 +50,21 @@ import { topic_5_1 } from '../modules/verbal/module5/topics/topic-5.1';
 import { topic_5_2 } from '../modules/verbal/module5/topics/topic-5.2';
 import { topic_5_3 } from '../modules/verbal/module5/topics/topic-5.3';
 import { topic_5_4 } from '../modules/verbal/module5/topics/topic-5.4';
+
+// Module 6 - Reading Comprehension
+import { topic_6_1 } from '../modules/verbal/module6/topics/topic-6.1';
+import { topic_6_2 } from '../modules/verbal/module6/topics/topic-6.2';
+import { topic_6_3 } from '../modules/verbal/module6/topics/topic-6.3';
+import { topic_6_4 } from '../modules/verbal/module6/topics/topic-6.4';
+import { topic_6_5 } from '../modules/verbal/module6/topics/topic-6.5';
+
+// Module 7 - Verbal Reasoning
+import { topic_7_1 } from '../modules/verbal/module7/topics/topic-7.1';
+import { topic_7_2 } from '../modules/verbal/module7/topics/topic-7.2';
+import { topic_7_3 } from '../modules/verbal/module7/topics/topic-7.3';
+import { topic_7_4 } from '../modules/verbal/module7/topics/topic-7.4';
+import { topic_7_5 } from '../modules/verbal/module7/topics/topic-7.5';
+import { topic_7_6 } from '../modules/verbal/module7/topics/topic-7.6';
 
 // =============================================================================
 // VERBAL ABILITY MODULE CONFIGURATIONS
@@ -104,6 +121,26 @@ const MODULE_5_CONFIG = {
 };
 
 /**
+ * Configuration for Verbal Ability Module 6
+ */
+const MODULE_6_CONFIG = {
+  info: module6Info,
+  topics: [topic_6_1, topic_6_2, topic_6_3, topic_6_4, topic_6_5],
+  exercises: [], // No exercises for verbal ability yet
+  formulas: [] // No formulas for verbal ability
+};
+
+/**
+ * Configuration for Verbal Ability Module 7
+ */
+const MODULE_7_CONFIG = {
+  info: module7Info,
+  topics: [topic_7_1, topic_7_2, topic_7_3, topic_7_4, topic_7_5, topic_7_6],
+  exercises: [], // No exercises for verbal ability yet
+  formulas: [] // No formulas for verbal ability
+};
+
+/**
  * Array of all Verbal Ability modules with their configurations
  */
 const VERBAL_MODULES = [
@@ -111,7 +148,9 @@ const VERBAL_MODULES = [
   MODULE_2_CONFIG,
   MODULE_3_CONFIG,
   MODULE_4_CONFIG,
-  MODULE_5_CONFIG
+  MODULE_5_CONFIG,
+  MODULE_6_CONFIG,
+  MODULE_7_CONFIG
 ];
 
 /**
