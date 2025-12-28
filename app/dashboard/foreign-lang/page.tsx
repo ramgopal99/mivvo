@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Header } from "./components/header";
 import { SkillCard } from "./components/skill-card";
 import { type LanguageValue } from "./config";
@@ -18,7 +18,6 @@ import {
 } from "@/components/ui/alert-dialog";
 
 export default function ForeignLanguagePage() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedLanguage, setSelectedLanguage] = useState<LanguageValue>("english");
   const [loading, setLoading] = useState(true);

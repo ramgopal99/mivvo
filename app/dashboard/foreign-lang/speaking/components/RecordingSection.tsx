@@ -24,7 +24,6 @@ export function RecordingSection({
   isListening,
   recordingTimeLeft,
   recordingCompleted,
-  isSaving,
   error,
   analyser,
   onStartListening,

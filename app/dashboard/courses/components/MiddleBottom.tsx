@@ -12,7 +12,7 @@ interface MiddleBottomProps {
   language?: string;
 }
 
-const MiddleBottom = ({ onPrevious, onNext, onAI, isChatOpen, onCloseChat, language }: MiddleBottomProps) => (
+const MiddleBottom = ({ onPrevious, onNext, onAI }: MiddleBottomProps) => (
   <div className="border-t">
     <div className="flex items-center justify-between px-6 py-3">
       <div className="flex gap-2">

@@ -7,14 +7,6 @@ import { Progress } from '@/components/ui/progress'
 import { Play, BookOpen, Star, ChevronRight } from 'lucide-react'
 import type { Course, UserProgress } from '../types'
 
-
-interface UserProgress {
-  courseId: string;
-  completedCount: number;
-  totalCount: number;
-  percentage: number;
-}
-
 interface CourseCardProps {
   course: Course
   progress?: UserProgress
@@ -46,7 +38,7 @@ export function CourseCard({ course, progress, onCourseClick }: CourseCardProps)
           <div className="absolute inset-0 flex items-center justify-center">
             <BookOpen className="w-16 h-16 text-primary/30" />
           </div>
-          {course.hasDemo && (
+          {course.modules?.some(module => module.hasDemo) && (
             <div className="absolute top-4 right-4">
               <Badge className="bg-primary hover:bg-primary/90">
                 <Star className="w-3 h-3 mr-1" />

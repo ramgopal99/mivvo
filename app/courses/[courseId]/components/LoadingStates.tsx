@@ -21,7 +21,7 @@ export function NotFoundState() {
         <div className="text-6xl mb-4">📚</div>
         <h2 className="text-2xl font-semibold mb-2">Course Not Found</h2>
         <p className="text-muted-foreground mb-6">
-          The course you're looking for doesn't exist or has been removed.
+          The course you&apos;re looking for doesn&apos;t exist or has been removed.
         </p>
         <button
           onClick={() => window.history.back()}

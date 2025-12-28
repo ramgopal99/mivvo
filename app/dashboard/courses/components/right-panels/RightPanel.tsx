@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { useState, useMemo, useEffect } from 'react';
@@ -6,19 +7,32 @@ import { Calculator, BookOpen, Code } from 'lucide-react';
 import CalculatorTab from './CalculatorTab';
 import FormulasTab from './FormulasTab';
 import CodingTab from './CodingTab';
+import { CourseModule } from '../../data/lessonsData';
+
+interface CourseData {
+  id: string;
+  courseId: string;
+  displayName: string;
+  headerTitle: string;
+  completionPercentage: string;
+  showCodeEditor: boolean;
+  monacoLanguage?: string;
+  codeDisplayName?: string;
+  defaultCode?: string;
+  modules: CourseModule[];
+}
 
 interface RightPanelProps {
   language?: string;
   selectedTopic?: { moduleId: number; subtopicId: string; title: string; moduleTitle: string } | null;
-  courseData?: any;
-  selectedModuleData?: any;
+  courseData?: CourseData;
+  selectedModuleData?: CourseModule;
   showCodeEditor?: boolean;
 }
 
 const RightPanel = ({ language = 'python', selectedTopic, courseData, selectedModuleData }: RightPanelProps) => {
   const currentModule = selectedTopic?.moduleId || 1;
   const moduleHasFormulas = selectedModuleData?.formulas && selectedModuleData.formulas.length > 0;
-  const isAptitude = language === 'aptitude';
   const showCodeEditor = courseData?.showCodeEditor || false;
 
   // Determine available tabs based on course configuration

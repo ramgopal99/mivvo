@@ -4,14 +4,26 @@ import { useState, useEffect } from 'react';
 import CodeEditor from './_comp/CodeEditor';
 import ConsoleOutput from './_comp/ConsoleOutput';
 
+interface CourseData {
+  monacoLanguage?: string;
+  codeDisplayName?: string;
+  defaultCode?: string;
+  executionLanguage?: string;
+  executionVersion?: string;
+  aiAssistantName?: string;
+  aiAssistantDescription?: string;
+  aiAssistantPrompt?: string;
+  showCodeEditor?: boolean;
+}
+
 interface CodingTabProps {
   language?: string;
-  courseData?: any;
+  courseData?: CourseData;
 }
 
 const CodingTab = ({ language, courseData: passedCourseData }: CodingTabProps) => {
   const [consoleOutput, setConsoleOutput] = useState<string>('');
-  const [courseData, setCourseData] = useState<any>(passedCourseData || null);
+  const [courseData, setCourseData] = useState<CourseData | null>(passedCourseData || null);
 
   useEffect(() => {
     // Use passed course data if available, otherwise fetch it

@@ -1,18 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
 
 interface RouteParams {
   params: Promise<{ courseId: string }>;
 }
 
 
-export async function GET(request: NextRequest, { params }: RouteParams) {
+export async function GET({ params }: RouteParams) {
   const resolvedParams = await params;
   try {
-    const session = await getServerSession(authOptions);
-    const userId = session?.user?.id;
 
     const course = await prisma.course.findUnique({
       where: { courseId: resolvedParams.courseId },
@@ -111,7 +107,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: RouteParams) {
+export async function DELETE({ params }: RouteParams) {
   const resolvedParams = await params;
   try {
     await prisma.course.delete({

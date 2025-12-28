@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { PracticeInterface } from "../../components/practice-interface";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
@@ -24,7 +24,6 @@ interface PracticeResult {
 
 export default function PracticePage() {
   const params = useParams();
-  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success'>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
@@ -39,9 +38,6 @@ export default function PracticePage() {
     setSubmitMessage('Practice completed successfully! Your detailed analysis results will be available automatically in a few minutes.');
 
     // Start redirect timer (3 seconds)
-    const redirectTimer = setTimeout(() => {
-      router.push('/dashboard/foreign-lang?refresh=progress');
-    }, 3000);
 
     // Submit results in background (fire and forget)
     const submitInBackground = async () => {

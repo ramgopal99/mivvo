@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useRef, useCallback } from "react";
 import { practiceConfig } from "../../config";
 import type {
@@ -248,7 +249,7 @@ export function useSpeechRecognition({
       clearSilenceTimeout();
       stopRecognitionKeepAlive();
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   // Keep ref in sync with state
   useEffect(() => {

@@ -19,7 +19,9 @@ const CodeEditor = ({ onConsoleOutput, language = 'python', defaultCode, display
   const editorConfig = {
     monacoLanguage: language,
     displayName: displayName || language,
-    defaultCode: defaultCode || `// ${language} code`
+    defaultCode: defaultCode || `// ${language} code`,
+    executionLanguage: language,
+    executionVersion: language === 'python' ? '3.10.0' : language === 'java' ? '15.0.2' : 'latest'
   };
 
   const getDefaultValue = () => {

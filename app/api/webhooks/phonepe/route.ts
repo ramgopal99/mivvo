@@ -47,7 +47,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         console.log('Parsed webhook payload:', JSON.stringify(payload, null, 2));
 
         // Extract payment details
-        const { merchantOrderId, transactionId, amount, state } = payload;
+        const { merchantOrderId, state } = payload;
 
         if (!merchantOrderId) {
             console.error('No merchantOrderId in webhook payload');

@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import OpenAI from 'openai'
+import OpenAI, { toFile } from 'openai'
+
+interface TranscriptionResult {
+  text: string
+}
 
 // Initialize OpenAI client
 const openai = new OpenAI({
@@ -51,52 +55,47 @@ export async function POST(request: NextRequest) {
     const arrayBuffer = await audioFile.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
 
-    // Prepare transcription parameters
-    const transcriptionParams: any = {
-      file: new File([buffer], audioFile.name, { type: audioFile.type }),
-      model: model,
-      response_format: responseFormat,
-    }
-
-    // Add language if specified
-    if (language && language !== 'auto') {
-      transcriptionParams.language = language
-    }
-
     // Call OpenAI Whisper API
-    const transcription = await openai.audio.transcriptions.create(transcriptionParams)
+    // Using 'any' types due to complex overloaded methods in OpenAI SDK
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const transcription = await (openai.audio.transcriptions.create as any)({
+      file: await toFile(buffer, audioFile.name),
+      model,
+      response_format: responseFormat,
+      ...(language && language !== 'auto' && { language }),
+    }) as TranscriptionResult
 
     // Return the transcription result
     return NextResponse.json({
       text: transcription.text,
-      language: transcription.language,
-      duration: transcription.duration,
-      segments: transcription.segments,
     })
 
-  } catch (error: any) {
+  } catch (error) {
     console.error('Whisper transcription error:', error)
 
     // Handle specific OpenAI errors
-    if (error.status === 401) {
-      return NextResponse.json(
-        { error: 'Invalid OpenAI API key' },
-        { status: 401 }
-      )
-    }
+    if (error instanceof Error && 'status' in error) {
+      const statusError = error as { status: number }
+      if (statusError.status === 401) {
+        return NextResponse.json(
+          { error: 'Invalid OpenAI API key' },
+          { status: 401 }
+        )
+      }
 
-    if (error.status === 429) {
-      return NextResponse.json(
-        { error: 'OpenAI API rate limit exceeded' },
-        { status: 429 }
-      )
-    }
+      if (statusError.status === 429) {
+        return NextResponse.json(
+          { error: 'OpenAI API rate limit exceeded' },
+          { status: 429 }
+        )
+      }
 
-    if (error.status === 400) {
-      return NextResponse.json(
-        { error: 'Invalid audio file or parameters' },
-        { status: 400 }
-      )
+      if (statusError.status === 400) {
+        return NextResponse.json(
+          { error: 'Invalid audio file or parameters' },
+          { status: 400 }
+        )
+      }
     }
 
     // Generic error

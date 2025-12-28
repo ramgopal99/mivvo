@@ -16,9 +16,7 @@ interface CertificateProps {
 const Certificate: React.FC<CertificateProps> = ({
   isOpen,
   onClose,
-  courseName,
-  completionDate
-}) => {
+  courseName}) => {
   const { data: session } = useSession();
   const userName = session?.user?.name || 'Student';
 
