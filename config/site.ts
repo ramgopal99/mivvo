@@ -4,7 +4,7 @@ export const siteConfig = {
   url: "https://mivvo.live",
   logo: "/mivvo.svg",
   email: "hello@mivvo.com",
-  enableCourses: true,
+  enableCourses: false,
   enableForeignLanguage: true,
   enablePricing: true,
   links: {
