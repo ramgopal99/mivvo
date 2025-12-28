@@ -96,32 +96,36 @@ export default function CourseDemoPage() {
         const apiData = data as ApiCourseData;
         const transformedData = {
           ...apiData,
-          modules: apiData.modules?.map((module: ApiModule) => ({
-            id: module.id.toString(),
-            title: module.title,
-            order: module.order,
-            hasDemo: module.hasDemo ?? true, // Use API hasDemo value
-            isExpanded: false,
-            isActive: true,
-            topics: module.topics?.map((topic, index: number) => ({
-              id: topic.id,
-              title: topic.title,
-              order: index + 1,
-              status: (module.hasDemo ?? true) ? 'LOCKED' as const : 'DEMO' as const, // Lock if hasDemo is true
-              content: topic.content || ''
-            })) || [],
-            exercises: module.exercises?.map((exercise, index: number) => ({
-              id: exercise.id,
-              title: exercise.title,
-              order: index + 1,
-              status: (module.hasDemo ?? true) ? 'LOCKED' as const : 'DEMO' as const, // Lock if hasDemo is true
-              content: exercise.content || '',
-              type: (exercise.type?.toUpperCase() || 'CODE') as 'MCQ' | 'CODE',
-              mcqQuestions: (exercise.mcqQuestions || []) as CourseMcqQuestion[],
-              codeQuestions: (exercise.codeQuestions || []) as CourseCodeQuestion[]
-            })) || [],
-            formulas: [] // No formulas in demo
-          })) || []
+          modules: apiData.modules?.map((module: ApiModule) => {
+            // Only first 2 modules are unlocked, others are locked
+            const isModuleLocked = module.order > 2;
+            return {
+              id: module.id.toString(),
+              title: module.title,
+              order: module.order,
+              hasDemo: isModuleLocked, // Lock modules after the first 2
+              isExpanded: false,
+              isActive: true,
+              topics: module.topics?.map((topic, index: number) => ({
+                id: topic.id,
+                title: topic.title,
+                order: index + 1,
+                status: isModuleLocked ? 'LOCKED' as const : 'DEMO' as const, // Lock if module is locked
+                content: topic.content || ''
+              })) || [],
+              exercises: module.exercises?.map((exercise, index: number) => ({
+                id: exercise.id,
+                title: exercise.title,
+                order: index + 1,
+                status: isModuleLocked ? 'LOCKED' as const : 'DEMO' as const, // Lock if module is locked
+                content: exercise.content || '',
+                type: (exercise.type?.toUpperCase() || 'CODE') as 'MCQ' | 'CODE',
+                mcqQuestions: (exercise.mcqQuestions || []) as CourseMcqQuestion[],
+                codeQuestions: (exercise.codeQuestions || []) as CourseCodeQuestion[]
+              })) || [],
+              formulas: [] // No formulas in demo
+            };
+          }) || []
         };
 
         setCourseData(transformedData);
@@ -308,13 +312,13 @@ export default function CourseDemoPage() {
   });
 
   return (
-    <div className="h-screen w-full bg-background flex">
+    <div className="h-screen w-full bg-background flex overflow-hidden">
       {/* Left Section - Header + Fixed Sidebar */}
       <div className="w-65 flex flex-col flex-shrink-0">
         <Header headerData={headerData} completionPercentage={calculateCompletionPercentage()} />
 
         {/* Sidebar */}
-        <div className="flex-1 border-r border-border bg-muted/20">
+        <div className="flex-1 border-r border-border bg-muted/20 overflow-hidden">
           <SidebarProvider>
             <LeftSidebar
               modules={courseData.modules}

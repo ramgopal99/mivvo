@@ -4,6 +4,7 @@ import { MarkdownCompound } from '@/components/markdown-compound';
 import MiddleBottom from './MiddleBottom';
 import MCQModule, { MCQQuestion } from './MCQModule';
 import CodeExercise, { CodeQuestion } from './CodeExercise';
+import ChatBox from './ChatBox';
 import { CourseTopic, CourseExercise, CourseMcqQuestion, CourseCodeQuestion } from '../data/lessonsData';
 import { useEffect, useRef } from 'react';
 
@@ -395,7 +396,16 @@ const MiddleSection = ({
   };
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col relative">
+      {/* Floating Chat Box */}
+      {isChatOpen && (
+        <ChatBox
+          isOpen={isChatOpen}
+          onClose={onCloseChat || (() => {})}
+          language={language}
+        />
+      )}
+
       <div
         ref={scrollContainerRef}
         className="flex-1 p-6 overflow-auto scrollbar-hide"

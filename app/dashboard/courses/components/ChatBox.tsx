@@ -23,8 +23,13 @@ interface ChatBoxProps {
 
 const ChatBox: React.FC<ChatBoxProps> = ({ isOpen, onClose, language = 'python' }) => {
   const [assistantName, setAssistantName] = useState('Mivvo Assistant');
-  const [assistantDescription, setAssistantDescription] = useState('Learning Assistant');
   const [messages, setMessages] = useState<Message[]>([]);
+  const [isDemoMode, setIsDemoMode] = useState(false);
+
+  // Check if we're in demo mode
+  useEffect(() => {
+    setIsDemoMode(window.location.pathname.includes('/demo'));
+  }, []);
 
   // Fetch assistant configuration
   useEffect(() => {
@@ -37,12 +42,18 @@ const ChatBox: React.FC<ChatBoxProps> = ({ isOpen, onClose, language = 'python' 
           const description = courseData.aiAssistantDescription || 'Learning Assistant';
 
           setAssistantName(name);
-          setAssistantDescription(description);
+
+          // Check demo mode for welcome message
+          const isInDemoMode = window.location.pathname.includes('/demo');
 
           // Initialize with welcome message
+          const welcomeMessage = isInDemoMode
+            ? `Hello! I'm ${name}. Demo mode - responses may be basic. Ask me programming questions!`
+            : `Hello! I'm ${name}, your ${description}. I can help you with programming questions, syntax, best practices, and more. What would you like to know?`;
+
           setMessages([{
             id: '1',
-            text: `Hello! I'm ${name}, your ${description}. I can help you with programming questions, syntax, best practices, and more. What would you like to know?`,
+            text: welcomeMessage,
             sender: 'ai',
             timestamp: new Date(),
           }]);
@@ -101,17 +112,44 @@ const ChatBox: React.FC<ChatBoxProps> = ({ isOpen, onClose, language = 'python' 
     setIsTyping(true);
 
     try {
-      // Call the AI service
-      const response = await getChatResponse(userMessage.text, language);
+      if (isDemoMode) {
+        // In demo mode, provide mock responses without API calls
+        await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000)); // Simulate API delay
 
-      const aiMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: response.success ? response.message! : response.error!,
-        sender: 'ai',
-        timestamp: new Date(),
-      };
+        const mockResponses = [
+          "Great question! Demo mode gives basic guidance. Enroll for detailed answers.",
+          "Good observation! Full course has specific examples and code.",
+          "Important concept! Demo shows learning experience basics.",
+          "Smart approach! Full course includes hands-on exercises.",
+          "Nice question! Demo covers basics. Full course is in-depth.",
+          "Best practices thinking! Full course covers industry standards.",
+          "Interesting perspective! Demo explores basics, full course is comprehensive.",
+          "Good thinking! Full course builds strong foundations.",
+        ];
 
-      setMessages(prev => [...prev, aiMessage]);
+        const randomResponse = mockResponses[Math.floor(Math.random() * mockResponses.length)];
+
+        const aiMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          text: randomResponse,
+          sender: 'ai',
+          timestamp: new Date(),
+        };
+
+        setMessages(prev => [...prev, aiMessage]);
+      } else {
+        // Normal mode - call the AI service
+        const response = await getChatResponse(userMessage.text, language);
+
+        const aiMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          text: response.success ? response.message! : response.error!,
+          sender: 'ai',
+          timestamp: new Date(),
+        };
+
+        setMessages(prev => [...prev, aiMessage]);
+      }
     } catch (error) {
       console.error('Error sending message:', error);
       const errorMessage: Message = {
@@ -136,7 +174,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ isOpen, onClose, language = 'python' 
   if (!isOpen) return null;
 
   return (
-    <div className="w-full h-[320px] bg-background border rounded-lg shadow-sm flex flex-col overflow-hidden">
+    <div className="absolute bottom-[57px] left-0 w-96 max-w-md h-[320px] bg-background border-r border-t border-b rounded-tl-lg rounded-tr-lg shadow-lg flex flex-col overflow-hidden z-50">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b bg-muted/30 flex-shrink-0">
         <div className="flex items-center gap-2">

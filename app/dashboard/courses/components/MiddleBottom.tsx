@@ -2,7 +2,6 @@
 
 import { Button } from '@/components/ui/button';
 import { Brain, ChevronLeft, ChevronRight } from 'lucide-react';
-import ChatBox from './ChatBox';
 
 interface MiddleBottomProps {
   onPrevious?: () => void;
@@ -14,23 +13,7 @@ interface MiddleBottomProps {
 }
 
 const MiddleBottom = ({ onPrevious, onNext, onAI, isChatOpen, onCloseChat, language }: MiddleBottomProps) => (
-  <div className="border-t bg-muted/30">
-    {/* Chat Box */}
-    {isChatOpen && (
-      <div className="px-6 py-2 border-b">
-        <div className="flex justify-start">
-          <div className="w-full max-w-md">
-            <ChatBox
-              isOpen={isChatOpen}
-              onClose={onCloseChat || (() => {})}
-              language={language}
-            />
-          </div>
-        </div>
-      </div>
-    )}
-
-    {/* Action Buttons */}
+  <div className="border-t">
     <div className="flex items-center justify-between px-6 py-3">
       <div className="flex gap-2">
         <Button

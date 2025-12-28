@@ -14,7 +14,6 @@ import {
 } from '@/components/ui/sidebar';
 import { ChevronDown, ChevronRight, Lock, Award } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
-import { LoginDialog } from '@/components/ui/login-dialog';
 import { useSession } from 'next-auth/react';
 import { CourseModule } from '../data/lessonsData';
 
@@ -57,7 +56,6 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, courseId, onSubtopic
   const [selectedModule, setSelectedModule] = useState<number | null>(null);
   const [selectedSubtopic, setSelectedSubtopic] = useState<{moduleId: number, subtopicId: string} | null>(null);
   const [selectedExercise, setSelectedExercise] = useState<{moduleId: number, exerciseId: string} | null>(null);
-  const [showLoginDialog, setShowLoginDialog] = useState(false);
   const [completionPercentage, setCompletionPercentage] = useState<number>(0);
   const [isGeneratingCertificate, setIsGeneratingCertificate] = useState(false);
   const { data: session } = useSession();
@@ -225,11 +223,6 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, courseId, onSubtopic
       return;
     }
 
-    // Check if user is authenticated
-    if (!session?.user) {
-      setShowLoginDialog(true);
-      return;
-    }
 
     const isCurrentlyChecked = checkedItems.has(itemKey);
     const newCheckedState = !isCurrentlyChecked;
@@ -403,7 +396,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, courseId, onSubtopic
           <Checkbox
             checked={isChecked}
             onCheckedChange={() => toggleItem(itemKey)}
-            className="w-4 h-4 data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500"
+            className="w-4 h-4 cursor-pointer data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500"
             aria-label={`${title} - Completed`}
           />
         );
@@ -421,7 +414,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, courseId, onSubtopic
           <Checkbox
             checked={isChecked}
             onCheckedChange={() => toggleItem(itemKey)}
-            className="w-4 h-4 data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500"
+            className="w-4 h-4 cursor-pointer data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500"
             aria-label={`${title} - Demo available`}
           />
         );
@@ -430,7 +423,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, courseId, onSubtopic
           <Checkbox
             checked={isChecked}
             onCheckedChange={() => toggleItem(itemKey)}
-            className="w-4 h-4"
+            className="w-4 h-4 cursor-pointer"
             aria-label={`${title} - Available`}
           />
         );
@@ -593,11 +586,6 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, courseId, onSubtopic
 
       </SidebarContent>
 
-      {/* Login Dialog */}
-      <LoginDialog
-        open={showLoginDialog}
-        onOpenChange={setShowLoginDialog}
-      />
     </>
   );
 };
