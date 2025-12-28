@@ -4,7 +4,7 @@
  * Generates beautifully formatted PDF reports from interview attempt data
  */
 
-import jsPDF from 'jspdf'
+import { jsPDF } from 'jspdf'
 import { siteConfig } from '@/config/site'
 
 export interface ConversationMessage {

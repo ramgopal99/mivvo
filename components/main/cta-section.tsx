@@ -1,15 +1,10 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Star, Users, Target } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { landingConfig } from "../../config/landing-config"
 import Link from "next/link"
 
-const iconMap = {
-  Star,
-  Users,
-  Target
-}
 
 export function CtaSection() {
   return (
@@ -50,7 +45,7 @@ export function CtaSection() {
                 <Link href="/auth/signin" className="inline-block">
                   <Button
                     size="lg"
-                    className="px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold bg-white text-primary hover:bg-white/90 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 rounded-full"
+                    className="px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold bg-white text-primary hover:bg-white/90 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 rounded-full cursor-pointer"
                   >
                     <span className="sm:hidden">{landingConfig.cta.button.mobileText}</span>
                     <span className="hidden sm:inline">{landingConfig.cta.button.text}</span>
@@ -59,18 +54,6 @@ export function CtaSection() {
                 </Link>
               </div>
 
-              {/* Trust Indicators */}
-              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 pt-6 sm:pt-8 text-white/80">
-                {landingConfig.cta.trustIndicators.map((indicator, index) => {
-                  const IconComponent = iconMap[indicator.icon as keyof typeof iconMap]
-                  return (
-                    <div key={index} className="flex items-center space-x-2">
-                      <IconComponent className={`w-5 h-5 ${indicator.color} ${indicator.icon === 'Star' ? 'fill-current' : ''}`} />
-                      <span className="text-sm font-medium">{indicator.text}</span>
-                    </div>
-                  )
-                })}
-              </div>
             </div>
           </div>
         </div>

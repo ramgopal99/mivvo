@@ -7,18 +7,18 @@ export const landingConfig = {
       subtitle: "The future of interview preparation"
     },
     headline: {
-      text: "AI Mock Interviews"
+      text: "Ace Interviews with AI & Courses"
     },
     description: {
-      text: "Practice with our advanced AI interviewer for technical roles, civil services, banking, and government exams. Get instant feedback and detailed analysis to improve your performance and land your dream job."
+      text: "Master interviews with AI mock practice and comprehensive courses for technical roles, civil services, banking, and government exams. Get instant feedback and detailed analysis to land your dream job."
     },
     cta: {
-      text: "Start your first mock interview",
-      mobileText: "Start Interview",
+      text: "Start Learning Today",
+      mobileText: "Get Started",
       href: "/auth/signup"
     },
     additionalInfo: {
-      text: "Free to start • Instant AI feedback • Detailed performance analysis"
+      text: "Free to start • AI mock interviews • Interactive courses • Instant feedback"
     },
   },
   navigation: {
@@ -29,7 +29,7 @@ export const landingConfig = {
     links: [
       { text: "Features", href: "/#features" },
       { text: "Pricing", href: "/pricing" },
-      // { text: "Courses", href: "/courses" },
+      { text: "Courses", href: "/courses" },
       // { text: "Blog", href: "/blog" },
       { text: "About", href: "/about" },
     ],
@@ -164,6 +164,49 @@ export const landingConfig = {
       ]
     }
   },
+  courses: {
+    header: {
+      title: "Enhance Your Interview Skills",
+      description: "Complement your mock interview practice with comprehensive courses that build foundational knowledge and technical expertise.",
+      tabOptions: [
+        { label: "Skill Development", value: "courses" },
+        { label: "Interview Preparation", value: "preparation" }
+      ]
+    },
+    features: [
+      {
+        title: "Interview-Focused Content",
+        description: "Courses specifically designed to strengthen your technical foundation and prepare you for real interview scenarios.",
+        icon: "BookOpen"
+      },
+      {
+        title: "Mock Interview Integration",
+        description: "Seamlessly combine course learning with our AI mock interviews for comprehensive preparation.",
+        icon: "GraduationCap"
+      },
+      {
+        title: "Progress Tracking",
+        description: "Monitor your learning journey alongside your interview performance to see holistic improvement.",
+        icon: "Award"
+      },
+      {
+        title: "Expert Guidance",
+        description: "Learn from industry professionals who understand both technical skills and interview dynamics.",
+        icon: "Users"
+      }
+    ],
+    stats: [
+      { label: "Interview Success Rate", value: "85%", icon: "Users" },
+      { label: "Courses Available", value: "25+", icon: "BookOpen" },
+      { label: "Avg. Performance Boost", value: "+23%", icon: "Award" },
+      { label: "Expert Instructors", value: "15+", icon: "GraduationCap" }
+    ],
+    cta: {
+      text: "Build Your Foundation",
+      mobileText: "Start Learning",
+      href: "/courses"
+    }
+  },
   faq: {
     header: {
       title: "Questions?",
@@ -176,11 +219,15 @@ export const landingConfig = {
     questions: [
       {
         question: "What interview types does Mivvo support?",
-        answer: "Mivvo supports technical interviews (coding, system design), civil services (UPSE, SSC, Railways), banking sector interviews, government exams, and corporate roles. We cover all major career paths from tech companies to civil services."
+        answer: "Mivvo supports all types of interviews including technical (coding, system design, algorithms), HR (behavioral, situational), CV/resume-based, JD/job description-based, civil services (UPSE, SSC, Railways), banking sector, government exams, and corporate roles. We cover all major career paths from tech companies to civil services with job description-based scenarios."
       },
       {
         question: "How does the AI interviewer work?",
-        answer: "Our AI interviewer uses advanced natural language processing to conduct realistic mock interviews. It adapts to your responses, asks follow-up questions, and provides real-time feedback based on industry best practices and exam patterns."
+        answer: "Our AI interviewer uses advanced natural language processing to conduct realistic mock interviews that feel exactly like real interviews. It adapts to your responses, asks cross-examination questions, follow-up questions, and evaluates your answers just like human interviewers would. The system creates dynamic interview scenarios with contextual questions based on industry best practices and exam patterns."
+      },
+      {
+        question: "What courses are available on Mivvo?",
+        answer: "We offer comprehensive courses covering technical skills, interview preparation, coding fundamentals, system design, and career development. We currently have courses available in our catalog and add new courses every week. Our courses are designed to complement our AI mock interviews and provide structured learning paths for various career tracks."
       },
       {
         question: "Is this suitable for colleges and coaching institutes?",
@@ -190,21 +237,17 @@ export const landingConfig = {
         question: "How accurate is the performance analysis?",
         answer: "Our AI analyzes your communication skills, technical knowledge, problem-solving approach, and confidence levels. The analysis is based on industry standards and provides detailed insights with actionable recommendations for improvement."
       },
-      {
-        question: "Can I practice for specific exams like UPSE or SSC?",
-        answer: "Absolutely! We have specialized interview formats for UPSE civil services, SSC government exams, banking sector interviews, and technical roles. Each format is tailored to the specific requirements of that career path."
-      }
     ]
   },
   cta: {
     headline: {
-      main: "Master Interviews = Career Success",
+      main: "Master Interviews & Skills = Career Success",
       sub: ""
     },
-    description: "Start practicing with AI and get detailed feedback delivered straight to your dashboard.",
+    description: "Start practicing with AI mock interviews and comprehensive courses. Get instant feedback and build expertise delivered straight to your dashboard.",
     button: {
-      text: "Get your first 180 credits free",
-      mobileText: "Get 180 credits free",
+      text: "Start Learning Today",
+      mobileText: "Get Started",
       href: "/auth/signup"
     },
     trustIndicators: [
@@ -218,7 +261,7 @@ export const landingConfig = {
       badge: "Testimonials",
       subtitle: "Not just words, see results"
     },
-    title: "Trusted by 100+ companies and students worldwide",
+    title: "Loved by students and professionals",
     testimonials: [
       {
         name: "Arjun Patel",
@@ -264,21 +307,39 @@ export const landingConfig = {
         description: "The staff seem genuinely concerned about my progress which I find really refreshing. The AI interviewer provided such detailed feedback that I could see my improvement week by week. The program gave me the confidence I needed to excel in my interviews.",
         verified: "Verified Graduate",
         cardStyle: "dark-blue"
+      },
+      {
+        name: "Siddharth Jain",
+        role: "Software Engineer @ Microsoft",
+        avatar: "https://avatar.iran.liara.run/public/boy",
+        quote: "The perfect combination of structured learning and AI practice. Mivvo courses built my foundation while interviews honed my skills.",
+        description: "I started with Mivvo courses to learn system design fundamentals, then practiced extensively with their AI mock interviews. The integrated approach helped me land my dream job at Microsoft. The courses provided the knowledge base, while interviews gave me practical experience.",
+        verified: "Verified Graduate",
+        cardStyle: "purple"
+      },
+      {
+        name: "Meera Patel",
+        role: "Data Scientist @ Google",
+        avatar: "https://avatar.iran.liara.run/public/girl",
+        quote: "Courses and AI interviews together created the perfect learning ecosystem. I went from beginner to Google in 6 months.",
+        description: "Mivvo's courses gave me the technical foundation I needed, covering everything from basic algorithms to advanced machine learning concepts. The AI mock interviews then helped me apply this knowledge in real scenarios. The combination was unbeatable for my career growth.",
+        verified: "Verified Graduate",
+        cardStyle: "dark-blue"
       }
     ]
   },
   features: {
     mainFeatures: {
       aiInterviews: {
-        title: "Cross Every Career Ladder",
-        description: "Climb through interview levels with AI guidance. From technical roles to civil services, master every stage of your career progression."
+        title: "AI Interviews & Courses Combined",
+        description: "Master interviews with AI-powered practice sessions and comprehensive courses. From technical roles to civil services, get the complete preparation package."
       },
       technicalCoding: {
-        title: "Technical Coding Interviews (coming soon)",
-        description: "Practice technical coding problems and get instant AI-powered feedback to improve your interview skills."
+        title: "Technical Skills & Coding Courses",
+        description: "Master coding interviews and technical concepts with interactive courses and AI-powered practice sessions."
       },
       performanceAnalytics: {
-        header: "Interview Analytics",
+        header: "Learning & Interview Analytics",
         badge: "Live Session",
         mainScore: 85,
         scoreLabel: "Interview Score",
@@ -302,7 +363,7 @@ export const landingConfig = {
       },
       companyPractice: {
         title: "Diverse Interview Practice",
-        description: "Practice with interview formats from top tech companies, civil services, banking sector, and government exams. Master interviews across all career paths.",
+        description: "Practice interviews and take courses for top tech companies, civil services, banking sector, and government exams. Master both interview skills and foundational knowledge across all career paths.",
         interviewCalls: [
           { company: "Google", role: "Senior Software Engineer", type: "Technical Interview" },
           { company: "Amazon", role: "Full Stack Developer", type: "System Design" },
@@ -321,7 +382,7 @@ export const landingConfig = {
   },
   footer: {
     brand: {
-      description: "AI-powered mock interviews that help you practice, improve, and land your dream job."
+      description: "AI-powered mock interviews and comprehensive courses that help you practice, learn, and land your dream job."
     },
     company: {
       title: "Company",
@@ -361,12 +422,14 @@ export const landingConfig = {
         price: "180",
         currency: "",
         billingPeriod: `credits`,
-        description: "Perfect for getting started with AI mock interviews.",
+        description: "Access all Pro features with 180 free credits - no credit card required.",
         features: [
-          "Basic AI feedback",
-          "Performance summary",
-          "Email support",
-
+          "180 credits included",
+          "Advanced AI analysis",
+          "Detailed performance reports",
+          "Company-specific practice",
+          "Custom interview creation",
+          "Priority support"
         ],
         cta: {
           text: "Get Started Free",
@@ -401,13 +464,14 @@ export const landingConfig = {
         price: "Custom",
         currency: "",
         billingPeriod: "",
-        description: "For institutions and organizations training multiple users.",
+        description: "Everything in Pro plus enterprise features for organizations and institutions.",
         features: [
-          "Everything in Pro",
+          "All Pro features included",
           "Bulk user management",
           "Custom interview scenarios",
           "Advanced analytics dashboard",
-          "Dedicated account manager"
+          "Dedicated account manager",
+          "Priority support"
         ],
         cta: {
           text: "Contact Sales",

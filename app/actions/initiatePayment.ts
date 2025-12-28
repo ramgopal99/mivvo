@@ -1,7 +1,7 @@
 "use server";
 
 import { v4 as uuidv4 } from "uuid";
-import sha256 from "crypto-js/sha256";
+import { SHA256 } from "crypto-js";
 
 export async function initiatePayment(amount: number, name: string, mobile: string, muid?: string) {
   const transactionId = "Tr-" + uuidv4().toString().slice(-6);
@@ -28,7 +28,7 @@ export async function initiatePayment(amount: number, name: string, mobile: stri
   const dataBase64 = Buffer.from(dataPayload).toString("base64");
 
   const fullURL = dataBase64 + "/pg/v1/pay" + process.env.NEXT_PUBLIC_SALT_KEY;
-  const dataSha256 = sha256(fullURL).toString();
+  const dataSha256 = SHA256(fullURL).toString();
 
   const checksum = dataSha256 + "###" + process.env.NEXT_PUBLIC_SALT_INDEX;
 

@@ -51,13 +51,13 @@ export function HeroSection() {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight break-words px-2">
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight break-words px-2">
             {landingConfig.hero.headline.text}
           </h1>
 
           {/* Description */}
           <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-3 break-words">
-            Practice with our advanced AI interviewer and get instant feedback to improve your performance.
+            {landingConfig.hero.description.text}
           </p>
 
           {/* CTA Button */}
@@ -65,7 +65,7 @@ export function HeroSection() {
             <Link href={landingConfig.hero.cta.href} className="w-full sm:w-auto max-w-full">
               <Button
                 size="lg"
-                className="w-full sm:w-auto px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="w-full sm:w-auto px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
               >
                 <span className="sm:hidden">{landingConfig.hero.cta.mobileText}</span>
                 <span className="hidden sm:inline whitespace-nowrap">{landingConfig.hero.cta.text}</span>

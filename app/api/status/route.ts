@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import sha256 from "crypto-js/sha256";
+import { SHA256 } from "crypto-js";
 import { prisma } from "@/lib/prisma";
 import { CREDIT_PACKAGES } from "@/config/site";
 import { CREDIT_MULTIPLIER } from "@/config/site";
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         }
 
         const st = `/pg/v1/status/${merchantId}/${transactionId}` + process.env.NEXT_PUBLIC_SALT_KEY;
-        const dataSha256 = sha256(st).toString();
+        const dataSha256 = SHA256(st).toString();
         const checksum = dataSha256 + "###" + process.env.NEXT_PUBLIC_SALT_INDEX;
 
         const response = await fetch(`${process.env.NEXT_PUBLIC_PHONE_PAY_HOST_URL}/pg/v1/status/${merchantId}/${transactionId}`, {

@@ -80,10 +80,9 @@ export default function TermsPage() {
             </p>
 
             <div className="bg-gray-50 p-6 rounded-lg space-y-2">
-              <p className="text-gray-700"><strong>Email:</strong> {termsConfig.contact.email}</p>
-              <p className="text-gray-700"><strong>Operator:</strong> {termsConfig.contact.operator}</p>
-              <p className="text-gray-700"><strong>Operator Email:</strong> {termsConfig.contact.operatorEmail}</p>
-              <p className="text-gray-700"><strong>Phone:</strong> {termsConfig.contact.operatorPhone}</p>
+              {termsConfig.contact.email && (
+                <p className="text-gray-700"><strong>Email:</strong> {termsConfig.contact.email}</p>
+              )}
             </div>
           </CardContent>
         </Card>

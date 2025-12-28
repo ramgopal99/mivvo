@@ -4,18 +4,23 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Check, Star, Users, Target, Zap, MessageSquare } from "lucide-react"
+import { Check, Zap, MessageSquare } from "lucide-react"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { CREDIT_PACKAGES, CREDIT_MULTIPLIER } from "@/config/site"
+import { siteConfig } from "@/config/site"
 import { landingConfig } from "../../config/landing-config"
 import { Navbar } from "@/components/main"
+import { redirect } from "next/navigation"
 
 export default function PricingPage() {
+  // Check if pricing is enabled
+  if (!siteConfig.enablePricing) {
+    redirect('/')
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
@@ -25,14 +30,14 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Simple pricing for all your needs
+              Join Our AI Interview Beta
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Choose the plan that&apos;s right for you and start practicing today.
+              Experience the future of interview preparation with our AI-powered mock interviews. Start with 180 free credits.
             </p>
             <div className="flex items-center justify-center gap-4 text-sm text-gray-600 mb-8">
               <Zap className="h-4 w-4 text-green-500" />
-              <span>{CREDIT_PACKAGES.FREE * CREDIT_MULTIPLIER} credits free • No credit card required</span>
+              <span>180 credits free • No credit card required • Pro version coming soon</span>
             </div>
           </div>
         </div>
@@ -103,27 +108,6 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Trust Indicators */}
-      <section className="pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-8">
-              <div className="flex items-center gap-2">
-                <Star className="h-5 w-5 text-yellow-400 fill-current" />
-                <span className="text-gray-600 font-medium">4.9/5 Rating</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Users className="h-5 w-5 text-blue-500" />
-                <span className="text-gray-600 font-medium">10,000+ Users</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Target className="h-5 w-5 text-green-500" />
-                <span className="text-gray-600 font-medium">85% Success Rate</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* FAQ Section */}
       <section className="pt-16 pb-24">
@@ -167,8 +151,8 @@ export default function PricingPage() {
       {/* CTA Section */}
       <section className="py-16 bg-primary text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to ace your next interview?</h2>
-          <p className="text-xl mb-8 opacity-90">Start with {CREDIT_PACKAGES.FREE * CREDIT_MULTIPLIER} free credits and see the difference AI-powered practice makes.</p>
+          <h2 className="text-3xl font-bold mb-4">Ready to join our AI interview beta?</h2>
+          <p className="text-xl mb-8 opacity-90">Start with 180 free credits and experience the future of interview preparation. Enhance your skills with our growing course library.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/auth/signup">
               <Button
@@ -176,17 +160,17 @@ export default function PricingPage() {
                 className="bg-white text-primary hover:bg-gray-50 hover:shadow-xl hover:shadow-white/30 hover:scale-105 transition-all duration-300 font-semibold cursor-pointer"
               >
                 <Zap className="w-5 h-5 mr-2" />
-                Start Free Trial
+                Join Beta - 180 Credits Free
               </Button>
             </Link>
-            <Link href="/contact">
+            <Link href="/courses">
               <Button
                 size="lg"
                 variant="outline"
                 className="border-2 border-white/30 text-white bg-white/10 backdrop-blur-sm hover:bg-white hover:border-white hover:shadow-lg hover:shadow-white/25 transition-all duration-300 cursor-pointer"
               >
                 <MessageSquare className="w-5 h-5 mr-2" />
-                Contact Us
+                Browse Courses
               </Button>
             </Link>
           </div>

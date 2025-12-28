@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Receipt } from "lucide-react"
 import { siteConfig } from "@/config/site"
-import jsPDF from 'jspdf'
+import { jsPDF } from 'jspdf'
 
 interface Payment {
   id: string

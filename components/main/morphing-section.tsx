@@ -8,9 +8,11 @@ export function MorphingSection() {
       <MorphingText 
         texts={[
           "AI Mock Interviews",
-          "Real-time Feedback", 
+          "Interactive Courses",
+          "Real-time Feedback",
           "Performance Analysis",
           "Interview Preparation",
+          "Skill Development",
           "Career Success"
         ]} 
         className="text-primary text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-center px-4"

@@ -43,7 +43,7 @@ export function FaqSection() {
             >
               <button
                 onClick={() => toggleFaq(index)}
-                className="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-xl"
+                className="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-xl cursor-pointer"
               >
                 <span className="text-lg font-semibold text-gray-900 pr-4">
                   {faq.question}

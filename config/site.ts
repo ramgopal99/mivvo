@@ -6,6 +6,7 @@ export const siteConfig = {
   email: "hello@mivvo.com",
   enableCourses: true,
   enableForeignLanguage: true,
+  enablePricing: true,
   links: {
     twitter: "https://twitter.com/mivvo",
     github: "https://github.com/mivvo",

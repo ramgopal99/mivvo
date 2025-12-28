@@ -148,8 +148,8 @@ export const privacyConfig = {
     title: "Contact Us",
     description: "If you have any questions about this Privacy Policy or our data practices, please contact us:",
     email: "hello@mivvo.com",
-    operator: "Operated by Ramgopal Bagh",
-    operatorEmail: "ramgopalbagh009@gmail.com",
-    operatorPhone: "8280993756"
+    // operator: "Operated by Ramgopal Bagh",
+    // operatorEmail: "ramgopalbagh009@gmail.com",
+    // operatorPhone: "8280993756"
   }
 }
