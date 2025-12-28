@@ -1,62 +1,79 @@
 "use server";
 
-import { v4 as uuidv4 } from "uuid";
-import { SHA256 } from "crypto-js";
+import { StandardCheckoutClient, Env, MetaInfo, StandardCheckoutPayRequest } from 'pg-sdk-node';
+import { randomUUID } from 'crypto';
 
 export async function initiatePayment(amount: number, name: string, mobile: string, muid?: string) {
-  const transactionId = "Tr-" + uuidv4().toString().slice(-6);
+  const merchantOrderId = randomUUID();
 
   // Get base URL from environment or use localhost as fallback
-  const baseUrl = process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_URL || "http://localhost:3001";
+  const baseUrl = process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
 
-  const payload = {
-    merchantId: process.env.NEXT_PUBLIC_MERCHANT_ID,
-    merchantTransactionId: transactionId,
-    merchantUserId: muid || "MUID-" + uuidv4().toString().slice(-6),
-    name: name,
-    mobileNumber: mobile,
-    amount: Math.round(amount * 100), // Amount in paise
-    redirectUrl: `${baseUrl}/status/${transactionId}`,
-    redirectMode: "REDIRECT",
-    callbackUrl: `${baseUrl}/status/${transactionId}`,
-    paymentInstrument: {
-      type: "PAY_PAGE",
-    },
-  };
+  // Use PhonePe SDK credentials
+  const clientId = process.env.NEXT_PUBLIC_PHONE_PAY_CLIENT_ID;
+  const clientSecret = process.env.NEXT_PUBLIC_PHONE_PAY_CLIENT_SECRET;
+  const clientVersion = parseInt(process.env.NEXT_PUBLIC_PHONE_PAY_CLIENT_VERSION || "1");
+  const isProduction = process.env.NODE_ENV === 'production';
+  const env = isProduction ? Env.PRODUCTION : Env.SANDBOX;
 
-  const dataPayload = JSON.stringify(payload);
-  const dataBase64 = Buffer.from(dataPayload).toString("base64");
-
-  const fullURL = dataBase64 + "/pg/v1/pay" + process.env.NEXT_PUBLIC_SALT_KEY;
-  const dataSha256 = SHA256(fullURL).toString();
-
-  const checksum = dataSha256 + "###" + process.env.NEXT_PUBLIC_SALT_INDEX;
-
-  const UAT_PAY_API_URL = `${process.env.NEXT_PUBLIC_PHONE_PAY_HOST_URL}/pg/v1/pay`;
+  if (!clientId || !clientSecret) {
+    const missing = [];
+    if (!clientId) missing.push('NEXT_PUBLIC_PHONE_PAY_CLIENT_ID');
+    if (!clientSecret) missing.push('NEXT_PUBLIC_PHONE_PAY_CLIENT_SECRET');
+    throw new Error(`Payment configuration incomplete. Missing environment variables: ${missing.join(', ')}`);
+  }
 
   try {
-    const response = await fetch(UAT_PAY_API_URL, {
-      method: 'POST',
-      headers: {
-        accept: "application/json",
-        "Content-Type": "application/json",
-        "X-VERIFY": checksum,
-      },
-      body: JSON.stringify({ request: dataBase64 }),
-    });
+    // Initialize PhonePe client
+    const client = StandardCheckoutClient.getInstance(clientId, clientSecret, clientVersion, env);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    // Create meta info with user details
+    const metaInfo = MetaInfo.builder()
+      .udf1(name) // Customer name
+      .udf2(mobile) // Customer mobile
+      .udf3(muid || `USER${Date.now()}`) // Merchant user ID
+      .build();
+
+    // Create payment request
+    // Note: Webhook URL configuration may need to be done via PhonePe dashboard
+    // or using a different SDK method. The webhook endpoint is ready at /api/webhooks/phonepe
+    const request = StandardCheckoutPayRequest.builder()
+      .merchantOrderId(merchantOrderId)
+      .amount(Math.round(amount * 100)) // Amount in paise
+      .redirectUrl(`${baseUrl}/success/${merchantOrderId}`)
+      .metaInfo(metaInfo)
+      .build();
+
+    console.log('Initiating PhonePe payment with SDK...');
+    console.log('Merchant Order ID:', merchantOrderId);
+    console.log('Amount:', Math.round(amount * 100), 'paise');
+    console.log('Environment:', env);
+
+    // Initiate payment using SDK
+    const response = await client.pay(request);
+
+    console.log('PhonePe SDK response:', JSON.stringify(response, null, 2));
+
+    // Validate response
+    if (!response || !response.redirectUrl) {
+      console.error('Invalid response from PhonePe SDK:', response);
+      throw new Error('Invalid response received from PhonePe');
     }
 
-    const responseData = await response.json();
-
     return {
-      redirectUrl: responseData.data.instrumentResponse.redirectInfo.url,
-      transactionId: transactionId,
+      redirectUrl: response.redirectUrl,
+      transactionId: merchantOrderId,
     };
+
   } catch (error) {
     console.error("Error in server action:", error);
+
+    // Handle SDK-specific errors
+    if (error instanceof Error) {
+      // Re-throw with more context
+      throw new Error(`PhonePe payment initiation failed: ${error.message}`);
+    }
+
     throw error;
   }
 }

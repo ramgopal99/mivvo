@@ -19,6 +19,17 @@ import {
 import { CreditCard, Loader2 } from "lucide-react"
 import { toast } from "sonner"
 
+/**
+ * Test Page for Webhook-Based Payment System
+ *
+ * This page tests the secure webhook-based payment flow:
+ * 1. Form submission → API call → Payment initiation
+ * 2. For test mode: Database updated immediately, redirect to success
+ * 3. For production: PhonePe processes payment, calls webhook, updates database
+ *
+ * No client-side SDK required - all security handled server-side!
+ */
+
 const paymentFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   mobile: z.string().regex(/^\d{10}$/, "Mobile number must be 10 digits"),
@@ -49,29 +60,72 @@ const Pay = () => {
     setIsSubmitting(true)
 
     try {
+      // Test mode: API creates payment record, updates database immediately, redirects to success
+      // Production: API initiates PhonePe payment, PhonePe calls webhook to update database
+      console.log('Initiating payment with data:', data)
+
       const response = await fetch('/api/initiate-payment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          paymentType: 'ADDON', // Default payment type
+          isTestRequest: true // Bypass authentication for test page
+        }),
       })
 
+      console.log('API response status:', response.status)
+
+      let result;
+      try {
+        result = await response.json();
+        console.log('API response data:', result);
+      } catch {
+        // If response is not JSON, read as text
+        const responseText = await response.text();
+        console.log('API response text:', responseText);
+        result = { error: responseText };
+      }
+
       if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Payment initiation failed')
+        let errorMessage = 'Payment initiation failed';
+        if (result && result.error) {
+          errorMessage = result.error;
+        } else if (response.statusText) {
+          errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+        }
+        console.error('API error:', errorMessage);
+        throw new Error(errorMessage);
       }
 
-      const result = await response.json()
-      console.log('Payment initiated successfully:', result)
-
-      toast.success("Payment initiated successfully!")
-
-      if (result.redirectUrl) {
-        router.push(result.redirectUrl)
-      } else {
-        throw new Error('No redirect URL received from server')
+      // Check for error in successful JSON response
+      if (result && result.error) {
+        console.error('API returned error in successful response:', result.error);
+        throw new Error(result.error);
       }
+
+      // Validate response structure
+      if (!result || typeof result !== 'object') {
+        throw new Error('Invalid response format from server');
+      }
+
+      if (!result.success) {
+        throw new Error(result.error || 'Payment initiation failed');
+      }
+
+      if (!result.redirectUrl) {
+        throw new Error('No redirect URL received from server');
+      }
+
+      if (!result.transactionId) {
+        throw new Error('No transaction ID received from server');
+      }
+
+      console.log('Payment initiated successfully:', result);
+      toast.success("Payment initiated successfully!");
+      router.push(result.redirectUrl);
     } catch (error) {
       console.error("Payment error:", error)
       toast.error(error instanceof Error ? error.message : "Payment failed. Please try again.")
@@ -89,7 +143,7 @@ const Pay = () => {
             <CardTitle>PhonePe Payment</CardTitle>
           </div>
           <CardDescription>
-            Enter your details to proceed with the payment
+            Test the secure webhook-based payment system
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -175,7 +229,7 @@ const Pay = () => {
                 ) : (
                   <>
                     <CreditCard className="h-4 w-4 mr-2" />
-                    Pay Now
+                    Pay Now with PhonePe
                   </>
                 )}
               </Button>
@@ -188,3 +242,4 @@ const Pay = () => {
 }
 
 export default Pay
+
