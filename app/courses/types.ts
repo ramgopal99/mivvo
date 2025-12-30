@@ -4,6 +4,7 @@ export interface Course {
   title: string;
   displayName: string;
   description: string | null;
+  image?: string | null;
   headerTitle: string | null;
   completionPercentage: string;
   price: number;

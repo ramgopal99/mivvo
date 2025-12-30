@@ -19,6 +19,7 @@ interface CourseData {
   headerTitle: string;
   completionPercentage: string;
   showCodeEditor: boolean;
+  showFormulas: boolean;
   monacoLanguage?: string;
   codeDisplayName?: string;
   defaultCode?: string;
@@ -316,6 +317,7 @@ export default function CourseDetailPage() {
               onSubtopicClick={handleSubtopicClick}
               onCheckedItemsChange={handleCheckedItemsChange}
               selectedTopic={selectedTopic}
+              hasRightSection={courseData.showCodeEditor || courseData.showFormulas}
             />
           </SidebarProvider>
         </div>
@@ -336,7 +338,7 @@ export default function CourseDetailPage() {
 
       {/* Middle and Right Sections - Resizable */}
       <ResizablePanelGroup direction="horizontal" className="flex-1">
-        <ResizablePanel defaultSize={courseData.showCodeEditor ? 55 : 100} minSize={30}>
+        <ResizablePanel defaultSize={(courseData.showCodeEditor || courseData.showFormulas) ? 55 : 100} minSize={30}>
           <MiddleSection
             modules={courseData.modules}
             selectedTopic={selectedTopic}
@@ -350,7 +352,7 @@ export default function CourseDetailPage() {
             selectedExerciseData={selectedExerciseData}
           />
         </ResizablePanel>
-        {courseData.showCodeEditor && (
+        {(courseData.showCodeEditor || courseData.showFormulas) && (
           <>
             <ResizableHandle withHandle />
             <ResizablePanel defaultSize={45} minSize={25}>

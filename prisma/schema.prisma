@@ -391,6 +391,7 @@ model Course {
   description String?
   courseId    String  @unique // Unique identifier for course (e.g., 'python', 'java', 'aptitude')
   displayName String // Display name for the course
+  image       String? // Optional course image URL
   price       Float   @default(99.99) // Price in Rupees
 
   // Course configuration matching test app structure
@@ -411,6 +412,7 @@ model Course {
 
   // UI configuration
   showCodeEditor       Boolean @default(false)
+  showFormulas         Boolean @default(false)
   defaultModule        Int     @default(1)
   autoSelectFirstTopic Boolean @default(true)
   showCourseSwitcher   Boolean @default(true)

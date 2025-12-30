@@ -16,6 +16,7 @@ interface CourseData {
   headerTitle: string;
   completionPercentage: string;
   showCodeEditor: boolean;
+  showFormulas: boolean;
   monacoLanguage?: string;
   codeDisplayName?: string;
   defaultCode?: string;
@@ -47,6 +48,19 @@ interface ApiModule {
     mcqQuestions?: unknown[];
     codeQuestions?: unknown[];
   }[];
+  formulas?: {
+    id: string;
+    formulaId: string;
+    category: string;
+    name: string;
+    formula: string;
+    description: string;
+    variables?: Array<{
+      symbol: string;
+      description: string;
+    }>;
+    order: number;
+  }[];
 }
 
 interface ApiCourseData {
@@ -56,6 +70,7 @@ interface ApiCourseData {
   headerTitle: string;
   completionPercentage: string;
   showCodeEditor: boolean;
+  showFormulas: boolean;
   monacoLanguage?: string;
   codeDisplayName?: string;
   defaultCode?: string;
@@ -117,7 +132,16 @@ export default function CourseDemoMobilePage() {
                 mcqQuestions: (exercise.mcqQuestions || []) as CourseMcqQuestion[],
                 codeQuestions: (exercise.codeQuestions || []) as CourseCodeQuestion[]
               })) || [],
-              formulas: [] // No formulas in demo
+              formulas: module.formulas?.map((formula) => ({
+                id: formula.id,
+                formulaId: formula.formulaId,
+                category: formula.category,
+                name: formula.name,
+                formula: formula.formula,
+                description: formula.description,
+                variables: formula.variables,
+                order: formula.order
+              })) || []
             };
           }) || []
         };
@@ -292,15 +316,17 @@ export default function CourseDemoMobilePage() {
           </div>
 
           <div className="flex items-center gap-2">
-            <button
-              onClick={handleRightSidebarToggle}
-              className="p-2 rounded-md hover:bg-muted transition-colors"
-              title="Open code editor"
-            >
+            {(courseData.showCodeEditor || courseData.showFormulas) && (
+              <button
+                onClick={handleRightSidebarToggle}
+                className="p-2 rounded-md hover:bg-muted transition-colors"
+                title={courseData.showCodeEditor ? "Open code editor" : "Open tools"}
+              >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-            </button>
+              </button>
+            )}
             <Link
               href="/courses"
               className="px-3 py-1.5 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md font-medium text-sm"
@@ -362,7 +388,7 @@ export default function CourseDemoMobilePage() {
                       setIsMobileSidebarOpen(false); // Close sidebar after selection
                     }}
                     selectedTopic={selectedTopic}
-                    hasRightSection={courseData.showCodeEditor}
+                    hasRightSection={courseData.showCodeEditor || courseData.showFormulas}
                   />
                 </SidebarProvider>
               </div>

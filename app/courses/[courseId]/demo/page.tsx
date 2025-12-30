@@ -19,6 +19,7 @@ interface CourseData {
   headerTitle: string;
   completionPercentage: string;
   showCodeEditor: boolean;
+  showFormulas: boolean;
   monacoLanguage?: string;
   codeDisplayName?: string;
   defaultCode?: string;
@@ -55,6 +56,19 @@ interface ApiModule {
     mcqQuestions?: unknown[];
     codeQuestions?: unknown[];
   }[];
+  formulas?: {
+    id: string;
+    formulaId: string;
+    category: string;
+    name: string;
+    formula: string;
+    description: string;
+    variables?: Array<{
+      symbol: string;
+      description: string;
+    }>;
+    order: number;
+  }[];
 }
 
 interface ApiCourseData {
@@ -64,6 +78,7 @@ interface ApiCourseData {
   headerTitle: string;
   completionPercentage: string;
   showCodeEditor: boolean;
+  showFormulas: boolean;
   monacoLanguage?: string;
   codeDisplayName?: string;
   defaultCode?: string;
@@ -137,7 +152,16 @@ export default function CourseDemoPage() {
                 mcqQuestions: (exercise.mcqQuestions || []) as CourseMcqQuestion[],
                 codeQuestions: (exercise.codeQuestions || []) as CourseCodeQuestion[]
               })) || [],
-              formulas: [] // No formulas in demo
+              formulas: module.formulas?.map((formula) => ({
+                id: formula.id,
+                formulaId: formula.formulaId,
+                category: formula.category,
+                name: formula.name,
+                formula: formula.formula,
+                description: formula.description,
+                variables: formula.variables,
+                order: formula.order
+              })) || []
             };
           }) || []
         };
@@ -348,7 +372,7 @@ export default function CourseDemoPage() {
               onSubtopicClick={handleSubtopicClick}
               onCheckedItemsChange={handleCheckedItemsChange}
               selectedTopic={selectedTopic}
-              hasRightSection={courseData.showCodeEditor}
+              hasRightSection={courseData.showCodeEditor || courseData.showFormulas}
             />
           </SidebarProvider>
         </div>
@@ -371,7 +395,7 @@ export default function CourseDemoPage() {
 
       {/* Middle and Right Sections - Resizable */}
       <ResizablePanelGroup direction="horizontal" className="flex-1">
-        <ResizablePanel defaultSize={courseData!.showCodeEditor ? 55 : 100} minSize={30}>
+        <ResizablePanel defaultSize={(courseData!.showCodeEditor || courseData!.showFormulas) ? 55 : 100} minSize={30}>
           <MiddleSection
             modules={courseData!.modules}
             selectedTopic={selectedTopic}
@@ -385,7 +409,7 @@ export default function CourseDemoPage() {
             selectedExerciseData={selectedExerciseData}
           />
         </ResizablePanel>
-        {courseData!.showCodeEditor && (
+        {(courseData!.showCodeEditor || courseData!.showFormulas) && (
           <>
             <ResizableHandle withHandle />
             <ResizablePanel defaultSize={45} minSize={25}>

@@ -4,7 +4,8 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Code } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { PaymentDialog } from '@/components/payment-dialog';
 
@@ -13,6 +14,7 @@ interface Course {
   courseId: string;
   displayName: string;
   description?: string;
+  image?: string | null;
   price: number;
   modules: Array<{
     id: string;
@@ -109,11 +111,6 @@ export default function CoursePage() {
     }
   };
 
-  const getCourseIcon = () => {
-    return <Code className="w-8 h-8 text-blue-500" />;
-  };
-
-
   // Separate enrolled and non-enrolled courses
   const enrolledCourses = courses.filter(course => course.userProgress?.isEnrolled);
   const nonEnrolledCourses = courses.filter(course => !course.userProgress?.isEnrolled);
@@ -153,8 +150,20 @@ export default function CoursePage() {
                   onClick={() => handleCourseSelect(course.courseId)}
                 >
                   <CardHeader className="text-center pb-4">
-                    <div className="flex justify-center mb-4">
-                      {getCourseIcon()}
+                    <div className="relative overflow-hidden rounded-lg h-32 bg-gradient-to-br from-primary/10 to-primary/5 mb-4">
+                      {course.image ? (
+                        <Image
+                          src={course.image}
+                          alt={course.displayName}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <BookOpen className="w-12 h-12 text-primary/30" />
+                        </div>
+                      )}
                     </div>
                     <CardTitle className="text-2xl capitalize">
                       {course.displayName}
@@ -231,8 +240,20 @@ export default function CoursePage() {
                 onClick={() => handleCourseSelect(course.courseId)}
               >
                 <CardHeader className="text-center pb-4">
-                  <div className="flex justify-center mb-4">
-                    {getCourseIcon()}
+                  <div className="relative overflow-hidden rounded-lg h-32 bg-gradient-to-br from-primary/10 to-primary/5 mb-4">
+                    {course.image ? (
+                      <Image
+                        src={course.image}
+                        alt={course.displayName}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <BookOpen className="w-12 h-12 text-primary/30" />
+                      </div>
+                    )}
                   </div>
                   <CardTitle className="text-2xl capitalize">
                     {course.displayName}

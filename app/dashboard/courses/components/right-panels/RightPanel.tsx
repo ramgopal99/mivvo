@@ -16,6 +16,7 @@ interface CourseData {
   headerTitle: string;
   completionPercentage: string;
   showCodeEditor: boolean;
+  showFormulas: boolean;
   monacoLanguage?: string;
   codeDisplayName?: string;
   defaultCode?: string;
@@ -34,6 +35,7 @@ const RightPanel = ({ language = 'python', selectedTopic, courseData, selectedMo
   const currentModule = selectedTopic?.moduleId || 1;
   const moduleHasFormulas = selectedModuleData?.formulas && selectedModuleData.formulas.length > 0;
   const showCodeEditor = courseData?.showCodeEditor || false;
+  const showFormulas = courseData?.showFormulas || false;
 
   // Determine available tabs based on course configuration
   const availableTabs = useMemo(() => {
@@ -44,8 +46,8 @@ const RightPanel = ({ language = 'python', selectedTopic, courseData, selectedMo
       tabs.push({ id: 'code', label: 'Code', icon: Code, color: 'text-blue-600' });
     }
 
-    // Add formulas tab if module has formulas (for any course)
-    if (moduleHasFormulas) {
+    // Add formulas tab if course has formulas enabled AND module has formulas
+    if (showFormulas && moduleHasFormulas) {
       tabs.unshift({ id: 'formulas', label: 'Formulas', icon: BookOpen, color: 'text-green-600' });
 
       // Add calculator tab for modules with formulas
@@ -53,12 +55,12 @@ const RightPanel = ({ language = 'python', selectedTopic, courseData, selectedMo
     }
 
     return tabs;
-  }, [showCodeEditor, moduleHasFormulas]);
+  }, [showCodeEditor, showFormulas, moduleHasFormulas]);
 
   // Set initial active tab
   const getInitialTab = () => {
     if (showCodeEditor) return 'code';
-    if (moduleHasFormulas) {
+    if (showFormulas && moduleHasFormulas) {
       return 'formulas';
     }
     return 'code'; // fallback
@@ -72,7 +74,7 @@ const RightPanel = ({ language = 'python', selectedTopic, courseData, selectedMo
     if (!availableTabs.find(tab => tab.id === activeTab)) {
       setActiveTab(newInitialTab);
     }
-  }, [availableTabs, activeTab]);
+  }, [availableTabs, activeTab, showFormulas]);
 
   // If no tabs available, show placeholder
   if (availableTabs.length === 0) {
@@ -86,7 +88,9 @@ const RightPanel = ({ language = 'python', selectedTopic, courseData, selectedMo
           </div>
           <h3 className="text-lg font-semibold text-foreground mb-2">No Tools Available</h3>
           <p className="text-muted-foreground text-sm">
-            {!moduleHasFormulas
+            {!showFormulas
+              ? `Formulas are not enabled for this course.`
+              : !moduleHasFormulas
               ? `Module ${currentModule} doesn't have formulas available. Switch to a different module to view formulas and tools.`
               : "This course doesn't have any interactive tools available."
             }

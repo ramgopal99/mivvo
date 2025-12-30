@@ -1,10 +1,10 @@
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
-import { Play, BookOpen, Star, ChevronRight } from 'lucide-react'
+import { Play, BookOpen, ChevronRight } from 'lucide-react'
+import Image from 'next/image'
 import type { Course, UserProgress } from '../types'
 
 interface CourseCardProps {
@@ -33,11 +33,25 @@ export function CourseCard({ course, progress, onCourseClick }: CourseCardProps)
   return (
     <Card className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md hover:-translate-y-1 cursor-pointer h-full flex flex-col">
       <CardHeader className="p-0">
-        {/* Course Image Placeholder */}
+        {/* Course Image */}
         <div className="relative overflow-hidden rounded-t-lg h-48 bg-gradient-to-br from-primary/10 to-primary/5">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <BookOpen className="w-16 h-16 text-primary/30" />
-          </div>
+          {course.image ? (
+            <Image
+              src={course.image}
+              alt={course.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              onError={() => {
+                // This will trigger the error state in Next.js Image
+                // The parent div will show the fallback
+              }}
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <BookOpen className="w-16 h-16 text-primary/30" />
+            </div>
+          )}
         </div>
 
         <div className="p-6">
