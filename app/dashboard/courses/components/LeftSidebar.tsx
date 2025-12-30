@@ -434,7 +434,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ modules, courseId, onSubtopic
     <>
       <SidebarContent
         ref={sidebarScrollRef}
-        className={`overflow-auto scrollbar-hide max-h-[calc(100vh-8rem)] ${hasRightSection ? 'w-48' : 'w-64'}`}
+        className={`scrollbar-hide h-full ${hasRightSection ? 'w-48' : 'w-64'}`}
       >
         <SidebarGroup>
           <SidebarGroupContent>

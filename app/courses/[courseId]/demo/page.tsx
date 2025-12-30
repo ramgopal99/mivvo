@@ -313,20 +313,40 @@ export default function CourseDemoPage() {
 
   return (
     <div className="h-screen w-full bg-background flex overflow-hidden">
-      {/* Left Section - Header + Fixed Sidebar */}
+      {/* Left Section - Header + Sidebar + Footer */}
       <div className="w-65 flex flex-col flex-shrink-0">
-        <Header headerData={headerData} completionPercentage={calculateCompletionPercentage()} />
+        {/* Header */}
+        <div className="flex-shrink-0">
+          <Header headerData={headerData} completionPercentage={calculateCompletionPercentage()} />
+        </div>
 
-        {/* Sidebar */}
-        <div className="flex-1 border-r border-border bg-muted/20 overflow-hidden">
+        {/* Sidebar - Middle Section */}
+        <div className="flex-1 border-r border-border bg-muted/20 overflow-auto">
           <SidebarProvider>
             <LeftSidebar
               modules={courseData.modules}
+              courseId={courseId}
               onSubtopicClick={handleSubtopicClick}
               onCheckedItemsChange={handleCheckedItemsChange}
               selectedTopic={selectedTopic}
+              hasRightSection={courseData.showCodeEditor}
             />
           </SidebarProvider>
+        </div>
+
+        {/* Footer */}
+        <div className="flex-shrink-0 border-r border-t border-border bg-background p-4">
+          <div className="flex flex-col items-center gap-2">
+            {/* Back Button */}
+            <Link
+              href="/courses"
+              className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md font-medium transition-colors text-sm"
+            >
+              ← Back to Courses
+            </Link>
+
+
+          </div>
         </div>
       </div>
 

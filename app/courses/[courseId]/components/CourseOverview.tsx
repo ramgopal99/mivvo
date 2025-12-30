@@ -99,49 +99,16 @@ export default function CourseOverview({ modules = [], expandedModules, onToggle
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
           <div>
             <h2 className="text-3xl font-bold text-foreground mb-2">Course Modules</h2>
-            <p className="text-muted-foreground">
-              {isEnrolled
-                ? "Access all course content and track your progress."
-                : "Explore all the modules and topics available in this course."
-              }
-            </p>
-          </div>
-          <div className="flex gap-3">
-            {courseId && (
-              <>
-                {!isEnrolled ? (
-                  <Button
-                    onClick={handleEnroll}
-                    disabled={enrollmentLoading}
-                    className="gap-2 cursor-pointer"
-                  >
-                    <UserPlus className="w-4 h-4" />
-                    {enrollmentLoading ? 'Enrolling...' : 'Enroll Now'}
-                  </Button>
-                ) : (
-                  <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
-                    <CheckCircle className="w-4 h-4" />
-                    <span className="text-sm font-medium">Enrolled</span>
-                  </div>
-                )}
-                <Link href={`/courses/${courseId}/demo`}>
-                  <Button variant="outline" className="gap-2 cursor-pointer">
-                    <Play className="w-4 h-4" />
-                    Try Demo
-                  </Button>
-                </Link>
-              </>
-            )}
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+        <div className="bg-gradient-to-r from-primary/5 to-primary/10 dark:from-primary/10 dark:to-primary/20 border border-primary/20 dark:border-primary/30 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-              <Play className="w-5 h-5 text-white" />
+            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-lg">
+              <Play className="w-5 h-5 text-primary-foreground" />
             </div>
             <div>
-              <h3 className="font-semibold text-foreground">Explore the Full Experience</h3>
+              <h3 className="font-semibold text-primary">Explore the Full Experience</h3>
               <p className="text-sm text-muted-foreground">
                 Discover the complete learning interface with advanced navigation, interactive content, and professional design.
               </p>
