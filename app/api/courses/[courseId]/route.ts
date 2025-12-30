@@ -1,14 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 
 interface RouteParams {
   params: Promise<{ courseId: string }>;
 }
 
 
-export async function GET({ params }: RouteParams) {
+export async function GET(request: NextRequest, { params }: RouteParams) {
   const resolvedParams = await params;
   try {
+    // Get authenticated user (optional for course details)
+    const session = await getServerSession(authOptions);
+    const userId = session?.user?.id;
 
     const course = await prisma.course.findUnique({
       where: { courseId: resolvedParams.courseId },
@@ -45,7 +50,31 @@ export async function GET({ params }: RouteParams) {
       );
     }
 
-    return NextResponse.json(course);
+    // If user is authenticated, check enrollment status for additional data
+    if (userId) {
+      const enrollment = await prisma.courseEnrollment.findUnique({
+        where: {
+          userId_courseId: {
+            userId,
+            courseId: course.id,
+          },
+        },
+      });
+
+      // Return course data with enrollment status
+      return NextResponse.json({
+        ...course,
+        isEnrolled: !!enrollment && enrollment.isActive,
+        enrollmentData: enrollment
+      });
+    }
+
+    // For unauthenticated users, return basic course info
+    return NextResponse.json({
+      ...course,
+      isEnrolled: false,
+      enrollmentData: null
+    });
   } catch (error) {
     console.error('Error fetching course:', error);
     return NextResponse.json(
@@ -66,6 +95,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
         title: body.title,
         displayName: body.displayName,
         description: body.description,
+        image: body.image,
         headerTitle: body.headerTitle,
         completionPercentage: body.completionPercentage,
         monacoLanguage: body.monacoLanguage,
@@ -77,6 +107,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
         aiAssistantDescription: body.aiAssistantDescription,
         aiAssistantPrompt: body.aiAssistantPrompt,
         showCodeEditor: body.showCodeEditor,
+        showFormulas: body.showFormulas,
         defaultModule: body.defaultModule,
         autoSelectFirstTopic: body.autoSelectFirstTopic,
         showCourseSwitcher: body.showCourseSwitcher,
@@ -107,7 +138,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
   }
 }
 
-export async function DELETE({ params }: RouteParams) {
+export async function DELETE(request: NextRequest, { params }: RouteParams) {
   const resolvedParams = await params;
   try {
     await prisma.course.delete({

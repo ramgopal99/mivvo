@@ -87,6 +87,7 @@ enum PaymentStatus {
 enum PaymentCategory {
   MONTHLY
   ADDON
+  COURSE_PURCHASE
   SUBSCRIPTION
   CREDITS
   ENTERPRISE
@@ -193,6 +194,7 @@ model User {
   supportTickets    SupportTicket[]
   userProgress      CourseUserProgress[]
   courseEnrollments CourseEnrollment[]
+  courseCredits     CourseCredit[]
   feedback          Feedback[]
   payments          Payment[]
   studentEnrollment StudentEnrollment?
@@ -389,6 +391,7 @@ model Course {
   description String?
   courseId    String  @unique // Unique identifier for course (e.g., 'python', 'java', 'aptitude')
   displayName String // Display name for the course
+  image       String? // Optional course image URL
   price       Float   @default(99.99) // Price in Rupees
 
   // Course configuration matching test app structure
@@ -409,9 +412,16 @@ model Course {
 
   // UI configuration
   showCodeEditor       Boolean @default(false)
+  showFormulas         Boolean @default(false)
   defaultModule        Int     @default(1)
   autoSelectFirstTopic Boolean @default(true)
   showCourseSwitcher   Boolean @default(true)
+
+  // Credit system configuration
+  creditEnabled         Boolean @default(false) // Whether credits are required for this course
+  defaultCreditAllocation Int? // Default credits allocated to new users for this course
+  creditResetType       String @default("MANUAL") // "MANUAL", "DAILY", "MONTHLY", "UNLIMITED"
+  creditCostPerAction   Int    @default(1) // Credits consumed per action (e.g., per exercise attempt)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -420,8 +430,31 @@ model Course {
   modules      CourseModule[]
   userProgress CourseUserProgress[]
   enrollments  CourseEnrollment[]
+  credits      CourseCredit[]
 
   @@map("courses")
+}
+
+model CourseCredit {
+  id            String   @id @default(cuid()) @map("_id")
+  userId        String
+  courseId      String
+  totalCredits  Int      @default(0) // Total credits allocated for this course
+  usedCredits   Int      @default(0) // Credits already consumed
+  creditType    String   @default("DEFAULT") // Type of credits (e.g., "DAILY", "MONTHLY", "UNLIMITED")
+  resetAt       DateTime? // When credits reset (for recurring allocations)
+  isActive      Boolean  @default(true) // Whether this credit allocation is active
+  lastUsedAt    DateTime? // When credits were last consumed
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, courseId])
+  @@map("course_credits")
 }
 
 model CourseEnrollment {

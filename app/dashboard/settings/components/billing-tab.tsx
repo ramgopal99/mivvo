@@ -5,27 +5,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { Plus, Calendar, CreditCard, Receipt, Smartphone } from "lucide-react"
+import { Plus, Calendar, CreditCard, Receipt, Code } from "lucide-react"
 import { useSession } from "next-auth/react"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
 import { toast } from "sonner"
 import { CREDIT_PACKAGES } from "@/lib/credit-converter"
 import { CREDIT_RESET_CONFIG, PRICING_CONFIG } from "@/config/site"
 import { getAuthHeaders } from "@/lib/auth-utils"
 import { DownloadReceiptButton } from "./download-receipt-button"
+import { PaymentDialog } from "@/components/payment-dialog"
+import { Label } from "@/components/ui/label"
 
 interface Payment {
   id: string
@@ -39,34 +27,10 @@ interface Payment {
   createdAt: string
 }
 
-const phonepePaymentSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  mobile: z.string().regex(/^\d{10}$/, "Mobile number must be 10 digits"),
-  amount: z.string().min(1, "Amount is required").refine((val) => {
-    const num = parseFloat(val)
-    return !isNaN(num) && num > 0
-  }, "Amount must be a positive number"),
-  paymentType: z.enum(["MONTHLY", "ADDON"]),
-  creditValue: z.number().optional(),
-})
-
-type PhonePePaymentValues = z.infer<typeof phonepePaymentSchema>
 
 export function BillingTab() {
   const { data: session, status } = useSession()
   const [addonValue, setAddonValue] = useState<string>(PRICING_CONFIG.ADDON_CREDITS.AVAILABLE_PACKAGES[0].minutes.toString())
-
-  // PhonePe Payment Form
-  const phonePeForm = useForm<PhonePePaymentValues>({
-    resolver: zodResolver(phonepePaymentSchema),
-    defaultValues: {
-      name: "",
-      mobile: "",
-      amount: "",
-      paymentType: "MONTHLY",
-      creditValue: 0,
-    },
-  })
   const [payments, setPayments] = useState<Payment[]>([])
   const [loadingPayments, setLoadingPayments] = useState(true)
   const [userType, setUserType] = useState<'FREE' | 'PRO'>('FREE')
@@ -78,8 +42,10 @@ export function BillingTab() {
     expirationDate: string | null;
   }>({ enrollmentDate: null, expirationDate: null })
 
-  // PhonePe Payment states
-  const [phonePeDialogOpen, setPhonePeDialogOpen] = useState(false)
+  // Payment Dialog states
+  const [paymentDialogOpen, setPaymentDialogOpen] = useState(false)
+  const [paymentAmount, setPaymentAmount] = useState<string>("")
+  const [paymentType, setPaymentType] = useState<'MONTHLY' | 'ADDON'>('MONTHLY')
   const [isInitiatingPayment, setIsInitiatingPayment] = useState(false)
 
   // Fetch user payments
@@ -185,16 +151,22 @@ export function BillingTab() {
     }
   }, [status, fetchUserData])
 
-  const initiatePhonePePayment = async (data: PhonePePaymentValues) => {
+  const initiatePhonePePayment = async (data: { name: string; mobile: string; amount: string }) => {
     setIsInitiatingPayment(true)
 
     try {
+      const paymentData = {
+        ...data,
+        paymentType,
+        creditValue: paymentType === 'ADDON' ? parseFloat(addonValue) : undefined,
+      }
+
       const response = await fetch('/api/initiate-payment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(paymentData),
       })
 
       if (!response.ok) {
@@ -209,7 +181,7 @@ export function BillingTab() {
 
       if (result.redirectUrl) {
         // Close dialog and redirect to payment gateway
-        setPhonePeDialogOpen(false)
+        setPaymentDialogOpen(false)
         window.location.href = result.redirectUrl
       } else {
         throw new Error('No redirect URL received from server')
@@ -337,11 +309,10 @@ export function BillingTab() {
                   <p className={`text-sm ${userType === 'PRO' ? 'text-gray-400' : 'text-gray-500'}`}>Billing cycle: {getExpiryInfo()}</p>
                   <Button
                     onClick={() => {
-                      // Pre-fill PhonePe form with PRO subscription cost
-                      phonePeForm.setValue('amount', PRICING_CONFIG.MONTHLY_PRO.PRICE_INR.toString());
-                      phonePeForm.setValue('name', session?.user?.name || '');
-                      phonePeForm.setValue('paymentType', 'MONTHLY');
-                      setPhonePeDialogOpen(true);
+                      // Set payment details for PRO subscription
+                      setPaymentAmount(PRICING_CONFIG.MONTHLY_PRO.PRICE_INR.toString());
+                      setPaymentType('MONTHLY');
+                      setPaymentDialogOpen(true);
                     }}
                     disabled={isInitiatingPayment || userType === 'PRO'}
                     size="sm"
@@ -427,12 +398,11 @@ export function BillingTab() {
                       isInitiatingPayment,
                       enrollmentData
                     })
-                    // Open PhonePe dialog for addon payment
-                    phonePeForm.setValue('amount', PRICING_CONFIG.ADDON_CREDITS.AVAILABLE_PACKAGES.find(pkg => pkg.minutes === parseFloat(addonValue))?.rupees.toString() || '0');
-                    phonePeForm.setValue('name', session?.user?.name || '');
-                    phonePeForm.setValue('paymentType', 'ADDON');
-                    phonePeForm.setValue('creditValue', parseFloat(addonValue));
-                    setPhonePeDialogOpen(true);
+                    // Set payment details for addon credits
+                    const selectedPackage = PRICING_CONFIG.ADDON_CREDITS.AVAILABLE_PACKAGES.find(pkg => pkg.minutes === parseFloat(addonValue));
+                    setPaymentAmount(selectedPackage?.rupees.toString() || '0');
+                    setPaymentType('ADDON');
+                    setPaymentDialogOpen(true);
                   }}
                   disabled={
                     isInitiatingPayment ||
@@ -509,16 +479,21 @@ export function BillingTab() {
               <div className="flex items-center space-x-3">
                       <div className={`p-2 rounded-lg ${
                         payment.paymentCategory === 'MONTHLY' ? 'bg-blue-100' :
-                        payment.paymentCategory === 'ADDON' ? 'bg-green-100' : 'bg-gray-100'
+                        payment.paymentCategory === 'ADDON' ? 'bg-green-100' :
+                        payment.paymentCategory === 'COURSE_PURCHASE' ? 'bg-purple-100' : 'bg-gray-100'
                       }`}>
                         {payment.paymentCategory === 'MONTHLY' ? (
                           <Calendar className={`h-4 w-4 ${
                             payment.paymentCategory === 'MONTHLY' ? 'text-blue-600' : 'text-gray-600'
                           }`} />
-                        ) : (
+                        ) : payment.paymentCategory === 'ADDON' ? (
                           <Plus className={`h-4 w-4 ${
                             payment.paymentCategory === 'ADDON' ? 'text-green-600' : 'text-gray-600'
                           }`} />
+                        ) : payment.paymentCategory === 'COURSE_PURCHASE' ? (
+                          <Code className="h-4 w-4 text-purple-600" />
+                        ) : (
+                          <Receipt className="h-4 w-4 text-gray-600" />
                         )}
                 </div>
                 <div className="flex-1">
@@ -555,91 +530,15 @@ export function BillingTab() {
         </Card>
       )}
 
-      {/* PhonePe Payment Dialog */}
-      <Dialog open={phonePeDialogOpen} onOpenChange={setPhonePeDialogOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="flex items-center space-x-2">
-              <Smartphone className="h-5 w-5 text-orange-500" />
-              <span>PhonePe Payment</span>
-            </DialogTitle>
-            <DialogDescription>
-              Enter your details to proceed with PhonePe payment
-            </DialogDescription>
-          </DialogHeader>
-          <Form {...phonePeForm}>
-            <form onSubmit={phonePeForm.handleSubmit(initiatePhonePePayment)} className="space-y-4">
-              <FormField
-                control={phonePeForm.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Full Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Enter your full name" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={phonePeForm.control}
-                name="mobile"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Mobile Number</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="tel"
-                        placeholder="Enter 10-digit mobile number"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={phonePeForm.control}
-                name="amount"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Amount (₹)</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        step="0.01"
-                        min="0"
-                        placeholder="Fixed amount"
-                        {...field}
-                        readOnly
-                        className="bg-muted"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <div className="flex justify-end space-x-2 pt-4">
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => setPhonePeDialogOpen(false)}
-                  disabled={isInitiatingPayment}
-                >
-                  Cancel
-                </Button>
-                <Button type="submit" disabled={isInitiatingPayment}>
-                  {isInitiatingPayment ? "Processing..." : "Pay Now"}
-                </Button>
-          </div>
-            </form>
-          </Form>
-        </DialogContent>
-      </Dialog>
+      {/* Payment Dialog */}
+      <PaymentDialog
+        open={paymentDialogOpen}
+        onOpenChange={setPaymentDialogOpen}
+        amount={paymentAmount}
+        userName={session?.user?.name || ""}
+        onPaymentInitiate={initiatePhonePePayment}
+        isProcessing={isInitiatingPayment}
+      />
     </div>
   )
 } 

@@ -3,7 +3,89 @@ import { initiatePayment } from "@/app/actions/initiatePayment";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { CREDIT_PACKAGES } from "@/config/site";
+import { CREDIT_PACKAGES, COURSE_ENROLLMENT_CREDITS, siteConfig } from "@/config/site";
+
+interface CoursePurchaseMetadata {
+  courseId: string;
+  courseName: string;
+}
+
+// Test endpoint to manually complete a payment and test enrollment
+export async function GET(req: NextRequest) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const paymentId = searchParams.get('paymentId');
+
+    if (!paymentId) {
+      return NextResponse.json({ error: "paymentId required" }, { status: 400 });
+    }
+
+    // Find the payment
+    const payment = await prisma.payment.findUnique({
+      where: { id: paymentId }
+    });
+
+    if (!payment) {
+      return NextResponse.json({ error: "Payment not found" }, { status: 404 });
+    }
+
+    // Mark as completed and process enrollment
+    await prisma.payment.update({
+      where: { id: payment.id },
+      data: { status: 'COMPLETED' }
+    });
+
+    // Process enrollment if it's a course purchase
+    if (payment.paymentCategory === 'COURSE_PURCHASE' && payment.metadata) {
+      const metadata = payment.metadata as unknown as CoursePurchaseMetadata;
+      if (metadata && metadata.courseId) {
+        const enrollment =                 // Create enrollment
+                await prisma.courseEnrollment.create({
+                  data: {
+                    userId: payment.userId,
+                    courseId: metadata.courseId,
+                    enrolledAt: new Date(),
+                    isActive: true
+                  }
+                });
+
+                // Allocate course credits
+                try {
+                  await prisma.courseCredit.create({
+                    data: {
+                      userId: payment.userId,
+                      courseId: metadata.courseId,
+                      totalCredits: COURSE_ENROLLMENT_CREDITS,
+                      usedCredits: 0,
+                      creditType: 'ENROLLMENT',
+                      isActive: true,
+                    },
+                  });
+                  console.log('✅ Course credits allocated (webhook test):', payment.userId, 'Course:', metadata.courseId);
+                } catch (creditError) {
+                  console.error('❌ Error allocating course credits (webhook test):', creditError);
+                }
+
+        return NextResponse.json({
+          success: true,
+          message: "Payment completed and enrollment created",
+          enrollment: enrollment
+        });
+      }
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: "Payment completed (no enrollment needed)"
+    });
+
+  } catch (error) {
+    console.error("Test completion error:", error);
+    return NextResponse.json({
+      error: error instanceof Error ? error.message : "Unknown error"
+    }, { status: 500 });
+  }
+}
 
 export async function POST(req: NextRequest) {
   console.log('API route called: /api/initiate-payment');
@@ -23,7 +105,14 @@ export async function POST(req: NextRequest) {
 
   try {
     // Check if this is a test request (no auth required for testp page)
-    const { isTestRequest, name, mobile, amount, paymentType, creditValue } = body;
+    const { isTestRequest, name, mobile, amount, paymentType, creditValue, courseId, courseName } = body;
+
+    console.log('🎯 Payment request received:', {
+      paymentType,
+      courseId,
+      courseName,
+      isTestRequest
+    });
 
     // Validate required fields
     if (!name || !mobile || !amount || !paymentType) {
@@ -34,9 +123,9 @@ export async function POST(req: NextRequest) {
     }
 
     // Validate payment type
-    if (!["MONTHLY", "ADDON"].includes(paymentType)) {
+    if (!["MONTHLY", "ADDON", "COURSE_PURCHASE"].includes(paymentType)) {
       return NextResponse.json(
-        { error: "Invalid payment type. Must be MONTHLY or ADDON" },
+        { error: "Invalid payment type. Must be MONTHLY, ADDON, or COURSE_PURCHASE" },
         { status: 400 }
       );
     }
@@ -94,8 +183,14 @@ export async function POST(req: NextRequest) {
                 transactionId: mockTransactionId,
                 description: (paymentType === 'MONTHLY')
                   ? 'Monthly PRO Subscription (Test)'
-                  : `Addon Credits Purchase (${Math.floor(creditValue || 0) * 12} credits) (Test)`,
-                value: paymentType === 'ADDON' ? Math.floor((creditValue || 0) * 12) : null,
+                  : paymentType === 'COURSE_PURCHASE'
+                  ? `Course Purchase: ${courseName || 'Unknown Course'} (Test)`
+                  : `Addon Credits Purchase (${creditValue ? Math.floor(creditValue * 12) : Math.floor(amountNum * 10)} credits) (Test)`,
+                value: paymentType === 'ADDON' ? (creditValue ? Math.floor(creditValue * 12) : Math.floor(amountNum * 10)) : null,
+                metadata: paymentType === 'COURSE_PURCHASE' ? {
+                  courseId,
+                  courseName
+                } : null,
               }
             });
 
@@ -110,18 +205,107 @@ export async function POST(req: NextRequest) {
                   userType: 'PRO'
                 }
               });
-            } else if (paymentType === 'ADDON' && creditValue) {
+              console.log(`✅ User ${userId} upgraded to PRO (test mode)`);
+            } else if (paymentType === 'ADDON') {
+              // Calculate credits from amount if creditValue not provided
+              // Assuming ₹0.10 per credit (10 paise per credit)
+              const creditsToAdd = creditValue ? Math.floor(creditValue * 12) : Math.floor(amountNum * 10); // amount * 10 credits per rupee
               await prisma.user.update({
                 where: { id: userId },
                 data: {
                   totalCreditAllocation: {
-                    increment: Math.floor(creditValue * 12)
+                    increment: creditsToAdd
                   }
                 }
               });
+              console.log(`✅ User ${userId} received ${creditsToAdd} credits (test mode)`);
+            } else if (paymentType === 'COURSE_PURCHASE' && courseId) {
+              // Enroll user in the course
+              try {
+                // First find the course by courseId to get the database ID
+                const course = await prisma.course.findUnique({
+                  where: { courseId: courseId },
+                  select: { id: true, courseId: true, title: true },
+                });
+
+                if (!course) {
+                  console.error('❌ Course not found for test enrollment:', courseId);
+                  return;
+                }
+
+                // Create enrollment
+                await prisma.courseEnrollment.create({
+                  data: {
+                    userId: userId,
+                    courseId: course.id, // Use database primary key
+                    enrolledAt: new Date(),
+                    isActive: true
+                  }
+                });
+
+                // Allocate course credits
+                try {
+                  await prisma.courseCredit.upsert({
+                    where: {
+                      userId_courseId: {
+                        userId: userId,
+                        courseId: course.id,
+                      },
+                    },
+                    update: {
+                      totalCredits: COURSE_ENROLLMENT_CREDITS,
+                      usedCredits: 0,
+                      creditType: 'ENROLLMENT',
+                      isActive: true,
+                    },
+                    create: {
+                      userId: userId,
+                      courseId: course.id,
+                      totalCredits: COURSE_ENROLLMENT_CREDITS,
+                      usedCredits: 0,
+                      creditType: 'ENROLLMENT',
+                      isActive: true,
+                    },
+                  });
+                  console.log(`✅ Course credits allocated (test mode): ${userId} Course: ${courseId}`);
+                } catch (creditError) {
+                  console.error('❌ Error allocating course credits (test mode):', creditError);
+                }
+
+                        console.log(`✅ User ${userId} enrolled in course ${courseId} (test mode)`);
+
+                // Verify enrollment was created
+                const enrollment = await prisma.courseEnrollment.findFirst({
+                    where: {
+                        userId: userId,
+                        courseId: course.id
+                    }
+                });
+                console.log('✅ Test enrollment verification:', enrollment ? 'SUCCESS' : 'FAILED');
+              } catch (enrollmentError) {
+                console.error('Failed to enroll user in course:', enrollmentError);
+                // Continue with payment creation even if enrollment fails
+              }
             }
 
             console.log('Test payment completed and user credits updated');
+
+            // For test mode, automatically trigger webhook processing
+            console.log('🧪 TEST MODE: Automatically triggering webhook processing for test payment');
+            try {
+              const testWebhookResponse = await fetch(`${baseUrl}/api/webhooks/phonepe?transactionId=${mockTransactionId}&state=COMPLETED`, {
+                method: 'GET',
+              });
+
+              if (testWebhookResponse.ok) {
+                const webhookResult = await testWebhookResponse.json();
+                console.log('🧪 TEST MODE: Webhook processing result:', webhookResult);
+              } else {
+                console.error('🧪 TEST MODE: Failed to trigger webhook processing');
+              }
+            } catch (webhookError) {
+              console.error('🧪 TEST MODE: Error triggering webhook:', webhookError);
+            }
           } catch (dbError) {
             console.error('Database error in test mode:', dbError);
             throw dbError;
@@ -138,11 +322,11 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    console.log('About to call initiatePayment with:', { amountNum, name, mobile });
+    console.log('About to call initiatePayment with:', { amountNum, name, mobile, isTestRequest });
     let result;
     try {
       // Initiate PhonePe payment first to get transaction ID
-      result = await initiatePayment(amountNum, name, mobile);
+      result = await initiatePayment(amountNum, name, mobile, undefined, isTestRequest);
       console.log('initiatePayment result:', result);
     } catch (initiateError) {
       console.error('initiatePayment function failed:', initiateError);
@@ -165,11 +349,36 @@ export async function POST(req: NextRequest) {
             transactionId: result.transactionId,
             description: (paymentType === 'MONTHLY')
               ? 'Monthly PRO Subscription'
+              : paymentType === 'COURSE_PURCHASE'
+              ? `Course Purchase: ${courseName || 'Unknown Course'}`
               : `Addon Credits Purchase (${Math.floor(creditValue || 0) * 12} credits)`,
             value: paymentType === 'ADDON' ? Math.floor((creditValue || 0) * 12) : null, // Convert minutes to credits
+            metadata: paymentType === 'COURSE_PURCHASE' ? {
+              courseId,
+              courseName
+            } : null,
           }
         });
         console.log('Payment record created:', payment.id);
+
+        // For test mode (development), automatically trigger webhook processing since PhonePe won't send real webhooks
+        if (siteConfig.testMode && paymentType === 'COURSE_PURCHASE') {
+          console.log('🧪 TEST MODE: Automatically triggering webhook processing for course purchase');
+          try {
+            const testWebhookResponse = await fetch(`${baseUrl}/api/webhooks/phonepe?transactionId=${result.transactionId}&state=COMPLETED`, {
+              method: 'GET',
+            });
+
+            if (testWebhookResponse.ok) {
+              const webhookResult = await testWebhookResponse.json();
+              console.log('🧪 TEST MODE: Course purchase webhook processing result:', webhookResult);
+            } else {
+              console.error('🧪 TEST MODE: Failed to trigger course purchase webhook processing');
+            }
+          } catch (webhookError) {
+            console.error('🧪 TEST MODE: Error triggering course purchase webhook:', webhookError);
+          }
+        }
       } catch (dbError) {
         console.error('Database error:', dbError);
         throw dbError; // Re-throw to be caught by outer catch

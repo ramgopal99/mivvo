@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
+import { COURSE_ENROLLMENT_CREDITS } from '@/config/site';
 
 export async function POST(request: NextRequest) {
   try {
@@ -62,10 +63,28 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    // Allocate course credits to the user
+    try {
+      await prisma.courseCredit.create({
+        data: {
+          userId,
+          courseId: course.id,
+          totalCredits: COURSE_ENROLLMENT_CREDITS,
+          usedCredits: 0,
+          creditType: 'ENROLLMENT',
+          isActive: true,
+        },
+      });
+    } catch (creditError) {
+      // If credit allocation fails (e.g., unique constraint violation), log but don't fail enrollment
+      console.error('Error allocating course credits:', creditError);
+    }
+
     return NextResponse.json({
       success: true,
       message: 'Successfully enrolled in course',
       enrollment,
+      credits: COURSE_ENROLLMENT_CREDITS,
       course: {
         id: course.courseId,
         title: course.title,

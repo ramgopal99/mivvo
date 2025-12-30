@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ResizablePanelGroup, ResizableHandle, ResizablePanel } from '@/components/ui/resizable';
@@ -9,6 +9,7 @@ import Header from '../components/Header';
 import LeftSidebar from '../components/LeftSidebar';
 import MiddleSection from '../components/MiddleSection';
 import RightSection from '../components/RightSection';
+import CourseDetailMobilePage from './mobile-page';
 import { CourseTopic, CourseExercise, CourseModule } from '../data/lessonsData';
 
 interface CourseData {
@@ -18,6 +19,7 @@ interface CourseData {
   headerTitle: string;
   completionPercentage: string;
   showCodeEditor: boolean;
+  showFormulas: boolean;
   monacoLanguage?: string;
   codeDisplayName?: string;
   defaultCode?: string;
@@ -47,6 +49,7 @@ interface HeaderData {
 
 export default function CourseDetailPage() {
   const params = useParams();
+  const router = useRouter();
   const courseId = params.courseId as string;
 
   const [courseData, setCourseData] = useState<CourseData | null>(null);
@@ -55,6 +58,19 @@ export default function CourseDetailPage() {
   const [selectedTopic, setSelectedTopic] = useState<SelectedTopic | null>(null);
   const [checkedItemsCount, setCheckedItemsCount] = useState<number>(0);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    // Mobile detection
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
 
   useEffect(() => {
     const fetchCourseData = async () => {
@@ -63,6 +79,11 @@ export default function CourseDetailPage() {
         const response = await fetch(`/api/courses/${courseId}`);
 
         if (!response.ok) {
+          if (response.status === 403) {
+            // Redirect to home if not enrolled
+            router.push('/');
+            return;
+          }
           throw new Error('Failed to fetch course data');
         }
 
@@ -117,7 +138,7 @@ export default function CourseDetailPage() {
     if (courseId) {
       fetchCourseData();
     }
-  }, [courseId]);
+  }, [courseId, router]);
 
   // Show loading while fetching data
   if (loading) {
@@ -273,14 +294,22 @@ export default function CourseDetailPage() {
     } : null
   });
 
+  // Render mobile version if on mobile device
+  if (isMobile) {
+    return <CourseDetailMobilePage />;
+  }
+
   return (
     <div className="h-screen w-full bg-background flex">
-      {/* Left Section - Header + Fixed Sidebar */}
+      {/* Left Section - Header + Sidebar + Footer */}
       <div className="w-65 flex flex-col flex-shrink-0">
-        <Header headerData={headerData} completionPercentage={calculateCompletionPercentage()} />
+        {/* Header */}
+        <div className="flex-shrink-0">
+          <Header headerData={headerData} completionPercentage={calculateCompletionPercentage()} />
+        </div>
 
-        {/* Sidebar */}
-        <div className="flex-1 border-r border-border bg-muted/20">
+        {/* Sidebar - Middle Section */}
+        <div className="flex-1 border-r border-border bg-muted/20 overflow-auto">
           <SidebarProvider>
             <LeftSidebar
               modules={courseData.modules}
@@ -288,14 +317,28 @@ export default function CourseDetailPage() {
               onSubtopicClick={handleSubtopicClick}
               onCheckedItemsChange={handleCheckedItemsChange}
               selectedTopic={selectedTopic}
+              hasRightSection={courseData.showCodeEditor || courseData.showFormulas}
             />
           </SidebarProvider>
+        </div>
+
+        {/* Footer */}
+        <div className="flex-shrink-0 border-r border-t border-border bg-background p-4">
+          <div className="flex flex-col items-center gap-2">
+            {/* Back Button */}
+            <button
+              onClick={() => router.push('/dashboard/courses')}
+              className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md font-medium transition-colors text-sm cursor-pointer"
+            >
+              ← Back to Courses
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Middle and Right Sections - Resizable */}
       <ResizablePanelGroup direction="horizontal" className="flex-1">
-        <ResizablePanel defaultSize={courseData.showCodeEditor ? 55 : 100} minSize={30}>
+        <ResizablePanel defaultSize={(courseData.showCodeEditor || courseData.showFormulas) ? 55 : 100} minSize={30}>
           <MiddleSection
             modules={courseData.modules}
             selectedTopic={selectedTopic}
@@ -309,7 +352,7 @@ export default function CourseDetailPage() {
             selectedExerciseData={selectedExerciseData}
           />
         </ResizablePanel>
-        {courseData.showCodeEditor && (
+        {(courseData.showCodeEditor || courseData.showFormulas) && (
           <>
             <ResizableHandle withHandle />
             <ResizablePanel defaultSize={45} minSize={25}>

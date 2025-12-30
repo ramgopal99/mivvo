@@ -2,9 +2,12 @@
 
 import { StandardCheckoutClient, Env, MetaInfo, StandardCheckoutPayRequest } from 'pg-sdk-node';
 import { randomUUID } from 'crypto';
+import { siteConfig } from '@/config/site';
 
-export async function initiatePayment(amount: number, name: string, mobile: string, muid?: string) {
-  const merchantOrderId = randomUUID();
+export async function initiatePayment(amount: number, name: string, mobile: string, muid?: string, isTestRequest?: boolean) {
+  // Check if this is a test request
+  const isTestMode = isTestRequest || siteConfig.testMode;
+  const merchantOrderId = isTestMode ? `test${randomUUID()}` : randomUUID();
 
   // Get base URL from environment or use localhost as fallback
   const baseUrl = process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_URL || "http://localhost:3000";

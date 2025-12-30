@@ -4,14 +4,17 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Code } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import { PaymentDialog } from '@/components/payment-dialog';
 
 interface Course {
   id: string;
   courseId: string;
   displayName: string;
   description?: string;
+  image?: string | null;
   price: number;
   modules: Array<{
     id: string;
@@ -35,7 +38,9 @@ export default function CoursePage() {
   const router = useRouter();
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
-  const [enrollingCourseId, setEnrollingCourseId] = useState<string | null>(null);
+  const [paymentDialogOpen, setPaymentDialogOpen] = useState(false);
+  const [selectedCourseForPayment, setSelectedCourseForPayment] = useState<Course | null>(null);
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -59,42 +64,52 @@ export default function CoursePage() {
     router.push(`/dashboard/courses/${courseId}`);
   };
 
-  const handleEnrollCourse = async (courseId: string) => {
-    setEnrollingCourseId(courseId);
+  const handleEnrollCourse = (course: Course) => {
+    setSelectedCourseForPayment(course);
+    setPaymentDialogOpen(true);
+  };
+
+  const handlePaymentInitiate = async (paymentData: { name: string; mobile: string; amount: string }) => {
+    if (!selectedCourseForPayment) return;
+
+    setIsProcessingPayment(true);
     try {
-      const response = await fetch('/api/courses/enroll', {
+      const response = await fetch('/api/initiate-payment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ courseId }),
+        body: JSON.stringify({
+          name: paymentData.name,
+          mobile: paymentData.mobile,
+          amount: paymentData.amount,
+          paymentType: 'COURSE_PURCHASE',
+          courseId: selectedCourseForPayment.courseId,
+          courseName: selectedCourseForPayment.displayName,
+        }),
       });
 
       if (response.ok) {
-        // Refresh courses to update enrollment status
-        const coursesResponse = await fetch('/api/courses');
-        if (coursesResponse.ok) {
-          const updatedCourses = await coursesResponse.json();
-          setCourses(updatedCourses);
+        const data = await response.json();
+        // Redirect to PhonePe payment page
+        if (data.redirectUrl) {
+          window.location.href = data.redirectUrl;
+        } else {
+          alert('Payment URL not received. Please try again.');
         }
-        // Redirect to the enrolled course
-        router.push(`/dashboard/courses/${courseId}`);
       } else {
         const errorData = await response.json();
-        alert(errorData.error || 'Failed to enroll in course');
+        alert(errorData.error || 'Failed to initiate payment');
       }
     } catch (error) {
-      console.error('Error enrolling in course:', error);
-      alert('Failed to enroll in course. Please try again.');
+      console.error('Error initiating payment:', error);
+      alert('Failed to initiate payment. Please try again.');
     } finally {
-      setEnrollingCourseId(null);
+      setIsProcessingPayment(false);
+      setPaymentDialogOpen(false);
+      setSelectedCourseForPayment(null);
     }
   };
-
-  const getCourseIcon = () => {
-    return <Code className="w-8 h-8 text-blue-500" />;
-  };
-
 
   // Separate enrolled and non-enrolled courses
   const enrolledCourses = courses.filter(course => course.userProgress?.isEnrolled);
@@ -135,8 +150,20 @@ export default function CoursePage() {
                   onClick={() => handleCourseSelect(course.courseId)}
                 >
                   <CardHeader className="text-center pb-4">
-                    <div className="flex justify-center mb-4">
-                      {getCourseIcon()}
+                    <div className="relative overflow-hidden rounded-lg h-32 bg-gradient-to-br from-primary/10 to-primary/5 mb-4">
+                      {course.image ? (
+                        <Image
+                          src={course.image}
+                          alt={course.displayName}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <BookOpen className="w-12 h-12 text-primary/30" />
+                        </div>
+                      )}
                     </div>
                     <CardTitle className="text-2xl capitalize">
                       {course.displayName}
@@ -213,8 +240,20 @@ export default function CoursePage() {
                 onClick={() => handleCourseSelect(course.courseId)}
               >
                 <CardHeader className="text-center pb-4">
-                  <div className="flex justify-center mb-4">
-                    {getCourseIcon()}
+                  <div className="relative overflow-hidden rounded-lg h-32 bg-gradient-to-br from-primary/10 to-primary/5 mb-4">
+                    {course.image ? (
+                      <Image
+                        src={course.image}
+                        alt={course.displayName}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <BookOpen className="w-12 h-12 text-primary/30" />
+                      </div>
+                    )}
                   </div>
                   <CardTitle className="text-2xl capitalize">
                     {course.displayName}
@@ -252,13 +291,13 @@ export default function CoursePage() {
                     <Button
                       size="lg"
                       className="flex-1 cursor-pointer"
-                      disabled={enrollingCourseId === course.courseId}
+                      disabled={isProcessingPayment && selectedCourseForPayment?.courseId === course.courseId}
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleEnrollCourse(course.courseId);
+                        handleEnrollCourse(course);
                       }}
                     >
-                      {enrollingCourseId === course.courseId ? 'Enrolling...' : 'Buy Now'}
+                      {isProcessingPayment && selectedCourseForPayment?.courseId === course.courseId ? 'Processing...' : 'Buy Now'}
                     </Button>
                   </div>
                   {course.showCodeEditor && (
@@ -273,6 +312,17 @@ export default function CoursePage() {
         </div>
 
       </div>
+
+      {/* Payment Dialog */}
+      <PaymentDialog
+        open={paymentDialogOpen}
+        onOpenChange={setPaymentDialogOpen}
+        title={`Enroll in ${selectedCourseForPayment?.displayName || 'Course'}`}
+        description="Enter your details to proceed with course enrollment payment"
+        amount={selectedCourseForPayment?.price?.toString() || '0'}
+        onPaymentInitiate={handlePaymentInitiate}
+        isProcessing={isProcessingPayment}
+      />
     </div>
   );
 }

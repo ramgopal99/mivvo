@@ -1,3 +1,5 @@
+export type AIProvider = "openai" | "puter"
+
 export const siteConfig = {
   name: "Mivvo",
   description: "AI-powered mock interviews that help you practice, improve, and land your dream job.",
@@ -7,6 +9,8 @@ export const siteConfig = {
   enableCourses: true,
   enableForeignLanguage: true,
   enablePricing: true,
+  aiProvider: "puter" as AIProvider, // "openai" or "puter" - controls which AI service to use for chat
+  testMode: process.env.NODE_ENV !== 'production', // Enable test mode in development
   links: {
     twitter: "https://twitter.com/mivvo",
     github: "https://github.com/mivvo",
@@ -31,6 +35,9 @@ export const CREDIT_PACKAGES = {
   FREE: 15,   // 15 × 12 = 180 credits
   PRO: 300,     // 300 × 12 = 3600 credits
 } as const
+
+// Course enrollment credits
+export const COURSE_ENROLLMENT_CREDITS = 1000 as const
 
 // Credit expiration configuration - set ONE of these values, others will be automatically calculated
 const CREDIT_EXPIRATION = {

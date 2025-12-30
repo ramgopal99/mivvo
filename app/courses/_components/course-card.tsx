@@ -1,10 +1,10 @@
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
-import { Play, BookOpen, Star, ChevronRight } from 'lucide-react'
+import { Play, BookOpen, ChevronRight } from 'lucide-react'
+import Image from 'next/image'
 import type { Course, UserProgress } from '../types'
 
 interface CourseCardProps {
@@ -31,36 +31,46 @@ export function CourseCard({ course, progress, onCourseClick }: CourseCardProps)
   const totalItems = calculateTotalItems(course);
 
   return (
-    <Card className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md hover:-translate-y-1">
+    <Card className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md hover:-translate-y-1 cursor-pointer h-full flex flex-col">
       <CardHeader className="p-0">
-        {/* Course Image Placeholder */}
+        {/* Course Image */}
         <div className="relative overflow-hidden rounded-t-lg h-48 bg-gradient-to-br from-primary/10 to-primary/5">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <BookOpen className="w-16 h-16 text-primary/30" />
-          </div>
-          {course.modules?.some(module => module.hasDemo) && (
-            <div className="absolute top-4 right-4">
-              <Badge className="bg-primary hover:bg-primary/90">
-                <Star className="w-3 h-3 mr-1" />
-                Demo
-              </Badge>
+          {course.image ? (
+            <Image
+              src={course.image}
+              alt={course.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              onError={() => {
+                // This will trigger the error state in Next.js Image
+                // The parent div will show the fallback
+              }}
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <BookOpen className="w-16 h-16 text-primary/30" />
             </div>
           )}
         </div>
 
         <div className="p-6">
           {/* Title */}
-          <CardTitle className="text-xl mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-            {course.title}
-          </CardTitle>
+          <div className="min-h-[3.5rem] mb-2">
+            <CardTitle className="text-xl line-clamp-2 group-hover:text-primary transition-colors">
+              {course.title}
+            </CardTitle>
+          </div>
           
           {/* Description */}
-          <CardDescription className="line-clamp-3 mb-4">
-            {course.description || "Comprehensive learning experience with hands-on exercises and real-world applications."}
-          </CardDescription>
+          <div className="min-h-[4.5rem] mb-4">
+            <CardDescription className="line-clamp-3">
+              {course.description || "Comprehensive learning experience with hands-on exercises and real-world applications."}
+            </CardDescription>
+          </div>
 
           {/* Price */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between min-h-[2rem]">
             <div className="text-2xl font-bold text-primary">
               ₹{course.price}
             </div>
@@ -71,7 +81,7 @@ export function CourseCard({ course, progress, onCourseClick }: CourseCardProps)
         </div>
       </CardHeader>
 
-      <CardContent className="px-6 pb-6 space-y-4">
+      <CardContent className="px-6 pb-6 space-y-4 flex-1 flex flex-col">
         {/* Course Stats */}
         <div className="grid grid-cols-2 gap-4 text-center">
           <div className="flex flex-col items-center">
@@ -100,10 +110,13 @@ export function CourseCard({ course, progress, onCourseClick }: CourseCardProps)
           </div>
         )}
 
+        {/* Spacer to push button to bottom */}
+        <div className="flex-1"></div>
+
         {/* Action Button */}
         <Button
           onClick={() => onCourseClick(course)}
-          className="w-full group-hover:bg-primary/90 transition-colors"
+          className="w-full group-hover:bg-primary/90 transition-colors mt-auto cursor-pointer"
         >
           View Course
           <ChevronRight className="w-4 h-4 ml-2" />

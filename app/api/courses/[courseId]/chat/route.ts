@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
 interface RouteParams {
-  params: { courseId: string };
+  params: Promise<{ courseId: string }>;
 }
 
 export interface ChatResponse {
@@ -13,6 +13,7 @@ export interface ChatResponse {
 
 export async function POST(request: NextRequest, { params }: RouteParams) {
   try {
+    const resolvedParams = await params;
     const body = await request.json();
     const { message } = body;
 
@@ -26,10 +27,11 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
     // Get course AI assistant configuration
     const course = await prisma.course.findUnique({
-      where: { courseId: params.courseId },
+      where: { courseId: resolvedParams.courseId },
       select: {
         aiAssistantPrompt: true,
         aiAssistantName: true,
+        displayName: true,
       },
     });
 
@@ -77,6 +79,22 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
     const result = await response.json();
     const aiMessage = result.choices[0]?.message?.content?.trim();
+
+    // Log token usage
+    if (result.usage) {
+      console.log('🔢 AI Chat Token Usage:', {
+        courseId: resolvedParams.courseId,
+        courseName: course.displayName,
+        userMessageLength: message.length,
+        aiAssistantName: course.aiAssistantName,
+        promptTokens: result.usage.prompt_tokens,
+        completionTokens: result.usage.completion_tokens,
+        totalTokens: result.usage.total_tokens,
+        estimatedCost: `₹${(result.usage.total_tokens * 0.00015 * 90).toFixed(2)}`, // GPT-4o-mini pricing converted to INR (1$ = 90₹)
+        model: result.model,
+        timestamp: new Date().toISOString()
+      });
+    }
 
     if (!aiMessage) {
       return NextResponse.json({

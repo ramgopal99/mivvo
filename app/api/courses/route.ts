@@ -9,6 +9,7 @@ interface CourseWithProgress {
   title: string;
   displayName: string;
   description: string | null;
+  image: string | null;
   headerTitle: string | null;
   completionPercentage: string;
   price: number;
@@ -57,6 +58,7 @@ export async function GET() {
         title: true,
         displayName: true,
         description: true,
+        image: true,
         price: true,
         headerTitle: true,
         completionPercentage: true,
