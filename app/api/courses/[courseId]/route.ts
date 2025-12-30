@@ -11,16 +11,9 @@ interface RouteParams {
 export async function GET(request: NextRequest, { params }: RouteParams) {
   const resolvedParams = await params;
   try {
-    // Get authenticated user
+    // Get authenticated user (optional for course details)
     const session = await getServerSession(authOptions);
-    if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
-    }
-
-    const userId = session.user.id;
+    const userId = session?.user?.id;
 
     const course = await prisma.course.findUnique({
       where: { courseId: resolvedParams.courseId },
@@ -57,24 +50,31 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    // Check if user is enrolled in this course
-    const enrollment = await prisma.courseEnrollment.findUnique({
-      where: {
-        userId_courseId: {
-          userId,
-          courseId: course.id,
+    // If user is authenticated, check enrollment status for additional data
+    if (userId) {
+      const enrollment = await prisma.courseEnrollment.findUnique({
+        where: {
+          userId_courseId: {
+            userId,
+            courseId: course.id,
+          },
         },
-      },
-    });
+      });
 
-    if (!enrollment || !enrollment.isActive) {
-      return NextResponse.json(
-        { error: 'You must enroll in this course to access it' },
-        { status: 403 }
-      );
+      // Return course data with enrollment status
+      return NextResponse.json({
+        ...course,
+        isEnrolled: !!enrollment && enrollment.isActive,
+        enrollmentData: enrollment
+      });
     }
 
-    return NextResponse.json(course);
+    // For unauthenticated users, return basic course info
+    return NextResponse.json({
+      ...course,
+      isEnrolled: false,
+      enrollmentData: null
+    });
   } catch (error) {
     console.error('Error fetching course:', error);
     return NextResponse.json(

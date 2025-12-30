@@ -3,13 +3,10 @@
 import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ResizablePanelGroup, ResizableHandle, ResizablePanel } from '@/components/ui/resizable';
-import { SidebarProvider } from '@/components/ui/sidebar';
-import Header from '../../../dashboard/courses/components/Header';
-import LeftSidebar from '../../../dashboard/courses/components/LeftSidebar';
 import MiddleSection from '../../../dashboard/courses/components/MiddleSection';
+import LeftSidebar from '../../../dashboard/courses/components/LeftSidebar';
 import RightSection from '../../../dashboard/courses/components/RightSection';
-import CourseDemoMobilePage from './mobile-page';
+import { SidebarProvider } from '@/components/ui/sidebar';
 import { CourseModule, CourseMcqQuestion, CourseCodeQuestion } from '../../../dashboard/courses/data/lessonsData';
 
 interface CourseData {
@@ -30,11 +27,6 @@ interface SelectedTopic {
   subtopicId: string;
   title: string;
   moduleTitle: string;
-}
-
-interface HeaderData {
-  title: string;
-  completionPercentage: string;
 }
 
 interface ApiModule {
@@ -70,7 +62,7 @@ interface ApiCourseData {
   modules: ApiModule[];
 }
 
-export default function CourseDemoPage() {
+export default function CourseDemoMobilePage() {
   const params = useParams();
   const courseId = params.courseId as string;
 
@@ -78,21 +70,9 @@ export default function CourseDemoPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedTopic, setSelectedTopic] = useState<SelectedTopic | null>(null);
-  const [checkedItemsCount, setCheckedItemsCount] = useState<number>(0);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-
-  useEffect(() => {
-    // Mobile detection
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768); // md breakpoint
-    };
-
-    checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
-
-    return () => window.removeEventListener('resize', checkIsMobile);
-  }, []);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState<boolean>(false);
+  const [isMobileRightSidebarOpen, setIsMobileRightSidebarOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchCourseData = async () => {
@@ -180,9 +160,6 @@ export default function CourseDemoPage() {
     });
   };
 
-  const handleCheckedItemsChange = (count: number) => {
-    setCheckedItemsCount(count);
-  };
 
   // Create a flat list of all navigable items (topics and exercises)
   const getAllNavigableItems = () => {
@@ -244,8 +221,12 @@ export default function CourseDemoPage() {
     }
   };
 
-  const handleAI = () => {
-    setIsChatOpen(prev => !prev);
+  const handleRightSidebarToggle = () => {
+    setIsMobileRightSidebarOpen(prev => !prev);
+  };
+
+  const handleMobileMenuToggle = () => {
+    setIsMobileSidebarOpen(prev => !prev);
   };
 
   // Show loading while fetching data
@@ -279,126 +260,152 @@ export default function CourseDemoPage() {
     );
   }
 
-  const calculateCompletionPercentage = () => {
-    const totalItems = courseData.modules.reduce((acc, module) => {
-      const topicsCount = module.topics?.length || 0;
-      const exercisesCount = module.exercises?.length || 0;
-      return acc + topicsCount + exercisesCount;
-    }, 0);
-    const percentage = totalItems > 0 ? Math.round((checkedItemsCount / totalItems) * 100) : 0;
-    return `${percentage}% Completed`;
-  };
-
-  // Convert courseData to headerData format
-  const headerData: HeaderData = {
-    title: courseData.headerTitle || courseData.displayName,
-    completionPercentage: calculateCompletionPercentage()
-  };
-
   // Find selected topic/exercise data
   const selectedModule = courseData.modules.find(m => m.order === selectedTopic?.moduleId);
   const selectedTopicData = selectedModule?.topics?.find(t => t.id === selectedTopic?.subtopicId);
   const selectedExerciseData = selectedModule?.exercises?.find(e => e.id === selectedTopic?.subtopicId);
 
-  // Debug logging
-  console.log('Demo Debug:', {
-    selectedTopic,
-    selectedModule: selectedModule ? {
-      id: selectedModule.id,
-      title: selectedModule.title,
-      order: selectedModule.order,
-      topicsCount: selectedModule.topics?.length || 0,
-      exercisesCount: selectedModule.exercises?.length || 0
-    } : null,
-    selectedTopicData: selectedTopicData ? {
-      id: selectedTopicData.id,
-      title: selectedTopicData.title,
-      contentLength: selectedTopicData.content?.length || 0
-    } : null,
-    selectedExerciseData: selectedExerciseData ? {
-      id: selectedExerciseData.id,
-      title: selectedExerciseData.title,
-      type: selectedExerciseData.type,
-      mcqQuestionsCount: selectedExerciseData.mcqQuestions?.length || 0,
-      codeQuestionsCount: selectedExerciseData.codeQuestions?.length || 0,
-      contentLength: selectedExerciseData.content?.length || 0
-    } : null
-  });
-
-  // Render mobile version if on mobile device
-  if (isMobile) {
-    return <CourseDemoMobilePage />;
-  }
-
   return (
-    <div className="h-screen w-full bg-background flex overflow-hidden">
-      {/* Left Section - Header + Sidebar + Footer */}
-      <div className="w-65 flex flex-col flex-shrink-0">
-        {/* Header */}
-        <div className="flex-shrink-0">
-          <Header headerData={headerData} completionPercentage={calculateCompletionPercentage()} />
-        </div>
+    <div className="h-screen w-full bg-background flex flex-col">
+      {/* Mobile Header */}
+      <div className="flex-shrink-0 border-b border-border bg-background px-4 py-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            {/* Menu Button - shows mobile navigation */}
+            <button
+              onClick={handleMobileMenuToggle}
+              className="p-2 rounded-md hover:bg-muted transition-colors"
+              title="Open course navigation"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+              </svg>
+            </button>
+            <div>
+              <h1 className="text-lg font-semibold truncate max-w-[200px]">
+                {courseData.headerTitle || courseData.displayName}
+              </h1>
+              <p className="text-sm text-muted-foreground truncate max-w-[200px]">
+                {selectedTopic?.moduleTitle} • {selectedTopic?.title}
+              </p>
+            </div>
+          </div>
 
-        {/* Sidebar - Middle Section */}
-        <div className="flex-1 border-r border-border bg-muted/20 overflow-auto">
-          <SidebarProvider>
-            <LeftSidebar
-              modules={courseData.modules}
-              courseId={courseId}
-              onSubtopicClick={handleSubtopicClick}
-              onCheckedItemsChange={handleCheckedItemsChange}
-              selectedTopic={selectedTopic}
-              hasRightSection={courseData.showCodeEditor}
-            />
-          </SidebarProvider>
-        </div>
-
-        {/* Footer */}
-        <div className="flex-shrink-0 border-r border-t border-border bg-background p-4">
-          <div className="flex flex-col items-center gap-2">
-            {/* Back Button */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleRightSidebarToggle}
+              className="p-2 rounded-md hover:bg-muted transition-colors"
+              title="Open code editor"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </button>
             <Link
               href="/courses"
-              className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md font-medium transition-colors text-sm"
+              className="px-3 py-1.5 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md font-medium text-sm"
             >
-              ← Back to Courses
+              Exit
             </Link>
-
-
           </div>
         </div>
       </div>
 
-      {/* Middle and Right Sections - Resizable */}
-      <ResizablePanelGroup direction="horizontal" className="flex-1">
-        <ResizablePanel defaultSize={courseData!.showCodeEditor ? 55 : 100} minSize={30}>
-          <MiddleSection
-            modules={courseData!.modules}
-            selectedTopic={selectedTopic}
-            onPrevious={handlePrevious}
-            onNext={handleNext}
-            onAI={handleAI}
-            isChatOpen={isChatOpen}
-            onCloseChat={() => setIsChatOpen(false)}
-            language={courseId}
-            selectedTopicData={selectedTopicData}
-            selectedExerciseData={selectedExerciseData}
+      {/* Mobile Middle Section - Full Screen */}
+      <div className="flex-1 min-h-0">
+        <MiddleSection
+          modules={courseData.modules}
+          selectedTopic={selectedTopic}
+          onPrevious={handlePrevious}
+          onNext={handleNext}
+          onAI={handleRightSidebarToggle}
+          isChatOpen={isChatOpen}
+          onCloseChat={() => setIsChatOpen(false)}
+          language={courseId}
+          selectedTopicData={selectedTopicData}
+          selectedExerciseData={selectedExerciseData}
+        />
+      </div>
+
+      {/* Mobile Left Sidebar Overlay */}
+      {isMobileSidebarOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/50 z-40"
+            onClick={() => setIsMobileSidebarOpen(false)}
           />
-        </ResizablePanel>
-        {courseData!.showCodeEditor && (
-          <>
-            <ResizableHandle withHandle />
-            <ResizablePanel defaultSize={45} minSize={25}>
+
+          {/* Sidebar */}
+          <div className="fixed left-0 top-0 h-full w-80 bg-background border-r border-border z-50 shadow-lg flex flex-col">
+            <div className="flex items-center justify-between p-4 border-b border-border flex-shrink-0">
+              <h2 className="text-lg font-semibold">Course Modules</h2>
+              <button
+                onClick={() => setIsMobileSidebarOpen(false)}
+                className="p-2 rounded-md hover:bg-muted transition-colors"
+                title="Close navigation"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-hidden">
+              <div className="h-full overflow-auto">
+                <SidebarProvider>
+                  <LeftSidebar
+                    modules={courseData.modules}
+                    courseId={courseId}
+                    onSubtopicClick={(moduleId, subtopicId, title, moduleTitle) => {
+                      handleSubtopicClick(moduleId, subtopicId, title, moduleTitle);
+                      setIsMobileSidebarOpen(false); // Close sidebar after selection
+                    }}
+                    selectedTopic={selectedTopic}
+                    hasRightSection={courseData.showCodeEditor}
+                  />
+                </SidebarProvider>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* Mobile Right Sidebar Overlay */}
+      {isMobileRightSidebarOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/50 z-40"
+            onClick={() => setIsMobileRightSidebarOpen(false)}
+          />
+
+          {/* Right Sidebar */}
+          <div className="fixed right-0 top-0 h-full w-80 bg-background border-l border-border z-50 shadow-lg flex flex-col">
+            <div className="flex items-center justify-between p-4 border-b border-border flex-shrink-0">
+              <h2 className="text-lg font-semibold">Code Editor</h2>
+              <button
+                onClick={() => setIsMobileRightSidebarOpen(false)}
+                className="p-2 rounded-md hover:bg-muted transition-colors"
+                title="Close code editor"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-hidden">
               <RightSection
                 language={courseId}
                 selectedTopic={selectedTopic}
-                courseData={courseData!}
+                courseData={courseData}
                 selectedModuleData={selectedModule}
               />
-            </ResizablePanel>
-          </>
-        )}
-      </ResizablePanelGroup>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

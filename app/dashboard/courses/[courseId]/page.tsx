@@ -9,6 +9,7 @@ import Header from '../components/Header';
 import LeftSidebar from '../components/LeftSidebar';
 import MiddleSection from '../components/MiddleSection';
 import RightSection from '../components/RightSection';
+import CourseDetailMobilePage from './mobile-page';
 import { CourseTopic, CourseExercise, CourseModule } from '../data/lessonsData';
 
 interface CourseData {
@@ -56,6 +57,19 @@ export default function CourseDetailPage() {
   const [selectedTopic, setSelectedTopic] = useState<SelectedTopic | null>(null);
   const [checkedItemsCount, setCheckedItemsCount] = useState<number>(0);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    // Mobile detection
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
 
   useEffect(() => {
     const fetchCourseData = async () => {
@@ -278,6 +292,11 @@ export default function CourseDetailPage() {
       contentLength: selectedExerciseData.content?.length || 0
     } : null
   });
+
+  // Render mobile version if on mobile device
+  if (isMobile) {
+    return <CourseDetailMobilePage />;
+  }
 
   return (
     <div className="h-screen w-full bg-background flex">
