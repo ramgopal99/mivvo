@@ -117,6 +117,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script src="https://js.puter.com/v2/" async />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${suseMono.variable} antialiased font-mono`}
       >

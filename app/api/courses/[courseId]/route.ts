@@ -1,14 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 
 interface RouteParams {
   params: Promise<{ courseId: string }>;
 }
 
 
-export async function GET({ params }: RouteParams) {
+export async function GET(request: NextRequest, { params }: RouteParams) {
   const resolvedParams = await params;
   try {
+    // Get authenticated user
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.id) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
+    const userId = session.user.id;
 
     const course = await prisma.course.findUnique({
       where: { courseId: resolvedParams.courseId },
@@ -42,6 +54,23 @@ export async function GET({ params }: RouteParams) {
       return NextResponse.json(
         { error: 'Course not found' },
         { status: 404 }
+      );
+    }
+
+    // Check if user is enrolled in this course
+    const enrollment = await prisma.courseEnrollment.findUnique({
+      where: {
+        userId_courseId: {
+          userId,
+          courseId: course.id,
+        },
+      },
+    });
+
+    if (!enrollment || !enrollment.isActive) {
+      return NextResponse.json(
+        { error: 'You must enroll in this course to access it' },
+        { status: 403 }
       );
     }
 
@@ -107,7 +136,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
   }
 }
 
-export async function DELETE({ params }: RouteParams) {
+export async function DELETE(request: NextRequest, { params }: RouteParams) {
   const resolvedParams = await params;
   try {
     await prisma.course.delete({

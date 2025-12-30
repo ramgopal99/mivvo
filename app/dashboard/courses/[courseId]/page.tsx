@@ -1,10 +1,10 @@
 "use client";
 
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ResizablePanelGroup, ResizableHandle, ResizablePanel } from '@/components/ui/resizable';
-import { SidebarProvider } from '@/components/ui/sidebar';
+import { SidebarProvider, SidebarFooter } from '@/components/ui/sidebar';
 import Header from '../components/Header';
 import LeftSidebar from '../components/LeftSidebar';
 import MiddleSection from '../components/MiddleSection';
@@ -47,6 +47,7 @@ interface HeaderData {
 
 export default function CourseDetailPage() {
   const params = useParams();
+  const router = useRouter();
   const courseId = params.courseId as string;
 
   const [courseData, setCourseData] = useState<CourseData | null>(null);
@@ -63,6 +64,11 @@ export default function CourseDetailPage() {
         const response = await fetch(`/api/courses/${courseId}`);
 
         if (!response.ok) {
+          if (response.status === 403) {
+            // Redirect to home if not enrolled
+            router.push('/');
+            return;
+          }
           throw new Error('Failed to fetch course data');
         }
 
@@ -291,6 +297,7 @@ export default function CourseDetailPage() {
             />
           </SidebarProvider>
         </div>
+        
       </div>
 
       {/* Middle and Right Sections - Resizable */}
