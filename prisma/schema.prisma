@@ -87,6 +87,7 @@ enum PaymentStatus {
 enum PaymentCategory {
   MONTHLY
   ADDON
+  COURSE_PURCHASE
   SUBSCRIPTION
   CREDITS
   ENTERPRISE

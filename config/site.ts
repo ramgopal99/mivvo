@@ -10,6 +10,7 @@ export const siteConfig = {
   enableForeignLanguage: true,
   enablePricing: true,
   aiProvider: "puter" as AIProvider, // "openai" or "puter" - controls which AI service to use for chat
+  testMode: process.env.NODE_ENV !== 'production', // Enable test mode in development
   links: {
     twitter: "https://twitter.com/mivvo",
     github: "https://github.com/mivvo",
