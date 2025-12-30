@@ -3,6 +3,7 @@
 import RightPanel from './right-panels/RightPanel';
 import { CourseModule } from '../data/lessonsData';
 
+// Use the same CourseData interface as RightPanel
 interface CourseData {
   id: string;
   courseId: string;
@@ -10,6 +11,7 @@ interface CourseData {
   headerTitle: string;
   completionPercentage: string;
   showCodeEditor: boolean;
+  showFormulas: boolean;
   monacoLanguage?: string;
   codeDisplayName?: string;
   defaultCode?: string;

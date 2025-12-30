@@ -1,9 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, ChevronRight, Play, UserPlus, CheckCircle } from 'lucide-react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { ChevronDown, ChevronRight, Play } from 'lucide-react';
 
 interface Module {
   id: string;
@@ -44,7 +43,6 @@ interface CourseOverviewProps {
 
 export default function CourseOverview({ modules = [], expandedModules, onToggleModule, courseId }: CourseOverviewProps) {
   const [isEnrolled, setIsEnrolled] = useState(false);
-  const [enrollmentLoading, setEnrollmentLoading] = useState(false);
 
   // Check enrollment status on component mount
   useEffect(() => {
@@ -65,34 +63,6 @@ export default function CourseOverview({ modules = [], expandedModules, onToggle
     checkEnrollment();
   }, [courseId]);
 
-  const handleEnroll = async () => {
-    if (!courseId) return;
-
-    setEnrollmentLoading(true);
-    try {
-      const response = await fetch('/api/courses/enroll', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ courseId }),
-      });
-
-      if (response.ok) {
-        setIsEnrolled(true);
-        // Refresh the page to update the hasDemo status
-        window.location.reload();
-      } else {
-        const error = await response.json();
-        alert(error.error || 'Failed to enroll in course');
-      }
-    } catch (error) {
-      console.error('Error enrolling:', error);
-      alert('Failed to enroll in course');
-    } finally {
-      setEnrollmentLoading(false);
-    }
-  };
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="mb-8">

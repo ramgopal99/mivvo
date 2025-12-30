@@ -22,6 +22,20 @@ declare global {
           (prompt: string, imageURLs: string[], testMode?: boolean, options?: ChatOptions): Promise<ChatResponse | AsyncIterable<ChatResponseChunk>>;
           (messages: ChatMessage[], testMode?: boolean, options?: ChatOptions): Promise<ChatResponse | AsyncIterable<ChatResponseChunk>>;
         };
+        listModels: (provider?: string | null) => Promise<Array<{
+          id: string;
+          name?: string;
+          provider: string;
+          aliases?: string[];
+          context?: number;
+          max_tokens?: number;
+          cost?: {
+            currency: string;
+            tokens: number;
+            input: number;
+            output: number;
+          };
+        }>>;
       };
     };
   }

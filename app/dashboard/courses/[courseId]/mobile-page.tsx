@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -6,7 +7,7 @@ import MiddleSection from '../components/MiddleSection';
 import LeftSidebar from '../components/LeftSidebar';
 import RightSection from '../components/RightSection';
 import { SidebarProvider } from '@/components/ui/sidebar';
-import { CourseTopic, CourseExercise, CourseModule } from '../data/lessonsData';
+import { CourseModule } from '../data/lessonsData';
 
 interface CourseData {
   id: string;
@@ -194,9 +195,6 @@ export default function CourseDetailMobilePage() {
     }
   };
 
-  const handleAI = () => {
-    setIsChatOpen(prev => !prev);
-  };
 
   const handleMobileMenuToggle = () => {
     setIsMobileSidebarOpen(prev => !prev);
@@ -241,15 +239,6 @@ export default function CourseDetailMobilePage() {
   }
 
   // Calculate completion percentage
-  const calculateCompletionPercentage = () => {
-    const totalItems = courseData.modules.reduce((acc, module) => {
-      const topicsCount = module.topics?.length || 0;
-      const exercisesCount = module.exercises?.length || 0;
-      return acc + topicsCount + exercisesCount;
-    }, 0);
-    const percentage = totalItems > 0 ? Math.round((checkedItemsCount / totalItems) * 100) : 0;
-    return `${percentage}% Completed`;
-  };
 
   // Find selected topic/exercise data
   const selectedModule = courseData.modules.find(m => m.order === selectedTopic?.moduleId);

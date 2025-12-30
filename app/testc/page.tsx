@@ -2,37 +2,6 @@
 
 import { useState, useRef, useEffect } from 'react';
 
-declare global {
-  interface Window {
-    puter: {
-      ai: {
-        chat: {
-          (prompt: string): Promise<ChatResponse | AsyncIterable<ChatResponseChunk>>;
-          (prompt: string, options: ChatOptions): Promise<ChatResponse | AsyncIterable<ChatResponseChunk>>;
-          (prompt: string, testMode: boolean, options?: ChatOptions): Promise<ChatResponse | AsyncIterable<ChatResponseChunk>>;
-          (prompt: string, image: string | File | null, testMode?: boolean, options?: ChatOptions): Promise<ChatResponse | AsyncIterable<ChatResponseChunk>>;
-          (prompt: string, imageURLs: string[], testMode?: boolean, options?: ChatOptions): Promise<ChatResponse | AsyncIterable<ChatResponseChunk>>;
-          (messages: ChatMessage[], testMode?: boolean, options?: ChatOptions): Promise<ChatResponse | AsyncIterable<ChatResponseChunk>>;
-        };
-        listModels: (provider?: string | null) => Promise<Array<{
-          id: string;
-          name?: string;
-          provider: string;
-          aliases?: string[];
-          context?: number;
-          max_tokens?: number;
-          cost?: {
-            currency: string;
-            tokens: number;
-            input: number;
-            output: number;
-          };
-        }>>;
-      };
-    };
-  }
-}
-
 interface ChatMessage {
   role: 'system' | 'user' | 'assistant';
   content: string | Array<{
@@ -40,24 +9,6 @@ interface ChatMessage {
     text?: string;
     puter_path?: string;
   }>;
-}
-
-interface ChatOptions {
-  model?: string;
-  stream?: boolean;
-  max_tokens?: number;
-  temperature?: number;
-  tools?: Array<{
-    type: string;
-    function: {
-      name: string;
-      description: string;
-      parameters: Record<string, unknown>;
-      strict?: boolean;
-    };
-  }>;
-  reasoning_effort?: 'none' | 'minimal' | 'low' | 'medium' | 'high' | 'xhigh';
-  text?: 'low' | 'medium' | 'high';
 }
 
 interface ChatResponse {
