@@ -8,13 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+
 import {
   Form,
   FormControl,
@@ -38,14 +32,6 @@ const supportFormSchema = z.object({
 
 type SupportFormValues = z.infer<typeof supportFormSchema>
 
-const categories = [
-  { value: "technical", label: "Technical Issue" },
-  { value: "billing", label: "Billing & Payment" },
-  { value: "account", label: "Account & Profile" },
-  { value: "interview", label: "Interview Process" },
-  { value: "feature", label: "Feature Request" },
-  { value: "other", label: "Other" },
-]
 
 
 export function SupportForm() {

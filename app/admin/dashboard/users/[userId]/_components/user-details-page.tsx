@@ -2,11 +2,9 @@
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, Eye } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import { UserDetailsHeader } from "./user-details-header"
 import { UserBasicInfo } from "./user-basic-info"
 import { UserCourses } from "./user-courses"

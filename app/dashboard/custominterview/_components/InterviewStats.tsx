@@ -1,6 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileText, Clock, TrendingUp, Coins } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
 import { CreditUsageInfo, formatCredits, formatRemainingCredits } from "@/lib/credit-converter"
 
 interface InterviewStatsProps {

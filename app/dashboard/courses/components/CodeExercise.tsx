@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ChevronDown, ChevronUp, Copy, Check } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { MarkdownCompound } from '@/components/markdown-compound';
 
 export interface CodeQuestion {
@@ -34,24 +35,6 @@ const CodeExercise: React.FC<CodeExerciseProps> = ({
     }));
   };
 
-  const copyToClipboard = async (text: string, questionId: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopiedSolutions(prev => ({
-        ...prev,
-        [questionId]: true
-      }));
-      // Reset the copied state after 2 seconds
-      setTimeout(() => {
-        setCopiedSolutions(prev => ({
-          ...prev,
-          [questionId]: false
-        }));
-      }, 2000);
-    } catch (err) {
-      console.error('Failed to copy text: ', err);
-    }
-  };
 
   return (
     <div className="space-y-6">

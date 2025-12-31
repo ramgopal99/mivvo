@@ -187,7 +187,7 @@ const MiddleSection = ({
         id: q.id,
         question,
         solution,
-        language: lang || (q as any).language || undefined
+        language: lang || undefined
       };
     });
   };

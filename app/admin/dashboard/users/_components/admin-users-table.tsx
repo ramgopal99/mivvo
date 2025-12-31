@@ -24,8 +24,6 @@ import {
   MoreHorizontal,
   Edit,
   Trash2,
-  Ban,
-  CheckCircle,
   Maximize2,
   Eye
 } from "lucide-react"

@@ -1,8 +1,7 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Clock, TrendingUp, Users, Coins, BookOpen } from "lucide-react"
+import { Users, Coins, BookOpen } from "lucide-react"
 import { CreditUsageInfo, formatCredits, formatRemainingCredits } from "@/lib/credit-converter"
 
 interface StatsOverviewProps {
@@ -16,14 +15,7 @@ interface StatsOverviewProps {
 }
 
 export function StatsOverview({ stats, creditUsage }: StatsOverviewProps) {
-  const formatTime = (minutes: number) => {
-    const hours = Math.floor(minutes / 60)
-    const mins = minutes % 60
-    if (hours > 0) {
-      return `${hours}h ${mins}m`
-    }
-    return `${mins}m`
-  }
+
 
   // Get credit usage information
   const creditInfo = creditUsage ? formatRemainingCredits(creditUsage) : null
