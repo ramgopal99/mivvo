@@ -174,7 +174,7 @@ const MiddleSection = ({
   };
 
   // Convert database code questions to component format
-  const convertCodeQuestions = (dbQuestions: CourseCodeQuestion[]): CodeQuestion[] => {
+  const convertCodeQuestions = (dbQuestions: CourseCodeQuestion[], lang?: string): CodeQuestion[] => {
     return dbQuestions.map(q => {
       let question = decodeHtmlEntities(unescapeMarkdown(q.question));
       let solution = decodeHtmlEntities(unescapeMarkdown(q.solution));
@@ -186,7 +186,8 @@ const MiddleSection = ({
       return {
         id: q.id,
         question,
-        solution
+        solution,
+        language: lang || (q as any).language || undefined
       };
     });
   };
@@ -242,12 +243,12 @@ const MiddleSection = ({
       // Check if it has MCQ questions (prioritize this over type check)
       if (exercise.mcqQuestions && exercise.mcqQuestions.length > 0) {
         const questions = convertMcqQuestions(exercise.mcqQuestions);
-        return <MCQModule questions={questions} title={selectedTopic.title} />;
+        return <MCQModule key={`${selectedTopic.moduleId}-${selectedTopic.subtopicId}`} questions={questions} title={selectedTopic.title} />;
       }
 
       // Check if it has CODE questions
       if (exercise.codeQuestions && exercise.codeQuestions.length > 0) {
-        const questions = convertCodeQuestions(exercise.codeQuestions);
+        const questions = convertCodeQuestions(exercise.codeQuestions, language);
         return <CodeExercise
           title={selectedTopic.title}
           questions={questions}
@@ -257,11 +258,11 @@ const MiddleSection = ({
       // Fallback: Check type-based conditions (for backward compatibility)
       if (exercise.type === 'MCQ' && exercise.mcqQuestions && exercise.mcqQuestions.length > 0) {
         const questions = convertMcqQuestions(exercise.mcqQuestions);
-        return <MCQModule questions={questions} title={selectedTopic.title} />;
+        return <MCQModule key={`${selectedTopic.moduleId}-${selectedTopic.subtopicId}`} questions={questions} title={selectedTopic.title} />;
       }
 
       if (exercise.type === 'CODE' && exercise.codeQuestions && exercise.codeQuestions.length > 0) {
-        const questions = convertCodeQuestions(exercise.codeQuestions);
+        const questions = convertCodeQuestions(exercise.codeQuestions, language);
         return <CodeExercise
           title={selectedTopic.title}
           questions={questions}
@@ -271,7 +272,7 @@ const MiddleSection = ({
       // Check if it's an old MCQ exercise format in content (backward compatibility)
       if (content.includes('**Question') && content.includes('**Answer:**')) {
         const questions = parseMCQQuestions(content);
-        return <MCQModule questions={questions} title={selectedTopic.title} />;
+        return <MCQModule key={`${selectedTopic.moduleId}-${selectedTopic.subtopicId}`} questions={questions} title={selectedTopic.title} />;
       }
 
       // If we have content, show it instead of the placeholder
@@ -346,18 +347,18 @@ const MiddleSection = ({
           // Check if it's a new MCQ exercise format
           if (exercise.type === 'mcq' && exercise.mcqQuestions && exercise.mcqQuestions.length > 0) {
             const questions = convertMcqQuestions(exercise.mcqQuestions);
-            return <MCQModule questions={questions} title={selectedTopic.title} />;
+            return <MCQModule key={`${selectedTopic.moduleId}-${selectedTopic.subtopicId}`} questions={questions} title={selectedTopic.title} />;
           }
 
           // Check if it's an old MCQ exercise (backward compatibility)
           if (content.includes('**Question') && content.includes('**Answer:**')) {
             const questions = parseMCQQuestions(content);
-            return <MCQModule questions={questions} title={selectedTopic.title} />;
+            return <MCQModule key={`${selectedTopic.moduleId}-${selectedTopic.subtopicId}`} questions={questions} title={selectedTopic.title} />;
           }
 
           // Check if it's a new code exercise format
           if (exercise.type === 'code' && exercise.codeQuestions && exercise.codeQuestions.length > 0) {
-            const questions = convertCodeQuestions(exercise.codeQuestions);
+            const questions = convertCodeQuestions(exercise.codeQuestions, language);
             return <CodeExercise
               title={selectedTopic.title}
               questions={questions}

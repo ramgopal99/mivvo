@@ -10,6 +10,7 @@ export interface CodeQuestion {
   id: string;
   question: string;
   solution: string;
+  language?: string;
 }
 
 export interface CodeExerciseProps {
@@ -114,7 +115,7 @@ const CodeExercise: React.FC<CodeExerciseProps> = ({
                 variant="ghost"
                 size="sm"
                 onClick={() => toggleSolution(question.id)}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 cursor-pointer"
               >
                 {showSolutions[question.id] ? (
                   <>
@@ -139,32 +140,19 @@ const CodeExercise: React.FC<CodeExerciseProps> = ({
                         <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                         <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                         <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                        <span className="ml-2 font-semibold text-green-800 dark:text-green-300 text-sm">
+                        <span className="ml-2 font-semibold text-primary text-sm">
                           Solution
                         </span>
                       </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => copyToClipboard(question.solution, question.id)}
-                        className="h-8 w-8 p-0 hover:bg-green-100 dark:hover:bg-green-900/30 rounded-md"
-                        title="Copy solution"
-                      >
-                        {copiedSolutions[question.id] ? (
-                          <Check className="h-4 w-4 text-green-600" />
-                        ) : (
-                          <Copy className="h-4 w-4 text-green-600" />
-                        )}
-                      </Button>
                     </div>
 
                     {/* Code block with syntax highlighting */}
                     <MarkdownCompound className="text-sm">
-                      {`\`\`\`python\n${question.solution}\n\`\`\``}
+                      {`\`\`\`${question.language || 'python'}\n${question.solution}\n\`\`\``}
                     </MarkdownCompound>
 
                     {/* Footer hint */}
-                    <div className="mt-3 text-xs text-green-700 dark:text-green-400 opacity-75">
+                    <div className="mt-3 text-xs text-primary font-medium">
                       💡 Click the copy button to copy the entire solution
                     </div>
                   </div>
