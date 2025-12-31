@@ -351,7 +351,41 @@ export default function CustomInterviewPage() {
       {/* Stats Overview */}
       <InterviewStats
         totalInterviews={interviews.length}
-        completedInterviews={interviews.filter(interview => interview.status === "completed").length}
+        timeSpent={Math.round(interviews.reduce((total, interview) => {
+          return total + (interview.attempts?.reduce((attemptTotal, attempt) => attemptTotal + (attempt.duration / 60), 0) || 0)
+        }, 0))}
+        averageScore={(() => {
+          // Get the best score for each interview
+          const interviewScores = interviews.map(interview => {
+            if (!interview.attempts || interview.attempts.length === 0) return null
+
+            const validAttempts = interview.attempts.filter(attempt =>
+              attempt.score !== null &&
+              attempt.score !== undefined &&
+              attempt.score > 0 &&
+              !isNaN(attempt.score)
+            )
+
+            if (validAttempts.length === 0) return null
+
+            // Take the highest score from valid attempts for this interview
+            const bestScore = Math.max(...validAttempts.map(attempt => attempt.score))
+
+            // Convert to percentage if needed (assume scores are 0-100 or 0-1)
+            const finalScore = bestScore <= 1 ? Math.round(bestScore * 100) : Math.round(bestScore)
+            return finalScore
+          }).filter(score => score !== null && score !== undefined) as number[]
+
+          return interviewScores.length > 0 ? Math.round(interviewScores.reduce((sum, score) => sum + score, 0) / interviewScores.length) : 0
+        })()}
+        totalAttempts={interviews.reduce((total, interview) => {
+          return total + (interview.attempts?.filter(attempt =>
+            attempt.score !== null &&
+            attempt.score !== undefined &&
+            attempt.score > 0 &&
+            !isNaN(attempt.score)
+          ).length || 0)
+        }, 0)}
         creditUsage={creditUsage}
       />
 

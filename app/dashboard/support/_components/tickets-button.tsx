@@ -14,7 +14,7 @@ export function TicketsButton() {
   return (
     <Button
       onClick={handleViewTickets}
-      className="bg-primary hover:bg-primary/90"
+      className="bg-primary hover:bg-primary/90 cursor-pointer"
       size="sm"
     >
       <MessageSquare className="h-4 w-4 mr-2" />

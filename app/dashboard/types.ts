@@ -34,6 +34,7 @@ export interface DashboardStats {
   totalInterviews: number
   totalTimeSpent: number
   averageScore: number
+  enrolledCourses: number
 }
 
 export interface RecentInterview {
@@ -46,9 +47,22 @@ export interface RecentInterview {
   createdAt: Date
   companyName: string | undefined
   position: string | undefined
+  hasAttempts: boolean
+}
+
+export interface RecentCourse {
+  id: string
+  courseId: string
+  displayName: string
+  headerTitle: string | null
+  completionPercentage: number
+  completedModules: number
+  totalModules: number
+  lastAccessed: Date
 }
 
 export interface DashboardData {
   stats: DashboardStats
   recentInterviews: RecentInterview[]
+  recentCourses: RecentCourse[]
 }

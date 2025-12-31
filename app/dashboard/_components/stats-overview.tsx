@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Clock, TrendingUp, Users, Coins } from "lucide-react"
+import { Clock, TrendingUp, Users, Coins, BookOpen } from "lucide-react"
 import { CreditUsageInfo, formatCredits, formatRemainingCredits } from "@/lib/credit-converter"
 
 interface StatsOverviewProps {
@@ -10,6 +10,7 @@ interface StatsOverviewProps {
     totalInterviews: number
     totalTimeSpent: number // in minutes
     averageScore: number
+    enrolledCourses: number
   }
   creditUsage?: CreditUsageInfo | null
 }
@@ -28,7 +29,7 @@ export function StatsOverview({ stats, creditUsage }: StatsOverviewProps) {
   const creditInfo = creditUsage ? formatRemainingCredits(creditUsage) : null
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {/* Total Interviews */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -43,32 +44,16 @@ export function StatsOverview({ stats, creditUsage }: StatsOverviewProps) {
         </CardContent>
       </Card>
 
-      {/* Time Spent */}
+      {/* Enrolled Courses */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Time Spent</CardTitle>
-          <Clock className="h-4 w-4 text-muted-foreground" />
+          <CardTitle className="text-sm font-medium">Enrolled Courses</CardTitle>
+          <BookOpen className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{formatTime(stats.totalTimeSpent)}</div>
+          <div className="text-2xl font-bold">{stats.enrolledCourses}</div>
           <p className="text-xs text-muted-foreground">
-            Total interview time
-          </p>
-        </CardContent>
-      </Card>
-
-      {/* Average Score */}
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Average Score</CardTitle>
-          <TrendingUp className="h-4 w-4 text-muted-foreground" />
-        </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-bold">{stats.averageScore}%</div>
-          <p className="text-xs text-muted-foreground">
-            <Badge variant={stats.averageScore >= 70 ? "default" : "secondary"}>
-              {stats.averageScore >= 70 ? "Good" : "Improving"}
-            </Badge>
+            Active course enrollments
           </p>
         </CardContent>
       </Card>

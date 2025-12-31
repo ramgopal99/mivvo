@@ -31,7 +31,7 @@ import { toast } from "sonner"
 const supportFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
-  category: z.string().min(1, "Please select a category"),
+  category: z.string().optional(),
   subject: z.string().min(5, "Subject must be at least 5 characters"),
   message: z.string().min(10, "Message must be at least 10 characters"),
 })
@@ -57,7 +57,7 @@ export function SupportForm() {
     defaultValues: {
       name: "",
       email: "",
-      category: "",
+      category: "other",
       subject: "",
       message: "",
     },
@@ -68,12 +68,18 @@ export function SupportForm() {
     setIsSubmitting(true)
 
     try {
+      // Ensure category is always "other"
+      const submitData = {
+        ...data,
+        category: "other"
+      }
+
       const response = await fetch('/api/support', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(submitData),
       })
 
       if (!response.ok) {
@@ -117,6 +123,7 @@ export function SupportForm() {
           <Button
             onClick={() => setIsSubmitted(false)}
             variant="outline"
+            className="cursor-pointer"
           >
             Submit Another Query
           </Button>
@@ -170,31 +177,6 @@ export function SupportForm() {
 
             <FormField
               control={form.control}
-              name="category"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Category</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a category" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {categories.map((category) => (
-                        <SelectItem key={category.value} value={category.value}>
-                          {category.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
               name="subject"
               render={({ field }) => (
                 <FormItem>
@@ -228,7 +210,7 @@ export function SupportForm() {
               )}
             />
 
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
+            <Button type="submit" className="w-full cursor-pointer" disabled={isSubmitting}>
               {isSubmitting ? (
                 <>
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>

@@ -5,6 +5,8 @@ import { requireRole, getSessionUserData } from "@/lib/session"
 import { UserRole, Prisma } from "@prisma/client"
 import { revalidatePath } from "next/cache"
 import bcrypt from "bcryptjs"
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/auth"
 
 interface ServerActionResponse<T = unknown> {
   success: boolean
@@ -465,10 +467,10 @@ export async function getFilteredAdminUsers(filters: {
     // Build where clause for efficient database filtering
     const where: Prisma.UserWhereInput = {}
 
-    // Always exclude COLLEGE_ADMIN and COLLEGE_STUDENT roles from admin users view
-    where.role = {
-      in: [UserRole.USER, UserRole.SUPERADMIN]
-    }
+    // Show all user roles for admin management
+    // where.role = {
+    //   in: [UserRole.USER, UserRole.SUPERADMIN]
+    // }
 
     // Role filter with proper mapping (only for USER and SUPERADMIN roles)
     if (role !== "all") {
@@ -558,6 +560,7 @@ export async function getFilteredAdminUsers(filters: {
         email: true,
         role: true,
         status: true,
+        userType: true,
         emailVerified: true,
         createdAt: true,
         image: true,
@@ -634,6 +637,7 @@ export async function getFilteredAdminUsers(filters: {
         avatar: user.image || undefined,
         role,
         status,
+        userType: user.userType || 'FREE',
         collegeName: user.collegeName || undefined,
         collegeAdminId: user.collegeAdminId || undefined,
         lastLogin,
@@ -1059,6 +1063,174 @@ export async function activateUser(userId: string): Promise<ServerActionResponse
     return {
       success: false,
       error: "Failed to activate user"
+    }
+  }
+}
+
+export async function updateUser(userId: string, data: {
+  firstName?: string
+  lastName?: string
+  email?: string
+  role?: UserRole
+  collegeName?: string
+  collegeAdminId?: string
+}): Promise<ServerActionResponse> {
+  try {
+    // Check if user has admin permissions
+    const session = await getServerSession(authOptions)
+    if (!session || (session.user.role !== 'ADMIN' && session.user.role !== 'SUPERADMIN')) {
+      return {
+        success: false,
+        error: "Unauthorized - Admin access required"
+      }
+    }
+
+    // Build update data
+    const updateData: Prisma.UserUpdateInput = {}
+
+    // Handle name update
+    if (data.firstName !== undefined || data.lastName !== undefined) {
+      const currentUser = await prisma.user.findUnique({
+        where: { id: userId },
+        select: { name: true }
+      })
+
+      if (currentUser && currentUser.name) {
+        const nameParts = currentUser.name.split(' ')
+        const newFirstName = data.firstName ?? nameParts[0]
+        const newLastName = data.lastName ?? nameParts.slice(1).join(' ')
+        updateData.name = `${newFirstName} ${newLastName}`.trim()
+      }
+    }
+
+    // Handle other field updates
+    if (data.email !== undefined) updateData.email = data.email
+    if (data.role !== undefined) updateData.role = data.role
+
+    // Handle college admin specific fields (basic updates only)
+    if (data.role === 'COLLEGE_ADMIN') {
+      if (data.collegeName !== undefined) {
+        updateData.collegeName = data.collegeName
+      }
+
+      if (data.collegeAdminId !== undefined) {
+        updateData.collegeAdminId = data.collegeAdminId
+      }
+    }
+
+    // Update user
+    const updatedUser = await prisma.user.update({
+      where: { id: userId },
+      data: updateData,
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        status: true,
+        collegeAdminId: true,
+        college: {
+          select: {
+            name: true
+          }
+        }
+      }
+    })
+
+    revalidatePath("/admin/dashboard/users")
+    return {
+      success: true,
+      data: updatedUser,
+      message: "User updated successfully"
+    }
+  } catch (error) {
+    console.error("Error updating user:", error)
+    return {
+      success: false,
+      error: "Failed to update user"
+    }
+  }
+}
+
+export async function deleteUser(userId: string): Promise<ServerActionResponse> {
+  try {
+    // Check if user has admin permissions
+    const session = await getServerSession(authOptions)
+
+    if (!session || (session.user.role !== 'ADMIN' && session.user.role !== 'SUPERADMIN')) {
+      return {
+        success: false,
+        error: "Unauthorized - Admin access required"
+      }
+    }
+
+    // Prevent admin from deleting themselves
+    if (session.user.id === userId) {
+      return {
+        success: false,
+        error: "You cannot delete your own account"
+      }
+    }
+
+    // Check if user exists
+    const userToDelete = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        collegeAdminId: true
+      }
+    })
+
+    if (!userToDelete) {
+      return {
+        success: false,
+        error: "User not found"
+      }
+    }
+
+    // Prevent deletion of other super admins
+    if (userToDelete.role === 'SUPERADMIN' && session.user.role !== 'SUPERADMIN') {
+      return {
+        success: false,
+        error: "Only super admins can delete other super admins"
+      }
+    }
+
+    // Delete associated college if user is a college admin
+    if (userToDelete.collegeAdminId) {
+      await prisma.college.delete({
+        where: { id: userToDelete.collegeAdminId }
+      }).catch(() => {
+        // Ignore if college doesn't exist or deletion fails
+        console.log(`College deletion failed for user ${userId}`)
+      })
+    }
+
+    // Delete the user (this will cascade delete related records due to Prisma schema)
+    await prisma.user.delete({
+      where: { id: userId }
+    })
+
+    revalidatePath("/admin/dashboard/users")
+    return {
+      success: true,
+      message: `User ${userToDelete.name} (${userToDelete.email}) has been permanently deleted`,
+      data: {
+        deletedUser: {
+          id: userToDelete.id,
+          name: userToDelete.name,
+          email: userToDelete.email
+        }
+      }
+    }
+  } catch (error) {
+    console.error("Error deleting user:", error)
+    return {
+      success: false,
+      error: "Failed to delete user"
     }
   }
 }

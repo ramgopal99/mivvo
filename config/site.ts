@@ -82,3 +82,9 @@ export const PRICING_CONFIG = {
     ]
   }
 } as const
+
+// Admin configuration
+export const ADMIN_CONFIG = {
+  // User deletion security code (required to delete users)
+  USER_DELETION_CODE: "2025"
+} as const
