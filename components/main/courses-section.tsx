@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { BookOpen, Users, GraduationCap, Award, ArrowRight, Star, Clock, TrendingUp, Play, ChevronRight } from "lucide-react"
+import Image from "next/image"
 import { SegmentedButton } from "@/components/ui/segmented-button"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
@@ -23,6 +24,7 @@ export function CoursesSection() {
   const [selectedTag, setSelectedTag] = useState("courses")
   const [courses, setCourses] = useState<Course[]>([])
   const [loading, setLoading] = useState(true)
+  const [currentCourseIndex, setCurrentCourseIndex] = useState(0)
   const router = useRouter()
 
   // Fetch courses on component mount
@@ -32,7 +34,7 @@ export function CoursesSection() {
         const response = await fetch('/api/courses')
         if (response.ok) {
           const data = await response.json()
-          setCourses(data.slice(0, 3)) // Show only first 3 courses on landing page
+          setCourses(data.slice(0, 4)) // Fetch first 4 courses for carousel
         }
       } catch (error) {
         console.error('Error fetching courses:', error)
@@ -43,6 +45,19 @@ export function CoursesSection() {
 
     fetchCourses()
   }, [])
+
+  // Auto-rotate through courses every 5 seconds
+  useEffect(() => {
+    if (courses.length <= 1) return
+
+    const interval = setInterval(() => {
+      setCurrentCourseIndex((prevIndex) =>
+        prevIndex === courses.length - 1 ? 0 : prevIndex + 1
+      )
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [courses.length])
 
   const calculateTotalItems = (course: Course): number => {
     let total = 0
@@ -111,6 +126,7 @@ export function CoursesSection() {
               <Button
                 size="lg"
                 className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                onClick={() => router.push(landingConfig.courses.cta.href)}
               >
                 <span className="sm:hidden">{landingConfig.courses.cta.mobileText}</span>
                 <span className="hidden sm:inline">{landingConfig.courses.cta.text}</span>
@@ -121,10 +137,12 @@ export function CoursesSection() {
 
           {/* Right Side - Popular Courses */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Build Your Foundation</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-4">
+              Featured Courses
+            </h3>
             {loading ? (
               // Loading skeleton
-              Array.from({ length: 3 }).map((_, index) => (
+              Array.from({ length: 1 }).map((_, index) => (
                 <Card key={index} className="border border-gray-200 shadow-lg animate-pulse">
                   <CardHeader className="pb-3">
                     <div className="h-5 bg-gray-200 rounded w-3/4 mb-2"></div>
@@ -143,55 +161,94 @@ export function CoursesSection() {
                 </Card>
               ))
             ) : courses.length > 0 ? (
-              courses.map((course) => (
-                <Card
-                  key={course.id}
-                  className="border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
-                  onClick={() => handleCourseClick(course)}
-                >
-                  <CardHeader className="pb-3">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <CardTitle className="text-lg text-gray-900 mb-1 group-hover:text-primary transition-colors">
-                          {course.title}
-                        </CardTitle>
-                        <CardDescription className="text-sm line-clamp-2">
-                          {course.description || "Comprehensive learning experience with hands-on exercises and real-world applications."}
-                        </CardDescription>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center space-x-4 text-sm text-gray-600">
-                        <div className="flex items-center">
-                          <BookOpen className="w-4 h-4 mr-1" />
-                          {course.modules?.length || 0} modules
-                        </div>
-                        <div className="flex items-center">
-                          <Play className="w-4 h-4 mr-1" />
-                          {calculateTotalItems(course)} lessons
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-2xl font-bold text-primary">₹{course.price}</p>
-                      </div>
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="w-full group-hover:bg-primary/10 transition-colors cursor-pointer"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        handleCourseClick(course)
-                      }}
+              (() => {
+                const course = courses[currentCourseIndex]
+                return (
+                  <div>
+                    <Card
+                      key={course.id}
+                      className="border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
+                      onClick={() => handleCourseClick(course)}
                     >
-                      View Course
-                      <ChevronRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))
+                      <CardHeader className="pb-3">
+                        {/* Course Image */}
+                        <div className="relative overflow-hidden rounded-lg h-32 bg-gradient-to-br from-primary/10 to-primary/5 mb-4">
+                          {course.image ? (
+                            <Image
+                              src={course.image}
+                              alt={course.title}
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            />
+                          ) : (
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <BookOpen className="w-12 h-12 text-primary/30" />
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <CardTitle className="text-lg text-gray-900 mb-1 group-hover:text-primary transition-colors">
+                              {course.title}
+                            </CardTitle>
+                            <CardDescription className="text-sm line-clamp-2">
+                              {course.description || "Comprehensive learning experience with hands-on exercises and real-world applications."}
+                            </CardDescription>
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="pt-0">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center space-x-4 text-sm text-gray-600">
+                            <div className="flex items-center">
+                              <BookOpen className="w-4 h-4 mr-1" />
+                              {course.modules?.length || 0} modules
+                            </div>
+                            <div className="flex items-center">
+                              <Play className="w-4 h-4 mr-1" />
+                              {calculateTotalItems(course)} lessons
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-2xl font-bold text-primary">₹{course.price}</p>
+                          </div>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="w-full group-hover:bg-primary/10 transition-colors cursor-pointer"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleCourseClick(course)
+                          }}
+                        >
+                          View Course
+                          <ChevronRight className="w-4 h-4 ml-2" />
+                        </Button>
+                      </CardContent>
+                    </Card>
+
+                    {/* Carousel Indicators */}
+                    {courses.length > 1 && (
+                      <div className="flex justify-center space-x-2 mt-4">
+                        {courses.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => setCurrentCourseIndex(index)}
+                            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                              index === currentCourseIndex
+                                ? 'bg-primary scale-125'
+                                : 'bg-gray-300 hover:bg-gray-400'
+                            }`}
+                            aria-label={`Go to course ${index + 1}`}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )
+              })()
             ) : (
               <Card className="border border-gray-200 shadow-lg">
                 <CardContent className="p-6 text-center">
