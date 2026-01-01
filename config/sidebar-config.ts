@@ -6,7 +6,8 @@ import {
   MessageCircle,
   Headphones,
   BookOpen,
-  Globe
+  Globe,
+  DollarSign
 } from "lucide-react"
 import { siteConfig } from "./site"
 
@@ -77,6 +78,12 @@ export const sidebarConfig: SidebarConfig = {
         url: "/dashboard/support",
         icon: Headphones,
         description: "Raise queries and get support"
+      },
+      {
+        title: "Become a Affiliate",
+        url: "/dashboard/affiliate",
+        icon: DollarSign,
+        description: "Become a affiliate and earn money"
       },
       {
         title: "Feedback",

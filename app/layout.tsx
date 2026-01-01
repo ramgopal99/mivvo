@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { NextAuthProvider } from "@/components/providers/session-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as SonnerToaster } from "@/components/ui/sonner";
+import { AffiliateTracker } from "@/components/affiliate-tracker";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -124,6 +125,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${suseMono.variable} antialiased font-mono`}
       >
         <NextAuthProvider>
+          <AffiliateTracker />
           <div className="min-h-screen bg-background">
             {children}
           </div>

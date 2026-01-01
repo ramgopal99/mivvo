@@ -199,6 +199,37 @@ export const termsConfig = {
       ]
     },
     {
+      title: "Affiliate Program",
+      content: [
+        "By participating in our affiliate program, you agree to these additional terms:"
+      ],
+      subsections: [
+        {
+          title: "Commission & Eligibility",
+          content: [
+            "Earn 20% commission on course purchases by referred users",
+            "Self-referrals are not eligible for commissions",
+            "Minimum payout threshold is ₹500"
+          ]
+        },
+        {
+          title: "Referral Terms",
+          content: [
+            "Each referral is valid for 30 days per user from first click",
+            "Multiple commissions possible from one referral within validity period",
+            "Use ethical marketing practices only"
+          ]
+        },
+        {
+          title: "Payments & Termination",
+          content: [
+            "You or we can end the affiliate partnership anytime",
+            "We'll pay any earned commissions even after the partnership ends"
+          ]
+        }
+      ]
+    },
+    {
       title: "Changes to Terms",
       content: [
         "We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will try to provide at least 30 days notice prior to any new terms taking effect.",

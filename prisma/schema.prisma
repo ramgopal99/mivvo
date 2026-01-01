@@ -206,6 +206,9 @@ model User {
   writingAttempts  WritingAttempt[]
   levelProgress    UserLevelProgress[]
 
+  // Affiliate Relations
+  affiliate Affiliate?
+
   @@map("users")
 }
 
@@ -1384,6 +1387,96 @@ model WritingOverallResult {
   updatedAt DateTime @updatedAt
 
   @@map("writing_overall_results")
+}
+
+// =============================================================================
+// AFFILIATE SYSTEM MODELS
+// =============================================================================
+
+enum AffiliateStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+enum CommissionStatus {
+  PENDING
+  PAID
+  CANCELLED
+}
+
+model Affiliate {
+  id            String          @id @default(cuid()) @map("_id")
+  userId        String          @unique
+  referralCode  String          @unique // Unique code for affiliate links (e.g., "AFF123456")
+  status        AffiliateStatus @default(ACTIVE)
+  commissionRate Float          @default(0.20) // 20% commission by default
+  totalEarnings Float           @default(0.0) // Total earnings from commissions
+  paidEarnings  Float           @default(0.0) // Amount already paid out
+
+  // Payment Details
+  bankName       String?
+  accountNumber  String?
+  ifscCode       String?
+  accountHolderName String?
+  upiId          String?
+  payoutMethod   String? // "BANK" or "UPI"
+
+  // Payout Requests
+  pendingPayoutAmount Float @default(0.0)
+  lastPayoutRequest   DateTime?
+
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  // Relations
+  user       User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  referrals  AffiliateReferral[]
+  commissions AffiliateCommission[]
+
+  @@map("affiliates")
+}
+
+model AffiliateReferral {
+  id             String   @id @default(cuid()) @map("_id")
+  affiliateId    String
+  referredUserId String? // User who was referred (may not have account yet)
+  referralCode   String   // The code used in the referral
+  sourceUrl      String? // URL where the referral link was clicked
+  ipAddress      String? // IP address for fraud prevention
+  userAgent      String? // Browser info for analytics
+  convertedAt    DateTime? // When the referral converted (made purchase)
+  createdAt      DateTime @default(now())
+
+  // Relations
+  affiliate     Affiliate           @relation(fields: [affiliateId], references: [id], onDelete: Cascade)
+  commissions   AffiliateCommission[]
+
+  // Removed unique constraint to allow multiple referrals from same affiliate
+  // Each referral link click should create a separate tracking record
+  @@map("affiliate_referrals")
+}
+
+model AffiliateCommission {
+  id             String           @id @default(cuid()) @map("_id")
+  affiliateId    String
+  referralId     String?
+  amount         Float // Commission amount
+  commissionRate Float // Rate used for this commission (snapshot)
+  status         CommissionStatus @default(PENDING)
+  paymentId      String? // Reference to Payment model when paid
+  courseId       String? // Course that was purchased (for course-specific commissions)
+  courseTitle    String? // Course title snapshot
+  coursePrice    Float? // Course price snapshot
+  paidAt         DateTime? // When commission was paid
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  // Relations
+  affiliate Affiliate         @relation(fields: [affiliateId], references: [id], onDelete: Cascade)
+  referral  AffiliateReferral? @relation(fields: [referralId], references: [id], onDelete: SetNull)
+
+  @@map("affiliate_commissions")
 }
 
 // =============================================================================
