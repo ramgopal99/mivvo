@@ -167,15 +167,14 @@ export async function POST(request: NextRequest) {
             // Prevent self-referral (user referring themselves)
             const isSelfReferral = referral.affiliate.userId === userId
 
-            // Check if affiliate is still active
-            const isAffiliateActive = referral.affiliate.status === 'ACTIVE'
-
+            // Note: Affiliate status was checked during referral creation (track API)
+            // The 30-day validity period allows commissions even if affiliate gets suspended later
             console.log(`[AFFILIATE] Referral age: ${Math.round(referralAge / (24 * 60 * 60 * 1000))} days`)
             console.log(`[AFFILIATE] Is referral valid: ${isReferralValid}`)
             console.log(`[AFFILIATE] Is self-referral: ${isSelfReferral}`)
-            console.log(`[AFFILIATE] Is affiliate active: ${isAffiliateActive}`)
+            console.log(`[AFFILIATE] Affiliate status: ${referral.affiliate.status}`)
 
-            if (isReferralValid && !isSelfReferral && isAffiliateActive) {
+            if (isReferralValid && !isSelfReferral) {
               // Calculate commission amount (ensure price is valid)
               const coursePrice = parseFloat(course.price.toString())
               const commissionAmount = coursePrice * referral.affiliate.commissionRate
