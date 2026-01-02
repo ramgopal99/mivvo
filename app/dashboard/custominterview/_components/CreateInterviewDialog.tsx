@@ -2,54 +2,6 @@
 
 import React, { useState, useRef, forwardRef, useImperativeHandle, useCallback } from "react"
 
-// Web Speech API types
-declare global {
-  interface Window {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    SpeechRecognition: any
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    webkitSpeechRecognition: any
-  }
-}
-
-interface SpeechRecognition extends EventTarget {
-  continuous: boolean
-  interimResults: boolean
-  lang: string
-  start(): void
-  stop(): void
-  onstart: (event: Event) => void
-  onresult: (event: SpeechRecognitionEvent) => void
-  onerror: (event: SpeechRecognitionErrorEvent) => void
-  onend: (event: Event) => void
-}
-
-interface SpeechRecognitionEvent extends Event {
-  resultIndex: number
-  results: SpeechRecognitionResultList
-}
-
-interface SpeechRecognitionErrorEvent extends Event {
-  error: string
-}
-
-interface SpeechRecognitionResultList {
-  readonly length: number
-  item(index: number): SpeechRecognitionResult
-  [index: number]: SpeechRecognitionResult
-}
-
-interface SpeechRecognitionResult {
-  readonly length: number
-  item(index: number): SpeechRecognitionAlternative
-  [index: number]: SpeechRecognitionAlternative
-  isFinal: boolean
-}
-
-interface SpeechRecognitionAlternative {
-  transcript: string
-  confidence: number
-}
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -74,7 +26,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { Plus, FileText, X, Mic, Square } from "lucide-react"
+import { Plus, FileText, X } from "lucide-react"
 import {
   getAvailableRoles,
   getAvailableLevels,
@@ -84,7 +36,6 @@ import {
   getForeignLanguageSubTypes
 } from "./utils/interview-utils"
 import { getJDTemplate } from "./utils/jd-templates"
-import { VoiceRecordingAnimation } from "./animations"
 import { generateInterviewTitle } from "./utils/interview-title-utils"
 import { CreditUsageInfo } from "@/lib/credit-converter"
 
@@ -100,11 +51,10 @@ interface CreateInterviewDialogProps {
   creditUsage?: CreditUsageInfo | null
   userCvData?: string | null
   isCreating?: boolean
-  showVoiceTab?: boolean
 }
 
 const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewDialogProps>(
-  ({ onInterviewCreated, creditUsage, userCvData, isCreating = false, showVoiceTab = false }, ref) => {
+  ({ onInterviewCreated, creditUsage, userCvData, isCreating = false }, ref) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   // Predefined Role state
@@ -128,12 +78,6 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
   const [isExtractingCV, setIsExtractingCV] = useState(false)
   const cvInputRef = useRef<HTMLInputElement>(null)
 
-  // Voice input state
-  const [voiceText, setVoiceText] = useState("") // Raw transcription (not displayed)
-  const [refinedText, setRefinedText] = useState("") // Refined professional summary (displayed)
-  const [isRecording, setIsRecording] = useState(false)
-  const [isProcessingVoice, setIsProcessingVoice] = useState(false)
-  const [recognition, setRecognition] = useState<SpeechRecognition | null>(null)
 
   // Check if user has credit allowance remaining
   const checkCreditLimit = () => {
@@ -229,137 +173,6 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
     return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i]
   }
 
-  // Voice recording functions
-  const initializeSpeechRecognition = () => {
-    if (typeof window === 'undefined' || !('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
-      import('sonner').then(({ toast }) => {
-        toast.error('Speech recognition is not supported in your browser. Please use Chrome, Edge, or Safari.')
-      })
-      return null
-    }
-
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
-    const recognition = new SpeechRecognition()
-
-    recognition.continuous = true
-    recognition.interimResults = false // Only show final results, no live transcription
-    recognition.lang = 'en-US'
-
-    recognition.onstart = () => {
-      setIsRecording(true)
-    }
-
-    recognition.onresult = (event: SpeechRecognitionEvent) => {
-      let finalTranscript = ''
-
-      for (let i = event.resultIndex; i < event.results.length; i++) {
-        const transcript = event.results[i][0].transcript
-        if (event.results[i].isFinal) {
-          finalTranscript += transcript
-        }
-      }
-
-      // Only update text with final results
-      if (finalTranscript) {
-        setVoiceText(prevText => prevText + finalTranscript)
-      }
-    }
-
-    recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
- 
-      setIsRecording(false)
-
-      // Handle specific error types
-      if (event.error === 'no-speech') {
-        import('sonner').then(({ toast }) => {
-          toast.warning('No speech detected. Please speak clearly and try again.')
-        })
-      } else if (event.error === 'audio-capture') {
-        import('sonner').then(({ toast }) => {
-          toast.error('Microphone access denied. Please check your microphone permissions.')
-        })
-      } else if (event.error === 'not-allowed') {
-        import('sonner').then(({ toast }) => {
-          toast.error('Microphone permission denied. Please allow microphone access and try again.')
-        })
-      } else if (event.error === 'network') {
-        import('sonner').then(({ toast }) => {
-          toast.error('Network error during speech recognition. Please check your connection.')
-        })
-      } else {
-      import('sonner').then(({ toast }) => {
-        toast.error('Speech recognition error. Please try again.')
-      })
-      }
-    }
-
-    recognition.onend = () => {
-      setIsRecording(false)
-    }
-
-    return recognition
-  }
-
-  const startRecording = () => {
-    if (isRecording) return
-
-    const recognitionInstance = initializeSpeechRecognition()
-    if (recognitionInstance) {
-      setRecognition(recognitionInstance)
-      recognitionInstance.start()
-    }
-  }
-
-  const stopRecording = async () => {
-    if (recognition && isRecording) {
-      recognition.stop()
-      setRecognition(null)
-      setIsProcessingVoice(true)
-
-      try {
-        // Check if any speech was detected
-        const transcribedText = voiceText.trim()
-        if (!transcribedText) {
-          setIsProcessingVoice(false)
-          import('sonner').then(({ toast }) => {
-            toast.warning('No speech was detected. Please speak clearly and try recording again.')
-          })
-          return
-        }
-
-        // Refine the transcribed voice text using OpenAI
-
-        const refineResponse = await fetch('/api/custom-interviews/refine-voice', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            voiceText: transcribedText
-          }),
-        })
-
-        const refineResult = await refineResponse.json()
-
-        if (!refineResponse.ok || !refineResult.success) {
-          throw new Error(refineResult.error || 'Failed to refine voice text')
-        }
-
-        // Show the refined text in the textarea
-        setRefinedText(refineResult.refinedText)
-
-      } catch (error) {
-        console.error('Voice refinement error:', error)
-        import('sonner').then(({ toast }) => {
-          toast.error('Failed to refine voice input. Please try again.')
-        })
-        // Fallback to raw text if refinement fails
-        setRefinedText(voiceText.trim())
-      } finally {
-        setIsProcessingVoice(false)
-  }
-    }
-  }
 
 
   // Function to reset the form
@@ -373,8 +186,6 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
     setCustomJD("")
     setCvFile(null)
     setCvText("")
-    setVoiceText("")
-    setRefinedText("")
     setIsDialogOpen(false)
     if (cvInputRef.current) {
       cvInputRef.current.value = ''
@@ -459,7 +270,6 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
         setCustomJD("")
         setCvFile(null)
         setCvText("")
-        setVoiceText("")
         setActiveTab("predefined")
         if (cvInputRef.current) {
           cvInputRef.current.value = ''
@@ -477,41 +287,6 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
       return
     }
 
-    // Handle voice input tab
-    if (activeTab === "voice") {
-      if (!refinedText.trim()) {
-        import('sonner').then(({ toast }) => {
-          toast.error('Please record and process your interview request first')
-        })
-        return
-      }
-
-      // Use the already refined text to create the interview
-        const interviewData = {
-        jdDetails: refinedText,
-        interviewType: "Custom", // Use Custom interview type for voice input
-          screenShare: false,
-        customPrompt: `Create an interview based on this request: ${refinedText}`,
-        company: "Voice Interview Company",
-        title: "Voice Requested Interview"
-        }
-
-        onInterviewCreated?.(interviewData)
-
-        // Reset form
-        setIsDialogOpen(false)
-        setVoiceText("")
-      setRefinedText("")
-        setActiveTab("predefined")
-        setCustomJD("")
-        setCvFile(null)
-        setCvText("")
-        if (cvInputRef.current) {
-          cvInputRef.current.value = ''
-      }
-
-      return
-    }
 
     // Handle predefined tab
     // Validation based on interview type
@@ -575,7 +350,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
     const interviewData = {
       jdDetails: finalJdDetails,
       interviewType: interviewType, // Pass the original interview type
-      screenShare: false, // Screen sharing disabled for now since Coding interviews are coming soon
+      screenShare: false, // Screen sharing disabled for now
       generalSubType: interviewType === 'General' ? generalSubType : (interviewType === 'Technical' ? selectedRole : undefined), // Pass role as generalSubType for technical interviews
       hrSubType: interviewType === 'HR' ? hrSubType : undefined, // Pass HR sub-type for HR interviews
       foreignLanguageSubType: interviewType === 'Foreign Language' ? foreignLanguageSubType : undefined,
@@ -611,10 +386,9 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
         </DialogHeader>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className={`grid w-full ${showVoiceTab ? 'grid-cols-3' : 'grid-cols-2'}`}>
+          <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="predefined">Templates</TabsTrigger>
             <TabsTrigger value="custom">Custom JD</TabsTrigger>
-            {showVoiceTab && <TabsTrigger value="voice">Voice</TabsTrigger>}
           </TabsList>
 
           <TabsContent value="predefined" className="space-y-6 mt-6">
@@ -879,157 +653,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
             </div>
           </TabsContent>
 
-          <TabsContent value="voice" className="space-y-6 mt-6">
-            {/* Voice Input Section */}
-            <div className="space-y-4">
-              <Label className="text-sm font-medium">
-                Voice Input *
-              </Label>
 
-              {/* Voice Recording Controls */}
-              <div className="flex items-center gap-4">
-                {!isRecording ? (
-                  <Button
-                    type="button"
-                    onClick={startRecording}
-                    disabled={isProcessingVoice}
-                    className="flex items-center gap-2 bg-red-600 hover:bg-red-700"
-                  >
-                    <Mic className="w-4 h-4" />
-                    Start Recording
-                  </Button>
-                ) : (
-                  <Button
-                    type="button"
-                    onClick={stopRecording}
-                    className="flex items-center gap-2 bg-red-600 hover:bg-red-700 animate-pulse"
-                  >
-                    <Square className="w-4 h-4" />
-                    Stop Recording
-                  </Button>
-                )}
-
-                {refinedText && (
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => setRefinedText("")}
-                    disabled={isProcessingVoice}
-                    className="flex items-center gap-2"
-                  >
-                    <X className="w-4 h-4" />
-                    Clear
-                  </Button>
-                )}
-              </div>
-
-              {/* Recording Status */}
-              <VoiceRecordingAnimation isRecording={isRecording} />
-
-              {/* Interview Request */}
-              <div className="space-y-2">
-                <Label htmlFor="voice-text" className="text-sm font-medium">
-                  Interview Request
-                </Label>
-                <Textarea
-                  id="voice-text"
-                  placeholder="Your AI-refined interview request will appear here after you stop recording. You can also edit this text manually if needed."
-                  value={refinedText}
-                  onChange={(e) => setRefinedText(e.target.value)}
-                  className="h-[200px] overflow-y-auto resize-none"
-                  disabled={isProcessingVoice}
-                />
-                <p className="text-xs text-gray-500">
-                  Simply mention what type of interview you want to conduct. For example: &quot;I want a Python developer interview&quot; or &quot;Give me a junior frontend developer interview&quot;
-                </p>
-              </div>
-
-              {/* Processing indicator */}
-              {isProcessingVoice && (
-                <div className="flex items-center gap-2 text-sm text-blue-600">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-                  AI is refining your voice request...
-                </div>
-              )}
-            </div>
-          </TabsContent>
-
-          {showVoiceTab && (
-            <TabsContent value="voice" className="space-y-6 mt-6">
-              {/* Voice Input Section */}
-              <div className="space-y-4">
-                <Label className="text-sm font-medium">
-                  Voice Input *
-                </Label>
-
-                {/* Voice Recording Controls */}
-                <div className="flex items-center gap-4">
-                  {!isRecording ? (
-                    <Button
-                      type="button"
-                      onClick={startRecording}
-                      disabled={isProcessingVoice}
-                      className="flex items-center gap-2 bg-red-600 hover:bg-red-700"
-                    >
-                      <Mic className="w-4 h-4" />
-                      Start Recording
-                    </Button>
-                  ) : (
-                    <Button
-                      type="button"
-                      onClick={stopRecording}
-                      className="flex items-center gap-2 bg-red-600 hover:bg-red-700 animate-pulse"
-                    >
-                      <Square className="w-4 h-4" />
-                      Stop Recording
-                    </Button>
-                  )}
-
-                  {refinedText && (
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={() => setRefinedText("")}
-                      disabled={isProcessingVoice}
-                      className="flex items-center gap-2"
-                    >
-                      <X className="w-4 h-4" />
-                      Clear
-                    </Button>
-                  )}
-                </div>
-
-                {/* Recording Status */}
-                <VoiceRecordingAnimation isRecording={isRecording} />
-
-                {/* Interview Request */}
-                <div className="space-y-2">
-                  <Label htmlFor="voice-text" className="text-sm font-medium">
-                    Interview Request
-                  </Label>
-                  <Textarea
-                    id="voice-text"
-                    placeholder="Your AI-refined interview request will appear here after you stop recording. You can also edit this text manually if needed."
-                    value={refinedText}
-                    onChange={(e) => setRefinedText(e.target.value)}
-                    className="h-[200px] overflow-y-auto resize-none"
-                    disabled={isProcessingVoice}
-                  />
-                  <p className="text-xs text-gray-500">
-                    Simply mention what type of interview you want to conduct. For example: &quot;I want a Python developer interview&quot; or &quot;Give me a junior frontend developer interview&quot;
-                  </p>
-                </div>
-
-                {/* Processing indicator */}
-                {isProcessingVoice && (
-                  <div className="flex items-center gap-2 text-sm text-blue-600">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-                    AI is refining your voice request...
-                  </div>
-                )}
-              </div>
-            </TabsContent>
-          )}
         </Tabs>
 
         {/* Action Buttons */}
@@ -1052,8 +676,6 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
                       interviewType === 'Technical' ? (!selectedRole || !selectedLevel) : false))
                   : activeTab === 'custom'
                   ? (!customJD.trim() || isAnalyzingJD || isExtractingCV)
-                  : activeTab === 'voice' && showVoiceTab
-                  ? (!refinedText.trim() || isProcessingVoice || isRecording)
                   : false
               )
             }
@@ -1064,7 +686,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
                 Creating Interview...
               </>
-            ) : isAnalyzingJD || isProcessingVoice ? (
+            ) : isAnalyzingJD ? (
               <>
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
                 {isAnalyzingJD ? 'Analyzing...' : 'Processing Voice...'}
@@ -1073,11 +695,6 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
               <>
                 <FileText className="w-4 h-4 mr-2" />
                 Create Custom Interview
-              </>
-            ) : activeTab === 'voice' && showVoiceTab ? (
-              <>
-                <Mic className="w-4 h-4 mr-2" />
-                Create Interview
               </>
             ) : (
               'Create Interview'

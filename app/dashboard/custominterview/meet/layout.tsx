@@ -7,6 +7,7 @@ import PermissionCheck from "./permissions"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Maximize, Monitor } from "lucide-react"
+import { DEFAULT_CONFIGS } from "../_components/_meet_components/config"
 
 // Layout for custom interview meet room pages
 export default function CustomInterviewLayout({
@@ -46,6 +47,22 @@ export default function CustomInterviewLayout({
   const handleSkipFullscreen = () => {
     setFullscreenChoiceMade(true)
   }
+
+  // Auto-handle fullscreen choice based on config
+  useEffect(() => {
+    const autoFullscreen = DEFAULT_CONFIGS.uiConfig.autoFullscreen
+
+    if (autoFullscreen === 0) {
+      // Mode 0: Always normal mode - skip fullscreen dialog
+      console.log('Layout: Mode 0 - Skipping fullscreen dialog, using normal mode')
+      setFullscreenChoiceMade(true)
+    } else if (autoFullscreen === 1) {
+      // Mode 1: Always fullscreen - enter fullscreen automatically
+      console.log('Layout: Mode 1 - Entering fullscreen automatically')
+      handleEnterFullscreen()
+    }
+    // Mode 2: Ask user - dialog will show (default behavior)
+  }, [])
 
   // Fetch user's time data
   const fetchUserTimeData = useCallback(async () => {

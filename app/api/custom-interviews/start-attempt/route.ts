@@ -42,20 +42,29 @@ async function authenticateUser(request: NextRequest): Promise<string | null> {
 
 export async function POST(request: NextRequest) {
   try {
+    console.log('Start attempt API called')
+
     // Verify user authentication (NextAuth or JWT token)
     const userId = await authenticateUser(request)
+    console.log('Authenticated user ID:', userId)
+
     if (!userId) {
+      console.log('No user ID found, returning 401')
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const { interviewId } = await request.json()
+    const body = await request.json()
+    console.log('Request body:', body)
+    const { interviewId } = body
 
     // Validate required fields
     if (!interviewId) {
+      console.log('No interviewId provided')
       return NextResponse.json({ error: 'Missing interviewId' }, { status: 400 })
     }
 
     // Verify the interview belongs to the user
+    console.log('Checking interview ownership:', { interviewId, userId })
     const interview = await prisma.mockInterview.findFirst({
       where: {
         id: interviewId,
@@ -63,36 +72,63 @@ export async function POST(request: NextRequest) {
       }
     })
 
+    console.log('Interview found:', !!interview)
     if (!interview) {
+      console.log('Interview not found or access denied')
       return NextResponse.json({ error: 'Interview not found or access denied' }, { status: 404 })
     }
 
     // Create a new interview attempt and update interview status to IN_PROGRESS
-    const result = await prisma.$transaction([
-      // Create the attempt
-      prisma.interviewAttempt.create({
-        data: {
-          interviewId: interviewId,
-          startedAt: new Date()
-        }
-      }),
-      // Update interview status to IN_PROGRESS
-      prisma.mockInterview.update({
-        where: { id: interviewId },
-        data: { status: 'IN_PROGRESS' }
-      })
-    ])
+    // Note: MongoDB doesn't support transactions like SQL databases, so we handle operations separately
+    console.log('Creating interview attempt...')
 
-    console.log('Interview attempt created and status updated to IN_PROGRESS')
+    // First, create the interview attempt
+    const attemptResult = await prisma.interviewAttempt.create({
+      data: {
+        interviewId: interviewId,
+        startedAt: new Date()
+      }
+    })
+
+    console.log('Interview attempt created:', attemptResult.id)
+
+    // Then, update the interview status to IN_PROGRESS
+    console.log('Updating interview status to IN_PROGRESS...')
+    const interviewResult = await prisma.mockInterview.update({
+      where: { id: interviewId },
+      data: { status: 'IN_PROGRESS' }
+    })
+
+    console.log('Interview status updated to IN_PROGRESS for interview:', interviewResult.id)
 
     return NextResponse.json({
       success: true,
-      attemptId: result[0].id,
+      attemptId: attemptResult.id,
       message: 'Interview attempt started successfully'
     })
 
   } catch (error) {
+    // Enhanced error logging
     console.error('Error starting interview attempt:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    console.error('Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      name: error instanceof Error ? error.constructor.name : typeof error
+    })
+
+    // Check if it's a Prisma error
+    if (error && typeof error === 'object' && 'code' in error) {
+      const prismaError = error as { code: string; meta?: unknown }
+      console.error('Prisma error code:', prismaError.code)
+      console.error('Prisma error meta:', prismaError.meta)
+    }
+
+    return NextResponse.json({
+      error: 'Internal server error',
+      details: process.env.NODE_ENV === 'development' ? {
+        message: error instanceof Error ? error.message : 'Unknown error',
+        code: error && typeof error === 'object' && 'code' in error ? (error as { code: string }).code : undefined
+      } : undefined
+    }, { status: 500 })
   }
 }
