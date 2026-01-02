@@ -8,7 +8,8 @@ import {
   Shield,
   UserCheck,
   TrendingUp,
-  MessageSquare
+  MessageSquare,
+  DollarSign
 } from "lucide-react"
 
 export interface NavigationItem {
@@ -60,6 +61,12 @@ export const adminSidebarConfig: AdminSidebarConfig = {
           url: "/admin/dashboard/messages",
           icon: MessageSquare,
           description: "View and manage contact messages"
+        },
+        {
+          title: "Affiliates",
+          url: "/admin/dashboard/affiliates",
+          icon: DollarSign,
+          description: "Manage affiliate program and commissions"
         }
       ]
     },

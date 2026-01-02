@@ -83,6 +83,12 @@ export const PRICING_CONFIG = {
   }
 } as const
 
+// Affiliate configuration
+export const AFFILIATE_CONFIG = {
+  // Minimum payout amount in rupees
+  MINIMUM_PAYOUT_AMOUNT: 20
+} as const
+
 // Admin configuration
 export const ADMIN_CONFIG = {
   // User deletion security code (required to delete users)

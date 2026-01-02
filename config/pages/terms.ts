@@ -1,3 +1,5 @@
+import { AFFILIATE_CONFIG } from '@/config/site'
+
 export const termsConfig = {
   hero: {
     title: "Terms of Service",
@@ -209,7 +211,7 @@ export const termsConfig = {
           content: [
             "Earn 20% commission on course purchases by referred users",
             "Self-referrals are not eligible for commissions",
-            "Minimum payout threshold is ₹500"
+            `Minimum payout threshold is ₹${AFFILIATE_CONFIG.MINIMUM_PAYOUT_AMOUNT}`
           ]
         },
         {

@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
 
     const userId = session.user.id
 
-    // Get affiliate data
+    // Get affiliate data with pending commissions sum
     const affiliate = await prisma.affiliate.findUnique({
       where: { userId },
       include: {
@@ -26,7 +26,26 @@ export async function GET(request: NextRequest) {
             commissions: true,
           },
         },
+        commissions: {
+          where: {
+            status: 'PENDING'
+          },
+          select: {
+            amount: true
+          }
+        }
       },
+    })
+
+    // Calculate pending commissions total
+    const pendingCommissionsTotal = affiliate?.commissions.reduce((sum, commission) => sum + commission.amount, 0) || 0
+
+    console.log('API Debug - Affiliate data:', {
+      affiliateId: affiliate?.id,
+      totalCommissions: affiliate?._count.commissions,
+      pendingCommissions: affiliate?.commissions.length,
+      pendingCommissionsTotal,
+      commissions: affiliate?.commissions.map(c => ({ amount: c.amount, status: 'PENDING' }))
     })
 
     if (!affiliate) {
@@ -38,7 +57,10 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      affiliate,
+      affiliate: {
+        ...affiliate,
+        pendingCommissionsTotal
+      },
     })
 
   } catch (error) {

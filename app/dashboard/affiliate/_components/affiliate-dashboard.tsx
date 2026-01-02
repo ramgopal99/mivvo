@@ -323,7 +323,7 @@ export function AffiliateDashboard({
         </TabsContent>
         <TabsContent value="payments" className="mt-6">
           <PaymentSettings
-            affiliateData={affiliateData}
+        affiliateData={affiliateData}
             onPaymentDetailsUpdate={loadAffiliateData}
           />
         </TabsContent>

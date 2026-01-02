@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -9,12 +9,14 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Badge } from '@/components/ui/badge'
 import { CreditCard, IndianRupee, AlertCircle } from 'lucide-react'
 import { toast } from 'sonner'
+import { AFFILIATE_CONFIG } from '@/config/site'
 
 interface PaymentSettingsProps {
   affiliateData: {
     id: string
     totalEarnings: number
     paidEarnings: number
+    pendingCommissionsTotal?: number
     bankName?: string
     accountNumber?: string
     ifscCode?: string
@@ -39,7 +41,22 @@ export function PaymentSettings({ affiliateData, onPaymentDetailsUpdate }: Payme
   const [isRequestingPayout, setIsRequestingPayout] = useState(false)
 
   const availableBalance = affiliateData.totalEarnings - affiliateData.paidEarnings - affiliateData.pendingPayoutAmount
-  const minimumPayout = 500
+  const pendingCommissionsTotal = Number(affiliateData.pendingCommissionsTotal) || 0
+  const minimumPayout = AFFILIATE_CONFIG.MINIMUM_PAYOUT_AMOUNT
+  const pendingPayoutAmount = Number(affiliateData.pendingPayoutAmount) || 0
+
+
+  // Verify data consistency - pending commissions should be accounted for in total earnings
+  const isDataConsistent = pendingCommissionsTotal >= 0 && affiliateData.totalEarnings >= affiliateData.paidEarnings
+
+  if (!isDataConsistent) {
+    console.warn('Affiliate earnings data inconsistency detected:', {
+      totalEarnings: affiliateData.totalEarnings,
+      paidEarnings: affiliateData.paidEarnings,
+      pendingCommissionsTotal,
+      pendingPayoutAmount: affiliateData.pendingPayoutAmount
+    })
+  }
 
   const handleSavePaymentDetails = async () => {
     setIsSaving(true)
@@ -81,8 +98,8 @@ export function PaymentSettings({ affiliateData, onPaymentDetailsUpdate }: Payme
   }
 
   const handleRequestPayout = async () => {
-    if (availableBalance < minimumPayout) {
-      toast.error(`Minimum payout amount is ₹${minimumPayout}`)
+    if (pendingCommissionsTotal < minimumPayout) {
+      toast.error(`Minimum payout amount is ₹${minimumPayout}. You have ₹${pendingCommissionsTotal.toFixed(2)} in pending commissions.`)
       return
     }
 
@@ -121,42 +138,58 @@ export function PaymentSettings({ affiliateData, onPaymentDetailsUpdate }: Payme
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="text-center p-4 bg-muted rounded-lg">
               <div className="text-2xl font-bold text-primary">₹{affiliateData.totalEarnings.toFixed(2)}</div>
-              <div className="text-sm text-muted-foreground">Total Earnings</div>
+              <div className="text-sm text-muted-foreground">Lifetime Earnings</div>
             </div>
             <div className="text-center p-4 bg-muted rounded-lg">
-              <div className="text-2xl font-bold text-green-600">₹{affiliateData.paidEarnings.toFixed(2)}</div>
-              <div className="text-sm text-muted-foreground">Paid</div>
-            </div>
-            <div className="text-center p-4 bg-muted rounded-lg">
-              <div className="text-2xl font-bold text-blue-600">₹{availableBalance.toFixed(2)}</div>
-              <div className="text-sm text-muted-foreground">Available</div>
+              <div className="text-2xl font-bold text-yellow-600">₹{pendingCommissionsTotal.toFixed(2)}</div>
+              <div className="text-sm text-muted-foreground">Pending Commissions</div>
             </div>
           </div>
 
-          {affiliateData.pendingPayoutAmount > 0 && (
+          {pendingPayoutAmount > 0 && (
             <div className="flex items-center gap-2 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
               <AlertCircle className="h-4 w-4 text-yellow-600" />
               <span className="text-sm text-yellow-800">
-                You have a pending payout request for ₹{affiliateData.pendingPayoutAmount.toFixed(2)}
+                You have a pending payout request for ₹{pendingPayoutAmount.toFixed(2)}.
+                Your commissions will be marked as paid once processed by admin.
               </span>
             </div>
           )}
 
+          {!isDataConsistent && (
+            <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg">
+              <AlertCircle className="h-4 w-4 text-red-600" />
+              <span className="text-sm text-red-800">
+                Warning: Earnings data may be inconsistent. Please refresh the page or contact support if this persists.
+              </span>
+            </div>
+          )}
+
+          <div className="text-xs text-muted-foreground p-3 bg-blue-50 border border-blue-200 rounded-lg">
+            <strong>How payouts work:</strong> You can request a payout when your pending commissions total reaches ₹{AFFILIATE_CONFIG.MINIMUM_PAYOUT_AMOUNT} or more.
+            When you request a payout, your pending commissions become a payout request. Once an admin processes it, you&apos;ll receive payment.
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-3">
             <Button
               onClick={handleRequestPayout}
-              disabled={availableBalance < minimumPayout || isRequestingPayout}
+              disabled={pendingCommissionsTotal < minimumPayout || isRequestingPayout || pendingPayoutAmount > 0}
               className="flex-1 cursor-pointer"
               size="lg"
             >
               {isRequestingPayout ? 'Requesting...' : `Request Payout (Min: ₹${minimumPayout})`}
             </Button>
-            {availableBalance < minimumPayout && (
+            {pendingCommissionsTotal < minimumPayout && pendingPayoutAmount === 0 && (
               <Badge variant="secondary" className="px-3 py-1">
-                Need ₹{(minimumPayout - availableBalance).toFixed(2)} more
+                Need ₹{(minimumPayout - pendingCommissionsTotal).toFixed(2)} more in pending commissions
+              </Badge>
+            )}
+            {pendingPayoutAmount > 0 && (
+              <Badge variant="outline" className="px-3 py-1 border-orange-300 text-orange-700">
+                Payout request pending admin approval
               </Badge>
             )}
           </div>
@@ -170,9 +203,9 @@ export function PaymentSettings({ affiliateData, onPaymentDetailsUpdate }: Payme
             <CreditCard className="h-5 w-5" />
             Payment Method
           </CardTitle>
-          <CardDescription>
-            Choose how you want to receive your commission payments
-          </CardDescription>
+        <CardDescription>
+          Request payouts based on your pending commission earnings. Minimum payout: ₹{AFFILIATE_CONFIG.MINIMUM_PAYOUT_AMOUNT} in pending commissions.
+        </CardDescription>
         </CardHeader>
         <CardContent>
           <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod} className="space-y-4">

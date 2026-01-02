@@ -31,10 +31,10 @@ export function ReferralGuide({ affiliateData, onReferFriends, onCopyLink, showA
             <span className="font-semibold text-primary min-w-[24px]">1.</span>
             <div>
               <h4 className="font-semibold mb-1">Share Your Link</h4>
-              <p className="text-sm text-muted-foreground">
-                Copy your unique referral link and share it with friends, colleagues, or on social media
-              </p>
-            </div>
+            <p className="text-sm text-muted-foreground">
+              Copy your unique referral link and share it with friends, colleagues, or on social media
+            </p>
+          </div>
           </div>
 
           <div className="flex items-start gap-3">
@@ -51,27 +51,27 @@ export function ReferralGuide({ affiliateData, onReferFriends, onCopyLink, showA
             <span className="font-semibold text-primary min-w-[24px]">3.</span>
             <div>
               <h4 className="font-semibold mb-1">Get Paid</h4>
-              <p className="text-sm text-muted-foreground">
-                Earn {((affiliateData?.commissionRate || 0) * 100).toFixed(0)}% commission on every course sale
-              </p>
+            <p className="text-sm text-muted-foreground">
+              Earn {((affiliateData?.commissionRate || 0) * 100).toFixed(0)}% commission on every course sale
+            </p>
             </div>
           </div>
         </div>
 
-      <div className="flex flex-col sm:flex-row gap-3 pt-4">
+        <div className="flex flex-col sm:flex-row gap-3 pt-4">
         <Button onClick={onReferFriends} size="lg" className="flex-1 cursor-pointer">
-          <UserPlus className="h-4 w-4 mr-2" />
-          Refer Friends Now
-        </Button>
+            <UserPlus className="h-4 w-4 mr-2" />
+            Refer Friends Now
+          </Button>
         <Button onClick={onCopyLink} variant="outline" size="lg" className="flex-1 cursor-pointer">
-          <Copy className="h-4 w-4 mr-2" />
-          Copy Referral Link
-        </Button>
-      </div>
+            <Copy className="h-4 w-4 mr-2" />
+            Copy Referral Link
+          </Button>
+        </div>
 
-      <div className="text-xs text-muted-foreground text-center pt-2">
-        💡 Pro tip: Share on LinkedIn, WhatsApp, or tech communities for best results!
-      </div>
+        <div className="text-xs text-muted-foreground text-center pt-2">
+          💡 Pro tip: Share on LinkedIn, WhatsApp, or tech communities for best results!
+        </div>
     </div>
   )
 
@@ -89,9 +89,9 @@ export function ReferralGuide({ affiliateData, onReferFriends, onCopyLink, showA
         </CardHeader>
         <CardContent>
           {content}
-        </CardContent>
-      </Card>
-    )
+      </CardContent>
+    </Card>
+  )
   }
 
   return content

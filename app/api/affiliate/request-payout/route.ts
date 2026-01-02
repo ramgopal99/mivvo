@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
+import { AFFILIATE_CONFIG } from '@/config/site'
 
 export async function POST(request: NextRequest) {
   try {
@@ -59,13 +60,23 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Calculate available balance
-    const availableBalance = affiliate.totalEarnings - affiliate.paidEarnings - affiliate.pendingPayoutAmount
-    const minimumPayout = 500
+    // Calculate pending commissions total
+    const pendingCommissions = await prisma.affiliateCommission.findMany({
+      where: {
+        affiliateId: affiliate.id,
+        status: 'PENDING'
+      },
+      select: {
+        amount: true
+      }
+    })
 
-    if (availableBalance < minimumPayout) {
+    const pendingCommissionsTotal = pendingCommissions.reduce((sum, commission) => sum + commission.amount, 0)
+    const minimumPayout = AFFILIATE_CONFIG.MINIMUM_PAYOUT_AMOUNT
+
+    if (pendingCommissionsTotal < minimumPayout) {
       return NextResponse.json(
-        { error: `Minimum payout amount is ₹${minimumPayout}. Available: ₹${availableBalance.toFixed(2)}` },
+        { error: `Minimum payout amount is ₹${minimumPayout} in pending commissions. You have: ₹${pendingCommissionsTotal.toFixed(2)}` },
         { status: 400 }
       )
     }
@@ -82,7 +93,7 @@ export async function POST(request: NextRequest) {
     const updatedAffiliate = await prisma.affiliate.update({
       where: { userId },
       data: {
-        pendingPayoutAmount: availableBalance,
+        pendingPayoutAmount: pendingCommissionsTotal,
         lastPayoutRequest: new Date(),
       },
     })
@@ -90,11 +101,11 @@ export async function POST(request: NextRequest) {
     // TODO: In a real application, you would also create a payout record
     // and notify administrators for processing
 
-    console.log(`Payout request created for affiliate ${affiliate.id}: ₹${availableBalance.toFixed(2)}`)
+    console.log(`Payout request created for affiliate ${affiliate.id}: ₹${pendingCommissionsTotal.toFixed(2)}`)
 
     return NextResponse.json({
       success: true,
-      message: `Payout request submitted for ₹${availableBalance.toFixed(2)}`,
+      message: `Payout request submitted for ₹${pendingCommissionsTotal.toFixed(2)}`,
       affiliate: updatedAffiliate,
     })
 
