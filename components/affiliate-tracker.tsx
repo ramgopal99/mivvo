@@ -3,6 +3,13 @@
 import { useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 
+interface ReferralData {
+  referralId: string
+  referralCode: string
+  timestamp: number
+  sourceUrl: string
+}
+
 export function AffiliateTracker() {
   const searchParams = useSearchParams()
 
@@ -59,14 +66,14 @@ export function AffiliateTracker() {
               }
 
               // Get existing referrals from localStorage
-              const existingReferrals = JSON.parse(localStorage.getItem('affiliate_referrals') || '[]')
+              const existingReferrals: ReferralData[] = JSON.parse(localStorage.getItem('affiliate_referrals') || '[]')
               console.log(`[AFFILIATE-TRACKER] Existing referrals count: ${existingReferrals.length}`)
 
               // Add new referral to the list (keep only recent ones to avoid storage bloat)
               existingReferrals.unshift(referralData)
 
               // Keep only the 10 most recent referrals (30 days max per referral anyway)
-              const recentReferrals = existingReferrals.slice(0, 10)
+              const recentReferrals: ReferralData[] = existingReferrals.slice(0, 10)
 
               // Store updated referrals list
               localStorage.setItem('affiliate_referrals', JSON.stringify(recentReferrals))

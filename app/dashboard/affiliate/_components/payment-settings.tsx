@@ -40,7 +40,6 @@ export function PaymentSettings({ affiliateData, onPaymentDetailsUpdate }: Payme
   const [isSaving, setIsSaving] = useState(false)
   const [isRequestingPayout, setIsRequestingPayout] = useState(false)
 
-  const availableBalance = affiliateData.totalEarnings - affiliateData.paidEarnings - affiliateData.pendingPayoutAmount
   const pendingCommissionsTotal = Number(affiliateData.pendingCommissionsTotal) || 0
   const minimumPayout = AFFILIATE_CONFIG.MINIMUM_PAYOUT_AMOUNT
   const pendingPayoutAmount = Number(affiliateData.pendingPayoutAmount) || 0

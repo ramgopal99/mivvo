@@ -10,9 +10,9 @@ export async function POST(request: NextRequest) {
     const { referralCode, sourceUrl, userAgent } = body
 
     // Get IP address from request headers
-    const ipAddress = request.headers.get('x-forwarded-for') ||
+    const ipAddress = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
                      request.headers.get('x-real-ip') ||
-                     request.ip ||
+                     request.headers.get('x-client-ip') ||
                      'unknown'
 
     if (!referralCode) {

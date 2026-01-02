@@ -29,14 +29,14 @@ export async function GET(request: NextRequest) {
     }
 
     const { searchParams } = new URL(request.url)
-    const status = searchParams.get('status') || 'PENDING'
+    const status = (searchParams.get('status') || 'PENDING') as 'PENDING' | 'PAID' | 'CANCELLED'
     const limit = parseInt(searchParams.get('limit') || '50')
     const offset = parseInt(searchParams.get('offset') || '0')
 
     // Get commissions
     const commissions = await prisma.affiliateCommission.findMany({
       where: {
-        status: status as any,
+        status: status,
       },
       include: {
         affiliate: {
@@ -65,7 +65,7 @@ export async function GET(request: NextRequest) {
 
     const totalCount = await prisma.affiliateCommission.count({
       where: {
-        status: status as any,
+        status: status,
       },
     })
 
@@ -132,7 +132,12 @@ export async function PATCH(request: NextRequest) {
     }
 
     // Update commissions
-    const updateData: any = {
+    const updateData: {
+      status: 'PAID' | 'CANCELLED'
+      updatedAt: Date
+      paidAt?: Date
+      paymentId?: string
+    } = {
       status,
       updatedAt: new Date(),
     }

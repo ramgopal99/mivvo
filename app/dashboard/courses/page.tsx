@@ -92,7 +92,6 @@ export default function CoursePage() {
       });
 
       if (response.ok) {
-        const data = await response.json();
         // Refresh courses to show enrolled status
         const coursesResponse = await fetch('/api/courses');
         if (coursesResponse.ok) {

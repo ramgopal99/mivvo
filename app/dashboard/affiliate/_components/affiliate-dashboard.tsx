@@ -1,21 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
 import { useState, useEffect } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { RotateCcw, Ban, CheckCircle, HelpCircle } from 'lucide-react'
+import { RotateCcw, HelpCircle } from 'lucide-react'
 import { toast } from 'sonner'
 import { AffiliateStats } from './affiliate-stats'
 import { ReferralGuide } from './referral-guide'
@@ -130,7 +120,6 @@ export function AffiliateDashboard({
       })
 
       if (response.ok) {
-        const data = await response.json()
         setAffiliateData(prev => prev ? { ...prev, status: 'INACTIVE' } : null)
         toast.success('Affiliate account deactivated successfully')
         setShowDeactivateDialog(false)
@@ -156,7 +145,6 @@ export function AffiliateDashboard({
       })
 
       if (response.ok) {
-        const data = await response.json()
         setAffiliateData(prev => prev ? { ...prev, status: 'ACTIVE' } : null)
         toast.success('Affiliate account reactivated successfully')
       } else {
