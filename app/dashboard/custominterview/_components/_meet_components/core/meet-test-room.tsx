@@ -148,15 +148,22 @@ export function MeetTestRoom({
     setIsEndingCall(true) // Prevent double saving and multiple calls
 
     try {
-      // If there's an active conversation, save it and perform analysis before ending
+      // If there's an active conversation and analysis is enabled, save it and perform analysis before ending
       if (isConversationMode && voiceTranscript.length > 0 && interviewData?.id) {
-        console.log('End call clicked with active conversation, saving data and performing analysis...')
+        if (uiConfig.enableAnalysisOnStop) {
+          console.log('End call clicked with active conversation, saving data and performing analysis...')
 
-        // Save conversation data (this already includes analysis)
-        console.log('💾 handleEndCall: Calling handleSaveConversation')
-        await handleSaveConversation()
-        console.log('💾 handleEndCall: Calling handleUpdateTimeUsage')
-        await handleUpdateTimeUsage()
+          // Save conversation data (this already includes analysis)
+          console.log('💾 handleEndCall: Calling handleSaveConversation')
+          await handleSaveConversation()
+          console.log('💾 handleEndCall: Calling handleUpdateTimeUsage')
+          await handleUpdateTimeUsage()
+        } else {
+          console.log('End call clicked with active conversation, but analysis disabled (saving tokens for testing)')
+          // Still update time usage even if not analyzing
+          console.log('💾 handleEndCall: Calling handleUpdateTimeUsage (no analysis)')
+          await handleUpdateTimeUsage()
+        }
       }
 
       // Stop any active conversations AFTER saving (to prevent state change triggers)
@@ -720,12 +727,14 @@ export function MeetTestRoom({
     }
 
     // Save conversation data when conversation stops naturally (not when user ends call)
-    // Note: Only save here if conversation stops without user explicitly ending it
-    if (!isActive && isConversationMode && !isEndingCall && !isSavingConversationRef.current) {
-      console.log('🎤 handleConversationModeChange: Calling handleSaveConversation')
+    // Note: Only save here if conversation stops without user explicitly ending it, and analysis is enabled
+    if (!isActive && isConversationMode && !isEndingCall && !isSavingConversationRef.current && uiConfig.enableAnalysisOnStop) {
+      console.log('🎤 handleConversationModeChange: Calling handleSaveConversation (analysis enabled)')
       await handleSaveConversation()
       // Don't update time usage here - it's already handled by handleEndCall
       console.log('🎤 handleConversationModeChange: Skipping handleUpdateTimeUsage (handled by handleEndCall)')
+    } else if (!isActive && isConversationMode && !isEndingCall && !isSavingConversationRef.current && !uiConfig.enableAnalysisOnStop) {
+      console.log('🎤 handleConversationModeChange: Skipping handleSaveConversation (analysis disabled for testing)')
     }
 
     setIsConversationMode(isActive)

@@ -44,7 +44,7 @@ export const VOICE_CONFIG = {
 
 // Controls what UI elements are shown/hidden during interviews
 export const UI_CONFIG = {
-  showChatBox: false,       // Show/hide chat box
+  showChatBox: true,       // Show/hide chat box
   showVoiceSettings: true,  // Show/hide voice settings panel
   showLiveTranscription: false, // Live speech-to-text for regular interviews
   showLiveTranscriptionCoding: false, // Live speech-to-text for coding interviews
@@ -57,7 +57,9 @@ export const UI_CONFIG = {
   screenShareDialogTitle: "Screen Sharing Active",
   screenShareDialogDescription: "Your entire screen is now being shared...",
   screenShareRestrictToScreen: true, // Restrict to screen-only sharing
-  screenShareRestrictionErrorMessage: "Please select your entire screen to share..."
+  screenShareRestrictionErrorMessage: "Please select your entire screen to share...",
+  screenMode: 0, // 0=normal, 1=fullscreen, 2=ask user
+  enableAnalysisOnStop: false, // If true, perform analysis when stopping interview; if false, only stop (saves tokens for testing)
 }
 
 
@@ -70,7 +72,20 @@ export const VOICE_CHAT_CONFIG = {
   SILENCE_TIMEOUT_MS: 2500, // Wait time after user stops speaking
   RECOGNITION_KEEP_ALIVE_MS: 6000, // Speech recognition keep-alive interval
   TTS_RESTART_DELAY_MS: 1500, // Delay before restarting speech recognition (increased to prevent feedback)
-  USER_RESPONSE_TIMEOUT_MS: 10000, // Timeout for user responses
+  USER_RESPONSE_TIMEOUT_MS: 30000, // Timeout for user responses
+}
+
+// =============================================
+// VOICE ACTIVITY DETECTION CONFIGURATIONS
+// =============================================
+
+// Settings for Voice Activity Detection (VAD) to prevent AI voice pickup
+export const VAD_CONFIG = {
+  AUDIO_LEVEL_THRESHOLD: 0.01, // Minimum audio level to consider as speech (0-1)
+  MIN_SPEECH_DURATION_MS: 300, // Minimum duration in ms for valid speech detection
+  MONITORING_INTERVAL_MS: 100, // How often to check audio levels (ms)
+  HISTORY_LENGTH: 10, // Number of audio samples to keep for averaging
+  CONFIDENCE_THRESHOLD: 0.3, // Minimum confidence for speech recognition results
 }
 
 // Separate timing for coding interviews (longer timeouts for thinking)

@@ -7,6 +7,7 @@ import PermissionCheck from "./permissions"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Maximize, Monitor } from "lucide-react"
+import { UI_CONFIG } from "../_components/_meet_components/config"
 
 // Layout for custom interview meet room pages
 export default function CustomInterviewLayout({
@@ -85,6 +86,16 @@ export default function CustomInterviewLayout({
   useEffect(() => {
     setCountdown(3)
   }, [])
+
+  // Handle automatic fullscreen mode
+  useEffect(() => {
+    if (permissionsGranted && UI_CONFIG.screenMode === 1 && !fullscreenChoiceMade) {
+      handleEnterFullscreen()
+    } else if (permissionsGranted && UI_CONFIG.screenMode === 0 && !fullscreenChoiceMade) {
+      // For normal mode (0), skip the fullscreen choice dialog
+      setFullscreenChoiceMade(true)
+    }
+  }, [permissionsGranted, fullscreenChoiceMade])
 
   // Check if user has time allowance remaining
   const checkTimeLimit = useCallback(() => {
@@ -193,8 +204,8 @@ export default function CustomInterviewLayout({
     )
   }
 
-  // Show fullscreen permission dialog if choice not made yet
-  if (!fullscreenChoiceMade) {
+  // Show fullscreen permission dialog if choice not made yet and screenMode is 2 (ask user)
+  if (UI_CONFIG.screenMode === 2 && !fullscreenChoiceMade) {
     return (
       <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center min-h-screen p-4">
         <Card className="w-full max-w-md">
