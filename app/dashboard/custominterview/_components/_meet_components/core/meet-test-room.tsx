@@ -80,7 +80,8 @@ export function MeetTestRoom({
     screenShareDialogTitle: "Screen Sharing Active",
     screenShareDialogDescription: "Your entire screen is now being shared. Others can see everything on your screen in the bottom-right corner of their view.\n\nTips:\n• Click the monitor button again to stop sharing\n• Your entire screen content is visible to others",
     screenShareRestrictToScreen: true,
-    screenShareRestrictionErrorMessage: "Please select your entire screen to share. Sharing individual windows or tabs is not allowed."
+    screenShareRestrictionErrorMessage: "Please select your entire screen to share. Sharing individual windows or tabs is not allowed.",
+    enableAnalysisOnStop: true
   },
   codingVoiceChatConfig = {
     SILENCE_TIMEOUT_MS: 3500,
