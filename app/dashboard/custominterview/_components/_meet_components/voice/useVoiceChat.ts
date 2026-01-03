@@ -722,7 +722,7 @@ export function useVoiceChat({
             // Import the greeting generator dynamically
             const { generateInterviewGreeting } = await import('../greeting-generator')
             greetingText = await generateInterviewGreeting({
-              customPrompt: customPrompt,
+              jd: customPrompt,
               interviewType: 'General' // Default type since we don't have interview data here
             }, 'Mivvo')
             console.log('🎤 Generated dynamic greeting:', greetingText)
