@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { BookOpen, Users, GraduationCap, Award, ArrowRight, Star, Clock, TrendingUp, Play, ChevronRight } from "lucide-react"
+import { BookOpen, Users, GraduationCap, Award, ArrowRight, Star, Clock, TrendingUp, Play, ChevronRight, Code, Calculator } from "lucide-react"
 import Image from "next/image"
 import { SegmentedButton } from "@/components/ui/segmented-button"
 import { useState, useEffect } from "react"
@@ -17,7 +17,9 @@ const iconMap = {
   Award,
   Star,
   Clock,
-  TrendingUp
+  TrendingUp,
+  Code,
+  Calculator
 }
 
 export function CoursesSection() {

@@ -22,6 +22,22 @@ const roadmapCourses = [
     position: 'right' as const
   },
   {
+    id: 'cpp',
+    courseId: 'cpp',
+    title: 'C++',
+    description: 'System Programming & Algorithms',
+    available: false,
+    position: 'left' as const
+  },
+  {
+    id: 'java',
+    courseId: 'java',
+    title: 'Java',
+    description: 'Object-Oriented Programming',
+    available: false,
+    position: 'right' as const
+  },
+  {
     id: 'sql',
     courseId: 'sql',
     title: 'SQL',
@@ -36,6 +52,14 @@ const roadmapCourses = [
     description: 'Communication Skills',
     available: false,
     position: 'right' as const
+  },
+  {
+    id: 'quantitative',
+    courseId: 'quantitative',
+    title: 'Quantitative',
+    description: 'Mathematical Reasoning',
+    available: false,
+    position: 'left' as const
   }
 ];
 

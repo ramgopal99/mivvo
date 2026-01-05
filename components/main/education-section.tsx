@@ -4,8 +4,16 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { GraduationCap, Users, BookOpen, Award, ArrowRight } from "lucide-react"
+
+const iconMap = {
+  GraduationCap,
+  Users,
+  BookOpen,
+  Award
+}
 import { SegmentedButton } from "@/components/ui/segmented-button"
 import { useState } from "react"
+import Link from "next/link"
 import { landingConfig } from "../../config/landing-config"
 
 
@@ -28,10 +36,10 @@ export function EducationSection() {
             </div>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
-            Complete Interview & Learning Solution
+            {landingConfig.education.header.title}
           </h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed px-2">
-            Empower your institution with AI-powered mock interviews and comprehensive courses for technical roles, civil services, banking, and government exams.
+            {landingConfig.education.header.description}
           </p>
         </div>
 
@@ -41,54 +49,34 @@ export function EducationSection() {
           <div className="space-y-6">
             {/* Features List */}
             <div className="space-y-4">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Users className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">AI Mock Interviews</h3>
-                  <p className="text-sm text-gray-600">Practice with realistic interview scenarios for all career paths with instant AI feedback.</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <BookOpen className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">Comprehensive Courses</h3>
-                  <p className="text-sm text-gray-600">Access structured learning paths and skill development courses to build strong foundations.</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Award className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">Progress Tracking</h3>
-                  <p className="text-sm text-gray-600">Monitor student performance across both interviews and courses with detailed analytics.</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <GraduationCap className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">Batch Management</h3>
-                  <p className="text-sm text-gray-600">Manage multiple students, track completion rates, and generate performance reports.</p>
-                </div>
-              </div>
+              {landingConfig.education.features.map((feature, index) => {
+                const IconComponent = iconMap[feature.icon as keyof typeof iconMap]
+                return (
+                  <div key={index} className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <IconComponent className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-900 mb-1">{feature.title}</h3>
+                      <p className="text-sm text-gray-600">{feature.description}</p>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
 
             {/* CTA Button */}
             <div className="pt-2">
-              <Button
-                size="lg"
-                className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
-              >
-                <span className="sm:hidden">{landingConfig.education.cta.mobileText}</span>
-                <span className="hidden sm:inline">{landingConfig.education.cta.text}</span>
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <Link href={landingConfig.education.cta.href}>
+                <Button
+                  size="lg"
+                  className="px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                >
+                  <span className="sm:hidden">{landingConfig.education.cta.mobileText}</span>
+                  <span className="hidden sm:inline">{landingConfig.education.cta.text}</span>
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
 
@@ -112,8 +100,8 @@ export function EducationSection() {
                   {/* Header */}
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-3 sm:mb-4 gap-2">
                     <div>
-                      <h3 className="text-base sm:text-lg font-bold text-gray-900">Engineering & Civil Services Batch 2024</h3>
-                      <p className="text-xs sm:text-sm text-gray-600">120 students • Active Learning</p>
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900">{landingConfig.education.mockInterface.title}</h3>
+                      <p className="text-xs sm:text-sm text-gray-600">{landingConfig.education.mockInterface.subtitle}</p>
                     </div>
                     <Badge className="bg-primary text-white text-xs">Active</Badge>
                   </div>

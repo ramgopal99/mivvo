@@ -1,12 +1,13 @@
 "use client"
 
 import { SegmentedButton } from "@/components/ui/segmented-button"
-import { 
+import {
   AiInterviewsBox,
   TechnicalCodingBox,
   PerformanceAnalyticsBox,
   CompanyPracticeBox
 } from "./features"
+import { landingConfig } from "@/config/landing-config"
 
 
 export function FeaturesSection() {
@@ -40,13 +41,13 @@ export function FeaturesSection() {
             />
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight sm:leading-tight mb-4 sm:mb-6">
-            <span className="block">Everything you need to</span>
+            <span className="block">{landingConfig.features.header.headline.firstPart}</span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">
-              master interviews & skills
+              {landingConfig.features.header.headline.secondPart}
             </span>
           </h2>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed break-words">
-            Our comprehensive platform provides AI mock interviews and interactive courses to prepare for any career path - from technical roles to civil services, banking, and government exams.
+            {landingConfig.features.header.description}
           </p>
         </div>
 

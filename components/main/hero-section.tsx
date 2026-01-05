@@ -17,7 +17,7 @@ export function HeroSection() {
   ]
 
   return (
-    <div className="relative min-h-[120vh] sm:min-h-[150vh] lg:h-[170vh] overflow-hidden w-full">
+    <div className="relative overflow-hidden w-full">
       {/* Background with uniform color and fading box pattern */}
       <div className="absolute inset-0 bg-pink-50">
         {/* Fading box pattern overlay */}
@@ -82,9 +82,9 @@ export function HeroSection() {
       </div>
 
       {/* Safari Section - Next 100% */}
-      <div className="relative z-10 min-h-[50vh] sm:min-h-[70vh] lg:h-[100vh] flex items-start justify-center pt-4 pb-8 sm:pb-0">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="scale-90 sm:scale-100">
+      <div className="relative z-10 flex items-start justify-center pt-0 pb-0">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-0 mb-0">
+          <div className="scale-90 sm:scale-100 pb-0 mb-0">
             <SafariDemo />
           </div>
         </div>

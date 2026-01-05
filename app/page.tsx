@@ -1,4 +1,4 @@
-import { Navbar, HeroSection, FeaturesSection, StepsSection, EducationSection, CoursesSection, MorphingSection, FaqSection, TestimonialsSection, CtaSection, Footer } from "@/components/main"
+import { Navbar, HeroSection, RoadmapSection, FeaturesSection, StepsSection, EducationSection, CoursesSection, MorphingSection, FaqSection, TestimonialsSection, CtaSection, Footer } from "@/components/main"
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'
@@ -8,7 +8,7 @@ export default function Home() {
         <div className="min-h-screen w-full overflow-x-hidden pt-20">
           <Navbar remainingSpots={547} totalSeats={1000} />
           <HeroSection />
-          <div id="features"> 
+          <div id="features">
             <FeaturesSection />
           </div>
           <StepsSection />
@@ -16,11 +16,12 @@ export default function Home() {
             <CoursesSection />
           </div>
           <EducationSection />
+          <RoadmapSection />
           <MorphingSection />
           <div id="faq">
             <FaqSection />
           </div>
-          <TestimonialsSection />
+          {/* <TestimonialsSection /> */}
 
           <CtaSection />
           <Footer />

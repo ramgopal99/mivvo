@@ -13,7 +13,7 @@ export function SafariDemo() {
   }
 
   return (
-    <div className="flex flex-col items-center space-y-0 w-full max-w-4xl mx-auto px-4">
+    <div className="flex flex-col items-center space-y-0 w-full max-w-4xl mx-auto px-4 pb-0 mb-0">
       {/* Browser Header */}
       <div className="bg-gray-100 border border-gray-300 rounded-t-lg w-full px-2 sm:px-4 py-2 flex items-center justify-between shadow-sm">
         {/* Browser Controls */}
@@ -43,7 +43,7 @@ export function SafariDemo() {
       </div>
 
       {/* Browser Content */}
-      <div className="flex justify-center items-center relative border-l border-r border-b border-gray-300 rounded-b-lg overflow-hidden shadow-lg w-full">
+      <div className="flex justify-center items-center relative border-l border-r border-b border-gray-300 rounded-b-lg overflow-hidden shadow-lg w-full pb-0 mb-0">
         <div className="relative w-full">
           <Image
             src="/intro.png"
