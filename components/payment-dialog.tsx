@@ -187,10 +187,11 @@ export function PaymentDialog({
                 variant="outline"
                 onClick={() => onOpenChange(false)}
                 disabled={isProcessing}
+                className="cursor-pointer"
               >
                 Cancel
               </Button>
-              <Button type="submit" disabled={isProcessing}>
+              <Button type="submit" disabled={isProcessing} className="cursor-pointer">
                 {isProcessing ? "Processing..." : "Pay Now"}
               </Button>
             </div>

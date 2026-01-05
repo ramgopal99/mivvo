@@ -229,12 +229,11 @@ export default function CourseDetailsPage() {
               ) : (
                 <button
                   onClick={() => handleAuthenticatedAction(() => {
-                    // TODO: Implement purchase flow
-                    console.log('Purchase course:', courseId);
+                    window.location.href = `/dashboard/courses`;
                   })}
                   className="px-6 py-2 border border-border bg-card text-card-foreground rounded-lg hover:bg-muted transition-colors text-sm font-medium cursor-pointer"
                 >
-                  Buy Now
+                  Go to Dashboard for Buy Course
                 </button>
               )}
               <button

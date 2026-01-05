@@ -94,7 +94,7 @@ export function RecentCourses({ courses }: RecentCoursesProps) {
 
               <div className="flex justify-end">
                 <Button size="sm" asChild>
-                  <Link href={`/courses/${course.courseId}`}>
+                  <Link href={`/dashboard/courses/${course.courseId}`}>
                     <Play className="h-4 w-4 mr-1" />
                     Continue
                   </Link>

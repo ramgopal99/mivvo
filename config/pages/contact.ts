@@ -11,8 +11,8 @@ export const contactConfig = {
         icon: "Mail",
         title: "Email Us",
         description: "Send us an email and we'll respond as soon as possible.",
-        contact: "hello@mivvo.com",
-        action: "mailto:hello@mivvo.com"
+        contact: "hello@mivvo.life",
+        action: "mailto:hello@mivvo.life"
       }
     ]
   },

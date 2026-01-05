@@ -49,7 +49,7 @@ export async function initiatePayment(amount: number, name: string, mobile: stri
     const request = StandardCheckoutPayRequest.builder()
       .merchantOrderId(merchantOrderId)
       .amount(Math.round(amount * 100)) // Amount in paise
-      .redirectUrl(`${baseUrl}/success/${merchantOrderId}`)
+      .redirectUrl(`${baseUrl}/dashboard`)
       .metaInfo(metaInfo)
       .build();
 
