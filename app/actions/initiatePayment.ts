@@ -4,10 +4,8 @@ import { StandardCheckoutClient, Env, MetaInfo, StandardCheckoutPayRequest } fro
 import { randomUUID } from 'crypto';
 import { siteConfig } from '@/config/site';
 
-export async function initiatePayment(amount: number, name: string, mobile: string, muid?: string, isTestRequest?: boolean) {
-  // Check if this is a test request
-  const isTestMode = isTestRequest || siteConfig.testMode;
-  const merchantOrderId = isTestMode ? `test${randomUUID()}` : randomUUID();
+export async function initiatePayment(amount: number, name: string, mobile: string, muid?: string) {
+  const merchantOrderId = randomUUID();
 
   // Get base URL from environment or use localhost as fallback
   const baseUrl = process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
@@ -16,8 +14,16 @@ export async function initiatePayment(amount: number, name: string, mobile: stri
   const clientId = process.env.NEXT_PUBLIC_PHONE_PAY_CLIENT_ID;
   const clientSecret = process.env.NEXT_PUBLIC_PHONE_PAY_CLIENT_SECRET;
   const clientVersion = parseInt(process.env.NEXT_PUBLIC_PHONE_PAY_CLIENT_VERSION || "1");
-  const isProduction = process.env.NODE_ENV === 'production';
-  const env = isProduction ? Env.PRODUCTION : Env.SANDBOX;
+
+  // Force production environment for live payments
+  // This ensures we always use production PhonePe settings
+  const env = Env.PRODUCTION;
+
+  console.log('PhonePe Environment Configuration:');
+  console.log('- Client ID configured:', !!clientId);
+  console.log('- Client Secret configured:', !!clientSecret);
+  console.log('- Environment:', env === Env.PRODUCTION ? 'PRODUCTION' : 'SANDBOX');
+  console.log('- Client Version:', clientVersion);
 
   if (!clientId || !clientSecret) {
     const missing = [];

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac } from "crypto";
+import { StandardCheckoutClient, Env } from 'pg-sdk-node';
 import { prisma } from "@/lib/prisma";
 import { CREDIT_PACKAGES, COURSE_ENROLLMENT_CREDITS, CREDIT_MULTIPLIER } from "@/config/site";
 
@@ -7,146 +7,6 @@ import { CREDIT_PACKAGES, COURSE_ENROLLMENT_CREDITS, CREDIT_MULTIPLIER } from "@
 interface CoursePurchaseMetadata {
   courseId: string;
   courseName: string;
-}
-
-// Test endpoint to simulate webhook for testing
-export async function GET(req: NextRequest) {
-  try {
-    const { searchParams } = new URL(req.url);
-    const transactionId = searchParams.get('transactionId');
-    const state = searchParams.get('state') || 'COMPLETED';
-
-    if (!transactionId) {
-      return NextResponse.json({
-        error: "transactionId parameter required"
-      }, { status: 400 });
-    }
-
-    // Check if this is a test transaction (starts with 'test')
-    const isTestTransaction = transactionId.startsWith('test');
-
-    console.log('🧪 TEST WEBHOOK: Simulating webhook for transaction:', transactionId, 'State:', state, 'IsTest:', isTestTransaction);
-
-    // Find the payment record
-    const payment = await prisma.payment.findFirst({
-      where: { transactionId: transactionId },
-      include: { user: true }
-    });
-
-    if (!payment) {
-      console.error('🧪 TEST WEBHOOK: Payment not found for transaction:', transactionId);
-      return NextResponse.json({ error: "Payment not found" }, { status: 404 });
-    }
-
-    console.log('🧪 TEST WEBHOOK: Found payment:', payment.id, 'Category:', payment.paymentCategory, 'TestTx:', isTestTransaction);
-
-    // Simulate webhook processing
-    if (state === "COMPLETED") {
-      // Update payment status to COMPLETED
-      await prisma.payment.update({
-        where: { id: payment.id },
-        data: { status: 'COMPLETED' }
-      });
-
-      // Update user credits and status based on payment type
-      if (payment.paymentCategory === 'MONTHLY') {
-        await prisma.user.update({
-          where: { id: payment.userId },
-          data: {
-            totalCreditAllocation: CREDIT_PACKAGES.PRO,
-            usedCredits: 0,
-            creditResetAt: new Date(),
-            userType: 'PRO'
-          }
-        });
-        console.log('🧪 TEST WEBHOOK: User upgraded to PRO:', payment.userId, isTestTransaction ? '(TEST)' : '');
-      } else if (payment.paymentCategory === 'ADDON' && payment.value) {
-        await prisma.user.update({
-          where: { id: payment.userId },
-          data: {
-            totalCreditAllocation: {
-              increment: payment.value/CREDIT_MULTIPLIER
-            }
-          }
-        });
-        console.log('🧪 TEST WEBHOOK: Added credits to user:', payment.userId, 'Credits:', payment.value, isTestTransaction ? '(TEST)' : '');
-      } else if ((payment.paymentCategory as string) === 'COURSE_PURCHASE') {
-        const metadata = payment.metadata as CoursePurchaseMetadata | null;
-        if (metadata && metadata.courseId) {
-          try {
-            // First find the course by courseId to get the database ID
-            const course = await prisma.course.findUnique({
-              where: { courseId: metadata.courseId },
-              select: { id: true, courseId: true, title: true },
-            });
-
-            if (!course) {
-              console.error('🧪 TEST WEBHOOK: ❌ Course not found:', metadata.courseId, isTestTransaction ? '(TEST)' : '');
-              return;
-            }
-
-            await prisma.courseEnrollment.create({
-              data: {
-                userId: payment.userId,
-                courseId: course.id, // Use database primary key
-                enrolledAt: new Date(),
-                isActive: true
-              }
-            });
-
-            // Allocate course credits
-            try {
-              await prisma.courseCredit.upsert({
-                where: {
-                  userId_courseId: {
-                    userId: payment.userId,
-                    courseId: course.id,
-                  },
-                },
-                update: {
-                  totalCredits: COURSE_ENROLLMENT_CREDITS,
-                  usedCredits: 0,
-                  creditType: 'ENROLLMENT',
-                  isActive: true,
-                },
-                create: {
-                  userId: payment.userId,
-                  courseId: course.id,
-                  totalCredits: COURSE_ENROLLMENT_CREDITS,
-                  usedCredits: 0,
-                  creditType: 'ENROLLMENT',
-                  isActive: true,
-                },
-              });
-              console.log('🧪 TEST WEBHOOK: ✅ Course credits allocated:', payment.userId, 'Course:', metadata.courseId, isTestTransaction ? '(TEST)' : '');
-            } catch (creditError) {
-              console.error('🧪 TEST WEBHOOK: ❌ Error allocating course credits:', creditError, isTestTransaction ? '(TEST)' : '');
-            }
-
-            console.log('🧪 TEST WEBHOOK: ✅ User enrolled in course:', payment.userId, 'Course:', metadata.courseId, isTestTransaction ? '(TEST)' : '');
-          } catch (enrollmentError) {
-            console.error('🧪 TEST WEBHOOK: ❌ Failed to enroll user in course:', enrollmentError, isTestTransaction ? '(TEST)' : '');
-          }
-        } else {
-          console.error('🧪 TEST WEBHOOK: ❌ COURSE_PURCHASE missing metadata:', payment.metadata, isTestTransaction ? '(TEST)' : '');
-        }
-      }
-    }
-
-    return NextResponse.json({
-      success: true,
-      message: `Test webhook processed successfully for transaction ${transactionId} ${isTestTransaction ? '(TEST)' : ''}`,
-      paymentId: payment.id,
-      state: state,
-      isTestTransaction: isTestTransaction
-    });
-
-  } catch (error) {
-    console.error('🧪 TEST WEBHOOK: Error:', error);
-    return NextResponse.json({
-      error: error instanceof Error ? error.message : "Unknown error"
-    }, { status: 500 });
-  }
 }
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
@@ -157,27 +17,63 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         console.log('PhonePe webhook received:', body);
         console.log('Signature:', signature);
 
-        if (!signature) {
-            console.error('No signature provided in webhook');
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        // Require signature for all webhook requests (production security)
+        // Get authorization header for PhonePe callback validation
+        const authorization = req.headers.get('authorization');
+        if (!authorization) {
+            console.error('❌ No authorization header provided in webhook');
+            return NextResponse.json({ error: "Unauthorized - authorization header required" }, { status: 401 });
         }
 
-        // Verify webhook signature
-        const saltKey = process.env.NEXT_PUBLIC_PHONE_PAY_CLIENT_SECRET;
-        if (!saltKey) {
-            console.error('Salt key not configured for webhook verification');
+        // Get PhonePe credentials for callback validation
+        const clientId = process.env.NEXT_PUBLIC_PHONE_PAY_CLIENT_ID;
+        const clientSecret = process.env.NEXT_PUBLIC_PHONE_PAY_CLIENT_SECRET;
+        const clientVersion = parseInt(process.env.NEXT_PUBLIC_PHONE_PAY_CLIENT_VERSION || "1");
+
+        if (!clientId || !clientSecret) {
+            console.error('❌ PhonePe credentials not configured');
             return NextResponse.json({ error: "Configuration error" }, { status: 500 });
         }
 
-        const expectedSignature = createHmac('sha256', saltKey)
-            .update(body)
-            .digest('hex');
+        // Get merchant callback credentials (these should be configured in PhonePe dashboard)
+        const username = process.env.PHONEPE_WEBHOOK_USERNAME;
+        const password = process.env.PHONEPE_WEBHOOK_PASSWORD;
 
-        const receivedSignature = signature.split('###')[0];
+        if (!username || !password) {
+            console.error('❌ PhonePe webhook credentials not configured');
+            console.error('Set PHONEPE_WEBHOOK_USERNAME and PHONEPE_WEBHOOK_PASSWORD');
+            return NextResponse.json({ error: "Configuration error - webhook credentials missing" }, { status: 500 });
+        }
 
-        if (expectedSignature !== receivedSignature) {
-            console.error('Invalid webhook signature');
-            return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
+        console.log('🔐 PhonePe Callback Validation:');
+        console.log('Authorization header:', authorization.substring(0, 20) + '...');
+        console.log('Username configured:', username ? '✅ Yes' : '❌ No');
+        console.log('Password configured:', password ? '✅ Yes' : '❌ No');
+
+        try {
+            // Initialize PhonePe client for callback validation
+            const env = process.env.NODE_ENV === 'production' ? Env.PRODUCTION : Env.SANDBOX;
+            const client = StandardCheckoutClient.getInstance(clientId, clientSecret, clientVersion, env);
+
+            // Validate the callback using PhonePe SDK
+            const callbackResponse = client.validateCallback(
+                username,
+                password,
+                authorization,
+                body
+            );
+
+            console.log('✅ PhonePe callback validation successful');
+            console.log('Callback type:', callbackResponse.type);
+            console.log('Order state:', callbackResponse.payload?.state);
+
+        } catch (error) {
+            console.error('❌ PhonePe callback validation failed:', error);
+            return NextResponse.json({
+                error: "Invalid callback",
+                details: "PhonePe callback validation failed",
+                message: error instanceof Error ? error.message : "Unknown error"
+            }, { status: 401 });
         }
 
         // Parse the webhook payload
@@ -191,8 +87,24 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
         console.log('Parsed webhook payload:', JSON.stringify(payload, null, 2));
 
-        // Extract payment details
-        const { merchantOrderId, state } = payload;
+        // Extract payment details - handle PhonePe's nested payload structure
+        let merchantOrderId, state;
+        if (payload.payload) {
+            // PhonePe's actual structure: payload contains the payment data
+            merchantOrderId = payload.payload.merchantOrderId;
+            state = payload.payload.state;
+            console.log('📦 Extracted from payload:', { merchantOrderId, state });
+        } else {
+            // Fallback for other formats
+            merchantOrderId = payload.merchantOrderId;
+            state = payload.state;
+            console.log('📦 Extracted from root:', { merchantOrderId, state });
+        }
+
+        if (!merchantOrderId) {
+            console.error('❌ No merchantOrderId found in payload');
+            return NextResponse.json({ error: "Invalid payload - missing merchantOrderId" }, { status: 400 });
+        }
 
         if (!merchantOrderId) {
             console.error('No merchantOrderId in webhook payload');
@@ -210,14 +122,24 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
             return NextResponse.json({ error: "Payment not found" }, { status: 404 });
         }
 
-        console.log('🎯 Processing webhook for payment:', payment.id, 'State:', state, 'Category:', payment.paymentCategory);
+        console.log('🎯 Processing webhook for payment:', {
+            paymentId: payment.id,
+            transactionId: payment.transactionId,
+            userId: payment.userId,
+            amount: payment.amount,
+            status: payment.status,
+            state: state,
+            category: payment.paymentCategory,
+            timestamp: new Date().toISOString()
+        });
 
         if (state === "COMPLETED") {
             // Update payment status to COMPLETED
-            await prisma.payment.update({
+            const updatedPayment = await prisma.payment.update({
                 where: { id: payment.id },
                 data: { status: 'COMPLETED' }
             });
+            console.log('✅ Payment status updated to COMPLETED:', payment.id);
 
             // Update user credits and status based on payment type
             if (payment.paymentCategory === 'MONTHLY') {

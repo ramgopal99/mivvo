@@ -14,9 +14,6 @@
     "clear-writing-data": "node scripts/clear-writing-data.js",
     "clear-speaking-data": "node scripts/clear-speaking-data.js",
     "deploy": "./scripts/deploy.sh",
-    "start-app": "./scripts/start.sh",
-    "stop-app": "./scripts/stop.sh",
-    "setup-ssl": "sudo ./scripts/setup-ssl.sh",
     "postinstall": "prisma generate",
     "vercel-build": "prisma generate && next build"
   },

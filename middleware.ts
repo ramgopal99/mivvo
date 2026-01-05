@@ -1,8 +1,29 @@
 import { withAuth } from "next-auth/middleware"
+import { NextResponse } from "next/server"
 
 export default withAuth(
-  function middleware() {
-    // Add any additional middleware logic here
+  function middleware(req) {
+    // Add CSP headers
+    const cspHeader = `
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval';
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' data: https:;
+      font-src 'self' data:;
+      connect-src 'self' wss://api.puter.com https://api.puter.com;
+      frame-src 'self';
+      object-src 'none';
+      base-uri 'self';
+      form-action 'self';
+      frame-ancestors 'none';
+    `.replace(/\s+/g, ' ').trim()
+
+    const response = NextResponse.next()
+
+    // Add CSP header
+    response.headers.set('Content-Security-Policy', cspHeader)
+
+    return response
   },
   {
     callbacks: {
