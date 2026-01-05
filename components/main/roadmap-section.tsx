@@ -2,11 +2,9 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
-import { useState } from "react"
 import { useRouter } from "next/navigation"
 
 export function RoadmapSection() {
-  const [selectedTag, setSelectedTag] = useState("upcoming")
   const router = useRouter()
 
   const handleViewRoadmap = () => {
@@ -20,7 +18,7 @@ export function RoadmapSection() {
           See Our Upcoming Courses
         </h2>
         <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
-          Get ready for exciting new courses coming soon. We're constantly expanding our curriculum to help you master new skills and advance your career.
+          Get ready for exciting new courses coming soon. We&apos;re constantly expanding our curriculum to help you master new skills and advance your career.
         </p>
         <Button
           size="lg"
