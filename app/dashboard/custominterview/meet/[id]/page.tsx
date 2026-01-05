@@ -22,7 +22,7 @@ export default function CustomInterviewMeetPage() {
   const router = useRouter()
   const [interview, setInterview] = useState<ExtendedInterviewData | null>(null)
   const [loading, setLoading] = useState(true)
-  const uiConfig = DEFAULT_CONFIGS.uiConfig
+  const [uiConfig, setUiConfig] = useState(DEFAULT_CONFIGS.uiConfig)
 
   // Permission check states
   const [showPermissionDialog, setShowPermissionDialog] = useState(false)
@@ -31,50 +31,11 @@ export default function CustomInterviewMeetPage() {
   const [hasAudioPermission, setHasAudioPermission] = useState(false)
   const [checkingPermissions, setCheckingPermissions] = useState(false)
 
-  // Fullscreen choice dialog state
-  const [showFullscreenChoice, setShowFullscreenChoice] = useState(false)
-
   // Get interview ID from params - handle potential undefined
   const interviewId = Array.isArray(params.id) ? params.id[0] : params.id
 
   console.log('Meet page params:', params)
   console.log('Extracted interviewId:', interviewId)
-
-  // Handle fullscreen choice
-  useEffect(() => {
-    if (interview && !loading) {
-      console.log('Fullscreen mode check - autoFullscreen:', uiConfig.autoFullscreen, 'type:', typeof uiConfig.autoFullscreen)
-
-      if (uiConfig.autoFullscreen === 0) {
-        // Mode 0: Always normal mode - no action needed
-        console.log('Mode 0: Using normal mode - no dialog, no fullscreen')
-        setShowFullscreenChoice(false) // Explicitly ensure dialog is closed
-      } else if (uiConfig.autoFullscreen === 1) {
-        // Mode 1: Always fullscreen
-        console.log('Mode 1: Requesting fullscreen automatically')
-        document.documentElement.requestFullscreen?.()
-        setShowFullscreenChoice(false) // Ensure dialog is closed
-      } else if (uiConfig.autoFullscreen === 2) {
-        // Mode 2: Ask user choice
-        console.log('Mode 2: Showing fullscreen choice dialog')
-        setShowFullscreenChoice(true)
-      } else {
-        // Fallback for any unexpected values
-        console.log('Unexpected autoFullscreen value:', uiConfig.autoFullscreen, '- defaulting to normal mode')
-        setShowFullscreenChoice(false)
-      }
-    }
-  }, [interview, loading, uiConfig.autoFullscreen])
-
-  // Fullscreen choice handlers
-  const handleFullscreenChoice = (fullscreen: boolean) => {
-    console.log('User selected:', fullscreen ? 'fullscreen' : 'normal mode')
-    setShowFullscreenChoice(false)
-
-    if (fullscreen) {
-      document.documentElement.requestFullscreen?.()
-    }
-  }
 
   useEffect(() => {
     if (!interviewId || interviewId === 'null' || interviewId === 'undefined') {
@@ -100,6 +61,14 @@ export default function CustomInterviewMeetPage() {
 
         // Greeting will be generated dynamically in MeetTestRoom based on interview data
         // No need to pre-generate here as MeetTestRoom handles it
+
+        // Configure UI based on screenShare setting from database
+        setUiConfig(prev => ({
+          ...prev,
+          showShareScreen: interviewData.screenShareEnabled, // Only show share screen button if enabled for this interview
+          showCodeButtonOnlyOnScreenShare: true, // Code button only shows when actually screen sharing (not just enabled)
+          showCodingInterviewOnlyOnScreenShare: true // Coding interview only shows when actually screen sharing (not just enabled)
+        }))
 
       } catch (error) {
         console.error('Error loading interview:', error)
@@ -290,54 +259,22 @@ export default function CustomInterviewMeetPage() {
   }
 
   return (
-    <>
-      <MeetTestRoom
-        interviewTitle={interview.title}
-        assistantName={"Mivvo"}
-        assistantAvatar={siteConfig.logo}
-        onEndCall={handleEndCall}
-        voiceConfig={DEFAULT_CONFIGS.voiceConfig}
-        uiConfig={uiConfig}
-        interviewData={{
-          ...interview,
-          customPrompt: interview?.prompts?.find(p => p.isActive)?.promptText || "",
-          jd: interview.jd,
-          interviewType: interview.interviewType
-        }}
-      />
-
-      {/* Fullscreen Choice Dialog */}
-      <Dialog open={showFullscreenChoice} onOpenChange={(open) => {
-        if (!open) {
-          setShowFullscreenChoice(false)
-        }
-      }}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-              Choose Display Mode
-            </DialogTitle>
-            <DialogDescription>
-              How would you like to view your interview? Choose fullscreen for an immersive experience or normal screen for standard viewing.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex gap-3 justify-end mt-4">
-            <Button
-              variant="outline"
-              onClick={() => handleFullscreenChoice(false)}
-            >
-              Normal Screen
-            </Button>
-            <Button
-              onClick={() => handleFullscreenChoice(true)}
-              className="bg-blue-600 hover:bg-blue-700"
-            >
-              Fullscreen
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-    </>
+    <MeetTestRoom
+      interviewTitle={interview.title}
+      assistantName={"Mivvo"}
+      assistantAvatar={siteConfig.logo}
+      onEndCall={handleEndCall}
+      voiceConfig={DEFAULT_CONFIGS.voiceConfig}
+      uiConfig={uiConfig}
+      codingVoiceChatConfig={DEFAULT_CONFIGS.codingVoiceChatConfig}
+      codingVoiceChatMessages={DEFAULT_CONFIGS.codingVoiceChatMessages}
+      codingQuestionDisplay={DEFAULT_CONFIGS.codingQuestionDisplay}
+      interviewData={{
+        ...interview,
+        customPrompt: interview?.prompts?.find(p => p.isActive)?.promptText || "",
+        jd: interview.jd,
+        interviewType: interview.interviewType
+      }}
+    />
   )
 }

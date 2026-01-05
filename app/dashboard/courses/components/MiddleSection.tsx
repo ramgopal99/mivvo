@@ -396,6 +396,48 @@ const MiddleSection = ({
     );
   };
 
+  // Calculate if next navigation would be to a locked module (module order > 2)
+  const isNextDisabled = (() => {
+    if (!selectedTopic || !modules || !Array.isArray(modules)) return false;
+
+    // Create a flat list of all navigable items (topics and exercises)
+    const allItems: { moduleId: number; subtopicId: string }[] = [];
+    modules.forEach((module: any) => {
+      // Add topics
+      module.topics?.forEach((topic: any) => {
+        allItems.push({
+          moduleId: module.order,
+          subtopicId: topic.id
+        });
+      });
+      // Add exercises
+      module.exercises?.forEach((exercise: any) => {
+        allItems.push({
+          moduleId: module.order,
+          subtopicId: exercise.id
+        });
+      });
+    });
+
+    if (allItems.length === 0) return false;
+
+    const currentIndex = allItems.findIndex(item =>
+      item.moduleId === selectedTopic.moduleId &&
+      item.subtopicId === selectedTopic.subtopicId
+    );
+
+    if (currentIndex === -1) return false;
+
+    if (currentIndex < allItems.length - 1) {
+      const nextItem = allItems[currentIndex + 1];
+      // Disable next if it would navigate to a locked module (order > 2)
+      return nextItem.moduleId > 2;
+    } else {
+      // At last item, check if wrapping to first would go to locked module
+      return allItems[0].moduleId > 2;
+    }
+  })();
+
   return (
     <div className="h-full flex flex-col relative">
       {/* Floating Chat Box */}
@@ -424,6 +466,7 @@ const MiddleSection = ({
         isChatOpen={isChatOpen}
         onCloseChat={onCloseChat}
         language={language}
+        isNextDisabled={isNextDisabled}
       />
     </div>
   );

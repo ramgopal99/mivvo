@@ -15,20 +15,31 @@ import { MeetTestHeader } from '../ui/meet-test-header'
 import { MeetTestControls } from '../ui/meet-test-controls'
 import { getAuthHeaders } from '@/lib/auth-utils'
 import { ScreenShareDisplay } from '../ui/screen-share-display'
+import { DraggableCodeButton } from '../ui/draggable-code-button'
+import { CodeDialog } from '../ui/code-dialog'
 import { VoiceChat } from '../voice/voice-chat'
 import { VoiceSettings } from '../voice/voice-settings'
 import { LiveWaveform } from '../ui/live-waveform'
 import { Chat } from '@/components/meet/chat'
+import { CodingQuestion } from '../config'
+import { getRandomStaticQuestion } from '../static-questions'
 import { generateInterviewGreeting } from '../greeting-generator'
-import { destroySTTService, destroyTTSService, destroyLLMService } from '../services'
 import {
   VoiceConfig,
   UiConfig,
+  VoiceChatConfig,
   VoiceChatMessages,
+  CodingQuestionDisplay,
   InterviewData
 } from '../types'
 
 
+// Extend window interface for coding code getter
+declare global {
+  interface Window {
+    getCurrentCodingCode?: () => { code: string; language: string }
+  }
+}
 
 interface MeetTestRoomProps {
   interviewTitle?: string
@@ -37,6 +48,9 @@ interface MeetTestRoomProps {
   onEndCall?: () => void
   voiceConfig?: VoiceConfig
   uiConfig?: UiConfig
+  codingVoiceChatConfig?: VoiceChatConfig
+  codingVoiceChatMessages?: VoiceChatMessages
+  codingQuestionDisplay?: CodingQuestionDisplay
   interviewData?: InterviewData // Interview data with custom prompts
   greeting?: string // Predefined greeting for the interview
 }
@@ -56,15 +70,34 @@ export function MeetTestRoom({
     showChatBox: false,
     showVoiceSettings: true,
     showLiveTranscription: false,
+    showLiveTranscriptionCoding: false,
     showShareScreen: true,
+    showCodeButtonOnlyOnScreenShare: true,
+    showCodingInterviewOnlyOnScreenShare: true,
     showInterviewStartDialog: false,
     redirectOnStop: false,
+    screenShareSuccessMessage: "Screen sharing started successfully!",
     screenShareDialogTitle: "Screen Sharing Active",
     screenShareDialogDescription: "Your entire screen is now being shared. Others can see everything on your screen in the bottom-right corner of their view.\n\nTips:\n• Click the monitor button again to stop sharing\n• Your entire screen content is visible to others",
     screenShareRestrictToScreen: true,
-    enablePostStopAnalysis: false,
-    autoFullscreen: 0,
-    enableUserResponseTimeout: true
+    screenShareRestrictionErrorMessage: "Please select your entire screen to share. Sharing individual windows or tabs is not allowed.",
+    enableAnalysisOnStop: true
+  },
+  codingVoiceChatConfig = {
+    SILENCE_TIMEOUT_MS: 3500,
+    RECOGNITION_KEEP_ALIVE_MS: 6000,
+    TTS_RESTART_DELAY_MS: 250,
+    USER_RESPONSE_TIMEOUT_MS: 60000
+  },
+  codingVoiceChatMessages = {
+    AI_GREETING_MESSAGE: "",
+    USER_RESPONSE_TIMEOUT_MESSAGE: "I'm still here. Feel free to continue working on the problem.",
+    QUESTION_INSTRUCTIONS: "Feel free to ask questions if you need any clarification. When you're done writing your code, just say done or submit, and I'll review your solution. You can continue with more questions anytime by saying next question."
+  },
+  codingQuestionDisplay = {
+    INCLUDE_QUESTION_TITLE: true,
+    INCLUDE_QUESTION_DESCRIPTION: false,
+    INCLUDE_QUESTION_INSTRUCTIONS: true
   },
   interviewData,
   greeting
@@ -116,41 +149,30 @@ export function MeetTestRoom({
     setIsEndingCall(true) // Prevent double saving and multiple calls
 
     try {
-      // If there's an active conversation, save it and perform analysis before ending
+      // If there's an active conversation and analysis is enabled, save it and perform analysis before ending
       if (isConversationMode && voiceTranscript.length > 0 && interviewData?.id) {
-        console.log('End call clicked with active conversation, saving data and performing analysis...')
+        if (uiConfig.enableAnalysisOnStop) {
+          console.log('End call clicked with active conversation, saving data and performing analysis...')
 
-        // Save conversation data (this already includes analysis)
-        console.log('💾 handleEndCall: Calling handleSaveConversation')
-        await handleSaveConversation()
-        console.log('💾 handleEndCall: Calling handleUpdateTimeUsage')
-        await handleUpdateTimeUsage()
+          // Save conversation data (this already includes analysis)
+          console.log('💾 handleEndCall: Calling handleSaveConversation')
+          await handleSaveConversation()
+          console.log('💾 handleEndCall: Calling handleUpdateTimeUsage')
+          await handleUpdateTimeUsage()
+        } else {
+          console.log('End call clicked with active conversation, but analysis disabled (saving tokens for testing)')
+          // Still update time usage even if not analyzing
+          console.log('💾 handleEndCall: Calling handleUpdateTimeUsage (no analysis)')
+          await handleUpdateTimeUsage()
+        }
       }
 
       // Stop any active conversations AFTER saving (to prevent state change triggers)
       if (isConversationMode) {
-        console.log('🎤 handleEndCall: Stopping conversation mode and voice chat')
-
-        // First, dispatch stop event to VoiceChat component to let it clean up properly
-        console.log('🎤 handleEndCall: Dispatching stopVoiceChat event first')
-        const stopEvent = new CustomEvent('stopVoiceChat')
-        window.dispatchEvent(stopEvent)
-
-        // Give a small delay for VoiceChat to process the stop event
-        setTimeout(() => {
-          console.log('🎤 handleEndCall: Now updating state and destroying services')
-          setIsConversationMode(false)
-          setIsVoiceChatActive(false) // Also stop voice chat activity
-          setVoiceTranscript([]) // Clear transcript
-          setMessages([]) // Clear messages
-
-          // Destroy voice services to ensure they stop listening/speaking
-          console.log('🎤 handleEndCall: Destroying voice services')
-          destroySTTService()
-          destroyTTSService()
-          destroyLLMService()
-          console.log('🎤 handleEndCall: Voice services destroyed')
-        }, 100) // Small delay to let VoiceChat process the stop event
+        setIsConversationMode(false)
+      }
+      if (isCodingInterviewActive) {
+        setIsCodingInterviewActive(false)
       }
 
       // Call the original onEndCall
@@ -182,6 +204,9 @@ export function MeetTestRoom({
   // State for interview start dialog
   const [showInterviewStartDialog, setShowInterviewStartDialog] = useState(false)
 
+  // State for code dialog
+  const [showCodeDialog, setShowCodeDialog] = useState(false)
+  const [currentCodingQuestion, setCurrentCodingQuestion] = useState<CodingQuestion | null>(null)
 
   // State to prevent double saving when ending call
   const [isEndingCall, setIsEndingCall] = useState(false)
@@ -209,24 +234,14 @@ export function MeetTestRoom({
   const [isConversationMode, setIsConversationMode] = useState(false)
   const [messages, setMessages] = useState<{ id: string; role: 'user' | 'assistant'; content: string; timestamp: string }[]>([])
 
+  // State for coding interview voice chat (separate from regular voice chat)
+  const [isCodingVoiceChatActive, setIsCodingVoiceChatActive] = useState(false)
+  const [isCodingInterviewActive, setIsCodingInterviewActive] = useState(false)
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   
   // Voice settings state - using configuration values
-  const [selectedVoice, setSelectedVoice] = useState<string>(() => {
-    // Load saved voice preference from localStorage
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('mivvo-selected-voice') || ''
-    }
-    return ''
-  })
+  const [selectedVoice, setSelectedVoice] = useState<string>('')
   const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([])
-
-  // Function to save voice preference to localStorage
-  const saveVoicePreference = useCallback((voiceURI: string) => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('mivvo-selected-voice', voiceURI)
-    }
-    setSelectedVoice(voiceURI)
-  }, [])
 
   // Timer state
   const [elapsedTime, setElapsedTime] = useState<number>(0)
@@ -234,6 +249,7 @@ export function MeetTestRoom({
 
   // User response waiting state
   const [isWaitingForUserResponse, setIsWaitingForUserResponse] = useState<boolean>(false)
+  const [isWaitingForCodingUserResponse, setIsWaitingForCodingUserResponse] = useState<boolean>(false)
 
   // Refs
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -259,24 +275,18 @@ export function MeetTestRoom({
         voice.lang.startsWith('ne')
       )
 
-      // Check if user has a saved voice preference
-      const savedVoice = typeof window !== 'undefined' ? localStorage.getItem('mivvo-selected-voice') : null
-      if (savedVoice && voices.find(v => v.voiceURI === savedVoice)) {
-        // Use saved voice preference
-        setSelectedVoice(savedVoice)
-        console.log('Loaded saved voice preference:', savedVoice)
-      } else if (targetVoices.length > 0) {
-        // Auto-select configured language voice if available
+      // Auto-select configured language voice if available
+      if (targetVoices.length > 0) {
         const targetVoice = targetVoices.find(v =>
           v.lang.startsWith(voiceConfig.language) ||
           v.lang.startsWith(voiceConfig.language.split('-')[0])
         )
         if (targetVoice) {
-          saveVoicePreference(targetVoice.voiceURI)
+          setSelectedVoice(targetVoice.voiceURI)
           console.log(`Auto-selected ${voiceConfig.language} voice:`, targetVoice.name, targetVoice.voiceURI)
         } else if (!selectedVoice) {
           // Fallback to first available voice if configured language not found
-          saveVoicePreference(targetVoices[0].voiceURI)
+          setSelectedVoice(targetVoices[0].voiceURI)
           console.log('Fallback to first available voice:', targetVoices[0].name)
         }
       }
@@ -335,7 +345,7 @@ export function MeetTestRoom({
 
       // Determine if speaking (threshold can be adjusted)
       // But don't detect as speaking if AI is currently speaking to prevent feedback
-      const isCurrentlySpeaking = normalizedLevel > 0.1 && !isVoiceChatActive
+      const isCurrentlySpeaking = normalizedLevel > 0.1 && !(isVoiceChatActive || isCodingVoiceChatActive)
       setIsUserSpeaking(isCurrentlySpeaking)
 
       requestAnimationFrame(detectVoice)
@@ -351,7 +361,7 @@ export function MeetTestRoom({
         audioContextRef.current.close()
       }
     }
-  }, [stream, isAudioEnabled, isVoiceChatActive])
+  }, [stream, isAudioEnabled, isVoiceChatActive, isCodingVoiceChatActive])
 
   // Manage media stream
   useEffect(() => {
@@ -474,18 +484,20 @@ export function MeetTestRoom({
           // User selected something other than entire screen, reject and show error
           console.log('Rejected screen share - only entire screen allowed:', displaySurface)
           stream.getTracks().forEach(track => track.stop())
-          toast.error('Please share your entire screen only')
+          toast.error(uiConfig.screenShareRestrictionErrorMessage)
           return
         }
       } else if (uiConfig.screenShareRestrictToScreen && !displaySurface) {
-        // displaySurface not available - allow sharing
-        console.log('displaySurface not available, allowing share')
+        // displaySurface not available - allow sharing with warning
+        console.log('displaySurface not available, allowing share with warning')
+        toast.warning('Please ensure you selected your entire screen. If you shared a window or tab, please stop and try again.')
       }
 
       setScreenStream(stream)
       setIsScreenSharing(true)
 
-      // Show dialog
+      // Show success message and dialog
+      toast.success(uiConfig.screenShareSuccessMessage)
       setShowScreenShareDialog(true)
 
       // Handle when user stops sharing via browser UI
@@ -495,11 +507,13 @@ export function MeetTestRoom({
     } catch (error: unknown) {
       // Handle user denial/cancellation
       if (error instanceof DOMException && error.name === 'NotAllowedError') {
+        toast.error('Screen sharing was cancelled or denied. Please try again and allow access.')
         return
       }
 
       // Log other errors to console for debugging
       console.error('Error starting screen share:', error)
+      toast.error('Failed to start screen sharing. Please try again.')
     }
   }
 
@@ -574,19 +588,106 @@ export function MeetTestRoom({
     }
   }, [isTimerRunning])
 
+  const speakCodingQuestion = useCallback((question: CodingQuestion) => {
+    // Build text to speak based on config options
+    const textParts = []
 
+    if (codingQuestionDisplay.INCLUDE_QUESTION_TITLE) {
+      textParts.push(question.title)
+    }
 
-  // Start timer when conversation mode starts
+    if (codingQuestionDisplay.INCLUDE_QUESTION_DESCRIPTION) {
+      textParts.push(question.description)
+    }
+
+    if (codingQuestionDisplay.INCLUDE_QUESTION_INSTRUCTIONS) {
+      textParts.push(codingVoiceChatMessages.QUESTION_INSTRUCTIONS || "")
+    }
+
+    const textToSpeak = textParts.join('. ')
+
+    const utterance = new SpeechSynthesisUtterance(textToSpeak)
+    utterance.rate = voiceConfig.speechRate
+    utterance.pitch = voiceConfig.speechPitch
+
+    if (selectedVoice) {
+      const voice = availableVoices.find(v => v.voiceURI === selectedVoice)
+      if (voice) {
+        utterance.voice = voice
+      }
+    }
+
+    // Manage speaking state for UI indicators
+    utterance.onstart = () => {
+      setIsCodingVoiceChatActive(true)
+    }
+    utterance.onend = () => {
+      setIsCodingVoiceChatActive(false)
+      // Start timer after AI finishes speaking the question (like regular interviews)
+      if (isCodingInterviewActive && !isTimerRunning) {
+        setIsTimerRunning(true)
+        setElapsedTime(0)
+      }
+    }
+    utterance.onerror = () => {
+      setIsCodingVoiceChatActive(false)
+      // Start timer even on error
+      if (isCodingInterviewActive && !isTimerRunning) {
+        setIsTimerRunning(true)
+        setElapsedTime(0)
+      }
+    }
+
+    speechSynthesis.speak(utterance)
+  }, [selectedVoice, availableVoices, isCodingInterviewActive, isTimerRunning, codingQuestionDisplay.INCLUDE_QUESTION_TITLE, codingQuestionDisplay.INCLUDE_QUESTION_DESCRIPTION, codingQuestionDisplay.INCLUDE_QUESTION_INSTRUCTIONS, codingVoiceChatMessages.QUESTION_INSTRUCTIONS, voiceConfig.speechRate, voiceConfig.speechPitch])
+
+  const handleNextCodingQuestion = useCallback(() => {
+    // Always advance to next question (no session limit)
+    if (isCodingInterviewActive) {
+      // Advance to next question
+      const nextIndex = currentQuestionIndex + 1
+      setCurrentQuestionIndex(nextIndex)
+
+      // Generate new question
+      const newQuestion = getRandomStaticQuestion()
+      setCurrentCodingQuestion(newQuestion)
+
+      // Clear current code and reset dialog
+      setShowCodeDialog(false)
+
+      // Small delay then show new question
+      setTimeout(() => {
+        setShowCodeDialog(true)
+
+        // Speak the full new question with instructions after dialog opens
+        setTimeout(() => {
+          speakCodingQuestion(newQuestion)
+        }, 1500)
+      }, 1000)
+    }
+  }, [isCodingInterviewActive, currentQuestionIndex, speakCodingQuestion])
+
+  // Listen for next coding question event
   useEffect(() => {
-    if (isConversationMode && !isTimerRunning) {
+    window.addEventListener('nextCodingQuestion', handleNextCodingQuestion)
+
+    return () => {
+      window.removeEventListener('nextCodingQuestion', handleNextCodingQuestion)
+    }
+  }, [handleNextCodingQuestion])
+
+  // Start timer when conversation mode starts (regular interviews only)
+  // Coding interviews start timer after AI finishes speaking the question
+  useEffect(() => {
+    if (isConversationMode && !isCodingInterviewActive && !isTimerRunning) {
       setIsTimerRunning(true)
       setElapsedTime(0) // Reset timer when starting conversation
-    } else if (!isConversationMode && isTimerRunning) {
+    } else if (!isConversationMode && !isCodingInterviewActive && isTimerRunning) {
       setIsTimerRunning(false)
     }
-  }, [isConversationMode, isTimerRunning, isEndingCall])
+  }, [isConversationMode, isCodingInterviewActive, isTimerRunning, isEndingCall])
 
-  const handleTranscriptUpdate = useCallback((transcript: { role: string; text: string; timestamp: string }[]) => {
+  const handleTranscriptUpdate = (transcript: { role: string; text: string; timestamp: string }[]) => {
     setVoiceTranscript(transcript)
     setMessages(transcript.map((t, index) => ({
       id: `msg-${index}`,
@@ -594,7 +695,7 @@ export function MeetTestRoom({
       content: t.text,
       timestamp: t.timestamp
     })))
-  }, [])
+  }
 
   const handleVoiceChatStateChange = (isActive: boolean) => {
     console.log('Voice chat state changed:', isActive)
@@ -602,31 +703,24 @@ export function MeetTestRoom({
   }
 
   const handleConversationModeChange = async (isActive: boolean) => {
-    console.log('🎤 handleConversationModeChange called with:', isActive, 'current isConversationMode:', isConversationMode)
+    console.log('Conversation mode changed:', isActive)
 
     // Create attempt when conversation starts (voice chat begins)
     if (isActive && !isConversationMode) {
       console.log('Conversation starting, creating interview attempt...')
-      console.log('Interview data:', { id: interviewData?.id, title: interviewData?.title })
-
       try {
-        const headers = getAuthHeaders()
-        console.log('Auth headers:', Object.keys(headers))
-
         const response = await fetch('/api/custom-interviews/start-attempt', {
           method: 'POST',
-          headers,
+          headers: getAuthHeaders(),
           body: JSON.stringify({
             interviewId: interviewData?.id
           })
         })
 
         if (response.ok) {
-          const result = await response.json()
-          console.log('Interview attempt created successfully:', result)
+          console.log('Interview attempt created successfully')
         } else {
-          const errorText = await response.text()
-          console.error('Failed to create interview attempt:', response.status, errorText)
+          console.error('Failed to create interview attempt:', response.status)
         }
       } catch (error) {
         console.error('Error creating interview attempt:', error)
@@ -634,23 +728,34 @@ export function MeetTestRoom({
     }
 
     // Save conversation data when conversation stops naturally (not when user ends call)
-    // Note: Only save here if conversation stops without user explicitly ending it
-    if (!isActive && isConversationMode && !isEndingCall && !isSavingConversationRef.current) {
-      console.log('🎤 handleConversationModeChange: Calling handleSaveConversation')
+    // Note: Only save here if conversation stops without user explicitly ending it, and analysis is enabled
+    if (!isActive && isConversationMode && !isEndingCall && !isSavingConversationRef.current && uiConfig.enableAnalysisOnStop) {
+      console.log('🎤 handleConversationModeChange: Calling handleSaveConversation (analysis enabled)')
       await handleSaveConversation()
       // Don't update time usage here - it's already handled by handleEndCall
       console.log('🎤 handleConversationModeChange: Skipping handleUpdateTimeUsage (handled by handleEndCall)')
+    } else if (!isActive && isConversationMode && !isEndingCall && !isSavingConversationRef.current && !uiConfig.enableAnalysisOnStop) {
+      console.log('🎤 handleConversationModeChange: Skipping handleSaveConversation (analysis disabled for testing)')
     }
 
-    console.log('🎤 Setting isConversationMode to:', isActive)
     setIsConversationMode(isActive)
   }
 
-  const handleWaitingForResponseChange = useCallback((isWaiting: boolean) => {
+  const handleWaitingForResponseChange = (isWaiting: boolean) => {
     console.log('Waiting for user response:', isWaiting)
     setIsWaitingForUserResponse(isWaiting)
-  }, [])
+  }
 
+  // Coding interview voice chat handlers
+  const handleCodingVoiceChatStateChange = (isActive: boolean) => {
+    console.log('Coding voice chat state changed:', isActive)
+    setIsCodingVoiceChatActive(isActive)
+  }
+
+  const handleCodingWaitingForResponseChange = (isWaiting: boolean) => {
+    console.log('Coding interview waiting for user response:', isWaiting)
+    setIsWaitingForCodingUserResponse(isWaiting)
+  }
 
   const handleSaveConversation = useCallback(async () => {
     // Prevent multiple simultaneous save operations using ref (synchronous)
@@ -664,7 +769,7 @@ export function MeetTestRoom({
       try {
         isSavingConversationRef.current = true
         console.log('🔄 Saving conversation data to database...')
-        console.log('Current state - isEndingCall:', isEndingCall, 'isConversationMode:', isConversationMode)
+        console.log('Current state - isEndingCall:', isEndingCall, 'isConversationMode:', isConversationMode, 'isCodingInterviewActive:', isCodingInterviewActive)
 
         const conversationData = {
           interviewId: interviewData.id,
@@ -683,50 +788,46 @@ export function MeetTestRoom({
         if (response.ok) {
           console.log('Conversation data saved successfully')
 
-          // Perform AI analysis only if enabled in config
-          if (uiConfig.enablePostStopAnalysis) {
-            try {
-              console.log('Performing AI analysis of conversation...')
+          // Now perform AI analysis of the conversation
+          try {
+            console.log('Performing AI analysis of conversation...')
 
-              const analysisResponse = await fetch('/api/analysis', {
+            const analysisResponse = await fetch('/api/analysis', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                conversation: voiceTranscript,
+                topic: interviewData.customPrompt || interviewData.jd
+              })
+            })
+
+            if (analysisResponse.ok) {
+              const analysis = await analysisResponse.json()
+              console.log('Analysis completed, saving results...')
+
+              // Save analysis results to database
+              const saveAnalysisResponse = await fetch('/api/custom-interviews/save-analysis', {
                 method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
+                headers: getAuthHeaders(),
                 body: JSON.stringify({
-                  conversation: voiceTranscript,
-                  topic: interviewData.customPrompt || interviewData.jd
+                  interviewId: interviewData.id,
+                  analysis: analysis,
+                  duration: elapsedTime
                 })
               })
 
-              if (analysisResponse.ok) {
-                const analysis = await analysisResponse.json()
-                console.log('Analysis completed, saving results...')
-
-                // Save analysis results to database
-                const saveAnalysisResponse = await fetch('/api/custom-interviews/save-analysis', {
-                  method: 'POST',
-                  headers: getAuthHeaders(),
-                  body: JSON.stringify({
-                    interviewId: interviewData.id,
-                    analysis: analysis,
-                    duration: elapsedTime
-                  })
-                })
-
-                if (saveAnalysisResponse.ok) {
-                  console.log('Analysis results saved successfully')
-                } else {
-                  console.error('Failed to save analysis results:', saveAnalysisResponse.status)
-                }
+              if (saveAnalysisResponse.ok) {
+                console.log('Analysis results saved successfully')
               } else {
-                console.error('Failed to analyze conversation:', analysisResponse.status)
+                console.error('Failed to save analysis results:', saveAnalysisResponse.status)
               }
-            } catch (analysisError) {
-              console.error('Error during analysis:', analysisError)
+            } else {
+              console.error('Failed to analyze conversation:', analysisResponse.status)
             }
-          } else {
-            console.log('Post-stop analysis disabled in config, skipping analysis to save tokens')
+          } catch (analysisError) {
+            console.error('Error during analysis:', analysisError)
           }
         } else {
           console.error('Failed to save conversation data:', response.status)
@@ -739,7 +840,7 @@ export function MeetTestRoom({
     } else {
       isSavingConversationRef.current = false
     }
-  }, [voiceTranscript, interviewData?.id, interviewData?.customPrompt, interviewData?.jd, messages, elapsedTime, isEndingCall, isConversationMode, uiConfig.enablePostStopAnalysis])
+  }, [voiceTranscript, interviewData?.id, interviewData?.customPrompt, interviewData?.jd, messages, elapsedTime, isEndingCall, isConversationMode, isCodingInterviewActive])
 
   const handleUpdateTimeUsage = useCallback(async () => {
     console.log('⏰ handleUpdateTimeUsage called, ref status:', isUpdatingTimeUsageRef.current)
@@ -794,6 +895,64 @@ export function MeetTestRoom({
     }
   }, [elapsedTime, interviewData?.id])
 
+  const handleStartCodingInterview = () => {
+    // Stop any existing voice chat first
+    if (isConversationMode) {
+      const stopEvent = new CustomEvent('stopVoiceChat')
+      window.dispatchEvent(stopEvent)
+    }
+
+    // Get a random coding question and open the dialog
+    const question = getRandomStaticQuestion()
+    setCurrentCodingQuestion(question)
+    setShowCodeDialog(true)
+
+    // Start coding interview voice conversation (separate from regular voice chat)
+    setIsCodingInterviewActive(true)
+
+    // Start coding interview voice chat and read the question
+    setTimeout(() => {
+      const event = new CustomEvent('startCodingInterviewVoiceChat')
+      window.dispatchEvent(event)
+
+      // After voice chat starts, read the full question with instructions
+      setTimeout(() => {
+        speakCodingQuestion(question)
+      }, 1500) // Additional delay to let voice chat fully initialize
+    }, 1000) // Small delay to let the dialog open first
+  }
+
+  const handleStopCodingInterview = useCallback(async () => {
+    // Save conversation data and update time usage before stopping (for coding interviews)
+    // But don't save if we're already ending the call (preventing double saves)
+    if (isCodingInterviewActive && !isEndingCall && !isSavingConversationRef.current) {
+      console.log('💻 handleStopCodingInterview: Calling handleSaveConversation')
+      await handleSaveConversation()
+      if (!isUpdatingTimeUsageRef.current) {
+        console.log('💻 handleStopCodingInterview: Calling handleUpdateTimeUsage')
+        await handleUpdateTimeUsage()
+      } else {
+        console.log('💻 handleStopCodingInterview: Skipping handleUpdateTimeUsage (already in progress)')
+      }
+    }
+
+    // Stop coding interview voice chat
+    const event = new CustomEvent('stopVoiceChat')
+    window.dispatchEvent(event)
+
+    // Stop the timer (like regular interviews)
+    setIsTimerRunning(false)
+
+    // Close the code dialog
+    setShowCodeDialog(false)
+
+    // Reset coding interview state
+    setIsCodingInterviewActive(false)
+    setCurrentQuestionIndex(0)
+
+    // Clear global code function
+    delete window.getCurrentCodingCode
+  }, [isCodingInterviewActive, handleSaveConversation, handleUpdateTimeUsage, isEndingCall])
 
 
   // Format elapsed time as MM:SS
@@ -822,11 +981,7 @@ export function MeetTestRoom({
 
 
   return (
-    <div className="relative h-screen bg-background flex overflow-hidden">
-        {/* Main Content Area */}
-        <div
-          className="h-full flex-1 transition-all duration-300 ease-in-out"
-        >
+    <div className="relative h-screen bg-background">
         {/* Header */}
         <MeetTestHeader
           interviewTitle={interviewTitle}
@@ -852,7 +1007,10 @@ export function MeetTestRoom({
             // Call the comprehensive end call handler
             handleEndCall()
           }}
-          isRegularInterviewActive={isConversationMode}
+          onStartCodingInterview={handleStartCodingInterview}
+          onStopCodingInterview={handleStopCodingInterview}
+          isCodingInterviewActive={isCodingInterviewActive}
+          isRegularInterviewActive={isConversationMode && !isCodingInterviewActive}
           isScreenSharing={isScreenSharing}
           showInterviewStartDialog={uiConfig.showInterviewStartDialog}
         />
@@ -936,7 +1094,8 @@ export function MeetTestRoom({
 
         {/* AI Assistant Display with Voice Chat */}
         <div className="relative aspect-video overflow-hidden rounded-xl bg-muted">
-          {/* Voice Chat */}
+          {/* Regular Voice Chat - only show when not in coding interview */}
+          {!isCodingInterviewActive && (
             <VoiceChat
               key="regular-voice-chat"
               onTranscriptUpdate={handleTranscriptUpdate}
@@ -945,30 +1104,55 @@ export function MeetTestRoom({
               selectedVoice={selectedVoice}
               speechRate={voiceConfig.speechRate}
               speechPitch={voiceConfig.speechPitch}
+              availableVoices={availableVoices}
               autoListenAfterAI={voiceConfig.autoListenAfterAI}
               isAISpeaking={isVoiceChatActive}
               isUserSpeaking={isUserSpeaking}
               onWaitingForResponseChange={handleWaitingForResponseChange}
+              isCoding={false}
               showLiveTranscription={uiConfig.showLiveTranscription}
               customPrompt={interviewData?.customPrompt}
               voiceChatMessages={voiceChatMessages}
               isAudioEnabled={isAudioEnabled}
-              externalConversationMode={isConversationMode}
-              uiConfig={uiConfig}
             />
+          )}
 
+          {/* Coding Interview Voice Chat - separate instance for coding interviews */}
+          {isCodingInterviewActive && (
+            <VoiceChat
+              key="coding-voice-chat"
+              onVoiceChatStateChange={handleCodingVoiceChatStateChange}
+              onConversationModeChange={handleConversationModeChange}
+              selectedVoice={selectedVoice}
+              speechRate={voiceConfig.speechRate}
+              speechPitch={voiceConfig.speechPitch}
+              availableVoices={availableVoices}
+              autoListenAfterAI={voiceConfig.autoListenAfterAI}
+              isAISpeaking={isCodingVoiceChatActive}
+              isUserSpeaking={isUserSpeaking}
+              onWaitingForResponseChange={handleCodingWaitingForResponseChange}
+              isCoding={true}
+              currentQuestion={currentCodingQuestion ? { title: currentCodingQuestion.title, description: currentCodingQuestion.description } : undefined}
+              eventName="startCodingInterviewVoiceChat"
+              voiceChatConfig={codingVoiceChatConfig}
+              voiceChatMessages={codingVoiceChatMessages}
+              showLiveTranscription={uiConfig.showLiveTranscriptionCoding}
+              customPrompt={interviewData?.customPrompt}
+              isAudioEnabled={isAudioEnabled}
+            />
+          )}
 
           {/* AI Speaking Indicator */}
-          {isVoiceChatActive && (
+          {(isVoiceChatActive || isCodingVoiceChatActive) && (
             <div className="absolute top-4 right-4 z-20">
               <div className="bg-blue-600/90 text-white px-3 py-1.5 rounded-lg text-sm font-medium shadow-lg border border-white/20">
-                Let Interviewer complete
+                {isCodingInterviewActive ? "Coding Interview Active" : "Let Interviewer complete"}
               </div>
             </div>
           )}
 
           {/* Waiting for User Response Indicator */}
-          {(isWaitingForUserResponse && !isVoiceChatActive) && (
+          {((isWaitingForUserResponse && !isVoiceChatActive) || (isWaitingForCodingUserResponse && !isCodingVoiceChatActive)) && (
             <div className="absolute top-4 right-4 z-20">
               <div className="bg-orange-500/90 text-white px-3 py-1.5 rounded-lg text-sm font-medium shadow-lg border border-white/20 flex items-center gap-2">
                 <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
@@ -995,31 +1179,25 @@ export function MeetTestRoom({
         onToggleScreenShare={toggleScreenShare}
       />
 
-        </div>
-
-        {/* Chat Panel */}
-        {uiConfig.showChatBox && isChatOpen && (
-          <div
-            className="h-full w-96 bg-background border-l border-border shadow-lg flex-shrink-0"
-          >
-            <Chat
-              isOpen={true}
-              onOpenChange={setIsChatOpen}
-              messages={messages}
-              assistant={{
-                id: 'meet-test-assistant',
-                name: assistantName,
-                avatar: assistantAvatar,
-                role: 'AI Assistant',
-                industry: 'Technology',
-                experienceLevel: 'Expert',
-                hasVoiceEnabled: true
-              }}
-              voiceTranscript={voiceTranscript}
-              isVoiceChatActive={isVoiceChatActive}
-            />
-          </div>
-        )}
+      {/* Chat - Only show if enabled in uiConfig */}
+      {uiConfig.showChatBox && (
+        <Chat
+          isOpen={isChatOpen}
+          onOpenChange={setIsChatOpen}
+          messages={messages}
+          assistant={{
+            id: 'meet-test-assistant',
+            name: assistantName,
+            avatar: assistantAvatar,
+            role: 'AI Assistant',
+            industry: 'Technology',
+            experienceLevel: 'Expert',
+            hasVoiceEnabled: true
+          }}
+          voiceTranscript={voiceTranscript}
+          isVoiceChatActive={isVoiceChatActive}
+        />
+      )}
 
       {/* Voice Settings Panel - Only show if enabled in uiConfig */}
       {uiConfig.showVoiceSettings && showSettings && (
@@ -1028,7 +1206,7 @@ export function MeetTestRoom({
             <VoiceSettings
               selectedVoice={selectedVoice}
               availableVoices={availableVoices}
-              onVoiceChange={saveVoicePreference}
+              onVoiceChange={setSelectedVoice}
               onTestVoice={testVoice}
               onClose={() => setShowSettings(false)}
             />
@@ -1091,6 +1269,22 @@ export function MeetTestRoom({
         </DialogContent>
       </Dialog>
 
+      {/* Code Dialog */}
+      <CodeDialog
+        isOpen={showCodeDialog}
+        onClose={() => {
+          // Just close the dialog, don't stop the coding interview
+          setShowCodeDialog(false)
+        }}
+        question={currentCodingQuestion}
+      />
+
+      {/* Draggable Code Button */}
+      {(!uiConfig.showCodeButtonOnlyOnScreenShare || isScreenSharing) && (
+        <DraggableCodeButton
+          onClick={() => setShowCodeDialog(true)}
+        />
+      )}
 
     </div>
   )

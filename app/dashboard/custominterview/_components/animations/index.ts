@@ -1,0 +1,1 @@
+export { VoiceRecordingAnimation } from './VoiceRecordingAnimation'

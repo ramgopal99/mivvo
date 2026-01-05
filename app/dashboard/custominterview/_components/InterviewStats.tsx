@@ -1,24 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { FileText, Clock, TrendingUp, Coins } from "lucide-react"
+import { FileText, CheckCircle, Clock, Coins } from "lucide-react"
 import { CreditUsageInfo, formatCredits, formatRemainingCredits } from "@/lib/credit-converter"
 
 interface InterviewStatsProps {
   totalInterviews: number
-  timeSpent: number
-  averageScore: number
-  totalAttempts: number
+  completedInterviews: number
   creditUsage?: CreditUsageInfo | null
 }
 
-export function InterviewStats({ totalInterviews, timeSpent, averageScore, totalAttempts, creditUsage }: InterviewStatsProps) {
-  const formatTime = (minutes: number) => {
-    const hours = Math.floor(minutes / 60)
-    const mins = minutes % 60
-    if (hours > 0) {
-      return `${hours}h ${mins}m`
-    }
-    return `${mins}m`
-  }
+export function InterviewStats({ totalInterviews, completedInterviews, creditUsage }: InterviewStatsProps) {
+  const inProgressInterviews = totalInterviews - completedInterviews
 
   // Get credit usage information
   const creditInfo = creditUsage ? formatRemainingCredits(creditUsage) : null
@@ -41,25 +32,23 @@ export function InterviewStats({ totalInterviews, timeSpent, averageScore, total
 
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Time Spent</CardTitle>
-          <Clock className="h-4 w-4 text-muted-foreground" />
+          <CardTitle className="text-sm font-medium">Completed</CardTitle>
+          <CheckCircle className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{formatTime(timeSpent)}</div>
-          <p className="text-xs text-muted-foreground">Total interview time</p>
+          <div className="text-2xl font-bold">{completedInterviews}</div>
+          <p className="text-xs text-muted-foreground">Successfully finished</p>
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Average Score</CardTitle>
-          <TrendingUp className="h-4 w-4 text-muted-foreground" />
+          <CardTitle className="text-sm font-medium">In Progress</CardTitle>
+          <Clock className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{averageScore}</div>
-          <p className="text-xs text-muted-foreground">
-            {totalAttempts} attempts
-          </p>
+          <div className="text-2xl font-bold">{inProgressInterviews}</div>
+          <p className="text-xs text-muted-foreground">Currently active</p>
         </CardContent>
       </Card>
 

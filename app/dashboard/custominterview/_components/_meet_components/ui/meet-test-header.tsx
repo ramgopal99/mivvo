@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Brain, Mic, MicOff, Info } from 'lucide-react'
+import { Brain, Mic, MicOff, Code, Info } from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -31,6 +31,9 @@ interface MeetTestHeaderProps {
   elapsedTime?: number
   isTimerRunning?: boolean
   formatTime?: (seconds: number) => string
+  onStartCodingInterview?: () => void
+  onStopCodingInterview?: () => void
+  isCodingInterviewActive?: boolean
   isRegularInterviewActive?: boolean
   isScreenSharing?: boolean
   showInterviewStartDialog?: boolean
@@ -48,6 +51,9 @@ export function MeetTestHeader({
   elapsedTime = 0,
   isTimerRunning = false,
   formatTime,
+  onStartCodingInterview,
+  onStopCodingInterview,
+  isCodingInterviewActive = false,
   isRegularInterviewActive = false,
   isScreenSharing = false,
   showInterviewStartDialog = false
@@ -148,6 +154,22 @@ export function MeetTestHeader({
           )}
 
 
+          {/* Coding Interview Button */}
+          {onStartCodingInterview && onStopCodingInterview && (!UI_CONFIG.showCodingInterviewOnlyOnScreenShare || isScreenSharing) && (
+            <Button
+              onClick={isCodingInterviewActive ? onStopCodingInterview : onStartCodingInterview}
+              variant={isCodingInterviewActive ? "destructive" : "outline"}
+              size="sm"
+              className={`gap-2 cursor-pointer ${
+                isCodingInterviewActive
+                  ? "bg-red-600 hover:bg-red-700 text-white"
+                  : "border-purple-600 text-purple-600 hover:bg-purple-50"
+              }`}
+            >
+              <Code className="h-4 w-4" />
+              {isCodingInterviewActive ? "Stop Coding" : "Coding Interview"}
+            </Button>
+          )}
         </div>
       </div>
     </div>

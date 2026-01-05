@@ -15,15 +15,18 @@ export interface UiConfig {
   showChatBox: boolean
   showVoiceSettings: boolean
   showLiveTranscription: boolean
+  showLiveTranscriptionCoding: boolean
   showShareScreen: boolean
+  showCodeButtonOnlyOnScreenShare: boolean
+  showCodingInterviewOnlyOnScreenShare: boolean
   showInterviewStartDialog: boolean
   redirectOnStop: boolean
+  screenShareSuccessMessage: string
   screenShareDialogTitle: string
   screenShareDialogDescription: string
   screenShareRestrictToScreen: boolean
-  enablePostStopAnalysis: boolean
-  autoFullscreen: number
-  enableUserResponseTimeout: boolean
+  screenShareRestrictionErrorMessage: string
+  enableAnalysisOnStop: boolean
 }
 
 export interface VoiceChatConfig {
@@ -40,6 +43,11 @@ export interface VoiceChatMessages {
   QUESTION_INSTRUCTIONS?: string
 }
 
+export interface CodingQuestionDisplay {
+  INCLUDE_QUESTION_TITLE: boolean
+  INCLUDE_QUESTION_DESCRIPTION: boolean
+  INCLUDE_QUESTION_INSTRUCTIONS: boolean
+}
 
 export interface InterviewData {
   id?: string
