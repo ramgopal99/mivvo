@@ -194,7 +194,7 @@ export class STTService {
   }
 
   // Check if speech recognition is supported
-  isSupported(): boolean {
+  isSpeechRecognitionSupported(): boolean {
     return this.isSupported
   }
 

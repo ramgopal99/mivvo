@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { VOICE_CHAT_CONFIG, VOICE_CHAT_MESSAGES, UI_CONFIG } from '../config'
+import { VOICE_CHAT_CONFIG, VOICE_CHAT_MESSAGES } from '../config'
 import { getSTTService, getLLMService, getTTSService, destroySTTService, destroyLLMService, destroyTTSService, Message, STTService, LLMService, TTSService } from '../services'
 
 interface VoiceChatConfig {
@@ -61,7 +61,6 @@ export function useVoiceChat({
   speechPitch = 1,
   autoListenAfterAI = false,
   isAISpeaking = false,
-  isUserSpeaking = false,
   onWaitingForResponseChange,
   onConversationModeChange,
   onVoiceChatStateChange,

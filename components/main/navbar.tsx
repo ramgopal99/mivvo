@@ -71,7 +71,7 @@ export function Navbar({ remainingSpots = 847, totalSeats = 1000 }: { remainingS
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 text-center text-sm">
           <span className="animate-bounce">🚀</span>
           <span className="font-bold">LAUNCH OFFER!</span>
-          <span className="hidden sm:inline">Every course ₹149</span>
+          <span className="hidden sm:inline">Every course ₹129</span>
           <span className="font-bold underline hidden sm:inline">LIFETIME VALIDITY</span>
           <LaunchBanner variant="navbar" remainingSpots={remainingSpots} totalSeats={totalSeats} />
           <span className="hidden lg:inline">left at launch pricing!</span>

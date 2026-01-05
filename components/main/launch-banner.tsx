@@ -53,7 +53,7 @@ export function LaunchBanner({
         </div>
 
         <div className="hidden sm:block text-sm">
-          Every course <span className="font-bold text-xl">₹149</span>
+          Every course <span className="font-bold text-xl">₹129</span>
         </div>
 
         <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-1 font-bold text-lg animate-pulse">

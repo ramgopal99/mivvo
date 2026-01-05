@@ -115,6 +115,26 @@ export function Chat({
     return deduplicatedMessages
   }, [messages, voiceTranscript])
 
+  // Auto-scroll to bottom when new messages arrive or chat opens
+  useEffect(() => {
+    if (scrollContainerRef.current && isOpen) {
+      const scrollToBottom = () => {
+        if (scrollContainerRef.current) {
+          scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight
+        }
+      }
+
+      // Immediate scroll
+      scrollToBottom()
+
+      // Multiple delayed scrolls to ensure content is rendered and scrolled
+      setTimeout(scrollToBottom, 50)
+      setTimeout(scrollToBottom, 150)
+      setTimeout(scrollToBottom, 300)
+      setTimeout(scrollToBottom, 500)
+    }
+  }, [combinedMessages, isOpen])
+
   // If used in a custom sliding panel, don't use Sheet wrapper
   if (isOpen && onOpenChange) {
     return (
@@ -217,26 +237,6 @@ export function Chat({
   }
 
   // Original Sheet-based implementation for standalone usage
-
-  // Auto-scroll to bottom when new messages arrive or chat opens
-  useEffect(() => {
-    if (scrollContainerRef.current && isOpen) {
-      const scrollToBottom = () => {
-        if (scrollContainerRef.current) {
-          scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight
-        }
-      }
-      
-      // Immediate scroll
-      scrollToBottom()
-      
-      // Multiple delayed scrolls to ensure content is rendered and scrolled
-      setTimeout(scrollToBottom, 50)
-      setTimeout(scrollToBottom, 150)
-      setTimeout(scrollToBottom, 300)
-      setTimeout(scrollToBottom, 500)
-    }
-  }, [combinedMessages, isOpen])
 
   return (
     <Sheet open={isOpen} onOpenChange={onOpenChange}>

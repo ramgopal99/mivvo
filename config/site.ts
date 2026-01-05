@@ -7,7 +7,7 @@ export const siteConfig = {
   logo: "/mivvo.svg",
   email: "hello@mivvo.com",
   enableCourses: true,
-  enableForeignLanguage: true,
+  enableForeignLanguage: false,
   enablePricing: true,
   aiProvider: "puter" as AIProvider, // "openai" or "puter" - controls which AI service to use for chat
   testMode: false, // Enable test mode in development

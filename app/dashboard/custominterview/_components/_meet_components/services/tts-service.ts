@@ -174,7 +174,7 @@ export class TTSService {
   }
 
   // Check if TTS is supported
-  isSupported(): boolean {
+  isTextToSpeechSupported(): boolean {
     return this.isSupported
   }
 

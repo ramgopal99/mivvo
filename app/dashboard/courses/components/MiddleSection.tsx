@@ -15,6 +15,20 @@ interface SelectedTopic {
   moduleTitle: string;
 }
 
+interface LegacyModule {
+  order?: number;
+  id?: number;
+  subLessons?: Array<{ id: string; content?: string }>;
+  topics?: Array<{ id: string; content?: string }>;
+  exercises?: Array<{
+    id: string;
+    content?: string;
+    type?: string;
+    mcqQuestions?: CourseMcqQuestion[];
+    codeQuestions?: CourseCodeQuestion[]
+  }>;
+}
+
 interface MiddleSectionProps {
   modules?: unknown[]; // Optional for backward compatibility
   selectedTopic: SelectedTopic | null;
@@ -307,19 +321,6 @@ const MiddleSection = ({
 
     // Fallback: Try to find data from modules (backward compatibility)
     if (modules && modules.length > 0) {
-      interface LegacyModule {
-        order?: number;
-        id?: number;
-        subLessons?: Array<{ id: string; content?: string }>;
-        topics?: Array<{ id: string; content?: string }>;
-        exercises?: Array<{
-          id: string;
-          content?: string;
-          type?: string;
-          mcqQuestions?: CourseMcqQuestion[];
-          codeQuestions?: CourseCodeQuestion[]
-        }>;
-      }
 
       const currentModule = modules.find((m): m is LegacyModule => {
         const mod = m as LegacyModule;
@@ -402,18 +403,19 @@ const MiddleSection = ({
 
     // Create a flat list of all navigable items (topics and exercises)
     const allItems: { moduleId: number; subtopicId: string }[] = [];
-    modules.forEach((module: any) => {
+    modules.forEach((module) => {
+      const mod = module as LegacyModule;
       // Add topics
-      module.topics?.forEach((topic: any) => {
+      mod.topics?.forEach((topic: { id: string; content?: string }) => {
         allItems.push({
-          moduleId: module.order,
+          moduleId: mod.order || mod.id || 0,
           subtopicId: topic.id
         });
       });
       // Add exercises
-      module.exercises?.forEach((exercise: any) => {
+      mod.exercises?.forEach((exercise: { id: string; content?: string; type?: string; mcqQuestions?: CourseMcqQuestion[]; codeQuestions?: CourseCodeQuestion[] }) => {
         allItems.push({
-          moduleId: module.order,
+          moduleId: mod.order || mod.id || 0,
           subtopicId: exercise.id
         });
       });
