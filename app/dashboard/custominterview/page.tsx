@@ -10,6 +10,7 @@ import { calculateCreditUsage, minutesToCredits, CreditUsageInfo } from "@/lib/c
 import { getAuthHeaders } from "@/lib/auth-utils"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { X } from "lucide-react"
+import { siteConfig } from "@/config/site"
 
 export default function CustomInterviewPage() {
   const { data: session, status } = useSession()
@@ -326,6 +327,35 @@ export default function CustomInterviewPage() {
         </div>
       </div>
     )
+  }
+
+  // Coming Soon Page Component
+  const ComingSoonPage = () => (
+    <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="text-center space-y-8 p-8">
+        <div className="space-y-4">
+          <div className="text-6xl mb-4">🚀</div>
+          <h1 className="text-4xl font-bold text-gray-900">Coming Soon</h1>
+          <p className="text-xl text-gray-600">Something amazing is on the way!</p>
+        </div>
+
+        <div className="bg-gray-50 border border-gray-200 rounded-lg shadow-sm p-6 max-w-md mx-auto">
+          <div className="text-3xl font-bold text-primary mb-2">In a Week</div>
+          <p className="text-gray-600">We&apos;re working hard to bring you an enhanced interview experience.</p>
+        </div>
+
+        <div className="space-y-4">
+          <div className="text-sm text-gray-500">
+            Stay tuned for updates and new features!
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+
+  // Show Coming Soon page if custom interviews are disabled
+  if (!siteConfig.enableCustomInterviews) {
+    return <ComingSoonPage />
   }
 
   return (

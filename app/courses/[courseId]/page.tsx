@@ -174,7 +174,7 @@ export default function CourseDetailsPage() {
   const stats = calculateStats();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pt-24">
       <CourseHeader course={course} stats={stats} />
       <CourseOverview
         modules={course.modules}
@@ -184,7 +184,12 @@ export default function CourseDetailsPage() {
       />
       <CourseFeatures />
       <CourseFAQ courseTitle={course.title} stats={stats} />
-      <CourseFooter />
+      <CourseFooter
+        courseId={courseId}
+        onViewDemo={() => handleAuthenticatedAction(() => {
+          window.location.href = `/courses/${courseId}/demo`;
+        })}
+      />
 
       {/* Fixed Bottom Footer */}
       <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border shadow-lg z-50">

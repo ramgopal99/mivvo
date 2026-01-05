@@ -275,7 +275,7 @@ export default function CoursePage() {
               size="lg"
               variant="outline"
               onClick={() => router.push('/courses')}
-              className="px-6 py-2"
+              className="px-6 py-2 cursor-pointer"
             >
               View All Courses
             </Button>

@@ -16,6 +16,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'image.mivvo.life',
+        port: '',
+        pathname: '/images/**',
+      },
     ],
   },
   webpack: (config, { isServer }) => {

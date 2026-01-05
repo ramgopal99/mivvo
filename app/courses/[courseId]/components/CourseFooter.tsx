@@ -1,6 +1,11 @@
 "use client";
 
-export default function CourseFooter() {
+interface CourseFooterProps {
+  courseId?: string;
+  onViewDemo?: () => void;
+}
+
+export default function CourseFooter({ courseId, onViewDemo }: CourseFooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -17,7 +22,10 @@ export default function CourseFooter() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer">
+            <button
+              onClick={onViewDemo}
+              className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer"
+            >
               View Course Demo
             </button>
           </div>
