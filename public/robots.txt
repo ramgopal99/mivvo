@@ -1,0 +1,22 @@
+# Robots.txt for Mivvo
+# Allow all web crawlers to access all content
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://mivvo.life/sitemap.xml
+
+# Disallow access to admin areas (if any)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /college/
+
+# Allow access to public content
+Allow: /about
+Allow: /courses
+Allow: /pricing
+Allow: /contact
+Allow: /blog
+
+# Allow access to dashboard (public pages only)
+Allow: /dashboard

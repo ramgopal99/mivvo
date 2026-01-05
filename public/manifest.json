@@ -1,0 +1,26 @@
+{
+  "name": "Mivvo – Practice. Learn. Succeed.",
+  "short_name": "Mivvo",
+  "description": "An evolving platform for mock interviews, AI practice, structured courses, and collaboration.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "categories": ["education", "productivity", "business"],
+  "icons": [
+    {
+      "src": "/mivvo.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/mivvo.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ]
+}
