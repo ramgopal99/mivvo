@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { useSession } from "next-auth/react"
+import Image from "next/image"
 import CreateInterviewDialog from "./_components/CreateInterviewDialog"
 import { InterviewStats, InterviewList } from "./_components"
 import { InterviewData } from "./_components/InterviewCard"
@@ -9,7 +10,7 @@ import { getAllInterviews, deleteInterview } from "./data"
 import { calculateCreditUsage, minutesToCredits, CreditUsageInfo } from "@/lib/credit-converter"
 import { getAuthHeaders } from "@/lib/auth-utils"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { X } from "lucide-react"
+import { X, Play } from "lucide-react"
 import { siteConfig } from "@/config/site"
 
 export default function CustomInterviewPage() {
@@ -330,28 +331,60 @@ export default function CustomInterviewPage() {
   }
 
   // Coming Soon Page Component
-  const ComingSoonPage = () => (
-    <div className="min-h-screen bg-white flex items-center justify-center">
-      <div className="text-center space-y-8 p-8">
-        <div className="space-y-4">
-          <div className="text-6xl mb-4">🚀</div>
-          <h1 className="text-4xl font-bold text-gray-900">Coming Soon</h1>
-          <p className="text-xl text-gray-600">Something amazing is on the way!</p>
-        </div>
+  const ComingSoonPage = () => {
+    // Google Drive video link - update this with your actual video link
+    const videoDriveLink = "https://drive.google.com/file/d/1W6DTY4ocIP2-6hAh3xjB7Ssx-JvMVX-x/view?usp=sharing"
 
-        <div className="bg-gray-50 border border-gray-200 rounded-lg shadow-sm p-6 max-w-md mx-auto">
-          <div className="text-3xl font-bold text-primary mb-2">In a Week</div>
-          <p className="text-gray-600">We&apos;re working hard to bring you an enhanced interview experience.</p>
-        </div>
+    const handleVideoClick = () => {
+      window.open(videoDriveLink, "_blank")
+    }
 
-        <div className="space-y-4">
-          <div className="text-sm text-gray-500">
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center py-4">
+        <div className="text-center space-y-4 p-4 w-full max-w-7xl mx-auto flex flex-col items-center justify-center">
+          <div className="space-y-2">
+            <div className="text-4xl mb-2">🚀</div>
+            <h1 className="text-3xl font-bold text-gray-900">Coming Soon</h1>
+            <p className="text-lg text-gray-600">Something amazing is on the way!</p>
+          </div>
+
+          {/* Video Preview Section - Larger */}
+          <div className="relative w-full max-w-6xl mx-auto flex items-center justify-center">
+            <div 
+              className="relative inline-block rounded-lg shadow-2xl cursor-pointer group hover:shadow-3xl transition-all"
+              onClick={handleVideoClick}
+            >
+              <div className="relative">
+                <Image
+                  src="/knowyourplatform.png"
+                  alt="Know Your Platform Video Preview"
+                  width={1200}
+                  height={675}
+                  className="max-w-full max-h-[80vh] w-auto h-auto object-contain block rounded-lg"
+                  priority
+                />
+                {/* Play Button Overlay */}
+                <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors pointer-events-none rounded-lg">
+                  <div className="bg-white/90 rounded-full p-8 group-hover:bg-white group-hover:scale-110 transition-transform pointer-events-auto">
+                    <Play className="w-16 h-16 text-primary fill-primary" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gray-50 border border-gray-200 rounded-lg shadow-sm p-4 max-w-lg mx-auto">
+            <div className="text-2xl font-bold text-primary mb-1">In a Week</div>
+            <p className="text-sm text-gray-600">We&apos;re working hard to bring you an enhanced interview experience.</p>
+          </div>
+
+          <div className="text-xs text-gray-500">
             Stay tuned for updates and new features!
           </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 
   // Show Coming Soon page if custom interviews are disabled
   if (!siteConfig.enableCustomInterviews) {
