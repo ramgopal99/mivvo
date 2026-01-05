@@ -37,6 +37,7 @@ interface MiddleSectionProps {
   onPrevious?: () => void;
   onNext?: () => void;
   onAI?: () => void;
+  onRightSidebar?: () => void;
   isChatOpen?: boolean;
   onCloseChat?: () => void;
   language?: string;
@@ -163,6 +164,7 @@ const MiddleSection = ({
   onPrevious,
   onNext,
   onAI,
+  onRightSidebar,
   isChatOpen,
   onCloseChat,
   language
@@ -453,7 +455,7 @@ const MiddleSection = ({
 
       <div
         ref={scrollContainerRef}
-        className="flex-1 p-6 overflow-auto scrollbar-hide"
+        className="flex-1 p-3 md:p-6 overflow-auto scrollbar-hide"
       >
         <div className="space-y-4">
           {renderContent()}
@@ -465,6 +467,7 @@ const MiddleSection = ({
         onPrevious={onPrevious}
         onNext={onNext}
         onAI={onAI}
+        onRightSidebar={onRightSidebar}
         isChatOpen={isChatOpen}
         onCloseChat={onCloseChat}
         language={language}

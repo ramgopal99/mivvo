@@ -193,8 +193,62 @@ export default function CourseDetailsPage() {
 
       {/* Fixed Bottom Footer */}
       <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border shadow-lg z-50">
-        <div className="max-w-4xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between gap-6">
+        <div className="max-w-4xl mx-auto px-4 py-4 md:py-6">
+          {/* Mobile Layout (stacked) */}
+          <div className="block md:hidden space-y-4">
+            {/* Pricing Info - Mobile */}
+            <div className="flex flex-col items-center gap-2">
+              <div className="text-center">
+                <div className="text-xs text-muted-foreground">Course Price</div>
+                <div className="text-xl font-bold text-primary">
+                  ₹{course.price}
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  One-time payment
+                </div>
+              </div>
+              <div className="text-center">
+                <div className="text-xs text-muted-foreground">What&apos;s included</div>
+                <div className="text-xs font-medium">Lifetime access + Certificate</div>
+              </div>
+            </div>
+
+            {/* Action Buttons - Mobile */}
+            <div className="flex flex-col gap-2">
+              {checkingEnrollment ? (
+                <div className="px-4 py-2 border border-border bg-card text-card-foreground rounded-lg text-sm font-medium text-center">
+                  Loading...
+                </div>
+              ) : isEnrolled ? (
+                <button
+                  onClick={() => window.location.href = `/dashboard/courses/${courseId}`}
+                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium cursor-pointer"
+                >
+                  Go to Course
+                </button>
+              ) : (
+                <button
+                  onClick={() => handleAuthenticatedAction(() => {
+                    window.location.href = `/dashboard/courses`;
+                  })}
+                  className="px-4 py-2 border border-border bg-card text-card-foreground rounded-lg hover:bg-muted transition-colors text-sm font-medium cursor-pointer"
+                >
+                  Go to Dashboard for Buy Course
+                </button>
+              )}
+              <button
+                onClick={() => handleAuthenticatedAction(() => {
+                  window.location.href = `/courses/${courseId}/demo`;
+                })}
+                className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium cursor-pointer"
+              >
+                See Demo Now
+              </button>
+            </div>
+          </div>
+
+          {/* Desktop Layout (side by side) */}
+          <div className="hidden md:flex items-center justify-between gap-6">
             {/* Pricing Info */}
             <div className="flex items-center gap-4">
               <div className="text-left">

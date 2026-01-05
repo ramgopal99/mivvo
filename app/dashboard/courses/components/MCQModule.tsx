@@ -52,11 +52,11 @@ const MCQModule: React.FC<MCQModuleProps> = ({ questions, title = "MCQ Quiz" }) 
   const score = getScore();
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">{title}</h2>
+    <div className="space-y-4 md:space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <h2 className="text-xl md:text-2xl font-bold">{title}</h2>
         {submitted && (
-          <div className="text-lg font-semibold">
+          <div className="text-base md:text-lg font-semibold">
             Score: {score.correct}/{score.total}
           </div>
         )}
@@ -64,13 +64,13 @@ const MCQModule: React.FC<MCQModuleProps> = ({ questions, title = "MCQ Quiz" }) 
 
       {questions.map((question, questionIndex) => (
         <Card key={question.id} className="w-full">
-          <CardHeader>
-            <CardTitle className="text-lg">
+          <CardHeader className="pb-3 md:pb-6">
+            <CardTitle className="text-base md:text-lg leading-relaxed break-words">
               Question {questionIndex + 1}: {question.question}
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
+          <CardContent className="space-y-3 md:space-y-4">
+            <div className="space-y-2 md:space-y-3">
               {question.options.map((option, optionIndex) => {
                 const isSelected = selectedAnswers[question.id] === optionIndex;
                 const isCorrect = optionIndex === question.correctAnswer;
@@ -90,7 +90,7 @@ const MCQModule: React.FC<MCQModuleProps> = ({ questions, title = "MCQ Quiz" }) 
                   <Button
                     key={optionIndex}
                     variant={buttonVariant}
-                    className={`w-full justify-start text-left h-auto p-4 cursor-pointer disabled:!opacity-100 ${
+                    className={`w-full justify-start text-left h-auto p-3 md:p-4 cursor-pointer disabled:!opacity-100 text-sm md:text-base ${
                       submitted && isCorrect
                         ? '!bg-green-100 !border-green-500 !text-black dark:!bg-green-900/20 dark:!border-green-400 dark:!text-green-300'
                         : submitted && isSelected && !isCorrect
@@ -109,8 +109,8 @@ const MCQModule: React.FC<MCQModuleProps> = ({ questions, title = "MCQ Quiz" }) 
                     onClick={() => handleAnswerSelect(question.id, optionIndex)}
                     disabled={submitted}
                   >
-                    <div className="flex items-center gap-3 w-full">
-                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
+                    <div className="flex items-center gap-2 md:gap-3 w-full">
+                      <div className={`w-5 h-5 md:w-6 md:h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 text-xs md:text-sm ${
                         submitted && isCorrect
                           ? 'border-green-700 bg-green-700 text-white'
                           : submitted && isSelected && !isCorrect
@@ -121,8 +121,8 @@ const MCQModule: React.FC<MCQModuleProps> = ({ questions, title = "MCQ Quiz" }) 
                       }`}>
                         {String.fromCharCode(65 + optionIndex)}
                       </div>
-                      <span 
-                        className={`flex-1 cursor-pointer ${
+                      <span
+                        className={`flex-1 cursor-pointer text-sm md:text-base leading-relaxed break-words whitespace-normal ${
                           submitted && isCorrect
                             ? '!text-black !font-semibold'
                             : submitted && isSelected && !isCorrect
@@ -142,22 +142,22 @@ const MCQModule: React.FC<MCQModuleProps> = ({ questions, title = "MCQ Quiz" }) 
             </div>
 
             {submitted && (
-              <div className="border-t pt-4">
-                <div className="p-4 bg-muted rounded-lg">
+              <div className="border-t pt-3 md:pt-4">
+                <div className="p-3 md:p-4 bg-muted rounded-lg">
                   <div className="space-y-2">
                     {selectedAnswers[question.id] === undefined || selectedAnswers[question.id] === null ? (
-                      <div className="text-sm font-semibold text-orange-600 dark:text-orange-400">
+                      <div className="text-xs md:text-sm font-semibold text-orange-600 dark:text-orange-400">
                         No answer selected
                       </div>
                     ) : null}
-                    <div className="font-semibold">
+                    <div className="font-semibold text-sm md:text-base">
                       Correct Answer: {String.fromCharCode(65 + question.correctAnswer)}
                     </div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-xs md:text-sm text-muted-foreground">
                       {question.options[question.correctAnswer]}
                     </div>
                     {question.explanation && (
-                      <div className="text-sm">
+                      <div className="text-xs md:text-sm leading-relaxed">
                         <strong>Explanation:</strong> {question.explanation}
                       </div>
                     )}

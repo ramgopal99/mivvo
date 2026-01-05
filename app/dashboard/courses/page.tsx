@@ -131,17 +131,17 @@ export default function CoursePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 p-8">
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 p-4 md:p-6 lg:p-8">
       <div className="max-w-6xl mx-auto">
 
         {/* Enrolled Courses Section */}
         {enrolledCourses.length > 0 && (
-          <div className="mb-12">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-foreground mb-2">
+          <div className="mb-8 md:mb-12">
+            <div className="mb-4 md:mb-6">
+              <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">
                 Your Enrolled Courses
               </h2>
-              <p className="text-muted-foreground">
+              <p className="text-sm md:text-base text-muted-foreground">
                 Continue learning with your enrolled courses
               </p>
             </div>
@@ -152,8 +152,8 @@ export default function CoursePage() {
                   className="cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 border-2 hover:border-primary/50"
                   onClick={() => handleCourseSelect(course.courseId)}
                 >
-                  <CardHeader className="text-center pb-4">
-                    <div className="relative overflow-hidden rounded-lg h-32 bg-gradient-to-br from-primary/10 to-primary/5 mb-4">
+                  <CardHeader className="text-center pb-3 md:pb-4">
+                    <div className="relative overflow-hidden rounded-lg h-24 md:h-32 bg-gradient-to-br from-primary/10 to-primary/5 mb-3 md:mb-4">
                       {course.image ? (
                         <Image
                           src={course.image}
@@ -164,38 +164,38 @@ export default function CoursePage() {
                         />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <BookOpen className="w-12 h-12 text-primary/30" />
+                          <BookOpen className="w-8 h-8 md:w-12 md:h-12 text-primary/30" />
                         </div>
                       )}
                     </div>
-                    <CardTitle className="text-2xl capitalize">
+                    <CardTitle className="text-xl md:text-2xl capitalize">
                       {course.displayName}
                     </CardTitle>
-                    <CardDescription className="text-base">
+                    <CardDescription className="text-sm md:text-base">
                       {course.showCodeEditor
                         ? `Learn ${course.displayName.toLowerCase()} programming with interactive coding exercises`
                         : `Learn ${course.displayName.toLowerCase()} with comprehensive exercises and practice questions`
                       }
                       {course.codeDisplayName && (
-                        <span className="block text-sm text-muted-foreground mt-1">
+                        <span className="block text-xs md:text-sm text-muted-foreground mt-1">
                           Includes {course.codeDisplayName} code editor and {course.aiAssistantName || 'AI assistant'}
                         </span>
                       )}
-                      <div className="mt-3">
+                      <div className="mt-2 md:mt-3">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-xs text-muted-foreground">Progress</span>
                           <span className="text-xs font-medium text-primary">
                             {course.userProgress?.progressPercentage || 0}%
                           </span>
                         </div>
-                        <Progress value={course.userProgress?.progressPercentage || 0} className="h-2" />
+                        <Progress value={course.userProgress?.progressPercentage || 0} className="h-1.5 md:h-2" />
                       </div>
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="text-center">
                     <Button
                       size="lg"
-                      className="w-full cursor-pointer"
+                      className="w-full cursor-pointer text-sm md:text-base"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleCourseSelect(course.courseId);
@@ -216,13 +216,13 @@ export default function CoursePage() {
         )}
 
         {/* Explore More Courses Section */}
-        <div className="mb-12">
-          <div className="mb-6 flex justify-between items-center">
+        <div className="mb-8 md:mb-12">
+          <div className="mb-4 md:mb-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
             <div>
-              <h2 className="text-2xl font-bold text-foreground mb-2">
+              <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">
                 Explore Courses
               </h2>
-              <p className="text-muted-foreground">
+              <p className="text-sm md:text-base text-muted-foreground">
                 Discover new skills and expand your knowledge
               </p>
             </div>
@@ -230,7 +230,7 @@ export default function CoursePage() {
               size="lg"
               variant="outline"
               onClick={() => router.push('/courses')}
-              className="px-6 py-2 cursor-pointer"
+              className="px-4 md:px-6 py-2 cursor-pointer self-start sm:self-auto"
             >
               View All Courses
             </Button>
@@ -242,8 +242,8 @@ export default function CoursePage() {
                 className="cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 border-2 hover:border-primary/50"
                 onClick={() => handleCourseSelect(course.courseId)}
               >
-                <CardHeader className="text-center pb-4">
-                  <div className="relative overflow-hidden rounded-lg h-32 bg-gradient-to-br from-primary/10 to-primary/5 mb-4">
+                <CardHeader className="text-center pb-3 md:pb-4">
+                  <div className="relative overflow-hidden rounded-lg h-24 md:h-32 bg-gradient-to-br from-primary/10 to-primary/5 mb-3 md:mb-4">
                     {course.image ? (
                       <Image
                         src={course.image}
@@ -254,36 +254,36 @@ export default function CoursePage() {
                       />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <BookOpen className="w-12 h-12 text-primary/30" />
+                        <BookOpen className="w-8 h-8 md:w-12 md:h-12 text-primary/30" />
                       </div>
                     )}
                   </div>
-                  <CardTitle className="text-2xl capitalize">
+                  <CardTitle className="text-xl md:text-2xl capitalize">
                     {course.displayName}
                   </CardTitle>
-                  <CardDescription className="text-base">
+                  <CardDescription className="text-sm md:text-base">
                     {course.showCodeEditor
                       ? `Learn ${course.displayName.toLowerCase()} programming with interactive coding exercises`
                       : `Learn ${course.displayName.toLowerCase()} with comprehensive exercises and practice questions`
                     }
                     {course.codeDisplayName && (
-                      <span className="block text-sm text-muted-foreground mt-1">
+                      <span className="block text-xs md:text-sm text-muted-foreground mt-1">
                         Includes {course.codeDisplayName} code editor and {course.aiAssistantName || 'AI assistant'}
                       </span>
                     )}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <div className="mb-4">
-                    <div className="text-2xl font-bold text-primary mb-2">
+                  <div className="mb-3 md:mb-4">
+                    <div className="text-xl md:text-2xl font-bold text-primary mb-2">
                       ₹{course.price}
                     </div>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex flex-col sm:flex-row gap-2">
                     <Button
                       size="lg"
                       variant="outline"
-                      className="flex-1 cursor-pointer"
+                      className="flex-1 cursor-pointer text-sm md:text-base"
                       onClick={(e) => {
                         e.stopPropagation();
                         router.push(`/courses/${course.courseId}`);
@@ -293,7 +293,7 @@ export default function CoursePage() {
                     </Button>
                     <Button
                       size="lg"
-                      className="flex-1 cursor-pointer"
+                      className="flex-1 cursor-pointer text-sm md:text-base"
                       disabled={isProcessingPayment && selectedCourseForPayment?.courseId === course.courseId}
                       onClick={(e) => {
                         e.stopPropagation();
