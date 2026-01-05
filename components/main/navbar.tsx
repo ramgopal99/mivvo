@@ -106,7 +106,7 @@ export function Navbar({ remainingSpots = 544, totalSeats = 1000 }: { remainingS
   }, [remainingSpots])
 
   // Determine dashboard URL based on user role
-  const dashboardUrl = userRole === 'COLLEGE_ADMIN' ? '/college/dashboard' : '/dashboard'
+  const dashboardUrl = userRole === 'COLLEGE_ADMIN' ? '/college/dashboard' : userRole === 'SUPER_ADMIN' ? '/admin/dashboard' : '/dashboard'
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
