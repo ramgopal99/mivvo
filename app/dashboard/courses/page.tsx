@@ -34,8 +34,6 @@ interface Course {
   };
 }
 
-// Test mode - set to true to skip payment and directly enroll
-const TEST_MODE = "true";
 
 export default function CoursePage() {
   const router = useRouter();
@@ -68,48 +66,11 @@ export default function CoursePage() {
   };
 
   const handleEnrollCourse = async (course: Course) => {
-    if (TEST_MODE) {
-      // Test mode: Directly enroll without payment
-      await handleDirectEnrollment(course);
-    } else {
-      // Production mode: Open payment dialog
-      setSelectedCourseForPayment(course);
-      setPaymentDialogOpen(true);
-    }
+    // Open payment dialog
+    setSelectedCourseForPayment(course);
+    setPaymentDialogOpen(true);
   };
 
-  const handleDirectEnrollment = async (course: Course) => {
-    setIsProcessingPayment(true);
-    try {
-      const response = await fetch('/api/courses/enroll', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          courseId: course.courseId,
-        }),
-      });
-
-      if (response.ok) {
-        // Refresh courses to show enrolled status
-        const coursesResponse = await fetch('/api/courses');
-        if (coursesResponse.ok) {
-          const updatedCourses = await coursesResponse.json();
-          setCourses(updatedCourses);
-        }
-        alert(`Successfully enrolled in ${course.displayName}!`);
-      } else {
-        const errorData = await response.json();
-        alert(errorData.error || 'Failed to enroll in course');
-      }
-    } catch (error) {
-      console.error('Error enrolling in course:', error);
-      alert('Failed to enroll in course. Please try again.');
-    } finally {
-      setIsProcessingPayment(false);
-    }
-  };
 
   const handlePaymentInitiate = async (paymentData: { name: string; mobile: string; amount: string }) => {
     if (!selectedCourseForPayment) return;
@@ -260,15 +221,9 @@ export default function CoursePage() {
             <div>
               <h2 className="text-2xl font-bold text-foreground mb-2">
                 Explore Courses
-                {TEST_MODE && (
-                  <span className="ml-2 text-xs bg-orange-500 text-white px-2 py-1 rounded-full">
-                    TEST MODE
-                  </span>
-                )}
               </h2>
               <p className="text-muted-foreground">
                 Discover new skills and expand your knowledge
-                {TEST_MODE && " (Direct enrollment enabled)"}
               </p>
             </div>
             <Button
@@ -347,9 +302,7 @@ export default function CoursePage() {
                     >
                       {isProcessingPayment && selectedCourseForPayment?.courseId === course.courseId
                         ? 'Processing...'
-                        : TEST_MODE
-                          ? 'Enroll (Test)'
-                          : 'Buy Now'
+                        : 'Buy Now'
                       }
                     </Button>
                   </div>

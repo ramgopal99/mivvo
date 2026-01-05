@@ -9,8 +9,9 @@ import { LaunchBanner } from "./launch-banner"
 import { useSession } from "next-auth/react"
 import { landingConfig } from "../../config/landing-config"
 
-export function Navbar({ remainingSpots = 847, totalSeats = 1000 }: { remainingSpots?: number; totalSeats?: number }) {
+export function Navbar({ remainingSpots = 544, totalSeats = 1000 }: { remainingSpots?: number; totalSeats?: number }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [dynamicRemainingSpots, setDynamicRemainingSpots] = useState(remainingSpots)
   const { data: session } = useSession()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [userRole, setUserRole] = useState<string | null>(null)
@@ -61,6 +62,49 @@ export function Navbar({ remainingSpots = 847, totalSeats = 1000 }: { remainingS
     checkAuth()
   }, [session])
 
+  // Dynamic remaining spots logic
+  useEffect(() => {
+    const updateRemainingSpots = () => {
+      const now = Date.now()
+      const userKey = 'mivvo_remaining_spots'
+      const lastUpdateKey = 'mivvo_last_update'
+
+      // Get stored values
+      const storedSpots = localStorage.getItem(userKey)
+      const lastUpdate = localStorage.getItem(lastUpdateKey)
+
+      let currentSpots = storedSpots ? parseInt(storedSpots, 10) : remainingSpots
+
+      // Check if we need to update (10-12 hours = 36000000-43200000ms)
+      const hoursElapsed = lastUpdate ? (now - parseInt(lastUpdate, 10)) / (1000 * 60 * 60) : 24
+
+      if (hoursElapsed >= 10) {
+        // Add 5-15 spots randomly
+        const spotsToAdd = Math.floor(Math.random() * 11) + 5 // 5-15 inclusive
+        currentSpots += spotsToAdd
+
+        // Reset to ~500 if over 1000
+        if (currentSpots > 1000) {
+          currentSpots = Math.floor(Math.random() * 51) + 475 // 475-525 range
+        }
+
+        // Save to localStorage
+        localStorage.setItem(userKey, currentSpots.toString())
+        localStorage.setItem(lastUpdateKey, now.toString())
+      }
+
+      setDynamicRemainingSpots(currentSpots)
+    }
+
+    // Initial update
+    updateRemainingSpots()
+
+    // Set up interval to check every hour (3600000ms)
+    const interval = setInterval(updateRemainingSpots, 3600000)
+
+    return () => clearInterval(interval)
+  }, [remainingSpots])
+
   // Determine dashboard URL based on user role
   const dashboardUrl = userRole === 'COLLEGE_ADMIN' ? '/college/dashboard' : '/dashboard'
 
@@ -73,7 +117,7 @@ export function Navbar({ remainingSpots = 847, totalSeats = 1000 }: { remainingS
           <span className="font-bold">LAUNCH OFFER!</span>
           <span className="hidden sm:inline">Every course ₹129</span>
           <span className="font-bold underline hidden sm:inline">LIFETIME VALIDITY</span>
-          <LaunchBanner variant="navbar" remainingSpots={remainingSpots} totalSeats={totalSeats} />
+          <LaunchBanner variant="navbar" remainingSpots={dynamicRemainingSpots} totalSeats={totalSeats} />
           <span className="hidden lg:inline">left at launch pricing!</span>
         </div>
       </div>
