@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
+import { Suspense } from "react";
 import { NextAuthProvider } from "@/components/providers/session-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as SonnerToaster } from "@/components/ui/sonner";
+import { AffiliateTracker } from "@/components/affiliate-tracker";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -124,6 +126,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${suseMono.variable} antialiased font-mono`}
       >
         <NextAuthProvider>
+          <Suspense fallback={null}>
+            <AffiliateTracker />
+          </Suspense>
           <div className="min-h-screen bg-background">
             {children}
           </div>

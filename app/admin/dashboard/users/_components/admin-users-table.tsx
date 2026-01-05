@@ -24,9 +24,8 @@ import {
   MoreHorizontal,
   Edit,
   Trash2,
-  Ban,
-  CheckCircle,
-  Maximize2
+  Maximize2,
+  Eye
 } from "lucide-react"
 
 interface AdminUser {
@@ -47,8 +46,7 @@ interface AdminUsersTableProps {
   users: AdminUser[]
   onEditUser: (userId: string) => void
   onDeleteUser: (userId: string) => void
-  onSuspendUser: (userId: string) => void
-  onActivateUser: (userId: string) => void
+  onViewUserDetails?: (userId: string) => void
   isExpanded?: boolean
   onToggleExpand?: () => void
 }
@@ -57,8 +55,7 @@ export function AdminUsersTable({
   users,
   onEditUser,
   onDeleteUser,
-  onSuspendUser,
-  onActivateUser,
+  onViewUserDetails,
   isExpanded = false,
   onToggleExpand
 }: AdminUsersTableProps) {
@@ -119,7 +116,7 @@ export function AdminUsersTable({
               <TableHead>Role</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>College / Admin ID</TableHead>
-              <TableHead>Last Login</TableHead>
+              <TableHead>View Details</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -160,9 +157,15 @@ export function AdminUsersTable({
                   </div>
                 </TableCell>
                 <TableCell>
-                  <span className="text-sm text-muted-foreground">
-                    {new Date(user.lastLogin).toLocaleDateString()}
-                  </span>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => onViewUserDetails?.(user.id)}
+                    className="cursor-pointer"
+                  >
+                    <Eye className="h-4 w-4 mr-2" />
+                    View Details
+                  </Button>
                 </TableCell>
                 <TableCell>
                   <DropdownMenu>
@@ -178,18 +181,6 @@ export function AdminUsersTable({
                         <Edit className="mr-2 h-4 w-4" />
                         Edit User
                       </DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      {user.status === 'active' ? (
-                        <DropdownMenuItem onClick={() => onSuspendUser(user.id)} className="cursor-pointer">
-                          <Ban className="mr-2 h-4 w-4" />
-                          Suspend User
-                        </DropdownMenuItem>
-                      ) : (
-                        <DropdownMenuItem onClick={() => onActivateUser(user.id)} className="cursor-pointer">
-                          <CheckCircle className="mr-2 h-4 w-4" />
-                          Activate User
-                        </DropdownMenuItem>
-                      )}
                       <DropdownMenuSeparator />
                       <DropdownMenuItem
                         onClick={() => onDeleteUser(user.id)}

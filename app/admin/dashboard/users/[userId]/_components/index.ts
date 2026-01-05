@@ -1,0 +1,6 @@
+export { UserDetailsPage } from './user-details-page'
+export { UserDetailsHeader } from './user-details-header'
+export { UserBasicInfo } from './user-basic-info'
+export { UserCourses } from './user-courses'
+export { UserPayments } from './user-payments'
+export { UserActivity } from './user-activity'

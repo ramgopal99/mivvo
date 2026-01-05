@@ -15,6 +15,20 @@ interface SelectedTopic {
   moduleTitle: string;
 }
 
+interface LegacyModule {
+  order?: number;
+  id?: number;
+  subLessons?: Array<{ id: string; content?: string }>;
+  topics?: Array<{ id: string; content?: string }>;
+  exercises?: Array<{
+    id: string;
+    content?: string;
+    type?: string;
+    mcqQuestions?: CourseMcqQuestion[];
+    codeQuestions?: CourseCodeQuestion[]
+  }>;
+}
+
 interface MiddleSectionProps {
   modules?: unknown[]; // Optional for backward compatibility
   selectedTopic: SelectedTopic | null;
@@ -174,7 +188,7 @@ const MiddleSection = ({
   };
 
   // Convert database code questions to component format
-  const convertCodeQuestions = (dbQuestions: CourseCodeQuestion[]): CodeQuestion[] => {
+  const convertCodeQuestions = (dbQuestions: CourseCodeQuestion[], lang?: string): CodeQuestion[] => {
     return dbQuestions.map(q => {
       let question = decodeHtmlEntities(unescapeMarkdown(q.question));
       let solution = decodeHtmlEntities(unescapeMarkdown(q.solution));
@@ -186,7 +200,8 @@ const MiddleSection = ({
       return {
         id: q.id,
         question,
-        solution
+        solution,
+        language: lang || undefined
       };
     });
   };
@@ -242,12 +257,12 @@ const MiddleSection = ({
       // Check if it has MCQ questions (prioritize this over type check)
       if (exercise.mcqQuestions && exercise.mcqQuestions.length > 0) {
         const questions = convertMcqQuestions(exercise.mcqQuestions);
-        return <MCQModule questions={questions} title={selectedTopic.title} />;
+        return <MCQModule key={`${selectedTopic.moduleId}-${selectedTopic.subtopicId}`} questions={questions} title={selectedTopic.title} />;
       }
 
       // Check if it has CODE questions
       if (exercise.codeQuestions && exercise.codeQuestions.length > 0) {
-        const questions = convertCodeQuestions(exercise.codeQuestions);
+        const questions = convertCodeQuestions(exercise.codeQuestions, language);
         return <CodeExercise
           title={selectedTopic.title}
           questions={questions}
@@ -257,11 +272,11 @@ const MiddleSection = ({
       // Fallback: Check type-based conditions (for backward compatibility)
       if (exercise.type === 'MCQ' && exercise.mcqQuestions && exercise.mcqQuestions.length > 0) {
         const questions = convertMcqQuestions(exercise.mcqQuestions);
-        return <MCQModule questions={questions} title={selectedTopic.title} />;
+        return <MCQModule key={`${selectedTopic.moduleId}-${selectedTopic.subtopicId}`} questions={questions} title={selectedTopic.title} />;
       }
 
       if (exercise.type === 'CODE' && exercise.codeQuestions && exercise.codeQuestions.length > 0) {
-        const questions = convertCodeQuestions(exercise.codeQuestions);
+        const questions = convertCodeQuestions(exercise.codeQuestions, language);
         return <CodeExercise
           title={selectedTopic.title}
           questions={questions}
@@ -271,7 +286,7 @@ const MiddleSection = ({
       // Check if it's an old MCQ exercise format in content (backward compatibility)
       if (content.includes('**Question') && content.includes('**Answer:**')) {
         const questions = parseMCQQuestions(content);
-        return <MCQModule questions={questions} title={selectedTopic.title} />;
+        return <MCQModule key={`${selectedTopic.moduleId}-${selectedTopic.subtopicId}`} questions={questions} title={selectedTopic.title} />;
       }
 
       // If we have content, show it instead of the placeholder
@@ -306,19 +321,6 @@ const MiddleSection = ({
 
     // Fallback: Try to find data from modules (backward compatibility)
     if (modules && modules.length > 0) {
-      interface LegacyModule {
-        order?: number;
-        id?: number;
-        subLessons?: Array<{ id: string; content?: string }>;
-        topics?: Array<{ id: string; content?: string }>;
-        exercises?: Array<{
-          id: string;
-          content?: string;
-          type?: string;
-          mcqQuestions?: CourseMcqQuestion[];
-          codeQuestions?: CourseCodeQuestion[]
-        }>;
-      }
 
       const currentModule = modules.find((m): m is LegacyModule => {
         const mod = m as LegacyModule;
@@ -346,18 +348,18 @@ const MiddleSection = ({
           // Check if it's a new MCQ exercise format
           if (exercise.type === 'mcq' && exercise.mcqQuestions && exercise.mcqQuestions.length > 0) {
             const questions = convertMcqQuestions(exercise.mcqQuestions);
-            return <MCQModule questions={questions} title={selectedTopic.title} />;
+            return <MCQModule key={`${selectedTopic.moduleId}-${selectedTopic.subtopicId}`} questions={questions} title={selectedTopic.title} />;
           }
 
           // Check if it's an old MCQ exercise (backward compatibility)
           if (content.includes('**Question') && content.includes('**Answer:**')) {
             const questions = parseMCQQuestions(content);
-            return <MCQModule questions={questions} title={selectedTopic.title} />;
+            return <MCQModule key={`${selectedTopic.moduleId}-${selectedTopic.subtopicId}`} questions={questions} title={selectedTopic.title} />;
           }
 
           // Check if it's a new code exercise format
           if (exercise.type === 'code' && exercise.codeQuestions && exercise.codeQuestions.length > 0) {
-            const questions = convertCodeQuestions(exercise.codeQuestions);
+            const questions = convertCodeQuestions(exercise.codeQuestions, language);
             return <CodeExercise
               title={selectedTopic.title}
               questions={questions}
@@ -395,6 +397,49 @@ const MiddleSection = ({
     );
   };
 
+  // Calculate if next navigation would be to a locked module (module order > 2)
+  const isNextDisabled = (() => {
+    if (!selectedTopic || !modules || !Array.isArray(modules)) return false;
+
+    // Create a flat list of all navigable items (topics and exercises)
+    const allItems: { moduleId: number; subtopicId: string }[] = [];
+    modules.forEach((module) => {
+      const mod = module as LegacyModule;
+      // Add topics
+      mod.topics?.forEach((topic: { id: string; content?: string }) => {
+        allItems.push({
+          moduleId: mod.order || mod.id || 0,
+          subtopicId: topic.id
+        });
+      });
+      // Add exercises
+      mod.exercises?.forEach((exercise: { id: string; content?: string; type?: string; mcqQuestions?: CourseMcqQuestion[]; codeQuestions?: CourseCodeQuestion[] }) => {
+        allItems.push({
+          moduleId: mod.order || mod.id || 0,
+          subtopicId: exercise.id
+        });
+      });
+    });
+
+    if (allItems.length === 0) return false;
+
+    const currentIndex = allItems.findIndex(item =>
+      item.moduleId === selectedTopic.moduleId &&
+      item.subtopicId === selectedTopic.subtopicId
+    );
+
+    if (currentIndex === -1) return false;
+
+    if (currentIndex < allItems.length - 1) {
+      const nextItem = allItems[currentIndex + 1];
+      // Disable next if it would navigate to a locked module (order > 2)
+      return nextItem.moduleId > 2;
+    } else {
+      // At last item, check if wrapping to first would go to locked module
+      return allItems[0].moduleId > 2;
+    }
+  })();
+
   return (
     <div className="h-full flex flex-col relative">
       {/* Floating Chat Box */}
@@ -423,6 +468,7 @@ const MiddleSection = ({
         isChatOpen={isChatOpen}
         onCloseChat={onCloseChat}
         language={language}
+        isNextDisabled={isNextDisabled}
       />
     </div>
   );

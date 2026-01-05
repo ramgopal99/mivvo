@@ -7,8 +7,9 @@ export const siteConfig = {
   logo: "/mivvo.svg",
   email: "hello@mivvo.com",
   enableCourses: true,
-  enableForeignLanguage: true,
+  enableForeignLanguage: false,
   enablePricing: true,
+  enableCustomInterviews: false, // Set to true to show interviews page, false to show coming soon
   aiProvider: "puter" as AIProvider, // "openai" or "puter" - controls which AI service to use for chat
   testMode: false, // Enable test mode in development
   links: {
@@ -81,4 +82,16 @@ export const PRICING_CONFIG = {
       { rupees: 150, minutes: 125, display: `₹150 (${125 * CREDIT_MULTIPLIER} credits)` }   // 45 minutes = 540 credits
     ]
   }
+} as const
+
+// Affiliate configuration
+export const AFFILIATE_CONFIG = {
+  // Minimum payout amount in rupees
+  MINIMUM_PAYOUT_AMOUNT: 20
+} as const
+
+// Admin configuration
+export const ADMIN_CONFIG = {
+  // User deletion security code (required to delete users)
+  USER_DELETION_CODE: "2025"
 } as const

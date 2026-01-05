@@ -261,10 +261,17 @@ export default function CourseDemoPage() {
     );
 
     if (currentIndex < allItems.length - 1) {
-      setSelectedTopic(allItems[currentIndex + 1]);
+      const nextItem = allItems[currentIndex + 1];
+      // Prevent navigation to locked modules (module order > 2)
+      if (nextItem.moduleId > 2) {
+        return; // Don't navigate to locked modules
+      }
+      setSelectedTopic(nextItem);
     } else {
-      // Go to first item if at last
-      setSelectedTopic(allItems[0]);
+      // Go to first item if at last (but only if it's not in a locked module)
+      if (allItems[0].moduleId <= 2) {
+        setSelectedTopic(allItems[0]);
+      }
     }
   };
 

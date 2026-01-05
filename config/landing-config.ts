@@ -49,6 +49,7 @@ export const landingConfig = {
   steps: {
     header: {
       title: "Get started with our simple 3 step process",
+      description: "Experience our comprehensive 3-step interview preparation process designed to build your confidence and skills.",
       tabOptions: [
         { label: "Steps", value: "steps" },
         { label: "Discover how Mivvo works", value: "discover" }
@@ -202,7 +203,7 @@ export const landingConfig = {
       { label: "Expert Instructors", value: "15+", icon: "GraduationCap" }
     ],
     cta: {
-      text: "Build Your Foundation",
+      text: "Explore All Courses",
       mobileText: "Start Learning",
       href: "/courses"
     }

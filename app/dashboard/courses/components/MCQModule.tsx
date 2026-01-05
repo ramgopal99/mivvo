@@ -78,9 +78,9 @@ const MCQModule: React.FC<MCQModuleProps> = ({ questions, title = "MCQ Quiz" }) 
                 let buttonVariant: "default" | "secondary" | "destructive" | "outline" = "outline";
                 if (submitted) {
                   if (isCorrect) {
-                    buttonVariant = "default";
+                    buttonVariant = "outline";
                   } else if (isSelected && !isCorrect) {
-                    buttonVariant = "destructive";
+                    buttonVariant = "outline";
                   }
                 } else if (isSelected) {
                   buttonVariant = "secondary";
@@ -90,23 +90,51 @@ const MCQModule: React.FC<MCQModuleProps> = ({ questions, title = "MCQ Quiz" }) 
                   <Button
                     key={optionIndex}
                     variant={buttonVariant}
-                    className={`w-full justify-start text-left h-auto p-4 ${
+                    className={`w-full justify-start text-left h-auto p-4 cursor-pointer disabled:!opacity-100 ${
                       submitted && isCorrect
-                        ? 'bg-green-100 border-green-500 text-green-800 dark:bg-green-900/20 dark:border-green-400 dark:text-green-300'
+                        ? '!bg-green-100 !border-green-500 !text-black dark:!bg-green-900/20 dark:!border-green-400 dark:!text-green-300'
                         : submitted && isSelected && !isCorrect
-                        ? 'bg-red-100 border-red-500 text-red-800 dark:bg-red-900/20 dark:border-red-400 dark:text-red-300'
+                        ? '!bg-red-100 !border-red-500 !text-black dark:!bg-red-900/20 dark:!border-red-400 dark:!text-red-300'
+                        : submitted && !isCorrect && !isSelected
+                        ? '!bg-transparent !border-border hover:!bg-transparent disabled:!bg-transparent'
                         : ''
                     }`}
+                    style={
+                      submitted && (isCorrect || (isSelected && !isCorrect))
+                        ? { color: '#000000' }
+                        : submitted && !isCorrect && !isSelected
+                        ? { backgroundColor: 'transparent', opacity: 1 }
+                        : undefined
+                    }
                     onClick={() => handleAnswerSelect(question.id, optionIndex)}
                     disabled={submitted}
                   >
                     <div className="flex items-center gap-3 w-full">
                       <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                        isSelected ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground'
+                        submitted && isCorrect
+                          ? 'border-green-700 bg-green-700 text-white'
+                          : submitted && isSelected && !isCorrect
+                          ? 'border-red-700 bg-red-700 text-white'
+                          : isSelected
+                          ? 'border-primary bg-primary text-primary-foreground'
+                          : 'border-muted-foreground'
                       }`}>
                         {String.fromCharCode(65 + optionIndex)}
                       </div>
-                      <span className="flex-1">{option}</span>
+                      <span 
+                        className={`flex-1 cursor-pointer ${
+                          submitted && isCorrect
+                            ? '!text-black !font-semibold'
+                            : submitted && isSelected && !isCorrect
+                            ? '!text-black !font-semibold'
+                            : ''
+                        }`}
+                        style={
+                          submitted && (isCorrect || (isSelected && !isCorrect))
+                            ? { color: '#000000', fontWeight: '600' }
+                            : undefined
+                        }
+                      >{option}</span>
                     </div>
                   </Button>
                 );
@@ -117,6 +145,11 @@ const MCQModule: React.FC<MCQModuleProps> = ({ questions, title = "MCQ Quiz" }) 
               <div className="border-t pt-4">
                 <div className="p-4 bg-muted rounded-lg">
                   <div className="space-y-2">
+                    {selectedAnswers[question.id] === undefined || selectedAnswers[question.id] === null ? (
+                      <div className="text-sm font-semibold text-orange-600 dark:text-orange-400">
+                        No answer selected
+                      </div>
+                    ) : null}
                     <div className="font-semibold">
                       Correct Answer: {String.fromCharCode(65 + question.correctAnswer)}
                     </div>
@@ -140,13 +173,12 @@ const MCQModule: React.FC<MCQModuleProps> = ({ questions, title = "MCQ Quiz" }) 
         {!submitted ? (
           <Button
             onClick={handleSubmit}
-            disabled={Object.keys(selectedAnswers).length !== questions.length}
-            className="px-8"
+            className="px-8 cursor-pointer"
           >
             Submit Answers
           </Button>
         ) : (
-          <Button onClick={resetQuiz} variant="outline" className="px-8">
+          <Button onClick={resetQuiz} variant="outline" className="px-8 cursor-pointer">
             Retake Quiz
           </Button>
         )}

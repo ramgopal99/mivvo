@@ -1,8 +1,9 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
+import { useRouter } from "next/navigation"
 import { AdminUsersStats, AdminUsersTable, AdminUsersFilters } from "./"
-import { getFilteredAdminUsers, suspendUser, activateUser, getAdminUsersStats } from "@/app/actions/user"
+import { getFilteredAdminUsers, suspendUser, getAdminUsersStats, updateUser, deleteUser } from "@/app/actions/user"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -12,6 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { ADMIN_CONFIG } from "@/config/site"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -26,6 +28,7 @@ interface AdminUser {
   avatar?: string
   role: 'user' | 'college_admin' | 'super_admin'
   status: 'active' | 'inactive' | 'suspended'
+  userType: 'FREE' | 'PRO'
   collegeName?: string
   collegeAdminId?: string // For college admins
   lastLogin: string
@@ -47,7 +50,8 @@ interface PaginationInfo {
 }
 
 export function AdminUsersClient({ initialUsers }: AdminUsersClientProps) {
-  const [users, setUsers] = useState<AdminUser[]>(initialUsers)
+  const router = useRouter()
+  const [users, setUsers] = useState<AdminUser[]>(initialUsers as AdminUser[])
   const [pagination, setPagination] = useState<PaginationInfo | null>(null)
   const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
@@ -56,8 +60,14 @@ export function AdminUsersClient({ initialUsers }: AdminUsersClientProps) {
   const [currentPage, setCurrentPage] = useState(1)
   const [showSuspendDialog, setShowSuspendDialog] = useState(false)
   const [showEditUserDialog, setShowEditUserDialog] = useState(false)
+  const [showDeleteUserDialog, setShowDeleteUserDialog] = useState(false)
   const [suspendUserId, setSuspendUserId] = useState<string | null>(null)
   const [suspendReason, setSuspendReason] = useState("")
+  const [deleteUserId, setDeleteUserId] = useState<string | null>(null)
+  const [deleteConfirmationCode, setDeleteConfirmationCode] = useState("")
+
+  // Required code for user deletion (from site config)
+  const DELETION_CODE = ADMIN_CONFIG.USER_DELETION_CODE
   const [editUserData, setEditUserData] = useState<{
     id: string
     name: string
@@ -103,7 +113,7 @@ export function AdminUsersClient({ initialUsers }: AdminUsersClientProps) {
       const limit = isExpanded ? 50 : 5 // Show 50 users per page when expanded, 5 when collapsed
       const result = await getFilteredAdminUsers({ ...filters, limit })
       if (result.success) {
-        setUsers(result.users || [])
+        setUsers((result.users || []) as AdminUser[])
         setPagination(result.pagination || null)
       } else {
         console.error('Failed to fetch users:', result.error)
@@ -166,27 +176,98 @@ export function AdminUsersClient({ initialUsers }: AdminUsersClientProps) {
 
   const handleEditUserSubmit = async (formData: FormData) => {
     try {
-      // This would need to be implemented with an actual API call
-      console.log("Updating user:", Object.fromEntries(formData))
-      alert("User update functionality would be implemented here")
-      setShowEditUserDialog(false)
-      setEditUserData(null)
-      setSelectedRole('')
+      if (!editUserData) return
+
+      // Convert form role to proper enum format
+      const formRole = formData.get('role') as string
+      let role: 'USER' | 'COLLEGE_ADMIN' | 'SUPERADMIN' | undefined
+      switch (formRole) {
+        case 'user':
+          role = 'USER'
+          break
+        case 'college_admin':
+          role = 'COLLEGE_ADMIN'
+          break
+        case 'super_admin':
+          role = 'SUPERADMIN'
+          break
+        default:
+          role = undefined
+      }
+
+      const updateData = {
+        firstName: formData.get('firstName') as string,
+        lastName: formData.get('lastName') as string,
+        email: formData.get('email') as string,
+        role,
+        collegeName: formData.get('collegeName') as string || undefined,
+        collegeAdminId: formData.get('collegeAdminId') as string || undefined
+      }
+
+      const result = await updateUser(editUserData.id, updateData)
+
+      if (result.success) {
+        toast.success("User updated successfully")
+        // Refresh the user list
+        fetchUsers({
+          searchTerm,
+          role: roleFilter,
+          status: statusFilter,
+          page: currentPage
+        })
+        setShowEditUserDialog(false)
+        setEditUserData(null)
+        setSelectedRole('')
+      } else {
+        toast.error(`Failed to update user: ${result.error}`)
+      }
     } catch (error) {
       console.error("Error updating user:", error)
-      alert("Failed to update user")
+      toast.error("An error occurred while updating the user")
     }
   }
 
   const handleDeleteUser = (userId: string) => {
-    // TODO: Implement deleting user
-    console.log("Deleting user:", userId)
+    setDeleteUserId(userId)
+    setDeleteConfirmationCode("")
+    setShowDeleteUserDialog(true)
   }
 
-  const handleSuspendUser = (userId: string) => {
-    setSuspendUserId(userId)
-    setSuspendReason("")
-    setShowSuspendDialog(true)
+  const handleViewUserDetails = (userId: string) => {
+    router.push(`/admin/dashboard/users/${userId}`)
+  }
+
+  const handleConfirmDelete = async () => {
+    if (!deleteUserId) return
+
+    // Check if the entered code matches the required deletion code
+    if (deleteConfirmationCode !== DELETION_CODE) {
+      toast.error("Invalid deletion code. Please enter the correct code to proceed.")
+      return
+    }
+
+    try {
+      const result = await deleteUser(deleteUserId)
+
+      if (result.success) {
+        toast.success(result.message || "User deleted successfully")
+        // Refresh the user list after deletion
+        fetchUsers({
+          searchTerm,
+          role: roleFilter,
+          status: statusFilter,
+          page: currentPage
+        })
+        setShowDeleteUserDialog(false)
+        setDeleteUserId(null)
+        setDeleteConfirmationCode("")
+      } else {
+        toast.error(`Failed to delete user: ${result.error}`)
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error)
+      toast.error("An error occurred while deleting the user")
+    }
   }
 
   const handleConfirmSuspend = async () => {
@@ -214,28 +295,6 @@ export function AdminUsersClient({ initialUsers }: AdminUsersClientProps) {
       toast.error("An error occurred while suspending the user")
     }
   }
-
-  const handleActivateUser = async (userId: string) => {
-    try {
-      const result = await activateUser(userId)
-      if (result.success) {
-        toast.success("User activated successfully")
-        // Refresh the user list
-        fetchUsers({
-          searchTerm,
-          role: roleFilter,
-          status: statusFilter,
-          page: currentPage
-        })
-      } else {
-        toast.error(`Failed to activate user: ${result.error}`)
-      }
-    } catch (error) {
-      console.error("Error activating user:", error)
-      toast.error("An error occurred while activating the user")
-    }
-  }
-
 
   // Use accurate stats from database
   const totalUsers = userStats?.totalUsers || pagination?.totalCount || users.length
@@ -288,8 +347,7 @@ export function AdminUsersClient({ initialUsers }: AdminUsersClientProps) {
               users={users}
               onEditUser={handleEditUser}
               onDeleteUser={handleDeleteUser}
-              onSuspendUser={handleSuspendUser}
-              onActivateUser={handleActivateUser}
+              onViewUserDetails={handleViewUserDetails}
               isExpanded={isExpanded}
               onToggleExpand={() => setIsExpanded(!isExpanded)}
             />
@@ -370,17 +428,16 @@ export function AdminUsersClient({ initialUsers }: AdminUsersClientProps) {
       )}
 
       {/* Users Table */}
-      {!loading && (
-        <AdminUsersTable
-          users={users}
-          onEditUser={handleEditUser}
-          onDeleteUser={handleDeleteUser}
-          onSuspendUser={handleSuspendUser}
-          onActivateUser={handleActivateUser}
-          isExpanded={isExpanded}
-          onToggleExpand={() => setIsExpanded(!isExpanded)}
-        />
-      )}
+          {!loading && (
+            <AdminUsersTable
+              users={users}
+              onEditUser={handleEditUser}
+              onDeleteUser={handleDeleteUser}
+              onViewUserDetails={handleViewUserDetails}
+              isExpanded={isExpanded}
+              onToggleExpand={() => setIsExpanded(!isExpanded)}
+            />
+          )}
 
       {/* Pagination */}
       {pagination && pagination.totalPages > 1 && (
@@ -392,14 +449,14 @@ export function AdminUsersClient({ initialUsers }: AdminUsersClientProps) {
             <button
               onClick={() => handlePageChange(pagination.page - 1)}
               disabled={!pagination.hasPrevPage || loading}
-              className="px-3 py-1 text-sm border rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+              className="px-3 py-1 text-sm border rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 cursor-pointer"
             >
               Previous
             </button>
             <button
               onClick={() => handlePageChange(pagination.page + 1)}
               disabled={!pagination.hasNextPage || loading}
-              className="px-3 py-1 text-sm border rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+              className="px-3 py-1 text-sm border rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 cursor-pointer"
             >
               Next
             </button>
@@ -561,6 +618,63 @@ export function AdminUsersClient({ initialUsers }: AdminUsersClientProps) {
           )}
         </DialogContent>
       </Dialog>
+
+      {/* Delete User Confirmation Dialog */}
+      <Dialog open={showDeleteUserDialog} onOpenChange={setShowDeleteUserDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="text-red-600">Delete User</DialogTitle>
+            <DialogDescription>
+              This action cannot be undone. This will permanently delete the user account and all associated data.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="delete-code" className="text-sm font-medium">
+                Enter Deletion Code
+              </Label>
+              <Input
+                id="delete-code"
+                type="text"
+                placeholder="Enter the required deletion code"
+                value={deleteConfirmationCode}
+                onChange={(e) => setDeleteConfirmationCode(e.target.value)}
+                className="font-mono"
+              />
+              <p className="text-xs text-muted-foreground">
+                For security purposes, you must enter the exact deletion code to proceed.
+              </p>
+            </div>
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+              <p className="text-sm text-red-800 font-medium">
+                ⚠️ Warning: This action is irreversible and will permanently remove the user from the system.
+              </p>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setShowDeleteUserDialog(false)
+                setDeleteUserId(null)
+                setDeleteConfirmationCode("")
+              }}
+              className="cursor-pointer"
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={handleConfirmDelete}
+              disabled={deleteConfirmationCode !== DELETION_CODE}
+              className="cursor-pointer"
+            >
+              Delete User Permanently
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
     </div>
   )
 }

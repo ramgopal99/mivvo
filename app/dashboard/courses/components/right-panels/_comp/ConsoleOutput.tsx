@@ -32,41 +32,45 @@ const ConsoleOutput = ({ consoleOutput }: ConsoleOutputProps) => {
   }
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col min-h-0">
       {consoleOutput ? (
         isJsonResponse && parsedResult ? (
           // Display structured API response with tabs
-          <Tabs defaultValue="output" className="flex-1 flex flex-col">
-            <div className="px-3 pt-3">
+          <Tabs defaultValue="output" className="flex-1 flex flex-col min-h-0">
+            <div className="flex-shrink-0 px-3 pt-3">
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="output" className="text-foreground">Output</TabsTrigger>
-                <TabsTrigger value="details" className="text-foreground">Execution Details</TabsTrigger>
+                <TabsTrigger value="output" className="text-foreground cursor-pointer">Output</TabsTrigger>
+                <TabsTrigger value="details" className="text-foreground cursor-pointer">Execution Details</TabsTrigger>
               </TabsList>
             </div>
 
-            <TabsContent value="output" className="flex-1 p-3 bg-background border border-border text-foreground text-xs font-mono overflow-auto mt-0">
+            <TabsContent value="output" className="flex-1 min-h-0 p-3 bg-background border border-border text-foreground text-xs font-mono overflow-y-auto overflow-x-auto mt-0">
               <div className="space-y-3">
                 {/* Output Section */}
                 <div>
                   <div className="text-green-600 font-semibold mb-1">Output:</div>
-                  <pre className="whitespace-pre-wrap leading-relaxed bg-muted/50 p-2 rounded border text-green-700">
-                    {parsedResult.output || 'No output'}
-                  </pre>
+                  <div className="bg-muted/50 p-2 rounded border overflow-x-auto">
+                    <pre className="whitespace-pre-wrap leading-relaxed text-green-700 break-words">
+                      {parsedResult.output || 'No output'}
+                    </pre>
+                  </div>
                 </div>
 
                 {/* Error Section (if any) */}
                 {parsedResult.error && (
                   <div>
                     <div className="text-red-600 font-semibold mb-1">Error:</div>
-                    <pre className="whitespace-pre-wrap leading-relaxed bg-red-50 p-2 rounded border text-red-700">
-                      {parsedResult.error}
-                    </pre>
+                    <div className="bg-red-50 p-2 rounded border overflow-x-auto">
+                      <pre className="whitespace-pre-wrap leading-relaxed text-red-700 break-words">
+                        {parsedResult.error}
+                      </pre>
+                    </div>
                   </div>
                 )}
               </div>
             </TabsContent>
 
-            <TabsContent value="details" className="flex-1 p-3 bg-background border border-border text-foreground text-xs font-mono overflow-auto mt-0">
+            <TabsContent value="details" className="flex-1 min-h-0 p-3 bg-background border border-border text-foreground text-xs font-mono overflow-y-auto overflow-x-auto mt-0">
               <div className="space-y-3">
                 <div className="text-blue-600 font-semibold mb-3">Execution Details:</div>
                 <div className="grid grid-cols-2 gap-3">
@@ -102,8 +106,8 @@ const ConsoleOutput = ({ consoleOutput }: ConsoleOutputProps) => {
           </Tabs>
         ) : (
           // Display plain text (fallback)
-          <div className="flex-1 p-3 bg-background border border-border text-foreground text-xs font-mono overflow-auto">
-            <pre className="whitespace-pre-wrap leading-relaxed">{consoleOutput}</pre>
+          <div className="flex-1 min-h-0 p-3 bg-background border border-border text-foreground text-xs font-mono overflow-y-auto overflow-x-auto">
+            <pre className="whitespace-pre-wrap leading-relaxed break-words">{consoleOutput}</pre>
           </div>
         )
       ) : (

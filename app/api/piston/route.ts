@@ -3,11 +3,12 @@ import { NextResponse } from "next/server";
 interface RunRequest {
     code: string;
     language: string;
+    stdin?: string; // Optional stdin input for interactive code
 }
 
 export async function POST(request: Request) {
     const body: RunRequest = await request.json();
-    const { code, language } = body;
+    const { code, language, stdin } = body;
 
     try {
 
@@ -19,8 +20,8 @@ export async function POST(request: Request) {
         }
 
 
-        // Execute the code
-        const result = await executeCode(code, language);
+        // Execute the code with optional stdin input
+        const result = await executeCode(code, language, stdin);
 
 
         // Format the response
@@ -63,7 +64,7 @@ export async function POST(request: Request) {
 }
 
 // Helper function to execute code using Piston API
-async function executeCode(code: string, language: string) {
+async function executeCode(code: string, language: string, stdin?: string) {
     const API_URL = process.env.NEXT_PUBLIC_PISTON_API_URL || "https://api.mockopedia.com/api/v2";
     const baseUrl = API_URL.endsWith('/') ? API_URL.slice(0, -1) : API_URL;
     const executeUrl = `${baseUrl}/execute`;
@@ -76,13 +77,23 @@ async function executeCode(code: string, language: string) {
         "c++": "10.2.0"
     };
 
-    const requestBody = {
+    const requestBody: {
+        language: string;
+        version: string;
+        files: Array<{ content: string }>;
+        stdin?: string;
+    } = {
         language: language.toLowerCase(),
         version: languageVersions[language.toLowerCase()] || "*",
         files: [{
             content: code
         }]
     };
+
+    // Add stdin if provided (for handling input() in Python, scanf() in C, etc.)
+    if (stdin !== undefined && stdin !== null && stdin !== '') {
+        requestBody.stdin = stdin;
+    }
 
 
     const response = await fetch(executeUrl, {

@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import {
   CourseHeader,
   CourseOverview,
@@ -17,6 +19,7 @@ import { Course } from '../types';
 export default function CourseDetailsPage() {
   const params = useParams();
   const courseId = params.courseId as string;
+  const { data: session, status } = useSession();
   
   const [course, setCourse] = useState<Course | null>(null);
   const [loading, setLoading] = useState(true);
@@ -121,6 +124,19 @@ export default function CourseDetailsPage() {
     };
   };
 
+  const handleAuthenticatedAction = (action: () => void) => {
+    if (status === 'loading') return; // Still loading session
+
+    if (!session?.user) {
+      // User is not authenticated, redirect to sign in with callback
+      signIn('google', { callbackUrl: window.location.href });
+      return;
+    }
+
+    // User is authenticated, proceed with action
+    action();
+  };
+
   if (loading) {
     return <LoadingState />;
   }
@@ -158,7 +174,7 @@ export default function CourseDetailsPage() {
   const stats = calculateStats();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pt-24">
       <CourseHeader course={course} stats={stats} />
       <CourseOverview
         modules={course.modules}
@@ -168,7 +184,12 @@ export default function CourseDetailsPage() {
       />
       <CourseFeatures />
       <CourseFAQ courseTitle={course.title} stats={stats} />
-      <CourseFooter />
+      <CourseFooter
+        courseId={courseId}
+        onViewDemo={() => handleAuthenticatedAction(() => {
+          window.location.href = `/courses/${courseId}/demo`;
+        })}
+      />
 
       {/* Fixed Bottom Footer */}
       <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border shadow-lg z-50">
@@ -206,12 +227,20 @@ export default function CourseDetailsPage() {
                   Go to Course
                 </button>
               ) : (
-                <button className="px-6 py-2 border border-border bg-card text-card-foreground rounded-lg hover:bg-muted transition-colors text-sm font-medium cursor-pointer">
+                <button
+                  onClick={() => handleAuthenticatedAction(() => {
+                    // TODO: Implement purchase flow
+                    console.log('Purchase course:', courseId);
+                  })}
+                  className="px-6 py-2 border border-border bg-card text-card-foreground rounded-lg hover:bg-muted transition-colors text-sm font-medium cursor-pointer"
+                >
                   Buy Now
                 </button>
               )}
               <button
-                onClick={() => window.location.href = `/courses/${courseId}/demo`}
+                onClick={() => handleAuthenticatedAction(() => {
+                  window.location.href = `/courses/${courseId}/demo`;
+                })}
                 className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium cursor-pointer"
               >
                 See Demo Now

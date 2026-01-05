@@ -152,11 +152,11 @@ export function LogoutDialog({ children }: LogoutDialogProps) {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel disabled={isLoading}>Cancel</AlertDialogCancel>
+          <AlertDialogCancel disabled={isLoading} className="cursor-pointer">Cancel</AlertDialogCancel>
           <AlertDialogAction
             onClick={handleLogout}
             disabled={isLoading}
-            className="bg-destructive text-white hover:bg-destructive/90"
+            className="bg-destructive text-white hover:bg-destructive/90 cursor-pointer"
           >
             {isLoading ? "Signing out..." : "Sign Out"}
           </AlertDialogAction>

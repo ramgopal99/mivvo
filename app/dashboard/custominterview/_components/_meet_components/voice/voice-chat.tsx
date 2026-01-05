@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Brain } from 'lucide-react'
-import { VOICE_CHAT_CONFIG, VOICE_CHAT_MESSAGES, UI_CONFIG } from '../config'
+import { VOICE_CHAT_CONFIG, VOICE_CHAT_MESSAGES, UI_CONFIG, VAD_CONFIG } from '../config'
 import { Orb } from '../ui/orb'
 
 
@@ -95,6 +95,7 @@ interface VoiceChatProps {
   showLiveTranscription?: boolean // Optional override for live transcription display
   customPrompt?: string // Custom AI interviewer prompt
   isAudioEnabled?: boolean // Whether microphone is enabled
+  enableMicMuting?: boolean // Whether to physically mute microphone during AI speech
 }
 
 export function VoiceChat({
@@ -116,7 +117,8 @@ export function VoiceChat({
   voiceChatMessages,
   showLiveTranscription,
   customPrompt,
-  isAudioEnabled = true // Default to true for backward compatibility
+  isAudioEnabled = true, // Default to true for backward compatibility
+  enableMicMuting = false // Default to false for backward compatibility
 }: VoiceChatProps) {
   // Use provided voice chat config or default
   const currentVoiceChatConfig = voiceChatConfig || VOICE_CHAT_CONFIG
@@ -132,6 +134,7 @@ export function VoiceChat({
   const [isConversationMode, setIsConversationMode] = useState<boolean>(false)
   const [isWaitingForUserResponse, setIsWaitingForUserResponse] = useState<boolean>(false)
   const [liveTranscript, setLiveTranscript] = useState<string>('')
+  const [userSpeakingState, setUserSpeakingState] = useState<boolean>(false)
 
   const recognitionRef = useRef<SpeechRecognition | null>(null)
   const speechSynthesisRef = useRef<SpeechSynthesis | null>(null)
@@ -150,6 +153,21 @@ export function VoiceChat({
   const recognitionActiveTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const userResponseTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const aiSpeechCooldownRef = useRef<NodeJS.Timeout | null>(null)
+
+  // Voice Activity Detection refs
+  const audioContextRef = useRef<AudioContext | null>(null)
+  const analyserRef = useRef<AnalyserNode | null>(null)
+  const microphoneRef = useRef<MediaStreamAudioSourceNode | null>(null)
+  const vadIntervalRef = useRef<NodeJS.Timeout | null>(null)
+  const audioLevelHistoryRef = useRef<number[]>([])
+  const isUserSpeakingRef = useRef<boolean>(false)
+  const vadThresholdRef = useRef<number>(VAD_CONFIG.AUDIO_LEVEL_THRESHOLD)
+  const vadMinDurationRef = useRef<number>(VAD_CONFIG.MIN_SPEECH_DURATION_MS)
+  const vadLastSpeechTimeRef = useRef<number>(0)
+
+  // Microphone muting refs
+  const microphoneTracksRef = useRef<MediaStreamTrack[]>([])
+  const originalMutedStatesRef = useRef<boolean[]>([])
 
   // Clear existing timeout
   const clearSilenceTimeout = useCallback(() => {
@@ -234,6 +252,175 @@ export function VoiceChat({
     }, 500)
   }, [])
 
+  // Initialize Voice Activity Detection
+  const initializeVAD = useCallback(async () => {
+    try {
+      if (!isAudioEnabled) return
+
+      // Get microphone stream for VAD
+      const vadStream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true,
+        }
+      })
+
+      // Create audio context and analyser
+      const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+      audioContextRef.current = new AudioContextClass()
+      analyserRef.current = audioContextRef.current.createAnalyser()
+      microphoneRef.current = audioContextRef.current.createMediaStreamSource(vadStream)
+
+      analyserRef.current.fftSize = 256
+      analyserRef.current.smoothingTimeConstant = 0.3
+      microphoneRef.current.connect(analyserRef.current)
+
+      console.log('Voice Activity Detection initialized')
+    } catch (error) {
+      console.error('Failed to initialize Voice Activity Detection:', error)
+    }
+  }, [isAudioEnabled])
+
+  // Stop Voice Activity Detection
+  const stopVAD = useCallback(() => {
+    if (vadIntervalRef.current) {
+      clearInterval(vadIntervalRef.current)
+      vadIntervalRef.current = null
+    }
+
+    if (microphoneRef.current) {
+      microphoneRef.current.disconnect()
+      microphoneRef.current = null
+    }
+
+    if (audioContextRef.current && audioContextRef.current.state !== 'closed') {
+      audioContextRef.current.close()
+      audioContextRef.current = null
+    }
+
+    analyserRef.current = null
+    audioLevelHistoryRef.current = []
+    isUserSpeakingRef.current = false
+
+    console.log('Voice Activity Detection stopped')
+  }, [])
+
+  // Get current audio level
+  const getAudioLevel = useCallback((): number => {
+    if (!analyserRef.current) return 0
+
+    const bufferLength = analyserRef.current.frequencyBinCount
+    const dataArray = new Uint8Array(bufferLength)
+    analyserRef.current.getByteFrequencyData(dataArray)
+
+    // Calculate RMS (Root Mean Square) of audio levels
+    let sum = 0
+    for (let i = 0; i < bufferLength; i++) {
+      sum += dataArray[i] * dataArray[i]
+    }
+    const rms = Math.sqrt(sum / bufferLength)
+
+    // Normalize to 0-1 range
+    return rms / 128
+  }, [])
+
+  // Check if user is speaking based on audio levels
+  const checkUserSpeaking = useCallback((): boolean => {
+    const currentLevel = getAudioLevel()
+
+    // Add to history (keep last N samples based on config)
+    audioLevelHistoryRef.current.push(currentLevel)
+    if (audioLevelHistoryRef.current.length > VAD_CONFIG.HISTORY_LENGTH) {
+      audioLevelHistoryRef.current.shift()
+    }
+
+    // Calculate average audio level
+    const avgLevel = audioLevelHistoryRef.current.reduce((sum, level) => sum + level, 0) / audioLevelHistoryRef.current.length
+
+    // Check if above threshold and sustained
+    const isAboveThreshold = avgLevel > vadThresholdRef.current
+    const sustainedSpeech = audioLevelHistoryRef.current.filter(level => level > vadThresholdRef.current).length >= Math.ceil(VAD_CONFIG.HISTORY_LENGTH / 3)
+
+    const now = Date.now()
+    const timeSinceLastSpeech = now - vadLastSpeechTimeRef.current
+
+    if (isAboveThreshold && sustainedSpeech) {
+      // User is speaking
+      if (!isUserSpeakingRef.current) {
+        // Just started speaking
+        vadLastSpeechTimeRef.current = now
+      }
+      isUserSpeakingRef.current = true
+    } else if (isUserSpeakingRef.current && timeSinceLastSpeech > vadMinDurationRef.current) {
+      // User stopped speaking (minimum duration met)
+      isUserSpeakingRef.current = false
+    }
+
+    return isUserSpeakingRef.current
+  }, [getAudioLevel])
+
+  // Start monitoring voice activity
+  const startVoiceActivityMonitoring = useCallback(() => {
+    if (vadIntervalRef.current) return
+
+    vadIntervalRef.current = setInterval(() => {
+      if (isConversationModeRef.current && !isAISpeaking) {
+        const userSpeaking = checkUserSpeaking()
+        if (userSpeaking !== userSpeakingState) {
+          setUserSpeakingState(userSpeaking)
+        }
+      }
+    }, VAD_CONFIG.MONITORING_INTERVAL_MS)
+
+    console.log('Voice Activity Monitoring started')
+  }, [checkUserSpeaking, isAISpeaking])
+
+  // Stop monitoring voice activity
+  const stopVoiceActivityMonitoring = useCallback(() => {
+    if (vadIntervalRef.current) {
+      clearInterval(vadIntervalRef.current)
+      vadIntervalRef.current = null
+    }
+    console.log('Voice Activity Monitoring stopped')
+  }, [])
+
+  // Mute microphone tracks
+  const muteMicrophone = useCallback(() => {
+    if (!enableMicMuting) return
+
+    // Store original muted states and mute all microphone tracks
+    microphoneTracksRef.current.forEach(track => {
+      originalMutedStatesRef.current.push(track.enabled)
+      track.enabled = false
+    })
+    console.log('Microphone muted during AI speech')
+  }, [enableMicMuting])
+
+  // Unmute microphone tracks (restore original states)
+  const unmuteMicrophone = useCallback(() => {
+    if (!enableMicMuting) return
+
+    // Restore original muted states
+    microphoneTracksRef.current.forEach((track, index) => {
+      if (index < originalMutedStatesRef.current.length) {
+        track.enabled = originalMutedStatesRef.current[index]
+      }
+    })
+
+    // Clear stored states
+    originalMutedStatesRef.current = []
+    console.log('Microphone unmuted after AI speech')
+  }, [enableMicMuting])
+
+  // Store microphone tracks for muting functionality
+  const storeMicrophoneTracks = useCallback((stream: MediaStream) => {
+    if (enableMicMuting) {
+      microphoneTracksRef.current = stream.getAudioTracks()
+      console.log(`Stored ${microphoneTracksRef.current.length} microphone tracks for muting`)
+    }
+  }, [enableMicMuting])
+
   // Start user response timeout after AI speaks
   const startUserResponseTimeout = useCallback(() => {
     clearUserResponseTimeout()
@@ -289,7 +476,8 @@ export function VoiceChat({
 
     try {
       setError('')
-      await navigator.mediaDevices.getUserMedia({ audio: true })
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      storeMicrophoneTracks(stream) // Store tracks for muting functionality
       recognitionRef.current.start()
     } catch (error) {
       console.error('Error accessing microphone:', error)
@@ -314,32 +502,51 @@ export function VoiceChat({
     }
 
     utterance.onstart = () => {
-      // Aggressively stop speech recognition while AI is speaking to prevent feedback
+      console.log('AI starting to speak - implementing multiple safeguards')
+
+      // 1. Physically mute microphone if enabled (most effective safeguard)
+      muteMicrophone()
+
+      // 2. Aggressively stop speech recognition while AI is speaking to prevent feedback
       if (recognitionRef.current) {
         try {
           recognitionRef.current.stop()
+          console.log('Speech recognition stopped for AI speech')
         } catch (error) {
           // Ignore errors if already stopped
           console.log('Speech recognition already stopped or error:', error)
         }
       }
-      // Clear live transcript and any pending silence timeout - accumulated speech will be sent after AI finishes
+
+      // 2. Clear live transcript and any pending silence timeout - accumulated speech will be sent after AI finishes
       setLiveTranscript('')
       clearSilenceTimeout()
-      // Clear any AI speech cooldown
+
+      // 3. Clear any AI speech cooldown
       if (aiSpeechCooldownRef.current) {
         clearTimeout(aiSpeechCooldownRef.current)
         aiSpeechCooldownRef.current = null
       }
-      // Clear any accumulated speech to prevent processing during AI speech
+
+      // 4. Clear any accumulated speech to prevent processing during AI speech
       accumulatedSpeechRef.current = ''
+
+      // 5. Stop Voice Activity Detection during AI speech to prevent false positives
+      stopVoiceActivityMonitoring()
+
       setIsSpeaking(true)
       onVoiceChatStateChange?.(true)
+
       // Ensure listening state is false
       setIsListening(false)
       isListeningRef.current = false
+
+      console.log('All safeguards activated - AI speech protection enabled')
     }
     utterance.onend = () => {
+      // Unmute microphone immediately when AI stops speaking
+      unmuteMicrophone()
+
       setIsSpeaking(false)
       onVoiceChatStateChange?.(false)
       // Clear any accumulated speech that might have come through during AI speech
@@ -350,21 +557,36 @@ export function VoiceChat({
       startAISpeechCooldown()
       // Start user response timeout - wait for user to respond
       startUserResponseTimeout()
-      // Restart speech recognition after AI finishes speaking (with delay to avoid immediate recapture)
+      // Restart speech recognition after AI finishes speaking (with increased delay to avoid immediate recapture)
       // Only restart if microphone is enabled
       if ((isConversationModeRef.current || autoListenAfterAIRef.current) && isAudioEnabled) {
-        setTimeout(() => {
-          // Double-check that AI is still not speaking before restarting
+        setTimeout(async () => {
+          // Triple-check that AI is still not speaking before restarting
           if (!isAISpeaking && !isListeningRef.current && startListeningRef.current && !isProcessingSpeechRef.current) {
             console.log('Restarting speech recognition after AI finished speaking')
+
             // Clear accumulated speech again just before restarting to be safe
             accumulatedSpeechRef.current = ''
-            startListeningRef.current()
+
+            // Restart Voice Activity Detection before speech recognition
+            await initializeVAD()
+            startVoiceActivityMonitoring()
+
+            // Additional delay before starting recognition to ensure VAD is ready
+            setTimeout(() => {
+              if (startListeningRef.current && !isAISpeaking) {
+                startListeningRef.current()
+                console.log('Speech recognition and VAD restarted successfully')
+              }
+            }, 200)
           }
-        }, currentVoiceChatConfig.TTS_RESTART_DELAY_MS)
+        }, Math.max(currentVoiceChatConfig.TTS_RESTART_DELAY_MS, 1000)) // Minimum 1 second delay
       }
     }
     utterance.onerror = () => {
+      // Unmute microphone on error as well
+      unmuteMicrophone()
+
       setIsSpeaking(false)
       onVoiceChatStateChange?.(false)
       // Restart speech recognition on error as well
@@ -381,7 +603,7 @@ export function VoiceChat({
     }
 
     speechSynthesisRef.current.speak(utterance)
-  }, [selectedVoice, speechRate, speechPitch, availableVoices, onVoiceChatStateChange, clearSilenceTimeout, startUserResponseTimeout, currentVoiceChatConfig.TTS_RESTART_DELAY_MS, isAudioEnabled])
+  }, [selectedVoice, speechRate, speechPitch, availableVoices, onVoiceChatStateChange, clearSilenceTimeout, startUserResponseTimeout, currentVoiceChatConfig.TTS_RESTART_DELAY_MS, isAudioEnabled, muteMicrophone, unmuteMicrophone])
 
   const handleSendMessage = useCallback(async (messageText: string) => {
     if (!messageText.trim()) return
@@ -662,22 +884,41 @@ INSTRUCTION: Generate the next logical interview question based on the conversat
       }
 
       recognition.onresult = (event: SpeechRecognitionEvent) => {
-        // Critical: Ignore speech results if microphone is disabled or AI is speaking
+        // Critical: Ignore speech results if microphone is disabled
         if (!isAudioEnabledRef.current) {
           console.log('Microphone is disabled, ignoring speech results')
           return
         }
 
-        // Additional safeguard: Ignore speech results while AI is speaking to prevent feedback
+        // Multiple layers of safeguards against AI voice pickup:
+
+        // 1. Primary check: AI is currently speaking
         if (isAISpeaking) {
           console.log('AI is speaking, ignoring speech results to prevent feedback')
           return
         }
 
-        // Additional safeguard: Ignore speech results during AI speech cooldown period
+        // 2. Secondary check: AI speech cooldown active (prevents processing residual audio)
         if (aiSpeechCooldownRef.current) {
           console.log('AI speech cooldown active, ignoring speech results to prevent processing residual audio')
           return
+        }
+
+        // 3. NEW: Voice Activity Detection - only process if user is actually speaking
+        const userActuallySpeaking = checkUserSpeaking()
+        if (!userActuallySpeaking) {
+          console.log('Voice Activity Detection: No user speech detected, ignoring results')
+          return
+        }
+
+        // 4. Additional check: Low confidence results are likely noise/AI bleed
+        const lastResult = event.results[event.resultIndex]
+        if (lastResult && !lastResult.isFinal) {
+          const confidence = lastResult[0]?.confidence || 0
+          if (confidence < VAD_CONFIG.CONFIDENCE_THRESHOLD) {
+            console.log(`Low confidence speech (${confidence}), likely noise or AI bleed, ignoring`)
+            return
+          }
         }
 
         let finalTranscript = ''
@@ -760,6 +1001,11 @@ INSTRUCTION: Generate the next logical interview question based on the conversat
       if (speechSynthesisRef.current) {
         speechSynthesisRef.current.cancel()
       }
+
+      // Stop Voice Activity Detection
+      stopVoiceActivityMonitoring()
+      stopVAD()
+
       // Clear timeouts on cleanup
       clearSilenceTimeout()
       clearUserResponseTimeout()
@@ -809,7 +1055,7 @@ INSTRUCTION: Generate the next logical interview question based on the conversat
 
   // Listen for custom events from header
   useEffect(() => {
-    const handleStartVoiceChat = () => {
+    const handleStartVoiceChat = async () => {
       console.log('VoiceChat: handleStartVoiceChat called for', eventName, 'isConversationMode:', isConversationMode)
       if (!isConversationMode) {
         console.log('VoiceChat: Starting conversation')
@@ -817,6 +1063,11 @@ INSTRUCTION: Generate the next logical interview question based on the conversat
         isConversationModeRef.current = true
         onConversationModeChange?.(true)
         onVoiceChatStateChange?.(true)
+
+        // Initialize Voice Activity Detection
+        await initializeVAD()
+        startVoiceActivityMonitoring()
+
         // Start keep-alive to ensure recognition stays active
         startRecognitionKeepAlive()
         // Only send greeting for regular interviews, not coding interviews
@@ -846,6 +1097,11 @@ INSTRUCTION: Generate the next logical interview question based on the conversat
         isConversationModeRef.current = false
         onConversationModeChange?.(false)
         onVoiceChatStateChange?.(false)
+
+        // Stop Voice Activity Detection
+        stopVoiceActivityMonitoring()
+        stopVAD()
+
         // Stop keep-alive
         stopRecognitionKeepAlive()
         // Clear all timeouts and accumulated speech
@@ -872,7 +1128,7 @@ INSTRUCTION: Generate the next logical interview question based on the conversat
       window.removeEventListener(eventName, handleStartVoiceChat)
       window.removeEventListener('stopVoiceChat', handleStopVoiceChat)
     }
-  }, [eventName, isConversationMode, speakText, onVoiceChatStateChange, onConversationModeChange, clearSilenceTimeout, clearUserResponseTimeout, startRecognitionKeepAlive, stopRecognitionKeepAlive, isCoding, currentVoiceChatMessages.AI_GREETING_MESSAGE, currentQuestion?.title])
+  }, [eventName, isConversationMode, speakText, onVoiceChatStateChange, onConversationModeChange, clearSilenceTimeout, clearUserResponseTimeout, startRecognitionKeepAlive, stopRecognitionKeepAlive, initializeVAD, startVoiceActivityMonitoring, stopVoiceActivityMonitoring, stopVAD, isCoding, currentVoiceChatMessages.AI_GREETING_MESSAGE, currentQuestion?.title])
 
 
 

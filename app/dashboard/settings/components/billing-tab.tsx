@@ -213,6 +213,33 @@ export function BillingTab() {
     }
   }
 
+  // Calculate days until expiration for active PRO plans
+  const getDaysUntilExpiration = () => {
+    if (userRole === 'COLLEGE_STUDENT' && enrollmentData.expirationDate) {
+      const expirationDate = new Date(enrollmentData.expirationDate)
+      const now = new Date()
+      const timeDiff = expirationDate.getTime() - now.getTime()
+      const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24))
+
+      if (daysDiff > 0) {
+        return `${daysDiff} day${daysDiff > 1 ? 's' : ''} left`
+      } else if (daysDiff === 0) {
+        return 'Expires today'
+      } else {
+        return 'Expired'
+      }
+    }
+
+    // For regular PRO users, calculate based on credit reset
+    if (userType === 'PRO' && !isPlanExpired) {
+      // This would need credit reset date from user data
+      // For now, show generic message
+      return 'Active plan'
+    }
+
+    return null
+  }
+
 
   return (
     <div className="space-y-6">
@@ -261,6 +288,9 @@ export function BillingTab() {
                   {enrollmentData.expirationDate && new Date(enrollmentData.expirationDate) < new Date() && (
                     <p className="text-xs text-red-600 mt-1">Enrollment has expired</p>
                   )}
+                  {enrollmentData.expirationDate && new Date(enrollmentData.expirationDate) >= new Date() && getDaysUntilExpiration() && (
+                    <p className="text-xs text-blue-600 mt-1">{getDaysUntilExpiration()}</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -300,8 +330,28 @@ export function BillingTab() {
                     <p className={`text-sm ${userType === 'PRO' ? 'text-gray-400' : 'text-gray-600'}`}>
                       ₹{PRICING_CONFIG.MONTHLY_PRO.PRICE_INR} - {PRICING_CONFIG.MONTHLY_PRO.DESCRIPTION} ({CREDIT_PACKAGES.PRO * 12} credits)
                     </p>
-                    {userType === 'PRO' && (
-                      <p className="text-xs text-orange-600 mt-1">You already have an active PRO subscription</p>
+                    {userType === 'PRO' && !isPlanExpired && (
+                      <p className="text-xs text-green-600 mt-1">
+                        {(() => {
+                          if (userRole === 'COLLEGE_STUDENT' && enrollmentData.expirationDate) {
+                            return `Expires: ${new Date(enrollmentData.expirationDate).toLocaleDateString('en-IN', {
+                              day: 'numeric',
+                              month: 'short',
+                              year: 'numeric'
+                            })}`;
+                          }
+                          // For regular PRO users, calculate expiration based on credit reset
+                          // This assumes creditResetAt exists and plan expires after RESET_PERIOD_MS
+                          return `Expires: ${new Date(Date.now() + CREDIT_RESET_CONFIG.RESET_PERIOD_MS).toLocaleDateString('en-IN', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric'
+                          })}`;
+                        })()}
+                      </p>
+                    )}
+                    {userType === 'PRO' && isPlanExpired && (
+                      <p className="text-xs text-red-600 mt-1">Subscription expired • Renew to continue</p>
                     )}
                   </div>
                 </div>

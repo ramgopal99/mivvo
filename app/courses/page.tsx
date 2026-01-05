@@ -118,10 +118,16 @@ export default function CoursesPage() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Results Info */}
-        <div className="mb-8">
+        <div className="mb-8 flex items-center justify-between">
           <p className="text-muted-foreground">
             Showing {sortedCourses.length} {sortedCourses.length === 1 ? 'course' : 'courses'}
           </p>
+          <button
+            onClick={() => router.push('/courses/roadmap')}
+            className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors cursor-pointer"
+          >
+            Course Roadmap
+          </button>
         </div>
 
         {/* Courses Grid */}

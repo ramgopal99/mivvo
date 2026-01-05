@@ -158,7 +158,7 @@ export function FeedbackSubmit() {
   const { isSubmitting } = useFeedbackForm()
 
   return (
-    <Button type="submit" disabled={isSubmitting} className="w-full">
+    <Button type="submit" disabled={isSubmitting} className="w-full cursor-pointer">
       {isSubmitting ? (
         <>
           <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>

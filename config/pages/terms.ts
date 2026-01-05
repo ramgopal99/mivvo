@@ -1,3 +1,5 @@
+import { AFFILIATE_CONFIG } from '@/config/site'
+
 export const termsConfig = {
   hero: {
     title: "Terms of Service",
@@ -196,6 +198,37 @@ export const termsConfig = {
       title: "Governing Law",
       content: [
         "These Terms shall be interpreted and governed by applicable laws. Any disputes arising from these Terms or your use of the Service shall be resolved through appropriate legal channels."
+      ]
+    },
+    {
+      title: "Affiliate Program",
+      content: [
+        "By participating in our affiliate program, you agree to these additional terms:"
+      ],
+      subsections: [
+        {
+          title: "Commission & Eligibility",
+          content: [
+            "Earn 20% commission on course purchases by referred users",
+            "Self-referrals are not eligible for commissions",
+            `Minimum payout threshold is ₹${AFFILIATE_CONFIG.MINIMUM_PAYOUT_AMOUNT}`
+          ]
+        },
+        {
+          title: "Referral Terms",
+          content: [
+            "Each referral is valid for 30 days per user from first click",
+            "Multiple commissions possible from one referral within validity period",
+            "Use ethical marketing practices only"
+          ]
+        },
+        {
+          title: "Payments & Termination",
+          content: [
+            "You or we can end the affiliate partnership anytime",
+            "We'll pay any earned commissions even after the partnership ends"
+          ]
+        }
       ]
     },
     {

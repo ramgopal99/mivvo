@@ -5,8 +5,8 @@ export const dynamic = 'force-dynamic'
 
 export default function Home() {
   return (
-        <div className="min-h-screen w-full overflow-x-hidden">
-          <Navbar />
+        <div className="min-h-screen w-full overflow-x-hidden pt-20">
+          <Navbar remainingSpots={547} totalSeats={1000} />
           <HeroSection />
           <div id="features"> 
             <FeaturesSection />

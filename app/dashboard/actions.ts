@@ -23,9 +23,11 @@ export async function getDashboardData(collegeUserData?: { id: string; name: str
       stats: {
         totalInterviews: 0,
         totalTimeSpent: 0,
-        averageScore: 0
+        averageScore: 0,
+        enrolledCourses: 0
       },
-      recentInterviews: []
+      recentInterviews: [],
+      recentCourses: []
     }
   }
 
@@ -101,12 +103,101 @@ export async function getDashboardData(collegeUserData?: { id: string; name: str
     }
   })
 
+  // Get enrolled course IDs first
+  const enrollments = await prisma.courseEnrollment.findMany({
+    where: {
+      userId: user.id,
+      isActive: true
+    },
+    select: {
+      courseId: true,
+      updatedAt: true
+    }
+  })
+
+  // Get the actual courses that exist (filtering out deleted courses)
+  const enrolledCourseIds = enrollments.map(e => e.courseId)
+  const enrolledCourses = await prisma.course.findMany({
+    where: {
+      id: {
+        in: enrolledCourseIds
+      }
+    },
+    include: {
+      modules: {
+        include: {
+          topics: true,
+          exercises: true
+        },
+        orderBy: { order: 'asc' }
+      }
+    }
+  })
+
+  // Create a map of courseId to enrollment updatedAt
+  const enrollmentMap = new Map(enrollments.map(e => [e.courseId, e.updatedAt]))
+
+  // Calculate progress for each enrolled course
+  const coursesWithProgress = await Promise.all(
+    enrolledCourses.map(async (course) => {
+
+      // Get user's progress for this course
+      const progressRecords = await prisma.courseUserProgress.findMany({
+        where: {
+          userId: user.id,
+          courseId: course.id,
+          isCompleted: true,
+        },
+      })
+
+      // Calculate total items in course
+      let totalItems = 0
+      let completedModules = 0
+      course.modules.forEach((module) => {
+        const moduleItems = (module.topics?.length || 0) + (module.exercises?.length || 0)
+        totalItems += moduleItems
+
+        // Check if module is completed (all topics and exercises completed)
+        const moduleProgressRecords = progressRecords.filter(p =>
+          module.topics?.some(t => `${module.id}-${t.id}` === p.itemKey) ||
+          module.exercises?.some(e => `${module.id}-${e.id}` === p.itemKey)
+        )
+        if (moduleProgressRecords.length === moduleItems) {
+          completedModules++
+        }
+      })
+
+      // Calculate completion percentage
+      const completedItems = progressRecords.length
+      const progressPercentage = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0
+
+      return {
+        id: course.id,
+        courseId: course.courseId,
+        displayName: course.displayName,
+        headerTitle: course.headerTitle,
+        completionPercentage: progressPercentage,
+        completedModules,
+        totalModules: course.modules.length,
+        lastAccessed: enrollmentMap.get(course.id) || new Date() // Use enrollment updatedAt as last accessed
+      }
+    })
+  )
+
+  // Filter for incomplete courses (progress < 100%) and sort by last accessed
+  const incompleteCourses = coursesWithProgress
+    .filter(course => course.completionPercentage < 100)
+    .sort((a, b) => b.lastAccessed.getTime() - a.lastAccessed.getTime())
+    .slice(0, 2) // Get top 2 incomplete courses
+
   return {
     stats: {
       totalInterviews,
       totalTimeSpent: Math.round(totalTimeSpent / 60), // Convert to minutes
-      averageScore
+      averageScore,
+      enrolledCourses: enrolledCourses.length
     },
-    recentInterviews
+    recentInterviews,
+    recentCourses: incompleteCourses
   }
 }

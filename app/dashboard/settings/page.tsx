@@ -17,13 +17,13 @@ export default function SettingsPage() {
       
       <Tabs defaultValue="my-details" className="w-full">
         <TabsList className="mb-6 w-full grid grid-cols-3">
-          <TabsTrigger value="my-details" className="text-base">
+          <TabsTrigger value="my-details" className="text-base cursor-pointer">
             My Details
           </TabsTrigger>
-          <TabsTrigger value="plan" className="text-base">
+          <TabsTrigger value="plan" className="text-base cursor-pointer">
             Plan
           </TabsTrigger>
-          <TabsTrigger value="billing" className="text-base">
+          <TabsTrigger value="billing" className="text-base cursor-pointer">
             Billing
           </TabsTrigger>
         </TabsList>

@@ -5,10 +5,11 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
+import { LaunchBanner } from "./launch-banner"
 import { useSession } from "next-auth/react"
 import { landingConfig } from "../../config/landing-config"
 
-export function Navbar() {
+export function Navbar({ remainingSpots = 847, totalSeats = 1000 }: { remainingSpots?: number; totalSeats?: number }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { data: session } = useSession()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -64,9 +65,23 @@ export function Navbar() {
   const dashboardUrl = userRole === 'COLLEGE_ADMIN' ? '/college/dashboard' : '/dashboard'
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/20 backdrop-blur-sm border-b border-gray-200/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <nav className="fixed top-0 left-0 right-0 z-50">
+      {/* Launch Banner Section */}
+      <div className="bg-primary text-primary-foreground py-2 px-4 overflow-hidden">
+        <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 text-center text-sm">
+          <span className="animate-bounce">🚀</span>
+          <span className="font-bold">LAUNCH OFFER!</span>
+          <span className="hidden sm:inline">Every course ₹129</span>
+          <span className="font-bold underline hidden sm:inline">LIFETIME VALIDITY</span>
+          <LaunchBanner variant="navbar" remainingSpots={remainingSpots} totalSeats={totalSeats} />
+          <span className="hidden lg:inline">left at launch pricing!</span>
+        </div>
+      </div>
+
+      {/* Main Navbar */}
+      <div className="bg-white/20 backdrop-blur-sm border-b border-gray-200/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
               {/* Logo */}
               <Link href="/" className="flex items-center space-x-2 cursor-pointer">
                 <div className="w-8 h-8">
@@ -152,15 +167,15 @@ export function Navbar() {
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white/30 backdrop-blur-sm rounded-lg mt-2 border border-gray-200/30">
               {landingConfig.navigation.links
                 .map((link) => (
-                <Link
-                  key={link.text}
-                  href={link.href}
-                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 cursor-pointer"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.text}
-                </Link>
-              ))}
+                  <Link
+                    key={link.text}
+                    href={link.href}
+                    className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 cursor-pointer"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.text}
+                  </Link>
+                ))}
               <div className="pt-4 space-y-2">
                 {isAuthenticated ? (
                   <Link href={dashboardUrl} className="block px-3">
@@ -199,6 +214,7 @@ export function Navbar() {
           </div>
         )}
       </div>
+    </div>
     </nav>
   )
 }

@@ -26,6 +26,7 @@ export interface UiConfig {
   screenShareDialogDescription: string
   screenShareRestrictToScreen: boolean
   screenShareRestrictionErrorMessage: string
+  enableAnalysisOnStop: boolean
 }
 
 export interface VoiceChatConfig {

@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react"
 import { useSession } from "next-auth/react"
-import { StatsOverview, RecentInterviews } from "./_components"
+import { StatsOverview, RecentInterviews, RecentCourses } from "./_components"
 import { getDashboardData } from "./actions"
 import type {
   DashboardData
@@ -47,9 +47,11 @@ export default function Dashboard() {
     stats: {
       totalInterviews: 0,
       totalTimeSpent: 0,
-      averageScore: 0
+      averageScore: 0,
+      enrolledCourses: 0
     },
-    recentInterviews: []
+    recentInterviews: [],
+    recentCourses: []
   })
   const [loading, setLoading] = useState(true)
   const [creditUsage, setCreditUsage] = useState<CreditUsageInfo | null>(null)
@@ -129,8 +131,18 @@ export default function Dashboard() {
       {/* Stats Overview */}
       <StatsOverview stats={dashboardData.stats} creditUsage={creditUsage} />
 
-      {/* Recent Interviews */}
-      <RecentInterviews interviews={dashboardData.recentInterviews} />
+      {/* Main Content - Two Column Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Left Side - Incomplete Courses */}
+        <div className="space-y-6">
+          <RecentCourses courses={dashboardData.recentCourses} />
+        </div>
+
+        {/* Right Side - Recent Interviews */}
+        <div className="space-y-6">
+          <RecentInterviews interviews={dashboardData.recentInterviews} />
+        </div>
+      </div>
     </div>
   )
 }

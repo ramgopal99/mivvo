@@ -10,16 +10,17 @@ interface MiddleBottomProps {
   isChatOpen?: boolean;
   onCloseChat?: () => void;
   language?: string;
+  isNextDisabled?: boolean;
 }
 
-const MiddleBottom = ({ onPrevious, onNext, onAI }: MiddleBottomProps) => (
+const MiddleBottom = ({ onPrevious, onNext, onAI, isNextDisabled }: MiddleBottomProps) => (
   <div className="border-t">
     <div className="flex items-center justify-between px-6 py-3">
       <div className="flex gap-2">
         <Button
           variant="outline"
           size="sm"
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 cursor-pointer"
           onClick={onAI}
         >
           <Brain className="h-4 w-4" />
@@ -30,7 +31,7 @@ const MiddleBottom = ({ onPrevious, onNext, onAI }: MiddleBottomProps) => (
         <Button
           variant="outline"
           size="sm"
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 cursor-pointer"
           onClick={onPrevious}
         >
           <ChevronLeft className="h-4 w-4" />
@@ -39,8 +40,9 @@ const MiddleBottom = ({ onPrevious, onNext, onAI }: MiddleBottomProps) => (
         <Button
           variant="outline"
           size="sm"
-          className="flex items-center gap-2"
+          className={`flex items-center gap-2 ${isNextDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
           onClick={onNext}
+          disabled={isNextDisabled}
         >
           Next
           <ChevronRight className="h-4 w-4" />

@@ -8,6 +8,9 @@ import { InterviewData } from "./_components/InterviewCard"
 import { getAllInterviews, deleteInterview } from "./data"
 import { calculateCreditUsage, minutesToCredits, CreditUsageInfo } from "@/lib/credit-converter"
 import { getAuthHeaders } from "@/lib/auth-utils"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { X } from "lucide-react"
+import { siteConfig } from "@/config/site"
 
 export default function CustomInterviewPage() {
   const { data: session, status } = useSession()
@@ -20,6 +23,7 @@ export default function CustomInterviewPage() {
   const [userCvData, setUserCvData] = useState<string | null>(null)
   const [isCreatingInterview, setIsCreatingInterview] = useState(false)
   const [deletingInterviewId, setDeletingInterviewId] = useState<string | null>(null)
+  const [betaDialogOpen, setBetaDialogOpen] = useState(false)
   const createDialogRef = useRef<{ reset: () => void } | null>(null)
 
   // Fetch user's time data and convert to credit usage
@@ -325,13 +329,89 @@ export default function CustomInterviewPage() {
     )
   }
 
+  // Coming Soon Page Component
+  const ComingSoonPage = () => (
+    <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="text-center space-y-8 p-8">
+        <div className="space-y-4">
+          <div className="text-6xl mb-4">🚀</div>
+          <h1 className="text-4xl font-bold text-gray-900">Coming Soon</h1>
+          <p className="text-xl text-gray-600">Something amazing is on the way!</p>
+        </div>
+
+        <div className="bg-gray-50 border border-gray-200 rounded-lg shadow-sm p-6 max-w-md mx-auto">
+          <div className="text-3xl font-bold text-primary mb-2">In a Week</div>
+          <p className="text-gray-600">We&apos;re working hard to bring you an enhanced interview experience.</p>
+        </div>
+
+        <div className="space-y-4">
+          <div className="text-sm text-gray-500">
+            Stay tuned for updates and new features!
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+
+  // Show Coming Soon page if custom interviews are disabled
+  if (!siteConfig.enableCustomInterviews) {
+    return <ComingSoonPage />
+  }
+
   return (
     <div className="space-y-6">
       {/* Header Section */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Custom Interviews</h1>
+            <div className="flex items-center gap-3">
+              <h1 className="text-3xl font-bold text-gray-900">Custom Interviews</h1>
+              <Dialog open={betaDialogOpen} onOpenChange={setBetaDialogOpen}>
+                <DialogTrigger asChild>
+                  <button className="text-lg font-semibold text-orange-600 underline decoration-orange-600 decoration-2 hover:text-orange-700 transition-colors cursor-pointer px-3 py-1 rounded-md hover:bg-orange-50">
+                    BETA TESTING MODE
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle className="text-orange-600 flex items-center gap-2">
+                      🚀 Beta Testing Mode
+                      <button
+                        onClick={() => setBetaDialogOpen(false)}
+                        className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
+                      >
+                        <X className="h-4 w-4" />
+                        <span className="sr-only">Close</span>
+                      </button>
+                    </DialogTitle>
+                    <DialogDescription asChild>
+                      <div className="text-left space-y-4 mt-4">
+                        <div className="font-medium text-gray-700">
+                          We are now in testing mode of this feature.
+                        </div>
+                        <div className="space-y-3">
+                          <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                            <span className="text-green-600 text-lg">✅</span>
+                            <span className="text-gray-700">Only works in Chrome and Edge browsers</span>
+                          </div>
+                          <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                            <span className="text-blue-600 text-lg">🚀</span>
+                            <span className="text-gray-700">Highly optimized for our model performance</span>
+                          </div>
+                          <div className="flex items-center gap-3 p-3 bg-purple-50 rounded-lg border border-purple-200">
+                            <span className="text-purple-600 text-lg">⚡</span>
+                            <span className="text-gray-700">Maximum possible optimization achieved</span>
+                          </div>
+                        </div>
+                        <div className="text-sm text-gray-500 pt-2 border-t border-gray-200">
+                          Thank you for testing our custom interview feature!
+                        </div>
+                      </div>
+                    </DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
+            </div>
             <p className="text-gray-600 mt-1">Create personalized interview experiences tailored to your specific job requirements</p>
           </div>
 

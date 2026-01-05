@@ -100,7 +100,7 @@ export default function TicketsPage() {
             onClick={() => router.push('/dashboard/support')}
             variant="outline"
             size="sm"
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 cursor-pointer"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Support
@@ -242,7 +242,7 @@ export default function TicketsPage() {
                               variant="outline"
                               size="sm"
                               onClick={() => setSelectedReply(ticket.reply)}
-                              className="h-7 text-xs"
+                              className="h-7 text-xs cursor-pointer"
                             >
                               <Eye className="h-3 w-3 mr-1" />
                               View Reply
@@ -284,7 +284,7 @@ export default function TicketsPage() {
                   </p>
                 </div>
                 <div className="flex justify-end">
-                  <Button onClick={() => setSelectedReply(null)} variant="outline">
+                  <Button onClick={() => setSelectedReply(null)} variant="outline" className="cursor-pointer">
                     Close
                   </Button>
                 </div>

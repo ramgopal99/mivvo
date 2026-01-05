@@ -163,7 +163,7 @@ export function PlanTab() {
               size="sm"
               onClick={refreshCreditData}
               disabled={refreshing}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 cursor-pointer"
             >
               <RotateCcw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
               {refreshing ? 'Refreshing...' : 'Refresh'}
@@ -216,15 +216,15 @@ export function PlanTab() {
               {/* Credit Statistics Grid */}
               {creditUsage && (
                 <div className="grid grid-cols-3 gap-4">
-                  <div className="text-center">
+                  <div className="text-center cursor-pointer">
                     <div className="text-2xl font-bold text-primary" title={`${creditUsage.totalCredits} credits`}>{formatCredits(creditUsage.totalCredits)}</div>
                     <div className="text-sm text-muted-foreground">Total Credits</div>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center cursor-pointer">
                     <div className="text-2xl font-bold text-orange-600" title={`${creditUsage.usedCredits} credits`}>{formatCredits(creditUsage.usedCredits)}</div>
                     <div className="text-sm text-muted-foreground">Credits Used</div>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center cursor-pointer">
                     <div className={`text-2xl font-bold ${
                       creditInfo?.statusColor === 'danger' ? 'text-red-600' :
                       creditInfo?.statusColor === 'warning' ? 'text-orange-600' :
@@ -238,7 +238,7 @@ export function PlanTab() {
               )}
 
               {/* Credit Allocation Info */}
-              <div className={`border rounded-lg p-4 ${creditsExpired ? 'bg-red-50 border-red-200' : 'bg-blue-50 border-blue-200'}`}>
+              <div className={`border rounded-lg p-4 cursor-pointer ${creditsExpired ? 'bg-red-50 border-red-200' : 'bg-blue-50 border-blue-200'}`}>
                 <div className="flex items-center gap-3">
                   <Clock className="h-5 w-5 text-blue-600" />
                   <div className="flex-1">
@@ -248,7 +248,7 @@ export function PlanTab() {
                           Allocated on {formatAllocationDate(allocatedAt)}
                         </span>
                         <span className="text-sm text-blue-700">
-                          Credits expire on {formatExpirationDate(allocatedAt)}
+                          {formatExpirationDate(allocatedAt)}
                         </span>
                       </div>
                     )}
