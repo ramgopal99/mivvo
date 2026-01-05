@@ -195,13 +195,15 @@ export default function CoursePage() {
                   <CardContent className="text-center">
                     <Button
                       size="lg"
-                      className="w-full cursor-pointer text-sm md:text-base"
+                      className="w-full cursor-pointer text-sm md:text-base h-auto py-3 px-4 whitespace-normal break-words leading-tight"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleCourseSelect(course.courseId);
                       }}
                     >
-                      Continue {course.displayName} Course
+                      <span className="block text-center">
+                        Continue {course.displayName} Course
+                      </span>
                     </Button>
                     {course.showCodeEditor && (
                       <div className="mt-2 text-xs text-muted-foreground">
@@ -283,7 +285,7 @@ export default function CoursePage() {
                     <Button
                       size="lg"
                       variant="outline"
-                      className="flex-1 cursor-pointer text-sm md:text-base"
+                      className="flex-1 cursor-pointer text-sm md:text-base py-3 md:py-2 px-4 md:px-3 h-auto md:h-10"
                       onClick={(e) => {
                         e.stopPropagation();
                         router.push(`/courses/${course.courseId}`);
@@ -293,7 +295,7 @@ export default function CoursePage() {
                     </Button>
                     <Button
                       size="lg"
-                      className="flex-1 cursor-pointer text-sm md:text-base"
+                      className="flex-1 cursor-pointer text-sm md:text-base py-3 md:py-2 px-4 md:px-3 h-auto md:h-10"
                       disabled={isProcessingPayment && selectedCourseForPayment?.courseId === course.courseId}
                       onClick={(e) => {
                         e.stopPropagation();

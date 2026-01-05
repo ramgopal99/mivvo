@@ -6,11 +6,12 @@ export default withAuth(
     // Add CSP headers
     const cspHeader = `
       default-src 'self';
-      script-src 'self' 'unsafe-inline' 'unsafe-eval';
-      style-src 'self' 'unsafe-inline';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net;
+      style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
       img-src 'self' data: https:;
-      font-src 'self' data:;
+      font-src 'self' data: https://cdn.jsdelivr.net;
       connect-src 'self' wss://api.puter.com https://api.puter.com;
+      worker-src 'self' blob:;
       frame-src 'self';
       object-src 'none';
       base-uri 'self';

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -128,6 +127,7 @@ export default function CourseDetailMobilePage() {
       title,
       moduleTitle
     });
+    setIsMobileSidebarOpen(false); // Close sidebar after selection
   };
 
   const handleCheckedItemsChange = (count: number) => {
@@ -238,8 +238,6 @@ export default function CourseDetailMobilePage() {
     );
   }
 
-  // Calculate completion percentage
-
   // Find selected topic/exercise data
   const selectedModule = courseData.modules.find(m => m.order === selectedTopic?.moduleId);
   const selectedTopicData = selectedModule?.topics?.find(t => t.id === selectedTopic?.subtopicId);
@@ -250,28 +248,41 @@ export default function CourseDetailMobilePage() {
       {/* Mobile Header */}
       <div className="flex-shrink-0 border-b border-border bg-background px-4 py-3">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-1 min-w-0">
             {/* Menu Button - shows mobile navigation */}
             <button
-              onClick={handleMobileMenuToggle}
-              className="p-2 rounded-md hover:bg-muted transition-colors"
+              onClick={() => setIsMobileSidebarOpen(true)}
+              className="p-2 rounded-md hover:bg-muted transition-colors flex-shrink-0"
               title="Open course navigation"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
               </svg>
             </button>
-            <div>
-              <h1 className="text-lg font-semibold truncate max-w-[200px]">
+            <div className="min-w-0 flex-1">
+              <h1 className="text-lg font-semibold truncate">
                 {courseData.headerTitle || courseData.displayName}
               </h1>
-              <p className="text-sm text-muted-foreground truncate max-w-[200px]">
-                {selectedTopic?.moduleTitle} • {selectedTopic?.title}
-              </p>
+              {selectedTopic && (
+                <p className="text-sm text-muted-foreground truncate">
+                  {selectedTopic.moduleTitle} • {selectedTopic.title}
+                </p>
+              )}
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-shrink-0">
+            {(courseData.showCodeEditor || courseData.showFormulas) && (
+              <button
+                onClick={() => setIsMobileRightSidebarOpen(true)}
+                className="p-2 rounded-md hover:bg-muted transition-colors"
+                title="Open tools"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </button>
+            )}
             <button
               onClick={() => router.push('/dashboard/courses')}
               className="px-3 py-1.5 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md font-medium text-sm"
@@ -289,8 +300,8 @@ export default function CourseDetailMobilePage() {
           selectedTopic={selectedTopic}
           onPrevious={handlePrevious}
           onNext={handleNext}
-          onAI={handleRightSidebarToggle}
-          onRightSidebar={handleRightSidebarToggle}
+          onAI={() => setIsMobileRightSidebarOpen(true)}
+          onRightSidebar={() => setIsMobileRightSidebarOpen(true)}
           isChatOpen={isChatOpen}
           onCloseChat={() => setIsChatOpen(false)}
           language={courseId}
@@ -324,21 +335,16 @@ export default function CourseDetailMobilePage() {
             </div>
 
             <div className="flex-1 overflow-hidden">
-              <div className="h-full overflow-auto">
-                <SidebarProvider>
-                  <LeftSidebar
-                    modules={courseData.modules}
-                    courseId={courseId}
-                    onSubtopicClick={(moduleId, subtopicId, title, moduleTitle) => {
-                      handleSubtopicClick(moduleId, subtopicId, title, moduleTitle);
-                      setIsMobileSidebarOpen(false); // Close sidebar after selection
-                    }}
-                    onCheckedItemsChange={handleCheckedItemsChange}
-                    selectedTopic={selectedTopic}
-                    hasRightSection={courseData.showCodeEditor || courseData.showFormulas}
-                  />
-                </SidebarProvider>
-              </div>
+              <SidebarProvider>
+                <LeftSidebar
+                  modules={courseData.modules}
+                  courseId={courseId}
+                  onSubtopicClick={handleSubtopicClick}
+                  onCheckedItemsChange={handleCheckedItemsChange}
+                  selectedTopic={selectedTopic}
+                  hasRightSection={courseData.showCodeEditor || courseData.showFormulas}
+                />
+              </SidebarProvider>
             </div>
           </div>
         </>

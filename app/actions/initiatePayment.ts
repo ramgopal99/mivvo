@@ -2,7 +2,6 @@
 
 import { StandardCheckoutClient, Env, MetaInfo, StandardCheckoutPayRequest } from 'pg-sdk-node';
 import { randomUUID } from 'crypto';
-import { siteConfig } from '@/config/site';
 
 export async function initiatePayment(amount: number, name: string, mobile: string, muid?: string) {
   const merchantOrderId = randomUUID();

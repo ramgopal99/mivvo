@@ -3,12 +3,7 @@ import { initiatePayment } from "@/app/actions/initiatePayment";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { CREDIT_PACKAGES, COURSE_ENROLLMENT_CREDITS, siteConfig } from "@/config/site";
 
-interface CoursePurchaseMetadata {
-  courseId: string;
-  courseName: string;
-}
 
 export async function POST(req: NextRequest) {
   console.log('API route called: /api/initiate-payment');
@@ -61,7 +56,6 @@ export async function POST(req: NextRequest) {
     }
 
     // Get base URL for redirects
-    const baseUrl = process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
 
     // Get authenticated user
     const session = await getServerSession(authOptions);
