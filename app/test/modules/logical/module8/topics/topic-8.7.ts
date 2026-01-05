@@ -2,111 +2,115 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_7: SubLesson = {
   id: "8.7",
-  title: 'Interchanging Positions',
+  title: 'Comparative Ranking Problems',
   status: 'completed',
-  content: `# 🔄 Interchanging Positions
+  content: `# ⚖️ Comparative Ranking Problems
 
-Interchanging positions problems involve swapping places between persons or objects and determining the new arrangement after these changes. These problems require tracking position changes, understanding the effects of swaps, and calculating new positions after multiple interchanges.
-
----
-
-## 🎯 Understanding Position Interchanges
-
-### **What are Interchanging Position Problems?**
-These problems involve swapping positions between two or more persons and determining the resulting arrangement. They test your ability to:
-- **Track position changes after swaps**
-- **Calculate new positions after interchanges**
-- **Handle multiple sequential swaps**
-- **Determine final arrangements after complex interchanges**
-
-### **Key Concepts**
-
-#### **Basic Interchange**
-\`\`\`
-When A and B interchange positions:
-- A's new position = B's old position
-- B's new position = A's old position
-\`\`\`
-
-#### **Position Tracking**
-\`\`\`
-Original: Position X → Person A
-After interchange with B: Position X → Person B
-\`\`\`
+Comparative ranking problems involve analyzing relative positions and standings using "better than," "worse than," or "immediately before/after" relationships. These problems require building complete ranking sequences from comparative information and determining specific positions within ordered arrangements.
 
 ---
 
-## 🧩 Interchange Types and Effects
+## 🎯 Understanding Comparative Ranking
 
-### **Type 1: Two-Person Interchange**
+### **What are Comparative Ranking Problems?**
+These problems involve determining positions and rankings based on relative comparisons between persons or objects. They test your ability to:
+- **Interpret comparative statements**
+- **Build ranking sequences from relationships**
+- **Determine specific positions in ordered lists**
+- **Apply logical ranking rules**
+
+### **Key Comparative Terms**
+
+#### **Superiority Comparisons**
+- **Better than**: Higher ranking, better performance
+- **Worse than**: Lower ranking, poorer performance
+- **Higher than**: Above in ranking or position
+- **Lower than**: Below in ranking or position
+
+#### **Positional Comparisons**
+- **Before/After**: Sequential position relationships
+- **Above/Below**: Vertical position relationships
+- **Left/Right of**: Horizontal position relationships
+
+---
+
+## 🧩 Comparative Relationship Types
+
+### **Type 1: Direct Superiority**
 \`\`\`
-A and B swap positions:
-- If A was at position P, B at position Q
-- After interchange: A at Q, B at P
+"A is better than B" means:
+- A ranks higher than B
+- A has better position than B
+- A comes before B in descending order
 \`\`\`
 
-### **Type 2: Multiple Person Interchange**
+### **Type 2: Quantitative Comparisons**
 \`\`\`
-A swaps with B, B swaps with C:
-- Track each swap sequentially
-- Maintain position consistency
-- Record cumulative changes
+"A is better than 3 persons" means:
+- 3 persons rank lower than A
+- A is 4th in descending order (top 3 are better)
+- A has 3 persons below him in ranking
 \`\`\`
 
-### **Type 3: Position-Based Interchange**
+### **Type 3: Positional Relationships**
 \`\`\`
-Person at position X swaps with person at position Y:
-- Identify persons at given positions
-- Perform the swap
-- Update all affected positions
+"A is immediately before B" means:
+- No person between A and B
+- A and B are adjacent in the sequence
+- B follows A directly
 \`\`\`
 
 ---
 
 ## 🎯 Problem Types and Solutions
 
-### **Type 1: Direct Position Swap**
-*"A and B interchange their positions. If originally A was 3rd and B was 5th, what are their new positions?"*
+### **Type 1: Superiority Chain**
+*"A is better than B, B is better than C, C is better than D. Who is the best?"*
 
 **Solution:**
-- A moves to B's position: 5th
-- B moves to A's position: 3rd
+- Ranking: A > B > C > D
+- A is the best (highest ranking)
 
-### **Type 2: Sequential Interchanges**
-*"A interchanges with B, then B interchanges with C. Find final positions."*
-
-**Solution:**
-- First interchange: A ↔ B
-- Second interchange: B ↔ C (using B's new position)
-- Track each step carefully
-
-### **Type 3: Position-Based Swap**
-*"Person at 2nd position interchanges with person at 4th position. Find new arrangement."*
+### **Type 2: Quantitative Ranking**
+*"A is better than 5 persons in the class. How many students are there?"*
 
 **Solution:**
-- Identify persons at positions 2 and 4
-- Swap those specific persons
-- Maintain all other positions
+- A has 5 persons worse than him
+- Total = A + 5 worse = 6 students
+- A is 1st (best) among 6
+
+### **Type 3: Positional Relationships**
+*"A is immediately after B, C is immediately before D. Find positions."*
+
+**Solution:**
+- Possible sequences: B-A-... or ...-B-A-...
+- C-D-... or ...-C-D-...
+- Find consistent arrangement
 
 ---
 
-## 📊 Interchange Effects on Rankings
+## 📊 Comparative Logic Rules
 
-### **Position Changes**
+### **Transitivity Rule**
 \`\`\`
-Original positions: 1 2 3 4 5
-After 2↔4:        1 4 3 2 5
-- Position 2 now has person from 4
-- Position 4 now has person from 2
-- Positions 1,3,5 unchanged
+If A > B and B > C, then A > C
+Comparative relationships are transitive
 \`\`\`
 
-### **Rank Implications**
+### **Quantification Rule**
 \`\`\`
-Interchanges affect:
-- Individual position numbers
-- Relative rankings between swapped persons
-- Positions of other persons (unchanged)
+"A is better than X persons" means:
+- In descending order: A is (X+1)th position
+- A has exactly X persons below him
+- Total persons above A: X
+\`\`\`
+
+### **Immediacy Rule**
+\`\`\`
+"Immediately before/after" means:
+- No persons between the two
+- Adjacent positions in sequence
+- Direct sequential relationship
 \`\`\`
 
 ---
@@ -115,207 +119,214 @@ Interchanges affect:
 
 ### **Step-by-Step Approach**
 
-1. **Identify Interchange Type**
-   - Determine what is being swapped (persons or positions)
-   - Note the persons or positions involved
-   - Understand the interchange mechanism
+1. **Identify Comparative Information**
+   - List all comparative statements
+   - Categorize by type (superiority, quantity, position)
+   - Note any immediacy relationships
 
-2. **Record Original Positions**
-   - Map all persons to their current positions
-   - Note positions of persons involved in interchange
-   - Establish baseline arrangement
+2. **Build Relationship Chains**
+   - Create superiority hierarchies (A > B > C)
+   - Identify quantitative constraints
+   - Map positional relationships
 
-3. **Execute the Interchange**
-   - Swap the specified persons or positions
-   - Update position assignments
-   - Maintain all other positions unchanged
+3. **Apply Comparative Logic**
+   - Use transitivity to extend relationships
+   - Apply quantification rules
+   - Resolve positional constraints
 
-4. **Track Multiple Interchanges**
-   - Apply interchanges sequentially
-   - Update positions after each swap
-   - Record cumulative changes
+4. **Construct Complete Ranking**
+   - Arrange persons in order based on relationships
+   - Fill in missing positions logically
+   - Verify all constraints are satisfied
 
-5. **Determine Final Positions**
-   - Calculate new positions for affected persons
-   - Find positions of persons not directly involved
-   - Answer specific queries about final arrangement
+5. **Determine Required Information**
+   - Find specific positions or rankings
+   - Calculate total persons if needed
+   - Answer comparative queries
 
 ---
 
 ## 🎯 Common Question Patterns
 
-### **Pattern 1: Person-Based Interchange**
-*"A and B interchange positions. Find new positions."*
+### **Pattern 1: Ranking Order**
+*"Based on comparisons, who ranks where?"*
 
-### **Pattern 2: Position-Based Interchange**
-*"Person at position X interchanges with person at position Y."*
+### **Pattern 2: Quantitative Position**
+*"A is better than X persons. Find A's rank."*
 
-### **Pattern 3: Sequential Interchanges**
-*"A↔B, then B↔C, then C↔D. Find final positions."*
+### **Pattern 3: Total Persons**
+*"A is better than X persons. How many total?"*
 
-### **Pattern 4: Complex Interchange Scenarios**
-*"Multiple persons interchange in specific patterns."*
+### **Pattern 4: Positional Logic**
+*"A is immediately before B. Find relative positions."*
 
 ---
 
 ## 📈 Difficulty Levels
 
-### **Easy Level (40%)**
-- Simple two-person interchanges
-- Direct position swaps
-- Basic position tracking
+### **Easy Level (30%)**
+- Simple superiority chains
+- Direct ranking determination
+- Basic comparative logic
 
-### **Medium Level (45%)**
-- Multiple sequential interchanges
-- Position-based swaps
-- Complex arrangement tracking
+### **Medium Level (50%)**
+- Complex relationship networks
+- Quantitative ranking problems
+- Multiple constraint integration
 
-### **Difficult Level (15%)**
-- Multi-person interchange patterns
-- Complex sequential operations
-- Integrated position tracking
+### **Difficult Level (20%)**
+- Multi-variable comparative problems
+- Complex positional relationships
+- Advanced logical integration
 
 ---
 
 ## 🧮 Mathematical Applications
 
-### **Position Transformation**
+### **Ranking Quantification**
 \`\`\`
-Original: Person A at position P
-After interchange with person B at position Q:
-- Person A moves to position Q
-- Person B moves to position P
-\`\`\`
-
-### **Net Effect Calculation**
-\`\`\`
-For multiple interchanges:
-- Track each swap's effect
-- Calculate cumulative position changes
-- Determine final position mapping
+If A is better than X persons:
+- A's rank = X + 1 (in descending order)
+- Persons worse than A = X
+- Persons better than A = Total - (X + 1)
 \`\`\`
 
-### **Position Distance**
+### **Position Ranges**
 \`\`\`
-After interchange between positions P and Q:
-- Distance between persons: |P - Q|
-- New positions: Q and P
-- Distance unchanged between the two persons
+"A is better than at least X persons":
+- Minimum rank: X + 1
+- Maximum possible rank: Total (if X are minimum)
+
+"A is better than at most X persons":
+- Maximum rank: X + 1
+- Minimum possible rank: 1 (if X = 0)
+\`\`\`
+
+### **Comparative Arithmetic**
+\`\`\`
+If A > B by K positions:
+- Rank difference = K
+- Position span between A and B = K - 1 persons
 \`\`\`
 
 ---
 
 ## 🎯 Special Cases and Exceptions
 
-### **Case 1: Adjacent Position Swap**
+### **Case 1: Equal Ranking**
 \`\`\`
-Swapping positions 3 and 4:
-- Only these two positions affected
-- All others remain unchanged
-- Minimal impact on overall arrangement
-\`\`\`
-
-### **Case 2: End Position Swap**
-\`\`\`
-Swapping position 1 and N:
-- Complete reversal of end positions
-- Middle positions unchanged
-- Significant rearrangement at ends
+When persons have same rank:
+- "Better than" doesn't apply between equals
+- Separate ranking criteria needed
+- Positions may be interchangeable
 \`\`\`
 
-### **Case 3: Multiple Same-Person Interchanges**
+### **Case 2: Boundary Conditions**
 \`\`\`
-If A interchanges multiple times:
-- Track A's position through each swap
-- Calculate net movement effect
-- Determine final position after all interchanges
+Best person: Better than all others
+Worst person: Worse than all others
+Middle ranking: Equal number better and worse
+\`\`\`
+
+### **Case 3: Immediacy Constraints**
+\`\`\`
+Immediately adjacent: No persons between
+Cannot have gaps in immediate relationships
+Forces specific position arrangements
 \`\`\`
 
 ---
 
 ## 🚨 Common Mistakes to Avoid
 
-### **Mistake 1: Position Confusion**
-❌ Losing track of who is where during multiple swaps
-✅ Maintain clear position mapping throughout
+### **Mistake 1: Comparative Direction Confusion**
+❌ Mixing "better than" with positional meanings
+✅ Clarify if comparison is about quality or position
 
-### **Mistake 2: Sequential Error**
-❌ Applying interchanges in wrong order
-✅ Execute interchanges in given sequence
+### **Mistake 2: Quantification Error**
+❌ Wrong interpretation of "better than X persons"
+✅ "Better than X" means X persons are worse, so rank = X + 1
 
-### **Mistake 3: Incomplete Tracking**
-❌ Forgetting to update all affected positions
-✅ Track changes for all persons involved
+### **Mistake 3: Transitivity Assumption**
+❌ Assuming all relationships are transitive
+✅ Verify transitivity applies to superiority comparisons
 
-### **Mistake 4: Person Identity Error**
-❌ Confusing which person is at which position
-✅ Clearly identify persons before and after swaps
+### **Mistake 4: Positional Logic Error**
+❌ Confusing immediate vs general before/after
+✅ "Immediately" means adjacent, no persons between
 
 ---
 
 ## 🎓 Pro Tips for Success
 
-1. **Map Initial Positions**: Create clear person-to-position mapping
-2. **Track One Interchange at a Time**: Apply swaps sequentially
-3. **Update Positions Immediately**: Record changes after each swap
-4. **Use Position Labels**: Label positions to avoid confusion
-5. **Verify Each Step**: Cross-check positions after each interchange
-6. **Maintain Logical Consistency**: Ensure swaps follow given rules
-7. **Practice Sequential Tracking**: Master multi-step interchange problems
+1. **Clarify Comparative Meaning**: Understand if "better" means quality or position
+2. **Apply Quantification Correctly**: "Better than X" = rank X + 1
+3. **Build Relationship Networks**: Map all comparative connections
+4. **Use Transitivity**: Extend relationships through logical chains
+5. **Handle Immediacy**: "Immediately" means adjacent positions
+6. **Consider Boundary Cases**: Check for best/worst/middle scenarios
+7. **Verify Consistency**: Ensure all relationships work together
 
 ---
 
 ## 📊 Practice Examples
 
-### **Example 1: Basic Two-Person Interchange**
-*"A is 3rd, B is 5th. They interchange positions. What are their new positions?"*
+### **Example 1: Superiority Chain**
+*"A is better than B, B is better than C, C is better than D. Who is the worst?"*
 
 **Solution:**
-- A moves to 5th position
-- B moves to 3rd position
+- Ranking: A > B > C > D
+- D is the worst (lowest ranking)
 
-### **Example 2: Sequential Interchanges**
-*"A interchanges with B, then B interchanges with C. Original: A=2nd, B=4th, C=6th. Find final positions."*
-
-**Solution:**
-- First interchange: A=4th, B=2nd, C=6th
-- Second interchange: A=4th, B=6th, C=2nd
-- Final: A=4th, B=6th, C=2nd
-
-### **Example 3: Position-Based Interchange**
-*"Person at 2nd position interchanges with person at 5th position. If A is at 2nd, B at 5th, find new positions."*
+### **Example 2: Quantitative Ranking**
+*"A is better than 4 persons in a group. What is A's rank?"*
 
 **Solution:**
-- Person at 2nd (A) ↔ Person at 5th (B)
-- A moves to 5th, B moves to 2nd
+- A has 4 persons worse than him
+- A is 1st among 5 persons (A + 4 worse)
 
-### **Example 4: Complex Sequential**
-*"A↔B, B↔C, C↔D. Original positions: A=1, B=2, C=3, D=4. Find final."*
+### **Example 3: Positional Relationship**
+*"A is immediately after B, C is immediately before D. If there are 6 persons, find possible arrangements."*
 
 **Solution:**
-- A↔B: A=2, B=1, C=3, D=4
-- B↔C: A=2, B=3, C=1, D=4 (B was at 1, C at 3)
-- C↔D: A=2, B=3, C=4, D=1 (C was at 1, D at 4)
-- Final: A=2, B=3, C=4, D=1
+- B-A must be adjacent (B then A)
+- C-D must be adjacent (C then D)
+- Possible arrangements depend on other constraints
+
+### **Example 4: Complex Comparative**
+*"A is better than B and C. B is better than D. C is better than D. A is better than 3 persons. How many total?"*
+
+**Solution:**
+- From comparisons: A > B, A > C, B > D, C > D
+- A is better than 3 persons: A, B, C, D (4 persons)
+- A has 3 persons worse: Total = 4 persons
+
+### **Example 5: Range Analysis**
+*"A is better than at least 2 persons and at most 4 persons. What are possible ranks for A?"*
+
+**Solution:**
+- Better than at least 2: Rank ≤ 3 (at most 2 better than A)
+- Better than at most 4: Rank ≥ 2 (at least 1 better or A is best)
+- Possible ranks: 2nd or 3rd
 
 ---
 
 ## 🔍 Integration with Other Topics
 
-### **With Top-Bottom Ranking**
-- Track vertical position changes after interchanges
-- Calculate new top-bottom rankings
-- Apply position conversion after swaps
-
-### **With Left-Right Ranking**
-- Track horizontal position changes after interchanges
-- Calculate new left-right rankings
-- Apply position conversion after swaps
+### **With Ascending-Descending Order**
+- Apply comparative logic to ordered sequences
+- Determine positions in sorted arrangements
+- Use ranking relationships with order types
 
 ### **With Total Persons**
-- Use interchange information to verify total calculations
-- Apply position changes to total person formulas
-- Track arrangement changes
+- Use comparative information to calculate totals
+- Apply quantification to find group sizes
+- Integrate ranking with size calculations
 
-**Master position interchanges to track complex arrangement changes in ranking problems! 🔄✨**`
+### **With Position Interchanges**
+- Track how interchanges affect comparative rankings
+- Maintain ranking relationships during position changes
+- Update comparative positions after swaps
+
+**Master comparative ranking problems to excel in relationship-based reasoning questions! ⚖️✨**`
 };

@@ -323,6 +323,62 @@ C (♂)
 6. **Verify each relationship**
 7. **Practice regularly** with different scenarios
 
+## ⚡ Quick Solving Tricks
+
+### **Trick 1: Gender Elimination**
+- **"Son/Daughter"** → Look for male/female indicators
+- **"Brother/Sister"** → Same parents, different gender
+- **"Uncle/Aunt"** → Parent's sibling (gender determines term)
+
+### **Trick 2: Age Sequencing**
+- **"Older/Younger"** → Generation + birth order
+- **"Eldest/Youngest"** → Position in sibling group
+- **"Grandfather/Grandson"** → Skip generation shortcut
+
+### **Trick 3: Parent-Child Shortcuts**
+- **"Only son/daughter"** → No siblings of that gender
+- **"All sons/daughters"** → No opposite gender siblings
+- **"First/Last child"** → Birth order in family
+
+### **Trick 4: Marriage Link Detection**
+- **"Husband/Wife"** → Direct marriage connection
+- **"Father-in-law/Mother-in-law"** → Spouse's parents
+- **"Son-in-law/Daughter-in-law"** → Child's spouse
+
+### **Trick 5: Chain Reaction Rules**
+- **A is B's father → B is A's son/daughter**
+- **A is B's mother → B is A's son/daughter**
+- **A is B's brother → B is A's brother**
+- **A is B's sister → B is A's sister**
+
+### **Trick 6: Quick Relationship Mapping**
+- **"My father's brother"** = Uncle
+- **"My mother's sister"** = Aunt
+- **"My brother's son"** = Nephew
+- **"My sister's daughter"** = Niece
+
+### **Trick 7: Reverse Relationship Formula**
+- **Father's son** = Brother
+- **Mother's daughter** = Sister
+- **Son's father** = Self (male)
+- **Daughter's mother** = Self (female)
+
+### **Trick 8: Generation Counting**
+- **Grand-** = 2 generations away
+- **Great-grand-** = 3 generations away
+- **Great-great-grand-** = 4 generations away
+
+### **Trick 9: Sibling Group Analysis**
+- **"Two brothers"** = Male siblings only
+- **"Two sisters"** = Female siblings only
+- **"Brother and sister"** = Mixed gender siblings
+
+### **Trick 10: In-Law Relationship Shortcuts**
+- **"Husband's father"** = Father-in-law
+- **"Wife's mother"** = Mother-in-law
+- **"Brother's wife"** = Sister-in-law
+- **"Sister's husband"** = Brother-in-law
+
 ---
 
 ## 🔍 Next Steps

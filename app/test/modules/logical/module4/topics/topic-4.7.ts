@@ -2,292 +2,289 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_7: SubLesson = {
   id: "4.7",
-  title: 'Scheduling Puzzles',
+  title: 'Assignment Puzzles',
   status: 'completed',
-  content: `# 📅 Scheduling Puzzles
+  content: `# 🎯 Assignment Puzzles
 
-Scheduling puzzles involve arranging events, appointments, or activities in specific time slots based on various constraints. These puzzles require understanding of time management, sequence logic, and constraint satisfaction to solve complex scheduling problems.
+Assignment puzzles involve allocating tasks, roles, or resources to people or entities based on various constraints and requirements. These puzzles require understanding of matching logic, constraint satisfaction, and systematic allocation techniques.
 
 ---
 
-## 🎯 Understanding Scheduling Puzzles
+## 🎯 Understanding Assignment Puzzles
 
-### **What are Scheduling Puzzles?**
-Scheduling puzzles involve arranging activities, meetings, or events in time slots based on given constraints. They test your ability to:
-- **Apply time management logic**
-- **Understand sequence relationships**
-- **Interpret temporal constraints**
-- **Solve complex time-based arrangements**
+### **What are Assignment Puzzles?**
+Assignment puzzles involve systematically allocating tasks, roles, or resources to people or entities based on given constraints. They test your ability to:
+- **Apply matching logic**
+- **Understand allocation constraints**
+- **Use systematic assignment techniques**
+- **Solve complex resource distribution problems**
 
 ### **Key Characteristics**
-- **Time-based positioning**: Hours, days, weeks
-- **Sequence constraints**: Before/after relationships
-- **Duration limits**: Activity time requirements
-- **Resource constraints**: Person/venue availability
+- **Multiple assignees and assignments**
+- **Constraint-based allocation**
+- **Matching requirements**
+- **Optimization considerations**
 
 ---
 
-## 🧩 Types of Scheduling Problems
+## 🧩 Types of Assignment Problems
 
-### **1. Time Slot Scheduling**
-**Assigning activities to specific time slots**
-- Meeting room bookings
-- Class schedule arrangements
-- Event time assignments
+### **1. Task Assignment**
+**Allocating tasks to people**
+- Job role assignments
+- Responsibility allocation
+- Work distribution
 
-### **2. Sequence Scheduling**
-**Ordering activities with precedence constraints**
-- Task completion sequences
-- Process flow arrangements
-- Activity dependency chains
+### **2. Resource Assignment**
+**Allocating resources to users**
+- Equipment distribution
+- Facility allocation
+- Resource sharing
 
-### **3. Resource Scheduling**
-**Allocating resources with availability constraints**
-- Person assignments to tasks
-- Equipment allocation
-- Venue booking conflicts
+### **3. Role Assignment**
+**Assigning roles to participants**
+- Team role assignments
+- Committee positions
+- Organizational roles
 
 ---
 
 ## 📊 Problem-Solving Framework
 
-### **Step 1: Understand Time Framework**
-- Identify time slots available
-- Note activity durations
-- Understand scheduling constraints
+### **Step 1: Understand Assignment Requirements**
+- Identify assignees and assignments
+- Note allocation constraints
+- Understand matching criteria
 
-### **Step 2: Analyze Constraints**
-- Map activity requirements
-- Note precedence relationships
-- Identify resource conflicts
+### **Step 2: Create Assignment Framework**
+- List all assignees and assignments
+- Create allocation matrix
+- Map known assignments
 
-### **Step 3: Create Schedule Framework**
-- Draw time slot layout
-- Mark known assignments
-- Identify constraint patterns
+### **Step 3: Apply Constraints Systematically**
+- Start with definite assignments
+- Apply matching constraints
+- Use elimination techniques
 
-### **Step 4: Apply Scheduling Logic**
-- Place definite assignments first
-- Apply precedence constraints
-- Resolve conflicts systematically
+### **Step 4: Verify Complete Assignment**
+- Check all constraints satisfied
+- Ensure all assignments made
+- Answer specific questions
 
 ---
 
 ## 🎯 Common Problem Types
 
-### **Type 1: Meeting Scheduling**
-**Meeting room and time assignments**
-- "Meeting A must be before meeting B"
-- "Room X cannot be used after 5 PM"
-- "Person P cannot attend meetings at same time"
+### **Type 1: Job Assignment**
+**Assigning jobs to workers**
+- "Person A can only do task X"
+- "Task Y requires skill Z"
+- "Worker B cannot do task C"
 
-### **Type 2: Class Scheduling**
-**Subject and teacher assignments**
-- "Math class before Science class"
-- "Teacher T available only mornings"
-- "Room capacity constraints"
+### **Type 2: Room Assignment**
+**Assigning rooms to people**
+- "Person P prefers room R"
+- "Room S is occupied by person Q"
+- "Adjacent rooms for family members"
 
-### **Type 3: Event Scheduling**
-**Event time and venue assignments**
-- "Event A must be after Event B"
-- "Venue V booked for Event C"
-- "Guest G cannot attend overlapping events"
+### **Type 3: Committee Assignment**
+**Assigning roles to committee members**
+- "Chair must be senior member"
+- "Secretary cannot be same department as Chair"
+- "Treasurer must have finance background"
 
 ---
 
 ## 🛠️ Solving Techniques
 
-### **1. Time Grid Method**
-Time: 9AM 10AM 11AM 12PM 1PM
-Mon:  [ ]  [ ]  [ ]  [ ]  [ ]
-Tue:  [ ]  [ ]  [ ]  [ ]  [ ]
-- Create time-activity matrix
+### **1. Assignment Matrix Method**
+Tasks:  T1  T2  T3  T4
+P1:    [ ] [ ] [ ] [ ]
+P2:    [ ] [ ] [ ] [ ]
+P3:    [ ] [ ] [ ] [ ]
+P4:    [ ] [ ] [ ] [ ]
+- Create assignee-assignment grid
 - Fill based on constraints
-- Track conflicts
+- Track possibilities
 
-### **2. Sequence Chain Method**
-- Map precedence relationships
-- Identify critical paths
-- Apply sequence logic
+### **2. Elimination Grid**
+- Mark possible/impossible assignments
+- Use constraint logic to eliminate
+- Find valid assignment combinations
 
-### **3. Conflict Resolution**
-- Identify scheduling conflicts
-- Apply resolution rules
-- Find optimal arrangements
+### **3. Matching Algorithm**
+- Apply constraint matching
+- Use logical deduction
+- Build complete assignment
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Simple Meeting Schedule**
+### **Example 1: Simple Task Assignment**
 **Conditions:**
-1. Four meetings: A, B, C, D
-2. Four time slots: 9AM, 10AM, 11AM, 12PM
-3. Meeting A must be at 9AM
-4. Meeting B before Meeting C
-5. Meeting D at 12PM
-6. No meetings at same time
+1. Four workers: A, B, C, D
+2. Four tasks: Painting, Cleaning, Cooking, Driving
+3. A can only paint
+4. B cannot clean
+5. C must cook
+6. D can drive or clean
 
-**Solution:** A(9AM), B(10AM), C(11AM), D(12PM)
+**Solution:** A(Paint), C(Cook), D(Drive), B(Clean)
 
-### **Example 2: Complex Resource Schedule**
+### **Example 2: Office Assignment**
 **Conditions:**
-1. Three doctors: P, Q, R
-2. Five patients: 1, 2, 3, 4, 5
-3. Time slots: 9AM, 10AM, 11AM, 2PM, 3PM
-4. Doctor P specializes in surgery
-5. Doctor Q available only mornings
-6. Doctor R handles emergencies
-7. Patient 1 needs surgery
-8. Patient 3 is emergency case
+1. Four employees: P, Q, R, S
+2. Four cabins: Red, Blue, Green, Yellow
+3. P gets Red cabin
+4. Q not next to P
+5. R gets Green cabin
+6. S between Q and R
 
-**Solution:** Apply specialization and availability constraints.
+**Solution:** P(Red), R(Green), S(Yellow), Q(Blue)
 
-### **Example 3: Event Sequence**
+### **Example 3: Committee Roles**
 **Conditions:**
-1. Six events: X, Y, Z, W, V, U
-2. Six time slots: T1-T6
-3. Event X must be first
-4. Event Y immediately after X
-5. Event Z before Event W
-6. Event V and U cannot be consecutive
-7. Event W must be in T6
+1. Five members: X, Y, Z, W, V
+2. Five roles: Chair, Secretary, Treasurer, Member1, Member2
+3. X must be Chair
+4. Y cannot be Secretary
+5. Z must be Treasurer
+6. W and V cannot have same role
 
-**Solution:** Apply sequence and positioning constraints.
+**Solution:** X(Chair), Z(Treasurer), Y and W get remaining roles
 
 ---
 
-## 🔍 Advanced Scheduling Concepts
+## 🔍 Advanced Assignment Concepts
 
-### **Multi-Resource Scheduling**
-Problems involving multiple resources simultaneously.
+### **Multi-Constraint Assignments**
+Complex problems with multiple interacting constraints.
 
-### **Time Window Constraints**
-Activities restricted to specific time periods.
+### **Optimization Assignments**
+Finding optimal assignment based on criteria.
 
-### **Dependency Chains**
-Complex activity dependency networks.
+### **Conditional Assignments**
+Assignments that depend on other factors.
 
 ---
 
-## 📊 Scheduling Logic Methods
+## 📊 Assignment Logic Methods
 
-### **Time-Based Logic**
-- **Before/After**: Temporal sequence relationships
-- **During**: Time period containment
-- **Overlapping**: Time period intersections
+### **Constraint-Based Logic**
+- **Capability constraints**: Who can do what
+- **Exclusion constraints**: Who cannot do what
+- **Preference constraints**: Who prefers what
 
-### **Resource-Based Logic**
-- **Availability**: Resource time constraints
-- **Capacity**: Resource usage limits
-- **Compatibility**: Resource-activity matching
+### **Matching-Based Logic**
+- **Skill matching**: Required skills for tasks
+- **Compatibility matching**: Person-task compatibility
+- **Availability matching**: Schedule availability
 
-### **Sequence-Based Logic**
-- **Precedence**: Required order relationships
-- **Dependencies**: Conditional scheduling requirements
-- **Chains**: Multi-step dependency sequences
+### **Optimization Logic**
+- **Efficiency optimization**: Best person for task
+- **Balance optimization**: Fair distribution
+- **Preference optimization**: Satisfying preferences
 
 ---
 
 ## 🎯 Common Pitfalls
 
-### **Pitfall 1: Time Confusion**
-❌ Mixing time formats or slots
-✅ Clear time slot identification
+### **Pitfall 1: Constraint Misapplication**
+❌ Wrong constraint interpretation
+✅ Careful constraint analysis
 
-### **Pitfall 2: Sequence Errors**
-❌ Wrong precedence application
-✅ Careful before/after logic
+### **Pitfall 2: Incomplete Assignment**
+❌ Not assigning all tasks/people
+✅ Ensure complete allocation
 
-### **Pitfall 3: Resource Conflicts**
-❌ Overbooking resources
-✅ Resource availability checking
+### **Pitfall 3: Logical Conflicts**
+❌ Creating impossible assignments
+✅ Check constraint consistency
 
 ---
 
 ## 🛠️ Quick Solving Strategies
 
-### **1. Time Framework Creation**
-- Draw clear time slot layout
-- Mark all time constraints
-- Create activity timeline
+### **1. Assignment Matrix Creation**
+- Create clear assignee-assignment grid
+- Mark all constraints
+- Track possibilities
 
-### **2. Constraint Organization**
-- List all scheduling constraints
-- Group by constraint type
-- Identify most restrictive rules
+### **2. Systematic Application**
+- Start with most restrictive constraints
+- Apply capability rules first
+- Fill remaining assignments
 
-### **3. Systematic Assignment**
-- Start with fixed time assignments
-- Apply sequence constraints
-- Resolve resource conflicts
+### **3. Verification Process**
+- Check all constraints satisfied
+- Ensure no conflicts
+- Confirm complete assignment
 
 ---
 
 ## 📈 Difficulty Levels
 
 ### **Easy Level**
-- Few activities, simple constraints
-- Direct time assignments
-- Basic sequence requirements
+- Few assignees/assignments, simple constraints
+- Direct capability assignments
+- Basic matching requirements
 
 ### **Medium Level**
-- Multiple activities, mixed constraints
-- Resource availability issues
-- Complex sequence relationships
+- Multiple assignees/assignments, mixed constraints
+- Complex capability interactions
+- Preference-based assignments
 
 ### **Hard Level**
-- Many activities, complex constraints
-- Multiple resource conflicts
-- Advanced dependency chains
+- Many assignees/assignments, complex constraints
+- Multiple constraint interactions
+- Optimization requirements
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Create Time Grid**: Visual time-activity framework
+1. **Create Assignment Matrix**: Visual allocation framework
 2. **List All Constraints**: Systematic constraint organization
-3. **Start with Fixed**: Place known time assignments first
-4. **Apply Sequences**: Use before/after logic carefully
-5. **Check Resources**: Ensure resource availability
+3. **Start with Definite**: Place known assignments first
+4. **Apply Capabilities**: Use can/cannot rules carefully
+5. **Check Completeness**: Ensure all assignments made
 
 ---
 
-## 📅 Practice Questions
+## 🎯 Practice Questions
 
 ### **Question 1**
 **Conditions:**
-1. Four meetings: A, B, C, D
-2. Four time slots: 9, 10, 11, 12
-3. Meeting A at 9 AM
-4. Meeting B before Meeting C
-5. Meeting D at 12 PM
+1. Three workers: A, B, C
+2. Three tasks: X, Y, Z
+3. A can only do X
+4. B cannot do Y
+5. C can do Y or Z
 
-**When is Meeting B scheduled?**
+**Who does task Z?**
 
 ### **Question 2**
 **Conditions:**
-1. Three doctors: X, Y, Z
-2. Five patients: P, Q, R, S, T
-3. Doctor X available 9-11 AM
-4. Doctor Y available 1-3 PM
-5. Doctor Z available all day
-6. Patient P needs Doctor X
-7. Patient Q needs Doctor Y
+1. Four students: P, Q, R, S
+2. Four subjects: Math, Science, English, History
+3. P is good at Math
+4. Q cannot do Science
+5. R must do English
+6. S can do any subject
 
-**How many patients can be scheduled in morning?**
+**What subject does S get?**
 
 ### **Question 3**
 **Conditions:**
-1. Six tasks: M, N, O, P, Q, R
-2. Six time slots: T1-T6
-3. Task M must be first
-4. Task N immediately after M
-5. Task O before Task P
-6. Task Q and R cannot be consecutive
-7. Task P must be last
+1. Five employees: W, X, Y, Z, V
+2. Five departments: A, B, C, D, E
+3. W must go to department A
+4. X and Y cannot go to same department
+5. Z prefers department C
+6. V must go to department D
 
-**What is the sequence of tasks?**
+**How many employees have fixed departments?**
 
-**Master scheduling puzzles for effective time management! 📅✨**`
+**Master assignment puzzles for systematic allocation skills! 🎯✨**`
 };

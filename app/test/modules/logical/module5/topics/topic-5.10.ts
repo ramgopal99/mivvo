@@ -2,249 +2,264 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_10: SubLesson = {
   id: "5.10",
-  title: 'Mathematical Coding',
+  title: 'Matrix Coding (Basic)',
   status: 'completed',
-  content: `# 🧮 Mathematical Coding
+  content: `# 🔲 Matrix Coding (Basic)
 
-Mathematical coding involves using mathematical operations, formulas, and calculations for coding transformations. These problems combine arithmetic skills with coding logic and appear frequently in competitive exams.
+Matrix coding involves arranging letters, numbers, or symbols in grid patterns and applying transformation rules based on matrix positions. These problems require understanding of grid coordinates and positional relationships.
 
 ---
 
-## 🎯 Understanding Mathematical Coding
+## 🎯 Understanding Matrix Coding
 
-### **What is Mathematical Coding?**
-Mathematical coding involves transformation rules based on mathematical operations, formulas, and calculations. These problems test your ability to:
-- **Apply mathematical operations**
-- **Use arithmetic formulas**
-- **Calculate transformation values**
-- **Solve math-based coding problems**
+### **What is Matrix Coding?**
+Matrix coding involves placing letters, numbers, or symbols in a grid (matrix) and applying coding rules based on row-column positions. These problems test your ability to:
+- **Understand grid positioning**
+- **Apply coordinate-based rules**
+- **Navigate matrix structures**
+- **Solve position-based coding problems**
 
 ### **Key Characteristics**
-- **Arithmetic operations**: +, -, ×, ÷, powers, roots
-- **Formula applications**: Mathematical transformation rules
-- **Calculation accuracy**: Precise mathematical computations
-- **Logical mathematics**: Math-based logical transformations
+- **Grid arrangement**: Rows and columns
+- **Coordinate system**: Row-column positioning
+- **Position-based rules**: Rules based on matrix location
+- **Spatial relationships**: Grid-based transformations
 
 ---
 
-## 🧩 Types of Mathematical Coding
+## 🧩 Types of Matrix Coding
 
-### **1. Basic Arithmetic Operations**
-**Simple mathematical transformations**
-- **Addition/Subtraction**: +n, -n to position values
-- **Multiplication/Division**: ×n, ÷n operations
-- **Combined Operations**: Multiple arithmetic steps
+### **1. Position-Based Matrix Coding**
+**Rules based on matrix coordinates**
+- **Row-Column Operations**: Row + Column calculations
+- **Diagonal Operations**: Diagonal position rules
+- **Border vs Center**: Different rules for edge vs middle positions
 
-### **2. Advanced Mathematical Operations**
-**Complex mathematical transformations**
-- **Powers and Roots**: Position², √position
-- **Modulo Operations**: Position mod n
-- **Complex Formulas**: Multi-variable calculations
+### **2. Grid Pattern Coding**
+**Pattern-based matrix transformations**
+- **Row-wise Patterns**: Different rules for different rows
+- **Column-wise Patterns**: Different rules for different columns
+- **Block Patterns**: Rules for specific grid sections
 
-### **3. Position-Based Mathematics**
-**Mathematics involving positions**
-- **Word Position**: Position in word affects calculation
-- **Sentence Position**: Position in sentence
-- **Relative Position**: Position relative to other elements
+### **3. Coordinate-Based Coding**
+**Mathematical coordinate operations**
+- **Row × Column**: Position-based multiplications
+- **Row + Column**: Position-based additions
+- **Complex Coordinates**: Advanced position calculations
 
 ---
 
 ## 📊 Problem-Solving Framework
 
-### **Step 1: Analyze Mathematical Relationships**
-- Examine input-output number pairs
-- Identify mathematical operations involved
-- Note calculation patterns
+### **Step 1: Understand Matrix Structure**
+- Identify matrix dimensions (rows × columns)
+- Note matrix filling pattern
+- Understand position numbering
 
-### **Step 2: Determine Mathematical Rule**
-- Find the arithmetic or mathematical formula
-- Test formula against all examples
-- Verify calculation accuracy
+### **Step 2: Analyze Transformation Rules**
+- Examine input matrix and output
+- Identify position-based rules
+- Note any pattern relationships
 
-### **Step 3: Apply Mathematical Calculations**
-- Use identified formula for new inputs
-- Perform accurate calculations
-- Handle complex mathematical operations
+### **Step 3: Determine Matrix Coding Rule**
+- Find the coordinate-based transformation
+- Test rule against matrix positions
+- Verify rule consistency
 
-### **Step 4: Verify Mathematical Solution**
-- Cross-check calculations with examples
-- Ensure mathematical consistency
-- Answer specific calculation questions
+### **Step 4: Apply Matrix Coding**
+- Use identified rule for new matrices
+- Apply coordinate transformations
+- Handle matrix position variations
 
 ---
 
 ## 🎯 Common Problem Types
 
-### **Type 1: Simple Arithmetic Coding**
-**Basic mathematical operations**
-- "Add 1 to each letter's position"
-- "Multiply position by 2"
-- "Subtract 1 from vowel positions"
+### **Type 1: Simple Coordinate Coding**
+**Basic position-based transformations**
+- "Code = Row + Column"
+- "Code = Row × Column"
+- "Code = Row - Column"
 
-### **Type 2: Complex Formula Coding**
-**Advanced mathematical formulas**
-- "Position × 2 + 1"
-- "Position² - 1"
-- "Complex multi-step calculations"
+### **Type 2: Pattern Matrix Coding**
+**Different rules for different areas**
+- "Corners get one rule, center gets another"
+- "Even rows get multiplication, odd rows get addition"
+- "Diagonal positions get special treatment"
 
-### **Type 3: Position-Integrated Mathematics**
-**Mathematics with position factors**
-- "Position in word × position in alphabet"
-- "Word position + letter position"
+### **Type 3: Complex Matrix Operations**
+**Advanced coordinate transformations**
+- "Code = (Row × Column) + Position"
+- "Code = Row² + Column²"
 - "Complex position-based formulas"
 
 ---
 
 ## 🛠️ Solving Techniques
 
-### **1. Formula Identification**
-- Analyze input-output relationships
-- Identify mathematical operations
-- Test different formula possibilities
+### **1. Matrix Visualization**
 
-### **2. Calculation Verification**
-- Perform sample calculations
-- Verify against given examples
-- Check calculation accuracy
+Matrix Grid Example:  
+Row 1: Cell Cell Cell Cell  
+Row 2: Cell Cell Cell Cell  
+Row 3: Cell Cell Cell Cell
+
+- Create matrix grid
+- Mark positions and coordinates
+- Apply transformation rules
+
+### **2. Coordinate Analysis**
+- Analyze row and column relationships
+- Identify position-based patterns
+- Test different coordinate formulas
 
 ### **3. Systematic Application**
-- Apply formula to new inputs
-- Handle complex calculations carefully
-- Verify mathematical results
+- Apply rules to each matrix position
+- Handle special position cases
+- Verify against given matrices
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Simple Addition**
-**Formula**: Position + 1
-- **Input**: ABC (A=1, B=2, C=3)
-- **Output**: 2, 3, 4
-- **Explanation**: 1+1=2, 2+1=3, 3+1=4
+### **Example 1: Simple Addition Matrix**
+**Rule**: Code = Row + Column
 
-### **Example 2: Multiplication Formula**
-**Formula**: Position × 2
-- **Input**: ABC (A=1, B=2, C=3)
-- **Output**: 2, 4, 6
-- **Explanation**: 1×2=2, 2×2=4, 3×2=6
+Matrix 2×2 positions:  
+(1,1): 1+1 = 2  
+(1,2): 1+2 = 3  
+(2,1): 2+1 = 3  
+(2,2): 2+2 = 4
 
-### **Example 3: Complex Formula**
-**Formula**: Position × 2 + 1
-- **Input**: ABC (A=1, B=2, C=3)
-- **Output**: 3, 5, 7
-- **Explanation**: 1×2+1=3, 2×2+1=5, 3×2+1=7
+### **Example 2: Multiplication Matrix**
+**Rule**: Code = Row × Column
 
----
+Matrix 2×2 positions:  
+(1,1): 1×1 = 1  
+(1,2): 1×2 = 2  
+(2,1): 2×1 = 2  
+(2,2): 2×2 = 4
 
-## 🔍 Advanced Mathematical Concepts
+### **Example 3: Complex Formula Matrix**
+**Rule**: Code = Row² + Column²
 
-### **Complex Formula Applications**
-Multi-step mathematical transformations requiring careful calculation.
-
-### **Variable Integration**
-Formulas involving multiple variables and position factors.
-
-### **Advanced Mathematical Operations**
-Complex mathematical operations including trigonometry, logarithms, etc.
+Matrix 2×2 positions:  
+(1,1): 1² + 1² = 2  
+(1,2): 1² + 2² = 5  
+(2,1): 2² + 1² = 5  
+(2,2): 2² + 2² = 8
 
 ---
 
-## 📊 Mathematical Coding Methods
+## 🔍 Advanced Matrix Concepts
 
-### **Basic Operations**
-- **Arithmetic**: +, -, ×, ÷
-- **Order of Operations**: PEMDAS/BODMAS
-- **Simple Formulas**: Single operation applications
+### **Multi-Layer Matrices**
+Complex matrices with multiple transformation layers.
 
-### **Advanced Operations**
-- **Powers and Roots**: x², √x, x³
-- **Modulo Operations**: x mod n
-- **Complex Formulas**: Multi-step calculations
+### **Irregular Matrices**
+Matrices with irregular shapes or special position rules.
 
-### **Integrated Operations**
-- **Position Factors**: Word position × letter position
-- **Multiple Variables**: Complex multi-variable formulas
-- **Conditional Operations**: Different formulas for different conditions
+### **Dynamic Matrix Coding**
+Matrices where rules change based on position or content.
+
+---
+
+## 📊 Matrix Coding Methods
+
+### **Basic Coordinate Methods**
+- **Addition**: Row + Column
+- **Multiplication**: Row × Column
+- **Subtraction**: Row - Column or Column - Row
+
+### **Advanced Coordinate Methods**
+- **Powers**: Row² + Column²
+- **Complex Formulas**: (Row + Column) × 2
+- **Conditional**: Different formulas for different positions
+
+### **Pattern-Based Methods**
+- **Row Patterns**: Different rules for different rows
+- **Column Patterns**: Different rules for different columns
+- **Area Patterns**: Different rules for different matrix regions
 
 ---
 
 ## 🎯 Common Pitfalls
 
-### **Pitfall 1: Wrong Operation Order**
-❌ Incorrect order of mathematical operations
-✅ Follow BODMAS/PEMDAS rules
+### **Pitfall 1: Coordinate Confusion**
+❌ Mixing row and column positions
+✅ Clearly identify row-column coordinates
 
-### **Pitfall 2: Calculation Errors**
-❌ Arithmetic mistakes in calculations
-✅ Double-check all mathematical steps
+### **Pitfall 2: Formula Misapplication**
+❌ Wrong formula for specific positions
+✅ Test formulas against all matrix positions
 
-### **Pitfall 3: Formula Misidentification**
-❌ Wrong mathematical formula assumption
-✅ Test formulas against all examples
+### **Pitfall 3: Pattern Oversight**
+❌ Missing position-based pattern variations
+✅ Consider special position rules
 
 ---
 
 ## 🛠️ Quick Solving Strategies
 
-### **1. Operation Analysis**
-- Identify mathematical operations used
-- Determine operation sequence
-- Test different formula possibilities
+### **1. Matrix Setup**
+- Create clear matrix grid with coordinates
+- Mark all position numbers clearly
+- Note any special position properties
 
-### **2. Calculation Practice**
-- Perform sample calculations accurately
-- Verify against given examples
-- Check for calculation consistency
+### **2. Formula Testing**
+- Try different coordinate-based formulas
+- Test against all given matrix positions
+- Verify formula consistency
 
-### **3. Formula Application**
-- Apply identified formula systematically
-- Handle complex calculations carefully
-- Verify final mathematical results
+### **3. Systematic Application**
+- Apply identified formula to each position
+- Handle special cases appropriately
+- Verify final matrix results
 
 ---
 
 ## 📈 Difficulty Levels
 
 ### **Easy Level**
-- Simple arithmetic operations
-- Basic addition/subtraction/multiplication
-- Single operation applications
+- Simple addition/multiplication formulas
+- Regular matrix structures
+- Basic coordinate operations
 
 ### **Medium Level**
-- Complex formulas with multiple operations
-- Position-integrated calculations
-- Multi-step mathematical processes
+- Complex formulas with powers/roots
+- Pattern-based rule variations
+- Mixed coordinate operations
 
 ### **Hard Level**
-- Advanced mathematical operations
-- Complex multi-variable formulas
-- Advanced calculation requirements
+- Advanced mathematical formulas
+- Complex pattern combinations
+- Irregular matrix structures
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Know Mathematical Order**: Remember BODMAS/PEMDAS rules
-2. **Calculate Accurately**: Double-check all arithmetic steps
-3. **Test Multiple Formulas**: Try different mathematical possibilities
-4. **Verify Against Examples**: Check calculations with given pairs
-5. **Handle Positions Carefully**: Account for position-based factors
+1. **Create Matrix Grid**: Visual matrix with clear coordinates
+2. **Identify Coordinates**: Know row-column numbering clearly
+3. **Test Formulas**: Try different coordinate-based formulas
+4. **Check Patterns**: Look for position-based rule variations
+5. **Verify Completely**: Test formula against all matrix positions
 
 ---
 
-## 🧮 Practice Questions
+## 🔲 Practice Questions
 
 ### **Question 1**
-If the code is calculated as (letter position + 1), what is the code for "ABC"?
+For a 2×2 matrix where code = row + column, what are the codes for all positions?
 
 ### **Question 2**
-If the code is calculated as (letter position × 2), what is the code for "CAT"?
+For a 2×2 matrix where code = row × column, what are the codes for all positions?
 
 ### **Question 3**
-If the code is calculated as (letter position × 2 + 1), what is the code for "DOG"?
+For a 2×2 matrix where code = row² + column², what are the codes for all positions?
 
 ### **Question 4**
-If the code is calculated as (letter position in word × letter position in alphabet), what is the code for "BAT"?
+For a 3×3 matrix where corners get (row + column) and center gets (row × column), what are the codes?
 
-**Master mathematical coding for precise calculation-based transformations! 🧮✨**`
+**Master matrix coding for coordinate-based logical transformations! 🔲✨**`
 };

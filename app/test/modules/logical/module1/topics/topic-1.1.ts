@@ -28,31 +28,6 @@ Welcome to the fascinating world of Logical Reasoning! This foundational course 
 
 ---
 
-## 🧩 Types of Logical Reasoning
-
-### **1. Verbal Reasoning**
-Focused on language-based logical problems and arguments.
-
-### **2. Non-Verbal Reasoning**
-Involves pattern recognition and visual logic puzzles.
-
-### **3. Analytical Reasoning**
-Centers on evaluating arguments and making logical conclusions.
-
----
-
-## 📊 Competitive Exam Relevance
-
-### **Major Exams Featuring Logical Reasoning**
-- **Banking Exams** (IBPS, SBI): 30-40% weightage
-- **SSC Exams** (CGL, CHSL): Significant portion
-- **Railway Exams** (NTPC, Group D): Important section
-- **Defence Exams** (NDA, CDS): Reasoning aptitude
-- **Management Exams** (CAT, MAT): Analytical reasoning
-
-
----
-
 ## 🎯 Core Logical Reasoning Skills
 
 ### **1. Deductive Reasoning**
@@ -101,28 +76,6 @@ Centers on evaluating arguments and making logical conclusions.
 
 ---
 
-## 📈 Difficulty Levels in Exams
-
-### **Easy Level (30-40%)**
-- Basic logical relationships
-- Simple pattern identification
-- Straightforward problems
-- Direct reasoning tasks
-
-### **Medium Level (40-50%)**
-- Complex logical puzzles
-- Multi-step reasoning
-- Conditional relationships
-- Pattern recognition with variations
-
-### **Difficult Level (15-20%)**
-- Advanced analytical problems
-- Multi-variable scenarios
-- Abstract reasoning tasks
-- Time-pressured complex problems
-
----
-
 ## 📊 Time Management Strategies
 
 ### **Question Allocation (Per Topic)**
@@ -141,50 +94,6 @@ Centers on evaluating arguments and making logical conclusions.
 - **Option Elimination**: Remove obviously wrong answers
 - **Shortcut Methods**: Learn quick solving techniques
 - **Practice Speed**: Regular timed practice sessions
-
----
-
-## 🚀 Preparation Strategy
-
-### **Phase 1: Foundation Building (Weeks 1-2)**
-- Understand basic concepts
-- Learn fundamental techniques
-- Practice easy problems
-- Build confidence
-
-### **Phase 2: Skill Development (Weeks 3-4)**
-- Master each topic individually
-- Learn advanced techniques
-- Practice mixed difficulty
-- Focus on accuracy
-
-### **Phase 3: Speed Building (Weeks 5-6)**
-- Time-bound practice sessions
-- Mock test simulation
-- Weak area identification
-- Speed improvement techniques
-
-### **Phase 4: Revision & Testing (Weeks 7-8)**
-- Topic-wise revision
-- Full-length mock tests
-- Performance analysis
-- Strategy refinement
-
----
-
-## 📚 Recommended Study Materials
-
-### **Books**
-- **Verbal and Non-Verbal Reasoning** by R.S. Aggarwal
-- **Analytical Reasoning** by M.K. Pandey
-- **Logical Reasoning** by Arun Sharma
-- **Banking Awareness** by Arihant Publications
-
-### **Online Resources**
-- **Practice Platforms**: Testbook, Adda247, Unacademy
-- **Mock Tests**: Previous year papers
-- **Video Lectures**: YouTube educational channels
-- **Mobile Apps**: Reasoning practice apps
 
 ---
 

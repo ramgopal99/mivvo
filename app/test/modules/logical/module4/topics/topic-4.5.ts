@@ -2,295 +2,289 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_5: SubLesson = {
   id: "4.5",
-  title: 'Box / Distribution Puzzles',
+  title: 'Comparison-Based Puzzles',
   status: 'completed',
-  content: `# 📦 Box / Distribution Puzzles
+  content: `# ⚖️ Comparison-Based Puzzles
 
-Box and distribution puzzles involve allocating items, resources, or entities into containers or groups based on various constraints. These puzzles require systematic distribution logic and constraint satisfaction to solve complex allocation problems.
+Comparison-based puzzles involve analyzing relationships between entities based on various attributes like age, height, weight, performance, etc. These puzzles require understanding comparative relationships and transitive reasoning to solve complex ranking problems.
 
 ---
 
-## 🎯 Understanding Distribution Puzzles
+## 🎯 Understanding Comparison Puzzles
 
-### **What are Box/Distribution Puzzles?**
-These puzzles involve distributing items, people, or resources into boxes, groups, or categories based on given constraints. They test your ability to:
-- **Apply systematic allocation logic**
-- **Understand distribution constraints**
-- **Use constraint satisfaction techniques**
-- **Solve complex allocation scenarios**
+### **What are Comparison-Based Puzzles?**
+Comparison puzzles involve entities compared based on attributes, requiring you to determine relative rankings and relationships. They test your ability to:
+- **Apply comparative logic**
+- **Use transitive reasoning**
+- **Understand ranking relationships**
+- **Solve complex comparison networks**
 
 ### **Key Characteristics**
-- **Multiple containers/groups**: Boxes, rooms, categories
-- **Distribution rules**: What can/cannot go where
-- **Capacity constraints**: Limits on container contents
-- **Relationship constraints**: Item interaction rules
+- **Comparative attributes**: Age, height, weight, marks, etc.
+- **Ranking relationships**: Better than, taller than, older than
+- **Transitive logic**: If A > B and B > C, then A > C
+- **Network relationships**: Complex comparison webs
 
 ---
 
-## 🧩 Types of Distribution Problems
+## 🧩 Types of Comparisons
 
-### **1. Box Distribution**
-**Allocating items into boxes with constraints**
-- Different colored boxes
-- Size/capacity constraints
-- Content relationship rules
-- Box-specific requirements
+### **1. Direct Comparisons**
+**Explicit relationship statements**
+- "A is taller than B"
+- "C is older than D"
+- "E scores higher than F"
 
-### **2. Group Distribution**
-**Assigning people/objects to groups**
-- Team or category assignments
-- Group size limitations
-- Inter-group relationship constraints
-- Balance requirements
+### **2. Indirect Comparisons**
+**Relationships through intermediaries**
+- "A is taller than someone who is taller than B"
+- Transitive relationship chains
+- Network-based comparisons
 
-### **3. Resource Allocation**
-**Distributing resources systematically**
-- Limited resource distribution
-- Fair allocation requirements
-- Preference-based assignments
-- Constraint optimization
+### **3. Multiple Attribute Comparisons**
+**Different comparison criteria**
+- Age, height, weight simultaneously
+- Performance across different metrics
+- Multi-dimensional rankings
 
 ---
 
 ## 📊 Problem-Solving Framework
 
-### **Step 1: Understand Distribution Requirements**
-- Identify containers and their properties
-- Note item characteristics and constraints
-- Understand distribution rules
+### **Step 1: Identify Comparison Type**
+- Note the attribute being compared
+- Understand comparison direction (greater/lesser)
+- Map all comparison statements
 
-### **Step 2: Create Distribution Framework**
-- List all containers and items
-- Create allocation matrix
-- Map known assignments
+### **Step 2: Create Comparison Framework**
+- List all entities involved
+- Draw comparison relationship diagram
+- Identify direct and indirect relationships
 
-### **Step 3: Apply Constraints Systematically**
-- Start with definite assignments
-- Apply distribution rules
-- Use elimination techniques
+### **Step 3: Apply Transitive Logic**
+- Use transitive property systematically
+- Build complete comparison network
+- Identify ranking positions
 
-### **Step 4: Verify Distribution**
-- Check all constraints satisfied
-- Ensure balanced distribution
-- Answer specific questions
+### **Step 4: Verify Relationships**
+- Check all statements satisfied
+- Ensure logical consistency
+- Answer specific comparison questions
 
 ---
 
 ## 🎯 Common Problem Types
 
-### **Type 1: Box Capacity Problems**
-**Items distributed into boxes with size limits**
-- "Box A can hold maximum 3 items"
-- "Box B must have at least 2 items"
-- "Each box gets equal number of items"
+### **Type 1: Age Comparison**
+**Age-based ranking problems**
+- "A is older than B"
+- "C is youngest among them"
+- "D is 5 years older than E"
 
-### **Type 2: Item Relationship Constraints**
-**Items cannot be together or must be together**
-- "A and B cannot be in same box"
-- "C and D must be in same box"
-- "E must be with F or G"
+### **Type 2: Performance Comparison**
+**Score/rank-based problems**
+- "A scored higher than B"
+- "C got more marks than D"
+- "E performed better than F"
 
-### **Type 3: Box Property Constraints**
-**Boxes have specific requirements**
-- "Red box gets only small items"
-- "Large box gets heavy items"
-- "Square box gets cubic items"
+### **Type 3: Physical Attribute Comparison**
+**Height, weight, size comparisons**
+- "A is taller than B"
+- "C weighs more than D"
+- "E is heavier than F"
 
 ---
 
 ## 🛠️ Solving Techniques
 
-### **1. Distribution Matrix Method**
-Box A: [ ] [ ] [ ]
-Box B: [ ] [ ] [ ]
-Box C: [ ] [ ]
-- Create allocation framework
-- Fill systematically
-- Track constraints
+### **1. Comparison Chain Method**
+A > B > C > D
+↑
+E > F
+- Create comparison chains
+- Apply transitive relationships
+- Build complete ranking
 
-### **2. Possibility Grid**
-- List all possible allocations
-- Mark valid/invalid combinations
-- Use elimination to find solution
+### **2. Matrix Method**
+    A   B   C   D
+A   -   >   >   <
+B   <   -   >   <
+C   <   <   -   <
+D   >   >   >   -
+- Create comparison matrix
+- Fill based on given relationships
+- Use transitivity to complete
 
-### **3. Logical Deduction**
-- Apply distribution rules
-- Use relationship constraints
-- Build solution progressively
+### **3. Ranking Method**
+- Assign relative positions
+- Use given comparisons
+- Determine exact rankings
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Simple Box Distribution**
+### **Example 1: Simple Age Comparison**
 **Conditions:**
-1. Three boxes: A, B, C
-2. Five items: 1, 2, 3, 4, 5
-3. Box A gets 2 items
-4. Box B gets 2 items
-5. Box C gets 1 item
-6. Item 1 cannot be with item 2
+1. Five people: A, B, C, D, E
+2. A is older than B
+3. B is older than C
+4. D is older than E
+5. C is older than D
 
-**Solution:** Systematic distribution based on constraints.
+**Solution:** A > B > C > D > E
 
-### **Example 2: Complex Relationships**
+### **Example 2: Complex Network**
 **Conditions:**
-1. Four boxes: Red, Blue, Green, Yellow
-2. Eight balls: Different colors and sizes
-3. Red box gets only large balls
-4. Blue box gets only small balls
-5. Green box gets mixed sizes
-6. Yellow box gets medium balls only
-7. No two same color balls in same box
+1. Six students: P, Q, R, S, T, U
+2. P scored higher than Q
+3. R scored higher than S
+4. T scored higher than U
+5. Q scored higher than R
+6. S scored higher than T
 
-**Solution:** Apply color and size constraints carefully.
+**Solution:** P > Q > R > S > T > U
 
-### **Example 3: Group Assignment**
+### **Example 3: Multiple Attributes**
 **Conditions:**
-1. Three groups: Alpha, Beta, Gamma
-2. Nine students: A-I
-3. Each group gets 3 students
-4. A and B must be in same group
-5. C cannot be with D
-6. E must be in Alpha group
-7. F and G cannot be in same group as H
+1. Four friends: X, Y, Z, W
+2. X is taller than Y
+3. Z is heavier than W
+4. Y is taller than Z
+5. X weighs more than W
 
-**Solution:** Apply relationship constraints systematically.
+**Solution:** Height: X > Y > Z > W, Weight: X > Z > W (Y unknown)
 
 ---
 
-## 🔍 Advanced Distribution Concepts
+## 🔍 Advanced Comparison Concepts
 
-### **Multi-Constraint Distributions**
-Complex problems with multiple interacting constraints.
+### **Multi-Attribute Comparisons**
+Problems involving multiple comparison criteria simultaneously.
 
-### **Optimization Distributions**
-Finding optimal distribution based on criteria.
+### **Conditional Comparisons**
+Comparisons that depend on other factors or conditions.
 
-### **Dynamic Distributions**
-Distributions that change based on conditions.
+### **Circular Comparisons**
+Complex relationship loops requiring careful analysis.
 
 ---
 
-## 📊 Distribution Logic Methods
+## 📊 Comparison Logic Methods
 
-### **Capacity-Based Logic**
-- **Fixed capacity**: Exact number requirements
-- **Range capacity**: Minimum/maximum limits
-- **Proportional distribution**: Percentage-based allocation
+### **Transitive Logic**
+- **Direct Transitivity**: A > B, B > C → A > C
+- **Indirect Transitivity**: A > D, D > C → A > C
+- **Network Transitivity**: Complex relationship chains
 
-### **Relationship-Based Logic**
-- **Compatibility rules**: What can be together
-- **Exclusion rules**: What cannot be together
-- **Dependency rules**: Conditional allocations
+### **Ranking Logic**
+- **Position Assignment**: 1st, 2nd, 3rd positions
+- **Relative Positioning**: Better/worse than specific number
+- **Group Rankings**: Top 3, bottom 2, etc.
 
-### **Property-Based Logic**
-- **Attribute matching**: Item properties match container requirements
-- **Quality constraints**: Quality-based distribution rules
-- **Preference logic**: Preference-based allocations
+### **Attribute Logic**
+- **Same Attribute**: Age-to-age, height-to-height
+- **Different Attributes**: Age vs height comparisons
+- **Conversion Logic**: Relating different attributes
 
 ---
 
 ## 🎯 Common Pitfalls
 
-### **Pitfall 1: Capacity Miscalculation**
-❌ Wrong capacity constraint application
-✅ Careful capacity limit checking
+### **Pitfall 1: Transitive Error**
+❌ Incorrect transitive application
+✅ Careful chain verification
 
-### **Pitfall 2: Relationship Confusion**
-❌ Mixing compatibility and exclusion rules
-✅ Clear relationship rule application
+### **Pitfall 2: Attribute Confusion**
+❌ Mixing different comparison attributes
+✅ Keep attributes separate
 
-### **Pitfall 3: Incomplete Distribution**
-❌ Not distributing all items
-✅ Ensure all items are allocated
+### **Pitfall 3: Direction Error**
+❌ Reversing comparison directions
+✅ Maintain correct relationship directions
 
 ---
 
 ## 🛠️ Quick Solving Strategies
 
-### **1. Framework Creation**
-- Create clear distribution matrix
-- List all constraints systematically
-- Mark known allocations
+### **1. Comparison Diagram**
+- Draw comparison arrows/lines
+- Show relationship directions
+- Identify transitive chains
 
 ### **2. Systematic Application**
-- Start with most restrictive constraints
-- Apply relationship rules
-- Fill remaining allocations
+- Start with direct comparisons
+- Apply transitivity step by step
+- Build complete relationship network
 
 ### **3. Verification Process**
-- Check all capacity limits
-- Verify relationship constraints
-- Ensure complete distribution
+- Check each comparison individually
+- Verify transitive relationships
+- Confirm overall ranking consistency
 
 ---
 
 ## 📈 Difficulty Levels
 
 ### **Easy Level**
-- Few containers, simple constraints
-- Direct capacity assignments
-- Basic relationship rules
+- Few entities, simple comparisons
+- Direct relationship chains
+- Single attribute comparisons
 
 ### **Medium Level**
-- Multiple containers, mixed constraints
-- Complex relationship interactions
-- Attribute-based distributions
+- Multiple entities, complex chains
+- Mixed comparison directions
+- Multiple attribute types
 
 ### **Hard Level**
-- Many containers, complex constraints
-- Multiple constraint interactions
-- Optimization requirements
+- Many entities, complex networks
+- Multiple attributes simultaneously
+- Conditional and circular comparisons
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Create Distribution Matrix**: Visual allocation framework
-2. **List All Constraints**: Systematic constraint organization
-3. **Start with Definite**: Place known allocations first
-4. **Apply Relationships**: Use compatibility rules carefully
-5. **Check Capacities**: Ensure capacity limits are respected
+1. **Draw Comparison Diagrams**: Visual relationship mapping
+2. **Apply Transitive Property**: Use A > B, B > C → A > C
+3. **Keep Attributes Separate**: Don't mix age and height comparisons
+4. **Start with Direct**: Use given comparisons first
+5. **Verify Chains**: Check each transitive step
 
 ---
 
-## 📦 Practice Questions
+## ⚖️ Practice Questions
 
 ### **Question 1**
 **Conditions:**
-1. Three boxes: A, B, C
-2. Six items: 1, 2, 3, 4, 5, 6
-3. Box A: 2 items
-4. Box B: 2 items
-5. Box C: 2 items
-6. Item 1 cannot be with item 2
-7. Item 3 must be with item 4
+1. Five students: A, B, C, D, E
+2. A scored higher than B
+3. B scored higher than C
+4. D scored higher than E
+5. C scored higher than D
 
-**Which item is in Box C?**
+**Who scored the highest?**
 
 ### **Question 2**
 **Conditions:**
-1. Four groups: P, Q, R, S
-2. Eight students: A-H
-3. Each group gets 2 students
-4. A and B must be in same group
-5. C cannot be with D
-6. E and F must be in different groups
+1. Four athletes: P, Q, R, S
+2. P is taller than Q
+3. R is shorter than S
+4. Q is taller than R
+5. P is taller than S
 
-**How many different valid distributions are possible?**
+**What is the order from tallest to shortest?**
 
 ### **Question 3**
 **Conditions:**
-1. Five containers: Red, Blue, Green, Yellow, Purple
-2. Ten balls: Different sizes and weights
-3. Red: Large balls only
-4. Blue: Small balls only
-5. Green: Heavy balls only
-6. Yellow: Light balls only
-7. Purple: Medium balls only
+1. Six employees: X, Y, Z, W, V, U
+2. X is senior to Y
+3. Z joined before W
+4. Y is junior to Z
+5. V joined after U
+6. W is senior to V
 
-**What is the minimum number of balls that can be distributed?**
+**Who joined first?**
 
-**Master box and distribution puzzles for systematic allocation skills! 📦✨**`
+**Master comparison-based puzzles for ranking and relationship analysis! ⚖️✨**`
 };

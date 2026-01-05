@@ -2,252 +2,257 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_6: SubLesson = {
   id: "5.6",
-  title: 'Indirect Coding',
+  title: 'Substitution Coding',
   status: 'completed',
-  content: `# 🔍 Indirect Coding
+  content: `# 🔄 Substitution Coding
 
-Indirect coding involves complex transformation rules that are not immediately obvious and require careful analysis to understand. These problems are more challenging than direct coding and test deeper analytical reasoning skills.
+Substitution coding involves replacing letters or symbols with other letters, numbers, or symbols according to specific rules. These problems are common in coding-decoding and require pattern recognition and systematic replacement skills.
 
 ---
 
-## 🎯 Understanding Indirect Coding
+## 🎯 Understanding Substitution Coding
 
-### **What is Indirect Coding?**
-Indirect coding involves transformation rules that are not straightforward and require careful analysis to identify. These problems test your ability to:
-- **Analyze complex relationships**
-- **Identify hidden transformation rules**
-- **Apply deductive reasoning**
-- **Solve non-obvious coding problems**
+### **What is Substitution Coding?**
+Substitution coding involves replacing one set of characters with another set according to predefined rules. These problems test your ability to:
+- **Identify substitution patterns**
+- **Apply replacement rules consistently**
+- **Recognize symbol relationships**
+- **Solve systematic replacement problems**
 
 ### **Key Characteristics**
-- **Hidden rules**: Transformation rules not immediately apparent
-- **Complex relationships**: Indirect connections between input and output
-- **Deductive reasoning**: Requires logical analysis to find rules
-- **Pattern complexity**: Rules involve multiple steps or conditions
+- **Character replacement**: One character replaces another
+- **Rule-based substitution**: Systematic replacement patterns
+- **Pattern consistency**: Same rules throughout
+- **Symbol relationships**: Connections between substituted elements
 
 ---
 
-## 🧩 Types of Indirect Coding
+## 🧩 Types of Substitution Coding
 
-### **1. Multi-Step Transformations**
-**Complex transformation sequences**
-- **Sequential Operations**: Multiple transformation steps
-- **Conditional Rules**: Different rules based on conditions
-- **Position-Dependent**: Rules vary by position
+### **1. Letter-to-Letter Substitution**
+**Direct letter replacements**
+- **One-to-One**: A→X, B→Y, etc.
+- **Pattern-Based**: Every nth letter, etc.
+- **Alphabetical**: Reverse alphabet, skip letters
 
-### **2. Relationship-Based Coding**
-**Based on relationships between elements**
-- **Comparative Rules**: Rules based on comparisons
-- **Dependency Rules**: Rules dependent on other elements
-- **Contextual Rules**: Rules based on surrounding context
+### **2. Letter-to-Number Substitution**
+**Letters replaced by numbers**
+- **Position-Based**: A=1, B=2, etc.
+- **Mathematical**: Position × 2, etc.
+- **Pattern-Based**: Alternating numbers
 
-### **3. Pattern Recognition Coding**
-**Complex pattern identification**
-- **Hidden Patterns**: Not obvious transformation patterns
-- **Logical Deduction**: Rules found through reasoning
-- **Analytical Discovery**: Rules discovered through analysis
+### **3. Letter-to-Symbol Substitution**
+**Letters replaced by symbols**
+- **Symbol Sets**: @, #, $, %, etc.
+- **Visual Patterns**: Shapes, special characters
+- **Rule-Based**: Position determines symbol
 
 ---
 
 ## 📊 Problem-Solving Framework
 
-### **Step 1: Deep Analysis**
-- Examine all input-output pairs thoroughly
-- Look for non-obvious relationships
-- Consider multiple interpretation possibilities
+### **Step 1: Analyze Substitution Pattern**
+- Examine input-output pairs
+- Identify which characters are replaced
+- Note the replacement relationships
 
-### **Step 2: Hypothesis Formation**
-- Form hypotheses about transformation rules
-- Test different possible rules
-- Eliminate incorrect hypotheses
+### **Step 2: Determine Substitution Rule**
+- Find the replacement mapping
+- Test rule against all examples
+- Verify pattern consistency
 
-### **Step 3: Rule Verification**
-- Verify rule against all examples
-- Check for consistency and logic
-- Refine rule based on findings
+### **Step 3: Apply Substitution Systematically**
+- Use identified mapping for new inputs
+- Apply replacements consistently
+- Handle pattern variations
 
-### **Step 4: Systematic Application**
-- Apply discovered rule to new inputs
-- Handle complex conditions carefully
-- Verify solution logic
+### **Step 4: Verify Solution**
+- Cross-check with given examples
+- Ensure substitution consistency
+- Answer specific questions
 
 ---
 
 ## 🎯 Common Problem Types
 
-### **Type 1: Hidden Mathematical Rules**
-**Complex mathematical relationships**
-- "Letter position × 2 + 1"
-- "Reverse position minus word position"
-- "Complex formula applications"
+### **Type 1: Direct Substitution**
+**Simple one-to-one replacements**
+- "A=Z, B=Y, C=X, D=W, E=V"
+- "Replace vowels with numbers 1-5"
+- "Replace consonants with next letter"
 
-### **Type 2: Conditional Transformations**
-**Rules based on conditions**
-- "Vowels get one rule, consonants another"
-- "Even positions get different treatment"
-- "Context-dependent transformations"
+### **Type 2: Pattern Substitution**
+**Rule-based replacements**
+- "Replace every second letter"
+- "Vowels get one pattern, consonants another"
+- "Position-based substitution rules"
 
-### **Type 3: Multi-Variable Rules**
-**Rules involving multiple factors**
-- "Position in word + position in alphabet"
-- "Multiple mathematical operations"
-- "Complex interdependent rules"
+### **Type 3: Complex Substitution**
+**Multi-rule substitutions**
+- "Combination of multiple substitution types"
+- "Conditional substitution rules"
+- "Position-dependent substitutions"
 
 ---
 
 ## 🛠️ Solving Techniques
 
-### **1. Systematic Hypothesis Testing**
-- Form multiple possible rules
-- Test each against examples
-- Eliminate incorrect hypotheses
+### **1. Mapping Creation**
 
-### **2. Pattern Decomposition**
-- Break complex patterns into components
-- Analyze each component separately
-- Recombine into complete rule
+Substitution Mapping:  
+Original: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z  
+Replaced: Z Y X W V U T S R Q P O N M L K J I H G F E D C B A
 
-### **3. Logical Deduction**
-- Use deductive reasoning to find rules
-- Apply logical consistency checks
-- Verify rule applicability
+- Create substitution mapping
+- Identify pattern or rule
+- Apply systematically
+
+### **2. Pattern Recognition**
+- Identify substitution pattern
+- Note any special rules
+- Test pattern consistency
+
+### **3. Systematic Application**
+- Apply substitution rules
+- Handle special cases
+- Verify against examples
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Hidden Mathematical Rule**
-**Examples:**
-- CAT → 3-1-20
-- DOG → 4-15-7
-- **Rule**: Letter positions directly
-- **Explanation**: C=3, A=1, T=20
+### **Example 1: Reverse Alphabet**
+**Rule**: A=Z, B=Y, C=X, D=W, E=V, etc.
+- **Input**: CAT
+- **Output**: XZG
 
-### **Example 2: Conditional Rule**
-**Examples:**
-- BAT → B1T (vowels become numbers)
-- CAT → C1T
-- **Rule**: Vowels → position numbers, consonants stay same
-- **Explanation**: A=1, E=2, I=3, O=4, U=5
+**Explanation**: C=X, A=Z, T=G
 
-### **Example 3: Complex Rule**
-**Examples:**
-- ABC → 1-2-3 (simple positions)
-- But with additional complexity...
-- **Rule**: Position × 2 - 1
-- **Explanation**: A(1)→1, B(2)→3, C(3)→5
+### **Example 2: Vowel Substitution**
+**Rule**: A=1, E=2, I=3, O=4, U=5
+- **Input**: HOUSE
+- **Output**: H45S2
 
----
+**Explanation**: O=4, U=5, E=2
 
-## 🔍 Advanced Indirect Concepts
+### **Example 3: Symbol Substitution**
+**Rule**: A=@, B=# , C=$, D=%, E=^
+- **Input**: ABCD
+- **Output**: @#$%
 
-### **Multi-Layer Rules**
-Complex rules requiring multiple levels of analysis.
-
-### **Interdependent Rules**
-Rules that depend on relationships between multiple elements.
-
-### **Contextual Rules**
-Rules that vary based on surrounding context or conditions.
+**Explanation**: Direct symbol replacement
 
 ---
 
-## 📊 Indirect Coding Methods
+## 🔍 Advanced Substitution Concepts
 
-### **Analytical Methods**
-- **Hypothesis Testing**: Testing different rule possibilities
-- **Pattern Analysis**: Breaking down complex patterns
-- **Logical Deduction**: Using reasoning to find rules
+### **Multi-Rule Substitutions**
+Complex substitution involving multiple rules or conditions.
 
-### **Mathematical Methods**
-- **Complex Formulas**: Multi-step mathematical operations
-- **Variable Dependencies**: Rules involving multiple variables
-- **Conditional Operations**: Different operations based on conditions
+### **Conditional Substitutions**
+Different substitution rules based on character properties or positions.
+
+### **Pattern-Based Substitutions**
+Substitutions following complex patterns or sequences.
+
+---
+
+## 📊 Substitution Coding Methods
+
+### **Direct Methods**
+- **One-to-One**: Simple character replacements
+- **Set-Based**: Replace with predefined sets
+- **Alphabetical**: Reverse or modified alphabet
 
 ### **Pattern Methods**
-- **Hidden Patterns**: Not obvious transformation patterns
-- **Relationship Patterns**: Patterns based on element relationships
-- **Contextual Patterns**: Patterns based on context
+- **Position-Based**: Different rules for different positions
+- **Property-Based**: Different rules for vowels/consonants
+- **Sequence-Based**: Pattern-based replacements
+
+### **Complex Methods**
+- **Multi-Step**: Multiple substitution phases
+- **Conditional**: Rules based on conditions
+- **Integrated**: Combination of multiple methods
 
 ---
 
 ## 🎯 Common Pitfalls
 
-### **Pitfall 1: Surface Analysis**
-❌ Stopping at obvious patterns
-✅ Looking deeper for hidden rules
+### **Pitfall 1: Incomplete Mapping**
+❌ Not identifying all substitution pairs
+✅ Create complete mapping table
 
-### **Pitfall 2: Wrong Assumptions**
-❌ Assuming simple rules when complex ones exist
-✅ Testing multiple hypothesis possibilities
+### **Pitfall 2: Pattern Misidentification**
+❌ Wrong substitution pattern assumption
+✅ Test patterns against all examples
 
-### **Pitfall 3: Incomplete Testing**
-❌ Not testing rules against all examples
-✅ Comprehensive rule verification
+### **Pitfall 3: Inconsistent Application**
+❌ Applying different rules inconsistently
+✅ Use same rules throughout
 
 ---
 
 ## 🛠️ Quick Solving Strategies
 
-### **1. Multiple Hypotheses**
-- Generate several possible rules
-- Test each systematically
-- Eliminate incorrect ones
+### **1. Mapping Creation**
+- Create substitution mapping table
+- Identify pattern or direct replacements
+- Test mapping against examples
 
-### **2. Component Analysis**
-- Break problem into smaller parts
-- Analyze each component
-- Find connecting patterns
+### **2. Pattern Verification**
+- Verify pattern works for all examples
+- Check for special cases or exceptions
+- Refine pattern if needed
 
-### **3. Logical Verification**
-- Use deductive reasoning
-- Check logical consistency
-- Verify against all examples
+### **3. Systematic Application**
+- Apply substitution rules consistently
+- Handle all characters appropriately
+- Verify final results
 
 ---
 
 ## 📈 Difficulty Levels
 
 ### **Easy Level**
-- Slightly hidden but discoverable rules
-- Basic conditional transformations
-- Moderate complexity patterns
+- Simple one-to-one substitutions
+- Direct letter replacements
+- Basic pattern rules
 
 ### **Medium Level**
-- Complex mathematical relationships
-- Multi-condition rules
-- Advanced pattern recognition
+- Mixed substitution types
+- Conditional rules
+- Pattern combinations
 
 ### **Hard Level**
-- Highly complex interdependent rules
-- Multiple layer transformations
-- Advanced analytical requirements
+- Complex multi-rule substitutions
+- Advanced pattern recognition
+- Integrated substitution systems
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Look Beyond Obvious**: Don't stop at first apparent pattern
-2. **Test Multiple Hypotheses**: Consider different possible rules
-3. **Analyze Thoroughly**: Examine all examples in detail
-4. **Use Logical Reasoning**: Apply deductive reasoning techniques
-5. **Verify Completely**: Test rules against all given information
+1. **Create Mapping Table**: Visual substitution reference
+2. **Identify Patterns**: Look for consistent replacement rules
+3. **Test Thoroughly**: Verify against all given examples
+4. **Apply Consistently**: Use same rules for all substitutions
+5. **Handle Special Cases**: Note any exceptions or special rules
 
 ---
 
-## 🔍 Practice Questions
+## 🔄 Practice Questions
 
 ### **Question 1**
-Find the indirect coding rule for: CAT→3-1-20, DOG→4-15-7, BOX→2-15-24
+If A=Z, B=Y, C=X, D=W, E=V, what is the code for "BED"?
 
 ### **Question 2**
-Find the rule for: BAT→B1T, CAT→C1T, DOG→D4G
+If vowels are replaced by numbers (A=1, E=2, I=3, O=4, U=5), what is the code for "MOUSE"?
 
 ### **Question 3**
-Find the rule for: ABC→1-3-5, DEF→4-6-8, GHI→7-9-11
+If A=@, B=# , C=$, D=%, E=^, what is the code for "BEAD"?
 
 ### **Question 4**
-Find the rule for: PEN→P2N, BOX→B4X, CAT→C1T
+If every letter is replaced by the letter 3 positions ahead, what is the code for "CAT"?
 
-**Master indirect coding for complex analytical reasoning! 🔍✨**`
+**Master substitution coding for systematic character replacements! 🔄✨**`
 };

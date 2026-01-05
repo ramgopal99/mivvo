@@ -2,314 +2,226 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_1: SubLesson = {
   id: "4.1",
-  title: 'PUZZLES (Aptitude – Exam-Oriented Topics)',
+  title: 'Concept of Logical Puzzles',
   status: 'completed',
-  content: `# 🧩 PUZZLES (Aptitude – Exam-Oriented Topics)
+  content: `# 🧠 Concept of Logical Puzzles
 
-Welcome to the comprehensive Puzzles module! This exam-oriented section covers all types of logical puzzles that appear frequently in competitive examinations. Master various puzzle-solving techniques, analytical reasoning methods, and complex problem-solving scenarios to excel in banking, SSC, railway, and other competitive exams.
-
----
-
-## 🎯 Understanding Logical Puzzles
-
-### **What are Logical Puzzles?**
-Logical puzzles involve complex reasoning scenarios that require systematic analysis, deduction, and problem-solving skills. These problems test your ability to:
-- **Analyze complex information**
-- **Apply deductive reasoning**
-- **Use systematic elimination**
-- **Solve multi-variable problems**
-
-### **Why Important in Competitive Exams**
-- **High Scoring Potential**: Complex puzzles carry significant marks
-- **Analytical Skills**: Tests advanced reasoning abilities
-- **Time Management**: Requires strategic solving approaches
-- **Real-world Application**: Develops systematic thinking
+Understanding the fundamental concepts of logical puzzles is essential for solving complex reasoning problems. This topic covers the basic principles, terminology, and foundational concepts that form the basis of all logical puzzle solving.
 
 ---
 
-## 🧩 Types of Logical Puzzles
+## 🎯 What are Logical Puzzles?
 
-### **Arrangement-Based Puzzles**
-**Organizing elements in specific orders or patterns**
-- Linear arrangements with multiple constraints
-- Circular arrangements with complex conditions
-- Grid-based and matrix arrangements
+### **Definition**
+Logical puzzles are complex reasoning problems that require systematic analysis, deduction, and problem-solving skills. They involve multiple variables, constraints, and relationships that must be analyzed and resolved logically.
 
-### **Distribution-Based Puzzles**
-**Allocating resources or items systematically**
-- Box distribution puzzles
-- Resource allocation problems
-- Distribution with constraints
-
-### **Comparison-Based Puzzles**
-**Analyzing relationships and hierarchies**
-- Age comparison puzzles
-- Weight comparison problems
-- Performance ranking puzzles
-
-### **Scheduling-Based Puzzles**
-**Time management and sequencing problems**
-- Event scheduling puzzles
-- Time-based arrangement problems
-- Sequence optimization puzzles
-
-### **Assignment-Based Puzzles**
-**Allocating tasks or roles systematically**
-- Job assignment problems
-- Room allocation puzzles
-- Task distribution scenarios
+### **Core Elements**
+- **Variables**: People, objects, or entities involved
+- **Constraints**: Rules and limitations to follow
+- **Relationships**: Connections between variables
+- **Solutions**: Logical conclusions based on given information
 
 ---
 
-## 📊 Competitive Exam Relevance
-
-### **Major Exams Featuring Puzzles**
-- **Banking Exams** (IBPS, SBI): 15-20 marks per exam
-- **SSC Exams** (CGL, CHSL): 10-15 questions regularly
-- **Railway Exams** (NTPC, Group D): Complex puzzles included
-- **Defence Exams** (NDA, CDS): Analytical puzzles
-- **Management Exams** (CAT, MAT): Advanced reasoning puzzles
-
-### **Question Distribution Pattern**
-| Puzzle Type | Banking | SSC | Railway | Defence |
-|-------------|---------|-----|---------|---------|
-| Floor Puzzles | 3-5 | 2-4 | 3-4 | 2-3 |
-| Scheduling | 2-4 | 3-5 | 2-3 | 2-3 |
-| Comparison | 2-3 | 2-4 | 2-3 | 1-2 |
-| Assignment | 2-3 | 2-3 | 1-2 | 1-2 |
-| Mixed Puzzles | 3-5 | 4-6 | 3-4 | 3-4 |
-
----
-
-## 🎯 Core Puzzle-Solving Skills
+## 🧩 Basic Puzzle Components
 
 ### **1. Information Analysis**
-**Breaking down complex information**
-- Identify key variables and constraints
-- Categorize information types
-- Recognize relationships and dependencies
+- **Direct Information**: Explicitly stated facts
+- **Indirect Information**: Implied relationships
+- **Conditional Information**: If-then relationships
+- **Negative Information**: What cannot be true
 
-### **2. Systematic Organization**
-**Structuring information logically**
-- Create tables and grids
-- Use diagrams and charts
-- Organize data systematically
+### **2. Reasoning Techniques**
+- **Deductive Reasoning**: Drawing specific conclusions from general premises
+- **Inductive Reasoning**: Finding patterns from specific examples
+- **Abductive Reasoning**: Finding best explanations
+- **Analogical Reasoning**: Solving by finding similarities
 
-### **3. Logical Deduction**
-**Applying reasoning systematically**
-- Use elimination techniques
-- Apply deductive reasoning
-- Consider all possible scenarios
-
-### **4. Pattern Recognition**
-**Identifying underlying patterns**
-- Recognize common puzzle structures
-- Apply pattern-based solutions
-- Use shortcuts and techniques
+### **3. Problem-Solving Methods**
+- **Systematic Elimination**: Removing impossible options
+- **Logical Deduction**: Applying rules to reach conclusions
+- **Pattern Recognition**: Identifying recurring structures
+- **Hypothesis Testing**: Trying different approaches
 
 ---
 
-## 🛠️ Problem-Solving Framework
+## 📊 Puzzle Classification
 
-### **Step 1: Read and Understand**
-- Carefully read all given information
-- Identify the puzzle type and requirements
-- Note all constraints and conditions
+### **By Complexity**
+- **Simple Puzzles**: Few variables, direct relationships
+- **Medium Puzzles**: Multiple variables, some complexity
+- **Complex Puzzles**: Many variables, intricate relationships
+
+### **By Structure**
+- **Linear Puzzles**: Sequential relationships
+- **Network Puzzles**: Interconnected relationships
+- **Hierarchical Puzzles**: Level-based relationships
+
+### **By Domain**
+- **Arrangement Puzzles**: Positioning and ordering
+- **Distribution Puzzles**: Allocation and assignment
+- **Comparison Puzzles**: Ranking and relationships
+
+---
+
+## 🎯 Fundamental Principles
+
+### **1. Information Sufficiency**
+- **Complete Information**: All data needed is provided
+- **Partial Information**: Some information must be deduced
+- **Redundant Information**: Extra information to verify logic
+
+### **2. Logical Consistency**
+- **Internal Consistency**: Information doesn't contradict itself
+- **External Validity**: Solutions must satisfy all conditions
+- **Logical Necessity**: Only logically valid conclusions
+
+### **3. Systematic Approach**
+- **Step-by-Step Solving**: Progressive solution building
+- **Verification**: Checking each step for validity
+- **Backtracking**: Revising incorrect assumptions
+
+---
+
+## 🛠️ Basic Solving Framework
+
+### **Step 1: Understand the Problem**
+- Read all information carefully
+- Identify puzzle type and requirements
+- Note all constraints and relationships
 
 ### **Step 2: Organize Information**
 - Create appropriate data structures
-- List all entities and variables
-- Map relationships and constraints
+- List all variables and constraints
+- Map relationships clearly
 
-### **Step 3: Apply Logic Systematically**
+### **Step 3: Apply Logical Reasoning**
 - Start with definite information
 - Use elimination and deduction
-- Build solutions step by step
+- Build solution systematically
 
-### **Step 4: Verify and Conclude**
-- Check all conditions are satisfied
-- Verify logical consistency
-- Answer specific questions
-
----
-
-## 📈 Difficulty Levels in Puzzles
-
-### **Easy Level (30-40%)**
-- Simple puzzles with few variables
-- Direct relationships and constraints
-- Basic logical deductions required
-
-### **Medium Level (40-50%)**
-- Multi-variable puzzles
-- Complex relationships
-- Mixed constraint types
-
-### **Difficult Level (15-20%)**
-- Highly complex scenarios
-- Multiple constraint interactions
-- Advanced reasoning required
+### **Step 4: Verify Solution**
+- Check all constraints satisfied
+- Ensure logical consistency
+- Confirm solution validity
 
 ---
 
-## 🎯 Common Puzzle Categories
+## 📈 Basic Puzzle Patterns
 
-### **Floor-Based Puzzles**
-Multi-floor building arrangements with various constraints and relationships.
+### **Pattern 1: Direct Relationship**
+A is brother of B
+B is father of C
+→ A is uncle of C
 
-### **Scheduling Puzzles**
-Time-based arrangements including events, meetings, and appointments.
+### **Pattern 2: Conditional Relationship**
+If A is taller than B, then B is shorter than A
+If B is shorter than C, then A is shorter than C
 
-### **Comparison Puzzles**
-Problems involving comparisons of age, weight, height, and performance.
-
-### **Assignment Puzzles**
-Allocating tasks, roles, or resources systematically.
-
-### **Order & Ranking Puzzles**
-Position-based and ranking problems with complex relationships.
-
-### **Age-Based Puzzles**
-Problems involving age relationships and chronological arrangements.
-
-### **Mixed Logical Puzzles**
-Combination of multiple puzzle types requiring integrated reasoning.
+### **Pattern 3: Network Relationship**
+A → B → C
+A → D → E
+→ Complex relationship network
 
 ---
 
-## 📊 Time Management Strategies
+## 🎯 Common Puzzle Elements
 
-### **Puzzle Allocation Time**
-- **Simple Puzzles**: 5-7 minutes
-- **Medium Puzzles**: 7-10 minutes
-- **Complex Puzzles**: 10-15 minutes
+### **1. Variables and Entities**
+- **People**: Names, relationships, attributes
+- **Objects**: Items, positions, properties
+- **Abstract Concepts**: Numbers, categories, states
 
-### **Strategic Approach**
-1. **Quick Assessment**: Determine puzzle complexity
-2. **Information Organization**: Set up tables/diagrams first
-3. **Systematic Solving**: Work through constraints methodically
-4. **Time Check**: Move if stuck, return later if time permits
+### **2. Relationships and Constraints**
+- **Equality/Inequality**: Same as, different from
+- **Order/Sequence**: Before, after, between
+- **Quantity/Amount**: More than, less than, equal to
 
----
-
-## 🚀 Preparation Strategy
-
-### **Phase 1: Foundation Building**
-- Learn basic puzzle types
-- Practice simple problems
-- Master information organization
-- Build logical reasoning skills
-
-### **Phase 2: Skill Development**
-- Master each puzzle category
-- Practice mixed scenarios
-- Learn advanced techniques
-- Focus on speed and accuracy
-
-### **Phase 3: Integration Practice**
-- Combine multiple puzzle types
-- Practice complex integrated problems
-- Time-bound solving sessions
-- Performance analysis and improvement
+### **3. Logical Operators**
+- **AND**: All conditions must be true
+- **OR**: At least one condition must be true
+- **NOT**: Condition must be false
+- **IF-THEN**: Conditional relationships
 
 ---
 
-## 📚 Recommended Resources
+## 🔍 Basic Reasoning Techniques
 
-### **Practice Platforms**
-- **Online Platforms**: Testbook, Adda247, Unacademy
-- **Mock Tests**: Previous year question papers
-- **Video Tutorials**: Puzzle-solving technique videos
-- **Mobile Apps**: Reasoning puzzle practice apps
+### **1. Direct Deduction**
+- Apply rules directly to given information
+- Draw immediate conclusions
+- Build foundation for further reasoning
 
-### **Reference Materials**
-- **Verbal & Non-Verbal Reasoning** by R.S. Aggarwal
-- **Analytical Reasoning** by M.K. Pandey
-- **Banking Awareness** by Arihant Publications
+### **2. Indirect Reasoning**
+- Use elimination to find possibilities
+- Consider what cannot be true
+- Narrow down options systematically
 
----
-
-## 🎯 Success Factors
-
-### **1. Systematic Approach**
-- Always organize information first
-- Follow structured problem-solving
-- Use consistent techniques
-
-### **2. Practice Consistency**
-- Regular puzzle-solving sessions
-- Variety of puzzle types
-- Progressive difficulty increase
-
-### **3. Visualization Skills**
-- Strong mental mapping ability
-- Quick diagram creation
-- Pattern recognition
-
-### **4. Time Management**
-- Strategic question selection
-- Efficient solving techniques
-- Mock test practice
+### **3. Pattern-Based Reasoning**
+- Identify recurring structures
+- Apply known solution patterns
+- Use analogous problem-solving
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## 📊 Information Organization Methods
 
-### **Mistake 1: Poor Organization**
-❌ Starting to solve without organizing information
-✅ Always create tables/diagrams first
+### **1. Tabular Method**
+- Create tables for variables
+- List possible values
+- Mark constraints and relationships
 
-### **Mistake 2: Incomplete Reading**
-❌ Missing important constraints or conditions
-✅ Read all information multiple times
+### **2. Diagrammatic Method**
+- Draw relationship diagrams
+- Map connections visually
+- Identify patterns and clusters
 
-### **Mistake 3: Wrong Assumptions**
-❌ Making unstated assumptions
-✅ Stick to given information only
-
-### **Mistake 4: Time Pressure Errors**
-❌ Rushing through complex puzzles
-✅ Manage time strategically
-
----
-
-## 🎓 Pro Tips for Success
-
-1. **Organize First**: Spend time creating tables and diagrams
-2. **Start Simple**: Begin with puzzles having definite information
-3. **Use Elimination**: Systematically eliminate wrong options
-4. **Look for Clues**: Identify relationships that give definite answers
-5. **Practice Variety**: Master all puzzle types through regular practice
-6. **Learn Patterns**: Recognize common puzzle structures and solutions
-7. **Stay Patient**: Complex puzzles require careful, methodical solving
+### **3. Logical Grid Method**
+- Create possibility grids
+- Mark definite and possible values
+- Use elimination systematically
 
 ---
 
-## 🏆 Module Benefits
+## 🎯 Basic Practice Concepts
 
-- **Complete Coverage**: All major puzzle types and techniques
-- **Exam-Oriented**: Focus on competitive exam patterns
-- **Step-by-Step Learning**: Progressive difficulty increase
-- **Practice Problems**: Extensive puzzle sets
-- **Time Management**: Speed improvement techniques
-- **Performance Tracking**: Detailed progress analysis
+### **Simple Deduction**
+- **Example**: If A > B and B > C, then A > C
+- **Application**: Direct application of transitive property
 
-**Master logical puzzles and enhance your analytical reasoning for exam success! 🧩✨**
+### **Elimination Technique**
+- **Example**: A cannot be X, Y, or Z, so A must be W
+- **Application**: Process of elimination for unknowns
+
+### **Relationship Mapping**
+- **Example**: A is brother of B, B is sister of C
+- **Application**: Building relationship networks
 
 ---
 
-## 🔍 What You'll Learn Next
+## 🚀 Building Foundations
 
-This module covers comprehensive logical puzzle topics:
+### **Practice Focus Areas**
+- **Basic Deduction**: Simple if-then relationships
+- **Information Organization**: Creating tables and diagrams
+- **Systematic Elimination**: Removing impossible options
+- **Pattern Recognition**: Identifying common structures
 
-- **Concept of Logical Puzzles** - Basic principles and types
-- **Arrangement-Based Puzzles** - Complex arrangement scenarios
-- **Floor-Based Puzzles** - Multi-floor building arrangements
-- **Box / Distribution Puzzles** - Resource allocation problems
-- **Comparison-Based Puzzles** - Relationship analysis puzzles
-- **Scheduling Puzzles** - Time-based arrangement problems
-- **Assignment Puzzles** - Task and role allocation
-- **Order & Ranking Puzzles** - Position-based ranking problems
-- **Age-Based Puzzles** - Chronological relationship puzzles
-- **Mixed Logical Puzzles** - Integrated complex scenarios`
+### **Progressive Learning**
+- Start with simple 2-3 variable puzzles
+- Gradually increase complexity
+- Master one technique before moving to next
+- Practice regularly for skill development
+
+---
+
+## 🎯 Pro Tips
+
+1. **Read Carefully**: Understand all information before starting
+2. **Organize First**: Spend time creating proper data structures
+3. **Start Simple**: Begin with definite information
+4. **Use Logic**: Apply systematic reasoning techniques
+5. **Verify Always**: Check solutions against all constraints
+
+**Master the basic concepts of logical puzzles for strong foundation! 🧠✨**`
 };

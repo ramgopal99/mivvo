@@ -1,7 +1,7 @@
 import { Exercise } from '../../../../data/lessonsData';
 
-export const exercise_2_11: Exercise = {
-  id: "2.11",
+export const exercise_2_6: Exercise = {
+  id: "2.6",
   title: 'Blood Relations MCQ',
   status: 'completed',
   type: 'mcq',
@@ -88,7 +88,7 @@ export const exercise_2_11: Exercise = {
       question: "A is the brother of B, B is the brother of C, and C is the sister of D. How many male members are there in the family?",
       options: ["2", "3", "4", "Cannot be determined"],
       correctAnswer: 3,
-      explanation: "A and B are brothers, C is sister of B and D. So males: A, B (and possibly D if male). Minimum 2 males (A and B), but could be 3 if D is male."
+      explanation: "A is brother of B, B is brother of C, so A, B, C are brothers. C is sister of D, so D is female. Males: A, B, C (3 males)."
     },
     {
       id: "q13",
@@ -102,14 +102,14 @@ export const exercise_2_11: Exercise = {
       question: "Pointing to a photograph, a man said, 'Brothers and sisters, I have none. But that man's father is my father's son.' Who is in the photograph?",
       options: ["His son", "His nephew", "His grandson", "His brother"],
       correctAnswer: 0,
-      explanation: "The man has no siblings. The person in photo's father is the man's father's son. Since he has no brothers, it must be his own son."
+      explanation: "The man has no siblings. 'My father's son' refers to the man himself (since he has no brothers). 'That man's father is my father's son' means the man is the father of the person in the photograph. Therefore, the person in the photograph is his son."
     },
     {
       id: "q15",
       question: "A is the uncle of B, B is the nephew of C, and C is the grandfather of D. How is A related to D?",
       options: ["Father", "Uncle", "Grandfather", "Brother"],
       correctAnswer: 1,
-      explanation: "A is uncle of B. C is grandfather of D. B is nephew of C, so C is uncle of B. This creates a complex relationship where A is uncle of D."
+      explanation: "A is uncle of B. B is nephew of C (so C is uncle of B). C is grandfather of D. Since A and C are both uncles of B, they could be brothers or related. A is uncle of D through the family connection."
     },
     {
       id: "q16",
@@ -123,7 +123,7 @@ export const exercise_2_11: Exercise = {
       question: "A woman said, 'He is the only grandson of my father.' How is the woman related to the boy?",
       options: ["Mother", "Aunt", "Sister", "Grandmother"],
       correctAnswer: 1,
-      explanation: "The boy is grandson of her father, so her father is grandfather of the boy. She could be aunt (father's daughter) or sister (if she has a brother who is the father)."
+      explanation: "The boy is the only grandson of her father. Since she is female, she cannot be the grandson. The boy must be the son of her brother (making her the aunt) or the son of her father's son (making her the aunt)."
     },
     {
       id: "q18",
@@ -165,7 +165,7 @@ export const exercise_2_11: Exercise = {
       question: "A man said, 'My mother's sister's husband's brother is my uncle.' Is this statement logically correct?",
       options: ["Always correct", "Never correct", "Sometimes correct", "Cannot be determined"],
       correctAnswer: 0,
-      explanation: "Mother's sister's husband is maternal uncle. His brother would also be maternal uncle. So the statement is always correct."
+      explanation: "The man's mother's sister is his maternal aunt. Her husband is his maternal uncle. The maternal uncle's brother is also a maternal uncle. So the statement is always logically correct."
     },
     {
       id: "q24",
@@ -178,8 +178,43 @@ export const exercise_2_11: Exercise = {
       id: "q25",
       question: "Pointing to a person, a woman said, 'He is the son of my father's only daughter.' How is the person related to the woman?",
       options: ["Son", "Nephew", "Brother", "Cousin"],
-      correctAnswer: 2,
-      explanation: "Woman's father's only daughter is the woman herself. The son of the woman is her son, but the question asks for relationship to the woman, and the statement refers to 'he', so it's her brother if she has one."
+      correctAnswer: 0,
+      explanation: "The woman is her father's only daughter. So 'my father's only daughter' refers to herself. Therefore, the son of her father's only daughter is her own son."
+    },
+    {
+      id: "q26",
+      question: "If A $ B means A is the brother of B, A @ B means A is the sister of B, and A # B means A is the mother of B, then what does P # Q $ R @ S mean?",
+      options: ["P is grandmother of S", "P is mother of S", "P is aunt of S", "P is sister of S"],
+      correctAnswer: 0,
+      explanation: "P # Q means P is mother of Q. Q $ R means Q is brother of R. R @ S means R is sister of S. So P is maternal grandmother of S."
+    },
+    {
+      id: "q27",
+      question: "A family consists of 6 members: P, Q, R, S, T, U. P is the grandfather of R. Q is the grandmother of R. S is the father of R. T is the mother of R. U is the brother of R. Who is the uncle of R?",
+      options: ["P", "Q", "S", "Cannot be determined"],
+      correctAnswer: 3,
+      explanation: "We know the relationships but not the gender of all members. The uncle of R would be the brother of either S or T. Since U is brother of R, he is the uncle of R."
+    },
+    {
+      id: "q28",
+      question: "If A is the husband of B, B is the only daughter of C, and C is the mother of D, what is the relationship between A and D?",
+      options: ["Father", "Brother-in-law", "Uncle", "Son-in-law"],
+      correctAnswer: 0,
+      explanation: "B is the only daughter of C, so C has only one daughter B. D is also child of C. A is husband of B, so A is father of D."
+    },
+    {
+      id: "q29",
+      question: "Pointing to a man, a woman said, 'His sister's father is my husband's father.' How is the man related to the woman?",
+      options: ["Brother", "Cousin", "Brother-in-law", "Nephew"],
+      correctAnswer: 0,
+      explanation: "The man's sister's father is the man's father. The woman's husband's father is also her father-in-law. If they share the same father-in-law, they are siblings-in-law, so the man is her brother-in-law."
+    },
+    {
+      id: "q30",
+      question: "A is B's sister. B is C's brother. C is D's father. E is D's sister. How is A related to E?",
+      options: ["Mother", "Aunt", "Sister", "Cousin"],
+      correctAnswer: 1,
+      explanation: "A is sister of B, B is brother of C, so A is sister of C. C is father of D and E. So A is paternal aunt of E."
     }
   ]
 };

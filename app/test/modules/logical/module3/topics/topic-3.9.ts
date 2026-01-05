@@ -2,275 +2,209 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_9: SubLesson = {
   id: "3.9",
-  title: 'Blood Relation with Seating (Basic)',
+  title: 'Puzzle-Based Seating Arrangement',
   status: 'completed',
-  content: `# 👪 Blood Relation with Seating (Basic)
+  content: `# 🧩 Puzzle-Based Seating Arrangement
 
-Blood relation problems combined with seating arrangements create integrated reasoning challenges. These basic problems combine family relationship logic with positional arrangements, requiring understanding of both familial connections and spatial positioning.
-
----
-
-## 🎯 Understanding Blood Relation Seating
-
-### **What are Blood Relation Seating Problems?**
-These problems integrate family relationships with seating arrangements, requiring you to:
-- **Apply blood relation logic**
-- **Understand seating arrangements**
-- **Combine familial and positional reasoning**
-- **Solve integrated relationship problems**
-
-### **Key Characteristics**
-- **Family relationship integration**
-- **Seating arrangement logic**
-- **Combined reasoning requirements**
-- **Relationship-based positioning**
+Puzzle-based seating arrangements combine complex logical reasoning with seating arrangement principles. These advanced problems integrate multiple constraints, relationships, and logical deductions to create challenging puzzles requiring comprehensive problem-solving skills.
 
 ---
 
-## 🧩 Basic Integration Concepts
+## 🎯 Understanding Puzzle-Based Seating
 
-### **Family Relationship Types**
-- **Nuclear Family**: Parents, children, siblings
-- **Extended Family**: Grandparents, uncles, aunts, cousins
-- **Marital Relations**: In-laws, spouses
-- **Generational Relations**: Different age groups
-
-### **Seating Integration**
-- **Relationship-Based Positioning**: Family members seated by relations
-- **Facing Arrangements**: Married couples facing each other
-- **Group Seating**: Families seated together
-- **Generational Positioning**: Age-based seat assignments
+### **What are Puzzle-Based Seating Arrangements?**
+These complex problems combine multiple logical reasoning concepts with seating arrangements, requiring you to:
+- **Integrate multiple reasoning types**
+- **Apply complex logical deductions**
+- **Handle interdependent constraints**
+- **Solve multi-layered puzzles**
 
 ---
 
-## 📊 Problem-Solving Framework
+## 🧩 Puzzle Complexity Levels
 
-### **Step 1: Map Family Relationships**
-- Identify all family members
-- Note blood relationships
-- Understand family hierarchy
+### **1. Multi-Constraint Puzzles**
+Problems with numerous overlapping constraints.
 
-### **Step 2: Analyze Seating Requirements**
-- Determine arrangement type
-- Note positional constraints
-- Identify relationship-based rules
+### **2. Integrated Reasoning Puzzles**
+Combining arrangement with other reasoning types.
 
-### **Step 3: Integrate Both Aspects**
-- Apply relationship logic to seating
-- Use family ties to determine positions
-- Combine reasoning approaches
+### **3. Complex Relationship Puzzles**
+Multiple relationship types in arrangement context.
 
-### **Step 4: Verify Integrated Solution**
-- Check family relationships maintained
-- Ensure seating constraints satisfied
-- Answer relationship-position questions
+### **4. Advanced Logic Puzzles**
+Highly complex reasoning challenges.
 
 ---
 
-## 🎯 Common Problem Types
+## 🛠️ Problem-Solving Framework
 
-### **Type 1: Family Group Seating**
-**Family members seated together**
-- "Husband and wife must sit together"
-- "Siblings must be next to each other"
-- "Parents with children grouped"
+### **Step 1: Analyze All Constraints**
+- Identify all constraint types
+- Categorize relationships and rules
+- Note interdependencies between constraints
 
-### **Type 2: Facing Family Pairs**
-**Married couples or pairs facing each other**
-- "Married couples face each other"
-- "Parents face children"
-- "Opposite gender family members face"
+### **Step 2: Create Logic Network**
+- Map all relationships and constraints
+- Identify constraint interaction points
+- Build logical connection network
 
-### **Type 3: Generational Arrangements**
-**Age-based family positioning**
-- "Elders at head positions"
-- "Children in middle seats"
-- "Generational position assignments"
+### **Step 3: Apply Systematic Elimination**
+- Start with most restrictive constraints
+- Eliminate impossible combinations
+- Narrow possibilities step by step
 
----
-
-## 🛠️ Solving Techniques
-
-### **1. Family Tree + Seating Diagram**
-- Draw family relationship tree
-- Create seating arrangement diagram
-- Map family positions to seats
-
-### **2. Relationship-Seating Matrix**
-- List family relationships
-- Note seating requirements
-- Find compatible arrangements
-
-### **3. Logical Integration**
-- Apply family logic first
-- Use relationships to determine seating
-- Verify combined constraints
+### **Step 4: Synthesize Solution**
+- Combine all valid deductions
+- Verify constraint satisfaction
+- Confirm logical consistency
 
 ---
 
-## 🎯 Practice Examples
+## 🎯 Key Concepts
 
-### **Example 1: Simple Family Seating**
-**Conditions:**
-1. Four family members: A, B, C, D
-2. A is husband of B
-3. C and D are children of A and B
-4. Husband and wife face each other
-5. Children sit next to parents
+### **Constraint Integration**
+- **Multiple constraint types**: Position, relationship, directional
+- **Interdependent rules**: Constraints affecting each other
+- **Complex relationships**: Multi-layered connections
+- **Logical hierarchies**: Priority and dependency relationships
+
+### **Puzzle Elements**
+- **Hidden relationships**: Not explicitly stated
+- **Inferred connections**: Deduced from given information
+- **Complex chains**: Multi-step relationship chains
+- **Logical loops**: Circular reasoning requirements
+
+---
+
+## 📊 Practice Examples
+
+### **Example 1: Complex Multi-Constraint**
+**Question:** 8 people in two rows of 4 facing. Constraints: gender alternation, age hierarchy, relationship preferences, directional requirements.
 
 **Solution:**
-Row 1: A C B
-Row 2:   D   (facing parents)
+- Apply all constraint types systematically
+- Use logical deduction to resolve conflicts
+- Build solution step by step
 
-### **Example 2: Extended Family**
-**Conditions:**
-1. Six people: P, Q, R, S, T, U
-2. P is father of Q and R
-3. S is wife of P
-4. T is brother of S
-5. U is son of T
-6. Family members sit together
-7. Married couples face each other
+### **Example 2: Integrated Reasoning Puzzle**
+**Question:** 10 people combining blood relations, professions, ages, and seating preferences in circular arrangement.
 
-**Solution:** Apply family relationships to determine seating positions.
+**Analysis:**
+- Handle multiple reasoning domains
+- Integrate different constraint types
+- Resolve complex interactions
 
 ---
 
-## 🔍 Basic Integration Concepts
+## 🔍 Common Patterns
 
-### **Family-Seating Relationships**
-- **Married Couples**: Often face each other
-- **Parent-Child**: Usually sit together or facing
-- **Siblings**: Adjacent or grouped seating
-- **Extended Family**: Relationship-based positioning
+### **Pattern 1: Constraint Web**
+Complex networks of interrelated constraints.
 
-### **Arrangement Considerations**
-- **Facing Arrangements**: For married couples
-- **Adjacent Seating**: For family groups
-- **Generational Logic**: Age-appropriate positioning
+### **Pattern 2: Multi-Domain Integration**
+Multiple reasoning types combined.
+
+### **Pattern 3: Logical Deduction Chains**
+Complex reasoning requiring multiple steps.
 
 ---
 
-## 📊 Integration Methods
+## 🧩 Solving Techniques
 
-### **Family-First Approach**
-- Establish family relationships clearly
-- Use relationships to determine seating preferences
-- Apply family logic to arrangement
+### **1. Constraint Mapping**
+- Create comprehensive constraint diagram
+- Map all relationships and rules
+- Identify conflict and support points
 
-### **Seating-First Approach**
-- Set up basic seating arrangement
-- Apply family relationship constraints
-- Adjust positions for family requirements
+### **2. Logical Network Analysis**
+- Build constraint interaction network
+- Identify key deduction points
+- Follow logical chains systematically
 
-### **Integrated Reasoning**
-- Combine family and seating logic
-- Apply constraints simultaneously
-- Find optimal family-seating arrangement
-
----
-
-## 🎯 Common Pitfalls
-
-### **Pitfall 1: Relationship Confusion**
-❌ Mixing up family relationships
-✅ Verify all relationships clearly
-
-### **Pitfall 2: Seating Priority Errors**
-❌ Wrong seating preference application
-✅ Understand family seating norms
-
-### **Pitfall 3: Integration Mistakes**
-❌ Applying one logic without the other
-✅ Combine family and seating logic
+### **3. Systematic Elimination**
+- Apply most restrictive constraints first
+- Use process of elimination
+- Track remaining possibilities
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## 📈 Advanced Puzzle Problems
 
-### **1. Family Relationship Map**
-- Draw family tree first
-- Note all relationships clearly
-- Understand family structure
+### **Complex Integration**
+Multiple reasoning domains with complex interactions.
 
-### **2. Seating Integration**
-- Apply family preferences to seating
-- Consider relationship-based positioning
-- Verify family seating requirements
+### **Puzzle-Level Complexity**
+Highly challenging integrated reasoning problems.
 
-### **3. Combined Verification**
-- Check family relationships maintained
-- Ensure seating constraints satisfied
-- Confirm integrated solution validity
-
----
-
-## 📈 Difficulty Levels
-
-### **Easy Level**
-- Small family groups
-- Simple relationship types
-- Basic seating arrangements
-
-### **Medium Level**
-- Extended family members
-- Complex relationship networks
-- Integrated seating constraints
-
-### **Hard Level**
-- Large family groups
-- Complex relationship hierarchies
-- Advanced integrated reasoning
+### **Master-Level Challenges**
+Extremely complex constraint networks.
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Draw Family Tree**: Always map relationships first
-2. **Understand Seating Norms**: Know family seating preferences
-3. **Integrate Logically**: Combine family and seating logic
-4. **Verify Relationships**: Ensure all family ties maintained
-5. **Check Seating Rules**: Confirm all positional constraints
+1. **Map All Constraints**: Create comprehensive constraint overview
+2. **Identify Interactions**: Note how constraints affect each other
+3. **Prioritize Solving**: Start with most restrictive constraints
+4. **Track Deductions**: Document logical steps systematically
+5. **Verify Thoroughly**: Check all constraints and relationships
 
 ---
 
-## 👪 Practice Questions
+## 🧮 Quick Formulas
+
+### **Constraint Complexity**
+- **Constraint count**: Number of rules to satisfy
+- **Interaction degree**: How constraints interconnect
+- **Deduction chains**: Length of logical reasoning chains
+
+### **Solution Space**
+- **Initial possibilities**: Total arrangement combinations
+- **Constraint reduction**: How much constraints reduce options
+- **Final solution**: Single valid arrangement
+
+---
+
+## ⚡ Quick Solving Tricks
+
+### **Trick 1: Constraint Hierarchy**
+- Identify most restrictive constraints first
+- Use them to eliminate many possibilities quickly
+- Build solution from firm foundations
+
+### **Trick 2: Logical Chain Following**
+- Follow deduction chains systematically
+- Use transitive relationships for elimination
+- Build complex conclusions from simple facts
+
+### **Trick 3: Conflict Resolution**
+- Identify mutually exclusive constraints
+- Find ways to satisfy conflicting requirements
+- Use alternative interpretations when needed
+
+### **Trick 4: Pattern Recognition**
+- Identify common puzzle patterns
+- Apply known solving techniques
+- Recognize recurring constraint combinations
+
+### **Trick 5: Systematic Verification**
+- Check each constraint against solution
+- Verify logical consistency
+- Ensure no hidden contradictions
+
+---
+
+## 🎯 Practice Questions
 
 ### **Question 1**
-**Conditions:**
-1. Five family members: A, B, C, D, E
-2. A is husband of B
-3. C and D are children of A and B
-4. E is brother of A
-5. Married couple faces each other
-6. Children sit next to parents
-
-**Who sits opposite to E?**
+Twelve people: 3 rows of 4 facing each other. Constraints: gender, age, profession, relationships, directions, preferences. A is doctor facing north. B is engineer opposite A. C is teacher next to B. Who sits where?
 
 ### **Question 2**
-**Conditions:**
-1. Seven people: P, Q, R, S, T, U, V
-2. P and Q are parents
-3. R, S are children of P and Q
-4. T is grandfather of R
-5. U is wife of T
-6. V is brother of U
-7. Elders sit at ends
-8. Married couples face each other
-
-**What is the relation between V and R?**
+Fifteen people in complex arrangement: circle of 8, attached square of 4, linear row of 3. Multiple constraints: blood relations, ages, professions, directions. P is grandfather at circle center. Q is father next to P. Who is opposite P?
 
 ### **Question 3**
-**Conditions:**
-1. Eight family members: A, B, C, D, E, F, G, H
-2. A and B are married, face each other
-3. C and D are married, sit together
-4. E, F are siblings, next to each other
-5. G is father of A
-6. H is mother of C
-7. Parents sit at head positions
+Twenty people in multi-level arrangement with complex constraints: positions, relationships, preferences, directions. Master puzzle requiring integration of all seating arrangement concepts. Where is person X?
 
-**Who sits between G and H?**
-
-**Master basic blood relation seating arrangements for integrated reasoning! 👪✨**`
+**Master puzzle-based seating arrangements to solve the most challenging logical reasoning problems! 🧩✨**`
 };

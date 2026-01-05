@@ -2,284 +2,291 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_10: SubLesson = {
   id: "4.10",
-  title: 'Age-Based Puzzles',
+  title: 'Mixed Logical Puzzles',
   status: 'completed',
-  content: `# 🎂 Age-Based Puzzles
+  content: `# 🎭 Mixed Logical Puzzles
 
-Age-based puzzles involve determining the ages of different people based on relationships, comparisons, and logical constraints. These puzzles require understanding of chronological relationships, age differences, and family generation logic.
+Mixed logical puzzles combine multiple reasoning types and problem-solving techniques into complex scenarios. These advanced puzzles require integrating various logical concepts, applying multiple solution strategies, and demonstrating comprehensive analytical skills.
 
 ---
 
-## 🎯 Understanding Age-Based Puzzles
+## 🎯 Understanding Mixed Logical Puzzles
 
-### **What are Age-Based Puzzles?**
-Age-based puzzles involve determining the ages of multiple people based on comparative relationships, differences, and logical constraints. They test your ability to:
-- **Apply chronological reasoning**
-- **Understand age relationships**
-- **Use comparative logic**
-- **Solve complex age determination problems**
+### **What are Mixed Logical Puzzles?**
+Mixed logical puzzles combine different reasoning types, problem-solving techniques, and analytical concepts into complex integrated problems. They test your ability to:
+- **Integrate multiple reasoning types**
+- **Apply combined solution strategies**
+- **Handle complex constraint networks**
+- **Solve comprehensive analytical problems**
 
 ### **Key Characteristics**
-- **Age relationships**: Older/younger, same age
-- **Age differences**: Specific year gaps
-- **Family generations**: Parent-child age relationships
-- **Comparative logic**: Age-based rankings and sequences
+- **Multi-domain integration**: Various logical concepts combined
+- **Complex constraint interactions**: Interdependent requirements
+- **Advanced reasoning requirements**: Multiple solution techniques
+- **Comprehensive analytical challenges**: Integrated problem-solving
 
 ---
 
-## 🧩 Types of Age-Based Problems
+## 🧩 Types of Mixed Logical Puzzles
 
-### **1. Family Age Relationships**
-**Family member age determinations**
-- Parent-child age differences
-- Sibling age relationships
-- Grandparent-grandchild ages
+### **1. Multi-Concept Integration**
+**Combining different reasoning types**
+- Arrangements + relationships + comparisons
+- Scheduling + assignments + rankings
+- Distribution + sequencing + logic
 
-### **2. Comparative Age Rankings**
-**Age-based ordering and ranking**
-- Age order determination
-- Relative age comparisons
-- Age group classifications
+### **2. Complex Constraint Networks**
+**Interdependent constraint systems**
+- Multiple constraint types interacting
+- Conditional relationships
+- Dynamic constraint modifications
 
-### **3. Age Difference Calculations**
-**Specific age gap determinations**
-- Exact age differences
-- Minimum/maximum age gaps
-- Age relationship constraints
+### **3. Advanced Analytical Scenarios**
+**Comprehensive problem-solving**
+- Real-world complex scenarios
+- Multiple variable interactions
+- Integrated solution requirements
 
 ---
 
 ## 📊 Problem-Solving Framework
 
-### **Step 1: Identify Age Relationships**
-- Map all age comparison statements
-- Note specific age differences
-- Identify family relationships
+### **Step 1: Comprehensive Analysis**
+- Identify all reasoning types involved
+- Map constraint relationships
+- Understand integration requirements
 
-### **Step 2: Create Age Framework**
-- List all people involved
-- Create age relationship diagram
-- Map known ages and differences
+### **Step 2: Decompose Components**
+- Break down into constituent puzzles
+- Identify solution techniques needed
+- Map inter-component relationships
 
-### **Step 3: Apply Age Logic**
-- Start with definite ages
-- Apply age difference constraints
-- Use comparative relationships
+### **Step 3: Integrated Application**
+- Apply techniques systematically
+- Handle cross-component constraints
+- Build integrated solutions
 
-### **Step 4: Verify Age Determinations**
-- Check all age relationships satisfied
-- Ensure logical age consistency
-- Answer specific age questions
+### **Step 4: Complete Verification**
+- Check all components satisfied
+- Verify integrated consistency
+- Answer complex questions
 
 ---
 
-## 🎯 Common Problem Types
+## 🎯 Common Mixed Problem Types
 
-### **Type 1: Family Age Puzzles**
-**Family relationship age determinations**
-- "Father is 25 years older than son"
-- "Mother is 3 years younger than father"
-- "Grandfather is twice as old as grandson"
+### **Type 1: Family-Arrangement Integration**
+**Family relationships + spatial arrangements**
+- Family seating with relationship constraints
+- Age-based arrangements with familial ties
+- Multi-generational arrangement puzzles
 
-### **Type 2: Age Comparison Puzzles**
-**Comparative age relationships**
-- "A is older than B"
-- "C is youngest among them"
-- "D is 5 years older than E"
+### **Type 2: Scheduling-Assignment Integration**
+**Time management + resource allocation**
+- Meeting scheduling with participant constraints
+- Task assignment with time limitations
+- Resource scheduling with availability constraints
 
-### **Type 3: Age Sequence Puzzles**
-**Age ordering problems**
-- "Arrange in order of age"
-- "Find age differences"
-- "Determine relative ages"
+### **Type 3: Comparison-Ranking Integration**
+**Comparative analysis + position determination**
+- Performance rankings with multiple criteria
+- Age-height-weight integrated rankings
+- Multi-attribute comparison puzzles
 
 ---
 
 ## 🛠️ Solving Techniques
 
-### **1. Age Relationship Diagram**
-A (25) ── 3 years ── B (22)
-│
-5 years
-│
-C (20)
-- Create age relationship maps
-- Show age differences
-- Map comparative relationships
+### **1. Component Integration Method**
+- Identify puzzle components
+- Solve individual components
+- Integrate solutions with constraints
 
-### **2. Age Matrix Method**
-Person | Age | Relationships
---------|-----|-------------
-A      |  ?  | Older than B by 3
-B      |  ?  | Younger than A
-C      |  ?  | 2 years older than B
-- Create age tracking table
-- Fill based on relationships
-- Calculate unknown ages
+### **2. Constraint Network Analysis**
+- Map all constraint relationships
+- Identify dependency chains
+- Apply systematic resolution
 
-### **3. Comparative Logic**
-- Apply older/younger logic
-- Use transitive relationships
-- Determine age sequences
+### **3. Multi-Technique Application**
+- Apply appropriate techniques for each component
+- Handle cross-component interactions
+- Verify integrated solutions
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Simple Family Ages**
+### **Example 1: Family-Seating-Age Integration**
 **Conditions:**
-1. Father is 25 years older than son
-2. Son is 5 years old
-3. Mother is 3 years younger than father
+1. Eight family members: A, B, C, D, E, F, G, H
+2. Two rows of 4, facing each other
+3. A and B are married, face each other
+4. C, D are children of A and B
+5. E is brother of A, F is his wife
+6. G, H are children of E and F
+7. Ages: A(45), B(42), E(48), F(45)
+8. Older family members in Row 1
+9. Married couples face each other
 
-**Solution:** Son: 5, Father: 30, Mother: 27
+**Solution:** Integrate family relationships, seating arrangements, and age constraints.
 
-### **Example 2: Age Comparisons**
+### **Example 2: Scheduling-Assignment-Resource Integration**
 **Conditions:**
-1. Five friends: P, Q, R, S, T
-2. P is older than Q by 2 years
-3. R is younger than S by 3 years
-4. T is oldest, 30 years old
-5. Q is younger than R by 1 year
+1. Five doctors: P, Q, R, S, T
+2. Ten patients: 1-10
+3. Time slots: 9AM, 10AM, 11AM, 2PM, 3PM
+4. Doctor specialties: P(surgery), Q(medicine), R(orthopedics), S(cardiology), T(general)
+5. Patient requirements: 1-3(surgery), 4-6(medicine), 7-8(orthopedics), 9(cardiology), 10(general)
+6. Doctor availability constraints
+7. Room capacity limitations
+8. Emergency case priorities
 
-**Solution:** Calculate all ages based on relationships
-
-### **Example 3: Complex Relationships**
-**Conditions:**
-1. Grandfather, Father, Son ages
-2. Grandfather is 3 times son's age
-3. Father is 25 years younger than grandfather
-4. Son is 10 years old
-
-**Solution:** Son: 10, Grandfather: 30, Father: 35 (impossible!)
+**Solution:** Integrate scheduling logic, assignment constraints, and resource limitations.
 
 ---
 
-## 🔍 Advanced Age Concepts
+## 🔍 Advanced Mixed Concepts
 
-### **Multiple Generation Problems**
-Complex family trees with age relationships across generations.
+### **Complex Integration Scenarios**
+Problems requiring multiple reasoning domains simultaneously.
 
-### **Age Difference Calculations**
-Problems requiring mathematical age difference calculations.
+### **Dynamic Constraint Systems**
+Constraints that change based on other solution elements.
 
-### **Conditional Age Relationships**
-Age relationships that depend on other factors.
+### **Multi-Level Reasoning Networks**
+Complex interdependencies requiring systematic resolution.
 
 ---
 
-## 📊 Age Logic Methods
+## 📊 Integration Methods
 
-### **Direct Age Differences**
-- **Specific gaps**: Exact year differences
-- **Ratio relationships**: Age ratios between people
-- **Mathematical relationships**: Age calculation formulas
+### **Component-Based Integration**
+- **Arrangement Component**: Spatial positioning logic
+- **Relationship Component**: Familial/connection logic
+- **Comparative Component**: Ranking/comparison logic
+- **Scheduling Component**: Time-based logic
 
-### **Comparative Age Logic**
-- **Older/younger relationships**: Relative age comparisons
-- **Age ordering**: Determining age sequences
-- **Age group logic**: Categorizing by age ranges
+### **Cross-Component Reasoning**
+- **Constraint Transfer**: Apply constraints across components
+- **Logical Deduction**: Derive additional requirements
+- **Consistency Verification**: Check integrated validity
 
-### **Family Age Logic**
-- **Generation gaps**: Typical parent-child age differences
-- **Sibling age logic**: Birth order relationships
-- **Extended family**: Complex familial age relationships
+### **Solution Synthesis**
+- **Progressive Integration**: Build solutions component by component
+- **Constraint Resolution**: Handle conflicting requirements
+- **Final Optimization**: Achieve optimal integrated solution
 
 ---
 
 ## 🎯 Common Pitfalls
 
-### **Pitfall 1: Age Difference Errors**
-❌ Wrong age gap calculations
-✅ Careful arithmetic verification
+### **Pitfall 1: Component Isolation**
+❌ Solving components without integration
+✅ Consider cross-component relationships
 
-### **Pitfall 2: Relationship Confusion**
-❌ Mixing older/younger directions
-✅ Clear relationship mapping
+### **Pitfall 2: Constraint Conflicts**
+❌ Ignoring conflicting requirements
+✅ Identify and resolve constraint conflicts
 
-### **Pitfall 3: Transitive Errors**
-❌ Incorrect age chain logic
-✅ Step-by-step age verification
+### **Pitfall 3: Incomplete Integration**
+❌ Missing component interactions
+✅ Verify all integration points
 
 ---
 
 ## 🛠️ Quick Solving Strategies
 
-### **1. Age Relationship Mapping**
-- Create age relationship diagram
-- Mark all known ages and differences
-- Identify calculation sequences
+### **1. Problem Decomposition**
+- Break into component puzzles
+- Identify integration points
+- Map constraint relationships
 
-### **2. Systematic Age Calculation**
-- Start with known ages
-- Apply difference relationships
-- Calculate unknown ages progressively
+### **2. Systematic Integration**
+- Solve base components first
+- Apply cross-component constraints
+- Build integrated solution
 
-### **3. Verification Process**
-- Check all age differences
-- Verify comparative relationships
-- Confirm logical age consistency
+### **3. Comprehensive Verification**
+- Check each component individually
+- Verify all integration constraints
+- Confirm complete solution validity
 
 ---
 
 ## 📈 Difficulty Levels
 
 ### **Easy Level**
-- Few people, simple relationships
-- Direct age differences
-- Basic family relationships
+- Two reasoning domains
+- Simple integration requirements
+- Clear component separation
 
 ### **Medium Level**
-- Multiple people, complex chains
-- Mixed relationship types
-- Mathematical calculations
+- Three reasoning domains
+- Moderate integration complexity
+- Some constraint interactions
 
 ### **Hard Level**
-- Many people, complex networks
-- Multiple constraint types
-- Advanced logical dependencies
+- Four+ reasoning domains
+- Complex integration requirements
+- Extensive constraint interactions
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Create Age Diagram**: Visual age relationship mapping
-2. **Start with Known Ages**: Use given ages as starting points
-3. **Apply Differences Carefully**: Double-check calculations
-4. **Use Comparative Logic**: Apply older/younger relationships
-5. **Verify All Relationships**: Check each age constraint
+1. **Decompose Systematically**: Break into manageable components
+2. **Identify Integration Points**: Map cross-component relationships
+3. **Apply Techniques Appropriately**: Use right technique for each component
+4. **Handle Conflicts**: Resolve constraint conflicts logically
+5. **Verify Completely**: Check all components and integrations
 
 ---
 
-## 🎂 Practice Questions
+## 🎭 Practice Questions
 
 ### **Question 1**
 **Conditions:**
-1. Father is 25 years older than son
-2. Mother is 3 years younger than father
-3. Son is 10 years old
+1. Six family members: A, B, C, D, E, F
+2. Three generations: grandparents, parents, children
+3. Ages: A(60), B(58), C(35), D(32), E(8), F(6)
+4. Circular seating arrangement
+5. Grandparents opposite each other
+6. Parents next to their children
+7. Older children next to grandparents
+8. Married couples not opposite each other
 
-**What is mother's age?**
+**Who sits between A and C?**
 
 ### **Question 2**
 **Conditions:**
-1. Grandfather is 3 times grandson's age
-2. Father is 30 years younger than grandfather
-3. Father is 25 years older than son
-4. Son is 5 years old
+1. Eight employees: P, Q, R, S, T, U, V, W
+2. Four departments: Sales, Marketing, Finance, HR
+3. Five projects: Alpha, Beta, Gamma, Delta, Omega
+4. Time slots: Morning, Afternoon, Evening
+5. Skills: P(sales+marketing), Q(finance+HR), R(sales+finance), S(marketing+HR), T(all skills)
+6. Project requirements: Alpha(sales), Beta(marketing), Gamma(finance), Delta(HR), Omega(multiple)
+7. Department size limits: Sales(2), Marketing(2), Finance(2), HR(2)
+8. Time availability constraints
+9. Project deadlines and priorities
 
-**What is grandfather's age?**
+**How many employees can work on Omega project?**
 
 ### **Question 3**
 **Conditions:**
-1. Five siblings: A, B, C, D, E
-2. A is 2 years older than B
-3. B is 3 years older than C
-4. C is 4 years older than D
-5. D is 5 years older than E
-6. E is 10 years old
+1. Ten students: A-J
+2. Five dorm rooms: 101-105 (2 students each)
+3. Four subjects: Math, Physics, Chemistry, Biology
+4. Three difficulty levels: Easy, Medium, Hard
+5. Ages: 18-22 years
+6. Room preferences: Ground floor, Middle floor, Top floor
+7. Subject specializations and preferences
+8. Age-based room assignments (older on higher floors)
+9. Subject difficulty matching
+10. Friendship group constraints
+11. Study schedule coordination
+12. Room capacity and gender constraints
 
-**What is A's age?**
+**What is the minimum number of constraint violations possible?**
 
-**Master age-based puzzles for chronological reasoning skills! 🎂✨**`
+**Master mixed logical puzzles for ultimate analytical integration! 🎭✨**`
 };

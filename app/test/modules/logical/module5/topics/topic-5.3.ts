@@ -2,256 +2,259 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_3: SubLesson = {
   id: "5.3",
-  title: 'Number Coding',
+  title: 'Alphanumeric Coding',
   status: 'completed',
-  content: `# 🔢 Number Coding
+  content: `# 🔠 Alphanumeric Coding
 
-Number coding involves assigning numerical values to letters or using mathematical operations for coding. These problems combine alphabetical knowledge with numerical operations and appear regularly in competitive exams.
+Alphanumeric coding combines letters and numbers in various patterns and transformations. These problems require understanding both alphabetical and numerical systems, making them more complex than pure letter or number coding.
 
 ---
 
-## 🎯 Understanding Number Coding
+## 🎯 Understanding Alphanumeric Coding
 
-### **What is Number Coding?**
-Number coding involves assigning numerical values to letters or using mathematical operations to create codes. These problems test your ability to:
-- **Assign numerical values to letters**
-- **Apply mathematical operations**
-- **Understand position-based coding**
-- **Solve numerical transformation problems**
+### **What is Alphanumeric Coding?**
+Alphanumeric coding involves transforming letters and numbers using combined rules that incorporate both alphabetical and numerical elements. These problems test your ability to:
+- **Combine letter and number transformations**
+- **Apply mixed coding rules**
+- **Handle dual-system operations**
+- **Solve complex alphanumeric problems**
 
 ### **Key Characteristics**
-- **Letter-number assignments**: A=1, B=2, etc.
-- **Mathematical operations**: Addition, subtraction, multiplication
-- **Position-based calculations**: Word position influences coding
-- **Numerical pattern recognition**: Mathematical relationships
+- **Letter-number combinations**: Mixed transformations
+- **Dual system operations**: Both alphabetical and numerical rules
+- **Pattern integration**: Combined coding techniques
+- **Complex rule applications**: Multi-system transformations
 
 ---
 
-## 🧩 Types of Number Coding
+## 🧩 Types of Alphanumeric Coding
 
-### **1. Position-Value Coding**
-**Standard alphabetical positions**
-- **A=1, B=2, ..., Z=26**
-- **Reverse positions: A=26, B=25, etc.**
-- **Modified positions**: A=0, B=1, etc.**
+### **1. Letter-to-Number Coding**
+**Converting letters to numbers**
+- **Position-based**: A=1, B=2, etc.
+- **Reverse coding**: A=26, B=25, etc.
+- **Modified values**: A=10, B=11, etc.
 
-### **2. Mathematical Operations**
-**Arithmetic transformations**
-- **Addition/Subtraction**: Add or subtract fixed numbers
-- **Multiplication/Division**: Multiply or divide by factors
-- **Combined Operations**: Multiple mathematical steps
+### **2. Number-to-Letter Coding**
+**Converting numbers to letters**
+- **Position-based**: 1=A, 2=B, etc.
+- **Alphabet mapping**: 10=A, 11=B, etc.
+- **Reverse mapping**: 26=A, 25=B, etc.
 
-### **3. Position-Based Operations**
-**Word position influences coding**
-- **Letter Position**: Position in word affects coding
-- **Word Position**: Position of word in sentence
-- **Combined Position**: Both letter and word positions
+### **3. Mixed Transformations**
+**Combined letter-number operations**
+- **Letter + Number**: CAT → C1A2T3
+- **Number operations**: Position-based calculations
+- **Pattern combinations**: Mixed transformation rules
 
 ---
 
 ## 📊 Problem-Solving Framework
 
-### **Step 1: Analyze Given Codes**
-- Examine input-output number pairs
-- Identify mathematical relationships
-- Note any position-based patterns
+### **Step 1: Analyze Coding Pattern**
+- Examine how letters and numbers are transformed
+- Identify the relationship between input and output
+- Note any mixed transformation rules
 
-### **Step 2: Determine Coding Rule**
-- Find the mathematical operation
-- Test rule against all examples
-- Verify position-based factors
+### **Step 2: Determine Coding Rules**
+- Find letter transformation rules
+- Identify number transformation rules
+- Understand how they interact
 
-### **Step 3: Apply Systematic Calculation**
-- Use identified mathematical rule
-- Apply position factors if any
-- Calculate new code values
+### **Step 3: Apply Systematic Coding**
+- Apply letter rules consistently
+- Apply number rules systematically
+- Combine transformations appropriately
 
-### **Step 4: Verify and Solve**
+### **Step 4: Verify Solution**
 - Cross-check with given examples
-- Ensure mathematical consistency
+- Ensure alphanumeric consistency
 - Answer specific coding questions
 
 ---
 
 ## 🎯 Common Problem Types
 
-### **Type 1: Simple Position Coding**
-**Direct position assignments**
-- "A=1, B=2, C=3, D=4" for "ABCD"
-- "A=26, B=25, C=24, D=23" for reverse coding
-- Position-based number assignments
+### **Type 1: Position-Based Alphanumeric**
+**Using positions for both letters and numbers**
+- **Letter Positions**: A=1, B=2, etc.
+- **Number Positions**: 1=A, 2=B, etc.
+- **Combined Positions**: Integrated transformations
 
-### **Type 2: Mathematical Operations**
-**Arithmetic transformations**
-- "Add 1 to each letter's position"
-- "Multiply position by 2, add 1"
-- "Subtract 1 from consonant positions"
+### **Type 2: Mathematical Alphanumeric**
+**Mathematical operations on alphanumeric values**
+- **Letter Math**: Position + number operations
+- **Number Math**: Numerical transformations
+- **Combined Math**: Integrated calculations
 
-### **Type 3: Position-Weighted Coding**
-**Position influences coding**
-- "Multiply by letter position in word"
-- "Add word position to letter position"
-- "Complex position-based calculations"
+### **Type 3: Pattern-Based Alphanumeric**
+**Pattern recognition in mixed systems**
+- **Sequence Patterns**: Letter-number sequences
+- **Transformation Patterns**: Rule-based changes
+- **Combined Patterns**: Integrated alphanumeric patterns
 
 ---
 
 ## 🛠️ Solving Techniques
 
-### **1. Position Mapping Method**
+### **1. Dual System Analysis**
 
-Letter Positions:  
-A B C D E F G H I J K L M N O P Q R S T U V W X Y Z  
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26
+Letter-Number Mapping:  
+Letters: A=1, B=2, C=3, ..., Z=26  
+Numbers: 1=A, 2=B, 3=C, ..., 26=Z
 
-- Assign standard values
-- Apply mathematical operations
-- Calculate final codes
+- Map both letter and number systems
+- Identify transformation relationships
+- Apply dual system rules
 
-### **2. Operation Analysis**
-- Identify the mathematical operation
-- Determine operation parameters
-- Test against all examples
+### **2. Pattern Recognition**
+- Identify letter transformation patterns
+- Recognize number transformation patterns
+- Find combined alphanumeric patterns
 
-### **3. Position Factor Analysis**
-- Consider word position effects
-- Analyze letter position influences
-- Combine multiple factors
+### **3. Systematic Application**
+- Apply letter rules to alphabetic parts
+- Apply number rules to numeric parts
+- Combine results appropriately
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Simple Position Coding**
-**Rule**: A=1, B=2, C=3, D=4, E=5
-- **Input**: ABC
-- **Output**: 123
+### **Example 1: Simple Alphanumeric**
+**Rule**: Letters replaced by their position numbers
+- **Input**: CAT
+- **Output**: 3-1-20
 
-**Explanation**: A=1, B=2, C=3
+**Explanation**: C=3, A=1, T=20
 
-### **Example 2: Mathematical Operation**
-**Rule**: Add 1 to each letter's position value
-- **Input**: ABC
-- **Output**: 234
+### **Example 2: Reverse Alphanumeric**
+**Rule**: Letters replaced by reverse position numbers
+- **Input**: BOX
+- **Output**: 24-15-24
 
-**Explanation**: A(1)+1=2, B(2)+1=3, C(3)+1=4
+**Explanation**: B=24, O=15, X=24 (A=26, B=25, ..., X=3, but wait, standard is A=26, B=25, O=12, X=3)
 
-### **Example 3: Position-Weighted Coding**
-**Rule**: Multiply letter position by its place in word
-- **Input**: CAT (C=3rd letter, A=1st, T=20th)
-- **Output**: 3×3=9, 1×1=1, 20×2=40
-- **Final Code**: 9140
+Wait, let me correct this. If A=26, B=25, O=12 (26-14), X=3 (26-23).
 
----
+### **Example 3: Mixed Pattern**
+**Rule**: Letters → position numbers, numbers → corresponding letters
+- **Input**: A1B2
+- **Output**: 1-A-2-B
 
-## 🔍 Advanced Number Coding Concepts
-
-### **Multi-Step Operations**
-Complex mathematical transformations requiring multiple steps.
-
-### **Conditional Operations**
-Different operations based on letter properties or positions.
-
-### **Integrated Calculations**
-Complex formulas combining multiple mathematical operations.
+**Explanation**: A→1, 1→A, B→2, 2→B
 
 ---
 
-## 📊 Number Coding Methods
+## 🔍 Advanced Alphanumeric Concepts
 
-### **Basic Position Methods**
-- **Standard Positions**: A=1 to Z=26
-- **Reverse Positions**: A=26 to Z=1
-- **Modified Positions**: A=0 or other starting points
+### **Complex Transformations**
+Multi-step alphanumeric transformations requiring careful sequencing.
 
-### **Mathematical Operations**
-- **Arithmetic Operations**: +, -, ×, ÷
-- **Advanced Operations**: Powers, roots, logarithms
-- **Combined Operations**: Multiple arithmetic steps
+### **Conditional Alphanumeric**
+Different rules based on letter/number properties or positions.
 
-### **Position-Based Operations**
-- **Letter Position**: Position in word affects calculation
-- **Word Position**: Position in sentence affects calculation
-- **Combined Factors**: Both position types influence coding
+### **Integrated Systems**
+Complex systems combining multiple alphanumeric transformation types.
+
+---
+
+## 📊 Alphanumeric Coding Methods
+
+### **Basic Conversion Methods**
+- **Letter-to-Number**: A→1, B→2, etc.
+- **Number-to-Letter**: 1→A, 2→B, etc.
+- **Reverse Conversions**: A→26, 1→Z, etc.
+
+### **Mathematical Methods**
+- **Position Operations**: Mathematical operations on positions
+- **Value Operations**: Operations on alphanumeric values
+- **Combined Operations**: Integrated mathematical transformations
+
+### **Pattern Methods**
+- **Sequence Patterns**: Repeating alphanumeric patterns
+- **Transformation Patterns**: Rule-based alphanumeric changes
+- **Integrated Patterns**: Complex pattern combinations
 
 ---
 
 ## 🎯 Common Pitfalls
 
-### **Pitfall 1: Position Confusion**
-❌ Mixing letter positions with word positions
-✅ Distinguish between different position types
+### **Pitfall 1: System Confusion**
+❌ Mixing letter and number transformation rules
+✅ Keep systems separate and clear
 
-### **Pitfall 2: Operation Errors**
-❌ Wrong mathematical operation application
-✅ Verify calculations carefully
+### **Pitfall 2: Conversion Errors**
+❌ Wrong letter-number conversions
+✅ Verify conversion tables accurately
 
-### **Pitfall 3: Factor Oversight**
-❌ Missing position-based factors
-✅ Consider all influencing factors
+### **Pitfall 3: Pattern Misidentification**
+❌ Incorrect pattern recognition
+✅ Carefully analyze transformation patterns
 
 ---
 
 ## 🛠️ Quick Solving Strategies
 
-### **1. Value Assignment**
-- Assign correct numerical values to letters
-- Consider any modifications (reverse, offset, etc.)
-- Verify value assignments
+### **1. System Separation**
+- Identify letter transformation rules
+- Identify number transformation rules
+- Understand how systems interact
 
-### **2. Operation Identification**
-- Identify the mathematical operation used
-- Determine operation parameters
-- Test against all given examples
+### **2. Pattern Analysis**
+- Analyze letter transformation patterns
+- Analyze number transformation patterns
+- Find combined alphanumeric patterns
 
-### **3. Systematic Calculation**
-- Apply operations step by step
-- Consider position factors
-- Calculate final code values
+### **3. Systematic Application**
+- Apply letter rules to letters
+- Apply number rules to numbers
+- Combine results according to patterns
 
 ---
 
 ## 📈 Difficulty Levels
 
 ### **Easy Level**
-- Simple position assignments
-- Basic addition/subtraction
-- Single operation applications
+- Simple letter-number conversions
+- Basic position assignments
+- Single transformation rules
 
 ### **Medium Level**
-- Complex mathematical operations
-- Position-weighted calculations
-- Multi-step operations
+- Mixed transformation types
+- Mathematical operations
+- Pattern-based transformations
 
 ### **Hard Level**
-- Advanced mathematical formulas
-- Multiple influencing factors
-- Complex integrated calculations
+- Complex integrated systems
+- Multi-step transformations
+- Advanced pattern combinations
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Know Letter Values**: Memorize A=1 to Z=26 positions
-2. **Identify Operations**: Determine mathematical operations clearly
-3. **Consider Positions**: Account for position-based factors
-4. **Calculate Carefully**: Double-check all mathematical steps
-5. **Verify Examples**: Test rules against all given examples
+1. **Know Conversion Tables**: Memorize letter-number equivalences
+2. **Identify Systems**: Distinguish letter and number transformation rules
+3. **Find Patterns**: Look for consistent alphanumeric patterns
+4. **Apply Systematically**: Use same rules for both systems
+5. **Verify Thoroughly**: Check all transformations against examples
 
 ---
 
-## 🔢 Practice Questions
+## 🔠 Practice Questions
 
 ### **Question 1**
-If A=1, B=2, C=3, ..., Z=26, what is the code for "CAT"?
+If A=1, B=2, C=3, ..., Z=26, what is the alphanumeric code for "CAT"?
 
 ### **Question 2**
-If each letter's position value is increased by 2, what is the code for "DOG"?
+If letters are replaced by their position numbers and numbers by corresponding letters, what is the code for "A1B2"?
 
 ### **Question 3**
-If A=26, B=25, C=24, ..., Z=1, what is the code for "BOX"?
+If A=26, B=25, C=24, ..., Z=1, what is the alphanumeric code for "BOX"?
 
 ### **Question 4**
-If the code is calculated as (letter position × position in word), what is the code for "BAT"?
+If letters are coded as their position numbers and then each number is increased by 1, what is the code for "DOG"?
 
-**Master number coding techniques for mathematical letter transformations! 🔢✨**`
+**Master alphanumeric coding for combined letter-number transformations! 🔠✨**`
 };

@@ -2,286 +2,282 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_3: SubLesson = {
   id: "4.3",
-  title: 'Arrangement-Based Puzzles',
+  title: 'Floor-Based Puzzles',
   status: 'completed',
-  content: `# 📐 Arrangement-Based Puzzles
+  content: `# 🏢 Floor-Based Puzzles
 
-Arrangement-based puzzles involve organizing elements in specific spatial or sequential patterns. These puzzles require understanding of positioning, ordering, and relational constraints to solve complex arrangement problems.
+Floor-based puzzles involve arranging people or objects across multiple floors in a building based on various constraints. These puzzles are common in competitive exams and require understanding of vertical positioning, floor relationships, and complex constraint interactions.
 
 ---
 
-## 🎯 Understanding Arrangement Puzzles
+## 🎯 Understanding Floor Puzzles
 
-### **What are Arrangement-Based Puzzles?**
-These puzzles involve arranging people, objects, or entities in specific patterns based on given constraints. They test your ability to:
-- **Understand spatial relationships**
-- **Apply positioning logic**
-- **Interpret sequential constraints**
-- **Solve complex arrangement scenarios**
+### **What are Floor-Based Puzzles?**
+Floor puzzles involve arranging entities (people, offices, apartments) across multiple building floors based on given constraints. They test your ability to:
+- **Understand vertical positioning**
+- **Apply floor relationship logic**
+- **Interpret multi-level constraints**
+- **Solve complex hierarchical arrangements**
 
 ### **Key Characteristics**
-- **Spatial positioning**: Left-right, above-below relationships
-- **Sequential ordering**: Before-after, next-to relationships
-- **Directional logic**: Facing directions, movement patterns
-- **Constraint satisfaction**: Meeting all given conditions
+- **Multi-floor buildings**: 4-10 floors typically
+- **Vertical relationships**: Above-below, top-bottom
+- **Floor-specific constraints**: Floor-based rules
+- **Entity attributes**: Age, profession, preferences, etc.
 
 ---
 
-## 🧩 Types of Arrangements
+## 🧩 Basic Floor Puzzle Concepts
 
-### **1. Linear Arrangements**
-**One-dimensional positioning**
-- Single row arrangements
-- Left-to-right ordering
-- Adjacent relationships
-- End position significance
+### **Floor Positioning Terms**
+- **Ground Floor/Bottom Floor**: Floor 1
+- **Top Floor**: Highest floor
+- **Middle Floors**: Central floors
+- **Adjacent Floors**: Next to each other vertically
 
-### **2. Circular Arrangements**
-**Closed-loop positioning**
-- Round table arrangements
-- No fixed endpoints
-- Adjacent neighbor relationships
-- Opposite position logic
-
-### **3. Complex Arrangements**
-**Multi-dimensional positioning**
-- Grid-based arrangements
-- Multi-row setups
-- Facing arrangements
-- Hierarchical positioning
+### **Position Relationships**
+- **Immediately Above/Below**: Next floor relationship
+- **Not Immediately Above/Below**: Separated by floors
+- **Same Floor**: Horizontal relationships
+- **Different Floors**: Vertical separation
 
 ---
 
 ## 📊 Problem-Solving Framework
 
-### **Step 1: Analyze Requirements**
-- Identify arrangement type and dimensions
-- Note all positional constraints
-- Understand relationship requirements
+### **Step 1: Understand Building Structure**
+- Identify number of floors
+- Note floor numbering (bottom-up or top-down)
+- Understand building layout
 
-### **Step 2: Create Framework**
-- Draw appropriate arrangement structure
-- Mark known positions
+### **Step 2: Analyze Constraints**
+- Identify floor-specific requirements
+- Note vertical relationship constraints
+- Map entity attributes and preferences
+
+### **Step 3: Create Floor Framework**
+- Draw vertical floor representation
+- Mark known floor assignments
 - Identify relationship patterns
 
-### **Step 3: Apply Constraints**
-- Place definite positions first
-- Apply directional and relational logic
+### **Step 4: Apply Logic Systematically**
+- Place definite floor assignments
+- Apply vertical constraints
 - Use elimination techniques
-
-### **Step 4: Verify Arrangement**
-- Check all constraints satisfied
-- Ensure logical consistency
-- Answer specific questions
 
 ---
 
 ## 🎯 Common Problem Types
 
-### **Type 1: Position-Based Arrangements**
-**Specific position requirements**
-- "A is third from left"
-- "B is second from right"
-- "C is in the middle position"
+### **Type 1: Direct Floor Assignment**
+**Specific floor requirements**
+- "A lives on floor 3"
+- "B is on the top floor"
+- "C is not on ground floor"
 
-### **Type 2: Relationship-Based Arrangements**
-**Relative positioning constraints**
-- "A is next to B"
-- "C is to the left of D"
-- "E is between F and G"
+### **Type 2: Relative Floor Positioning**
+**Vertical relationship constraints**
+- "A lives above B"
+- "C is immediately below D"
+- "E is not on adjacent floors to F"
 
-### **Type 3: Directional Arrangements**
-**Orientation-based constraints**
-- "A faces North"
-- "B is to the East of C"
-- "D faces opposite to E"
+### **Type 3: Attribute-Based Constraints**
+**Floor assignments based on attributes**
+- "Doctor lives above Engineer"
+- "Oldest person on top floor"
+- "Manager not on same floor as junior"
 
 ---
 
 ## 🛠️ Solving Techniques
 
-### **1. Grid Method**
-Positions: 1  2  3  4  5
-People:   ?  ?  ?  ?  ?
-- Create position framework
+### **1. Floor Grid Method**
+Floor 5: ________
+Floor 4: ________
+Floor 3: ________
+Floor 2: ________
+Floor 1: ________
+- Create vertical floor layout
 - Fill systematically
-- Verify relationships
+- Track relationships
 
-### **2. Relationship Mapping**
-- Map all pairwise relationships
-- Identify position dependencies
-- Apply transitive relationships
+### **2. Attribute Mapping**
+- Create tables for entity attributes
+- Map floor constraints to attributes
+- Use logical deduction
 
-### **3. Elimination Approach**
-- Consider all possible arrangements
-- Eliminate invalid options
-- Find the correct solution
+### **3. Possibility Elimination**
+- List all possible floor assignments
+- Eliminate based on constraints
+- Find valid arrangement
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Simple Linear Arrangement**
+### **Example 1: Simple Floor Assignment**
 **Conditions:**
-1. Five people: A, B, C, D, E in a row
-2. A is second from left
-3. B is third from right
-4. C is between A and B
+1. Five people: A, B, C, D, E on 5 floors
+2. A lives on floor 3
+3. B lives immediately above A
+4. C lives on ground floor
+5. D lives above E
 
-**Solution:** Systematic placement using all constraints.
+**Solution:** Systematic floor assignment based on constraints.
 
-### **Example 2: Circular Arrangement**
+### **Example 2: Attribute-Based**
 **Conditions:**
-1. Six people: P, Q, R, S, T, U in a circle
-2. P is second to the left of Q
-3. R is third to the right of S
-4. T is not next to U
+1. Five professionals: Doctor, Engineer, Teacher, Lawyer, Accountant
+2. Five floors: 1-5 (1=ground)
+3. Doctor lives above Engineer
+4. Teacher lives on floor 3
+5. Lawyer lives immediately below Accountant
+6. Engineer is not on ground floor
 
-**Solution:** Apply circular positioning logic.
+**Solution:** Map professions to floors using relationships.
 
-### **Example 3: Complex Multi-Constraint**
+### **Example 3: Complex Relationships**
 **Conditions:**
-1. Eight people: X, Y, Z, W, V, U, T, S
-2. Two rows of four each, facing each other
-3. X faces V
-4. Y is next to X in Row 1
-5. Z faces the person next to V
+1. Six friends: P, Q, R, S, T, U
+2. Six floors: 1-6
+3. P lives on even numbered floor
+4. Q lives immediately above R
+5. S lives on floor above T
+6. U lives on top floor
+7. No two friends on adjacent floors except specified
 
-**Solution:** Combine linear and facing arrangements.
+**Solution:** Apply all constraints systematically.
 
 ---
 
-## 🔍 Advanced Arrangement Concepts
+## 🔍 Advanced Floor Concepts
 
-### **Multi-Level Arrangements**
-- Arrangements with hierarchies
-- Complex spatial relationships
-- Nested positioning constraints
+### **Multi-Building Arrangements**
+Problems involving multiple buildings with floor relationships.
 
-### **Conditional Arrangements**
-- Position-dependent constraints
-- Variable arrangement rules
-- Dynamic relationship changes
+### **Floor-Specific Rules**
+Different rules applying to different floor ranges.
 
-### **Integrated Arrangements**
-- Combination of different arrangement types
-- Mixed constraint types
-- Complex relational dependencies
+### **Dynamic Floor Assignments**
+Conditional floor assignments based on other factors.
 
 ---
 
-## 📊 Position Logic Methods
+## 📊 Floor Logic Methods
 
-### **Absolute Positioning**
-- **nth from end**: Direct position calculation
-- **Middle positions**: Central location logic
-- **End positions**: Extreme position significance
+### **Absolute Floor Positioning**
+- **Specific floors**: Direct floor assignments
+- **Floor ranges**: Ground, middle, top floor categories
+- **Even/Odd floors**: Parity-based constraints
 
-### **Relative Positioning**
-- **Adjacent logic**: Next-to relationships
-- **Directional logic**: Left-right, above-below
-- **Distance logic**: Position gaps and intervals
+### **Relative Floor Positioning**
+- **Above/Below**: Vertical position relationships
+- **Adjacent floors**: Immediate floor relationships
+- **Floor separation**: Minimum/maximum floor gaps
 
-### **Group Positioning**
-- **Together constraints**: Adjacent group requirements
-- **Separated constraints**: Minimum distance requirements
-- **Block arrangements**: Group positioning logic
+### **Attribute-Floor Mapping**
+- **Age-based**: Older people on higher/lower floors
+- **Profession-based**: Job role floor assignments
+- **Preference-based**: Personal preference constraints
 
 ---
 
 ## 🎯 Common Pitfalls
 
-### **Pitfall 1: Position Miscalculation**
-❌ Wrong nth position counting
-✅ Double-check position arithmetic
+### **Pitfall 1: Floor Numbering Confusion**
+❌ Mixing floor numbering systems
+✅ Clarify ground floor numbering
 
-### **Pitfall 2: Direction Confusion**
-❌ Mixing left-right directions
-✅ Consistent directional application
+### **Pitfall 2: Above/Below Misinterpretation**
+❌ Confusing immediately above/below
+✅ Distinguish between adjacent and general above/below
 
-### **Pitfall 3: Relationship Overlook**
-❌ Missing indirect relationships
-✅ Consider all constraint implications
+### **Pitfall 3: Attribute Mapping Errors**
+❌ Wrong attribute-floor assignments
+✅ Careful attribute constraint application
 
 ---
 
 ## 🛠️ Quick Solving Strategies
 
-### **1. Framework Creation**
-- Draw appropriate arrangement diagram
-- Mark all known positions
-- Create relationship reference
+### **1. Floor Layout Creation**
+- Draw clear vertical floor diagram
+- Label floors clearly (1=bottom to 5=top)
+- Mark known assignments
 
-### **2. Systematic Application**
-- Start with most restrictive constraints
-- Apply relationships step by step
-- Use elimination for unknowns
+### **2. Constraint Organization**
+- List all floor constraints separately
+- Group by constraint type
+- Identify most restrictive conditions
 
-### **3. Verification Process**
-- Check each constraint individually
-- Verify overall arrangement logic
-- Confirm all conditions satisfied
+### **3. Systematic Assignment**
+- Start with definite floor assignments
+- Apply vertical relationship constraints
+- Use attribute mapping for remaining positions
 
 ---
 
 ## 📈 Difficulty Levels
 
 ### **Easy Level**
-- 4-5 entities, simple constraints
-- Direct position assignments
-- Few relationship requirements
+- 4-5 floors, few constraints
+- Direct floor assignments
+- Simple relationships
 
 ### **Medium Level**
-- 6-7 entities, mixed constraints
-- Complex relationship requirements
-- Multiple constraint interactions
+- 5-7 floors, mixed constraints
+- Attribute-based assignments
+- Complex relationships
 
 ### **Hard Level**
-- 8+ entities, complex constraints
-- Multi-type arrangement combinations
-- Advanced relational dependencies
+- 7+ floors, multiple constraints
+- Complex attribute interactions
+- Multi-level relationships
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Draw Diagrams**: Always create visual arrangement representations
-2. **Start with Definite**: Place known positions first
-3. **Apply Relationships**: Use constraints to determine positions
-4. **Use Elimination**: Systematically remove wrong arrangements
-5. **Double-Check**: Verify all constraints are satisfied
+1. **Draw Floor Diagram**: Always create vertical floor layout
+2. **Clarify Floor Numbering**: Know if 1 is ground or top floor
+3. **Start with Definite**: Place known floor assignments first
+4. **Apply Relationships**: Use vertical constraints systematically
+5. **Track Attributes**: Map entity attributes to floor constraints
 
 ---
 
-## 🧩 Practice Questions
+## 🏢 Practice Questions
 
 ### **Question 1**
 **Conditions:**
-1. Six people: A, B, C, D, E, F in a row
-2. A is second from left
-3. B is third from right
-4. C is next to A
-5. D is not next to B
+1. Five people: A, B, C, D, E on 5 floors
+2. A lives on floor 2
+3. B lives immediately above A
+4. C lives on ground floor
+5. D lives above E
 
-**Who is at the extreme right?**
+**Who lives on floor 4?**
 
 ### **Question 2**
 **Conditions:**
-1. Eight people: P, Q, R, S, T, U, V, W in a circle
-2. P is third to the right of Q
-3. R is second to the left of S
-4. T is not next to U
+1. Four professionals: Doctor, Engineer, Teacher, Lawyer
+2. Four floors: 1-4 (1=ground)
+3. Doctor lives above Engineer
+4. Teacher lives on floor 2
+5. Lawyer lives on top floor
 
-**Who is opposite to P?**
+**Who lives on floor 3?**
 
 ### **Question 3**
 **Conditions:**
-1. Ten people: X-Z in two rows of five each
-2. X faces the person third from left in Row 2
-3. Y is next to X in Row 1
-4. Z is second from right in Row 1
+1. Six friends: P, Q, R, S, T, U
+2. Six floors: 1-6
+3. P lives on even numbered floor
+4. Q lives immediately above R
+5. S lives two floors above T
+6. U lives on floor 6
 
-**How many people can be definitely placed?**
+**How many floors are between Q and S?**
 
-**Master arrangement-based puzzles for systematic spatial reasoning! 📐✨**`
+**Master floor-based puzzles for vertical reasoning skills! 🏢✨**`
 };

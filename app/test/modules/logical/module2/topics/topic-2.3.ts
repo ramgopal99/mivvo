@@ -2,445 +2,185 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_3: SubLesson = {
   id: "2.3",
-  title: 'Symbols & Notations',
+  title: 'Generation-Based Relations',
   status: 'completed',
-  content: `# 🔐 Coded Blood Relations
+  content: `# 👨‍👩‍👧‍👦 Generation-Based Relations
 
-Unlock the secrets of coded blood relation problems! These challenging puzzles use symbols, codes, and mathematical operators to represent family relationships. Learn to decode complex relationship patterns and solve intricate family puzzles.
-
----
-
-## 🎯 What are Coded Blood Relations?
-
-**Coded Blood Relations** use symbols, mathematical operators, or codes to represent family relationships. Instead of direct terms, relationships are expressed through:
-
-- Mathematical operators (+, -, ×, ÷)
-- Symbols and codes (A, B, C, etc.)
-- Logical connectives (and, or, if-then)
-- Puzzle-based representations
-
-### **Why Coded Relations are Tricky**
-- **Abstract Representation**: Relationships not stated directly
-- **Multiple Interpretations**: Same code can mean different things
-- **Logical Deduction**: Requires systematic analysis
-- **Pattern Recognition**: Finding underlying relationship rules
+Understanding generation-based relationships is crucial for solving complex blood relation problems. Learn how to navigate different generations, understand familial hierarchies, and solve problems involving grandparents, parents, children, grandchildren, and extended family relationships.
 
 ---
 
-## 🔢 Common Coding Patterns
+## 🎯 Understanding Generations in Families
 
-### **Pattern 1: Mathematical Operators**
+### **Generation Hierarchy**
+- **1st Generation**: Grandparents/Great-grandparents
+- **2nd Generation**: Parents/Uncles/Aunts
+- **3rd Generation**: Children/Nephews/Nieces
+- **4th Generation**: Grandchildren/Great-nephews/Great-nieces
 
-#### **Basic Operators**
-\`\`\`
-+ means "brother/sister of"
-- means "husband/wife of"
-× means "parent of"
-÷ means "child of"
-\`\`\`
-
-#### **Example Problem**
-**"A + B means A is brother of B"**
-**"A - B means A is husband of B"**
-**"A × B means A is father of B"**
-
-**Statement: P + Q - R × S**
-
-**Question: What is S to P?**
-
-**Step-by-step decoding:**
-1. P + Q → P is brother of Q
-2. Q - R → Q is wife of R (or R is husband of Q)
-3. R × S → R is father of S
-
-**Family analysis:**
-- P and Q are siblings
-- Q and R are married (husband-wife)
-- R and S are parent-child
-
-**Final relationship:** P is uncle of S
-
-### **Pattern 2: Symbolic Relationships**
-
-#### **Common Symbols**
-\`\`\`
-♂ = Male, ♀ = Female
-⚭ = Married
-↑ = Parent, ↓ = Child
-→ = Older, ← = Younger
-\`\`\`
-
-#### **Example Problem**
-**"A ♂ ↑ B ♀ means A is father of B"**
-**"C ♀ ⚭ D ♂ means C is wife of D"**
-
-**Statement: P ♂ ↑ Q ♀ ⚭ R ♂ ↓ S ♀**
-
-**Analysis:**
-- P is father of Q
-- Q is married to R
-- R has daughter S
-
-**Question: What is S to P?**
-**Answer: S is granddaughter of P**
+### **Key Relationships by Generation**
+- **Same Generation**: Siblings, Cousins
+- **Adjacent Generations**: Parent-Child relationships
+- **Skip Generations**: Grandparent-Grandchild relationships
 
 ---
 
-## 🎯 Systematic Decoding Approach
+## 🧩 Basic Generation Terms
 
-### **Step 1: Understand the Code**
-- Read all coding rules carefully
-- Note which relationships are represented
-- Identify any exceptions or special cases
+### **Direct Relationships**
+- **Parent-Child**: Mother, Father, Son, Daughter
+- **Grandparent-Grandchild**: Grandmother, Grandfather, Grandson, Granddaughter
+- **Sibling Relationships**: Brother, Sister (same generation)
 
-### **Step 2: Break Down the Statement**
-- Split complex statements into parts
-- Apply each code individually
-- Build relationships incrementally
-
-### **Step 3: Create Relationship Map**
-\`\`\`
-Person A → Code → Person B → Relationship
-A + B = A is brother of B
-B - C = B is wife of C
-C × D = C is parent of D
-\`\`\`
-
-### **Step 4: Connect the Relationships**
-- Find connecting points between relationships
-- Identify common persons
-- Build the complete family picture
+### **Extended Family Terms**
+- **Uncle/Aunt**: Father's/Mother's siblings
+- **Nephew/Niece**: Brother's/Sister's children
+- **Cousin**: Uncle/Aunt's children
 
 ---
 
-## 📊 Practice Coded Problems
+## 📊 Generation-Based Problem Solving
 
-### **Problem 1: Basic Mathematical Coding**
+### **Example Problem 1**
+**Question**: If A is the father of B, and B is the father of C, then:
+- A is grandfather of C
+- B is father of C
+- C is grandson of A
 
-**Codes:**
-- A + B means A is brother of B
-- A - B means A is sister of B
-- A × B means A is father of B
-- A ÷ B means A is daughter of B
-
-**Statement: P + Q ÷ R × S**
-
-**Question: What is the relationship between P and S?**
-
-**Decoding:**
-1. P + Q: P is brother of Q
-2. Q ÷ R: Q is daughter of R
-3. R × S: R is father of S
-
-**Family Tree:**
-\`\`\`
-R (♂)
-├── Q (♀)
-│   └── Brother: P (♂)
-└── S (♂/♀)
-\`\`\`
-
-**Answer: P is uncle of S**
-
-### **Problem 2: Complex Coding**
-
-**Codes:**
-- P @ Q means P is father of Q
-- P # Q means P is sister of Q
-- P $ Q means P is brother of Q
-- P % Q means P is mother of Q
-
-**Statement: A @ B # C $ D % E**
-
-**Question: If E is male, what is the relationship between A and E?**
-
-**Decoding:**
-1. A @ B: A is father of B
-2. B # C: B is sister of C
-3. C $ D: C is brother of D
-4. D % E: D is mother of E
-
-**Family Analysis:**
-- A is grandfather of E (A → B → C → D → E)
-- Since E is male, A is great-grandfather
-
-**Answer: Great-grandfather**
+### **Example Problem 2**
+**Question**: D is the mother of E, and E is the sister of F. F is the father of G.
+- D is grandmother of G
+- E is aunt of G
+- F is father of G
 
 ---
 
-## 🧠 Advanced Coding Patterns
+## 🎯 Complex Generation Scenarios
 
-### **Pattern 1: Conditional Coding**
+### **Multi-Generation Families**
+- **3-Generation Family**: Grandparents → Parents → Children
+- **4-Generation Family**: Great-grandparents → Grandparents → Parents → Children
+- **Extended Family**: Including uncles, aunts, cousins across generations
 
-#### **If-Then Relationships**
-**"If A is male, A × B means father-son"**
-**"If A is female, A × B means mother-daughter"**
-
-#### **Example Problem**
-**Statement: P × Q, R × S**
-**Given: P is male, R is female**
-
-**Analysis:**
-- P × Q: P is father of Q
-- R × S: R is mother of S
-
-**Question: What is the relationship between Q and S?**
-**Answer: Cannot be determined (no connection)**
-
-### **Pattern 2: Multiple Operators**
-
-#### **Combined Operations**
-**"A + B means A is brother of B"**
-**"A × B means A is father of B"**
-**"A + B × C" means combined operations**
-
-#### **Example Problem**
-**Statement: M + N × O + P**
-
-**Decoding:**
-1. M + N: M is brother of N
-2. N × O: N is father of O
-3. O + P: O is brother of P
-
-**Family Tree:**
-\`\`\`
-N (♂)
-├── M (♂) - brother
-├── O (♂/♀)
-│   └── P (♂/♀) - sibling
-\`\`\`
-
-**Answer: M is uncle of P**
+### **Cross-Generation Relationships**
+- **Grand-Uncle/Aunt**: Grandparent's siblings
+- **Great-Uncle/Aunt**: Great-grandparent's siblings
+- **Second Cousins**: Children of first cousins
 
 ---
 
-## 🎯 Complex Coded Problems
+## 🛠️ Problem-Solving Techniques
 
-### **Problem 1: Puzzle-Based Coding**
+### **Step 1: Identify Generations**
+- Count the number of generations involved
+- Map out the family hierarchy
+- Identify relationship levels
 
-**"In a certain code language:"**
-- "A is B's father" is written as "A # B"
-- "C is D's mother" is written as "C @ D"
-- "E is F's sister" is written as "E $ F"
-- "G is H's brother" is written as "G % H"
+### **Step 2: Apply Relationship Rules**
+- Use generation-based relationship mapping
+- Apply familial terminology correctly
+- Consider both maternal and paternal sides
 
-**Statement: P # Q @ R $ S % T**
-
-**Question: If T is female, what is the relationship between P and T?**
-
-**Decoding:**
-1. P # Q: P is father of Q
-2. Q @ R: Q is mother of R
-3. R $ S: R is sister of S
-4. S % T: S is brother of T
-
-**Family Analysis:**
-- P → Q → R → S → T
-- Since T is female and S is brother of T, T is sister of S
-- P is great-grandfather of T
-
-**Answer: Great-grandfather**
-
-### **Problem 2: Mathematical Coding**
-
-**"If A × B means A is brother of B"**
-**"A + B means A is mother of B"**
-**"A ÷ B means A is father of B"**
-
-**Statement: P × Q + R ÷ S**
-
-**Question: What is S to P?**
-
-**Decoding:**
-1. P × Q: P is brother of Q
-2. Q + R: Q is mother of R
-3. R ÷ S: R is father of S (S is child of R)
-
-**Family Tree:**
-\`\`\`
-Q (♀)
-├── P (♂) - brother of Q
-└── R (♂) - son of Q
-    └── S (♂/♀) - child of R
-\`\`\`
-
-**Answer: P is uncle of S**
+### **Step 3: Solve Systematically**
+- Start from known relationships
+- Work step-by-step through generations
+- Verify all relationships are consistent
 
 ---
 
-## 📊 Coding Strategy Framework
+## 📈 Advanced Generation Concepts
 
-### **Step 1: Code Analysis**
-\`\`\`
-1. List all codes and their meanings
-2. Identify relationship types (blood/marriage)
-3. Note any conditions or exceptions
-4. Look for patterns in coding
-\`\`\`
+### **Mixed Generation Problems**
+- Problems involving multiple family branches
+- Cross-generational relationships
+- Complex family tree navigation
 
-### **Step 2: Statement Breakdown**
-\`\`\`
-1. Split statement into individual codes
-2. Apply each code to build relationships
-3. Find connecting persons between codes
-4. Build relationship chains
-\`\`\`
-
-### **Step 3: Family Construction**
-\`\`\`
-1. Start with known relationships
-2. Add persons as they appear
-3. Connect through common persons
-4. Verify consistency
-\`\`\`
-
-### **Step 4: Answer Derivation**
-\`\`\`
-1. Trace relationship path between persons
-2. Consider all possible interpretations
-3. Account for gender specifications
-4. Provide precise relationship term
-\`\`\`
+### **Time-Based Generation Changes**
+- Relationships that change over time
+- Future generations (will be)
+- Past generations (was/were)
 
 ---
 
-## 🚨 Common Mistakes in Coded Relations
+## 🎯 Practice Examples
 
-### **Mistake 1: Wrong Operator Precedence**
-❌ Applying codes in wrong order
-✅ Follow left-to-right or specified precedence
+### **Example 1: Simple Generation**
+P is the father of Q, Q is the brother of R, R is the mother of S.
+- What is the relationship between P and S?
 
-### **Mistake 2: Ignoring Gender Context**
-❌ "Son" always male, "daughter" always female
-✅ Consider context-dependent relationships
+**Solution**: P is grandfather of S (2-generation relationship)
 
-### **Mistake 3: Missing Relationship Chains**
-❌ Only direct relationships
-✅ Consider indirect connections through family
+### **Example 2: Complex Generation**
+A is the son of B, B is the daughter of C, C is the mother of D.
+- What is the relationship between A and D?
 
-### **Mistake 4: Incorrect Code Application**
-❌ Applying codes universally
-✅ Check if codes have conditional applications
+**Solution**: A is grandson of C, D is uncle of A
 
 ---
 
-## 🧮 Quick Reference: Common Codes
+## 🚀 Key Takeaways
 
-### **Mathematical Operators**
-| Code | Meaning | Example |
-|------|---------|---------|
-| A + B | Brother/Sister | P + Q = siblings |
-| A - B | Husband/Wife | M - N = married |
-| A × B | Parent-Child | X × Y = parent |
-| A ÷ B | Child-Parent | Y ÷ X = child |
+1. **Generation Mapping**: Always map out family generations first
+2. **Relationship Hierarchy**: Understand the generation ladder
+3. **Cross-References**: Consider both paternal and maternal sides
+4. **Terminology Accuracy**: Use correct familial terms
+5. **Systematic Approach**: Work generation by generation
 
-### **Symbolic Codes**
-| Symbol | Meaning | Example |
-|--------|---------|---------|
-| → | "is" | A → father |
-| ↑ | Parent | A ↑ B = A parent of B |
-| ↓ | Child | C ↓ D = C child of D |
-| ⚭ | Married | E ⚭ F = married |
+## ⚡ Quick Solving Tricks for Generation Problems
 
----
+### **Trick 1: Generation Numbering**
+- **Generation 0**: Reference person
+- **Generation +1**: Children
+- **Generation +2**: Grandchildren
+- **Generation -1**: Parents
+- **Generation -2**: Grandparents
 
-## 🎯 Practice Coded Problems
+### **Trick 2: Quick Grandparent Rules**
+- **Grandfather** = Father's father OR Mother's father
+- **Grandmother** = Father's mother OR Mother's mother
+- **Grandson** = Son's son OR Daughter's son
+- **Granddaughter** = Son's daughter OR Daughter's daughter
 
-### **Problem 1: Simple Coding**
-**Codes:**
-- P @ Q means P is father of Q
-- P # Q means P is mother of Q
-- P $ Q means P is brother of Q
+### **Trick 3: Great-Grandparent Formula**
+- **Great-grandfather** = Grandparent's father
+- **Great-grandmother** = Grandparent's mother
+- **Great-grandson** = Grandchild's son
+- **Great-granddaughter** = Grandchild's daughter
 
-**Statement: A @ B # C $ D**
+### **Trick 4: Generation Skip Shortcuts**
+- **"Grandfather's brother"** = Great-uncle
+- **"Grandmother's sister"** = Great-aunt
+- **"Grandson's daughter"** = Great-granddaughter
 
-**Question: What is D to A?**
-**Answer: Nephew**
+### **Trick 5: Multi-Generation Chains**
+- **A → B → C → D** = Great-grandparent → Grandparent → Parent → Child
+- **Count "grand" prefixes** to determine generations
+- **"Great-great-grandfather"** = 4 generations above
 
-### **Problem 2: Complex Coding**
-**Codes:**
-- A + B means A is sister of B
-- A × B means A is mother of B
-- A ÷ B means A is husband of B
+### **Trick 6: Cross-Generation Relationships**
+- **Uncle's child** = First cousin
+- **Cousin's child** = First cousin once removed
+- **Grandparent's cousin** = First cousin twice removed
 
-**Statement: M + N × O ÷ P**
+### **Trick 7: Age-Based Generation Rules**
+- **Older generation** = Parents, grandparents
+- **Same generation** = Siblings, cousins
+- **Younger generation** = Children, grandchildren
 
-**Question: What is P to M?**
-**Answer: Father-in-law**
+### **Trick 8: Family Tree Mapping**
+- **Draw vertical lines** for generations
+- **Connect with horizontal lines** for marriages
+- **Use arrows** to show relationship directions
 
-### **Problem 3: Conditional Coding**
-**"A & B means A is father of B if A is male"**
-**"A & B means A is mother of B if A is female"**
+### **Trick 9: Quick Relationship Calculator**
+- **"My grandfather's son"** = Father OR Uncle
+- **"My grandmother's daughter"** = Mother OR Aunt
+- **"My grandson's father"** = Son OR Son-in-law
 
-**Statement: P & Q & R**
-**Given: P is male, Q is female**
+### **Trick 10: Generation-Based Elimination**
+- **If A is grandfather of C, C cannot be parent of A**
+- **Great-grandparent cannot be sibling of grandchild**
+- **Same generation cannot have parent-child relationship**
 
-**Question: What is R to P?**
-**Answer: Grandchild**
-
----
-
-## 🏆 Pro Tips for Coded Relations
-
-1. **Read codes multiple times** carefully
-2. **Make a code reference table**
-3. **Draw relationship diagrams**
-4. **Work step by step** through the statement
-5. **Consider all possible connections**
-6. **Verify gender assumptions**
-7. **Practice with different coding patterns**
-
----
-
-## 🔍 Advanced Coded Relation Topics
-
-### **Topic 1: Matrix-Based Coding**
-- Grid-based relationship representations
-- Multiple relationship types in matrices
-
-### **Topic 2: Logical Puzzle Coding**
-- Sudoku-style family relationship puzzles
-- Constraint-based relationship solving
-
-### **Topic 3: Sequential Coding**
-- Time-based relationship changes
-- Age progression in family relationships
-
----
-
-## 📊 Coded Relations Statistics
-
-| Coding Type | Difficulty | Frequency | Time Required |
-|-------------|------------|-----------|---------------|
-| Mathematical | Easy | 40% | 1-2 minutes |
-| Symbolic | Medium | 35% | 2-3 minutes |
-| Conditional | Hard | 25% | 3-4 minutes |
-
-**Success Rate:** 60-70% with systematic approach
-
----
-
-## 🎯 Final Challenge Problem
-
-**Complex Coded Relation:**
-
-**Codes:**
-- A @ B means A is grandfather of B
-- A # B means A is sister of B
-- A $ B means A is husband of B
-- A % B means A is daughter of B
-
-**Statement: P @ Q # R $ S % T**
-
-**Additional Info:** T is female**
-
-**Question: What is the relationship between P and T?**
-
-**Think systematically:**
-1. Break down each code
-2. Build the family tree
-3. Trace the relationship path
-4. Consider the gender information
-
-**Master coded blood relations and you'll decode any family relationship puzzle! 🔐🩸**`
+**Master generation-based relationships to solve complex family puzzles! 🧩✨**`
 };

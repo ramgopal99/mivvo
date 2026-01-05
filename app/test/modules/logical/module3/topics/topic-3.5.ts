@@ -2,280 +2,217 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_5: SubLesson = {
   id: "3.5",
-  title: 'Circular Seating Arrangement',
+  title: 'Facing Direction Problems',
   status: 'completed',
-  content: `# ⭕ Circular Seating Arrangement
+  content: `# 🧭 Facing Direction Problems
 
-Circular seating arrangements involve people sitting in a circle, creating unique positional relationships without fixed endpoints. These problems are common in competitive exams and require understanding of circular logic, adjacent relationships, and directional positioning.
-
----
-
-## 🎯 Understanding Circular Arrangements
-
-### **What are Circular Arrangements?**
-Circular arrangements involve people seated in a circle, where everyone has two neighbors and there are no "end" positions. These problems test your ability to:
-- **Understand circular positioning**
-- **Apply clockwise/anticlockwise logic**
-- **Handle adjacent relationships**
-- **Manage opposite positioning**
-
-### **Key Characteristics**
-- **No fixed ends**
-- **Every person has two neighbors**
-- **Clockwise and anticlockwise directions**
-- **Opposite positions (for even numbers)**
+Facing direction problems combine seating arrangements with directional orientation (North, South, East, West). These problems require understanding both positional relationships and directional logic, making them more complex than standard arrangements.
 
 ---
 
-## 🧩 Basic Circular Concepts
+## 🎯 Understanding Direction Problems
 
-### **Position Relationships**
-- **Adjacent**: Next to each other (left and right neighbors)
-- **Opposite**: Facing each other (for even number of people)
-- **Clockwise**: One direction around the circle
-- **Anticlockwise**: Opposite direction around the circle
-
-### **Circular Logic**
-- **nth from left/right**: Relative positioning
-- **Between**: Positioned between two specific people
-- **Not together**: Not adjacent in circle
+### **What are Facing Direction Problems?**
+These problems involve people facing different directions (North, South, East, West) while seated in arrangements. They test your ability to:
+- **Understand directional orientation**
+- **Apply compass direction logic**
+- **Combine position and direction**
+- **Solve integrated arrangement problems**
 
 ---
 
-## 📊 Problem-Solving Framework
+## 🧭 Direction Sense Basics
 
-### **Step 1: Visualize the Circle**
-- Draw a circle
-- Mark positions evenly
-- Note directional flow
+### **Primary Directions**
+- **North (N)**: Facing forward/up
+- **South (S)**: Facing backward/down
+- **East (E)**: Facing right
+- **West (W)**: Facing left
 
-### **Step 2: Analyze Conditions**
-- Identify definite positions
-- Note adjacent requirements
-- Understand directional constraints
-
-### **Step 3: Apply Circular Logic**
-- Consider clockwise/anticlockwise
-- Use adjacent relationships
-- Apply elimination techniques
-
-### **Step 4: Verify Arrangement**
-- Check all conditions satisfied
-- Ensure circular consistency
-- Answer specific questions
+### **Relative Directions**
+- **Left of facing**: West if facing North
+- **Right of facing**: East if facing North
+- **Back**: Opposite of facing direction
+- **Front**: Same as facing direction
 
 ---
 
-## 🎯 Common Problem Types
+## 🛠️ Problem-Solving Framework
 
-### **Type 1: Adjacent-Based**
-**Neighbor relationships**
-- "A is next to B"
-- "C is not next to D"
-- "E is between F and G"
+### **Step 1: Understand Facing**
+- Identify each person's facing direction
+- Note how directions affect positioning
+- Understand relative directional terms
 
-### **Type 2: Direction-Based**
-**Clockwise/anticlockwise positioning**
-- "A is second to the left of B"
-- "C is third to the right of D"
-- "E is immediate left of F"
+### **Step 2: Apply Positional Logic**
+- Handle left-right relationships
+- Consider facing-based positioning
+- Apply directional constraints
 
-### **Type 3: Position-Based**
-**Specific positional requirements**
-- "A is opposite to B"
-- "C is third from D"
-- "E is not opposite to F"
+### **Step 3: Combine Both Aspects**
+- Integrate direction and position logic
+- Verify directional consistency
+- Resolve any conflicts
+
+### **Step 4: Solve Systematically**
+- Start with known directions
+- Apply directional relationships
+- Complete the arrangement
 
 ---
 
-## 🛠️ Solving Techniques
+## 🎯 Key Concepts
 
-### **1. Circle Diagram Method**
-     A
-   B   C
- D     E
-   F   G
-- Draw circular arrangement
-- Mark positions and relationships
+### **Facing Impact on Position**
+- **Facing North**: Left = West, Right = East
+- **Facing South**: Left = East, Right = West
+- **Facing East**: Left = North, Right = South
+- **Facing West**: Left = South, Right = North
 
-### **2. Clockwise Mapping**
-- Assign positions clockwise
-- Note directional relationships
-- Apply step-by-step logic
+### **Directional Relationships**
+- **Same direction**: Parallel facing
+- **Opposite direction**: Back-to-back
+- **Perpendicular**: Right-angle facing
 
-### **3. Position Elimination**
-- Consider all possible positions
-- Eliminate invalid arrangements
-- Find the correct solution
+---
+
+## 📊 Direction-Position Matrix
+
+| Facing Direction | Left Side | Right Side | Back | Front |
+|------------------|-----------|------------|------|-------|
+| North           | West      | East       | South| North |
+| South           | East      | West       | North| South |
+| East            | North     | South      | West | East  |
+| West            | South     | North      | East | West  |
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Basic Adjacent**
-**Conditions:**
-1. Six people: A, B, C, D, E, F
-2. A is next to B
-3. C is next to D
-4. E is opposite to A
-5. F is between B and C
+### **Example 1: Basic Direction Problem**
+**Question:** Five people facing North in a row. A is second from left. B is immediate right of A. C is not next to B.
 
 **Solution:**
-     A
-   B   F
- E     C
-   D
+- All facing North
+- Positions: _ A B _ _
+- C cannot be next to B
+- Apply directional logic
 
-### **Example 2: Directional Logic**
-**Conditions:**
-1. Eight people: P, Q, R, S, T, U, V, W
-2. P is second to the right of Q
-3. R is third to the left of S
-4. T is opposite to U
-5. V is next to W
+### **Example 2: Mixed Directions**
+**Question:** Four people in square formation. A facing North, B facing South, C facing East, D facing West.
 
-**Solution:**
-- Apply directional logic systematically
-- Use circle positioning rules
+**Analysis:**
+- Different facing directions
+- Square positioning
+- Apply directional constraints
 
 ---
 
-## 🔍 Advanced Circular Concepts
+## 🔍 Common Patterns
 
-### **Complex Relationships**
-- Multiple adjacent requirements
-- Cross-directional dependencies
-- Integrated condition types
+### **Pattern 1: Same Direction**
+All people facing same direction.
 
-### **Large Circles**
-- 8+ people arrangements
-- Complex relationship networks
-- Multiple constraint interactions
+### **Pattern 2: Opposite Directions**
+People facing opposite ways.
 
-### **Conditional Arrangements**
-- Positions based on other factors
-- Integrated reasoning requirements
-- Complex logical dependencies
+### **Pattern 3: Mixed Directions**
+Different facing directions.
 
 ---
 
-## 📊 Position Calculation Methods
+## 🧩 Solving Techniques
 
-### **Directional Counting**
-- **Immediate left/right**: Adjacent positions
-- **nth left/right**: Count positions in direction
-- **Opposite**: (n/2) positions away (for even n)
+### **1. Direction Mapping**
+- Note each person's facing direction
+- Create direction reference table
+- Apply directional logic
 
-### **Relative Positioning**
-- **Between**: Adjacent to both specified people
-- **Not between**: Not positioned between two people
-- **Adjacent to one**: Next to one but not necessarily both
+### **2. Position-Direction Matrix**
+- Combine position and direction
+- Mark directional relationships
+- Solve integrated constraints
 
-### **Group Positioning**
-- **Together**: Adjacent positions in circle
-- **Not together**: Separated by at least one person
-- **Group arrangements**: Multiple people as a cluster
-
----
-
-## 🎯 Common Pitfalls
-
-### **Pitfall 1: Direction Confusion**
-❌ Mixing clockwise/anticlockwise
-✅ Always specify direction clearly
-
-### **Pitfall 2: Adjacent Misinterpretation**
-❌ Assuming "next to" means specific direction
-✅ "Next to" means adjacent in either direction
-
-### **Pitfall 3: Opposite Calculation Errors**
-❌ Wrong opposite position calculation
-✅ For even n, opposite is (n/2) positions away
+### **3. Facing-Based Elimination**
+- Use direction to eliminate options
+- Apply directional constraints
+- Verify consistency
 
 ---
 
-## 🛠️ Quick Solving Tips
+## 📈 Advanced Direction Problems
 
-### **1. Draw Circle Diagrams**
-- Use circular representation
-- Mark positions 1 to n clockwise
-- Label with person names
+### **Complex Arrangements**
+Multiple rows with different directions.
 
-### **2. Use Directional Logic**
-- Specify left/right clearly
-- Count positions carefully
-- Note circular nature
+### **Rotational Logic**
+People facing different directions in circle.
 
-### **3. Apply Elimination**
-- Consider all possibilities
-- Remove invalid arrangements
-- Verify final solution
-
----
-
-## 📈 Difficulty Levels
-
-### **Easy Level**
-- 4-6 people
-- Simple adjacent conditions
-- Basic directional logic
-
-### **Medium Level**
-- 6-8 people
-- Mixed condition types
-- Complex relationships
-
-### **Hard Level**
-- 8+ people
-- Multiple constraints
-- Integrated reasoning
+### **Integrated Reasoning**
+Direction combined with other reasoning types.
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Always Draw Circles**: Visual representation is crucial
-2. **Specify Directions**: Be clear about left/right movements
-3. **Remember Circular Nature**: No ends means continuous positioning
-4. **Start with Definite Info**: Place known positions first
-5. **Use Clockwise Logic**: Consistent directional approach
-6. **Check All Neighbors**: Every person has two neighbors
+1. **Know Direction Basics**: Master North-South-East-West relationships
+2. **Use Reference Table**: Create direction mapping for each person
+3. **Apply Relative Logic**: Left/right depend on facing direction
+4. **Combine Carefully**: Integrate direction and position logic
+5. **Verify Directions**: Ensure directional consistency
 
 ---
 
-## 🧩 Practice Questions
+## 🧮 Quick Formulas
+
+### **Direction Relationships**
+- **Opposite direction**: 180° rotation
+- **Right turn**: 90° clockwise
+- **Left turn**: 90° anti-clockwise
+
+### **Position Calculations**
+- **Facing North**: Left = West, Right = East
+- **Facing East**: Left = North, Right = South
+- **Relative positioning**: Depends on facing
+
+---
+
+## ⚡ Quick Solving Tricks
+
+### **Trick 1: Direction Consistency**
+- All people facing same direction = consistent left/right
+- Mixed directions = complex relative positioning
+
+### **Trick 2: Facing Impact**
+- Direction determines "left" and "right" meanings
+- Always consider facing when applying left/right
+
+### **Trick 3: Direction Chain**
+- A facing North, B right of A = B facing North
+- Direction often consistent in groups
+
+### **Trick 4: Compass Logic**
+- North opposite South
+- East opposite West
+- Use compass rules for verification
+
+### **Trick 5: Position-Direction Table**
+- Create table: Person | Position | Direction
+- Fill systematically
+- Cross-verify relationships
+
+---
+
+## 🎯 Practice Questions
 
 ### **Question 1**
-**Conditions:**
-1. Six friends: A, B, C, D, E, F
-2. A is next to B
-3. C is second to the right of D
-4. E is opposite to A
-5. F is not next to C
-
-**Who is to the immediate left of D?**
+Six people in two rows facing each other. Row 1 facing South, Row 2 facing North. A in row 1, B in row 2 directly opposite A. Who is left of A?
 
 ### **Question 2**
-**Conditions:**
-1. Eight people: P, Q, R, S, T, U, V, W
-2. P is third to the left of Q
-3. R is opposite to S
-4. T is next to U
-5. V is second to the right of W
-6. P is not next to R
-
-**Who is opposite to P?**
+Four people in square facing center. A facing North, B facing East, C facing South, D facing West. Who is facing opposite direction to A?
 
 ### **Question 3**
-**Conditions:**
-1. Ten students: A, B, C, D, E, F, G, H, I, J
-2. A is next to B and C
-3. D is third to the right of E
-4. F is opposite to G
-5. H is between I and J
-6. A is not opposite to anyone
+Eight people in circle, some facing inside, some outside. A facing center, B facing outside. C is immediate right of A when facing center. Who is opposite to A?
 
-**Who is to the immediate right of F?**
-
-**Master circular seating arrangements for comprehensive reasoning skills! ⭕✨**`
+**Master facing direction problems to handle complex directional reasoning! 🧭✨**`
 };

@@ -2,287 +2,221 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_6: SubLesson = {
   id: "3.6",
-  title: 'Facing Direction Problems',
+  title: 'Seating with Conditions',
   status: 'completed',
-  content: `# 🧭 Facing Direction Problems
+  content: `# 📋 Seating with Conditions
 
-Facing direction problems combine seating arrangements with directional orientation (North, South, East, West). These problems require understanding both positional relationships and directional logic, making them more complex than standard arrangements.
-
----
-
-## 🎯 Understanding Direction Problems
-
-### **What are Facing Direction Problems?**
-These problems involve people facing different directions (North, South, East, West) while seated in arrangements. They test your ability to:
-- **Understand directional orientation**
-- **Apply compass direction logic**
-- **Combine position and direction**
-- **Solve integrated arrangement problems**
-
-### **Key Characteristics**
-- **Directional orientation**: N, S, E, W
-- **Facing relationships**: Who faces whom
-- **Positional dependencies**: Directions affect positions
-- **Integrated reasoning**: Position + direction logic
+Conditional seating arrangements involve complex constraints and requirements beyond basic positioning. These problems include specific rules, preferences, and conditional relationships that must be satisfied while arranging people in seats.
 
 ---
 
-## 🧩 Basic Direction Concepts
+## 🎯 Understanding Conditional Arrangements
 
-### **Primary Directions**
-- **North (N)**: Facing upwards/forward
-- **South (S)**: Facing downwards/backward
-- **East (E)**: Facing right
-- **West (W)**: Facing left
-
-### **Secondary Directions**
-- **North-East (NE)**: 45° diagonal
-- **North-West (NW)**: 45° diagonal
-- **South-East (SE)**: 45° diagonal
-- **South-West (SW)**: 45° diagonal
-
-### **Directional Relationships**
-- **Opposite Direction**: 180° turn (N↔S, E↔W)
-- **Right Turn**: 90° clockwise
-- **Left Turn**: 90° anticlockwise
+### **What are Conditional Arrangements?**
+Conditional arrangements involve specific rules and constraints that must be followed during seating. These problems test your ability to:
+- **Interpret complex conditions**
+- **Apply conditional logic**
+- **Handle multiple constraints**
+- **Solve integrated reasoning problems**
 
 ---
 
-## 📊 Problem-Solving Framework
+## 📋 Types of Conditions
 
-### **Step 1: Understand the Setup**
-- Identify arrangement type (linear/circular)
-- Note directional constraints
-- Understand facing relationships
+### **1. Gender-Based Conditions**
+- Males/females alternating
+- Same gender together/apart
+- Gender-specific position requirements
 
-### **Step 2: Map Directions**
-- Assign directions to positions
-- Note directional relationships
-- Understand orientation impacts
+### **2. Age-Based Conditions**
+- Elder/younger position preferences
+- Age hierarchy requirements
+- Generation-based seating rules
 
-### **Step 3: Apply Logic**
-- Combine position and direction
-- Use directional clues
-- Apply elimination techniques
+### **3. Relationship-Based Conditions**
+- Family members together/apart
+- Professional relationship constraints
+- Social hierarchy requirements
+
+### **4. Preference-Based Conditions**
+- Personal seating preferences
+- Comfort/convenience requirements
+- Special accommodation needs
+
+---
+
+## 🛠️ Problem-Solving Framework
+
+### **Step 1: Identify All Conditions**
+- List all given constraints
+- Categorize condition types
+- Note priority/mandatory conditions
+- Identify conflicting requirements
+
+### **Step 2: Create Possibility Matrix**
+- List all people and positions
+- Mark possible/impossible combinations
+- Apply elimination based on conditions
+- Narrow down options
+
+### **Step 3: Apply Logical Reasoning**
+- Use conditional logic (if-then)
+- Apply deductive reasoning
+- Consider alternative scenarios
+- Resolve conflicts systematically
 
 ### **Step 4: Verify Solution**
-- Check all directional conditions
-- Ensure positional consistency
-- Answer specific questions
+- Check all conditions satisfied
+- Ensure no constraint violations
+- Confirm logical consistency
+- Validate against all requirements
 
 ---
 
-## 🎯 Common Problem Types
+## 🎯 Key Concepts
 
-### **Type 1: Facing Direction Assignment**
-**Specific directional requirements**
-- "A faces North"
-- "B faces East"
-- "C faces the same direction as D"
+### **Conditional Logic**
+- **If A sits here, then B must sit there**
+- **A cannot sit next to B**
+- **A prefers position near C**
+- **A requires special accommodation**
 
-### **Type 2: Relative Directions**
-**Directional relationships**
-- "A faces opposite direction to B"
-- "C faces right of D"
-- "E is to the North of F"
-
-### **Type 3: Integrated Problems**
-**Position + direction combination**
-- Facing directions in arrangements
-- Directional positioning logic
-- Complex integrated scenarios
+### **Constraint Types**
+- **Hard constraints**: Must be satisfied
+- **Soft constraints**: Preferences, not requirements
+- **Conditional constraints**: Depend on other factors
+- **Interdependent constraints**: Affect multiple people
 
 ---
 
-## 🛠️ Solving Techniques
+## 📊 Practice Examples
 
-### **1. Direction Mapping**
-N ↑
-W ←   → E
-  ↓ S
-- Use compass for reference
-- Mark directional relationships
-
-### **2. Position-Direction Matrix**
-- Create arrangement grid
-- Note directions for each position
-- Apply logical relationships
-
-### **3. Elimination Method**
-- Consider all direction possibilities
-- Eliminate based on conditions
-- Find valid directional arrangement
-
----
-
-## 🎯 Practice Examples
-
-### **Example 1: Simple Directions**
-**Conditions:**
-1. Four people: A, B, C, D in square formation
-2. A faces North
-3. B faces South
-4. C faces East
-5. D faces West
-
-**Question**: Who faces opposite to A?
-**Solution**: B faces South (opposite to North)
-
-### **Example 2: Complex Directions**
-**Conditions:**
-1. Six people: P, Q, R, S, T, U
-2. P faces North
-3. Q faces the opposite direction of P
-4. R faces right of Q
-5. S faces same as R
-6. T faces left of S
+### **Example 1: Gender Alternation**
+**Question:** 6 people (3M, 3F) in row. Males and females alternate. A (male) at end. B (female) not next to A.
 
 **Solution:**
-- P: North
-- Q: South (opposite to P)
-- R: East (right of South)
-- S: East (same as R)
-- T: North (left of East)
+- Alternation requirement
+- End position constraint
+- Gender separation rule
+
+### **Example 2: Age Hierarchy**
+**Question:** 5 people with ages. Eldest at center. No one next to immediate younger/older.
+
+**Analysis:**
+- Age-based positioning
+- Hierarchy constraints
+- Proximity restrictions
 
 ---
 
-## 🔍 Advanced Direction Concepts
+## 🔍 Common Patterns
 
-### **Directional Dependencies**
-- Directions based on positions
-- Relative directional relationships
-- Complex directional networks
+### **Pattern 1: Alternation Problems**
+Alternating categories (gender, age groups, etc.)
 
-### **Integrated Arrangements**
-- Linear arrangements with directions
-- Circular arrangements with directions
-- Complex multi-person scenarios
+### **Pattern 2: Proximity Constraints**
+Who can/cannot sit next to whom.
 
-### **Conditional Directions**
-- Directions based on other factors
-- Integrated reasoning requirements
-- Complex logical dependencies
+### **Pattern 3: Position Preferences**
+Specific position requirements or preferences.
 
 ---
 
-## 📊 Direction Logic Methods
+## 🧩 Solving Techniques
 
-### **Basic Direction Rules**
-- **Opposite**: 180° rotation (N↔S, E↔W)
-- **Right Turn**: 90° clockwise (N→E→S→W→N)
-- **Left Turn**: 90° anticlockwise (N→W→S→E→N)
+### **1. Constraint Mapping**
+- List all conditions clearly
+- Create condition-person matrix
+- Mark satisfied/violated constraints
 
-### **Relative Direction Calculation**
-- **Same Direction**: No turn required
-- **Adjacent Directions**: 90° turn
-- **Opposite Directions**: 180° turn
+### **2. Possibility Elimination**
+- Start with all possibilities
+- Eliminate based on each condition
+- Track remaining valid options
 
-### **Group Direction Logic**
-- **Same Direction Group**: Multiple people facing same way
-- **Alternating Directions**: Pattern-based directional changes
-- **Conditional Directions**: Directions based on positions
-
----
-
-## 🎯 Common Pitfalls
-
-### **Pitfall 1: Direction Confusion**
-❌ Mixing up relative directions
-✅ Use compass reference consistently
-
-### **Pitfall 2: Turn Miscalculation**
-❌ Wrong left/right turn logic
-✅ Remember clockwise/anticlockwise rules
-
-### **Pitfall 3: Position-Direction Mix-up**
-❌ Confusing position with direction
-✅ Keep position and direction separate
+### **3. Logical Deduction**
+- Use if-then reasoning
+- Apply transitive logic
+- Consider conditional chains
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## 📈 Advanced Conditional Problems
 
-### **1. Draw Compass Reference**
-- Always sketch N-S-E-W compass
-- Mark current directions
-- Note directional changes
+### **Multiple Constraint Types**
+Problems with various condition categories.
 
-### **2. Use Directional Logic**
-- Apply 90°/180° turn rules
-- Consider relative directions
-- Verify directional consistency
+### **Conflicting Conditions**
+Resolving contradictory requirements.
 
-### **3. Combine with Position**
-- Link directions to positions
-- Apply arrangement logic
-- Verify integrated solution
-
----
-
-## 📈 Difficulty Levels
-
-### **Easy Level**
-- Simple direction assignments
-- Basic opposite/same directions
-- Few directional constraints
-
-### **Medium Level**
-- Complex directional relationships
-- Multiple turn requirements
-- Integrated position-direction logic
-
-### **Hard Level**
-- Complex directional networks
-- Multiple conditional directions
-- Advanced integrated reasoning
+### **Complex Preferences**
+Multi-level preference hierarchies.
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Draw Compass**: Always reference N-S-E-W directions
-2. **Remember Turn Rules**: 90° right/left, 180° opposite
-3. **Link Position-Direction**: Consider both aspects together
-4. **Use Elimination**: Remove invalid directional combinations
-5. **Verify Consistency**: Check all directional relationships
+1. **List All Conditions**: Write down every constraint before solving
+2. **Categorize Conditions**: Group by type (gender, age, relationship)
+3. **Prioritize Constraints**: Solve mandatory conditions first
+4. **Use Elimination**: Systematically remove invalid options
+5. **Check Interactions**: Verify conditions don't conflict
 
 ---
 
-## 🧭 Practice Questions
+## 🧮 Quick Formulas
+
+### **Constraint Satisfaction**
+- **Total conditions**: Must all be satisfied
+- **Partial solutions**: May satisfy some conditions
+- **Optimal solution**: Satisfies all conditions
+
+### **Possibility Calculation**
+- **Initial possibilities**: People × Positions
+- **After constraints**: Reduced based on conditions
+- **Final solution**: Single valid arrangement
+
+---
+
+## ⚡ Quick Solving Tricks
+
+### **Trick 1: Condition Prioritization**
+- Solve hard constraints first
+- Handle soft constraints later
+- Use mandatory rules to eliminate options
+
+### **Trick 2: Constraint Interaction**
+- Identify mutually exclusive conditions
+- Find conditions that support each other
+- Use condition chains for deduction
+
+### **Trick 3: Possibility Matrix**
+- Create person × position grid
+- Mark constraint violations with X
+- Find positions with single possibility
+
+### **Trick 4: Conditional Logic**
+- If A has property X, then position constraint Y
+- Chain multiple conditional statements
+- Use deductive reasoning from conditions
+
+### **Trick 5: Contradiction Detection**
+- Look for impossible combinations
+- Identify mutually exclusive constraints
+- Resolve conflicts systematically
+
+---
+
+## 🎯 Practice Questions
 
 ### **Question 1**
-**Conditions:**
-1. Four friends: A, B, C, D in a square
-2. A faces North
-3. B faces the direction right of A
-4. C faces opposite to B
-5. D faces same as C
-
-**What direction does D face?**
+Eight people in row. No two males adjacent. A is male at one end. B is female next to A. C cannot sit next to D. Who sits at the other end?
 
 ### **Question 2**
-**Conditions:**
-1. Six people: P, Q, R, S, T, U
-2. P faces North
-3. Q faces left of P
-4. R faces opposite to Q
-5. S faces right of R
-6. T faces same as S
-
-**What direction does U face?**
+Six people with different professions. Doctor not next to Engineer. Teacher in middle. Lawyer opposite Accountant. Where is the Manager?
 
 ### **Question 3**
-**Conditions:**
-1. Eight students: A, B, C, D, E, F, G, H
-2. A faces North
-3. B faces East
-4. C faces the direction between A and B
-5. D faces opposite to C
-6. E faces right of D
-7. F faces same as E
-8. G faces left of F
+Five family members. Grandfather at head. Mother not next to children. Father between mother and son. Where is the daughter?
 
-**What direction does H face?**
-
-**Master facing direction problems for advanced logical reasoning! 🧭✨**`
+**Master conditional seating arrangements to handle complex constraint-based problems! 📋✨**`
 };

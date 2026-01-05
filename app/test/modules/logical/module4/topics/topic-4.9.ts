@@ -2,291 +2,284 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_9: SubLesson = {
   id: "4.9",
-  title: 'Order & Ranking Puzzles',
+  title: 'Age-Based Puzzles',
   status: 'completed',
-  content: `# 📊 Order & Ranking Puzzles
+  content: `# 🎂 Age-Based Puzzles
 
-Order and ranking puzzles involve determining the positions, rankings, or sequences of entities based on various criteria. These puzzles require understanding of comparative relationships, position logic, and systematic ranking techniques.
+Age-based puzzles involve determining the ages of different people based on relationships, comparisons, and logical constraints. These puzzles require understanding of chronological relationships, age differences, and family generation logic.
 
 ---
 
-## 🎯 Understanding Order & Ranking Puzzles
+## 🎯 Understanding Age-Based Puzzles
 
-### **What are Order & Ranking Puzzles?**
-Order and ranking puzzles involve determining the relative positions, rankings, or sequences of people, objects, or entities based on given criteria. They test your ability to:
-- **Apply ranking logic**
-- **Understand position relationships**
-- **Use comparative reasoning**
-- **Solve sequence determination problems**
+### **What are Age-Based Puzzles?**
+Age-based puzzles involve determining the ages of multiple people based on comparative relationships, differences, and logical constraints. They test your ability to:
+- **Apply chronological reasoning**
+- **Understand age relationships**
+- **Use comparative logic**
+- **Solve complex age determination problems**
 
 ### **Key Characteristics**
-- **Position-based relationships**: 1st, 2nd, 3rd, etc.
-- **Comparative rankings**: Better/worse, higher/lower
-- **Sequence determination**: Order of occurrence
-- **Relative positioning**: Above/below, before/after
+- **Age relationships**: Older/younger, same age
+- **Age differences**: Specific year gaps
+- **Family generations**: Parent-child age relationships
+- **Comparative logic**: Age-based rankings and sequences
 
 ---
 
-## 🧩 Types of Order & Ranking Problems
+## 🧩 Types of Age-Based Problems
 
-### **1. Position Ranking**
-**Determining exact positions in a sequence**
-- Race finishing positions
-- Exam rank determinations
-- Competition rankings
+### **1. Family Age Relationships**
+**Family member age determinations**
+- Parent-child age differences
+- Sibling age relationships
+- Grandparent-grandchild ages
 
-### **2. Comparative Ranking**
-**Relative position relationships**
-- "A is taller than B"
-- "C performed better than D"
-- "E is senior to F"
+### **2. Comparative Age Rankings**
+**Age-based ordering and ranking**
+- Age order determination
+- Relative age comparisons
+- Age group classifications
 
-### **3. Sequence Ordering**
-**Determining chronological or logical order**
-- Event sequences
-- Process flows
-- Hierarchical arrangements
+### **3. Age Difference Calculations**
+**Specific age gap determinations**
+- Exact age differences
+- Minimum/maximum age gaps
+- Age relationship constraints
 
 ---
 
 ## 📊 Problem-Solving Framework
 
-### **Step 1: Identify Ranking Criteria**
-- Understand ranking basis (performance, age, height, etc.)
-- Note ranking direction (higher/lower, better/worse)
-- Map all ranking statements
+### **Step 1: Identify Age Relationships**
+- Map all age comparison statements
+- Note specific age differences
+- Identify family relationships
 
-### **Step 2: Create Ranking Framework**
-- List all entities to be ranked
-- Create position slots
-- Map known rankings
+### **Step 2: Create Age Framework**
+- List all people involved
+- Create age relationship diagram
+- Map known ages and differences
 
-### **Step 3: Apply Ranking Logic**
-- Start with definite rankings
-- Apply comparative relationships
-- Use elimination techniques
+### **Step 3: Apply Age Logic**
+- Start with definite ages
+- Apply age difference constraints
+- Use comparative relationships
 
-### **Step 4: Verify Complete Ranking**
-- Check all relationships satisfied
-- Ensure logical consistency
-- Answer specific ranking questions
+### **Step 4: Verify Age Determinations**
+- Check all age relationships satisfied
+- Ensure logical age consistency
+- Answer specific age questions
 
 ---
 
 ## 🎯 Common Problem Types
 
-### **Type 1: Race/Event Rankings**
-**Competition or event position determination**
-- "A finished before B"
-- "C came 3rd"
-- "D was not last"
+### **Type 1: Family Age Puzzles**
+**Family relationship age determinations**
+- "Father is 25 years older than son"
+- "Mother is 3 years younger than father"
+- "Grandfather is twice as old as grandson"
 
-### **Type 2: Performance Rankings**
-**Score or achievement-based rankings**
-- "P scored higher than Q"
-- "R got more marks than S"
-- "T performed better than U"
+### **Type 2: Age Comparison Puzzles**
+**Comparative age relationships**
+- "A is older than B"
+- "C is youngest among them"
+- "D is 5 years older than E"
 
-### **Type 3: Attribute Rankings**
-**Physical or characteristic-based rankings**
-- "X is taller than Y"
-- "Z is heavier than W"
-- "V is older than U"
+### **Type 3: Age Sequence Puzzles**
+**Age ordering problems**
+- "Arrange in order of age"
+- "Find age differences"
+- "Determine relative ages"
 
 ---
 
 ## 🛠️ Solving Techniques
 
-### **1. Ranking Ladder Method**
-1st: ________
-2nd: ________
-3rd: ________
-4th: ________
-5th: ________
-- Create position framework
+### **1. Age Relationship Diagram**
+A (25) ── 3 years ── B (22)
+│
+5 years
+│
+C (20)
+- Create age relationship maps
+- Show age differences
+- Map comparative relationships
+
+### **2. Age Matrix Method**
+Person | Age | Relationships
+--------|-----|-------------
+A      |  ?  | Older than B by 3
+B      |  ?  | Younger than A
+C      |  ?  | 2 years older than B
+- Create age tracking table
 - Fill based on relationships
-- Use elimination for unknowns
+- Calculate unknown ages
 
-### **2. Comparison Matrix**
-    A   B   C   D
-A   -   >   ?   <
-B   <   -   >   ?
-C   ?   <   -   >
-D   >   ?   <   -
-- Create comparison grid
-- Mark known relationships
-- Apply transitive logic
-
-### **3. Position Logic**
-- Use position-based reasoning
-- Apply ranking constraints
-- Determine exact positions
+### **3. Comparative Logic**
+- Apply older/younger logic
+- Use transitive relationships
+- Determine age sequences
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Simple Race Ranking**
+### **Example 1: Simple Family Ages**
 **Conditions:**
-1. Five runners: A, B, C, D, E
-2. A finished before B
-3. C finished before D
-4. B finished before C
-5. E was not last
+1. Father is 25 years older than son
+2. Son is 5 years old
+3. Mother is 3 years younger than father
 
-**Solution:** A > B > C > D > E (where > means finished before)
+**Solution:** Son: 5, Father: 30, Mother: 27
 
-### **Example 2: Exam Rankings**
+### **Example 2: Age Comparisons**
 **Conditions:**
-1. Six students: P, Q, R, S, T, U
-2. P got higher marks than Q
-3. R got higher marks than S
-4. T got higher marks than U
-5. Q got higher marks than R
-6. S got higher marks than T
+1. Five friends: P, Q, R, S, T
+2. P is older than Q by 2 years
+3. R is younger than S by 3 years
+4. T is oldest, 30 years old
+5. Q is younger than R by 1 year
 
-**Solution:** P > Q > R > S > T > U
+**Solution:** Calculate all ages based on relationships
 
-### **Example 3: Height Rankings**
+### **Example 3: Complex Relationships**
 **Conditions:**
-1. Four friends: X, Y, Z, W
-2. X is taller than Y
-3. Z is shorter than W
-4. Y is taller than Z
-5. X is taller than W
+1. Grandfather, Father, Son ages
+2. Grandfather is 3 times son's age
+3. Father is 25 years younger than grandfather
+4. Son is 10 years old
 
-**Solution:** X > Y > W > Z (from given relationships)
+**Solution:** Son: 10, Grandfather: 30, Father: 35 (impossible!)
 
 ---
 
-## 🔍 Advanced Ranking Concepts
+## 🔍 Advanced Age Concepts
 
-### **Multi-Criteria Rankings**
-Problems involving multiple ranking criteria simultaneously.
+### **Multiple Generation Problems**
+Complex family trees with age relationships across generations.
 
-### **Conditional Rankings**
-Rankings that depend on other factors or conditions.
+### **Age Difference Calculations**
+Problems requiring mathematical age difference calculations.
 
-### **Partial Rankings**
-Problems where only some positions are determined.
+### **Conditional Age Relationships**
+Age relationships that depend on other factors.
 
 ---
 
-## 📊 Ranking Logic Methods
+## 📊 Age Logic Methods
 
-### **Position-Based Logic**
-- **Exact positions**: 1st, 2nd, 3rd, last
-- **Relative positions**: Immediately above/below
-- **Group positions**: Top 3, bottom 2
+### **Direct Age Differences**
+- **Specific gaps**: Exact year differences
+- **Ratio relationships**: Age ratios between people
+- **Mathematical relationships**: Age calculation formulas
 
-### **Comparative Logic**
-- **Direct comparisons**: A > B (A better than B)
-- **Transitive relationships**: A > B, B > C → A > C
-- **Chain relationships**: Complex ranking networks
+### **Comparative Age Logic**
+- **Older/younger relationships**: Relative age comparisons
+- **Age ordering**: Determining age sequences
+- **Age group logic**: Categorizing by age ranges
 
-### **Sequence Logic**
-- **Order determination**: Before/after relationships
-- **Process flows**: Step-by-step sequences
-- **Dependency chains**: Conditional ordering
+### **Family Age Logic**
+- **Generation gaps**: Typical parent-child age differences
+- **Sibling age logic**: Birth order relationships
+- **Extended family**: Complex familial age relationships
 
 ---
 
 ## 🎯 Common Pitfalls
 
-### **Pitfall 1: Transitive Errors**
-❌ Incorrect application of transitive property
-✅ Careful chain verification
+### **Pitfall 1: Age Difference Errors**
+❌ Wrong age gap calculations
+✅ Careful arithmetic verification
 
-### **Pitfall 2: Position Confusion**
-❌ Mixing ranking directions
-✅ Clear higher/lower understanding
+### **Pitfall 2: Relationship Confusion**
+❌ Mixing older/younger directions
+✅ Clear relationship mapping
 
-### **Pitfall 3: Incomplete Analysis**
-❌ Missing indirect relationships
-✅ Consider all ranking implications
+### **Pitfall 3: Transitive Errors**
+❌ Incorrect age chain logic
+✅ Step-by-step age verification
 
 ---
 
 ## 🛠️ Quick Solving Strategies
 
-### **1. Ranking Framework Creation**
-- Create position ladder or matrix
-- Mark all known rankings
-- Identify relationship patterns
+### **1. Age Relationship Mapping**
+- Create age relationship diagram
+- Mark all known ages and differences
+- Identify calculation sequences
 
-### **2. Systematic Application**
-- Start with definite rankings
-- Apply comparative logic
-- Use elimination for unknowns
+### **2. Systematic Age Calculation**
+- Start with known ages
+- Apply difference relationships
+- Calculate unknown ages progressively
 
 ### **3. Verification Process**
-- Check each ranking relationship
-- Verify transitive chains
-- Confirm overall ranking consistency
+- Check all age differences
+- Verify comparative relationships
+- Confirm logical age consistency
 
 ---
 
 ## 📈 Difficulty Levels
 
 ### **Easy Level**
-- Few entities, simple rankings
-- Direct position assignments
-- Basic comparative relationships
+- Few people, simple relationships
+- Direct age differences
+- Basic family relationships
 
 ### **Medium Level**
-- Multiple entities, complex chains
-- Mixed ranking directions
-- Transitive relationship applications
+- Multiple people, complex chains
+- Mixed relationship types
+- Mathematical calculations
 
 ### **Hard Level**
-- Many entities, complex networks
-- Multiple criteria simultaneously
+- Many people, complex networks
+- Multiple constraint types
 - Advanced logical dependencies
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Create Ranking Framework**: Visual position mapping
-2. **Apply Transitive Property**: Use A > B, B > C → A > C
-3. **Start with Known**: Place definite rankings first
-4. **Use Elimination**: Remove impossible rankings
-5. **Verify Chains**: Check each comparative step
+1. **Create Age Diagram**: Visual age relationship mapping
+2. **Start with Known Ages**: Use given ages as starting points
+3. **Apply Differences Carefully**: Double-check calculations
+4. **Use Comparative Logic**: Apply older/younger relationships
+5. **Verify All Relationships**: Check each age constraint
 
 ---
 
-## 📊 Practice Questions
+## 🎂 Practice Questions
 
 ### **Question 1**
 **Conditions:**
-1. Five athletes: A, B, C, D, E
-2. A finished before B
-3. C finished before D
-4. B finished before C
-5. E was not last
+1. Father is 25 years older than son
+2. Mother is 3 years younger than father
+3. Son is 10 years old
 
-**What was E's position?**
+**What is mother's age?**
 
 ### **Question 2**
 **Conditions:**
-1. Six students: P, Q, R, S, T, U
-2. P scored higher than Q
-3. R scored higher than S
-4. T scored higher than U
-5. Q scored higher than R
-6. S scored higher than T
+1. Grandfather is 3 times grandson's age
+2. Father is 30 years younger than grandfather
+3. Father is 25 years older than son
+4. Son is 5 years old
 
-**Who scored the lowest?**
+**What is grandfather's age?**
 
 ### **Question 3**
 **Conditions:**
-1. Four candidates: X, Y, Z, W
-2. X is taller than Y
-3. Z is shorter than W
-4. Y is taller than Z
-5. X is taller than W
+1. Five siblings: A, B, C, D, E
+2. A is 2 years older than B
+3. B is 3 years older than C
+4. C is 4 years older than D
+5. D is 5 years older than E
+6. E is 10 years old
 
-**Who is the shortest?**
+**What is A's age?**
 
-**Master order and ranking puzzles for systematic position analysis! 📊✨**`
+**Master age-based puzzles for chronological reasoning skills! 🎂✨**`
 };

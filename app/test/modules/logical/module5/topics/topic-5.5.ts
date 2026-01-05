@@ -2,255 +2,252 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_5: SubLesson = {
   id: "5.5",
-  title: 'Direct Coding',
+  title: 'Indirect Coding',
   status: 'completed',
-  content: `# 🎯 Direct Coding
+  content: `# 🔍 Indirect Coding
 
-Direct coding involves straightforward, rule-based transformations where the coding rule is clear and can be applied directly. These problems are fundamental to coding-decoding and appear frequently in competitive exams.
+Indirect coding involves complex transformation rules that are not immediately obvious and require careful analysis to understand. These problems are more challenging than direct coding and test deeper analytical reasoning skills.
 
 ---
 
-## 🎯 Understanding Direct Coding
+## 🎯 Understanding Indirect Coding
 
-### **What is Direct Coding?**
-Direct coding involves straightforward transformation rules that can be applied directly to encode or decode messages. These problems test your ability to:
-- **Identify clear transformation rules**
-- **Apply rules consistently**
-- **Recognize direct patterns**
-- **Solve systematic coding problems**
+### **What is Indirect Coding?**
+Indirect coding involves transformation rules that are not straightforward and require careful analysis to identify. These problems test your ability to:
+- **Analyze complex relationships**
+- **Identify hidden transformation rules**
+- **Apply deductive reasoning**
+- **Solve non-obvious coding problems**
 
 ### **Key Characteristics**
-- **Clear transformation rules**: Obvious encoding/decoding methods
-- **Consistent application**: Same rules throughout
-- **Direct relationship**: Input-output clearly connected
-- **Pattern-based solutions**: Systematic rule application
+- **Hidden rules**: Transformation rules not immediately apparent
+- **Complex relationships**: Indirect connections between input and output
+- **Deductive reasoning**: Requires logical analysis to find rules
+- **Pattern complexity**: Rules involve multiple steps or conditions
 
 ---
 
-## 🧩 Types of Direct Coding
+## 🧩 Types of Indirect Coding
 
-### **1. Letter Shift Coding**
-**Simple alphabetical shifts**
-- **Forward Shift**: A→B, B→C, etc.
-- **Backward Shift**: Z→Y, Y→X, etc.
-- **Fixed Shift**: Consistent shift amount
+### **1. Multi-Step Transformations**
+**Complex transformation sequences**
+- **Sequential Operations**: Multiple transformation steps
+- **Conditional Rules**: Different rules based on conditions
+- **Position-Dependent**: Rules vary by position
 
-### **2. Position-Based Coding**
-**Direct position transformations**
-- **Letter Positions**: A=1, B=2, etc.
-- **Reverse Positions**: A=26, B=25, etc.
-- **Position Operations**: Mathematical operations on positions
+### **2. Relationship-Based Coding**
+**Based on relationships between elements**
+- **Comparative Rules**: Rules based on comparisons
+- **Dependency Rules**: Rules dependent on other elements
+- **Contextual Rules**: Rules based on surrounding context
 
-### **3. Substitution Coding**
-**Direct letter replacements**
-- **One-to-One**: A→X, B→Y, etc.
-- **Pattern-Based**: Vowels→numbers, etc.
-- **Rule-Based**: Clear substitution rules
+### **3. Pattern Recognition Coding**
+**Complex pattern identification**
+- **Hidden Patterns**: Not obvious transformation patterns
+- **Logical Deduction**: Rules found through reasoning
+- **Analytical Discovery**: Rules discovered through analysis
 
 ---
 
 ## 📊 Problem-Solving Framework
 
-### **Step 1: Analyze Examples**
-- Examine given input-output pairs
-- Identify the transformation pattern
-- Note any consistent rules
+### **Step 1: Deep Analysis**
+- Examine all input-output pairs thoroughly
+- Look for non-obvious relationships
+- Consider multiple interpretation possibilities
 
-### **Step 2: Formulate Rule**
-- State the coding rule clearly
-- Test rule against all examples
-- Verify rule consistency
+### **Step 2: Hypothesis Formation**
+- Form hypotheses about transformation rules
+- Test different possible rules
+- Eliminate incorrect hypotheses
 
-### **Step 3: Apply Rule Directly**
-- Use identified rule for new inputs
-- Apply transformations systematically
-- Maintain consistency
+### **Step 3: Rule Verification**
+- Verify rule against all examples
+- Check for consistency and logic
+- Refine rule based on findings
 
-### **Step 4: Verify Solution**
-- Cross-check with given examples
-- Ensure logical consistency
-- Answer specific questions
+### **Step 4: Systematic Application**
+- Apply discovered rule to new inputs
+- Handle complex conditions carefully
+- Verify solution logic
 
 ---
 
 ## 🎯 Common Problem Types
 
-### **Type 1: Simple Shift Problems**
-**Fixed position shifts**
-- "Each letter shifted forward by 2"
-- "Each letter shifted backward by 1"
-- "Vowels shifted forward, consonants backward"
+### **Type 1: Hidden Mathematical Rules**
+**Complex mathematical relationships**
+- "Letter position × 2 + 1"
+- "Reverse position minus word position"
+- "Complex formula applications"
 
-### **Type 2: Position Value Problems**
-**Direct position assignments**
-- "A=1, B=2, C=3..." for entire word
-- "Replace with position values"
-- "Add/subtract from position values"
+### **Type 2: Conditional Transformations**
+**Rules based on conditions**
+- "Vowels get one rule, consonants another"
+- "Even positions get different treatment"
+- "Context-dependent transformations"
 
-### **Type 3: Direct Substitution Problems**
-**Clear replacement rules**
-- "A=Z, B=Y, C=X..." (reverse alphabet)
-- "Replace vowels with numbers"
-- "Replace consonants with next letter"
+### **Type 3: Multi-Variable Rules**
+**Rules involving multiple factors**
+- "Position in word + position in alphabet"
+- "Multiple mathematical operations"
+- "Complex interdependent rules"
 
 ---
 
 ## 🛠️ Solving Techniques
 
-### **1. Rule Identification**
-- Compare input and output carefully
-- Find consistent transformation pattern
-- State rule in clear terms
+### **1. Systematic Hypothesis Testing**
+- Form multiple possible rules
+- Test each against examples
+- Eliminate incorrect hypotheses
 
-### **2. Pattern Verification**
-- Test rule against all given examples
-- Ensure no contradictions
-- Confirm rule applicability
+### **2. Pattern Decomposition**
+- Break complex patterns into components
+- Analyze each component separately
+- Recombine into complete rule
 
-### **3. Direct Application**
-- Apply identified rule to new inputs
-- Use same logic consistently
-- Handle edge cases properly
+### **3. Logical Deduction**
+- Use deductive reasoning to find rules
+- Apply logical consistency checks
+- Verify rule applicability
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Simple Letter Shift**
-**Rule**: Each letter replaced by next letter
-- **Input**: CAT
-- **Output**: DBU
-- **Explanation**: C→D, A→B, T→U
+### **Example 1: Hidden Mathematical Rule**
+**Examples:**
+- CAT → 3-1-20
+- DOG → 4-15-7
+- **Rule**: Letter positions directly
+- **Explanation**: C=3, A=1, T=20
 
-### **Example 2: Position-Based Coding**
-**Rule**: Letters replaced by position numbers
-- **Input**: ABC
-- **Output**: 123
-- **Explanation**: A=1, B=2, C=3
+### **Example 2: Conditional Rule**
+**Examples:**
+- BAT → B1T (vowels become numbers)
+- CAT → C1T
+- **Rule**: Vowels → position numbers, consonants stay same
+- **Explanation**: A=1, E=2, I=3, O=4, U=5
 
-### **Example 3: Substitution Coding**
-**Rule**: A=1, B=2, C=3, D=4, E=5
-- **Input**: BED
-- **Output**: 254
-- **Explanation**: B=2, E=5, D=4
-
----
-
-## 🔍 Direct Coding Principles
-
-### **Rule Clarity**
-- **Clear Rules**: Transformation rules are obvious
-- **Consistent Application**: Same rules throughout
-- **No Ambiguity**: Rules are straightforward
-
-### **Pattern Recognition**
-- **Direct Patterns**: Clear input-output relationships
-- **Consistent Rules**: Same logic for all examples
-- **Logical Flow**: Systematic transformation process
-
-### **Verification Methods**
-- **Example Testing**: Rules work for all given examples
-- **Consistency Check**: No contradictory applications
-- **Logic Validation**: Rules make mathematical sense
+### **Example 3: Complex Rule**
+**Examples:**
+- ABC → 1-2-3 (simple positions)
+- But with additional complexity...
+- **Rule**: Position × 2 - 1
+- **Explanation**: A(1)→1, B(2)→3, C(3)→5
 
 ---
 
-## 📊 Direct Coding Methods
+## 🔍 Advanced Indirect Concepts
 
-### **Alphabetical Methods**
-- **Forward Shift**: Consistent forward movement
-- **Backward Shift**: Consistent backward movement
-- **Fixed Position**: Specific position assignments
+### **Multi-Layer Rules**
+Complex rules requiring multiple levels of analysis.
 
-### **Numerical Methods**
-- **Position Values**: Direct position number assignments
-- **Mathematical Operations**: Simple arithmetic on positions
-- **Value Transformations**: Direct numerical conversions
+### **Interdependent Rules**
+Rules that depend on relationships between multiple elements.
 
-### **Substitution Methods**
-- **Letter Replacement**: Direct letter-to-letter substitution
-- **Symbol Replacement**: Letter-to-symbol substitution
-- **Pattern Replacement**: Rule-based character replacement
+### **Contextual Rules**
+Rules that vary based on surrounding context or conditions.
+
+---
+
+## 📊 Indirect Coding Methods
+
+### **Analytical Methods**
+- **Hypothesis Testing**: Testing different rule possibilities
+- **Pattern Analysis**: Breaking down complex patterns
+- **Logical Deduction**: Using reasoning to find rules
+
+### **Mathematical Methods**
+- **Complex Formulas**: Multi-step mathematical operations
+- **Variable Dependencies**: Rules involving multiple variables
+- **Conditional Operations**: Different operations based on conditions
+
+### **Pattern Methods**
+- **Hidden Patterns**: Not obvious transformation patterns
+- **Relationship Patterns**: Patterns based on element relationships
+- **Contextual Patterns**: Patterns based on context
 
 ---
 
 ## 🎯 Common Pitfalls
 
-### **Pitfall 1: Incomplete Analysis**
-❌ Not examining all examples thoroughly
-✅ Analyze all given input-output pairs
+### **Pitfall 1: Surface Analysis**
+❌ Stopping at obvious patterns
+✅ Looking deeper for hidden rules
 
-### **Pitfall 2: Wrong Rule Assumption**
-❌ Assuming wrong transformation rule
-✅ Test rules against all examples
+### **Pitfall 2: Wrong Assumptions**
+❌ Assuming simple rules when complex ones exist
+✅ Testing multiple hypothesis possibilities
 
-### **Pitfall 3: Inconsistent Application**
-❌ Applying different rules to different parts
-✅ Use same rule consistently
+### **Pitfall 3: Incomplete Testing**
+❌ Not testing rules against all examples
+✅ Comprehensive rule verification
 
 ---
 
 ## 🛠️ Quick Solving Strategies
 
-### **1. Careful Comparison**
-- Compare each input-output pair
-- Look for consistent patterns
-- Identify transformation rules
+### **1. Multiple Hypotheses**
+- Generate several possible rules
+- Test each systematically
+- Eliminate incorrect ones
 
-### **2. Rule Formulation**
-- State the rule clearly and concisely
-- Test rule against all examples
-- Refine if inconsistencies found
+### **2. Component Analysis**
+- Break problem into smaller parts
+- Analyze each component
+- Find connecting patterns
 
-### **3. Systematic Application**
-- Apply rule to new inputs
-- Handle special cases consistently
-- Verify against original examples
+### **3. Logical Verification**
+- Use deductive reasoning
+- Check logical consistency
+- Verify against all examples
 
 ---
 
 ## 📈 Difficulty Levels
 
 ### **Easy Level**
-- Simple forward/backward shifts
-- Basic position assignments
-- Clear substitution rules
+- Slightly hidden but discoverable rules
+- Basic conditional transformations
+- Moderate complexity patterns
 
 ### **Medium Level**
-- Mixed transformation types
-- Position-based calculations
-- Pattern combination rules
+- Complex mathematical relationships
+- Multi-condition rules
+- Advanced pattern recognition
 
 ### **Hard Level**
-- Complex rule combinations
-- Advanced mathematical operations
-- Multi-step transformations
+- Highly complex interdependent rules
+- Multiple layer transformations
+- Advanced analytical requirements
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Examine All Examples**: Always check all given input-output pairs
-2. **Find the Pattern**: Identify consistent transformation rules
-3. **State Rule Clearly**: Write down the rule in clear terms
-4. **Test Thoroughly**: Verify rule works for all examples
-5. **Apply Consistently**: Use same rule for encoding and decoding
+1. **Look Beyond Obvious**: Don't stop at first apparent pattern
+2. **Test Multiple Hypotheses**: Consider different possible rules
+3. **Analyze Thoroughly**: Examine all examples in detail
+4. **Use Logical Reasoning**: Apply deductive reasoning techniques
+5. **Verify Completely**: Test rules against all given information
 
 ---
 
-## 🎯 Practice Questions
+## 🔍 Practice Questions
 
 ### **Question 1**
-If in a code, A=B, B=C, C=D, ..., Z=A, what is the code for "DOG"?
+Find the indirect coding rule for: CAT→3-1-20, DOG→4-15-7, BOX→2-15-24
 
 ### **Question 2**
-If A=1, B=2, C=3, D=4, E=5, what is the code for "BED"?
+Find the rule for: BAT→B1T, CAT→C1T, DOG→D4G
 
 ### **Question 3**
-If each letter is replaced by the letter two positions ahead, what is the code for "BOX"?
+Find the rule for: ABC→1-3-5, DEF→4-6-8, GHI→7-9-11
 
 ### **Question 4**
-If vowels are replaced by numbers (A=1, E=2, I=3, O=4, U=5), what is the code for "HOUSE"?
+Find the rule for: PEN→P2N, BOX→B4X, CAT→C1T
 
-**Master direct coding for straightforward transformation rules! 🎯✨**`
+**Master indirect coding for complex analytical reasoning! 🔍✨**`
 };

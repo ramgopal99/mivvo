@@ -2,257 +2,256 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_2: SubLesson = {
   id: "5.2",
-  title: 'Letter Coding',
+  title: 'Number Coding',
   status: 'completed',
-  content: `# 🔤 Letter Coding
+  content: `# 🔢 Number Coding
 
-Letter coding involves transforming letters using various alphabetical rules and patterns. These problems are fundamental to coding-decoding and appear frequently in competitive exams, requiring understanding of letter positions, sequences, and transformations.
+Number coding involves assigning numerical values to letters or using mathematical operations for coding. These problems combine alphabetical knowledge with numerical operations and appear regularly in competitive exams.
 
 ---
 
-## 🎯 Understanding Letter Coding
+## 🎯 Understanding Number Coding
 
-### **What is Letter Coding?**
-Letter coding involves transforming letters of the alphabet using specific rules, patterns, or mathematical operations. These problems test your ability to:
-- **Understand alphabetical sequences**
-- **Apply letter transformation rules**
-- **Recognize position-based changes**
-- **Solve systematic letter coding problems**
+### **What is Number Coding?**
+Number coding involves assigning numerical values to letters or using mathematical operations to create codes. These problems test your ability to:
+- **Assign numerical values to letters**
+- **Apply mathematical operations**
+- **Understand position-based coding**
+- **Solve numerical transformation problems**
 
 ### **Key Characteristics**
-- **Alphabetical transformations**: A-Z manipulations
-- **Position-based rules**: Letter position changes
-- **Sequence operations**: Forward/backward shifts
-- **Pattern applications**: Consistent transformation rules
+- **Letter-number assignments**: A=1, B=2, etc.
+- **Mathematical operations**: Addition, subtraction, multiplication
+- **Position-based calculations**: Word position influences coding
+- **Numerical pattern recognition**: Mathematical relationships
 
 ---
 
-## 🧩 Types of Letter Coding
+## 🧩 Types of Number Coding
 
-### **1. Position-Based Coding**
-**Letter position transformations**
-- **Forward Shift**: A→B, B→C, etc.
-- **Backward Shift**: Z→Y, Y→X, etc.
-- **Position Values**: A=1, B=2, etc.
+### **1. Position-Value Coding**
+**Standard alphabetical positions**
+- **A=1, B=2, ..., Z=26**
+- **Reverse positions: A=26, B=25, etc.**
+- **Modified positions**: A=0, B=1, etc.**
 
-### **2. Sequence-Based Coding**
-**Alphabetical order manipulations**
-- **Next Letter**: A→B, M→N
-- **Previous Letter**: B→A, N→M
-- **Alternate Letters**: A→C, B→D
+### **2. Mathematical Operations**
+**Arithmetic transformations**
+- **Addition/Subtraction**: Add or subtract fixed numbers
+- **Multiplication/Division**: Multiply or divide by factors
+- **Combined Operations**: Multiple mathematical steps
 
-### **3. Pattern-Based Coding**
-**Rule-based transformations**
-- **Vowel-Consonant Rules**: Different rules for vowels/consonants
-- **Even-Odd Positions**: Different rules for even/odd positions
-- **Group-Based Rules**: Rules for specific letter groups
+### **3. Position-Based Operations**
+**Word position influences coding**
+- **Letter Position**: Position in word affects coding
+- **Word Position**: Position of word in sentence
+- **Combined Position**: Both letter and word positions
 
 ---
 
 ## 📊 Problem-Solving Framework
 
-### **Step 1: Analyze Given Examples**
-- Examine input-output pairs carefully
-- Identify transformation patterns
-- Note consistent rules
+### **Step 1: Analyze Given Codes**
+- Examine input-output number pairs
+- Identify mathematical relationships
+- Note any position-based patterns
 
 ### **Step 2: Determine Coding Rule**
-- Find the transformation rule
+- Find the mathematical operation
 - Test rule against all examples
-- Verify consistency
+- Verify position-based factors
 
-### **Step 3: Apply Rule Systematically**
-- Use identified rule for new words
-- Apply transformations consistently
-- Maintain alphabetical logic
+### **Step 3: Apply Systematic Calculation**
+- Use identified mathematical rule
+- Apply position factors if any
+- Calculate new code values
 
-### **Step 4: Verify Solution**
+### **Step 4: Verify and Solve**
 - Cross-check with given examples
-- Ensure logical consistency
-- Answer specific questions
+- Ensure mathematical consistency
+- Answer specific coding questions
 
 ---
 
 ## 🎯 Common Problem Types
 
-### **Type 1: Simple Shift Coding**
-**Fixed position shifts**
-- "Each letter shifted forward by 1"
-- "Each letter shifted backward by 2"
-- "Vowels shifted forward, consonants backward"
+### **Type 1: Simple Position Coding**
+**Direct position assignments**
+- "A=1, B=2, C=3, D=4" for "ABCD"
+- "A=26, B=25, C=24, D=23" for reverse coding
+- Position-based number assignments
 
-### **Type 2: Position-Based Coding**
-**Letter position determines transformation**
-- "Replace with letter at position n"
-- "Add/subtract position values"
-- "Multiply position values"
+### **Type 2: Mathematical Operations**
+**Arithmetic transformations**
+- "Add 1 to each letter's position"
+- "Multiply position by 2, add 1"
+- "Subtract 1 from consonant positions"
 
-### **Type 3: Pattern Recognition Coding**
-**Rule-based transformations**
-- "Replace with next vowel"
-- "Replace with previous consonant"
-- "Mirror image in alphabet"
+### **Type 3: Position-Weighted Coding**
+**Position influences coding**
+- "Multiply by letter position in word"
+- "Add word position to letter position"
+- "Complex position-based calculations"
 
 ---
 
 ## 🛠️ Solving Techniques
 
-### **1. Position Analysis Method**
+### **1. Position Mapping Method**
 
 Letter Positions:  
 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z  
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26
 
-- Map letter positions
-- Identify transformation rules
-- Apply systematic changes
+- Assign standard values
+- Apply mathematical operations
+- Calculate final codes
 
-### **2. Difference Analysis**
-- Compare input and output letters
-- Find position differences
-- Establish consistent patterns
+### **2. Operation Analysis**
+- Identify the mathematical operation
+- Determine operation parameters
+- Test against all examples
 
-### **3. Pattern Recognition**
-- Identify rule types
-- Apply pattern logic
-- Verify rule consistency
+### **3. Position Factor Analysis**
+- Consider word position effects
+- Analyze letter position influences
+- Combine multiple factors
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Simple Forward Shift**
-**Rule**: Each letter is replaced by the next letter in alphabet
-- **Input**: CAT
-- **Output**: DBU
-
-**Explanation**: C→D, A→B, T→U
-
-### **Example 2: Position-Based Coding**
-**Rule**: Replace each letter with letter at position (26 - current position + 1)
+### **Example 1: Simple Position Coding**
+**Rule**: A=1, B=2, C=3, D=4, E=5
 - **Input**: ABC
-- **Output**: ZYX
+- **Output**: 123
 
-**Explanation**: A(1)→Z(26), B(2)→Y(25), C(3)→X(24)
+**Explanation**: A=1, B=2, C=3
 
-### **Example 3: Vowel-Consonant Rule**
-**Rule**: Vowels shifted forward by 1, consonants shifted backward by 1
-- **Input**: BRAIN
-- **Output**: AQHJM
+### **Example 2: Mathematical Operation**
+**Rule**: Add 1 to each letter's position value
+- **Input**: ABC
+- **Output**: 234
 
-**Explanation**: B→A, R→Q, A→B, I→J, N→M
+**Explanation**: A(1)+1=2, B(2)+1=3, C(3)+1=4
+
+### **Example 3: Position-Weighted Coding**
+**Rule**: Multiply letter position by its place in word
+- **Input**: CAT (C=3rd letter, A=1st, T=20th)
+- **Output**: 3×3=9, 1×1=1, 20×2=40
+- **Final Code**: 9140
 
 ---
 
-## 🔍 Advanced Letter Coding Concepts
+## 🔍 Advanced Number Coding Concepts
 
-### **Multi-Rule Coding**
-Problems with different rules for different letter types.
+### **Multi-Step Operations**
+Complex mathematical transformations requiring multiple steps.
+
+### **Conditional Operations**
+Different operations based on letter properties or positions.
+
+### **Integrated Calculations**
+Complex formulas combining multiple mathematical operations.
+
+---
+
+## 📊 Number Coding Methods
+
+### **Basic Position Methods**
+- **Standard Positions**: A=1 to Z=26
+- **Reverse Positions**: A=26 to Z=1
+- **Modified Positions**: A=0 or other starting points
 
 ### **Mathematical Operations**
-Complex position-based mathematical transformations.
-
-### **Conditional Coding**
-Different rules based on letter properties or positions.
-
----
-
-## 📊 Letter Coding Methods
-
-### **Basic Shift Operations**
-- **Fixed Shift**: +n or -n positions
-- **Variable Shift**: Different shifts for different letters
-- **Conditional Shift**: Shifts based on conditions
+- **Arithmetic Operations**: +, -, ×, ÷
+- **Advanced Operations**: Powers, roots, logarithms
+- **Combined Operations**: Multiple arithmetic steps
 
 ### **Position-Based Operations**
-- **Absolute Position**: Use position numbers directly
-- **Relative Position**: Position relative to word position
-- **Mathematical Position**: Operations on position values
-
-### **Pattern-Based Operations**
-- **Vowel Operations**: Special rules for A, E, I, O, U
-- **Consonant Operations**: Rules for non-vowel letters
-- **Group Operations**: Rules for specific letter groups
+- **Letter Position**: Position in word affects calculation
+- **Word Position**: Position in sentence affects calculation
+- **Combined Factors**: Both position types influence coding
 
 ---
 
 ## 🎯 Common Pitfalls
 
-### **Pitfall 1: Alphabet Wrap-around**
-❌ Forgetting Z→A or A→Z transitions
-✅ Handle alphabet boundaries correctly
-
-### **Pitfall 2: Rule Misapplication**
-❌ Applying wrong rules to letters
-✅ Verify rules against all examples
-
-### **Pitfall 3: Position Confusion**
-❌ Mixing letter and word positions
+### **Pitfall 1: Position Confusion**
+❌ Mixing letter positions with word positions
 ✅ Distinguish between different position types
+
+### **Pitfall 2: Operation Errors**
+❌ Wrong mathematical operation application
+✅ Verify calculations carefully
+
+### **Pitfall 3: Factor Oversight**
+❌ Missing position-based factors
+✅ Consider all influencing factors
 
 ---
 
 ## 🛠️ Quick Solving Strategies
 
-### **1. Example Analysis**
-- Compare all input-output pairs
-- Identify consistent transformations
-- Note any exceptions or special cases
+### **1. Value Assignment**
+- Assign correct numerical values to letters
+- Consider any modifications (reverse, offset, etc.)
+- Verify value assignments
 
-### **2. Rule Formulation**
-- State the rule clearly
-- Test rule against all examples
-- Refine rule if inconsistencies found
+### **2. Operation Identification**
+- Identify the mathematical operation used
+- Determine operation parameters
+- Test against all given examples
 
-### **3. Systematic Application**
-- Apply rule to new inputs
-- Handle special cases consistently
-- Verify against original examples
+### **3. Systematic Calculation**
+- Apply operations step by step
+- Consider position factors
+- Calculate final code values
 
 ---
 
 ## 📈 Difficulty Levels
 
 ### **Easy Level**
-- Simple forward/backward shifts
-- Single rule applications
-- Basic alphabetical operations
+- Simple position assignments
+- Basic addition/subtraction
+- Single operation applications
 
 ### **Medium Level**
-- Mixed vowel/consonant rules
-- Position-based transformations
-- Multiple rule combinations
+- Complex mathematical operations
+- Position-weighted calculations
+- Multi-step operations
 
 ### **Hard Level**
-- Complex mathematical operations
-- Conditional rule applications
-- Advanced pattern combinations
+- Advanced mathematical formulas
+- Multiple influencing factors
+- Complex integrated calculations
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Know the Alphabet**: Memorize letter positions 1-26
-2. **Handle Boundaries**: Remember Z→A and A→Z transitions
-3. **Identify Patterns**: Look for consistent transformation rules
-4. **Test Thoroughly**: Verify rules against all given examples
-5. **Apply Systematically**: Use same rules for encoding/decoding
+1. **Know Letter Values**: Memorize A=1 to Z=26 positions
+2. **Identify Operations**: Determine mathematical operations clearly
+3. **Consider Positions**: Account for position-based factors
+4. **Calculate Carefully**: Double-check all mathematical steps
+5. **Verify Examples**: Test rules against all given examples
 
 ---
 
-## 🔤 Practice Questions
+## 🔢 Practice Questions
 
 ### **Question 1**
-If in a code, A is coded as B, B as C, ..., Z as A, then what is the code for "APPLE"?
+If A=1, B=2, C=3, ..., Z=26, what is the code for "CAT"?
 
 ### **Question 2**
-If each letter is replaced by the letter three positions ahead in the alphabet, what is the code for "HOUSE"?
+If each letter's position value is increased by 2, what is the code for "DOG"?
 
 ### **Question 3**
-If vowels are coded as next vowel and consonants as previous consonant, what is the code for "TRAIN"?
+If A=26, B=25, C=24, ..., Z=1, what is the code for "BOX"?
 
 ### **Question 4**
-If A=1, B=2, ..., Z=26, and each letter is replaced by letter at position (27 - current position), what is the code for "CAT"?
+If the code is calculated as (letter position × position in word), what is the code for "BAT"?
 
-**Master letter coding techniques for systematic alphabetical transformations! 🔤✨**`
+**Master number coding techniques for mathematical letter transformations! 🔢✨**`
 };

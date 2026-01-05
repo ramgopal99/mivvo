@@ -2,279 +2,218 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_3: SubLesson = {
   id: "3.3",
-  title: 'Linear Arrangement (Single Row)',
+  title: 'Double Row Seating',
   status: 'completed',
-  content: `# 📏 Linear Arrangement (Single Row)
+  content: `# 📊 Double Row Seating
 
-Linear arrangement problems involve arranging people or objects in a single straight line based on given conditions. These problems are fundamental to seating arrangement questions and appear frequently in competitive exams. Master the techniques for solving single-row arrangement problems.
+Double row seating arrangements involve two parallel rows of people facing each other. These problems are more complex than single-row arrangements and require understanding both intra-row and inter-row relationships. Master the techniques for solving two-row facing arrangements.
 
 ---
 
-## 🎯 Understanding Linear Arrangements
+## 🎯 Understanding Double Row Arrangements
 
-### **What are Linear Arrangements?**
-Linear arrangements involve positioning people or objects in a straight line, either horizontally or vertically. These problems test your ability to:
-- **Understand positional relationships**
-- **Apply left-right positioning logic**
+### **What are Double Row Arrangements?**
+Double row arrangements consist of two parallel rows with people facing each other. These problems test your ability to:
+- **Understand facing relationships**
+- **Apply cross-row positioning logic**
 - **Interpret directional conditions**
-- **Use systematic placement techniques**
-
-### **Key Characteristics**
-- **One-dimensional arrangement**
-- **Fixed endpoints (leftmost and rightmost)**
-- **Adjacent relationships**
-- **Distance-based positioning**
+- **Manage complex position interactions**
 
 ---
 
-## 🧩 Basic Linear Arrangement Concepts
+## 📊 Types of Double Row Arrangements
 
-### **Position Terminology**
-- **Leftmost/Rightmost**: Extreme end positions
-- **Adjacent/Next to**: Immediate neighboring positions
-- **Between**: Positioned in the middle of two others
-- **nth Position**: Specific position from left or right
+### **1. Facing Each Other**
+Two rows facing opposite directions (North-South).
 
-### **Directional Relationships**
-- **Left of**: Positioned to the left of someone
-- **Right of**: Positioned to the right of someone
-- **Immediate Left/Right**: Directly adjacent positions
-- **Second Left/Right**: One position away
+### **2. Same Direction Facing**
+Both rows facing the same direction.
+
+### **3. Complex Facing Patterns**
+Mixed directional orientations.
 
 ---
 
-## 📊 Problem-Solving Framework
+## 🛠️ Problem-Solving Framework
 
-### **Step 1: Analyze Conditions**
-- Identify definite positions
-- Note directional relationships
-- Understand constraints and limitations
+### **Step 1: Visualize the Setup**
+- Draw two parallel lines
+- Mark direction arrows
+- Label positions clearly
+- Note facing relationships
 
-### **Step 2: Create Position Framework**
-- Draw a horizontal line
-- Mark position numbers
-- Note left-to-right flow
+### **Step 2: Apply Intra-Row Logic**
+- Handle relationships within each row
+- Apply left-right positioning
+- Consider row-specific constraints
 
-### **Step 3: Apply Conditions Systematically**
-- Place definite positions first
-- Use directional clues
-- Apply elimination techniques
+### **Step 3: Apply Inter-Row Logic**
+- Handle cross-row relationships
+- Apply facing position logic
+- Consider opposite positioning
 
-### **Step 4: Verify Arrangement**
-- Check all conditions satisfied
-- Ensure logical consistency
-- Answer specific questions
-
----
-
-## 🎯 Common Problem Types
-
-### **Type 1: Position-Based**
-**Specific position assignments**
-- "A is third from left"
-- "B is second from right"
-- "C is in the middle"
-
-### **Type 2: Relationship-Based**
-**Relative positioning**
-- "A is next to B"
-- "C is to the left of D"
-- "E is between F and G"
-
-### **Type 3: Negative Conditions**
-**What cannot happen**
-- "A is not next to B"
-- "C is not at the end"
-- "D is not third from left"
+### **Step 4: Integrate Both Aspects**
+- Combine intra and inter-row constraints
+- Verify all conditions
+- Resolve any conflicts
 
 ---
 
-## 🛠️ Solving Techniques
+## 🎯 Key Concepts
 
-### **1. Position Mapping Method**
-Positions: 1  2  3  4  5
-People:   ?  ?  ?  ?  ?
-- Assign known positions
-- Fill systematically
-- Verify relationships
+### **Facing Relationships**
+- **Directly opposite**: Same position number
+- **One position away**: Adjacent diagonally
+- **Two positions away**: Two steps apart
 
-### **2. Relationship Chain Method**
-- Establish relationship chains
-- Determine position requirements
-- Apply to arrangement
+### **Row Logic**
+- **Same row**: Adjacent relationships
+- **Cross row**: Facing relationships
+- **Position mapping**: Row A position ↔ Row B position
 
-### **3. Elimination Grid Method**
-- Create possibility grid
-- Eliminate invalid combinations
-- Find valid arrangement
+---
+
+## 📊 Position Mapping
+
+### **Direct Facing**
+| Row A | Row B |
+|-------|-------|
+| 1     | 1     |
+| 2     | 2     |
+| 3     | 3     |
+
+### **Adjacent Facing**
+| Row A | Row B |
+|-------|-------|
+| 1     | 2     |
+| 2     | 1,3   |
+| 3     | 2     |
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Basic Position Assignment**
-**Conditions:**
-1. Five people: A, B, C, D, E
-2. A is second from left
-3. B is third from right
-4. C is between A and B
+### **Example 1: Basic Double Row**
+**Question:** 6 people in 2 rows of 3 each, facing each other. A is opposite C. B is left of A. D is right of C.
 
 **Solution:**
-Positions: 1:A  2:C  3:D  4:B  5:E
+- Row 1: _ B A _
+- Row 2: _ _ C D (since facing Row 1)
+- Map positions and apply logic
 
-### **Example 2: Relationship-Based**
-**Conditions:**
-1. Six friends: P, Q, R, S, T, U
-2. P is next to Q
-3. R is to the right of P
-4. S is second from left
-5. T is not next to S
+### **Example 2: Complex Relationships**
+**Question:** Two rows, 4 people each. P opposite Q. R is second from left in his row. S is neighbor of P.
 
-**Solution:**
-Positions: 1:S  2:T  3:P  4:Q  5:R  6:U
-
-### **Example 3: Complex Relationships**
-**Conditions:**
-1. Seven students: X, Y, Z, W, V, U, T
-2. X is third from left
-3. Y is next to X
-4. Z is to the right of Y
-5. W is second from right
-6. V is between W and U
-
-**Solution:**
-Positions: 1:?  2:Y  3:X  4:Z  5:V  6:U  7:W
+**Analysis:**
+- Apply facing constraints
+- Use intra-row positioning
+- Combine both logics
 
 ---
 
-## 🔍 Advanced Linear Concepts
+## 🔍 Common Patterns
 
-### **Multiple Condition Problems**
-Problems with several interrelated conditions requiring careful analysis.
+### **Pattern 1: Direct Opposites**
+People specified as sitting directly opposite each other.
 
-### **Conditional Arrangements**
-Arrangements where positions depend on other factors.
+### **Pattern 2: Adjacent Opposites**
+People sitting diagonally opposite (one position away).
 
-### **Integrated Problems**
-Linear arrangements combined with other reasoning types.
-
----
-
-## 📊 Position Calculation Methods
-
-### **From Left/Right Counting**
-- **nth from left**: Direct position n
-- **nth from right**: Position (total - n + 1)
-
-### **Relative Positioning**
-- **Immediate neighbor**: ±1 position
-- **Second position**: ±2 positions
-- **Between**: Middle of two positions
-
-### **Group Positioning**
-- **Together**: Adjacent positions
-- **Not together**: Separated positions
-- **Group arrangements**: Multiple people as a unit
+### **Pattern 3: Row-Based Relationships**
+Relationships within the same row or across rows.
 
 ---
 
-## 🎯 Common Pitfalls and Solutions
+## 🧩 Solving Techniques
 
-### **Pitfall 1: Direction Confusion**
-❌ Mixing left-right directions
-✅ Always visualize left-to-right flow
+### **1. Position Grid Method**
+- Draw two parallel lines
+- Mark position numbers
+- Show facing arrows
 
-### **Pitfall 2: Position Miscalculation**
-❌ Wrong nth position calculation
-✅ Double-check position counting
+### **2. Facing Matrix**
+- Create position correspondence table
+- Mark known facing relationships
+- Fill in deduced positions
 
-### **Pitfall 3: Missing Relationships**
-❌ Ignoring indirect relationships
-✅ Consider all condition implications
-
----
-
-## 🛠️ Quick Solving Tips
-
-### **1. Draw Clear Diagrams**
-- Use horizontal lines
-- Mark positions 1 to n
-- Label with person names
-
-### **2. Use Systematic Approach**
-- List all conditions
-- Start with definite positions
-- Apply relationships step-by-step
-
-### **3. Check Multiple Times**
-- Verify all conditions
-- Consider alternative arrangements
-- Ensure logical consistency
+### **3. Row-by-Row Approach**
+- Solve one row first
+- Use facing clues to fill other row
+- Verify cross-row relationships
 
 ---
 
-## 📈 Difficulty Progression
+## 📈 Advanced Double Row Problems
 
-### **Easy Level**
-- 3-4 people
-- 2-3 simple conditions
-- Direct position assignments
+### **Unequal Rows**
+Different number of people in each row.
 
-### **Medium Level**
-- 5-6 people
-- Multiple relationships
-- Mixed condition types
+### **Complex Facing**
+Non-standard facing arrangements.
 
-### **Hard Level**
-- 7+ people
-- Complex relationships
-- Multiple constraint types
+### **Multiple Constraints**
+Complex web of relationships.
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Always Draw Lines**: Visual representation is essential
-2. **Mark Positions Clearly**: Use numbers and labels
-3. **Start with Definite Info**: Place known positions first
-4. **Use Elimination**: Remove impossible arrangements
-5. **Double-Check**: Verify all conditions are satisfied
-6. **Practice Speed**: Develop quick diagramming skills
+1. **Draw Clear Diagrams**: Two parallel lines with facing arrows
+2. **Label Positions**: Number positions in each row
+3. **Handle One Row First**: Solve easier row first
+4. **Use Facing Logic**: Understand opposite and adjacent positions
+5. **Verify Cross-Links**: Check relationships between rows
 
 ---
 
-## 🧩 Practice Questions
+## 🧮 Quick Formulas
+
+### **Facing Position Calculation**
+- **Direct opposite**: Same position number
+- **Left adjacent**: Position - 1
+- **Right adjacent**: Position + 1
+
+### **Row Distance**
+- **Same row**: |Position A - Position B|
+- **Facing row**: Position mapping based on facing
+
+---
+
+## ⚡ Quick Solving Tricks
+
+### **Trick 1: Facing Symmetry**
+- Opposite positions are mirror images
+- Use symmetry to find corresponding positions
+
+### **Trick 2: Position Limits**
+- End positions have limited facing options
+- Use boundary constraints effectively
+
+### **Trick 3: Row Independence**
+- Solve intra-row relationships first
+- Then apply inter-row constraints
+
+### **Trick 4: Facing Chain**
+- A opposite B, B opposite C → A and C relationship
+- Create facing relationship chains
+
+### **Trick 5: Elimination Matrix**
+- Create grid of possible positions
+- Mark facing constraints
+- Eliminate impossible combinations
+
+---
+
+## 🎯 Practice Questions
 
 ### **Question 1**
-**Conditions:**
-1. Six people: A, B, C, D, E, F
-2. A is second from left
-3. B is third from right
-4. C is next to A
-5. D is not next to B
-
-**Who is at the extreme right?**
+Two rows of 3 people each facing each other. A is opposite C. B is immediate left of A. D is immediate right of C. Who is opposite B?
 
 ### **Question 2**
-**Conditions:**
-1. Eight students: P, Q, R, S, T, U, V, W
-2. P is fourth from left
-3. Q is next to P
-4. R is to the right of Q
-5. S is second from right
-6. T is between S and U
-
-**What is the position of V?**
+Four people in each row facing each other. P is second from left in row 1. Q is opposite P. R is neighbor of Q. S is opposite R. Who is at the ends?
 
 ### **Question 3**
-**Conditions:**
-1. Five friends: X, Y, Z, W, V
-2. X is not at the end
-3. Y is next to X
-4. Z is to the left of W
-5. V is second from right
+Two parallel rows facing north and south. A in north row, B in south row. A is directly opposite B. C is left of A. D is right of B. Who is opposite C?
 
-**Who is in the middle?**
-
-**Master linear arrangements for systematic problem solving! 📏✨**`
+**Master double row seating arrangements to handle complex facing relationship problems! 📊✨**`
 };

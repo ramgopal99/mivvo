@@ -2,257 +2,258 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_7: SubLesson = {
   id: "5.7",
-  title: 'Substitution Coding',
+  title: 'Symbol Coding',
   status: 'completed',
-  content: `# 🔄 Substitution Coding
+  content: `# 🔣 Symbol Coding
 
-Substitution coding involves replacing letters or symbols with other letters, numbers, or symbols according to specific rules. These problems are common in coding-decoding and require pattern recognition and systematic replacement skills.
+Symbol coding involves replacing letters or numbers with various symbols, special characters, or visual representations. These problems combine pattern recognition with symbol interpretation skills.
 
 ---
 
-## 🎯 Understanding Substitution Coding
+## 🎯 Understanding Symbol Coding
 
-### **What is Substitution Coding?**
-Substitution coding involves replacing one set of characters with another set according to predefined rules. These problems test your ability to:
-- **Identify substitution patterns**
-- **Apply replacement rules consistently**
-- **Recognize symbol relationships**
-- **Solve systematic replacement problems**
+### **What is Symbol Coding?**
+Symbol coding involves replacing letters, numbers, or words with symbols, special characters, or visual representations according to specific rules. These problems test your ability to:
+- **Recognize symbol patterns**
+- **Apply symbol replacement rules**
+- **Interpret visual coding schemes**
+- **Solve symbol-based transformation problems**
 
 ### **Key Characteristics**
-- **Character replacement**: One character replaces another
-- **Rule-based substitution**: Systematic replacement patterns
-- **Pattern consistency**: Same rules throughout
-- **Symbol relationships**: Connections between substituted elements
+- **Visual representations**: Symbols, shapes, special characters
+- **Pattern-based rules**: Systematic symbol assignments
+- **Interpretation skills**: Understanding symbol meanings
+- **Visual logic**: Pattern recognition in symbols
 
 ---
 
-## 🧩 Types of Substitution Coding
+## 🧩 Types of Symbol Coding
 
-### **1. Letter-to-Letter Substitution**
-**Direct letter replacements**
-- **One-to-One**: A→X, B→Y, etc.
-- **Pattern-Based**: Every nth letter, etc.
-- **Alphabetical**: Reverse alphabet, skip letters
-
-### **2. Letter-to-Number Substitution**
-**Letters replaced by numbers**
-- **Position-Based**: A=1, B=2, etc.
-- **Mathematical**: Position × 2, etc.
-- **Pattern-Based**: Alternating numbers
-
-### **3. Letter-to-Symbol Substitution**
+### **1. Letter-to-Symbol Coding**
 **Letters replaced by symbols**
-- **Symbol Sets**: @, #, $, %, etc.
-- **Visual Patterns**: Shapes, special characters
-- **Rule-Based**: Position determines symbol
+- **Shape Symbols**: △, □, ○, etc.
+- **Special Characters**: @, #, $, %, &, *
+- **Visual Patterns**: ↑, ↓, ←, →, etc.
+
+### **2. Number-to-Symbol Coding**
+**Numbers replaced by symbols**
+- **Mathematical Symbols**: +, -, ×, ÷, =
+- **Geometric Shapes**: ■, ●, ▲, ▼
+- **Position Indicators**: ¹, ², ³, etc.
+
+### **3. Word-to-Symbol Coding**
+**Words or phrases replaced by symbols**
+- **Compound Symbols**: Multiple symbols for words
+- **Pattern Sequences**: Symbol combinations
+- **Contextual Symbols**: Meaning-based representations
 
 ---
 
 ## 📊 Problem-Solving Framework
 
-### **Step 1: Analyze Substitution Pattern**
-- Examine input-output pairs
-- Identify which characters are replaced
-- Note the replacement relationships
+### **Step 1: Analyze Symbol Patterns**
+- Examine input-symbol pairs
+- Identify symbol assignment rules
+- Note pattern relationships
 
-### **Step 2: Determine Substitution Rule**
-- Find the replacement mapping
-- Test rule against all examples
-- Verify pattern consistency
+### **Step 2: Determine Symbol Rules**
+- Find symbol replacement logic
+- Test rules against all examples
+- Verify symbol consistency
 
-### **Step 3: Apply Substitution Systematically**
-- Use identified mapping for new inputs
-- Apply replacements consistently
-- Handle pattern variations
+### **Step 3: Apply Symbol Coding**
+- Use identified rules for new inputs
+- Apply symbol transformations
+- Handle complex symbol patterns
 
-### **Step 4: Verify Solution**
+### **Step 4: Verify Symbol Solution**
 - Cross-check with given examples
-- Ensure substitution consistency
-- Answer specific questions
+- Ensure symbol logic consistency
+- Answer specific symbol questions
 
 ---
 
 ## 🎯 Common Problem Types
 
-### **Type 1: Direct Substitution**
-**Simple one-to-one replacements**
-- "A=Z, B=Y, C=X, D=W, E=V"
-- "Replace vowels with numbers 1-5"
-- "Replace consonants with next letter"
+### **Type 1: Direct Symbol Replacement**
+**Simple symbol substitutions**
+- "A=△, B=□, C=○, D=◇"
+- "1=+, 2=-, 3=×, 4=÷"
+- "Red=■, Blue=●, Green=▲"
 
-### **Type 2: Pattern Substitution**
-**Rule-based replacements**
-- "Replace every second letter"
-- "Vowels get one pattern, consonants another"
-- "Position-based substitution rules"
+### **Type 2: Pattern Symbol Coding**
+**Rule-based symbol assignments**
+- "Vowels get shapes, consonants get lines"
+- "Position determines symbol type"
+- "Property-based symbol selection"
 
-### **Type 3: Complex Substitution**
-**Multi-rule substitutions**
-- "Combination of multiple substitution types"
-- "Conditional substitution rules"
-- "Position-dependent substitutions"
+### **Type 3: Complex Symbol Systems**
+**Multi-symbol representations**
+- "Words represented by symbol combinations"
+- "Complex symbol relationship rules"
+- "Integrated symbol transformation systems"
 
 ---
 
 ## 🛠️ Solving Techniques
 
-### **1. Mapping Creation**
+### **1. Symbol Mapping Creation**
 
-Substitution Mapping:  
-Original: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z  
-Replaced: Z Y X W V U T S R Q P O N M L K J I H G F E D C B A
+Symbol Mapping Reference:  
+A → △    1 → +  
+B → □    2 → -  
+C → ○    3 → ×
 
-- Create substitution mapping
+- Create symbol mapping reference
 - Identify pattern or rule
 - Apply systematically
 
-### **2. Pattern Recognition**
-- Identify substitution pattern
-- Note any special rules
+### **2. Pattern Analysis**
+- Analyze symbol assignment patterns
+- Identify rule types and categories
 - Test pattern consistency
 
 ### **3. Systematic Application**
-- Apply substitution rules
-- Handle special cases
+- Apply symbol rules to new inputs
+- Handle special symbol cases
 - Verify against examples
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Reverse Alphabet**
-**Rule**: A=Z, B=Y, C=X, D=W, E=V, etc.
+### **Example 1: Shape Symbol Coding**
+**Rule**: A=△, B=□, C=○, D=◇
+- **Input**: ABC
+- **Output**: △□○
+
+**Explanation**: Direct shape symbol replacement
+
+### **Example 2: Mathematical Symbols**
+**Rule**: 1=+, 2=-, 3=×, 4=÷, 5==
+- **Input**: 123
+- **Output**: +-×
+
+**Explanation**: Number to mathematical symbol conversion
+
+### **Example 3: Complex Symbol System**
+**Rule**: Vowels get round shapes, consonants get angular shapes
 - **Input**: CAT
-- **Output**: XZG
+- **Output**: ○△□
 
-**Explanation**: C=X, A=Z, T=G
-
-### **Example 2: Vowel Substitution**
-**Rule**: A=1, E=2, I=3, O=4, U=5
-- **Input**: HOUSE
-- **Output**: H45S2
-
-**Explanation**: O=4, U=5, E=2
-
-### **Example 3: Symbol Substitution**
-**Rule**: A=@, B=# , C=$, D=%, E=^
-- **Input**: ABCD
-- **Output**: @#$%
-
-**Explanation**: Direct symbol replacement
+**Explanation**: C(○), A(△), T(□) - property-based symbols
 
 ---
 
-## 🔍 Advanced Substitution Concepts
+## 🔍 Advanced Symbol Concepts
 
-### **Multi-Rule Substitutions**
-Complex substitution involving multiple rules or conditions.
+### **Multi-Symbol Systems**
+Complex symbol combinations and relationships.
 
-### **Conditional Substitutions**
-Different substitution rules based on character properties or positions.
+### **Contextual Symbols**
+Symbols that vary based on context or conditions.
 
-### **Pattern-Based Substitutions**
-Substitutions following complex patterns or sequences.
+### **Integrated Symbol Systems**
+Complex symbol transformation and interpretation systems.
 
 ---
 
-## 📊 Substitution Coding Methods
+## 📊 Symbol Coding Methods
 
 ### **Direct Methods**
-- **One-to-One**: Simple character replacements
-- **Set-Based**: Replace with predefined sets
-- **Alphabetical**: Reverse or modified alphabet
+- **One-to-One**: Simple symbol replacements
+- **Category-Based**: Symbols by categories
+- **Property-Based**: Symbols by characteristics
 
 ### **Pattern Methods**
-- **Position-Based**: Different rules for different positions
-- **Property-Based**: Different rules for vowels/consonants
-- **Sequence-Based**: Pattern-based replacements
+- **Position-Based**: Different symbols for different positions
+- **Rule-Based**: Pattern-determined symbol selection
+- **Sequence-Based**: Symbol arrangement patterns
 
 ### **Complex Methods**
-- **Multi-Step**: Multiple substitution phases
-- **Conditional**: Rules based on conditions
-- **Integrated**: Combination of multiple methods
+- **Multi-Symbol**: Multiple symbols for single elements
+- **Conditional**: Context-dependent symbol selection
+- **Integrated**: Combination of multiple symbol methods
 
 ---
 
 ## 🎯 Common Pitfalls
 
-### **Pitfall 1: Incomplete Mapping**
-❌ Not identifying all substitution pairs
-✅ Create complete mapping table
+### **Pitfall 1: Symbol Confusion**
+❌ Mixing up similar symbols
+✅ Create clear symbol reference
 
 ### **Pitfall 2: Pattern Misidentification**
-❌ Wrong substitution pattern assumption
+❌ Wrong symbol assignment pattern
 ✅ Test patterns against all examples
 
-### **Pitfall 3: Inconsistent Application**
-❌ Applying different rules inconsistently
-✅ Use same rules throughout
+### **Pitfall 3: Incomplete Mapping**
+❌ Missing symbol relationships
+✅ Create complete symbol mapping
 
 ---
 
 ## 🛠️ Quick Solving Strategies
 
-### **1. Mapping Creation**
-- Create substitution mapping table
-- Identify pattern or direct replacements
-- Test mapping against examples
+### **1. Symbol Reference Creation**
+- Create clear symbol mapping table
+- Group symbols by type or category
+- Note any special symbol rules
 
 ### **2. Pattern Verification**
-- Verify pattern works for all examples
-- Check for special cases or exceptions
-- Refine pattern if needed
+- Test symbol rules against all examples
+- Check for consistency and exceptions
+- Refine rules based on findings
 
 ### **3. Systematic Application**
-- Apply substitution rules consistently
-- Handle all characters appropriately
-- Verify final results
+- Apply symbol rules consistently
+- Handle complex symbol combinations
+- Verify final symbol arrangements
 
 ---
 
 ## 📈 Difficulty Levels
 
 ### **Easy Level**
-- Simple one-to-one substitutions
-- Direct letter replacements
-- Basic pattern rules
+- Simple one-to-one symbol replacements
+- Basic symbol pattern recognition
+- Direct symbol assignments
 
 ### **Medium Level**
-- Mixed substitution types
-- Conditional rules
-- Pattern combinations
+- Mixed symbol types and patterns
+- Property-based symbol selection
+- Pattern combination rules
 
 ### **Hard Level**
-- Complex multi-rule substitutions
+- Complex multi-symbol systems
 - Advanced pattern recognition
-- Integrated substitution systems
+- Integrated symbol transformation systems
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Create Mapping Table**: Visual substitution reference
-2. **Identify Patterns**: Look for consistent replacement rules
-3. **Test Thoroughly**: Verify against all given examples
-4. **Apply Consistently**: Use same rules for all substitutions
-5. **Handle Special Cases**: Note any exceptions or special rules
+1. **Create Symbol Map**: Visual symbol reference guide
+2. **Identify Categories**: Group symbols by type or function
+3. **Test Patterns**: Verify symbol rules against all examples
+4. **Note Exceptions**: Be aware of any special symbol cases
+5. **Apply Consistently**: Use same symbol rules throughout
 
 ---
 
-## 🔄 Practice Questions
+## 🔣 Practice Questions
 
 ### **Question 1**
-If A=Z, B=Y, C=X, D=W, E=V, what is the code for "BED"?
+If A=△, B=□, C=○, D=◇, what is the symbol code for "BAD"?
 
 ### **Question 2**
-If vowels are replaced by numbers (A=1, E=2, I=3, O=4, U=5), what is the code for "MOUSE"?
+If 1=+, 2=-, 3=×, 4=÷, 5==, what is the symbol code for "123"?
 
 ### **Question 3**
-If A=@, B=# , C=$, D=%, E=^, what is the code for "BEAD"?
+If vowels get round shapes (○) and consonants get square shapes (□), what is the symbol code for "APPLE"?
 
 ### **Question 4**
-If every letter is replaced by the letter 3 positions ahead, what is the code for "CAT"?
+If A=@, B=# , C=$, D=%, E=^, what is the symbol code for "FACE"?
 
-**Master substitution coding for systematic character replacements! 🔄✨**`
+**Master symbol coding for visual pattern recognition! 🔣✨**`
 };

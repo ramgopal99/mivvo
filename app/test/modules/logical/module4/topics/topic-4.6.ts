@@ -2,289 +2,292 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_6: SubLesson = {
   id: "4.6",
-  title: 'Comparison-Based Puzzles',
+  title: 'Scheduling Puzzles',
   status: 'completed',
-  content: `# ⚖️ Comparison-Based Puzzles
+  content: `# 📅 Scheduling Puzzles
 
-Comparison-based puzzles involve analyzing relationships between entities based on various attributes like age, height, weight, performance, etc. These puzzles require understanding comparative relationships and transitive reasoning to solve complex ranking problems.
+Scheduling puzzles involve arranging events, appointments, or activities in specific time slots based on various constraints. These puzzles require understanding of time management, sequence logic, and constraint satisfaction to solve complex scheduling problems.
 
 ---
 
-## 🎯 Understanding Comparison Puzzles
+## 🎯 Understanding Scheduling Puzzles
 
-### **What are Comparison-Based Puzzles?**
-Comparison puzzles involve entities compared based on attributes, requiring you to determine relative rankings and relationships. They test your ability to:
-- **Apply comparative logic**
-- **Use transitive reasoning**
-- **Understand ranking relationships**
-- **Solve complex comparison networks**
+### **What are Scheduling Puzzles?**
+Scheduling puzzles involve arranging activities, meetings, or events in time slots based on given constraints. They test your ability to:
+- **Apply time management logic**
+- **Understand sequence relationships**
+- **Interpret temporal constraints**
+- **Solve complex time-based arrangements**
 
 ### **Key Characteristics**
-- **Comparative attributes**: Age, height, weight, marks, etc.
-- **Ranking relationships**: Better than, taller than, older than
-- **Transitive logic**: If A > B and B > C, then A > C
-- **Network relationships**: Complex comparison webs
+- **Time-based positioning**: Hours, days, weeks
+- **Sequence constraints**: Before/after relationships
+- **Duration limits**: Activity time requirements
+- **Resource constraints**: Person/venue availability
 
 ---
 
-## 🧩 Types of Comparisons
+## 🧩 Types of Scheduling Problems
 
-### **1. Direct Comparisons**
-**Explicit relationship statements**
-- "A is taller than B"
-- "C is older than D"
-- "E scores higher than F"
+### **1. Time Slot Scheduling**
+**Assigning activities to specific time slots**
+- Meeting room bookings
+- Class schedule arrangements
+- Event time assignments
 
-### **2. Indirect Comparisons**
-**Relationships through intermediaries**
-- "A is taller than someone who is taller than B"
-- Transitive relationship chains
-- Network-based comparisons
+### **2. Sequence Scheduling**
+**Ordering activities with precedence constraints**
+- Task completion sequences
+- Process flow arrangements
+- Activity dependency chains
 
-### **3. Multiple Attribute Comparisons**
-**Different comparison criteria**
-- Age, height, weight simultaneously
-- Performance across different metrics
-- Multi-dimensional rankings
+### **3. Resource Scheduling**
+**Allocating resources with availability constraints**
+- Person assignments to tasks
+- Equipment allocation
+- Venue booking conflicts
 
 ---
 
 ## 📊 Problem-Solving Framework
 
-### **Step 1: Identify Comparison Type**
-- Note the attribute being compared
-- Understand comparison direction (greater/lesser)
-- Map all comparison statements
+### **Step 1: Understand Time Framework**
+- Identify time slots available
+- Note activity durations
+- Understand scheduling constraints
 
-### **Step 2: Create Comparison Framework**
-- List all entities involved
-- Draw comparison relationship diagram
-- Identify direct and indirect relationships
+### **Step 2: Analyze Constraints**
+- Map activity requirements
+- Note precedence relationships
+- Identify resource conflicts
 
-### **Step 3: Apply Transitive Logic**
-- Use transitive property systematically
-- Build complete comparison network
-- Identify ranking positions
+### **Step 3: Create Schedule Framework**
+- Draw time slot layout
+- Mark known assignments
+- Identify constraint patterns
 
-### **Step 4: Verify Relationships**
-- Check all statements satisfied
-- Ensure logical consistency
-- Answer specific comparison questions
+### **Step 4: Apply Scheduling Logic**
+- Place definite assignments first
+- Apply precedence constraints
+- Resolve conflicts systematically
 
 ---
 
 ## 🎯 Common Problem Types
 
-### **Type 1: Age Comparison**
-**Age-based ranking problems**
-- "A is older than B"
-- "C is youngest among them"
-- "D is 5 years older than E"
+### **Type 1: Meeting Scheduling**
+**Meeting room and time assignments**
+- "Meeting A must be before meeting B"
+- "Room X cannot be used after 5 PM"
+- "Person P cannot attend meetings at same time"
 
-### **Type 2: Performance Comparison**
-**Score/rank-based problems**
-- "A scored higher than B"
-- "C got more marks than D"
-- "E performed better than F"
+### **Type 2: Class Scheduling**
+**Subject and teacher assignments**
+- "Math class before Science class"
+- "Teacher T available only mornings"
+- "Room capacity constraints"
 
-### **Type 3: Physical Attribute Comparison**
-**Height, weight, size comparisons**
-- "A is taller than B"
-- "C weighs more than D"
-- "E is heavier than F"
+### **Type 3: Event Scheduling**
+**Event time and venue assignments**
+- "Event A must be after Event B"
+- "Venue V booked for Event C"
+- "Guest G cannot attend overlapping events"
 
 ---
 
 ## 🛠️ Solving Techniques
 
-### **1. Comparison Chain Method**
-A > B > C > D
-↑
-E > F
-- Create comparison chains
-- Apply transitive relationships
-- Build complete ranking
+### **1. Time Grid Method**
+Time: 9AM 10AM 11AM 12PM 1PM
+Mon:  [ ]  [ ]  [ ]  [ ]  [ ]
+Tue:  [ ]  [ ]  [ ]  [ ]  [ ]
+- Create time-activity matrix
+- Fill based on constraints
+- Track conflicts
 
-### **2. Matrix Method**
-    A   B   C   D
-A   -   >   >   <
-B   <   -   >   <
-C   <   <   -   <
-D   >   >   >   -
-- Create comparison matrix
-- Fill based on given relationships
-- Use transitivity to complete
+### **2. Sequence Chain Method**
+- Map precedence relationships
+- Identify critical paths
+- Apply sequence logic
 
-### **3. Ranking Method**
-- Assign relative positions
-- Use given comparisons
-- Determine exact rankings
+### **3. Conflict Resolution**
+- Identify scheduling conflicts
+- Apply resolution rules
+- Find optimal arrangements
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Simple Age Comparison**
+### **Example 1: Simple Meeting Schedule**
 **Conditions:**
-1. Five people: A, B, C, D, E
-2. A is older than B
-3. B is older than C
-4. D is older than E
-5. C is older than D
+1. Four meetings: A, B, C, D
+2. Four time slots: 9AM, 10AM, 11AM, 12PM
+3. Meeting A must be at 9AM
+4. Meeting B before Meeting C
+5. Meeting D at 12PM
+6. No meetings at same time
 
-**Solution:** A > B > C > D > E
+**Solution:** A(9AM), B(10AM), C(11AM), D(12PM)
 
-### **Example 2: Complex Network**
+### **Example 2: Complex Resource Schedule**
 **Conditions:**
-1. Six students: P, Q, R, S, T, U
-2. P scored higher than Q
-3. R scored higher than S
-4. T scored higher than U
-5. Q scored higher than R
-6. S scored higher than T
+1. Three doctors: P, Q, R
+2. Five patients: 1, 2, 3, 4, 5
+3. Time slots: 9AM, 10AM, 11AM, 2PM, 3PM
+4. Doctor P specializes in surgery
+5. Doctor Q available only mornings
+6. Doctor R handles emergencies
+7. Patient 1 needs surgery
+8. Patient 3 is emergency case
 
-**Solution:** P > Q > R > S > T > U
+**Solution:** Apply specialization and availability constraints.
 
-### **Example 3: Multiple Attributes**
+### **Example 3: Event Sequence**
 **Conditions:**
-1. Four friends: X, Y, Z, W
-2. X is taller than Y
-3. Z is heavier than W
-4. Y is taller than Z
-5. X weighs more than W
+1. Six events: X, Y, Z, W, V, U
+2. Six time slots: T1-T6
+3. Event X must be first
+4. Event Y immediately after X
+5. Event Z before Event W
+6. Event V and U cannot be consecutive
+7. Event W must be in T6
 
-**Solution:** Height: X > Y > Z > W, Weight: X > Z > W (Y unknown)
+**Solution:** Apply sequence and positioning constraints.
 
 ---
 
-## 🔍 Advanced Comparison Concepts
+## 🔍 Advanced Scheduling Concepts
 
-### **Multi-Attribute Comparisons**
-Problems involving multiple comparison criteria simultaneously.
+### **Multi-Resource Scheduling**
+Problems involving multiple resources simultaneously.
 
-### **Conditional Comparisons**
-Comparisons that depend on other factors or conditions.
+### **Time Window Constraints**
+Activities restricted to specific time periods.
 
-### **Circular Comparisons**
-Complex relationship loops requiring careful analysis.
+### **Dependency Chains**
+Complex activity dependency networks.
 
 ---
 
-## 📊 Comparison Logic Methods
+## 📊 Scheduling Logic Methods
 
-### **Transitive Logic**
-- **Direct Transitivity**: A > B, B > C → A > C
-- **Indirect Transitivity**: A > D, D > C → A > C
-- **Network Transitivity**: Complex relationship chains
+### **Time-Based Logic**
+- **Before/After**: Temporal sequence relationships
+- **During**: Time period containment
+- **Overlapping**: Time period intersections
 
-### **Ranking Logic**
-- **Position Assignment**: 1st, 2nd, 3rd positions
-- **Relative Positioning**: Better/worse than specific number
-- **Group Rankings**: Top 3, bottom 2, etc.
+### **Resource-Based Logic**
+- **Availability**: Resource time constraints
+- **Capacity**: Resource usage limits
+- **Compatibility**: Resource-activity matching
 
-### **Attribute Logic**
-- **Same Attribute**: Age-to-age, height-to-height
-- **Different Attributes**: Age vs height comparisons
-- **Conversion Logic**: Relating different attributes
+### **Sequence-Based Logic**
+- **Precedence**: Required order relationships
+- **Dependencies**: Conditional scheduling requirements
+- **Chains**: Multi-step dependency sequences
 
 ---
 
 ## 🎯 Common Pitfalls
 
-### **Pitfall 1: Transitive Error**
-❌ Incorrect transitive application
-✅ Careful chain verification
+### **Pitfall 1: Time Confusion**
+❌ Mixing time formats or slots
+✅ Clear time slot identification
 
-### **Pitfall 2: Attribute Confusion**
-❌ Mixing different comparison attributes
-✅ Keep attributes separate
+### **Pitfall 2: Sequence Errors**
+❌ Wrong precedence application
+✅ Careful before/after logic
 
-### **Pitfall 3: Direction Error**
-❌ Reversing comparison directions
-✅ Maintain correct relationship directions
+### **Pitfall 3: Resource Conflicts**
+❌ Overbooking resources
+✅ Resource availability checking
 
 ---
 
 ## 🛠️ Quick Solving Strategies
 
-### **1. Comparison Diagram**
-- Draw comparison arrows/lines
-- Show relationship directions
-- Identify transitive chains
+### **1. Time Framework Creation**
+- Draw clear time slot layout
+- Mark all time constraints
+- Create activity timeline
 
-### **2. Systematic Application**
-- Start with direct comparisons
-- Apply transitivity step by step
-- Build complete relationship network
+### **2. Constraint Organization**
+- List all scheduling constraints
+- Group by constraint type
+- Identify most restrictive rules
 
-### **3. Verification Process**
-- Check each comparison individually
-- Verify transitive relationships
-- Confirm overall ranking consistency
+### **3. Systematic Assignment**
+- Start with fixed time assignments
+- Apply sequence constraints
+- Resolve resource conflicts
 
 ---
 
 ## 📈 Difficulty Levels
 
 ### **Easy Level**
-- Few entities, simple comparisons
-- Direct relationship chains
-- Single attribute comparisons
+- Few activities, simple constraints
+- Direct time assignments
+- Basic sequence requirements
 
 ### **Medium Level**
-- Multiple entities, complex chains
-- Mixed comparison directions
-- Multiple attribute types
+- Multiple activities, mixed constraints
+- Resource availability issues
+- Complex sequence relationships
 
 ### **Hard Level**
-- Many entities, complex networks
-- Multiple attributes simultaneously
-- Conditional and circular comparisons
+- Many activities, complex constraints
+- Multiple resource conflicts
+- Advanced dependency chains
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Draw Comparison Diagrams**: Visual relationship mapping
-2. **Apply Transitive Property**: Use A > B, B > C → A > C
-3. **Keep Attributes Separate**: Don't mix age and height comparisons
-4. **Start with Direct**: Use given comparisons first
-5. **Verify Chains**: Check each transitive step
+1. **Create Time Grid**: Visual time-activity framework
+2. **List All Constraints**: Systematic constraint organization
+3. **Start with Fixed**: Place known time assignments first
+4. **Apply Sequences**: Use before/after logic carefully
+5. **Check Resources**: Ensure resource availability
 
 ---
 
-## ⚖️ Practice Questions
+## 📅 Practice Questions
 
 ### **Question 1**
 **Conditions:**
-1. Five students: A, B, C, D, E
-2. A scored higher than B
-3. B scored higher than C
-4. D scored higher than E
-5. C scored higher than D
+1. Four meetings: A, B, C, D
+2. Four time slots: 9, 10, 11, 12
+3. Meeting A at 9 AM
+4. Meeting B before Meeting C
+5. Meeting D at 12 PM
 
-**Who scored the highest?**
+**When is Meeting B scheduled?**
 
 ### **Question 2**
 **Conditions:**
-1. Four athletes: P, Q, R, S
-2. P is taller than Q
-3. R is shorter than S
-4. Q is taller than R
-5. P is taller than S
+1. Three doctors: X, Y, Z
+2. Five patients: P, Q, R, S, T
+3. Doctor X available 9-11 AM
+4. Doctor Y available 1-3 PM
+5. Doctor Z available all day
+6. Patient P needs Doctor X
+7. Patient Q needs Doctor Y
 
-**What is the order from tallest to shortest?**
+**How many patients can be scheduled in morning?**
 
 ### **Question 3**
 **Conditions:**
-1. Six employees: X, Y, Z, W, V, U
-2. X is senior to Y
-3. Z joined before W
-4. Y is junior to Z
-5. V joined after U
-6. W is senior to V
+1. Six tasks: M, N, O, P, Q, R
+2. Six time slots: T1-T6
+3. Task M must be first
+4. Task N immediately after M
+5. Task O before Task P
+6. Task Q and R cannot be consecutive
+7. Task P must be last
 
-**Who joined first?**
+**What is the sequence of tasks?**
 
-**Master comparison-based puzzles for ranking and relationship analysis! ⚖️✨**`
+**Master scheduling puzzles for effective time management! 📅✨**`
 };

@@ -2,259 +2,255 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_4: SubLesson = {
   id: "5.4",
-  title: 'Alphanumeric Coding',
+  title: 'Direct Coding',
   status: 'completed',
-  content: `# 🔠 Alphanumeric Coding
+  content: `# 🎯 Direct Coding
 
-Alphanumeric coding combines letters and numbers in various patterns and transformations. These problems require understanding both alphabetical and numerical systems, making them more complex than pure letter or number coding.
+Direct coding involves straightforward, rule-based transformations where the coding rule is clear and can be applied directly. These problems are fundamental to coding-decoding and appear frequently in competitive exams.
 
 ---
 
-## 🎯 Understanding Alphanumeric Coding
+## 🎯 Understanding Direct Coding
 
-### **What is Alphanumeric Coding?**
-Alphanumeric coding involves transforming letters and numbers using combined rules that incorporate both alphabetical and numerical elements. These problems test your ability to:
-- **Combine letter and number transformations**
-- **Apply mixed coding rules**
-- **Handle dual-system operations**
-- **Solve complex alphanumeric problems**
+### **What is Direct Coding?**
+Direct coding involves straightforward transformation rules that can be applied directly to encode or decode messages. These problems test your ability to:
+- **Identify clear transformation rules**
+- **Apply rules consistently**
+- **Recognize direct patterns**
+- **Solve systematic coding problems**
 
 ### **Key Characteristics**
-- **Letter-number combinations**: Mixed transformations
-- **Dual system operations**: Both alphabetical and numerical rules
-- **Pattern integration**: Combined coding techniques
-- **Complex rule applications**: Multi-system transformations
+- **Clear transformation rules**: Obvious encoding/decoding methods
+- **Consistent application**: Same rules throughout
+- **Direct relationship**: Input-output clearly connected
+- **Pattern-based solutions**: Systematic rule application
 
 ---
 
-## 🧩 Types of Alphanumeric Coding
+## 🧩 Types of Direct Coding
 
-### **1. Letter-to-Number Coding**
-**Converting letters to numbers**
-- **Position-based**: A=1, B=2, etc.
-- **Reverse coding**: A=26, B=25, etc.
-- **Modified values**: A=10, B=11, etc.
+### **1. Letter Shift Coding**
+**Simple alphabetical shifts**
+- **Forward Shift**: A→B, B→C, etc.
+- **Backward Shift**: Z→Y, Y→X, etc.
+- **Fixed Shift**: Consistent shift amount
 
-### **2. Number-to-Letter Coding**
-**Converting numbers to letters**
-- **Position-based**: 1=A, 2=B, etc.
-- **Alphabet mapping**: 10=A, 11=B, etc.
-- **Reverse mapping**: 26=A, 25=B, etc.
+### **2. Position-Based Coding**
+**Direct position transformations**
+- **Letter Positions**: A=1, B=2, etc.
+- **Reverse Positions**: A=26, B=25, etc.
+- **Position Operations**: Mathematical operations on positions
 
-### **3. Mixed Transformations**
-**Combined letter-number operations**
-- **Letter + Number**: CAT → C1A2T3
-- **Number operations**: Position-based calculations
-- **Pattern combinations**: Mixed transformation rules
+### **3. Substitution Coding**
+**Direct letter replacements**
+- **One-to-One**: A→X, B→Y, etc.
+- **Pattern-Based**: Vowels→numbers, etc.
+- **Rule-Based**: Clear substitution rules
 
 ---
 
 ## 📊 Problem-Solving Framework
 
-### **Step 1: Analyze Coding Pattern**
-- Examine how letters and numbers are transformed
-- Identify the relationship between input and output
-- Note any mixed transformation rules
+### **Step 1: Analyze Examples**
+- Examine given input-output pairs
+- Identify the transformation pattern
+- Note any consistent rules
 
-### **Step 2: Determine Coding Rules**
-- Find letter transformation rules
-- Identify number transformation rules
-- Understand how they interact
+### **Step 2: Formulate Rule**
+- State the coding rule clearly
+- Test rule against all examples
+- Verify rule consistency
 
-### **Step 3: Apply Systematic Coding**
-- Apply letter rules consistently
-- Apply number rules systematically
-- Combine transformations appropriately
+### **Step 3: Apply Rule Directly**
+- Use identified rule for new inputs
+- Apply transformations systematically
+- Maintain consistency
 
 ### **Step 4: Verify Solution**
 - Cross-check with given examples
-- Ensure alphanumeric consistency
-- Answer specific coding questions
+- Ensure logical consistency
+- Answer specific questions
 
 ---
 
 ## 🎯 Common Problem Types
 
-### **Type 1: Position-Based Alphanumeric**
-**Using positions for both letters and numbers**
-- **Letter Positions**: A=1, B=2, etc.
-- **Number Positions**: 1=A, 2=B, etc.
-- **Combined Positions**: Integrated transformations
+### **Type 1: Simple Shift Problems**
+**Fixed position shifts**
+- "Each letter shifted forward by 2"
+- "Each letter shifted backward by 1"
+- "Vowels shifted forward, consonants backward"
 
-### **Type 2: Mathematical Alphanumeric**
-**Mathematical operations on alphanumeric values**
-- **Letter Math**: Position + number operations
-- **Number Math**: Numerical transformations
-- **Combined Math**: Integrated calculations
+### **Type 2: Position Value Problems**
+**Direct position assignments**
+- "A=1, B=2, C=3..." for entire word
+- "Replace with position values"
+- "Add/subtract from position values"
 
-### **Type 3: Pattern-Based Alphanumeric**
-**Pattern recognition in mixed systems**
-- **Sequence Patterns**: Letter-number sequences
-- **Transformation Patterns**: Rule-based changes
-- **Combined Patterns**: Integrated alphanumeric patterns
+### **Type 3: Direct Substitution Problems**
+**Clear replacement rules**
+- "A=Z, B=Y, C=X..." (reverse alphabet)
+- "Replace vowels with numbers"
+- "Replace consonants with next letter"
 
 ---
 
 ## 🛠️ Solving Techniques
 
-### **1. Dual System Analysis**
+### **1. Rule Identification**
+- Compare input and output carefully
+- Find consistent transformation pattern
+- State rule in clear terms
 
-Letter-Number Mapping:  
-Letters: A=1, B=2, C=3, ..., Z=26  
-Numbers: 1=A, 2=B, 3=C, ..., 26=Z
+### **2. Pattern Verification**
+- Test rule against all given examples
+- Ensure no contradictions
+- Confirm rule applicability
 
-- Map both letter and number systems
-- Identify transformation relationships
-- Apply dual system rules
-
-### **2. Pattern Recognition**
-- Identify letter transformation patterns
-- Recognize number transformation patterns
-- Find combined alphanumeric patterns
-
-### **3. Systematic Application**
-- Apply letter rules to alphabetic parts
-- Apply number rules to numeric parts
-- Combine results appropriately
+### **3. Direct Application**
+- Apply identified rule to new inputs
+- Use same logic consistently
+- Handle edge cases properly
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Simple Alphanumeric**
-**Rule**: Letters replaced by their position numbers
+### **Example 1: Simple Letter Shift**
+**Rule**: Each letter replaced by next letter
 - **Input**: CAT
-- **Output**: 3-1-20
+- **Output**: DBU
+- **Explanation**: C→D, A→B, T→U
 
-**Explanation**: C=3, A=1, T=20
+### **Example 2: Position-Based Coding**
+**Rule**: Letters replaced by position numbers
+- **Input**: ABC
+- **Output**: 123
+- **Explanation**: A=1, B=2, C=3
 
-### **Example 2: Reverse Alphanumeric**
-**Rule**: Letters replaced by reverse position numbers
-- **Input**: BOX
-- **Output**: 24-15-24
-
-**Explanation**: B=24, O=15, X=24 (A=26, B=25, ..., X=3, but wait, standard is A=26, B=25, O=12, X=3)
-
-Wait, let me correct this. If A=26, B=25, O=12 (26-14), X=3 (26-23).
-
-### **Example 3: Mixed Pattern**
-**Rule**: Letters → position numbers, numbers → corresponding letters
-- **Input**: A1B2
-- **Output**: 1-A-2-B
-
-**Explanation**: A→1, 1→A, B→2, 2→B
+### **Example 3: Substitution Coding**
+**Rule**: A=1, B=2, C=3, D=4, E=5
+- **Input**: BED
+- **Output**: 254
+- **Explanation**: B=2, E=5, D=4
 
 ---
 
-## 🔍 Advanced Alphanumeric Concepts
+## 🔍 Direct Coding Principles
 
-### **Complex Transformations**
-Multi-step alphanumeric transformations requiring careful sequencing.
+### **Rule Clarity**
+- **Clear Rules**: Transformation rules are obvious
+- **Consistent Application**: Same rules throughout
+- **No Ambiguity**: Rules are straightforward
 
-### **Conditional Alphanumeric**
-Different rules based on letter/number properties or positions.
+### **Pattern Recognition**
+- **Direct Patterns**: Clear input-output relationships
+- **Consistent Rules**: Same logic for all examples
+- **Logical Flow**: Systematic transformation process
 
-### **Integrated Systems**
-Complex systems combining multiple alphanumeric transformation types.
+### **Verification Methods**
+- **Example Testing**: Rules work for all given examples
+- **Consistency Check**: No contradictory applications
+- **Logic Validation**: Rules make mathematical sense
 
 ---
 
-## 📊 Alphanumeric Coding Methods
+## 📊 Direct Coding Methods
 
-### **Basic Conversion Methods**
-- **Letter-to-Number**: A→1, B→2, etc.
-- **Number-to-Letter**: 1→A, 2→B, etc.
-- **Reverse Conversions**: A→26, 1→Z, etc.
+### **Alphabetical Methods**
+- **Forward Shift**: Consistent forward movement
+- **Backward Shift**: Consistent backward movement
+- **Fixed Position**: Specific position assignments
 
-### **Mathematical Methods**
-- **Position Operations**: Mathematical operations on positions
-- **Value Operations**: Operations on alphanumeric values
-- **Combined Operations**: Integrated mathematical transformations
+### **Numerical Methods**
+- **Position Values**: Direct position number assignments
+- **Mathematical Operations**: Simple arithmetic on positions
+- **Value Transformations**: Direct numerical conversions
 
-### **Pattern Methods**
-- **Sequence Patterns**: Repeating alphanumeric patterns
-- **Transformation Patterns**: Rule-based alphanumeric changes
-- **Integrated Patterns**: Complex pattern combinations
+### **Substitution Methods**
+- **Letter Replacement**: Direct letter-to-letter substitution
+- **Symbol Replacement**: Letter-to-symbol substitution
+- **Pattern Replacement**: Rule-based character replacement
 
 ---
 
 ## 🎯 Common Pitfalls
 
-### **Pitfall 1: System Confusion**
-❌ Mixing letter and number transformation rules
-✅ Keep systems separate and clear
+### **Pitfall 1: Incomplete Analysis**
+❌ Not examining all examples thoroughly
+✅ Analyze all given input-output pairs
 
-### **Pitfall 2: Conversion Errors**
-❌ Wrong letter-number conversions
-✅ Verify conversion tables accurately
+### **Pitfall 2: Wrong Rule Assumption**
+❌ Assuming wrong transformation rule
+✅ Test rules against all examples
 
-### **Pitfall 3: Pattern Misidentification**
-❌ Incorrect pattern recognition
-✅ Carefully analyze transformation patterns
+### **Pitfall 3: Inconsistent Application**
+❌ Applying different rules to different parts
+✅ Use same rule consistently
 
 ---
 
 ## 🛠️ Quick Solving Strategies
 
-### **1. System Separation**
-- Identify letter transformation rules
-- Identify number transformation rules
-- Understand how systems interact
+### **1. Careful Comparison**
+- Compare each input-output pair
+- Look for consistent patterns
+- Identify transformation rules
 
-### **2. Pattern Analysis**
-- Analyze letter transformation patterns
-- Analyze number transformation patterns
-- Find combined alphanumeric patterns
+### **2. Rule Formulation**
+- State the rule clearly and concisely
+- Test rule against all examples
+- Refine if inconsistencies found
 
 ### **3. Systematic Application**
-- Apply letter rules to letters
-- Apply number rules to numbers
-- Combine results according to patterns
+- Apply rule to new inputs
+- Handle special cases consistently
+- Verify against original examples
 
 ---
 
 ## 📈 Difficulty Levels
 
 ### **Easy Level**
-- Simple letter-number conversions
+- Simple forward/backward shifts
 - Basic position assignments
-- Single transformation rules
+- Clear substitution rules
 
 ### **Medium Level**
 - Mixed transformation types
-- Mathematical operations
-- Pattern-based transformations
+- Position-based calculations
+- Pattern combination rules
 
 ### **Hard Level**
-- Complex integrated systems
+- Complex rule combinations
+- Advanced mathematical operations
 - Multi-step transformations
-- Advanced pattern combinations
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Know Conversion Tables**: Memorize letter-number equivalences
-2. **Identify Systems**: Distinguish letter and number transformation rules
-3. **Find Patterns**: Look for consistent alphanumeric patterns
-4. **Apply Systematically**: Use same rules for both systems
-5. **Verify Thoroughly**: Check all transformations against examples
+1. **Examine All Examples**: Always check all given input-output pairs
+2. **Find the Pattern**: Identify consistent transformation rules
+3. **State Rule Clearly**: Write down the rule in clear terms
+4. **Test Thoroughly**: Verify rule works for all examples
+5. **Apply Consistently**: Use same rule for encoding and decoding
 
 ---
 
-## 🔠 Practice Questions
+## 🎯 Practice Questions
 
 ### **Question 1**
-If A=1, B=2, C=3, ..., Z=26, what is the alphanumeric code for "CAT"?
+If in a code, A=B, B=C, C=D, ..., Z=A, what is the code for "DOG"?
 
 ### **Question 2**
-If letters are replaced by their position numbers and numbers by corresponding letters, what is the code for "A1B2"?
+If A=1, B=2, C=3, D=4, E=5, what is the code for "BED"?
 
 ### **Question 3**
-If A=26, B=25, C=24, ..., Z=1, what is the alphanumeric code for "BOX"?
+If each letter is replaced by the letter two positions ahead, what is the code for "BOX"?
 
 ### **Question 4**
-If letters are coded as their position numbers and then each number is increased by 1, what is the code for "DOG"?
+If vowels are replaced by numbers (A=1, E=2, I=3, O=4, U=5), what is the code for "HOUSE"?
 
-**Master alphanumeric coding for combined letter-number transformations! 🔠✨**`
+**Master direct coding for straightforward transformation rules! 🎯✨**`
 };

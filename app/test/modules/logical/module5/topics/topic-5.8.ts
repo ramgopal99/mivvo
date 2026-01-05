@@ -2,258 +2,249 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_8: SubLesson = {
   id: "5.8",
-  title: 'Symbol Coding',
+  title: 'Pattern-Based Coding',
   status: 'completed',
-  content: `# 🔣 Symbol Coding
+  content: `# 🔮 Pattern-Based Coding
 
-Symbol coding involves replacing letters or numbers with various symbols, special characters, or visual representations. These problems combine pattern recognition with symbol interpretation skills.
+Pattern-based coding involves identifying and applying complex patterns, sequences, and relationships in coding transformations. These problems require advanced pattern recognition and logical reasoning skills.
 
 ---
 
-## 🎯 Understanding Symbol Coding
+## 🎯 Understanding Pattern-Based Coding
 
-### **What is Symbol Coding?**
-Symbol coding involves replacing letters, numbers, or words with symbols, special characters, or visual representations according to specific rules. These problems test your ability to:
-- **Recognize symbol patterns**
-- **Apply symbol replacement rules**
-- **Interpret visual coding schemes**
-- **Solve symbol-based transformation problems**
+### **What is Pattern-Based Coding?**
+Pattern-based coding involves transformation rules based on complex patterns, sequences, and logical relationships. These problems test your ability to:
+- **Recognize complex patterns**
+- **Apply sequence-based rules**
+- **Understand relationship patterns**
+- **Solve advanced coding challenges**
 
 ### **Key Characteristics**
-- **Visual representations**: Symbols, shapes, special characters
-- **Pattern-based rules**: Systematic symbol assignments
-- **Interpretation skills**: Understanding symbol meanings
-- **Visual logic**: Pattern recognition in symbols
+- **Pattern complexity**: Non-obvious transformation patterns
+- **Sequence relationships**: Pattern-based transformations
+- **Logical relationships**: Rule-based coding logic
+- **Advanced recognition**: Complex pattern identification
 
 ---
 
-## 🧩 Types of Symbol Coding
+## 🧩 Types of Pattern-Based Coding
 
-### **1. Letter-to-Symbol Coding**
-**Letters replaced by symbols**
-- **Shape Symbols**: △, □, ○, etc.
-- **Special Characters**: @, #, $, %, &, *
-- **Visual Patterns**: ↑, ↓, ←, →, etc.
+### **1. Sequence Patterns**
+**Pattern-based sequences**
+- **Mathematical Sequences**: Position × 2, +1, etc.
+- **Letter Sequences**: Every nth letter, skip patterns
+- **Mixed Sequences**: Combined letter-number patterns
 
-### **2. Number-to-Symbol Coding**
-**Numbers replaced by symbols**
-- **Mathematical Symbols**: +, -, ×, ÷, =
-- **Geometric Shapes**: ■, ●, ▲, ▼
-- **Position Indicators**: ¹, ², ³, etc.
+### **2. Relationship Patterns**
+**Based on element relationships**
+- **Comparative Patterns**: Based on comparisons
+- **Dependency Patterns**: Element interdependencies
+- **Contextual Patterns**: Context-based transformations
 
-### **3. Word-to-Symbol Coding**
-**Words or phrases replaced by symbols**
-- **Compound Symbols**: Multiple symbols for words
-- **Pattern Sequences**: Symbol combinations
-- **Contextual Symbols**: Meaning-based representations
+### **3. Rule-Based Patterns**
+**Complex transformation rules**
+- **Conditional Rules**: Different rules for different conditions
+- **Position Rules**: Rules based on position in word/sentence
+- **Property Rules**: Rules based on element properties
 
 ---
 
 ## 📊 Problem-Solving Framework
 
-### **Step 1: Analyze Symbol Patterns**
-- Examine input-symbol pairs
-- Identify symbol assignment rules
-- Note pattern relationships
+### **Step 1: Deep Pattern Analysis**
+- Examine all input-output pairs carefully
+- Look for underlying patterns and relationships
+- Consider multiple pattern possibilities
 
-### **Step 2: Determine Symbol Rules**
-- Find symbol replacement logic
-- Test rules against all examples
-- Verify symbol consistency
+### **Step 2: Pattern Identification**
+- Identify the transformation pattern
+- Test pattern against all examples
+- Verify pattern consistency and logic
 
-### **Step 3: Apply Symbol Coding**
-- Use identified rules for new inputs
-- Apply symbol transformations
-- Handle complex symbol patterns
+### **Step 3: Rule Formulation**
+- State the pattern rule clearly
+- Apply rule to understand transformations
+- Refine rule based on analysis
 
-### **Step 4: Verify Symbol Solution**
-- Cross-check with given examples
-- Ensure symbol logic consistency
-- Answer specific symbol questions
+### **Step 4: Systematic Application**
+- Apply identified pattern to new inputs
+- Handle complex pattern variations
+- Verify solution against pattern logic
 
 ---
 
 ## 🎯 Common Problem Types
 
-### **Type 1: Direct Symbol Replacement**
-**Simple symbol substitutions**
-- "A=△, B=□, C=○, D=◇"
-- "1=+, 2=-, 3=×, 4=÷"
-- "Red=■, Blue=●, Green=▲"
+### **Type 1: Mathematical Patterns**
+**Number-based transformation patterns**
+- "Position × 2 + 1"
+- "Alternate addition and subtraction"
+- "Complex mathematical sequences"
 
-### **Type 2: Pattern Symbol Coding**
-**Rule-based symbol assignments**
-- "Vowels get shapes, consonants get lines"
-- "Position determines symbol type"
-- "Property-based symbol selection"
+### **Type 2: Sequence Patterns**
+**Letter or number sequence transformations**
+- "Every third letter"
+- "Reverse every other pair"
+- "Skip pattern applications"
 
-### **Type 3: Complex Symbol Systems**
-**Multi-symbol representations**
-- "Words represented by symbol combinations"
-- "Complex symbol relationship rules"
-- "Integrated symbol transformation systems"
+### **Type 3: Relationship Patterns**
+**Based on element relationships**
+- "Larger than previous"
+- "Related to position in sequence"
+- "Context-dependent transformations"
 
 ---
 
 ## 🛠️ Solving Techniques
 
-### **1. Symbol Mapping Creation**
+### **1. Pattern Decomposition**
+- Break complex patterns into components
+- Analyze each component separately
+- Identify connecting relationships
 
-Symbol Mapping Reference:  
-A → △    1 → +  
-B → □    2 → -  
-C → ○    3 → ×
+### **2. Hypothesis Testing**
+- Form multiple pattern hypotheses
+- Test each against examples
+- Eliminate incorrect patterns
 
-- Create symbol mapping reference
-- Identify pattern or rule
-- Apply systematically
-
-### **2. Pattern Analysis**
-- Analyze symbol assignment patterns
-- Identify rule types and categories
-- Test pattern consistency
-
-### **3. Systematic Application**
-- Apply symbol rules to new inputs
-- Handle special symbol cases
-- Verify against examples
+### **3. Logical Verification**
+- Verify pattern logic consistency
+- Check pattern applicability
+- Confirm comprehensive coverage
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Shape Symbol Coding**
-**Rule**: A=△, B=□, C=○, D=◇
+### **Example 1: Mathematical Pattern**
+**Pattern**: Position × 2 - 1
+- **Input**: ABC (A=1, B=2, C=3)
+- **Output**: 1, 3, 5
+- **Explanation**: 1×2-1=1, 2×2-1=3, 3×2-1=5
+
+### **Example 2: Sequence Pattern**
+**Pattern**: Every other letter reversed
+- **Input**: ABCD
+- **Output**: AZCD (A→Z, B stays B, C→X, D stays D)
+- **Explanation**: 1st and 3rd letters reversed in alphabet
+
+### **Example 3: Relationship Pattern**
+**Pattern**: Each letter replaced by letter at position (current + next)
 - **Input**: ABC
-- **Output**: △□○
-
-**Explanation**: Direct shape symbol replacement
-
-### **Example 2: Mathematical Symbols**
-**Rule**: 1=+, 2=-, 3=×, 4=÷, 5==
-- **Input**: 123
-- **Output**: +-×
-
-**Explanation**: Number to mathematical symbol conversion
-
-### **Example 3: Complex Symbol System**
-**Rule**: Vowels get round shapes, consonants get angular shapes
-- **Input**: CAT
-- **Output**: ○△□
-
-**Explanation**: C(○), A(△), T(□) - property-based symbols
+- **Output**: BCE (A+1=B, B+2=D, but wait - need correct pattern)
+- **Better Example**: Position + 1 for vowels, ×2 for consonants
 
 ---
 
-## 🔍 Advanced Symbol Concepts
+## 🔍 Advanced Pattern Concepts
 
-### **Multi-Symbol Systems**
-Complex symbol combinations and relationships.
+### **Multi-Layer Patterns**
+Complex patterns requiring multiple levels of analysis.
 
-### **Contextual Symbols**
-Symbols that vary based on context or conditions.
+### **Conditional Patterns**
+Patterns that change based on conditions or context.
 
-### **Integrated Symbol Systems**
-Complex symbol transformation and interpretation systems.
+### **Integrated Patterns**
+Patterns combining multiple transformation types.
 
 ---
 
-## 📊 Symbol Coding Methods
+## 📊 Pattern-Based Coding Methods
 
-### **Direct Methods**
-- **One-to-One**: Simple symbol replacements
-- **Category-Based**: Symbols by categories
-- **Property-Based**: Symbols by characteristics
+### **Mathematical Patterns**
+- **Arithmetic Sequences**: +n, ×n, etc.
+- **Geometric Sequences**: Position-based calculations
+- **Complex Formulas**: Multi-variable calculations
 
-### **Pattern Methods**
-- **Position-Based**: Different symbols for different positions
-- **Rule-Based**: Pattern-determined symbol selection
-- **Sequence-Based**: Symbol arrangement patterns
+### **Sequence Patterns**
+- **Skip Patterns**: Every nth element
+- **Reverse Patterns**: Backward transformations
+- **Alternate Patterns**: Different rules for alternate positions
 
-### **Complex Methods**
-- **Multi-Symbol**: Multiple symbols for single elements
-- **Conditional**: Context-dependent symbol selection
-- **Integrated**: Combination of multiple symbol methods
+### **Relationship Patterns**
+- **Comparative Patterns**: Based on comparisons
+- **Dependency Patterns**: Inter-element dependencies
+- **Contextual Patterns**: Context-based transformations
 
 ---
 
 ## 🎯 Common Pitfalls
 
-### **Pitfall 1: Symbol Confusion**
-❌ Mixing up similar symbols
-✅ Create clear symbol reference
+### **Pitfall 1: Surface Patterns**
+❌ Stopping at obvious patterns
+✅ Looking for deeper relationships
 
-### **Pitfall 2: Pattern Misidentification**
-❌ Wrong symbol assignment pattern
-✅ Test patterns against all examples
+### **Pitfall 2: Wrong Pattern Assumption**
+❌ Assuming simple patterns for complex rules
+✅ Testing multiple pattern possibilities
 
-### **Pitfall 3: Incomplete Mapping**
-❌ Missing symbol relationships
-✅ Create complete symbol mapping
+### **Pitfall 3: Incomplete Analysis**
+❌ Not considering all pattern aspects
+✅ Comprehensive pattern verification
 
 ---
 
 ## 🛠️ Quick Solving Strategies
 
-### **1. Symbol Reference Creation**
-- Create clear symbol mapping table
-- Group symbols by type or category
-- Note any special symbol rules
+### **1. Multiple Hypotheses**
+- Generate several possible patterns
+- Test each systematically
+- Eliminate incorrect patterns
 
-### **2. Pattern Verification**
-- Test symbol rules against all examples
-- Check for consistency and exceptions
-- Refine rules based on findings
+### **2. Component Analysis**
+- Break pattern into smaller parts
+- Analyze each component
+- Find connecting logic
 
-### **3. Systematic Application**
-- Apply symbol rules consistently
-- Handle complex symbol combinations
-- Verify final symbol arrangements
+### **3. Pattern Verification**
+- Test pattern against all examples
+- Check logical consistency
+- Confirm pattern completeness
 
 ---
 
 ## 📈 Difficulty Levels
 
 ### **Easy Level**
-- Simple one-to-one symbol replacements
-- Basic symbol pattern recognition
-- Direct symbol assignments
+- Moderately complex patterns
+- Discoverable with analysis
+- Basic pattern recognition
 
 ### **Medium Level**
-- Mixed symbol types and patterns
-- Property-based symbol selection
-- Pattern combination rules
+- Complex mathematical relationships
+- Multi-step pattern applications
+- Advanced sequence recognition
 
 ### **Hard Level**
-- Complex multi-symbol systems
-- Advanced pattern recognition
-- Integrated symbol transformation systems
+- Highly complex interdependent patterns
+- Multiple pattern layer combinations
+- Advanced analytical requirements
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Create Symbol Map**: Visual symbol reference guide
-2. **Identify Categories**: Group symbols by type or function
-3. **Test Patterns**: Verify symbol rules against all examples
-4. **Note Exceptions**: Be aware of any special symbol cases
-5. **Apply Consistently**: Use same symbol rules throughout
+1. **Look Deep**: Don't stop at first apparent pattern
+2. **Test Multiple Options**: Consider different pattern possibilities
+3. **Break Down**: Analyze pattern components separately
+4. **Verify Logic**: Ensure pattern makes mathematical/logical sense
+5. **Check Completely**: Test against all given information
 
 ---
 
-## 🔣 Practice Questions
+## 🔮 Practice Questions
 
 ### **Question 1**
-If A=△, B=□, C=○, D=◇, what is the symbol code for "BAD"?
+Find the pattern for: ABC → 1,3,5 and DEF → 6,8,10
 
 ### **Question 2**
-If 1=+, 2=-, 3=×, 4=÷, 5==, what is the symbol code for "123"?
+Find the pattern for: CAT → XZG and DOG → WLT
 
 ### **Question 3**
-If vowels get round shapes (○) and consonants get square shapes (□), what is the symbol code for "APPLE"?
+Find the pattern for: PEN → 16,5,14 and BOX → 2,15,24
 
 ### **Question 4**
-If A=@, B=# , C=$, D=%, E=^, what is the symbol code for "FACE"?
+Find the pattern for: ABCD → AZCD and EFGH → EVGH
 
-**Master symbol coding for visual pattern recognition! 🔣✨**`
+**Master pattern-based coding for advanced logical transformations! 🔮✨**`
 };

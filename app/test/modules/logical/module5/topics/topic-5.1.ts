@@ -2,294 +2,257 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_1: SubLesson = {
   id: "5.1",
-  title: 'CODING–DECODING (Aptitude – Exam-Oriented Topics)',
+  title: 'Letter Coding',
   status: 'completed',
-  content: `# 🔐 CODING–DECODING (Aptitude – Exam-Oriented Topics)
+  content: `# 🔤 Letter Coding
 
-Welcome to the comprehensive Coding-Decoding module! This exam-oriented section covers all types of coding and decoding problems that appear frequently in competitive examinations. Master various coding techniques, decoding methods, and pattern recognition to excel in banking, SSC, railway, and other competitive exams.
-
----
-
-## 🎯 Understanding Coding-Decoding
-
-### **What are Coding-Decoding Problems?**
-Coding-decoding involves converting messages or words from one form to another using specific rules or patterns. These problems test your ability to:
-- **Identify coding patterns and rules**
-- **Apply systematic decoding techniques**
-- **Recognize various coding methods**
-- **Solve complex substitution problems**
-
-### **Why Important in Competitive Exams**
-- **High Frequency**: Appears in almost all major exams
-- **Time-Saving**: Quick solutions with pattern recognition
-- **Scoring Potential**: High accuracy possible
-- **Foundation Skill**: Builds analytical thinking
+Letter coding involves transforming letters using various alphabetical rules and patterns. These problems are fundamental to coding-decoding and appear frequently in competitive exams, requiring understanding of letter positions, sequences, and transformations.
 
 ---
 
-## 🧩 Types of Coding-Decoding
+## 🎯 Understanding Letter Coding
 
-### **Basic Coding Types**
-- **Letter Coding**: Alphabetical letter transformations
-- **Number Coding**: Numerical value assignments
-- **Alphanumeric Coding**: Mixed letter-number coding
-- **Symbol Coding**: Special character substitutions
+### **What is Letter Coding?**
+Letter coding involves transforming letters of the alphabet using specific rules, patterns, or mathematical operations. These problems test your ability to:
+- **Understand alphabetical sequences**
+- **Apply letter transformation rules**
+- **Recognize position-based changes**
+- **Solve systematic letter coding problems**
 
-### **Advanced Coding Techniques**
-- **Direct Coding**: Straightforward rule applications
-- **Indirect Coding**: Complex rule interpretations
-- **Substitution Coding**: Letter/symbol replacements
-- **Mixed Coding**: Multiple coding types combined
-
-### **Pattern-Based Coding**
-- **Mathematical Coding**: Number-based transformations
-- **Matrix Coding**: Grid-based arrangements
-- **Pattern Recognition**: Sequence and relationship patterns
+### **Key Characteristics**
+- **Alphabetical transformations**: A-Z manipulations
+- **Position-based rules**: Letter position changes
+- **Sequence operations**: Forward/backward shifts
+- **Pattern applications**: Consistent transformation rules
 
 ---
 
-## 📊 Competitive Exam Relevance
+## 🧩 Types of Letter Coding
 
-### **Major Exams Featuring Coding-Decoding**
-- **Banking Exams** (IBPS, SBI): 8-12 questions per exam
-- **SSC Exams** (CGL, CHSL): 5-8 questions regularly
-- **Railway Exams** (NTPC, Group D): 4-6 questions common
-- **Defence Exams** (NDA, CDS): Reasoning section staple
-- **Management Exams** (CAT, MAT): Logical reasoning component
+### **1. Position-Based Coding**
+**Letter position transformations**
+- **Forward Shift**: A→B, B→C, etc.
+- **Backward Shift**: Z→Y, Y→X, etc.
+- **Position Values**: A=1, B=2, etc.
 
-### **Question Distribution Pattern**
-| Coding Type | Banking | SSC | Railway | Defence |
-|-------------|---------|-----|---------|---------|
-| Letter Coding | 3-4 | 2-3 | 2-3 | 2-3 |
-| Number Coding | 2-3 | 2-3 | 1-2 | 1-2 |
-| Substitution | 2-3 | 2-3 | 2-3 | 2-3 |
-| Mixed Coding | 3-5 | 3-4 | 2-3 | 2-3 |
+### **2. Sequence-Based Coding**
+**Alphabetical order manipulations**
+- **Next Letter**: A→B, M→N
+- **Previous Letter**: B→A, N→M
+- **Alternate Letters**: A→C, B→D
 
----
-
-## 🎯 Core Coding-Decoding Skills
-
-### **1. Pattern Recognition**
-**Identifying underlying coding rules**
-- Letter position changes
-- Mathematical operations
-- Sequential transformations
-- Relationship mappings
-
-### **2. Rule Application**
-**Systematic encoding/decoding**
-- Direct rule application
-- Reverse engineering
-- Pattern extrapolation
-- Consistency verification
-
-### **3. Analytical Thinking**
-**Logical problem-solving approach**
-- Hypothesis testing
-- Elimination techniques
-- Cross-verification
-- Solution validation
-
-### **4. Speed and Accuracy**
-**Efficient problem-solving**
-- Quick pattern identification
-- Systematic decoding
-- Error minimization
-- Time management
+### **3. Pattern-Based Coding**
+**Rule-based transformations**
+- **Vowel-Consonant Rules**: Different rules for vowels/consonants
+- **Even-Odd Positions**: Different rules for even/odd positions
+- **Group-Based Rules**: Rules for specific letter groups
 
 ---
 
-## 🛠️ Problem-Solving Framework
+## 📊 Problem-Solving Framework
 
-### **Step 1: Analyze the Code**
-- Carefully examine given examples
-- Identify input-output relationships
-- Note patterns and transformations
+### **Step 1: Analyze Given Examples**
+- Examine input-output pairs carefully
+- Identify transformation patterns
+- Note consistent rules
 
-### **Step 2: Determine Coding Rules**
-- Find consistent transformation rules
-- Test rules against all examples
-- Verify rule applicability
+### **Step 2: Determine Coding Rule**
+- Find the transformation rule
+- Test rule against all examples
+- Verify consistency
 
-### **Step 3: Apply Systematic Decoding**
-- Use identified rules for decoding
-- Apply patterns consistently
+### **Step 3: Apply Rule Systematically**
+- Use identified rule for new words
+- Apply transformations consistently
+- Maintain alphabetical logic
+
+### **Step 4: Verify Solution**
 - Cross-check with given examples
-
-### **Step 4: Verify and Solve**
-- Check solution against all examples
 - Ensure logical consistency
-- Answer specific coding questions
+- Answer specific questions
 
 ---
 
-## 📈 Difficulty Levels in Coding Problems
+## 🎯 Common Problem Types
 
-### **Easy Level (30-40%)**
-- Simple letter shifts
-- Direct number assignments
-- Basic substitution patterns
-- Clear transformation rules
+### **Type 1: Simple Shift Coding**
+**Fixed position shifts**
+- "Each letter shifted forward by 1"
+- "Each letter shifted backward by 2"
+- "Vowels shifted forward, consonants backward"
 
-### **Medium Level (40-50%)**
+### **Type 2: Position-Based Coding**
+**Letter position determines transformation**
+- "Replace with letter at position n"
+- "Add/subtract position values"
+- "Multiply position values"
+
+### **Type 3: Pattern Recognition Coding**
+**Rule-based transformations**
+- "Replace with next vowel"
+- "Replace with previous consonant"
+- "Mirror image in alphabet"
+
+---
+
+## 🛠️ Solving Techniques
+
+### **1. Position Analysis Method**
+
+Letter Positions:
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26
+
+- Map letter positions
+- Identify transformation rules
+- Apply systematic changes
+
+### **2. Difference Analysis**
+- Compare input and output letters
+- Find position differences
+- Establish consistent patterns
+
+### **3. Pattern Recognition**
+- Identify rule types
+- Apply pattern logic
+- Verify rule consistency
+
+---
+
+## 🎯 Practice Examples
+
+### **Example 1: Simple Forward Shift**
+**Rule**: Each letter is replaced by the next letter in alphabet
+- **Input**: CAT
+- **Output**: DBU
+
+**Explanation**: C→D, A→B, T→U
+
+### **Example 2: Position-Based Coding**
+**Rule**: Replace each letter with letter at position (26 - current position + 1)
+- **Input**: ABC
+- **Output**: ZYX
+
+**Explanation**: A(1)→Z(26), B(2)→Y(25), C(3)→X(24)
+
+### **Example 3: Vowel-Consonant Rule**
+**Rule**: Vowels shifted forward by 1, consonants shifted backward by 1
+- **Input**: BRAIN
+- **Output**: AQHJM
+
+**Explanation**: B→A, R→Q, A→B, I→J, N→M
+
+---
+
+## 🔍 Advanced Letter Coding Concepts
+
+### **Multi-Rule Coding**
+Problems with different rules for different letter types.
+
+### **Mathematical Operations**
+Complex position-based mathematical transformations.
+
+### **Conditional Coding**
+Different rules based on letter properties or positions.
+
+---
+
+## 📊 Letter Coding Methods
+
+### **Basic Shift Operations**
+- **Fixed Shift**: +n or -n positions
+- **Variable Shift**: Different shifts for different letters
+- **Conditional Shift**: Shifts based on conditions
+
+### **Position-Based Operations**
+- **Absolute Position**: Use position numbers directly
+- **Relative Position**: Position relative to word position
+- **Mathematical Position**: Operations on position values
+
+### **Pattern-Based Operations**
+- **Vowel Operations**: Special rules for A, E, I, O, U
+- **Consonant Operations**: Rules for non-vowel letters
+- **Group Operations**: Rules for specific letter groups
+
+---
+
+## 🎯 Common Pitfalls
+
+### **Pitfall 1: Alphabet Wrap-around**
+❌ Forgetting Z→A or A→Z transitions
+✅ Handle alphabet boundaries correctly
+
+### **Pitfall 2: Rule Misapplication**
+❌ Applying wrong rules to letters
+✅ Verify rules against all examples
+
+### **Pitfall 3: Position Confusion**
+❌ Mixing letter and word positions
+✅ Distinguish between different position types
+
+---
+
+## 🛠️ Quick Solving Strategies
+
+### **1. Example Analysis**
+- Compare all input-output pairs
+- Identify consistent transformations
+- Note any exceptions or special cases
+
+### **2. Rule Formulation**
+- State the rule clearly
+- Test rule against all examples
+- Refine rule if inconsistencies found
+
+### **3. Systematic Application**
+- Apply rule to new inputs
+- Handle special cases consistently
+- Verify against original examples
+
+---
+
+## 📈 Difficulty Levels
+
+### **Easy Level**
+- Simple forward/backward shifts
+- Single rule applications
+- Basic alphabetical operations
+
+### **Medium Level**
+- Mixed vowel/consonant rules
+- Position-based transformations
 - Multiple rule combinations
-- Complex letter arrangements
-- Mixed coding techniques
-- Pattern recognition challenges
 
-### **Difficult Level (15-20%)**
-- Advanced mathematical operations
-- Complex matrix arrangements
-- Multi-step transformations
-- Integrated coding techniques
+### **Hard Level**
+- Complex mathematical operations
+- Conditional rule applications
+- Advanced pattern combinations
 
 ---
 
-## 🎯 Common Coding-Decoding Topics
+## 🎯 Pro Tips for Success
 
-### **Letter-Based Coding**
-Simple and complex letter transformations and substitutions.
-
-### **Number-Based Coding**
-Numerical value assignments and mathematical operations.
-
-### **Substitution Techniques**
-Various substitution methods and symbol replacements.
-
-### **Pattern Recognition**
-Identifying and applying complex coding patterns.
-
-### **Matrix Coding**
-Grid-based coding arrangements and transformations.
-
-### **Mixed Coding Problems**
-Combination of multiple coding techniques and methods.
+1. **Know the Alphabet**: Memorize letter positions 1-26
+2. **Handle Boundaries**: Remember Z→A and A→Z transitions
+3. **Identify Patterns**: Look for consistent transformation rules
+4. **Test Thoroughly**: Verify rules against all given examples
+5. **Apply Systematically**: Use same rules for encoding/decoding
 
 ---
 
-## 📊 Time Management Strategies
+## 🔤 Practice Questions
 
-### **Question Allocation Time**
-- **Simple Coding**: 1-2 minutes
-- **Medium Coding**: 2-3 minutes
-- **Complex Coding**: 3-5 minutes
+### **Question 1**
+If in a code, A is coded as B, B as C, ..., Z as A, then what is the code for "APPLE"?
 
-### **Strategic Approach**
-1. **Quick Analysis**: Identify coding type immediately
-2. **Pattern Recognition**: Find rules from examples
-3. **Systematic Application**: Apply rules consistently
-4. **Verification**: Check against all given examples
+### **Question 2**
+If each letter is replaced by the letter three positions ahead in the alphabet, what is the code for "HOUSE"?
 
----
+### **Question 3**
+If vowels are coded as next vowel and consonants as previous consonant, what is the code for "TRAIN"?
 
-## 🚀 Preparation Strategy
+### **Question 4**
+If A=1, B=2, ..., Z=26, and each letter is replaced by letter at position (27 - current position), what is the code for "CAT"?
 
-### **Phase 1: Foundation Building**
-- Learn basic coding types
-- Practice simple transformations
-- Master pattern recognition
-- Build confidence with easy problems
-
-### **Phase 2: Skill Development**
-- Master each coding technique
-- Practice complex combinations
-- Learn shortcut methods
-- Focus on speed improvement
-
-### **Phase 3: Integration Practice**
-- Combine multiple coding types
-- Practice advanced patterns
-- Time-bound solving sessions
-- Performance analysis and improvement
-
----
-
-## 📚 Recommended Resources
-
-### **Practice Platforms**
-- **Online Platforms**: Testbook, Adda247, Unacademy
-- **Mock Tests**: Previous year question papers
-- **Video Tutorials**: Coding-decoding technique videos
-- **Mobile Apps**: Reasoning practice applications
-
-### **Reference Materials**
-- **Verbal & Non-Verbal Reasoning** by R.S. Aggarwal
-- **Analytical Reasoning** by M.K. Pandey
-- **Banking Awareness** by Arihant Publications
-
----
-
-## 🎯 Success Factors
-
-### **1. Pattern Recognition**
-- Quick identification of coding rules
-- Consistent pattern application
-- Rule validation techniques
-
-### **2. Systematic Approach**
-- Step-by-step problem-solving
-- Consistent methodology application
-- Error-checking procedures
-
-### **3. Practice Consistency**
-- Regular coding-decoding practice
-- Variety of problem types
-- Progressive difficulty increase
-
-### **4. Logical Reasoning**
-- Analytical thinking development
-- Hypothesis testing skills
-- Solution verification techniques
-
----
-
-## 🚨 Common Mistakes to Avoid
-
-### **Mistake 1: Incomplete Analysis**
-❌ Solving without understanding all examples
-✅ Analyze all given examples thoroughly
-
-### **Mistake 2: Wrong Rule Application**
-❌ Inconsistent rule application
-✅ Apply rules uniformly across examples
-
-### **Mistake 3: Missing Patterns**
-❌ Not recognizing underlying patterns
-✅ Look for consistent transformation rules
-
-### **Mistake 4: Time Pressure Errors**
-❌ Rushing through complex coding problems
-✅ Manage time strategically
-
----
-
-## 🎓 Pro Tips for Success
-
-1. **Analyze Examples First**: Always examine all given examples before solving
-2. **Find the Pattern**: Identify consistent transformation rules
-3. **Apply Systematically**: Use the same rules for encoding and decoding
-4. **Cross-Verify**: Check your rules against all given examples
-5. **Practice Variety**: Master all coding types through regular practice
-6. **Learn Shortcuts**: Develop quick pattern recognition techniques
-7. **Stay Confident**: Believe in your analytical reasoning abilities
-
----
-
-## 🔍 What You'll Learn Next
-
-This module covers comprehensive coding-decoding topics:
-
-- **Letter Coding** - Alphabetical letter transformations
-- **Number Coding** - Numerical value assignments
-- **Alphanumeric Coding** - Mixed letter-number coding
-- **Direct Coding** - Straightforward rule applications
-- **Indirect Coding** - Complex rule interpretations
-- **Substitution Coding** - Letter/symbol replacements
-- **Symbol Coding** - Special character substitutions
-- **Mixed Coding** - Multiple coding types combined
-- **Pattern-Based Coding** - Sequence and relationship patterns
-- **Mathematical Coding** - Number-based transformations
-- **Matrix Coding (Basic)** - Grid-based arrangements
-
-**Master coding-decoding techniques and enhance your analytical reasoning for exam success! 🔐✨**`
+**Master letter coding techniques for systematic alphabetical transformations! 🔤✨**`
 };

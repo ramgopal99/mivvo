@@ -2,285 +2,219 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_4: SubLesson = {
   id: "3.4",
-  title: 'Double Row Seating',
+  title: 'Circular Seating Arrangement',
   status: 'completed',
-  content: `# 📊 Double Row Seating
+  content: `# ⭕ Circular Seating Arrangement
 
-Double row seating arrangements involve two parallel rows of people facing each other. These problems are more complex than single-row arrangements and require understanding both intra-row and inter-row relationships. Master the techniques for solving two-row facing arrangements.
-
----
-
-## 🎯 Understanding Double Row Arrangements
-
-### **What are Double Row Arrangements?**
-Double row arrangements consist of two parallel rows with people facing each other. These problems test your ability to:
-- **Understand facing relationships**
-- **Apply cross-row positioning logic**
-- **Interpret directional conditions**
-- **Manage complex position interactions**
-
-### **Key Characteristics**
-- **Two parallel rows**
-- **People facing each other**
-- **Cross-row relationships**
-- **Adjacent and opposite positioning**
+Circular seating arrangements involve people sitting in a circle, creating unique positional relationships without fixed endpoints. These problems are common in competitive exams and require understanding of circular logic, adjacent relationships, and directional positioning.
 
 ---
 
-## 🧩 Basic Double Row Concepts
+## 🎯 Understanding Circular Arrangements
 
-### **Arrangement Structure**
-Row 1: A B C D E  (facing Row 2)
-Row 2: F G H I J  (facing Row 1)
-
-### **Position Relationships**
-- **Directly Facing**: Same position in opposite row
-- **Adjacent in Row**: Next to each other in same row
-- **Cross-Adjacent**: Adjacent to facing person
-- **Diagonal Facing**: Adjacent positions facing each other
-
-### **Directional Logic**
-- **Left-Right**: Within each row
-- **Facing**: Across rows
-- **Adjacent**: Next positions in same or opposite row
+### **What are Circular Arrangements?**
+Circular arrangements involve people seated in a circle, where everyone has two neighbors and there are no "end" positions. These problems test your ability to:
+- **Understand circular positioning**
+- **Apply clockwise/anticlockwise logic**
+- **Handle adjacent relationships**
+- **Manage opposite positioning**
 
 ---
 
-## 📊 Problem-Solving Framework
+## ⭕ Types of Circular Arrangements
 
-### **Step 1: Visualize the Setup**
-- Draw two parallel lines
-- Mark positions clearly
-- Indicate facing directions
+### **1. Clockwise Arrangement**
+People arranged in clockwise direction.
 
-### **Step 2: Analyze Conditions**
-- Identify row assignments
-- Note facing relationships
-- Understand positional constraints
+### **2. Anti-Clockwise Arrangement**
+People arranged in anti-clockwise direction.
 
-### **Step 3: Apply Systematic Logic**
-- Place definite positions
-- Use facing clues
-- Apply elimination techniques
-
-### **Step 4: Verify Complete Arrangement**
-- Check all conditions
-- Ensure logical consistency
-- Answer specific questions
+### **3. Mixed Arrangements**
+Combination of both directions.
 
 ---
 
-## 🎯 Common Problem Types
+## 🛠️ Problem-Solving Framework
 
-### **Type 1: Facing-Based**
-**Direct facing relationships**
-- "A faces B"
-- "C is opposite to D"
-- "E faces the person who..."
+### **Step 1: Understand the Circle**
+- Note total number of people
+- Identify any fixed positions
+- Determine direction (clockwise/anti-clockwise)
+- Note special positions (adjacent, opposite)
 
-### **Type 2: Row-Based**
-**Within-row positioning**
-- "A is next to B in the same row"
-- "C is second from left in Row 1"
-- "D is between E and F"
+### **Step 2: Create Position Circle**
+- Draw circle with position slots
+- Mark any known positions
+- Note directional flow
 
-### **Type 3: Mixed Conditions**
-**Combination of both**
-- Facing and adjacent relationships
-- Cross-row positioning
-- Multiple constraint types
+### **Step 3: Apply Adjacent Logic**
+- Handle immediate neighbor relationships
+- Apply clockwise/anti-clockwise constraints
+- Consider "not adjacent" conditions
+
+### **Step 4: Apply Opposite Logic**
+- Handle directly opposite relationships
+- Calculate opposite positions
+- Consider diagonal relationships
 
 ---
 
-## 🛠️ Solving Techniques
+## 🎯 Key Concepts
 
-### **1. Facing Matrix Method**
-Row 1: A B C
-Row 2: D E F
-Facing: A↔D, B↔E, C↔F
+### **Positional Relationships**
+- **Adjacent**: Immediate neighbors (left and right)
+- **Opposite**: Person directly across (diameter)
+- **Second neighbor**: One person away
+- **Third neighbor**: Two persons away
 
-### **2. Position Grid Method**
-- Create 2xN grid
-- Mark facing relationships
-- Apply conditions systematically
+### **Circular Logic**
+- **Clockwise**: Right side neighbor
+- **Anti-clockwise**: Left side neighbor
+- **No ends**: Every person has two neighbors
+- **Wrap around**: Position connects to itself
 
-### **3. Elimination Technique**
-- Consider all possible positions
-- Eliminate based on conditions
-- Find valid arrangement
+---
+
+## 📊 Position Calculations
+
+### **Opposite Position Formula**
+- **Total people = N**
+- **Opposite of position P** = P + (N/2)
+- **If result > N**: Subtract N
+
+### **Adjacent Positions**
+- **Clockwise neighbor**: Position + 1
+- **Anti-clockwise neighbor**: Position - 1
+- **Wrap around**: Position N+1 = Position 1
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Basic Facing**
-**Conditions:**
-1. Six people: A, B, C, D, E, F
-2. Two rows of three each, facing each other
-3. A faces D
-4. B is next to A in Row 1
-5. E is next to D in Row 2
-6. C faces F
+### **Example 1: Basic Circular**
+**Question:** 8 people in circle. A is opposite C. B is immediate right of A. D is 2nd to left of C.
 
 **Solution:**
-Row 1: A B C
-Row 2: D E F
+1. Draw circle with 8 positions
+2. A opposite C: Position relationship
+3. B right of A: Clockwise positioning
+4. D 2nd left of C: Anti-clockwise counting
 
 ### **Example 2: Complex Relationships**
-**Conditions:**
-1. Eight people: P, Q, R, S, T, U, V, W
-2. Two rows of four each
-3. P faces U
-4. Q is next to P in Row 1
-5. R is to the left of Q
-6. S faces the person next to U
-7. T is opposite to R
+**Question:** 6 people A,B,C,D,E,F in circle. A is between B and C. D is opposite A. E is immediate left of F.
 
-**Solution:**
-Row 1: R Q P S
-Row 2: T ? U ?
+**Analysis:**
+- Apply between relationship
+- Use opposite positioning
+- Handle left/right constraints
 
 ---
 
-## 🔍 Advanced Double Row Concepts
+## 🔍 Common Patterns
 
-### **Cross-Row Relationships**
-- Adjacent to facing person
-- Diagonal relationships
-- Complex positional dependencies
+### **Pattern 1: Adjacent Constraints**
+Problems focusing on neighbor relationships.
 
-### **Conditional Arrangements**
-- Positions based on other factors
-- Multiple constraint interactions
-- Integrated reasoning requirements
+### **Pattern 2: Opposite Relationships**
+Problems with direct opposite positioning.
 
-### **Large Arrangements**
-- More than 4 people per row
-- Complex relationship networks
-- Multiple condition types
+### **Pattern 3: Directional Flow**
+Problems with clockwise/anti-clockwise specifications.
 
 ---
 
-## 📊 Position Analysis Methods
+## 🧩 Solving Techniques
 
-### **Facing Position Logic**
-- **Direct Facing**: Same column position
-- **Adjacent Facing**: Next column in opposite row
-- **Diagonal Facing**: Adjacent columns facing
+### **1. Circle Drawing Method**
+- Draw actual circle
+- Mark positions 1 to N
+- Show directional arrows
 
-### **Row Position Logic**
-- **Left-Right**: Standard linear positioning
-- **Adjacent**: Next person in same row
-- **Between**: Middle position in row
+### **2. Position Number Method**
+- Assign numbers 1 to N
+- Use modular arithmetic
+- Calculate relative positions
 
-### **Combined Logic**
-- **Same Row Adjacent + Facing**: Complex relationships
-- **Cross-Row Dependencies**: Interdependent positioning
-- **Multiple Condition Resolution**: Systematic elimination
-
----
-
-## 🎯 Common Pitfalls
-
-### **Pitfall 1: Facing Confusion**
-❌ Mixing up who faces whom
-✅ Always mark facing relationships clearly
-
-### **Pitfall 2: Row Assignment Errors**
-❌ Placing people in wrong rows
-✅ Verify row assignments carefully
-
-### **Pitfall 3: Adjacent Misinterpretation**
-❌ Confusing same-row vs cross-row adjacent
-✅ Distinguish between row relationships
+### **3. Clockwise Reference**
+- Fix one position
+- Place others relative to it
+- Use directional consistency
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## 📈 Advanced Circular Problems
 
-### **1. Create Facing Map**
-- Draw two parallel rows
-- Mark facing arrows
-- Label all positions
+### **Complex Constraints**
+Multiple overlapping conditions.
 
-### **2. Apply Definite Conditions First**
-- Place known positions
-- Establish facing relationships
-- Fill remaining positions
+### **Mixed Directions**
+Clockwise and anti-clockwise elements.
 
-### **3. Use Logical Elimination**
-- Consider all possibilities
-- Eliminate invalid options
-- Verify final arrangement
-
----
-
-## 📈 Difficulty Levels
-
-### **Easy Level**
-- 4-6 people total
-- Simple facing relationships
-- Basic positional constraints
-
-### **Medium Level**
-- 6-8 people total
-- Mixed condition types
-- Complex relationships
-
-### **Hard Level**
-- 8+ people total
-- Multiple interdependent conditions
-- Integrated reasoning required
+### **Variable Positions**
+Positions based on other variables.
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Draw Clear Diagrams**: Two parallel lines with facing indicators
-2. **Mark Facing Relationships**: Use arrows or direct lines
-3. **Start with Known Positions**: Place definite information first
-4. **Consider Both Rows**: Check conditions in both rows
-5. **Use Elimination**: Systematically remove wrong options
-6. **Verify Completely**: Check all conditions are satisfied
+1. **Draw Circle**: Always sketch the circular arrangement
+2. **Number Positions**: Label 1 to N clockwise
+3. **Know Formulas**: Opposite = P + N/2
+4. **Handle Wrap-around**: Position N+1 = Position 1
+5. **Check Consistency**: Verify all neighbor relationships
 
 ---
 
-## 🧩 Practice Questions
+## 🧮 Quick Formulas
+
+### **Position Relationships**
+- **Opposite**: P + (N ÷ 2)
+- **Clockwise neighbor**: P + 1 (mod N)
+- **Anti-clockwise neighbor**: P - 1 (mod N)
+- **Two away clockwise**: P + 2 (mod N)
+
+### **Distance Calculations**
+- **Clockwise distance**: Min(|A-B|, N-|A-B|)
+- **Direct distance**: Min(|A-B|, N-|A-B|)
+- **Opposite check**: |A-B| = N/2
+
+---
+
+## ⚡ Quick Solving Tricks
+
+### **Trick 1: Opposite Symmetry**
+- Opposite positions are fixed pairs
+- Use symmetry to solve relationships
+
+### **Trick 2: Adjacent Chains**
+- A next to B, B next to C → A and C relationship
+- Create neighbor relationship chains
+
+### **Trick 3: Position Limits**
+- Maximum people between two positions
+- Minimum distance constraints
+
+### **Trick 4: Modular Arithmetic**
+- Use clock arithmetic for positions
+- Handle wrap-around automatically
+
+### **Trick 5: Fixed Reference**
+- Fix one person's position
+- Place others relative to reference
+- Rotate entire arrangement if needed
+
+---
+
+## 🎯 Practice Questions
 
 ### **Question 1**
-**Conditions:**
-1. Six friends: A, B, C, D, E, F
-2. Two rows of three each, facing each other
-3. A faces D
-4. B is next to A in Row 1
-5. E is to the right of D in Row 2
-6. C faces F
-
-**Who faces B?**
+Eight people are sitting in a circle. A is third to left of C. B is second to right of C. D is not neighbor of A. Who is opposite to C?
 
 ### **Question 2**
-**Conditions:**
-1. Eight people: P, Q, R, S, T, U, V, W
-2. Two rows of four each
-3. P is second from left in Row 1
-4. Q faces P
-5. R is next to Q in Row 2
-6. S is opposite to the person left of P
-7. T is between R and U in Row 2
-
-**Who is in Row 1, extreme right?**
+Six friends in circle facing center. P is between Q and R. S is opposite P. T is immediate left of S. Who is opposite Q?
 
 ### **Question 3**
-**Conditions:**
-1. Ten students: A, B, C, D, E, F, G, H, I, J
-2. Two rows of five each, facing each other
-3. A faces F
-4. B is next to A in Row 1
-5. C is to the left of B
-6. D faces the person next to F
-7. E is opposite to C
+Ten people in circle. A is fourth to right of B. C is third to left of B. D is second to right of A. Who is opposite to B?
 
-**What is the position of G?**
-
-**Master double row seating arrangements for complex logical reasoning! 📊✨**`
+**Master circular seating arrangements to handle problems without fixed endpoints! ⭕✨**`
 };

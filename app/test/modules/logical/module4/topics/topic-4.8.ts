@@ -2,289 +2,291 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_8: SubLesson = {
   id: "4.8",
-  title: 'Assignment Puzzles',
+  title: 'Order & Ranking Puzzles',
   status: 'completed',
-  content: `# 🎯 Assignment Puzzles
+  content: `# 📊 Order & Ranking Puzzles
 
-Assignment puzzles involve allocating tasks, roles, or resources to people or entities based on various constraints and requirements. These puzzles require understanding of matching logic, constraint satisfaction, and systematic allocation techniques.
+Order and ranking puzzles involve determining the positions, rankings, or sequences of entities based on various criteria. These puzzles require understanding of comparative relationships, position logic, and systematic ranking techniques.
 
 ---
 
-## 🎯 Understanding Assignment Puzzles
+## 🎯 Understanding Order & Ranking Puzzles
 
-### **What are Assignment Puzzles?**
-Assignment puzzles involve systematically allocating tasks, roles, or resources to people or entities based on given constraints. They test your ability to:
-- **Apply matching logic**
-- **Understand allocation constraints**
-- **Use systematic assignment techniques**
-- **Solve complex resource distribution problems**
+### **What are Order & Ranking Puzzles?**
+Order and ranking puzzles involve determining the relative positions, rankings, or sequences of people, objects, or entities based on given criteria. They test your ability to:
+- **Apply ranking logic**
+- **Understand position relationships**
+- **Use comparative reasoning**
+- **Solve sequence determination problems**
 
 ### **Key Characteristics**
-- **Multiple assignees and assignments**
-- **Constraint-based allocation**
-- **Matching requirements**
-- **Optimization considerations**
+- **Position-based relationships**: 1st, 2nd, 3rd, etc.
+- **Comparative rankings**: Better/worse, higher/lower
+- **Sequence determination**: Order of occurrence
+- **Relative positioning**: Above/below, before/after
 
 ---
 
-## 🧩 Types of Assignment Problems
+## 🧩 Types of Order & Ranking Problems
 
-### **1. Task Assignment**
-**Allocating tasks to people**
-- Job role assignments
-- Responsibility allocation
-- Work distribution
+### **1. Position Ranking**
+**Determining exact positions in a sequence**
+- Race finishing positions
+- Exam rank determinations
+- Competition rankings
 
-### **2. Resource Assignment**
-**Allocating resources to users**
-- Equipment distribution
-- Facility allocation
-- Resource sharing
+### **2. Comparative Ranking**
+**Relative position relationships**
+- "A is taller than B"
+- "C performed better than D"
+- "E is senior to F"
 
-### **3. Role Assignment**
-**Assigning roles to participants**
-- Team role assignments
-- Committee positions
-- Organizational roles
+### **3. Sequence Ordering**
+**Determining chronological or logical order**
+- Event sequences
+- Process flows
+- Hierarchical arrangements
 
 ---
 
 ## 📊 Problem-Solving Framework
 
-### **Step 1: Understand Assignment Requirements**
-- Identify assignees and assignments
-- Note allocation constraints
-- Understand matching criteria
+### **Step 1: Identify Ranking Criteria**
+- Understand ranking basis (performance, age, height, etc.)
+- Note ranking direction (higher/lower, better/worse)
+- Map all ranking statements
 
-### **Step 2: Create Assignment Framework**
-- List all assignees and assignments
-- Create allocation matrix
-- Map known assignments
+### **Step 2: Create Ranking Framework**
+- List all entities to be ranked
+- Create position slots
+- Map known rankings
 
-### **Step 3: Apply Constraints Systematically**
-- Start with definite assignments
-- Apply matching constraints
+### **Step 3: Apply Ranking Logic**
+- Start with definite rankings
+- Apply comparative relationships
 - Use elimination techniques
 
-### **Step 4: Verify Complete Assignment**
-- Check all constraints satisfied
-- Ensure all assignments made
-- Answer specific questions
+### **Step 4: Verify Complete Ranking**
+- Check all relationships satisfied
+- Ensure logical consistency
+- Answer specific ranking questions
 
 ---
 
 ## 🎯 Common Problem Types
 
-### **Type 1: Job Assignment**
-**Assigning jobs to workers**
-- "Person A can only do task X"
-- "Task Y requires skill Z"
-- "Worker B cannot do task C"
+### **Type 1: Race/Event Rankings**
+**Competition or event position determination**
+- "A finished before B"
+- "C came 3rd"
+- "D was not last"
 
-### **Type 2: Room Assignment**
-**Assigning rooms to people**
-- "Person P prefers room R"
-- "Room S is occupied by person Q"
-- "Adjacent rooms for family members"
+### **Type 2: Performance Rankings**
+**Score or achievement-based rankings**
+- "P scored higher than Q"
+- "R got more marks than S"
+- "T performed better than U"
 
-### **Type 3: Committee Assignment**
-**Assigning roles to committee members**
-- "Chair must be senior member"
-- "Secretary cannot be same department as Chair"
-- "Treasurer must have finance background"
+### **Type 3: Attribute Rankings**
+**Physical or characteristic-based rankings**
+- "X is taller than Y"
+- "Z is heavier than W"
+- "V is older than U"
 
 ---
 
 ## 🛠️ Solving Techniques
 
-### **1. Assignment Matrix Method**
-Tasks:  T1  T2  T3  T4
-P1:    [ ] [ ] [ ] [ ]
-P2:    [ ] [ ] [ ] [ ]
-P3:    [ ] [ ] [ ] [ ]
-P4:    [ ] [ ] [ ] [ ]
-- Create assignee-assignment grid
-- Fill based on constraints
-- Track possibilities
+### **1. Ranking Ladder Method**
+1st: ________
+2nd: ________
+3rd: ________
+4th: ________
+5th: ________
+- Create position framework
+- Fill based on relationships
+- Use elimination for unknowns
 
-### **2. Elimination Grid**
-- Mark possible/impossible assignments
-- Use constraint logic to eliminate
-- Find valid assignment combinations
+### **2. Comparison Matrix**
+    A   B   C   D
+A   -   >   ?   <
+B   <   -   >   ?
+C   ?   <   -   >
+D   >   ?   <   -
+- Create comparison grid
+- Mark known relationships
+- Apply transitive logic
 
-### **3. Matching Algorithm**
-- Apply constraint matching
-- Use logical deduction
-- Build complete assignment
+### **3. Position Logic**
+- Use position-based reasoning
+- Apply ranking constraints
+- Determine exact positions
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Simple Task Assignment**
+### **Example 1: Simple Race Ranking**
 **Conditions:**
-1. Four workers: A, B, C, D
-2. Four tasks: Painting, Cleaning, Cooking, Driving
-3. A can only paint
-4. B cannot clean
-5. C must cook
-6. D can drive or clean
+1. Five runners: A, B, C, D, E
+2. A finished before B
+3. C finished before D
+4. B finished before C
+5. E was not last
 
-**Solution:** A(Paint), C(Cook), D(Drive), B(Clean)
+**Solution:** A > B > C > D > E (where > means finished before)
 
-### **Example 2: Office Assignment**
+### **Example 2: Exam Rankings**
 **Conditions:**
-1. Four employees: P, Q, R, S
-2. Four cabins: Red, Blue, Green, Yellow
-3. P gets Red cabin
-4. Q not next to P
-5. R gets Green cabin
-6. S between Q and R
+1. Six students: P, Q, R, S, T, U
+2. P got higher marks than Q
+3. R got higher marks than S
+4. T got higher marks than U
+5. Q got higher marks than R
+6. S got higher marks than T
 
-**Solution:** P(Red), R(Green), S(Yellow), Q(Blue)
+**Solution:** P > Q > R > S > T > U
 
-### **Example 3: Committee Roles**
+### **Example 3: Height Rankings**
 **Conditions:**
-1. Five members: X, Y, Z, W, V
-2. Five roles: Chair, Secretary, Treasurer, Member1, Member2
-3. X must be Chair
-4. Y cannot be Secretary
-5. Z must be Treasurer
-6. W and V cannot have same role
+1. Four friends: X, Y, Z, W
+2. X is taller than Y
+3. Z is shorter than W
+4. Y is taller than Z
+5. X is taller than W
 
-**Solution:** X(Chair), Z(Treasurer), Y and W get remaining roles
+**Solution:** X > Y > W > Z (from given relationships)
 
 ---
 
-## 🔍 Advanced Assignment Concepts
+## 🔍 Advanced Ranking Concepts
 
-### **Multi-Constraint Assignments**
-Complex problems with multiple interacting constraints.
+### **Multi-Criteria Rankings**
+Problems involving multiple ranking criteria simultaneously.
 
-### **Optimization Assignments**
-Finding optimal assignment based on criteria.
+### **Conditional Rankings**
+Rankings that depend on other factors or conditions.
 
-### **Conditional Assignments**
-Assignments that depend on other factors.
+### **Partial Rankings**
+Problems where only some positions are determined.
 
 ---
 
-## 📊 Assignment Logic Methods
+## 📊 Ranking Logic Methods
 
-### **Constraint-Based Logic**
-- **Capability constraints**: Who can do what
-- **Exclusion constraints**: Who cannot do what
-- **Preference constraints**: Who prefers what
+### **Position-Based Logic**
+- **Exact positions**: 1st, 2nd, 3rd, last
+- **Relative positions**: Immediately above/below
+- **Group positions**: Top 3, bottom 2
 
-### **Matching-Based Logic**
-- **Skill matching**: Required skills for tasks
-- **Compatibility matching**: Person-task compatibility
-- **Availability matching**: Schedule availability
+### **Comparative Logic**
+- **Direct comparisons**: A > B (A better than B)
+- **Transitive relationships**: A > B, B > C → A > C
+- **Chain relationships**: Complex ranking networks
 
-### **Optimization Logic**
-- **Efficiency optimization**: Best person for task
-- **Balance optimization**: Fair distribution
-- **Preference optimization**: Satisfying preferences
+### **Sequence Logic**
+- **Order determination**: Before/after relationships
+- **Process flows**: Step-by-step sequences
+- **Dependency chains**: Conditional ordering
 
 ---
 
 ## 🎯 Common Pitfalls
 
-### **Pitfall 1: Constraint Misapplication**
-❌ Wrong constraint interpretation
-✅ Careful constraint analysis
+### **Pitfall 1: Transitive Errors**
+❌ Incorrect application of transitive property
+✅ Careful chain verification
 
-### **Pitfall 2: Incomplete Assignment**
-❌ Not assigning all tasks/people
-✅ Ensure complete allocation
+### **Pitfall 2: Position Confusion**
+❌ Mixing ranking directions
+✅ Clear higher/lower understanding
 
-### **Pitfall 3: Logical Conflicts**
-❌ Creating impossible assignments
-✅ Check constraint consistency
+### **Pitfall 3: Incomplete Analysis**
+❌ Missing indirect relationships
+✅ Consider all ranking implications
 
 ---
 
 ## 🛠️ Quick Solving Strategies
 
-### **1. Assignment Matrix Creation**
-- Create clear assignee-assignment grid
-- Mark all constraints
-- Track possibilities
+### **1. Ranking Framework Creation**
+- Create position ladder or matrix
+- Mark all known rankings
+- Identify relationship patterns
 
 ### **2. Systematic Application**
-- Start with most restrictive constraints
-- Apply capability rules first
-- Fill remaining assignments
+- Start with definite rankings
+- Apply comparative logic
+- Use elimination for unknowns
 
 ### **3. Verification Process**
-- Check all constraints satisfied
-- Ensure no conflicts
-- Confirm complete assignment
+- Check each ranking relationship
+- Verify transitive chains
+- Confirm overall ranking consistency
 
 ---
 
 ## 📈 Difficulty Levels
 
 ### **Easy Level**
-- Few assignees/assignments, simple constraints
-- Direct capability assignments
-- Basic matching requirements
+- Few entities, simple rankings
+- Direct position assignments
+- Basic comparative relationships
 
 ### **Medium Level**
-- Multiple assignees/assignments, mixed constraints
-- Complex capability interactions
-- Preference-based assignments
+- Multiple entities, complex chains
+- Mixed ranking directions
+- Transitive relationship applications
 
 ### **Hard Level**
-- Many assignees/assignments, complex constraints
-- Multiple constraint interactions
-- Optimization requirements
+- Many entities, complex networks
+- Multiple criteria simultaneously
+- Advanced logical dependencies
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Create Assignment Matrix**: Visual allocation framework
-2. **List All Constraints**: Systematic constraint organization
-3. **Start with Definite**: Place known assignments first
-4. **Apply Capabilities**: Use can/cannot rules carefully
-5. **Check Completeness**: Ensure all assignments made
+1. **Create Ranking Framework**: Visual position mapping
+2. **Apply Transitive Property**: Use A > B, B > C → A > C
+3. **Start with Known**: Place definite rankings first
+4. **Use Elimination**: Remove impossible rankings
+5. **Verify Chains**: Check each comparative step
 
 ---
 
-## 🎯 Practice Questions
+## 📊 Practice Questions
 
 ### **Question 1**
 **Conditions:**
-1. Three workers: A, B, C
-2. Three tasks: X, Y, Z
-3. A can only do X
-4. B cannot do Y
-5. C can do Y or Z
+1. Five athletes: A, B, C, D, E
+2. A finished before B
+3. C finished before D
+4. B finished before C
+5. E was not last
 
-**Who does task Z?**
+**What was E's position?**
 
 ### **Question 2**
 **Conditions:**
-1. Four students: P, Q, R, S
-2. Four subjects: Math, Science, English, History
-3. P is good at Math
-4. Q cannot do Science
-5. R must do English
-6. S can do any subject
+1. Six students: P, Q, R, S, T, U
+2. P scored higher than Q
+3. R scored higher than S
+4. T scored higher than U
+5. Q scored higher than R
+6. S scored higher than T
 
-**What subject does S get?**
+**Who scored the lowest?**
 
 ### **Question 3**
 **Conditions:**
-1. Five employees: W, X, Y, Z, V
-2. Five departments: A, B, C, D, E
-3. W must go to department A
-4. X and Y cannot go to same department
-5. Z prefers department C
-6. V must go to department D
+1. Four candidates: X, Y, Z, W
+2. X is taller than Y
+3. Z is shorter than W
+4. Y is taller than Z
+5. X is taller than W
 
-**How many employees have fixed departments?**
+**Who is the shortest?**
 
-**Master assignment puzzles for systematic allocation skills! 🎯✨**`
+**Master order and ranking puzzles for systematic position analysis! 📊✨**`
 };

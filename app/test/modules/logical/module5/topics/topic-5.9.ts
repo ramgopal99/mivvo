@@ -2,249 +2,249 @@ import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_9: SubLesson = {
   id: "5.9",
-  title: 'Pattern-Based Coding',
+  title: 'Mathematical Coding',
   status: 'completed',
-  content: `# 🔮 Pattern-Based Coding
+  content: `# 🧮 Mathematical Coding
 
-Pattern-based coding involves identifying and applying complex patterns, sequences, and relationships in coding transformations. These problems require advanced pattern recognition and logical reasoning skills.
+Mathematical coding involves using mathematical operations, formulas, and calculations for coding transformations. These problems combine arithmetic skills with coding logic and appear frequently in competitive exams.
 
 ---
 
-## 🎯 Understanding Pattern-Based Coding
+## 🎯 Understanding Mathematical Coding
 
-### **What is Pattern-Based Coding?**
-Pattern-based coding involves transformation rules based on complex patterns, sequences, and logical relationships. These problems test your ability to:
-- **Recognize complex patterns**
-- **Apply sequence-based rules**
-- **Understand relationship patterns**
-- **Solve advanced coding challenges**
+### **What is Mathematical Coding?**
+Mathematical coding involves transformation rules based on mathematical operations, formulas, and calculations. These problems test your ability to:
+- **Apply mathematical operations**
+- **Use arithmetic formulas**
+- **Calculate transformation values**
+- **Solve math-based coding problems**
 
 ### **Key Characteristics**
-- **Pattern complexity**: Non-obvious transformation patterns
-- **Sequence relationships**: Pattern-based transformations
-- **Logical relationships**: Rule-based coding logic
-- **Advanced recognition**: Complex pattern identification
+- **Arithmetic operations**: +, -, ×, ÷, powers, roots
+- **Formula applications**: Mathematical transformation rules
+- **Calculation accuracy**: Precise mathematical computations
+- **Logical mathematics**: Math-based logical transformations
 
 ---
 
-## 🧩 Types of Pattern-Based Coding
+## 🧩 Types of Mathematical Coding
 
-### **1. Sequence Patterns**
-**Pattern-based sequences**
-- **Mathematical Sequences**: Position × 2, +1, etc.
-- **Letter Sequences**: Every nth letter, skip patterns
-- **Mixed Sequences**: Combined letter-number patterns
+### **1. Basic Arithmetic Operations**
+**Simple mathematical transformations**
+- **Addition/Subtraction**: +n, -n to position values
+- **Multiplication/Division**: ×n, ÷n operations
+- **Combined Operations**: Multiple arithmetic steps
 
-### **2. Relationship Patterns**
-**Based on element relationships**
-- **Comparative Patterns**: Based on comparisons
-- **Dependency Patterns**: Element interdependencies
-- **Contextual Patterns**: Context-based transformations
+### **2. Advanced Mathematical Operations**
+**Complex mathematical transformations**
+- **Powers and Roots**: Position², √position
+- **Modulo Operations**: Position mod n
+- **Complex Formulas**: Multi-variable calculations
 
-### **3. Rule-Based Patterns**
-**Complex transformation rules**
-- **Conditional Rules**: Different rules for different conditions
-- **Position Rules**: Rules based on position in word/sentence
-- **Property Rules**: Rules based on element properties
+### **3. Position-Based Mathematics**
+**Mathematics involving positions**
+- **Word Position**: Position in word affects calculation
+- **Sentence Position**: Position in sentence
+- **Relative Position**: Position relative to other elements
 
 ---
 
 ## 📊 Problem-Solving Framework
 
-### **Step 1: Deep Pattern Analysis**
-- Examine all input-output pairs carefully
-- Look for underlying patterns and relationships
-- Consider multiple pattern possibilities
+### **Step 1: Analyze Mathematical Relationships**
+- Examine input-output number pairs
+- Identify mathematical operations involved
+- Note calculation patterns
 
-### **Step 2: Pattern Identification**
-- Identify the transformation pattern
-- Test pattern against all examples
-- Verify pattern consistency and logic
+### **Step 2: Determine Mathematical Rule**
+- Find the arithmetic or mathematical formula
+- Test formula against all examples
+- Verify calculation accuracy
 
-### **Step 3: Rule Formulation**
-- State the pattern rule clearly
-- Apply rule to understand transformations
-- Refine rule based on analysis
+### **Step 3: Apply Mathematical Calculations**
+- Use identified formula for new inputs
+- Perform accurate calculations
+- Handle complex mathematical operations
 
-### **Step 4: Systematic Application**
-- Apply identified pattern to new inputs
-- Handle complex pattern variations
-- Verify solution against pattern logic
+### **Step 4: Verify Mathematical Solution**
+- Cross-check calculations with examples
+- Ensure mathematical consistency
+- Answer specific calculation questions
 
 ---
 
 ## 🎯 Common Problem Types
 
-### **Type 1: Mathematical Patterns**
-**Number-based transformation patterns**
+### **Type 1: Simple Arithmetic Coding**
+**Basic mathematical operations**
+- "Add 1 to each letter's position"
+- "Multiply position by 2"
+- "Subtract 1 from vowel positions"
+
+### **Type 2: Complex Formula Coding**
+**Advanced mathematical formulas**
 - "Position × 2 + 1"
-- "Alternate addition and subtraction"
-- "Complex mathematical sequences"
+- "Position² - 1"
+- "Complex multi-step calculations"
 
-### **Type 2: Sequence Patterns**
-**Letter or number sequence transformations**
-- "Every third letter"
-- "Reverse every other pair"
-- "Skip pattern applications"
-
-### **Type 3: Relationship Patterns**
-**Based on element relationships**
-- "Larger than previous"
-- "Related to position in sequence"
-- "Context-dependent transformations"
+### **Type 3: Position-Integrated Mathematics**
+**Mathematics with position factors**
+- "Position in word × position in alphabet"
+- "Word position + letter position"
+- "Complex position-based formulas"
 
 ---
 
 ## 🛠️ Solving Techniques
 
-### **1. Pattern Decomposition**
-- Break complex patterns into components
-- Analyze each component separately
-- Identify connecting relationships
+### **1. Formula Identification**
+- Analyze input-output relationships
+- Identify mathematical operations
+- Test different formula possibilities
 
-### **2. Hypothesis Testing**
-- Form multiple pattern hypotheses
-- Test each against examples
-- Eliminate incorrect patterns
+### **2. Calculation Verification**
+- Perform sample calculations
+- Verify against given examples
+- Check calculation accuracy
 
-### **3. Logical Verification**
-- Verify pattern logic consistency
-- Check pattern applicability
-- Confirm comprehensive coverage
+### **3. Systematic Application**
+- Apply formula to new inputs
+- Handle complex calculations carefully
+- Verify mathematical results
 
 ---
 
 ## 🎯 Practice Examples
 
-### **Example 1: Mathematical Pattern**
-**Pattern**: Position × 2 - 1
+### **Example 1: Simple Addition**
+**Formula**: Position + 1
 - **Input**: ABC (A=1, B=2, C=3)
-- **Output**: 1, 3, 5
-- **Explanation**: 1×2-1=1, 2×2-1=3, 3×2-1=5
+- **Output**: 2, 3, 4
+- **Explanation**: 1+1=2, 2+1=3, 3+1=4
 
-### **Example 2: Sequence Pattern**
-**Pattern**: Every other letter reversed
-- **Input**: ABCD
-- **Output**: AZCD (A→Z, B stays B, C→X, D stays D)
-- **Explanation**: 1st and 3rd letters reversed in alphabet
+### **Example 2: Multiplication Formula**
+**Formula**: Position × 2
+- **Input**: ABC (A=1, B=2, C=3)
+- **Output**: 2, 4, 6
+- **Explanation**: 1×2=2, 2×2=4, 3×2=6
 
-### **Example 3: Relationship Pattern**
-**Pattern**: Each letter replaced by letter at position (current + next)
-- **Input**: ABC
-- **Output**: BCE (A+1=B, B+2=D, but wait - need correct pattern)
-- **Better Example**: Position + 1 for vowels, ×2 for consonants
-
----
-
-## 🔍 Advanced Pattern Concepts
-
-### **Multi-Layer Patterns**
-Complex patterns requiring multiple levels of analysis.
-
-### **Conditional Patterns**
-Patterns that change based on conditions or context.
-
-### **Integrated Patterns**
-Patterns combining multiple transformation types.
+### **Example 3: Complex Formula**
+**Formula**: Position × 2 + 1
+- **Input**: ABC (A=1, B=2, C=3)
+- **Output**: 3, 5, 7
+- **Explanation**: 1×2+1=3, 2×2+1=5, 3×2+1=7
 
 ---
 
-## 📊 Pattern-Based Coding Methods
+## 🔍 Advanced Mathematical Concepts
 
-### **Mathematical Patterns**
-- **Arithmetic Sequences**: +n, ×n, etc.
-- **Geometric Sequences**: Position-based calculations
-- **Complex Formulas**: Multi-variable calculations
+### **Complex Formula Applications**
+Multi-step mathematical transformations requiring careful calculation.
 
-### **Sequence Patterns**
-- **Skip Patterns**: Every nth element
-- **Reverse Patterns**: Backward transformations
-- **Alternate Patterns**: Different rules for alternate positions
+### **Variable Integration**
+Formulas involving multiple variables and position factors.
 
-### **Relationship Patterns**
-- **Comparative Patterns**: Based on comparisons
-- **Dependency Patterns**: Inter-element dependencies
-- **Contextual Patterns**: Context-based transformations
+### **Advanced Mathematical Operations**
+Complex mathematical operations including trigonometry, logarithms, etc.
+
+---
+
+## 📊 Mathematical Coding Methods
+
+### **Basic Operations**
+- **Arithmetic**: +, -, ×, ÷
+- **Order of Operations**: PEMDAS/BODMAS
+- **Simple Formulas**: Single operation applications
+
+### **Advanced Operations**
+- **Powers and Roots**: x², √x, x³
+- **Modulo Operations**: x mod n
+- **Complex Formulas**: Multi-step calculations
+
+### **Integrated Operations**
+- **Position Factors**: Word position × letter position
+- **Multiple Variables**: Complex multi-variable formulas
+- **Conditional Operations**: Different formulas for different conditions
 
 ---
 
 ## 🎯 Common Pitfalls
 
-### **Pitfall 1: Surface Patterns**
-❌ Stopping at obvious patterns
-✅ Looking for deeper relationships
+### **Pitfall 1: Wrong Operation Order**
+❌ Incorrect order of mathematical operations
+✅ Follow BODMAS/PEMDAS rules
 
-### **Pitfall 2: Wrong Pattern Assumption**
-❌ Assuming simple patterns for complex rules
-✅ Testing multiple pattern possibilities
+### **Pitfall 2: Calculation Errors**
+❌ Arithmetic mistakes in calculations
+✅ Double-check all mathematical steps
 
-### **Pitfall 3: Incomplete Analysis**
-❌ Not considering all pattern aspects
-✅ Comprehensive pattern verification
+### **Pitfall 3: Formula Misidentification**
+❌ Wrong mathematical formula assumption
+✅ Test formulas against all examples
 
 ---
 
 ## 🛠️ Quick Solving Strategies
 
-### **1. Multiple Hypotheses**
-- Generate several possible patterns
-- Test each systematically
-- Eliminate incorrect patterns
+### **1. Operation Analysis**
+- Identify mathematical operations used
+- Determine operation sequence
+- Test different formula possibilities
 
-### **2. Component Analysis**
-- Break pattern into smaller parts
-- Analyze each component
-- Find connecting logic
+### **2. Calculation Practice**
+- Perform sample calculations accurately
+- Verify against given examples
+- Check for calculation consistency
 
-### **3. Pattern Verification**
-- Test pattern against all examples
-- Check logical consistency
-- Confirm pattern completeness
+### **3. Formula Application**
+- Apply identified formula systematically
+- Handle complex calculations carefully
+- Verify final mathematical results
 
 ---
 
 ## 📈 Difficulty Levels
 
 ### **Easy Level**
-- Moderately complex patterns
-- Discoverable with analysis
-- Basic pattern recognition
+- Simple arithmetic operations
+- Basic addition/subtraction/multiplication
+- Single operation applications
 
 ### **Medium Level**
-- Complex mathematical relationships
-- Multi-step pattern applications
-- Advanced sequence recognition
+- Complex formulas with multiple operations
+- Position-integrated calculations
+- Multi-step mathematical processes
 
 ### **Hard Level**
-- Highly complex interdependent patterns
-- Multiple pattern layer combinations
-- Advanced analytical requirements
+- Advanced mathematical operations
+- Complex multi-variable formulas
+- Advanced calculation requirements
 
 ---
 
 ## 🎯 Pro Tips for Success
 
-1. **Look Deep**: Don't stop at first apparent pattern
-2. **Test Multiple Options**: Consider different pattern possibilities
-3. **Break Down**: Analyze pattern components separately
-4. **Verify Logic**: Ensure pattern makes mathematical/logical sense
-5. **Check Completely**: Test against all given information
+1. **Know Mathematical Order**: Remember BODMAS/PEMDAS rules
+2. **Calculate Accurately**: Double-check all arithmetic steps
+3. **Test Multiple Formulas**: Try different mathematical possibilities
+4. **Verify Against Examples**: Check calculations with given pairs
+5. **Handle Positions Carefully**: Account for position-based factors
 
 ---
 
-## 🔮 Practice Questions
+## 🧮 Practice Questions
 
 ### **Question 1**
-Find the pattern for: ABC → 1,3,5 and DEF → 6,8,10
+If the code is calculated as (letter position + 1), what is the code for "ABC"?
 
 ### **Question 2**
-Find the pattern for: CAT → XZG and DOG → WLT
+If the code is calculated as (letter position × 2), what is the code for "CAT"?
 
 ### **Question 3**
-Find the pattern for: PEN → 16,5,14 and BOX → 2,15,24
+If the code is calculated as (letter position × 2 + 1), what is the code for "DOG"?
 
 ### **Question 4**
-Find the pattern for: ABCD → AZCD and EFGH → EVGH
+If the code is calculated as (letter position in word × letter position in alphabet), what is the code for "BAT"?
 
-**Master pattern-based coding for advanced logical transformations! 🔮✨**`
+**Master mathematical coding for precise calculation-based transformations! 🧮✨**`
 };

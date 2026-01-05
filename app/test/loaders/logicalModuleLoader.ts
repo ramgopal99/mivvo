@@ -26,11 +26,6 @@ import { topic_2_2 } from '../modules/logical/module2/topics/topic-2.2';
 import { topic_2_3 } from '../modules/logical/module2/topics/topic-2.3';
 import { topic_2_4 } from '../modules/logical/module2/topics/topic-2.4';
 import { topic_2_5 } from '../modules/logical/module2/topics/topic-2.5';
-import { topic_2_6 } from '../modules/logical/module2/topics/topic-2.6';
-import { topic_2_7 } from '../modules/logical/module2/topics/topic-2.7';
-import { topic_2_8 } from '../modules/logical/module2/topics/topic-2.8';
-import { topic_2_9 } from '../modules/logical/module2/topics/topic-2.9';
-import { topic_2_10 } from '../modules/logical/module2/topics/topic-2.10';
 
 // Module 3 - Seating Arrangement
 import { topic_3_1 } from '../modules/logical/module3/topics/topic-3.1';
@@ -42,7 +37,6 @@ import { topic_3_6 } from '../modules/logical/module3/topics/topic-3.6';
 import { topic_3_7 } from '../modules/logical/module3/topics/topic-3.7';
 import { topic_3_8 } from '../modules/logical/module3/topics/topic-3.8';
 import { topic_3_9 } from '../modules/logical/module3/topics/topic-3.9';
-import { topic_3_10 } from '../modules/logical/module3/topics/topic-3.10';
 
 // Module 4 - Puzzles
 import { topic_4_1 } from '../modules/logical/module4/topics/topic-4.1';
@@ -55,7 +49,6 @@ import { topic_4_7 } from '../modules/logical/module4/topics/topic-4.7';
 import { topic_4_8 } from '../modules/logical/module4/topics/topic-4.8';
 import { topic_4_9 } from '../modules/logical/module4/topics/topic-4.9';
 import { topic_4_10 } from '../modules/logical/module4/topics/topic-4.10';
-import { topic_4_11 } from '../modules/logical/module4/topics/topic-4.11';
 
 // Module 5 - Coding-Decoding
 import { topic_5_1 } from '../modules/logical/module5/topics/topic-5.1';
@@ -68,7 +61,6 @@ import { topic_5_7 } from '../modules/logical/module5/topics/topic-5.7';
 import { topic_5_8 } from '../modules/logical/module5/topics/topic-5.8';
 import { topic_5_9 } from '../modules/logical/module5/topics/topic-5.9';
 import { topic_5_10 } from '../modules/logical/module5/topics/topic-5.10';
-import { topic_5_11 } from '../modules/logical/module5/topics/topic-5.11';
 
 // Module 6 - Series
 import { topic_6_1 } from '../modules/logical/module6/topics/topic-6.1';
@@ -104,7 +96,6 @@ import { topic_8_5 } from '../modules/logical/module8/topics/topic-8.5';
 import { topic_8_6 } from '../modules/logical/module8/topics/topic-8.6';
 import { topic_8_7 } from '../modules/logical/module8/topics/topic-8.7';
 import { topic_8_8 } from '../modules/logical/module8/topics/topic-8.8';
-import { topic_8_9 } from '../modules/logical/module8/topics/topic-8.9';
 
 // Module 9 - Analytical Reasoning
 import { topic_9_1 } from '../modules/logical/module9/topics/topic-9.1';
@@ -126,16 +117,16 @@ import { topic_9_10 } from '../modules/logical/module9/topics/topic-9.10';
 // No MCQs for introduction module
 
 // Module 2 - Blood Relations
-import { exercise_2_11 } from '../modules/logical/module2/mcq/exercise-2.11';
+import { exercise_2_6 } from '../modules/logical/module2/mcq/exercise-2.6';
 
 // Module 3 - Seating Arrangement
-import { exercise_3_11 } from '../modules/logical/module3/mcq/exercise-3.11';
+import { exercise_3_10 } from '../modules/logical/module3/mcq/exercise-3.10';
 
 // Module 4 - Puzzles
-import { exercise_4_12 } from '../modules/logical/module4/mcq/exercise-4.12';
+import { exercise_4_11 } from '../modules/logical/module4/mcq/exercise-4.11';
 
 // Module 5 - Coding-Decoding
-import { exercise_5_12 } from '../modules/logical/module5/mcq/exercise-5.12';
+import { exercise_5_11 } from '../modules/logical/module5/mcq/exercise-5.11';
 
 // Module 6 - Series
 import { exercise_6_12 } from '../modules/logical/module6/mcq/exercise-6.12';
@@ -144,7 +135,7 @@ import { exercise_6_12 } from '../modules/logical/module6/mcq/exercise-6.12';
 import { exercise_7_11 } from '../modules/logical/module7/mcq/exercise-7.11';
 
 // Module 8 - Logical Deductions
-import { exercise_8_10 } from '../modules/logical/module8/mcq/exercise-8.10';
+import { exercise_8_9 } from '../modules/logical/module8/mcq/exercise-8.9';
 
 // Module 9 - Analytical Reasoning
 import { exercise_9_11 } from '../modules/logical/module9/mcq/exercise-9.11';
@@ -169,26 +160,26 @@ const LOGICAL_MODULES = [
   },
   {
     info: module2Info,
-    topics: [topic_2_1, topic_2_2, topic_2_3, topic_2_4, topic_2_5, topic_2_6, topic_2_7, topic_2_8, topic_2_9, topic_2_10],
-    exercises: [exercise_2_11],
+    topics: [topic_2_1, topic_2_2, topic_2_3, topic_2_4, topic_2_5],
+    exercises: [exercise_2_6],
     formulas: [] // No formulas for logical reasoning modules
   },
   {
     info: module3Info,
-    topics: [topic_3_1, topic_3_2, topic_3_3, topic_3_4, topic_3_5, topic_3_6, topic_3_7, topic_3_8, topic_3_9, topic_3_10],
-    exercises: [exercise_3_11],
+    topics: [topic_3_1, topic_3_2, topic_3_3, topic_3_4, topic_3_5, topic_3_6, topic_3_7, topic_3_8, topic_3_9],
+    exercises: [exercise_3_10],
     formulas: [] // No formulas for logical reasoning modules
   },
   {
     info: module4Info,
-    topics: [topic_4_1, topic_4_2, topic_4_3, topic_4_4, topic_4_5, topic_4_6, topic_4_7, topic_4_8, topic_4_9, topic_4_10, topic_4_11],
-    exercises: [exercise_4_12],
+    topics: [topic_4_1, topic_4_2, topic_4_3, topic_4_4, topic_4_5, topic_4_6, topic_4_7, topic_4_8, topic_4_9, topic_4_10],
+    exercises: [exercise_4_11],
     formulas: [] // No formulas for logical reasoning modules
   },
   {
     info: module5Info,
-    topics: [topic_5_1, topic_5_2, topic_5_3, topic_5_4, topic_5_5, topic_5_6, topic_5_7, topic_5_8, topic_5_9, topic_5_10, topic_5_11],
-    exercises: [exercise_5_12],
+    topics: [topic_5_1, topic_5_2, topic_5_3, topic_5_4, topic_5_5, topic_5_6, topic_5_7, topic_5_8, topic_5_9, topic_5_10],
+    exercises: [exercise_5_11],
     formulas: [] // No formulas for logical reasoning modules
   },
   {
@@ -205,8 +196,8 @@ const LOGICAL_MODULES = [
   },
   {
     info: module8Info,
-    topics: [topic_8_1, topic_8_2, topic_8_3, topic_8_4, topic_8_5, topic_8_6, topic_8_7, topic_8_8, topic_8_9],
-    exercises: [exercise_8_10],
+    topics: [topic_8_1, topic_8_2, topic_8_3, topic_8_4, topic_8_5, topic_8_6, topic_8_7, topic_8_8],
+    exercises: [exercise_8_9],
     formulas: [] // No formulas for logical reasoning modules
   },
   {
