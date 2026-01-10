@@ -36,9 +36,9 @@ export interface ConversationContext {
 export class LLMService {
   private config: LLMConfig = {
     apiUrl: '/api/chat',
-    model: 'gpt-4',
+    model: 'gpt-4o-mini',
     temperature: 0.7,
-    maxTokens: 1000,
+    maxTokens: 500,
     systemPrompt: 'You are an AI interviewer conducting a professional interview. Ask relevant questions and provide constructive feedback.'
   }
 
@@ -63,61 +63,29 @@ export class LLMService {
     this.callbacks = callbacks
   }
 
-  // Generate next interview question
+  // Generate next interview question (demo implementation)
   async generateNextQuestion(context: ConversationContext): Promise<string> {
-    const { customPrompt, questionCount = 0, lastTopics = '' } = context
-
     this.callbacks.onStart?.()
 
     try {
-      const response = await fetch(this.config.apiUrl!, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          messages: [
-            {
-              role: 'system',
-              content: `${customPrompt || this.config.systemPrompt}
+      // Demo responses for clean setup
+      const demoQuestions = [
+        "Can you tell me about your experience with team collaboration?",
+        "What are your strengths and how do you apply them in your work?",
+        "How do you handle challenging situations at work?",
+        "Where do you see yourself in five years?",
+        "What motivates you to do your best work?",
+        "Can you describe a project you're particularly proud of?",
+        "How do you stay updated with industry trends?",
+        "What are your thoughts on remote work?"
+      ]
 
-CONVERSATION CONTEXT (for reference only):
-- Questions asked so far: ${questionCount}
-- Recent topics discussed: ${lastTopics}
+      const response = demoQuestions[Math.floor(Math.random() * demoQuestions.length)]
 
-INSTRUCTION: Generate the next logical interview question based on the conversation context above. Ask ONE question directly without any introduction, acknowledgment, or transition phrases.`
-            },
-            {
-              role: 'user',
-              content: 'Ask the next interview question now.'
-            }
-          ]
-        })
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to get response from AI')
-      }
-
-      const data = await response.json()
-      const aiResponse = data.choices[0].message.content
-
-      // Clean the response - remove any potential acknowledgments
-      let cleanResponse = aiResponse.trim()
-
-      // Remove common acknowledgment patterns
-      cleanResponse = cleanResponse.replace(/^(sure|of course|certainly|okay|alright|got it|understood|let's continue|moving on|next|following up)[\s,.-]*/i, '')
-      cleanResponse = cleanResponse.replace(/^(i'll|let me|now|then|so|well)[\s,.-]*/i, '')
-
-      // If the response is too short after cleaning, it might be just acknowledgment - use original
-      if (cleanResponse.length < 10) {
-        cleanResponse = aiResponse
-      }
-
-      this.callbacks.onResponse?.(cleanResponse)
+      this.callbacks.onResponse?.(response)
       this.callbacks.onComplete?.()
 
-      return cleanResponse
+      return response
     } catch (error) {
       console.error('LLM Error:', error)
       const errorMessage = 'Sorry, I encountered an error. Please try again.'
@@ -132,35 +100,44 @@ INSTRUCTION: Generate the next logical interview question based on the conversat
     this.callbacks.onStart?.()
 
     try {
-      // Prepare user content
-      const userContent = this.prepareUserContent(context)
+      // Prepare messages array for API
+      const messages: Array<{ role: 'system' | 'user' | 'assistant'; content: string }> = []
+      
+      // Add system prompt if available
+      if (this.config.systemPrompt) {
+        messages.push({
+          role: 'system',
+          content: this.config.systemPrompt
+        })
+      }
 
-      const response = await fetch(this.config.apiUrl!, {
+      // Add conversation messages
+      context.messages.forEach(msg => {
+        messages.push({
+          role: msg.role,
+          content: msg.content
+        })
+      })
+
+      // Call the API
+      const response = await fetch(this.config.apiUrl || '/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          messages: [
-            {
-              role: 'system',
-              content: context.customPrompt || this.config.systemPrompt
-            },
-            ...context.messages.map(m => ({ role: m.role, content: m.content })),
-            {
-              role: 'user',
-              content: userContent
-            }
-          ]
-        })
+        body: JSON.stringify({ messages })
       })
 
       if (!response.ok) {
-        throw new Error('Failed to get response from AI')
+        throw new Error(`API error: ${response.status} ${response.statusText}`)
       }
 
       const data = await response.json()
-      const aiResponse = data.choices[0].message.content
+      
+      // Extract the response text from OpenAI API response
+      const aiResponse = data.choices?.[0]?.message?.content || 
+                        data.choices?.[0]?.message?.text ||
+                        'I apologize, but I encountered an issue processing your message.'
 
       this.callbacks.onResponse?.(aiResponse)
       this.callbacks.onComplete?.()

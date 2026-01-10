@@ -145,9 +145,16 @@ export function VoiceSettings({
                 <Label htmlFor="voice-select" className="text-xs font-medium text-foreground">
                   All Voices ({allVoices.length})
                 </Label>
-                <Select value={selectedVoice} onValueChange={onVoiceChange}>
+                <Select 
+                  value={selectedVoice || undefined} 
+                  onValueChange={(value) => {
+                    if (value && value !== selectedVoice) {
+                      onVoiceChange(value)
+                    }
+                  }}
+                >
                   <SelectTrigger className="h-8 text-xs bg-background border-input mt-1">
-                    <SelectValue placeholder="Select voice" />
+                    <SelectValue placeholder={selectedVoice ? getCurrentVoiceName() : "Select voice"} />
                   </SelectTrigger>
                   <SelectContent className="max-h-48">
                     {allVoices.map((voice, index) => {

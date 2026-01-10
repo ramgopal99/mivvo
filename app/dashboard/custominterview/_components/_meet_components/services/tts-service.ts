@@ -77,6 +77,11 @@ export class TTSService {
     }
   }
 
+  // Force reload voices (useful when voices are loaded asynchronously)
+  reloadVoices(): void {
+    this.loadVoices()
+  }
+
   // Update configuration
   updateConfig(config: Partial<TTSConfig>): void {
     this.config = { ...this.config, ...config }
@@ -89,21 +94,57 @@ export class TTSService {
 
   // Speak text
   speak(text: string): void {
-    if (!this.synthesis || !text.trim()) return
+    // Re-check synthesis availability
+    if (typeof window === 'undefined') {
+      console.warn('TTS: Window is undefined')
+      return
+    }
+
+    if (!this.isSupported) {
+      console.warn('TTS: Speech synthesis not supported in this browser')
+      return
+    }
+
+    if (!this.synthesis) {
+      // Try to re-initialize
+      this.initialize()
+      if (!this.synthesis) {
+        console.error('TTS: Speech synthesis not available after re-initialization')
+        return
+      }
+    }
+    
+    if (!text.trim()) {
+      console.warn('TTS: Empty text provided')
+      return
+    }
+
+    console.log('TTS: Starting to speak:', text.substring(0, 50) + (text.length > 50 ? '...' : ''))
 
     // Cancel any ongoing speech
     this.stop()
+
+    // Reload voices to ensure we have the latest list
+    this.loadVoices()
 
     const utterance = new SpeechSynthesisUtterance(text)
     utterance.rate = this.config.rate ?? 1.0
     utterance.pitch = this.config.pitch ?? 1.0
     utterance.volume = this.config.volume ?? 1.0
 
-    // Set voice if configured
+    // Set voice if configured - this is critical for using the selected voice
     if (this.config.voice) {
       const voice = this.availableVoices.find(v => v.voiceURI === this.config.voice)
       if (voice) {
         utterance.voice = voice
+        console.log('TTS Speaking with voice:', voice.name)
+      } else {
+        console.warn('TTS Voice not found for speaking:', this.config.voice)
+        // Try to use first available voice as fallback
+        if (this.availableVoices.length > 0) {
+          utterance.voice = this.availableVoices[0]
+          console.log('TTS Using fallback voice for speaking:', this.availableVoices[0].name)
+        }
       }
     }
 
@@ -125,6 +166,17 @@ export class TTSService {
     }
 
     utterance.onerror = (event) => {
+      // Filter out expected operational errors (not actual errors)
+      // "interrupted" and "canceled" occur when speech is stopped/cancelled, which is expected behavior
+      if (event.error === 'interrupted' || event.error === 'canceled') {
+        // These are expected when stop() is called, don't treat as errors
+        this.isSpeaking = false
+        this.currentUtterance = null
+        // Silently handle these expected events
+        return
+      }
+      
+      // Only handle actual errors
       this.isSpeaking = false
       this.currentUtterance = null
       const errorMessage = `Speech synthesis error: ${event.error}`
@@ -151,6 +203,10 @@ export class TTSService {
       this.currentUtterance = null
       // Call onEnd callback since speech was interrupted
       this.callbacks.onEnd?.()
+    } else if (this.synthesis && this.currentUtterance) {
+      // Also cancel if there's a current utterance even if not speaking
+      this.synthesis.cancel()
+      this.currentUtterance = null
     }
   }
 

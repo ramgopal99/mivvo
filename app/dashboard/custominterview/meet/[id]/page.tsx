@@ -1,28 +1,22 @@
 "use client"
 
-import { useEffect, useState } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'next/navigation'
 import { MeetTestRoom } from '@/app/dashboard/custominterview/_components/_meet_components/core'
-import { DEFAULT_CONFIGS } from '@/app/dashboard/custominterview/_components/_meet_components/config'
-import { InterviewData } from '@/app/dashboard/custominterview/_components/InterviewCard'
-import { fetchInterviewById } from '../../actions'
+import { defaultVoiceConfig, defaultUiConfig } from '@/app/dashboard/custominterview/_components/_meet_components/core/utils'
+import { getInterviewById } from '@/app/dashboard/custominterview/data'
 import { siteConfig } from '@/config/site'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Mic, Video } from 'lucide-react'
 
-// Extended interface for API response data
-interface ExtendedInterviewData extends InterviewData {
-  interviewType?: string
-}
-
-
 export default function CustomInterviewMeetPage() {
   const params = useParams()
-  const router = useRouter()
-  const [interview, setInterview] = useState<ExtendedInterviewData | null>(null)
+  const interviewId = params?.id as string
+
+  const [interviewData, setInterviewData] = useState<any>(null)
   const [loading, setLoading] = useState(true)
-  const [uiConfig, setUiConfig] = useState(DEFAULT_CONFIGS.uiConfig)
+  const [uiConfig, setUiConfig] = useState(defaultUiConfig)
 
   // Permission check states
   const [showPermissionDialog, setShowPermissionDialog] = useState(false)
@@ -30,69 +24,37 @@ export default function CustomInterviewMeetPage() {
   const [hasVideoPermission, setHasVideoPermission] = useState(false)
   const [hasAudioPermission, setHasAudioPermission] = useState(false)
   const [checkingPermissions, setCheckingPermissions] = useState(false)
+  
+  // STT and TTS availability check states
+  const [sttAvailable, setSttAvailable] = useState<boolean | null>(null)
+  const [ttsAvailable, setTtsAvailable] = useState<boolean | null>(null)
+  const [showCapabilityDialog, setShowCapabilityDialog] = useState(false)
 
-  // Get interview ID from params - handle potential undefined
-  const interviewId = Array.isArray(params.id) ? params.id[0] : params.id
-
-  console.log('Meet page params:', params)
-  console.log('Extracted interviewId:', interviewId)
-
+  // Fetch interview data from database
   useEffect(() => {
-    if (!interviewId || interviewId === 'null' || interviewId === 'undefined') {
-      console.error('Invalid interview ID:', interviewId)
-      router.push('/dashboard/custominterview')
-      return
-    }
+    const fetchInterview = async () => {
+      if (!interviewId) {
+        setLoading(false)
+        return
+      }
 
-    const loadInterview = async () => {
       try {
-        console.log('Loading interview with ID:', interviewId)
-
-        // Fetch interview data using the action
-        const interviewData = await fetchInterviewById(interviewId)
-
-        if (!interviewData) {
-          console.error('Interview not found for ID:', interviewId)
-          router.push('/dashboard/custominterview')
-          return
+        const data = await getInterviewById(interviewId)
+        if (data) {
+          setInterviewData(data)
         }
-
-        setInterview(interviewData)
-
-        // Greeting will be generated dynamically in MeetTestRoom based on interview data
-        // No need to pre-generate here as MeetTestRoom handles it
-
-        // Configure UI based on screenShare setting from database
-        setUiConfig(prev => ({
-          ...prev,
-          showShareScreen: interviewData.screenShareEnabled, // Only show share screen button if enabled for this interview
-          showCodeButtonOnlyOnScreenShare: true, // Code button only shows when actually screen sharing (not just enabled)
-          showCodingInterviewOnlyOnScreenShare: true // Coding interview only shows when actually screen sharing (not just enabled)
-        }))
-
       } catch (error) {
-        console.error('Error loading interview:', error)
-        router.push('/dashboard/custominterview')
+        console.error('Error fetching interview:', error)
       } finally {
         setLoading(false)
       }
     }
 
-    if (interviewId) {
-      loadInterview()
-    }
-  }, [interviewId, router])
-
-  // Check permissions after interview is loaded
-  useEffect(() => {
-    if (interview && !loading && !permissionChecked) {
-      checkPermissions()
-    }
-  }, [interview, loading, permissionChecked])
+    fetchInterview()
+  }, [interviewId])
 
   const handleEndCall = () => {
-    // Disable redirection for testing
-    // router.push('/dashboard/custominterview')
+    console.log('Call ended')
   }
 
   // Check video and microphone permissions
@@ -156,33 +118,25 @@ export default function CustomInterviewMeetPage() {
     }
   }
 
-  // Handle permission denial - redirect back
+  // Handle permission denial
   const handlePermissionDenied = () => {
-    router.push('/dashboard/custominterview')
+    setShowPermissionDialog(false)
   }
 
+  // Check permissions on component mount
+  useEffect(() => {
+    if (!permissionChecked) {
+      checkPermissions()
+    }
+  }, [permissionChecked])
+
+  // Show loading state
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen overflow-hidden">
+      <div className="flex items-center justify-center h-screen overflow-hidden bg-gray-50">
         <div className="text-center text-gray-900">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
           <p>Loading interview...</p>
-        </div>
-      </div>
-    )
-  }
-
-  if (!interview) {
-    return (
-      <div className="flex items-center justify-center h-screen overflow-hidden">
-        <div className="text-center text-gray-900">
-          <p className="mb-4">Interview not found</p>
-          <button
-            onClick={() => router.push('/dashboard/custominterview')}
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-          >
-            Back to Interviews
-          </button>
         </div>
       </div>
     )
@@ -202,7 +156,7 @@ export default function CustomInterviewMeetPage() {
             ) : (
               <>
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-                <p>Loading interview...</p>
+                <p>Loading...</p>
               </>
             )}
           </div>
@@ -217,17 +171,17 @@ export default function CustomInterviewMeetPage() {
                 Camera & Microphone Required
               </DialogTitle>
               <DialogDescription className="text-left">
-                To participate in this interview, you need to allow access to your camera and microphone.
+                To participate in this meeting, you need to allow access to your camera and microphone.
                 <br /><br />
                 {!hasVideoPermission && !hasAudioPermission ? (
                   <span>Both camera and microphone access are required.</span>
                 ) : !hasVideoPermission ? (
-                  <span>Camera access is required for video interviews.</span>
+                  <span>Camera access is required for video meetings.</span>
                 ) : !hasAudioPermission ? (
                   <span>Microphone access is required for audio communication.</span>
                 ) : null}
                 <br /><br />
-                Please click &quot;Enable&quot; to grant permissions and continue with the interview.
+                Please click &quot;Enable&quot; to grant permissions and continue.
               </DialogDescription>
             </DialogHeader>
             <div className="flex gap-3 justify-end">
@@ -236,7 +190,7 @@ export default function CustomInterviewMeetPage() {
                 onClick={handlePermissionDenied}
                 disabled={checkingPermissions}
               >
-                Cancel Interview
+                Cancel
               </Button>
               <Button
                 onClick={requestPermissions}
@@ -258,23 +212,85 @@ export default function CustomInterviewMeetPage() {
     )
   }
 
+  // Prepare assistant details from interview data
+  const assistantDetails = interviewData ? {
+    id: interviewData.id || 'meet-assistant',
+    name: interviewData.title || 'AI Assistant',
+    avatar: siteConfig.logo,
+    role: 'Interviewer',
+    industry: interviewData.company || 'General',
+    experienceLevel: 'Expert',
+    hasVoiceEnabled: true
+  } : undefined
+
+  // Show capability dialog if STT or TTS is not available
+  if (showCapabilityDialog && (sttAvailable === false || ttsAvailable === false)) {
+    return (
+      <Dialog open={showCapabilityDialog} onOpenChange={setShowCapabilityDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Mic className="h-5 w-5 text-orange-600" />
+              Browser Capability Warning
+            </DialogTitle>
+            <DialogDescription className="text-left space-y-2">
+              <p>Your browser may not fully support all features required for this interview:</p>
+              <ul className="list-disc list-inside space-y-1 text-sm">
+                {sttAvailable === false && (
+                  <li className="text-red-600">❌ Speech Recognition (STT) is not available</li>
+                )}
+                {ttsAvailable === false && (
+                  <li className="text-red-600">❌ Speech Synthesis (TTS) is not available</li>
+                )}
+                {sttAvailable === true && (
+                  <li className="text-green-600">✅ Speech Recognition (STT) is available</li>
+                )}
+                {ttsAvailable === true && (
+                  <li className="text-green-600">✅ Speech Synthesis (TTS) is available</li>
+                )}
+              </ul>
+              <p className="text-sm mt-2">
+                {!sttAvailable || !ttsAvailable ? (
+                  <span className="text-orange-600">
+                    Some features may not work. Please use a modern browser like Chrome, Edge, or Safari.
+                  </span>
+                ) : (
+                  <span className="text-green-600">All features are supported!</span>
+                )}
+              </p>
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex gap-3 justify-end">
+            <Button
+              onClick={() => setShowCapabilityDialog(false)}
+            >
+              Continue Anyway
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
   return (
     <MeetTestRoom
-      interviewTitle={interview.title}
-      assistantName={"Mivvo"}
+      interviewTitle={interviewData?.title}
+      assistantName={interviewData?.title || 'AI Assistant'}
       assistantAvatar={siteConfig.logo}
+      assistantDetails={assistantDetails}
       onEndCall={handleEndCall}
-      voiceConfig={DEFAULT_CONFIGS.voiceConfig}
+      voiceConfig={defaultVoiceConfig}
       uiConfig={uiConfig}
-      codingVoiceChatConfig={DEFAULT_CONFIGS.codingVoiceChatConfig}
-      codingVoiceChatMessages={DEFAULT_CONFIGS.codingVoiceChatMessages}
-      codingQuestionDisplay={DEFAULT_CONFIGS.codingQuestionDisplay}
       interviewData={{
-        ...interview,
-        customPrompt: interview?.prompts?.find(p => p.isActive)?.promptText || "",
-        jd: interview.jd,
-        interviewType: interview.interviewType
+        id: interviewData?.id,
+        title: interviewData?.title,
+        customPrompt: interviewData?.customPrompt,
+        jd: interviewData?.jd,
+        interviewType: interviewData?.interviewType,
+        foreignLanguageSubType: interviewData?.foreignLanguageSubType
       }}
+      sttAvailable={sttAvailable}
+      ttsAvailable={ttsAvailable}
     />
   )
 }

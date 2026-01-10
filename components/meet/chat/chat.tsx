@@ -34,6 +34,8 @@ interface ChatProps {
   voiceTranscript?: VoiceMessage[]
   isVoiceChatActive?: boolean
   onVoiceChatToggle?: () => void
+  showCloseButton?: boolean
+  mode?: 'sidebar' | 'sheet'
 }
 
 export function Chat({
@@ -43,7 +45,9 @@ export function Chat({
   assistant,
   voiceTranscript = [],
   isVoiceChatActive = false,
-  onVoiceChatToggle
+  onVoiceChatToggle,
+  showCloseButton = true,
+  mode = 'sheet'
 }: ChatProps) {
   const isMobile = useIsMobile()
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -135,8 +139,8 @@ export function Chat({
     }
   }, [combinedMessages, isOpen])
 
-  // If used in a custom sliding panel, don't use Sheet wrapper
-  if (isOpen && onOpenChange) {
+  // If used in a custom sliding panel or sidebar, don't use Sheet wrapper
+  if ((isOpen && onOpenChange) || mode === 'sidebar') {
     return (
       <div className="flex h-full flex-col">
         <div className="border-b p-4">
@@ -153,13 +157,15 @@ export function Chat({
                   {isVoiceChatActive ? <Mic className="h-4 w-4" /> : <MicOff className="h-4 w-4" />}
                 </Button>
               )}
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => onOpenChange(false)}
-              >
-                ✕
-              </Button>
+              {showCloseButton && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => onOpenChange(false)}
+                >
+                  ✕
+                </Button>
+              )}
             </div>
           </div>
         </div>

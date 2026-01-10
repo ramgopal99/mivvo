@@ -4,10 +4,6 @@ import { useState, useEffect, useCallback } from "react"
 import { useRouter, useParams } from "next/navigation"
 import { getAuthHeaders } from "@/lib/auth-utils"
 import PermissionCheck from "./permissions"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Maximize, Monitor } from "lucide-react"
-import { UI_CONFIG } from "../_components/_meet_components/config"
 
 // Layout for custom interview meet room pages
 export default function CustomInterviewLayout({
@@ -31,22 +27,6 @@ export default function CustomInterviewLayout({
     setPermissionsGranted(true)
   }
 
-  // Handle fullscreen choice
-  const handleEnterFullscreen = async () => {
-    try {
-      if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
-        await document.documentElement.requestFullscreen()
-      }
-    } catch (error) {
-      console.error('Error entering fullscreen:', error)
-    } finally {
-      setFullscreenChoiceMade(true)
-    }
-  }
-
-  const handleSkipFullscreen = () => {
-    setFullscreenChoiceMade(true)
-  }
 
   // Fetch user's time data
   const fetchUserTimeData = useCallback(async () => {
@@ -87,12 +67,10 @@ export default function CustomInterviewLayout({
     setCountdown(3)
   }, [])
 
-  // Handle automatic fullscreen mode
+  // Handle automatic fullscreen mode - using normal mode
   useEffect(() => {
-    if (permissionsGranted && UI_CONFIG.screenMode === 1 && !fullscreenChoiceMade) {
-      handleEnterFullscreen()
-    } else if (permissionsGranted && UI_CONFIG.screenMode === 0 && !fullscreenChoiceMade) {
-      // For normal mode (0), skip the fullscreen choice dialog
+    if (permissionsGranted && !fullscreenChoiceMade) {
+      // Normal mode - skip the fullscreen choice dialog
       setFullscreenChoiceMade(true)
     }
   }, [permissionsGranted, fullscreenChoiceMade])
@@ -201,61 +179,6 @@ export default function CustomInterviewLayout({
         interviewId={interviewId}
         onPermissionsGranted={handlePermissionsGranted}
       />
-    )
-  }
-
-  // Show fullscreen permission dialog if choice not made yet and screenMode is 2 (ask user)
-  if (UI_CONFIG.screenMode === 2 && !fullscreenChoiceMade) {
-    return (
-      <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center min-h-screen p-4">
-        <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
-              <Maximize className="h-8 w-8 text-blue-600" />
-            </div>
-            <CardTitle className="text-xl">Interview Experience</CardTitle>
-            <CardDescription>
-              For the best interview experience, we recommend using fullscreen mode
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="text-sm text-gray-600 space-y-2">
-              <div className="flex items-center gap-2">
-                <Monitor className="h-4 w-4" />
-                <span>Maximized screen space</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Maximize className="h-4 w-4" />
-                <span>Distraction-free environment</span>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-3">
-              <Button
-                onClick={handleEnterFullscreen}
-                className="w-full cursor-pointer"
-                size="lg"
-              >
-                <Maximize className="h-4 w-4 mr-2" />
-                Enter Fullscreen Mode
-              </Button>
-
-              <Button
-                onClick={handleSkipFullscreen}
-                variant="outline"
-                className="w-full cursor-pointer"
-                size="lg"
-              >
-                Continue in Normal View
-              </Button>
-            </div>
-
-            <p className="text-xs text-gray-500 text-center">
-              You can exit fullscreen anytime by pressing the Escape key
-            </p>
-          </CardContent>
-        </Card>
-      </div>
     )
   }
 

@@ -9,16 +9,19 @@ export interface VoiceConfig {
   speechRate: number
   speechPitch: number
   autoListenAfterAI: boolean
+  silenceTimeoutMs?: number // Time to wait after user stops speaking before sending to LLM (default: 2000ms)
+  defaultVoiceName?: string // Preferred default voice name (e.g., "WilliamMu1-tiIingual")
 }
 
 export interface UiConfig {
   showChatBox: boolean
   showVoiceSettings: boolean
-  showLiveTranscription: boolean
-  showLiveTranscriptionCoding: boolean
+  showLiveTranscription?: boolean
+  showLiveTranscriptionCoding?: boolean
+  showUserTranscription?: boolean
   showShareScreen: boolean
-  showCodeButtonOnlyOnScreenShare: boolean
-  showCodingInterviewOnlyOnScreenShare: boolean
+  showCodeButtonOnlyOnScreenShare?: boolean
+  showCodingInterviewOnlyOnScreenShare?: boolean
   showInterviewStartDialog: boolean
   redirectOnStop: boolean
   screenShareSuccessMessage: string
