@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Settings, ChevronDown, ChevronUp, Volume2, X } from 'lucide-react'
+import { SUPPORTED_LANGUAGES } from '../utils/defaultConfigs'
 
 interface VoiceSettingsProps {
   selectedVoice: string
@@ -25,62 +26,56 @@ export function VoiceSettings({
 }: VoiceSettingsProps) {
   const [showSettings, setShowSettings] = useState(false)
 
-  // Filter Indian and US voices
+  // Filter voices based on supported languages from config
   const allVoices = availableVoices.filter(voice =>
-    voice.lang.startsWith('hi') || voice.lang.startsWith('en') ||
-    voice.lang.startsWith('bn') || voice.lang.startsWith('ta') ||
-    voice.lang.startsWith('te') || voice.lang.startsWith('gu') ||
-    voice.lang.startsWith('kn') || voice.lang.startsWith('ml') ||
-    voice.lang.startsWith('mr') || voice.lang.startsWith('or') ||
-    voice.lang.startsWith('pa') || voice.lang.startsWith('as') ||
-    voice.lang.startsWith('ne')
+    SUPPORTED_LANGUAGES.some(lang => voice.lang.startsWith(lang))
   )
 
-                      // Create shorter, more user-friendly names
-                      const getDisplayName = (voiceName: string) => {
-                        // Handle Google voices with specific patterns
-                        if (voiceName === 'Google US English') return 'US English';
-                        if (voiceName === 'Google UK English Female') return 'UK Female';
-                        if (voiceName === 'Google UK English Male') return 'UK Male';
-                        if (voiceName.startsWith('Google') && voiceName.includes('US English')) {
-                          return voiceName.replace('Google US English ', '').replace(' (en-US)', '');
-                        }
-                        if (voiceName.startsWith('Google') && voiceName.includes('UK English')) {
-                          return voiceName.includes('Female') ? 'UK Female' : 'UK Male';
-                        }
+  // Create shorter, more user-friendly names
+  const getDisplayName = (voiceName: string) => {
+    // Handle Google voices with specific patterns
+    if (voiceName === 'Google US English') return 'US English';
+    if (voiceName === 'Google UK English Female') return 'UK Female';
+    if (voiceName === 'Google UK English Male') return 'UK Male';
+    if (voiceName.startsWith('Google') && voiceName.includes('US English')) {
+      return voiceName.replace('Google US English ', '').replace(' (en-US)', '');
+    }
+    if (voiceName.startsWith('Google') && voiceName.includes('UK English')) {
+      return voiceName.includes('Female') ? 'UK Female' : 'UK Male';
+    }
 
-                        // Handle Microsoft voices
-                        if (voiceName.includes('Microsoft')) {
-                          // Split by spaces and get the second word (character name after "Microsoft")
-                          const words = voiceName.split(' ');
-                          if (words.length >= 2) {
-                            const characterName = words[1]; // Second word is the character name
+    // Handle Microsoft voices
+    if (voiceName.includes('Microsoft')) {
+      // Split by spaces and get the second word (character name after "Microsoft")
+      const words = voiceName.split(' ');
+      if (words.length >= 2) {
+        const characterName = words[1]; // Second word is the character name
 
-                            // Extract character name from technical voice name
-                            if (characterName.includes('Ravi')) return 'Ravi';
-                            if (characterName.includes('Priya')) return 'Priya';
-                            if (characterName.includes('Amit')) return 'Amit';
-                            if (characterName.includes('Ananya')) return 'Ananya';
-                            if (characterName.includes('Arjun')) return 'Arjun';
-                            if (characterName.includes('Kavya')) return 'Kavya';
-                            if (characterName.includes('Vikram')) return 'Vikram';
-                            if (characterName.includes('Meera')) return 'Meera';
-                            if (characterName.includes('Rahul')) return 'Rahul';
-                            if (characterName.includes('Sneha')) return 'Sneha';
-                            if (characterName.includes('Madhur')) return 'Madhur';
+        // Extract character name from technical voice name
+        if (characterName.includes('Ravi')) return 'Ravi';
+        if (characterName.includes('Priya')) return 'Priya';
+        if (characterName.includes('Amit')) return 'Amit';
+        if (characterName.includes('Ananya')) return 'Ananya';
+        if (characterName.includes('Arjun')) return 'Arjun';
+        if (characterName.includes('Kavya')) return 'Kavya';
+        if (characterName.includes('Vikram')) return 'Vikram';
+        if (characterName.includes('Meera')) return 'Meera';
+        if (characterName.includes('Rahul')) return 'Rahul';
+        if (characterName.includes('Sneha')) return 'Sneha';
+        if (characterName.includes('Madhur')) return 'Madhur';
 
-                            return characterName; // Return the second word as-is
-                          }
-                        }
+        return characterName; // Return the second word as-is
+      }
+    }
 
-                        // Handle other voices - take first meaningful word
-                        const words = voiceName.split(' ');
-                        if (words.length >= 2) {
-                          return words[1]; // Take second word for most cases
-                        }
+    // Handle other voices - take first meaningful word
+    const words = voiceName.split(' ');
+    if (words.length >= 2) {
+      return words[1]; // Take second word for most cases
+    }
 
-                        return voiceName.split(' ')[0] || voiceName;
-                      };
+    return voiceName.split(' ')[0] || voiceName;
+  };
 
   // Get current voice name for display
   const getCurrentVoiceName = () => {
@@ -89,10 +84,6 @@ export function VoiceSettings({
     if (!currentVoice) return 'Voice not found'
     return getDisplayName(currentVoice.name)
   }
-
-
-
-
 
   return (
     <Card className="w-full max-w-md shadow-xl border-0 bg-background/95 backdrop-blur-sm">
@@ -138,7 +129,6 @@ export function VoiceSettings({
       {showSettings && (
         <CardContent className="pt-0">
           <div className="space-y-3">
-            {/* Column 1: Voice Selection */}
             {/* Voice Selection and Test Button in One Row */}
             <div className="flex gap-3 items-end">
               <div className="flex-1">
@@ -158,7 +148,6 @@ export function VoiceSettings({
                   </SelectTrigger>
                   <SelectContent className="max-h-48">
                     {allVoices.map((voice, index) => {
-
                       const displayName = getDisplayName(voice.name);
 
                       return (

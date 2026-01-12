@@ -80,18 +80,30 @@ class ReactSpeechRecognitionProvider implements STTProvider {
   }
   private callbacks: STTCallbacks = {}
   private isListeningState: boolean = false
-  private recognition: SpeechRecognition | null = null
+  private accumulatedFinalTranscript: string = ''
+  private SpeechRecognitionModule: typeof import('react-speech-recognition') | null = null
 
   constructor() {
     if (typeof window !== 'undefined') {
-      // react-speech-recognition uses the Web Speech API under the hood
       this.initialize()
     }
   }
 
-  private initialize(): void {
-    // react-speech-recognition will be imported dynamically
-    // This provider works with the useSpeechRecognition hook
+  private async initialize(): Promise<void> {
+    try {
+      // Dynamically import react-speech-recognition
+      this.SpeechRecognitionModule = await import('react-speech-recognition')
+      
+      // Set up listeners for transcript updates
+      // Note: react-speech-recognition works best with hooks, but we can use
+      // the static methods for programmatic control
+      if (this.SpeechRecognitionModule) {
+        // The library uses browser's SpeechRecognition API under the hood
+        // We'll use the static methods for control
+      }
+    } catch (error) {
+      console.error('Failed to load react-speech-recognition:', error)
+    }
   }
 
   start(config?: STTConfig): void {
@@ -103,15 +115,67 @@ class ReactSpeechRecognitionProvider implements STTProvider {
       this.config = { ...this.config, ...config }
     }
 
-    // This will be called from the hook that uses react-speech-recognition
-    // The actual implementation is in useUserTranscription hook
-    this.isListeningState = true
-    this.callbacks.onStart?.()
+    // Reset accumulated transcript when starting fresh
+    this.accumulatedFinalTranscript = ''
+
+    if (!this.SpeechRecognitionModule) {
+      // If module not loaded yet, try to initialize
+      this.initialize().then(() => {
+        if (this.SpeechRecognitionModule) {
+          this.startListening()
+        } else {
+          this.callbacks.onError?.('react-speech-recognition is not available')
+        }
+      })
+      return
+    }
+
+    this.startListening()
+  }
+
+  private startListening(): void {
+    if (!this.SpeechRecognitionModule) return
+
+    try {
+      const { default: SpeechRecognition } = this.SpeechRecognitionModule
+      
+      // Start listening with react-speech-recognition
+      SpeechRecognition.startListening({
+        continuous: this.config.continuous ?? true,
+        language: this.config.language || 'en-US',
+        interimResults: this.config.interimResults ?? true,
+      })
+
+      this.isListeningState = true
+      this.callbacks.onStart?.()
+
+      // Note: react-speech-recognition requires a hook to get transcript updates
+      // This provider works best when used with a hook wrapper
+      // For direct usage, consider using WebSpeechAPIProvider instead
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error)
+      this.callbacks.onError?.(`Failed to start recognition: ${errorMessage}`)
+      this.isListeningState = false
+    }
   }
 
   stop(): void {
-    if (this.isListeningState) {
+    if (!this.SpeechRecognitionModule) {
       this.isListeningState = false
+      this.callbacks.onEnd?.()
+      return
+    }
+
+    try {
+      const { default: SpeechRecognition } = this.SpeechRecognitionModule
+      SpeechRecognition.stopListening()
+      this.isListeningState = false
+      this.accumulatedFinalTranscript = ''
+      this.callbacks.onEnd?.()
+    } catch (error) {
+      // Ignore errors when stopping
+      this.isListeningState = false
+      this.accumulatedFinalTranscript = ''
       this.callbacks.onEnd?.()
     }
   }
@@ -126,21 +190,39 @@ class ReactSpeechRecognitionProvider implements STTProvider {
 
   isSupported(): boolean {
     if (typeof window === 'undefined') return false
+    // react-speech-recognition uses the same Web Speech API
     return 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window
   }
 
   updateConfig(config: Partial<STTConfig>): void {
     this.config = { ...this.config, ...config }
+    // If currently listening, restart with new config
+    if (this.isListeningState) {
+      this.stop()
+      setTimeout(() => this.start(), 100)
+    }
   }
 
   setCallbacks(callbacks: STTCallbacks): void {
     this.callbacks = { ...this.callbacks, ...callbacks }
   }
 
+  // Helper method to update transcript from hook
+  updateTranscript(transcript: string, isFinal?: boolean): void {
+    if (isFinal) {
+      this.accumulatedFinalTranscript = transcript
+      this.callbacks.onTranscript?.(transcript, true)
+    } else {
+      // Combine accumulated final + interim
+      const fullTranscript = this.accumulatedFinalTranscript + transcript
+      this.callbacks.onTranscript?.(fullTranscript, false)
+    }
+  }
+
   destroy(): void {
     this.stop()
     this.callbacks = {}
-    this.recognition = null
+    this.SpeechRecognitionModule = null
   }
 }
 

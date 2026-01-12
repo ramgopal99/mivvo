@@ -1,4 +1,4 @@
-import { VoiceChat } from '../../voice/voice-chat'
+import { VoiceChat } from './VoiceChat'
 import { VoiceConfig, UiConfig, VoiceChatMessages, InterviewData } from '../../types'
 
 interface VoiceChatPanelProps {
@@ -38,21 +38,10 @@ export function VoiceChatPanel({
     <div className="relative aspect-video overflow-hidden rounded-xl bg-muted">
       <VoiceChat
         key="regular-voice-chat"
-        onTranscriptUpdate={onTranscriptUpdate}
         onVoiceChatStateChange={onVoiceChatStateChange}
         onConversationModeChange={onConversationModeChange}
-        selectedVoice={selectedVoice}
-        speechRate={voiceConfig.speechRate}
-        speechPitch={voiceConfig.speechPitch}
-        availableVoices={availableVoices}
-        autoListenAfterAI={voiceConfig.autoListenAfterAI}
         isAISpeaking={isVoiceChatActive}
         isUserSpeaking={isUserSpeaking}
-        onWaitingForResponseChange={onWaitingForResponseChange}
-        showLiveTranscription={uiConfig.showLiveTranscription}
-        customPrompt={interviewData?.customPrompt}
-        voiceChatMessages={voiceChatMessages}
-        isAudioEnabled={isAudioEnabled}
       />
     </div>
   )

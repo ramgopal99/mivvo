@@ -16,7 +16,7 @@ interface UseTTSProps {
   setSelectedVoice: (voiceURI: string) => void
   isAudioEnabled: boolean
   isConversationMode: boolean
-  onTTSSpeak?: (text: string) => void
+  onTTSSpeak?: (isSpeaking: boolean) => void // Changed to boolean to track speaking state
 }
 
 export function useTTS({
@@ -100,8 +100,13 @@ export function useTTS({
               sttServiceRef.current.stop()
               console.log('STT stopped: AI is speaking')
             }
+            // Notify that TTS is speaking
+            onTTSSpeak?.(true)
           },
           onEnd: () => {
+            // Notify that TTS finished speaking
+            onTTSSpeak?.(false)
+            
             // TTS finished speaking - resume STT if conversation mode is still active
             if (sttServiceRef.current && wasListeningBeforeTTSRef.current) {
               // Wait a small delay before resuming to ensure TTS is completely finished
@@ -122,7 +127,7 @@ export function useTTS({
                 } else {
                   wasListeningBeforeTTSRef.current = false
                 }
-              }, 300) // Small delay to ensure TTS is completely finished
+              }, 500) // Increased delay to ensure TTS is completely finished
             }
           },
           onError: (error) => {
@@ -184,7 +189,6 @@ export function useTTS({
   const speak = (text: string) => {
     if (ttsServiceRef.current) {
       ttsServiceRef.current.speak(text)
-      onTTSSpeak?.(text)
     } else {
       console.warn('TTS service not initialized when trying to speak')
     }

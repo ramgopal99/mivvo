@@ -5,7 +5,7 @@ import { Chat } from '@/components/meet/chat'
 import { MeetTestHeader } from '../ui/meet-test-header'
 import { MeetTestControls } from '../ui/meet-test-controls'
 import { ScreenShareDisplay } from '../ui/screen-share-display'
-import { VoiceSettings } from '../voice/voice-settings'
+import { VoiceSettings } from './components'
 import {
   useMediaStream,
   useVoiceDetection,
@@ -154,9 +154,13 @@ export function MeetTestRoom({
               text: response.trim(),
               timestamp: new Date().toISOString()
             }
-            // Get the latest transcript state to ensure we include the user message
+            // Simple approach: Just add the AI message to the current transcript
+            // The user message should already be finalized in the transcript from sendToLLM
             const currentMessages = [...voiceTranscriptRef.current, aiMessage]
             handleTranscriptUpdateRef.current(currentMessages)
+
+            // Voice chat active state is managed by onTTSSpeak callback in useTTS
+            // No need to set it here as it's handled by TTS callbacks
 
             // Speak the AI response using TTS
             if (ttsServiceRef.current) {
@@ -203,28 +207,45 @@ export function MeetTestRoom({
     }
 
     try {
-      // Get current voiceTranscript state (includes the user message we just added)
-      const currentTranscript = voiceTranscriptRef.current
+      isProcessingLLMRef.current = true
       
-      // Convert voiceTranscript to LLM message format
-      const llmMessages: LLMMessage[] = currentTranscript.map(msg => ({
+      // Finalize the user message in transcript before sending
+      const currentTranscript = voiceTranscriptRef.current
+      const lastMessage = currentTranscript[currentTranscript.length - 1]
+      
+      // Ensure the user message is finalized in the transcript
+      let finalizedTranscript = currentTranscript
+      if (lastMessage && lastMessage.role === 'user') {
+        // Update the last user message to match exactly what we're sending
+        finalizedTranscript = [
+          ...currentTranscript.slice(0, -1),
+          {
+            role: 'user',
+            text: userText.trim(),
+            timestamp: lastMessage.timestamp // Keep original timestamp
+          }
+        ]
+        handleTranscriptUpdateRef.current(finalizedTranscript)
+      } else if (!lastMessage || lastMessage.text !== userText.trim()) {
+        // Add user message if it doesn't exist
+        finalizedTranscript = [
+          ...currentTranscript,
+          {
+            role: 'user',
+            text: userText.trim(),
+            timestamp: new Date().toISOString()
+          }
+        ]
+        handleTranscriptUpdateRef.current(finalizedTranscript)
+      }
+      
+      // Convert to LLM message format
+      const llmMessages: LLMMessage[] = finalizedTranscript.map(msg => ({
         id: `msg-${msg.timestamp}`,
         role: msg.role as 'user' | 'assistant',
         content: msg.text,
         timestamp: new Date(msg.timestamp)
       }))
-
-      // Note: The user message should already be in currentTranscript from onFinalTranscript
-      // But if not, add it
-      const lastMessage = currentTranscript[currentTranscript.length - 1]
-      if (!lastMessage || lastMessage.text !== userText.trim()) {
-        llmMessages.push({
-          id: `msg-${Date.now()}`,
-          role: 'user',
-          content: userText.trim(),
-          timestamp: new Date()
-        })
-      }
 
       // Send to LLM with conversation context
       await llmServiceRef.current.sendMessage({
@@ -233,38 +254,80 @@ export function MeetTestRoom({
       })
     } catch (error) {
       console.error('Error sending to LLM:', error)
+      isProcessingLLMRef.current = false
     }
   }, [interviewData?.customPrompt, interviewData?.jd])
 
-  const { transcript: userTranscript } = useUserTranscription({
+  const { transcript: userTranscript, resetTranscript } = useUserTranscription({
     isAudioEnabled,
-    isConversationMode,
+    isConversationMode, // Pass isConversationMode as-is, handle pause in hook
     language: voiceConfig.language,
+    shouldPause: isVoiceChatActive, // Pass separate flag to pause when AI is speaking
     onFinalTranscript: (text) => {
-      // Add user speech to chat messages
-      if (text.trim() && text.trim() !== lastSentTranscriptRef.current) {
-        lastSentTranscriptRef.current = text.trim()
-        accumulatedUserSpeechRef.current = text.trim()
+      // Don't process if AI is speaking or processing LLM
+      if (isVoiceChatActive || isProcessingLLMRef.current) {
+        return
+      }
+
+      // Accumulate user speech - append new text to existing accumulated speech
+      if (text.trim()) {
+        // Append new text to accumulated speech (add space if there's existing content)
+        const newText = text.trim()
+        if (accumulatedUserSpeechRef.current) {
+          accumulatedUserSpeechRef.current = accumulatedUserSpeechRef.current + ' ' + newText
+        } else {
+          accumulatedUserSpeechRef.current = newText
+        }
         
+        // Simple chat approach: Update the last message if it's a pending user message
+        // Otherwise create a new user message
         const userMessage = {
           role: 'user',
-          text: text.trim(),
+          text: accumulatedUserSpeechRef.current,
           timestamp: new Date().toISOString()
         }
-        // Get current messages and add the new user message
-        const currentMessages = [...voiceTranscript, userMessage]
+        
+        // Simple chat approach: Check if last message is a user message that we're still building
+        // Only update if we're building on the same message (last message matches our accumulated speech start)
+        const lastMessage = voiceTranscript[voiceTranscript.length - 1]
+        
+        // Check if we're still building the same message
+        // This happens when user continues speaking (accumulated speech grows)
+        // If accumulated was cleared (empty), we're starting fresh, so add new message
+        const isStillBuildingLastMessage = lastMessage && 
+                                          lastMessage.role === 'user' && 
+                                          accumulatedUserSpeechRef.current.length > 0 &&
+                                          (lastMessage.text.trim() === accumulatedUserSpeechRef.current.trim() ||
+                                           accumulatedUserSpeechRef.current.startsWith(lastMessage.text.trim() + ' '))
+        
+        // Update existing message if still building, otherwise add new one
+        const currentMessages = isStillBuildingLastMessage
+          ? [...voiceTranscript.slice(0, -1), userMessage]
+          : [...voiceTranscript, userMessage]
         handleTranscriptUpdate(currentMessages)
 
-        // Clear existing timeout and set new one
+        // Clear existing timeout and reset it - user is still speaking
         clearSilenceTimeout()
         
         // Set timeout to send to LLM after silence period
-        const silenceTimeout = voiceConfig.silenceTimeoutMs || 2000
+        // This will be reset if user continues speaking
+        const silenceTimeout = voiceConfig.silenceTimeoutMs || 5000
         silenceTimeoutRef.current = setTimeout(() => {
           const textToSend = accumulatedUserSpeechRef.current.trim()
-          if (textToSend && !isProcessingLLMRef.current && llmServiceRef.current) {
-            sendToLLM(textToSend)
+          if (textToSend && !isProcessingLLMRef.current && !isVoiceChatActive && llmServiceRef.current) {
+            // User has been silent for the full timeout period, send to LLM
+            const textToSendFinal = textToSend
+            // Clear accumulated speech BEFORE sending to prevent new speech from appending to old message
             accumulatedUserSpeechRef.current = ''
+            lastSentTranscriptRef.current = ''
+            
+            // Send to LLM
+            sendToLLM(textToSendFinal)
+            
+            // Reset the transcript after sending
+            if (resetTranscript) {
+              resetTranscript()
+            }
           }
         }, silenceTimeout)
       }
@@ -287,6 +350,11 @@ export function MeetTestRoom({
     setSelectedVoice,
     isAudioEnabled,
     isConversationMode,
+    onTTSSpeak: (isSpeaking) => {
+      // Update voice chat active state based on TTS speaking status
+      // This prevents user transcription while AI is speaking
+      handleVoiceChatStateChange(isSpeaking)
+    },
   })
   
   const ttsServiceRef = useRef(ttsService)

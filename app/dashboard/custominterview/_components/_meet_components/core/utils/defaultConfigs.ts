@@ -1,11 +1,14 @@
 import { VoiceConfig, UiConfig } from '../../types'
 
+// Supported languages for voice selection
+export const SUPPORTED_LANGUAGES = ['hi', 'en'] as const
+
 export const defaultVoiceConfig: VoiceConfig = {
   language: 'en-US',
   speechRate: 1.2,
   speechPitch: 1.0,
   autoListenAfterAI: false,
-  silenceTimeoutMs: 2000, // 2 seconds default, can be changed
+  silenceTimeoutMs: 5000, // 5 seconds default, can be changed
   defaultVoiceName: 'WilliamMu1-tiIingual' // Default preferred voice
 }
 

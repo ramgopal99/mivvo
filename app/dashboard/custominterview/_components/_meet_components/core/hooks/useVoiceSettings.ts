@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { VoiceConfig } from '../../types'
-
-const SUPPORTED_LANGUAGES = ['hi', 'en', 'bn', 'ta', 'te', 'gu', 'kn', 'ml', 'mr', 'or', 'pa', 'as', 'ne']
+import { SUPPORTED_LANGUAGES } from '../utils/defaultConfigs'
 
 export function useVoiceSettings(voiceConfig: VoiceConfig) {
   const [selectedVoice, setSelectedVoice] = useState<string>('')

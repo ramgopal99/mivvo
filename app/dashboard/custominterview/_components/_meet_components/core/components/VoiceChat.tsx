@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { Brain } from 'lucide-react'
-import { Orb } from '../ui/orb'
+import { Orb } from '../../ui/orb'
 
 interface VoiceChatProps {
   onVoiceChatStateChange?: (isActive: boolean) => void
@@ -30,7 +30,8 @@ export function VoiceChat({
         setIsConversationMode(true)
         isConversationModeRef.current = true
         onConversationModeChange?.(true)
-        onVoiceChatStateChange?.(true)
+        // Don't set isVoiceChatActive to true here - it should only be true when AI is speaking
+        // onVoiceChatStateChange?.(true) // Removed - only set when AI actually speaks
       }
     }
 
