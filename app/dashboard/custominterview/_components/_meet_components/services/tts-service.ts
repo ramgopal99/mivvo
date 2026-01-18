@@ -210,17 +210,25 @@ export class TTSService {
     }
   }
 
-  // Pause speaking
+  // Pause speaking (pauses at current position)
   pause(): void {
-    if (this.synthesis && this.isSpeaking && this.currentUtterance) {
-      this.synthesis.pause()
+    if (this.synthesis && this.currentUtterance) {
+      // Check if synthesis is actually speaking (not already paused)
+      if (this.synthesis.speaking && !this.synthesis.pending) {
+        this.synthesis.pause()
+        console.log('TTS: Paused at current position')
+      }
     }
   }
 
-  // Resume speaking
+  // Resume speaking (resumes from paused position)
   resume(): void {
     if (this.synthesis && this.currentUtterance) {
-      this.synthesis.resume()
+      // Check if synthesis is paused
+      if (this.synthesis.paused) {
+        this.synthesis.resume()
+        console.log('TTS: Resumed from paused position')
+      }
     }
   }
 

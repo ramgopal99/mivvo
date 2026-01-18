@@ -5,13 +5,10 @@
  * and create a completely customized interview prompt.
  */
 
-import { generateCompleteInterviewPrompt } from './prompt-utils';
+import { generateCompleteInterviewPrompt } from './prompt-utils'
 
 /**
  * Generate a system prompt for custom interview prompt generation
- * @param jdText - Job description text to analyze
- * @param cvText - Optional CV/resume text to understand candidate background
- * @returns System prompt for OpenAI to generate customized interview prompt
  */
 export function generateCustomInterviewPrompt(jdText: string, cvText?: string): string {
   const cvContext = cvText
