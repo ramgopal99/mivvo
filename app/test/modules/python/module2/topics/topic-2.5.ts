@@ -1,18 +1,18 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_5: SubLesson = {
   id: "2.5",
   title: 'String Validation: isalpha() & isdigit()',
   status: 'demo',
-  content: `# 🚀 Python String Validation
+  content: "`# ðŸš€ Python String Validation
 
 Master isalpha() and isdigit() methods!
 
 ---
 
-## 🎯 CORE METHODS
+## ðŸŽ¯ CORE METHODS
 
-\`\`\`python
+\`"\`\`python
 # isalpha() - Check if ALL characters are letters
 print("Hello".isalpha())    # True
 print("Hello123".isalpha()) # False
@@ -26,7 +26,7 @@ print("abc".isdigit())      # False
 
 ---
 
-## 📚 OTHER STRING METHODS
+## ðŸ“š OTHER STRING METHODS
 
 \`\`\`python
 text = "Hello"
@@ -43,7 +43,7 @@ print(text.isspace())  # False (not only spaces)
 
 ---
 
-## 🔧 PRACTICAL VALIDATION
+## ðŸ”§ PRACTICAL VALIDATION
 
 \`\`\`python
 # Name validation (letters only)
@@ -52,7 +52,7 @@ def validate_name():
         name = input("Enter name: ").strip()
         if name and name.isalpha():
             return name
-        print("❌ Name must contain only letters!")
+        print("âŒ Name must contain only letters!")
 
 # Age validation (digits only)
 def validate_age():
@@ -62,8 +62,8 @@ def validate_age():
             age = int(age_str)
             if 0 <= age <= 150:
                 return age
-            print("❌ Age must be 0-150!")
-        print("❌ Age must be a number!")
+            print("âŒ Age must be 0-150!")
+        print("âŒ Age must be a number!")
 
 # Test validation
 name = validate_name()
@@ -73,18 +73,19 @@ print(f"Hello {name}, age {age}!")
 
 ---
 
-## 🎯 QUICK REFERENCE
+## ðŸŽ¯ QUICK REFERENCE
 
 | Method | Purpose | Example |
 |--------|---------|---------|
-| isalpha() | Only letters | "Hello".isalpha() → True |
-| isdigit() | Only digits | "123".isdigit() → True |
-| isalnum() | Letters + numbers | "Hello123".isalnum() → True |
-| isupper() | All uppercase | "HELLO".isupper() → True |
-| islower() | All lowercase | "hello".islower() → True |
-| istitle() | Title case | "Hello World".istitle() → True |
-| isspace() | Only spaces | "   ".isspace() → True |
+| isalpha() | Only letters | "Hello".isalpha() â†’ True |
+| isdigit() | Only digits | "123".isdigit() â†’ True |
+| isalnum() | Letters + numbers | "Hello123".isalnum() â†’ True |
+| isupper() | All uppercase | "HELLO".isupper() â†’ True |
+| islower() | All lowercase | "hello".islower() â†’ True |
+| istitle() | Title case | "Hello World".istitle() â†’ True |
+| isspace() | Only spaces | "   ".isspace() â†’ True |
 
-String validation methods help ensure data integrity! 🎯`
+String validation methods help ensure data integrity! ðŸŽ¯`
 };
+
 

@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_4: SubLesson = {
   id: "7.4",
   title: 'Cause & Effect',
   status: 'completed',
-  content: `# ⚖️ Cause & Effect: Identifying Relationships
+  content: "`# âš–ï¸ Cause & Effect: Identifying Relationships
 
 Cause and Effect reasoning involves identifying relationships between actions/events (causes) and their outcomes/results (effects). This skill tests your ability to understand how one thing leads to another and distinguish between what causes an effect versus what merely correlates with it.
 
 ---
 
-## 📋 WHAT ARE CAUSE & EFFECT RELATIONSHIPS?
+## ðŸ“‹ WHAT ARE CAUSE & EFFECT RELATIONSHIPS?
 
 **Cause and Effect** involves:
-- ✅ **Cause**: The reason or action that produces an effect
-- ✅ **Effect**: The result or outcome of the cause
-- ✅ **Relationship**: Logical connection between cause and effect
-- ✅ **Direction**: Understanding which comes first and why
+- âœ… **Cause**: The reason or action that produces an effect
+- âœ… **Effect**: The result or outcome of the cause
+- âœ… **Relationship**: Logical connection between cause and effect
+- âœ… **Direction**: Understanding which comes first and why
 
 ### Key Characteristics:
 - **Temporal**: Cause precedes effect in time
@@ -32,51 +32,51 @@ Effect: "Flooding in the area"
 
 ---
 
-## 🎯 TYPES OF CAUSE-EFFECT RELATIONSHIPS
+## ðŸŽ¯ TYPES OF CAUSE-EFFECT RELATIONSHIPS
 
 ### 1. **Direct Cause-Effect**
 **Immediate, clear relationship between cause and effect**
 
 **Examples:**
-- ✅ Cause: Eating contaminated food → Effect: Food poisoning
-- ✅ Cause: Studying regularly → Effect: Better grades
-- ✅ Cause: Exercising daily → Effect: Improved fitness
+- âœ… Cause: Eating contaminated food â†’ Effect: Food poisoning
+- âœ… Cause: Studying regularly â†’ Effect: Better grades
+- âœ… Cause: Exercising daily â†’ Effect: Improved fitness
 
 ### 2. **Indirect Cause-Effect**
 **Cause leads to effect through intermediate steps**
 
 **Examples:**
-- ✅ Cause: Smoking → Intermediate: Lung damage → Effect: Respiratory problems
-- ✅ Cause: Poor diet → Intermediate: Weight gain → Effect: Health issues
-- ✅ Cause: Lack of sleep → Intermediate: Reduced concentration → Effect: Poor performance
+- âœ… Cause: Smoking â†’ Intermediate: Lung damage â†’ Effect: Respiratory problems
+- âœ… Cause: Poor diet â†’ Intermediate: Weight gain â†’ Effect: Health issues
+- âœ… Cause: Lack of sleep â†’ Intermediate: Reduced concentration â†’ Effect: Poor performance
 
 ### 3. **Multiple Causes - Single Effect**
 **Several causes contribute to one effect**
 
 **Examples:**
-- ✅ Causes: Poor diet + Lack of exercise + Stress → Effect: Heart disease
-- ✅ Causes: Overwork + Poor management + Low morale → Effect: High turnover
-- ✅ Causes: Pollution + Deforestation + Climate change → Effect: Biodiversity loss
+- âœ… Causes: Poor diet + Lack of exercise + Stress â†’ Effect: Heart disease
+- âœ… Causes: Overwork + Poor management + Low morale â†’ Effect: High turnover
+- âœ… Causes: Pollution + Deforestation + Climate change â†’ Effect: Biodiversity loss
 
 ### 4. **Single Cause - Multiple Effects**
 **One cause produces several effects**
 
 **Examples:**
-- ✅ Cause: Natural disaster → Effects: Property damage + Loss of life + Economic impact
-- ✅ Cause: Technological advancement → Effects: Job creation + Increased productivity + Social change
-- ✅ Cause: Educational reform → Effects: Better learning + Higher employment + Economic growth
+- âœ… Cause: Natural disaster â†’ Effects: Property damage + Loss of life + Economic impact
+- âœ… Cause: Technological advancement â†’ Effects: Job creation + Increased productivity + Social change
+- âœ… Cause: Educational reform â†’ Effects: Better learning + Higher employment + Economic growth
 
 ### 5. **Chain of Causes and Effects**
 **Series of connected cause-effect relationships**
 
 **Examples:**
-- ✅ Poor education → Low skills → Unemployment → Poverty → Crime
-- ✅ Population growth → Resource depletion → Environmental damage → Climate change
-- ✅ Technology adoption → Process automation → Job displacement → Skill retraining
+- âœ… Poor education â†’ Low skills â†’ Unemployment â†’ Poverty â†’ Crime
+- âœ… Population growth â†’ Resource depletion â†’ Environmental damage â†’ Climate change
+- âœ… Technology adoption â†’ Process automation â†’ Job displacement â†’ Skill retraining
 
 ---
 
-## 🛠️ IDENTIFYING CAUSE-EFFECT RELATIONSHIPS
+## ðŸ› ï¸ IDENTIFYING CAUSE-EFFECT RELATIONSHIPS
 
 ### Step-by-Step Analysis:
 
@@ -105,54 +105,54 @@ Effect: "Flooding in the area"
 
 ---
 
-## 📊 CAUSE VS EFFECT INDICATORS
+## ðŸ“Š CAUSE VS EFFECT INDICATORS
 
 ### Cause Indicators:
-- ✅ **Action words**: Caused, led to, resulted in, produced
-- ✅ **Time precedence**: Before, prior to, initially
-- ✅ **Explanatory terms**: Because of, due to, owing to
-- ✅ **Active language**: What produces or initiates change
+- âœ… **Action words**: Caused, led to, resulted in, produced
+- âœ… **Time precedence**: Before, prior to, initially
+- âœ… **Explanatory terms**: Because of, due to, owing to
+- âœ… **Active language**: What produces or initiates change
 
 ### Effect Indicators:
-- ✅ **Result words**: Consequently, therefore, as a result
-- ✅ **Outcome terms**: Led to, resulted in, produced
-- ✅ **Passive language**: What happens or is produced
-- ✅ **Time sequence**: After, following, subsequently
+- âœ… **Result words**: Consequently, therefore, as a result
+- âœ… **Outcome terms**: Led to, resulted in, produced
+- âœ… **Passive language**: What happens or is produced
+- âœ… **Time sequence**: After, following, subsequently
 
 ### Neutral/Connecting Words:
-- ✅ **Relationships**: If...then, when...then
-- ✅ **Sequences**: First...then, next...finally
-- ✅ **Explanations**: Since, because, so that
+- âœ… **Relationships**: If...then, when...then
+- âœ… **Sequences**: First...then, next...finally
+- âœ… **Explanations**: Since, because, so that
 
 ---
 
-## ⚠️ COMMON CAUSE-EFFECT ERRORS
+## âš ï¸ COMMON CAUSE-EFFECT ERRORS
 
 ### Avoid These Mistakes:
 
 1. **Reversing Cause and Effect**
-   - ❌ "Flooding caused heavy rainfall" (effect can't cause cause)
-   - ✅ "Heavy rainfall caused flooding" (correct direction)
+   - âŒ "Flooding caused heavy rainfall" (effect can't cause cause)
+   - âœ… "Heavy rainfall caused flooding" (correct direction)
 
 2. **Confusing Correlation with Causation**
-   - ❌ "Ice cream sales and drownings both increase in summer, so ice cream causes drowning"
-   - ✅ Recognize that both are caused by hot weather (third factor)
+   - âŒ "Ice cream sales and drownings both increase in summer, so ice cream causes drowning"
+   - âœ… Recognize that both are caused by hot weather (third factor)
 
 3. **Overlooking Indirect Relationships**
-   - ❌ "Smoking directly causes lung cancer" (ignores intermediate damage)
-   - ✅ "Smoking → Lung damage → Cancer" (recognizes chain)
+   - âŒ "Smoking directly causes lung cancer" (ignores intermediate damage)
+   - âœ… "Smoking â†’ Lung damage â†’ Cancer" (recognizes chain)
 
 4. **Missing Multiple Causes/Effects**
-   - ❌ "Poverty causes crime" (ignores other factors like education, opportunity)
-   - ✅ "Poverty + Lack of education + Limited opportunities → Higher crime rates"
+   - âŒ "Poverty causes crime" (ignores other factors like education, opportunity)
+   - âœ… "Poverty + Lack of education + Limited opportunities â†’ Higher crime rates"
 
 5. **Temporal Fallacy**
-   - ❌ "B came after A, so A caused B" (post hoc fallacy)
-   - ✅ Verify logical connection, not just time sequence
+   - âŒ "B came after A, so A caused B" (post hoc fallacy)
+   - âœ… Verify logical connection, not just time sequence
 
 ---
 
-## 🎯 QUESTION TYPES
+## ðŸŽ¯ QUESTION TYPES
 
 ### Direct Relationship Questions:
 **"What is the cause of...?" or "What is the effect of...?"**
@@ -168,7 +168,7 @@ Effect: "Flooding in the area"
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Direct Cause-Effect
 **Identify the cause and effect in each statement:**
@@ -248,17 +248,17 @@ Effect: "Flooding in the area"
 ### Exercise 5: Chain Reactions
 **Trace the complete chain:**
 
-1. "Educational reform → Better learning → Higher employment → Economic growth"
+1. "Educational reform â†’ Better learning â†’ Higher employment â†’ Economic growth"
    - Missing Link: ________________________________
    - Complete Chain: ________________________________
 
-2. "Population growth → Resource strain → Environmental damage → Climate change"
+2. "Population growth â†’ Resource strain â†’ Environmental damage â†’ Climate change"
    - Missing Link: ________________________________
    - Complete Chain: ________________________________
 
 **Answers:**
-1. Missing Link: Skilled workforce; Complete: Educational reform → Better learning → Skilled workforce → Higher employment → Economic growth
-2. Missing Link: Overconsumption; Complete: Population growth → Overconsumption → Resource strain → Environmental damage → Climate change
+1. Missing Link: Skilled workforce; Complete: Educational reform â†’ Better learning â†’ Skilled workforce â†’ Higher employment â†’ Economic growth
+2. Missing Link: Overconsumption; Complete: Population growth â†’ Overconsumption â†’ Resource strain â†’ Environmental damage â†’ Climate change
 
 ### Exercise 6: Correlation vs Causation
 **Distinguish between correlation and causation:**
@@ -289,11 +289,11 @@ Scenario: "The company introduced flexible working hours, resulting in higher em
 1. Introduction of flexible working hours
 2. Higher employee satisfaction, improved productivity
 3. Better work-life balance, reduced turnover, increased innovation
-4. Flexible hours → Better satisfaction → Higher productivity → Business success
+4. Flexible hours â†’ Better satisfaction â†’ Higher productivity â†’ Business success
 
 ---
 
-## 📊 CAUSE-EFFECT VALIDATION FRAMEWORK
+## ðŸ“Š CAUSE-EFFECT VALIDATION FRAMEWORK
 
 | Test | Valid Relationship | Invalid Relationship |
 |---|---|---|
@@ -305,30 +305,30 @@ Scenario: "The company introduced flexible working hours, resulting in higher em
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Cause Identification**: "What is the cause of...?"
 2. **Effect Identification**: "What will be the effect of...?"
 3. **Relationship Questions**: "Which of the following is the cause/effect?"
 4. **Chain Analysis**: "What will happen if...?"
 5. **Multiple Factor**: "Which factors contribute to...?"
 
-### 💡 Quick Analysis Strategy:
+### ðŸ’¡ Quick Analysis Strategy:
 1. **Identify keywords** - Look for cause/effect connectors
 2. **Check time sequence** - Cause always comes before effect
 3. **Test logic** - Does the relationship make sense?
 4. **Consider alternatives** - Could other factors be involved?
 5. **Verify direction** - Ensure proper causal flow
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Look for signal words** - Because, therefore, leads to, results in
 - **Check chronology** - What happens first, second, third?
 - **Apply common sense** - Does the relationship seem logical?
 - **Eliminate impossibilities** - Rule out effects that can't cause causes
 - **Trust established patterns** - Recognize common cause-effect chains
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Practice chain reactions** - Learn common causal sequences
 - **Master multiple factors** - Understand combined causes/effects
 - **Avoid post hoc fallacy** - Don't assume sequence means causation
@@ -337,22 +337,23 @@ Scenario: "The company introduced flexible working hours, resulting in higher em
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Chain Recognition**: Learn common cause-effect sequences
 2. **Multiple Factor Analysis**: Understand combined relationships
 3. **Correlation vs Causation**: Distinguish between related and causal
 4. **Temporal Logic**: Always check time sequence
 5. **Logic Testing**: Verify relationships make rational sense
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Cause and effect are like dominos:**
-- 🁢 **First domino** = Initial cause (starts the chain)
-- 🁢 **Middle dominos** = Intermediate effects/causes
-- 🁢 **Last domino** = Final effect (end of the chain)
-- 🎯 **Right direction** = Cause must push effect forward
-- ✅ **Proper sequence** = Each domino falls in logical order
+- ðŸ¢ **First domino** = Initial cause (starts the chain)
+- ðŸ¢ **Middle dominos** = Intermediate effects/causes
+- ðŸ¢ **Last domino** = Final effect (end of the chain)
+- ðŸŽ¯ **Right direction** = Cause must push effect forward
+- âœ… **Proper sequence** = Each domino falls in logical order
 
-**Master cause and effect and become a relationship expert!** ⚖️🁢✨`
+**Master cause and effect and become a relationship expert!** âš–ï¸ðŸ¢âœ¨`"
 };
+

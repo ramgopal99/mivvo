@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_10: SubLesson = {
   id: "12.10",
   title: 'Word Problems Based on Mixture & Alligation',
   status: 'completed',
-  content: `# 📝 Word Problems Based on Mixture & Alligation
+  content: "`# ðŸ“ Word Problems Based on Mixture & Alligation
 
 Master solving complex word problems that combine multiple mixture and alligation concepts in real-world scenarios.
 
 ---
 
-## 🎯 Word Problem Approach
+## ðŸŽ¯ Word Problem Approach
 
 **Word problems** in mixture & alligation require identifying the correct concepts and applying them systematically to solve complex scenarios.
 
@@ -24,7 +24,7 @@ Master solving complex word problems that combine multiple mixture and alligatio
 
 ---
 
-## 📊 Common Word Problem Types
+## ðŸ“Š Common Word Problem Types
 
 ### 1. **Cost Optimization Problems**
 **"A shopkeeper has two types of rice costing Rs. 40/kg and Rs. 50/kg. He wants to sell a mixture at Rs. 45/kg profit. Find mixing ratio."**
@@ -49,8 +49,8 @@ Master solving complex word problems that combine multiple mixture and alligatio
 **"A vessel contains 20 liters mixture of milk and water in 4:1 ratio. 4 liters mixture removed and replaced with water. Find new ratio."**
 
 **Solution:**
-- Initial milk = (4/5)×20 = 16L
-- Removed mixture contains milk = (4/5)×4 = 3.2L
+- Initial milk = (4/5)Ã—20 = 16L
+- Removed mixture contains milk = (4/5)Ã—4 = 3.2L
 - Remaining milk = 16 - 3.2 = 12.8L
 - Add 4L water
 - Total volume = 20L
@@ -58,33 +58,33 @@ Master solving complex word problems that combine multiple mixture and alligatio
 
 ---
 
-## 🧠 Word Problem Tricks & Shortcuts
+## ðŸ§  Word Problem Tricks & Shortcuts
 
 ### **Identify Key Phrases**
-\`\`\`
-"Mix to get" → Alligation
-"Replace with" → Replacement
-"Ratio becomes" → Proportion change
-"Add to make" → Concentration adjustment
+\`"\`\`
+"Mix to get" â†’ Alligation
+"Replace with" â†’ Replacement
+"Ratio becomes" â†’ Proportion change
+"Add to make" â†’ Concentration adjustment
 \`\`\`
 
 ### **Quick Problem Classification**
 \`\`\`
-Two ingredients + target price → Alligation
-Replacement mentioned → Replacement formula
-Multiple steps → Sequential application
+Two ingredients + target price â†’ Alligation
+Replacement mentioned â†’ Replacement formula
+Multiple steps â†’ Sequential application
 \`\`\`
 
 ### **Common Traps**
 \`\`\`
-"Profit/loss" → Adjust prices accordingly
-"Same quantity" → Equal volume assumption
-"Total cost" → Sum of individual costs
+"Profit/loss" â†’ Adjust prices accordingly
+"Same quantity" â†’ Equal volume assumption
+"Total cost" â†’ Sum of individual costs
 \`\`\`
 
 ---
 
-## 🔢 Complex Word Problem Examples
+## ðŸ”¢ Complex Word Problem Examples
 
 ### Example 1: Business Mixture
 **"A dealer mixes two qualities of tea costing Rs. 180/kg and Rs. 220/kg. Sells mixture at Rs. 200/kg, makes 20% profit. Find ratio."**
@@ -124,7 +124,7 @@ Multiple steps → Sequential application
 
 ---
 
-## 🎯 Real-World Applications
+## ðŸŽ¯ Real-World Applications
 
 ### **Business Scenarios**
 - **Product mixing** for target prices
@@ -143,7 +143,7 @@ Multiple steps → Sequential application
 
 ---
 
-## 🚨 Word Problem Pitfalls
+## ðŸš¨ Word Problem Pitfalls
 
 1. **Misreading requirements**: What is being asked
 2. **Unit confusion**: Volume vs weight vs cost
@@ -159,7 +159,7 @@ Multiple steps → Sequential application
 
 ---
 
-## 🎯 Practice Word Problems
+## ðŸŽ¯ Practice Word Problems
 
 **1.** Shopkeeper mixes Rs.40/kg, Rs.60/kg sugar. Sells at Rs.50/kg, 25% profit. Ratio?
 **2.** 15L 40% solution. Remove 3L, add 3L pure solute. Replace 2L with water. Final %?
@@ -171,7 +171,7 @@ Multiple steps → Sequential application
 
 ---
 
-## 🎓 Word Problem Mastery Tips
+## ðŸŽ“ Word Problem Mastery Tips
 
 1. **Read problem multiple times** - identify all components
 2. **Draw diagrams** - visualize mixing processes
@@ -181,5 +181,6 @@ Multiple steps → Sequential application
 6. **Use appropriate formulas** - don't force wrong methods
 7. **Verify with logic** - check if answer makes sense
 
-Master mixture word problems and excel in complex aptitude scenarios! 🏆`
+Master mixture word problems and excel in complex aptitude scenarios! ðŸ†`
 };
+

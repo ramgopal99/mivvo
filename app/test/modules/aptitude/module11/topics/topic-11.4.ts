@@ -1,53 +1,53 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_4: SubLesson = {
   id: "11.4",
   title: 'Relative Speed',
   status: 'completed',
-  content: `# 🚗 Relative Speed
+  content: "`# ðŸš— Relative Speed
 
 Master relative speed concepts - essential for problems involving moving objects approaching or moving away from each other.
 
 ---
 
-## 🎯 What is Relative Speed?
+## ðŸŽ¯ What is Relative Speed?
 
 **Relative speed** is the speed of one object as observed from another moving object. It's crucial for meeting/crossing problems.
 
 ### **Same Direction**
-\`\`\`
-Relative Speed = |Speed₁ - Speed₂|
+\`"\`\`
+Relative Speed = |Speedâ‚ - Speedâ‚‚|
 \`\`\`
 
 ### **Opposite Direction**
 \`\`\`
-Relative Speed = Speed₁ + Speed₂
+Relative Speed = Speedâ‚ + Speedâ‚‚
 \`\`\`
 
 ---
 
-## 📊 Relative Speed Applications
+## ðŸ“Š Relative Speed Applications
 
 ### 1. **Two Objects Moving Towards Each Other**
 \`\`\`
-They approach at: Speed₁ + Speed₂
-Time to meet = Distance / (Speed₁ + Speed₂)
+They approach at: Speedâ‚ + Speedâ‚‚
+Time to meet = Distance / (Speedâ‚ + Speedâ‚‚)
 \`\`\`
 
 ### 2. **Two Objects Moving Away from Each Other**
 \`\`\`
-They separate at: Speed₁ + Speed₂
+They separate at: Speedâ‚ + Speedâ‚‚
 \`\`\`
 
 ### 3. **Same Direction (Catching Up)**
 \`\`\`
-Relative speed = Speed₁ - Speed₂ (if Speed₁ > Speed₂)
-Time to catch = Distance / (Speed₁ - Speed₂)
+Relative speed = Speedâ‚ - Speedâ‚‚ (if Speedâ‚ > Speedâ‚‚)
+Time to catch = Distance / (Speedâ‚ - Speedâ‚‚)
 \`\`\`
 
 ---
 
-## 🧮 Relative Speed Examples
+## ðŸ§® Relative Speed Examples
 
 ### Example 1: Meeting Problem
 **Two trains approach each other at 60 km/h and 80 km/h. Distance between them is 140 km. When will they meet?**
@@ -60,20 +60,20 @@ Time to catch = Distance / (Speed₁ - Speed₂)
 **A car moving at 50 km/h overtakes another car moving at 30 km/h. How long to overtake if 100m gap?**
 
 **Solution:**
-- Relative speed = 50 - 30 = 20 km/h = 20 × 5/18 ≈ 5.56 m/s
+- Relative speed = 50 - 30 = 20 km/h = 20 Ã— 5/18 â‰ˆ 5.56 m/s
 - Distance = 100 m
-- Time = 100 / 5.56 ≈ 18 seconds
+- Time = 100 / 5.56 â‰ˆ 18 seconds
 
 ### Example 3: Moving Away
 **Two cars start from same point, one at 40 km/h north, other at 30 km/h south. Distance after 2 hours?**
 
 **Solution:**
 - Relative speed = 40 + 30 = 70 km/h
-- Distance between them = 70 × 2 = 140 km
+- Distance between them = 70 Ã— 2 = 140 km
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Direction Matters**
 \`\`\`
@@ -93,8 +93,8 @@ For two objects:
 ### **Unit Conversion Reminder**
 \`\`\`
 Convert to same units before relative speed calculation
-km/h to m/s: × 5/18
-m/s to km/h: × 18/5
+km/h to m/s: Ã— 5/18
+m/s to km/h: Ã— 18/5
 \`\`\`
 
 ### **Distance Closure**
@@ -105,7 +105,7 @@ Time = Initial distance / Relative speed
 
 ---
 
-## 🔢 Advanced Relative Speed
+## ðŸ”¢ Advanced Relative Speed
 
 ### **Multiple Objects**
 - **Three objects**: Pairwise relative speeds
@@ -124,7 +124,7 @@ Time = Initial distance / Relative speed
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 4: Three Cars
 **Car A at 60 km/h, Car B at 40 km/h, Car C at 50 km/h. All moving same direction. Find relative speeds.**
@@ -139,11 +139,11 @@ Time = Initial distance / Relative speed
 **Two trains 200m and 150m long moving towards each other at 50 km/h and 30 km/h. Time to cross each other?**
 
 **Solution:**
-- Convert speeds: 50 km/h = 50 × 5/18 ≈ 13.89 m/s
-- 30 km/h = 30 × 5/18 ≈ 8.33 m/s
+- Convert speeds: 50 km/h = 50 Ã— 5/18 â‰ˆ 13.89 m/s
+- 30 km/h = 30 Ã— 5/18 â‰ˆ 8.33 m/s
 - Relative speed = 13.89 + 8.33 = 22.22 m/s
 - Distance to cover = 200 + 150 = 350 m
-- Time = 350 / 22.22 ≈ 15.75 seconds
+- Time = 350 / 22.22 â‰ˆ 15.75 seconds
 
 ### Example 6: Circular Track
 **Two runners on 400m track, speeds 10 m/s and 8 m/s. Lap time difference?**
@@ -154,7 +154,7 @@ Time = Initial distance / Relative speed
 
 ---
 
-## 🚨 Relative Speed Mistakes
+## ðŸš¨ Relative Speed Mistakes
 
 1. **Direction confusion**: Adding when should subtract
 2. **Unit mismatch**: Different speed units
@@ -164,7 +164,7 @@ Time = Initial distance / Relative speed
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** Trains at 72 km/h and 90 km/h approach each other, 180 km apart. Meeting time?
 **2.** Car at 60 km/h overtakes car at 40 km/h, 200m gap. Overtaking time?
@@ -176,7 +176,7 @@ Time = Initial distance / Relative speed
 
 ---
 
-## 🎓 Relative Speed Strategies
+## ðŸŽ“ Relative Speed Strategies
 
 1. **Determine direction** - towards, away, or same direction
 2. **Apply correct operation** - add or subtract speeds
@@ -184,5 +184,5 @@ Time = Initial distance / Relative speed
 4. **Identify distance** - gap between objects
 5. **Check reasonableness** - time should make sense
 
-Master relative speed and solve complex motion problems with confidence! 🏆`
+Master relative speed and solve complex motion problems with confidence! ðŸ†`
 };

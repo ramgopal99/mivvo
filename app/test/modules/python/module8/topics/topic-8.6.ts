@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_6: SubLesson = {
   id: "8.6",
   title: 'Utility Functions',
   status: 'demo',
-  content: `# 🛠️ Utility Functions
+  content: "`# ðŸ› ï¸ Utility Functions
 
 Miscellaneous built-in functions that provide useful utilities for various programming tasks!
 
 ---
 
-## 🎯 Type and Identity Functions
+## ðŸŽ¯ Type and Identity Functions
 
 ### **type() - Get Object Type**
-\`\`\`python
+\`"\`\`python
 print(type(42))         # <class 'int'>
 print(type(3.14))       # <class 'float'>
 print(type("hello"))    # <class 'str'>
@@ -65,7 +65,7 @@ print(x == y)  # True (same values)
 
 ---
 
-## 📦 Object Creation Functions
+## ðŸ“¦ Object Creation Functions
 
 ### **callable() - Check if Object is Callable**
 \`\`\`python
@@ -116,7 +116,7 @@ print(hashed_data)
 
 ---
 
-## 🔍 Attribute and Property Functions
+## ðŸ” Attribute and Property Functions
 
 ### **hasattr() - Check Attribute Existence**
 \`\`\`python
@@ -177,7 +177,7 @@ print(person.job)   # Engineer
 
 ---
 
-## 📊 Evaluation and Execution
+## ðŸ“Š Evaluation and Execution
 
 ### **eval() - Evaluate Expression**
 \`\`\`python
@@ -217,7 +217,7 @@ print(x)  # 15
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **Object Inspector**
 \`\`\`python
@@ -382,7 +382,7 @@ for expr in expressions:
 
 ---
 
-## ⚠️ Security Considerations
+## âš ï¸ Security Considerations
 
 ### **Dangerous Functions**
 \`\`\`python
@@ -408,6 +408,7 @@ def safe_open(filename, mode="r"):
     return open(filename, mode)
 \`\`\`
 
-Utility functions provide powerful introspection and dynamic capabilities! 🔍`
+Utility functions provide powerful introspection and dynamic capabilities! ðŸ”`
 };
+
 

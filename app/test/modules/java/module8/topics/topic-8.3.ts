@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_3: SubLesson = {
   id: "8.3",
   title: 'Constructors and Initialization',
   status: 'completed',
-  content: `# 🏗️ Constructors and Initialization in Java
+  content: "`# ðŸ—ï¸ Constructors and Initialization in Java
 
 Master object initialization and constructor design patterns!
 
 ---
 
-## 🎯 What is a Constructor?
+## ðŸŽ¯ What is a Constructor?
 
 A **constructor** is a special method that is called when an object is instantiated. It initializes the object's state and performs any necessary setup.
 
@@ -22,10 +22,10 @@ A **constructor** is a special method that is called when an object is instantia
 
 ---
 
-## 📝 Constructor Types
+## ðŸ“ Constructor Types
 
 ### **1. Default Constructor**
-\`\`\`java
+\`"\`\`java
 public class Person {
     private String name;
     private int age;
@@ -92,7 +92,7 @@ public class Person {
 
 ---
 
-## 🔄 Constructor Overloading
+## ðŸ”„ Constructor Overloading
 
 \`\`\`java
 public class Rectangle {
@@ -142,7 +142,7 @@ public class Rectangle {
 
 ---
 
-## 🔗 Constructor Chaining
+## ðŸ”— Constructor Chaining
 
 ### **this() - Same Class Constructor**
 \`\`\`java
@@ -210,7 +210,7 @@ public class Dog extends Animal {
 
 ---
 
-## 🎯 Initialization Blocks
+## ðŸŽ¯ Initialization Blocks
 
 ### **1. Instance Initialization Block**
 \`\`\`java
@@ -316,7 +316,7 @@ Instance var: Instance Variable
 
 ---
 
-## ⚠️ Common Constructor Issues
+## âš ï¸ Common Constructor Issues
 
 ### **1. Constructor Not Calling super()**
 \`\`\`java
@@ -359,7 +359,7 @@ public class BadExample {
 
 ---
 
-## 🎨 Constructor Design Patterns
+## ðŸŽ¨ Constructor Design Patterns
 
 ### **1. Builder Pattern**
 \`\`\`java
@@ -465,15 +465,16 @@ public class FactoryExample {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Constructors** initialize objects when created with \`new\`
 2. **Constructor Overloading** allows multiple ways to create objects
 3. **Constructor Chaining** uses \`this()\` and \`super()\` for code reuse
-4. **Initialization Order**: Static blocks → Instance blocks → Constructors
+4. **Initialization Order**: Static blocks â†’ Instance blocks â†’ Constructors
 5. **Design Patterns**: Builder pattern for complex object creation
 6. **Best Practices**: Keep constructors simple, use factories for complex logic
 
-**Next:** Learn about methods and encapsulation! 🚀`
+**Next:** Learn about methods and encapsulation! ðŸš€`
 };
+
 

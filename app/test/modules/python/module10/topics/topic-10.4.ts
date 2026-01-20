@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_4: SubLesson = {
   id: "10.4",
   title: 'Linked List Operations',
   status: 'demo',
-  content: `# ⚙️ Linked List Operations
+  content: "`# âš™ï¸ Linked List Operations
 
 Linked lists support various operations for insertion, deletion, and manipulation. Let's implement and understand the key operations!
 
 ---
 
-## 🔧 Complete Linked List Implementation
+## ðŸ”§ Complete Linked List Implementation
 
 ### **Node and LinkedList Classes**
-\`\`\`python
+\`"\`\`python
 class Node:
     def __init__(self, data):
         self.data = data
@@ -50,7 +50,7 @@ class LinkedList:
 
 ---
 
-## ➕ Insertion Operations
+## âž• Insertion Operations
 
 ### **Insert at Beginning**
 \`\`\`python
@@ -146,7 +146,7 @@ ll3.display()  # 10 -> 20 -> 30 -> 40 -> None
 
 ---
 
-## ➖ Deletion Operations
+## âž– Deletion Operations
 
 ### **Delete from Beginning**
 \`\`\`python
@@ -249,7 +249,7 @@ ll6.display()  # 10 -> 30 -> 20 -> None
 
 ---
 
-## 🔍 Search Operations
+## ðŸ” Search Operations
 
 ### **Search by Value**
 \`\`\`python
@@ -304,7 +304,7 @@ print(f"Node at position 5: {ll7.get_node_at(5)}")  # None
 
 ---
 
-## 🔄 Utility Operations
+## ðŸ”„ Utility Operations
 
 ### **Reverse Linked List**
 \`\`\`python
@@ -374,7 +374,7 @@ print(f"Has cycle after creating: {ll9.has_cycle()}")  # True
 
 ---
 
-## ⚡ Performance Comparison
+## âš¡ Performance Comparison
 
 ### **Operation Complexity**
 | Operation | Time Complexity | Notes |
@@ -388,6 +388,7 @@ print(f"Has cycle after creating: {ll9.has_cycle()}")  # True
 | Search by value | O(n) | Must traverse |
 | Access by index | O(n) | No random access |
 
-Linked list operations are efficient for dynamic collections but slow for random access! 🔗`
+Linked list operations are efficient for dynamic collections but slow for random access! ðŸ”—`
 };
+
 

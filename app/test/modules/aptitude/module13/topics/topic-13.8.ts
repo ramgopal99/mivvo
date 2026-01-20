@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_8: SubLesson = {
   id: "13.8",
   title: 'Word Problems Based on Linear Equations',
   status: 'completed',
-  content: `# 📚 Word Problems Based on Linear Equations
+  content: "`# ðŸ“š Word Problems Based on Linear Equations
 
 Master solving real-world word problems using linear equations! This comprehensive guide covers all major categories of aptitude problems with systematic approaches and solved examples. Learn to convert complex scenarios into solvable mathematical equations.
 
 ---
 
-## 🎯 Importance of Word Problems
+## ðŸŽ¯ Importance of Word Problems
 
 **Word problems** test your ability to:
 - Understand real-world situations
@@ -28,13 +28,13 @@ Master solving real-world word problems using linear equations! This comprehensi
 
 ---
 
-## 👨‍👩‍👧 Age Problems
+## ðŸ‘¨â€ðŸ‘©â€ðŸ‘§ Age Problems
 
 ### **Example 1: Basic Age Difference**
 **Problem:** A father is 30 years older than his son. The sum of their ages is 60 years. Find their present ages.
 
 **Solution:**
-Let son's age = \`x\` years
+Let son's age = \`"x\` years
 Father's age = \`x + 30\` years
 
 Equation: \`x + (x + 30) = 60\`
@@ -62,7 +62,7 @@ Equation: \`3x + 5 = 2(x + 5)\`
 \`3x - 2x = 10 - 5\`
 \`x = 5\`
 
-Mother: \`3 × 5 = 15\` years
+Mother: \`3 Ã— 5 = 15\` years
 
 **Answer:** Daughter: 5 years, Mother: 15 years
 
@@ -89,20 +89,20 @@ Equation: \`4x - 10 = 2(x + 10)\`
 \`2x = 30\`
 \`x = 15\`
 
-Father: \`4×15 - 20 = 60 - 20 = 40\` years
+Father: \`4Ã—15 - 20 = 60 - 20 = 40\` years
 
 **Answer:** Son: 15 years, Father: 40 years
 
 ---
 
-## 💰 Money and Cost Problems
+## ðŸ’° Money and Cost Problems
 
 ### **Example 1: Cost Price Problem**
-**Problem:** A shopkeeper buys 3 kg apples and 4 kg oranges for ₹280. He buys 2 kg apples and 5 kg oranges for ₹250. Find price per kg.
+**Problem:** A shopkeeper buys 3 kg apples and 4 kg oranges for â‚¹280. He buys 2 kg apples and 5 kg oranges for â‚¹250. Find price per kg.
 
 **Solution:**
-Let apple price = \`x\` ₹/kg
-Orange price = \`y\` ₹/kg
+Let apple price = \`x\` â‚¹/kg
+Orange price = \`y\` â‚¹/kg
 
 Equations:
 \`3x + 4y = 280\` ...(1)
@@ -114,14 +114,14 @@ Multiply (1) by 2, (2) by 3:
 
 Subtract (3) from (4):
 \`7y = 190\`
-\`y = 190/7 ≈ 27.14\`
+\`y = 190/7 â‰ˆ 27.14\`
 
-From (1): \`3x + 4×(190/7) = 280\`
+From (1): \`3x + 4Ã—(190/7) = 280\`
 \`3x + 760/7 = 280\`
 \`3x = 280 - 760/7 = (1960 - 760)/7 = 1200/7\`
-\`x = 400/7 ≈ 57.14\`
+\`x = 400/7 â‰ˆ 57.14\`
 
-**Answer:** Apples: ₹400/7/kg, Oranges: ₹190/7/kg
+**Answer:** Apples: â‚¹400/7/kg, Oranges: â‚¹190/7/kg
 
 ### **Example 2: Profit/Loss Problem**
 **Problem:** A sells an item at 20% profit, B at 20% loss. Overall no profit/loss. Prove that cost price ratio is 1:4.
@@ -130,8 +130,8 @@ From (1): \`3x + 4×(190/7) = 280\`
 Let cost price for A = \`x\`
 Cost price for B = \`4x\` (since ratio 1:4)
 
-A's selling price = \`x × 1.2 = 1.2x\`
-B's selling price = \`4x × 0.8 = 3.2x\`
+A's selling price = \`x Ã— 1.2 = 1.2x\`
+B's selling price = \`4x Ã— 0.8 = 3.2x\`
 
 Total SP = \`1.2x + 3.2x = 4.4x\`
 Total CP = \`x + 4x = 5x\`
@@ -143,8 +143,8 @@ Since 4.4x = 5x, there is loss. Wait, problem says no profit/loss.
 **Solution:**
 Let CP of first = \`4x\`, second = \`x\`
 
-First SP = \`4x × 1.2 = 4.8x\`
-Second SP = \`x × 0.8 = 0.8x\`
+First SP = \`4x Ã— 1.2 = 4.8x\`
+Second SP = \`x Ã— 0.8 = 0.8x\`
 
 Total SP = \`4.8x + 0.8x = 5.6x\`
 Total CP = \`4x + x = 5x\`
@@ -155,14 +155,14 @@ Profit = \`5.6x - 5x = 0.6x\` (not zero)
 For no profit/loss: Profit % on one = Loss % on other
 Let profit % = loss % = r%
 
-Then: \`r/100 = r/100\` → always true? No.
+Then: \`r/100 = r/100\` â†’ always true? No.
 
 Actually: When one gains r%, other loses r%, then:
-Total SP/CP = 1 + (profit × r/100) - (loss × r/100) = 1
+Total SP/CP = 1 + (profit Ã— r/100) - (loss Ã— r/100) = 1
 
 ---
 
-## 🚗 Distance-Speed-Time Problems
+## ðŸš— Distance-Speed-Time Problems
 
 ### **Example 1: Basic DST Problem**
 **Problem:** A car travels 300 km at 60 km/h. How long to cover 450 km at 75 km/h?
@@ -176,13 +176,13 @@ Second: \`450/75 = 6\` hours
 **Problem:** Two trains 200m and 150m long run at 60 km/h and 40 km/h. How long to cross each other?
 
 **Solution:**
-Convert to m/s: 60 km/h = \`60 × 5/18 = 50/3\` m/s
-40 km/h = \`40 × 5/18 = 100/9\` m/s
+Convert to m/s: 60 km/h = \`60 Ã— 5/18 = 50/3\` m/s
+40 km/h = \`40 Ã— 5/18 = 100/9\` m/s
 
 Relative speed = \`50/3 + 100/9 = 200/9\` m/s
 Total length = \`200 + 150 = 350\` m
 
-Time = \`350 ÷ (200/9) = 350 × 9/200 = 63/40 = 1.575\` hours
+Time = \`350 Ã· (200/9) = 350 Ã— 9/200 = 63/40 = 1.575\` hours
 
 ### **Example 3: Meeting Point**
 **Problem:** Two persons start from same point. A walks 4 km/h, B 5 km/h. After how many hours will they be 9 km apart?
@@ -197,7 +197,7 @@ Difference: \`5t - 4t = t = 9\`
 
 ---
 
-## ⚙️ Work and Time Problems
+## âš™ï¸ Work and Time Problems
 
 ### **Example 1: Individual Work Rates**
 **Problem:** A can do work in 12 days, B in 18 days. How long together?
@@ -227,7 +227,7 @@ Time: \`24/5 = 4.8\` hours
 
 **Solution:**
 A's efficiency: \`1/10\` per day
-B's efficiency: \`1.5 × 1/10 = 3/20\` per day
+B's efficiency: \`1.5 Ã— 1/10 = 3/20\` per day
 
 Together: \`1/10 + 3/20 = 2/20 + 3/20 = 5/20 = 1/4\`
 
@@ -235,7 +235,7 @@ Time: \`4\` days
 
 ---
 
-## 🥛 Mixture Problems
+## ðŸ¥› Mixture Problems
 
 ### **Example 1: Two Solutions**
 **Problem:** Mix 20% and 40% solutions to get 30% solution. Ratio?
@@ -258,54 +258,54 @@ Ratio 1:1
 **Problem:** 10 liters of 20% solution. Replace 2 liters with water. New concentration?
 
 **Solution:**
-Salt in original: \`10 × 0.2 = 2\` liters
-After replacement: \`2 - 2×0.2 = 2 - 0.4 = 1.6\` liters salt in 10 liters
+Salt in original: \`10 Ã— 0.2 = 2\` liters
+After replacement: \`2 - 2Ã—0.2 = 2 - 0.4 = 1.6\` liters salt in 10 liters
 
 Concentration: \`1.6/10 = 16%\`
 
 ---
 
-## 📈 Investment Problems
+## ðŸ“ˆ Investment Problems
 
 ### **Example 1: Simple Interest**
-**Problem:** ₹5000 invested at 8% SI. Amount after 3 years?
+**Problem:** â‚¹5000 invested at 8% SI. Amount after 3 years?
 
 **Solution:**
-SI = \`5000 × 8 × 3 / 100 = 1200\`
+SI = \`5000 Ã— 8 Ã— 3 / 100 = 1200\`
 Amount = \`5000 + 1200 = 6200\`
 
 ### **Example 2: Different Rates**
-**Problem:** ₹10,000 in two schemes: 6% and 8%. Total interest ₹700. Find amounts.
+**Problem:** â‚¹10,000 in two schemes: 6% and 8%. Total interest â‚¹700. Find amounts.
 
 **Solution:**
 Let amount at 6% = \`x\`
 At 8% = \`10000 - x\`
 
-Interest: \`x×0.06 + (10000-x)×0.08 = 700\`
+Interest: \`xÃ—0.06 + (10000-x)Ã—0.08 = 700\`
 \`0.06x + 800 - 0.08x = 700\`
 \`800 - 0.02x = 700\`
 \`0.02x = 100\`
 \`x = 5000\`
 
-**Answer:** ₹5,000 at 6%, ₹5,000 at 8%
+**Answer:** â‚¹5,000 at 6%, â‚¹5,000 at 8%
 
 ### **Example 3: Compound Interest**
-**Problem:** ₹10,000 at 10% CI annually. Amount after 2 years?
+**Problem:** â‚¹10,000 at 10% CI annually. Amount after 2 years?
 
 **Solution:**
-Year 1: \`10000 × 1.1 = 11000\`
-Year 2: \`11000 × 1.1 = 12100\`
+Year 1: \`10000 Ã— 1.1 = 11000\`
+Year 2: \`11000 Ã— 1.1 = 12100\`
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Age Problems:**
 1. Father 4 times son's age. Ages sum 75. Find ages.
 2. Sister 3 years younger than brother. Sum 25. Find ages.
 
 ### **Money Problems:**
-1. Two items ₹50 and ₹70. Bought 5 and 3, total ₹550. Find prices.
+1. Two items â‚¹50 and â‚¹70. Bought 5 and 3, total â‚¹550. Find prices.
 2. Shopkeeper gains 25% on one, loses 25% on other. Overall loss 10%. Find ratios.
 
 ### **Speed Problems:**
@@ -322,14 +322,14 @@ Year 2: \`11000 × 1.1 = 12100\`
 
 **Answers:**
 Age: Son-15, Father-60; Sister-11, Brother-14
-Money: ₹50 & ₹70; Loss on higher CP
+Money: â‚¹50 & â‚¹70; Loss on higher CP
 Speed: After 8 hours; 54 km/h
 Work: 4.24 days; 8.57 hours
 Mixture: 2:1; 8 liters water
 
 ---
 
-## 🎓 Pro Tips for Word Problems
+## ðŸŽ“ Pro Tips for Word Problems
 
 1. **Read carefully** - identify all quantities and relationships
 2. **Choose variables wisely** - let unknown be x, relate others
@@ -341,7 +341,7 @@ Mixture: 2:1; 8 liters water
 
 ---
 
-## 🔢 Problem-Solving Framework
+## ðŸ”¢ Problem-Solving Framework
 
 \`\`\`
 1. UNDERSTAND the problem
@@ -365,5 +365,5 @@ Mixture: 2:1; 8 liters water
    - Answer the question asked
 \`\`\`
 
-Master word problems and excel in aptitude examinations! 🏆`
+Master word problems and excel in aptitude examinations! ðŸ†`
 };

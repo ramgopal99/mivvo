@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_2: SubLesson = {
   id: "8.2",
   title: 'Ranking from Top & Bottom',
   status: 'completed',
-  content: `# ⬆️⬇️ Ranking from Top & Bottom
+  content: "`# â¬†ï¸â¬‡ï¸ Ranking from Top & Bottom
 
 Ranking from top and bottom involves determining positions in vertical arrangements where people or objects are ranked based on criteria like height, marks, or performance. These problems require understanding how positions from the top and bottom ends relate to each other and how to calculate ranks from different perspectives.
 
 ---
 
-## 🎯 Understanding Top-Bottom Ranking
+## ðŸŽ¯ Understanding Top-Bottom Ranking
 
 ### **What are Top-Bottom Ranking Problems?**
 These problems involve vertical arrangements where positions are counted from both the top (highest/first) and bottom (lowest/last) ends. They test your ability to:
@@ -22,7 +22,7 @@ These problems involve vertical arrangements where positions are counted from bo
 ### **Key Concepts**
 
 #### **Position Conversion**
-\`\`\`
+\`"\`\`
 If a person is nth from top, then:
 Position from bottom = Total persons - n + 1
 \`\`\`
@@ -34,7 +34,7 @@ Total persons = Position from top + Position from bottom - 1
 
 ---
 
-## 🧩 Top-Bottom Position Relationship
+## ðŸ§© Top-Bottom Position Relationship
 
 ### **Position Conversion Matrix**
 
@@ -52,13 +52,13 @@ Top/Bottom Relationship:
 Position from Top + Position from Bottom = Total + 1
 
 Example: 5 persons
-Person A: 2nd from top → 4th from bottom (5-2+1=4)
-Person B: 3rd from bottom → 3rd from top (5-3+1=3)
+Person A: 2nd from top â†’ 4th from bottom (5-2+1=4)
+Person B: 3rd from bottom â†’ 3rd from top (5-3+1=3)
 \`\`\`
 
 ---
 
-## 🎯 Problem Types and Solutions
+## ðŸŽ¯ Problem Types and Solutions
 
 ### **Type 1: Find Position from Other End**
 *"A is 4th from top in a row of 10 persons. What is his position from bottom?"*
@@ -82,7 +82,7 @@ Person B: 3rd from bottom → 3rd from top (5-3+1=3)
 
 ---
 
-## 📊 Position Conversion Rules
+## ðŸ“Š Position Conversion Rules
 
 ### **From Top to Bottom**
 \`\`\`
@@ -101,7 +101,7 @@ Total = Top Position + Bottom Position - 1
 
 ---
 
-## 🛠️ Problem-Solving Framework
+## ðŸ› ï¸ Problem-Solving Framework
 
 ### **Step-by-Step Approach**
 
@@ -127,7 +127,7 @@ Total = Top Position + Bottom Position - 1
 
 ---
 
-## 🎯 Common Question Patterns
+## ðŸŽ¯ Common Question Patterns
 
 ### **Pattern 1: Position Conversion**
 *"A is nth from top, find position from bottom"*
@@ -143,7 +143,7 @@ Total = Top Position + Bottom Position - 1
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (40%)**
 - Simple position conversion
@@ -162,7 +162,7 @@ Total = Top Position + Bottom Position - 1
 
 ---
 
-## 🧮 Mathematical Applications
+## ðŸ§® Mathematical Applications
 
 ### **Position Arithmetic**
 \`\`\`
@@ -181,13 +181,13 @@ Persons between A and B = |position A - position B| - 1
 
 ---
 
-## 🎯 Special Cases and Exceptions
+## ðŸŽ¯ Special Cases and Exceptions
 
 ### **Case 1: Same Person from Both Ends**
 \`\`\`
 If a person is kth from both top and bottom:
 Total persons = 2k - 1
-Example: 3rd from top and bottom → Total = 5 persons
+Example: 3rd from top and bottom â†’ Total = 5 persons
 \`\`\`
 
 ### **Case 2: Adjacent Positions**
@@ -205,27 +205,27 @@ For even total N: No single middle, two central positions
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Off-by-One Error**
-❌ Position from bottom = Total - Top (missing +1)
-✅ Position from bottom = Total - Top + 1
+âŒ Position from bottom = Total - Top (missing +1)
+âœ… Position from bottom = Total - Top + 1
 
 ### **Mistake 2: Formula Confusion**
-❌ Using wrong conversion formula
-✅ Total = Top + Bottom - 1
+âŒ Using wrong conversion formula
+âœ… Total = Top + Bottom - 1
 
 ### **Mistake 3: Reference Point Error**
-❌ Confusing top and bottom references
-✅ Clearly identify which end is being referenced
+âŒ Confusing top and bottom references
+âœ… Clearly identify which end is being referenced
 
 ### **Mistake 4: Total Person Miscalculation**
-❌ Forgetting to subtract 1 in total formula
-✅ Total = Pos1 + Pos2 - 1
+âŒ Forgetting to subtract 1 in total formula
+âœ… Total = Pos1 + Pos2 - 1
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Memorize Core Formulas**: Total = Top + Bottom - 1
 2. **Convert Positions Systematically**: Bottom = Total - Top + 1
@@ -237,7 +237,7 @@ For even total N: No single middle, two central positions
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Basic Conversion**
 *"In a row of 12 persons, A is 5th from top. What is his position from bottom?"*
@@ -270,7 +270,7 @@ For even total N: No single middle, two central positions
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Left-Right Ranking**
 - Combine horizontal and vertical positioning
@@ -287,5 +287,5 @@ For even total N: No single middle, two central positions
 - Calculate median ranking positions
 - Determine central tendencies
 
-**Master top-bottom ranking to excel in vertical position reasoning problems! ⬆️⬇️✨**`
+**Master top-bottom ranking to excel in vertical position reasoning problems! â¬†ï¸â¬‡ï¸âœ¨**`
 };

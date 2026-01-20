@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_7: SubLesson = {
   id: "16.7",
   title: 'Context Managers',
   status: 'demo',
-  content: `# 🔐 Context Managers
+  content: "`# ðŸ” Context Managers
 
-Context managers are Python's mechanism for resource management, ensuring that resources like files, database connections, and locks are properly acquired and released. The \`with\` statement provides a clean, exception-safe way to handle resource management. Let's explore this essential Python feature!
+Context managers are Python's mechanism for resource management, ensuring that resources like files, database connections, and locks are properly acquired and released. The \`"with\` statement provides a clean, exception-safe way to handle resource management. Let's explore this essential Python feature!
 
 ---
 
-## 🎯 What are Context Managers?
+## ðŸŽ¯ What are Context Managers?
 
 **Context managers** are objects that define the methods \`__enter__()\` and \`__exit__()\` to set up and tear down resources. They work with the \`with\` statement to ensure proper resource cleanup.
 
@@ -22,7 +22,7 @@ Context managers are Python's mechanism for resource management, ensuring that r
 
 ---
 
-## 💻 The \`with\` Statement
+## ðŸ’» The \`with\` Statement
 
 ### **Basic File Operations**
 \`\`\`python
@@ -56,7 +56,7 @@ with open("file1.txt", "r") as f1:
 
 ---
 
-## 🔧 Creating Custom Context Managers
+## ðŸ”§ Creating Custom Context Managers
 
 ### **Class-Based Context Manager**
 \`\`\`python
@@ -115,7 +115,7 @@ print("Connection closed")
 
 ---
 
-## ⚡ Generator-Based Context Managers
+## âš¡ Generator-Based Context Managers
 
 ### **Using @contextmanager Decorator**
 \`\`\`python
@@ -192,7 +192,7 @@ except ValueError as e:
 
 ---
 
-## 🎨 Built-in Context Managers
+## ðŸŽ¨ Built-in Context Managers
 
 ### **File Objects**
 \`\`\`python
@@ -240,7 +240,7 @@ print(result2)  # 0.333333333333333314829616256247390992939472198486328125
 
 ---
 
-## 🔧 Advanced Context Manager Patterns
+## ðŸ”§ Advanced Context Manager Patterns
 
 ### **Context Manager with Parameters**
 \`\`\`python
@@ -299,7 +299,7 @@ print(f"Debug mode: {config.debug}")      # False (back to original)
 
 ---
 
-## 🧪 Practical Examples
+## ðŸ§ª Practical Examples
 
 ### **Example 1: Temporary File Creation**
 \`\`\`python
@@ -397,7 +397,7 @@ except ImportError:
 
 ---
 
-## 🎯 contextlib Utilities
+## ðŸŽ¯ contextlib Utilities
 
 ### **closing()**
 \`\`\`python
@@ -468,7 +468,7 @@ print(f"Errors: {repr(error_output)}")
 
 ---
 
-## 🚀 Async Context Managers (Python 3.7+)
+## ðŸš€ Async Context Managers (Python 3.7+)
 
 ### **Async Context Managers**
 \`\`\`python
@@ -518,11 +518,11 @@ asyncio.run(async_task())
 
 ---
 
-## 🏆 Best Practices
+## ðŸ† Best Practices
 
 ### **When to Use Context Managers**
 \`\`\`python
-# ✅ Good use cases
+# âœ… Good use cases
 # 1. Resource management (files, connections, locks)
 with open("file.txt", "r") as f:
     data = f.read()
@@ -541,7 +541,7 @@ def database_connection(db_url):
     finally:
         conn.close()
 
-# ❌ Avoid overusing for simple cases
+# âŒ Avoid overusing for simple cases
 # Don't do this:
 with open("file.txt", "r") as f:
     print(f.read())  # Simple enough without context manager
@@ -573,7 +573,7 @@ with SafeResource() as res:
 
 ---
 
-## 🚀 Key Takeaways
+## ðŸš€ Key Takeaways
 
 1. **Context managers** ensure proper resource cleanup using \`with\` statement
 2. **\`__enter__()\`** and **\`__exit__()\`** methods define context manager behavior
@@ -583,6 +583,7 @@ with SafeResource() as res:
 6. **Async context managers** available for asynchronous code
 7. **contextlib** provides utilities like \`closing()\`, \`suppress()\`, and redirection
 
-**Context managers make resource management elegant, safe, and maintainable. They're essential for writing robust Python code! 🔐**`
+**Context managers make resource management elegant, safe, and maintainable. They're essential for writing robust Python code! ðŸ”**`
 };
+
 

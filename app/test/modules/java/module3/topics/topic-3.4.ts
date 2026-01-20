@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_4: SubLesson = {
   id: "3.4",
   title: 'Adding Elements to ArrayLists',
   status: 'completed',
-  content: `# ➕ Adding Elements to ArrayLists in Java
+  content: "`# âž• Adding Elements to ArrayLists in Java
 
 Adding elements to an ArrayList is a fundamental operation. Java provides multiple methods to add elements at different positions with different behaviors.
 
 ---
 
-## 📝 Basic Add Operations
+## ðŸ“ Basic Add Operations
 
 ### **add() Method - Append Elements**
-\`\`\`java
+\`"\`\`java
 import java.util.*;
 
 public class BasicAddOperations {
@@ -59,7 +59,7 @@ public class InsertOperations {
 
 ---
 
-## 🔄 Adding Multiple Elements
+## ðŸ”„ Adding Multiple Elements
 
 ### **addAll() Method**
 \`\`\`java
@@ -105,7 +105,7 @@ public class CollectionsAddAll {
 
 ---
 
-## 🎨 Advanced Add Patterns
+## ðŸŽ¨ Advanced Add Patterns
 
 ### **Conditional Adding**
 \`\`\`java
@@ -186,7 +186,7 @@ public class TransformAndAdd {
 
 ---
 
-## 🔄 Bulk Add Operations
+## ðŸ”„ Bulk Add Operations
 
 ### **Merging Lists**
 \`\`\`java
@@ -257,7 +257,7 @@ public class ArrayToList {
 
 ---
 
-## 📊 Performance Considerations
+## ðŸ“Š Performance Considerations
 
 ### **Capacity Management**
 \`\`\`java
@@ -309,7 +309,7 @@ public class AddMethodChoice {
 
 ---
 
-## 🚨 Common Add Mistakes
+## ðŸš¨ Common Add Mistakes
 
 ### **Index Out of Bounds**
 \`\`\`java
@@ -371,7 +371,7 @@ public class ImmutableLists {
 
 ---
 
-## 🎯 Add Method Best Practices
+## ðŸŽ¯ Add Method Best Practices
 
 ### **1. Choose the Right Add Method**
 \`\`\`java
@@ -379,17 +379,17 @@ public class BestPractices {
     public static void main(String[] args) {
         List<String> list = new ArrayList<>();
 
-        // ✅ Append when possible (fastest)
+        // âœ… Append when possible (fastest)
         list.add("First");
         list.add("Second");
 
-        // ✅ Use add(index, element) only when necessary
+        // âœ… Use add(index, element) only when necessary
         list.add(1, "Middle");  // Insert in middle
 
-        // ✅ Use addAll for bulk additions
+        // âœ… Use addAll for bulk additions
         list.addAll(Arrays.asList("Fourth", "Fifth"));
 
-        // ✅ Use Collections.addAll for arrays
+        // âœ… Use Collections.addAll for arrays
         Collections.addAll(list, "Sixth", "Seventh");
 
         System.out.println("Final list: " + list);
@@ -442,8 +442,9 @@ public class ValidationBestPractice {
 }
 \`\`\`
 
-Adding elements to ArrayLists is straightforward but understanding the performance implications and choosing the right method is crucial for efficient Java code! ➕`
+Adding elements to ArrayLists is straightforward but understanding the performance implications and choosing the right method is crucial for efficient Java code! âž•`
 };
+
 
 
 

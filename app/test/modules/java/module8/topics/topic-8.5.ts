@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_5: SubLesson = {
   id: "8.5",
   title: 'Static Members and Class Variables',
   status: 'completed',
-  content: `# 📊 Static Members and Class Variables in Java
+  content: "`# ðŸ“Š Static Members and Class Variables in Java
 
 Master class-level members that exist independently of object instances!
 
 ---
 
-## 🎯 What are Static Members?
+## ðŸŽ¯ What are Static Members?
 
 **Static members** belong to the class itself rather than any particular instance. They are shared among all instances of the class and can be accessed without creating an object.
 
@@ -22,10 +22,10 @@ Master class-level members that exist independently of object instances!
 
 ---
 
-## 📊 Static Variables (Class Variables)
+## ðŸ“Š Static Variables (Class Variables)
 
 ### **Declaration and Usage**
-\`\`\`java
+\`"\`\`java
 public class Counter {
     // Static variable - shared by all instances
     private static int instanceCount = 0;
@@ -99,7 +99,7 @@ public class Configuration {
 
 ---
 
-## ⚡ Static Methods
+## âš¡ Static Methods
 
 ### **Class-Level Operations**
 \`\`\`java
@@ -189,7 +189,7 @@ class Child extends StaticMethodRestrictions {
 
 ---
 
-## 🏗️ Static Blocks (Static Initializers)
+## ðŸ—ï¸ Static Blocks (Static Initializers)
 
 ### **Static Initialization**
 \`\`\`java
@@ -246,7 +246,7 @@ public class DatabaseManager {
 
 ---
 
-## 🔄 Static Imports
+## ðŸ”„ Static Imports
 
 ### **Importing Static Members**
 \`\`\`java
@@ -270,7 +270,7 @@ public class StaticImports {
 
 ---
 
-## 🎨 Design Patterns with Static Members
+## ðŸŽ¨ Design Patterns with Static Members
 
 ### **1. Singleton Pattern**
 \`\`\`java
@@ -393,7 +393,7 @@ public final class StringUtils {
 
 ---
 
-## ⚠️ Common Pitfalls
+## âš ï¸ Common Pitfalls
 
 ### **1. Static Variable Thread Safety**
 \`\`\`java
@@ -448,7 +448,7 @@ public class MemoryLeak {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Static members** belong to the class, not instances
 2. **Static variables** are shared by all instances of the class
@@ -459,6 +459,7 @@ public class MemoryLeak {
 7. **Thread safety** is crucial when using static variables
 8. **Memory management** is important to prevent leaks
 
-**Next:** Learn about the final keyword and immutability! 🚀`
+**Next:** Learn about the final keyword and immutability! ðŸš€`
 };
+
 

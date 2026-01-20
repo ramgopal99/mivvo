@@ -1,111 +1,111 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_6: SubLesson = {
   id: "8.6",
   title: 'Finding P, R, or T',
   status: 'completed',
-  content: `# 🔍 Finding P, R, or T
+  content: "`# ðŸ” Finding P, R, or T
 
 Master reverse calculations in simple interest! When one variable is unknown, you can find it using the other known values. These formulas are essential for solving problems where you need to determine the missing parameter.
 
 ---
 
-## 🎯 The SI Formula Rearrangements
+## ðŸŽ¯ The SI Formula Rearrangements
 
 **Basic SI Formula:**
-\`\`\`
-SI = (P × R × T) ÷ 100
+\`"\`\`
+SI = (P Ã— R Ã— T) Ã· 100
 \`\`\`
 
 **We can solve for each variable:**
 
 ### **1. Finding Principal (P)**
 \`\`\`
-P = (SI × 100) ÷ (R × T)
+P = (SI Ã— 100) Ã· (R Ã— T)
 \`\`\`
 
-**Example:** SI = ₹500, R = 10%, T = 2 years
-- P = (500 × 100) ÷ (10 × 2) = ₹2500
+**Example:** SI = â‚¹500, R = 10%, T = 2 years
+- P = (500 Ã— 100) Ã· (10 Ã— 2) = â‚¹2500
 
 ### **2. Finding Rate (R)**
 \`\`\`
-R = (SI × 100) ÷ (P × T)
+R = (SI Ã— 100) Ã· (P Ã— T)
 \`\`\`
 
-**Example:** SI = ₹300, P = ₹2000, T = 3 years
-- R = (300 × 100) ÷ (2000 × 3) = 5%
+**Example:** SI = â‚¹300, P = â‚¹2000, T = 3 years
+- R = (300 Ã— 100) Ã· (2000 Ã— 3) = 5%
 
 ### **3. Finding Time (T)**
 \`\`\`
-T = (SI × 100) ÷ (P × R)
+T = (SI Ã— 100) Ã· (P Ã— R)
 \`\`\`
 
-**Example:** SI = ₹400, P = ₹2000, R = 10%
-- T = (400 × 100) ÷ (2000 × 10) = 2 years
+**Example:** SI = â‚¹400, P = â‚¹2000, R = 10%
+- T = (400 Ã— 100) Ã· (2000 Ã— 10) = 2 years
 
 ---
 
-## 📊 Finding Variables from Amount
+## ðŸ“Š Finding Variables from Amount
 
 ### **Finding P from A**
 \`\`\`
-P = A ÷ (1 + RT/100)
+P = A Ã· (1 + RT/100)
 \`\`\`
 
-**Example:** A = ₹1200, R = 10%, T = 2 years
-- P = 1200 ÷ (1 + 20/100) = 1200 ÷ 1.2 = ₹1000
+**Example:** A = â‚¹1200, R = 10%, T = 2 years
+- P = 1200 Ã· (1 + 20/100) = 1200 Ã· 1.2 = â‚¹1000
 
 ### **Finding R from A**
 \`\`\`
-R = [(A - P) × 100] ÷ (P × T)
+R = [(A - P) Ã— 100] Ã· (P Ã— T)
 \`\`\`
 
-**Example:** A = ₹1100, P = ₹1000, T = 2 years
-- R = (100 × 100) ÷ (1000 × 2) = 10%
+**Example:** A = â‚¹1100, P = â‚¹1000, T = 2 years
+- R = (100 Ã— 100) Ã· (1000 Ã— 2) = 10%
 
 ### **Finding T from A**
 \`\`\`
-T = [(A - P) × 100] ÷ (P × R)
+T = [(A - P) Ã— 100] Ã· (P Ã— R)
 \`\`\`
 
-**Example:** A = ₹1200, P = ₹1000, R = 10%
-- T = (200 × 100) ÷ (1000 × 10) = 2 years
+**Example:** A = â‚¹1200, P = â‚¹1000, R = 10%
+- T = (200 Ã— 100) Ã· (1000 Ã— 10) = 2 years
 
 ---
 
-## 🔢 Detailed Examples
+## ðŸ”¢ Detailed Examples
 
 ### **Example 1: Finding Missing Principal**
-**Problem:** SI = ₹240, R = 12%, T = 1.5 years. Find P.
+**Problem:** SI = â‚¹240, R = 12%, T = 1.5 years. Find P.
 
 **Solution:**
-- P = (240 × 100) ÷ (12 × 1.5)
-- P = 24000 ÷ 18 = ₹1333.33
+- P = (240 Ã— 100) Ã· (12 Ã— 1.5)
+- P = 24000 Ã· 18 = â‚¹1333.33
 
 ### **Example 2: Finding Missing Rate**
-**Problem:** P = ₹5000, SI = ₹750, T = 2 years. Find R.
+**Problem:** P = â‚¹5000, SI = â‚¹750, T = 2 years. Find R.
 
 **Solution:**
-- R = (750 × 100) ÷ (5000 × 2)
-- R = 75000 ÷ 10000 = 7.5%
+- R = (750 Ã— 100) Ã· (5000 Ã— 2)
+- R = 75000 Ã· 10000 = 7.5%
 
 ### **Example 3: Finding Missing Time**
-**Problem:** P = ₹3000, R = 8%, SI = ₹480. Find T.
+**Problem:** P = â‚¹3000, R = 8%, SI = â‚¹480. Find T.
 
 **Solution:**
-- T = (480 × 100) ÷ (3000 × 8)
-- T = 48000 ÷ 24000 = 2 years
+- T = (480 Ã— 100) Ã· (3000 Ã— 8)
+- T = 48000 Ã· 24000 = 2 years
 
 ---
 
-## 💡 Quick Tricks
+## ðŸ’¡ Quick Tricks
 
 ### **Trick 1: When Two Values Known**
 \`\`\`
 Use the appropriate rearranged formula
-SI, R, T known → Find P
-SI, P, T known → Find R
-SI, P, R known → Find T
+SI, R, T known â†’ Find P
+SI, P, T known â†’ Find R
+SI, P, R known â†’ Find T
 \`\`\`
 
 ### **Trick 2: Unit Consistency**
@@ -122,7 +122,7 @@ Use shortcuts for division
 
 ---
 
-## 🎯 Applications
+## ðŸŽ¯ Applications
 
 ### **1. Investment Planning**
 - Find required principal for target returns
@@ -141,7 +141,7 @@ Use shortcuts for division
 
 ---
 
-## 🧮 Advanced Scenarios
+## ðŸ§® Advanced Scenarios
 
 ### **Scenario 1: Partial Information**
 When some values are ranges or estimates, calculate possible ranges for unknown variable.
@@ -154,47 +154,48 @@ Find optimal values for minimum cost or maximum return.
 
 ---
 
-## 🚨 Common Mistakes
+## ðŸš¨ Common Mistakes
 
 ### **Mistake 1: Wrong Formula Selection**
-❌ Using P formula when finding R
+âŒ Using P formula when finding R
 - Match formula to unknown variable
 
 ### **Mistake 2: Unit Mismatch**
-❌ R in % with T in months
+âŒ R in % with T in months
 - Convert units consistently
 
 ### **Mistake 3: Calculation Errors**
-❌ Wrong order of operations
+âŒ Wrong order of operations
 - Follow PEMDAS/BODMAS rules
 
 ### **Mistake 4: Negative Results**
-❌ Impossible negative time/rate
+âŒ Impossible negative time/rate
 - Check input values
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Finding Principal:**
-1. SI = ₹300, R = 10%, T = 2 years. Find P.
-2. A = ₹1320, R = 10%, T = 2 years. Find P.
-3. SI = ₹500, R = 8%, T = 1.5 years. Find P.
+1. SI = â‚¹300, R = 10%, T = 2 years. Find P.
+2. A = â‚¹1320, R = 10%, T = 2 years. Find P.
+3. SI = â‚¹500, R = 8%, T = 1.5 years. Find P.
 
 ### **Finding Rate:**
-1. P = ₹2000, SI = ₹400, T = 2 years. Find R.
-2. P = ₹1500, A = ₹1650, T = 1 year. Find R.
-3. SI = ₹360, P = ₹1200, T = 3 years. Find R.
+1. P = â‚¹2000, SI = â‚¹400, T = 2 years. Find R.
+2. P = â‚¹1500, A = â‚¹1650, T = 1 year. Find R.
+3. SI = â‚¹360, P = â‚¹1200, T = 3 years. Find R.
 
 ### **Finding Time:**
-1. P = ₹2500, R = 12%, SI = ₹300. Find T.
-2. P = ₹3000, R = 8%, A = ₹3600. Find T.
-3. SI = ₹600, P = ₹2000, R = 15%. Find T.
+1. P = â‚¹2500, R = 12%, SI = â‚¹300. Find T.
+2. P = â‚¹3000, R = 8%, A = â‚¹3600. Find T.
+3. SI = â‚¹600, P = â‚¹2000, R = 15%. Find T.
 
 **Answers:**
-Principal: ₹1500, ₹1200, ₹2083.33
+Principal: â‚¹1500, â‚¹1200, â‚¹2083.33
 Rate: 10%, 10%, 10%
 Time: 1 year, 2.5 years, 2 years
 
-Master reverse calculations to solve any simple interest problem! 🏆`
+Master reverse calculations to solve any simple interest problem! ðŸ†`
 };
+

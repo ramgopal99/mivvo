@@ -1,29 +1,29 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_4: SubLesson = {
   id: "12.4",
   title: 'Alligation Rule',
   status: 'completed',
-  content: `# ⚖️ Alligation Rule
+  content: "`# âš–ï¸ Alligation Rule
 
 Master the alligation rule - a powerful shortcut for mixture problems involving different prices or concentrations.
 
 ---
 
-## 🎯 What is Alligation?
+## ðŸŽ¯ What is Alligation?
 
 **Alligation** is a rule that helps find the ratio in which two ingredients of different prices/concentrations should be mixed to get a desired price/concentration.
 
 ### **Alligation Formula**
-\`\`\`
+\`"\`\`
 Required price/quantity - Lower price
-Ratio = ──────────────────────────────────────
+Ratio = â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         Higher price - Lower price
 \`\`\`
 
 ---
 
-## 📊 Alligation Method
+## ðŸ“Š Alligation Method
 
 ### **Visual Representation**
 \`\`\`
@@ -50,7 +50,7 @@ Where:
 
 ---
 
-## 🧮 Alligation Examples
+## ðŸ§® Alligation Examples
 
 ### Example 1: Price Mixture
 **Two types sugar: Rs. 50/kg and Rs. 70/kg. Mix to get Rs. 60/kg. Find ratio.**
@@ -92,7 +92,7 @@ Using alligation:
 
 ---
 
-## 🎯 Alligation Applications
+## ðŸŽ¯ Alligation Applications
 
 ### **Price Problems**
 - Different cost items mixed for target price
@@ -111,7 +111,7 @@ Using alligation:
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Alligation Cross Method**
 \`\`\`
@@ -127,7 +127,7 @@ Second number: Quantity of lower price item
 
 ### **Quick Verification**
 \`\`\`
-Check if mean = (H×first + L×second) / (first + second)
+Check if mean = (HÃ—first + LÃ—second) / (first + second)
 \`\`\`
 
 ### **Multiple Ingredients**
@@ -138,7 +138,7 @@ Complex problems need systematic approach
 
 ---
 
-## 🔢 Advanced Alligation
+## ðŸ”¢ Advanced Alligation
 
 ### **Three Ingredient Problems**
 - **Pairwise application**
@@ -157,7 +157,7 @@ Complex problems need systematic approach
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 4: Three Price Levels
 **Three types rice: Rs. 40/kg, Rs. 50/kg, Rs. 60/kg. Mix equal quantities. Average price?**
@@ -183,13 +183,13 @@ Complex problems need systematic approach
 - Let original mixture volume = 100 units
 - After evaporation = 90 units
 - Final concentration = 40%
-- Original concentration = (40 × 90) / 100 = 36%
+- Original concentration = (40 Ã— 90) / 100 = 36%
 - Now use alligation for 36% from 30% and 50%
 - Ratio = (36-30):(50-36) = 6:14 = 3:7
 
 ---
 
-## 🚨 Alligation Mistakes
+## ðŸš¨ Alligation Mistakes
 
 1. **Cross Method**: Wrong positioning of numbers
 2. **Ratio Order**: Higher:lower vs lower:higher confusion
@@ -199,7 +199,7 @@ Complex problems need systematic approach
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** Sugar Rs. 30/kg, Rs. 50/kg. Mix for Rs. 40/kg. Ratio?
 **2.** Milk Rs. 25/L, water free. Mix for Rs. 15/L. Ratio?
@@ -211,7 +211,7 @@ Complex problems need systematic approach
 
 ---
 
-## 🎓 Alligation Strategies
+## ðŸŽ“ Alligation Strategies
 
 1. **Identify higher and lower** values clearly
 2. **Apply cross method** correctly
@@ -219,5 +219,6 @@ Complex problems need systematic approach
 4. **Verify calculation** with direct method
 5. **Check reasonableness** - ratio should make sense
 
-Master alligation rule and solve mixture problems in seconds! 🏆`
+Master alligation rule and solve mixture problems in seconds! ðŸ†`
 };
+

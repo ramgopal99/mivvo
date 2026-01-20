@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_5: SubLesson = {
   id: "2.5",
   title: 'Coded Blood Relations',
   status: 'completed',
-  content: `# 🔐 Coded Blood Relations
+  content: "`# ðŸ” Coded Blood Relations
 
 Coded blood relation problems add complexity by using symbols, codes, or disguised relationships. These problems require you to decode hidden relationship patterns and apply logical reasoning to uncover the actual familial connections.
 
 ---
 
-## 🎯 Understanding Coded Relations
+## ðŸŽ¯ Understanding Coded Relations
 
 ### **What are Coded Blood Relations?**
 Coded problems use symbols, numbers, or disguised terms to represent family relationships. You must:
@@ -19,20 +19,20 @@ Coded problems use symbols, numbers, or disguised terms to represent family rela
 - Apply logical reasoning to solve
 
 ### **Common Coding Techniques**
-- **Symbolic Representation**: A+B, A-B, A×B, A÷B
+- **Symbolic Representation**: A+B, A-B, AÃ—B, AÃ·B
 - **Numbered Relationships**: 1, 2, 3 representing different relations
 - **Letter Codes**: A, B, C representing family members
-- **Mathematical Operations**: +, -, ×, ÷ with relationship meanings
+- **Mathematical Operations**: +, -, Ã—, Ã· with relationship meanings
 
 ---
 
-## 🧩 Basic Coding Patterns
+## ðŸ§© Basic Coding Patterns
 
 ### **Pattern 1: Simple Symbols**
 - **A + B** = A is parent of B
 - **A - B** = A is child of B
-- **A × B** = A is spouse of B
-- **A ÷ B** = A is sibling of B
+- **A Ã— B** = A is spouse of B
+- **A Ã· B** = A is sibling of B
 
 ### **Pattern 2: Number Codes**
 - **A1** = Father, **A2** = Mother
@@ -40,13 +40,13 @@ Coded problems use symbols, numbers, or disguised terms to represent family rela
 - **C1** = Brother, **C2** = Sister
 
 ### **Pattern 3: Mathematical Relations**
-- **A + B = C** → A and B are parents of C
-- **A × 2 = B** → A is brother of B
-- **A ÷ 2 = B** → A is sister of B
+- **A + B = C** â†’ A and B are parents of C
+- **A Ã— 2 = B** â†’ A is brother of B
+- **A Ã· 2 = B** â†’ A is sister of B
 
 ---
 
-## 📊 Decoding Techniques
+## ðŸ“Š Decoding Techniques
 
 ### **Step 1: Identify the Code**
 - Look for patterns in the given information
@@ -65,28 +65,28 @@ Coded problems use symbols, numbers, or disguised terms to represent family rela
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Coding**
-**Question**: In a code, A + B means A is the sister of B, A × B means A is the father of B. If P × Q + R, what is the relationship between P and R?
+**Question**: In a code, A + B means A is the sister of B, A Ã— B means A is the father of B. If P Ã— Q + R, what is the relationship between P and R?
 
 **Solution**:
-- P × Q = P is father of Q
+- P Ã— Q = P is father of Q
 - Q + R = Q is sister of R
 - Therefore, P is uncle of R
 
 ### **Example 2: Complex Coding**
-**Question**: If A + B means A is brother of B, A - B means A is sister of B, A × B means A is father of B. If P × Q - R + S, what is S to P?
+**Question**: If A + B means A is brother of B, A - B means A is sister of B, A Ã— B means A is father of B. If P Ã— Q - R + S, what is S to P?
 
 **Solution**:
-- P × Q = P is father of Q
+- P Ã— Q = P is father of Q
 - Q - R = Q is sister of R
 - R + S = R is brother of S
 - Therefore, S is grandson of P
 
 ---
 
-## 🔍 Advanced Coding Patterns
+## ðŸ” Advanced Coding Patterns
 
 ### **Multiple Operations**
 Problems with combined operations requiring careful decoding.
@@ -99,7 +99,7 @@ Problems combining different coding systems simultaneously.
 
 ---
 
-## 🛠️ Solving Strategies
+## ðŸ› ï¸ Solving Strategies
 
 ### **1. Code Breaking Approach**
 - Identify the simplest relationships first
@@ -118,20 +118,20 @@ Problems combining different coding systems simultaneously.
 
 ---
 
-## 📈 Common Pitfalls
+## ðŸ“ˆ Common Pitfalls
 
 ### **Mistake 1: Ignoring Gender**
-❌ Not considering male/female distinctions in relationships
+âŒ Not considering male/female distinctions in relationships
 
 ### **Mistake 2: Wrong Code Application**
-❌ Misapplying coding rules to relationships
+âŒ Misapplying coding rules to relationships
 
 ### **Mistake 3: Incomplete Decoding**
-❌ Not decoding all parts of the coded relationship
+âŒ Not decoding all parts of the coded relationship
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Start Simple**: Begin with explicitly stated relationships
 2. **Code First**: Always decode the relationships before solving
@@ -141,13 +141,13 @@ Problems combining different coding systems simultaneously.
 
 ---
 
-## 🚀 Practice Questions
+## ðŸš€ Practice Questions
 
 ### **Question 1**
-If A + B means A is the mother of B, A × B means A is the father of B, A ÷ B means A is the brother of B. What does P ÷ Q × R mean?
+If A + B means A is the mother of B, A Ã— B means A is the father of B, A Ã· B means A is the brother of B. What does P Ã· Q Ã— R mean?
 
 ### **Question 2**
 In a code, A@B means A is sister of B, A#B means A is brother of B, A$B means A is father of B. If P$Q@R#S, what is S to P?
 
-**Master coded blood relations to decode complex family puzzles! 🔐✨**`
+**Master coded blood relations to decode complex family puzzles! ðŸ”âœ¨**`"
 };

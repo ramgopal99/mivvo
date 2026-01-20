@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_1: SubLesson = {
   id: "9.1",
-  title: 'SYLLOGISM (Aptitude – Exam-Oriented Topics)',
+  title: 'SYLLOGISM (Aptitude â€“ Exam-Oriented Topics)',
   status: 'completed',
-  content: `# 🧠 SYLLOGISM (Aptitude – Exam-Oriented Topics)
+  content: "`# ðŸ§  SYLLOGISM (Aptitude â€“ Exam-Oriented Topics)
 
 Welcome to the comprehensive Syllogism module! This exam-oriented section covers all types of logical reasoning problems involving syllogistic arguments, requiring systematic analysis of statements and drawing valid conclusions. Master categorical logic, Venn diagrams, and deductive reasoning to excel in banking, SSC, railway, and other competitive exams.
 
 ---
 
-## 🎯 Understanding Syllogism
+## ðŸŽ¯ Understanding Syllogism
 
 ### **What are Syllogism Problems?**
 Syllogism involves drawing logical conclusions from given categorical statements about classes or groups. These problems test your ability to:
@@ -27,7 +27,7 @@ Syllogism involves drawing logical conclusions from given categorical statements
 
 ---
 
-## 🧩 Basic Syllogism Structure
+## ðŸ§© Basic Syllogism Structure
 
 ### **Three Parts of a Syllogism**
 
@@ -44,7 +44,7 @@ Syllogism involves drawing logical conclusions from given categorical statements
 - Must logically follow from the premises
 
 ### **Example Structure**
-\`\`\`
+\`"\`\`
 Major Premise: All men are mortal
 Minor Premise: Socrates is a man
 Conclusion: Socrates is mortal
@@ -52,7 +52,7 @@ Conclusion: Socrates is mortal
 
 ---
 
-## 📊 Competitive Exam Relevance
+## ðŸ“Š Competitive Exam Relevance
 
 ### **Major Exams Featuring Syllogism**
 - **Banking Exams** (IBPS, SBI): 4-6 questions per exam
@@ -72,7 +72,7 @@ Conclusion: Socrates is mortal
 
 ---
 
-## 🎯 Core Syllogism Skills
+## ðŸŽ¯ Core Syllogism Skills
 
 ### **1. Statement Analysis**
 **Understanding categorical propositions**
@@ -100,7 +100,7 @@ Conclusion: Socrates is mortal
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze the Statements**
 - Identify the three terms in each statement
@@ -124,7 +124,7 @@ Conclusion: Socrates is mortal
 
 ---
 
-## 📈 Difficulty Levels in Syllogism Problems
+## ðŸ“ˆ Difficulty Levels in Syllogism Problems
 
 ### **Easy Level (30-40%)**
 - Simple categorical statements
@@ -143,7 +143,7 @@ Conclusion: Socrates is mortal
 
 ---
 
-## 🎯 Common Syllogism Topics
+## ðŸŽ¯ Common Syllogism Topics
 
 ### **Basic Categorical Syllogism**
 Simple statements with clear All/Some/No relationships.
@@ -177,7 +177,7 @@ Complex problems combining multiple techniques.
 
 ---
 
-## 📊 Time Management Strategies
+## ðŸ“Š Time Management Strategies
 
 ### **Question Allocation Time**
 - **Simple Syllogism**: 1-2 minutes
@@ -192,7 +192,7 @@ Complex problems combining multiple techniques.
 
 ---
 
-## 🚀 Preparation Strategy
+## ðŸš€ Preparation Strategy
 
 ### **Phase 1: Foundation Building**
 - Learn categorical proposition types
@@ -213,7 +213,7 @@ Complex problems combining multiple techniques.
 
 ---
 
-## 📚 Recommended Resources
+## ðŸ“š Recommended Resources
 
 ### **Practice Platforms**
 - **Online Platforms**: Testbook, Adda247, Unacademy
@@ -228,7 +228,7 @@ Complex problems combining multiple techniques.
 
 ---
 
-## 🎯 Success Factors
+## ðŸŽ¯ Success Factors
 
 ### **1. Statement Recognition**
 - Quick identification of proposition types
@@ -252,27 +252,27 @@ Complex problems combining multiple techniques.
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Quantifier Confusion**
-❌ Misunderstanding All/Some/No meanings
-✅ Master the exact implications of each quantifier
+âŒ Misunderstanding All/Some/No meanings
+âœ… Master the exact implications of each quantifier
 
 ### **Mistake 2: Invalid Conclusions**
-❌ Drawing conclusions that don't necessarily follow
-✅ Only draw conclusions that must be true
+âŒ Drawing conclusions that don't necessarily follow
+âœ… Only draw conclusions that must be true
 
 ### **Mistake 3: Diagram Errors**
-❌ Incorrect Venn diagram construction
-✅ Follow precise shading and placement rules
+âŒ Incorrect Venn diagram construction
+âœ… Follow precise shading and placement rules
 
 ### **Mistake 4: Possibility Neglect**
-❌ Ignoring possible alternative interpretations
-✅ Consider possibility cases when appropriate
+âŒ Ignoring possible alternative interpretations
+âœ… Consider possibility cases when appropriate
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Master Proposition Types**: Learn All/Some/No meanings thoroughly
 2. **Practice Venn Diagrams**: Draw diagrams for every problem initially
@@ -284,7 +284,7 @@ Complex problems combining multiple techniques.
 
 ---
 
-## 🔍 What You'll Learn Next
+## ðŸ” What You'll Learn Next
 
 This module covers comprehensive syllogism topics:
 
@@ -299,5 +299,5 @@ This module covers comprehensive syllogism topics:
 - **Negative Statements** - Problems with "No" propositions
 - **Mixed Problems** - Complex integrated syllogism challenges
 
-**Master syllogism techniques to excel in logical reasoning and categorical analysis! 🧠✨**`
+**Master syllogism techniques to excel in logical reasoning and categorical analysis! ðŸ§ âœ¨**`
 };

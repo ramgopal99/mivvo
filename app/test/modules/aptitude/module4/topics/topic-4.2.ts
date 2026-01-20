@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_2: SubLesson = {
   id: "4.2",
-  title: 'Conversion: Fraction ↔ Percentage',
+  title: 'Conversion: Fraction â†” Percentage',
   status: 'completed',
-  content: `# 🔄 Conversion: Fraction ↔ Percentage
+  content: "`# ðŸ”„ Conversion: Fraction â†” Percentage
 
 Master the art of converting between fractions and percentages! This fundamental skill is essential for aptitude exams and helps you understand relationships between different number representations.
 
 ---
 
-## 🎯 Why Convert Between Fractions and Percentages?
+## ðŸŽ¯ Why Convert Between Fractions and Percentages?
 
 ### **Real-Life Applications**
 - **Shopping**: "30% discount" vs "3/10 off"
@@ -25,13 +25,13 @@ Master the art of converting between fractions and percentages! This fundamental
 
 ---
 
-## 📈 Fraction to Percentage Conversion
+## ðŸ“ˆ Fraction to Percentage Conversion
 
 ### **Method 1: Direct Formula**
-**Formula:** Percentage = (Numerator ÷ Denominator) × 100%
+**Formula:** Percentage = (Numerator Ã· Denominator) Ã— 100%
 
-\`\`\`
-a/b = (a ÷ b) × 100%
+\`"\`\`
+a/b = (a Ã· b) Ã— 100%
 \`\`\`
 
 ### **Step-by-Step Process**
@@ -41,34 +41,34 @@ a/b = (a ÷ b) × 100%
 
 ---
 
-## 🔢 Examples: Fraction to Percentage
+## ðŸ”¢ Examples: Fraction to Percentage
 
 ### **Example 1: Simple Fractions**
 **Convert 1/4 to percentage:**
-- 1 ÷ 4 = 0.25
-- 0.25 × 100 = 25%
+- 1 Ã· 4 = 0.25
+- 0.25 Ã— 100 = 25%
 - Answer: 25%
 
 **Convert 3/5 to percentage:**
-- 3 ÷ 5 = 0.6
-- 0.6 × 100 = 60%
+- 3 Ã· 5 = 0.6
+- 0.6 Ã— 100 = 60%
 - Answer: 60%
 
 ### **Example 2: Mixed Numbers**
-**Convert 1⅓ to percentage:**
+**Convert 1â…“ to percentage:**
 - Convert to improper fraction: 4/3
-- 4 ÷ 3 ≈ 1.333
-- 1.333 × 100 ≈ 133.33%
+- 4 Ã· 3 â‰ˆ 1.333
+- 1.333 Ã— 100 â‰ˆ 133.33%
 - Answer: 133.33%
 
 ### **Example 3: Decimal Fractions**
 **Convert 0.75 to percentage:**
-- 0.75 × 100 = 75%
+- 0.75 Ã— 100 = 75%
 - Answer: 75%
 
 ---
 
-## 📉 Percentage to Fraction Conversion
+## ðŸ“‰ Percentage to Fraction Conversion
 
 ### **Method 1: Direct Formula**
 **Formula:** Percentage = Numerator/100
@@ -84,43 +84,43 @@ x% = x/100
 
 ---
 
-## 🔢 Examples: Percentage to Fraction
+## ðŸ”¢ Examples: Percentage to Fraction
 
 ### **Example 1: Whole Number Percentages**
 **Convert 25% to fraction:**
 - 25% = 25/100
-- Simplify: 25÷25/100÷25 = 1/4
+- Simplify: 25Ã·25/100Ã·25 = 1/4
 - Answer: 1/4
 
 **Convert 75% to fraction:**
 - 75% = 75/100
-- Simplify: 75÷25/100÷25 = 3/4
+- Simplify: 75Ã·25/100Ã·25 = 3/4
 - Answer: 3/4
 
 ### **Example 2: Decimal Percentages**
 **Convert 12.5% to fraction:**
 - 12.5% = 12.5/100
 - = 125/1000 (multiply numerator and denominator by 10)
-- Simplify: 125÷25/1000÷25 = 5/40
-- Simplify further: 5÷5/40÷5 = 1/8
+- Simplify: 125Ã·25/1000Ã·25 = 5/40
+- Simplify further: 5Ã·5/40Ã·5 = 1/8
 - Answer: 1/8
 
 ### **Example 3: Large Percentages**
 **Convert 250% to fraction:**
 - 250% = 250/100
-- Simplify: 250÷50/100÷50 = 5/2
-- Answer: 5/2 or 2½
+- Simplify: 250Ã·50/100Ã·50 = 5/2
+- Answer: 5/2 or 2Â½
 
 ---
 
-## 🧮 Quick Conversion Tricks
+## ðŸ§® Quick Conversion Tricks
 
 ### **Fraction to Percentage - Mental Math**
 
 | Fraction | Decimal | Percentage | Trick |
 |----------|---------|------------|-------|
 | 1/2      | 0.5     | 50%        | Half = 50% |
-| 1/3      | 0.333   | 33.33%     | Third ≈ 33% |
+| 1/3      | 0.333   | 33.33%     | Third â‰ˆ 33% |
 | 1/4      | 0.25    | 25%        | Quarter = 25% |
 | 1/5      | 0.2     | 20%        | Fifth = 20% |
 | 1/8      | 0.125   | 12.5%      | Eighth = 12.5% |
@@ -144,12 +144,12 @@ x% = x/100
 
 ---
 
-## 🔄 Two-Way Conversion Examples
+## ðŸ”„ Two-Way Conversion Examples
 
 ### **Example 1: Round Trip**
 **Start with fraction 3/8:**
-- 3/8 to percentage: (3÷8)×100 = 37.5%
-- 37.5% back to fraction: 37.5/100 = 375/1000 = 3/8 ✓
+- 3/8 to percentage: (3Ã·8)Ã—100 = 37.5%
+- 37.5% back to fraction: 37.5/100 = 375/1000 = 3/8 âœ“
 
 ### **Example 2: Decimal Conversion**
 **Convert 0.6 to percentage to fraction:**
@@ -158,69 +158,69 @@ x% = x/100
 
 ---
 
-## 🎯 Advanced Conversion Techniques
+## ðŸŽ¯ Advanced Conversion Techniques
 
 ### **Method 1: Equivalent Fractions**
 Convert to equivalent fraction with denominator 100:
 
 **Convert 2/5 to percentage:**
 - 2/5 = ?/100
-- 2 × 20 = 40, 5 × 20 = 100
+- 2 Ã— 20 = 40, 5 Ã— 20 = 100
 - 40/100 = 40%
 
 ### **Method 2: Division by Denominator**
 **Convert 7/20 to percentage:**
-- 7 ÷ 20 = 0.35
-- 0.35 × 100 = 35%
+- 7 Ã· 20 = 0.35
+- 0.35 Ã— 100 = 35%
 
 ### **Method 3: Cross Multiplication**
 **Convert x% to fraction:**
 - x% = x/100
-- Cross multiply: x × 100 = x × fraction
+- Cross multiply: x Ã— 100 = x Ã— fraction
 
 ---
 
-## 💡 Special Cases
+## ðŸ’¡ Special Cases
 
 ### **1. Converting Improper Fractions**
 **Convert 5/3 to percentage:**
-- 5 ÷ 3 ≈ 1.6667
-- 1.6667 × 100 = 166.67%
+- 5 Ã· 3 â‰ˆ 1.6667
+- 1.6667 Ã— 100 = 166.67%
 
 ### **2. Converting Mixed Numbers**
-**Convert 2½ to percentage:**
-- 2½ = 5/2
-- 5 ÷ 2 = 2.5
-- 2.5 × 100 = 250%
+**Convert 2Â½ to percentage:**
+- 2Â½ = 5/2
+- 5 Ã· 2 = 2.5
+- 2.5 Ã— 100 = 250%
 
 ### **3. Converting Recurring Decimals**
 **Convert 0.\overline{3} to percentage:**
-- 0.\overline{3} = 1/3 ≈ 0.3333
-- 0.3333 × 100 ≈ 33.33%
+- 0.\overline{3} = 1/3 â‰ˆ 0.3333
+- 0.3333 Ã— 100 â‰ˆ 33.33%
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Division**
-❌ Convert 3/4: 3÷4 = 0.75, then 0.75 × 10 = 7.5%
-- Wrong! Should be 0.75 × 100 = 75%
+âŒ Convert 3/4: 3Ã·4 = 0.75, then 0.75 Ã— 10 = 7.5%
+- Wrong! Should be 0.75 Ã— 100 = 75%
 
 ### **Mistake 2: Not Simplifying**
-❌ Convert 50% to fraction: 50/100 (leave as is)
+âŒ Convert 50% to fraction: 50/100 (leave as is)
 - Should simplify: 50/100 = 1/2
 
 ### **Mistake 3: Decimal Confusion**
-❌ Convert 0.25 to percentage: 0.25%
+âŒ Convert 0.25 to percentage: 0.25%
 - Wrong! 0.25 = 25%
 
 ### **Mistake 4: Percentage Symbol**
-❌ 25 = 25%
+âŒ 25 = 25%
 - Wrong! 25 is the number, 25% is 25/100
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Fraction to Percentage:**
 1. Convert 1/5 to percentage = ?
@@ -237,21 +237,21 @@ Convert to equivalent fraction with denominator 100:
 5. Convert 150% to fraction = ?
 
 ### **Mixed Practice:**
-1. Convert ¾ to percentage, then back to fraction = ?
+1. Convert Â¾ to percentage, then back to fraction = ?
 2. What fraction is 60%? = ?
 3. Express 0.45 as percentage = ?
 4. Convert 120% to mixed number = ?
 
 **Answers:**
-Fraction→%: 20%, 70%, 37.5%, 125%, 66.67%
-%→Fraction: 2/5, 13/20, 5/4, 17/200, 3/2
-Mixed: 75%, 3/5, 45%, 1⅕
+Fractionâ†’%: 20%, 70%, 37.5%, 125%, 66.67%
+%â†’Fraction: 2/5, 13/20, 5/4, 17/200, 3/2
+Mixed: 75%, 3/5, 45%, 1â…•
 
 ---
 
-## 🎓 Pro Tips for Exams
+## ðŸŽ“ Pro Tips for Exams
 
-1. **Memorize common conversions** - 1/4=25%, 1/3≈33.33%, 1/2=50%, etc.
+1. **Memorize common conversions** - 1/4=25%, 1/3â‰ˆ33.33%, 1/2=50%, etc.
 2. **Use calculator for complex fractions** but understand the method
 3. **Always simplify fractions** when converting from percentage
 4. **Check if decimal is needed** or if fraction form is acceptable
@@ -259,25 +259,25 @@ Mixed: 75%, 3/5, 45%, 1⅕
 
 ---
 
-## 🔢 Conversion Flowchart
+## ðŸ”¢ Conversion Flowchart
 
 \`\`\`
-Fraction → Percentage:
-   ↓
+Fraction â†’ Percentage:
+   â†“
 Divide numerator by denominator
-   ↓
+   â†“
 Multiply by 100
-   ↓
+   â†“
 Add % symbol
 
-Percentage → Fraction:
-   ↓
+Percentage â†’ Fraction:
+   â†“
 Divide by 100
-   ↓
+   â†“
 Write as fraction
-   ↓
+   â†“
 Simplify
 \`\`\`
 
-Master these conversions and you'll handle percentage problems with confidence! 🏆`
+Master these conversions and you'll handle percentage problems with confidence! ðŸ†`
 };

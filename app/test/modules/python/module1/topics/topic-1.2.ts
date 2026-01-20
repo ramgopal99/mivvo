@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_1_2: SubLesson = {
   id: "1.2",
   title: 'Setting Up Python Locally',
   status: 'completed',
-  content: `# 🛠️ Setting Up Python on Your Local Machine
+  content: "`# ðŸ› ï¸ Setting Up Python on Your Local Machine
 
 Learn how to install Python and set up your development environment for coding.
 
 ---
 
-## 📋 Prerequisites
+## ðŸ“‹ Prerequisites
 
 Before installing Python, make sure your system meets these requirements:
 
@@ -28,13 +28,13 @@ Before installing Python, make sure your system meets these requirements:
 
 ---
 
-## 🪟 Windows Installation
+## ðŸªŸ Windows Installation
 
 ### Method 1: Official Python Installer (Recommended)
 
 1. **Download Python**
    - Visit [python.org](https://python.org)
-   - Click "Downloads" → "Download Python 3.x.x"
+   - Click "Downloads" â†’ "Download Python 3.x.x"
    - Choose the latest stable version
 
 2. **Run the Installer**
@@ -44,7 +44,7 @@ Before installing Python, make sure your system meets these requirements:
 
 3. **Verify Installation**
    - Open Command Prompt (search for "cmd")
-   - Type: \`python --version\`
+   - Type: \`"python --version\`
    - Type: \`pip --version\`
 
 ### Method 2: Microsoft Store
@@ -55,13 +55,13 @@ Before installing Python, make sure your system meets these requirements:
 
 ---
 
-## 🍎 macOS Installation
+## ðŸŽ macOS Installation
 
 ### Method 1: Official Installer
 
 1. **Download Python**
    - Visit [python.org](https://python.org)
-   - Click "Downloads" → "Download Python 3.x.x"
+   - Click "Downloads" â†’ "Download Python 3.x.x"
    - Choose macOS installer
 
 2. **Install Python**
@@ -94,7 +94,7 @@ Before installing Python, make sure your system meets these requirements:
 
 ---
 
-## 🐧 Linux Installation
+## ðŸ§ Linux Installation
 
 ### Ubuntu/Debian
 
@@ -134,7 +134,7 @@ pip --version
 
 ---
 
-## 🆚 Python 2 vs Python 3
+## ðŸ†š Python 2 vs Python 3
 
 ### Python 2
 - **Legacy version** (released 2000)
@@ -146,11 +146,11 @@ pip --version
 - **Actively maintained**
 - **Recommended** for all new projects
 
-**Always use Python 3!** 🚀
+**Always use Python 3!** ðŸš€
 
 ---
 
-## 🖥️ Setting Up Your Development Environment
+## ðŸ–¥ï¸ Setting Up Your Development Environment
 
 ### 1. Choose a Code Editor
 
@@ -213,7 +213,7 @@ pip install matplotlib
 
 ---
 
-## 🧪 Testing Your Setup
+## ðŸ§ª Testing Your Setup
 
 Create a simple test script to verify everything works:
 
@@ -225,7 +225,7 @@ print(f"Python version: {__import__('sys').version}")
 
 # Test basic functionality
 name = input("What's your name? ")
-print(f"Hello, {name}! Welcome to Python! 🐍")
+print(f"Hello, {name}! Welcome to Python! ðŸ")
 \`\`\`
 
 ### Run the script
@@ -242,7 +242,7 @@ python3 test.py
 
 ---
 
-## 🐛 Troubleshooting Common Issues
+## ðŸ› Troubleshooting Common Issues
 
 ### "python is not recognized" (Windows)
 - Reinstall Python and check "Add to PATH"
@@ -268,7 +268,7 @@ python3 script.py
 
 ---
 
-## 🔧 Setting Up Environment Variables
+## ðŸ”§ Setting Up Environment Variables
 
 Environment variables help your computer find Python and its tools. This is especially important on Windows.
 
@@ -306,6 +306,7 @@ which python3
 
 ---
 
-🎉 **Congratulations!** You now have Python set up on your local machine. Time to start coding! 🚀`
+ðŸŽ‰ **Congratulations!** You now have Python set up on your local machine. Time to start coding! ðŸš€`
 };
+
 

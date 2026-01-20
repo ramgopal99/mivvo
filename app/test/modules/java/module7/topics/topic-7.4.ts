@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_4: SubLesson = {
   id: "7.4",
   title: 'Polymorphism',
   status: 'completed',
-  content: `# 🎭 Polymorphism in Java
+  content: "`# ðŸŽ­ Polymorphism in Java
 
 Polymorphism is the ability of objects to take on multiple forms. It allows objects of different classes to be treated as objects of a common superclass, enabling flexible and extensible code. Polymorphism is one of the core principles of object-oriented programming alongside encapsulation, inheritance, and abstraction.
 
 ---
 
-## 📋 Understanding Polymorphism
+## ðŸ“‹ Understanding Polymorphism
 
 ### **What is Polymorphism?**
-\`\`\`java
+\`"\`\`java
 public class PolymorphismBasics {
     // Superclass
     static class Animal {
@@ -182,7 +182,7 @@ public class PolymorphismTypes {
 
 ---
 
-## 🔄 Runtime Polymorphism (Dynamic Method Dispatch)
+## ðŸ”„ Runtime Polymorphism (Dynamic Method Dispatch)
 
 ### **How Runtime Polymorphism Works**
 \`\`\`java
@@ -292,7 +292,7 @@ public class MethodResolution {
 
 ---
 
-## 🎯 Polymorphism in Collections and Arrays
+## ðŸŽ¯ Polymorphism in Collections and Arrays
 
 ### **Polymorphic Collections**
 \`\`\`java
@@ -419,7 +419,7 @@ public class PolymorphicParameters {
 
 ---
 
-## 🔄 Polymorphism with Interfaces
+## ðŸ”„ Polymorphism with Interfaces
 
 ### **Interface Polymorphism**
 \`\`\`java
@@ -495,7 +495,7 @@ public class InterfacePolymorphism {
 
 ---
 
-## 🎯 Advanced Polymorphism Patterns
+## ðŸŽ¯ Advanced Polymorphism Patterns
 
 ### **Strategy Pattern with Polymorphism**
 \`\`\`java
@@ -672,7 +672,7 @@ public class FactoryPolymorphism {
 
 ---
 
-## ⚠️ Polymorphism Pitfalls
+## âš ï¸ Polymorphism Pitfalls
 
 ### **Type Casting Issues**
 \`\`\`java
@@ -709,7 +709,7 @@ public class PolymorphismPitfalls {
         Animal animal1 = new Dog();
         Animal animal2 = new Cat();
 
-        // ✅ Safe downcasting with instanceof
+        // âœ… Safe downcasting with instanceof
         if (animal1 instanceof Dog) {
             Dog dog = (Dog) animal1;
             dog.fetch();
@@ -720,7 +720,7 @@ public class PolymorphismPitfalls {
             cat.climb();
         }
 
-        // ❌ Dangerous downcasting without check
+        // âŒ Dangerous downcasting without check
         try {
             Cat wrongCat = (Cat) animal1;  // animal1 is a Dog!
             wrongCat.climb();  // This would cause ClassCastException
@@ -772,7 +772,7 @@ public class MethodHiding {
 
 ---
 
-## 🎯 Polymorphism Best Practices
+## ðŸŽ¯ Polymorphism Best Practices
 
 ### **1. Program to Interfaces, Not Implementations**
 \`\`\`java
@@ -941,7 +941,7 @@ public class ExtensiblePolymorphism {
 ### **3. Avoid Fragile Base Class Problem**
 \`\`\`java
 public class FragileBaseClass {
-    // ❌ Fragile base class - changes can break subclasses
+    // âŒ Fragile base class - changes can break subclasses
     static class ProblematicBase {
         public void process() {
             step1();
@@ -963,7 +963,7 @@ public class FragileBaseClass {
         }
     }
 
-    // ✅ Better: Use composition and interfaces
+    // âœ… Better: Use composition and interfaces
     interface Processor {
         void process();
     }
@@ -1009,8 +1009,9 @@ public class FragileBaseClass {
 }
 \`\`\`
 
-Polymorphism is a cornerstone of object-oriented programming that enables flexible, extensible, and maintainable code. By programming to interfaces and leveraging inheritance, you can create systems that are easy to extend and modify without changing existing code! 🎭`
+Polymorphism is a cornerstone of object-oriented programming that enables flexible, extensible, and maintainable code. By programming to interfaces and leveraging inheritance, you can create systems that are easy to extend and modify without changing existing code! ðŸŽ­`
 };
+
 
 
 

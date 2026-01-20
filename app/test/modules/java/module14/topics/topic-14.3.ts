@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_3: SubLesson = {
   id: "14.3",
   title: 'Advanced Recursion Techniques',
   status: 'completed',
-  content: `# 🔄 Advanced Recursion Techniques in Java
+  content: "`# ðŸ”„ Advanced Recursion Techniques in Java
 
 Master complex recursive patterns and optimization techniques!
 
 ---
 
-## 🎯 Divide and Conquer Recursion
+## ðŸŽ¯ Divide and Conquer Recursion
 
 ### **1. Merge Sort Implementation**
-\`\`\`java
+\`"\`\`java
 import java.util.Arrays;
 
 public class AdvancedRecursion {
@@ -141,7 +141,7 @@ public class AdvancedRecursion {
 
 ---
 
-## 🔄 Backtracking Recursion
+## ðŸ”„ Backtracking Recursion
 
 ### **1. N-Queens Problem**
 \`\`\`java
@@ -270,7 +270,7 @@ public class BacktrackingRecursion {
 
 ---
 
-## 🔢 Mathematical Recursion
+## ðŸ”¢ Mathematical Recursion
 
 ### **1. Tower of Hanoi**
 \`\`\`java
@@ -354,7 +354,7 @@ public class MathematicalRecursion {
 
 ---
 
-## ⚡ Tail Recursion Optimization
+## âš¡ Tail Recursion Optimization
 
 ### **1. Tail Recursive Factorial**
 \`\`\`java
@@ -407,7 +407,7 @@ public class TailRecursion {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Divide & Conquer**: Break problems into subproblems (Merge Sort, Quick Sort)
 2. **Backtracking**: Try solutions, undo when they fail (N-Queens, Subsets)
@@ -416,6 +416,7 @@ public class TailRecursion {
 5. **Base Cases**: Always define clear stopping conditions
 6. **Problem Analysis**: Identify recursive structure before implementing
 
-**Next:** Learn recursion vs iteration comparison! 🚀`
+**Next:** Learn recursion vs iteration comparison! ðŸš€`
 };
+
 

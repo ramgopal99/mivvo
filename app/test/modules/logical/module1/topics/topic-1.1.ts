@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_1_1: SubLesson = {
   id: "1.1",
   title: 'What is Logical Reasoning?',
   status: 'completed',
-  content: `# 🧠 What is Logical Reasoning?
+  content: "`# ðŸ§  What is Logical Reasoning?
 
 Welcome to the fascinating world of Logical Reasoning! This foundational course will introduce you to the core concepts, importance, and applications of logical reasoning in competitive examinations and real-world problem-solving.
 
 ---
 
-## 🎯 Understanding Logical Reasoning
+## ðŸŽ¯ Understanding Logical Reasoning
 
 **Logical Reasoning** is the process of using rational thinking to arrive at a conclusion. It involves analyzing information, identifying patterns, and drawing valid conclusions based on evidence and facts.
 
@@ -28,7 +28,7 @@ Welcome to the fascinating world of Logical Reasoning! This foundational course 
 
 ---
 
-## 🧩 Types of Logical Reasoning
+## ðŸ§© Types of Logical Reasoning
 
 ### **1. Verbal Reasoning**
 Focused on language-based logical problems and arguments.
@@ -41,7 +41,7 @@ Centers on evaluating arguments and making logical conclusions.
 
 ---
 
-## 📊 Competitive Exam Relevance
+## ðŸ“Š Competitive Exam Relevance
 
 ### **Major Exams Featuring Logical Reasoning**
 - **Banking Exams** (IBPS, SBI): 30-40% weightage
@@ -53,7 +53,7 @@ Centers on evaluating arguments and making logical conclusions.
 
 ---
 
-## 🎯 Core Logical Reasoning Skills
+## ðŸŽ¯ Core Logical Reasoning Skills
 
 ### **1. Deductive Reasoning**
 **Drawing specific conclusions from general premises**
@@ -73,7 +73,7 @@ Centers on evaluating arguments and making logical conclusions.
 
 ---
 
-## 🛠️ Problem-Solving Framework
+## ðŸ› ï¸ Problem-Solving Framework
 
 ### **Step 1: Understand the Problem**
 - Read the question carefully
@@ -101,7 +101,7 @@ Centers on evaluating arguments and making logical conclusions.
 
 ---
 
-## 📈 Difficulty Levels in Exams
+## ðŸ“ˆ Difficulty Levels in Exams
 
 ### **Easy Level (30-40%)**
 - Basic logical relationships
@@ -123,7 +123,7 @@ Centers on evaluating arguments and making logical conclusions.
 
 ---
 
-## 📊 Time Management Strategies
+## ðŸ“Š Time Management Strategies
 
 ### **Question Allocation (Per Topic)**
 - **Easy Questions**: 30-45 seconds
@@ -144,7 +144,7 @@ Centers on evaluating arguments and making logical conclusions.
 
 ---
 
-## 🚀 Preparation Strategy
+## ðŸš€ Preparation Strategy
 
 ### **Phase 1: Foundation Building (Weeks 1-2)**
 - Understand basic concepts
@@ -172,7 +172,7 @@ Centers on evaluating arguments and making logical conclusions.
 
 ---
 
-## 📚 Recommended Study Materials
+## ðŸ“š Recommended Study Materials
 
 ### **Books**
 - **Verbal and Non-Verbal Reasoning** by R.S. Aggarwal
@@ -188,7 +188,7 @@ Centers on evaluating arguments and making logical conclusions.
 
 ---
 
-## 🎯 Success Factors
+## ðŸŽ¯ Success Factors
 
 ### **1. Regular Practice**
 - Daily problem-solving sessions
@@ -212,27 +212,27 @@ Centers on evaluating arguments and making logical conclusions.
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Overconfidence**
-❌ "I know this topic" without practice
-✅ Regular revision and practice
+âŒ "I know this topic" without practice
+âœ… Regular revision and practice
 
 ### **Mistake 2: Time Pressure**
-❌ Spending too much time on difficult questions
-✅ Smart question selection strategy
+âŒ Spending too much time on difficult questions
+âœ… Smart question selection strategy
 
 ### **Mistake 3: Careless Errors**
-❌ Silly mistakes in calculations
-✅ Double-checking work
+âŒ Silly mistakes in calculations
+âœ… Double-checking work
 
 ### **Mistake 4: Lack of Practice**
-❌ Theory without application
-✅ Consistent problem-solving practice
+âŒ Theory without application
+âœ… Consistent problem-solving practice
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Start with Basics**: Master fundamentals before advanced topics
 2. **Practice Regularly**: Daily practice is essential for retention
@@ -244,7 +244,7 @@ Centers on evaluating arguments and making logical conclusions.
 
 ---
 
-## 🏆 Course Benefits
+## ðŸ† Course Benefits
 
 - **Comprehensive Coverage**: All major reasoning topics
 - **Exam-oriented Approach**: Focus on competitive exam patterns
@@ -253,5 +253,5 @@ Centers on evaluating arguments and making logical conclusions.
 - **Time Management**: Speed improvement techniques
 - **Performance Analysis**: Detailed progress tracking
 
-**Master logical reasoning and unlock your potential for competitive success! 🧠✨**`
+**Master logical reasoning and unlock your potential for competitive success! ðŸ§ âœ¨**`"
 };

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_5: SubLesson = {
   id: "16.5",
   title: 'Regular Expressions',
   status: 'demo',
-  content: `# 🔍 Regular Expressions in Python
+  content: "`# ðŸ” Regular Expressions in Python
 
-Regular expressions (regex) are powerful tools for pattern matching and text manipulation. Python's \`re\` module provides comprehensive regex support, enabling complex string operations, data validation, and text processing. Let's master this essential skill for text processing!
+Regular expressions (regex) are powerful tools for pattern matching and text manipulation. Python's \`"re\` module provides comprehensive regex support, enabling complex string operations, data validation, and text processing. Let's master this essential skill for text processing!
 
 ---
 
-## 🎯 What are Regular Expressions?
+## ðŸŽ¯ What are Regular Expressions?
 
 **Regular expressions** are sequences of characters that define search patterns. They can match, search, replace, and split strings based on complex patterns.
 
@@ -23,7 +23,7 @@ Regular expressions (regex) are powerful tools for pattern matching and text man
 
 ---
 
-## 💻 Basic Regex Operations
+## ðŸ’» Basic Regex Operations
 
 ### **Import and Basic Usage**
 \`\`\`python
@@ -66,7 +66,7 @@ for match in re.finditer(r"\\b\\w+\\b", text):
 
 ---
 
-## 🎨 Regex Patterns and Metacharacters
+## ðŸŽ¨ Regex Patterns and Metacharacters
 
 ### **Literal Characters**
 \`\`\`python
@@ -129,7 +129,7 @@ print(re.findall(r"\\S", text))  # Non-whitespace: ['H', 'e', 'l', 'l', 'o', '1'
 
 ---
 
-## 🔧 Advanced Patterns
+## ðŸ”§ Advanced Patterns
 
 ### **Quantifiers**
 \`\`\`python
@@ -204,7 +204,7 @@ print(result)  # the quick brown fox
 
 ---
 
-## 🎯 Practical Applications
+## ðŸŽ¯ Practical Applications
 
 ### **Email Validation**
 \`\`\`python
@@ -248,25 +248,25 @@ print(clean_text)  # This is bold text with links.
 
 ---
 
-## 🔄 Search and Replace Operations
+## ðŸ”„ Search and Replace Operations
 
 ### **re.sub() Function**
 \`\`\`python
 text = "The price is $100 and $200 respectively"
 
 # Replace dollar amounts with euros
-result = re.sub(r"\\$(\\d+)", r"€\\1", text)
-print(result)  # The price is €100 and €200 respectively
+result = re.sub(r"\\$(\\d+)", r"â‚¬\\1", text)
+print(result)  # The price is â‚¬100 and â‚¬200 respectively
 
 # Replace with function
 def celsius_to_fahrenheit(match):
     celsius = int(match.group(1))
     fahrenheit = celsius * 9/5 + 32
-    return f"{fahrenheit:.1f}°F"
+    return f"{fahrenheit:.1f}Â°F"
 
-text = "Temperature: 20°C and 25°C"
-result = re.sub(r"(\\d+)°C", celsius_to_fahrenheit, text)
-print(result)  # Temperature: 68.0°F and 77.0°F
+text = "Temperature: 20Â°C and 25Â°C"
+result = re.sub(r"(\\d+)Â°C", celsius_to_fahrenheit, text)
+print(result)  # Temperature: 68.0Â°F and 77.0Â°F
 \`\`\`
 
 ### **Multiple Replacements**
@@ -289,7 +289,7 @@ print(result)  # I have a feline and a canine
 
 ---
 
-## ⚡ Compilation and Flags
+## âš¡ Compilation and Flags
 
 ### **Compiled Patterns**
 \`\`\`python
@@ -329,7 +329,7 @@ pattern = re.compile(r"test", re.IGNORECASE | re.MULTILINE)
 
 ---
 
-## 🧪 Complex Examples
+## ðŸ§ª Complex Examples
 
 ### **Log File Parsing**
 \`\`\`python
@@ -401,53 +401,53 @@ print(f"Docstrings: {docstrings}")
 
 ---
 
-## 🎯 Best Practices
+## ðŸŽ¯ Best Practices
 
 ### **Performance Tips**
 \`\`\`python
 import re
 
-# ✅ Compile patterns for repeated use
+# âœ… Compile patterns for repeated use
 email_pattern = re.compile(r"^\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*(\\.\\w{2,3})+$")
 
-# ❌ Avoid compiling for one-time use (unless very complex)
+# âŒ Avoid compiling for one-time use (unless very complex)
 result = re.search(r"simple", text)  # Fine for simple patterns
 
-# ✅ Use raw strings for patterns
+# âœ… Use raw strings for patterns
 pattern = r"\\d{3}-\\d{2}-\\d{4}"  # Good
 
-# ❌ Don't use regular strings (may need extra escaping)
+# âŒ Don't use regular strings (may need extra escaping)
 pattern = "\\\\d{3}-\\\\d{2}-\\\\d{4}"  # Confusing
 
-# ✅ Be specific with patterns
+# âœ… Be specific with patterns
 specific = re.findall(r"\\b(cat|dog|bird)\\b", text)  # Better
 vague = re.findall(r"\\w+", text)  # May match unwanted text
 \`\`\`
 
 ### **Common Pitfalls**
 \`\`\`python
-# ❌ Greedy matching by default
+# âŒ Greedy matching by default
 text = "<div>content</div><div>more</div>"
 bad = re.search(r"<div>.*</div>", text)
 print(bad.group())  # Matches too much: <div>content</div><div>more</div>
 
-# ✅ Use non-greedy matching
+# âœ… Use non-greedy matching
 good = re.search(r"<div>.*?</div>", text)
 print(good.group())  # Matches correctly: <div>content</div>
 
-# ❌ Forgetting word boundaries
+# âŒ Forgetting word boundaries
 text = "cat category catalog"
 bad_matches = re.findall(r"cat", text)  # ['cat', 'cat', 'cat']
 print(bad_matches)
 
-# ✅ Using word boundaries
+# âœ… Using word boundaries
 good_matches = re.findall(r"\\bcat\\b", text)  # ['cat']
 print(good_matches)
 \`\`\`
 
 ---
 
-## 🚀 Advanced Techniques
+## ðŸš€ Advanced Techniques
 
 ### **Lookahead and Lookbehind**
 \`\`\`python
@@ -492,7 +492,7 @@ print(matches)  # ['txt', 'backup']
 
 ---
 
-## 🏆 Key Takeaways
+## ðŸ† Key Takeaways
 
 1. **Regular expressions** are powerful for pattern matching and text processing
 2. **Core functions**: \`search()\`, \`match()\`, \`findall()\`, \`sub()\`
@@ -502,6 +502,7 @@ print(matches)  # ['txt', 'backup']
 6. **Compilation** improves performance for repeated use
 7. **Best practices** ensure maintainable and efficient regex code
 
-**Regular expressions are essential for text processing, data validation, and parsing. Master them to become a more effective Python programmer! 🔍**`
+**Regular expressions are essential for text processing, data validation, and parsing. Master them to become a more effective Python programmer! ðŸ”**`
 };
+
 

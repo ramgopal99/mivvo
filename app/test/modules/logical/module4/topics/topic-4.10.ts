@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_10: SubLesson = {
   id: "4.10",
   title: 'Age-Based Puzzles',
   status: 'completed',
-  content: `# 🎂 Age-Based Puzzles
+  content: "`# ðŸŽ‚ Age-Based Puzzles
 
 Age-based puzzles involve determining the ages of different people based on relationships, comparisons, and logical constraints. These puzzles require understanding of chronological relationships, age differences, and family generation logic.
 
 ---
 
-## 🎯 Understanding Age-Based Puzzles
+## ðŸŽ¯ Understanding Age-Based Puzzles
 
 ### **What are Age-Based Puzzles?**
 Age-based puzzles involve determining the ages of multiple people based on comparative relationships, differences, and logical constraints. They test your ability to:
@@ -27,7 +27,7 @@ Age-based puzzles involve determining the ages of multiple people based on compa
 
 ---
 
-## 🧩 Types of Age-Based Problems
+## ðŸ§© Types of Age-Based Problems
 
 ### **1. Family Age Relationships**
 **Family member age determinations**
@@ -49,7 +49,7 @@ Age-based puzzles involve determining the ages of multiple people based on compa
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Identify Age Relationships**
 - Map all age comparison statements
@@ -73,7 +73,7 @@ Age-based puzzles involve determining the ages of multiple people based on compa
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Family Age Puzzles**
 **Family relationship age determinations**
@@ -95,13 +95,13 @@ Age-based puzzles involve determining the ages of multiple people based on compa
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Age Relationship Diagram**
-A (25) ── 3 years ── B (22)
-│
+A (25) â”€â”€ 3 years â”€â”€ B (22)
+â”‚
 5 years
-│
+â”‚
 C (20)
 - Create age relationship maps
 - Show age differences
@@ -124,7 +124,7 @@ C      |  ?  | 2 years older than B
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Family Ages**
 **Conditions:**
@@ -155,7 +155,7 @@ C      |  ?  | 2 years older than B
 
 ---
 
-## 🔍 Advanced Age Concepts
+## ðŸ” Advanced Age Concepts
 
 ### **Multiple Generation Problems**
 Complex family trees with age relationships across generations.
@@ -168,7 +168,7 @@ Age relationships that depend on other factors.
 
 ---
 
-## 📊 Age Logic Methods
+## ðŸ“Š Age Logic Methods
 
 ### **Direct Age Differences**
 - **Specific gaps**: Exact year differences
@@ -187,23 +187,23 @@ Age relationships that depend on other factors.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Age Difference Errors**
-❌ Wrong age gap calculations
-✅ Careful arithmetic verification
+âŒ Wrong age gap calculations
+âœ… Careful arithmetic verification
 
 ### **Pitfall 2: Relationship Confusion**
-❌ Mixing older/younger directions
-✅ Clear relationship mapping
+âŒ Mixing older/younger directions
+âœ… Clear relationship mapping
 
 ### **Pitfall 3: Transitive Errors**
-❌ Incorrect age chain logic
-✅ Step-by-step age verification
+âŒ Incorrect age chain logic
+âœ… Step-by-step age verification
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Age Relationship Mapping**
 - Create age relationship diagram
@@ -222,7 +222,7 @@ Age relationships that depend on other factors.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Few people, simple relationships
@@ -241,7 +241,7 @@ Age relationships that depend on other factors.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Create Age Diagram**: Visual age relationship mapping
 2. **Start with Known Ages**: Use given ages as starting points
@@ -251,7 +251,7 @@ Age relationships that depend on other factors.
 
 ---
 
-## 🎂 Practice Questions
+## ðŸŽ‚ Practice Questions
 
 ### **Question 1**
 **Conditions:**
@@ -281,5 +281,5 @@ Age relationships that depend on other factors.
 
 **What is A's age?**
 
-**Master age-based puzzles for chronological reasoning skills! 🎂✨**`
+**Master age-based puzzles for chronological reasoning skills! ðŸŽ‚âœ¨**`"
 };

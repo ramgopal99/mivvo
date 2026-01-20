@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_10: SubLesson = {
   id: "5.10",
   title: 'Mathematical Coding',
   status: 'completed',
-  content: `# 🧮 Mathematical Coding
+  content: "`# ðŸ§® Mathematical Coding
 
 Mathematical coding involves using mathematical operations, formulas, and calculations for coding transformations. These problems combine arithmetic skills with coding logic and appear frequently in competitive exams.
 
 ---
 
-## 🎯 Understanding Mathematical Coding
+## ðŸŽ¯ Understanding Mathematical Coding
 
 ### **What is Mathematical Coding?**
 Mathematical coding involves transformation rules based on mathematical operations, formulas, and calculations. These problems test your ability to:
@@ -20,24 +20,24 @@ Mathematical coding involves transformation rules based on mathematical operatio
 - **Solve math-based coding problems**
 
 ### **Key Characteristics**
-- **Arithmetic operations**: +, -, ×, ÷, powers, roots
+- **Arithmetic operations**: +, -, Ã—, Ã·, powers, roots
 - **Formula applications**: Mathematical transformation rules
 - **Calculation accuracy**: Precise mathematical computations
 - **Logical mathematics**: Math-based logical transformations
 
 ---
 
-## 🧩 Types of Mathematical Coding
+## ðŸ§© Types of Mathematical Coding
 
 ### **1. Basic Arithmetic Operations**
 **Simple mathematical transformations**
 - **Addition/Subtraction**: +n, -n to position values
-- **Multiplication/Division**: ×n, ÷n operations
+- **Multiplication/Division**: Ã—n, Ã·n operations
 - **Combined Operations**: Multiple arithmetic steps
 
 ### **2. Advanced Mathematical Operations**
 **Complex mathematical transformations**
-- **Powers and Roots**: Position², √position
+- **Powers and Roots**: PositionÂ², âˆšposition
 - **Modulo Operations**: Position mod n
 - **Complex Formulas**: Multi-variable calculations
 
@@ -49,7 +49,7 @@ Mathematical coding involves transformation rules based on mathematical operatio
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze Mathematical Relationships**
 - Examine input-output number pairs
@@ -73,7 +73,7 @@ Mathematical coding involves transformation rules based on mathematical operatio
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Simple Arithmetic Coding**
 **Basic mathematical operations**
@@ -83,19 +83,19 @@ Mathematical coding involves transformation rules based on mathematical operatio
 
 ### **Type 2: Complex Formula Coding**
 **Advanced mathematical formulas**
-- "Position × 2 + 1"
-- "Position² - 1"
+- "Position Ã— 2 + 1"
+- "PositionÂ² - 1"
 - "Complex multi-step calculations"
 
 ### **Type 3: Position-Integrated Mathematics**
 **Mathematics with position factors**
-- "Position in word × position in alphabet"
+- "Position in word Ã— position in alphabet"
 - "Word position + letter position"
 - "Complex position-based formulas"
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Formula Identification**
 - Analyze input-output relationships
@@ -114,7 +114,7 @@ Mathematical coding involves transformation rules based on mathematical operatio
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Addition**
 **Formula**: Position + 1
@@ -123,20 +123,20 @@ Mathematical coding involves transformation rules based on mathematical operatio
 - **Explanation**: 1+1=2, 2+1=3, 3+1=4
 
 ### **Example 2: Multiplication Formula**
-**Formula**: Position × 2
+**Formula**: Position Ã— 2
 - **Input**: ABC (A=1, B=2, C=3)
 - **Output**: 2, 4, 6
-- **Explanation**: 1×2=2, 2×2=4, 3×2=6
+- **Explanation**: 1Ã—2=2, 2Ã—2=4, 3Ã—2=6
 
 ### **Example 3: Complex Formula**
-**Formula**: Position × 2 + 1
+**Formula**: Position Ã— 2 + 1
 - **Input**: ABC (A=1, B=2, C=3)
 - **Output**: 3, 5, 7
-- **Explanation**: 1×2+1=3, 2×2+1=5, 3×2+1=7
+- **Explanation**: 1Ã—2+1=3, 2Ã—2+1=5, 3Ã—2+1=7
 
 ---
 
-## 🔍 Advanced Mathematical Concepts
+## ðŸ” Advanced Mathematical Concepts
 
 ### **Complex Formula Applications**
 Multi-step mathematical transformations requiring careful calculation.
@@ -149,42 +149,42 @@ Complex mathematical operations including trigonometry, logarithms, etc.
 
 ---
 
-## 📊 Mathematical Coding Methods
+## ðŸ“Š Mathematical Coding Methods
 
 ### **Basic Operations**
-- **Arithmetic**: +, -, ×, ÷
+- **Arithmetic**: +, -, Ã—, Ã·
 - **Order of Operations**: PEMDAS/BODMAS
 - **Simple Formulas**: Single operation applications
 
 ### **Advanced Operations**
-- **Powers and Roots**: x², √x, x³
+- **Powers and Roots**: xÂ², âˆšx, xÂ³
 - **Modulo Operations**: x mod n
 - **Complex Formulas**: Multi-step calculations
 
 ### **Integrated Operations**
-- **Position Factors**: Word position × letter position
+- **Position Factors**: Word position Ã— letter position
 - **Multiple Variables**: Complex multi-variable formulas
 - **Conditional Operations**: Different formulas for different conditions
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Wrong Operation Order**
-❌ Incorrect order of mathematical operations
-✅ Follow BODMAS/PEMDAS rules
+âŒ Incorrect order of mathematical operations
+âœ… Follow BODMAS/PEMDAS rules
 
 ### **Pitfall 2: Calculation Errors**
-❌ Arithmetic mistakes in calculations
-✅ Double-check all mathematical steps
+âŒ Arithmetic mistakes in calculations
+âœ… Double-check all mathematical steps
 
 ### **Pitfall 3: Formula Misidentification**
-❌ Wrong mathematical formula assumption
-✅ Test formulas against all examples
+âŒ Wrong mathematical formula assumption
+âœ… Test formulas against all examples
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Operation Analysis**
 - Identify mathematical operations used
@@ -203,7 +203,7 @@ Complex mathematical operations including trigonometry, logarithms, etc.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Simple arithmetic operations
@@ -222,7 +222,7 @@ Complex mathematical operations including trigonometry, logarithms, etc.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Know Mathematical Order**: Remember BODMAS/PEMDAS rules
 2. **Calculate Accurately**: Double-check all arithmetic steps
@@ -232,19 +232,19 @@ Complex mathematical operations including trigonometry, logarithms, etc.
 
 ---
 
-## 🧮 Practice Questions
+## ðŸ§® Practice Questions
 
 ### **Question 1**
 If the code is calculated as (letter position + 1), what is the code for "ABC"?
 
 ### **Question 2**
-If the code is calculated as (letter position × 2), what is the code for "CAT"?
+If the code is calculated as (letter position Ã— 2), what is the code for "CAT"?
 
 ### **Question 3**
-If the code is calculated as (letter position × 2 + 1), what is the code for "DOG"?
+If the code is calculated as (letter position Ã— 2 + 1), what is the code for "DOG"?
 
 ### **Question 4**
-If the code is calculated as (letter position in word × letter position in alphabet), what is the code for "BAT"?
+If the code is calculated as (letter position in word Ã— letter position in alphabet), what is the code for "BAT"?
 
-**Master mathematical coding for precise calculation-based transformations! 🧮✨**`
+**Master mathematical coding for precise calculation-based transformations! ðŸ§®âœ¨**`"
 };

@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_3: SubLesson = {
   id: "3.3",
   title: 'Accessing List Elements',
   status: 'demo',
-  content: `# 🎯 Accessing List Elements
+  content: "`# ðŸŽ¯ Accessing List Elements
 
 Lists are ordered, so you can access each item using its position (index). Let's learn how!
 
 ---
 
-## 📍 Index Basics
+## ðŸ“ Index Basics
 
 ### **Position Numbers (Indices)**
-\`\`\`python
+\`"\`\`python
 fruits = ["apple", "banana", "orange", "grape"]
 
 # Index starts from 0
@@ -25,7 +25,7 @@ print(fruits[3])  # grape (fourth item)
 
 ---
 
-## 🔄 Negative Indexing
+## ðŸ”„ Negative Indexing
 
 ### **Count from the End**
 \`\`\`python
@@ -40,7 +40,7 @@ print(fruits[-4])  # apple (fourth to last/first)
 
 ---
 
-## 📏 Getting List Length
+## ðŸ“ Getting List Length
 
 ### **How Many Items?**
 \`\`\`python
@@ -55,7 +55,7 @@ if len(fruits) > 2:
 
 ---
 
-## 🎨 Simple Examples
+## ðŸŽ¨ Simple Examples
 
 \`\`\`python
 # Student grades example
@@ -73,7 +73,7 @@ print(f"Weekend: {days[-2]}, {days[-1]}")
 
 ---
 
-## ⚠️ Index Errors
+## âš ï¸ Index Errors
 
 ### **Avoid Going Out of Bounds**
 \`\`\`python
@@ -89,6 +89,7 @@ else:
     print("Index 3 doesn't exist")
 \`\`\`
 
-Accessing list elements is fundamental - always remember indices start at 0! 🔢`
+Accessing list elements is fundamental - always remember indices start at 0! ðŸ”¢`
 };
+
 

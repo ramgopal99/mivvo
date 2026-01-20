@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_4: SubLesson = {
   id: "6.4",
   title: 'Adding/Updating Dictionary Elements',
   status: 'demo',
-  content: `# ➕ Adding & Updating Dictionary Elements
+  content: "`# âž• Adding & Updating Dictionary Elements
 
 Dictionaries are mutable, so you can add new key-value pairs and update existing ones. Let's explore all the ways!
 
 ---
 
-## 🎯 Adding New Elements
+## ðŸŽ¯ Adding New Elements
 
 ### **Using Square Brackets []**
-\`\`\`python
+\`"\`\`python
 person = {"name": "Alice"}
 print(f"Before: {person}")
 
@@ -28,7 +28,7 @@ print(f"After: {person}")
 
 ---
 
-## 🔄 Updating Existing Elements
+## ðŸ”„ Updating Existing Elements
 
 ### **Modify Values**
 \`\`\`python
@@ -49,7 +49,7 @@ print(f"After: {student}")
 
 ---
 
-## 📦 Update with update() Method
+## ðŸ“¦ Update with update() Method
 
 ### **Add Multiple Key-Value Pairs**
 \`\`\`python
@@ -68,7 +68,7 @@ print(f"After: {person}")
 
 ---
 
-## 🔄 Update with Keyword Arguments
+## ðŸ”„ Update with Keyword Arguments
 
 ### **Using update() with kwargs**
 \`\`\`python
@@ -84,7 +84,7 @@ print(f"After: {config}")
 
 ---
 
-## 📝 Conditional Updates
+## ðŸ“ Conditional Updates
 
 ### **Update Only If Key Exists/Don't Exist**
 \`\`\`python
@@ -103,7 +103,7 @@ safe_update(person, "city", "NYC")  # Won't update
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **User Profile Management**
 \`\`\`python
@@ -193,13 +193,14 @@ print(f"Final config: {app_config}")
 
 ---
 
-## ✅ Best Practices
+## âœ… Best Practices
 
 1. **Use update() for multiple changes** - More efficient than individual assignments
 2. **Check key existence before updating** - Avoid accidental overwrites
 3. **Use descriptive key names** - Makes code more readable
 4. **Consider using dict.update() with other dicts** - Great for merging configurations
 
-Dictionaries make data updates intuitive and efficient! 📝`
+Dictionaries make data updates intuitive and efficient! ðŸ“`
 };
+
 

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_7: SubLesson = {
   id: "11.7",
   title: 'Boats & Streams',
   status: 'completed',
-  content: `# 🚣 Boats & Streams
+  content: "`# ðŸš£ Boats & Streams
 
 Master boats and streams problems - involving motion in flowing water where speed depends on both boat and stream velocities.
 
 ---
 
-## 🎯 Boats & Streams Concept
+## ðŸŽ¯ Boats & Streams Concept
 
 **Boats & Streams** problems involve boats moving in rivers/streams where water flow affects the boat's effective speed.
 
@@ -22,10 +22,10 @@ Master boats and streams problems - involving motion in flowing water where spee
 
 ---
 
-## 📊 Downstream & Upstream
+## ðŸ“Š Downstream & Upstream
 
 ### 1. **Downstream (with current)**
-\`\`\`
+\`"\`\`
 Speed = Boat Speed + Stream Speed
 Time = Distance / (B + S)
 \`\`\`
@@ -39,12 +39,12 @@ Time = Distance / (B - S)
 ### 3. **Speed Relationships**
 \`\`\`
 Downstream Speed > Upstream Speed
-Difference = 2 × Stream Speed
+Difference = 2 Ã— Stream Speed
 \`\`\`
 
 ---
 
-## 🧮 Boats & Streams Examples
+## ðŸ§® Boats & Streams Examples
 
 ### Example 1: Basic Calculation
 **Boat speed in still water is 12 km/h, stream speed 4 km/h. Downstream speed?**
@@ -56,8 +56,8 @@ Difference = 2 × Stream Speed
 **Boat goes 20 km downstream in 2 hours, returns in 2.5 hours. Find boat and stream speeds.**
 
 **Solution:**
-- Downstream: Distance = Speed × Time = S_d × 2 = 20 ⇒ S_d = 10 km/h
-- Upstream: Distance = Speed × Time = S_u × 2.5 = 20 ⇒ S_u = 8 km/h
+- Downstream: Distance = Speed Ã— Time = S_d Ã— 2 = 20 â‡’ S_d = 10 km/h
+- Upstream: Distance = Speed Ã— Time = S_u Ã— 2.5 = 20 â‡’ S_u = 8 km/h
 - Boat speed = (S_d + S_u)/2 = (10 + 8)/2 = 9 km/h
 - Stream speed = (S_d - S_u)/2 = (10 - 8)/2 = 1 km/h
 
@@ -66,29 +66,29 @@ Difference = 2 × Stream Speed
 
 **Solution:**
 - Let distance = D
-- Downstream: D = (B + S) × 4
-- Upstream: D = (B - S) × 6
+- Downstream: D = (B + S) Ã— 4
+- Upstream: D = (B - S) Ã— 6
 - Divide equations: (B + S)/ (B - S) = 6/4 = 1.5
 - B + S = 1.5(B - S)
 - B + S = 1.5B - 1.5S
-- 2.5S = 0.5B ⇒ B = 5S
-- From downstream: D = (5S + S) × 4 = 24S
-- From upstream: D = (5S - S) × 6 = 24S ✓
+- 2.5S = 0.5B â‡’ B = 5S
+- From downstream: D = (5S + S) Ã— 4 = 24S
+- From upstream: D = (5S - S) Ã— 6 = 24S âœ“
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Speed Difference Formula**
 \`\`\`
-Downstream - Upstream = 2 × Stream Speed
+Downstream - Upstream = 2 Ã— Stream Speed
 (S_d - S_u) = 2S
 \`\`\`
 
 ### **Average Speed Formula**
 \`\`\`
-Average Speed = (Downstream × Upstream) / (Downstream + Upstream)
-Average Speed = B² / (B² - S²) for round trip
+Average Speed = (Downstream Ã— Upstream) / (Downstream + Upstream)
+Average Speed = BÂ² / (BÂ² - SÂ²) for round trip
 \`\`\`
 
 ### **Quick Boat Speed**
@@ -104,7 +104,7 @@ Time ratio = 1/(B+S) : 1/(B-S) = (B-S):(B+S)
 
 ---
 
-## 🔢 Advanced Boats & Streams
+## ðŸ”¢ Advanced Boats & Streams
 
 ### **Complex Scenarios**
 - **Multiple trips**: Different distances
@@ -123,25 +123,25 @@ Time ratio = 1/(B+S) : 1/(B-S) = (B-S):(B+S)
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 4: Different Distances
 **Boat goes 30 km downstream in 2 hours, 18 km upstream in 2 hours. Find speeds.**
 
 **Solution:**
-- Downstream: 30 = (B + S) × 2 ⇒ B + S = 15
-- Upstream: 18 = (B - S) × 2 ⇒ B - S = 9
-- Add: 2B = 24 ⇒ B = 12 km/h
-- Subtract: 2S = 6 ⇒ S = 3 km/h
+- Downstream: 30 = (B + S) Ã— 2 â‡’ B + S = 15
+- Upstream: 18 = (B - S) Ã— 2 â‡’ B - S = 9
+- Add: 2B = 24 â‡’ B = 12 km/h
+- Subtract: 2S = 6 â‡’ S = 3 km/h
 
 ### Example 5: Man Swimming
 **Man swims 9 km downstream in 3 hours, returns in 9 hours. Find speeds.**
 
 **Solution:**
-- Downstream: 9 = (M + S) × 3 ⇒ M + S = 3
-- Upstream: 9 = (M - S) × 9 ⇒ M - S = 1
-- Add: 2M = 4 ⇒ M = 2 km/h
-- Subtract: 2S = 2 ⇒ S = 1 km/h
+- Downstream: 9 = (M + S) Ã— 3 â‡’ M + S = 3
+- Upstream: 9 = (M - S) Ã— 9 â‡’ M - S = 1
+- Add: 2M = 4 â‡’ M = 2 km/h
+- Subtract: 2S = 2 â‡’ S = 1 km/h
 
 ### Example 6: Race Problem
 **Two boats race in stream. Boat A speed 20 km/h, B speed 18 km/h, stream 2 km/h. Find relative speed downstream.**
@@ -153,7 +153,7 @@ Time ratio = 1/(B+S) : 1/(B-S) = (B-S):(B+S)
 
 ---
 
-## 🚨 Boats & Streams Mistakes
+## ðŸš¨ Boats & Streams Mistakes
 
 1. **Sign convention**: Downstream +, Upstream -
 2. **Speed confusion**: Boat speed vs stream speed
@@ -163,7 +163,7 @@ Time ratio = 1/(B+S) : 1/(B-S) = (B-S):(B+S)
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** Boat speed 15 km/h, stream 3 km/h. Downstream speed?
 **2.** Boat takes 4h downstream, 6h upstream, same distance. Boat speed?
@@ -175,7 +175,7 @@ Time ratio = 1/(B+S) : 1/(B-S) = (B-S):(B+S)
 
 ---
 
-## 🎓 Boats & Streams Strategies
+## ðŸŽ“ Boats & Streams Strategies
 
 1. **Define variables** clearly - boat speed, stream speed
 2. **Use correct formulas** - downstream = B+S, upstream = B-S
@@ -183,5 +183,5 @@ Time ratio = 1/(B+S) : 1/(B-S) = (B-S):(B+S)
 4. **Solve systematically** - add/subtract equations
 5. **Check reasonableness** - downstream > upstream
 
-Master boats and streams problems and handle water current motion calculations! 🏆`
+Master boats and streams problems and handle water current motion calculations! ðŸ†`
 };

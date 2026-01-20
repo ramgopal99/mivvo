@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_1: SubLesson = {
   id: "7.1",
   title: 'What are Functions?',
   status: 'demo',
-  content: `# 🔧 What are Python Functions?
+  content: "`# ðŸ”§ What are Python Functions?
 
 Functions are reusable blocks of code that perform specific tasks. They are the building blocks of Python programs!
 
 ---
 
-## 🎯 What is a Function?
+## ðŸŽ¯ What is a Function?
 
 A **function** is a named block of code that:
 - **Performs a specific task** - Has a clear purpose
@@ -19,7 +19,7 @@ A **function** is a named block of code that:
 - **Can return outputs** - Produces results
 - **Organizes code** - Makes programs modular
 
-\`\`\`python
+\`"\`\`python
 # A simple function
 def greet():
     print("Hello, World!")
@@ -31,7 +31,7 @@ greet()  # Can call it again!
 
 ---
 
-## 📦 Why Use Functions?
+## ðŸ“¦ Why Use Functions?
 
 ### **Code Reusability**
 \`\`\`python
@@ -77,7 +77,7 @@ send_email("user@email.com", "Welcome!", "Thanks for joining!")
 
 ---
 
-## 🔍 Types of Functions
+## ðŸ” Types of Functions
 
 ### **Built-in Functions**
 \`\`\`python
@@ -112,7 +112,7 @@ numbers.append(4)  # Method on list object
 
 ---
 
-## 🎨 Real-World Examples
+## ðŸŽ¨ Real-World Examples
 
 \`\`\`python
 # Mathematical calculations
@@ -152,7 +152,7 @@ def get_user_choice():
 
 ---
 
-## 🚀 Benefits of Functions
+## ðŸš€ Benefits of Functions
 
 ### **Modularity**
 - Break complex programs into smaller, manageable pieces
@@ -170,6 +170,7 @@ def get_user_choice():
 - Write once, use many times
 - Build libraries of useful functions
 
-Functions are essential for writing clean, maintainable Python code! 🏗️`
+Functions are essential for writing clean, maintainable Python code! ðŸ—ï¸`
 };
+
 

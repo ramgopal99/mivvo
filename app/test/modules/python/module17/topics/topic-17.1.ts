@@ -1,23 +1,23 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_17_1: SubLesson = {
   id: "17.1",
   title: 'File Input/Output Operations',
   status: 'demo',
-  content: `# 📁 File Input/Output Operations in Python
+  content: "`# ðŸ“ File Input/Output Operations in Python
 
 File operations are fundamental to most Python applications. Whether reading configuration files, processing data, or logging information, understanding file I/O is crucial for robust Python programming. This topic covers comprehensive file handling techniques, best practices, and advanced operations.
 
 ---
 
-## 🎯 Understanding File Operations
+## ðŸŽ¯ Understanding File Operations
 
 ### **File Modes**
 Python provides various file modes for different operations:
 
 | Mode | Description | Use Case |
 |------|-------------|----------|
-| \`'r'\` | Read (default) | Reading existing files |
+| \`"'r'\` | Read (default) | Reading existing files |
 | \`'w'\` | Write | Creating/overwriting files |
 | \`'a'\` | Append | Adding to existing files |
 | \`'x'\` | Exclusive creation | Creating new files only |
@@ -40,7 +40,7 @@ with open('file.bin', 'rb') as f:
 
 ---
 
-## 💻 Reading Files
+## ðŸ’» Reading Files
 
 ### **Reading Files**
 \`\`\`python
@@ -57,7 +57,7 @@ with open('file.txt', 'r') as file:
 
 ---
 
-## ✍️ Writing Files
+## âœï¸ Writing Files
 
 ### **Writing Files**
 \`\`\`python
@@ -73,7 +73,7 @@ with open('file.txt', 'a') as file:
 
 ---
 
-## 🔄 Advanced File Operations
+## ðŸ”„ Advanced File Operations
 
 ### **File Position and Seeking**
 \`\`\`python
@@ -135,7 +135,7 @@ with open('large_file.txt', 'r') as file:
 
 ---
 
-## 🛡️ Error Handling and Best Practices
+## ðŸ›¡ï¸ Error Handling and Best Practices
 
 ### **Error Handling**
 \`\`\`python
@@ -152,7 +152,7 @@ except IOError:
 
 ---
 
-## 🎯 Best Practices
+## ðŸŽ¯ Best Practices
 
 ### **File Handling Tips**
 \`\`\`python
@@ -170,7 +170,7 @@ except FileNotFoundError:
 
 ---
 
-## 🚀 Key Takeaways
+## ðŸš€ Key Takeaways
 
 1. **Context managers** (\`with\` statement) ensure proper resource cleanup
 2. **File modes** determine read/write behavior and text/binary handling
@@ -181,6 +181,7 @@ except FileNotFoundError:
 7. **Binary files** require \`'rb'\`/\`'wb'\` modes and bytes handling
 8. **Temporary files** are useful for intermediate data processing
 
-**Mastering file I/O operations is essential for building robust, efficient Python applications that can handle real-world data processing tasks! 📁**`
+**Mastering file I/O operations is essential for building robust, efficient Python applications that can handle real-world data processing tasks! ðŸ“**`
 };
+
 

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_1: SubLesson = {
   id: "8.1",
-  title: 'ORDER & RANKING (Aptitude – Exam-Oriented Topics)',
+  title: 'ORDER & RANKING (Aptitude â€“ Exam-Oriented Topics)',
   status: 'completed',
-  content: `# 📊 ORDER & RANKING (Aptitude – Exam-Oriented Topics)
+  content: "`# ðŸ“Š ORDER & RANKING (Aptitude â€“ Exam-Oriented Topics)
 
 Welcome to the comprehensive Order & Ranking module! This exam-oriented section covers all types of ranking and positioning problems that appear frequently in competitive examinations. Master position-based reasoning, comparative analysis, and ranking calculations to excel in banking, SSC, railway, and other competitive exams.
 
 ---
 
-## 🎯 Understanding Order & Ranking
+## ðŸŽ¯ Understanding Order & Ranking
 
 ### **What are Order & Ranking Problems?**
 Order and ranking problems involve determining the positions, ranks, or relative standings of people, objects, or entities in a sequence or arrangement. These problems test your ability to:
@@ -27,7 +27,7 @@ Order and ranking problems involve determining the positions, ranks, or relative
 
 ---
 
-## 🧩 Basic Ranking Concepts
+## ðŸ§© Basic Ranking Concepts
 
 ### **Key Terminology**
 
@@ -36,7 +36,7 @@ Order and ranking problems involve determining the positions, ranks, or relative
 - **Rank**: Standing based on criteria (tallest, shortest, highest marks)
 
 #### **Total Persons Formula**
-\`\`\`
+\`"\`\`
 If A is nth from one end, then:
 Total persons = Position from first end + Position from other end - 1
 \`\`\`
@@ -49,7 +49,7 @@ For even N: Two middle positions = N/2 and N/2 + 1
 
 ---
 
-## 📊 Competitive Exam Relevance
+## ðŸ“Š Competitive Exam Relevance
 
 ### **Major Exams Featuring Order & Ranking**
 - **Banking Exams** (IBPS, SBI): 4-6 questions per exam
@@ -69,7 +69,7 @@ For even N: Two middle positions = N/2 and N/2 + 1
 
 ---
 
-## 🎯 Core Order & Ranking Skills
+## ðŸŽ¯ Core Order & Ranking Skills
 
 ### **1. Position Analysis**
 **Understanding position from different ends**
@@ -97,7 +97,7 @@ For even N: Two middle positions = N/2 and N/2 + 1
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Identify the Given Information**
 - Note all positional information provided
@@ -121,7 +121,7 @@ For even N: Two middle positions = N/2 and N/2 + 1
 
 ---
 
-## 📈 Difficulty Levels in Ranking Problems
+## ðŸ“ˆ Difficulty Levels in Ranking Problems
 
 ### **Easy Level (30-40%)**
 - Simple position finding
@@ -140,7 +140,7 @@ For even N: Two middle positions = N/2 and N/2 + 1
 
 ---
 
-## 🎯 Common Order & Ranking Topics
+## ðŸŽ¯ Common Order & Ranking Topics
 
 ### **Basic Position Problems**
 Simple position determination in linear arrangements.
@@ -171,7 +171,7 @@ Integrated problems combining multiple ranking concepts.
 
 ---
 
-## 📊 Time Management Strategies
+## ðŸ“Š Time Management Strategies
 
 ### **Question Allocation Time**
 - **Simple Position**: 1-2 minutes
@@ -186,7 +186,7 @@ Integrated problems combining multiple ranking concepts.
 
 ---
 
-## 🚀 Preparation Strategy
+## ðŸš€ Preparation Strategy
 
 ### **Phase 1: Foundation Building**
 - Learn basic ranking terminology
@@ -207,7 +207,7 @@ Integrated problems combining multiple ranking concepts.
 
 ---
 
-## 📚 Recommended Resources
+## ðŸ“š Recommended Resources
 
 ### **Practice Platforms**
 - **Online Platforms**: Testbook, Adda247, Unacademy
@@ -222,7 +222,7 @@ Integrated problems combining multiple ranking concepts.
 
 ---
 
-## 🎯 Success Factors
+## ðŸŽ¯ Success Factors
 
 ### **1. Formula Mastery**
 - Total persons formula
@@ -246,27 +246,27 @@ Integrated problems combining multiple ranking concepts.
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Off-by-One Errors**
-❌ Confusing position numbers (1st vs 2nd)
-✅ Careful counting and verification
+âŒ Confusing position numbers (1st vs 2nd)
+âœ… Careful counting and verification
 
 ### **Mistake 2: End Confusion**
-❌ Mixing left-right and top-bottom references
-✅ Clear identification of reference points
+âŒ Mixing left-right and top-bottom references
+âœ… Clear identification of reference points
 
 ### **Mistake 3: Formula Misapplication**
-❌ Wrong formula for total persons
-✅ Correct application: Total = Pos1 + Pos2 - 1
+âŒ Wrong formula for total persons
+âœ… Correct application: Total = Pos1 + Pos2 - 1
 
 ### **Mistake 4: Comparative Logic Errors**
-❌ Incorrect ranking interpretations
-✅ Systematic comparative analysis
+âŒ Incorrect ranking interpretations
+âœ… Systematic comparative analysis
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Learn Core Formulas**: Master total persons and position conversion
 2. **Establish Reference Points**: Always identify left/right and top/bottom clearly
@@ -278,7 +278,7 @@ Integrated problems combining multiple ranking concepts.
 
 ---
 
-## 🔍 What You'll Learn Next
+## ðŸ” What You'll Learn Next
 
 This module covers comprehensive order & ranking topics:
 
@@ -292,5 +292,5 @@ This module covers comprehensive order & ranking topics:
 - **Comparative Analysis** - Complex ranking relationships
 - **Mixed Puzzles** - Integrated ranking challenges
 
-**Master order & ranking techniques to excel in positional reasoning problems! 📊✨**`
+**Master order & ranking techniques to excel in positional reasoning problems! ðŸ“Šâœ¨**`
 };

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_1: SubLesson = {
   id: "11.1",
   title: 'Exception Handling Fundamentals',
   status: 'completed',
-  content: `# 🚨 Exception Handling in Java
+  content: "`# ðŸš¨ Exception Handling in Java
 
 Exception handling is a critical mechanism in Java for dealing with runtime errors and unexpected situations. It allows programs to continue executing or fail gracefully when problems occur, rather than crashing unexpectedly.
 
 ---
 
-## 🎯 What are Exceptions?
+## ðŸŽ¯ What are Exceptions?
 
 ### **Understanding Exceptions**
 
@@ -40,28 +40,28 @@ Isolate error handling from normal program logic.
 
 ---
 
-## 📋 Exception Hierarchy
+## ðŸ“‹ Exception Hierarchy
 
 ### **Throwable Class**
 
-All exceptions in Java inherit from the \`Throwable\` class, which has two main subclasses:
+All exceptions in Java inherit from the \`"Throwable\` class, which has two main subclasses:
 
 \`\`\`java
 public class ThrowableHierarchy {
     /*
      * Throwable (base class for all throwables)
-     * ├── Exception (checked exceptions - must be handled)
-     * │   ├── IOException (I/O related)
-     * │   ├── SQLException (database related)
-     * │   └── RuntimeException (unchecked exceptions)
-     * │       ├── NullPointerException
-     * │       ├── IllegalArgumentException
-     * │       ├── IndexOutOfBoundsException
-     * │       └── ArithmeticException
-     * └── Error (serious system problems - usually not caught)
-     *     ├── OutOfMemoryError
-     *     ├── StackOverflowError
-     *     └── VirtualMachineError
+     * â”œâ”€â”€ Exception (checked exceptions - must be handled)
+     * â”‚   â”œâ”€â”€ IOException (I/O related)
+     * â”‚   â”œâ”€â”€ SQLException (database related)
+     * â”‚   â””â”€â”€ RuntimeException (unchecked exceptions)
+     * â”‚       â”œâ”€â”€ NullPointerException
+     * â”‚       â”œâ”€â”€ IllegalArgumentException
+     * â”‚       â”œâ”€â”€ IndexOutOfBoundsException
+     * â”‚       â””â”€â”€ ArithmeticException
+     * â””â”€â”€ Error (serious system problems - usually not caught)
+     *     â”œâ”€â”€ OutOfMemoryError
+     *     â”œâ”€â”€ StackOverflowError
+     *     â””â”€â”€ VirtualMachineError
      */
 }
 \`\`\`
@@ -79,10 +79,10 @@ import java.io.IOException;
 
 public class CheckedExceptionExample {
     public static void main(String[] args) {
-        // ❌ Compilation error: unreported exception
+        // âŒ Compilation error: unreported exception
         // FileReader reader = new FileReader("file.txt");
 
-        // ✅ Must handle checked exception
+        // âœ… Must handle checked exception
         try {
             FileReader reader = new FileReader("file.txt");
             // Use reader...
@@ -103,10 +103,10 @@ public class UncheckedExceptionExample {
     public static void main(String[] args) {
         int[] numbers = {1, 2, 3};
 
-        // ❌ Runtime error: ArrayIndexOutOfBoundsException
+        // âŒ Runtime error: ArrayIndexOutOfBoundsException
         // System.out.println(numbers[10]);
 
-        // ✅ Handle if needed
+        // âœ… Handle if needed
         try {
             System.out.println(numbers[10]);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -123,7 +123,7 @@ public class UncheckedExceptionExample {
 
 ---
 
-## 🛡️ Try-Catch Blocks
+## ðŸ›¡ï¸ Try-Catch Blocks
 
 ### **Basic Try-Catch Syntax**
 
@@ -224,7 +224,7 @@ public class NestedTryCatch {
 
 ---
 
-## 🎯 The Finally Block
+## ðŸŽ¯ The Finally Block
 
 ### **Purpose of Finally**
 
@@ -288,7 +288,7 @@ public class FinallyWithReturn {
 
 ---
 
-## 🚀 Throwing Exceptions
+## ðŸš€ Throwing Exceptions
 
 ### **The throw Keyword**
 
@@ -374,7 +374,7 @@ public class BankAccount {
 
 ---
 
-## 📝 The throws Keyword
+## ðŸ“ The throws Keyword
 
 ### **Method Declaration with throws**
 
@@ -453,7 +453,7 @@ public class ThrowsDeclarations {
 
 ---
 
-## 🎯 Exception Handling Best Practices
+## ðŸŽ¯ Exception Handling Best Practices
 
 ### **1. Catch Specific Exceptions**
 
@@ -568,14 +568,14 @@ public class TryWithResources {
 \`\`\`java
 public class AvoidGenericCatches {
     public static void main(String[] args) {
-        // ✅ Specific exception handling
+        // âœ… Specific exception handling
         try {
             int result = divide(10, 0);
         } catch (ArithmeticException e) {
             System.out.println("Division by zero: " + e.getMessage());
         }
 
-        // ❌ Avoid catching Exception unless necessary
+        // âŒ Avoid catching Exception unless necessary
         try {
             riskyOperation();
         } catch (Exception e) {
@@ -603,7 +603,7 @@ public class PreserveStackTrace {
         try {
             method2();
         } catch (Exception e) {
-            // ✅ Preserve original stack trace
+            // âœ… Preserve original stack trace
             throw e;
         }
     }
@@ -626,7 +626,7 @@ public class PreserveStackTrace {
 
 ---
 
-## 🎯 Practical Exception Handling Examples
+## ðŸŽ¯ Practical Exception Handling Examples
 
 ### **File Processing with Error Handling**
 
@@ -748,7 +748,7 @@ public class CalculatorWithErrorHandling {
 
 ---
 
-## 🎯 Summary
+## ðŸŽ¯ Summary
 
 Exception handling is essential for robust Java applications:
 
@@ -801,7 +801,8 @@ public static void test() {
     System.out.println("After finally");  // Executed?
 }
 \`\`\`
-Output order: try → catch → finally (After finally not printed)
+Output order: try â†’ catch â†’ finally (After finally not printed)
 `
 };
+
 

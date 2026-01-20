@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_2: SubLesson = {
   id: "2.2",
   title: 'Articles: A, An, The',
   status: 'completed',
-  content: `# 📝 Articles: A, An, The
+  content: "`# ðŸ“ Articles: A, An, The
 
 Articles are small but crucial words that define nouns. They specify whether we're referring to something specific or general. English has three articles: **A**, **An** (indefinite), and **The** (definite).
 
 ---
 
-## 🔍 What are Articles?
+## ðŸ” What are Articles?
 
 **Articles** are determiners that introduce nouns. They provide information about:
 - Whether the noun is specific or general
@@ -26,11 +26,11 @@ Articles are small but crucial words that define nouns. They specify whether we'
 
 ---
 
-## 📏 INDEFINITE ARTICLES: A and An
+## ðŸ“ INDEFINITE ARTICLES: A and An
 
 **Indefinite articles** refer to something non-specific, general, or not previously mentioned.
 
-### 🔤 When to Use **A**
+### ðŸ”¤ When to Use **A**
 - Before consonants (b, c, d, f, g, h, j, k, l, m, n, p, q, r, s, t, v, w, x, y, z)
 - Before consonant sounds (even if the word starts with a vowel)
 
@@ -38,7 +38,7 @@ Articles are small but crucial words that define nouns. They specify whether we'
 - **A** book, **a** car, **a** house, **a** university
 - **A** one-way ticket, **a** European country
 
-### 🔤 When to Use **An**
+### ðŸ”¤ When to Use **An**
 - Before vowels (a, e, i, o, u)
 - Before vowel sounds (even if the word starts with a consonant)
 
@@ -46,14 +46,14 @@ Articles are small but crucial words that define nouns. They specify whether we'
 - **An** apple, **an** egg, **an** ice cream, **an** umbrella
 - **An** honest person, **an** heir
 
-### ⚠️ Common Pronunciation Rules:
+### âš ï¸ Common Pronunciation Rules:
 - **A** before consonant sounds: a book, a car, a university
 - **An** before vowel sounds: an apple, an egg, an MBA
 - Silent H: an honest man, an hour, an heir
 - U sounds: a university, a useful book (U as /ju:/)
 - Abbreviations: an MBA, a UNESCO report, an FBI agent
 
-### 🎯 EXCEPTIONS TO A/AN RULES:
+### ðŸŽ¯ EXCEPTIONS TO A/AN RULES:
 
 #### Words Starting with Vowel Letters but Consonant Sounds:
 - **A** university, **a** union, **a** one-way street
@@ -71,7 +71,7 @@ Articles are small but crucial words that define nouns. They specify whether we'
 
 ---
 
-## 🎯 DEFINITE ARTICLE: The
+## ðŸŽ¯ DEFINITE ARTICLE: The
 
 **Definite article** refers to something specific, particular, or previously mentioned.
 
@@ -112,19 +112,19 @@ Articles are small but crucial words that define nouns. They specify whether we'
 - Listen to **the** radio
 - Read **the** newspaper
 
-### 🎯 EXCEPTIONS TO "THE" RULE:
+### ðŸŽ¯ EXCEPTIONS TO "THE" RULE:
 
 #### No "The" with Generic Plurals:
-- ❌ **The** books are interesting
-- ✅ Books are interesting (general concept)
+- âŒ **The** books are interesting
+- âœ… Books are interesting (general concept)
 
 #### No "The" with Uncountable Nouns (General):
-- ❌ **The** water is wet
-- ✅ Water is wet
+- âŒ **The** water is wet
+- âœ… Water is wet
 
 #### No "The" with Names:
-- ❌ **The** John, **the** London
-- ✅ John, London
+- âŒ **The** John, **the** London
+- âœ… John, London
 
 #### Special Cases:
 - **The** + Adjective = Plural Noun: **the** rich, **the** poor, **the** elderly
@@ -132,47 +132,47 @@ Articles are small but crucial words that define nouns. They specify whether we'
 
 ---
 
-## 🚫 WHEN TO OMIT ARTICLES
+## ðŸš« WHEN TO OMIT ARTICLES
 
 ### No Article with Plural/Uncountable Nouns (General)
-- ❌ **The** books are expensive
-- ✅ Books are expensive (general idea)
+- âŒ **The** books are expensive
+- âœ… Books are expensive (general idea)
 
-- ❌ **A** furniture is expensive
-- ✅ Furniture is expensive (uncountable)
+- âŒ **A** furniture is expensive
+- âœ… Furniture is expensive (uncountable)
 
 ### No Article with Proper Nouns
-- ❌ **The** London, **the** John
-- ✅ London, John
+- âŒ **The** London, **the** John
+- âœ… London, John
 
 ### No Article in Certain Expressions
-- ❌ Go to **the** school
-- ✅ Go to school (general activity)
+- âŒ Go to **the** school
+- âœ… Go to school (general activity)
 
-- ❌ At **the** night
-- ✅ At night
+- âŒ At **the** night
+- âœ… At night
 
 ### Additional Cases of Zero Article:
 
 #### Meals (General):
-- ❌ Have **the** breakfast
-- ✅ Have breakfast
+- âŒ Have **the** breakfast
+- âœ… Have breakfast
 
 #### Sports & Games:
-- ❌ Play **the** tennis
-- ✅ Play tennis
+- âŒ Play **the** tennis
+- âœ… Play tennis
 
 #### Diseases:
-- ❌ He has **the** flu
-- ✅ He has flu
+- âŒ He has **the** flu
+- âœ… He has flu
 
 #### Languages & Subjects:
-- ❌ I study **the** English
-- ✅ I study English
+- âŒ I study **the** English
+- âœ… I study English
 
 #### Days, Months, Seasons:
-- ❌ In **the** January, on **the** Monday
-- ✅ In January, on Monday
+- âŒ In **the** January, on **the** Monday
+- âœ… In January, on Monday
 
 ### Special Exceptions:
 
@@ -185,7 +185,7 @@ Articles are small but crucial words that define nouns. They specify whether we'
 
 ---
 
-## 🔄 A/An vs The: Key Differences
+## ðŸ”„ A/An vs The: Key Differences
 
 ### Indefinite Articles (A/An)
 - **General/Non-specific**: A book = any book
@@ -201,44 +201,44 @@ Articles are small but crucial words that define nouns. They specify whether we'
 
 ---
 
-## 🎯 COMMON MISTAKES & CORRECTIONS
+## ðŸŽ¯ COMMON MISTAKES & CORRECTIONS
 
-### ❌ ARTICLE CHOICE MISTAKES:
+### âŒ ARTICLE CHOICE MISTAKES:
 
 #### A vs An Errors:
-1. ❌ **An** university (U pronounced as /ju:/)
-   ✅ **A** university
+1. âŒ **An** university (U pronounced as /ju:/)
+   âœ… **A** university
 
-2. ❌ **A** hour (H is silent)
-   ✅ **An** hour
+2. âŒ **A** hour (H is silent)
+   âœ… **An** hour
 
-3. ❌ **A** historical event (if H is silent)
-   ✅ **An** historical event
+3. âŒ **A** historical event (if H is silent)
+   âœ… **An** historical event
 
-4. ❌ **An** uniform (U pronounced as /ju:/)
-   ✅ **A** uniform
+4. âŒ **An** uniform (U pronounced as /ju:/)
+   âœ… **A** uniform
 
 #### Unnecessary Articles:
-5. ❌ **The** informations (uncountable noun)
-   ✅ Information (no article)
+5. âŒ **The** informations (uncountable noun)
+   âœ… Information (no article)
 
-6. ❌ I go to **the** school. (general activity)
-   ✅ I go to school.
+6. âŒ I go to **the** school. (general activity)
+   âœ… I go to school.
 
-7. ❌ **The** John is here. (proper noun)
-   ✅ John is here.
+7. âŒ **The** John is here. (proper noun)
+   âœ… John is here.
 
-8. ❌ She plays **the** tennis. (general activity)
-   ✅ She plays tennis.
+8. âŒ She plays **the** tennis. (general activity)
+   âœ… She plays tennis.
 
 #### Missing Articles:
-9. ❌ I need pen. (countable singular)
-   ✅ I need **a** pen.
+9. âŒ I need pen. (countable singular)
+   âœ… I need **a** pen.
 
-10. ❌ He is doctor. (profession)
-    ✅ He is **a** doctor.
+10. âŒ He is doctor. (profession)
+    âœ… He is **a** doctor.
 
-### ✅ CORRECT USAGE EXAMPLES:
+### âœ… CORRECT USAGE EXAMPLES:
 
 #### A/An Usage:
 - **An** honest man, **a** useful book, **an** MBA student
@@ -257,7 +257,7 @@ Articles are small but crucial words that define nouns. They specify whether we'
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Fill in A/An/The (or leave blank)
 1. I saw ___ elephant at ___ zoo yesterday.
@@ -284,29 +284,29 @@ Articles are small but crucial words that define nouns. They specify whether we'
 10. (blank), the
 
 ### Exercise 2: Correct the Mistakes
-1. ❌ An university is good.
-   ✅ A university is good.
+1. âŒ An university is good.
+   âœ… A university is good.
 
-2. ❌ The John called me.
-   ✅ John called me.
+2. âŒ The John called me.
+   âœ… John called me.
 
-3. ❌ I like to eat a fruits.
-   ✅ I like to eat fruits.
+3. âŒ I like to eat a fruits.
+   âœ… I like to eat fruits.
 
-4. ❌ The Paris is beautiful.
-   ✅ Paris is beautiful.
+4. âŒ The Paris is beautiful.
+   âœ… Paris is beautiful.
 
-5. ❌ She is the doctor.
-   ✅ She is a doctor.
+5. âŒ She is the doctor.
+   âœ… She is a doctor.
 
-6. ❌ He plays the tennis every day.
-   ✅ He plays tennis every day.
+6. âŒ He plays the tennis every day.
+   âœ… He plays tennis every day.
 
-7. ❌ An X-ray machine is expensive.
-   ✅ An X-ray machine is expensive.
+7. âŒ An X-ray machine is expensive.
+   âœ… An X-ray machine is expensive.
 
-8. ❌ I go to the hospital for check-up.
-   ✅ I go to hospital for check-up.
+8. âŒ I go to the hospital for check-up.
+   âœ… I go to hospital for check-up.
 
 ### Exercise 3: Choose the Correct Article
 1. She bought ___ new dress. (a/an/the)
@@ -344,7 +344,7 @@ Identify the correct article usage in context:
 
 ---
 
-## 📊 USAGE SUMMARY
+## ðŸ“Š USAGE SUMMARY
 
 ### Quick Reference Chart:
 
@@ -380,39 +380,40 @@ Identify the correct article usage in context:
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 🎧 Pronunciation First:
+### ðŸŽ§ Pronunciation First:
 1. **Listen to Pronunciation**: Use **An** before vowel SOUNDS, not just vowel LETTERS
 2. **Silent Letters**: Watch for silent H (honest, hour) and U (university)
 3. **Abbreviations**: An MBA, an X-ray, an FBI agent
 
-### 📝 Context Awareness:
+### ðŸ“ Context Awareness:
 4. **Specificity Matters**: A/An = general, The = specific/particular
 5. **First vs. Second Mention**: Use A/An first, The for subsequent references
 6. **Unique Items**: Always use The for one-of-a-kind things
 
-### 🧠 Advanced Rules:
+### ðŸ§  Advanced Rules:
 7. **Zero Article Cases**: No article with plurals, uncountables, proper nouns
 8. **Fixed Expressions**: Learn phrases like "go to school," "play tennis"
 9. **British vs. American**: Some differences (an hotel vs. a hotel)
 
-### 📚 Practice Strategies:
+### ðŸ“š Practice Strategies:
 10. **Regular Practice**: Include articles in daily writing and speaking
 11. **Identify Patterns**: Group similar exceptions together
 12. **Read Aloud**: Pay attention to natural speech patterns
 13. **Self-Correction**: Review your writing for article usage
 
-### 🎯 Competitive Exam Tips:
+### ðŸŽ¯ Competitive Exam Tips:
 14. **Time Management**: Articles appear frequently - master them quickly
 15. **Common Traps**: Watch for plural nouns needing no article
 16. **Context Clues**: Use surrounding words to determine correct article
 
-**Articles are deceptively simple but powerfully important. With practice, they'll become second nature!** 🌟
+**Articles are deceptively simple but powerfully important. With practice, they'll become second nature!** ðŸŒŸ
 
-### 📖 Pro Tip:
+### ðŸ“– Pro Tip:
 **Think of articles as "traffic signals" for nouns:**
-- 🚦 **A/An** = "New information ahead"
-- 🚦 **The** = "You know this already"
-- 🚦 **None** = "General concept lane"`
+- ðŸš¦ **A/An** = "New information ahead"
+- ðŸš¦ **The** = "You know this already"
+- ðŸš¦ **None** = "General concept lane"`"
 };
+

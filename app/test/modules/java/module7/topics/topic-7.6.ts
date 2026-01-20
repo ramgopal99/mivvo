@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_6: SubLesson = {
   id: "7.6",
   title: 'When to Use Inheritance',
   status: 'completed',
-  content: `# 🎯 When to Use Inheritance in Java
+  content: "`# ðŸŽ¯ When to Use Inheritance in Java
 
 Inheritance is a powerful feature of object-oriented programming, but it's often overused or misused. Knowing when to use inheritance versus other design approaches like composition is crucial for creating maintainable and flexible Java applications. This topic explores the appropriate use cases for inheritance and when to choose alternative approaches.
 
 ---
 
-## 📋 Inheritance Decision Criteria
+## ðŸ“‹ Inheritance Decision Criteria
 
 ### **The IS-A Relationship Test**
-\`\`\`java
+\`"\`\`java
 public class IsARelationshipTest {
-    // ✅ Good inheritance: Car IS-A Vehicle
+    // âœ… Good inheritance: Car IS-A Vehicle
     static class Vehicle {
         protected String brand;
         protected int year;
@@ -52,7 +52,7 @@ public class IsARelationshipTest {
         }
     }
 
-    // ❌ Bad inheritance: Square IS-NOT-A Rectangle (violates Liskov Substitution)
+    // âŒ Bad inheritance: Square IS-NOT-A Rectangle (violates Liskov Substitution)
     static class BadRectangle {
         protected int width, height;
 
@@ -93,7 +93,7 @@ public class IsARelationshipTest {
 ### **Inheritance vs Composition Guidelines**
 \`\`\`java
 public class InheritanceVsComposition {
-    // ❌ Bad: Inheritance for HAS-A relationship
+    // âŒ Bad: Inheritance for HAS-A relationship
     static class Engine {
         public void start() { System.out.println("Engine starting"); }
         public void stop() { System.out.println("Engine stopping"); }
@@ -104,7 +104,7 @@ public class InheritanceVsComposition {
         public void drive() { System.out.println("Car driving"); }
     }
 
-    // ✅ Good: Composition for HAS-A relationship
+    // âœ… Good: Composition for HAS-A relationship
     static class GoodCar {
         private Engine engine;  // Car HAS-A Engine
 
@@ -127,7 +127,7 @@ public class InheritanceVsComposition {
         }
     }
 
-    // ✅ Good: Inheritance for IS-A relationship
+    // âœ… Good: Inheritance for IS-A relationship
     static class Employee {
         protected String name;
         protected double salary;
@@ -182,12 +182,12 @@ public class InheritanceVsComposition {
 
 ---
 
-## 🎯 Appropriate Uses for Inheritance
+## ðŸŽ¯ Appropriate Uses for Inheritance
 
 ### **1. Modeling Hierarchical Classifications**
 \`\`\`java
 public class HierarchicalModeling {
-    // ✅ Perfect for inheritance: Animal classification
+    // âœ… Perfect for inheritance: Animal classification
     abstract static class Animal {
         protected String species;
         protected String habitat;
@@ -296,7 +296,7 @@ public class HierarchicalModeling {
 ### **2. Code Reuse in UI Components**
 \`\`\`java
 public class UIComponentInheritance {
-    // ✅ Good: Base UI component with common functionality
+    // âœ… Good: Base UI component with common functionality
     static class UIComponent {
         protected int x, y;
         protected int width, height;
@@ -405,7 +405,7 @@ public class UIComponentInheritance {
 ### **3. Exception Class Hierarchies**
 \`\`\`java
 public class ExceptionInheritance {
-    // ✅ Perfect for inheritance: Exception hierarchies
+    // âœ… Perfect for inheritance: Exception hierarchies
     static class ApplicationException extends Exception {
         public ApplicationException(String message) {
             super(message);
@@ -491,18 +491,18 @@ public class ExceptionInheritance {
 
 ---
 
-## 🚫 When NOT to Use Inheritance
+## ðŸš« When NOT to Use Inheritance
 
 ### **1. For Code Reuse Without IS-A Relationship**
 \`\`\`java
 public class BadInheritanceExamples {
-    // ❌ Bad: Using inheritance just to reuse ArrayList functionality
+    // âŒ Bad: Using inheritance just to reuse ArrayList functionality
     static class BadEmployeeList extends java.util.ArrayList<String> {
         // Don't do this - EmployeeList IS-NOT-A ArrayList
         // It just happens to use list functionality
     }
 
-    // ✅ Better: Use composition
+    // âœ… Better: Use composition
     static class GoodEmployeeList {
         private java.util.List<String> employees = new java.util.ArrayList<>();
 
@@ -523,14 +523,14 @@ public class BadInheritanceExamples {
         }
     }
 
-    // ❌ Bad: Deep inheritance hierarchies
+    // âŒ Bad: Deep inheritance hierarchies
     static class A { void method() { System.out.println("A"); } }
     static class B extends A { void methodB() { System.out.println("B"); } }
     static class C extends B { void methodC() { System.out.println("C"); } }
     static class D extends C { void methodD() { System.out.println("D"); } }
     static class E extends D { void methodE() { System.out.println("E"); } }
 
-    // ✅ Better: Flatter hierarchy or composition
+    // âœ… Better: Flatter hierarchy or composition
     static class BetterDesign {
         private A a = new A();
         private B b = new B();
@@ -555,10 +555,10 @@ public class BadInheritanceExamples {
 ### **2. When You Need Multiple Inheritance**
 \`\`\`java
 public class MultipleInheritanceProblem {
-    // ❌ Java doesn't support multiple inheritance
+    // âŒ Java doesn't support multiple inheritance
     // class FlyingCar extends Car, Airplane { } // Not allowed!
 
-    // ✅ Use interfaces instead
+    // âœ… Use interfaces instead
     interface Drivable {
         void drive();
     }
@@ -612,12 +612,12 @@ public class MultipleInheritanceProblem {
 
 ---
 
-## 🎯 Inheritance Best Practices
+## ðŸŽ¯ Inheritance Best Practices
 
 ### **1. Favor Composition over Inheritance**
 \`\`\`java
 public class CompositionOverInheritance {
-    // ✅ Prefer composition when possible
+    // âœ… Prefer composition when possible
     static class Engine {
         public void start() { System.out.println("Engine starting"); }
         public void stop() { System.out.println("Engine stopping"); }
@@ -653,7 +653,7 @@ public class CompositionOverInheritance {
         }
     }
 
-    // ✅ Use inheritance only when there's a true IS-A relationship
+    // âœ… Use inheritance only when there's a true IS-A relationship
     static class ElectricEngine extends Engine {
         @Override
         public void start() {
@@ -682,13 +682,13 @@ public class CompositionOverInheritance {
 ### **2. Keep Inheritance Hierarchies Shallow**
 \`\`\`java
 public class ShallowInheritance {
-    // ❌ Bad: Deep inheritance (4+ levels)
+    // âŒ Bad: Deep inheritance (4+ levels)
     static class GrandParent { void methodA() {} }
     static class Parent extends GrandParent { void methodB() {} }
     static class Child extends Parent { void methodC() {} }
     static class GrandChild extends Child { void methodD() {} }
 
-    // ✅ Better: Shallow inheritance with composition
+    // âœ… Better: Shallow inheritance with composition
     static class BetterDesign {
         private GrandParent grandParent = new GrandParent();
         private Parent parent = new Parent();
@@ -776,12 +776,12 @@ public class ProtectedAccessDesign {
 
 ---
 
-## 🎯 Inheritance vs Other Design Patterns
+## ðŸŽ¯ Inheritance vs Other Design Patterns
 
 ### **Inheritance vs Strategy Pattern**
 \`\`\`java
 public class InheritanceVsStrategy {
-    // ❌ Inheritance approach - rigid
+    // âŒ Inheritance approach - rigid
     static class Character {
         public void attack() {
             System.out.println("Basic attack");
@@ -802,7 +802,7 @@ public class InheritanceVsStrategy {
         }
     }
 
-    // ✅ Strategy pattern - flexible
+    // âœ… Strategy pattern - flexible
     interface AttackStrategy {
         void attack();
     }
@@ -856,13 +856,13 @@ public class InheritanceVsStrategy {
 ### **Inheritance vs Decorator Pattern**
 \`\`\`java
 public class InheritanceVsDecorator {
-    // ❌ Inheritance approach - explosion of classes
+    // âŒ Inheritance approach - explosion of classes
     static class Coffee { }
     static class MilkCoffee extends Coffee { }
     static class SugarCoffee extends Coffee { }
     static class MilkSugarCoffee extends Coffee { } // Gets complex quickly!
 
-    // ✅ Decorator pattern - flexible composition
+    // âœ… Decorator pattern - flexible composition
     interface Beverage {
         String getDescription();
         double getCost();
@@ -946,13 +946,13 @@ public class InheritanceVsDecorator {
 
 ---
 
-## 🎯 Decision Framework for Inheritance
+## ðŸŽ¯ Decision Framework for Inheritance
 
 ### **Inheritance Checklist**
 \`\`\`java
 public class InheritanceDecisionFramework {
     /*
-    ✅ USE INHERITANCE WHEN:
+    âœ… USE INHERITANCE WHEN:
 
     1. IS-A Relationship
        - The subclass IS-A type of the superclass
@@ -974,7 +974,7 @@ public class InheritanceDecisionFramework {
        - Creating related exception types
        - Building exception classification systems
 
-    ❌ DON'T USE INHERITANCE WHEN:
+    âŒ DON'T USE INHERITANCE WHEN:
 
     1. HAS-A Relationship
        - Use composition instead
@@ -995,7 +995,7 @@ public class InheritanceDecisionFramework {
        - Don't inherit from concrete classes just to reuse implementation
        - Favor composition and delegation
 
-    🤔 ASK YOURSELF:
+    ðŸ¤” ASK YOURSELF:
 
     - Is this truly an IS-A relationship?
     - Will subclasses need to override most methods?
@@ -1003,7 +1003,7 @@ public class InheritanceDecisionFramework {
     - Will this hierarchy be stable or change frequently?
     - Am I creating unnecessary coupling?
 
-    💡 REMEMBER:
+    ðŸ’¡ REMEMBER:
 
     - Favor composition over inheritance
     - Program to interfaces, not implementations
@@ -1014,8 +1014,9 @@ public class InheritanceDecisionFramework {
 }
 \`\`\`
 
-Inheritance is a powerful tool when used appropriately for true IS-A relationships and shared behavior. However, composition often provides better flexibility and maintainability. Always consider whether inheritance is the right choice for your specific design needs! 🎯`
+Inheritance is a powerful tool when used appropriately for true IS-A relationships and shared behavior. However, composition often provides better flexibility and maintainability. Always consider whether inheritance is the right choice for your specific design needs! ðŸŽ¯`
 };
+
 
 
 

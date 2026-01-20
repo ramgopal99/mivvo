@@ -1,27 +1,27 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_3: SubLesson = {
   id: "10.3",
   title: 'Individual Work Efficiency',
   status: 'completed',
-  content: `# ⚡ Individual Work Efficiency
+  content: "`# âš¡ Individual Work Efficiency
 
 Learn how to calculate and compare individual work efficiencies - crucial for solving complex time and work problems.
 
 ---
 
-## 🎯 What is Work Efficiency?
+## ðŸŽ¯ What is Work Efficiency?
 
 **Efficiency** measures how much work a person can complete in a given time period. It's the rate of work completion.
 
 ### **Efficiency Formula**
-\`\`\`
+\`"\`\`
 Efficiency = (Work Completed) / (Time Taken)
 \`\`\`
 
 ---
 
-## 📊 Efficiency Calculations
+## ðŸ“Š Efficiency Calculations
 
 ### 1. **Basic Efficiency**
 \`\`\`
@@ -33,7 +33,7 @@ A's efficiency = 100/n percent (per day)
 ### 2. **Efficiency in Hours**
 \`\`\`
 If A works 8 hours/day and takes 10 days:
-A's hourly efficiency = 1/(10 × 8) = 1/80 per hour
+A's hourly efficiency = 1/(10 Ã— 8) = 1/80 per hour
 \`\`\`
 
 ### 3. **Efficiency Comparison**
@@ -44,14 +44,14 @@ A:B efficiency ratio = b:a
 
 ---
 
-## 🧮 Efficiency Examples
+## ðŸ§® Efficiency Examples
 
 ### Example 1: Basic Efficiency
 **A completes work in 15 days working 8 hours/day. Find A's hourly efficiency.**
 
 **Solution:**
-- Total hours = 15 × 8 = 120 hours
-- Efficiency = 1/120 per hour = 1/120 × 100% = 5/6% per hour
+- Total hours = 15 Ã— 8 = 120 hours
+- Efficiency = 1/120 per hour = 1/120 Ã— 100% = 5/6% per hour
 
 ### Example 2: Efficiency Ratio
 **A takes 12 days, B takes 18 days. Compare their efficiencies.**
@@ -72,7 +72,7 @@ A:B efficiency ratio = b:a
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Efficiency Ratio Magic**
 \`\`\`
@@ -83,7 +83,7 @@ Efficiency ratio = Inverse of time ratio
 ### **Percentage Efficiency**
 \`\`\`
 If A is x% more efficient than B:
-A's efficiency = B's efficiency × (100+x)/100
+A's efficiency = B's efficiency Ã— (100+x)/100
 \`\`\`
 
 ### **Combined Efficiency Trick**
@@ -95,13 +95,13 @@ Never subtract efficiencies!
 ### **Quick Efficiency Calculation**
 \`\`\`
 Efficiency = 1/Time taken
-If time doubles → Efficiency halves
-If efficiency doubles → Time halves
+If time doubles â†’ Efficiency halves
+If efficiency doubles â†’ Time halves
 \`\`\`
 
 ---
 
-## 🔢 Advanced Efficiency Concepts
+## ðŸ”¢ Advanced Efficiency Concepts
 
 ### **Efficiency in Different Units**
 - **Per day**: Work/day
@@ -120,7 +120,7 @@ Effective efficiency = Actual work time / Total available time
 
 ---
 
-## 🎯 Efficiency Applications
+## ðŸŽ¯ Efficiency Applications
 
 ### Example 4: Machine Efficiency
 **Machine A produces 100 units/hour, Machine B produces 80 units/hour. Efficiency ratio?**
@@ -139,13 +139,13 @@ Effective efficiency = Actual work time / Total available time
 **A works 8 hours normal + 2 hours overtime at 1.5x efficiency. Find effective efficiency.**
 
 **Solution:**
-- Normal: 8 hours × 1x efficiency
-- Overtime: 2 hours × 1.5x efficiency
-- Effective: (8×1 + 2×1.5)/10 = 11/10x efficiency
+- Normal: 8 hours Ã— 1x efficiency
+- Overtime: 2 hours Ã— 1.5x efficiency
+- Effective: (8Ã—1 + 2Ã—1.5)/10 = 11/10x efficiency
 
 ---
 
-## 🚨 Common Efficiency Mistakes
+## ðŸš¨ Common Efficiency Mistakes
 
 1. **Adding Efficiencies**: Never add - only for combined work
 2. **Time vs Efficiency**: Inverse relationship
@@ -155,7 +155,7 @@ Effective efficiency = Actual work time / Total available time
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** A takes 20 days, B takes 30 days. Efficiency ratio A:B?
 **2.** A is 25% more efficient than B. B takes 16 days, A takes?
@@ -167,7 +167,7 @@ Effective efficiency = Actual work time / Total available time
 
 ---
 
-## 🎓 Efficiency Exam Tips
+## ðŸŽ“ Efficiency Exam Tips
 
 1. **Always compare ratios** - efficiency ratios easier than absolute values
 2. **Use LCM method** for precision calculations
@@ -175,5 +175,5 @@ Effective efficiency = Actual work time / Total available time
 4. **Check reasonableness** - higher efficiency = less time
 5. **Draw efficiency bars** - visualize comparisons
 
-Master individual efficiencies and you'll solve complex work problems with ease! 🏆`
+Master individual efficiencies and you'll solve complex work problems with ease! ðŸ†`
 };

@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_2: SubLesson = {
   id: "7.2",
   title: 'Conclusions',
   status: 'completed',
-  content: `# 🎯 Conclusions: What Logically Follows
+  content: "`# ðŸŽ¯ Conclusions: What Logically Follows
 
 Conclusions are logical outcomes that must necessarily follow from given premises or statements. Drawing conclusions requires analyzing relationships between facts and determining what must be true based on the given information.
 
 ---
 
-## 📋 WHAT ARE CONCLUSIONS?
+## ðŸ“‹ WHAT ARE CONCLUSIONS?
 
 **Conclusions** are statements that:
-- ✅ **Must logically follow** from the given premises
-- ✅ **Cannot be false** if the premises are true
-- ✅ **Are necessarily true** based on the evidence
-- ✅ **Represent the logical outcome** of the reasoning
+- âœ… **Must logically follow** from the given premises
+- âœ… **Cannot be false** if the premises are true
+- âœ… **Are necessarily true** based on the evidence
+- âœ… **Represent the logical outcome** of the reasoning
 
 ### Key Characteristics:
 - **Necessary**: Must be true given the premises
@@ -31,7 +31,7 @@ Conclusion: "This rose is red." (must be true based on the premises)
 
 ---
 
-## 🎯 TYPES OF CONCLUSIONS
+## ðŸŽ¯ TYPES OF CONCLUSIONS
 
 ### 1. **Direct Conclusions**
 **Immediately obvious from the premises**
@@ -63,7 +63,7 @@ Conclusion: "At least 3 students failed." (mathematical necessity)
 
 ---
 
-## 🛠️ DRAWING CONCLUSIONS
+## ðŸ› ï¸ DRAWING CONCLUSIONS
 
 ### Step-by-Step Process:
 
@@ -94,7 +94,7 @@ Conclusion: "At least 3 students failed." (mathematical necessity)
 
 ---
 
-## 📊 LOGICAL RELATIONSHIPS
+## ðŸ“Š LOGICAL RELATIONSHIPS
 
 ### Syllogistic Reasoning:
 **Classic form: Major premise + Minor premise = Conclusion**
@@ -125,36 +125,36 @@ Conclusion: "At least 3 students failed." (mathematical necessity)
 
 ---
 
-## ⚠️ CONCLUSION DRAWING ERRORS
+## âš ï¸ CONCLUSION DRAWING ERRORS
 
 ### Avoid These Mistakes:
 
 1. **Drawing Probable Conclusions**
-   - ❌ "Might be true" or "Probably true"
-   - ✅ Only "Must be true" conclusions
+   - âŒ "Might be true" or "Probably true"
+   - âœ… Only "Must be true" conclusions
 
 2. **Adding External Knowledge**
-   - ❌ Using information not in the premises
-   - ✅ Only using given information
+   - âŒ Using information not in the premises
+   - âœ… Only using given information
 
 3. **Making Assumptions**
-   - ❌ Adding unstated premises
-   - ✅ Only logical deductions from given facts
+   - âŒ Adding unstated premises
+   - âœ… Only logical deductions from given facts
 
 4. **Over-Generalizing**
-   - ❌ "All are true" from "some are true"
-   - ✅ Only conclusions supported by quantifiers
+   - âŒ "All are true" from "some are true"
+   - âœ… Only conclusions supported by quantifiers
 
 ### Validity Test:
 **A conclusion is valid only if:**
-- ✅ It must be true given the premises
-- ✅ No other conclusion is possible
-- ✅ It doesn't require additional assumptions
-- ✅ It follows necessarily from the given information
+- âœ… It must be true given the premises
+- âœ… No other conclusion is possible
+- âœ… It doesn't require additional assumptions
+- âœ… It follows necessarily from the given information
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Direct Conclusions
 **Draw conclusions from the given premises:**
@@ -285,7 +285,7 @@ What must be true?
 
 ---
 
-## 📊 CONCLUSION VALIDITY FRAMEWORK
+## ðŸ“Š CONCLUSION VALIDITY FRAMEWORK
 
 | Validity Test | Valid Conclusion | Invalid Conclusion |
 |---|---|---|
@@ -296,30 +296,30 @@ What must be true?
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Must Be True**: "Which of the following must be true?"
 2. **Logical Conclusion**: "Which conclusion can be drawn?"
 3. **Necessary Inference**: "Which follows logically?"
 4. **Definite Outcome**: "Which is certain to happen?"
 5. **Multiple Premises**: 2-4 statements leading to conclusion
 
-### 💡 Quick Solution Strategy:
+### ðŸ’¡ Quick Solution Strategy:
 1. **Read all premises** carefully, note relationships
 2. **Identify conclusion type** (direct, comparative, conditional)
 3. **Apply logical rules** (syllogism, transitivity, conditionals)
 4. **Test necessity** - must it be true?
 5. **Eliminate options** that are possible but not certain
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Look for quantifiers** - all, some, none affect conclusions
 - **Check conditional words** - if-then relationships
 - **Apply transitivity** - A>B and B>C means A>C
 - **Use contradiction** - eliminate options that contradict premises
 - **Trust logic** - if it must follow, it's the answer
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Practice syllogisms** - master All/Some/No relationships
 - **Learn conditional logic** - if-then conclusion patterns
 - **Master quantifiers** - all, some, none, most implications
@@ -328,21 +328,22 @@ What must be true?
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Syllogistic Mastery**: Learn All/Some/No conclusion patterns
 2. **Conditional Logic**: Practice if-then conclusion drawing
 3. **Quantitative Reasoning**: Master number-based conclusions
 4. **Comparative Logic**: Apply transitive relationships
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Conclusions are like mathematical proofs:**
-- 🔢 **Premises** = Given facts (like 2+2=4)
-- 🔢 **Logic** = Mathematical operations (+, -, ×, ÷)
-- 🔢 **Conclusion** = Certain result (equals 4)
-- ✅ **No guessing** - only what must logically follow
-- 🎯 **Certainty** - if premises are true, conclusion must be true
+- ðŸ”¢ **Premises** = Given facts (like 2+2=4)
+- ðŸ”¢ **Logic** = Mathematical operations (+, -, Ã—, Ã·)
+- ðŸ”¢ **Conclusion** = Certain result (equals 4)
+- âœ… **No guessing** - only what must logically follow
+- ðŸŽ¯ **Certainty** - if premises are true, conclusion must be true
 
-**Master conclusion drawing and become a logical mathematician!** 🎯🔢✨`
+**Master conclusion drawing and become a logical mathematician!** ðŸŽ¯ðŸ”¢âœ¨`"
 };
+

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_1: SubLesson = {
   id: "15.1",
   title: 'Introduction to Data Interpretation',
   status: 'completed',
-  content: `# 📊 Introduction to Data Interpretation
+  content: "`# ðŸ“Š Introduction to Data Interpretation
 
 Welcome to the fascinating world of Data Interpretation! This crucial topic forms a significant part of aptitude examinations and tests your ability to analyze, interpret, and draw conclusions from various data representations. Master the fundamentals and become a data interpretation expert!
 
 ---
 
-## 🎯 What is Data Interpretation?
+## ðŸŽ¯ What is Data Interpretation?
 
 **Data Interpretation (DI)** is the process of analyzing and making sense of data presented in various formats like tables, graphs, and charts. It involves extracting meaningful insights, identifying patterns, and solving problems based on the given data.
 
@@ -28,7 +28,7 @@ Welcome to the fascinating world of Data Interpretation! This crucial topic form
 
 ---
 
-## 📋 Types of Data Presentation
+## ðŸ“‹ Types of Data Presentation
 
 ### **1. Tabular Data**
 - Data organized in rows and columns
@@ -62,7 +62,7 @@ Welcome to the fascinating world of Data Interpretation! This crucial topic form
 
 ---
 
-## 🧮 Key Skills Required
+## ðŸ§® Key Skills Required
 
 ### **1. Calculation Skills**
 - **Percentage**: Share of total
@@ -84,7 +84,7 @@ Welcome to the fascinating world of Data Interpretation! This crucial topic form
 
 ---
 
-## 📊 Data Interpretation Process
+## ðŸ“Š Data Interpretation Process
 
 ### **Step 1: Understand the Data**
 - Read the title and description carefully
@@ -117,7 +117,7 @@ Welcome to the fascinating world of Data Interpretation! This crucial topic form
 
 ---
 
-## 🎯 Common Question Types
+## ðŸŽ¯ Common Question Types
 
 ### **1. Value-Based Questions**
 - "What is the value of X in year Y?"
@@ -151,12 +151,12 @@ Welcome to the fascinating world of Data Interpretation! This crucial topic form
 
 ---
 
-## 📈 Essential Formulas
+## ðŸ“ˆ Essential Formulas
 
 ### **Percentage Calculations**
-\`\`\`
-Percentage = (Part/Whole) × 100
-Percentage Change = [(New - Old)/Old] × 100
+\`"\`\`
+Percentage = (Part/Whole) Ã— 100
+Percentage Change = [(New - Old)/Old] Ã— 100
 \`\`\`
 
 ### **Ratio and Proportion**
@@ -168,18 +168,18 @@ Proportion = A/B = C/D
 ### **Average Calculations**
 \`\`\`
 Average = Sum of values/Number of values
-Weighted Average = Σ(weight × value)/Σ(weight)
+Weighted Average = Î£(weight Ã— value)/Î£(weight)
 \`\`\`
 
 ### **Growth Rate**
 \`\`\`
-Simple Growth = [(Final - Initial)/Initial] × 100
-Compound Growth = [(Final/Initial)^(1/n) - 1] × 100
+Simple Growth = [(Final - Initial)/Initial] Ã— 100
+Compound Growth = [(Final/Initial)^(1/n) - 1] Ã— 100
 \`\`\`
 
 ---
 
-## 🎯 Time Management Tips
+## ðŸŽ¯ Time Management Tips
 
 ### **1. Question Allocation**
 - **Easy Questions**: 30 seconds each
@@ -201,31 +201,31 @@ Compound Growth = [(Final/Initial)^(1/n) - 1] × 100
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Data Reading**
-❌ Reading 2019 data when question asks for 2020
+âŒ Reading 2019 data when question asks for 2020
 - Double-check years, categories, values
 
 ### **Mistake 2: Unit Confusion**
-❌ Mixing rupees with lakhs
+âŒ Mixing rupees with lakhs
 - Always check units in question and data
 
 ### **Mistake 3: Calculation Errors**
-❌ Wrong percentage calculation
-- Use formula: (Part/Whole) × 100
+âŒ Wrong percentage calculation
+- Use formula: (Part/Whole) Ã— 100
 
 ### **Mistake 4: Missing Context**
-❌ Ignoring "approximately" or "nearly"
+âŒ Ignoring "approximately" or "nearly"
 - Read question modifiers carefully
 
 ### **Mistake 5: Time Wastage**
-❌ Spending 2 minutes on easy questions
+âŒ Spending 2 minutes on easy questions
 - Practice time management
 
 ---
 
-## 📊 Sample Data Set Analysis
+## ðŸ“Š Sample Data Set Analysis
 
 ### **Sales Data Table**
 | Year | Product A | Product B | Product C | Total |
@@ -238,20 +238,20 @@ Compound Growth = [(Final/Initial)^(1/n) - 1] × 100
 
 **1. What is the percentage increase in Product A from 2018 to 2020?**
 - 2018: 100, 2020: 150
-- Increase: (150-100)/100 × 100 = 50%
+- Increase: (150-100)/100 Ã— 100 = 50%
 
 **2. What is the ratio of Product B to Product C in 2019?**
 - B:C = 180:240 = 3:4
 
 **3. Which product showed highest growth from 2018-2020?**
 - A: (150-100)/100 = 50%
-- B: (200-150)/150 ≈ 33.3%
+- B: (200-150)/150 â‰ˆ 33.3%
 - C: (300-200)/200 = 50%
 - A and C both 50%
 
 ---
 
-## 🎓 Preparation Strategy
+## ðŸŽ“ Preparation Strategy
 
 ### **1. Daily Practice**
 - Solve 10-15 DI questions daily
@@ -278,7 +278,7 @@ Compound Growth = [(Final/Initial)^(1/n) - 1] × 100
 
 ---
 
-## 🔢 DI Problem-Solving Framework
+## ðŸ”¢ DI Problem-Solving Framework
 
 \`\`\`
 1. READ the question carefully
@@ -304,7 +304,7 @@ Compound Growth = [(Final/Initial)^(1/n) - 1] × 100
 
 ---
 
-## 🎯 Success Tips
+## ðŸŽ¯ Success Tips
 
 1. **Practice regularly** - consistency is key
 2. **Focus on accuracy** - speed comes with practice
@@ -316,7 +316,7 @@ Compound Growth = [(Final/Initial)^(1/n) - 1] × 100
 
 ---
 
-## 📊 DI Performance Metrics
+## ðŸ“Š DI Performance Metrics
 
 | Accuracy Level | Questions Correct | Performance |
 |----------------|-------------------|-------------|
@@ -327,5 +327,5 @@ Compound Growth = [(Final/Initial)^(1/n) - 1] × 100
 
 **Target**: 80% accuracy with good speed!
 
-Master Data Interpretation fundamentals and ace your competitive exams! 🏆`
+Master Data Interpretation fundamentals and ace your competitive exams! ðŸ†`
 };

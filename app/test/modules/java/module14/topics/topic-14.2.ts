@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_2: SubLesson = {
   id: "14.2",
   title: 'Recursion with Arrays & Strings',
   status: 'completed',
-  content: `# 🔄 Recursion with Arrays & Strings in Java
+  content: "`# ðŸ”„ Recursion with Arrays & Strings in Java
 
 Learn how to solve array and string problems using recursive techniques!
 
 ---
 
-## 🎯 Array Recursion
+## ðŸŽ¯ Array Recursion
 
 ### **1. Array Sum (Linear Recursion)**
-\`\`\`java
+\`"\`\`java
 public class ArrayRecursion {
     // Recursive sum of array elements
     public static int arraySum(int[] arr, int index) {
@@ -99,7 +99,7 @@ public class ArrayRecursion {
 
 ---
 
-## 🔤 String Recursion
+## ðŸ”¤ String Recursion
 
 ### **1. String Length**
 \`\`\`java
@@ -213,7 +213,7 @@ public class StringRecursion {
 
 ---
 
-## 🔍 Search Problems
+## ðŸ” Search Problems
 
 ### **1. Linear Search (Recursive)**
 \`\`\`java
@@ -285,7 +285,7 @@ public class SearchRecursion {
 
 ---
 
-## 🔢 Pattern Recognition
+## ðŸ”¢ Pattern Recognition
 
 ### **1. Print Pattern**
 \`\`\`java
@@ -361,7 +361,7 @@ public class NumberRecursion {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Array problems**: Use index parameter to track position
 2. **String problems**: Use substring() or start/end indices
@@ -370,6 +370,7 @@ public class NumberRecursion {
 5. **Base cases**: Always handle empty/null inputs
 6. **Recursive cases**: Break problem into smaller subproblems
 
-**Next:** Learn advanced recursion techniques! 🚀`
+**Next:** Learn advanced recursion techniques! ðŸš€`
 };
+
 

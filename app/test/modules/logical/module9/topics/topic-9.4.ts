@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_4: SubLesson = {
   id: "9.4",
   title: 'Venn Diagram Method',
   status: 'completed',
-  content: `# ⭕ Venn Diagram Method
+  content: "`# â­• Venn Diagram Method
 
 Venn diagrams provide a powerful visual method for solving syllogism problems, allowing you to represent categorical relationships graphically and draw valid conclusions. Mastering Venn diagram construction and interpretation is essential for handling complex syllogistic reasoning in competitive exams.
 
 ---
 
-## 🎯 Understanding Venn Diagrams
+## ðŸŽ¯ Understanding Venn Diagrams
 
 ### **What are Venn Diagrams in Syllogism?**
 Venn diagrams use overlapping circles to represent relationships between categories, making it easier to visualize and analyze categorical statements. They help you:
@@ -20,12 +20,12 @@ Venn diagrams use overlapping circles to represent relationships between categor
 - **Apply logical rules systematically**
 
 ### **Basic Structure**
-\`\`\`
+\`"\`\`
 Three overlapping circles representing three categories:
-  A ∩ B ∩ C (overlap of all three)
-     A ∩ B (overlap of A and B only)
-        A ∩ C (overlap of A and C only)
-           B ∩ C (overlap of B and C only)
+  A âˆ© B âˆ© C (overlap of all three)
+     A âˆ© B (overlap of A and B only)
+        A âˆ© C (overlap of A and C only)
+           B âˆ© C (overlap of B and C only)
               A only (unique to A)
                  B only (unique to B)
                     C only (unique to C)
@@ -33,7 +33,7 @@ Three overlapping circles representing three categories:
 
 ---
 
-## 🧩 Venn Diagram Construction Rules
+## ðŸ§© Venn Diagram Construction Rules
 
 ### **Rule 1: Start with Universal Statements**
 \`\`\`
@@ -59,97 +59,97 @@ Shade areas that are excluded:
 ### **Rule 4: Use 'X' for Existence**
 \`\`\`
 Mark with 'X' to show existence:
-- Some A are B: Place 'X' in A∩B overlap
+- Some A are B: Place 'X' in Aâˆ©B overlap
 - Some A are not B: Place 'X' in A-B area
 \`\`\`
 
 ---
 
-## 📊 Statement Type Representations
+## ðŸ“Š Statement Type Representations
 
 ### **Type A: All S are P**
 \`\`\`
 P circle contains S circle completely
-  ┌─────────────────┐
-  │        P        │
-  │  ┌────────────┐ │
-  │  │     S      │ │
-  │  └────────────┘ │
-  └─────────────────┘
+  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+  â”‚        P        â”‚
+  â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â” â”‚
+  â”‚  â”‚     S      â”‚ â”‚
+  â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜ â”‚
+  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 Shade S area outside P (impossible area)
 \`\`\`
 
 ### **Type E: No S are P**
 \`\`\`
 S and P circles completely separate
-  ┌─────────────────┐     ┌─────────────────┐
-  │        P        │     │        S        │
-  │                 │     │                 │
-  └─────────────────┘     └─────────────────┘
+  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+  â”‚        P        â”‚     â”‚        S        â”‚
+  â”‚                 â”‚     â”‚                 â”‚
+  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜     â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 Shade the overlap area between S and P
 \`\`\`
 
 ### **Type I: Some S are P**
 \`\`\`
 S and P circles overlap
-  ┌─────────────────┐
-  │        P        │
-  │  ┌────────────┐ │
-  │  │     S      │ │
-  │  │   ┌────────┴─┘
-  │   └────────┘
-  └─────────────────┘
-Place 'X' in S∩P area to show existence
+  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+  â”‚        P        â”‚
+  â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â” â”‚
+  â”‚  â”‚     S      â”‚ â”‚
+  â”‚  â”‚   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”˜
+  â”‚   â””â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+Place 'X' in Sâˆ©P area to show existence
 \`\`\`
 
 ### **Type O: Some S are not P**
 \`\`\`
 S extends outside P
-  ┌─────────────────┐
-  │        P        │
-  │  ┌────────────┐ │
-  │  │     S      │ │
-  │  │             │ │
-  │  └────────────┘ │
-  └─────────────────┘
+  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+  â”‚        P        â”‚
+  â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â” â”‚
+  â”‚  â”‚     S      â”‚ â”‚
+  â”‚  â”‚             â”‚ â”‚
+  â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜ â”‚
+  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 Place 'X' in S-P area to show existence
 \`\`\`
 
 ---
 
-## 🎯 Venn Diagram Application
+## ðŸŽ¯ Venn Diagram Application
 
 ### **Two-Circle Problems**
 \`\`\`
 For two categories (A, B):
-  ┌─────────────────┐
-  │        B        │
-  │  ┌────────────┐ │
-  │  │     A      │ │
-  │  │   ┌────────┴─┘
-  │   └────────┘
-  └─────────────────┘
-Areas: A∩B, A-B, B-A, Universal set
+  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+  â”‚        B        â”‚
+  â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â” â”‚
+  â”‚  â”‚     A      â”‚ â”‚
+  â”‚  â”‚   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”˜
+  â”‚   â””â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+Areas: Aâˆ©B, A-B, B-A, Universal set
 \`\`\`
 
 ### **Three-Circle Problems**
 \`\`\`
 For three categories (A, B, C):
-  ┌─────────────┐
-  │      C      │
-  │  ┌────────┐ │
-  │  │   B    │ │
-  │  │ ┌─────┐│ │
-  │  │ │  A  ││ │
-  │  │ └─────┘│ │
-  │  └────────┘ │
-  └─────────────┘
+  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+  â”‚      C      â”‚
+  â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â” â”‚
+  â”‚  â”‚   B    â”‚ â”‚
+  â”‚  â”‚ â”Œâ”€â”€â”€â”€â”€â”â”‚ â”‚
+  â”‚  â”‚ â”‚  A  â”‚â”‚ â”‚
+  â”‚  â”‚ â””â”€â”€â”€â”€â”€â”˜â”‚ â”‚
+  â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”˜ â”‚
+  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 8 distinct areas to consider
 \`\`\`
 
 ---
 
-## 🛠️ Problem-Solving Framework
+## ðŸ› ï¸ Problem-Solving Framework
 
 ### **Step-by-Step Diagram Construction**
 
@@ -179,46 +179,46 @@ For three categories (A, B, C):
 
 ---
 
-## 🎯 Common Diagram Patterns
+## ðŸŽ¯ Common Diagram Patterns
 
 ### **Pattern 1: Standard Overlap**
 \`\`\`
 All A are B, Some B are C
-  ┌─────────────────┐
-  │        C        │
-  │  ┌────────────┐ │
-  │  │     B      │ │
-  │  │  ┌────────┐│ │
-  │  │  │   A    ││ │
-  │  │  └────────┘│ │
-  │  └────────────┘ │
-  └─────────────────┘
+  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+  â”‚        C        â”‚
+  â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â” â”‚
+  â”‚  â”‚     B      â”‚ â”‚
+  â”‚  â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”â”‚ â”‚
+  â”‚  â”‚  â”‚   A    â”‚â”‚ â”‚
+  â”‚  â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”˜â”‚ â”‚
+  â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜ â”‚
+  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 \`\`\`
 
 ### **Pattern 2: Complete Separation**
 \`\`\`
 No A are B, All C are A
-  ┌─────────────────┐     ┌─────────────────┐
-  │        B        │     │        A        │
-  │                 │  ┌──┴─────────────────┴──┐
-  └─────────────────┘  │          C           │
-                       └──────────────────────┘
+  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+  â”‚        B        â”‚     â”‚        A        â”‚
+  â”‚                 â”‚  â”Œâ”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”
+  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â”‚          C           â”‚
+                       â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 \`\`\`
 
 ### **Pattern 3: Complex Overlap**
 \`\`\`
 Some A are B, Some A are not B, No B are C
-  ┌─────────────────┐     ┌─────────────────┐
-  │        C        │     │        B        │
-  │                 │  ┌──┴─────────────────┴──┐
-  └─────────────────┘  │          A           │
-                       │     ┌─────────────┐  │
-                       └─────┴─────────────┴──┘
+  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+  â”‚        C        â”‚     â”‚        B        â”‚
+  â”‚                 â”‚  â”Œâ”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”
+  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â”‚          A           â”‚
+                       â”‚     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”‚
+                       â””â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”˜
 \`\`\`
 
 ---
 
-## 📊 Reading Conclusions from Diagrams
+## ðŸ“Š Reading Conclusions from Diagrams
 
 ### **Definite Conclusions**
 \`\`\`
@@ -246,7 +246,7 @@ Conclusions that contradict the diagram:
 
 ---
 
-## 🎯 Advanced Diagram Techniques
+## ðŸŽ¯ Advanced Diagram Techniques
 
 ### **Technique 1: Possibility Checking**
 \`\`\`
@@ -274,7 +274,7 @@ For each conclusion option:
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (30%)**
 - Simple two-statement problems
@@ -293,7 +293,7 @@ For each conclusion option:
 
 ---
 
-## 🧮 Diagram Efficiency Rules
+## ðŸ§® Diagram Efficiency Rules
 
 ### **Construction Priority**
 \`\`\`
@@ -314,27 +314,27 @@ For each conclusion:
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Construction Order**
-❌ Adding particular statements before universals
-✅ Apply All/No statements first, then Some statements
+âŒ Adding particular statements before universals
+âœ… Apply All/No statements first, then Some statements
 
 ### **Mistake 2: Missing Shading**
-❌ Forgetting to shade excluded areas
-✅ Shade areas that cannot contain members
+âŒ Forgetting to shade excluded areas
+âœ… Shade areas that cannot contain members
 
 ### **Mistake 3: Incorrect Overlap**
-❌ Drawing wrong overlap relationships
-✅ Follow precise rules for each statement type
+âŒ Drawing wrong overlap relationships
+âœ… Follow precise rules for each statement type
 
 ### **Mistake 4: Ignoring Possibilities**
-❌ Assuming only one possible diagram
-✅ Consider alternative valid diagrams for possibility conclusions
+âŒ Assuming only one possible diagram
+âœ… Consider alternative valid diagrams for possibility conclusions
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Master Basic Patterns**: Learn standard Venn diagram layouts
 2. **Follow Construction Order**: Universals first, then particulars
@@ -346,18 +346,18 @@ For each conclusion:
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Basic Construction**
 *"All A are B, No B are C"*
 
 **Diagram:**
 \`\`\`
-  ┌─────────────────┐     ┌─────────────────┐
-  │        C        │     │        B        │
-  │                 │  ┌──┴─────────────────┴──┐
-  └─────────────────┘  │          A           │
-                       └──────────────────────┘
+  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+  â”‚        C        â”‚     â”‚        B        â”‚
+  â”‚                 â”‚  â”Œâ”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”
+  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â”‚          A           â”‚
+                       â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 \`\`\`
 
 ### **Example 2: With Particular Statements**
@@ -365,23 +365,23 @@ For each conclusion:
 
 **Diagram:**
 \`\`\`
-  ┌─────────────────┐
-  │        C        │
-  │  ┌────────────┐ │
-  │  │     B      │ │
-  │  │  ┌────────┐│ │
-  │  │  │   A    ││ │
-  │  │  │   ┌────┴─┘
-  │  │   └────┘
-  │  └────────────┘ │
-  └─────────────────┘
-Place 'X' in B∩C and A-C areas
+  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+  â”‚        C        â”‚
+  â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â” â”‚
+  â”‚  â”‚     B      â”‚ â”‚
+  â”‚  â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”â”‚ â”‚
+  â”‚  â”‚  â”‚   A    â”‚â”‚ â”‚
+  â”‚  â”‚  â”‚   â”Œâ”€â”€â”€â”€â”´â”€â”˜
+  â”‚  â”‚   â””â”€â”€â”€â”€â”˜
+  â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜ â”‚
+  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+Place 'X' in Bâˆ©C and A-C areas
 \`\`\`
 
 ### **Example 3: Conclusion Testing**
 *Given diagram above, test: "Some A are C"*
 - Check diagram: A-C area has 'X', so "Some A are not C" must be true
-- Check A∩B∩C area: Could be empty, so "Some A are C" may or may not be true
+- Check Aâˆ©Bâˆ©C area: Could be empty, so "Some A are C" may or may not be true
 - Conclusion: Possible (may follow)
 
 ### **Example 4: Invalid Conclusion**
@@ -392,7 +392,7 @@ Place 'X' in B∩C and A-C areas
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Statement Types**
 - Use statement types to determine diagram construction
@@ -406,5 +406,5 @@ Place 'X' in B∩C and A-C areas
 - Combine diagram testing with rule-based reasoning
 - Verify conclusions through visual and logical methods
 
-**Master Venn diagram methods to visualize and solve complex syllogism problems! ⭕✨**`
+**Master Venn diagram methods to visualize and solve complex syllogism problems! â­•âœ¨**`
 };

@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_2: SubLesson = {
   id: "3.2",
   title: 'Antonyms',
   status: 'completed',
-  content: `# ↔️ Antonyms: Words with Opposite Meanings
+  content: "`# â†”ï¸ Antonyms: Words with Opposite Meanings
 
 Antonyms are words that express **opposite meanings**. Understanding antonyms helps in vocabulary building, comprehension, and creating balanced expressions. They are essential for competitive exams and effective communication.
 
 ---
 
-## 📋 WHAT ARE ANTONYMS?
+## ðŸ“‹ WHAT ARE ANTONYMS?
 
 **Antonyms** are words with **contrasting meanings**, allowing you to:
-- ✅ Express opposites clearly and precisely
-- ✅ Create balanced and nuanced expressions
-- ✅ Understand word relationships and connotations
-- ✅ Enhance reading comprehension and writing skills
+- âœ… Express opposites clearly and precisely
+- âœ… Create balanced and nuanced expressions
+- âœ… Understand word relationships and connotations
+- âœ… Enhance reading comprehension and writing skills
 
 ### Key Characteristics:
 - **Opposite Meaning**: Directly contrary meanings
@@ -25,18 +25,18 @@ Antonyms are words that express **opposite meanings**. Understanding antonyms he
 - **Gradable Scale**: Many antonyms exist on a continuum
 
 **Examples:**
-- ✅ Hot ↔ Cold, Fast ↔ Slow, Happy ↔ Sad
-- ✅ Big ↔ Small, Rich ↔ Poor, Love ↔ Hate
-- ✅ Win ↔ Lose, Buy ↔ Sell, Start ↔ Finish
+- âœ… Hot â†” Cold, Fast â†” Slow, Happy â†” Sad
+- âœ… Big â†” Small, Rich â†” Poor, Love â†” Hate
+- âœ… Win â†” Lose, Buy â†” Sell, Start â†” Finish
 
 ---
 
-## 🎯 TYPES OF ANTONYMS
+## ðŸŽ¯ TYPES OF ANTONYMS
 
 ### 1. **Gradable Antonyms** (Opposites on a Scale)
 Words that exist on a continuum with degrees between them:
 
-| Mild | ↔ | Strong |
+| Mild | â†” | Strong |
 |---|---|---|
 | Cool | Warm | Hot |
 | Small | Medium | Large |
@@ -44,8 +44,8 @@ Words that exist on a continuum with degrees between them:
 | Slow | Moderate | Fast |
 
 **Examples:**
-- ✅ **Cold** (freezing) ↔ **Hot** (boiling), with **Warm** in between
-- ✅ **Poor** (destitute) ↔ **Rich** (wealthy), with **Middle-class** in between
+- âœ… **Cold** (freezing) â†” **Hot** (boiling), with **Warm** in between
+- âœ… **Poor** (destitute) â†” **Rich** (wealthy), with **Middle-class** in between
 
 ### 2. **Complementary Antonyms** (Binary Opposites)
 Words that are absolute opposites with no middle ground:
@@ -58,9 +58,9 @@ Words that are absolute opposites with no middle ground:
 | Win | Lose | Either you win or lose |
 
 **Examples:**
-- ✅ **Married** ↔ **Single** (no intermediate status)
-- ✅ **Present** ↔ **Absent** (either/or)
-- ✅ **Pass** ↔ **Fail** (no partial success)
+- âœ… **Married** â†” **Single** (no intermediate status)
+- âœ… **Present** â†” **Absent** (either/or)
+- âœ… **Pass** â†” **Fail** (no partial success)
 
 ### 3. **Relational Antonyms** (Context-Dependent)
 Words that are opposites only in specific relationships:
@@ -73,108 +73,108 @@ Words that are opposites only in specific relationships:
 | Time | Before | After | Sequential relationship |
 
 **Examples:**
-- ✅ **Teacher** ↔ **Student** (educational relationship)
-- ✅ **Doctor** ↔ **Patient** (medical relationship)
-- ✅ **Employer** ↔ **Employee** (work relationship)
+- âœ… **Teacher** â†” **Student** (educational relationship)
+- âœ… **Doctor** â†” **Patient** (medical relationship)
+- âœ… **Employer** â†” **Employee** (work relationship)
 
 ---
 
-## 📚 COMMON ANTONYM PAIRS
+## ðŸ“š COMMON ANTONYM PAIRS
 
 ### Size & Quantity:
-- ✅ **Big** ↔ Small, Large ↔ Tiny, Huge ↔ Miniature
-- ✅ **Many** ↔ Few, Much ↔ Little, Abundant ↔ Scarce
-- ✅ **Heavy** ↔ Light, Thick ↔ Thin, Wide ↔ Narrow
+- âœ… **Big** â†” Small, Large â†” Tiny, Huge â†” Miniature
+- âœ… **Many** â†” Few, Much â†” Little, Abundant â†” Scarce
+- âœ… **Heavy** â†” Light, Thick â†” Thin, Wide â†” Narrow
 
 ### Quality & Characteristics:
-- ✅ **Good** ↔ Bad, Beautiful ↔ Ugly, Clean ↔ Dirty
-- ✅ **Strong** ↔ Weak, Brave ↔ Cowardly, Honest ↔ Dishonest
-- ✅ **Smart** ↔ Stupid, Wise ↔ Foolish, Intelligent ↔ Unintelligent
+- âœ… **Good** â†” Bad, Beautiful â†” Ugly, Clean â†” Dirty
+- âœ… **Strong** â†” Weak, Brave â†” Cowardly, Honest â†” Dishonest
+- âœ… **Smart** â†” Stupid, Wise â†” Foolish, Intelligent â†” Unintelligent
 
 ### Emotions & States:
-- ✅ **Happy** ↔ Sad, Joyful ↔ Sorrowful, Content ↔ Discontent
-- ✅ **Love** ↔ Hate, Like ↔ Dislike, Admire ↔ Despise
-- ✅ **Calm** ↔ Angry, Peaceful ↔ Violent, Relaxed ↔ Tense
+- âœ… **Happy** â†” Sad, Joyful â†” Sorrowful, Content â†” Discontent
+- âœ… **Love** â†” Hate, Like â†” Dislike, Admire â†” Despise
+- âœ… **Calm** â†” Angry, Peaceful â†” Violent, Relaxed â†” Tense
 
 ### Actions & Directions:
-- ✅ **Come** ↔ Go, Arrive ↔ Depart, Enter ↔ Exit
-- ✅ **Buy** ↔ Sell, Lend ↔ Borrow, Give ↔ Take
-- ✅ **Start** ↔ Stop, Begin ↔ End, Open ↔ Close
+- âœ… **Come** â†” Go, Arrive â†” Depart, Enter â†” Exit
+- âœ… **Buy** â†” Sell, Lend â†” Borrow, Give â†” Take
+- âœ… **Start** â†” Stop, Begin â†” End, Open â†” Close
 
 ### Time & Age:
-- ✅ **Early** ↔ Late, Soon ↔ Later, Quick ↔ Slow
-- ✅ **Young** ↔ Old, New ↔ Old, Modern ↔ Ancient
-- ✅ **Past** ↔ Future, Present ↔ Absent, Now ↔ Then
+- âœ… **Early** â†” Late, Soon â†” Later, Quick â†” Slow
+- âœ… **Young** â†” Old, New â†” Old, Modern â†” Ancient
+- âœ… **Past** â†” Future, Present â†” Absent, Now â†” Then
 
 ### Position & Direction:
-- ✅ **Up** ↔ Down, High ↔ Low, Top ↔ Bottom
-- ✅ **Left** ↔ Right, East ↔ West, North ↔ South
-- ✅ **Front** ↔ Back, Inside ↔ Outside, Above ↔ Below
+- âœ… **Up** â†” Down, High â†” Low, Top â†” Bottom
+- âœ… **Left** â†” Right, East â†” West, North â†” South
+- âœ… **Front** â†” Back, Inside â†” Outside, Above â†” Below
 
 ---
 
-## 🎯 ANTONYM USAGE IN CONTEXT
+## ðŸŽ¯ ANTONYM USAGE IN CONTEXT
 
 ### Creating Balanced Expressions:
 
 #### Using Both Sides:
-- ✅ The **advantages** and **disadvantages** of the plan
-- ✅ **Pros** and **cons** of the decision
-- ✅ **Strengths** and **weaknesses** of the proposal
+- âœ… The **advantages** and **disadvantages** of the plan
+- âœ… **Pros** and **cons** of the decision
+- âœ… **Strengths** and **weaknesses** of the proposal
 
 #### Antithetical Statements:
-- ✅ **Love** conquers all, but **hate** destroys everything
-- ✅ **Success** comes to the **brave**, **failure** to the **cowardly**
-- ✅ **Knowledge** is power, **ignorance** is weakness
+- âœ… **Love** conquers all, but **hate** destroys everything
+- âœ… **Success** comes to the **brave**, **failure** to the **cowardly**
+- âœ… **Knowledge** is power, **ignorance** is weakness
 
 ### Contextual Antonyms:
 
 #### Temperature Context:
-- ✅ The weather is **hot** today, but it was **cold** yesterday
-- ✅ She prefers **warm** coffee, not **cool** drinks
+- âœ… The weather is **hot** today, but it was **cold** yesterday
+- âœ… She prefers **warm** coffee, not **cool** drinks
 
 #### Size Context:
-- ✅ The **big** elephant vs the **small** mouse
-- ✅ A **huge** mansion vs a **tiny** apartment
+- âœ… The **big** elephant vs the **small** mouse
+- âœ… A **huge** mansion vs a **tiny** apartment
 
 #### Emotion Context:
-- ✅ **Happy** children vs **sad** expressions
-- ✅ **Joyful** celebration vs **sorrowful** mourning
+- âœ… **Happy** children vs **sad** expressions
+- âœ… **Joyful** celebration vs **sorrowful** mourning
 
 ---
 
-## ⚠️ ANTONYM CHALLENGES
+## âš ï¸ ANTONYM CHALLENGES
 
 ### Words with Multiple Antonyms:
 
 1. **Fast** can mean:
-   - ✅ **Fast** (speed) ↔ Slow
-   - ✅ **Fast** (secure) ↔ Loose
+   - âœ… **Fast** (speed) â†” Slow
+   - âœ… **Fast** (secure) â†” Loose
 
 2. **Light** can mean:
-   - ✅ **Light** (weight) ↔ Heavy
-   - ✅ **Light** (bright) ↔ Dark
-   - ✅ **Light** (not serious) ↔ Serious
+   - âœ… **Light** (weight) â†” Heavy
+   - âœ… **Light** (bright) â†” Dark
+   - âœ… **Light** (not serious) â†” Serious
 
 3. **Hard** can mean:
-   - ✅ **Hard** (difficult) ↔ Easy
-   - ✅ **Hard** (solid) ↔ Soft
-   - ✅ **Hard** (strict) ↔ Lenient
+   - âœ… **Hard** (difficult) â†” Easy
+   - âœ… **Hard** (solid) â†” Soft
+   - âœ… **Hard** (strict) â†” Lenient
 
 ### Not True Opposites:
 
 #### Different Dimensions:
-- ❌ **Man** and **Woman** (not opposites, complementary)
-- ❌ **Red** and **Blue** (not opposites, different colors)
-- ❌ **Cat** and **Dog** (not opposites, different animals)
+- âŒ **Man** and **Woman** (not opposites, complementary)
+- âŒ **Red** and **Blue** (not opposites, different colors)
+- âŒ **Cat** and **Dog** (not opposites, different animals)
 
 #### Contextual Only:
-- ❌ **Teacher** and **Student** (relational, not direct opposites)
-- ❌ **Buy** and **Sell** (transaction partners, not opposites)
+- âŒ **Teacher** and **Student** (relational, not direct opposites)
+- âŒ **Buy** and **Sell** (transaction partners, not opposites)
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Choose the Correct Antonym
 Select the word that is most nearly opposite in meaning:
@@ -242,38 +242,38 @@ Choose the correct antonym to complete the sentence:
 
 ---
 
-## 📊 ANTONYM CLASSIFICATION
+## ðŸ“Š ANTONYM CLASSIFICATION
 
 | Type | Characteristics | Examples |
 |---|---|---|
-| **Gradable** | Exist on a scale with intermediates | Hot ↔ Cold (Warm in middle) |
-| **Complementary** | Absolute opposites, no middle ground | Alive ↔ Dead, True ↔ False |
-| **Relational** | Opposites in specific relationships | Parent ↔ Child, Buy ↔ Sell |
-| **Multiple Meaning** | Words with different antonyms | Light (weight) ↔ Heavy, Light (bright) ↔ Dark |
+| **Gradable** | Exist on a scale with intermediates | Hot â†” Cold (Warm in middle) |
+| **Complementary** | Absolute opposites, no middle ground | Alive â†” Dead, True â†” False |
+| **Relational** | Opposites in specific relationships | Parent â†” Child, Buy â†” Sell |
+| **Multiple Meaning** | Words with different antonyms | Light (weight) â†” Heavy, Light (bright) â†” Dark |
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Direct Opposites**: Choose the most direct antonym
 2. **Context Analysis**: Consider sentence meaning and tone
 3. **Multiple Antonyms**: Watch for words with different opposites
 4. **Relational Pairs**: Teacher-student, buy-sell relationships
 
-### 💡 Quick Selection Strategy:
+### ðŸ’¡ Quick Selection Strategy:
 1. **Understand the context** - what opposite makes sense?
 2. **Check connotation** - ensure emotional tone matches
 3. **Verify part of speech** - antonyms usually same category
 4. **Look for exact opposite** - not just related word
 
-### ⚡ Common Traps to Avoid:
+### âš¡ Common Traps to Avoid:
 - **False opposites**: Words that seem opposite but aren't
 - **Context confusion**: Same word, different antonyms
 - **Connotation mismatch**: Positive vs negative tone
 - **Relational confusion**: Context-dependent opposites
 
-### 📈 Scoring Strategy:
+### ðŸ“ˆ Scoring Strategy:
 - **Read carefully** - understand the exact meaning needed
 - **Eliminate wrong options** - remove obviously incorrect choices
 - **Check context fit** - ensure antonym makes sentence logical
@@ -281,20 +281,21 @@ Choose the correct antonym to complete the sentence:
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Pair Learning**: Learn antonyms in related pairs
 2. **Contextual Practice**: Use antonyms in sentences
 3. **Category Grouping**: Group by themes (emotions, size, etc.)
 4. **Visual Mapping**: Create antonym relationship diagrams
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Antonyms are like mirror images:**
-- 🪞 **Hot** reflects **Cold**, **Big** reflects **Small**
-- 🪞 **Love** reflects **Hate**, **Win** reflects **Lose**
-- 🪞 **Understanding antonyms** gives you "complete vision" of words
-- 🎯 **Use them to create contrast** and emphasize differences
+- ðŸªž **Hot** reflects **Cold**, **Big** reflects **Small**
+- ðŸªž **Love** reflects **Hate**, **Win** reflects **Lose**
+- ðŸªž **Understanding antonyms** gives you "complete vision" of words
+- ðŸŽ¯ **Use them to create contrast** and emphasize differences
 
-**Master antonyms and you'll see the "complete picture" of English vocabulary!** 🪞✨`
+**Master antonyms and you'll see the "complete picture" of English vocabulary!** ðŸªžâœ¨`"
 };
+

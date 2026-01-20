@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_4: SubLesson = {
   id: "8.4",
   title: 'Ascending & Descending Order',
   status: 'completed',
-  content: `# 📈📉 Ascending & Descending Order
+  content: "`# ðŸ“ˆðŸ“‰ Ascending & Descending Order
 
 Ascending and descending order problems involve arranging people or objects based on quantitative criteria like height, weight, marks, or age. These problems require understanding how to arrange items in increasing or decreasing order and finding positions within ordered sequences.
 
 ---
 
-## 🎯 Understanding Order Arrangements
+## ðŸŽ¯ Understanding Order Arrangements
 
 ### **What are Ascending & Descending Order Problems?**
 These problems involve ranking people or objects based on measurable criteria, requiring you to:
@@ -33,10 +33,10 @@ These problems involve ranking people or objects based on measurable criteria, r
 
 ---
 
-## 🧩 Order Arrangement Principles
+## ðŸ§© Order Arrangement Principles
 
 ### **Ascending Order (Low to High)**
-\`\`\`
+\`"\`\`
 Criteria: Age, Height, Weight, Marks (lowest to highest)
 Position 1 (leftmost/top): Smallest value
 Position N (rightmost/bottom): Largest value
@@ -64,7 +64,7 @@ In Descending Order:
 
 ---
 
-## 🎯 Problem Types and Solutions
+## ðŸŽ¯ Problem Types and Solutions
 
 ### **Type 1: Position in Ordered Sequence**
 *"Five students with marks: 85, 92, 78, 96, 88. If arranged in descending order of marks, what is A's position?"*
@@ -91,7 +91,7 @@ In Descending Order:
 
 ---
 
-## 📊 Order-Based Position Finding
+## ðŸ“Š Order-Based Position Finding
 
 ### **Ascending Order Position Logic**
 \`\`\`
@@ -115,7 +115,7 @@ Person with higher value = Position further to the left
 
 ---
 
-## 🛠️ Problem-Solving Framework
+## ðŸ› ï¸ Problem-Solving Framework
 
 ### **Step-by-Step Approach**
 
@@ -141,7 +141,7 @@ Person with higher value = Position further to the left
 
 ---
 
-## 🎯 Common Question Patterns
+## ðŸŽ¯ Common Question Patterns
 
 ### **Pattern 1: Position in Ordered Arrangement**
 *"When arranged in ascending order, where does A stand?"*
@@ -157,7 +157,7 @@ Person with higher value = Position further to the left
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (40%)**
 - Simple ascending/descending arrangements
@@ -176,7 +176,7 @@ Person with higher value = Position further to the left
 
 ---
 
-## 🧮 Position Calculation Methods
+## ðŸ§® Position Calculation Methods
 
 ### **Position in Ascending Order**
 \`\`\`
@@ -205,7 +205,7 @@ In ascending order:
 
 ---
 
-## 🎯 Special Cases and Exceptions
+## ðŸŽ¯ Special Cases and Exceptions
 
 ### **Case 1: Equal Values**
 \`\`\`
@@ -219,7 +219,7 @@ When two persons have same value:
 \`\`\`
 "Better than 3 persons" means:
 - In ascending: Position > 4th (top 3 have higher positions)
-- In descending: Position ≤ 3rd (top 3 positions)
+- In descending: Position â‰¤ 3rd (top 3 positions)
 \`\`\`
 
 ### **Case 3: Middle Positions**
@@ -232,27 +232,27 @@ For ordered sequence:
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Order Confusion**
-❌ Mixing ascending and descending logic
-✅ Clearly identify arrangement type and implications
+âŒ Mixing ascending and descending logic
+âœ… Clearly identify arrangement type and implications
 
 ### **Mistake 2: Position Logic Error**
-❌ Wrong assumption about left/right positions
-✅ Remember: Ascending = Small to Large (left to right)
+âŒ Wrong assumption about left/right positions
+âœ… Remember: Ascending = Small to Large (left to right)
 
 ### **Mistake 3: Comparative Logic Error**
-❌ Incorrect ranking interpretation
-✅ A > B means A has higher value, not necessarily position
+âŒ Incorrect ranking interpretation
+âœ… A > B means A has higher value, not necessarily position
 
 ### **Mistake 4: Tie-Breaking Ignorance**
-❌ Ignoring how to handle equal values
-✅ Consider tie-breaking rules when applicable
+âŒ Ignoring how to handle equal values
+âœ… Consider tie-breaking rules when applicable
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Identify Order Type Clearly**: Ascending (low to high) vs Descending (high to low)
 2. **Apply Position Logic**: Left/Top = First in order, Right/Bottom = Last in order
@@ -264,7 +264,7 @@ For ordered sequence:
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Basic Ascending Order**
 *"Students with heights: A(160cm), B(170cm), C(150cm). In ascending height order, who is 2nd?"*
@@ -298,7 +298,7 @@ For ordered sequence:
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Top-Bottom Ranking**
 - Combine vertical positioning with ordered criteria
@@ -315,5 +315,5 @@ For ordered sequence:
 - Solve complex ranking relationships
 - Apply multi-level ranking logic
 
-**Master ascending and descending order to excel in sequence-based ranking problems! 📈📉✨**`
+**Master ascending and descending order to excel in sequence-based ranking problems! ðŸ“ˆðŸ“‰âœ¨**`
 };

@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_2: SubLesson = {
   id: "11.2",
-  title: 'Unit Conversion (km/h ↔ m/s)',
+  title: 'Unit Conversion (km/h â†” m/s)',
   status: 'completed',
-  content: `# 🔄 Unit Conversion (km/h ↔ m/s)
+  content: "`# ðŸ”„ Unit Conversion (km/h â†” m/s)
 
 Master unit conversions between kilometers per hour and meters per second - essential for accurate speed calculations.
 
 ---
 
-## 🎯 Why Unit Conversion Matters
+## ðŸŽ¯ Why Unit Conversion Matters
 
 Different problems use different speed units. Converting between km/h and m/s is crucial for accurate calculations.
 
 ### **Key Relationships**
-\`\`\`
+\`"\`\`
 1 km = 1000 meters
 1 hour = 3600 seconds
 1 km/h = 1000 meters / 3600 seconds = 5/18 m/s
@@ -24,18 +24,18 @@ Different problems use different speed units. Converting between km/h and m/s is
 
 ---
 
-## 📊 Conversion Formulas
+## ðŸ“Š Conversion Formulas
 
 ### **km/h to m/s**
 \`\`\`
-Speed (m/s) = Speed (km/h) × (5/18)
-Speed (m/s) = Speed (km/h) × 0.2778
+Speed (m/s) = Speed (km/h) Ã— (5/18)
+Speed (m/s) = Speed (km/h) Ã— 0.2778
 \`\`\`
 
 ### **m/s to km/h**
 \`\`\`
-Speed (km/h) = Speed (m/s) × (18/5)
-Speed (km/h) = Speed (m/s) × 3.6
+Speed (km/h) = Speed (m/s) Ã— (18/5)
+Speed (km/h) = Speed (m/s) Ã— 3.6
 \`\`\`
 
 ### **Memory Trick**
@@ -46,30 +46,30 @@ Speed (km/h) = Speed (m/s) × 3.6
 
 ---
 
-## 🧮 Conversion Examples
+## ðŸ§® Conversion Examples
 
 ### Example 1: km/h to m/s
 **Convert 72 km/h to m/s.**
 
 **Solution:**
-- Speed (m/s) = 72 × (5/18) = 72 × 0.2778 = 20 m/s
+- Speed (m/s) = 72 Ã— (5/18) = 72 Ã— 0.2778 = 20 m/s
 
 ### Example 2: m/s to km/h
 **Convert 25 m/s to km/h.**
 
 **Solution:**
-- Speed (km/h) = 25 × (18/5) = 25 × 3.6 = 90 km/h
+- Speed (km/h) = 25 Ã— (18/5) = 25 Ã— 3.6 = 90 km/h
 
 ### Example 3: Problem Solving
 **A car travels at 54 km/h. How many meters does it travel in 1 second?**
 
 **Solution:**
-- First convert: 54 km/h = 54 × (5/18) = 15 m/s
+- First convert: 54 km/h = 54 Ã— (5/18) = 15 m/s
 - Distance in 1 second = 15 meters
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Quick Multiplication**
 \`\`\`
@@ -79,18 +79,18 @@ m/s to km/h: Multiply by 3.6
 
 ### **Common Conversions**
 \`\`\`
-10 km/h = 2.78 m/s ≈ 2.8 m/s
-20 km/h = 5.56 m/s ≈ 5.6 m/s
-30 km/h = 8.33 m/s ≈ 8.3 m/s
-40 km/h = 11.11 m/s ≈ 11.1 m/s
-50 km/h = 13.89 m/s ≈ 13.9 m/s
-60 km/h = 16.67 m/s ≈ 16.7 m/s
+10 km/h = 2.78 m/s â‰ˆ 2.8 m/s
+20 km/h = 5.56 m/s â‰ˆ 5.6 m/s
+30 km/h = 8.33 m/s â‰ˆ 8.3 m/s
+40 km/h = 11.11 m/s â‰ˆ 11.1 m/s
+50 km/h = 13.89 m/s â‰ˆ 13.9 m/s
+60 km/h = 16.67 m/s â‰ˆ 16.7 m/s
 \`\`\`
 
 ### **Mental Math Method**
 \`\`\`
-For km/h to m/s: (Speed ÷ 10) × 2.8
-For m/s to km/h: (Speed × 10) ÷ 2.8
+For km/h to m/s: (Speed Ã· 10) Ã— 2.8
+For m/s to km/h: (Speed Ã— 10) Ã· 2.8
 \`\`\`
 
 ### **Fraction Method**
@@ -101,10 +101,10 @@ m/s to km/h: Multiply by 18, divide by 5
 
 ---
 
-## 🔢 Advanced Applications
+## ðŸ”¢ Advanced Applications
 
 ### **Multiple Conversions**
-- **mph to m/s**: First mph to km/h (× 1.609), then to m/s
+- **mph to m/s**: First mph to km/h (Ã— 1.609), then to m/s
 - **Different time units**: Convert to consistent time units
 - **Complex problems**: Multiple conversions in one problem
 
@@ -120,32 +120,32 @@ m/s to km/h: Multiply by 18, divide by 5
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 4: Distance Calculation
 **A train travels at 108 km/h. How far does it travel in 5 seconds?**
 
 **Solution:**
-- Convert speed: 108 km/h = 108 × (5/18) = 30 m/s
-- Distance = Speed × Time = 30 × 5 = 150 meters
+- Convert speed: 108 km/h = 108 Ã— (5/18) = 30 m/s
+- Distance = Speed Ã— Time = 30 Ã— 5 = 150 meters
 
 ### Example 5: Average Speed
 **First half journey at 40 km/h, second half at 60 km/h. Average speed in m/s?**
 
 **Solution:**
-- Average speed in km/h = (2 × 40 × 60) / (40 + 60) = 48 km/h
-- Convert to m/s = 48 × (5/18) = 13.33 m/s
+- Average speed in km/h = (2 Ã— 40 Ã— 60) / (40 + 60) = 48 km/h
+- Convert to m/s = 48 Ã— (5/18) = 13.33 m/s
 
 ### Example 6: Relative Speed
 **Two trains approach each other at 72 km/h and 90 km/h. Relative speed in m/s?**
 
 **Solution:**
 - Relative speed = 72 + 90 = 162 km/h
-- Convert to m/s = 162 × (5/18) = 45 m/s
+- Convert to m/s = 162 Ã— (5/18) = 45 m/s
 
 ---
 
-## 🚨 Conversion Mistakes to Avoid
+## ðŸš¨ Conversion Mistakes to Avoid
 
 1. **Wrong multiplier**: Using 18/5 instead of 5/18
 2. **Unit confusion**: Mixing km/h with seconds
@@ -155,7 +155,7 @@ m/s to km/h: Multiply by 18, divide by 5
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** Convert 36 km/h to m/s.
 **2.** Convert 15 m/s to km/h.
@@ -163,11 +163,11 @@ m/s to km/h: Multiply by 18, divide by 5
 **4.** Train at 20 m/s. Speed in km/h?
 **5.** Runner at 10 km/h. Distance in 1 minute?
 
-**Answers:** 1. 10 m/s, 2. 54 km/h, 3. 150 meters, 4. 72 km/h, 5. 1000/6 ≈ 166.67 meters
+**Answers:** 1. 10 m/s, 2. 54 km/h, 3. 150 meters, 4. 72 km/h, 5. 1000/6 â‰ˆ 166.67 meters
 
 ---
 
-## 🎓 Conversion Strategies
+## ðŸŽ“ Conversion Strategies
 
 1. **Memorize key numbers**: 5/18 and 18/5 or 3.6
 2. **Use fraction method**: More accurate for exact calculations
@@ -175,5 +175,5 @@ m/s to km/h: Multiply by 18, divide by 5
 4. **Check reasonableness**: Converted speed should make sense
 5. **Maintain units**: Always write units in final answer
 
-Master unit conversions and you'll never struggle with speed unit mismatches again! 🏆`
+Master unit conversions and you'll never struggle with speed unit mismatches again! ðŸ†`
 };

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_2: SubLesson = {
   id: "6.2",
   title: 'Number Series',
   status: 'completed',
-  content: `# 🔢 Number Series
+  content: "`# ðŸ”¢ Number Series
 
 Number series are sequences of numbers following specific mathematical patterns or rules. These form the foundation of series problems and appear extensively in competitive exams, requiring strong pattern recognition and mathematical skills.
 
 ---
 
-## 🎯 Understanding Number Series
+## ðŸŽ¯ Understanding Number Series
 
 ### **What are Number Series?**
 Number series are sequences where each term follows a predictable mathematical pattern or rule from the previous terms. They test your ability to:
@@ -27,7 +27,7 @@ Number series are sequences where each term follows a predictable mathematical p
 
 ---
 
-## 🧩 Types of Number Series
+## ðŸ§© Types of Number Series
 
 ### **1. Arithmetic Series**
 **Constant difference between consecutive terms**
@@ -49,7 +49,7 @@ Number series are sequences where each term follows a predictable mathematical p
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze the Series**
 - Examine all given numbers carefully
@@ -73,7 +73,7 @@ Number series are sequences where each term follows a predictable mathematical p
 
 ---
 
-## 🎯 Common Number Series Types
+## ðŸŽ¯ Common Number Series Types
 
 ### **Type 1: Simple Arithmetic**
 **Constant addition/subtraction**
@@ -84,18 +84,18 @@ Number series are sequences where each term follows a predictable mathematical p
 ### **Type 2: Simple Geometric**
 **Constant multiplication/division**
 - **Example**: 3, 6, 12, 24, 48, ?
-- **Pattern**: ×2 each time
+- **Pattern**: Ã—2 each time
 - **Next**: 96
 
 ### **Type 3: Mixed Operations**
 **Different operations for different terms**
 - **Example**: 4, 9, 16, 25, 36, ?
 - **Pattern**: Squares of natural numbers
-- **Next**: 49 (7²)
+- **Next**: 49 (7Â²)
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Difference Method**
 
@@ -107,19 +107,19 @@ Next: 21 + 4 = 25
 ### **2. Ratio Method**
 
 Example: 2, 6, 18, 54, 162, ?  
-Ratios: ×3, ×3, ×3, ×3, ×3  
+Ratios: Ã—3, Ã—3, Ã—3, Ã—3, Ã—3  
 Pattern: Multiply by 3 each time  
-Next: 162 × 3 = 486
+Next: 162 Ã— 3 = 486
 
 ### **3. Operation Method**
 - **Addition Series**: 1, 4, 7, 10, 13, 16 (+3)
 - **Subtraction Series**: 20, 17, 14, 11, 8, 5 (-3)
-- **Multiplication Series**: 1, 2, 6, 24, 120, 720 (×n!)
-- **Division Series**: 720, 120, 24, 6, 2, 1 (÷n)
+- **Multiplication Series**: 1, 2, 6, 24, 120, 720 (Ã—n!)
+- **Division Series**: 720, 120, 24, 6, 2, 1 (Ã·n)
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Arithmetic**
 **Series**: 7, 11, 15, 19, 23, ?
@@ -133,8 +133,8 @@ Next: 162 × 3 = 486
 
 ### **Example 3: Complex Pattern**
 **Series**: 1, 4, 9, 16, 25, 36, ?
-- **Pattern**: Squares of natural numbers (1², 2², 3², 4², 5², 6²)
-- **Next**: 7² = 49
+- **Pattern**: Squares of natural numbers (1Â², 2Â², 3Â², 4Â², 5Â², 6Â²)
+- **Next**: 7Â² = 49
 
 ### **Example 4: Mixed Operations**
 **Series**: 3, 8, 15, 24, 35, ?
@@ -143,7 +143,7 @@ Next: 162 × 3 = 486
 
 ---
 
-## 🔍 Advanced Number Series Concepts
+## ðŸ” Advanced Number Series Concepts
 
 ### **Multi-Step Operations**
 Series requiring multiple mathematical operations.
@@ -156,7 +156,7 @@ Advanced patterns involving powers, roots, factorials, etc.
 
 ---
 
-## 📊 Number Series Patterns
+## ðŸ“Š Number Series Patterns
 
 ### **Basic Patterns**
 - **Arithmetic**: Constant difference
@@ -177,23 +177,23 @@ Advanced patterns involving powers, roots, factorials, etc.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Wrong Operation Assumption**
-❌ Assuming addition when multiplication applies
-✅ Test multiple operation possibilities
+âŒ Assuming addition when multiplication applies
+âœ… Test multiple operation possibilities
 
 ### **Pitfall 2: Incomplete Pattern Check**
-❌ Not verifying pattern against all terms
-✅ Check pattern consistency thoroughly
+âŒ Not verifying pattern against all terms
+âœ… Check pattern consistency thoroughly
 
 ### **Pitfall 3: Calculation Errors**
-❌ Mathematical mistakes in calculations
-✅ Careful arithmetic and double-checking
+âŒ Mathematical mistakes in calculations
+âœ… Careful arithmetic and double-checking
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Check Differences**
 - Calculate differences between consecutive terms
@@ -212,7 +212,7 @@ Advanced patterns involving powers, roots, factorials, etc.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Simple arithmetic/geometric progressions
@@ -231,7 +231,7 @@ Advanced patterns involving powers, roots, factorials, etc.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Start with Differences**: Always check differences first
 2. **Consider Common Patterns**: Arithmetic, geometric, squares, etc.
@@ -241,7 +241,7 @@ Advanced patterns involving powers, roots, factorials, etc.
 
 ---
 
-## 🔢 Practice Questions
+## ðŸ”¢ Practice Questions
 
 ### **Question 1**
 Find the next term: 3, 6, 9, 12, 15, ?
@@ -258,5 +258,5 @@ Find the missing term: 5, 10, 15, ?, 25, 30
 ### **Question 5**
 Find the next term: 1, 3, 6, 10, 15, 21, ?
 
-**Master number series patterns for mathematical sequence completion! 🔢✨**`
+**Master number series patterns for mathematical sequence completion! ðŸ”¢âœ¨**`"
 };

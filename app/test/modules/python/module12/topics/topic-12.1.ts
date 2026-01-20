@@ -1,20 +1,20 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_1: SubLesson = {
   id: "12.1",
   title: 'What are Stacks?',
   status: 'demo',
-  content: `# 📚 What are Stacks?
+  content: "`# ðŸ“š What are Stacks?
 
 Stacks are fundamental data structures that follow the **Last In, First Out (LIFO)** principle. Think of them as a stack of plates where you can only access the top plate!
 
 ---
 
-## 🎯 What is a Stack?
+## ðŸŽ¯ What is a Stack?
 
 A **stack** is a linear data structure that allows operations only at one end called the **top**. Elements are added and removed from the same end, following LIFO order.
 
-\`\`\`python
+\`"\`\`python
 # Visual representation of stack operations
 # Stack: [3, 2, 1]  <- Top is 3
 # Push 4: [4, 3, 2, 1]  <- Top is now 4
@@ -23,7 +23,7 @@ A **stack** is a linear data structure that allows operations only at one end ca
 
 ---
 
-## 🏗️ Stack Operations
+## ðŸ—ï¸ Stack Operations
 
 ### **Core Operations**
 \`\`\`python
@@ -69,7 +69,7 @@ print(f"New top: {stack.peek()}")
 
 ---
 
-## 🎨 Stack Analogy
+## ðŸŽ¨ Stack Analogy
 
 ### **Real-World Examples**
 \`\`\`python
@@ -116,7 +116,7 @@ print("Go forward:", browser.go_forward())
 
 ---
 
-## 📊 Stack Properties
+## ðŸ“Š Stack Properties
 
 ### **LIFO Principle**
 \`\`\`python
@@ -141,7 +141,7 @@ while not stack.is_empty():
 
 ---
 
-## 🔧 Stack Implementation Options
+## ðŸ”§ Stack Implementation Options
 
 ### **Using Python List**
 \`\`\`python
@@ -196,7 +196,7 @@ print("Deque provides O(1) operations for both ends")
 
 ---
 
-## 🎯 Stack Applications
+## ðŸŽ¯ Stack Applications
 
 ### **Function Call Stack**
 \`\`\`python
@@ -308,7 +308,7 @@ print(f"Final text: {editor.text}")
 
 ---
 
-## ⚖️ Stack vs Other Structures
+## âš–ï¸ Stack vs Other Structures
 
 | Operation | Stack | Queue | List |
 |-----------|-------|-------|------|
@@ -327,7 +327,7 @@ print(f"Final text: {editor.text}")
 
 ---
 
-## 🚀 Stack Implementation Best Practices
+## ðŸš€ Stack Implementation Best Practices
 
 ### **Choose Right Underlying Structure**
 \`\`\`python
@@ -395,6 +395,7 @@ except IndexError as e:
     print(f"Error: {e}")
 \`\`\`
 
-Stacks are simple yet powerful - the foundation of many algorithms! 🏗️`
+Stacks are simple yet powerful - the foundation of many algorithms! ðŸ—ï¸`
 };
+
 

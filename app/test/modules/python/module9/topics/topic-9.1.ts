@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_1: SubLesson = {
   id: "9.1",
   title: 'Introduction to Object-Oriented Programming',
   status: 'demo',
-  content: `# 🎯 Introduction to Object-Oriented Programming
+  content: "`# ðŸŽ¯ Introduction to Object-Oriented Programming
 
 Object-Oriented Programming (OOP) organizes code around objects and classes, making it perfect for building complex, maintainable applications!
 
 ---
 
-## 🏗️ OOP Fundamentals
+## ðŸ—ï¸ OOP Fundamentals
 
 **Object-Oriented Programming** is based on creating **objects** that bundle data (attributes) and functions (methods) together. Everything is treated as an object, making OOP a natural fit.
 
@@ -22,20 +22,20 @@ Object-Oriented Programming (OOP) organizes code around objects and classes, mak
 
 ---
 
-## 🎯 OOP Core Principles
+## ðŸŽ¯ OOP Core Principles
 
 OOP implements four fundamental principles:
 
 | Principle | Implementation | Key Benefit |
 |-----------|----------------------|-------------|
-| **Encapsulation** | Private attributes (\`__attr\`) | Data protection and modularity |
+| **Encapsulation** | Private attributes (\`"__attr\`) | Data protection and modularity |
 | **Inheritance** | Class hierarchies with \`super()\` | Code reuse and relationships |
 | **Polymorphism** | Duck typing and method overriding | Flexibility and extensibility |
 | **Abstraction** | Abstract base classes (\`abc\`) | Interface contracts |
 
 ---
 
-## 📦 Objects: Everything is an Object
+## ðŸ“¦ Objects: Everything is an Object
 
 ### **What is an Object?**
 **Everything is an object** - even basic types like integers and strings. Objects encapsulate:
@@ -58,7 +58,7 @@ print(type(items))  # <class 'list'>
 
 ---
 
-## 🔧 Classes vs Objects
+## ðŸ”§ Classes vs Objects
 
 ### **Classes (Blueprints)**
 - Defined using the \`class\` keyword
@@ -99,7 +99,7 @@ print(buddy.age)       # 3 (instance-specific)
 
 ---
 
-## 🌟 OOP Advantages
+## ðŸŒŸ OOP Advantages
 
 ### **Dynamic Nature**
 \`\`\`python
@@ -156,7 +156,7 @@ print(duck.speak()) # Own method
 
 ---
 
-## 🚀 OOP in Practice
+## ðŸš€ OOP in Practice
 
 ### **Everything is an Object**
 \`\`\`python
@@ -193,25 +193,25 @@ print(len(numbers))        # 6
 
 ---
 
-## 📋 When to Use OOP?
+## ðŸ“‹ When to Use OOP?
 
 ### **Perfect for OOP**
-- ✅ Large applications with complex relationships
-- ✅ GUI applications (Tkinter, PyQt)
-- ✅ Web frameworks (Django, Flask models)
-- ✅ Game development
-- ✅ Scientific computing with custom data structures
-- ✅ API clients and data models
+- âœ… Large applications with complex relationships
+- âœ… GUI applications (Tkinter, PyQt)
+- âœ… Web frameworks (Django, Flask models)
+- âœ… Game development
+- âœ… Scientific computing with custom data structures
+- âœ… API clients and data models
 
 ### **When Procedural Might Be Better**
-- ❌ Simple scripts (< 100 lines)
-- ❌ Data processing pipelines
-- ❌ Performance-critical number crunching
-- ❌ Quick automation tasks
+- âŒ Simple scripts (< 100 lines)
+- âŒ Data processing pipelines
+- âŒ Performance-critical number crunching
+- âŒ Quick automation tasks
 
 ---
 
-## 🎯 OOP Key Takeaways
+## ðŸŽ¯ OOP Key Takeaways
 
 1. **Everything is an object** - even basic types and functions
 2. **Dynamic by nature** - add attributes and methods at runtime
@@ -220,6 +220,7 @@ print(len(numbers))        # 6
 5. **Simple syntax** with powerful capabilities
 6. **Perfect for complex applications** requiring maintainability
 
-Ready to dive deep into classes and objects? Let's explore the \`__init__\` method, instance attributes, and more OOP features! 🚀`,
+Ready to dive deep into classes and objects? Let's explore the \`__init__\` method, instance attributes, and more OOP features! ðŸš€`,
 };
+
 

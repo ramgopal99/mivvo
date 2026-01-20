@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_5: SubLesson = {
   id: "3.5",
   title: 'Circular Seating Arrangement',
   status: 'completed',
-  content: `# ⭕ Circular Seating Arrangement
+  content: "`# â­• Circular Seating Arrangement
 
 Circular seating arrangements involve people sitting in a circle, creating unique positional relationships without fixed endpoints. These problems are common in competitive exams and require understanding of circular logic, adjacent relationships, and directional positioning.
 
 ---
 
-## 🎯 Understanding Circular Arrangements
+## ðŸŽ¯ Understanding Circular Arrangements
 
 ### **What are Circular Arrangements?**
 Circular arrangements involve people seated in a circle, where everyone has two neighbors and there are no "end" positions. These problems test your ability to:
@@ -27,7 +27,7 @@ Circular arrangements involve people seated in a circle, where everyone has two 
 
 ---
 
-## 🧩 Basic Circular Concepts
+## ðŸ§© Basic Circular Concepts
 
 ### **Position Relationships**
 - **Adjacent**: Next to each other (left and right neighbors)
@@ -42,7 +42,7 @@ Circular arrangements involve people seated in a circle, where everyone has two 
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Visualize the Circle**
 - Draw a circle
@@ -66,7 +66,7 @@ Circular arrangements involve people seated in a circle, where everyone has two 
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Adjacent-Based**
 **Neighbor relationships**
@@ -88,7 +88,7 @@ Circular arrangements involve people seated in a circle, where everyone has two 
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Circle Diagram Method**
      A
@@ -110,7 +110,7 @@ Circular arrangements involve people seated in a circle, where everyone has two 
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Basic Adjacent**
 **Conditions:**
@@ -140,7 +140,7 @@ Circular arrangements involve people seated in a circle, where everyone has two 
 
 ---
 
-## 🔍 Advanced Circular Concepts
+## ðŸ” Advanced Circular Concepts
 
 ### **Complex Relationships**
 - Multiple adjacent requirements
@@ -159,7 +159,7 @@ Circular arrangements involve people seated in a circle, where everyone has two 
 
 ---
 
-## 📊 Position Calculation Methods
+## ðŸ“Š Position Calculation Methods
 
 ### **Directional Counting**
 - **Immediate left/right**: Adjacent positions
@@ -178,23 +178,23 @@ Circular arrangements involve people seated in a circle, where everyone has two 
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Direction Confusion**
-❌ Mixing clockwise/anticlockwise
-✅ Always specify direction clearly
+âŒ Mixing clockwise/anticlockwise
+âœ… Always specify direction clearly
 
 ### **Pitfall 2: Adjacent Misinterpretation**
-❌ Assuming "next to" means specific direction
-✅ "Next to" means adjacent in either direction
+âŒ Assuming "next to" means specific direction
+âœ… "Next to" means adjacent in either direction
 
 ### **Pitfall 3: Opposite Calculation Errors**
-❌ Wrong opposite position calculation
-✅ For even n, opposite is (n/2) positions away
+âŒ Wrong opposite position calculation
+âœ… For even n, opposite is (n/2) positions away
 
 ---
 
-## 🛠️ Quick Solving Tips
+## ðŸ› ï¸ Quick Solving Tips
 
 ### **1. Draw Circle Diagrams**
 - Use circular representation
@@ -213,7 +213,7 @@ Circular arrangements involve people seated in a circle, where everyone has two 
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - 4-6 people
@@ -232,7 +232,7 @@ Circular arrangements involve people seated in a circle, where everyone has two 
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Always Draw Circles**: Visual representation is crucial
 2. **Specify Directions**: Be clear about left/right movements
@@ -243,7 +243,7 @@ Circular arrangements involve people seated in a circle, where everyone has two 
 
 ---
 
-## 🧩 Practice Questions
+## ðŸ§© Practice Questions
 
 ### **Question 1**
 **Conditions:**
@@ -277,5 +277,5 @@ Circular arrangements involve people seated in a circle, where everyone has two 
 
 **Who is to the immediate right of F?**
 
-**Master circular seating arrangements for comprehensive reasoning skills! ⭕✨**`
+**Master circular seating arrangements for comprehensive reasoning skills! â­•âœ¨**`"
 };

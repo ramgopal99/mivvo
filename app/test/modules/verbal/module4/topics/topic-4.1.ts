@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_1: SubLesson = {
   id: "4.1",
   title: 'Sentence Correction',
   status: 'completed',
-  content: `# ✅ Sentence Correction: Fixing Grammatical Errors
+  content: "`# âœ… Sentence Correction: Fixing Grammatical Errors
 
 Sentence correction involves identifying and fixing grammatical, structural, and stylistic errors in sentences. This skill is crucial for competitive exams where questions test your ability to spot and correct mistakes in written English.
 
 ---
 
-## 🔍 WHAT IS SENTENCE CORRECTION?
+## ðŸ” WHAT IS SENTENCE CORRECTION?
 
 **Sentence correction** requires you to:
-- ✅ **Identify errors** in grammar, punctuation, structure, and usage
-- ✅ **Choose the best correction** from given options
-- ✅ **Apply grammatical rules** accurately
-- ✅ **Maintain sentence meaning** while fixing errors
+- âœ… **Identify errors** in grammar, punctuation, structure, and usage
+- âœ… **Choose the best correction** from given options
+- âœ… **Apply grammatical rules** accurately
+- âœ… **Maintain sentence meaning** while fixing errors
 
 ### Key Areas Tested:
 - **Grammar**: Subject-verb agreement, tense consistency, pronoun usage
@@ -26,103 +26,103 @@ Sentence correction involves identifying and fixing grammatical, structural, and
 
 ---
 
-## 🎯 COMMON ERROR TYPES
+## ðŸŽ¯ COMMON ERROR TYPES
 
 ### 1. **Subject-Verb Agreement Errors**
-- ✅ **Rule**: Subject and verb must agree in number and person
-- ❌ **Error**: The students was studying hard.
-- ✅ **Correction**: The students **were** studying hard.
+- âœ… **Rule**: Subject and verb must agree in number and person
+- âŒ **Error**: The students was studying hard.
+- âœ… **Correction**: The students **were** studying hard.
 
 **Common Mistakes:**
-- ✅ Singular subjects need singular verbs: He **runs**, She **eats**
-- ✅ Plural subjects need plural verbs: They **run**, We **eat**
-- ✅ Compound subjects: Tom **and** Jerry **are** friends
+- âœ… Singular subjects need singular verbs: He **runs**, She **eats**
+- âœ… Plural subjects need plural verbs: They **run**, We **eat**
+- âœ… Compound subjects: Tom **and** Jerry **are** friends
 
 ### 2. **Tense Consistency Errors**
-- ✅ **Rule**: Maintain consistent tense throughout the sentence
-- ❌ **Error**: He **goes** to school and **studied** there yesterday.
-- ✅ **Correction**: He **went** to school and **studied** there yesterday.
+- âœ… **Rule**: Maintain consistent tense throughout the sentence
+- âŒ **Error**: He **goes** to school and **studied** there yesterday.
+- âœ… **Correction**: He **went** to school and **studied** there yesterday.
 
 **Common Patterns:**
-- ✅ **Present + Present**: She **lives** here and **works** daily
-- ✅ **Past + Past**: They **arrived** and **left** immediately
-- ✅ **Future + Future**: We **will go** and **will return** soon
+- âœ… **Present + Present**: She **lives** here and **works** daily
+- âœ… **Past + Past**: They **arrived** and **left** immediately
+- âœ… **Future + Future**: We **will go** and **will return** soon
 
 ### 3. **Pronoun Errors**
-- ✅ **Rule**: Pronouns must agree with antecedents and be unambiguous
-- ❌ **Error**: The teacher gave **their** book to the students.
-- ✅ **Correction**: The teacher gave **his/her** book to the students.
+- âœ… **Rule**: Pronouns must agree with antecedents and be unambiguous
+- âŒ **Error**: The teacher gave **their** book to the students.
+- âœ… **Correction**: The teacher gave **his/her** book to the students.
 
 **Types of Errors:**
-- ✅ **Case**: I/me, he/him, she/her, we/us, they/them
-- ✅ **Number**: One student (he/his) vs Students (they/their)
-- ✅ **Gender**: Actor (he/him) vs Actress (she/her)
-- ✅ **Reference**: Clear antecedent for each pronoun
+- âœ… **Case**: I/me, he/him, she/her, we/us, they/them
+- âœ… **Number**: One student (he/his) vs Students (they/their)
+- âœ… **Gender**: Actor (he/him) vs Actress (she/her)
+- âœ… **Reference**: Clear antecedent for each pronoun
 
 ### 4. **Parallel Structure Errors**
-- ✅ **Rule**: Similar elements in a sentence should be parallel
-- ❌ **Error**: He likes **reading**, **to write**, and **swimming**.
-- ✅ **Correction**: He likes **reading**, **writing**, and **swimming**.
+- âœ… **Rule**: Similar elements in a sentence should be parallel
+- âŒ **Error**: He likes **reading**, **to write**, and **swimming**.
+- âœ… **Correction**: He likes **reading**, **writing**, and **swimming**.
 
 **Parallel Elements:**
-- ✅ **Gerunds**: Reading, writing, speaking
-- ✅ **Infinitives**: To read, to write, to speak
-- ✅ **Nouns**: Book, pen, paper
-- ✅ **Clauses**: What he said, what he did, what he thought
+- âœ… **Gerunds**: Reading, writing, speaking
+- âœ… **Infinitives**: To read, to write, to speak
+- âœ… **Nouns**: Book, pen, paper
+- âœ… **Clauses**: What he said, what he did, what he thought
 
 ### 5. **Modifier Placement Errors**
-- ✅ **Rule**: Modifiers should be placed next to what they modify
-- ❌ **Error**: I saw **a man** with a telescope **running** down the road.
-- ✅ **Correction**: I saw **a man running** down the road **with a telescope**.
+- âœ… **Rule**: Modifiers should be placed next to what they modify
+- âŒ **Error**: I saw **a man** with a telescope **running** down the road.
+- âœ… **Correction**: I saw **a man running** down the road **with a telescope**.
 
 **Common Issues:**
-- ✅ **Dangling modifiers**: Modifier not clearly attached to noun
-- ✅ **Misplaced modifiers**: Word/phrase modifies wrong element
-- ✅ **Squinting modifiers**: Can modify either preceding or following word
+- âœ… **Dangling modifiers**: Modifier not clearly attached to noun
+- âœ… **Misplaced modifiers**: Word/phrase modifies wrong element
+- âœ… **Squinting modifiers**: Can modify either preceding or following word
 
 ### 6. **Preposition Errors**
-- ✅ **Rule**: Correct preposition for the context
-- ❌ **Error**: He is interested **at** mathematics.
-- ✅ **Correction**: He is interested **in** mathematics.
+- âœ… **Rule**: Correct preposition for the context
+- âŒ **Error**: He is interested **at** mathematics.
+- âœ… **Correction**: He is interested **in** mathematics.
 
 **Common Errors:**
-- ✅ **Interested in** (not at/for)
-- ✅ **Depend on** (not at/for)
-- ✅ **Good at** (skill), **Good in** (subject)
+- âœ… **Interested in** (not at/for)
+- âœ… **Depend on** (not at/for)
+- âœ… **Good at** (skill), **Good in** (subject)
 
 ### 7. **Article Errors**
-- ✅ **Rule**: Correct use of a/an/the or zero article
-- ❌ **Error**: He is **a** honest man.
-- ✅ **Correction**: He is **an** honest man.
+- âœ… **Rule**: Correct use of a/an/the or zero article
+- âŒ **Error**: He is **a** honest man.
+- âœ… **Correction**: He is **an** honest man.
 
 **Common Patterns:**
-- ✅ **A** before consonant sounds: a book, a university
-- ✅ **An** before vowel sounds: an apple, an hour
-- ✅ **The** for specific/definite nouns
-- ✅ **Zero article** for plural/uncountable general nouns
+- âœ… **A** before consonant sounds: a book, a university
+- âœ… **An** before vowel sounds: an apple, an hour
+- âœ… **The** for specific/definite nouns
+- âœ… **Zero article** for plural/uncountable general nouns
 
 ### 8. **Word Choice Errors**
-- ✅ **Rule**: Correct word for the context
-- ❌ **Error**: She **advised** me to be careful. (wrong meaning)
-- ✅ **Correction**: She **advised** me to be careful. (Wait, this is correct - let me find a better example)
+- âœ… **Rule**: Correct word for the context
+- âŒ **Error**: She **advised** me to be careful. (wrong meaning)
+- âœ… **Correction**: She **advised** me to be careful. (Wait, this is correct - let me find a better example)
 
 **Better Example:**
-- ❌ **Error**: The **affect** of the drug was positive.
-- ✅ **Correction**: The **effect** of the drug was positive.
+- âŒ **Error**: The **affect** of the drug was positive.
+- âœ… **Correction**: The **effect** of the drug was positive.
 
 ### 9. **Punctuation Errors**
-- ✅ **Rule**: Correct punctuation marks
-- ❌ **Error**: I like tea, and coffee.
-- ✅ **Correction**: I like tea **and** coffee.
+- âœ… **Rule**: Correct punctuation marks
+- âŒ **Error**: I like tea, and coffee.
+- âœ… **Correction**: I like tea **and** coffee.
 
 **Common Issues:**
-- ✅ **Comma splices**: Two independent clauses joined only by comma
-- ✅ **Run-on sentences**: No punctuation between independent clauses
-- ✅ **Apostrophe misuse**: Its vs it's, their vs they're
+- âœ… **Comma splices**: Two independent clauses joined only by comma
+- âœ… **Run-on sentences**: No punctuation between independent clauses
+- âœ… **Apostrophe misuse**: Its vs it's, their vs they're
 
 ---
 
-## 🛠️ CORRECTION STRATEGIES
+## ðŸ› ï¸ CORRECTION STRATEGIES
 
 ### Step-by-Step Approach:
 1. **Read the sentence** carefully for meaning
@@ -132,15 +132,15 @@ Sentence correction involves identifying and fixing grammatical, structural, and
 5. **Choose the most concise** correct option
 
 ### Common Error Spotting:
-- ✅ **Look for verb agreement** issues
-- ✅ **Check pronoun references**
-- ✅ **Verify parallel structure**
-- ✅ **Test preposition usage**
-- ✅ **Ensure tense consistency**
+- âœ… **Look for verb agreement** issues
+- âœ… **Check pronoun references**
+- âœ… **Verify parallel structure**
+- âœ… **Test preposition usage**
+- âœ… **Ensure tense consistency**
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Subject-Verb Agreement
 **Identify and correct the errors:**
@@ -225,7 +225,7 @@ Sentence correction involves identifying and fixing grammatical, structural, and
 
 ---
 
-## 📊 ERROR CLASSIFICATION CHART
+## ðŸ“Š ERROR CLASSIFICATION CHART
 
 | Error Type | Common Issues | Quick Check |
 |---|---|---|
@@ -240,29 +240,29 @@ Sentence correction involves identifying and fixing grammatical, structural, and
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Single Error**: One grammatical mistake to identify
 2. **Multiple Corrections**: Choose best corrected sentence
 3. **Error Spotting**: Underlined portion contains the error
 4. **No Error**: Some sentences may be grammatically correct
 
-### 💡 Quick Solution Strategy:
+### ðŸ’¡ Quick Solution Strategy:
 1. **Read carefully** - Don't rush through the sentence
 2. **Identify error type** - Grammar, structure, or usage?
 3. **Check systematically** - Subject-verb, tense, pronouns, etc.
 4. **Verify meaning** - Correction should preserve original intent
 5. **Choose concise option** - Best correction is usually brief
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Eliminate obviously wrong** options first
 - **Look for common errors** - Subject-verb agreement, tense issues
 - **Trust your ear** - If it sounds wrong, it probably is
 - **Check punctuation** - Often reveals structural errors
 - **Verify parallelism** - Lists should have consistent structure
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Practice regularly** - 10-15 corrections daily
 - **Learn error patterns** - Common mistakes repeat
 - **Master rules** - Subject-verb, tense, pronouns are key
@@ -270,20 +270,21 @@ Sentence correction involves identifying and fixing grammatical, structural, and
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Master core rules** - Subject-verb agreement, tense consistency
 2. **Practice systematically** - One error type at a time
 3. **Learn from mistakes** - Review incorrect answers
 4. **Read extensively** - Exposure improves error detection
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Sentence correction is like proofreading:**
-- 🔍 **Read slowly** - Don't miss subtle errors
-- 🛠️ **Check systematically** - Use error checklist
-- ✅ **Verify meaning** - Correction must make sense
-- 🎯 **Choose precisely** - Small differences matter
+- ðŸ” **Read slowly** - Don't miss subtle errors
+- ðŸ› ï¸ **Check systematically** - Use error checklist
+- âœ… **Verify meaning** - Correction must make sense
+- ðŸŽ¯ **Choose precisely** - Small differences matter
 
-**Master sentence correction and become an error-spotting expert!** ✅✨`
+**Master sentence correction and become an error-spotting expert!** âœ…âœ¨`"
 };
+

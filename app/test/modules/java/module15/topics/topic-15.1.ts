@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_1: SubLesson = {
   id: "15.1",
   title: 'Introduction to Sorting Algorithms',
   status: 'completed',
-  content: `# 🔄 Introduction to Sorting Algorithms in Java
+  content: "`# ðŸ”„ Introduction to Sorting Algorithms in Java
 
 Learn the fundamentals of sorting algorithms and their importance in programming!
 
 ---
 
-## 🎯 What is Sorting?
+## ðŸŽ¯ What is Sorting?
 
 **Sorting** is the process of arranging elements in a specific order - typically ascending or descending. It's one of the most fundamental operations in computer science.
 
@@ -22,13 +22,13 @@ Learn the fundamentals of sorting algorithms and their importance in programming
 
 ---
 
-## 📊 Classification of Sorting Algorithms
+## ðŸ“Š Classification of Sorting Algorithms
 
 ### **1. Comparison-Based vs Non-Comparison-Based**
 
 #### **Comparison-Based Sorting**
 - Compare elements using comparison operators (<, >, ==)
-- Time complexity lower bound: Ω(n log n)
+- Time complexity lower bound: Î©(n log n)
 - Examples: Quick Sort, Merge Sort, Bubble Sort
 
 #### **Non-Comparison-Based Sorting**
@@ -40,22 +40,22 @@ Learn the fundamentals of sorting algorithms and their importance in programming
 
 #### **Stable Sort**
 - Maintains relative order of equal elements
-- Example: [3a, 2, 3b, 1] → [1, 2, 3a, 3b]
+- Example: [3a, 2, 3b, 1] â†’ [1, 2, 3a, 3b]
 
 #### **Unstable Sort**
 - May change relative order of equal elements
-- Example: [3a, 2, 3b, 1] → [1, 2, 3b, 3a]
+- Example: [3a, 2, 3b, 1] â†’ [1, 2, 3b, 3a]
 
 ---
 
-## ⏱️ Time and Space Complexity
+## â±ï¸ Time and Space Complexity
 
 ### **Big O Notation Quick Reference:**
 - **O(1)**: Constant time
 - **O(log n)**: Logarithmic time
 - **O(n)**: Linear time
 - **O(n log n)**: Linearithmic time
-- **O(n²)**: Quadratic time
+- **O(nÂ²)**: Quadratic time
 
 ### **Space Complexity:**
 - **In-place**: O(1) extra space
@@ -63,30 +63,30 @@ Learn the fundamentals of sorting algorithms and their importance in programming
 
 ---
 
-## 🏆 Popular Sorting Algorithms
+## ðŸ† Popular Sorting Algorithms
 
 | Algorithm | Best | Average | Worst | Space | Stable | In-Place |
 |-----------|------|---------|-------|-------|--------|----------|
-| **Bubble Sort** | O(n) | O(n²) | O(n²) | O(1) | Yes | Yes |
-| **Selection Sort** | O(n²) | O(n²) | O(n²) | O(1) | No | Yes |
-| **Insertion Sort** | O(n) | O(n²) | O(n²) | O(1) | Yes | Yes |
+| **Bubble Sort** | O(n) | O(nÂ²) | O(nÂ²) | O(1) | Yes | Yes |
+| **Selection Sort** | O(nÂ²) | O(nÂ²) | O(nÂ²) | O(1) | No | Yes |
+| **Insertion Sort** | O(n) | O(nÂ²) | O(nÂ²) | O(1) | Yes | Yes |
 | **Merge Sort** | O(n log n) | O(n log n) | O(n log n) | O(n) | Yes | No |
-| **Quick Sort** | O(n log n) | O(n log n) | O(n²) | O(log n) | No | Yes |
+| **Quick Sort** | O(n log n) | O(n log n) | O(nÂ²) | O(log n) | No | Yes |
 | **Heap Sort** | O(n log n) | O(n log n) | O(n log n) | O(1) | No | Yes |
 | **Counting Sort** | O(n + k) | O(n + k) | O(n + k) | O(k) | Yes | No |
 
 ---
 
-## 🧪 Basic Sorting Algorithms
+## ðŸ§ª Basic Sorting Algorithms
 
-### **1. Bubble Sort - O(n²)**
+### **1. Bubble Sort - O(nÂ²)**
 
 #### **How it Works:**
 1. Compare adjacent elements
 2. Swap if they are in wrong order
 3. Repeat until no swaps needed
 
-\`\`\`java
+\`"\`\`java
 public class BubbleSort {
     public static void bubbleSort(int[] arr) {
         int n = arr.length;
@@ -121,7 +121,7 @@ public class BubbleSort {
 }
 \`\`\`
 
-### **2. Selection Sort - O(n²)**
+### **2. Selection Sort - O(nÂ²)**
 
 #### **How it Works:**
 1. Find the minimum element in unsorted portion
@@ -158,7 +158,7 @@ public class SelectionSort {
 }
 \`\`\`
 
-### **3. Insertion Sort - O(n²)**
+### **3. Insertion Sort - O(nÂ²)**
 
 #### **How it Works:**
 1. Consider first element as sorted
@@ -195,7 +195,7 @@ public class InsertionSort {
 
 ---
 
-## ⚡ Advanced Sorting Algorithms
+## âš¡ Advanced Sorting Algorithms
 
 ### **4. Merge Sort - O(n log n)**
 
@@ -274,7 +274,7 @@ public class MergeSort {
 
 ---
 
-## 🧪 Testing Sorting Algorithms
+## ðŸ§ª Testing Sorting Algorithms
 
 ### **Performance Comparison**
 \`\`\`java
@@ -315,15 +315,16 @@ public class SortingComparison {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
-1. **Bubble Sort**: Simple but inefficient (O(n²))
-2. **Selection Sort**: Always O(n²), good for small arrays
+1. **Bubble Sort**: Simple but inefficient (O(nÂ²))
+2. **Selection Sort**: Always O(nÂ²), good for small arrays
 3. **Insertion Sort**: Efficient for nearly sorted data
 4. **Merge Sort**: Consistent O(n log n), stable, but uses O(n) space
 5. **Choose wisely**: Based on data size, distribution, and requirements
 6. **Java Arrays.sort()**: Uses optimized hybrid algorithm (TimSort)
 
-**Next:** Learn Quick Sort and Heap Sort! 🚀`
+**Next:** Learn Quick Sort and Heap Sort! ðŸš€`
 };
+
 

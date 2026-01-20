@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_7: SubLesson = {
   id: "8.7",
   title: 'Interchanging Positions',
   status: 'completed',
-  content: `# 🔄 Interchanging Positions
+  content: "`# ðŸ”„ Interchanging Positions
 
 Interchanging positions problems involve swapping places between persons or objects and determining the new arrangement after these changes. These problems require tracking position changes, understanding the effects of swaps, and calculating new positions after multiple interchanges.
 
 ---
 
-## 🎯 Understanding Position Interchanges
+## ðŸŽ¯ Understanding Position Interchanges
 
 ### **What are Interchanging Position Problems?**
 These problems involve swapping positions between two or more persons and determining the resulting arrangement. They test your ability to:
@@ -22,7 +22,7 @@ These problems involve swapping positions between two or more persons and determ
 ### **Key Concepts**
 
 #### **Basic Interchange**
-\`\`\`
+\`"\`\`
 When A and B interchange positions:
 - A's new position = B's old position
 - B's new position = A's old position
@@ -30,13 +30,13 @@ When A and B interchange positions:
 
 #### **Position Tracking**
 \`\`\`
-Original: Position X → Person A
-After interchange with B: Position X → Person B
+Original: Position X â†’ Person A
+After interchange with B: Position X â†’ Person B
 \`\`\`
 
 ---
 
-## 🧩 Interchange Types and Effects
+## ðŸ§© Interchange Types and Effects
 
 ### **Type 1: Two-Person Interchange**
 \`\`\`
@@ -63,7 +63,7 @@ Person at position X swaps with person at position Y:
 
 ---
 
-## 🎯 Problem Types and Solutions
+## ðŸŽ¯ Problem Types and Solutions
 
 ### **Type 1: Direct Position Swap**
 *"A and B interchange their positions. If originally A was 3rd and B was 5th, what are their new positions?"*
@@ -76,8 +76,8 @@ Person at position X swaps with person at position Y:
 *"A interchanges with B, then B interchanges with C. Find final positions."*
 
 **Solution:**
-- First interchange: A ↔ B
-- Second interchange: B ↔ C (using B's new position)
+- First interchange: A â†” B
+- Second interchange: B â†” C (using B's new position)
 - Track each step carefully
 
 ### **Type 3: Position-Based Swap**
@@ -90,12 +90,12 @@ Person at position X swaps with person at position Y:
 
 ---
 
-## 📊 Interchange Effects on Rankings
+## ðŸ“Š Interchange Effects on Rankings
 
 ### **Position Changes**
 \`\`\`
 Original positions: 1 2 3 4 5
-After 2↔4:        1 4 3 2 5
+After 2â†”4:        1 4 3 2 5
 - Position 2 now has person from 4
 - Position 4 now has person from 2
 - Positions 1,3,5 unchanged
@@ -111,7 +111,7 @@ Interchanges affect:
 
 ---
 
-## 🛠️ Problem-Solving Framework
+## ðŸ› ï¸ Problem-Solving Framework
 
 ### **Step-by-Step Approach**
 
@@ -142,7 +142,7 @@ Interchanges affect:
 
 ---
 
-## 🎯 Common Question Patterns
+## ðŸŽ¯ Common Question Patterns
 
 ### **Pattern 1: Person-Based Interchange**
 *"A and B interchange positions. Find new positions."*
@@ -151,14 +151,14 @@ Interchanges affect:
 *"Person at position X interchanges with person at position Y."*
 
 ### **Pattern 3: Sequential Interchanges**
-*"A↔B, then B↔C, then C↔D. Find final positions."*
+*"Aâ†”B, then Bâ†”C, then Câ†”D. Find final positions."*
 
 ### **Pattern 4: Complex Interchange Scenarios**
 *"Multiple persons interchange in specific patterns."*
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (40%)**
 - Simple two-person interchanges
@@ -177,7 +177,7 @@ Interchanges affect:
 
 ---
 
-## 🧮 Mathematical Applications
+## ðŸ§® Mathematical Applications
 
 ### **Position Transformation**
 \`\`\`
@@ -205,7 +205,7 @@ After interchange between positions P and Q:
 
 ---
 
-## 🎯 Special Cases and Exceptions
+## ðŸŽ¯ Special Cases and Exceptions
 
 ### **Case 1: Adjacent Position Swap**
 \`\`\`
@@ -233,27 +233,27 @@ If A interchanges multiple times:
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Position Confusion**
-❌ Losing track of who is where during multiple swaps
-✅ Maintain clear position mapping throughout
+âŒ Losing track of who is where during multiple swaps
+âœ… Maintain clear position mapping throughout
 
 ### **Mistake 2: Sequential Error**
-❌ Applying interchanges in wrong order
-✅ Execute interchanges in given sequence
+âŒ Applying interchanges in wrong order
+âœ… Execute interchanges in given sequence
 
 ### **Mistake 3: Incomplete Tracking**
-❌ Forgetting to update all affected positions
-✅ Track changes for all persons involved
+âŒ Forgetting to update all affected positions
+âœ… Track changes for all persons involved
 
 ### **Mistake 4: Person Identity Error**
-❌ Confusing which person is at which position
-✅ Clearly identify persons before and after swaps
+âŒ Confusing which person is at which position
+âœ… Clearly identify persons before and after swaps
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Map Initial Positions**: Create clear person-to-position mapping
 2. **Track One Interchange at a Time**: Apply swaps sequentially
@@ -265,7 +265,7 @@ If A interchanges multiple times:
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Basic Two-Person Interchange**
 *"A is 3rd, B is 5th. They interchange positions. What are their new positions?"*
@@ -286,21 +286,21 @@ If A interchanges multiple times:
 *"Person at 2nd position interchanges with person at 5th position. If A is at 2nd, B at 5th, find new positions."*
 
 **Solution:**
-- Person at 2nd (A) ↔ Person at 5th (B)
+- Person at 2nd (A) â†” Person at 5th (B)
 - A moves to 5th, B moves to 2nd
 
 ### **Example 4: Complex Sequential**
-*"A↔B, B↔C, C↔D. Original positions: A=1, B=2, C=3, D=4. Find final."*
+*"Aâ†”B, Bâ†”C, Câ†”D. Original positions: A=1, B=2, C=3, D=4. Find final."*
 
 **Solution:**
-- A↔B: A=2, B=1, C=3, D=4
-- B↔C: A=2, B=3, C=1, D=4 (B was at 1, C at 3)
-- C↔D: A=2, B=3, C=4, D=1 (C was at 1, D at 4)
+- Aâ†”B: A=2, B=1, C=3, D=4
+- Bâ†”C: A=2, B=3, C=1, D=4 (B was at 1, C at 3)
+- Câ†”D: A=2, B=3, C=4, D=1 (C was at 1, D at 4)
 - Final: A=2, B=3, C=4, D=1
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Top-Bottom Ranking**
 - Track vertical position changes after interchanges
@@ -317,5 +317,5 @@ If A interchanges multiple times:
 - Apply position changes to total person formulas
 - Track arrangement changes
 
-**Master position interchanges to track complex arrangement changes in ranking problems! 🔄✨**`
+**Master position interchanges to track complex arrangement changes in ranking problems! ðŸ”„âœ¨**`
 };

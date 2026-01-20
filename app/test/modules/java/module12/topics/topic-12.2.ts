@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_2: SubLesson = {
   id: "12.2",
   title: 'List Interface and ArrayList',
   status: 'completed',
-  content: `# 📋 List Interface and ArrayList in Java
+  content: "`# ðŸ“‹ List Interface and ArrayList in Java
 
 The List interface is one of the most frequently used interfaces in the Java Collections Framework. It represents an ordered collection that allows duplicate elements and provides positional access to elements. ArrayList is the most commonly used implementation of the List interface.
 
 ---
 
-## 🎯 The List Interface
+## ðŸŽ¯ The List Interface
 
 ### **What is a List?**
 
@@ -18,7 +18,7 @@ A List is an ordered collection (sequence) that can contain duplicate elements. 
 
 ### **Core List Operations**
 
-\`\`\`java
+\`"\`\`java
 import java.util.List;
 import java.util.ArrayList;
 
@@ -152,7 +152,7 @@ public class ListIterators {
 
 ---
 
-## 🚀 ArrayList - The Workhorse Implementation
+## ðŸš€ ArrayList - The Workhorse Implementation
 
 ### **What is ArrayList?**
 
@@ -235,7 +235,7 @@ public class ArrayListCapacity {
 
         // Add one more - triggers another growth
         list.add("Sixteenth");
-        printCapacity(list);  // Capacity: 22 (15 * 1.5 ≈ 22)
+        printCapacity(list);  // Capacity: 22 (15 * 1.5 â‰ˆ 22)
     }
 
     private static void printCapacity(ArrayList<?> list) throws Exception {
@@ -304,7 +304,7 @@ public class ArrayListConstructors {
 
 ---
 
-## ⚡ ArrayList Performance Characteristics
+## âš¡ ArrayList Performance Characteristics
 
 ### **Time Complexity**
 
@@ -370,7 +370,7 @@ public class ArrayListPerformanceTips {
 
 ---
 
-## 🔄 ArrayList vs Other List Implementations
+## ðŸ”„ ArrayList vs Other List Implementations
 
 ### **ArrayList vs LinkedList**
 
@@ -434,7 +434,7 @@ public class ArrayListVsLinkedList {
 
 ---
 
-## 🧵 Thread Safety Considerations
+## ðŸ§µ Thread Safety Considerations
 
 ### **ArrayList is Not Thread-Safe**
 
@@ -496,7 +496,7 @@ public class ThreadSafetyDemo {
 
 ---
 
-## 🎯 Practical ArrayList Examples
+## ðŸŽ¯ Practical ArrayList Examples
 
 ### **Student Grade Management**
 
@@ -703,7 +703,7 @@ public class DynamicArrayOperations {
 
 ---
 
-## 🎯 Summary
+## ðŸŽ¯ Summary
 
 ### **List Interface Key Points**
 
@@ -747,4 +747,5 @@ System.out.println(list);
 Output: [A, X, C]
 `
 };
+
 

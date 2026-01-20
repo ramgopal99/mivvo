@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_5: SubLesson = {
   id: "9.5",
   title: 'Encapsulation and Abstraction',
   status: 'demo',
-  content: `# 🔒 Encapsulation and Abstraction
+  content: "`# ðŸ”’ Encapsulation and Abstraction
 
 The approach to encapsulation and abstraction emphasizes **convention over enforcement**, using naming conventions and modules to hide complexity while maintaining flexibility. Trust developers to use the tools wisely!
 
 ---
 
-## 🔐 Encapsulation: Convention Over Enforcement
+## ðŸ” Encapsulation: Convention Over Enforcement
 
 ### **Name Mangling for Privacy**
-\`\`\`python
+\`"\`\`python
 class BankAccount:
     def __init__(self, balance):
         self.__balance = balance  # Private attribute (name mangling)
@@ -28,9 +28,9 @@ class BankAccount:
         return self.__balance * 0.01
 
 account = BankAccount(1000)
-print(account.deposit(500))        # ✅ Works
-# print(account.__balance)         # ❌ AttributeError
-print(account._BankAccount__balance)  # ✅ Access via name mangling (not recommended)
+print(account.deposit(500))        # âœ… Works
+# print(account.__balance)         # âŒ AttributeError
+print(account._BankAccount__balance)  # âœ… Access via name mangling (not recommended)
 \`\`\`
 
 ### **Properties for Controlled Access**
@@ -62,7 +62,7 @@ temp.celsius = 30        # Uses setter
 
 ---
 
-## 🎭 Abstraction: Hiding Complexity
+## ðŸŽ­ Abstraction: Hiding Complexity
 
 ### **Abstract Base Classes**
 \`\`\`python
@@ -126,7 +126,7 @@ db.save({"name": "Alice", "age": 30})
 
 ---
 
-## 📦 Modules as Abstraction Layers
+## ðŸ“¦ Modules as Abstraction Layers
 
 ### **Creating Clean APIs**
 \`\`\`python
@@ -154,7 +154,7 @@ result = process_data("hello")  # Simple, abstracted interface
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Convention over enforcement** for encapsulation
 2. **Name mangling** provides privacy
@@ -163,7 +163,8 @@ result = process_data("hello")  # Simple, abstracted interface
 5. **Modules** provide abstraction layers
 6. **Trust developers** to follow conventions
 
-The philosophy: *"We're all consenting adults here"* - use the tools wisely! 🚀
+The philosophy: *"We're all consenting adults here"* - use the tools wisely! ðŸš€
 `,
 };
+
 

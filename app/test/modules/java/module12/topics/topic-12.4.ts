@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_4: SubLesson = {
   id: "12.4",
   title: 'Map Interface and HashMap',
   status: 'completed',
-  content: `# 🗺️ Map Interface and HashMap in Java
+  content: "`# ðŸ—ºï¸ Map Interface and HashMap in Java
 
 The Map interface represents a collection that stores key-value pairs. Unlike other collection types, Map is not a true Collection (it doesn't extend the Collection interface), but it's a fundamental part of the Java Collections Framework. HashMap is the most commonly used implementation of the Map interface.
 
 ---
 
-## 🎯 The Map Interface
+## ðŸŽ¯ The Map Interface
 
 ### **What is a Map?**
 
@@ -24,7 +24,7 @@ A Map is a collection that:
 
 ### **Core Map Operations**
 
-\`\`\`java
+\`"\`\`java
 import java.util.Map;
 import java.util.HashMap;
 
@@ -109,7 +109,7 @@ public class MapIteration {
         // Iterating over entries (recommended approach)
         System.out.println("\\nIterating over entries:");
         for (Map.Entry<String, Integer> entry : scores.entrySet()) {
-            System.out.println(entry.getKey() + " → " + entry.getValue());
+            System.out.println(entry.getKey() + " â†’ " + entry.getValue());
         }
 
         // Using Iterator with entries
@@ -140,7 +140,7 @@ public class MapIteration {
 
 ---
 
-## 🚀 HashMap - The Primary Map Implementation
+## ðŸš€ HashMap - The Primary Map Implementation
 
 ### **What is HashMap?**
 
@@ -295,7 +295,7 @@ class BadHashKey {
 
 ---
 
-## ⚡ HashMap Performance Characteristics
+## âš¡ HashMap Performance Characteristics
 
 ### **Time Complexity**
 
@@ -393,7 +393,7 @@ class Person {
 
 ---
 
-## 🔄 HashMap vs Other Map Implementations
+## ðŸ”„ HashMap vs Other Map Implementations
 
 ### **HashMap vs TreeMap**
 
@@ -520,7 +520,7 @@ public class HashMapVsLinkedHashMap {
 
 ---
 
-## 🧵 Thread Safety Considerations
+## ðŸ§µ Thread Safety Considerations
 
 ### **HashMap is Not Thread-Safe**
 
@@ -583,7 +583,7 @@ public class HashMapThreadSafety {
 
 ---
 
-## 🎯 Practical HashMap Examples
+## ðŸŽ¯ Practical HashMap Examples
 
 ### **Word Frequency Counter**
 
@@ -923,7 +923,7 @@ public class ConfigurationManager {
 
 ---
 
-## 🎯 Summary
+## ðŸŽ¯ Summary
 
 ### **Map Interface Key Points**
 
@@ -969,4 +969,5 @@ System.out.println(map.size() + " " + map.get("A"));
 Output: 2 3
 `
 };
+
 

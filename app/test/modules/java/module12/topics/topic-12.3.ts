@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_3: SubLesson = {
   id: "12.3",
   title: 'Set Interface and HashSet',
   status: 'completed',
-  content: `# 🎯 Set Interface and HashSet in Java
+  content: "`# ðŸŽ¯ Set Interface and HashSet in Java
 
 The Set interface represents a collection that contains no duplicate elements. It's one of the fundamental interfaces in the Java Collections Framework. HashSet is the most commonly used implementation of the Set interface, providing fast lookups and operations.
 
 ---
 
-## 🎯 The Set Interface
+## ðŸŽ¯ The Set Interface
 
 ### **What is a Set?**
 
@@ -22,7 +22,7 @@ A Set is a collection that:
 
 ### **Core Set Operations**
 
-\`\`\`java
+\`"\`\`java
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
@@ -134,7 +134,7 @@ public class SetIteration {
 
 ---
 
-## 🚀 HashSet - The Primary Set Implementation
+## ðŸš€ HashSet - The Primary Set Implementation
 
 ### **What is HashSet?**
 
@@ -242,7 +242,7 @@ public class HashSetLoadFactor {
 
 ---
 
-## ⚡ HashSet Performance Characteristics
+## âš¡ HashSet Performance Characteristics
 
 ### **Time Complexity**
 
@@ -321,7 +321,7 @@ class Person {
 
 ---
 
-## 🔄 HashSet vs Other Set Implementations
+## ðŸ”„ HashSet vs Other Set Implementations
 
 ### **HashSet vs TreeSet**
 
@@ -430,7 +430,7 @@ public class HashSetVsLinkedHashSet {
 
 ---
 
-## 🧵 Thread Safety Considerations
+## ðŸ§µ Thread Safety Considerations
 
 ### **HashSet is Not Thread-Safe**
 
@@ -492,7 +492,7 @@ public class HashSetThreadSafety {
 
 ---
 
-## 🎯 Practical HashSet Examples
+## ðŸŽ¯ Practical HashSet Examples
 
 ### **Unique Word Counter**
 
@@ -716,7 +716,7 @@ public class CustomObjectSet {
 
 ---
 
-## 🎯 Summary
+## ðŸŽ¯ Summary
 
 ### **Set Interface Key Points**
 
@@ -760,4 +760,5 @@ System.out.println(set.size() + " " + set.contains("A"));
 Output: 4 true
 `
 };
+
 

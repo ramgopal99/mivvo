@@ -1,23 +1,23 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_2: SubLesson = {
   id: "7.2",
   title: 'Selling Price (SP)',
   status: 'completed',
-  content: `# 🏷️ Selling Price (SP)
+  content: "`# ðŸ·ï¸ Selling Price (SP)
 
 Master the art of calculating selling prices! Selling Price (SP) is the price at which a product is sold to customers. It determines profitability and competitiveness. Learn to calculate SP for desired profit margins and market positioning.
 
 ---
 
-## 🎯 What is Selling Price?
+## ðŸŽ¯ What is Selling Price?
 
 **Selling Price (SP)** is the final price paid by the customer for a product or service. It's the revenue generated from each sale and the key factor in determining profit or loss.
 
 ### **Key Points**
-- SP > CP → Profit
-- SP < CP → Loss
-- SP = CP → Break-even (no profit no loss)
+- SP > CP â†’ Profit
+- SP < CP â†’ Loss
+- SP = CP â†’ Break-even (no profit no loss)
 
 ### **Factors Affecting SP**
 1. **Cost Price**: Base for SP calculation
@@ -29,68 +29,68 @@ Master the art of calculating selling prices! Selling Price (SP) is the price at
 
 ---
 
-## 📊 SP Calculation Methods
+## ðŸ“Š SP Calculation Methods
 
 ### **Method 1: With Profit**
-\`\`\`
+\`"\`\`
 SP = CP + Profit
-SP = CP × (1 + Profit%/100)
+SP = CP Ã— (1 + Profit%/100)
 \`\`\`
 
-**Example:** CP = ₹1000, Profit = 20%
-- SP = 1000 × (1 + 20/100) = ₹1200
+**Example:** CP = â‚¹1000, Profit = 20%
+- SP = 1000 Ã— (1 + 20/100) = â‚¹1200
 
 ### **Method 2: With Loss**
 \`\`\`
 SP = CP - Loss
-SP = CP × (1 - Loss%/100)
+SP = CP Ã— (1 - Loss%/100)
 \`\`\`
 
-**Example:** CP = ₹1000, Loss = 10%
-- SP = 1000 × (1 - 10/100) = ₹900
+**Example:** CP = â‚¹1000, Loss = 10%
+- SP = 1000 Ã— (1 - 10/100) = â‚¹900
 
 ### **Method 3: Reverse Calculation**
 From known SP and profit/loss percentage:
 \`\`\`
-CP = SP ÷ (1 ± Profit%/100)
+CP = SP Ã· (1 Â± Profit%/100)
 \`\`\`
 
 ---
 
-## 🔢 Examples of SP Calculations
+## ðŸ”¢ Examples of SP Calculations
 
 ### **Example 1: Profit on CP**
-**Problem:** CP = ₹800, desired profit 25%. Find SP.
+**Problem:** CP = â‚¹800, desired profit 25%. Find SP.
 
 **Solution:**
-- SP = 800 × (1 + 25/100)
-- SP = 800 × 1.25 = ₹1000
+- SP = 800 Ã— (1 + 25/100)
+- SP = 800 Ã— 1.25 = â‚¹1000
 
 ### **Example 2: Loss on CP**
-**Problem:** CP = ₹1200, selling at 10% loss. Find SP.
+**Problem:** CP = â‚¹1200, selling at 10% loss. Find SP.
 
 **Solution:**
-- SP = 1200 × (1 - 10/100)
-- SP = 1200 × 0.9 = ₹1080
+- SP = 1200 Ã— (1 - 10/100)
+- SP = 1200 Ã— 0.9 = â‚¹1080
 
 ### **Example 3: Profit Amount Given**
-**Problem:** CP = ₹500, profit ₹100. Find SP.
+**Problem:** CP = â‚¹500, profit â‚¹100. Find SP.
 
 **Solution:**
-- SP = 500 + 100 = ₹600
+- SP = 500 + 100 = â‚¹600
 
 ### **Example 4: With Taxes**
-**Problem:** CP = ₹1000, profit 20%, GST 18%. Find final SP.
+**Problem:** CP = â‚¹1000, profit 20%, GST 18%. Find final SP.
 
 **Solution:**
-- Profit = 20% of 1000 = ₹200
-- SP before GST = 1000 + 200 = ₹1200
-- GST = 18% of 1200 = ₹216
-- Final SP = 1200 + 216 = ₹1416
+- Profit = 20% of 1000 = â‚¹200
+- SP before GST = 1000 + 200 = â‚¹1200
+- GST = 18% of 1200 = â‚¹216
+- Final SP = 1200 + 216 = â‚¹1416
 
 ---
 
-## 🧮 SP in Different Scenarios
+## ðŸ§® SP in Different Scenarios
 
 ### **1. Retail Pricing**
 - SP = CP + Profit + Operating Costs
@@ -110,7 +110,7 @@ CP = SP ÷ (1 ± Profit%/100)
 
 ---
 
-## 💡 Pricing Strategies
+## ðŸ’¡ Pricing Strategies
 
 ### **Strategy 1: Cost-Plus Pricing**
 \`\`\`
@@ -119,12 +119,12 @@ SP = CP + Fixed Profit Margin
 
 ### **Strategy 2: Margin-Based Pricing**
 \`\`\`
-SP = CP ÷ (1 - Desired Margin%)
+SP = CP Ã· (1 - Desired Margin%)
 \`\`\`
 
 ### **Strategy 3: Competition-Based Pricing**
 \`\`\`
-SP = Competitor Price ± Differentiation
+SP = Competitor Price Â± Differentiation
 \`\`\`
 
 ### **Strategy 4: Value-Based Pricing**
@@ -134,7 +134,7 @@ SP = Perceived Value to Customer
 
 ---
 
-## 🎯 Real-Life Applications
+## ðŸŽ¯ Real-Life Applications
 
 ### **1. Retail Business**
 - Product pricing for profitability
@@ -158,7 +158,7 @@ SP = Perceived Value to Customer
 
 ---
 
-## 📈 SP and Market Dynamics
+## ðŸ“ˆ SP and Market Dynamics
 
 ### **1. Price Elasticity**
 - How SP affects demand
@@ -169,52 +169,53 @@ SP = Perceived Value to Customer
 - Volume vs price trade-offs
 
 ### **3. Psychological Pricing**
-- Pricing at ₹99 instead of ₹100
+- Pricing at â‚¹99 instead of â‚¹100
 - Perceived value manipulation
 
 ---
 
-## 🚨 Common Mistakes in SP Calculation
+## ðŸš¨ Common Mistakes in SP Calculation
 
 ### **Mistake 1: Wrong Base**
-❌ "SP = Profit % of SP" (circular reasoning)
+âŒ "SP = Profit % of SP" (circular reasoning)
 - Profit % is always of CP
 
 ### **Mistake 2: Double Profit**
-❌ Adding profit twice
+âŒ Adding profit twice
 - Profit once, then taxes on SP
 
 ### **Mistake 3: Ignoring Taxes**
-❌ Calculating SP without GST/VAT
+âŒ Calculating SP without GST/VAT
 - Include all applicable taxes
 
 ### **Mistake 4: Competitive Pricing**
-❌ "SP = Competitor SP - 10%" (may cause losses)
+âŒ "SP = Competitor SP - 10%" (may cause losses)
 - Ensure SP > CP for profitability
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Basic SP Calculations:**
-1. CP ₹500, profit 20%. Find SP.
-2. CP ₹800, loss 15%. Find SP.
-3. CP ₹600, profit ₹120. Find SP.
+1. CP â‚¹500, profit 20%. Find SP.
+2. CP â‚¹800, loss 15%. Find SP.
+3. CP â‚¹600, profit â‚¹120. Find SP.
 
 ### **Application Problems:**
-1. CP ₹1000, profit 25%, GST 18%. Find SP.
-2. CP ₹750, desired profit 30%. Find SP.
-3. CP ₹2000, selling at 5% loss. Find SP.
+1. CP â‚¹1000, profit 25%, GST 18%. Find SP.
+2. CP â‚¹750, desired profit 30%. Find SP.
+3. CP â‚¹2000, selling at 5% loss. Find SP.
 
 ### **Advanced Problems:**
-1. CP ₹500, SP ₹600. Find profit %.
-2. SP ₹800, profit 25%. Find CP.
-3. MP ₹1000, discount 20%. Find SP.
+1. CP â‚¹500, SP â‚¹600. Find profit %.
+2. SP â‚¹800, profit 25%. Find CP.
+3. MP â‚¹1000, discount 20%. Find SP.
 
 **Answers:**
-Basic: ₹600, ₹680, ₹720
-Applications: ₹1250, ₹975, ₹1900
-Advanced: 20%, ₹640, ₹800
+Basic: â‚¹600, â‚¹680, â‚¹720
+Applications: â‚¹1250, â‚¹975, â‚¹1900
+Advanced: 20%, â‚¹640, â‚¹800
 
-Master selling price calculations to optimize business profitability and pricing strategies! 🏆`
+Master selling price calculations to optimize business profitability and pricing strategies! ðŸ†`
 };
+

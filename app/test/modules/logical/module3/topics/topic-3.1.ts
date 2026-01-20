@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_1: SubLesson = {
   id: "3.1",
-  title: 'SEATING ARRANGEMENT (Aptitude – Exam-Oriented Topics)',
+  title: 'SEATING ARRANGEMENT (Aptitude â€“ Exam-Oriented Topics)',
   status: 'completed',
-  content: `# 🪑 SEATING ARRANGEMENT (Aptitude – Exam-Oriented Topics)
+  content: "`# ðŸª‘ SEATING ARRANGEMENT (Aptitude â€“ Exam-Oriented Topics)
 
 Welcome to the comprehensive Seating Arrangement module! This exam-oriented section covers all types of seating arrangement problems that appear frequently in competitive examinations. Master various arrangement patterns, logical reasoning techniques, and complex scenarios to excel in banking, SSC, railway, and other competitive exams.
 
 ---
 
-## 🎯 Understanding Seating Arrangements
+## ðŸŽ¯ Understanding Seating Arrangements
 
 ### **What are Seating Arrangement Problems?**
 Seating arrangement problems involve arranging people/objects in specific patterns (circular, linear, etc.) based on given conditions and constraints. These problems test your:
@@ -27,7 +27,7 @@ Seating arrangement problems involve arranging people/objects in specific patter
 
 ---
 
-## 🧩 Types of Seating Arrangements
+## ðŸ§© Types of Seating Arrangements
 
 ### **Arrangement Categories**
 - **Linear Arrangements**: Single row, double row, multiple rows
@@ -43,7 +43,7 @@ Seating arrangement problems involve arranging people/objects in specific patter
 
 ---
 
-## 📊 Competitive Exam Relevance
+## ðŸ“Š Competitive Exam Relevance
 
 ### **Major Exams Featuring Seating Arrangements**
 - **Banking Exams** (IBPS, SBI): 8-12 questions per exam
@@ -61,7 +61,7 @@ Seating arrangement problems involve arranging people/objects in specific patter
 
 ---
 
-## 🎯 Core Seating Arrangement Skills
+## ðŸŽ¯ Core Seating Arrangement Skills
 
 ### **1. Position Analysis**
 **Understanding relative and absolute positions**
@@ -89,7 +89,7 @@ Seating arrangement problems involve arranging people/objects in specific patter
 
 ---
 
-## 🛠️ Problem-Solving Framework
+## ðŸ› ï¸ Problem-Solving Framework
 
 ### **Step 1: Read and Analyze**
 - Carefully read all conditions
@@ -113,7 +113,7 @@ Seating arrangement problems involve arranging people/objects in specific patter
 
 ---
 
-## 📈 Difficulty Levels in Seating Problems
+## ðŸ“ˆ Difficulty Levels in Seating Problems
 
 ### **Easy Level (30-40%)**
 - Simple linear arrangements
@@ -135,7 +135,7 @@ Seating arrangement problems involve arranging people/objects in specific patter
 
 ---
 
-## 🎯 Common Seating Arrangement Topics
+## ðŸŽ¯ Common Seating Arrangement Topics
 
 ### **Linear Arrangements**
 Single row and double row seating problems with various constraints.
@@ -151,7 +151,7 @@ Problems with specific rules, ages, professions, and relationship constraints.
 
 ---
 
-## 📊 Time Management Strategies
+## ðŸ“Š Time Management Strategies
 
 ### **Question Allocation**
 - **Simple Arrangements**: 2-3 minutes
@@ -166,7 +166,7 @@ Problems with specific rules, ages, professions, and relationship constraints.
 
 ---
 
-## 🚀 Preparation Strategy
+## ðŸš€ Preparation Strategy
 
 ### **Phase 1: Foundation Building**
 - Learn basic arrangement types
@@ -194,7 +194,7 @@ Problems with specific rules, ages, professions, and relationship constraints.
 
 ---
 
-## 📚 Recommended Study Materials
+## ðŸ“š Recommended Study Materials
 
 ### **Practice Resources**
 - **Online Platforms**: Testbook, Adda247, Unacademy
@@ -209,7 +209,7 @@ Problems with specific rules, ages, professions, and relationship constraints.
 
 ---
 
-## 🎯 Success Factors
+## ðŸŽ¯ Success Factors
 
 ### **1. Visualization Skills**
 - Strong mental mapping ability
@@ -233,23 +233,23 @@ Problems with specific rules, ages, professions, and relationship constraints.
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Incomplete Reading**
-❌ Solving without reading all conditions
+âŒ Solving without reading all conditions
 
 ### **Mistake 2: Wrong Assumptions**
-❌ Assuming unstated relationships
+âŒ Assuming unstated relationships
 
 ### **Mistake 3: Poor Visualization**
-❌ Not drawing proper diagrams
+âŒ Not drawing proper diagrams
 
 ### **Mistake 4: Time Pressure Errors**
-❌ Rushing through complex arrangements
+âŒ Rushing through complex arrangements
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Always Draw Diagrams**: Visual representation is crucial
 2. **Read All Conditions**: Never miss any given information
@@ -261,7 +261,7 @@ Problems with specific rules, ages, professions, and relationship constraints.
 
 ---
 
-## 🏆 Module Benefits
+## ðŸ† Module Benefits
 
 - **Complete Coverage**: All seating arrangement types
 - **Exam-Oriented**: Focus on competitive exam patterns
@@ -270,11 +270,11 @@ Problems with specific rules, ages, professions, and relationship constraints.
 - **Time Management**: Speed improvement techniques
 - **Performance Tracking**: Detailed progress analysis
 
-**Master seating arrangements and enhance your logical reasoning skills for exam success! 🪑✨**
+**Master seating arrangements and enhance your logical reasoning skills for exam success! ðŸª‘âœ¨**
 
 ---
 
-## 🔍 What You'll Learn Next
+## ðŸ” What You'll Learn Next
 
 This module covers comprehensive seating arrangement topics:
 
@@ -286,5 +286,5 @@ This module covers comprehensive seating arrangement topics:
 - **Seating with Conditions** - Conditional arrangement problems
 - **Mixed Arrangement Problems** - Combined arrangement types
 - **Blood Relation with Seating (Basic)** - Family relationship arrangements
-- **Puzzle-Based Seating Arrangement** - Complex integrated puzzles`
+- **Puzzle-Based Seating Arrangement** - Complex integrated puzzles`"
 };

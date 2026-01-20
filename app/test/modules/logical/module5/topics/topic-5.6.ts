@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_6: SubLesson = {
   id: "5.6",
   title: 'Indirect Coding',
   status: 'completed',
-  content: `# 🔍 Indirect Coding
+  content: "`# ðŸ” Indirect Coding
 
 Indirect coding involves complex transformation rules that are not immediately obvious and require careful analysis to understand. These problems are more challenging than direct coding and test deeper analytical reasoning skills.
 
 ---
 
-## 🎯 Understanding Indirect Coding
+## ðŸŽ¯ Understanding Indirect Coding
 
 ### **What is Indirect Coding?**
 Indirect coding involves transformation rules that are not straightforward and require careful analysis to identify. These problems test your ability to:
@@ -27,7 +27,7 @@ Indirect coding involves transformation rules that are not straightforward and r
 
 ---
 
-## 🧩 Types of Indirect Coding
+## ðŸ§© Types of Indirect Coding
 
 ### **1. Multi-Step Transformations**
 **Complex transformation sequences**
@@ -49,7 +49,7 @@ Indirect coding involves transformation rules that are not straightforward and r
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Deep Analysis**
 - Examine all input-output pairs thoroughly
@@ -73,11 +73,11 @@ Indirect coding involves transformation rules that are not straightforward and r
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Hidden Mathematical Rules**
 **Complex mathematical relationships**
-- "Letter position × 2 + 1"
+- "Letter position Ã— 2 + 1"
 - "Reverse position minus word position"
 - "Complex formula applications"
 
@@ -95,7 +95,7 @@ Indirect coding involves transformation rules that are not straightforward and r
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Systematic Hypothesis Testing**
 - Form multiple possible rules
@@ -114,32 +114,32 @@ Indirect coding involves transformation rules that are not straightforward and r
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Hidden Mathematical Rule**
 **Examples:**
-- CAT → 3-1-20
-- DOG → 4-15-7
+- CAT â†’ 3-1-20
+- DOG â†’ 4-15-7
 - **Rule**: Letter positions directly
 - **Explanation**: C=3, A=1, T=20
 
 ### **Example 2: Conditional Rule**
 **Examples:**
-- BAT → B1T (vowels become numbers)
-- CAT → C1T
-- **Rule**: Vowels → position numbers, consonants stay same
+- BAT â†’ B1T (vowels become numbers)
+- CAT â†’ C1T
+- **Rule**: Vowels â†’ position numbers, consonants stay same
 - **Explanation**: A=1, E=2, I=3, O=4, U=5
 
 ### **Example 3: Complex Rule**
 **Examples:**
-- ABC → 1-2-3 (simple positions)
+- ABC â†’ 1-2-3 (simple positions)
 - But with additional complexity...
-- **Rule**: Position × 2 - 1
-- **Explanation**: A(1)→1, B(2)→3, C(3)→5
+- **Rule**: Position Ã— 2 - 1
+- **Explanation**: A(1)â†’1, B(2)â†’3, C(3)â†’5
 
 ---
 
-## 🔍 Advanced Indirect Concepts
+## ðŸ” Advanced Indirect Concepts
 
 ### **Multi-Layer Rules**
 Complex rules requiring multiple levels of analysis.
@@ -152,7 +152,7 @@ Rules that vary based on surrounding context or conditions.
 
 ---
 
-## 📊 Indirect Coding Methods
+## ðŸ“Š Indirect Coding Methods
 
 ### **Analytical Methods**
 - **Hypothesis Testing**: Testing different rule possibilities
@@ -171,23 +171,23 @@ Rules that vary based on surrounding context or conditions.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Surface Analysis**
-❌ Stopping at obvious patterns
-✅ Looking deeper for hidden rules
+âŒ Stopping at obvious patterns
+âœ… Looking deeper for hidden rules
 
 ### **Pitfall 2: Wrong Assumptions**
-❌ Assuming simple rules when complex ones exist
-✅ Testing multiple hypothesis possibilities
+âŒ Assuming simple rules when complex ones exist
+âœ… Testing multiple hypothesis possibilities
 
 ### **Pitfall 3: Incomplete Testing**
-❌ Not testing rules against all examples
-✅ Comprehensive rule verification
+âŒ Not testing rules against all examples
+âœ… Comprehensive rule verification
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Multiple Hypotheses**
 - Generate several possible rules
@@ -206,7 +206,7 @@ Rules that vary based on surrounding context or conditions.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Slightly hidden but discoverable rules
@@ -225,7 +225,7 @@ Rules that vary based on surrounding context or conditions.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Look Beyond Obvious**: Don't stop at first apparent pattern
 2. **Test Multiple Hypotheses**: Consider different possible rules
@@ -235,19 +235,19 @@ Rules that vary based on surrounding context or conditions.
 
 ---
 
-## 🔍 Practice Questions
+## ðŸ” Practice Questions
 
 ### **Question 1**
-Find the indirect coding rule for: CAT→3-1-20, DOG→4-15-7, BOX→2-15-24
+Find the indirect coding rule for: CATâ†’3-1-20, DOGâ†’4-15-7, BOXâ†’2-15-24
 
 ### **Question 2**
-Find the rule for: BAT→B1T, CAT→C1T, DOG→D4G
+Find the rule for: BATâ†’B1T, CATâ†’C1T, DOGâ†’D4G
 
 ### **Question 3**
-Find the rule for: ABC→1-3-5, DEF→4-6-8, GHI→7-9-11
+Find the rule for: ABCâ†’1-3-5, DEFâ†’4-6-8, GHIâ†’7-9-11
 
 ### **Question 4**
-Find the rule for: PEN→P2N, BOX→B4X, CAT→C1T
+Find the rule for: PENâ†’P2N, BOXâ†’B4X, CATâ†’C1T
 
-**Master indirect coding for complex analytical reasoning! 🔍✨**`
+**Master indirect coding for complex analytical reasoning! ðŸ”âœ¨**`"
 };

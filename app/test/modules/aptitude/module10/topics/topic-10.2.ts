@@ -1,41 +1,41 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_2: SubLesson = {
   id: "10.2",
-  title: 'Work–Time Relationship',
+  title: 'Workâ€“Time Relationship',
   status: 'completed',
-  content: `# ⏱️ Work-Time Relationship
+  content: "`# â±ï¸ Work-Time Relationship
 
 Understand the fundamental relationship between work completed and time taken - the cornerstone of time and work problems.
 
 ---
 
-## 🎯 Core Relationship
+## ðŸŽ¯ Core Relationship
 
 ### **Basic Formula**
-\`\`\`
-Work = Time × Efficiency
+\`"\`\`
+Work = Time Ã— Efficiency
 \`\`\`
 
 **Where:**
-- **Work**: Fraction of total work completed (usually 0 < work ≤ 1)
+- **Work**: Fraction of total work completed (usually 0 < work â‰¤ 1)
 - **Time**: Time taken to complete that work
 - **Efficiency**: Rate of work completion per unit time
 
 ---
 
-## 📊 Work-Time Proportionality
+## ðŸ“Š Work-Time Proportionality
 
 ### 1. **Direct Proportionality with Time**
 \`\`\`
-More time → More work completed
-Time ∝ Work (for constant efficiency)
+More time â†’ More work completed
+Time âˆ Work (for constant efficiency)
 \`\`\`
 
 ### 2. **Inverse Proportionality with Workers**
 \`\`\`
-More workers → Less time required
-Time ∝ 1/Workers (for same work)
+More workers â†’ Less time required
+Time âˆ 1/Workers (for same work)
 \`\`\`
 
 ### 3. **Efficiency Relationship**
@@ -46,7 +46,7 @@ Time = Work/Efficiency
 
 ---
 
-## 🧮 Mathematical Relationships
+## ðŸ§® Mathematical Relationships
 
 ### **Work-Time Formula**
 \`\`\`
@@ -70,7 +70,7 @@ Then A:B time ratio = y:x
 
 ---
 
-## 🎯 Practical Applications
+## ðŸŽ¯ Practical Applications
 
 ### Example 1: Basic Work-Time
 **A completes work in 12 days. B completes same work in 18 days. Find time when both work together.**
@@ -86,7 +86,7 @@ Then A:B time ratio = y:x
 
 **Solution:**
 - Work done = 2/5 in 10 days
-- Full work = 5/2 × 10 = 25 days
+- Full work = 5/2 Ã— 10 = 25 days
 
 ### Example 3: Efficiency Comparison
 **A is twice efficient as B. If B takes 30 days, how long does A take?**
@@ -98,7 +98,7 @@ Then A:B time ratio = y:x
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Time Ratio Trick**
 \`\`\`
@@ -108,7 +108,7 @@ Time taken will be in ratio n:m
 
 ### **Combined Work Formula**
 \`\`\`
-Time together = (a×b)/(a+b) where a,b are individual times
+Time together = (aÃ—b)/(a+b) where a,b are individual times
 \`\`\`
 
 ### **Work Completion Shortcuts**
@@ -127,12 +127,12 @@ Days required = LCM/Total work per day
 
 ---
 
-## 🔢 Advanced Relationships
+## ðŸ”¢ Advanced Relationships
 
 ### **Work-Time-Efficiency Triangle**
 \`\`\`
 Work     Efficiency
-   ↗       ↙
+   â†—       â†™
   Time
 \`\`\`
 
@@ -152,7 +152,7 @@ Time = Total work / Total efficiency
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 1. **Inverse vs Direct Relationship**: More workers = less time (inverse)
 2. **Unit Consistency**: Convert all times to same units
@@ -162,7 +162,7 @@ Time = Total work / Total efficiency
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** A takes 10 days, B takes 15 days. Time together?
 **2.** A does 3/7 work in 9 days. Total time for A?
@@ -174,7 +174,7 @@ Time = Total work / Total efficiency
 
 ---
 
-## 🎓 Exam Strategies
+## ðŸŽ“ Exam Strategies
 
 1. **Identify the relationship** - work constant or time constant?
 2. **Use LCM for precision** - avoid decimals in calculations
@@ -182,5 +182,5 @@ Time = Total work / Total efficiency
 4. **Check reasonableness** - more workers should take less time
 5. **Use ratio methods** - often simpler than fractions
 
-Master work-time relationships and solve complex problems effortlessly! 🏆`
+Master work-time relationships and solve complex problems effortlessly! ðŸ†`
 };

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_10: SubLesson = {
   id: "2.10",
   title: 'Blood Relation with Seating Arrangement',
   status: 'completed',
-  content: `# 🪑 Blood Relation with Seating Arrangement
+  content: "`# ðŸª‘ Blood Relation with Seating Arrangement
 
 Blood relation problems combined with seating arrangements create complex scenarios requiring you to understand both family relationships and positional arrangements. These problems test your ability to combine logical reasoning with spatial positioning.
 
 ---
 
-## 🎯 Understanding Seating-Based Relations
+## ðŸŽ¯ Understanding Seating-Based Relations
 
 ### **What are Seating-Based Blood Relations?**
 These problems integrate family relationships with seating arrangements, requiring you to:
@@ -27,7 +27,7 @@ These problems integrate family relationships with seating arrangements, requiri
 
 ---
 
-## 🧩 Seating Arrangement Basics
+## ðŸ§© Seating Arrangement Basics
 
 ### **Arrangement Types**
 - **Circular Arrangement**: People seated in a circle
@@ -43,7 +43,7 @@ These problems integrate family relationships with seating arrangements, requiri
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze Family Structure**
 - Identify all family members
@@ -67,7 +67,7 @@ These problems integrate family relationships with seating arrangements, requiri
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Circular Family Arrangement**
 **Clues:**
@@ -96,7 +96,7 @@ These problems integrate family relationships with seating arrangements, requiri
 
 ---
 
-## 🔍 Common Problem Patterns
+## ðŸ” Common Problem Patterns
 
 ### **Pattern 1: Family Circle**
 - Family members seated in a circle
@@ -114,7 +114,7 @@ These problems integrate family relationships with seating arrangements, requiri
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Family Tree + Seating Diagram**
 - Draw family relationships
@@ -133,7 +133,7 @@ These problems integrate family relationships with seating arrangements, requiri
 
 ---
 
-## 📈 Advanced Seating-Relation Concepts
+## ðŸ“ˆ Advanced Seating-Relation Concepts
 
 ### **Multiple Arrangement Types**
 - Circular + Linear combinations
@@ -152,7 +152,7 @@ These problems integrate family relationships with seating arrangements, requiri
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Draw Both Diagrams**: Family tree AND seating arrangement
 2. **Start with Definite Positions**: Place people with clear positions first
@@ -162,20 +162,20 @@ These problems integrate family relationships with seating arrangements, requiri
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Ignoring Relationships**
-❌ Solving seating without considering family ties
+âŒ Solving seating without considering family ties
 
 ### **Mistake 2: Wrong Arrangement Type**
-❌ Assuming wrong seating configuration
+âŒ Assuming wrong seating configuration
 
 ### **Mistake 3: Missing Position Constraints**
-❌ Not applying all positional rules
+âŒ Not applying all positional rules
 
 ---
 
-## 🪑 Practice Questions
+## ðŸª‘ Practice Questions
 
 ### **Question 1**
 **Clues:**
@@ -204,5 +204,5 @@ These problems integrate family relationships with seating arrangements, requiri
 
 **How many people are there?**
 
-**Master blood relations with seating arrangements for complete logical reasoning skills! 🪑✨**`
+**Master blood relations with seating arrangements for complete logical reasoning skills! ðŸª‘âœ¨**`"
 };

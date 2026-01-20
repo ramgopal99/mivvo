@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_12: SubLesson = {
   id: "7.12",
   title: 'Break-even Concept (Basic)',
   status: 'completed',
-  content: `# 📊 Break-even Concept (Basic)
+  content: "`# ðŸ“Š Break-even Concept (Basic)
 
 Understand the break-even point - where business neither makes profit nor loss! This fundamental concept helps determine minimum sales volume needed for sustainability. Learn basic break-even analysis for business decision making.
 
 ---
 
-## 🎯 What is Break-even Point?
+## ðŸŽ¯ What is Break-even Point?
 
 **Break-even Point** is the level of sales where total revenue equals total costs. At this point, there is neither profit nor loss.
 
@@ -20,19 +20,19 @@ Understand the break-even point - where business neither makes profit nor loss! 
 - **Contribution**: SP per unit - Variable cost per unit
 
 ### **Basic Formula**
-\`\`\`
+\`"\`\`
 Break-even Quantity = Fixed Cost / (SP per unit - Variable cost per unit)
 \`\`\`
 
 ---
 
-## 📊 Break-even Analysis
+## ðŸ“Š Break-even Analysis
 
 ### **Components**
-1. **Fixed Costs (FC)**: ₹10,000/month (rent, salaries)
-2. **Variable Cost per unit (VC)**: ₹20/unit (materials, labor)
-3. **Selling Price per unit (SP)**: ₹30/unit
-4. **Contribution per unit**: SP - VC = ₹10/unit
+1. **Fixed Costs (FC)**: â‚¹10,000/month (rent, salaries)
+2. **Variable Cost per unit (VC)**: â‚¹20/unit (materials, labor)
+3. **Selling Price per unit (SP)**: â‚¹30/unit
+4. **Contribution per unit**: SP - VC = â‚¹10/unit
 
 ### **Break-even Calculation**
 \`\`\`
@@ -44,33 +44,33 @@ Break-even Units = FC / Contribution per unit
 
 ---
 
-## 🔢 Examples
+## ðŸ”¢ Examples
 
 ### **Example 1: Manufacturing**
-**Problem:** Fixed costs ₹50,000, VC ₹15/unit, SP ₹25/unit. Find break-even.
+**Problem:** Fixed costs â‚¹50,000, VC â‚¹15/unit, SP â‚¹25/unit. Find break-even.
 
 **Solution:**
-- Contribution = 25 - 15 = ₹10/unit
+- Contribution = 25 - 15 = â‚¹10/unit
 - Break-even = 50,000 / 10 = 5,000 units
 
 ### **Example 2: Service Business**
-**Problem:** Fixed costs ₹30,000, VC ₹50/service, SP ₹100/service. Find break-even.
+**Problem:** Fixed costs â‚¹30,000, VC â‚¹50/service, SP â‚¹100/service. Find break-even.
 
 **Solution:**
-- Contribution = 100 - 50 = ₹50/service
+- Contribution = 100 - 50 = â‚¹50/service
 - Break-even = 30,000 / 50 = 600 services
 
 ### **Example 3: Retail**
-**Problem:** Fixed costs ₹20,000, VC ₹40/item, SP ₹60/item. Find break-even revenue.
+**Problem:** Fixed costs â‚¹20,000, VC â‚¹40/item, SP â‚¹60/item. Find break-even revenue.
 
 **Solution:**
-- Contribution = 60 - 40 = ₹20/item
+- Contribution = 60 - 40 = â‚¹20/item
 - Break-even units = 20,000 / 20 = 1,000 items
-- Break-even revenue = 1,000 × 60 = ₹60,000
+- Break-even revenue = 1,000 Ã— 60 = â‚¹60,000
 
 ---
 
-## 💡 Applications
+## ðŸ’¡ Applications
 
 ### **1. Business Planning**
 - Minimum sales targets
@@ -89,28 +89,28 @@ Break-even Units = FC / Contribution per unit
 
 ---
 
-## 🎯 Break-even Analysis Insights
+## ðŸŽ¯ Break-even Analysis Insights
 
 ### **1. Profit Zone**
 \`\`\`
-Sales > Break-even → Profit
-Profit = (Actual sales - Break-even sales) × Contribution per unit
+Sales > Break-even â†’ Profit
+Profit = (Actual sales - Break-even sales) Ã— Contribution per unit
 \`\`\`
 
 ### **2. Loss Zone**
 \`\`\`
-Sales < Break-even → Loss
-Loss = (Break-even sales - Actual sales) × Contribution per unit
+Sales < Break-even â†’ Loss
+Loss = (Break-even sales - Actual sales) Ã— Contribution per unit
 \`\`\`
 
 ### **3. Safety Margin**
 \`\`\`
-Safety Margin = (Actual sales - Break-even sales) / Actual sales × 100%
+Safety Margin = (Actual sales - Break-even sales) / Actual sales Ã— 100%
 \`\`\`
 
 ---
 
-## 🧮 Advanced Break-even Concepts
+## ðŸ§® Advanced Break-even Concepts
 
 ### **1. Multiple Products**
 \`\`\`
@@ -129,7 +129,7 @@ Break-even changes with SP or cost changes
 
 ---
 
-## 📈 Break-even Charts
+## ðŸ“ˆ Break-even Charts
 
 ### **Break-even Chart Components**
 - **Fixed Cost Line**: Horizontal line
@@ -144,37 +144,38 @@ Break-even changes with SP or cost changes
 
 ---
 
-## 🚨 Common Mistakes
+## ðŸš¨ Common Mistakes
 
 ### **Mistake 1: Wrong Cost Classification**
-❌ Including fixed costs as variable
+âŒ Including fixed costs as variable
 - Proper cost classification crucial
 
 ### **Mistake 2: Ignoring Scale**
-❌ Break-even units vs revenue confusion
+âŒ Break-even units vs revenue confusion
 - Specify units or currency
 
 ### **Mistake 3: Static Analysis**
-❌ Assuming constant costs/prices
+âŒ Assuming constant costs/prices
 - Real world has changing factors
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Basic Break-even:**
-1. FC ₹40,000, VC ₹10/unit, SP ₹15/unit. Break-even units?
-2. FC ₹25,000, contribution ₹20/unit. Break-even quantity?
-3. Break-even 2000 units, FC ₹30,000, VC ₹8/unit. Find SP?
+1. FC â‚¹40,000, VC â‚¹10/unit, SP â‚¹15/unit. Break-even units?
+2. FC â‚¹25,000, contribution â‚¹20/unit. Break-even quantity?
+3. Break-even 2000 units, FC â‚¹30,000, VC â‚¹8/unit. Find SP?
 
 ### **Application Problems:**
-1. FC ₹50,000, break-even at ₹1,00,000 sales, VC 40% of SP. Find SP per unit?
-2. Break-even 1500 units, FC ₹45,000, SP ₹50/unit. Find VC per unit?
-3. Target profit ₹20,000, FC ₹60,000, contribution ₹30/unit. Units needed?
+1. FC â‚¹50,000, break-even at â‚¹1,00,000 sales, VC 40% of SP. Find SP per unit?
+2. Break-even 1500 units, FC â‚¹45,000, SP â‚¹50/unit. Find VC per unit?
+3. Target profit â‚¹20,000, FC â‚¹60,000, contribution â‚¹30/unit. Units needed?
 
 **Answers:**
-Basic: 8000 units, 1250 units, ₹14/unit
-Applications: ₹25/unit, ₹26/unit, 2667 units
+Basic: 8000 units, 1250 units, â‚¹14/unit
+Applications: â‚¹25/unit, â‚¹26/unit, 2667 units
 
-Master break-even analysis for business sustainability planning! 🏆`
+Master break-even analysis for business sustainability planning! ðŸ†`
 };
+

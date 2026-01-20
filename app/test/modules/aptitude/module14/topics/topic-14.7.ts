@@ -1,24 +1,24 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_7: SubLesson = {
   id: "14.7",
   title: 'Relation between Roots & Coefficients',
   status: 'completed',
-  content: `# 🔗 Relation between Roots & Coefficients
+  content: "`# ðŸ”— Relation between Roots & Coefficients
 
 Discover the fundamental relationships between quadratic equation roots and coefficients! These relationships (sum and product of roots) are powerful tools for solving problems without finding actual roots. Learn to form equations and solve complex problems using these properties.
 
 ---
 
-## 🎯 What are Root-Coefficient Relations?
+## ðŸŽ¯ What are Root-Coefficient Relations?
 
-For a quadratic equation \`ax² + bx + c = 0\` with roots α and β, there are two fundamental relationships:
+For a quadratic equation \`"axÂ² + bx + c = 0\` with roots Î± and Î², there are two fundamental relationships:
 
 ### **Sum of Roots**
-\`α + β = -b/a\`
+\`Î± + Î² = -b/a\`
 
 ### **Product of Roots**
-\`α × β = c/a\`
+\`Î± Ã— Î² = c/a\`
 
 ### **Why Important?**
 - Find equations from roots
@@ -28,62 +28,62 @@ For a quadratic equation \`ax² + bx + c = 0\` with roots α and β, there are t
 
 ---
 
-## 📈 Derivation of Relations
+## ðŸ“ˆ Derivation of Relations
 
 ### **Quadratic Equation**
-\`ax² + bx + c = 0\`
+\`axÂ² + bx + c = 0\`
 
 ### **Root Form**
-\`(x - α)(x - β) = 0\`
-\`x² - (α + β)x + (αβ) = 0\`
+\`(x - Î±)(x - Î²) = 0\`
+\`xÂ² - (Î± + Î²)x + (Î±Î²) = 0\`
 
 ### **Comparing Coefficients**
-\`ax² + bx + c = x² - (α + β)x + (αβ)\`
+\`axÂ² + bx + c = xÂ² - (Î± + Î²)x + (Î±Î²)\`
 
 **Therefore:**
-- Coefficient of x²: a = 1 → multiply by a: \`ax² + b x + c = ax² - a(α + β)x + a(αβ)\`
-- Coefficient of x: b = -a(α + β) → α + β = -b/a
-- Constant term: c = a(αβ) → αβ = c/a
+- Coefficient of xÂ²: a = 1 â†’ multiply by a: \`axÂ² + b x + c = axÂ² - a(Î± + Î²)x + a(Î±Î²)\`
+- Coefficient of x: b = -a(Î± + Î²) â†’ Î± + Î² = -b/a
+- Constant term: c = a(Î±Î²) â†’ Î±Î² = c/a
 
 ---
 
-## 🔢 Applying the Relations
+## ðŸ”¢ Applying the Relations
 
 ### **Example 1: Find Equation from Roots**
 **Roots:** 3 and -2
 
-**Sum:** α + β = 3 + (-2) = 1
-**Product:** αβ = 3 × (-2) = -6
+**Sum:** Î± + Î² = 3 + (-2) = 1
+**Product:** Î±Î² = 3 Ã— (-2) = -6
 
-**Equation:** x² - (sum)x + (product) = 0
-\`x² - x - 6 = 0\`
+**Equation:** xÂ² - (sum)x + (product) = 0
+\`xÂ² - x - 6 = 0\`
 
 ### **Example 2: Find Roots from Equation**
-**Equation:** 2x² - 7x + 3 = 0
+**Equation:** 2xÂ² - 7x + 3 = 0
 
-**Sum:** α + β = -(-7)/2 = 7/2
-**Product:** αβ = 3/2
+**Sum:** Î± + Î² = -(-7)/2 = 7/2
+**Product:** Î±Î² = 3/2
 
 **Roots:** Let roots be p, q where p + q = 7/2, pq = 3/2
-**Possible:** 3 and 1/2 (since 3 + 0.5 = 3.5 = 7/2, 3×0.5 = 1.5 = 3/2)
+**Possible:** 3 and 1/2 (since 3 + 0.5 = 3.5 = 7/2, 3Ã—0.5 = 1.5 = 3/2)
 
 ---
 
-## 🎯 Forming Equations with Given Conditions
+## ðŸŽ¯ Forming Equations with Given Conditions
 
 ### **Problem Type 1: Roots Satisfy Relation**
-**Problem:** Find quadratic equation with roots α, β where α + β = 5, αβ = 6
+**Problem:** Find quadratic equation with roots Î±, Î² where Î± + Î² = 5, Î±Î² = 6
 
-**Solution:** x² - (α + β)x + αβ = 0
-\`x² - 5x + 6 = 0\`
+**Solution:** xÂ² - (Î± + Î²)x + Î±Î² = 0
+\`xÂ² - 5x + 6 = 0\`
 
 ### **Problem Type 2: One Root Known**
 **Problem:** One root is 2, sum of roots is 8
 
-**Solution:** Let roots be 2 and β
-2 + β = 8 → β = 6
-Product: 2 × 6 = 12
-Equation: x² - 8x + 12 = 0
+**Solution:** Let roots be 2 and Î²
+2 + Î² = 8 â†’ Î² = 6
+Product: 2 Ã— 6 = 12
+Equation: xÂ² - 8x + 12 = 0
 
 ### **Problem Type 3: Roots in Terms of Variable**
 **Problem:** Roots differ by 4, product is 21
@@ -91,162 +91,162 @@ Equation: x² - 8x + 12 = 0
 **Solution:** Let roots be x, x+4
 Sum: x + (x+4) = 2x + 4
 Product: x(x+4) = 21
-x² + 4x - 21 = 0
+xÂ² + 4x - 21 = 0
 (x + 7)(x - 3) = 0
 x = -7 or x = 3
 
 **If x = 3:** Roots 3 and 7
 **If x = -7:** Roots -7 and -3
 
-**Equations:** x² - 10x + 21 = 0 or x² + 10x + 21 = 0
+**Equations:** xÂ² - 10x + 21 = 0 or xÂ² + 10x + 21 = 0
 
 ---
 
-## 🧮 Advanced Applications
+## ðŸ§® Advanced Applications
 
 ### **Example 1: Quadratic with Given Roots**
 **Problem:** Find equation with roots (3, 4)
 
 **Method 1: Direct**
-\`x² - (3+4)x + (3×4) = 0\`
-\`x² - 7x + 12 = 0\`
+\`xÂ² - (3+4)x + (3Ã—4) = 0\`
+\`xÂ² - 7x + 12 = 0\`
 
 **Method 2: Root form**
 \`(x - 3)(x - 4) = 0\`
-\`x² - 7x + 12 = 0\`
+\`xÂ² - 7x + 12 = 0\`
 
 ### **Example 2: Roots of Another Equation**
-**Problem:** If α, β are roots of x² + px + q = 0, find equation with roots α², β²
+**Problem:** If Î±, Î² are roots of xÂ² + px + q = 0, find equation with roots Î±Â², Î²Â²
 
-**Solution:** Sum of new roots: α² + β² = (α + β)² - 2αβ = p² - 2q
-Product of new roots: α²β² = (αβ)² = q²
+**Solution:** Sum of new roots: Î±Â² + Î²Â² = (Î± + Î²)Â² - 2Î±Î² = pÂ² - 2q
+Product of new roots: Î±Â²Î²Â² = (Î±Î²)Â² = qÂ²
 
-**Equation:** x² - (p² - 2q)x + q² = 0
+**Equation:** xÂ² - (pÂ² - 2q)x + qÂ² = 0
 
 ### **Example 3: Reciprocal Roots**
-**Problem:** Find equation with roots 1/α, 1/β
+**Problem:** Find equation with roots 1/Î±, 1/Î²
 
-**Solution:** Sum: 1/α + 1/β = (α + β)/αβ = p/q
-Product: (1/α)(1/β) = 1/(αβ) = 1/q
+**Solution:** Sum: 1/Î± + 1/Î² = (Î± + Î²)/Î±Î² = p/q
+Product: (1/Î±)(1/Î²) = 1/(Î±Î²) = 1/q
 
-**Equation:** x² - (p/q)x + 1/q = 0
-Multiply by q²: q²x² - p q x + 1 = 0
+**Equation:** xÂ² - (p/q)x + 1/q = 0
+Multiply by qÂ²: qÂ²xÂ² - p q x + 1 = 0
 
 ---
 
-## 📊 Special Cases and Patterns
+## ðŸ“Š Special Cases and Patterns
 
 ### **Case 1: Roots Equal in Magnitude**
 If roots are a and -a, then:
 - Sum: a + (-a) = 0
-- Product: a × (-a) = -a²
-- Equation: x² + 0·x + (-a²) = 0 → x² - a² = 0
+- Product: a Ã— (-a) = -aÂ²
+- Equation: xÂ² + 0Â·x + (-aÂ²) = 0 â†’ xÂ² - aÂ² = 0
 
 ### **Case 2: One Root Zero**
 If one root is 0, other is -c/a
-- Sum: 0 + β = -b/a → β = -c/a
-- Product: 0 × β = c/a → c = 0 (impossible)
+- Sum: 0 + Î² = -b/a â†’ Î² = -c/a
+- Product: 0 Ã— Î² = c/a â†’ c = 0 (impossible)
 - Conclusion: If c = 0, one root is 0
 
 ### **Case 3: Roots Reciprocals**
 If roots are r, 1/r:
-- Sum: r + 1/r = (r² + 1)/r
-- Product: r × (1/r) = 1
+- Sum: r + 1/r = (rÂ² + 1)/r
+- Product: r Ã— (1/r) = 1
 
 ### **Case 4: Roots Differ by Constant**
 If roots differ by d: roots are x, x+d
 - Sum: x + (x+d) = 2x + d
-- Product: x(x+d) = x² + d x
+- Product: x(x+d) = xÂ² + d x
 
 ---
 
-## 🎯 Word Problems Using Relations
+## ðŸŽ¯ Word Problems Using Relations
 
 ### **Example 1: Age Problem**
 **Problem:** Ages of A and B differ by 10 years. 10 years ago, A was twice B's age. Find current ages.
 
 **Solution:** Let current ages be x, x+10
 10 years ago: x-10, (x+10)-10 = x
-A was twice B: x-10 = 2(x) → x-10 = 2x → x = -10 (impossible)
+A was twice B: x-10 = 2(x) â†’ x-10 = 2x â†’ x = -10 (impossible)
 
 **Alternative:** Let B's age = x, A's age = x+10
 10 years ago: B = x-10, A = x
-A was twice B: x = 2(x-10) → x = 2x - 20 → x = 20
+A was twice B: x = 2(x-10) â†’ x = 2x - 20 â†’ x = 20
 Ages: B=20, A=30
 
 ### **Example 2: Number Problem**
 **Problem:** Two numbers sum to 15, product 50. Find numbers.
 
-**Solution:** Let numbers be α, β
-α + β = 15
-αβ = 50
+**Solution:** Let numbers be Î±, Î²
+Î± + Î² = 15
+Î±Î² = 50
 
-**Equation:** x² - 15x + 50 = 0
+**Equation:** xÂ² - 15x + 50 = 0
 Discriminant: 225 - 200 = 25
-Roots: [15 ± 5]/2 = 10 or 5
+Roots: [15 Â± 5]/2 = 10 or 5
 
 ### **Example 3: Geometry Problem**
-**Problem:** Rectangle length exceeds width by 7m, area 78m². Find dimensions.
+**Problem:** Rectangle length exceeds width by 7m, area 78mÂ². Find dimensions.
 
 **Solution:** Let width = x, length = x+7
 Area: x(x+7) = 78
-x² + 7x - 78 = 0
+xÂ² + 7x - 78 = 0
 (x + 13)(x - 6) = 0
 x = 6m (width), length = 13m
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Sum Sign**
-❌ α + β = b/a
-- Correct: α + β = -b/a
+âŒ Î± + Î² = b/a
+- Correct: Î± + Î² = -b/a
 
 ### **Mistake 2: Wrong Product Sign**
-❌ αβ = -c/a
-- Correct: αβ = c/a
+âŒ Î±Î² = -c/a
+- Correct: Î±Î² = c/a
 
 ### **Mistake 3: Forgetting Leading Coefficient**
-❌ For 2x² + 5x + 3 = 0, sum = -5/2, product = 3/2 ✓
-❌ Forgetting to divide by a
+âŒ For 2xÂ² + 5x + 3 = 0, sum = -5/2, product = 3/2 âœ“
+âŒ Forgetting to divide by a
 
 ### **Mistake 4: Root Order Confusion**
-❌ Assuming larger root first
+âŒ Assuming larger root first
 - Sum and product don't specify which is which
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Form Equations:**
 1. Roots 4 and -3, find equation
-2. Roots 2±√3, find equation
+2. Roots 2Â±âˆš3, find equation
 3. One root 5, product 10, find equation
 
 ### **Find Roots:**
-1. Equation 3x² - 8x + 4 = 0, find sum and product
-2. Equation x² + √2 x - 1 = 0, find sum and product
-3. Roots of x² - 7x + 10 = 0, verify relations
+1. Equation 3xÂ² - 8x + 4 = 0, find sum and product
+2. Equation xÂ² + âˆš2 x - 1 = 0, find sum and product
+3. Roots of xÂ² - 7x + 10 = 0, verify relations
 
 ### **Word Problems:**
 1. **Numbers:** Two numbers sum 20, product 96. Find numbers.
-2. **Rectangle:** Perimeter 24m, area 32m². Find dimensions.
-3. **Investment:** Two investments, sum ₹12,000, difference ₹2,000. Find amounts.
+2. **Rectangle:** Perimeter 24m, area 32mÂ². Find dimensions.
+3. **Investment:** Two investments, sum â‚¹12,000, difference â‚¹2,000. Find amounts.
 
 ### **Advanced:**
-1. **Roots α, β:** Find equation with roots α², β²
-2. **Reciprocal roots:** Find equation with roots 1/α, 1/β
+1. **Roots Î±, Î²:** Find equation with roots Î±Â², Î²Â²
+2. **Reciprocal roots:** Find equation with roots 1/Î±, 1/Î²
 3. **Equal roots:** Find condition for equal roots using relations
 
 **Answers:**
-Equations: x²-x-12=0; x²-4x-2=0; x²-5x+10=0
-Sum/Product: 8/3,4/3; -√2,-1; Sum=7, Product=10
-Word: 8,12; 8×4m; ₹7,000 & ₹5,000
-Advanced: x²-(α²+β²)x+α²β²=0; q²x²-pqx+1=0; Sum= -b/a, etc.
+Equations: xÂ²-x-12=0; xÂ²-4x-2=0; xÂ²-5x+10=0
+Sum/Product: 8/3,4/3; -âˆš2,-1; Sum=7, Product=10
+Word: 8,12; 8Ã—4m; â‚¹7,000 & â‚¹5,000
+Advanced: xÂ²-(Î±Â²+Î²Â²)x+Î±Â²Î²Â²=0; qÂ²xÂ²-pqx+1=0; Sum= -b/a, etc.
 
 ---
 
-## 🎓 Pro Tips for Root Relations
+## ðŸŽ“ Pro Tips for Root Relations
 
 1. **Remember the signs** carefully: sum = -b/a, product = c/a
 2. **Use for quick equation formation** without expanding
@@ -258,15 +258,15 @@ Advanced: x²-(α²+β²)x+α²β²=0; q²x²-pqx+1=0; Sum= -b/a, etc.
 
 ---
 
-## 🔢 Root Relations Summary
+## ðŸ”¢ Root Relations Summary
 
 | Relation | Formula | Use |
 |----------|---------|-----|
-| Sum of roots | α + β = -b/a | Find equation from roots |
-| Product of roots | αβ = c/a | Complete root information |
-| Equal roots | α = β = -b/(2a) | When D = 0 |
-| Reciprocal roots | 1/α + 1/β = p/q | Special root transformations |
-| Square roots | α² + β² = (α+β)² - 2αβ | Advanced transformations |
+| Sum of roots | Î± + Î² = -b/a | Find equation from roots |
+| Product of roots | Î±Î² = c/a | Complete root information |
+| Equal roots | Î± = Î² = -b/(2a) | When D = 0 |
+| Reciprocal roots | 1/Î± + 1/Î² = p/q | Special root transformations |
+| Square roots | Î±Â² + Î²Â² = (Î±+Î²)Â² - 2Î±Î² | Advanced transformations |
 
-Master root-coefficient relations and solve quadratic problems with elegance! 🏆`
+Master root-coefficient relations and solve quadratic problems with elegance! ðŸ†`
 };

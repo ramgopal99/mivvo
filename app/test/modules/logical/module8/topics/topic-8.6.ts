@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_6: SubLesson = {
   id: "8.6",
   title: 'Total Number of Persons',
   status: 'completed',
-  content: `# 👥 Total Number of Persons
+  content: "`# ðŸ‘¥ Total Number of Persons
 
 Total number of persons problems involve calculating the complete group size using position information from different ends or perspectives. These problems use systematic formulas to determine the total count when positions are given from opposite ends, which is fundamental to all ranking calculations.
 
 ---
 
-## 🎯 Understanding Total Persons Calculation
+## ðŸŽ¯ Understanding Total Persons Calculation
 
 ### **What are Total Persons Problems?**
 These problems require finding the complete number of persons in an arrangement using position information from different ends. They test your ability to:
@@ -20,18 +20,18 @@ These problems require finding the complete number of persons in an arrangement 
 - **Verify arrangement completeness**
 
 ### **Core Formula**
-\`\`\`
+\`"\`\`
 Total Persons = Position from one end + Position from other end - 1
 \`\`\`
 
 ---
 
-## 🧮 Total Persons Formulas
+## ðŸ§® Total Persons Formulas
 
 ### **Basic Formula**
 \`\`\`
-Total = Position₁ + Position₂ - 1
-Where Position₁ and Position₂ are from opposite ends
+Total = Positionâ‚ + Positionâ‚‚ - 1
+Where Positionâ‚ and Positionâ‚‚ are from opposite ends
 \`\`\`
 
 ### **Specific Cases**
@@ -39,24 +39,24 @@ Where Position₁ and Position₂ are from opposite ends
 #### **Left-Right Positions**
 \`\`\`
 Total = Left Position + Right Position - 1
-Example: 3rd from left, 5th from right → Total = 3 + 5 - 1 = 7
+Example: 3rd from left, 5th from right â†’ Total = 3 + 5 - 1 = 7
 \`\`\`
 
 #### **Top-Bottom Positions**
 \`\`\`
 Total = Top Position + Bottom Position - 1
-Example: 4th from top, 6th from bottom → Total = 4 + 6 - 1 = 9
+Example: 4th from top, 6th from bottom â†’ Total = 4 + 6 - 1 = 9
 \`\`\`
 
 #### **Same Person from Both Ends**
 \`\`\`
-If same person: Total = 2 × Position - 1
-Example: 3rd from both ends → Total = 2 × 3 - 1 = 5
+If same person: Total = 2 Ã— Position - 1
+Example: 3rd from both ends â†’ Total = 2 Ã— 3 - 1 = 5
 \`\`\`
 
 ---
 
-## 🎯 Problem Types and Solutions
+## ðŸŽ¯ Problem Types and Solutions
 
 ### **Type 1: Direct Position Sum**
 *"A is 5th from left and 7th from right. How many persons are there?"*
@@ -74,7 +74,7 @@ Example: 3rd from both ends → Total = 2 × 3 - 1 = 5
 *"C is 4th from both left and right ends. How many total persons?"*
 
 **Solution:**
-- Total = 2 × 4 - 1 = 7 persons
+- Total = 2 Ã— 4 - 1 = 7 persons
 
 ### **Type 4: Multiple Persons**
 *"A is 2nd from left, B is 3rd from right. A and B are different persons. Total persons?"*
@@ -85,7 +85,7 @@ Example: 3rd from both ends → Total = 2 × 3 - 1 = 5
 
 ---
 
-## 📊 Position Relationship Matrix
+## ðŸ“Š Position Relationship Matrix
 
 ### **Position Sum = Total + 1**
 \`\`\`
@@ -99,15 +99,15 @@ This means:
 
 ### **Verification Rule**
 \`\`\`
-If Position₁ + Position₂ - 1 gives a valid total:
-- Total must be ≥ maximum(Position₁, Position₂)
+If Positionâ‚ + Positionâ‚‚ - 1 gives a valid total:
+- Total must be â‰¥ maximum(Positionâ‚, Positionâ‚‚)
 - Total must allow both positions to exist
 - Positions must not exceed total
 \`\`\`
 
 ---
 
-## 🛠️ Problem-Solving Framework
+## ðŸ› ï¸ Problem-Solving Framework
 
 ### **Step-by-Step Approach**
 
@@ -117,7 +117,7 @@ If Position₁ + Position₂ - 1 gives a valid total:
    - Determine which formula to apply
 
 2. **Apply Total Persons Formula**
-   - Use Total = Pos₁ + Pos₂ - 1 for same person
+   - Use Total = Posâ‚ + Posâ‚‚ - 1 for same person
    - Check if positions are compatible
    - Verify logical consistency
 
@@ -133,7 +133,7 @@ If Position₁ + Position₂ - 1 gives a valid total:
 
 ---
 
-## 🎯 Common Question Patterns
+## ðŸŽ¯ Common Question Patterns
 
 ### **Pattern 1: Same Person Positions**
 *"A is mth from one end and nth from other end. Find total."*
@@ -149,7 +149,7 @@ If Position₁ + Position₂ - 1 gives a valid total:
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (40%)**
 - Direct application of basic formula
@@ -168,20 +168,20 @@ If Position₁ + Position₂ - 1 gives a valid total:
 
 ---
 
-## 🧮 Mathematical Applications
+## ðŸ§® Mathematical Applications
 
 ### **Position Compatibility**
 \`\`\`
 For positions to be valid for same person:
-- Total = Pos₁ + Pos₂ - 1
-- Pos₁ ≤ Total and Pos₂ ≤ Total
-- |Pos₁ - Pos₂| ≤ Total - 1
+- Total = Posâ‚ + Posâ‚‚ - 1
+- Posâ‚ â‰¤ Total and Posâ‚‚ â‰¤ Total
+- |Posâ‚ - Posâ‚‚| â‰¤ Total - 1
 \`\`\`
 
 ### **Range Calculations**
 \`\`\`
-Minimum possible total: max(Pos₁, Pos₂)
-Maximum possible total: Pos₁ + Pos₂ - 1 (for same person)
+Minimum possible total: max(Posâ‚, Posâ‚‚)
+Maximum possible total: Posâ‚ + Posâ‚‚ - 1 (for same person)
 \`\`\`
 
 ### **Multiple Person Calculations**
@@ -194,20 +194,20 @@ When persons are different:
 
 ---
 
-## 🎯 Special Cases and Exceptions
+## ðŸŽ¯ Special Cases and Exceptions
 
 ### **Case 1: Adjacent Positions**
 \`\`\`
 If positions are consecutive:
-Total ≥ Pos₁ + Pos₂ - 1
+Total â‰¥ Posâ‚ + Posâ‚‚ - 1
 Additional verification needed
 \`\`\`
 
 ### **Case 2: Extreme Positions**
 \`\`\`
 If one position is 1st:
-Total = Pos₂ (from other end)
-Example: 1st from left, 5th from right → Total = 5
+Total = Posâ‚‚ (from other end)
+Example: 1st from left, 5th from right â†’ Total = 5
 \`\`\`
 
 ### **Case 3: Middle Position Considerations**
@@ -219,30 +219,30 @@ Odd/even total considerations apply
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Formula Misapplication**
-❌ Using formula for different persons
-✅ Only use Total = Pos₁ + Pos₂ - 1 for same person
+âŒ Using formula for different persons
+âœ… Only use Total = Posâ‚ + Posâ‚‚ - 1 for same person
 
 ### **Mistake 2: Position Validity Ignorance**
-❌ Accepting impossible position combinations
-✅ Verify positions are logically possible
+âŒ Accepting impossible position combinations
+âœ… Verify positions are logically possible
 
 ### **Mistake 3: End Reference Confusion**
-❌ Mixing left-right with top-bottom
-✅ Use appropriate formula for each reference system
+âŒ Mixing left-right with top-bottom
+âœ… Use appropriate formula for each reference system
 
 ### **Mistake 4: Multiple Person Confusion**
-❌ Assuming all positions are for same person
-✅ Check if problem specifies same or different persons
+âŒ Assuming all positions are for same person
+âœ… Check if problem specifies same or different persons
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Identify Same vs Different Persons**: Critical for formula selection
-2. **Apply Basic Formula Correctly**: Total = Pos₁ + Pos₂ - 1
+2. **Apply Basic Formula Correctly**: Total = Posâ‚ + Posâ‚‚ - 1
 3. **Verify Position Compatibility**: Ensure calculated total allows given positions
 4. **Use Logical Constraints**: Apply additional information when needed
 5. **Practice Position Ranges**: Understand minimum and maximum possible totals
@@ -251,7 +251,7 @@ Odd/even total considerations apply
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Basic Total Calculation**
 *"A is 4th from left and 6th from right. How many persons are there?"*
@@ -269,7 +269,7 @@ Odd/even total considerations apply
 *"C is 5th from both left and right ends. How many total persons?"*
 
 **Solution:**
-- Total = 2 × 5 - 1 = 9 persons
+- Total = 2 Ã— 5 - 1 = 9 persons
 
 ### **Example 4: Position Verification**
 *"Can a person be 2nd from left and 8th from right in a line?"*
@@ -290,7 +290,7 @@ Odd/even total considerations apply
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Top-Bottom Ranking**
 - Calculate vertical arrangement totals
@@ -307,5 +307,5 @@ Odd/even total considerations apply
 - Apply middle position formulas after finding total
 - Verify middle position consistency
 
-**Master total persons calculations to determine complete group sizes in all ranking problems! 👥✨**`
+**Master total persons calculations to determine complete group sizes in all ranking problems! ðŸ‘¥âœ¨**`
 };

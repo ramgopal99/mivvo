@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_3: SubLesson = {
   id: "8.3",
   title: 'Mathematical Functions',
   status: 'demo',
-  content: `# 🔢 Mathematical Functions
+  content: "`# ðŸ”¢ Mathematical Functions
 
 Python's built-in mathematical functions handle common calculations and number operations!
 
 ---
 
-## 🎯 Basic Mathematical Functions
+## ðŸŽ¯ Basic Mathematical Functions
 
 ### **abs() - Absolute Value**
-\`\`\`python
+\`"\`\`python
 print(abs(-5))     # 5
 print(abs(5))      # 5
 print(abs(-3.14))  # 3.14
@@ -48,7 +48,7 @@ print(2 ** 3)    # 8 (same as pow(2, 3))
 
 ---
 
-## 📊 Aggregation Functions
+## ðŸ“Š Aggregation Functions
 
 ### **min(), max() - Find Extremes**
 \`\`\`python
@@ -84,7 +84,7 @@ print(sum(x**2 for x in range(1, 6)))  # 1+4+9+16+25 = 55
 
 ---
 
-## 🔢 Advanced Mathematical Functions
+## ðŸ”¢ Advanced Mathematical Functions
 
 ### **divmod() - Division and Modulo**
 \`\`\`python
@@ -95,12 +95,12 @@ print(divmod(8, 5))   # (1, 3)
 
 # Get quotient and remainder together
 quotient, remainder = divmod(13, 4)
-print(f"13 ÷ 4 = {quotient} with remainder {remainder}")
+print(f"13 Ã· 4 = {quotient} with remainder {remainder}")
 \`\`\`
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **Statistics Calculator**
 \`\`\`python
@@ -208,7 +208,7 @@ for x, y in points:
 
 ---
 
-## ⚡ Performance Tips
+## âš¡ Performance Tips
 
 ### **Use Built-ins**
 \`\`\`python
@@ -242,7 +242,7 @@ print(f"Shortest name: {shortest_name['name']}")
 
 ---
 
-## ✅ Best Practices
+## âœ… Best Practices
 
 1. **Use built-in functions** - They're optimized and handle edge cases
 2. **Combine functions creatively** - Chain min, max, sum effectively
@@ -250,6 +250,7 @@ print(f"Shortest name: {shortest_name['name']}")
 4. **Use key parameters** - For custom comparison logic
 5. **Consider precision** - Round appropriately for display
 
-Mathematical functions make number crunching effortless! 🔢`
+Mathematical functions make number crunching effortless! ðŸ”¢`
 };
+
 

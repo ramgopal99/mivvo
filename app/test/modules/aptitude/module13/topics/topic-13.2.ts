@@ -1,30 +1,30 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_2: SubLesson = {
   id: "13.2",
   title: 'Linear Equation in One Variable',
   status: 'completed',
-  content: `# 📏 Linear Equation in One Variable
+  content: "`# ðŸ“ Linear Equation in One Variable
 
 Master the art of solving linear equations in one variable! This fundamental skill is crucial for aptitude exams and forms the basis for understanding more complex algebraic concepts. Learn systematic methods to solve any linear equation with confidence.
 
 ---
 
-## 🎯 What is a Linear Equation in One Variable?
+## ðŸŽ¯ What is a Linear Equation in One Variable?
 
-A **Linear Equation in One Variable** is an equation that has only one variable and the highest power of that variable is 1. It can always be written in the form \`ax + b = c\`, where \`a\`, \`b\`, and \`c\` are constants and \`a ≠ 0\`.
+A **Linear Equation in One Variable** is an equation that has only one variable and the highest power of that variable is 1. It can always be written in the form \`"ax + b = c\`, where \`a\`, \`b\`, and \`c\` are constants and \`a â‰  0\`.
 
 ### **General Form**
 \`ax + b = c\`
 
 **Where:**
 - \`x\`: variable (unknown)
-- \`a\`: coefficient of x (a ≠ 0)
+- \`a\`: coefficient of x (a â‰  0)
 - \`b\`, \`c\`: constants
 
 ---
 
-## 🔢 Solving Linear Equations: Step-by-Step Method
+## ðŸ”¢ Solving Linear Equations: Step-by-Step Method
 
 ### **Step 1: Simplify Both Sides**
 - Remove brackets
@@ -46,7 +46,7 @@ A **Linear Equation in One Variable** is an equation that has only one variable 
 
 ---
 
-## 📊 Examples: Basic Linear Equations
+## ðŸ“Š Examples: Basic Linear Equations
 
 ### **Example 1: Simple Equation**
 **Solve:** \`x + 5 = 12\`
@@ -55,7 +55,7 @@ A **Linear Equation in One Variable** is an equation that has only one variable 
 - Subtract 5 from both sides: \`x + 5 - 5 = 12 - 5\`
 - \`x = 7\`
 
-**Verification:** \`7 + 5 = 12\` ✓
+**Verification:** \`7 + 5 = 12\` âœ“
 
 ### **Example 2: Equation with Subtraction**
 **Solve:** \`x - 8 = 15\`
@@ -64,20 +64,20 @@ A **Linear Equation in One Variable** is an equation that has only one variable 
 - Add 8 to both sides: \`x - 8 + 8 = 15 + 8\`
 - \`x = 23\`
 
-**Verification:** \`23 - 8 = 15\` ✓
+**Verification:** \`23 - 8 = 15\` âœ“
 
 ### **Example 3: Equation with Coefficient**
 **Solve:** \`3x = 21\`
 
 **Solution:**
-- Divide both sides by 3: \`3x ÷ 3 = 21 ÷ 3\`
+- Divide both sides by 3: \`3x Ã· 3 = 21 Ã· 3\`
 - \`x = 7\`
 
-**Verification:** \`3 × 7 = 21\` ✓
+**Verification:** \`3 Ã— 7 = 21\` âœ“
 
 ---
 
-## 🧮 Advanced Examples
+## ðŸ§® Advanced Examples
 
 ### **Example 1: Variable on Both Sides**
 **Solve:** \`2x + 3 = x + 7\`
@@ -90,8 +90,8 @@ A **Linear Equation in One Variable** is an equation that has only one variable 
 - Subtract 3: \`x + 3 - 3 = 7 - 3\`
 - \`x = 4\`
 
-**Verification:** \`2×4 + 3 = 8 + 3 = 11\`
-\`4 + 7 = 11\` ✓
+**Verification:** \`2Ã—4 + 3 = 8 + 3 = 11\`
+\`4 + 7 = 11\` âœ“
 
 ### **Example 2: Multiple Operations**
 **Solve:** \`3x - 5 = 2x + 1\`
@@ -104,25 +104,25 @@ A **Linear Equation in One Variable** is an equation that has only one variable 
 - \`x - 5 + 5 = 1 + 5\`
 - \`x = 6\`
 
-**Verification:** \`3×6 - 5 = 18 - 5 = 13\`
-\`2×6 + 1 = 12 + 1 = 13\` ✓
+**Verification:** \`3Ã—6 - 5 = 18 - 5 = 13\`
+\`2Ã—6 + 1 = 12 + 1 = 13\` âœ“
 
 ### **Example 3: Fractions Involved**
 **Solve:** \`x/2 + 3 = 7\`
 
 **Step 1:** Eliminate fraction
-- Multiply both sides by 2: \`(x/2 + 3) × 2 = 7 × 2\`
+- Multiply both sides by 2: \`(x/2 + 3) Ã— 2 = 7 Ã— 2\`
 - \`x + 6 = 14\`
 
 **Step 2:** Subtract 6
 - \`x + 6 - 6 = 14 - 6\`
 - \`x = 8\`
 
-**Verification:** \`8/2 + 3 = 4 + 3 = 7\` ✓
+**Verification:** \`8/2 + 3 = 4 + 3 = 7\` âœ“
 
 ---
 
-## 🔄 Transposition Method
+## ðŸ”„ Transposition Method
 
 An alternative approach where we move terms from one side to the other by changing their signs.
 
@@ -137,12 +137,12 @@ An alternative approach where we move terms from one side to the other by changi
 - \`2x = 20\`
 - \`x = 10\`
 
-**Verification:** \`5×10 - 8 = 50 - 8 = 42\`
-\`3×10 + 12 = 30 + 12 = 42\` ✓
+**Verification:** \`5Ã—10 - 8 = 50 - 8 = 42\`
+\`3Ã—10 + 12 = 30 + 12 = 42\` âœ“
 
 ---
 
-## 📈 Special Cases
+## ðŸ“ˆ Special Cases
 
 ### **Case 1: Identity (Infinite Solutions)**
 **Equation:** \`2x + 3 = 2x + 3\`
@@ -162,7 +162,7 @@ An alternative approach where we move terms from one side to the other by changi
 
 ---
 
-## 🎯 Word Problems: Age Problems
+## ðŸŽ¯ Word Problems: Age Problems
 
 ### **Example 1: Age Problem**
 **Problem:** A father's age is 4 times his son's age. After 5 years, father will be 3 times his son's age. Find their present ages.
@@ -185,10 +185,10 @@ According to problem:
 
 ---
 
-## 💰 Word Problems: Money Problems
+## ðŸ’° Word Problems: Money Problems
 
 ### **Example 1: Money Problem**
-**Problem:** A man has ₹500. He spends ₹50 more than what he saves. If he saves x rupees, how much does he spend?
+**Problem:** A man has â‚¹500. He spends â‚¹50 more than what he saves. If he saves x rupees, how much does he spend?
 
 **Solution:**
 Amount saved = \`x\`
@@ -199,11 +199,11 @@ Total money: \`x + (x + 50) = 500\`
 \`2x = 450\`
 \`x = 225\`
 
-**Answer:** Saves: ₹225, Spends: ₹275
+**Answer:** Saves: â‚¹225, Spends: â‚¹275
 
 ---
 
-## 🚗 Word Problems: Distance-Speed-Time
+## ðŸš— Word Problems: Distance-Speed-Time
 
 ### **Example 1: Train Problem**
 **Problem:** A train covers 240 km in 4 hours. If it increases speed by 10 km/h, it covers same distance in 3.5 hours. Find original speed.
@@ -211,13 +211,13 @@ Total money: \`x + (x + 50) = 500\`
 **Solution:**
 Let original speed = \`x\` km/h
 Time = 4 hours
-Distance = \`x × 4 = 4x\` km
+Distance = \`x Ã— 4 = 4x\` km
 
 New speed = \`x + 10\` km/h
 Time = 3.5 hours
-Distance = \`(x + 10) × 3.5 = 4x\` km
+Distance = \`(x + 10) Ã— 3.5 = 4x\` km
 
-Equation: \`(x + 10) × 3.5 = 4x\`
+Equation: \`(x + 10) Ã— 3.5 = 4x\`
 \`3.5x + 35 = 4x\`
 \`35 = 4x - 3.5x\`
 \`35 = 0.5x\`
@@ -227,27 +227,27 @@ Equation: \`(x + 10) × 3.5 = 4x\`
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Sign Change**
-❌ \`x + 5 = 12\` → \`x = 12 - 5\` ✓
-❌ \`x + 5 = 12\` → \`x = 12 + 5\` ✗
+âŒ \`x + 5 = 12\` â†’ \`x = 12 - 5\` âœ“
+âŒ \`x + 5 = 12\` â†’ \`x = 12 + 5\` âœ—
 
 ### **Mistake 2: Dividing by Zero**
-❌ If coefficient becomes 0, it's not a linear equation
+âŒ If coefficient becomes 0, it's not a linear equation
 - Check coefficient before dividing
 
 ### **Mistake 3: Missing Parentheses**
-❌ \`2(x + 3) = 10\` → \`2x + 3 = 10\`
+âŒ \`2(x + 3) = 10\` â†’ \`2x + 3 = 10\`
 - Should be \`2x + 6 = 10\`
 
 ### **Mistake 4: Wrong Fraction Handling**
-❌ \`x/2 = 6\` → \`x = 6 × 2\` ✓
-❌ \`x/2 = 6\` → \`x = 6 ÷ 2\` ✗
+âŒ \`x/2 = 6\` â†’ \`x = 6 Ã— 2\` âœ“
+âŒ \`x/2 = 6\` â†’ \`x = 6 Ã· 2\` âœ—
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Basic Equations:**
 1. Solve: \`x + 7 = 15\`
@@ -262,7 +262,7 @@ Equation: \`(x + 10) × 3.5 = 4x\`
 
 ### **Word Problems:**
 1. **Age Problem:** A mother is 28 years older than her son. In 4 years, she will be twice as old as her son. Find their ages.
-2. **Money Problem:** A shopkeeper buys goods for ₹600. He sells them at a profit of 25%. Find selling price.
+2. **Money Problem:** A shopkeeper buys goods for â‚¹600. He sells them at a profit of 25%. Find selling price.
 3. **Distance Problem:** A car travels 180 km in 3 hours. Find speed.
 
 ### **Special Cases:**
@@ -272,12 +272,12 @@ Equation: \`(x + 10) × 3.5 = 4x\`
 **Answers:**
 Basic: 8, 8, 17, 4
 Variables: 5, 3, 8
-Word: Son-12, Mother-40; ₹750; 60 km/h
+Word: Son-12, Mother-40; â‚¹750; 60 km/h
 Special: Infinite solutions, No solution
 
 ---
 
-## 🎓 Pro Tips for One-Variable Equations
+## ðŸŽ“ Pro Tips for One-Variable Equations
 
 1. **Always verify solutions** by substitution
 2. **Use transposition method** for quick solving
@@ -289,14 +289,14 @@ Special: Infinite solutions, No solution
 
 ---
 
-## 🔢 Solution Checklist
+## ðŸ”¢ Solution Checklist
 
 - [ ] Simplified both sides
 - [ ] Brought like terms together
 - [ ] Isolated variable term
-- [ ] Divided by coefficient (≠ 0)
+- [ ] Divided by coefficient (â‰  0)
 - [ ] Verified solution
 - [ ] Checked for special cases
 
-Master linear equations in one variable and you'll solve aptitude problems with ease! 🏆`
+Master linear equations in one variable and you'll solve aptitude problems with ease! ðŸ†`
 };

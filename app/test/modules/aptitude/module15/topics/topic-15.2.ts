@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_2: SubLesson = {
   id: "15.2",
   title: 'Tabular Data',
   status: 'completed',
-  content: `# 📋 Tabular Data Interpretation
+  content: "`# ðŸ“‹ Tabular Data Interpretation
 
 Master the art of analyzing tabular data! Tables are the most common form of data presentation in competitive exams. Learn to quickly extract, compare, and analyze data from tables with maximum efficiency.
 
 ---
 
-## 🎯 What is Tabular Data?
+## ðŸŽ¯ What is Tabular Data?
 
 **Tabular Data** presents information in a structured format using rows and columns. It's organized like a spreadsheet where:
 - **Rows**: Represent different categories or time periods
@@ -26,7 +26,7 @@ Master the art of analyzing tabular data! Tables are the most common form of dat
 
 ---
 
-## 📊 Table Structure Analysis
+## ðŸ“Š Table Structure Analysis
 
 ### **Basic Table Components**
 
@@ -44,12 +44,12 @@ Master the art of analyzing tabular data! Tables are the most common form of dat
 
 ---
 
-## 🔍 Reading and Analyzing Tables
+## ðŸ” Reading and Analyzing Tables
 
 ### **Step 1: Understand the Context**
 - Read the table title and description
 - Identify what the data represents
-- Note units (₹, %, kg, etc.)
+- Note units (â‚¹, %, kg, etc.)
 - Understand time periods or categories
 
 ### **Step 2: Scan for Patterns**
@@ -70,7 +70,7 @@ Master the art of analyzing tabular data! Tables are the most common form of dat
 
 ---
 
-## 📈 Types of Tabular Questions
+## ðŸ“ˆ Types of Tabular Questions
 
 ### **1. Direct Value Questions**
 **"What was the value of Sales A in 2019?"**
@@ -80,16 +80,16 @@ Master the art of analyzing tabular data! Tables are the most common form of dat
 ### **2. Comparison Questions**
 **"Which category had highest growth in 2020?"**
 - Compare percentage changes
-- Sales A: (150-120)/120 × 100 = 25%
-- Sales B: (110-95)/95 × 100 ≈ 15.8%
-- Sales C: (90-75)/75 × 100 = 20%
+- Sales A: (150-120)/120 Ã— 100 = 25%
+- Sales B: (110-95)/95 Ã— 100 â‰ˆ 15.8%
+- Sales C: (90-75)/75 Ã— 100 = 20%
 - Answer: Sales A
 
 ### **3. Percentage Questions**
 **"What percentage of total sales was Sales C in 2020?"**
 - Total 2020: 150 + 110 + 90 = 350
 - Sales C: 90
-- Percentage: (90/350) × 100 = 25.71% ≈ 26%
+- Percentage: (90/350) Ã— 100 = 25.71% â‰ˆ 26%
 
 ### **4. Ratio Questions**
 **"What is the ratio of Sales A to Sales B in 2018?"**
@@ -97,34 +97,34 @@ Master the art of analyzing tabular data! Tables are the most common form of dat
 
 ### **5. Average Questions**
 **"What is the average annual sales of Category A?"**
-- Average: (100 + 120 + 150)/3 = 370/3 ≈ 123.33
+- Average: (100 + 120 + 150)/3 = 370/3 â‰ˆ 123.33
 
 ---
 
-## 🧮 Calculation Techniques
+## ðŸ§® Calculation Techniques
 
 ### **Mental Math Strategies**
 
 #### **Percentage Calculations**
-- Use fractions: 90/350 = 9/35 ≈ 0.257 × 100 = 25.7%
-- Compare to total: 90 ÷ 350 = 0.2571...
+- Use fractions: 90/350 = 9/35 â‰ˆ 0.257 Ã— 100 = 25.7%
+- Compare to total: 90 Ã· 350 = 0.2571...
 
 #### **Ratio Calculations**
 - Simplify fractions: 100:80 = 5:4
 - Compare ratios: 120:150 = 4:5
 
 #### **Growth Calculations**
-- Use formula: [(New - Old)/Old] × 100
-- Approximate: 150/120 ≈ 1.25, so 25% increase
+- Use formula: [(New - Old)/Old] Ã— 100
+- Approximate: 150/120 â‰ˆ 1.25, so 25% increase
 
 ### **Quick Comparison Techniques**
-- Round numbers: 123.33 ≈ 123
+- Round numbers: 123.33 â‰ˆ 123
 - Compare ratios: 150 > 110 > 90
 - Use benchmarks: 100, 200, 500, etc.
 
 ---
 
-## 🎯 Sample Table Analysis
+## ðŸŽ¯ Sample Table Analysis
 
 ### **Company Sales Data**
 
@@ -139,12 +139,12 @@ Master the art of analyzing tabular data! Tables are the most common form of dat
 
 **1. What is the percentage increase in Q4 total over Q1 total?**
 - Q1: 300, Q4: 410
-- Increase: (410 - 300)/300 × 100 = 110/300 × 100 = 36.67%
+- Increase: (410 - 300)/300 Ã— 100 = 110/300 Ã— 100 = 36.67%
 
 **2. Which product showed highest quarterly growth in Q3 over Q2?**
-- A: (150-135)/135 × 100 ≈ 11.11%
-- B: (125-110)/110 × 100 ≈ 13.64%
-- C: (95-90)/90 × 100 ≈ 5.56%
+- A: (150-135)/135 Ã— 100 â‰ˆ 11.11%
+- B: (125-110)/110 Ã— 100 â‰ˆ 13.64%
+- C: (95-90)/90 Ã— 100 â‰ˆ 5.56%
 - Answer: Product B
 
 **3. What is the ratio of Product A to Product C annual sales?**
@@ -152,11 +152,11 @@ Master the art of analyzing tabular data! Tables are the most common form of dat
 - Or approximately 3:2
 
 **4. What percentage of annual sales was Product B?**
-- (475/1415) × 100 ≈ 33.57%
+- (475/1415) Ã— 100 â‰ˆ 33.57%
 
 ---
 
-## 📊 Advanced Table Types
+## ðŸ“Š Advanced Table Types
 
 ### **1. Multi-Level Tables**
 
@@ -200,7 +200,7 @@ Master the art of analyzing tabular data! Tables are the most common form of dat
 
 ---
 
-## 🎯 Common Question Patterns
+## ðŸŽ¯ Common Question Patterns
 
 ### **Pattern 1: Maximum/Minimum**
 **"Which row/column has the highest/lowest value?"**
@@ -209,12 +209,12 @@ Master the art of analyzing tabular data! Tables are the most common form of dat
 
 ### **Pattern 2: Percentage Share**
 **"What percentage of total is X?"**
-- Formula: (Part/Total) × 100
+- Formula: (Part/Total) Ã— 100
 - Calculate total first
 
 ### **Pattern 3: Year-over-Year Growth**
 **"By what percentage did X increase from year N to N+1?"**
-- Formula: [(New - Old)/Old] × 100
+- Formula: [(New - Old)/Old] Ã— 100
 - Positive for increase, negative for decrease
 
 ### **Pattern 4: Ratio Comparison**
@@ -224,12 +224,12 @@ Master the art of analyzing tabular data! Tables are the most common form of dat
 
 ### **Pattern 5: Average Calculation**
 **"What is the average value of X?"**
-- Sum ÷ Count
+- Sum Ã· Count
 - Include/exclude zeros as per context
 
 ---
 
-## 🚀 Speed Enhancement Techniques
+## ðŸš€ Speed Enhancement Techniques
 
 ### **1. Visual Scanning**
 - Look for patterns in numbers
@@ -237,8 +237,8 @@ Master the art of analyzing tabular data! Tables are the most common form of dat
 - Spot anomalies quickly
 
 ### **2. Mental Math**
-- Round numbers: 123.5 ≈ 124
-- Use fractions: 1/4 = 25%, 1/3 ≈ 33.3%
+- Round numbers: 123.5 â‰ˆ 124
+- Use fractions: 1/4 = 25%, 1/3 â‰ˆ 33.3%
 - Approximate percentages
 
 ### **3. Comparison Shortcuts**
@@ -253,31 +253,31 @@ Master the art of analyzing tabular data! Tables are the most common form of dat
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Row/Column Reading**
-❌ Reading Product A data when question asks for Product B
+âŒ Reading Product A data when question asks for Product B
 - Double-check row/column headers
 
 ### **Mistake 2: Unit Confusion**
-❌ Treating lakhs as rupees
+âŒ Treating lakhs as rupees
 - Always check units in table and question
 
 ### **Mistake 3: Calculation Errors**
-❌ 475 ÷ 1415 = 0.3357 instead of 0.3357 × 100 = 33.57%
+âŒ 475 Ã· 1415 = 0.3357 instead of 0.3357 Ã— 100 = 33.57%
 - Don't forget percentage conversion
 
 ### **Mistake 4: Missing Totals**
-❌ Calculating percentage without total
+âŒ Calculating percentage without total
 - Sum rows/columns when needed
 
 ### **Mistake 5: Time Wastage**
-❌ Recalculating same totals multiple times
+âŒ Recalculating same totals multiple times
 - Calculate once, remember the value
 
 ---
 
-## 🎯 Practice Tables
+## ðŸŽ¯ Practice Tables
 
 ### **Table 1: Student Performance**
 
@@ -308,7 +308,7 @@ Master the art of analyzing tabular data! Tables are the most common form of dat
 
 ---
 
-## 🎓 Pro Tips for Tabular Data
+## ðŸŽ“ Pro Tips for Tabular Data
 
 1. **Read the table completely** first
 2. **Calculate totals** mentally as you read
@@ -320,9 +320,9 @@ Master the art of analyzing tabular data! Tables are the most common form of dat
 
 ---
 
-## 🔢 Tabular Data Framework
+## ðŸ”¢ Tabular Data Framework
 
-\`\`\`
+\`"\`\`
 1. SCAN the table structure
    - Headers, units, totals
    - Maximum/minimum values
@@ -344,14 +344,14 @@ Master the art of analyzing tabular data! Tables are the most common form of dat
    - Check against options
 \`\`\`
 
-Master tabular data interpretation and extract insights quickly from any table! 🏆
+Master tabular data interpretation and extract insights quickly from any table! ðŸ†
 
 **Answers for Practice Tables:**
-1. Math: 85→92 (+7), Science: 82→89 (+7), English: 78→86 (+8), Hindi: 80→87 (+7) → English
+1. Math: 85â†’92 (+7), Science: 82â†’89 (+7), English: 78â†’86 (+8), Hindi: 80â†’87 (+7) â†’ English
 2. Overall: (85+88+92+82+85+89+78+82+86+80+83+87)/12 = 1056/12 = 88
 3. XII: (92+89+86+87)/4 = 354/4 = 88.5
 
-Sales: 1. (320-240)/240 × 100 = 80/240 × 100 = 33.33%
-2. A: (140-100)/100=40%, B:(100-80)/80=25%, C:(80-60)/60≈33.3% → A
+Sales: 1. (320-240)/240 Ã— 100 = 80/240 Ã— 100 = 33.33%
+2. A: (140-100)/100=40%, B:(100-80)/80=25%, C:(80-60)/60â‰ˆ33.3% â†’ A
 3. 140:80 = 7:4`
 };

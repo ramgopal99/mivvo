@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_2: SubLesson = {
   id: "9.2",
   title: 'Classes and Objects',
   status: 'demo',
-  content: `# 🏗️ Classes and Objects
+  content: "`# ðŸ—ï¸ Classes and Objects
 
 Classes and objects are the core of Object-Oriented Programming. Let's explore how to define blueprints and create instances!
 
 ---
 
-## 🎯 Class Definition
+## ðŸŽ¯ Class Definition
 
 A **class** is a blueprint for creating objects. Classes are dynamic and flexible, supporting features like multiple inheritance and dynamic attribute addition.
 
 ### **Basic Class Syntax**
-\`\`\`python
+\`"\`\`python
 class ClassName:
     """Optional class documentation string"""
 
@@ -44,7 +44,7 @@ class ClassName:
 
 ---
 
-## 📝 The Constructor
+## ðŸ“ The Constructor
 
 ### **Purpose of \`__init__\`**
 - Initializes new instances when they're created
@@ -72,7 +72,7 @@ person2 = Person("Bob")        # Uses default age=0
 
 ---
 
-## 🎯 Creating Objects
+## ðŸŽ¯ Creating Objects
 
 ### **Object Creation Process**
 1. Memory is allocated for the new object
@@ -110,7 +110,7 @@ print(your_car.drive(30))    # Car is not running!
 
 ---
 
-## 🔍 The Instance Parameter
+## ðŸ” The Instance Parameter
 
 ### **Understanding \`self\`**
 - Refers to the current instance of the class
@@ -143,7 +143,7 @@ print(counter2.get_count())  # 1
 
 ---
 
-## 📦 Instance vs Class Members
+## ðŸ“¦ Instance vs Class Members
 
 ### **Instance Attributes**
 - Unique to each object instance
@@ -182,7 +182,7 @@ emp1.bonus = 5000  # Only emp1 has this attribute
 
 ---
 
-## 🔧 Method Types
+## ðŸ”§ Method Types
 
 ### **Instance Methods**
 - Most common type of method
@@ -236,7 +236,7 @@ print(BankAccount.validate_amount(15000)) # False
 
 ---
 
-## 🏭 Flexible Initialization
+## ðŸ­ Flexible Initialization
 
 ### **Default Parameters**
 \`\`\`python
@@ -276,7 +276,7 @@ person3 = Person.create_anonymous()
 
 ---
 
-## 🔍 Special Methods
+## ðŸ” Special Methods
 
 ### **Common Dunder Methods**
 \`\`\`python
@@ -317,7 +317,7 @@ print(len(v1))      # 5
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Classes are dynamic** - attributes can be added at runtime
 2. **Instance parameter is explicit** - always the first parameter in instance methods
@@ -326,6 +326,7 @@ print(len(v1))      # 5
 5. **Multiple method types** - instance, class, and static methods
 6. **Special methods** enable operator overloading and custom behavior
 
-Ready to explore inheritance? Let's see how classes can inherit and extend functionality from other classes! 🚀`,
+Ready to explore inheritance? Let's see how classes can inherit and extend functionality from other classes! ðŸš€`,
 };
+
 

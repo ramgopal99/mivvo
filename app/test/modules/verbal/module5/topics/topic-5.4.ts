@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_4: SubLesson = {
   id: "5.4",
   title: 'Logical Sequencing',
   status: 'completed',
-  content: `# 🔢 Logical Sequencing: Ordering by Logic
+  content: "`# ðŸ”¢ Logical Sequencing: Ordering by Logic
 
 Logical Sequencing involves arranging sentences, events, or ideas in a meaningful order based on time, cause-effect relationships, processes, or other logical connections. This skill tests your ability to understand relationships and chronological flow.
 
 ---
 
-## 🔍 WHAT IS LOGICAL SEQUENCING?
+## ðŸ” WHAT IS LOGICAL SEQUENCING?
 
 **Logical Sequencing** requires you to:
-- ✅ **Identify relationship types** between statements
-- ✅ **Arrange in logical order** (time, cause, process, etc.)
-- ✅ **Recognize transition patterns** and connectors
-- ✅ **Create coherent sequences** that make sense
+- âœ… **Identify relationship types** between statements
+- âœ… **Arrange in logical order** (time, cause, process, etc.)
+- âœ… **Recognize transition patterns** and connectors
+- âœ… **Create coherent sequences** that make sense
 
 ### Key Skills Tested:
 - **Chronological Order**: Time-based sequencing
@@ -26,7 +26,7 @@ Logical Sequencing involves arranging sentences, events, or ideas in a meaningfu
 
 ---
 
-## 🎯 TYPES OF LOGICAL SEQUENCES
+## ðŸŽ¯ TYPES OF LOGICAL SEQUENCES
 
 ### 1. **Chronological Sequencing**
 **Arrange events in time order**
@@ -37,8 +37,8 @@ B. The meeting started at 3 PM.
 C. Coffee break was at 4 PM.
 D. Participants arrived at 2:30 PM.
 
-**Correct Order:** D → B → C → A
-(Arrival → Start → Break → End)
+**Correct Order:** D â†’ B â†’ C â†’ A
+(Arrival â†’ Start â†’ Break â†’ End)
 
 ### 2. **Cause-Effect Sequencing**
 **Arrange based on reason-result relationships**
@@ -49,8 +49,8 @@ B. The doctor prescribed proper medication.
 C. The patient visited the doctor.
 D. The patient was feeling ill.
 
-**Correct Order:** D → C → B → A
-(Illness → Visit → Treatment → Recovery)
+**Correct Order:** D â†’ C â†’ B â†’ A
+(Illness â†’ Visit â†’ Treatment â†’ Recovery)
 
 ### 3. **Process/Step-by-Step Sequencing**
 **Arrange according to process flow**
@@ -58,12 +58,12 @@ D. The patient was feeling ill.
 **Example:**
 A. The cake is ready to eat.
 B. Mix all ingredients together.
-C. Preheat the oven to 350°F.
+C. Preheat the oven to 350Â°F.
 D. Bake for 30 minutes.
 E. Pour batter into the pan.
 
-**Correct Order:** C → B → E → D → A
-(Preheat → Mix → Pour → Bake → Ready)
+**Correct Order:** C â†’ B â†’ E â†’ D â†’ A
+(Preheat â†’ Mix â†’ Pour â†’ Bake â†’ Ready)
 
 ### 4. **Development/Growth Sequencing**
 **Arrange according to stages of development**
@@ -75,12 +75,12 @@ C. The company expanded globally.
 D. The company introduced new products.
 E. The company gained initial customers.
 
-**Correct Order:** B → E → D → C → A
-(Founded → Customers → Products → Expansion → Leadership)
+**Correct Order:** B â†’ E â†’ D â†’ C â†’ A
+(Founded â†’ Customers â†’ Products â†’ Expansion â†’ Leadership)
 
 ---
 
-## 🛠️ SEQUENCING STRATEGIES
+## ðŸ› ï¸ SEQUENCING STRATEGIES
 
 ### Step-by-Step Approach:
 1. **Identify sequence type** - Chronological, cause-effect, process?
@@ -93,48 +93,48 @@ E. The company gained initial customers.
 ### Key Indicators:
 
 #### Time Indicators:
-- ✅ **First, initially, at the beginning**
-- ✅ **Then, next, after that, subsequently**
-- ✅ **Later, finally, at the end, ultimately**
+- âœ… **First, initially, at the beginning**
+- âœ… **Then, next, after that, subsequently**
+- âœ… **Later, finally, at the end, ultimately**
 
 #### Cause-Effect Indicators:
-- ✅ **Because, since, as, due to**
-- ✅ **Therefore, consequently, as a result, hence**
-- ✅ **So, thus, accordingly**
+- âœ… **Because, since, as, due to**
+- âœ… **Therefore, consequently, as a result, hence**
+- âœ… **So, thus, accordingly**
 
 #### Process Indicators:
-- ✅ **First step, second step, next**
-- ✅ **Then, after, before, during**
-- ✅ **Finally, lastly, in conclusion**
+- âœ… **First step, second step, next**
+- âœ… **Then, after, before, during**
+- âœ… **Finally, lastly, in conclusion**
 
 ---
 
-## 📊 SEQUENCE PATTERNS
+## ðŸ“Š SEQUENCE PATTERNS
 
 ### Chronological Patterns:
-1. **Historical Events**: Past → Present → Future
-2. **Daily Routine**: Morning → Afternoon → Evening
-3. **Life Stages**: Birth → Childhood → Adulthood → Old age
-4. **Project Phases**: Planning → Execution → Completion
+1. **Historical Events**: Past â†’ Present â†’ Future
+2. **Daily Routine**: Morning â†’ Afternoon â†’ Evening
+3. **Life Stages**: Birth â†’ Childhood â†’ Adulthood â†’ Old age
+4. **Project Phases**: Planning â†’ Execution â†’ Completion
 
 ### Cause-Effect Patterns:
-1. **Problem-Solution**: Problem → Analysis → Solution → Result
-2. **Action-Reaction**: Action → Immediate effect → Long-term impact
-3. **Stimulus-Response**: Stimulus → Processing → Response
+1. **Problem-Solution**: Problem â†’ Analysis â†’ Solution â†’ Result
+2. **Action-Reaction**: Action â†’ Immediate effect â†’ Long-term impact
+3. **Stimulus-Response**: Stimulus â†’ Processing â†’ Response
 
 ### Process Patterns:
-1. **Manufacturing**: Raw materials → Processing → Assembly → Finished product
-2. **Scientific Method**: Observation → Hypothesis → Experiment → Conclusion
-3. **Decision Making**: Identify problem → Gather info → Analyze → Decide
+1. **Manufacturing**: Raw materials â†’ Processing â†’ Assembly â†’ Finished product
+2. **Scientific Method**: Observation â†’ Hypothesis â†’ Experiment â†’ Conclusion
+3. **Decision Making**: Identify problem â†’ Gather info â†’ Analyze â†’ Decide
 
 ### Development Patterns:
-1. **Business Growth**: Startup → Growth → Maturity → Expansion
-2. **Learning Process**: Introduction → Practice → Mastery → Application
-3. **Skill Development**: Beginner → Intermediate → Advanced → Expert
+1. **Business Growth**: Startup â†’ Growth â†’ Maturity â†’ Expansion
+2. **Learning Process**: Introduction â†’ Practice â†’ Mastery â†’ Application
+3. **Skill Development**: Beginner â†’ Intermediate â†’ Advanced â†’ Expert
 
 ---
 
-## ⚠️ COMMON SEQUENCING ERRORS
+## âš ï¸ COMMON SEQUENCING ERRORS
 
 ### Avoid These Mistakes:
 1. **Time Reversal**: Putting effect before cause
@@ -144,15 +144,15 @@ E. The company gained initial customers.
 5. **Incomplete Sequences**: Missing logical links
 
 ### Check These Points:
-- ✅ **Time Flow**: Events in proper chronological order
-- ✅ **Cause-Effect**: Reasons precede results
-- ✅ **Process Logic**: Each step follows naturally from previous
-- ✅ **Development Stages**: Progressive advancement
-- ✅ **Connector Words**: Proper transition indicators
+- âœ… **Time Flow**: Events in proper chronological order
+- âœ… **Cause-Effect**: Reasons precede results
+- âœ… **Process Logic**: Each step follows naturally from previous
+- âœ… **Development Stages**: Progressive advancement
+- âœ… **Connector Words**: Proper transition indicators
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Chronological Sequencing
 **Arrange in time order:**
@@ -163,7 +163,7 @@ C. Intermission was at 8:30 PM.
 D. The movie started at 7:30 PM.
 E. We had dinner after the movie.
 
-**Correct Order:** B → D → C → A → E
+**Correct Order:** B â†’ D â†’ C â†’ A â†’ E
 
 **Explanation:**
 - B: Arrival (first)
@@ -181,7 +181,7 @@ C. There was a severe drought.
 D. Many farmers abandoned their fields.
 E. Food prices increased dramatically.
 
-**Correct Order:** C → A → B → D → E
+**Correct Order:** C â†’ A â†’ B â†’ D â†’ E
 
 **Explanation:**
 - C: Drought (cause)
@@ -196,11 +196,11 @@ E. Food prices increased dramatically.
 A. The cake is ready to serve.
 B. Cream butter and sugar together.
 C. Add eggs and flour gradually.
-D. Preheat the oven to 350°F.
+D. Preheat the oven to 350Â°F.
 E. Bake for 30 minutes.
 F. Pour batter into greased pan.
 
-**Correct Order:** D → B → C → F → E → A
+**Correct Order:** D â†’ B â†’ C â†’ F â†’ E â†’ A
 
 **Explanation:**
 - D: Preheat oven (first step)
@@ -220,7 +220,7 @@ D. Company was founded by two engineers.
 E. International expansion began.
 F. Customer base grew to 10,000.
 
-**Correct Order:** D → C → B → F → E → A
+**Correct Order:** D â†’ C â†’ B â†’ F â†’ E â†’ A
 
 **Explanation:**
 - D: Foundation (start)
@@ -240,7 +240,7 @@ D. Data was collected and analyzed.
 E. Research proposal was submitted.
 F. Findings were interpreted.
 
-**Correct Order:** C → E → B → D → F → A
+**Correct Order:** C â†’ E â†’ B â†’ D â†’ F â†’ A
 
 **Explanation:**
 - C: Question formulation (start)
@@ -260,7 +260,7 @@ D. Illegal logging was reported in the area.
 E. Local government implemented strict regulations.
 F. Environmental impact assessment was conducted.
 
-**Correct Order:** D → F → C → E → A → B
+**Correct Order:** D â†’ F â†’ C â†’ E â†’ A â†’ B
 
 **Explanation:**
 - D: Problem identification (illegal logging)
@@ -272,42 +272,42 @@ F. Environmental impact assessment was conducted.
 
 ---
 
-## 📊 SEQUENCING TYPES SUMMARY
+## ðŸ“Š SEQUENCING TYPES SUMMARY
 
 | Sequence Type | Key Indicators | Example Pattern |
 |---|---|---|
-| **Chronological** | Time words, dates, sequence | Morning → Afternoon → Evening |
-| **Cause-Effect** | Because, therefore, as a result | Problem → Cause → Effect → Result |
-| **Process** | First, then, next, finally | Step 1 → Step 2 → Step 3 → Result |
-| **Development** | Stages, growth, progression | Beginning → Growth → Maturity |
-| **Logical Flow** | Therefore, hence, consequently | Premise → Reasoning → Conclusion |
+| **Chronological** | Time words, dates, sequence | Morning â†’ Afternoon â†’ Evening |
+| **Cause-Effect** | Because, therefore, as a result | Problem â†’ Cause â†’ Effect â†’ Result |
+| **Process** | First, then, next, finally | Step 1 â†’ Step 2 â†’ Step 3 â†’ Result |
+| **Development** | Stages, growth, progression | Beginning â†’ Growth â†’ Maturity |
+| **Logical Flow** | Therefore, hence, consequently | Premise â†’ Reasoning â†’ Conclusion |
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **5-7 Statements**: Usually 5-7 items to sequence
 2. **Multiple Choice**: Options show different arrangements
 3. **Single Correct Order**: Only one logical sequence
 4. **Theme-Based**: Stories, processes, developments, etc.
 5. **No Partial Credit**: All statements must be in correct order
 
-### 💡 Quick Solving Strategy:
+### ðŸ’¡ Quick Solving Strategy:
 1. **Identify sequence type** - Chronological, cause-effect, process?
 2. **Find starting point** - First event, cause, or initial step
 3. **Look for connectors** - Time words, cause-effect terms
 4. **Check logical flow** - Each item should naturally follow previous
 5. **Verify completeness** - All items should connect without gaps
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Spot time markers** - Yesterday, then, after, before, finally
 - **Find cause-effect links** - Because, therefore, as a result
 - **Identify process steps** - First, second, next, then, finally
 - **Look for mandatory pairs** - Some items must go together
 - **Eliminate reverse orders** - Latest events can't come first
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Practice all types** - Chronological, cause-effect, process
 - **Learn indicators** - Time, cause, process, development words
 - **Read actively** - Notice natural sequences in texts
@@ -316,22 +316,23 @@ F. Environmental impact assessment was conducted.
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Type Recognition**: Learn to identify sequence types quickly
 2. **Indicator Words**: Master time, cause, process connectors
 3. **Pattern Practice**: Practice each type separately
 4. **Logical Thinking**: Develop cause-effect reasoning
 5. **Active Reading**: Notice sequences in newspapers, stories
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Logical sequencing is like storyboarding:**
-- 🎬 **Identify plot type**: Chronological story, cause-effect drama, process documentary
-- 🎬 **Find opening scene**: Beginning event, initial cause, first step
-- 🎬 **Connect scenes**: Each event/step flows logically from previous
-- 🎬 **Check transitions**: Time/causation/process connectors link scenes
-- 🎯 **Perfect sequence**: Complete, coherent, logical story
+- ðŸŽ¬ **Identify plot type**: Chronological story, cause-effect drama, process documentary
+- ðŸŽ¬ **Find opening scene**: Beginning event, initial cause, first step
+- ðŸŽ¬ **Connect scenes**: Each event/step flows logically from previous
+- ðŸŽ¬ **Check transitions**: Time/causation/process connectors link scenes
+- ðŸŽ¯ **Perfect sequence**: Complete, coherent, logical story
 
-**Master logical sequencing and become a story architect!** 🎬✨`
+**Master logical sequencing and become a story architect!** ðŸŽ¬âœ¨`"
 };
+

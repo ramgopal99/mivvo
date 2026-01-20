@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_6: SubLesson = {
   id: "4.6",
   title: 'Comparison-Based Puzzles',
   status: 'completed',
-  content: `# ⚖️ Comparison-Based Puzzles
+  content: "`# âš–ï¸ Comparison-Based Puzzles
 
 Comparison-based puzzles involve analyzing relationships between entities based on various attributes like age, height, weight, performance, etc. These puzzles require understanding comparative relationships and transitive reasoning to solve complex ranking problems.
 
 ---
 
-## 🎯 Understanding Comparison Puzzles
+## ðŸŽ¯ Understanding Comparison Puzzles
 
 ### **What are Comparison-Based Puzzles?**
 Comparison puzzles involve entities compared based on attributes, requiring you to determine relative rankings and relationships. They test your ability to:
@@ -27,7 +27,7 @@ Comparison puzzles involve entities compared based on attributes, requiring you 
 
 ---
 
-## 🧩 Types of Comparisons
+## ðŸ§© Types of Comparisons
 
 ### **1. Direct Comparisons**
 **Explicit relationship statements**
@@ -49,7 +49,7 @@ Comparison puzzles involve entities compared based on attributes, requiring you 
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Identify Comparison Type**
 - Note the attribute being compared
@@ -73,7 +73,7 @@ Comparison puzzles involve entities compared based on attributes, requiring you 
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Age Comparison**
 **Age-based ranking problems**
@@ -95,11 +95,11 @@ Comparison puzzles involve entities compared based on attributes, requiring you 
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Comparison Chain Method**
 A > B > C > D
-↑
+â†‘
 E > F
 - Create comparison chains
 - Apply transitive relationships
@@ -122,7 +122,7 @@ D   >   >   >   -
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Age Comparison**
 **Conditions:**
@@ -157,7 +157,7 @@ D   >   >   >   -
 
 ---
 
-## 🔍 Advanced Comparison Concepts
+## ðŸ” Advanced Comparison Concepts
 
 ### **Multi-Attribute Comparisons**
 Problems involving multiple comparison criteria simultaneously.
@@ -170,11 +170,11 @@ Complex relationship loops requiring careful analysis.
 
 ---
 
-## 📊 Comparison Logic Methods
+## ðŸ“Š Comparison Logic Methods
 
 ### **Transitive Logic**
-- **Direct Transitivity**: A > B, B > C → A > C
-- **Indirect Transitivity**: A > D, D > C → A > C
+- **Direct Transitivity**: A > B, B > C â†’ A > C
+- **Indirect Transitivity**: A > D, D > C â†’ A > C
 - **Network Transitivity**: Complex relationship chains
 
 ### **Ranking Logic**
@@ -189,23 +189,23 @@ Complex relationship loops requiring careful analysis.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Transitive Error**
-❌ Incorrect transitive application
-✅ Careful chain verification
+âŒ Incorrect transitive application
+âœ… Careful chain verification
 
 ### **Pitfall 2: Attribute Confusion**
-❌ Mixing different comparison attributes
-✅ Keep attributes separate
+âŒ Mixing different comparison attributes
+âœ… Keep attributes separate
 
 ### **Pitfall 3: Direction Error**
-❌ Reversing comparison directions
-✅ Maintain correct relationship directions
+âŒ Reversing comparison directions
+âœ… Maintain correct relationship directions
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Comparison Diagram**
 - Draw comparison arrows/lines
@@ -224,7 +224,7 @@ Complex relationship loops requiring careful analysis.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Few entities, simple comparisons
@@ -243,17 +243,17 @@ Complex relationship loops requiring careful analysis.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Draw Comparison Diagrams**: Visual relationship mapping
-2. **Apply Transitive Property**: Use A > B, B > C → A > C
+2. **Apply Transitive Property**: Use A > B, B > C â†’ A > C
 3. **Keep Attributes Separate**: Don't mix age and height comparisons
 4. **Start with Direct**: Use given comparisons first
 5. **Verify Chains**: Check each transitive step
 
 ---
 
-## ⚖️ Practice Questions
+## âš–ï¸ Practice Questions
 
 ### **Question 1**
 **Conditions:**
@@ -286,5 +286,5 @@ Complex relationship loops requiring careful analysis.
 
 **Who joined first?**
 
-**Master comparison-based puzzles for ranking and relationship analysis! ⚖️✨**`
+**Master comparison-based puzzles for ranking and relationship analysis! âš–ï¸âœ¨**`"
 };

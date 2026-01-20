@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_5: SubLesson = {
   id: "12.5",
   title: 'What are Heaps?',
   status: 'demo',
-  content: `# 🏔️ What are Heaps?
+  content: "`# ðŸ”ï¸ What are Heaps?
 
 Heaps are specialized tree-based data structures that satisfy the **heap property**. They enable efficient access to the minimum or maximum element and are the foundation of priority queues!
 
 ---
 
-## 🎯 What is a Heap?
+## ðŸŽ¯ What is a Heap?
 
 A **heap** is a complete binary tree where each node satisfies the **heap property**:
-- **Max Heap**: Parent ≥ children (root is maximum)
-- **Min Heap**: Parent ≤ children (root is minimum)
+- **Max Heap**: Parent â‰¥ children (root is maximum)
+- **Min Heap**: Parent â‰¤ children (root is minimum)
 
-\`\`\`python
+\`"\`\`python
 # Max Heap Example:
 #        10
 #       /  \
@@ -34,7 +34,7 @@ A **heap** is a complete binary tree where each node satisfies the **heap proper
 
 ---
 
-## 🏗️ Heap Operations
+## ðŸ—ï¸ Heap Operations
 
 ### **Core Operations**
 \`\`\`python
@@ -102,7 +102,7 @@ print(f"New smallest: {min_heap[0] if min_heap else 'Empty'}")
 
 ---
 
-## 🌳 Heap Properties
+## ðŸŒ³ Heap Properties
 
 ### **Complete Binary Tree**
 \`\`\`python
@@ -169,7 +169,7 @@ print(f"After heapify down: {test_heap}")
 
 ---
 
-## 📊 Heap Performance
+## ðŸ“Š Heap Performance
 
 ### **Time Complexity**
 - **Insert**: O(log n) - Bubble up to correct position
@@ -184,7 +184,7 @@ print(f"After heapify down: {test_heap}")
 
 ---
 
-## 🔧 Heap Implementation Options
+## ðŸ”§ Heap Implementation Options
 
 ### **Manual Implementation**
 \`\`\`python
@@ -293,7 +293,7 @@ print(f"3 largest: {heapq.nlargest(3, data)}")
 
 ---
 
-## 🎯 Heap Applications
+## ðŸŽ¯ Heap Applications
 
 ### **Priority Queue**
 \`\`\`python
@@ -419,7 +419,7 @@ print(f"{k} smallest: {find_k_smallest(numbers, k)}")
 
 ---
 
-## ⚖️ Heap vs Other Structures
+## âš–ï¸ Heap vs Other Structures
 
 | Operation | Heap | Sorted Array | Unsorted Array |
 |-----------|------|--------------|----------------|
@@ -438,7 +438,7 @@ print(f"{k} smallest: {find_k_smallest(numbers, k)}")
 
 ---
 
-## 🚀 Heap Implementation Best Practices
+## ðŸš€ Heap Implementation Best Practices
 
 ### **Choose Right Heap Type**
 \`\`\`python
@@ -490,6 +490,7 @@ print(f"Heap from heapify: {heap2}")
 print("heapify is more efficient for initial construction!")
 \`\`\`
 
-Heaps are powerful for priority-based operations and efficient min/max access! 🏔️`
+Heaps are powerful for priority-based operations and efficient min/max access! ðŸ”ï¸`
 };
+
 

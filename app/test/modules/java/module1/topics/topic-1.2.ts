@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_1_2: SubLesson = {
   id: "1.2",
   title: 'Setting Up Java Locally',
   status: 'completed',
-  content: `# 🛠️ Setting Up Java on Your Local Machine
+  content: "`# ðŸ› ï¸ Setting Up Java on Your Local Machine
 
 Learn how to install Java and set up your development environment for coding.
 
 ---
 
-## 📋 Prerequisites
+## ðŸ“‹ Prerequisites
 
 Before installing Java, make sure your system meets these requirements:
 
@@ -28,13 +28,13 @@ Before installing Java, make sure your system meets these requirements:
 
 ---
 
-## 🪟 Windows Installation
+## ðŸªŸ Windows Installation
 
 ### Method 1: Official Oracle JDK (Recommended)
 
 1. **Download Java**
    - Visit [oracle.com/java](https://oracle.com/java)
-   - Click "Download Java" → "JDK Download"
+   - Click "Download Java" â†’ "JDK Download"
    - Choose the latest LTS version (Java 17 or 21)
 
 2. **Run the Installer**
@@ -44,7 +44,7 @@ Before installing Java, make sure your system meets these requirements:
 
 3. **Verify Installation**
    - Open Command Prompt (search for "cmd")
-   - Type: \`java -version\`
+   - Type: \`"java -version\`
    - Type: \`javac -version\`
 
 ### Method 2: OpenJDK (Free Alternative)
@@ -60,13 +60,13 @@ Before installing Java, make sure your system meets these requirements:
 
 ---
 
-## 🍎 macOS Installation
+## ðŸŽ macOS Installation
 
 ### Method 1: Official Oracle JDK
 
 1. **Download Java**
    - Visit [oracle.com/java](https://oracle.com/java)
-   - Click "Download Java" → "JDK Download"
+   - Click "Download Java" â†’ "JDK Download"
    - Choose macOS installer
 
 2. **Install Java**
@@ -100,7 +100,7 @@ Before installing Java, make sure your system meets these requirements:
 
 ---
 
-## 🐧 Linux Installation
+## ðŸ§ Linux Installation
 
 ### Ubuntu/Debian
 
@@ -140,7 +140,7 @@ javac -version
 
 ---
 
-## 🆚 JDK vs JRE vs JVM
+## ðŸ†š JDK vs JRE vs JVM
 
 ### JDK (Java Development Kit)
 - **Contains**: JRE + development tools (javac, javadoc, etc.)
@@ -157,11 +157,11 @@ javac -version
 - **Platform**: Specific to each operating system
 - **Features**: Garbage collection, security, performance optimization
 
-**Always install JDK for development!** 🚀
+**Always install JDK for development!** ðŸš€
 
 ---
 
-## 🖥️ Setting Up Your Development Environment
+## ðŸ–¥ï¸ Setting Up Your Development Environment
 
 ### 1. Choose a Code Editor
 
@@ -219,7 +219,7 @@ gradle -version
 
 ---
 
-## 🧪 Testing Your Setup
+## ðŸ§ª Testing Your Setup
 
 Create a simple test program to verify everything works:
 
@@ -255,7 +255,7 @@ Java version: 17.0.8
 
 ---
 
-## 🐛 Troubleshooting Common Issues
+## ðŸ› Troubleshooting Common Issues
 
 ### "java is not recognized" (Windows)
 - Reinstall JDK and ensure PATH is set correctly
@@ -284,7 +284,7 @@ sudo update-alternatives --config javac
 
 ---
 
-## 🎯 Java Versions and Compatibility
+## ðŸŽ¯ Java Versions and Compatibility
 
 ### Long-Term Support (LTS) Versions
 - **Java 8** (2014): Most widely used, LTS until 2030
@@ -299,7 +299,7 @@ sudo update-alternatives --config javac
 
 ---
 
-## 🚀 Next Steps
+## ðŸš€ Next Steps
 
 Now that Java is set up, you're ready to:
 
@@ -309,7 +309,8 @@ Now that Java is set up, you're ready to:
 
 Remember: **Practice regularly** and **experiment with code**. Java has excellent documentation and a supportive community!
 
-Happy coding! 🎉
+Happy coding! ðŸŽ‰
 `
 };
+
 

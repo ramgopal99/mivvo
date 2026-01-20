@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_10: SubLesson = {
   id: "6.10",
   title: 'Position-Based Series',
   status: 'completed',
-  content: `# 📍 Position-Based Series
+  content: "`# ðŸ“ Position-Based Series
 
 Position-based series involve sequences where each term is determined by its position in the series. These series use mathematical functions of the term position (nth term) to generate the sequence. They require understanding of position-based calculations and mathematical relationships between position and term values.
 
 ---
 
-## 🎯 Understanding Position-Based Series
+## ðŸŽ¯ Understanding Position-Based Series
 
 ### **What are Position-Based Series?**
 Position-based series are sequences where each term is calculated using a mathematical function of its position in the series. These problems test your ability to:
@@ -27,40 +27,40 @@ Position-based series are sequences where each term is calculated using a mathem
 
 ---
 
-## 🧩 Types of Position-Based Series
+## ðŸ§© Types of Position-Based Series
 
 ### **1. Direct Position Series**
 **Terms equal to their position values**
 - **Simple Position**: Term = Position (1, 2, 3, 4,...)
-- **Modified Position**: Term = Position ± constant
-- **Scaled Position**: Term = Position × constant
+- **Modified Position**: Term = Position Â± constant
+- **Scaled Position**: Term = Position Ã— constant
 
 ### **2. Power-Based Series**
 **Terms involving powers of position**
-- **Square Series**: Term = Position²
-- **Cube Series**: Term = Position³
+- **Square Series**: Term = PositionÂ²
+- **Cube Series**: Term = PositionÂ³
 - **Higher Powers**: Term = Position^n
 
 ### **3. Factorial-Based Series**
 **Terms involving factorials of position**
 - **Factorial Series**: Term = Position!
-- **Modified Factorial**: Term = k × Position!
+- **Modified Factorial**: Term = k Ã— Position!
 - **Factorial Combinations**: Term = nCr or nPr values
 
 ### **4. Arithmetic Function Series**
 **Terms using arithmetic functions of position**
-- **Multiplication Series**: Term = Position × (Position + k)
-- **Division Series**: Term = Position ÷ (Position + k)
+- **Multiplication Series**: Term = Position Ã— (Position + k)
+- **Division Series**: Term = Position Ã· (Position + k)
 - **Complex Arithmetic**: Multiple arithmetic operations on position
 
 ### **5. Trigonometric Series**
 **Terms using trigonometric functions**
 - **Sine/Cosine Series**: Term = sin(n), cos(n)
-- **Modified Trigonometric**: Term = k × sin(n) or cos(n)
+- **Modified Trigonometric**: Term = k Ã— sin(n) or cos(n)
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: List Positions and Terms**
 - Assign position numbers to each term (1, 2, 3,...)
@@ -68,7 +68,7 @@ Position-based series are sequences where each term is calculated using a mathem
 - Look for obvious mathematical relationships
 
 ### **Step 2: Identify Position Function**
-- Test common position functions (n, n², n³, n!)
+- Test common position functions (n, nÂ², nÂ³, n!)
 - Check arithmetic relationships with position
 - Consider position in combination with constants
 
@@ -84,84 +84,84 @@ Position-based series are sequences where each term is calculated using a mathem
 
 ---
 
-## 🎯 Common Position-Based Patterns
+## ðŸŽ¯ Common Position-Based Patterns
 
 ### **Direct Position Examples**
 
 #### **Type 1: Simple Position Series**
 **Term equals position**
 - **Pattern**: Term = Position
-- **Example**: 1, 2, 3, 4, 5, ? → Position 6
+- **Example**: 1, 2, 3, 4, 5, ? â†’ Position 6
 - **Next term**: 6
 
 #### **Type 2: Modified Position Series**
 **Position plus/minus constant**
 - **Pattern**: Term = Position + k or Position - k
-- **Example**: 3, 4, 5, 6, 7, ? → Position + 2
+- **Example**: 3, 4, 5, 6, 7, ? â†’ Position + 2
 - **Next term**: 6 + 2 = 8
 
 #### **Type 3: Scaled Position Series**
 **Position multiplied by constant**
-- **Pattern**: Term = k × Position
-- **Example**: 5, 10, 15, 20, 25, ? → 5 × Position
-- **Next term**: 5 × 6 = 30
+- **Pattern**: Term = k Ã— Position
+- **Example**: 5, 10, 15, 20, 25, ? â†’ 5 Ã— Position
+- **Next term**: 5 Ã— 6 = 30
 
 ### **Power-Based Examples**
 
 #### **Type 1: Square Series**
 **Position squared**
-- **Pattern**: Term = Position²
-- **Example**: 1, 4, 9, 16, 25, ? → n²
-- **Next term**: 6² = 36
+- **Pattern**: Term = PositionÂ²
+- **Example**: 1, 4, 9, 16, 25, ? â†’ nÂ²
+- **Next term**: 6Â² = 36
 
 #### **Type 2: Cube Series**
 **Position cubed**
-- **Pattern**: Term = Position³
-- **Example**: 1, 8, 27, 64, 125, ? → n³
-- **Next term**: 6³ = 216
+- **Pattern**: Term = PositionÂ³
+- **Example**: 1, 8, 27, 64, 125, ? â†’ nÂ³
+- **Next term**: 6Â³ = 216
 
 #### **Type 3: Higher Power Series**
 **Position raised to higher powers**
 - **Pattern**: Term = Position^n
-- **Example**: 1, 16, 81, 256, 625, ? → n⁴
-- **Next term**: 6⁴ = 1296
+- **Example**: 1, 16, 81, 256, 625, ? â†’ nâ´
+- **Next term**: 6â´ = 1296
 
 ### **Factorial-Based Examples**
 
 #### **Type 1: Factorial Series**
 **Position factorial**
 - **Pattern**: Term = Position!
-- **Example**: 1, 2, 6, 24, 120, ? → n!
+- **Example**: 1, 2, 6, 24, 120, ? â†’ n!
 - **Next term**: 6! = 720
 
 #### **Type 2: Modified Factorial Series**
 **Factorial with multiplier**
-- **Pattern**: Term = k × Position!
-- **Example**: 2, 6, 24, 120, 720, ? → 2 × n! (but wait, that's not right)
-- **Better Example**: 5, 10, 30, 120, 600, ? → 5 × n! wait, let's recalculate
-- **Correct Example**: 2, 12, 72, 504, 4320, ? → n! × (n+1) or something else
-- **Simple Example**: 3, 12, 60, 360, 2520, ? → 3 × n! × n or wait
-- **Better**: 6, 24, 120, 720, 5040, ? → 6 × n!
-- **Next term**: 6 × 6! = 6 × 720 = 4320
+- **Pattern**: Term = k Ã— Position!
+- **Example**: 2, 6, 24, 120, 720, ? â†’ 2 Ã— n! (but wait, that's not right)
+- **Better Example**: 5, 10, 30, 120, 600, ? â†’ 5 Ã— n! wait, let's recalculate
+- **Correct Example**: 2, 12, 72, 504, 4320, ? â†’ n! Ã— (n+1) or something else
+- **Simple Example**: 3, 12, 60, 360, 2520, ? â†’ 3 Ã— n! Ã— n or wait
+- **Better**: 6, 24, 120, 720, 5040, ? â†’ 6 Ã— n!
+- **Next term**: 6 Ã— 6! = 6 Ã— 720 = 4320
 
 ### **Arithmetic Function Examples**
 
 #### **Type 1: Position Multiplication Series**
 **Position multiplied by related number**
-- **Pattern**: Term = Position × (Position + 1)
-- **Example**: 2, 6, 12, 20, 30, ? → n(n+1)
-- **Next term**: 6 × 7 = 42
+- **Pattern**: Term = Position Ã— (Position + 1)
+- **Example**: 2, 6, 12, 20, 30, ? â†’ n(n+1)
+- **Next term**: 6 Ã— 7 = 42
 
 #### **Type 2: Position Division Series**
 **Position divided by related number**
 - **Pattern**: Term = Position / (Position + k)
-- **Example**: 0.5, 0.67, 0.75, 0.8, 0.83, ? → n/(n+1)
-- **Next term**: 6/7 ≈ 0.857
+- **Example**: 0.5, 0.67, 0.75, 0.8, 0.83, ? â†’ n/(n+1)
+- **Next term**: 6/7 â‰ˆ 0.857
 
 #### **Type 3: Complex Arithmetic Series**
 **Multiple operations on position**
-- **Pattern**: Term = Position² + Position or Position³ - Position
-- **Example**: 2, 6, 12, 20, 30, ? → n² + n
+- **Pattern**: Term = PositionÂ² + Position or PositionÂ³ - Position
+- **Example**: 2, 6, 12, 20, 30, ? â†’ nÂ² + n
 - **Next term**: 36 + 6 = 42
 
 ### **Special Position-Based Examples**
@@ -169,24 +169,24 @@ Position-based series are sequences where each term is calculated using a mathem
 #### **Type 1: Prime Position Series**
 **Using prime numbers at positions**
 - **Pattern**: Term = nth prime number
-- **Example**: 2, 3, 5, 7, 11, ? → Primes
+- **Example**: 2, 3, 5, 7, 11, ? â†’ Primes
 - **Next term**: 13 (6th prime)
 
 #### **Type 2: Fibonacci Position Series**
 **Fibonacci numbers at positions**
 - **Pattern**: Term = nth Fibonacci number
-- **Example**: 1, 1, 2, 3, 5, ? → Fibonacci
+- **Example**: 1, 1, 2, 3, 5, ? â†’ Fibonacci
 - **Next term**: 8 (6th Fibonacci)
 
 #### **Type 3: Position Sum Series**
 **Sum of numbers up to position**
 - **Pattern**: Term = Sum of first n natural numbers
-- **Example**: 1, 3, 6, 10, 15, ? → n(n+1)/2
-- **Next term**: 21 (6×7/2 = 21)
+- **Example**: 1, 3, 6, 10, 15, ? â†’ n(n+1)/2
+- **Next term**: 21 (6Ã—7/2 = 21)
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Position-Term Table Method**
 **Create position-term correspondence**
@@ -196,9 +196,9 @@ Position-based series are sequences where each term is calculated using a mathem
 
 ### **2. Function Testing Method**
 **Test common mathematical functions**
-- Try n, n², n³, n!
+- Try n, nÂ², nÂ³, n!
 - Test n(n+1), n(n+1)/2
-- Consider n² ± n, n³ ± n
+- Consider nÂ² Â± n, nÂ³ Â± n
 
 ### **3. Pattern Recognition Method**
 **Identify position-based patterns**
@@ -214,15 +214,15 @@ Position-based series are sequences where each term is calculated using a mathem
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (30-40%)**
 - Simple position series (n, n+k)
-- Basic power series (n², n³)
+- Basic power series (nÂ², nÂ³)
 - Obvious position relationships
 
 ### **Medium Level (40-50%)**
-- Modified position series (k×n, n²+k)
+- Modified position series (kÃ—n, nÂ²+k)
 - Factorial series
 - Arithmetic function series
 
@@ -233,7 +233,7 @@ Position-based series are sequences where each term is calculated using a mathem
 
 ---
 
-## 🎯 Competitive Exam Relevance
+## ðŸŽ¯ Competitive Exam Relevance
 
 ### **Major Exams Featuring Position-Based Series**
 - **Banking Exams**: 4-6 questions per exam
@@ -253,7 +253,7 @@ Position-based series are sequences where each term is calculated using a mathem
 
 ---
 
-## 🎯 Success Factors
+## ðŸŽ¯ Success Factors
 
 ### **1. Position Recognition**
 - Quick identification of position-based patterns
@@ -277,39 +277,39 @@ Position-based series are sequences where each term is calculated using a mathem
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Position Assignment**
-❌ Starting position count from wrong number
-✅ Always start with position 1 for first term
+âŒ Starting position count from wrong number
+âœ… Always start with position 1 for first term
 
 ### **Mistake 2: Missing Mathematical Functions**
-❌ Not considering factorial or power functions
-✅ Test all common mathematical functions
+âŒ Not considering factorial or power functions
+âœ… Test all common mathematical functions
 
 ### **Mistake 3: Calculation Errors**
-❌ Arithmetic mistakes in function application
-✅ Double-check all calculations
+âŒ Arithmetic mistakes in function application
+âœ… Double-check all calculations
 
 ### **Mistake 4: Incomplete Verification**
-❌ Not testing function on all given terms
-✅ Verify pattern against entire series
+âŒ Not testing function on all given terms
+âœ… Verify pattern against entire series
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Create Position Table**: Always list positions 1,2,3,... and corresponding terms
-2. **Test Common Functions**: Try n, n², n³, n! first
+2. **Test Common Functions**: Try n, nÂ², nÂ³, n! first
 3. **Check Arithmetic Relationships**: Look for n(n+1), n(n+1)/2 patterns
 4. **Consider Special Sequences**: Think primes, Fibonacci, triangular numbers
 5. **Verify Completely**: Test your function on ALL given terms
 6. **Practice Calculations**: Improve speed and accuracy with factorials and powers
-7. **Look for Modifications**: Consider k×n, n²±n, etc.
+7. **Look for Modifications**: Consider kÃ—n, nÂ²Â±n, etc.
 
 ---
 
-## 🔢 Practice Questions
+## ðŸ”¢ Practice Questions
 
 ### **Direct Position Questions**
 
@@ -325,24 +325,24 @@ Find the next term: 3, 4, 5, 6, 7, ?
 
 ### **Question 3**
 Find the next term: 5, 10, 15, 20, 25, ?
-**Pattern**: Term = 5 × Position
+**Pattern**: Term = 5 Ã— Position
 **Answer**: 30
 
 ### **Power-Based Questions**
 
 ### **Question 4**
 Find the next term: 1, 4, 9, 16, 25, ?
-**Pattern**: Term = Position²
+**Pattern**: Term = PositionÂ²
 **Answer**: 36
 
 ### **Question 5**
 Find the next term: 1, 8, 27, 64, 125, ?
-**Pattern**: Term = Position³
+**Pattern**: Term = PositionÂ³
 **Answer**: 216
 
 ### **Question 6**
 Find the next term: 1, 16, 81, 256, 625, ?
-**Pattern**: Term = Position⁴
+**Pattern**: Term = Positionâ´
 **Answer**: 1296
 
 ### **Factorial-Based Questions**
@@ -354,31 +354,31 @@ Find the next term: 1, 2, 6, 24, 120, ?
 
 ### **Question 8**
 Find the next term: 2, 6, 24, 120, 720, ?
-**Pattern**: Term = 2 × (Position!)
-**Answer**: 2 × 720 = 1440 (wait, let's check: 2×1!=2, 2×2!=4≠6, wrong)
+**Pattern**: Term = 2 Ã— (Position!)
+**Answer**: 2 Ã— 720 = 1440 (wait, let's check: 2Ã—1!=2, 2Ã—2!=4â‰ 6, wrong)
 **Better Example**: 6, 24, 120, 720, 5040, ?
-**Pattern**: Term = 6 × Position!
-**Answer**: 6 × 720 = 4320 (wait, 6×5!=720, 6×6!=4320, but 6×4!=144≠120, wrong)
-**Correct**: 1, 6, 30, 168, 1008, ? → wait, better stick with simple
-**Simple**: 2, 12, 60, 240, 840, ? → wait, perhaps not factorial
+**Pattern**: Term = 6 Ã— Position!
+**Answer**: 6 Ã— 720 = 4320 (wait, 6Ã—5!=720, 6Ã—6!=4320, but 6Ã—4!=144â‰ 120, wrong)
+**Correct**: 1, 6, 30, 168, 1008, ? â†’ wait, better stick with simple
+**Simple**: 2, 12, 60, 240, 840, ? â†’ wait, perhaps not factorial
 
 ### **Arithmetic Function Questions**
 
 ### **Question 9**
 Find the next term: 2, 6, 12, 20, 30, ?
-**Pattern**: Term = Position × (Position + 1)
-**Answer**: 6 × 7 = 42
+**Pattern**: Term = Position Ã— (Position + 1)
+**Answer**: 6 Ã— 7 = 42
 
 ### **Question 10**
 Find the next term: 1, 3, 6, 10, 15, ?
-**Pattern**: Term = Position × (Position + 1) / 2
+**Pattern**: Term = Position Ã— (Position + 1) / 2
 **Answer**: 21
 
 ### **Question 11**
 Find the next term: 0, 2, 6, 12, 20, ?
-**Pattern**: Term = Position × (Position - 1)
-**Answer**: 5 × 4 = 20 (wait, for position 5: 5×4=20, but the series is 0,2,6,12,20 so next should be 30)
-**Wait**: Position 1: 0 = 1×0, Position 2: 2=2×1, Position 3:6=3×2, Position 4:12=4×3, Position 5:20=5×4, Position 6:30=6×5
+**Pattern**: Term = Position Ã— (Position - 1)
+**Answer**: 5 Ã— 4 = 20 (wait, for position 5: 5Ã—4=20, but the series is 0,2,6,12,20 so next should be 30)
+**Wait**: Position 1: 0 = 1Ã—0, Position 2: 2=2Ã—1, Position 3:6=3Ã—2, Position 4:12=4Ã—3, Position 5:20=5Ã—4, Position 6:30=6Ã—5
 **Answer**: 30
 
 ### **Special Sequence Questions**
@@ -395,13 +395,14 @@ Find the next term: 1, 1, 2, 3, 5, ?
 
 ### **Question 14**
 Find the next term: 1, 8, 27, 64, 125, ?
-**Pattern**: Term = Position³
+**Pattern**: Term = PositionÂ³
 **Answer**: 216
 
 ### **Question 15**
 Find the next term: 1, 4, 9, 16, 25, 36, ?
-**Pattern**: Term = Position²
+**Pattern**: Term = PositionÂ²
 **Answer**: 49
 
-**Master position-based series and position-term relationships! 📍✨**`
+**Master position-based series and position-term relationships! ðŸ“âœ¨**`"
 };
+

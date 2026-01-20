@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_4: SubLesson = {
   id: "7.4",
   title: 'Return Values',
   status: 'demo',
-  content: `# ↩️ Return Values
+  content: "`# â†©ï¸ Return Values
 
 Functions can return values back to the caller. Understanding return statements is crucial for effective programming!
 
 ---
 
-## 🎯 Basic Return Statement
+## ðŸŽ¯ Basic Return Statement
 
 ### **Returning a Single Value**
-\`\`\`python
+\`"\`\`python
 def get_greeting(name):
     """Return a personalized greeting."""
     return f"Hello, {name}!"
@@ -36,7 +36,7 @@ print(total)  # 40
 
 ---
 
-## 🔄 Multiple Return Values
+## ðŸ”„ Multiple Return Values
 
 ### **Returning Tuples**
 \`\`\`python
@@ -63,7 +63,7 @@ print(f"Min: {minimum}, Max: {maximum}, Avg: {average:.1f}")
 
 ---
 
-## 🛑 Early Returns
+## ðŸ›‘ Early Returns
 
 ### **Return Early from Functions**
 \`\`\`python
@@ -96,7 +96,7 @@ print(find_first_even([1, 3, 5, 7]))     # None
 
 ---
 
-## 📦 Returning Different Types
+## ðŸ“¦ Returning Different Types
 
 ### **Flexible Return Types**
 \`\`\`python
@@ -132,7 +132,7 @@ print(process_data(42, "unknown"))           # None
 
 ---
 
-## 🔄 Conditional Returns
+## ðŸ”„ Conditional Returns
 
 ### **Return Based on Conditions**
 \`\`\`python
@@ -191,7 +191,7 @@ for pwd in passwords:
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **Data Processing Functions**
 \`\`\`python
@@ -237,7 +237,7 @@ print(f"BMI: {bmi}, Category: {category}")
 
 ---
 
-## ✅ Best Practices
+## âœ… Best Practices
 
 1. **Be consistent with return types** - Same function should return similar types
 2. **Use early returns for error conditions** - Fail fast, succeed early
@@ -245,6 +245,7 @@ print(f"BMI: {bmi}, Category: {category}")
 4. **Consider multiple return values** - Use tuples for related data
 5. **Handle edge cases** - Think about empty inputs, invalid data, etc.
 
-Return values make functions useful and composable! 🔄`
+Return values make functions useful and composable! ðŸ”„`
 };
+
 

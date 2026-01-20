@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_2: SubLesson = {
   id: "6.2",
   title: 'Creating Dictionaries',
   status: 'demo',
-  content: `# 🆕 Creating Python Dictionaries
+  content: "`# ðŸ†• Creating Python Dictionaries
 
 Dictionaries can be created in several ways. Let's explore all the methods!
 
 ---
 
-## 🎯 Basic Dictionary Creation
+## ðŸŽ¯ Basic Dictionary Creation
 
 ### **Using Curly Braces {}**
-\`\`\`python
+\`"\`\`python
 # Empty dictionary
 empty_dict = {}
 print(empty_dict)  # {}
@@ -29,7 +29,7 @@ print(person)  # {'name': 'Alice', 'age': 25, 'city': 'New York'}
 
 ---
 
-## 🔧 Using the dict() Function
+## ðŸ”§ Using the dict() Function
 
 ### **From Key-Value Pairs**
 \`\`\`python
@@ -45,7 +45,7 @@ print(person)  # {'name': 'Alice', 'age': 25, 'city': 'New York'}
 
 ---
 
-## 📝 Dictionary Comprehensions
+## ðŸ“ Dictionary Comprehensions
 
 ### **Create Dictionaries with Patterns**
 \`\`\`python
@@ -64,7 +64,7 @@ print(word_lengths)  # {'cat': 3, 'elephant': 8, 'dog': 3}
 
 ---
 
-## 🔄 Creating from Other Collections
+## ðŸ”„ Creating from Other Collections
 
 ### **From Lists and Tuples**
 \`\`\`python
@@ -82,7 +82,7 @@ print(copy_dict)  # {'a': 1, 'b': 2}
 
 ---
 
-## 🎨 Creating Different Types of Dictionaries
+## ðŸŽ¨ Creating Different Types of Dictionaries
 
 \`\`\`python
 # Mixed data types
@@ -113,7 +113,7 @@ print(students[0]["name"])  # Alice
 
 ---
 
-## ✅ Quick Practice
+## âœ… Quick Practice
 
 \`\`\`python
 # Create these dictionaries:
@@ -144,11 +144,12 @@ config = dict(
 # 5. Translation dictionary
 translations = dict([
     ("hello", "hola"),
-    ("goodbye", "adiós"),
+    ("goodbye", "adiÃ³s"),
     ("thank you", "gracias")
 ])
 \`\`\`
 
-Dictionaries are incredibly flexible - choose the creation method that fits your data! 🎯`
+Dictionaries are incredibly flexible - choose the creation method that fits your data! ðŸŽ¯`
 };
+
 

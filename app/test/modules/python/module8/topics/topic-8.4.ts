@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_4: SubLesson = {
   id: "8.4",
   title: 'Sequence Functions',
   status: 'demo',
-  content: `# 📋 Sequence Functions
+  content: "`# ðŸ“‹ Sequence Functions
 
 Functions that work with lists, tuples, strings, and other sequence types!
 
 ---
 
-## 🎯 Core Sequence Functions
+## ðŸŽ¯ Core Sequence Functions
 
 ### **len() - Get Length**
-\`\`\`python
+\`"\`\`python
 print(len("hello"))    # 5
 print(len([1, 2, 3]))  # 3
 print(len((1, 2)))     # 2
@@ -57,7 +57,7 @@ print(list(reversed(range(5))))  # [4, 3, 2, 1, 0]
 
 ---
 
-## 🔄 Iterator Functions
+## ðŸ”„ Iterator Functions
 
 ### **range() - Create Number Sequences**
 \`\`\`python
@@ -114,7 +114,7 @@ print(list(zip(short, long)))  # [(1, 10), (2, 20)] - stops at shortest
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **Data Processing Pipeline**
 \`\`\`python
@@ -255,7 +255,7 @@ for stat in stats:
 
 ---
 
-## ✅ Best Practices
+## âœ… Best Practices
 
 1. **Use len() for emptiness checks** - if len(sequence) == 0 or if not sequence
 2. **Prefer sorted() over list.sort()** - When you want a new list
@@ -263,6 +263,7 @@ for stat in stats:
 4. **Zip for parallel iteration** - When processing multiple sequences together
 5. **Handle different lengths** - Zip stops at shortest sequence
 
-Sequence functions make data manipulation powerful! 📋`
+Sequence functions make data manipulation powerful! ðŸ“‹`
 };
+
 

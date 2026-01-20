@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_3: SubLesson = {
   id: "5.3",
   title: 'Adding Elements to Sets',
   status: 'demo',
-  content: `# ➕ Adding Elements to Sets
+  content: "`# âž• Adding Elements to Sets
 
 Sets are mutable, so you can add new elements. But remember - duplicates are automatically ignored!
 
 ---
 
-## 🎯 Add Method
+## ðŸŽ¯ Add Method
 
 ### **Add Single Element**
-\`\`\`python
+\`"\`\`python
 fruits = {"apple", "banana"}
 print(f"Original: {fruits}")
 
@@ -27,7 +27,7 @@ print(f"After duplicate add: {fruits}")  # No change
 
 ---
 
-## 📦 Update Method
+## ðŸ“¦ Update Method
 
 ### **Add Multiple Elements**
 \`\`\`python
@@ -46,7 +46,7 @@ print(f"After set update: {numbers}")  # {1, 2, 3, 4, 5, 6, 7, 8, 9}
 
 ---
 
-## 🔄 Union Operation
+## ðŸ”„ Union Operation
 
 ### **Create New Set with Union**
 \`\`\`python
@@ -66,7 +66,7 @@ print(f"Union with |: {union_set2}")  # {1, 2, 3, 4, 5}
 
 ---
 
-## 🎨 Adding Different Types
+## ðŸŽ¨ Adding Different Types
 
 \`\`\`python
 # Mixed types in sets
@@ -85,7 +85,7 @@ print(f"After update: {mixed_set}")
 
 ---
 
-## 📝 Practical Examples
+## ðŸ“ Practical Examples
 
 \`\`\`python
 # Building a collection of unique items
@@ -127,7 +127,7 @@ print(f"With ML: {all_skills}")
 
 ---
 
-## ✅ Important Notes
+## âœ… Important Notes
 
 - **add()** - Single element
 - **update()** - Multiple elements (list, set, etc.)
@@ -135,6 +135,7 @@ print(f"With ML: {all_skills}")
 - **Duplicates are ignored** - Sets maintain uniqueness
 - **Order is not guaranteed** - Sets are unordered
 
-Sets grow by adding elements - perfect for collecting unique items! 📊`
+Sets grow by adding elements - perfect for collecting unique items! ðŸ“Š`
 };
+
 

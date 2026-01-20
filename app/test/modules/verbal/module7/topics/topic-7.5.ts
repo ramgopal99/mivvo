@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_5: SubLesson = {
   id: "7.5",
   title: 'Course of Action',
   status: 'completed',
-  content: `# 🎯 Course of Action: Problem-Solving Strategies
+  content: "`# ðŸŽ¯ Course of Action: Problem-Solving Strategies
 
 Course of Action questions involve identifying appropriate steps or solutions to address problems, situations, or challenges. This skill tests your ability to evaluate options, consider consequences, and determine effective problem-solving strategies.
 
 ---
 
-## 📋 WHAT IS COURSE OF ACTION?
+## ðŸ“‹ WHAT IS COURSE OF ACTION?
 
 **Course of Action** involves:
-- ✅ **Problem identification**: Recognizing the issue or situation
-- ✅ **Solution evaluation**: Assessing possible approaches
-- ✅ **Action selection**: Choosing the most appropriate response
-- ✅ **Outcome consideration**: Thinking about consequences and effectiveness
+- âœ… **Problem identification**: Recognizing the issue or situation
+- âœ… **Solution evaluation**: Assessing possible approaches
+- âœ… **Action selection**: Choosing the most appropriate response
+- âœ… **Outcome consideration**: Thinking about consequences and effectiveness
 
 ### Key Characteristics:
 - **Practical**: Solutions that can be realistically implemented
@@ -31,7 +31,7 @@ Course of Action: "Implement a stricter attendance policy with consequences for 
 
 ---
 
-## 🎯 TYPES OF COURSE OF ACTION QUESTIONS
+## ðŸŽ¯ TYPES OF COURSE OF ACTION QUESTIONS
 
 ### 1. **Problem-Solution Scenarios**
 **Given a problem, identify the best solution**
@@ -40,10 +40,10 @@ Course of Action: "Implement a stricter attendance policy with consequences for 
 Problem: "The company's productivity has declined significantly."
 
 Possible Actions:
-- ✅ Implement training programs
-- ✅ Review work processes
-- ✅ Provide better resources
-- ❌ Fire all employees (too extreme)
+- âœ… Implement training programs
+- âœ… Review work processes
+- âœ… Provide better resources
+- âŒ Fire all employees (too extreme)
 
 ### 2. **Preventive Actions**
 **Actions to prevent potential problems**
@@ -52,10 +52,10 @@ Possible Actions:
 Situation: "The area is prone to flooding during monsoon season."
 
 Preventive Actions:
-- ✅ Build flood barriers
-- ✅ Improve drainage systems
-- ✅ Develop early warning systems
-- ❌ Wait for flooding to happen (reactive, not preventive)
+- âœ… Build flood barriers
+- âœ… Improve drainage systems
+- âœ… Develop early warning systems
+- âŒ Wait for flooding to happen (reactive, not preventive)
 
 ### 3. **Corrective Actions**
 **Actions to fix existing problems**
@@ -64,10 +64,10 @@ Preventive Actions:
 Problem: "Product quality has deteriorated."
 
 Corrective Actions:
-- ✅ Implement quality control measures
-- ✅ Retrain production staff
-- ✅ Update equipment
-- ❌ Ignore the problem (no action)
+- âœ… Implement quality control measures
+- âœ… Retrain production staff
+- âœ… Update equipment
+- âŒ Ignore the problem (no action)
 
 ### 4. **Improvement Actions**
 **Actions to enhance current situations**
@@ -76,14 +76,14 @@ Corrective Actions:
 Situation: "Customer satisfaction ratings are average."
 
 Improvement Actions:
-- ✅ Enhance customer service training
-- ✅ Improve product quality
-- ✅ Implement feedback systems
-- ❌ Maintain status quo (no improvement)
+- âœ… Enhance customer service training
+- âœ… Improve product quality
+- âœ… Implement feedback systems
+- âŒ Maintain status quo (no improvement)
 
 ---
 
-## 🛠️ EVALUATING COURSES OF ACTION
+## ðŸ› ï¸ EVALUATING COURSES OF ACTION
 
 ### Step-by-Step Evaluation:
 
@@ -119,61 +119,61 @@ Improvement Actions:
 
 ---
 
-## 📊 EVALUATION CRITERIA
+## ðŸ“Š EVALUATION CRITERIA
 
 ### Effectiveness Criteria:
-- ✅ **Addresses root cause**: Solves the underlying problem
-- ✅ **Comprehensive**: Covers all aspects of the issue
-- ✅ **Sustainable**: Provides long-term solution
-- ✅ **Measurable**: Results can be evaluated
+- âœ… **Addresses root cause**: Solves the underlying problem
+- âœ… **Comprehensive**: Covers all aspects of the issue
+- âœ… **Sustainable**: Provides long-term solution
+- âœ… **Measurable**: Results can be evaluated
 
 ### Feasibility Criteria:
-- ✅ **Resources available**: Required means are accessible
-- ✅ **Time realistic**: Can be implemented within timeframe
-- ✅ **Skills adequate**: Necessary expertise exists
-- ✅ **Legal compliance**: Follows laws and regulations
+- âœ… **Resources available**: Required means are accessible
+- âœ… **Time realistic**: Can be implemented within timeframe
+- âœ… **Skills adequate**: Necessary expertise exists
+- âœ… **Legal compliance**: Follows laws and regulations
 
 ### Impact Criteria:
-- ✅ **Positive outcomes**: Beneficial results expected
-- ✅ **Minimal disruption**: Least disturbance to normal operations
-- ✅ **Stakeholder benefits**: Advantages for those affected
-- ✅ **Risk management**: Addresses potential problems
+- âœ… **Positive outcomes**: Beneficial results expected
+- âœ… **Minimal disruption**: Least disturbance to normal operations
+- âœ… **Stakeholder benefits**: Advantages for those affected
+- âœ… **Risk management**: Addresses potential problems
 
 ### Cost-Benefit Criteria:
-- ✅ **Return on investment**: Benefits justify costs
-- ✅ **Resource efficiency**: Optimal use of available resources
-- ✅ **Scalability**: Can be expanded if needed
-- ✅ **Sustainability**: Long-term viability
+- âœ… **Return on investment**: Benefits justify costs
+- âœ… **Resource efficiency**: Optimal use of available resources
+- âœ… **Scalability**: Can be expanded if needed
+- âœ… **Sustainability**: Long-term viability
 
 ---
 
-## ⚠️ COMMON COURSE OF ACTION ERRORS
+## âš ï¸ COMMON COURSE OF ACTION ERRORS
 
 ### Avoid These Mistakes:
 
 1. **Too Extreme Solutions**
-   - ❌ "Fire everyone" for minor productivity issues
-   - ✅ "Implement performance improvement plans"
+   - âŒ "Fire everyone" for minor productivity issues
+   - âœ… "Implement performance improvement plans"
 
 2. **Inadequate Solutions**
-   - ❌ "Talk to employees" for major systemic problems
-   - ✅ "Conduct comprehensive organizational review"
+   - âŒ "Talk to employees" for major systemic problems
+   - âœ… "Conduct comprehensive organizational review"
 
 3. **Irrelevant Actions**
-   - ❌ "Buy new computers" to solve motivation problems
-   - ✅ "Improve work environment and incentives"
+   - âŒ "Buy new computers" to solve motivation problems
+   - âœ… "Improve work environment and incentives"
 
 4. **Impractical Solutions**
-   - ❌ "Teleport employees to work" for traffic problems
-   - ✅ "Implement flexible working hours or remote work"
+   - âŒ "Teleport employees to work" for traffic problems
+   - âœ… "Implement flexible working hours or remote work"
 
 5. **Short-term Focus Only**
-   - ❌ Solutions that fix immediate symptoms but ignore root causes
-   - ✅ Comprehensive approaches addressing underlying issues
+   - âŒ Solutions that fix immediate symptoms but ignore root causes
+   - âœ… Comprehensive approaches addressing underlying issues
 
 ---
 
-## 🎯 QUESTION PATTERNS
+## ðŸŽ¯ QUESTION PATTERNS
 
 ### Direct Action Questions:
 **"What should be the course of action?" or "What steps should be taken?"**
@@ -189,7 +189,7 @@ Improvement Actions:
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Problem-Solution Actions
 **Identify appropriate courses of action for problems:**
@@ -327,7 +327,7 @@ Priority Order: ________
 
 ---
 
-## 📊 ACTION EVALUATION FRAMEWORK
+## ðŸ“Š ACTION EVALUATION FRAMEWORK
 
 | Criteria | Strong Action | Weak Action |
 |---|---|---|
@@ -339,30 +339,30 @@ Priority Order: ________
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Direct Action**: "What course of action should be taken?"
 2. **Best Solution**: "Which is the most appropriate action?"
 3. **Multiple Selection**: "Which of the following should be done?"
 4. **Priority Order**: "What should be done first?"
 5. **Prevention**: "What steps should be taken to prevent...?"
 
-### 💡 Quick Decision Strategy:
+### ðŸ’¡ Quick Decision Strategy:
 1. **Identify the problem** clearly and completely
 2. **Evaluate options** against practical criteria
 3. **Consider consequences** and implementation
 4. **Choose comprehensive** solutions over partial fixes
 5. **Verify appropriateness** for the context
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Eliminate extremes** - Too drastic or too weak solutions
 - **Look for root causes** - Actions addressing underlying issues
 - **Check feasibility** - Can it be realistically done?
 - **Consider stakeholders** - Who benefits, who is affected?
 - **Trust practicality** - Choose real-world applicable solutions
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Practice problem analysis** - Learn to identify core issues quickly
 - **Master evaluation criteria** - Effectiveness, feasibility, impact
 - **Learn common solutions** - Typical actions for frequent problems
@@ -371,22 +371,23 @@ Priority Order: ________
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Problem Analysis**: Learn to identify core issues quickly
 2. **Solution Generation**: Practice brainstorming multiple approaches
 3. **Action Evaluation**: Master criteria for assessing solutions
 4. **Context Consideration**: Understand situational constraints
 5. **Practical Thinking**: Focus on realistic, implementable solutions
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Course of action is like medical diagnosis:**
-- 🩺 **Diagnose** = Identify the core problem accurately
-- 💊 **Prescribe** = Select appropriate treatment/solution
-- 📋 **Dosage** = Determine implementation intensity
-- ⏰ **Timeline** = Plan when actions should be taken
-- 📊 **Monitor** = Evaluate effectiveness and adjust as needed
+- ðŸ©º **Diagnose** = Identify the core problem accurately
+- ðŸ’Š **Prescribe** = Select appropriate treatment/solution
+- ðŸ“‹ **Dosage** = Determine implementation intensity
+- â° **Timeline** = Plan when actions should be taken
+- ðŸ“Š **Monitor** = Evaluate effectiveness and adjust as needed
 
-**Master course of action and become a strategic problem-solver!** 🎯🩺✨`
+**Master course of action and become a strategic problem-solver!** ðŸŽ¯ðŸ©ºâœ¨`"
 };
+

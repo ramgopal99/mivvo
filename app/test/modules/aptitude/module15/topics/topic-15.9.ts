@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_9: SubLesson = {
   id: "15.9",
   title: 'Comparison of Data',
   status: 'completed',
-  content: `# 📊 Comparison of Data
+  content: "`# ðŸ“Š Comparison of Data
 
 Master data comparison techniques in DI! Comparing data points, categories, and trends is fundamental to DI analysis. Learn systematic methods to identify differences, similarities, and relationships across various data formats.
 
 ---
 
-## 🎯 Importance of Data Comparison
+## ðŸŽ¯ Importance of Data Comparison
 
 **Data Comparison** helps in:
 - Identifying highest/lowest performers
@@ -27,7 +27,7 @@ Master data comparison techniques in DI! Comparing data points, categories, and 
 
 ---
 
-## 🔍 Comparison Techniques
+## ðŸ” Comparison Techniques
 
 ### **1. Direct Value Comparison**
 - Compare absolute values
@@ -51,7 +51,7 @@ Master data comparison techniques in DI! Comparing data points, categories, and 
 
 ---
 
-## 📊 Comparison in Different Formats
+## ðŸ“Š Comparison in Different Formats
 
 ### **Table Data**
 
@@ -78,15 +78,15 @@ Master data comparison techniques in DI! Comparing data points, categories, and 
 
 ### **Bar Chart Comparison**
 
-\`\`\`
-Monthly Revenue (₹ lakhs)
+\`"\`\`
+Monthly Revenue (â‚¹ lakhs)
 
-25 │
-20 │ ████ ████ ████ ████ ████ ████
-15 │ ████ ████ ████ ████ ████ ████
-10 │ ████ ████ ████ ████ ████ ████
- 5 │ ████ ████ ████ ████ ████ ████
- 0 │________________________________
+25 â”‚
+20 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+15 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+10 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+ 5 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+ 0 â”‚________________________________
     Jan  Feb  Mar  Apr  May  Jun
 \`\`\`
 
@@ -98,7 +98,7 @@ Monthly Revenue (₹ lakhs)
 
 ---
 
-## 📈 Advanced Comparison Methods
+## ðŸ“ˆ Advanced Comparison Methods
 
 ### **1. Year-over-Year Comparison**
 **Example:** Compare 2020 vs 2019 performance
@@ -109,8 +109,8 @@ Monthly Revenue (₹ lakhs)
 | Profit | 100  | 90   | -10    | -10%     |
 
 **Analysis:**
-- Sales increased by ₹200 (20%)
-- Profit decreased by ₹10 (10%)
+- Sales increased by â‚¹200 (20%)
+- Profit decreased by â‚¹10 (10%)
 - Revenue growth but profit decline
 
 ### **2. Benchmark Comparison**
@@ -143,7 +143,7 @@ Monthly Revenue (₹ lakhs)
 
 ---
 
-## 🎯 Common Comparison Questions
+## ðŸŽ¯ Common Comparison Questions
 
 ### **Pattern 1: Maximum/Minimum**
 **"Which category has the highest/lowest value?"**
@@ -172,7 +172,7 @@ Monthly Revenue (₹ lakhs)
 
 ---
 
-## 📊 Comparative Analysis Examples
+## ðŸ“Š Comparative Analysis Examples
 
 ### **Example 1: Market Share Comparison**
 
@@ -184,7 +184,7 @@ Company B: 28%
 Company C: 20%
 Company D: 17%
 
-Total Market: ₹1000 crores
+Total Market: â‚¹1000 crores
 \`\`\`
 
 **Comparison Questions:**
@@ -196,8 +196,8 @@ Total Market: ₹1000 crores
    - 35% - 28% = 7%
 
 3. **"What are the actual sales values?"**
-   - A: 35% of 1000 = ₹350 crores
-   - B: 28% of 1000 = ₹280 crores
+   - A: 35% of 1000 = â‚¹350 crores
+   - B: 28% of 1000 = â‚¹280 crores
 
 4. **"What is the ratio of A to C?"**
    - 35:20 = 7:4
@@ -223,12 +223,12 @@ Employee Performance
 
 ---
 
-## 📈 Trend Comparison
+## ðŸ“ˆ Trend Comparison
 
 ### **Example: Sales Trend Analysis**
 
 \`\`\`
-Quarterly Sales (₹ lakhs)
+Quarterly Sales (â‚¹ lakhs)
 
 Q1: 50
 Q2: 55 (+10%)
@@ -262,7 +262,7 @@ Year | Product X | Product Y | Difference
 
 ---
 
-## 🎯 Comparison in Mixed Charts
+## ðŸŽ¯ Comparison in Mixed Charts
 
 ### **Bar + Line Combination**
 
@@ -283,9 +283,9 @@ Analysis:
 \`\`\`
 Revenue Trends
 
-Company A: ▲▲▲▲ (steady rise)
-Company B: ▲▼▲▼ (fluctuating)
-Company C: ▼▼▼▼ (declining)
+Company A: â–²â–²â–²â–² (steady rise)
+Company B: â–²â–¼â–²â–¼ (fluctuating)
+Company C: â–¼â–¼â–¼â–¼ (declining)
 
 Analysis:
 - A: Most stable growth
@@ -295,7 +295,7 @@ Analysis:
 
 ---
 
-## 🚀 Speed Comparison Techniques
+## ðŸš€ Speed Comparison Techniques
 
 ### **1. Visual Scanning**
 - Quickly identify highest/lowest bars
@@ -319,31 +319,31 @@ Analysis:
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Comparison Base**
-❌ Comparing percentages with absolute values
+âŒ Comparing percentages with absolute values
 - Ensure same units/scales
 
 ### **Mistake 2: Ignoring Context**
-❌ Comparing urban vs rural stores directly
+âŒ Comparing urban vs rural stores directly
 - Consider environmental factors
 
 ### **Mistake 3: Trend Misinterpretation**
-❌ "Declining" when actually stabilizing
+âŒ "Declining" when actually stabilizing
 - Check actual values, not just appearance
 
 ### **Mistake 4: Scale Confusion**
-❌ Comparing values from different axes
+âŒ Comparing values from different axes
 - Check which axis belongs to which data
 
 ### **Mistake 5: Ranking Errors**
-❌ Wrong order in ranking questions
+âŒ Wrong order in ranking questions
 - Double-check sort order
 
 ---
 
-## 🎯 Practice Comparison Problems
+## ðŸŽ¯ Practice Comparison Problems
 
 ### **Table Comparison**
 
@@ -364,11 +364,11 @@ Analysis:
 \`\`\`
 Score Distribution
 
-90-100: ████ (15 students)
-80-89:  ████████ (25 students)
-70-79:  ███████████ (30 students)
-60-69:  ███████ (20 students)
-<60:    ███ (10 students)
+90-100: â–ˆâ–ˆâ–ˆâ–ˆ (15 students)
+80-89:  â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ (25 students)
+70-79:  â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ (30 students)
+60-69:  â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ (20 students)
+<60:    â–ˆâ–ˆâ–ˆ (10 students)
 \`\`\`
 
 **Questions:**
@@ -378,7 +378,7 @@ Score Distribution
 
 ---
 
-## 🎓 Pro Tips for Data Comparison
+## ðŸŽ“ Pro Tips for Data Comparison
 
 1. **Identify the comparison type** first
 2. **Use appropriate scales** for comparison
@@ -390,7 +390,7 @@ Score Distribution
 
 ---
 
-## 🔢 Data Comparison Framework
+## ðŸ”¢ Data Comparison Framework
 
 \`\`\`
 1. IDENTIFY comparison type
@@ -420,7 +420,7 @@ Score Distribution
    - Verify against options
 \`\`\`
 
-Master data comparison techniques and analyze DI data with precision and speed! 🏆
+Master data comparison techniques and analyze DI data with precision and speed! ðŸ†
 
 **Answers for Practice:**
 1. West: 1320

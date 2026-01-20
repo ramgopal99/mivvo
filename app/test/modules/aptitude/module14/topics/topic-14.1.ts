@@ -1,18 +1,18 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_1: SubLesson = {
   id: "14.1",
   title: 'Concept of Quadratic Equation',
   status: 'completed',
-  content: `# 📐 Concept of Quadratic Equation
+  content: "`# ðŸ“ Concept of Quadratic Equation
 
 Welcome to the fascinating world of Quadratic Equations! These equations form the backbone of algebra and appear frequently in competitive exams. Understanding quadratic equations will help you solve complex real-world problems involving parabolic curves and optimization.
 
 ---
 
-## 🎯 What is a Quadratic Equation?
+## ðŸŽ¯ What is a Quadratic Equation?
 
-A **Quadratic Equation** is a polynomial equation of degree 2, where the highest power of the variable is 2. It can be written in the general form \`ax² + bx + c = 0\`, where \`a\`, \`b\`, and \`c\` are real numbers and \`a ≠ 0\`.
+A **Quadratic Equation** is a polynomial equation of degree 2, where the highest power of the variable is 2. It can be written in the general form \`"axÂ² + bx + c = 0\`, where \`a\`, \`b\`, and \`c\` are real numbers and \`a â‰  0\`.
 
 ### **Key Characteristics**
 - **Degree**: 2 (highest power of variable)
@@ -21,20 +21,20 @@ A **Quadratic Equation** is a polynomial equation of degree 2, where the highest
 - **Roots**: Values of x that satisfy the equation
 
 ### **General Form**
-\`ax² + bx + c = 0\`
+\`axÂ² + bx + c = 0\`
 
 **Where:**
-- \`a\`: coefficient of x² (a ≠ 0)
+- \`a\`: coefficient of xÂ² (a â‰  0)
 - \`b\`: coefficient of x
 - \`c\`: constant term
 
 ---
 
-## 🔢 Historical Context
+## ðŸ”¢ Historical Context
 
 ### **Etymology**
 - **Quadratic** comes from Latin "quadratus" meaning "square"
-- Refers to the squared term (x²)
+- Refers to the squared term (xÂ²)
 - Ancient civilizations used quadratic equations for practical problems
 
 ### **Timeline of Development**
@@ -46,39 +46,39 @@ A **Quadratic Equation** is a polynomial equation of degree 2, where the highest
 
 ---
 
-## 📊 Types of Quadratic Equations
+## ðŸ“Š Types of Quadratic Equations
 
 ### **1. Monic Quadratic Equations**
 Leading coefficient a = 1
 \`\`\`
-x² + bx + c = 0
-Example: x² + 5x + 6 = 0
+xÂ² + bx + c = 0
+Example: xÂ² + 5x + 6 = 0
 \`\`\`
 
 ### **2. Non-Monic Quadratic Equations**
-Leading coefficient a ≠ 1
+Leading coefficient a â‰  1
 \`\`\`
-ax² + bx + c = 0
-Example: 2x² + 3x + 1 = 0
+axÂ² + bx + c = 0
+Example: 2xÂ² + 3x + 1 = 0
 \`\`\`
 
 ### **3. Pure Quadratic Equations**
 No linear term (b = 0)
 \`\`\`
-ax² + c = 0
-Example: x² - 9 = 0
+axÂ² + c = 0
+Example: xÂ² - 9 = 0
 \`\`\`
 
 ### **4. Incomplete Quadratic Equations**
 Missing either linear term or constant term
 \`\`\`
-ax² + bx = 0  (missing constant)
-ax² + c = 0   (missing linear term)
+axÂ² + bx = 0  (missing constant)
+axÂ² + c = 0   (missing linear term)
 \`\`\`
 
 ---
 
-## 🧮 Components of Quadratic Equations
+## ðŸ§® Components of Quadratic Equations
 
 ### **1. Variable**
 - Usually represented by x
@@ -103,7 +103,7 @@ ax² + c = 0   (missing linear term)
 
 ---
 
-## 📈 Graphical Representation
+## ðŸ“ˆ Graphical Representation
 
 ### **Parabolic Curve**
 - **Vertex**: Turning point of parabola
@@ -114,48 +114,48 @@ ax² + c = 0   (missing linear term)
 ### **Roots and X-intercepts**
 - Points where parabola crosses x-axis
 - Number of real roots: 0, 1, or 2
-- Determined by discriminant (D = b² - 4ac)
+- Determined by discriminant (D = bÂ² - 4ac)
 
 ### **Examples of Graphs**
 
 #### **Case 1: Two distinct real roots (D > 0)**
-\`y = x² - 5x + 6\`
+\`y = xÂ² - 5x + 6\`
 - Roots: (2, 0) and (3, 0)
 - Parabola crosses x-axis twice
 
 #### **Case 2: One real root (D = 0)**
-\`y = x² - 4x + 4\`
+\`y = xÂ² - 4x + 4\`
 - Root: (2, 0)
 - Parabola touches x-axis at one point
 
 #### **Case 3: No real roots (D < 0)**
-\`y = x² + 2x + 3\`
+\`y = xÂ² + 2x + 3\`
 - No real roots
 - Parabola entirely above x-axis
 
 ---
 
-## 🔄 Converting to Standard Form
+## ðŸ”„ Converting to Standard Form
 
 ### **Method 1: Bringing to One Side**
-**Example:** \`x² + 3x = 10\`
-\`x² + 3x - 10 = 0\`
+**Example:** \`xÂ² + 3x = 10\`
+\`xÂ² + 3x - 10 = 0\`
 
 ### **Method 2: Expanding Brackets**
 **Example:** \`(x + 2)(x + 3) = 0\`
-\`x² + 5x + 6 = 0\`
+\`xÂ² + 5x + 6 = 0\`
 
 ### **Method 3: Completing the Square**
-**Example:** \`x² + 6x + 8 = 0\`
-\`(x + 3)² - 1 = 0\`
-\`(x + 3)² = 1\`
+**Example:** \`xÂ² + 6x + 8 = 0\`
+\`(x + 3)Â² - 1 = 0\`
+\`(x + 3)Â² = 1\`
 
 ---
 
-## 🎯 Real-Life Applications
+## ðŸŽ¯ Real-Life Applications
 
 ### **1. Projectile Motion**
-Height of projectile: \`h = -16t² + vt + h₀\`
+Height of projectile: \`h = -16tÂ² + vt + hâ‚€\`
 - Quadratic in time variable
 - Maximum height at vertex
 
@@ -165,7 +165,7 @@ Rectangle with fixed perimeter: \`A = x(L - x)\`
 - Maximum area optimization
 
 ### **3. Revenue Optimization**
-Revenue = Price × Quantity: \`R = (p₀ - kx)x\`
+Revenue = Price Ã— Quantity: \`R = (pâ‚€ - kx)x\`
 - Quadratic in quantity
 - Maximum revenue at optimum price
 
@@ -181,73 +181,73 @@ Revenue = Price × Quantity: \`R = (p₀ - kx)x\`
 
 ---
 
-## 🔧 Important Properties
+## ðŸ”§ Important Properties
 
 ### **1. Sum of Roots**
-For equation \`ax² + bx + c = 0\`:
+For equation \`axÂ² + bx + c = 0\`:
 Sum of roots = \`-b/a\`
 
 ### **2. Product of Roots**
-For equation \`ax² + bx + c = 0\`:
+For equation \`axÂ² + bx + c = 0\`:
 Product of roots = \`c/a\`
 
 ### **3. Nature of Roots**
-Determined by discriminant: \`D = b² - 4ac\`
+Determined by discriminant: \`D = bÂ² - 4ac\`
 - D > 0: Two distinct real roots
 - D = 0: One real root (repeated)
 - D < 0: Two complex roots
 
 ### **4. Quadratic Formula**
-\`x = [-b ± √(b² - 4ac)] / 2a\`
+\`x = [-b Â± âˆš(bÂ² - 4ac)] / 2a\`
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Standard Form**
-❌ \`x² = 5x + 6\` (not in standard form)
-✅ \`x² - 5x - 6 = 0\` (correct)
+âŒ \`xÂ² = 5x + 6\` (not in standard form)
+âœ… \`xÂ² - 5x - 6 = 0\` (correct)
 
 ### **Mistake 2: Zero Leading Coefficient**
-❌ \`0x² + 3x + 2 = 0\` (not quadratic)
+âŒ \`0xÂ² + 3x + 2 = 0\` (not quadratic)
 - Linear equation if a = 0
 
 ### **Mistake 3: Confusing Roots with Solutions**
-❌ "Roots are where equation equals root"
-✅ "Roots are values that satisfy the equation"
+âŒ "Roots are where equation equals root"
+âœ… "Roots are values that satisfy the equation"
 
 ### **Mistake 4: Wrong Graph Interpretation**
-❌ "Parabola always crosses x-axis twice"
+âŒ "Parabola always crosses x-axis twice"
 - Depends on discriminant value
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Identify Quadratic Equations:**
 1. Which of these is quadratic?
    - A) \`x + 5 = 0\`
-   - B) \`x² + 3x + 2 = 0\`
-   - C) \`x³ + x + 1 = 0\`
+   - B) \`xÂ² + 3x + 2 = 0\`
+   - C) \`xÂ³ + x + 1 = 0\`
    - D) \`1/x + 2 = 0\`
 
-2. Convert \`x² = 7x - 12\` to standard form.
+2. Convert \`xÂ² = 7x - 12\` to standard form.
 
 ### **Component Identification:**
-1. For \`2x² - 5x + 3 = 0\`, identify a, b, c.
-2. What type of quadratic is \`x² + 4 = 0\`?
+1. For \`2xÂ² - 5x + 3 = 0\`, identify a, b, c.
+2. What type of quadratic is \`xÂ² + 4 = 0\`?
 
 ### **Graphical Understanding:**
-1. Sketch basic parabola for \`y = x²\`.
-2. How many real roots for \`x² + 1 = 0\`?
+1. Sketch basic parabola for \`y = xÂ²\`.
+2. How many real roots for \`xÂ² + 1 = 0\`?
 
 ### **Word Problems:**
-1. **Area Problem:** A rectangular garden has area 100 m². Express width in terms of length.
-2. **Physics Problem:** Ball thrown upward reaches height h = -5t² + 20t. Find maximum height.
+1. **Area Problem:** A rectangular garden has area 100 mÂ². Express width in terms of length.
+2. **Physics Problem:** Ball thrown upward reaches height h = -5tÂ² + 20t. Find maximum height.
 
 **Answers:**
-Identify: B) \`x² + 3x + 2 = 0\`
-Convert: \`x² - 7x + 12 = 0\`
+Identify: B) \`xÂ² + 3x + 2 = 0\`
+Convert: \`xÂ² - 7x + 12 = 0\`
 Components: a=2, b=-5, c=3
 Type: Pure quadratic
 Graphs: Opens upward, vertex at origin; No real roots
@@ -255,7 +255,7 @@ Word: Width = 100/Length; Maximum at t=2, h=20m
 
 ---
 
-## 🎓 Pro Tips for Quadratic Equations
+## ðŸŽ“ Pro Tips for Quadratic Equations
 
 1. **Always write in standard form** before solving
 2. **Check leading coefficient** - must be non-zero
@@ -267,14 +267,14 @@ Word: Width = 100/Length; Maximum at t=2, h=20m
 
 ---
 
-## 🔢 Quick Reference
+## ðŸ”¢ Quick Reference
 
 | Property | Formula | Meaning |
 |----------|---------|---------|
-| Sum of roots | \`-b/a\` | α + β |
-| Product of roots | \`c/a\` | α × β |
-| Discriminant | \`b² - 4ac\` | Nature of roots |
-| Quadratic formula | \`[-b ± √D]/2a\` | Root values |
+| Sum of roots | \`-b/a\` | Î± + Î² |
+| Product of roots | \`c/a\` | Î± Ã— Î² |
+| Discriminant | \`bÂ² - 4ac\` | Nature of roots |
+| Quadratic formula | \`[-b Â± âˆšD]/2a\` | Root values |
 | Vertex | \`(-b/2a, -D/4a)\` | Turning point |
 
 | D Value | Root Nature | Graph |
@@ -283,5 +283,5 @@ Word: Width = 100/Length; Maximum at t=2, h=20m
 | D = 0 | One real root | Touches x-axis once |
 | D < 0 | Complex roots | Above/below x-axis |
 
-Master the concept of quadratic equations and you'll unlock powerful problem-solving tools! 🏆`
+Master the concept of quadratic equations and you'll unlock powerful problem-solving tools! ðŸ†`
 };

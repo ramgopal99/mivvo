@@ -1,28 +1,28 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_3: SubLesson = {
   id: "7.3",
   title: 'Distance Calculation',
   status: 'completed',
-  content: `# 📏 Distance Calculation
+  content: "`# ðŸ“ Distance Calculation
 
 Distance calculation is crucial in direction sense problems, involving the difference between actual distance traveled (path length) and displacement (straight-line distance between start and end points). Master these calculations to solve complex directional movement problems in competitive exams.
 
 ---
 
-## 🎯 Understanding Distance Concepts
+## ðŸŽ¯ Understanding Distance Concepts
 
 ### **Two Types of Distance**
 
 #### **1. Actual Distance (Path Length)**
 - **Definition**: Total distance traveled along the path
 - **Calculation**: Sum of all individual movement distances
-- **Formula**: Distance = d₁ + d₂ + d₃ + ... + dn
+- **Formula**: Distance = dâ‚ + dâ‚‚ + dâ‚ƒ + ... + dn
 
 #### **2. Displacement (Shortest Distance)**
 - **Definition**: Straight-line distance between start and end points
 - **Calculation**: Uses Pythagorean theorem for right-angle movements
-- **Formula**: Displacement = √(North-South² + East-West²)
+- **Formula**: Displacement = âˆš(North-SouthÂ² + East-WestÂ²)
 
 ### **Key Difference**
 - **Actual Distance**: How far you walked (path length)
@@ -30,7 +30,7 @@ Distance calculation is crucial in direction sense problems, involving the diffe
 
 ---
 
-## 🧮 Distance Calculation Methods
+## ðŸ§® Distance Calculation Methods
 
 ### **Method 1: Coordinate System**
 
@@ -41,24 +41,24 @@ Distance calculation is crucial in direction sense problems, involving the diffe
 
 #### **Movement Tracking**
 
-East  → +X (positive X)  
-West  → -X (negative X)  
-North → +Y (positive Y)  
-South → -Y (negative Y)
+East  â†’ +X (positive X)  
+West  â†’ -X (negative X)  
+North â†’ +Y (positive Y)  
+South â†’ -Y (negative Y)
 
 #### **Final Position Calculation**
-- **Net East-West movement** = Σ(East movements) - Σ(West movements)
-- **Net North-South movement** = Σ(North movements) - Σ(South movements)
+- **Net East-West movement** = Î£(East movements) - Î£(West movements)
+- **Net North-South movement** = Î£(North movements) - Î£(South movements)
 
 ---
 
-## 📐 Pythagorean Theorem Application
+## ðŸ“ Pythagorean Theorem Application
 
 ### **Right-Angle Triangle Formation**
 
-When movements are at 90° angles (North-South and East-West), the displacement forms a right-angled triangle:
+When movements are at 90Â° angles (North-South and East-West), the displacement forms a right-angled triangle:
 
-C = √(A² + B²)  
+C = âˆš(AÂ² + BÂ²)  
 Where:  
 - C = Displacement (shortest distance)  
 - A = Net North-South distance  
@@ -69,12 +69,12 @@ Where:
 Movements: 3km North, 4km East  
 Net N-S: +3km  
 Net E-W: +4km  
-Displacement: √(3² + 4²) = √(9 + 16) = √25 = 5km  
+Displacement: âˆš(3Â² + 4Â²) = âˆš(9 + 16) = âˆš25 = 5km  
 Actual Distance: 3 + 4 = 7km
 
 ---
 
-## 🎯 Problem Types and Solutions
+## ðŸŽ¯ Problem Types and Solutions
 
 ### **Type 1: Simple Displacement**
 *"A man walks 5m North, then 12m East. What is his displacement?"*
@@ -82,7 +82,7 @@ Actual Distance: 3 + 4 = 7km
 **Solution:**
 - Net North-South: +5m
 - Net East-West: +12m
-- Displacement: √(5² + 12²) = √(25 + 144) = √169 = 13m
+- Displacement: âˆš(5Â² + 12Â²) = âˆš(25 + 144) = âˆš169 = 13m
 
 ### **Type 2: Complex Path with Returns**
 *"Walks 10m North, 5m South, 8m East, 3m West"*
@@ -90,7 +90,7 @@ Actual Distance: 3 + 4 = 7km
 **Solution:**
 - Net North-South: 10 - 5 = +5m
 - Net East-West: 8 - 3 = +5m
-- Displacement: √(5² + 5²) = √(25 + 25) = √50 = 5√2m
+- Displacement: âˆš(5Â² + 5Â²) = âˆš(25 + 25) = âˆš50 = 5âˆš2m
 
 ### **Type 3: Multi-Directional Movement**
 *"3km North, 4km West, 5km South, 2km East"*
@@ -98,33 +98,33 @@ Actual Distance: 3 + 4 = 7km
 **Solution:**
 - Net N-S: 3 - 5 = -2km
 - Net E-W: -4 + 2 = -2km
-- Displacement: √((-2)² + (-2)²) = √(4 + 4) = √8 = 2√2km
+- Displacement: âˆš((-2)Â² + (-2)Â²) = âˆš(4 + 4) = âˆš8 = 2âˆš2km
 
 ---
 
-## 🧭 Direction-Specific Calculations
+## ðŸ§­ Direction-Specific Calculations
 
 ### **Pure North-South Movement**
 
 Only North and South movements  
 Displacement = |Net North-South|  
-Example: 8km N, 3km S → Displacement = |8-3| = 5km
+Example: 8km N, 3km S â†’ Displacement = |8-3| = 5km
 
 ### **Pure East-West Movement**
 
 Only East and West movements  
 Displacement = |Net East-West|  
-Example: 6km E, 2km W → Displacement = |6-2| = 4km
+Example: 6km E, 2km W â†’ Displacement = |6-2| = 4km
 
-### **Diagonal Movement (45° paths)**
+### **Diagonal Movement (45Â° paths)**
 
-When movement is at 45° angles  
+When movement is at 45Â° angles  
 Requires trigonometric calculations  
-Displacement = √(d² + d²) = d√2 (for equal distances)
+Displacement = âˆš(dÂ² + dÂ²) = dâˆš2 (for equal distances)
 
 ---
 
-## 📊 Advanced Distance Problems
+## ðŸ“Š Advanced Distance Problems
 
 ### **Problem 1: Minimum Distance with Obstacles**
 *"Find shortest path avoiding obstacles"*
@@ -135,12 +135,12 @@ Displacement = √(d² + d²) = d√2 (for equal distances)
 - Use geometry to find optimal path
 
 ### **Problem 2: Distance with Turns**
-*"Walk 100m in one direction, turn 90°, walk 50m"*
+*"Walk 100m in one direction, turn 90Â°, walk 50m"*
 
 **Solution:**
 - First leg: 100m (any direction)
 - Second leg: 50m (perpendicular)
-- Displacement: √(100² + 50²) = √(10000 + 2500) = √12500 = 50√5m
+- Displacement: âˆš(100Â² + 50Â²) = âˆš(10000 + 2500) = âˆš12500 = 50âˆš5m
 
 ### **Problem 3: Circular Path Problems**
 *"Walk around a square park"*
@@ -148,11 +148,11 @@ Displacement = √(d² + d²) = d√2 (for equal distances)
 **Solution:**
 - Actual distance = Perimeter
 - Displacement = 0 (back to start)
-- For circular paths: Actual = 2πr, Displacement = 0
+- For circular paths: Actual = 2Ï€r, Displacement = 0
 
 ---
 
-## 🛠️ Distance Calculation Framework
+## ðŸ› ï¸ Distance Calculation Framework
 
 ### **Step-by-Step Approach**
 
@@ -166,12 +166,12 @@ Displacement = √(d² + d²) = d√2 (for equal distances)
    - Identify any other directional movements
 
 3. **Calculate Net Movements**
-   - Net N-S = Σ(North) - Σ(South)
-   - Net E-W = Σ(East) - Σ(West)
+   - Net N-S = Î£(North) - Î£(South)
+   - Net E-W = Î£(East) - Î£(West)
    - Take absolute values for displacement
 
 4. **Apply Pythagorean Theorem**
-   - Displacement = √[(Net N-S)² + (Net E-W)²]
+   - Displacement = âˆš[(Net N-S)Â² + (Net E-W)Â²]
    - Actual Distance = Sum of all individual distances
 
 5. **Verify Calculations**
@@ -181,7 +181,7 @@ Displacement = √(d² + d²) = d√2 (for equal distances)
 
 ---
 
-## 🎯 Common Question Patterns
+## ðŸŽ¯ Common Question Patterns
 
 ### **Pattern 1: Find Shortest Distance**
 *"What is the shortest distance from start to end?"*
@@ -200,7 +200,7 @@ Displacement = √(d² + d²) = d√2 (for equal distances)
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (40%)**
 - Simple right-angle movements
@@ -219,52 +219,52 @@ Displacement = √(d² + d²) = d√2 (for equal distances)
 
 ---
 
-## 🧮 Mathematical Tools
+## ðŸ§® Mathematical Tools
 
 ### **Pythagorean Triples**
 Common right triangles for quick calculation:
-- **3-4-5**: √(9+16) = 5
-- **5-12-13**: √(25+144) = 13
-- **6-8-10**: √(36+64) = 10
-- **7-24-25**: √(49+576) = 25
+- **3-4-5**: âˆš(9+16) = 5
+- **5-12-13**: âˆš(25+144) = 13
+- **6-8-10**: âˆš(36+64) = 10
+- **7-24-25**: âˆš(49+576) = 25
 
 ### **Quick Square Roots**
 
-√2 ≈ 1.414  √3 ≈ 1.732  √5 ≈ 2.236  
-√6 ≈ 2.449  √8 ≈ 2.828  √10 ≈ 3.162  
-√13 ≈ 3.606  √15 ≈ 3.873  √17 ≈ 4.123  
-√18 ≈ 4.243  √20 ≈ 4.472  √25 = 5
+âˆš2 â‰ˆ 1.414  âˆš3 â‰ˆ 1.732  âˆš5 â‰ˆ 2.236  
+âˆš6 â‰ˆ 2.449  âˆš8 â‰ˆ 2.828  âˆš10 â‰ˆ 3.162  
+âˆš13 â‰ˆ 3.606  âˆš15 â‰ˆ 3.873  âˆš17 â‰ˆ 4.123  
+âˆš18 â‰ˆ 4.243  âˆš20 â‰ˆ 4.472  âˆš25 = 5
 
 ### **Common Calculations**
 
-√(25+25) = √50 = 5√2 ≈ 7.07  
-√(36+36) = √72 = 6√2 ≈ 8.48  
-√(49+49) = √98 = 7√2 ≈ 9.90  
-√(64+64) = √128 = 8√2 ≈ 11.31
+âˆš(25+25) = âˆš50 = 5âˆš2 â‰ˆ 7.07  
+âˆš(36+36) = âˆš72 = 6âˆš2 â‰ˆ 8.48  
+âˆš(49+49) = âˆš98 = 7âˆš2 â‰ˆ 9.90  
+âˆš(64+64) = âˆš128 = 8âˆš2 â‰ˆ 11.31
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Confusing Distance Types**
-❌ Using actual distance when displacement is asked
-✅ Clearly distinguish between path length and straight-line distance
+âŒ Using actual distance when displacement is asked
+âœ… Clearly distinguish between path length and straight-line distance
 
 ### **Mistake 2: Wrong Sign Handling**
-❌ Adding instead of subtracting opposite directions
-✅ Net movement = Positive - Negative directions
+âŒ Adding instead of subtracting opposite directions
+âœ… Net movement = Positive - Negative directions
 
 ### **Mistake 3: Pythagorean Misapplication**
-❌ Applying Pythagoras to non-right-angle triangles
-✅ Only use for perpendicular movements
+âŒ Applying Pythagoras to non-right-angle triangles
+âœ… Only use for perpendicular movements
 
 ### **Mistake 4: Unit Conversion Errors**
-❌ Mixing meters, kilometers without conversion
-✅ Maintain consistent units throughout
+âŒ Mixing meters, kilometers without conversion
+âœ… Maintain consistent units throughout
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Use Coordinate System**: Always plot movements on X-Y axes
 2. **Track Net Movements**: Calculate North-South and East-West separately
@@ -276,7 +276,7 @@ Common right triangles for quick calculation:
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Basic Displacement**
 *"A walks 9m North, 12m East, 5m South"*
@@ -284,7 +284,7 @@ Common right triangles for quick calculation:
 **Solution:**
 - Net N-S: 9 - 5 = 4m
 - Net E-W: 12m
-- Displacement: √(4² + 12²) = √(16 + 144) = √160 = 4√10m
+- Displacement: âˆš(4Â² + 12Â²) = âˆš(16 + 144) = âˆš160 = 4âˆš10m
 
 ### **Example 2: Complex Path**
 *"3km N, 4km E, 3km S, 4km W"*
@@ -292,7 +292,7 @@ Common right triangles for quick calculation:
 **Solution:**
 - Net N-S: 3 - 3 = 0km
 - Net E-W: 4 - 4 = 0km
-- Displacement: √(0² + 0²) = 0km (back to start)
+- Displacement: âˆš(0Â² + 0Â²) = 0km (back to start)
 
 ### **Example 3: Return Distance**
 *"After movements, how far to return home?"*
@@ -303,7 +303,7 @@ Common right triangles for quick calculation:
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Turning Problems**
 - Track direction changes and distances
@@ -320,5 +320,5 @@ Common right triangles for quick calculation:
 - Determine distances between family members
 - Solve integrated directional problems
 
-**Master distance calculations to accurately solve all types of direction sense problems! 📏✨**`
+**Master distance calculations to accurately solve all types of direction sense problems! ðŸ“âœ¨**`"
 };

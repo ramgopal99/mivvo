@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_5: SubLesson = {
   id: "5.5",
   title: 'Method Overloading',
   status: 'completed',
-  content: `# 🔄 Method Overloading in Java
+  content: "`# ðŸ”„ Method Overloading in Java
 
 Method overloading allows multiple methods with the same name but different parameter lists to coexist in the same class. This feature enables more intuitive APIs and provides flexibility for method callers.
 
 ---
 
-## 📋 Overloading Fundamentals
+## ðŸ“‹ Overloading Fundamentals
 
 ### **What is Method Overloading?**
-\`\`\`java
+\`"\`\`java
 public class OverloadingBasics {
     // Multiple methods with same name but different parameters
     public void display(String message) {
@@ -48,7 +48,7 @@ public class OverloadingBasics {
 ### **Why Use Method Overloading?**
 \`\`\`java
 public class OverloadingBenefits {
-    // ❌ Without overloading - confusing method names
+    // âŒ Without overloading - confusing method names
     public void printString(String text) {
         System.out.println(text);
     }
@@ -63,7 +63,7 @@ public class OverloadingBenefits {
         System.out.println(number);
     }
 
-    // ✅ With overloading - clean, intuitive API
+    // âœ… With overloading - clean, intuitive API
     public void print(String text) {
         System.out.println(text);
     }
@@ -90,30 +90,30 @@ public class OverloadingBenefits {
 
 ---
 
-## 📊 Overloading Rules
+## ðŸ“Š Overloading Rules
 
 ### **Valid Overloading Criteria**
 \`\`\`java
 public class OverloadingRules {
-    // ✅ Different number of parameters
+    // âœ… Different number of parameters
     public void method1() { }
     public void method1(int a) { }
     public void method1(int a, int b) { }
 
-    // ✅ Different parameter types
+    // âœ… Different parameter types
     public void method2(int a) { }
     public void method2(double a) { }
     public void method2(String a) { }
 
-    // ✅ Different parameter order (if types differ)
+    // âœ… Different parameter order (if types differ)
     public void method3(int a, String b) { }
     public void method3(String a, int b) { }
 
-    // ❌ Same parameter list - not allowed
+    // âŒ Same parameter list - not allowed
     // public void method4(int a) { }      // Duplicate
     // public void method4(int a) { }      // Duplicate
 
-    // ✅ Varargs are treated as arrays
+    // âœ… Varargs are treated as arrays
     public void method5(String... args) { }
     public void method5(String[] args) { }  // Not allowed - same as varargs
 
@@ -137,19 +137,19 @@ public class OverloadingRules {
 ### **What Cannot Be Overloaded**
 \`\`\`java
 public class InvalidOverloading {
-    // ✅ Valid overloading - different parameter types
+    // âœ… Valid overloading - different parameter types
     public void validMethod(int a) { }
     public void validMethod(String a) { }
 
-    // ❌ Invalid - only return type differs
+    // âŒ Invalid - only return type differs
     // public int invalidMethod(int a) { return a; }
     // public void invalidMethod(int a) { }  // Compile error
 
-    // ❌ Invalid - only parameter names differ
+    // âŒ Invalid - only parameter names differ
     // public void invalidMethod(int a) { }
     // public void invalidMethod(int b) { }  // Compile error
 
-    // ❌ Invalid - only access modifiers differ
+    // âŒ Invalid - only access modifiers differ
     // public void invalidMethod(String a) { }
     // private void invalidMethod(String a) { }  // Not overloading, just hiding
 
@@ -163,7 +163,7 @@ public class InvalidOverloading {
 
 ---
 
-## 🔧 Overloading with Different Parameter Types
+## ðŸ”§ Overloading with Different Parameter Types
 
 ### **Primitive Type Overloading**
 \`\`\`java
@@ -241,7 +241,7 @@ public class ObjectOverloading {
 
 ---
 
-## 📊 Advanced Overloading Patterns
+## ðŸ“Š Advanced Overloading Patterns
 
 ### **Constructor Overloading**
 \`\`\`java
@@ -325,7 +325,7 @@ public class VarargsOverloading {
 
 ---
 
-## 🎯 Method Resolution (Which Overload is Called?)
+## ðŸŽ¯ Method Resolution (Which Overload is Called?)
 
 ### **Compile-time Method Resolution**
 \`\`\`java
@@ -394,12 +394,12 @@ public class AmbiguityResolution {
 
 ---
 
-## 🎯 Overloading Best Practices
+## ðŸŽ¯ Overloading Best Practices
 
 ### **1. Use Overloading for Related Operations**
 \`\`\`java
 public class GoodOverloading {
-    // ✅ Good: Related operations with different inputs
+    // âœ… Good: Related operations with different inputs
     public void save(String data) {
         // Save string data
         System.out.println("Saving string: " + data);
@@ -415,7 +415,7 @@ public class GoodOverloading {
         System.out.println("Saving list: " + data);
     }
 
-    // ✅ Good: Different levels of configuration
+    // âœ… Good: Different levels of configuration
     public void connect(String host) {
         connect(host, 80);
     }
@@ -445,7 +445,7 @@ public class GoodOverloading {
 ### **2. Avoid Ambiguous Overloads**
 \`\`\`java
 public class AvoidAmbiguity {
-    // ✅ Clear: Different parameter counts
+    // âœ… Clear: Different parameter counts
     public void calculate(int a, int b) {
         System.out.println("Sum: " + (a + b));
     }
@@ -454,11 +454,11 @@ public class AvoidAmbiguity {
         System.out.println("Sum: " + (a + b + c));
     }
 
-    // ❌ Avoid: Similar parameter patterns
+    // âŒ Avoid: Similar parameter patterns
     // public void process(int value, String type) { }
     // public void process(String type, int value) { }  // Confusing!
 
-    // ✅ Better: Use different method names or parameter objects
+    // âœ… Better: Use different method names or parameter objects
     public void processByType(int value, String type) {
         System.out.println("Processing " + value + " of type " + type);
     }
@@ -559,7 +559,7 @@ public class DocumentedOverloading {
 
 ---
 
-## 🔄 Overloading vs Overriding
+## ðŸ”„ Overloading vs Overriding
 
 ### **Key Differences**
 \`\`\`java
@@ -614,12 +614,12 @@ public class OverrideDemo {
 
 ---
 
-## 🎯 When to Use Method Overloading
+## ðŸŽ¯ When to Use Method Overloading
 
 ### **Appropriate Use Cases**
 \`\`\`java
 public class AppropriateOverloading {
-    // ✅ Good: Mathematical operations
+    // âœ… Good: Mathematical operations
     public double max(double a, double b) {
         return Math.max(a, b);
     }
@@ -628,7 +628,7 @@ public class AppropriateOverloading {
         return Math.max(Math.max(a, b), c);
     }
 
-    // ✅ Good: Collection operations
+    // âœ… Good: Collection operations
     public <T> void add(java.util.List<T> list, T element) {
         list.add(element);
     }
@@ -637,7 +637,7 @@ public class AppropriateOverloading {
         list.addAll(elements);
     }
 
-    // ✅ Good: String operations
+    // âœ… Good: String operations
     public String join(String separator, String... parts) {
         return String.join(separator, parts);
     }
@@ -646,7 +646,7 @@ public class AppropriateOverloading {
         return String.join(", ", parts);
     }
 
-    // ✅ Good: File operations
+    // âœ… Good: File operations
     public void save(String filename, String content) throws java.io.IOException {
         java.nio.file.Files.write(java.nio.file.Paths.get(filename),
                                 content.getBytes());
@@ -676,23 +676,23 @@ public class AppropriateOverloading {
 ### **When NOT to Use Overloading**
 \`\`\`java
 public class AvoidOverloading {
-    // ❌ Bad: Overloading with completely different behaviors
+    // âŒ Bad: Overloading with completely different behaviors
     // public void process(String data) { /* parse as XML */ }
     // public void process(int data) { /* calculate factorial */ }
 
-    // ✅ Better: Use different method names
+    // âœ… Better: Use different method names
     public void parseXml(String xmlData) { }
     public int calculateFactorial(int n) { }
 
-    // ❌ Bad: Overloading based on return type only
+    // âŒ Bad: Overloading based on return type only
     // public int convert(String value) { return Integer.parseInt(value); }
     // public double convert(String value) { return Double.parseDouble(value); }
 
-    // ✅ Better: Use different method names
+    // âœ… Better: Use different method names
     public int toInt(String value) { return Integer.parseInt(value); }
     public double toDouble(String value) { return Double.parseDouble(value); }
 
-    // ❌ Bad: Too many overloads (hard to maintain)
+    // âŒ Bad: Too many overloads (hard to maintain)
     // Consider using parameter objects or method chaining instead
 
     public static void main(String[] args) {
@@ -707,8 +707,9 @@ public class AvoidOverloading {
 }
 \`\`\`
 
-Method overloading is a powerful feature that enables more intuitive and flexible APIs. Use it when methods perform conceptually similar operations but with different inputs, and avoid it when the operations are fundamentally different! 🔄`
+Method overloading is a powerful feature that enables more intuitive and flexible APIs. Use it when methods perform conceptually similar operations but with different inputs, and avoid it when the operations are fundamentally different! ðŸ”„`
 };
+
 
 
 

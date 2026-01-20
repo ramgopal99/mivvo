@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_1: SubLesson = {
   id: "5.1",
-  title: 'CODING–DECODING (Aptitude – Exam-Oriented Topics)',
+  title: 'CODINGâ€“DECODING (Aptitude â€“ Exam-Oriented Topics)',
   status: 'completed',
-  content: `# 🔐 CODING–DECODING (Aptitude – Exam-Oriented Topics)
+  content: "`# ðŸ” CODINGâ€“DECODING (Aptitude â€“ Exam-Oriented Topics)
 
 Welcome to the comprehensive Coding-Decoding module! This exam-oriented section covers all types of coding and decoding problems that appear frequently in competitive examinations. Master various coding techniques, decoding methods, and pattern recognition to excel in banking, SSC, railway, and other competitive exams.
 
 ---
 
-## 🎯 Understanding Coding-Decoding
+## ðŸŽ¯ Understanding Coding-Decoding
 
 ### **What are Coding-Decoding Problems?**
 Coding-decoding involves converting messages or words from one form to another using specific rules or patterns. These problems test your ability to:
@@ -27,7 +27,7 @@ Coding-decoding involves converting messages or words from one form to another u
 
 ---
 
-## 🧩 Types of Coding-Decoding
+## ðŸ§© Types of Coding-Decoding
 
 ### **Basic Coding Types**
 - **Letter Coding**: Alphabetical letter transformations
@@ -48,7 +48,7 @@ Coding-decoding involves converting messages or words from one form to another u
 
 ---
 
-## 📊 Competitive Exam Relevance
+## ðŸ“Š Competitive Exam Relevance
 
 ### **Major Exams Featuring Coding-Decoding**
 - **Banking Exams** (IBPS, SBI): 8-12 questions per exam
@@ -67,7 +67,7 @@ Coding-decoding involves converting messages or words from one form to another u
 
 ---
 
-## 🎯 Core Coding-Decoding Skills
+## ðŸŽ¯ Core Coding-Decoding Skills
 
 ### **1. Pattern Recognition**
 **Identifying underlying coding rules**
@@ -99,7 +99,7 @@ Coding-decoding involves converting messages or words from one form to another u
 
 ---
 
-## 🛠️ Problem-Solving Framework
+## ðŸ› ï¸ Problem-Solving Framework
 
 ### **Step 1: Analyze the Code**
 - Carefully examine given examples
@@ -123,7 +123,7 @@ Coding-decoding involves converting messages or words from one form to another u
 
 ---
 
-## 📈 Difficulty Levels in Coding Problems
+## ðŸ“ˆ Difficulty Levels in Coding Problems
 
 ### **Easy Level (30-40%)**
 - Simple letter shifts
@@ -145,7 +145,7 @@ Coding-decoding involves converting messages or words from one form to another u
 
 ---
 
-## 🎯 Common Coding-Decoding Topics
+## ðŸŽ¯ Common Coding-Decoding Topics
 
 ### **Letter-Based Coding**
 Simple and complex letter transformations and substitutions.
@@ -167,7 +167,7 @@ Combination of multiple coding techniques and methods.
 
 ---
 
-## 📊 Time Management Strategies
+## ðŸ“Š Time Management Strategies
 
 ### **Question Allocation Time**
 - **Simple Coding**: 1-2 minutes
@@ -182,7 +182,7 @@ Combination of multiple coding techniques and methods.
 
 ---
 
-## 🚀 Preparation Strategy
+## ðŸš€ Preparation Strategy
 
 ### **Phase 1: Foundation Building**
 - Learn basic coding types
@@ -204,7 +204,7 @@ Combination of multiple coding techniques and methods.
 
 ---
 
-## 📚 Recommended Resources
+## ðŸ“š Recommended Resources
 
 ### **Practice Platforms**
 - **Online Platforms**: Testbook, Adda247, Unacademy
@@ -219,7 +219,7 @@ Combination of multiple coding techniques and methods.
 
 ---
 
-## 🎯 Success Factors
+## ðŸŽ¯ Success Factors
 
 ### **1. Pattern Recognition**
 - Quick identification of coding rules
@@ -243,27 +243,27 @@ Combination of multiple coding techniques and methods.
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Incomplete Analysis**
-❌ Solving without understanding all examples
-✅ Analyze all given examples thoroughly
+âŒ Solving without understanding all examples
+âœ… Analyze all given examples thoroughly
 
 ### **Mistake 2: Wrong Rule Application**
-❌ Inconsistent rule application
-✅ Apply rules uniformly across examples
+âŒ Inconsistent rule application
+âœ… Apply rules uniformly across examples
 
 ### **Mistake 3: Missing Patterns**
-❌ Not recognizing underlying patterns
-✅ Look for consistent transformation rules
+âŒ Not recognizing underlying patterns
+âœ… Look for consistent transformation rules
 
 ### **Mistake 4: Time Pressure Errors**
-❌ Rushing through complex coding problems
-✅ Manage time strategically
+âŒ Rushing through complex coding problems
+âœ… Manage time strategically
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Analyze Examples First**: Always examine all given examples before solving
 2. **Find the Pattern**: Identify consistent transformation rules
@@ -275,7 +275,7 @@ Combination of multiple coding techniques and methods.
 
 ---
 
-## 🔍 What You'll Learn Next
+## ðŸ” What You'll Learn Next
 
 This module covers comprehensive coding-decoding topics:
 
@@ -291,5 +291,5 @@ This module covers comprehensive coding-decoding topics:
 - **Mathematical Coding** - Number-based transformations
 - **Matrix Coding (Basic)** - Grid-based arrangements
 
-**Master coding-decoding techniques and enhance your analytical reasoning for exam success! 🔐✨**`
+**Master coding-decoding techniques and enhance your analytical reasoning for exam success! ðŸ”âœ¨**`"
 };

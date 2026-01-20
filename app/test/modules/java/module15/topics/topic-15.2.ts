@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_2: SubLesson = {
   id: "15.2",
   title: 'Quick Sort & Heap Sort',
   status: 'completed',
-  content: `# ⚡ Quick Sort & Heap Sort in Java
+  content: "`# âš¡ Quick Sort & Heap Sort in Java
 
 Master two of the most important sorting algorithms!
 
 ---
 
-## 🚀 Quick Sort - O(n log n) Average
+## ðŸš€ Quick Sort - O(n log n) Average
 
 ### **How Quick Sort Works:**
 1. **Choose a pivot** element
@@ -18,7 +18,7 @@ Master two of the most important sorting algorithms!
 3. **Recursively sort** left and right subarrays
 
 ### **Partitioning Process:**
-\`\`\`java
+\`"\`\`java
 public class QuickSort {
     // Partition function
     public static int partition(int[] arr, int low, int high) {
@@ -72,7 +72,7 @@ public class QuickSort {
 
 ### **Quick Sort Analysis:**
 - **Best/Average Case**: O(n log n)
-- **Worst Case**: O(n²) - when pivot is always smallest/largest
+- **Worst Case**: O(nÂ²) - when pivot is always smallest/largest
 - **Space**: O(log n) for recursion stack
 - **In-place**: Yes
 - **Stable**: No
@@ -84,10 +84,10 @@ public class QuickSort {
 
 ---
 
-## 🏗️ Heap Sort - O(n log n) Worst Case
+## ðŸ—ï¸ Heap Sort - O(n log n) Worst Case
 
 ### **Heap Data Structure:**
-- **Complete Binary Tree** where each node ≥ its children (Max Heap)
+- **Complete Binary Tree** where each node â‰¥ its children (Max Heap)
 - **Array Representation**: Parent at i, children at 2i+1 and 2i+2
 
 ### **Heap Sort Steps:**
@@ -172,7 +172,7 @@ public class HeapSort {
 
 ---
 
-## 🧮 Non-Comparison Sorts
+## ðŸ§® Non-Comparison Sorts
 
 ### **Counting Sort - O(n + k)**
 
@@ -285,7 +285,7 @@ public class RadixSort {
 
 ---
 
-## 🏆 Algorithm Comparison
+## ðŸ† Algorithm Comparison
 
 | Algorithm | Time | Space | Stable | In-Place | Best For |
 |-----------|------|-------|--------|----------|----------|
@@ -297,14 +297,15 @@ public class RadixSort {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
-1. **Quick Sort**: Fast average case, in-place, but worst case O(n²)
+1. **Quick Sort**: Fast average case, in-place, but worst case O(nÂ²)
 2. **Heap Sort**: Guaranteed O(n log n), in-place, but not cache-friendly
 3. **Merge Sort**: Stable, predictable, but uses extra space
 4. **Non-comparison sorts**: Can be faster when constraints allow
 5. **Java's Arrays.sort()**: Uses dual-pivot quicksort for primitives, Timsort for objects
 
-**Master these algorithms for optimal sorting performance!** 🚀`
+**Master these algorithms for optimal sorting performance!** ðŸš€`
 };
+
 

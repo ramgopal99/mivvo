@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_1: SubLesson = {
   id: "5.1",
   title: 'Concept of Ratio',
   status: 'completed',
-  content: `# 📏 Concept of Ratio
+  content: "`# ðŸ“ Concept of Ratio
 
 Welcome to the fundamental world of ratios! Ratios are everywhere in mathematics and real life, helping us compare quantities and understand relationships. Master the basic concepts and you'll find ratios in everything from cooking recipes to financial planning.
 
 ---
 
-## 🎯 What is a Ratio?
+## ðŸŽ¯ What is a Ratio?
 
 **Ratio** is a mathematical expression that compares two or more quantities of the same kind. It shows how many times one quantity contains another, or the relative sizes of two or more values.
 
@@ -20,13 +20,13 @@ Welcome to the fundamental world of ratios! Ratios are everywhere in mathematics
 - Represents relative magnitudes
 
 ### **Key Symbol**
-\`\`\`
+\`"\`\`
 a:b or a/b (read as "a is to b")
 \`\`\`
 
 ---
 
-## 📊 Understanding Ratios
+## ðŸ“Š Understanding Ratios
 
 ### **Example 1: Simple Ratio**
 **Problem:** In a class of 30 students, 18 are boys. What is the ratio of boys to girls?
@@ -45,7 +45,7 @@ a:b or a/b (read as "a is to b")
 
 ---
 
-## 🔢 Types of Ratios
+## ðŸ”¢ Types of Ratios
 
 ### **1. Simple Ratio**
 - Compares two quantities
@@ -73,7 +73,7 @@ a:b or a/b (read as "a is to b")
 
 ---
 
-## 🎯 Important Properties
+## ðŸŽ¯ Important Properties
 
 ### **1. Ratio Remains Same**
 - Multiplying or dividing both terms by same number doesn't change ratio
@@ -81,8 +81,8 @@ a:b or a/b (read as "a is to b")
 - 3:6 = 6:12 (multiply by 2)
 
 ### **2. Order Matters**
-- a:b ≠ b:a
-- 2:3 ≠ 3:2
+- a:b â‰  b:a
+- 2:3 â‰  3:2
 
 ### **3. Ratio of Zero**
 - 0:a = 0:1 (but usually written as 0:a)
@@ -94,30 +94,30 @@ a:b or a/b (read as "a is to b")
 
 ---
 
-## 🧮 Basic Operations with Ratios
+## ðŸ§® Basic Operations with Ratios
 
 ### **1. Equivalent Ratios**
 \`\`\`
-a:b = c:d means a×d = b×c
+a:b = c:d means aÃ—d = bÃ—c
 \`\`\`
 
-**Example:** 2:3 = 4:6 because 2×6 = 3×4 = 12
+**Example:** 2:3 = 4:6 because 2Ã—6 = 3Ã—4 = 12
 
 ### **2. Finding Missing Term**
 \`\`\`
-If a:b = c:d, then d = (b×c)÷a
+If a:b = c:d, then d = (bÃ—c)Ã·a
 \`\`\`
 
-**Example:** 3:4 = 6:? → ? = (4×6)÷3 = 8
+**Example:** 3:4 = 6:? â†’ ? = (4Ã—6)Ã·3 = 8
 
 ### **3. Ratio of Ratios**
 \`\`\`
-Ratio of a:b and c:d is (a×d):(b×c)
+Ratio of a:b and c:d is (aÃ—d):(bÃ—c)
 \`\`\`
 
 ---
 
-## 📈 Real-Life Applications
+## ðŸ“ˆ Real-Life Applications
 
 ### **1. Cooking & Recipes**
 - Cake recipe: 2:3:1 (flour:sugar:butter)
@@ -141,7 +141,7 @@ Ratio of a:b and c:d is (a×d):(b×c)
 
 ---
 
-## 🔄 Ratios vs. Fractions
+## ðŸ”„ Ratios vs. Fractions
 
 | Aspect | Ratio | Fraction |
 |--------|-------|----------|
@@ -153,7 +153,7 @@ Ratio of a:b and c:d is (a×d):(b×c)
 
 ---
 
-## 🎯 Common Ratio Patterns
+## ðŸŽ¯ Common Ratio Patterns
 
 ### **1. Age Ratios**
 - Present ages: 5:7
@@ -173,37 +173,37 @@ Ratio of a:b and c:d is (a×d):(b×c)
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Order**
-❌ "Ratio of boys to total students = 18:30"
+âŒ "Ratio of boys to total students = 18:30"
 - Should specify clearly: boys:total or boys:girls
 
 ### **Mistake 2: Not Simplifying**
-❌ "Ratio = 6:9" (leave as is)
+âŒ "Ratio = 6:9" (leave as is)
 - Should simplify: 6:9 = 2:3
 
 ### **Mistake 3: Different Units**
-❌ "Compare 2 kg and 2000 grams"
+âŒ "Compare 2 kg and 2000 grams"
 - Convert to same units first: 2 kg = 2000g, ratio 1:1
 
 ### **Mistake 4: Zero Quantities**
-❌ "Ratio when one quantity is zero"
+âŒ "Ratio when one quantity is zero"
 - Handle carefully: 0:5 = 0:1
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Basic Ratios:**
 1. In a bag of 50 marbles, 30 are red. Find ratio of red to total marbles.
-2. Divide ₹100 in ratio 3:2. How much each gets?
+2. Divide â‚¹100 in ratio 3:2. How much each gets?
 3. Ratio of boys to girls is 5:3. If boys are 25, how many girls?
 
 ### **Comparison Ratios:**
 1. Compare 2 kg and 600g.
 2. Express 3 hours as ratio to 1 day.
-3. Ratio of 25 paise to ₹2.
+3. Ratio of 25 paise to â‚¹2.
 
 ### **Application Problems:**
 1. Recipe needs flour:sugar = 2:1. For 4 cups flour, how much sugar?
@@ -211,13 +211,13 @@ Ratio of a:b and c:d is (a×d):(b×c)
 3. Gear ratio 3:1. If driver gear turns 90 times, driven gear turns?
 
 **Answers:**
-Basic: 3:5, ₹60 and ₹40, 15
+Basic: 3:5, â‚¹60 and â‚¹40, 15
 Comparison: 10:3, 3:24, 1:8
 Applications: 2 cups, 2.5 km, 30 times
 
 ---
 
-## 🎓 Pro Tips for Exams
+## ðŸŽ“ Pro Tips for Exams
 
 1. **Always simplify ratios** to lowest terms
 2. **Check units** - convert to same units before comparing
@@ -228,14 +228,14 @@ Applications: 2 cups, 2.5 km, 30 times
 
 ---
 
-## 🔢 Quick Reference
+## ðŸ”¢ Quick Reference
 
 | Ratio Type | Example | Meaning |
 |------------|---------|---------|
 | Simple | 2:3 | 2 parts to 3 parts |
 | Compound | 2:3:5 | 2, 3, and 5 parts |
 | Equivalent | 2:3 = 4:6 | Same relationship |
-| Inverse | 2:3 → 3:2 | Reversed relationship |
+| Inverse | 2:3 â†’ 3:2 | Reversed relationship |
 
-Master the concept of ratio and you'll handle comparative problems with confidence! 🏆`
+Master the concept of ratio and you'll handle comparative problems with confidence! ðŸ†`
 };

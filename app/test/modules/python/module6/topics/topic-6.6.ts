@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_6: SubLesson = {
   id: "6.6",
   title: 'Dictionary Methods',
   status: 'demo',
-  content: `# 🔧 Dictionary Methods
+  content: "`# ðŸ”§ Dictionary Methods
 
 Dictionaries have many useful methods for manipulation and analysis. Let's explore the most important ones!
 
 ---
 
-## 🔄 Copy Method
+## ðŸ”„ Copy Method
 
 ### **Create a Copy**
-\`\`\`python
+\`"\`\`python
 original = {"a": 1, "b": 2, "c": 3}
 copy_dict = original.copy()
 
@@ -24,7 +24,7 @@ print(f"Copy: {copy_dict}")      # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
 
 ---
 
-## 📊 Set Operations
+## ðŸ“Š Set Operations
 
 ### **Keys, Values, and Items**
 \`\`\`python
@@ -46,7 +46,7 @@ print(f"Keys after update: {list(keys_view)}")
 
 ---
 
-## 🔍 Get Method Variations
+## ðŸ” Get Method Variations
 
 ### **Advanced Access Patterns**
 \`\`\`python
@@ -68,7 +68,7 @@ print(config["debug"])            # True (unchanged)
 
 ---
 
-## 📝 Dictionary from Keys
+## ðŸ“ Dictionary from Keys
 
 ### **Create Dict with Default Values**
 \`\`\`python
@@ -88,7 +88,7 @@ print(word_count)    # {'the': 0, 'and': 0, 'or': 0}
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **Word Frequency Counter**
 \`\`\`python
@@ -186,7 +186,7 @@ print(f"Grade distribution: {dict(grade_counts)}")
 
 ---
 
-## ✅ Method Summary
+## âœ… Method Summary
 
 ### **View Methods (Dynamic)**
 - **dict.keys()** - Returns dict_keys view (like set)
@@ -214,6 +214,7 @@ print(f"Grade distribution: {dict(grade_counts)}")
 - **update()** accepts dicts, iterables of pairs, or keyword arguments
 - **pop()** with default is the safest removal method
 
-Dictionary methods provide powerful data manipulation capabilities! 🛠️`
+Dictionary methods provide powerful data manipulation capabilities! ðŸ› ï¸`
 };
+
 

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_3: SubLesson = {
   id: "6.3",
   title: 'Alphabet Series',
   status: 'completed',
-  content: `# 🔤 Alphabet Series
+  content: "`# ðŸ”¤ Alphabet Series
 
 Alphabet series involve sequences of letters following specific alphabetical patterns or rules. These problems test your understanding of letter positions, sequences, and relationships within the alphabet.
 
 ---
 
-## 🎯 Understanding Alphabet Series
+## ðŸŽ¯ Understanding Alphabet Series
 
 ### **What are Alphabet Series?**
 Alphabet series are sequences of letters that follow specific patterns based on alphabetical order, positions, or rules. They test your ability to:
@@ -27,7 +27,7 @@ Alphabet series are sequences of letters that follow specific patterns based on 
 
 ---
 
-## 🧩 Types of Alphabet Series
+## ðŸ§© Types of Alphabet Series
 
 ### **1. Position-Based Series**
 **Using letter positions in calculations**
@@ -49,7 +49,7 @@ Alphabet series are sequences of letters that follow specific patterns based on 
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze Letter Sequence**
 - Examine all letters in the series
@@ -73,7 +73,7 @@ Alphabet series are sequences of letters that follow specific patterns based on 
 
 ---
 
-## 🎯 Common Alphabet Series Types
+## ðŸŽ¯ Common Alphabet Series Types
 
 ### **Type 1: Simple Sequences**
 **Straightforward alphabetical order**
@@ -90,12 +90,12 @@ Alphabet series are sequences of letters that follow specific patterns based on 
 ### **Type 3: Position-Based**
 **Using numerical positions**
 - **Example**: A, D, I, P, ?
-- **Pattern**: Position × position in series
-- **Next**: A(1)×1=1→A, D(4)×2=8→H, I(9)×3=27→?, P(16)×4=64→?
+- **Pattern**: Position Ã— position in series
+- **Next**: A(1)Ã—1=1â†’A, D(4)Ã—2=8â†’H, I(9)Ã—3=27â†’?, P(16)Ã—4=64â†’?
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Position Method**
 
@@ -115,7 +115,7 @@ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Alternating**
 **Series**: A, C, E, G, I, ?
@@ -139,7 +139,7 @@ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
 
 ---
 
-## 🔍 Advanced Alphabet Series Concepts
+## ðŸ” Advanced Alphabet Series Concepts
 
 ### **Multi-Variable Patterns**
 Series involving multiple pattern types or position factors.
@@ -152,7 +152,7 @@ Complex patterns combining multiple alphabetical rules.
 
 ---
 
-## 📊 Alphabet Series Patterns
+## ðŸ“Š Alphabet Series Patterns
 
 ### **Basic Patterns**
 - **Constant Difference**: Fixed position jumps
@@ -171,23 +171,23 @@ Complex patterns combining multiple alphabetical rules.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Position Miscalculation**
-❌ Wrong letter position assignments
-✅ Know A=1 to Z=26 positions
+âŒ Wrong letter position assignments
+âœ… Know A=1 to Z=26 positions
 
 ### **Pitfall 2: Pattern Confusion**
-❌ Mixing forward and backward patterns
-✅ Clear direction identification
+âŒ Mixing forward and backward patterns
+âœ… Clear direction identification
 
 ### **Pitfall 3: Boundary Issues**
-❌ Forgetting alphabet limits (A/Z wrap-around)
-✅ Handle A and Z transitions properly
+âŒ Forgetting alphabet limits (A/Z wrap-around)
+âœ… Handle A and Z transitions properly
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Position Mapping**
 - Assign numerical positions to all letters
@@ -206,7 +206,7 @@ Complex patterns combining multiple alphabetical rules.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Simple forward/backward sequences
@@ -225,7 +225,7 @@ Complex patterns combining multiple alphabetical rules.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Know Letter Positions**: Memorize A=1 to Z=26
 2. **Check Differences**: Calculate position differences first
@@ -235,7 +235,7 @@ Complex patterns combining multiple alphabetical rules.
 
 ---
 
-## 🔤 Practice Questions
+## ðŸ”¤ Practice Questions
 
 ### **Question 1**
 Find the next letter: A, C, E, G, I, ?
@@ -252,5 +252,5 @@ Find the next letter: B, D, F, H, J, ?
 ### **Question 5**
 Find the next letter: P, R, T, V, X, ?
 
-**Master alphabet series for letter sequence completion! 🔤✨**`
+**Master alphabet series for letter sequence completion! ðŸ”¤âœ¨**`"
 };

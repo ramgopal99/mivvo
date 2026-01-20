@@ -1,6 +1,8 @@
 import { Module } from '../data/lessonsData';
 import { loadPythonModules } from './pythonModuleLoader';
 import { loadJavaModules } from './javaModuleLoader';
+import { loadCModules } from './cModuleLoader';
+import { loadCppModules } from './cppModuleLoader';
 import { loadAptitudeModules } from './aptitudeModuleLoader';
 import { loadLogicalModules } from './logicalModuleLoader';
 import { loadVerbalModules } from './verbalModuleLoader';
@@ -12,7 +14,7 @@ import { getAvailableCourses as getCoursesFromConfig } from '../config';
 
 /**
  * Loads modules for a specific course
- * @param language - The course type ('python', 'java', 'aptitude', 'logical')
+ * @param language - The course type ('python', 'java', 'cpp', 'c', 'aptitude', 'logical', 'verbal')
  * @returns Promise<Module[]> - Array of loaded modules for the specified course
  */
 export async function loadModules(course: string = 'python'): Promise<Module[]> {
@@ -22,6 +24,10 @@ export async function loadModules(course: string = 'python'): Promise<Module[]> 
     return loadPythonModules();
   } else if (course === 'java') {
     return loadJavaModules();
+  } else if (course === 'cpp') {
+    return loadCppModules();
+  } else if (course === 'c') {
+    return loadCModules();
   } else if (course === 'aptitude') {
     return loadAptitudeModules();
   } else if (course === 'logical') {

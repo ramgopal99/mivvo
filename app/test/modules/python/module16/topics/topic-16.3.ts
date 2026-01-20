@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_3: SubLesson = {
   id: "16.3",
   title: 'Decorators',
   status: 'demo',
-  content: `# 🎨 Python Decorators
+  content: "`# ðŸŽ¨ Python Decorators
 
 Decorators are a powerful and elegant feature in Python that allow you to modify or extend the behavior of functions and methods without changing their source code. They are widely used in frameworks, for logging, authentication, caching, and more. Let's explore this advanced Python concept!
 
 ---
 
-## 🎯 What are Decorators?
+## ðŸŽ¯ What are Decorators?
 
 **Decorators** are functions that take another function as an argument and extend or modify its behavior without explicitly modifying the function itself.
 
 ### **Decorator Syntax**
-\`\`\`python
+\`"\`\`python
 @decorator_name
 def function_name():
     pass
@@ -31,7 +31,7 @@ function_name = decorator_name(function_name)
 
 ---
 
-## 💻 Basic Decorator Creation
+## ðŸ’» Basic Decorator Creation
 
 ### **Simple Decorator**
 \`\`\`python
@@ -80,7 +80,7 @@ print(greet("Bob", "Hi"))        # Hi, Bob!
 
 ---
 
-## 🔧 Decorator Factory (Parameterized Decorators)
+## ðŸ”§ Decorator Factory (Parameterized Decorators)
 
 ### **Creating Decorators with Parameters**
 \`\`\`python
@@ -126,7 +126,7 @@ process_data([1, 2, 3])  # DEBUG level logging
 
 ---
 
-## 🎯 Built-in Decorators
+## ðŸŽ¯ Built-in Decorators
 
 ### **@staticmethod and @classmethod**
 \`\`\`python
@@ -188,7 +188,7 @@ print(f"New area: {circle.area}")  # 314.159
 
 ---
 
-## 🔄 Multiple Decorators
+## ðŸ”„ Multiple Decorators
 
 ### **Stacking Decorators**
 \`\`\`python
@@ -221,7 +221,7 @@ print(greet("Alice"))  # <b><i>Hello, Alice!</i></b>
 
 ---
 
-## 🎨 Practical Decorator Examples
+## ðŸŽ¨ Practical Decorator Examples
 
 ### **Timing Decorator**
 \`\`\`python
@@ -332,7 +332,7 @@ print(unreliable_operation())
 
 ---
 
-## 🔧 Advanced Decorator Techniques
+## ðŸ”§ Advanced Decorator Techniques
 
 ### **Preserving Function Metadata**
 \`\`\`python
@@ -401,7 +401,7 @@ print(obj.method2("parameter"))
 
 ---
 
-## 🧪 Testing and Examples
+## ðŸ§ª Testing and Examples
 
 ### **Example 1: Web Framework Style**
 \`\`\`python
@@ -470,11 +470,11 @@ except ValueError as e:
 
 ---
 
-## ⚠️ Decorator Best Practices
+## âš ï¸ Decorator Best Practices
 
 ### **Common Pitfalls**
 \`\`\`python
-# ❌ Don't forget to return the result
+# âŒ Don't forget to return the result
 def bad_decorator(func):
     def wrapper(*args, **kwargs):
         print("Before")
@@ -489,7 +489,7 @@ def returns_value():
 result = returns_value()
 print(result)  # None - oops!
 
-# ✅ Correct version
+# âœ… Correct version
 def good_decorator(func):
     def wrapper(*args, **kwargs):
         print("Before")
@@ -522,7 +522,7 @@ print(documented_function.__doc__)   # This docstring will be preserved
 
 ---
 
-## 🎯 When to Use Decorators
+## ðŸŽ¯ When to Use Decorators
 
 ### **Good Use Cases**
 - **Cross-cutting concerns**: logging, timing, caching
@@ -539,7 +539,7 @@ print(documented_function.__doc__)   # This docstring will be preserved
 
 ---
 
-## 🚀 Key Takeaways
+## ðŸš€ Key Takeaways
 
 1. **Decorators modify function behavior** without changing source code
 2. **@ syntax** is syntactic sugar for function wrapping
@@ -548,6 +548,7 @@ print(documented_function.__doc__)   # This docstring will be preserved
 5. **functools.wraps** preserves original function metadata
 6. **Class-based decorators** offer more flexibility than function-based ones
 
-**Decorators are a powerful tool for extending functionality elegantly. Use them to separate concerns and keep your code clean and maintainable! 🎨**`
+**Decorators are a powerful tool for extending functionality elegantly. Use them to separate concerns and keep your code clean and maintainable! ðŸŽ¨**`
 };
+
 

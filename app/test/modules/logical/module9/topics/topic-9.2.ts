@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_2: SubLesson = {
   id: "9.2",
   title: 'Statements and Conclusions',
   status: 'completed',
-  content: `# 📝 Statements and Conclusions
+  content: "`# ðŸ“ Statements and Conclusions
 
 Statements and conclusions form the core of syllogism problems, where you must analyze given premises and determine which conclusions logically follow. This topic focuses on understanding the relationship between premises and valid conclusions, distinguishing between conclusions that must be true versus those that may be true or cannot be determined.
 
 ---
 
-## 🎯 Understanding Statements and Conclusions
+## ðŸŽ¯ Understanding Statements and Conclusions
 
 ### **What are Statements and Conclusions in Syllogism?**
 In syllogism problems, statements are the given premises, and conclusions are the logical inferences that can be drawn from them. The key challenge is determining which conclusions:
@@ -32,10 +32,10 @@ In syllogism problems, statements are the given premises, and conclusions are th
 
 ---
 
-## 🧩 Statement-Conclusion Relationship
+## ðŸ§© Statement-Conclusion Relationship
 
 ### **Definite Conclusions**
-\`\`\`
+\`"\`\`
 Conclusions that MUST be true based on the given statements
 - Logically necessary inferences
 - Cannot be false if premises are true
@@ -60,14 +60,14 @@ Conclusions that CANNOT be true based on the statements
 
 ---
 
-## 🎯 Problem Types and Solutions
+## ðŸŽ¯ Problem Types and Solutions
 
 ### **Type 1: Direct Inference**
 *"Statements: All A are B. All B are C. Conclusion: All A are C."*
 
 **Analysis:**
 - This conclusion must follow (definite)
-- A ⊆ B ⊆ C, therefore A ⊆ C
+- A âŠ† B âŠ† C, therefore A âŠ† C
 
 ### **Type 2: Possible Conclusion**
 *"Statements: Some A are B. All B are C. Conclusion: Some A are C."*
@@ -85,7 +85,7 @@ Conclusions that CANNOT be true based on the statements
 
 ---
 
-## 📊 Conclusion Evaluation Methods
+## ðŸ“Š Conclusion Evaluation Methods
 
 ### **Method 1: Venn Diagram Verification**
 \`\`\`
@@ -110,7 +110,7 @@ Conclusions that CANNOT be true based on the statements
 
 ---
 
-## 🛠️ Problem-Solving Framework
+## ðŸ› ï¸ Problem-Solving Framework
 
 ### **Step-by-Step Approach**
 
@@ -136,7 +136,7 @@ Conclusions that CANNOT be true based on the statements
 
 ---
 
-## 🎯 Common Question Patterns
+## ðŸŽ¯ Common Question Patterns
 
 ### **Pattern 1: Single Conclusion Selection**
 *"Which of the following conclusions follows from the statements?"*
@@ -152,7 +152,7 @@ Conclusions that CANNOT be true based on the statements
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (40%)**
 - Simple categorical relationships
@@ -171,7 +171,7 @@ Conclusions that CANNOT be true based on the statements
 
 ---
 
-## 🧮 Logical Rules for Conclusions
+## ðŸ§® Logical Rules for Conclusions
 
 ### **Definite Conclusion Rules**
 \`\`\`
@@ -199,7 +199,7 @@ If conclusion contradicts the statements:
 
 ---
 
-## 🎯 Special Cases and Exceptions
+## ðŸŽ¯ Special Cases and Exceptions
 
 ### **Case 1: Universal Statements**
 \`\`\`
@@ -224,27 +224,27 @@ If conclusion contradicts the statements:
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Assuming Possibility Means Certainty**
-❌ Treating possible conclusions as definite
-✅ Distinguish between may follow vs must follow
+âŒ Treating possible conclusions as definite
+âœ… Distinguish between may follow vs must follow
 
 ### **Mistake 2: Over-Generalization**
-❌ Drawing universal conclusions from particular statements
-✅ Respect the limitations of quantifiers
+âŒ Drawing universal conclusions from particular statements
+âœ… Respect the limitations of quantifiers
 
 ### **Mistake 3: Ignoring Alternative Interpretations**
-❌ Assuming only one possible scenario
-✅ Consider multiple ways statements can be interpreted
+âŒ Assuming only one possible scenario
+âœ… Consider multiple ways statements can be interpreted
 
 ### **Mistake 4: Logical Contradictions**
-❌ Accepting conclusions that contradict given statements
-✅ Verify consistency with premises
+âŒ Accepting conclusions that contradict given statements
+âœ… Verify consistency with premises
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Read Statements Carefully**: Note exact wording and quantifiers
 2. **Test Each Conclusion**: Don't assume conclusions are valid
@@ -256,31 +256,31 @@ If conclusion contradicts the statements:
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Definite Conclusion**
 *"Statements: All roses are flowers. Some flowers are red."*
 
 **Conclusions to evaluate:**
-- Some roses are red → May follow (possible)
-- All roses are red → Cannot follow (invalid)
-- Some roses are flowers → Must follow (definite)
+- Some roses are red â†’ May follow (possible)
+- All roses are red â†’ Cannot follow (invalid)
+- Some roses are flowers â†’ Must follow (definite)
 
 ### **Example 2: Possible Conclusion**
 *"Statements: Some doctors are engineers. All engineers are graduates."*
 
 **Conclusions:**
-- Some doctors are graduates → May follow (possible)
-- All doctors are graduates → Cannot follow (invalid)
-- Some graduates are doctors → May follow (possible)
+- Some doctors are graduates â†’ May follow (possible)
+- All doctors are graduates â†’ Cannot follow (invalid)
+- Some graduates are doctors â†’ May follow (possible)
 
 ### **Example 3: Invalid Conclusion**
 *"Statements: No cats are dogs. All pets are animals."*
 
 **Conclusions:**
-- No cats are animals → Cannot follow (invalid)
-- Some pets are cats → Cannot be determined
-- All cats are animals → May follow (possible)
+- No cats are animals â†’ Cannot follow (invalid)
+- Some pets are cats â†’ Cannot be determined
+- All cats are animals â†’ May follow (possible)
 
 ### **Example 4: Multiple Valid Conclusions**
 *"Statements: All A are B. All B are C. All C are D."*
@@ -295,7 +295,7 @@ If conclusion contradicts the statements:
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Types of Statements**
 - Apply All/Some/No rules to conclusion validity
@@ -309,5 +309,5 @@ If conclusion contradicts the statements:
 - Apply possibility analysis to conclusion evaluation
 - Distinguish between different interpretation scenarios
 
-**Master statements and conclusions analysis to excel in syllogism reasoning! 📝✨**`
+**Master statements and conclusions analysis to excel in syllogism reasoning! ðŸ“âœ¨**`
 };

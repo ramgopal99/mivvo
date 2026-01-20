@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_1_1: SubLesson = {
   id: "1.1",
   title: 'What is Verbal Ability?',
   status: 'completed',
-  content: `# 📚 What is Verbal Ability?
+  content: "`# ðŸ“š What is Verbal Ability?
 
 Welcome to the comprehensive Verbal Ability course! This foundational topic will introduce you to the core concepts, importance, and applications of verbal ability in competitive examinations and effective communication.
 
 ---
 
-## 🎯 Understanding Verbal Ability
+## ðŸŽ¯ Understanding Verbal Ability
 
 **Verbal Ability** is the skill to understand, analyze, and manipulate language effectively. It encompasses reading comprehension, vocabulary mastery, grammar proficiency, and logical reasoning with words and language structures.
 
@@ -22,7 +22,7 @@ Welcome to the comprehensive Verbal Ability course! This foundational topic will
 
 ---
 
-## 📖 Why Verbal Ability Matters
+## ðŸ“– Why Verbal Ability Matters
 
 ### **Competitive Examinations**
 Verbal Ability is a crucial component in:
@@ -41,7 +41,7 @@ Verbal Ability is a crucial component in:
 
 ---
 
-## 🗣️ Core Components of Verbal Ability
+## ðŸ—£ï¸ Core Components of Verbal Ability
 
 ### **1. Reading Comprehension**
 - Understanding passages and texts
@@ -69,7 +69,7 @@ Verbal Ability is a crucial component in:
 
 ---
 
-## 🎯 Types of Verbal Ability Questions
+## ðŸŽ¯ Types of Verbal Ability Questions
 
 ### **Easy Level (Foundation Building)**
 - Basic vocabulary questions
@@ -91,7 +91,7 @@ Verbal Ability is a crucial component in:
 
 ---
 
-## 📈 Skill Development Framework
+## ðŸ“ˆ Skill Development Framework
 
 ### **Phase 1: Foundation (Weeks 1-2)**
 - Master basic grammar rules
@@ -113,7 +113,7 @@ Verbal Ability is a crucial component in:
 
 ---
 
-## 🧠 Essential Skills for Success
+## ðŸ§  Essential Skills for Success
 
 ### **1. Reading Techniques**
 - Skimming for main ideas
@@ -141,7 +141,7 @@ Verbal Ability is a crucial component in:
 
 ---
 
-## 🎯 Common Challenges & Solutions
+## ðŸŽ¯ Common Challenges & Solutions
 
 ### **Challenge: Limited Vocabulary**
 **Solution**: Read extensively, maintain a word journal, learn word roots, use vocabulary apps
@@ -157,7 +157,7 @@ Verbal Ability is a crucial component in:
 
 ---
 
-## 📊 Performance Metrics
+## ðŸ“Š Performance Metrics
 
 ### **Target Scores for Different Exams:**
 - **CAT**: 30-35 out of 34 questions (English section)
@@ -172,7 +172,7 @@ Verbal Ability is a crucial component in:
 
 ---
 
-## 🎓 Success Strategies
+## ðŸŽ“ Success Strategies
 
 ### **1. Consistent Practice**
 - Daily reading habit (1-2 hours)
@@ -200,7 +200,7 @@ Verbal Ability is a crucial component in:
 
 ---
 
-## 🎯 Practice Approach
+## ðŸŽ¯ Practice Approach
 
 ### **Daily Routine:**
 1. **Reading** (20 mins): Diverse reading materials
@@ -216,7 +216,7 @@ Verbal Ability is a crucial component in:
 
 ---
 
-## 🚀 Getting Started
+## ðŸš€ Getting Started
 
 ### **Immediate Actions:**
 1. **Assess Current Level**: Take a diagnostic test
@@ -232,7 +232,7 @@ Verbal Ability is a crucial component in:
 
 ---
 
-## 🎓 Pro Tips for Beginners
+## ðŸŽ“ Pro Tips for Beginners
 
 1. **Start with Interest**: Read topics you enjoy initially
 2. **Practice Regularly**: Short daily sessions beat long irregular ones
@@ -243,11 +243,12 @@ Verbal Ability is a crucial component in:
 
 ---
 
-## 🎯 Final Thoughts
+## ðŸŽ¯ Final Thoughts
 
-Verbal Ability is not just about acing competitive exams—it's about developing effective communication skills that will benefit you throughout your life and career. With consistent practice and the right approach, anyone can improve their verbal abilities and become a confident communicator.
+Verbal Ability is not just about acing competitive examsâ€”it's about developing effective communication skills that will benefit you throughout your life and career. With consistent practice and the right approach, anyone can improve their verbal abilities and become a confident communicator.
 
 **Remember**: Reading is the foundation, practice brings perfection, and persistence leads to mastery!
 
-Start your verbal ability journey today and unlock your communication potential! 🏆`
+Start your verbal ability journey today and unlock your communication potential! ðŸ†`"
 };
+

@@ -1,31 +1,31 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_19_1: SubLesson = {
   id: "19.1",
   title: 'Task Management System',
   status: 'completed',
-  content: `# 📋 Java Intermediate Project: Task Management System
+  content: "`# ðŸ“‹ Java Intermediate Project: Task Management System
 
 Build a comprehensive task management application with Spring Boot!
 
 ---
 
-## 🎯 Project Overview
+## ðŸŽ¯ Project Overview
 
 Create a full-stack task management system with REST API backend and database persistence.
 
 ### **Features to Implement:**
-- ✅ User registration and authentication
-- ✅ CRUD operations for tasks
-- ✅ Task categories and priorities
-- ✅ Due dates and reminders
-- ✅ Search and filtering
-- ✅ RESTful API design
-- ✅ Database integration with JPA
+- âœ… User registration and authentication
+- âœ… CRUD operations for tasks
+- âœ… Task categories and priorities
+- âœ… Due dates and reminders
+- âœ… Search and filtering
+- âœ… RESTful API design
+- âœ… Database integration with JPA
 
 ---
 
-## 🏗️ Technology Stack
+## ðŸ—ï¸ Technology Stack
 
 - **Backend**: Spring Boot, Spring Data JPA, Spring Security
 - **Database**: H2/MySQL/PostgreSQL
@@ -35,10 +35,10 @@ Create a full-stack task management system with REST API backend and database pe
 
 ---
 
-## 📊 Database Design
+## ðŸ“Š Database Design
 
 ### **Entity Relationships**
-\`\`\`sql
+\`"\`\`sql
 -- Users table
 CREATE TABLE users (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -76,7 +76,7 @@ CREATE TABLE tasks (
 
 ---
 
-## 🔧 Backend Implementation
+## ðŸ”§ Backend Implementation
 
 ### **1. Entity Classes**
 \`\`\`java
@@ -314,7 +314,7 @@ public class TaskController {
 
 ---
 
-## 🔐 Authentication & Security
+## ðŸ” Authentication & Security
 
 ### **JWT Authentication**
 \`\`\`java
@@ -363,7 +363,7 @@ public class JwtService {
 
 ---
 
-## 🧪 Testing
+## ðŸ§ª Testing
 
 ### **Unit Tests**
 \`\`\`java
@@ -444,7 +444,7 @@ public class TaskControllerIntegrationTest {
 
 ---
 
-## 🎯 Learning Outcomes
+## ðŸŽ¯ Learning Outcomes
 
 By completing this project, you'll master:
 
@@ -459,7 +459,7 @@ By completing this project, you'll master:
 
 ---
 
-## 🚀 Deployment
+## ðŸš€ Deployment
 
 ### **Docker Configuration**
 \`\`\`dockerfile
@@ -486,15 +486,16 @@ server.port=8080
 
 ---
 
-## 🏆 Advanced Features (Optional)
+## ðŸ† Advanced Features (Optional)
 
-- 🔍 **Advanced Search**: Full-text search with Elasticsearch
-- 📧 **Email Notifications**: Reminders for due tasks
-- 👥 **Team Collaboration**: Share tasks with other users
-- 📊 **Analytics**: Dashboard with task statistics
-- 📱 **Mobile App**: React Native companion app
-- 🔄 **Real-time Updates**: WebSocket notifications
+- ðŸ” **Advanced Search**: Full-text search with Elasticsearch
+- ðŸ“§ **Email Notifications**: Reminders for due tasks
+- ðŸ‘¥ **Team Collaboration**: Share tasks with other users
+- ðŸ“Š **Analytics**: Dashboard with task statistics
+- ðŸ“± **Mobile App**: React Native companion app
+- ðŸ”„ **Real-time Updates**: WebSocket notifications
 
-**Congratulations!** 🎉 You've built a professional-grade task management system!`
+**Congratulations!** ðŸŽ‰ You've built a professional-grade task management system!`
 };
+
 

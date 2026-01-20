@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_6: SubLesson = {
   id: "4.6",
   title: 'When to Use Maps',
   status: 'completed',
-  content: `# 🎯 When to Use Maps in Java
+  content: "`# ðŸŽ¯ When to Use Maps in Java
 
 Maps are one of the most versatile data structures in Java, but choosing the right Map implementation and knowing when to use them is crucial for writing efficient and maintainable code. Understanding the different scenarios where Maps excel will help you make better design decisions.
 
 ---
 
-## 🔑 Choosing the Right Map Type
+## ðŸ”‘ Choosing the Right Map Type
 
 ### **HashMap: The Default Choice**
-\`\`\`java
+\`"\`\`java
 public class HashMapUseCases {
     public static void main(String[] args) {
-        // ✅ Use HashMap when:
+        // âœ… Use HashMap when:
         // - You need fast lookups (O(1) average)
         // - Order doesn't matter
         // - Most common use case
@@ -27,7 +27,7 @@ public class HashMapUseCases {
         config.put("database.username", "admin");
         config.put("cache.enabled", "true");
 
-        // User sessions (ID → Session)
+        // User sessions (ID â†’ Session)
         Map<String, UserSession> sessions = new HashMap<>();
         sessions.put("user123", new UserSession("user123", System.currentTimeMillis()));
 
@@ -56,7 +56,7 @@ public class HashMapUseCases {
 \`\`\`java
 public class TreeMapUseCases {
     public static void main(String[] args) {
-        // ✅ Use TreeMap when:
+        // âœ… Use TreeMap when:
         // - You need keys in sorted order
         // - You need range operations
         // - You need ordered iteration
@@ -89,7 +89,7 @@ public class TreeMapUseCases {
 \`\`\`java
 public class LinkedHashMapUseCases {
     public static void main(String[] args) {
-        // ✅ Use LinkedHashMap when:
+        // âœ… Use LinkedHashMap when:
         // - You need to preserve insertion order
         // - You want predictable iteration order
         // - You need LRU cache behavior
@@ -102,7 +102,7 @@ public class LinkedHashMapUseCases {
 
         System.out.println("Processing in order:");
         for (Map.Entry<String, Runnable> step : processingSteps.entrySet()) {
-            System.out.print(step.getKey() + " → ");
+            System.out.print(step.getKey() + " â†’ ");
             step.getValue().run();
         }
 
@@ -130,7 +130,7 @@ import java.util.concurrent.*;
 
 public class ConcurrentHashMapUseCases {
     public static void main(String[] args) {
-        // ✅ Use ConcurrentHashMap when:
+        // âœ… Use ConcurrentHashMap when:
         // - Multiple threads access the map
         // - You need thread-safe operations
         // - High concurrency is required
@@ -172,25 +172,25 @@ public class ConcurrentHashMapUseCases {
 
 ---
 
-## 🎯 Real-World Map Usage Patterns
+## ðŸŽ¯ Real-World Map Usage Patterns
 
 ### **Data Lookup Tables**
 \`\`\`java
 public class LookupTables {
     public static void main(String[] args) {
-        // Country codes → Country names
+        // Country codes â†’ Country names
         Map<String, String> countryCodes = new HashMap<>();
         countryCodes.put("US", "United States");
         countryCodes.put("UK", "United Kingdom");
         countryCodes.put("CA", "Canada");
 
-        // HTTP status codes → Messages
+        // HTTP status codes â†’ Messages
         Map<Integer, String> httpStatuses = new HashMap<>();
         httpStatuses.put(200, "OK");
         httpStatuses.put(404, "Not Found");
         httpStatuses.put(500, "Internal Server Error");
 
-        // MIME types → File extensions
+        // MIME types â†’ File extensions
         Map<String, List<String>> mimeTypes = new HashMap<>();
         mimeTypes.put("text/plain", Arrays.asList(".txt", ".log"));
         mimeTypes.put("image/jpeg", Arrays.asList(".jpg", ".jpeg"));
@@ -293,7 +293,7 @@ public class CachingPatterns {
 
 ---
 
-## 🆚 Maps vs Other Data Structures
+## ðŸ†š Maps vs Other Data Structures
 
 ### **Maps vs Arrays/Lists**
 \`\`\`java
@@ -371,32 +371,32 @@ public class MapsVsSets {
 
 ---
 
-## 🚫 When NOT to Use Maps
+## ðŸš« When NOT to Use Maps
 
 ### **Avoid Maps When...**
 \`\`\`java
 public class WhenNotToUseMaps {
     public static void main(String[] args) {
-        // ❌ Don't use Map for small, fixed datasets
+        // âŒ Don't use Map for small, fixed datasets
         // Better: Use arrays or enums
         String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
         // Instead of: Map<Integer, String> dayMap = new HashMap<>();
 
-        // ❌ Don't use Map when order is primary concern and keys are sequential
+        // âŒ Don't use Map when order is primary concern and keys are sequential
         // Better: Use List
         List<String> tasks = new ArrayList<>();
         tasks.add("Task 1");
         tasks.add("Task 2");
         // Instead of: Map<Integer, String> taskMap = new HashMap<>();
 
-        // ❌ Don't use Map for simple counting if you don't need the counts
+        // âŒ Don't use Map for simple counting if you don't need the counts
         // Better: Use Set for uniqueness
         Set<String> uniqueVisitors = new HashSet<>();
         uniqueVisitors.add("user1");
         uniqueVisitors.add("user2");
         // Instead of: Map<String, Integer> visitorCount = new HashMap<>();
 
-        // ✅ Good use: Complex relationships
+        // âœ… Good use: Complex relationships
         Map<String, List<String>> userPermissions = new HashMap<>();
         userPermissions.put("admin", Arrays.asList("read", "write", "delete"));
         userPermissions.put("user", Arrays.asList("read", "write"));
@@ -408,7 +408,7 @@ public class WhenNotToUseMaps {
 
 ---
 
-## 🎯 Performance Considerations
+## ðŸŽ¯ Performance Considerations
 
 ### **Choosing Based on Access Patterns**
 \`\`\`java
@@ -488,7 +488,7 @@ public class MemoryConsiderations {
 
 ---
 
-## 🎯 Best Practices Summary
+## ðŸŽ¯ Best Practices Summary
 
 ### **Map Selection Guide**
 \`\`\`java
@@ -522,8 +522,9 @@ public class MapSelectionGuide {
 }
 \`\`\`
 
-Maps are incredibly powerful and flexible, but choosing the right implementation and using them appropriately is key to writing efficient Java code. Consider your specific requirements and constraints when selecting a Map type! 🎯`
+Maps are incredibly powerful and flexible, but choosing the right implementation and using them appropriately is key to writing efficient Java code. Consider your specific requirements and constraints when selecting a Map type! ðŸŽ¯`
 };
+
 
 
 

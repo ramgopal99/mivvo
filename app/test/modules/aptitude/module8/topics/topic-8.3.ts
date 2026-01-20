@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_3: SubLesson = {
   id: "8.3",
   title: 'Time (T)',
   status: 'completed',
-  content: `# ⏰ Time (T)
+  content: "`# â° Time (T)
 
 Learn about time period in simple interest calculations! Time (T) is the duration for which interest is calculated on the principal amount. Understanding time units and conversions is essential for accurate interest calculations.
 
 ---
 
-## 🎯 What is Time in SI?
+## ðŸŽ¯ What is Time in SI?
 
 **Time (T)** is the period for which the principal amount earns or incurs interest. It's measured in years, months, days, or other time units, depending on the rate specification.
 
@@ -18,16 +18,16 @@ Learn about time period in simple interest calculations! Time (T) is the duratio
 - Time determines interest accumulation
 - Longer time = Higher interest
 - Time unit must match rate unit
-- Interest ∝ Time
+- Interest âˆ Time
 
 ### **Symbol**
-\`\`\`
+\`"\`\`
 T (Time Period)
 \`\`\`
 
 ---
 
-## 📊 Time Units in Simple Interest
+## ðŸ“Š Time Units in Simple Interest
 
 ### **1. Years**
 - Standard unit for annual rates
@@ -36,70 +36,70 @@ T (Time Period)
 
 ### **2. Months**
 - For monthly rates or partial years
-- Convert to years: T = months ÷ 12
+- Convert to years: T = months Ã· 12
 - Example: 18 months = 1.5 years
 
 ### **3. Days**
 - For daily rates or short periods
-- Convert to years: T = days ÷ 365
-- Example: 180 days ≈ 0.493 years
+- Convert to years: T = days Ã· 365
+- Example: 180 days â‰ˆ 0.493 years
 
 ### **4. Other Units**
-- Weeks: T = weeks ÷ 52.14
-- Quarters: T = quarters ÷ 4
+- Weeks: T = weeks Ã· 52.14
+- Quarters: T = quarters Ã· 4
 - Hours/Days: Usually not used for SI
 
 ---
 
-## 🔢 Time Calculations
+## ðŸ”¢ Time Calculations
 
 ### **Finding Time from SI**
 \`\`\`
-T = (SI × 100) ÷ (P × R)
+T = (SI Ã— 100) Ã· (P Ã— R)
 \`\`\`
 
-**Example:** P = ₹1000, R = 10%, SI = ₹200
-- T = (200 × 100) ÷ (1000 × 10) = 2 years
+**Example:** P = â‚¹1000, R = 10%, SI = â‚¹200
+- T = (200 Ã— 100) Ã· (1000 Ã— 10) = 2 years
 
 ### **Finding Time from Amount**
 \`\`\`
-T = [(A - P) × 100] ÷ (P × R)
+T = [(A - P) Ã— 100] Ã· (P Ã— R)
 \`\`\`
 
-**Example:** P = ₹5000, R = 8%, A = ₹6000
-- T = (1000 × 100) ÷ (5000 × 8) = 2.5 years
+**Example:** P = â‚¹5000, R = 8%, A = â‚¹6000
+- T = (1000 Ã— 100) Ã· (5000 Ã— 8) = 2.5 years
 
 ---
 
-## 🧮 Time Unit Conversions
+## ðŸ§® Time Unit Conversions
 
 ### **Months to Years**
 \`\`\`
-T_years = T_months ÷ 12
+T_years = T_months Ã· 12
 \`\`\`
 
-**Example:** 24 months = 24 ÷ 12 = 2 years
+**Example:** 24 months = 24 Ã· 12 = 2 years
 
 ### **Days to Years**
 \`\`\`
-T_years = T_days ÷ 365 (or 366 for leap year)
+T_years = T_days Ã· 365 (or 366 for leap year)
 \`\`\`
 
-**Example:** 730 days = 730 ÷ 365 ≈ 2 years
+**Example:** 730 days = 730 Ã· 365 â‰ˆ 2 years
 
 ### **Years to Months**
 \`\`\`
-T_months = T_years × 12
+T_months = T_years Ã— 12
 \`\`\`
 
 ### **Years to Days**
 \`\`\`
-T_days = T_years × 365 (or 366)
+T_days = T_years Ã— 365 (or 366)
 \`\`\`
 
 ---
 
-## 💡 Important Time Considerations
+## ðŸ’¡ Important Time Considerations
 
 ### **1. Leap Year Adjustments**
 - 366 days in leap years
@@ -118,7 +118,7 @@ T_days = T_years × 365 (or 366)
 
 ---
 
-## 🎯 Time in Different Contexts
+## ðŸŽ¯ Time in Different Contexts
 
 ### **1. Banking**
 - Deposit periods: months/years
@@ -137,7 +137,7 @@ T_days = T_years × 365 (or 366)
 
 ---
 
-## 📊 Common Time Scenarios
+## ðŸ“Š Common Time Scenarios
 
 ### **1. Partial Years**
 - 6 months = 0.5 years
@@ -146,7 +146,7 @@ T_days = T_years × 365 (or 366)
 
 ### **2. Exact Periods**
 - 1 year = 365/366 days
-- 1 month ≈ 30.4167 days
+- 1 month â‰ˆ 30.4167 days
 - 1 quarter = 3 months
 
 ### **3. Business Periods**
@@ -156,32 +156,32 @@ T_days = T_years × 365 (or 366)
 
 ---
 
-## 🚨 Time-Related Mistakes
+## ðŸš¨ Time-Related Mistakes
 
 ### **Mistake 1: Wrong Unit Conversion**
-❌ "12 months = 1 year" for monthly rates
-- 12 months at monthly rate = 12 × monthly rate
+âŒ "12 months = 1 year" for monthly rates
+- 12 months at monthly rate = 12 Ã— monthly rate
 
 ### **Mistake 2: Ignoring Leap Years**
-❌ Always 365 days
+âŒ Always 365 days
 - Use 366 for leap years when precise
 
 ### **Mistake 3: Partial Period Counting**
-❌ "6 months = 0.5 years" always
+âŒ "6 months = 0.5 years" always
 - Depends on rate type
 
 ### **Mistake 4: Rate-Time Mismatch**
-❌ Annual rate with months
+âŒ Annual rate with months
 - Convert appropriately
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Basic Time Calculations:**
-1. P = ₹2000, R = 5%, SI = ₹200. Find T.
-2. P = ₹3000, R = 8%, A = ₹3600. Find T.
-3. SI = ₹400, P = ₹2000, R = 10%. Find T.
+1. P = â‚¹2000, R = 5%, SI = â‚¹200. Find T.
+2. P = â‚¹3000, R = 8%, A = â‚¹3600. Find T.
+3. SI = â‚¹400, P = â‚¹2000, R = 10%. Find T.
 
 ### **Unit Conversion Problems:**
 1. Convert 18 months to years.
@@ -192,5 +192,6 @@ T_days = T_years × 365 (or 366)
 Basic: 2 years, 2.5 years, 2 years
 Unit: 1.5 years, 1.5 years, 30 months
 
-Master time calculations in simple interest for accurate period assessments! 🏆`
+Master time calculations in simple interest for accurate period assessments! ðŸ†`
 };
+

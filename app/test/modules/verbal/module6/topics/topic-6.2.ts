@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_2: SubLesson = {
   id: "6.2",
   title: 'Main Idea Identification',
   status: 'completed',
-  content: `# 🎯 Main Idea Identification: Finding the Central Theme
+  content: "`# ðŸŽ¯ Main Idea Identification: Finding the Central Theme
 
 Main Idea Identification requires recognizing the central theme or primary message of a passage. Unlike details, the main idea encompasses the core purpose or central point that the author wants to convey.
 
 ---
 
-## 🎯 WHAT IS THE MAIN IDEA?
+## ðŸŽ¯ WHAT IS THE MAIN IDEA?
 
 **Main Idea** is the central, unifying concept of a passage that:
-- ✅ **Expresses the primary purpose** of the writing
-- ✅ **Encompasses all supporting details**
-- ✅ **Can be stated in 1-2 sentences**
-- ✅ **Answers the question "What is this passage mainly about?"**
+- âœ… **Expresses the primary purpose** of the writing
+- âœ… **Encompasses all supporting details**
+- âœ… **Can be stated in 1-2 sentences**
+- âœ… **Answers the question "What is this passage mainly about?"**
 
 ### Key Characteristics:
 - **Central Theme**: The core message or argument
@@ -31,7 +31,7 @@ Main Idea: "Climate change threatens global ecosystems through rising temperatur
 
 ---
 
-## 📋 MAIN IDEA VS SUPPORTING DETAILS
+## ðŸ“‹ MAIN IDEA VS SUPPORTING DETAILS
 
 ### Main Idea:
 - **Central point** that everything else supports
@@ -51,7 +51,7 @@ Supporting Details: "Regular physical activity strengthens muscles, improves car
 
 ---
 
-## 🛠️ IDENTIFICATION STRATEGIES
+## ðŸ› ï¸ IDENTIFICATION STRATEGIES
 
 ### Strategy 1: Look for Topic Sentences
 - **First sentence** of paragraphs often contains main idea
@@ -79,7 +79,7 @@ Supporting Details: "Regular physical activity strengthens muscles, improves car
 
 ---
 
-## 🎯 TYPES OF MAIN IDEAS
+## ðŸŽ¯ TYPES OF MAIN IDEAS
 
 ### 1. **Stated Main Idea**
 **Directly expressed** in the passage, usually in:
@@ -110,7 +110,7 @@ Implied Main Idea: "Flexible work hours improve company performance and employee
 
 ---
 
-## 📍 STRUCTURAL CLUES
+## ðŸ“ STRUCTURAL CLUES
 
 ### Opening Paragraph Clues:
 - **Introductions**: Present the topic and thesis
@@ -132,33 +132,33 @@ Implied Main Idea: "Flexible work hours improve company performance and employee
 
 ---
 
-## ⚠️ COMMON MISTAKES
+## âš ï¸ COMMON MISTAKES
 
 ### Avoid These Errors:
 
 1. **Choosing a Detail**: Mistaking supporting information for main idea
-   - ❌ "Polar ice caps are melting" (detail)
-   - ✅ "Climate change is causing environmental problems" (main idea)
+   - âŒ "Polar ice caps are melting" (detail)
+   - âœ… "Climate change is causing environmental problems" (main idea)
 
 2. **Too Broad**: Selecting an idea broader than passage scope
-   - ❌ "Science is important" (too general)
-   - ✅ "Renewable energy sources are more sustainable than fossil fuels" (specific to passage)
+   - âŒ "Science is important" (too general)
+   - âœ… "Renewable energy sources are more sustainable than fossil fuels" (specific to passage)
 
 3. **Too Narrow**: Focusing on only one aspect instead of overall theme
-   - ❌ "Solar panels generate electricity" (too specific)
-   - ✅ "Renewable energy offers sustainable alternatives to fossil fuels" (comprehensive)
+   - âŒ "Solar panels generate electricity" (too specific)
+   - âœ… "Renewable energy offers sustainable alternatives to fossil fuels" (comprehensive)
 
 4. **Missing Inference**: Failing to synthesize implied main ideas
-   - ❌ Listing facts without connecting them
-   - ✅ Finding the unifying theme behind the facts
+   - âŒ Listing facts without connecting them
+   - âœ… Finding the unifying theme behind the facts
 
 5. **Ignoring Structure**: Not considering how passage is organized
-   - ❌ Focusing only on first paragraph
-   - ✅ Reading entire passage for full context
+   - âŒ Focusing only on first paragraph
+   - âœ… Reading entire passage for full context
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Stated Main Ideas
 **Identify the main idea in each passage:**
@@ -237,7 +237,7 @@ Overall: Technology brings both benefits and challenges to communication
 
 ---
 
-## 📊 MAIN IDEA IDENTIFICATION CHART
+## ðŸ“Š MAIN IDEA IDENTIFICATION CHART
 
 | Clue Type | Location | What to Look For |
 |---|---|---|
@@ -249,30 +249,30 @@ Overall: Technology brings both benefits and challenges to communication
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Direct Questions**: "What is the main idea of the passage?"
 2. **Title Selection**: Choose best title for the passage
 3. **Summary Questions**: Select best summary of main point
 4. **Thesis Identification**: Find author's central argument
 5. **Theme Recognition**: Identify overall theme or purpose
 
-### 💡 Quick Identification Strategy:
+### ðŸ’¡ Quick Identification Strategy:
 1. **Read first and last paragraphs** - Often contain main ideas
 2. **Look for thesis statements** - Usually in introduction
 3. **Find repeated concepts** - Themes mentioned multiple times
 4. **Eliminate supporting details** - Remove specific examples
 5. **Paraphrase the core message** - What unifies everything?
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Don't read every word** - Skim for topic sentences
 - **Look for signal words** - "In conclusion," "The main point is"
 - **Eliminate detail options** - Too specific for main idea
 - **Trust your synthesis** - Combine information to find unifying theme
 - **Check against options** - Match your identified idea
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Practice 3-4 passages daily** - Build recognition speed
 - **Learn common patterns** - How main ideas are typically expressed
 - **Eliminate wrong options** - Details, too broad, too narrow
@@ -281,22 +281,23 @@ Overall: Technology brings both benefits and challenges to communication
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Practice with Headlines** - Write titles for articles you read
 2. **Summarize Paragraphs** - Condense each paragraph to main idea
 3. **Identify Thesis** - Look for author's central argument
 4. **Compare Options** - Practice choosing between similar main ideas
 5. **Build Vocabulary** - Understand how word choice affects main ideas
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Main idea identification is like finding the "heart" of the passage:**
-- ❤️ **Topic sentence** = Introduction to the heart
-- ❤️ **Supporting details** = Blood vessels carrying nutrients
-- ❤️ **Conclusion** = Final heartbeat of the message
-- ❤️ **Central theme** = The core that keeps everything alive
-- 🎯 **Find the heartbeat** and you'll capture the passage's life essence!
+- â¤ï¸ **Topic sentence** = Introduction to the heart
+- â¤ï¸ **Supporting details** = Blood vessels carrying nutrients
+- â¤ï¸ **Conclusion** = Final heartbeat of the message
+- â¤ï¸ **Central theme** = The core that keeps everything alive
+- ðŸŽ¯ **Find the heartbeat** and you'll capture the passage's life essence!
 
-**Master main idea identification and find the heart of every passage!** 🎯❤️✨`
+**Master main idea identification and find the heart of every passage!** ðŸŽ¯â¤ï¸âœ¨`"
 };
+

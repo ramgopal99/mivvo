@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_2: SubLesson = {
   id: "9.2",
   title: 'Types of Inheritance and Access Control',
   status: 'completed',
-  content: `# 👨‍👩‍👧‍👦 Types of Inheritance and Access Control in Java
+  content: "`# ðŸ‘¨â€ðŸ‘©â€ðŸ‘§â€ðŸ‘¦ Types of Inheritance and Access Control in Java
 
 Master inheritance mechanisms and access control in object-oriented programming!
 
 ---
 
-## 🎯 Types of Inheritance in Java
+## ðŸŽ¯ Types of Inheritance in Java
 
 ### **1. Single Inheritance**
-\`\`\`java
+\`"\`\`java
 // Parent class
 public class Animal {
     protected String name;
@@ -245,7 +245,7 @@ public class HierarchicalInheritanceDemo {
 
 ---
 
-## 🔐 Access Control in Inheritance
+## ðŸ” Access Control in Inheritance
 
 ### **1. Access Modifiers and Inheritance**
 \`\`\`java
@@ -360,7 +360,7 @@ public class AccessDemo {
 
 ---
 
-## 🎯 Inheritance Best Practices
+## ðŸŽ¯ Inheritance Best Practices
 
 ### **1. Composition vs Inheritance**
 \`\`\`java
@@ -544,10 +544,10 @@ public class TemplateSubClass extends TemplateBase {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Single inheritance**: One class extends one parent class
-2. **Multilevel inheritance**: Class → Parent → Grandparent
+2. **Multilevel inheritance**: Class â†’ Parent â†’ Grandparent
 3. **Hierarchical inheritance**: Multiple classes inherit from one parent
 4. **Access control**: private members not inherited, protected accessible in subclasses
 5. **Method overriding**: Same signature, different implementation
@@ -555,6 +555,7 @@ public class TemplateSubClass extends TemplateBase {
 7. **LSP**: Subtypes must be substitutable for their base types
 8. **Template Method**: Define algorithm in base class, customize steps in subclasses
 
-**Next:** Learn about polymorphism and method overriding! 🚀`
+**Next:** Learn about polymorphism and method overriding! ðŸš€`
 };
+
 

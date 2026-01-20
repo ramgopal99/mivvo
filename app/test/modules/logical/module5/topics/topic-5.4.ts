@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_4: SubLesson = {
   id: "5.4",
   title: 'Alphanumeric Coding',
   status: 'completed',
-  content: `# 🔠 Alphanumeric Coding
+  content: "`# ðŸ”  Alphanumeric Coding
 
 Alphanumeric coding combines letters and numbers in various patterns and transformations. These problems require understanding both alphabetical and numerical systems, making them more complex than pure letter or number coding.
 
 ---
 
-## 🎯 Understanding Alphanumeric Coding
+## ðŸŽ¯ Understanding Alphanumeric Coding
 
 ### **What is Alphanumeric Coding?**
 Alphanumeric coding involves transforming letters and numbers using combined rules that incorporate both alphabetical and numerical elements. These problems test your ability to:
@@ -27,7 +27,7 @@ Alphanumeric coding involves transforming letters and numbers using combined rul
 
 ---
 
-## 🧩 Types of Alphanumeric Coding
+## ðŸ§© Types of Alphanumeric Coding
 
 ### **1. Letter-to-Number Coding**
 **Converting letters to numbers**
@@ -43,13 +43,13 @@ Alphanumeric coding involves transforming letters and numbers using combined rul
 
 ### **3. Mixed Transformations**
 **Combined letter-number operations**
-- **Letter + Number**: CAT → C1A2T3
+- **Letter + Number**: CAT â†’ C1A2T3
 - **Number operations**: Position-based calculations
 - **Pattern combinations**: Mixed transformation rules
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze Coding Pattern**
 - Examine how letters and numbers are transformed
@@ -73,7 +73,7 @@ Alphanumeric coding involves transforming letters and numbers using combined rul
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Position-Based Alphanumeric**
 **Using positions for both letters and numbers**
@@ -95,7 +95,7 @@ Alphanumeric coding involves transforming letters and numbers using combined rul
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Dual System Analysis**
 
@@ -119,7 +119,7 @@ Numbers: 1=A, 2=B, 3=C, ..., 26=Z
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Alphanumeric**
 **Rule**: Letters replaced by their position numbers
@@ -138,15 +138,15 @@ Numbers: 1=A, 2=B, 3=C, ..., 26=Z
 Wait, let me correct this. If A=26, B=25, O=12 (26-14), X=3 (26-23).
 
 ### **Example 3: Mixed Pattern**
-**Rule**: Letters → position numbers, numbers → corresponding letters
+**Rule**: Letters â†’ position numbers, numbers â†’ corresponding letters
 - **Input**: A1B2
 - **Output**: 1-A-2-B
 
-**Explanation**: A→1, 1→A, B→2, 2→B
+**Explanation**: Aâ†’1, 1â†’A, Bâ†’2, 2â†’B
 
 ---
 
-## 🔍 Advanced Alphanumeric Concepts
+## ðŸ” Advanced Alphanumeric Concepts
 
 ### **Complex Transformations**
 Multi-step alphanumeric transformations requiring careful sequencing.
@@ -159,12 +159,12 @@ Complex systems combining multiple alphanumeric transformation types.
 
 ---
 
-## 📊 Alphanumeric Coding Methods
+## ðŸ“Š Alphanumeric Coding Methods
 
 ### **Basic Conversion Methods**
-- **Letter-to-Number**: A→1, B→2, etc.
-- **Number-to-Letter**: 1→A, 2→B, etc.
-- **Reverse Conversions**: A→26, 1→Z, etc.
+- **Letter-to-Number**: Aâ†’1, Bâ†’2, etc.
+- **Number-to-Letter**: 1â†’A, 2â†’B, etc.
+- **Reverse Conversions**: Aâ†’26, 1â†’Z, etc.
 
 ### **Mathematical Methods**
 - **Position Operations**: Mathematical operations on positions
@@ -178,23 +178,23 @@ Complex systems combining multiple alphanumeric transformation types.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: System Confusion**
-❌ Mixing letter and number transformation rules
-✅ Keep systems separate and clear
+âŒ Mixing letter and number transformation rules
+âœ… Keep systems separate and clear
 
 ### **Pitfall 2: Conversion Errors**
-❌ Wrong letter-number conversions
-✅ Verify conversion tables accurately
+âŒ Wrong letter-number conversions
+âœ… Verify conversion tables accurately
 
 ### **Pitfall 3: Pattern Misidentification**
-❌ Incorrect pattern recognition
-✅ Carefully analyze transformation patterns
+âŒ Incorrect pattern recognition
+âœ… Carefully analyze transformation patterns
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. System Separation**
 - Identify letter transformation rules
@@ -213,7 +213,7 @@ Complex systems combining multiple alphanumeric transformation types.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Simple letter-number conversions
@@ -232,7 +232,7 @@ Complex systems combining multiple alphanumeric transformation types.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Know Conversion Tables**: Memorize letter-number equivalences
 2. **Identify Systems**: Distinguish letter and number transformation rules
@@ -242,7 +242,7 @@ Complex systems combining multiple alphanumeric transformation types.
 
 ---
 
-## 🔠 Practice Questions
+## ðŸ”  Practice Questions
 
 ### **Question 1**
 If A=1, B=2, C=3, ..., Z=26, what is the alphanumeric code for "CAT"?
@@ -256,5 +256,5 @@ If A=26, B=25, C=24, ..., Z=1, what is the alphanumeric code for "BOX"?
 ### **Question 4**
 If letters are coded as their position numbers and then each number is increased by 1, what is the code for "DOG"?
 
-**Master alphanumeric coding for combined letter-number transformations! 🔠✨**`
+**Master alphanumeric coding for combined letter-number transformations! ðŸ” âœ¨**`"
 };

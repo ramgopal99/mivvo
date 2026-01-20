@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_6: SubLesson = {
   id: "3.6",
   title: 'Simple Collection Operations',
   status: 'completed',
-  content: `# 🔧 Simple Collection Operations in Java
+  content: "`# ðŸ”§ Simple Collection Operations in Java
 
 Collections in Java provide powerful operations for manipulating data. Understanding these operations helps you write efficient and clean code.
 
 ---
 
-## 🔄 Sorting Collections
+## ðŸ”„ Sorting Collections
 
 ### **Collections.sort() Method**
-\`\`\`java
+\`"\`\`java
 import java.util.*;
 
 public class SortingOperations {
@@ -114,7 +114,7 @@ public class CustomSorting {
 
 ---
 
-## 🔀 Reversing Collections
+## ðŸ”€ Reversing Collections
 
 ### **Collections.reverse() Method**
 \`\`\`java
@@ -159,7 +159,7 @@ public class ReverseOrderSorting {
 
 ---
 
-## 🎲 Shuffling Collections
+## ðŸŽ² Shuffling Collections
 
 ### **Collections.shuffle() Method**
 \`\`\`java
@@ -209,7 +209,7 @@ public class ShuffleExamples {
 
 ---
 
-## 🔍 Searching in Collections
+## ðŸ” Searching in Collections
 
 ### **Collections.binarySearch()**
 \`\`\`java
@@ -272,7 +272,7 @@ public class MinMaxOperations {
 
 ---
 
-## 🔄 Rotating Collections
+## ðŸ”„ Rotating Collections
 
 ### **Collections.rotate() Method**
 \`\`\`java
@@ -333,7 +333,7 @@ public class RotationExamples {
 
 ---
 
-## 🔄 Swapping Elements
+## ðŸ”„ Swapping Elements
 
 ### **Collections.swap() Method**
 \`\`\`java
@@ -370,7 +370,7 @@ public class SwappingElements {
 
 ---
 
-## 📊 Frequency and Counting
+## ðŸ“Š Frequency and Counting
 
 ### **Collections.frequency() Method**
 \`\`\`java
@@ -409,7 +409,7 @@ public class FrequencyCounting {
 
 ---
 
-## 🔄 Replacing Elements
+## ðŸ”„ Replacing Elements
 
 ### **Collections.replaceAll() and fill()**
 \`\`\`java
@@ -443,7 +443,7 @@ public class ReplacingElements {
 
 ---
 
-## 🗂️ Copying Collections
+## ðŸ—‚ï¸ Copying Collections
 
 ### **Collections.copy() Method**
 \`\`\`java
@@ -476,7 +476,7 @@ public class CopyingCollections {
 
 ---
 
-## 🎯 Best Practices for Collection Operations
+## ðŸŽ¯ Best Practices for Collection Operations
 
 ### **1. Use Appropriate Data Structures**
 \`\`\`java
@@ -566,8 +566,9 @@ public class StreamOperations {
 }
 \`\`\`
 
-Collection operations in Java provide powerful ways to manipulate data efficiently. Understanding these operations helps you write cleaner and more performant code! 🔧`
+Collection operations in Java provide powerful ways to manipulate data efficiently. Understanding these operations helps you write cleaner and more performant code! ðŸ”§`
 };
+
 
 
 

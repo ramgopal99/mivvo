@@ -1,96 +1,96 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_13: SubLesson = {
   id: "2.13",
   title: 'Surds & Indices (Basic)',
   status: 'completed',
-  content: `# 🔢 Surds & Indices (Basic)
+  content: "`# ðŸ”¢ Surds & Indices (Basic)
 
 Surds and indices are essential concepts in mathematics dealing with irrational roots and exponential expressions. Understanding these concepts helps simplify complex expressions and solve advanced mathematical problems.
 
 ---
 
-## 🎯 What are Surds?
+## ðŸŽ¯ What are Surds?
 
 ### Definition
 Surds are irrational roots of numbers that cannot be expressed as finite decimals or fractions.
 
 **Examples**:
-- √2 ≈ 1.414213562...
-- √3 ≈ 1.732050807...
-- ∛7 ≈ 1.912931182...
-- √(5 + 2√3) (compound surd)
+- âˆš2 â‰ˆ 1.414213562...
+- âˆš3 â‰ˆ 1.732050807...
+- âˆ›7 â‰ˆ 1.912931182...
+- âˆš(5 + 2âˆš3) (compound surd)
 
 ### Types of Surds
 
 #### 1. **Simple Surds**
-Single irrational root: √2, ∛5, ⁴√7
+Single irrational root: âˆš2, âˆ›5, â´âˆš7
 
 #### 2. **Compound Surds**
-Expression with multiple surds: √(3 + 2√2)
+Expression with multiple surds: âˆš(3 + 2âˆš2)
 
 #### 3. **Similar Surds**
-Surds with same irrational part: 2√3, 5√3, √3
+Surds with same irrational part: 2âˆš3, 5âˆš3, âˆš3
 
 #### 4. **Dissimilar Surds**
-Surds with different irrational parts: √2, √3, √5
+Surds with different irrational parts: âˆš2, âˆš3, âˆš5
 
 ---
 
-## 📊 Laws of Surds
+## ðŸ“Š Laws of Surds
 
 ### 1. **Multiplication**
-√a × √b = √(a × b)
+âˆša Ã— âˆšb = âˆš(a Ã— b)
 
-**Example**: √2 × √3 = √6
+**Example**: âˆš2 Ã— âˆš3 = âˆš6
 
 ### 2. **Division**
-√a ÷ √b = √(a/b)
+âˆša Ã· âˆšb = âˆš(a/b)
 
-**Example**: √8 ÷ √2 = √4 = 2
+**Example**: âˆš8 Ã· âˆš2 = âˆš4 = 2
 
 ### 3. **Rationalization**
 Multiply numerator and denominator by conjugate to eliminate surds.
 
-**Example**: Rationalize 1/(√2 + 1)
-\`\`\`
-Multiply by √2 - 1: (√2 - 1)/((√2 + 1)(√2 - 1)) = (√2 - 1)/(2 - 1) = √2 - 1
+**Example**: Rationalize 1/(âˆš2 + 1)
+\`"\`\`
+Multiply by âˆš2 - 1: (âˆš2 - 1)/((âˆš2 + 1)(âˆš2 - 1)) = (âˆš2 - 1)/(2 - 1) = âˆš2 - 1
 \`\`\`
 
 ### 4. **Power Rule**
-(√a)^n = a^(n/2)
+(âˆša)^n = a^(n/2)
 
-**Example**: (√2)^4 = 2^(4/2) = 2² = 4
+**Example**: (âˆš2)^4 = 2^(4/2) = 2Â² = 4
 
 ---
 
-## 🧮 Operations with Surds
+## ðŸ§® Operations with Surds
 
 ### 1. **Addition and Subtraction**
 Only similar surds can be added/subtracted.
 
-**Example**: 3√2 + 5√2 = 8√2
-**Example**: 7√3 - 2√3 = 5√3
-**Example**: 2√2 + 3√3 (cannot be simplified)
+**Example**: 3âˆš2 + 5âˆš2 = 8âˆš2
+**Example**: 7âˆš3 - 2âˆš3 = 5âˆš3
+**Example**: 2âˆš2 + 3âˆš3 (cannot be simplified)
 
 ### 2. **Multiplication**
-√a × √b = √(a×b)
+âˆša Ã— âˆšb = âˆš(aÃ—b)
 
-**Example**: 2√3 × 3√2 = 6√6
+**Example**: 2âˆš3 Ã— 3âˆš2 = 6âˆš6
 
 ### 3. **Division**
-√a ÷ √b = √(a/b)
+âˆša Ã· âˆšb = âˆš(a/b)
 
-**Example**: 4√6 ÷ 2√3 = 2√2
+**Example**: 4âˆš6 Ã· 2âˆš3 = 2âˆš2
 
 ### 4. **Simplification**
 Express surd in simplest form.
 
-**Example**: √12 = √(4×3) = 2√3
+**Example**: âˆš12 = âˆš(4Ã—3) = 2âˆš3
 
 ---
 
-## 🎯 Indices (Exponents)
+## ðŸŽ¯ Indices (Exponents)
 
 ### Definition
 Indices show how many times a number is multiplied by itself.
@@ -100,22 +100,22 @@ Indices show how many times a number is multiplied by itself.
 ### Laws of Indices
 
 #### 1. **Multiplication**
-a^m × a^n = a^(m+n)
+a^m Ã— a^n = a^(m+n)
 
 #### 2. **Division**
-a^m ÷ a^n = a^(m-n)
+a^m Ã· a^n = a^(m-n)
 
 #### 3. **Power of Power**
-(a^m)^n = a^(m×n)
+(a^m)^n = a^(mÃ—n)
 
 #### 4. **Product Rule**
-(a×b)^n = a^n × b^n
+(aÃ—b)^n = a^n Ã— b^n
 
 #### 5. **Quotient Rule**
 (a/b)^n = a^n / b^n
 
 #### 6. **Zero Index**
-a⁰ = 1 (a ≠ 0)
+aâ° = 1 (a â‰  0)
 
 #### 7. **Negative Index**
 a^(-n) = 1/a^n
@@ -125,144 +125,145 @@ a^(m/n) = (a^m)^(1/n) = (a^(1/n))^m
 
 ---
 
-## 🧠 Problem Solving Tricks
+## ðŸ§  Problem Solving Tricks
 
 ### Trick 1: **Simplify Surds**
 Express in simplest form by factoring out perfect squares.
 
-**Example**: √28 = √(4×7) = 2√7
+**Example**: âˆš28 = âˆš(4Ã—7) = 2âˆš7
 
 ### Trick 2: **Rationalize Denominators**
 Use conjugates for denominators with surds.
 
-**Example**: √2 / (√3 + 1)
+**Example**: âˆš2 / (âˆš3 + 1)
 \`\`\`
-Multiply by √3 - 1: (√2(√3 - 1))/(3 - 1) = (√6 - √2)/2
+Multiply by âˆš3 - 1: (âˆš2(âˆš3 - 1))/(3 - 1) = (âˆš6 - âˆš2)/2
 \`\`\`
 
 ### Trick 3: **Compare Surds**
 Convert to decimal or use known values.
 
-**Example**: Compare √2 and √3
-√2 ≈ 1.41, √3 ≈ 1.73, so √2 < √3
+**Example**: Compare âˆš2 and âˆš3
+âˆš2 â‰ˆ 1.41, âˆš3 â‰ˆ 1.73, so âˆš2 < âˆš3
 
 ### Trick 4: **Solve Surd Equations**
 Square both sides carefully.
 
-**Example**: Solve √(x+1) = 3
-Square: x+1 = 9 → x = 8
+**Example**: Solve âˆš(x+1) = 3
+Square: x+1 = 9 â†’ x = 8
 
-**Example**: Solve √(x+1) + √(x-1) = 2
-Square: x+1 + x-1 + 2√((x+1)(x-1)) = 4
-2x + 2√(x²-1) = 4
-x + √(x²-1) = 2
-Square again: x² + (x²-1) + 2x√(x²-1) = 4
-2x² - 1 + 2x√(x²-1) = 4
-2x² + 2x√(x²-1) = 5
+**Example**: Solve âˆš(x+1) + âˆš(x-1) = 2
+Square: x+1 + x-1 + 2âˆš((x+1)(x-1)) = 4
+2x + 2âˆš(xÂ²-1) = 4
+x + âˆš(xÂ²-1) = 2
+Square again: xÂ² + (xÂ²-1) + 2xâˆš(xÂ²-1) = 4
+2xÂ² - 1 + 2xâˆš(xÂ²-1) = 4
+2xÂ² + 2xâˆš(xÂ²-1) = 5
 
 ---
 
-## 📊 Advanced Surd Concepts
+## ðŸ“Š Advanced Surd Concepts
 
 ### 1. **Pure Surds**
-Cannot be simplified: √2, √3, √5
+Cannot be simplified: âˆš2, âˆš3, âˆš5
 
 ### 2. **Mixed Surds**
-Can be simplified: √12 = 2√3
+Can be simplified: âˆš12 = 2âˆš3
 
 ### 3. **Binomial Surds**
-Expressions like √a ± √b
+Expressions like âˆša Â± âˆšb
 
 ### 4. **Conjugate Surds**
-Pairs like √a + √b and √a - √b
+Pairs like âˆša + âˆšb and âˆša - âˆšb
 
 ---
 
-## 🎯 Applications in Aptitude
+## ðŸŽ¯ Applications in Aptitude
 
 ### 1. **Geometry Problems**
-**Example**: Diagonal of square with side √2 is 2.
+**Example**: Diagonal of square with side âˆš2 is 2.
 
 ### 2. **Trigonometry**
-**Example**: sin45° = cos45° = 1/√2 = √2/2
+**Example**: sin45Â° = cos45Â° = 1/âˆš2 = âˆš2/2
 
 ### 3. **Complex Calculations**
-**Example**: Simplify (√3 + 1)(√3 - 1) = 3 - 1 = 2
+**Example**: Simplify (âˆš3 + 1)(âˆš3 - 1) = 3 - 1 = 2
 
 ### 4. **Equation Solving**
-**Example**: Solve √(2x+3) - √(x+1) = 1
+**Example**: Solve âˆš(2x+3) - âˆš(x+1) = 1
 
 ---
 
-## 🔍 Special Cases
+## ðŸ” Special Cases
 
 ### 1. **Square Root of Negative Numbers**
-Imaginary numbers: √(-4) = 2i
+Imaginary numbers: âˆš(-4) = 2i
 
 ### 2. **Higher Order Roots**
-∛(-8) = -2, ⁴√16 = 2
+âˆ›(-8) = -2, â´âˆš16 = 2
 
 ### 3. **Surd Conjugates**
-(√a + √b)(√a - √b) = a - b
+(âˆša + âˆšb)(âˆša - âˆšb) = a - b
 
 ### 4. **Perfect Powers**
 Numbers that are perfect squares, cubes, etc.
 
 ---
 
-## 🧮 Surd Identities
+## ðŸ§® Surd Identities
 
-### 1. **(√a + √b)² = a + b + 2√(ab)**
-**Example**: (√2 + √3)² = 2 + 3 + 2√6 = 5 + 2√6
+### 1. **(âˆša + âˆšb)Â² = a + b + 2âˆš(ab)**
+**Example**: (âˆš2 + âˆš3)Â² = 2 + 3 + 2âˆš6 = 5 + 2âˆš6
 
-### 2. **(√a - √b)² = a + b - 2√(ab)**
-**Example**: (√5 - √2)² = 5 + 2 - 2√10 = 7 - 2√10
+### 2. **(âˆša - âˆšb)Â² = a + b - 2âˆš(ab)**
+**Example**: (âˆš5 - âˆš2)Â² = 5 + 2 - 2âˆš10 = 7 - 2âˆš10
 
-### 3. **(a + √b)(a - √b) = a² - b**
-**Example**: (3 + √2)(3 - √2) = 9 - 2 = 7
+### 3. **(a + âˆšb)(a - âˆšb) = aÂ² - b**
+**Example**: (3 + âˆš2)(3 - âˆš2) = 9 - 2 = 7
 
 ### 4. **Rationalization Factor**
 Multiply by conjugate to rationalize.
 
 ---
 
-## 📝 Practice Examples
+## ðŸ“ Practice Examples
 
 ### Example 1: Simplify Surds
-Simplify √75 + √12 - √27
+Simplify âˆš75 + âˆš12 - âˆš27
 
-**Solution**: √(25×3) + √(4×3) - √(9×3) = 5√3 + 2√3 - 3√3 = 4√3
+**Solution**: âˆš(25Ã—3) + âˆš(4Ã—3) - âˆš(9Ã—3) = 5âˆš3 + 2âˆš3 - 3âˆš3 = 4âˆš3
 
 ### Example 2: Rationalize
-Rationalize 1/(2 + √3)
+Rationalize 1/(2 + âˆš3)
 
-**Solution**: Multiply by 2 - √3:
-(2 - √3)/((2 + √3)(2 - √3)) = (2 - √3)/(4 - 3) = 2 - √3
+**Solution**: Multiply by 2 - âˆš3:
+(2 - âˆš3)/((2 + âˆš3)(2 - âˆš3)) = (2 - âˆš3)/(4 - 3) = 2 - âˆš3
 
 ### Example 3: Operations
-Simplify (3√2 + 2√3)(√2 - √3)
+Simplify (3âˆš2 + 2âˆš3)(âˆš2 - âˆš3)
 
-**Solution**: 3√2×√2 + 3√2×(-√3) + 2√3×√2 + 2√3×(-√3)
-= 3×2 + 3(-√6) + 2√6 + 2(-3)
-= 6 - 3√6 + 2√6 - 6
-= (6 - 6) + (-3√6 + 2√6) = -√6
+**Solution**: 3âˆš2Ã—âˆš2 + 3âˆš2Ã—(-âˆš3) + 2âˆš3Ã—âˆš2 + 2âˆš3Ã—(-âˆš3)
+= 3Ã—2 + 3(-âˆš6) + 2âˆš6 + 2(-3)
+= 6 - 3âˆš6 + 2âˆš6 - 6
+= (6 - 6) + (-3âˆš6 + 2âˆš6) = -âˆš6
 
 ### Example 4: Equation
-Solve √(x+4) - √x = 2
+Solve âˆš(x+4) - âˆšx = 2
 
-**Solution**: Square both sides: x+4 - x + 2√(x(x+4)) = 4
-4 + 2√(x²+4x) = 4
-2√(x²+4x) = 0
-√(x²+4x) = 0
-x²+4x = 0
+**Solution**: Square both sides: x+4 - x + 2âˆš(x(x+4)) = 4
+4 + 2âˆš(xÂ²+4x) = 4
+2âˆš(xÂ²+4x) = 0
+âˆš(xÂ²+4x) = 0
+xÂ²+4x = 0
 x(x+4) = 0
 x = 0 or x = -4 (reject)
 
 ### Example 5: Indices
-Simplify (2^3 × 3^2)^2 ÷ (2^2 × 3^3)
+Simplify (2^3 Ã— 3^2)^2 Ã· (2^2 Ã— 3^3)
 
-**Solution**: (2^6 × 3^4) ÷ (2^2 × 3^3) = 2^(6-2) × 3^(4-3) = 2^4 × 3^1 = 16 × 3 = 48
+**Solution**: (2^6 Ã— 3^4) Ã· (2^2 Ã— 3^3) = 2^(6-2) Ã— 3^(4-3) = 2^4 Ã— 3^1 = 16 Ã— 3 = 48
 
-Master surds and indices to simplify complex mathematical expressions! 🚀`
+Master surds and indices to simplify complex mathematical expressions! ðŸš€`
 };
+
 

@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_6: SubLesson = {
   id: "5.6",
   title: 'When to Use Methods',
   status: 'completed',
-  content: `# 🎯 When to Use Methods in Java
+  content: "`# ðŸŽ¯ When to Use Methods in Java
 
 Knowing when and how to create methods is crucial for writing clean, maintainable, and efficient Java code. Methods should be used strategically to improve code organization, reusability, and readability.
 
 ---
 
-## 📋 Code Organization Principles
+## ðŸ“‹ Code Organization Principles
 
 ### **Single Responsibility Principle**
-\`\`\`java
+\`"\`\`java
 public class SingleResponsibility {
-    // ❌ Bad: One method doing too many things
+    // âŒ Bad: One method doing too many things
     public void processUserRegistration(String name, String email, String password) {
         // Validate input
         if (name == null || name.trim().isEmpty()) {
@@ -41,7 +41,7 @@ public class SingleResponsibility {
         logRegistration(name, email);
     }
 
-    // ✅ Good: Break into focused methods
+    // âœ… Good: Break into focused methods
     public void processUserRegistration(String name, String email, String password) {
         validateRegistrationInput(name, email, password);
         String hashedPassword = hashPassword(password);
@@ -93,7 +93,7 @@ public class SingleResponsibility {
 ### **DRY (Don't Repeat Yourself) Principle**
 \`\`\`java
 public class DRYPrinciple {
-    // ❌ Bad: Code duplication
+    // âŒ Bad: Code duplication
     public void printReport1() {
         System.out.println("=== Report Header ===");
         System.out.println("Generated on: " + java.time.LocalDateTime.now());
@@ -116,7 +116,7 @@ public class DRYPrinciple {
         System.out.println("Total revenue: $75,000");
     }
 
-    // ✅ Good: Extract common functionality
+    // âœ… Good: Extract common functionality
     public void printReport1() {
         printReportHeader();
         System.out.println("Report 1 Data:");
@@ -149,12 +149,12 @@ public class DRYPrinciple {
 
 ---
 
-## 🔧 Method Granularity Guidelines
+## ðŸ”§ Method Granularity Guidelines
 
 ### **Method Length Guidelines**
 \`\`\`java
 public class MethodLength {
-    // ✅ Good: Short, focused methods (5-15 lines)
+    // âœ… Good: Short, focused methods (5-15 lines)
     public boolean isValidEmail(String email) {
         if (email == null || email.trim().isEmpty()) {
             return false;
@@ -173,7 +173,7 @@ public class MethodLength {
         return (double) sum / numbers.length;
     }
 
-    // ❌ Bad: Too long method (should be broken down)
+    // âŒ Bad: Too long method (should be broken down)
     // public void processLargeDataset() {
     //     // 50+ lines of mixed logic
     //     loadData();
@@ -184,7 +184,7 @@ public class MethodLength {
     //     cleanup();
     // }
 
-    // ✅ Better: Break into smaller methods
+    // âœ… Better: Break into smaller methods
     public void processLargeDataset() {
         DataSet data = loadData();
         validateData(data);
@@ -235,7 +235,7 @@ public class MethodLength {
 ### **Method Complexity**
 \`\`\`java
 public class MethodComplexity {
-    // ✅ Good: Simple, linear logic
+    // âœ… Good: Simple, linear logic
     public int findMax(int[] numbers) {
         if (numbers.length == 0) {
             throw new IllegalArgumentException("Array cannot be empty");
@@ -250,7 +250,7 @@ public class MethodComplexity {
         return max;
     }
 
-    // ❌ Bad: High cyclomatic complexity (too many decision points)
+    // âŒ Bad: High cyclomatic complexity (too many decision points)
     // public void complexLogic(int a, int b, int c, boolean flag) {
     //     if (a > 0) {
     //         if (b > 0) {
@@ -263,7 +263,7 @@ public class MethodComplexity {
     //     }
     // }
 
-    // ✅ Better: Extract methods to reduce complexity
+    // âœ… Better: Extract methods to reduce complexity
     public void processData(int a, int b, int c, boolean flag) {
         if (!areAllPositive(a, b, c)) {
             throw new IllegalArgumentException("All values must be positive");
@@ -311,7 +311,7 @@ public class MethodComplexity {
 
 ---
 
-## 🎯 Method Design Patterns
+## ðŸŽ¯ Method Design Patterns
 
 ### **Command Pattern**
 \`\`\`java
@@ -454,7 +454,7 @@ public class FactoryPattern {
 
 ---
 
-## 🎯 Performance Considerations
+## ðŸŽ¯ Performance Considerations
 
 ### **Method Inlining Opportunities**
 \`\`\`java
@@ -504,7 +504,7 @@ public class MethodInlining {
 ### **Avoiding Method Call Overhead**
 \`\`\`java
 public class MethodCallOverhead {
-    // ✅ Good: Simple calculations in loops
+    // âœ… Good: Simple calculations in loops
     public int sumArray(int[] array) {
         int sum = 0;
         for (int value : array) {
@@ -513,7 +513,7 @@ public class MethodCallOverhead {
         return sum;
     }
 
-    // ❌ Bad: Method calls in tight loops (if performance critical)
+    // âŒ Bad: Method calls in tight loops (if performance critical)
     // public int sumArrayBad(int[] array) {
     //     int sum = 0;
     //     for (int value : array) {
@@ -526,7 +526,7 @@ public class MethodCallOverhead {
     //     return a + b;
     // }
 
-    // ✅ Better: Balance readability and performance
+    // âœ… Better: Balance readability and performance
     public int sumArrayBalanced(int[] array) {
         if (array.length < 1000) {
             // For small arrays, readability matters more
@@ -569,7 +569,7 @@ public class MethodCallOverhead {
 
 ---
 
-## 🎯 Testing and Debugging Benefits
+## ðŸŽ¯ Testing and Debugging Benefits
 
 ### **Testable Method Units**
 \`\`\`java
@@ -679,13 +679,13 @@ public class DebuggableMethods {
 
 ---
 
-## 🎯 Method Usage Guidelines
+## ðŸŽ¯ Method Usage Guidelines
 
 ### **When to Create a Method**
 \`\`\`java
 public class WhenToCreateMethod {
     public void process() {
-        // ✅ Extract method when:
+        // âœ… Extract method when:
         // - Code is repeated 2+ times
         // - Method would be longer than 10-15 lines
         // - Method has a single, clear responsibility
@@ -715,7 +715,7 @@ public class WhenToCreateMethod {
         System.out.println("Starting processing...");
     }
 
-    // ✅ Methods for complex boolean expressions
+    // âœ… Methods for complex boolean expressions
     public boolean isEligibleForDiscount(User user, Order order) {
         return user.isPremiumMember() &&
                order.getTotal() > 100.0 &&
@@ -753,7 +753,7 @@ public class WhenToCreateMethod {
 \`\`\`java
 public class WhenNotToCreateMethod {
     public void example() {
-        // ❌ Don't extract method when:
+        // âŒ Don't extract method when:
         // - Method would only be called once
         // - Method would be extremely simple (1-2 lines with no logic)
         // - Method would break the flow of the calling method
@@ -768,12 +768,12 @@ public class WhenNotToCreateMethod {
         System.out.println("Doubled: " + (result * 2));
     }
 
-    // ✅ This method is justified - it encapsulates meaningful logic
+    // âœ… This method is justified - it encapsulates meaningful logic
     private int calculateSimpleSum(int a, int b) {
         return a + b;
     }
 
-    // ❌ This would be overkill
+    // âŒ This would be overkill
     // private int doubleValue(int value) {
     //     return value * 2;
     // }
@@ -785,8 +785,9 @@ public class WhenNotToCreateMethod {
 }
 \`\`\`
 
-Methods are fundamental to good Java programming. Use them to organize code, eliminate duplication, improve readability, and create testable, maintainable software. The key is finding the right balance between too many small methods and methods that are too large! 🎯`
+Methods are fundamental to good Java programming. Use them to organize code, eliminate duplication, improve readability, and create testable, maintainable software. The key is finding the right balance between too many small methods and methods that are too large! ðŸŽ¯`
 };
+
 
 
 

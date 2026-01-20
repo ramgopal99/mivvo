@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_9: SubLesson = {
   id: "2.9",
   title: 'Blood Relation with Direction Sense',
   status: 'completed',
-  content: `# 🧭 Blood Relation with Direction Sense
+  content: "`# ðŸ§­ Blood Relation with Direction Sense
 
 Blood relation problems combined with direction sense test your ability to understand both family relationships and spatial orientation. These problems require you to navigate family trees while considering directional movements and positions.
 
 ---
 
-## 🎯 Understanding Direction-Based Relations
+## ðŸŽ¯ Understanding Direction-Based Relations
 
 ### **What are Direction-Based Blood Relations?**
 These problems combine family relationships with directional concepts, requiring you to:
@@ -27,7 +27,7 @@ These problems combine family relationships with directional concepts, requiring
 
 ---
 
-## 🧩 Direction Sense Basics
+## ðŸ§© Direction Sense Basics
 
 ### **Primary Directions**
 - **North (N)**: Top/Forward direction
@@ -43,7 +43,7 @@ These problems combine family relationships with directional concepts, requiring
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Map Family Relationships**
 - Identify all family members and their relationships
@@ -67,7 +67,7 @@ These problems combine family relationships with directional concepts, requiring
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Direction-Relation**
 **Question**: A is facing North. B is to the South of A and is A's brother. C is to the East of B and is B's sister. What is C to A?
@@ -86,7 +86,7 @@ These problems combine family relationships with directional concepts, requiring
 
 ---
 
-## 🔍 Direction-Relation Patterns
+## ðŸ” Direction-Relation Patterns
 
 ### **Pattern 1: Facing Directions**
 - Family members facing different directions
@@ -105,7 +105,7 @@ These problems combine family relationships with directional concepts, requiring
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Position Mapping**
 - Draw a directional grid
@@ -124,7 +124,7 @@ These problems combine family relationships with directional concepts, requiring
 
 ---
 
-## 📈 Advanced Concepts
+## ðŸ“ˆ Advanced Concepts
 
 ### **Multiple Direction Changes**
 Problems involving multiple directional movements and position changes.
@@ -137,7 +137,7 @@ Family members changing positions over time.
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Static Positions**
 Family members in fixed directional positions relative to each other.
@@ -153,7 +153,7 @@ Complex problems combining multiple directional and relational elements.
 
 ---
 
-## 🚀 Pro Tips for Success
+## ðŸš€ Pro Tips for Success
 
 1. **Draw Diagrams**: Always sketch positions and directions
 2. **Use Compass**: Keep track of North, South, East, West
@@ -163,7 +163,7 @@ Complex problems combining multiple directional and relational elements.
 
 ---
 
-## 🧭 Practice Questions
+## ðŸ§­ Practice Questions
 
 ### **Question 1**
 A is facing North. B is to the South of A and is A's son. C is to the East of B and is B's daughter. What direction is C from A?
@@ -174,5 +174,5 @@ P is facing West. Q is to the North of P and is P's mother. R is to the East of 
 ### **Question 3**
 In a family gathering, X is to the North of Y, Y is the father of X. Z is to the East of Y and is the brother of X. Who is to the North-East of Y?
 
-**Master blood relations with direction sense for comprehensive spatial reasoning! 🧭✨**`
+**Master blood relations with direction sense for comprehensive spatial reasoning! ðŸ§­âœ¨**`"
 };

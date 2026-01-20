@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_2: SubLesson = {
   id: "2.2",
   title: 'Variables & Data Types',
   status: 'completed',
-  content: `# 📦 Java Variables and Data Types
+  content: "`# ðŸ“¦ Java Variables and Data Types
 
 Variables are containers that store data values in Java. Java is a statically-typed language, which means you must declare the data type of each variable.
 
 ---
 
-## 🆕 Creating Variables
+## ðŸ†• Creating Variables
 
 ### **Basic Variable Declaration**
-\`\`\`java
+\`"\`\`java
 // Variable declaration and initialization
 String name = "Alice";
 int age = 25;
@@ -32,15 +32,15 @@ int x, y, z;
 Unlike Python, Java requires explicit type declarations:
 
 \`\`\`java
-// ✅ Correct - type must be specified
+// âœ… Correct - type must be specified
 int number = 42;
 String text = "Hello";
 
-// ❌ Wrong - type cannot be inferred
+// âŒ Wrong - type cannot be inferred
 // var number = 42;  // Not allowed in older Java versions
 \`\`\`
 
-## 📊 Java Data Types
+## ðŸ“Š Java Data Types
 
 ### **Primitive Data Types**
 
@@ -91,7 +91,7 @@ String[] names = new String[5];             // Array with size
 int[][] matrix = {{1, 2}, {3, 4}};          // 2D array
 \`\`\`
 
-## 🔄 Type Conversion
+## ðŸ”„ Type Conversion
 
 ### **Implicit Conversion (Widening)**
 \`\`\`java
@@ -111,7 +111,7 @@ long big = 1000L;
 int small = (int) big;      // Explicit cast needed
 \`\`\`
 
-## 📋 Variable Scope and Lifetime
+## ðŸ“‹ Variable Scope and Lifetime
 
 ### **Local Variables**
 \`\`\`java
@@ -142,7 +142,7 @@ public class Example {
 }
 \`\`\`
 
-## 🎯 Best Practices
+## ðŸŽ¯ Best Practices
 
 ### **Variable Naming**
 \`\`\`java
@@ -175,7 +175,7 @@ if (condition) {
 }
 \`\`\`
 
-## 🎯 Summary
+## ðŸŽ¯ Summary
 
 Java variables and data types are fundamental to understanding how data is stored and manipulated in Java programs. Key points:
 
@@ -187,5 +187,6 @@ Java variables and data types are fundamental to understanding how data is store
 
 Mastering data types is essential before moving to more advanced Java concepts like OOP!`
 };
+
 
 

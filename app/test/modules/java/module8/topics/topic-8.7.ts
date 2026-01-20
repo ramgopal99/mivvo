@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_7: SubLesson = {
   id: "8.7",
   title: 'Inner Classes and Nested Classes',
   status: 'completed',
-  content: `# 🏗️ Inner Classes and Nested Classes in Java
+  content: "`# ðŸ—ï¸ Inner Classes and Nested Classes in Java
 
 Master nested classes and their relationships with outer classes!
 
 ---
 
-## 🎯 Types of Nested Classes
+## ðŸŽ¯ Types of Nested Classes
 
 ### **1. Static Nested Classes**
-\`\`\`java
+\`"\`\`java
 public class OuterClass {
     private static String staticField = "Static field";
     private String instanceField = "Instance field";
@@ -231,7 +231,7 @@ public class AnonymousClassExample {
 
 ---
 
-## 🎯 Use Cases and Best Practices
+## ðŸŽ¯ Use Cases and Best Practices
 
 ### **1. Event Handling with Inner Classes**
 \`\`\`java
@@ -440,7 +440,7 @@ public class CustomList<E> {
 
 ---
 
-## ⚠️ Important Considerations
+## âš ï¸ Important Considerations
 
 ### **1. Memory and Performance**
 \`\`\`java
@@ -520,7 +520,7 @@ class OtherClass {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Static nested classes** don't hold reference to outer instance
 2. **Inner classes** have access to outer instance members via \`OuterClass.this\`
@@ -530,7 +530,7 @@ class OtherClass {
 6. **Serialization** - static nested classes are safer for serialization
 7. **Access modifiers** apply to nested classes like regular members
 
-**Congratulations!** 🎉 You've mastered Classes and Objects in Java!
+**Congratulations!** ðŸŽ‰ You've mastered Classes and Objects in Java!
 
 ### **What You've Learned:**
 - Object creation and memory management
@@ -540,6 +540,7 @@ class OtherClass {
 - Final keyword and immutability
 - Inner classes and nested classes
 
-**Ready to move on to Inheritance and Polymorphism?** 🚀`
+**Ready to move on to Inheritance and Polymorphism?** ðŸš€`
 };
+
 

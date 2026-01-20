@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_1: SubLesson = {
   id: "9.1",
   title: 'Introduction to Inheritance',
   status: 'completed',
-  content: `# 🧬 Introduction to Inheritance in Java
+  content: "`# ðŸ§¬ Introduction to Inheritance in Java
 
 Inheritance is one of the core principles of object-oriented programming. It allows classes to inherit properties and behaviors from other classes, creating hierarchical relationships that promote code reuse and extensibility. Understanding inheritance is crucial for designing flexible and maintainable Java applications.
 
 ---
 
-## 📋 Inheritance Fundamentals
+## ðŸ“‹ Inheritance Fundamentals
 
 ### **What is Inheritance?**
 
@@ -32,11 +32,11 @@ Create logical class hierarchies that reflect real-world relationships.
 
 ---
 
-## 🔗 Basic Inheritance Syntax
+## ðŸ”— Basic Inheritance Syntax
 
 ### **extends Keyword**
 
-The \`extends\` keyword creates an inheritance relationship between classes.
+The \`"extends\` keyword creates an inheritance relationship between classes.
 
 \`\`\`java
 // Superclass (Parent class)
@@ -114,7 +114,7 @@ public class InheritanceDemo {
 
 ---
 
-## 🎯 Key Inheritance Concepts
+## ðŸŽ¯ Key Inheritance Concepts
 
 ### **1. super Keyword**
 
@@ -192,13 +192,13 @@ public class Animal {
 }
 
 public class Cat extends Animal {
-    // ✅ Valid override: same signature, covariant return type allowed
+    // âœ… Valid override: same signature, covariant return type allowed
     @Override
     public void makeSound() {
         System.out.println("Cat meows");
     }
 
-    // ✅ Valid override: more accessible
+    // âœ… Valid override: more accessible
     @Override
     public void move() {
         System.out.println("Cat walks gracefully");
@@ -253,36 +253,36 @@ public class Parent {
     private int privateField = 4;
 
     public void testAccess() {
-        System.out.println(privateField);     // ✅ Accessible
-        System.out.println(defaultField);     // ✅ Accessible
-        System.out.println(protectedField);   // ✅ Accessible
-        System.out.println(publicField);      // ✅ Accessible
+        System.out.println(privateField);     // âœ… Accessible
+        System.out.println(defaultField);     // âœ… Accessible
+        System.out.println(protectedField);   // âœ… Accessible
+        System.out.println(publicField);      // âœ… Accessible
     }
 }
 
 public class Child extends Parent {
     public void testInheritedAccess() {
-        System.out.println(publicField);      // ✅ Inherited
-        System.out.println(protectedField);   // ✅ Inherited
-        System.out.println(defaultField);     // ✅ Inherited (same package)
-        // System.out.println(privateField);  // ❌ Not inherited
+        System.out.println(publicField);      // âœ… Inherited
+        System.out.println(protectedField);   // âœ… Inherited
+        System.out.println(defaultField);     // âœ… Inherited (same package)
+        // System.out.println(privateField);  // âŒ Not inherited
     }
 }
 
 class Sibling {
     public void testSiblingAccess() {
         Parent obj = new Parent();
-        System.out.println(obj.publicField);      // ✅ Accessible
-        // System.out.println(obj.protectedField); // ❌ Not accessible (different class)
-        // System.out.println(obj.defaultField);   // ❌ Not accessible (different class)
-        // System.out.println(obj.privateField);   // ❌ Not accessible
+        System.out.println(obj.publicField);      // âœ… Accessible
+        // System.out.println(obj.protectedField); // âŒ Not accessible (different class)
+        // System.out.println(obj.defaultField);   // âŒ Not accessible (different class)
+        // System.out.println(obj.privateField);   // âŒ Not accessible
     }
 }
 \`\`\`
 
 ---
 
-## 🏗️ Types of Inheritance
+## ðŸ—ï¸ Types of Inheritance
 
 ### **1. Single Inheritance**
 
@@ -296,7 +296,7 @@ public class Mammal extends Animal { }  // Single inheritance
 public class Dog extends Mammal { }     // Single inheritance
 
 // Dog inherits from Mammal, which inherits from Animal
-// This creates a hierarchy: Animal → Mammal → Dog
+// This creates a hierarchy: Animal â†’ Mammal â†’ Dog
 \`\`\`
 
 ### **2. Multilevel Inheritance**
@@ -419,7 +419,7 @@ public class HierarchicalDemo {
 
 ---
 
-## 🔒 final Keyword in Inheritance
+## ðŸ”’ final Keyword in Inheritance
 
 ### **final Classes**
 
@@ -434,7 +434,7 @@ public final class MathUtils {
     }
 }
 
-// ❌ Compilation error: cannot inherit from final class
+// âŒ Compilation error: cannot inherit from final class
 // public class AdvancedMath extends MathUtils { }
 \`\`\`
 
@@ -454,13 +454,13 @@ public class Vehicle {
 }
 
 public class Car extends Vehicle {
-    // ✅ Can override non-final methods
+    // âœ… Can override non-final methods
     @Override
     public void drive() {
         System.out.println("Car driving...");
     }
 
-    // ❌ Compilation error: cannot override final method
+    // âŒ Compilation error: cannot override final method
     // @Override
     // public void startEngine() { }
 }
@@ -485,7 +485,7 @@ public class Circle extends Constants {
         return PI * radius * radius;  // Can use inherited final constants
     }
 
-    // ❌ Cannot modify final inherited fields
+    // âŒ Cannot modify final inherited fields
     // public void modifyPI() {
     //     PI = 3.14;  // Compilation error
     // }
@@ -494,7 +494,7 @@ public class Circle extends Constants {
 
 ---
 
-## 🎯 Practical Inheritance Examples
+## ðŸŽ¯ Practical Inheritance Examples
 
 ### **Employee Management System**
 
@@ -711,7 +711,7 @@ public class ShapeDemo {
 
 ---
 
-## ⚠️ Common Inheritance Mistakes
+## âš ï¸ Common Inheritance Mistakes
 
 ### **1. Overriding vs Overloading Confusion**
 
@@ -724,13 +724,13 @@ public class Confusion {
     }
 
     public static class Child extends Parent {
-        // ❌ This is overloading, not overriding!
+        // âŒ This is overloading, not overriding!
         // Different parameter list = method overloading
         public void display(String message) {
             System.out.println("Child display: " + message);
         }
 
-        // ✅ This is overriding
+        // âœ… This is overriding
         @Override
         public void display() {
             System.out.println("Child display");
@@ -753,7 +753,7 @@ public class BadInheritance {
         }
     }
 
-    // ✅ Better approach
+    // âœ… Better approach
     public static class GoodParent {
         private int balance = 1000;
 
@@ -789,12 +789,12 @@ public class ConstructorMistake {
     public static class Child extends Parent {
         private int age;
 
-        // ❌ Forgot to call super() - compilation error
+        // âŒ Forgot to call super() - compilation error
         // public Child(String name, int age) {
         //     this.age = age;
         // }
 
-        // ✅ Correct: call super() first
+        // âœ… Correct: call super() first
         public Child(String name, int age) {
             super(name);  // Initialize parent first
             this.age = age;
@@ -805,7 +805,7 @@ public class ConstructorMistake {
 
 ---
 
-## 🎯 Inheritance Best Practices
+## ðŸŽ¯ Inheritance Best Practices
 
 ### **1. Follow Liskov Substitution Principle**
 
@@ -822,7 +822,7 @@ public class LSPExample {
         public int getArea() { return width * height; }
     }
 
-    // ❌ Bad: breaks LSP - Square is not a proper Rectangle
+    // âŒ Bad: breaks LSP - Square is not a proper Rectangle
     public static class BadSquare extends Rectangle {
         @Override
         public void setWidth(int width) {
@@ -837,7 +837,7 @@ public class LSPExample {
         }
     }
 
-    // ✅ Better: Use composition or different design
+    // âœ… Better: Use composition or different design
     public static class Square {
         private int side;
 
@@ -856,12 +856,12 @@ public class LSPExample {
 
 \`\`\`java
 public class CompositionExample {
-    // ❌ Inheritance approach (tight coupling)
+    // âŒ Inheritance approach (tight coupling)
     public static class Car extends Engine {
         // Car is an Engine? Not really...
     }
 
-    // ✅ Composition approach (loose coupling)
+    // âœ… Composition approach (loose coupling)
     public static class BetterCar {
         private Engine engine;  // Car has an Engine
 
@@ -905,7 +905,7 @@ public abstract class AbstractShape {
 
 ---
 
-## 🎯 Summary
+## ðŸŽ¯ Summary
 
 Inheritance is a powerful OOP mechanism that enables:
 
@@ -918,10 +918,10 @@ Inheritance is a powerful OOP mechanism that enables:
 ### **Inheritance Hierarchy**
 \`\`\`
 Object (implicit parent of all classes)
-├── Custom Classes
-├── Collections
-├── Exceptions
-└── Many others...
+â”œâ”€â”€ Custom Classes
+â”œâ”€â”€ Collections
+â”œâ”€â”€ Exceptions
+â””â”€â”€ Many others...
 \`\`\`
 
 ### **Method Overriding Rules**
@@ -974,5 +974,6 @@ public class Test {
 \`\`\`
 Output: ?
 `};
+
 
 

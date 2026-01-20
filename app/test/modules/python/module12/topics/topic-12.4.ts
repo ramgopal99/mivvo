@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_4: SubLesson = {
   id: "12.4",
   title: 'Queue Operations',
   status: 'demo',
-  content: `# ⚙️ Queue Operations
+  content: "`# âš™ï¸ Queue Operations
 
 Queues support various operations for adding, removing, and inspecting elements. Let's explore each operation with implementations and examples!
 
 ---
 
-## 🔧 Basic Queue Operations
+## ðŸ”§ Basic Queue Operations
 
 ### **Enqueue Operation**
-\`\`\`python
+\`"\`\`python
 from collections import deque
 
 class Queue:
@@ -101,7 +101,7 @@ print(f"Queue still has: {list(queue.items)}")
 
 ---
 
-## 🔍 Advanced Queue Operations
+## ðŸ” Advanced Queue Operations
 
 ### **Size Operation**
 \`\`\`python
@@ -142,7 +142,7 @@ print(f"Queue contains 'grape': {queue.contains('grape')}")
 
 ---
 
-## 🎯 Queue Algorithm Examples
+## ðŸŽ¯ Queue Algorithm Examples
 
 ### **Josephus Problem**
 \`\`\`python
@@ -230,7 +230,7 @@ print(f"Reversed queue: {list(reversed_queue)}")
 
 ---
 
-## 📊 Queue Performance Analysis
+## ðŸ“Š Queue Performance Analysis
 
 ### **Time Complexity**
 | Operation | Deque Implementation | List Implementation |
@@ -249,7 +249,7 @@ print(f"Reversed queue: {list(reversed_queue)}")
 
 ---
 
-## 🎨 Queue Applications in Depth
+## ðŸŽ¨ Queue Applications in Depth
 
 ### **Level Order Tree Traversal**
 \`\`\`python
@@ -413,7 +413,7 @@ while not scheduler.is_empty():
 
 ---
 
-## 🚀 Advanced Queue Concepts
+## ðŸš€ Advanced Queue Concepts
 
 ### **Circular Queue**
 \`\`\`python
@@ -512,7 +512,7 @@ print(f"Left end: {deque_queue[0]}, Right end: {deque_queue[-1]}")
 
 ---
 
-## ✅ Best Practices
+## âœ… Best Practices
 
 1. **Use deque for efficient operations** - O(1) enqueue and dequeue
 2. **Handle empty queue conditions** - Always check before dequeue
@@ -520,6 +520,7 @@ print(f"Left end: {deque_queue[0]}, Right end: {deque_queue[-1]}")
 4. **Use appropriate data structures** - PriorityQueue for priorities, CircularQueue for fixed size
 5. **Implement thread safety** - Use queue.Queue for concurrent access
 
-Queue operations are fundamental to ordered processing and sequential algorithms! 📋`
+Queue operations are fundamental to ordered processing and sequential algorithms! ðŸ“‹`
 };
+
 

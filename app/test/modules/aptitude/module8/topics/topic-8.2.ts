@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_2: SubLesson = {
   id: "8.2",
   title: 'Rate of Interest (R)',
   status: 'completed',
-  content: `# 📈 Rate of Interest (R)
+  content: "`# ðŸ“ˆ Rate of Interest (R)
 
 Master the rate of interest - the percentage that determines how much interest is earned or paid! Rate of Interest (R) is the percentage charged or earned on the principal amount over time. Understanding rates is crucial for financial decision making and interest calculations.
 
 ---
 
-## 🎯 What is Rate of Interest?
+## ðŸŽ¯ What is Rate of Interest?
 
 **Rate of Interest (R)** is the percentage of the principal amount that is charged as interest for the use of money over a period of time. It's expressed as a percentage per unit time.
 
@@ -21,13 +21,13 @@ Master the rate of interest - the percentage that determines how much interest i
 - Rate depends on market conditions, risk, and policies
 
 ### **Symbol**
-\`\`\`
+\`"\`\`
 R (Rate of Interest in %)
 \`\`\`
 
 ---
 
-## 📊 Types of Interest Rates
+## ðŸ“Š Types of Interest Rates
 
 ### **1. Nominal Rate**
 - Basic rate quoted by lender/bank
@@ -51,7 +51,7 @@ R (Rate of Interest in %)
 
 ---
 
-## 🔢 Rate of Interest Classifications
+## ðŸ”¢ Rate of Interest Classifications
 
 ### **Based on Time Period**
 1. **Annual Rate**: Per year
@@ -67,27 +67,27 @@ R (Rate of Interest in %)
 
 ---
 
-## 🧮 Rate Calculations
+## ðŸ§® Rate Calculations
 
 ### **Finding Rate from SI**
 \`\`\`
-R = (SI × 100) ÷ (P × T)
+R = (SI Ã— 100) Ã· (P Ã— T)
 \`\`\`
 
-**Example:** P = ₹1000, T = 2 years, SI = ₹200
-- R = (200 × 100) ÷ (1000 × 2) = 10%
+**Example:** P = â‚¹1000, T = 2 years, SI = â‚¹200
+- R = (200 Ã— 100) Ã· (1000 Ã— 2) = 10%
 
 ### **Finding Rate from Amount**
 \`\`\`
-R = [(A - P) × 100] ÷ (P × T)
+R = [(A - P) Ã— 100] Ã· (P Ã— T)
 \`\`\`
 
-**Example:** P = ₹5000, T = 1 year, A = ₹5500
-- R = (500 × 100) ÷ (5000 × 1) = 10%
+**Example:** P = â‚¹5000, T = 1 year, A = â‚¹5500
+- R = (500 Ã— 100) Ã· (5000 Ã— 1) = 10%
 
 ---
 
-## 💡 Current Interest Rate Scenarios
+## ðŸ’¡ Current Interest Rate Scenarios
 
 ### **1. Bank Rates (India)**
 - Savings Account: 3-4% per annum
@@ -108,31 +108,31 @@ R = [(A - P) × 100] ÷ (P × T)
 
 ---
 
-## 🎯 Factors Affecting Interest Rates
+## ðŸŽ¯ Factors Affecting Interest Rates
 
 ### **1. Inflation**
-- Higher inflation → Higher rates
+- Higher inflation â†’ Higher rates
 - Protects lender's purchasing power
 
 ### **2. Economic Conditions**
-- Growth period → Higher rates
-- Recession → Lower rates
+- Growth period â†’ Higher rates
+- Recession â†’ Lower rates
 
 ### **3. Central Bank Policy**
 - Monetary policy determines base rates
 - RBI in India, Fed in US
 
 ### **4. Risk Assessment**
-- Higher risk → Higher rates
+- Higher risk â†’ Higher rates
 - Credit score affects personal rates
 
 ### **5. Loan Type & Tenure**
-- Longer tenure → Slightly higher rates
-- Secured loans → Lower rates
+- Longer tenure â†’ Slightly higher rates
+- Secured loans â†’ Lower rates
 
 ---
 
-## 📈 Rate of Interest Trends
+## ðŸ“ˆ Rate of Interest Trends
 
 ### **1. Historical Trends**
 - 1980s-1990s: 15-20% rates in India
@@ -147,55 +147,55 @@ R = [(A - P) × 100] ÷ (P × T)
 
 ---
 
-## 🧮 Rate Conversions
+## ðŸ§® Rate Conversions
 
 ### **Annual to Monthly Rate**
 \`\`\`
-Monthly R = Annual R ÷ 12
+Monthly R = Annual R Ã· 12
 \`\`\`
 
 **Example:** Annual 12% = Monthly 1%
 
 ### **Annual to Daily Rate**
 \`\`\`
-Daily R = Annual R ÷ 365
+Daily R = Annual R Ã· 365
 \`\`\`
 
-**Example:** Annual 12% = Daily ≈0.033%
+**Example:** Annual 12% = Daily â‰ˆ0.033%
 
 ### **Monthly to Annual Rate**
 \`\`\`
-Annual R = Monthly R × 12
+Annual R = Monthly R Ã— 12
 \`\`\`
 
 ---
 
-## 🚨 Common Mistakes with Rates
+## ðŸš¨ Common Mistakes with Rates
 
 ### **Mistake 1: Wrong Time Base**
-❌ "10% per month = 10% per year"
+âŒ "10% per month = 10% per year"
 - 10% per month = 120% per year
 
 ### **Mistake 2: Confusing Simple vs Compound**
-❌ "Simple interest rate = Compound rate"
+âŒ "Simple interest rate = Compound rate"
 - Compound rates are higher for same nominal rate
 
 ### **Mistake 3: Ignoring Effective Rate**
-❌ "Nominal rate = Effective rate"
+âŒ "Nominal rate = Effective rate"
 - Effective rate includes all charges
 
 ### **Mistake 4: Rate vs Amount**
-❌ "Rate is the interest amount"
+âŒ "Rate is the interest amount"
 - Rate is percentage, interest is amount
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Basic Rate Calculations:**
-1. P = ₹2000, T = 3 years, SI = ₹600. Find R.
-2. P = ₹5000, T = 2 years, A = ₹6000. Find R.
-3. SI = ₹800, P = ₹4000, T = 2 years. Find R.
+1. P = â‚¹2000, T = 3 years, SI = â‚¹600. Find R.
+2. P = â‚¹5000, T = 2 years, A = â‚¹6000. Find R.
+3. SI = â‚¹800, P = â‚¹4000, T = 2 years. Find R.
 
 ### **Application Problems:**
 1. Monthly rate 0.8%, find annual rate.
@@ -206,5 +206,6 @@ Annual R = Monthly R × 12
 Basic: 10%, 10%, 10%
 Applications: 9.6%, 1%, 9.125%
 
-Master rate of interest concepts to make informed financial decisions! 🏆`
+Master rate of interest concepts to make informed financial decisions! ðŸ†`
 };
+

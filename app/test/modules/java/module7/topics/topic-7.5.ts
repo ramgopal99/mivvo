@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_5: SubLesson = {
   id: "7.5",
   title: 'Abstract Classes and Methods',
   status: 'completed',
-  content: `# 📐 Abstract Classes and Methods in Java
+  content: "`# ðŸ“ Abstract Classes and Methods in Java
 
 Abstract classes and methods provide a way to define incomplete implementations that must be completed by subclasses. They serve as templates for other classes, ensuring that certain methods are implemented while allowing flexibility in the implementation details. Abstract classes are a key feature of inheritance and polymorphism in Java.
 
 ---
 
-## 📋 Understanding Abstract Classes
+## ðŸ“‹ Understanding Abstract Classes
 
 ### **What is an Abstract Class?**
-\`\`\`java
+\`"\`\`java
 // Abstract class cannot be instantiated directly
 public abstract class Animal {
     // Abstract fields (concrete classes will have these)
@@ -47,10 +47,10 @@ public abstract class Animal {
     public int getAge() { return age; }
 }
 
-// ❌ Cannot instantiate abstract class
+// âŒ Cannot instantiate abstract class
 // Animal animal = new Animal("Generic", 5); // Compilation error
 
-// ✅ Must extend and implement abstract methods
+// âœ… Must extend and implement abstract methods
 public class Dog extends Animal {
     private String breed;
 
@@ -99,16 +99,16 @@ public class AbstractClassDemo {
 ### **Abstract Class Characteristics**
 \`\`\`java
 public abstract class AbstractCharacteristics {
-    // ✅ Can have instance variables
+    // âœ… Can have instance variables
     protected int value;
     private String name;
 
-    // ✅ Can have constructors
+    // âœ… Can have constructors
     public AbstractCharacteristics(String name) {
         this.name = name;
     }
 
-    // ✅ Can have concrete methods
+    // âœ… Can have concrete methods
     public String getName() {
         return name;
     }
@@ -117,15 +117,15 @@ public abstract class AbstractCharacteristics {
         this.value = value;
     }
 
-    // ✅ Can have abstract methods
+    // âœ… Can have abstract methods
     public abstract void performAction();
 
-    // ✅ Can have static methods
+    // âœ… Can have static methods
     public static void staticMethod() {
         System.out.println("Static method in abstract class");
     }
 
-    // ✅ Can have final methods
+    // âœ… Can have final methods
     public final void finalMethod() {
         System.out.println("Final method cannot be overridden");
     }
@@ -160,17 +160,17 @@ class AbstractCharacteristicsDemo {
 
 ---
 
-## 🔧 Abstract Methods
+## ðŸ”§ Abstract Methods
 
 ### **Abstract Method Rules**
 \`\`\`java
 public abstract class AbstractMethods {
-    // ✅ Valid abstract methods
+    // âœ… Valid abstract methods
     public abstract void method1();
     protected abstract void method2();
     abstract void method3();  // package-private by default
 
-    // ❌ Invalid abstract methods
+    // âŒ Invalid abstract methods
     // private abstract void method4();     // Abstract methods cannot be private
     // final abstract void method5();       // Abstract methods cannot be final
     // static abstract void method6();      // Abstract methods cannot be static
@@ -334,11 +334,11 @@ public class PartialImplementationDemo {
 
 ---
 
-## 🎯 Abstract Classes vs Interfaces
+## ðŸŽ¯ Abstract Classes vs Interfaces
 
 ### **When to Use Abstract Classes**
 \`\`\`java
-// ✅ Use abstract classes when:
+// âœ… Use abstract classes when:
 
 // 1. You want to share code among related classes
 public abstract class Vehicle {
@@ -475,7 +475,7 @@ public class AbstractVsConcrete {
 
 ---
 
-## 🎯 Abstract Class Design Patterns
+## ðŸŽ¯ Abstract Class Design Patterns
 
 ### **Template Method Pattern**
 \`\`\`java
@@ -655,12 +655,12 @@ public class AbstractFactory {
 
 ---
 
-## ⚠️ Abstract Class Best Practices
+## âš ï¸ Abstract Class Best Practices
 
 ### **1. Use Abstract Classes for "IS-A" Relationships**
 \`\`\`java
 public class IsARelationship {
-    // ✅ Good: Employee IS-A Person (inheritance appropriate)
+    // âœ… Good: Employee IS-A Person (inheritance appropriate)
     public abstract class Person {
         protected String name;
         protected int age;
@@ -701,7 +701,7 @@ public class IsARelationship {
         }
     }
 
-    // ❌ Bad: Car IS-NOT-A Engine (composition would be better)
+    // âŒ Bad: Car IS-NOT-A Engine (composition would be better)
     // public abstract class Engine {
     //     public abstract void start();
     // }
@@ -713,7 +713,7 @@ public class IsARelationship {
     //     }
     // }
 
-    // ✅ Better: Use composition
+    // âœ… Better: Use composition
     public class Engine {
         public void start() {
             System.out.println("Engine starting");
@@ -841,7 +841,7 @@ class AbstractDocumentationDemo {
 ### **3. Avoid Deep Inheritance Hierarchies**
 \`\`\`java
 public class AvoidingDeepHierarchies {
-    // ❌ Bad: Deep inheritance hierarchy
+    // âŒ Bad: Deep inheritance hierarchy
     abstract class A { abstract void method(); }
     abstract class B extends A { }
     abstract class C extends B { }
@@ -851,7 +851,7 @@ public class AvoidingDeepHierarchies {
         void method() { System.out.println("E"); }
     }
 
-    // ✅ Better: Flatter hierarchy with composition
+    // âœ… Better: Flatter hierarchy with composition
     interface Processor {
         void process();
     }
@@ -903,8 +903,9 @@ public class AvoidingDeepHierarchies {
 }
 \`\`\`
 
-Abstract classes and methods provide a powerful way to define incomplete implementations that serve as templates for subclasses. They enable code reuse while ensuring that critical methods are implemented by concrete classes. Use them when you need to define a common structure with some implementation flexibility! 📐`
+Abstract classes and methods provide a powerful way to define incomplete implementations that serve as templates for subclasses. They enable code reuse while ensuring that critical methods are implemented by concrete classes. Use them when you need to define a common structure with some implementation flexibility! ðŸ“`
 };
+
 
 
 

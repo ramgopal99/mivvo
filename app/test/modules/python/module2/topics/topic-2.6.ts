@@ -1,18 +1,18 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_6: SubLesson = {
   id: "2.6",
   title: 'Type Casting in Python',
   status: 'demo',
-  content: `# 🚀 Python Type Casting
+  content: "`# ðŸš€ Python Type Casting
 
 Master type conversion in Python!
 
 ---
 
-## 🎯 BASIC CONVERSION
+## ðŸŽ¯ BASIC CONVERSION
 
-\`\`\`python
+\`"\`\`python
 # Convert to integer
 age = int("25")        # "25" -> 25
 price = int(19.99)     # 19.99 -> 19
@@ -32,7 +32,7 @@ flag2 = bool(0)          # 0 -> False
 
 ---
 
-## 🔧 MORE EXAMPLES
+## ðŸ”§ MORE EXAMPLES
 
 \`\`\`python
 # Converting between types
@@ -54,15 +54,16 @@ print(bool(""))    # False (empty string)
 
 ---
 
-## 🎯 QUICK REFERENCE
+## ðŸŽ¯ QUICK REFERENCE
 
 | Function | Purpose | Example |
 |----------|---------|---------|
-| int() | To integer | int("25") → 25 |
-| float() | To float | float("3.14") → 3.14 |
-| str() | To string | str(42) → "42" |
-| bool() | To boolean | bool(1) → True |
+| int() | To integer | int("25") â†’ 25 |
+| float() | To float | float("3.14") â†’ 3.14 |
+| str() | To string | str(42) â†’ "42" |
+| bool() | To boolean | bool(1) â†’ True |
 
-Type casting converts data between types safely! 🎯`
+Type casting converts data between types safely! ðŸŽ¯`
 };
+
 

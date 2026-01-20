@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_8: SubLesson = {
   id: "8.8",
   title: 'Comparative Ranking Problems',
   status: 'completed',
-  content: `# ⚖️ Comparative Ranking Problems
+  content: "`# âš–ï¸ Comparative Ranking Problems
 
 Comparative ranking problems involve analyzing relative positions and standings using "better than," "worse than," or "immediately before/after" relationships. These problems require building complete ranking sequences from comparative information and determining specific positions within ordered arrangements.
 
 ---
 
-## 🎯 Understanding Comparative Ranking
+## ðŸŽ¯ Understanding Comparative Ranking
 
 ### **What are Comparative Ranking Problems?**
 These problems involve determining positions and rankings based on relative comparisons between persons or objects. They test your ability to:
@@ -34,10 +34,10 @@ These problems involve determining positions and rankings based on relative comp
 
 ---
 
-## 🧩 Comparative Relationship Types
+## ðŸ§© Comparative Relationship Types
 
 ### **Type 1: Direct Superiority**
-\`\`\`
+\`"\`\`
 "A is better than B" means:
 - A ranks higher than B
 - A has better position than B
@@ -62,7 +62,7 @@ These problems involve determining positions and rankings based on relative comp
 
 ---
 
-## 🎯 Problem Types and Solutions
+## ðŸŽ¯ Problem Types and Solutions
 
 ### **Type 1: Superiority Chain**
 *"A is better than B, B is better than C, C is better than D. Who is the best?"*
@@ -89,7 +89,7 @@ These problems involve determining positions and rankings based on relative comp
 
 ---
 
-## 📊 Comparative Logic Rules
+## ðŸ“Š Comparative Logic Rules
 
 ### **Transitivity Rule**
 \`\`\`
@@ -115,7 +115,7 @@ Comparative relationships are transitive
 
 ---
 
-## 🛠️ Problem-Solving Framework
+## ðŸ› ï¸ Problem-Solving Framework
 
 ### **Step-by-Step Approach**
 
@@ -146,7 +146,7 @@ Comparative relationships are transitive
 
 ---
 
-## 🎯 Common Question Patterns
+## ðŸŽ¯ Common Question Patterns
 
 ### **Pattern 1: Ranking Order**
 *"Based on comparisons, who ranks where?"*
@@ -162,7 +162,7 @@ Comparative relationships are transitive
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (30%)**
 - Simple superiority chains
@@ -181,7 +181,7 @@ Comparative relationships are transitive
 
 ---
 
-## 🧮 Mathematical Applications
+## ðŸ§® Mathematical Applications
 
 ### **Ranking Quantification**
 \`\`\`
@@ -211,7 +211,7 @@ If A > B by K positions:
 
 ---
 
-## 🎯 Special Cases and Exceptions
+## ðŸŽ¯ Special Cases and Exceptions
 
 ### **Case 1: Equal Ranking**
 \`\`\`
@@ -237,27 +237,27 @@ Forces specific position arrangements
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Comparative Direction Confusion**
-❌ Mixing "better than" with positional meanings
-✅ Clarify if comparison is about quality or position
+âŒ Mixing "better than" with positional meanings
+âœ… Clarify if comparison is about quality or position
 
 ### **Mistake 2: Quantification Error**
-❌ Wrong interpretation of "better than X persons"
-✅ "Better than X" means X persons are worse, so rank = X + 1
+âŒ Wrong interpretation of "better than X persons"
+âœ… "Better than X" means X persons are worse, so rank = X + 1
 
 ### **Mistake 3: Transitivity Assumption**
-❌ Assuming all relationships are transitive
-✅ Verify transitivity applies to superiority comparisons
+âŒ Assuming all relationships are transitive
+âœ… Verify transitivity applies to superiority comparisons
 
 ### **Mistake 4: Positional Logic Error**
-❌ Confusing immediate vs general before/after
-✅ "Immediately" means adjacent, no persons between
+âŒ Confusing immediate vs general before/after
+âœ… "Immediately" means adjacent, no persons between
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Clarify Comparative Meaning**: Understand if "better" means quality or position
 2. **Apply Quantification Correctly**: "Better than X" = rank X + 1
@@ -269,7 +269,7 @@ Forces specific position arrangements
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Superiority Chain**
 *"A is better than B, B is better than C, C is better than D. Who is the worst?"*
@@ -305,13 +305,13 @@ Forces specific position arrangements
 *"A is better than at least 2 persons and at most 4 persons. What are possible ranks for A?"*
 
 **Solution:**
-- Better than at least 2: Rank ≤ 3 (at most 2 better than A)
-- Better than at most 4: Rank ≥ 2 (at least 1 better or A is best)
+- Better than at least 2: Rank â‰¤ 3 (at most 2 better than A)
+- Better than at most 4: Rank â‰¥ 2 (at least 1 better or A is best)
 - Possible ranks: 2nd or 3rd
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Ascending-Descending Order**
 - Apply comparative logic to ordered sequences
@@ -328,5 +328,5 @@ Forces specific position arrangements
 - Maintain ranking relationships during position changes
 - Update comparative positions after swaps
 
-**Master comparative ranking problems to excel in relationship-based reasoning questions! ⚖️✨**`
+**Master comparative ranking problems to excel in relationship-based reasoning questions! âš–ï¸âœ¨**`
 };

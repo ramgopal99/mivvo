@@ -1,18 +1,18 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_2: SubLesson = {
   id: "16.2",
   title: 'Lambda Functions and Functional Programming',
   status: 'demo',
-  content: `# λ Lambda Functions and Functional Programming
+  content: "`# Î» Lambda Functions and Functional Programming
 
 Lambda functions are anonymous, single-expression functions that are a cornerstone of functional programming in Python. Combined with functional programming concepts like map, filter, and reduce, they enable elegant and concise code. Let's explore this powerful paradigm!
 
 ---
 
-## 🎯 What are Lambda Functions?
+## ðŸŽ¯ What are Lambda Functions?
 
-**Lambda functions** are small, anonymous functions defined with the \`lambda\` keyword. They can take any number of arguments but can only have one expression.
+**Lambda functions** are small, anonymous functions defined with the \`"lambda\` keyword. They can take any number of arguments but can only have one expression.
 
 ### **Basic Syntax**
 \`\`\`python
@@ -27,7 +27,7 @@ lambda arguments: expression
 
 ---
 
-## 💻 Lambda Function Basics
+## ðŸ’» Lambda Function Basics
 
 ### **Simple Examples**
 \`\`\`python
@@ -75,7 +75,7 @@ print(create_dict(name="Alice", age=30))  # {'name': 'Alice', 'age': 30}
 
 ---
 
-## 🔄 Functional Programming with Lambdas
+## ðŸ”„ Functional Programming with Lambdas
 
 ### **Map Function**
 \`\`\`python
@@ -135,7 +135,7 @@ print(sentence)  # Hello World!
 
 ---
 
-## 🔧 Advanced Lambda Patterns
+## ðŸ”§ Advanced Lambda Patterns
 
 ### **Lambda with Conditional Expressions**
 \`\`\`python
@@ -210,7 +210,7 @@ print(counter())  # 3
 
 ---
 
-## 🎯 Higher-Order Functions
+## ðŸŽ¯ Higher-Order Functions
 
 ### **Functions that Return Functions**
 \`\`\`python
@@ -256,7 +256,7 @@ print(cubed)    # [1, 8, 27, 64, 125]
 
 ---
 
-## 🧪 Practical Examples
+## ðŸ§ª Practical Examples
 
 ### **Example 1: Data Processing**
 \`\`\`python
@@ -332,20 +332,20 @@ trigger_event("hover", "submit_button")
 
 ---
 
-## ⚠️ Lambda Limitations
+## âš ï¸ Lambda Limitations
 
 ### **What Lambdas Cannot Do**
 \`\`\`python
-# ❌ Cannot have multiple expressions
+# âŒ Cannot have multiple expressions
 # lambda x: print(x); return x  # SyntaxError
 
-# ❌ Cannot have statements
+# âŒ Cannot have statements
 # lambda x: if x > 0: return x else: return -x  # SyntaxError
 
-# ❌ Cannot have docstrings
+# âŒ Cannot have docstrings
 # lambda x: """This won't work""" return x  # SyntaxError
 
-# ✅ Use regular functions instead
+# âœ… Use regular functions instead
 def absolute_value(x):
     """Return the absolute value of x."""
     if x >= 0:
@@ -358,7 +358,7 @@ abs_lambda = lambda x: x if x >= 0 else -x  # This works for simple cases
 
 ---
 
-## 🎯 When to Use Lambdas
+## ðŸŽ¯ When to Use Lambdas
 
 ### **Good Use Cases**
 - **Short, simple functions** used once
@@ -375,17 +375,17 @@ abs_lambda = lambda x: x if x >= 0 else -x  # This works for simple cases
 
 ---
 
-## 🏆 Best Practices
+## ðŸ† Best Practices
 
 ### **Lambda Style Guidelines**
 \`\`\`python
-# ✅ Good: Clear and concise
+# âœ… Good: Clear and concise
 squares = map(lambda x: x**2, numbers)
 
-# ❌ Bad: Too complex, hard to read
+# âŒ Bad: Too complex, hard to read
 complex_calc = lambda x, y, z: (x + y) * z if x > 0 else (x - y) * z
 
-# ✅ Better: Use regular function for complex logic
+# âœ… Better: Use regular function for complex logic
 def complex_calculation(x, y, z):
     if x > 0:
         return (x + y) * z
@@ -422,7 +422,7 @@ print(f"List comprehension: {time.time() - start:.4f}s")
 
 ---
 
-## 🚀 Key Takeaways
+## ðŸš€ Key Takeaways
 
 1. **Lambda functions** are anonymous, single-expression functions
 2. **Functional programming** enables elegant data processing with map, filter, reduce
@@ -430,6 +430,7 @@ print(f"List comprehension: {time.time() - start:.4f}s")
 4. **Complex logic** should use regular named functions
 5. **Higher-order functions** combined with lambdas create powerful patterns
 
-**Lambda functions and functional programming provide elegant solutions for data transformation and processing tasks. Use them wisely to write clean, concise Python code! λ**`
+**Lambda functions and functional programming provide elegant solutions for data transformation and processing tasks. Use them wisely to write clean, concise Python code! Î»**`
 };
+
 

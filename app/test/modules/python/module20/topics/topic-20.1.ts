@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_20_1: SubLesson = {
   id: "20.1",
   title: 'Snake Game - Basic Setup and Window',
   status: 'demo',
-  content: `# 🐍 Snake Game Project - Part 1: Basic Setup
+  content: "`# ðŸ Snake Game Project - Part 1: Basic Setup
 
 Welcome to building the classic Snake game! This multi-part project will teach you game development concepts including game loops, collision detection, user input, and scoring systems.
 
 ---
 
-## 🎯 What We'll Build
+## ðŸŽ¯ What We'll Build
 
 A complete Snake game featuring:
 - **Snake movement** with arrow key controls
@@ -22,19 +22,19 @@ A complete Snake game featuring:
 
 ---
 
-## 📁 Project Structure
+## ðŸ“ Project Structure
 
-\`\`\`
+\`"\`\`
 snake_game/
-├── snake_game.py    # Main game file
-├── settings.py      # Game constants and settings
-├── assets/          # Images, sounds, fonts
-└── high_scores.txt  # Save file for high scores
+â”œâ”€â”€ snake_game.py    # Main game file
+â”œâ”€â”€ settings.py      # Game constants and settings
+â”œâ”€â”€ assets/          # Images, sounds, fonts
+â””â”€â”€ high_scores.txt  # Save file for high scores
 \`\`\`
 
 ---
 
-## 🛠️ Part 1: Basic Setup and Window
+## ðŸ› ï¸ Part 1: Basic Setup and Window
 
 ### **Step 1: Import Libraries**
 
@@ -125,7 +125,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🎯 Understanding the Code
+## ðŸŽ¯ Understanding the Code
 
 ### **Pygame Initialization**
 - \`pygame.init()\` - Starts up all Pygame modules
@@ -152,7 +152,7 @@ Every game needs a main loop that:
 
 ---
 
-## 🚀 Running the Game
+## ðŸš€ Running the Game
 
 1. Create a \`snake_game\` folder
 2. Create \`settings.py\` with the constants above
@@ -163,15 +163,16 @@ You should see a black window with "Snake Game" text in the center!
 
 ---
 
-## 🎮 What We Have So Far
+## ðŸŽ® What We Have So Far
 
-- ✅ **Game window** opens and displays properly
-- ✅ **Basic event handling** (can quit with ESC or X)
-- ✅ **Game loop** running at controlled speed
-- ✅ **Clean shutdown** when game ends
+- âœ… **Game window** opens and displays properly
+- âœ… **Basic event handling** (can quit with ESC or X)
+- âœ… **Game loop** running at controlled speed
+- âœ… **Clean shutdown** when game ends
 
-**Next: Adding the snake and movement controls! 🐍**
+**Next: Adding the snake and movement controls! ðŸ**
 
-**This establishes the foundation for our Snake game! 🎯**`
+**This establishes the foundation for our Snake game! ðŸŽ¯**`
 };
+
 

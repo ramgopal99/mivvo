@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_5: SubLesson = {
   id: "6.5",
   title: 'Missing Number Series',
   status: 'completed',
-  content: `# ❓ Missing Number Series
+  content: "`# â“ Missing Number Series
 
 Missing number series involve finding one or more missing terms in a sequence based on the pattern followed by the other terms. These problems are common in competitive exams and require careful pattern analysis and logical reasoning.
 
 ---
 
-## 🎯 Understanding Missing Number Series
+## ðŸŽ¯ Understanding Missing Number Series
 
 ### **What are Missing Number Series?**
 Missing number series are sequences where one or more terms are missing, and you need to identify the pattern and fill in the blanks. They test your ability to:
@@ -27,7 +27,7 @@ Missing number series are sequences where one or more terms are missing, and you
 
 ---
 
-## 🧩 Types of Missing Number Problems
+## ðŸ§© Types of Missing Number Problems
 
 ### **1. Single Missing Term**
 **One term missing in the sequence**
@@ -49,7 +49,7 @@ Missing number series are sequences where one or more terms are missing, and you
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze Complete Terms**
 - Examine all given numbers carefully
@@ -73,7 +73,7 @@ Missing number series are sequences where one or more terms are missing, and you
 
 ---
 
-## 🎯 Common Missing Number Types
+## ðŸŽ¯ Common Missing Number Types
 
 ### **Type 1: Arithmetic Missing Terms**
 **Constant difference patterns**
@@ -84,18 +84,18 @@ Missing number series are sequences where one or more terms are missing, and you
 ### **Type 2: Geometric Missing Terms**
 **Constant ratio patterns**
 - **Example**: 3, ?, 12, 24, 48
-- **Pattern**: ×2 each time
+- **Pattern**: Ã—2 each time
 - **Missing**: 6
 
 ### **Type 3: Complex Pattern Missing Terms**
 **Advanced relationship patterns**
 - **Example**: 1, 4, 9, ?, 25, 36
-- **Pattern**: Squares (1², 2², 3², 4², 5², 6²)
-- **Missing**: 16 (4²)
+- **Pattern**: Squares (1Â², 2Â², 3Â², 4Â², 5Â², 6Â²)
+- **Missing**: 16 (4Â²)
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Difference Analysis**
 
@@ -107,11 +107,11 @@ Missing: 9 + 4 = 13
 ### **2. Ratio Analysis**
 
 Example: 2, ?, 8, 16, 32  
-Ratios: ?, ×4, ×2, ×2  
+Ratios: ?, Ã—4, Ã—2, Ã—2  
 Pattern: Multiply by 2 each time (inconsistent)  
-Alternative: 2, 6, 8, 16, 32 (2×3=6, 6×1.333≠8)  
-Better: 2, 6, 18, 54, 162 (×3 each time)  
-Missing: 2 × 3 = 6
+Alternative: 2, 6, 8, 16, 32 (2Ã—3=6, 6Ã—1.333â‰ 8)  
+Better: 2, 6, 18, 54, 162 (Ã—3 each time)  
+Missing: 2 Ã— 3 = 6
 
 ### **3. Pattern Completion**
 - Identify complete pattern from available terms
@@ -120,7 +120,7 @@ Missing: 2 × 3 = 6
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Missing Term**
 **Series**: 3, 6, ?, 12, 15
@@ -129,14 +129,14 @@ Missing: 2 × 3 = 6
 
 ### **Example 2: Geometric Missing Term**
 **Series**: 2, 6, ?, 24, 48
-- **Pattern**: ×3, ×2, ×2, ×2 (inconsistent)
-- **Better Pattern**: 2×3=6, 6×2=12, 12×2=24, 24×2=48
-- **Missing**: 6 × 2 = 12
+- **Pattern**: Ã—3, Ã—2, Ã—2, Ã—2 (inconsistent)
+- **Better Pattern**: 2Ã—3=6, 6Ã—2=12, 12Ã—2=24, 24Ã—2=48
+- **Missing**: 6 Ã— 2 = 12
 
 ### **Example 3: Square Pattern Missing**
 **Series**: 1, 4, ?, 16, 25, 36
-- **Pattern**: 1², 2², 3², 4², 5², 6²
-- **Missing**: 3² = 9
+- **Pattern**: 1Â², 2Â², 3Â², 4Â², 5Â², 6Â²
+- **Missing**: 3Â² = 9
 
 ### **Example 4: Wrong Term Identification**
 **Series**: 1, 3, 6, 10, 15, 21, 29
@@ -145,7 +145,7 @@ Missing: 2 × 3 = 6
 
 ---
 
-## 🔍 Advanced Missing Number Concepts
+## ðŸ” Advanced Missing Number Concepts
 
 ### **Complex Pattern Recognition**
 Advanced patterns requiring multiple analysis steps.
@@ -158,7 +158,7 @@ Terms missing at specific positions affecting the pattern.
 
 ---
 
-## 📊 Missing Number Series Patterns
+## ðŸ“Š Missing Number Series Patterns
 
 ### **Basic Patterns**
 - **Arithmetic**: Constant difference
@@ -178,23 +178,23 @@ Terms missing at specific positions affecting the pattern.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Incomplete Pattern Analysis**
-❌ Not considering all possible patterns
-✅ Test multiple pattern hypotheses
+âŒ Not considering all possible patterns
+âœ… Test multiple pattern hypotheses
 
 ### **Pitfall 2: Wrong Term Assumption**
-❌ Assuming the "wrong" term is actually wrong
-✅ Verify pattern consistency carefully
+âŒ Assuming the "wrong" term is actually wrong
+âœ… Verify pattern consistency carefully
 
 ### **Pitfall 3: Calculation Errors**
-❌ Mathematical mistakes in gap filling
-✅ Double-check all calculations
+âŒ Mathematical mistakes in gap filling
+âœ… Double-check all calculations
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Complete Term Analysis**
 - Focus on relationships between known terms
@@ -213,7 +213,7 @@ Terms missing at specific positions affecting the pattern.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Obvious patterns with single missing term
@@ -232,7 +232,7 @@ Terms missing at specific positions affecting the pattern.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Analyze Known Terms First**: Focus on relationships between given numbers
 2. **Consider Multiple Patterns**: Don't assume the first pattern you see is correct
@@ -242,7 +242,7 @@ Terms missing at specific positions affecting the pattern.
 
 ---
 
-## ❓ Practice Questions
+## â“ Practice Questions
 
 ### **Question 1**
 Find the missing term: 2, 4, ?, 8, 10
@@ -259,5 +259,5 @@ Find the missing terms: 2, ?, ?, 24, 48
 ### **Question 5**
 Find the missing term: 5, 10, 15, ?, 25, 30
 
-**Master missing number series for pattern gap identification! ❓✨**`
+**Master missing number series for pattern gap identification! â“âœ¨**`"
 };

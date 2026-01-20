@@ -1,20 +1,20 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_2: SubLesson = {
   id: "8.2",
   title: 'Object Creation and Memory Management',
   status: 'completed',
-  content: `# 🔧 Object Creation and Memory Management in Java
+  content: "`# ðŸ”§ Object Creation and Memory Management in Java
 
 Understanding how objects are created, managed, and destroyed in Java's memory system!
 
 ---
 
-## 🎯 Object Creation
+## ðŸŽ¯ Object Creation
 
 ### **The 'new' Keyword**
 
-Objects are created using the \`new\` keyword, which allocates memory and initializes the object:
+Objects are created using the \`"new\` keyword, which allocates memory and initializes the object:
 
 \`\`\`java
 public class Car {
@@ -50,7 +50,7 @@ public class Car {
 
 ---
 
-## 🗂️ Java Memory Areas
+## ðŸ—‚ï¸ Java Memory Areas
 
 ### **1. Stack Memory**
 - Stores method calls and local variables
@@ -95,7 +95,7 @@ public class HeapExample {
 
 ---
 
-## 🔄 Object Lifecycle
+## ðŸ”„ Object Lifecycle
 
 ### **1. Creation Phase**
 \`\`\`java
@@ -165,7 +165,7 @@ public class ObjectUsage {
 
 ---
 
-## 🗑️ Garbage Collection
+## ðŸ—‘ï¸ Garbage Collection
 
 ### **How GC Works**
 
@@ -225,7 +225,7 @@ public class MemoryLeak {
 
 ---
 
-## 📊 Memory Optimization
+## ðŸ“Š Memory Optimization
 
 ### **1. Object Pooling**
 Reuse objects instead of creating new ones:
@@ -279,7 +279,7 @@ public class StringInterning {
 
 ---
 
-## 🛠️ Best Practices
+## ðŸ› ï¸ Best Practices
 
 ### **1. Null Checks**
 \`\`\`java
@@ -340,15 +340,16 @@ public class ResourceManagement {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Object Creation**: Use \`new\` keyword to allocate memory in heap
 2. **Memory Areas**: Stack (methods/variables), Heap (objects), Method Area (classes)
 3. **Garbage Collection**: Automatic memory management, no manual deletion
-4. **Object Lifecycle**: Creation → Usage → Garbage Collection
+4. **Object Lifecycle**: Creation â†’ Usage â†’ Garbage Collection
 5. **Memory Optimization**: Object pooling, string interning, null safety
 6. **Resource Management**: Use try-with-resources for automatic cleanup
 
-**Next:** Learn about constructors and initialization in detail! 🚀`
+**Next:** Learn about constructors and initialization in detail! ðŸš€`
 };
+
 

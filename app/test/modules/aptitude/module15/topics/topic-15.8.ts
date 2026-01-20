@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_8: SubLesson = {
   id: "15.8",
   title: 'Ratio & Average Based DI',
   status: 'completed',
-  content: `# 📊 Ratio & Average Based DI
+  content: "`# ðŸ“Š Ratio & Average Based DI
 
 Master ratio and average calculations in Data Interpretation! These fundamental concepts help compare data points, find relationships, and analyze distributions. Learn systematic approaches to solve ratio and average problems across all DI formats.
 
 ---
 
-## 🎯 Importance of Ratios and Averages
+## ðŸŽ¯ Importance of Ratios and Averages
 
 **Ratios and Averages** are essential DI tools because they:
 - Compare different quantities effectively
@@ -28,12 +28,12 @@ Master ratio and average calculations in Data Interpretation! These fundamental 
 
 ---
 
-## 🔢 Ratio Calculations
+## ðŸ”¢ Ratio Calculations
 
 ### **1. Basic Ratio**
-\`Ratio = A:B or A/B\`
+\`"Ratio = A:B or A/B\`
 
-**Example:** Sales A: ₹50,000, Sales B: ₹30,000
+**Example:** Sales A: â‚¹50,000, Sales B: â‚¹30,000
 \`Ratio = 50,000:30,000 = 5:3\`
 
 ### **2. Multiple Ratios**
@@ -49,7 +49,7 @@ Master ratio and average calculations in Data Interpretation! These fundamental 
 
 ---
 
-## 📊 Average Calculations
+## ðŸ“Š Average Calculations
 
 ### **1. Simple Average**
 \`Average = Sum of values/Number of values\`
@@ -58,13 +58,13 @@ Master ratio and average calculations in Data Interpretation! These fundamental 
 \`Average = (85+90+95+80+88)/5 = 438/5 = 87.6\`
 
 ### **2. Weighted Average**
-\`Weighted Average = Σ(weight × value)/Σ(weight)\`
+\`Weighted Average = Î£(weight Ã— value)/Î£(weight)\`
 
 **Example:** Grades with credits:
 - Math: 90 (3 credits)
 - Science: 85 (4 credits)
 - English: 95 (2 credits)
-\`WA = (90×3 + 85×4 + 95×2)/(3+4+2) = (270+340+190)/9 = 800/9 ≈ 88.89\`
+\`WA = (90Ã—3 + 85Ã—4 + 95Ã—2)/(3+4+2) = (270+340+190)/9 = 800/9 â‰ˆ 88.89\`
 
 ### **3. Moving Average**
 \`Moving Average = Average of consecutive periods\`
@@ -73,7 +73,7 @@ Master ratio and average calculations in Data Interpretation! These fundamental 
 
 ---
 
-## 📈 Ratio-Based DI Problems
+## ðŸ“ˆ Ratio-Based DI Problems
 
 ### **Example 1: Market Share Ratios**
 
@@ -95,8 +95,8 @@ D       | 20%
 2. **"What is the ratio of A to C+D?"**
    - A : (C+D) = 35 : (20+20) = 35:40 = 7:8
 
-3. **"If total market is ₹10,000 crores, what is B's share?"**
-   - 25% of 10,000 = ₹2,500 crores
+3. **"If total market is â‚¹10,000 crores, what is B's share?"**
+   - 25% of 10,000 = â‚¹2,500 crores
 
 ### **Example 2: Investment Ratios**
 
@@ -120,7 +120,7 @@ Total  | 4,50,000 | 9
 
 ---
 
-## 📊 Average-Based DI Problems
+## ðŸ“Š Average-Based DI Problems
 
 ### **Example 1: Student Performance**
 
@@ -137,17 +137,17 @@ Hindi   | 80      | 30
 
 **Average Questions:**
 1. **"What is the overall class average?"**
-   - Total scores = (85×40) + (78×35) + (82×45) + (80×30)
+   - Total scores = (85Ã—40) + (78Ã—35) + (82Ã—45) + (80Ã—30)
    - Total students = 40+35+45+30 = 150
    - Average = Total scores/150
 
 2. **"Which subject has highest total score?"**
-   - Compare weighted totals: 85×40, 78×35, etc.
+   - Compare weighted totals: 85Ã—40, 78Ã—35, etc.
 
 ### **Example 2: Sales Performance**
 
 \`\`\`
-Monthly Sales (₹ lakhs)
+Monthly Sales (â‚¹ lakhs)
 
 Month | Sales | Average (3-month)
 ------|-------|------------------
@@ -167,7 +167,7 @@ May   | 28    | 31.0
 
 ---
 
-## 🧮 Advanced Ratio-Average Techniques
+## ðŸ§® Advanced Ratio-Average Techniques
 
 ### **1. Ratio of Averages**
 **Problem:** Find ratio of average marks of two classes
@@ -194,7 +194,7 @@ May   | 28    | 31.0
 
 ---
 
-## 🎯 Combined Ratio-Average Problems
+## ðŸŽ¯ Combined Ratio-Average Problems
 
 ### **Example 1: Population Growth**
 
@@ -217,7 +217,7 @@ Year | Population | Growth Rate | Average Growth
    - For 3 years: From 10,000 to 13,200
    - Total growth: 3,200
    - Average annual: 3,200/3 = 1,067 (absolute)
-   - Percentage: [(13,200/10,000)^(1/3) - 1] × 100
+   - Percentage: [(13,200/10,000)^(1/3) - 1] Ã— 100
 
 ### **Example 2: Business Metrics**
 
@@ -226,8 +226,8 @@ Company Performance
 
 Metric      | Q1 | Q2 | Q3 | Q4 | Average
 ------------|----|----|----|----|--------
-Revenue (₹cr)| 50| 55| 60| 65| 57.5
-Profit (₹cr) | 8 | 9 | 10| 11| 9.5
+Revenue (â‚¹cr)| 50| 55| 60| 65| 57.5
+Profit (â‚¹cr) | 8 | 9 | 10| 11| 9.5
 Employees    |100|105|110|115| -
 \`\`\`
 
@@ -238,26 +238,26 @@ Employees    |100|105|110|115| -
 2. **"What is the average profit per employee?"**
    - Total profit: 8+9+10+11 = 38 crores
    - Average employees: (100+105+110+115)/4 = 107.5
-   - Profit per employee: 38/107.5 ≈ ₹35.35 lakhs
+   - Profit per employee: 38/107.5 â‰ˆ â‚¹35.35 lakhs
 
 3. **"What is the profit margin ratio?"**
-   - Average profit/average revenue = 9.5/57.5 ≈ 16.52%
+   - Average profit/average revenue = 9.5/57.5 â‰ˆ 16.52%
 
 ---
 
-## 📊 Ratio-Average in Different Charts
+## ðŸ“Š Ratio-Average in Different Charts
 
 ### **Bar Charts**
 
 \`\`\`
 Department Salaries
 
-15 │
-12 │ ████ ████ ████ ████ ████
- 9 │ ████ ████ ████ ████ ████
- 6 │ ████ ████ ████ ████ ████
- 3 │ ████ ████ ████ ████ ████
- 0 │___________________________
+15 â”‚
+12 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+ 9 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+ 6 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+ 3 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+ 0 â”‚___________________________
     IT  HR  Sales  Mktg  Admin
 \`\`\`
 
@@ -276,14 +276,14 @@ Department Salaries
 Expense Distribution
 
     Food - 30%
-   ███
-  █    █
- █  Rent  █
-█    25%   █
-█ Travel 20% █
- █        █
-  █ Other 25% █
-   ███████
+   â–ˆâ–ˆâ–ˆ
+  â–ˆ    â–ˆ
+ â–ˆ  Rent  â–ˆ
+â–ˆ    25%   â–ˆ
+â–ˆ Travel 20% â–ˆ
+ â–ˆ        â–ˆ
+  â–ˆ Other 25% â–ˆ
+   â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
 \`\`\`
 
 **Ratio Questions:**
@@ -291,12 +291,12 @@ Expense Distribution
 - Travel:Other = 20:25 = 4:5
 
 **Average Questions:**
-- If total expenses ₹60,000
-- Average expense per category: 60,000/6 = ₹10,000
+- If total expenses â‚¹60,000
+- Average expense per category: 60,000/6 = â‚¹10,000
 
 ---
 
-## 🚀 Speed Calculation Techniques
+## ðŸš€ Speed Calculation Techniques
 
 ### **1. Ratio Simplification**
 - Always reduce ratios to simplest form
@@ -306,7 +306,7 @@ Expense Distribution
 ### **2. Average Approximation**
 - Round numbers for quick calculation
 - Use compatible numbers
-- 87.3 + 92.7 + 88.5 ≈ 87 + 93 + 89 = 269, average ≈ 89.67
+- 87.3 + 92.7 + 88.5 â‰ˆ 87 + 93 + 89 = 269, average â‰ˆ 89.67
 
 ### **3. Mental Ratio Calculation**
 - Compare values directly
@@ -320,31 +320,31 @@ Expense Distribution
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Ratio Order**
-❌ Ratio of A to B as B:A
+âŒ Ratio of A to B as B:A
 - Always maintain consistent order
 
 ### **Mistake 2: Average Without Weights**
-❌ Simple average when weighted average needed
+âŒ Simple average when weighted average needed
 - Use weighted average for different quantities
 
 ### **Mistake 3: Ratio vs Proportion**
-❌ Confusing ratio with percentage
+âŒ Confusing ratio with percentage
 - Ratio compares parts, percentage shows part of whole
 
 ### **Mistake 4: Moving Average Error**
-❌ Including future data in moving average
+âŒ Including future data in moving average
 - Moving average uses past data only
 
 ### **Mistake 5: Ratio Simplification**
-❌ Not simplifying ratios completely
+âŒ Not simplifying ratios completely
 - Always reduce to simplest form
 
 ---
 
-## 🎯 Practice Ratio-Average Problems
+## ðŸŽ¯ Practice Ratio-Average Problems
 
 ### **Table Data**
 
@@ -380,7 +380,7 @@ Range  | Students
 
 ---
 
-## 🎓 Pro Tips for Ratio-Average DI
+## ðŸŽ“ Pro Tips for Ratio-Average DI
 
 1. **Simplify ratios immediately** to lowest terms
 2. **Use weighted averages** when quantities differ
@@ -392,7 +392,7 @@ Range  | Students
 
 ---
 
-## 🔢 Ratio-Average Problem Framework
+## ðŸ”¢ Ratio-Average Problem Framework
 
 \`\`\`
 1. IDENTIFY the type
@@ -422,14 +422,14 @@ Range  | Students
    - Check against given options
 \`\`\`
 
-Master ratio and average calculations and solve complex DI problems with confidence! 🏆
+Master ratio and average calculations and solve complex DI problems with confidence! ðŸ†
 
 **Answers for Practice:**
-1. Average growth: (20% + 20% + 25%)/3 = 65%/3 ≈ 21.67%
+1. Average growth: (20% + 20% + 25%)/3 = 65%/3 â‰ˆ 21.67%
 2. Total 2019: 100+150+80=330, Total 2020: 120+180+100=400, Ratio: 400:330 = 40:33
-3. B: 180-150=30, A:20, C:20 → B highest
+3. B: 180-150=30, A:20, C:20 â†’ B highest
 
 Chart: 1. Not applicable (categorical)
 2. 15:10 = 3:2
-3. (15+25+30)/100 × 100 = 70%`
+3. (15+25+30)/100 Ã— 100 = 70%`
 };

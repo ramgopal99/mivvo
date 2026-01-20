@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_3: SubLesson = {
   id: "3.3",
   title: 'Accessing ArrayList Elements',
   status: 'completed',
-  content: `# 🎯 Accessing ArrayList Elements in Java
+  content: "`# ðŸŽ¯ Accessing ArrayList Elements in Java
 
 Accessing elements in an ArrayList is fundamental to working with collections. Java provides multiple ways to retrieve, examine, and work with elements in your ArrayList.
 
 ---
 
-## 📍 Direct Access by Index
+## ðŸ“ Direct Access by Index
 
 ### **get() Method**
-The most basic way to access elements is by their index position using the \`get()\` method.
+The most basic way to access elements is by their index position using the \`"get()\` method.
 
 \`\`\`java
 import java.util.*;
@@ -66,7 +66,7 @@ public class IndexBounds {
 
 ---
 
-## 🔍 Searching for Elements
+## ðŸ” Searching for Elements
 
 ### **Finding Elements by Value**
 \`\`\`java
@@ -152,7 +152,7 @@ public class AdvancedSearching {
 
 ---
 
-## 🔄 Iterating Through ArrayList
+## ðŸ”„ Iterating Through ArrayList
 
 ### **Traditional For Loop**
 \`\`\`java
@@ -237,7 +237,7 @@ public class IteratorUsage {
 
 ---
 
-## 🚀 Java 8+ Functional Iteration
+## ðŸš€ Java 8+ Functional Iteration
 
 ### **forEach() Method**
 \`\`\`java
@@ -305,7 +305,7 @@ public class StreamOperations {
 
 ---
 
-## 📊 Bulk Operations
+## ðŸ“Š Bulk Operations
 
 ### **SubList Operations**
 \`\`\`java
@@ -357,7 +357,7 @@ public class RangeOperations {
 
 ---
 
-## 🔍 Peeking and Inspecting
+## ðŸ” Peeking and Inspecting
 
 ### **Examining List Contents**
 \`\`\`java
@@ -402,7 +402,7 @@ public class InspectingLists {
 
 ---
 
-## ⚠️ Safe Access Patterns
+## âš ï¸ Safe Access Patterns
 
 ### **Null Checks and Bounds Checking**
 \`\`\`java
@@ -478,6 +478,7 @@ public class DefensiveCopying {
 }
 \`\`\`
 
-Accessing ArrayList elements is straightforward but requires attention to bounds checking and null handling. Master these patterns to write robust and safe Java code! 🎯`
+Accessing ArrayList elements is straightforward but requires attention to bounds checking and null handling. Master these patterns to write robust and safe Java code! ðŸŽ¯`
 };
+
 

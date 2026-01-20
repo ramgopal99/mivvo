@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_1: SubLesson = {
   id: "10.1",
   title: 'What are Arrays?',
   status: 'demo',
-  content: `# 📊 What are Arrays?
+  content: "`# ðŸ“Š What are Arrays?
 
 Arrays are fundamental data structures that store elements of the same type in contiguous memory locations. Think of them as a fixed-size container with indexed access!
 
 ---
 
-## 🎯 What is an Array?
+## ðŸŽ¯ What is an Array?
 
 An **array** is a collection of items that:
 - **Stores elements of the same type** - All items have identical data type
@@ -18,7 +18,7 @@ An **array** is a collection of items that:
 - **Provides indexed access** - Access elements by their position (index)
 - **Has fixed size** - Size is determined when created
 
-\`\`\`python
+\`"\`\`python
 # In Python, lists are dynamic arrays
 # But conceptually, arrays have these characteristics:
 
@@ -39,7 +39,7 @@ print(f"Element at index 2: {array[2]}")  # 30
 
 ---
 
-## 🔍 Array Characteristics
+## ðŸ” Array Characteristics
 
 ### **Contiguous Memory Layout**
 
@@ -67,7 +67,7 @@ scores = [0] * size
 
 ---
 
-## 📊 Array Operations
+## ðŸ“Š Array Operations
 
 ### **Basic Operations**
 \`\`\`python
@@ -98,7 +98,7 @@ print_array(numbers)
 
 ---
 
-## 🎨 Real-World Examples
+## ðŸŽ¨ Real-World Examples
 
 ### **Image Pixels**
 \`\`\`python
@@ -119,12 +119,12 @@ readings = [23.5, 24.1, 23.8, 24.3, 23.9, 24.0]
 # Calculate average
 total = sum(readings)
 average = total / len(readings)
-print(f"Average temperature: {average:.1f}°C")
+print(f"Average temperature: {average:.1f}Â°C")
 
 # Find highest reading
 max_temp = max(readings)
 max_index = readings.index(max_temp)
-print(f"Highest: {max_temp}°C at reading {max_index}")
+print(f"Highest: {max_temp}Â°C at reading {max_index}")
 \`\`\`
 
 ### **Student Grades**
@@ -148,7 +148,7 @@ print(f"A grades: {a_grades}, B grades: {b_grades}, C grades: {c_grades}")
 
 ---
 
-## ⚡ Array Performance
+## âš¡ Array Performance
 
 ### **Time Complexity**
 - **Access**: O(1) - Constant time
@@ -162,7 +162,7 @@ print(f"A grades: {a_grades}, B grades: {b_grades}, C grades: {c_grades}")
 
 ---
 
-## 🔍 Arrays vs Python Lists
+## ðŸ” Arrays vs Python Lists
 
 | Feature | Arrays | Python Lists |
 |---------|--------|--------------|
@@ -174,6 +174,7 @@ print(f"A grades: {a_grades}, B grades: {b_grades}, C grades: {c_grades}")
 
 Arrays provide fast, predictable access but require careful size management!
 
-🚀 **Next**: We'll explore array operations and algorithms!`
+ðŸš€ **Next**: We'll explore array operations and algorithms!`
 };
+
 

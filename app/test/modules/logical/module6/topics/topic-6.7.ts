@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_7: SubLesson = {
   id: "6.7",
   title: 'Pattern-Based Series',
   status: 'completed',
-  content: `# 🔮 Pattern-Based Series
+  content: "`# ðŸ”® Pattern-Based Series
 
 Pattern-based series involve complex, non-obvious patterns that require advanced pattern recognition and logical reasoning. These problems go beyond simple arithmetic or geometric progressions and test deeper analytical skills.
 
 ---
 
-## 🎯 Understanding Pattern-Based Series
+## ðŸŽ¯ Understanding Pattern-Based Series
 
 ### **What are Pattern-Based Series?**
 Pattern-based series involve sequences that follow complex, non-obvious patterns requiring advanced logical reasoning and pattern recognition. They test your ability to:
@@ -27,11 +27,11 @@ Pattern-based series involve sequences that follow complex, non-obvious patterns
 
 ---
 
-## 🧩 Types of Pattern-Based Series
+## ðŸ§© Types of Pattern-Based Series
 
 ### **1. Position-Based Patterns**
 **Patterns involving element positions**
-- **Position Multiplication**: Value × position in series
+- **Position Multiplication**: Value Ã— position in series
 - **Position Addition**: Value + position number
 - **Position Power**: Value raised to position power
 
@@ -49,7 +49,7 @@ Pattern-based series involve sequences that follow complex, non-obvious patterns
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Deep Pattern Analysis**
 - Examine all terms carefully for non-obvious relationships
@@ -73,13 +73,13 @@ Pattern-based series involve sequences that follow complex, non-obvious patterns
 
 ---
 
-## 🎯 Common Pattern-Based Series Types
+## ðŸŽ¯ Common Pattern-Based Series Types
 
 ### **Type 1: Position-Weighted Series**
 **Position affects term calculation**
 - **Example**: 1, 4, 9, 16, 25, ?
-- **Pattern**: Position² (1², 2², 3², 4², 5²)
-- **Next**: 36 (6²)
+- **Pattern**: PositionÂ² (1Â², 2Â², 3Â², 4Â², 5Â²)
+- **Next**: 36 (6Â²)
 
 ### **Type 2: Difference Pattern Series**
 **Complex difference relationships**
@@ -95,13 +95,13 @@ Pattern-based series involve sequences that follow complex, non-obvious patterns
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Position Analysis**
 
 Example: 1, 4, 9, 16, 25, ?  
 Position: 1  2  3   4   5  6  
-Pattern: 1² 2² 3² 4² 5² 6²  
+Pattern: 1Â² 2Â² 3Â² 4Â² 5Â² 6Â²  
 Next: 36
 
 ### **2. Difference Pattern Analysis**
@@ -118,12 +118,12 @@ Next: 16 + 6 = 22
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Square Position Pattern**
 **Series**: 1, 4, 9, 16, 25, 36, ?
-- **Pattern**: Position² (1², 2², 3², 4², 5², 6²)
-- **Next**: 7² = 49
+- **Pattern**: PositionÂ² (1Â², 2Â², 3Â², 4Â², 5Â², 6Â²)
+- **Next**: 7Â² = 49
 
 ### **Example 2: Increasing Difference Pattern**
 **Series**: 1, 3, 6, 10, 15, 21, ?
@@ -132,17 +132,17 @@ Next: 16 + 6 = 22
 
 ### **Example 3: Position Multiplication Pattern**
 **Series**: 1, 4, 9, 16, 25, ?
-- **Pattern**: n² where n is position
-- **Next**: 6² = 36
+- **Pattern**: nÂ² where n is position
+- **Next**: 6Â² = 36
 
 ### **Example 4: Complex Mixed Pattern**
 **Series**: 2, 5, 10, 17, 26, ?
-- **Pattern**: n² + 1 where n starts from 1
-- **Next**: 6² + 1 = 37
+- **Pattern**: nÂ² + 1 where n starts from 1
+- **Next**: 6Â² + 1 = 37
 
 ---
 
-## 🔍 Advanced Pattern Concepts
+## ðŸ” Advanced Pattern Concepts
 
 ### **Multi-Level Pattern Analysis**
 Complex patterns requiring multiple levels of analysis.
@@ -155,7 +155,7 @@ Patterns combining multiple advanced concepts.
 
 ---
 
-## 📊 Pattern-Based Series Patterns
+## ðŸ“Š Pattern-Based Series Patterns
 
 ### **Mathematical Patterns**
 - **Power Patterns**: Squares, cubes, higher powers
@@ -174,28 +174,28 @@ Patterns combining multiple advanced concepts.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Overlooking Position Effects**
-❌ Ignoring how position affects the pattern
-✅ Always consider position-based relationships
+âŒ Ignoring how position affects the pattern
+âœ… Always consider position-based relationships
 
 ### **Pitfall 2: Simple Pattern Assumption**
-❌ Assuming simple patterns when complex ones exist
-✅ Test for advanced pattern possibilities
+âŒ Assuming simple patterns when complex ones exist
+âœ… Test for advanced pattern possibilities
 
 ### **Pitfall 3: Calculation Complexity**
-❌ Making calculation errors in complex patterns
-✅ Careful step-by-step calculation verification
+âŒ Making calculation errors in complex patterns
+âœ… Careful step-by-step calculation verification
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Position Relationship Testing**
 - Check if terms relate to their position numbers
-- Test position × value, position + value, etc.
-- Consider position², position³ relationships
+- Test position Ã— value, position + value, etc.
+- Consider positionÂ², positionÂ³ relationships
 
 ### **2. Difference Pattern Analysis**
 - Calculate differences between consecutive terms
@@ -209,7 +209,7 @@ Patterns combining multiple advanced concepts.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Moderately complex patterns
@@ -228,7 +228,7 @@ Patterns combining multiple advanced concepts.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Consider Position Effects**: Many patterns involve position calculations
 2. **Look for Differences**: Analyze difference patterns carefully
@@ -238,7 +238,7 @@ Patterns combining multiple advanced concepts.
 
 ---
 
-## 🔮 Practice Questions
+## ðŸ”® Practice Questions
 
 ### **Question 1**
 Find the next term: 1, 4, 9, 16, 25, ?
@@ -255,5 +255,5 @@ Find the next term: 1, 2, 4, 7, 11, 16, ?
 ### **Question 5**
 Find the next term: 3, 7, 13, 21, 31, ?
 
-**Master pattern-based series for advanced logical reasoning! 🔮✨**`
+**Master pattern-based series for advanced logical reasoning! ðŸ”®âœ¨**`"
 };

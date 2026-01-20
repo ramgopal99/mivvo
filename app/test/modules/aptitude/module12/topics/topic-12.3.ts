@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_3: SubLesson = {
   id: "12.3",
   title: 'Ratio of Ingredients in a Mixture',
   status: 'completed',
-  content: `# ⚖️ Ratio of Ingredients in a Mixture
+  content: "`# âš–ï¸ Ratio of Ingredients in a Mixture
 
 Master ratio concepts in mixtures - fundamental for solving mixture problems involving proportions and percentages.
 
 ---
 
-## 🎯 Ratio in Mixtures
+## ðŸŽ¯ Ratio in Mixtures
 
 **Ratio** expresses the relative quantities of ingredients in a mixture. It's a comparison of quantities by division.
 
@@ -21,13 +21,13 @@ Master ratio concepts in mixtures - fundamental for solving mixture problems inv
 
 ---
 
-## 📊 Ratio Calculations
+## ðŸ“Š Ratio Calculations
 
 ### 1. **Finding Quantities from Ratio**
-\`\`\`
+\`"\`\`
 If ratio A:B = x:y and total quantity = T
-Quantity A = (x/(x+y)) × T
-Quantity B = (y/(x+y)) × T
+Quantity A = (x/(x+y)) Ã— T
+Quantity B = (y/(x+y)) Ã— T
 \`\`\`
 
 ### 2. **Finding Ratio from Quantities**
@@ -38,19 +38,19 @@ Ratio A:B = p:q
 
 ### 3. **Ratio of Mixture**
 \`\`\`
-Final ratio = (Quantity A × Ratio A + Quantity B × Ratio B) / (Total quantity)
+Final ratio = (Quantity A Ã— Ratio A + Quantity B Ã— Ratio B) / (Total quantity)
 \`\`\`
 
 ---
 
-## 🧮 Ratio Examples
+## ðŸ§® Ratio Examples
 
 ### Example 1: Basic Ratio
 **Mixture of milk:water = 3:2. Total 50 liters. Find milk quantity.**
 
 **Solution:**
 - Total parts = 3 + 2 = 5 parts
-- Milk quantity = (3/5) × 50 = 30 liters
+- Milk quantity = (3/5) Ã— 50 = 30 liters
 
 ### Example 2: Multiple Ratios
 **Two mixtures: A (2:3) and B (4:1). Mixed in ratio 1:2. Find final ratio.**
@@ -70,7 +70,7 @@ Final ratio = (Quantity A × Ratio A + Quantity B × Ratio B) / (Total quantity)
 
 ---
 
-## 🎯 Ratio Operations
+## ðŸŽ¯ Ratio Operations
 
 ### **Ratio Addition**
 \`\`\`
@@ -88,18 +88,18 @@ Divide each by d: (x/d):(y/d)
 ### **Ratio Multiplication**
 \`\`\`
 A:B = x:y
-Multiply by k: (k×x):(k×y)
+Multiply by k: (kÃ—x):(kÃ—y)
 \`\`\`
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Quick Quantity Calculation**
 \`\`\`
 For ratio A:B = x:y, total T:
-A = (x/(x+y)) × T
-B = (y/(x+y)) × T
+A = (x/(x+y)) Ã— T
+B = (y/(x+y)) Ã— T
 \`\`\`
 
 ### **Percentage to Ratio**
@@ -121,7 +121,7 @@ Final ratio remains same
 
 ---
 
-## 🔢 Advanced Ratio Problems
+## ðŸ”¢ Advanced Ratio Problems
 
 ### **Complex Mixtures**
 - **Different ratios mixed together**
@@ -135,7 +135,7 @@ Final ratio remains same
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 4: Mixed Ratios
 **Two mixtures A (3:2) and B (2:3) mixed in ratio 1:2. Final ratio?**
@@ -145,10 +145,10 @@ Final ratio remains same
 - B: 2:3 milk:water
 - Mixed 1:2 (1 part A, 2 parts B)
 - Total parts = 3
-- Milk from A: (1/3) × (3/5) = 1/5
-- Water from A: (1/3) × (2/5) = 2/15
-- Milk from B: (2/3) × (2/5) = 4/15
-- Water from B: (2/3) × (3/5) = 2/5
+- Milk from A: (1/3) Ã— (3/5) = 1/5
+- Water from A: (1/3) Ã— (2/5) = 2/15
+- Milk from B: (2/3) Ã— (2/5) = 4/15
+- Water from B: (2/3) Ã— (3/5) = 2/5
 - Total milk: 1/5 + 4/15 = 3/15 + 4/15 = 7/15
 - Total water: 2/15 + 2/5 = 2/15 + 6/15 = 8/15
 - Final ratio: 7:8
@@ -158,22 +158,22 @@ Final ratio remains same
 
 **Solution:**
 - Ratio 2:3 means 2 kg + 3 kg = 5 kg
-- Cost = (2×40) + (3×50) = 80 + 150 = Rs. 230
+- Cost = (2Ã—40) + (3Ã—50) = 80 + 150 = Rs. 230
 - Average = 230/5 = Rs. 46/kg
 
 ---
 
-## 🚨 Ratio Mistakes
+## ðŸš¨ Ratio Mistakes
 
 1. **Ratio vs Quantity**: Mixing ratios with actual amounts
-2. **Addition Errors**: 2:3 + 1:2 ≠ 3:5
+2. **Addition Errors**: 2:3 + 1:2 â‰  3:5
 3. **Total Parts**: Forgetting to add ratio components
 4. **Unit Conversion**: Ratios don't have units
 5. **Simplification**: Not reducing to simplest form
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** Milk:water = 4:3 in 35L mixture. Milk quantity?
 **2.** Sugar:flour = 2:5 in 14kg mixture. Sugar quantity?
@@ -185,7 +185,7 @@ Final ratio remains same
 
 ---
 
-## 🎓 Ratio Strategies
+## ðŸŽ“ Ratio Strategies
 
 1. **Identify ratio type** - simple or mixed ratios
 2. **Calculate total parts** first
@@ -193,5 +193,6 @@ Final ratio remains same
 4. **Simplify ratios** to lowest terms
 5. **Check consistency** - ratios should make sense
 
-Master ratio of ingredients and you'll handle proportion problems with confidence! 🏆`
+Master ratio of ingredients and you'll handle proportion problems with confidence! ðŸ†`
 };
+

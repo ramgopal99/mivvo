@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_1: SubLesson = {
   id: "7.1",
   title: 'Cost Price (CP)',
   status: 'completed',
-  content: `# 💰 Cost Price (CP)
+  content: "`# ðŸ’° Cost Price (CP)
 
 Welcome to the foundation of profit and loss calculations! Cost Price (CP) is the price at which a product is purchased or manufactured. It's the base value against which all profit and loss calculations are made. Master CP concepts to handle business scenarios effectively.
 
 ---
 
-## 🎯 What is Cost Price?
+## ðŸŽ¯ What is Cost Price?
 
 **Cost Price (CP)** is the total amount of money spent to acquire or produce a product. It includes all expenses incurred to bring the product to its current state.
 
@@ -30,7 +30,7 @@ Welcome to the foundation of profit and loss calculations! Cost Price (CP) is th
 
 ---
 
-## 📊 Types of Cost Price
+## ðŸ“Š Types of Cost Price
 
 ### **1. Direct Cost Price**
 - Purchase price from supplier
@@ -52,38 +52,38 @@ Welcome to the foundation of profit and loss calculations! Cost Price (CP) is th
 
 ---
 
-## 🔢 Cost Price Calculations
+## ðŸ”¢ Cost Price Calculations
 
 ### **Example 1: Simple CP**
-**Problem:** A shopkeeper buys goods for ₹10,000 plus transportation ₹500. Find CP.
+**Problem:** A shopkeeper buys goods for â‚¹10,000 plus transportation â‚¹500. Find CP.
 
 **Solution:**
-- Direct cost = ₹10,000
-- Additional cost = ₹500
-- Total CP = ₹10,500
+- Direct cost = â‚¹10,000
+- Additional cost = â‚¹500
+- Total CP = â‚¹10,500
 
 ### **Example 2: With Taxes**
-**Problem:** Purchase price ₹5,000, GST 18%, transportation ₹200.
+**Problem:** Purchase price â‚¹5,000, GST 18%, transportation â‚¹200.
 
 **Solution:**
-- Purchase price = ₹5,000
-- GST = 18% of 5,000 = ₹900
-- Transportation = ₹200
-- Total CP = 5,000 + 900 + 200 = ₹6,100
+- Purchase price = â‚¹5,000
+- GST = 18% of 5,000 = â‚¹900
+- Transportation = â‚¹200
+- Total CP = 5,000 + 900 + 200 = â‚¹6,100
 
 ### **Example 3: Manufacturing Cost**
-**Problem:** Raw materials ₹3,000, labor ₹800, overheads ₹400, profit ₹500. Find CP.
+**Problem:** Raw materials â‚¹3,000, labor â‚¹800, overheads â‚¹400, profit â‚¹500. Find CP.
 
 **Solution:**
-- Raw materials + labor + overheads = 3,000 + 800 + 400 = ₹4,200
+- Raw materials + labor + overheads = 3,000 + 800 + 400 = â‚¹4,200
 - This is the CP (profit is separate)
 
 ---
 
-## 🧮 CP in Different Scenarios
+## ðŸ§® CP in Different Scenarios
 
 ### **1. Wholesale Purchase**
-\`\`\`
+\`"\`\`
 CP = Purchase Price + Transportation + Loading + Insurance
 \`\`\`
 
@@ -104,11 +104,11 @@ CP = CIF Price + Customs Duty + Clearing Charges + Local Transportation
 
 ---
 
-## 💡 Importance of Accurate CP
+## ðŸ’¡ Importance of Accurate CP
 
 ### **1. Profit Calculation**
 - Profit = SP - CP
-- Wrong CP → Wrong profit analysis
+- Wrong CP â†’ Wrong profit analysis
 
 ### **2. Pricing Strategy**
 - SP should be CP + desired profit
@@ -124,7 +124,7 @@ CP = CIF Price + Customs Duty + Clearing Charges + Local Transportation
 
 ---
 
-## 🎯 Real-Life Applications
+## ðŸŽ¯ Real-Life Applications
 
 ### **1. Retail Business**
 - Determining selling prices
@@ -148,7 +148,7 @@ CP = CIF Price + Customs Duty + Clearing Charges + Local Transportation
 
 ---
 
-## 🔄 CP vs Other Prices
+## ðŸ”„ CP vs Other Prices
 
 | Price Type | Description | Use Case |
 |------------|-------------|----------|
@@ -159,7 +159,7 @@ CP = CIF Price + Customs Duty + Clearing Charges + Local Transportation
 
 ---
 
-## 🧮 CP Calculation Methods
+## ðŸ§® CP Calculation Methods
 
 ### **Method 1: Direct Addition**
 \`\`\`
@@ -168,52 +168,53 @@ CP = Direct Cost + Indirect Costs + Taxes + Transportation
 
 ### **Method 2: Percentage Addition**
 \`\`\`
-CP = Base Price × (1 + Overhead%/100)
+CP = Base Price Ã— (1 + Overhead%/100)
 \`\`\`
 
 ### **Method 3: Reverse Calculation**
 From SP and profit percentage:
 \`\`\`
-CP = SP ÷ (1 + Profit%/100)
+CP = SP Ã· (1 + Profit%/100)
 \`\`\`
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Incomplete CP**
-❌ "CP = Purchase price only"
+âŒ "CP = Purchase price only"
 - Include all costs incurred
 
 ### **Mistake 2: Double Counting**
-❌ Including same cost twice
+âŒ Including same cost twice
 - Check for overlapping expenses
 
 ### **Mistake 3: Excluding Variable Costs**
-❌ Forgetting transportation, taxes
+âŒ Forgetting transportation, taxes
 - Include all relevant expenses
 
 ### **Mistake 4: Wrong Base for Calculations**
-❌ Using purchase price instead of total CP
+âŒ Using purchase price instead of total CP
 - Use complete cost price
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Basic CP Calculations:**
-1. Purchase ₹8000, transport ₹200, tax ₹160. Find CP.
-2. Invoice price ₹5000, GST 18%, delivery ₹150. Find CP.
-3. Raw materials ₹3000, labor ₹1000, overheads ₹500. Find CP.
+1. Purchase â‚¹8000, transport â‚¹200, tax â‚¹160. Find CP.
+2. Invoice price â‚¹5000, GST 18%, delivery â‚¹150. Find CP.
+3. Raw materials â‚¹3000, labor â‚¹1000, overheads â‚¹500. Find CP.
 
 ### **Application Problems:**
-1. Shopkeeper buys goods worth ₹10,000. Transportation 2% of purchase price. Find CP.
-2. Manufacturer produces goods with material cost ₹8000, labor 25% of material cost, overheads ₹1200. Find CP.
-3. Importer buys goods for ₹50,000 CIF. Customs duty 20%, clearing charges ₹2000. Find total CP.
+1. Shopkeeper buys goods worth â‚¹10,000. Transportation 2% of purchase price. Find CP.
+2. Manufacturer produces goods with material cost â‚¹8000, labor 25% of material cost, overheads â‚¹1200. Find CP.
+3. Importer buys goods for â‚¹50,000 CIF. Customs duty 20%, clearing charges â‚¹2000. Find total CP.
 
 **Answers:**
-Basic: ₹8360, ₹6070, ₹4500
-Applications: ₹10,200, ₹10,200, ₹62,000
+Basic: â‚¹8360, â‚¹6070, â‚¹4500
+Applications: â‚¹10,200, â‚¹10,200, â‚¹62,000
 
-Master cost price calculations to establish the foundation for all profit and loss analysis! 🏆`
+Master cost price calculations to establish the foundation for all profit and loss analysis! ðŸ†`
 };
+

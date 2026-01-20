@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_6: SubLesson = {
   id: "6.6",
   title: 'Weighted Average (Basic)',
   status: 'completed',
-  content: `# ⚖️ Weighted Average (Basic)
+  content: "`# âš–ï¸ Weighted Average (Basic)
 
 Master weighted averages where different values have different importance! Unlike simple averages, weighted averages account for significance or frequency of values. Essential for grades, prices, and real-world decision making.
 
 ---
 
-## 🎯 What is Weighted Average?
+## ðŸŽ¯ What is Weighted Average?
 
 **Weighted Average** gives more importance (weight) to certain values. It's the average where each value contributes proportionally to its significance.
 
 ### **Formula**
-\`\`\`
-Weighted Average = Σ(weight × value) ÷ Σ(weight)
+\`"\`\`
+Weighted Average = Î£(weight Ã— value) Ã· Î£(weight)
 \`\`\`
 
 **Where:**
@@ -25,55 +25,55 @@ Weighted Average = Σ(weight × value) ÷ Σ(weight)
 
 ---
 
-## 📊 Step-by-Step Calculation
+## ðŸ“Š Step-by-Step Calculation
 
 ### **Example 1: Different Quantities**
-**Problem:** Rice at ₹40/kg (3 kg) and ₹50/kg (2 kg). Find average price.
+**Problem:** Rice at â‚¹40/kg (3 kg) and â‚¹50/kg (2 kg). Find average price.
 
 **Solution:**
-- Total cost = (40 × 3) + (50 × 2) = 120 + 100 = 220
+- Total cost = (40 Ã— 3) + (50 Ã— 2) = 120 + 100 = 220
 - Total weight = 3 + 2 = 5 kg
-- Average price = 220 ÷ 5 = ₹44/kg
+- Average price = 220 Ã· 5 = â‚¹44/kg
 
 **Formula method:**
-- Weighted Average = (40×3 + 50×2) ÷ (3+2) = 220 ÷ 5 = 44
+- Weighted Average = (40Ã—3 + 50Ã—2) Ã· (3+2) = 220 Ã· 5 = 44
 
 ### **Example 2: Exam Grades**
 **Problem:** Quiz 20% (85%), Midterm 30% (78%), Final 50% (92%). Find overall grade.
 
 **Solution:**
-- Weighted Average = (85×0.20 + 78×0.30 + 92×0.50) ÷ (0.20+0.30+0.50)
-- = (17 + 23.4 + 46) ÷ 1 = 86.4%
+- Weighted Average = (85Ã—0.20 + 78Ã—0.30 + 92Ã—0.50) Ã· (0.20+0.30+0.50)
+- = (17 + 23.4 + 46) Ã· 1 = 86.4%
 
 ---
 
-## 🔢 Types of Weighted Averages
+## ðŸ”¢ Types of Weighted Averages
 
 ### **1. Frequency Weighted**
 When values repeat with different frequencies.
 
 **Example:** Scores: 80 (5 students), 90 (3 students), 95 (2 students)
-- Weighted Average = (80×5 + 90×3 + 95×2) ÷ (5+3+2) = 835 ÷ 10 = 83.5
+- Weighted Average = (80Ã—5 + 90Ã—3 + 95Ã—2) Ã· (5+3+2) = 835 Ã· 10 = 83.5
 
 ### **2. Importance Weighted**
 When values have different significance.
 
 **Example:** Investment: Stock A 40% (12% return), Stock B 60% (8% return)
-- Weighted Average = (12×0.4 + 8×0.6) = 4.8 + 4.8 = 9.6%
+- Weighted Average = (12Ã—0.4 + 8Ã—0.6) = 4.8 + 4.8 = 9.6%
 
 ### **3. Time Weighted**
 Different time periods.
 
 **Example:** Speed: 60 km/h (2 hours), 80 km/h (3 hours)
-- Weighted Average = (60×2 + 80×3) ÷ (2+3) = 300 ÷ 5 = 60 km/h
+- Weighted Average = (60Ã—2 + 80Ã—3) Ã· (2+3) = 300 Ã· 5 = 60 km/h
 
 ---
 
-## 💡 Quick Tricks
+## ðŸ’¡ Quick Tricks
 
 ### **Trick 1: Equal Weights**
 \`\`\`
-Becomes simple average: Σx/n
+Becomes simple average: Î£x/n
 \`\`\`
 
 ### **Trick 2: Unit Weights**
@@ -88,7 +88,7 @@ Weights sum to 100% or 1.0
 
 ---
 
-## 🎯 Real-Life Applications
+## ðŸŽ¯ Real-Life Applications
 
 ### **1. Academic GPA**
 - Different credit hours for courses
@@ -108,7 +108,7 @@ Weights sum to 100% or 1.0
 
 ---
 
-## 🧮 Properties
+## ðŸ§® Properties
 
 ### **1. Weight Range**
 Weights can be frequencies, percentages, or importance factors.
@@ -121,35 +121,35 @@ Higher weight values have more influence on final average.
 
 ---
 
-## 🚨 Common Mistakes
+## ðŸš¨ Common Mistakes
 
 ### **Mistake 1: Wrong Weight Application**
-❌ Applying weights to wrong values
+âŒ Applying weights to wrong values
 - Match weights to corresponding values
 
 ### **Mistake 2: Weight Sum Error**
-❌ Wrong denominator
+âŒ Wrong denominator
 - Sum of weights, not count of values
 
 ### **Mistake 3: Percentage Confusion**
-❌ Treating percentages as absolute values
+âŒ Treating percentages as absolute values
 - Convert to decimals or consistent units
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Basic Weighted Average:**
-1. Items: 10kg at ₹50/kg, 5kg at ₹60/kg. Average price?
+1. Items: 10kg at â‚¹50/kg, 5kg at â‚¹60/kg. Average price?
 2. Grades: Quiz 25% (80%), Test 35% (85%), Final 40% (90%). Overall?
 
 ### **Application Problems:**
-1. Investment: ₹10,000 at 8%, ₹15,000 at 10%. Average return?
+1. Investment: â‚¹10,000 at 8%, â‚¹15,000 at 10%. Average return?
 2. Classes: 30 students average 75, 20 students average 80. Combined?
 
 **Answers:**
-Basic: (10×50 + 5×60)÷15 = 550÷15 ≈ 36.67, (80×0.25 + 85×0.35 + 90×0.4) = 87.5%
-Applications: (10×8 + 15×10)÷25 = 9.2%, (30×75 + 20×80)÷50 = 77
+Basic: (10Ã—50 + 5Ã—60)Ã·15 = 550Ã·15 â‰ˆ 36.67, (80Ã—0.25 + 85Ã—0.35 + 90Ã—0.4) = 87.5%
+Applications: (10Ã—8 + 15Ã—10)Ã·25 = 9.2%, (30Ã—75 + 20Ã—80)Ã·50 = 77
 
-Master weighted averages for accurate real-world calculations! 🏆`
+Master weighted averages for accurate real-world calculations! ðŸ†`
 };

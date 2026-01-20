@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_8: SubLesson = {
   id: "14.8",
   title: 'Formation of Quadratic Equations',
   status: 'completed',
-  content: `# 🏗️ Formation of Quadratic Equations
+  content: "`# ðŸ—ï¸ Formation of Quadratic Equations
 
 Learn the art of forming quadratic equations from real-world scenarios! This skill transforms word problems into mathematical equations that can be solved. Master systematic approaches to create quadratic equations from various situations.
 
 ---
 
-## 🎯 What is Equation Formation?
+## ðŸŽ¯ What is Equation Formation?
 
 **Equation Formation** is the process of converting word problems, statements, or real-life situations into quadratic equations. It involves identifying variables, forming relationships, and creating mathematical equations.
 
@@ -29,7 +29,7 @@ Learn the art of forming quadratic equations from real-world scenarios! This ski
 
 ---
 
-## 📝 Step-by-Step Formation Process
+## ðŸ“ Step-by-Step Formation Process
 
 ### **Step 1: Read the Problem Carefully**
 - Identify what is asked
@@ -57,19 +57,19 @@ Learn the art of forming quadratic equations from real-world scenarios! This ski
 
 ---
 
-## 🔢 Basic Formation Examples
+## ðŸ”¢ Basic Formation Examples
 
 ### **Example 1: Area Problem**
-**Problem:** A rectangular garden has area 100 m². Length is 5m more than width. Find dimensions.
+**Problem:** A rectangular garden has area 100 mÂ². Length is 5m more than width. Find dimensions.
 
 **Step 1:** Identify variables
 Let width = x meters
 Length = x + 5 meters
 
 **Step 2:** Form equation
-Area = length × width = 100
+Area = length Ã— width = 100
 (x + 5)x = 100
-x² + 5x - 100 = 0
+xÂ² + 5x - 100 = 0
 
 **Step 3:** Solve
 (x + 10)(x - 5) = 0 (reject x = -10)
@@ -84,8 +84,8 @@ Second number = 15 - x
 
 **Step 2:** Form equation
 Product: x(15 - x) = 50
-15x - x² = 50
-x² - 15x + 50 = 0
+15x - xÂ² = 50
+xÂ² - 15x + 50 = 0
 
 **Step 3:** Solve
 (x - 5)(x - 10) = 0
@@ -93,16 +93,16 @@ x = 5 or 10
 Numbers: 5 and 10
 
 ### **Example 3: Path Problem**
-**Problem:** A path 2m wide surrounds a square garden. Total area is 400 m². Find garden side.
+**Problem:** A path 2m wide surrounds a square garden. Total area is 400 mÂ². Find garden side.
 
 **Step 1:** Identify variables
 Let garden side = x meters
 Outer side = x + 4 meters
 
 **Step 2:** Form equation
-Outer area = (x + 4)² = 400
-x² + 8x + 16 = 400
-x² + 8x - 384 = 0
+Outer area = (x + 4)Â² = 400
+xÂ² + 8x + 16 = 400
+xÂ² + 8x - 384 = 0
 
 **Step 3:** Solve
 (x + 24)(x - 16) = 0
@@ -110,7 +110,7 @@ x = 16m
 
 ---
 
-## 📈 Advanced Formation Problems
+## ðŸ“ˆ Advanced Formation Problems
 
 ### **Example 1: Age Problems**
 **Problem:** A father is 4 times his son's age. After 20 years, he will be twice his son's age. Find current ages.
@@ -147,15 +147,15 @@ Time difference = 1 hour
 
 **Step 3:** Write equation
 360(x + 10 - x)/(x(x + 10)) = 1
-360(10)/(x² + 10x) = 1
-x² + 10x - 3600 = 0
+360(10)/(xÂ² + 10x) = 1
+xÂ² + 10x - 3600 = 0
 
 **Step 4:** Solve
 (x + 60)(x - 50) = 0
 x = 50 km/h
 
 ### **Example 3: Investment Problems**
-**Problem:** ₹12,000 invested in two schemes at 8% and 10%. Annual interest ₹1,080. Find amounts.
+**Problem:** â‚¹12,000 invested in two schemes at 8% and 10%. Annual interest â‚¹1,080. Find amounts.
 
 **Step 1:** Identify variables
 Let amount at 8% = x
@@ -168,11 +168,11 @@ Interest: 0.08x + 0.1(12000 - x) = 1080
 0.02x = 120
 x = 6000
 
-**Amounts:** ₹6,000 at 8%, ₹6,000 at 10%
+**Amounts:** â‚¹6,000 at 8%, â‚¹6,000 at 10%
 
 ---
 
-## 🎯 Complex Formation Scenarios
+## ðŸŽ¯ Complex Formation Scenarios
 
 ### **Example 1: Consecutive Numbers**
 **Problem:** Three consecutive integers sum to 51. Find numbers.
@@ -197,10 +197,10 @@ Other leg = x + 1
 Hypotenuse = x + 2
 
 **Step 2:** Form equation
-x² + (x+1)² = (x+2)²
-x² + x² + 2x + 1 = x² + 4x + 4
-x² + 2x + 1 = 4x + 4
-x² - 2x - 3 = 0
+xÂ² + (x+1)Â² = (x+2)Â²
+xÂ² + xÂ² + 2x + 1 = xÂ² + 4x + 4
+xÂ² + 2x + 1 = 4x + 4
+xÂ² - 2x - 3 = 0
 (x - 3)(x + 1) = 0
 x = 3
 
@@ -217,25 +217,25 @@ B's rate = 1/15 per day
 Work = 3(1/10 + 1/15) = 3(1/6) = 1/2
 
 **Step 3:** Remaining work = 1/2
-B completes in 5 days: 5 × (1/15) = 1/3 ≠ 1/2
+B completes in 5 days: 5 Ã— (1/15) = 1/3 â‰  1/2
 **Problem needs correction** - let B takes x days for remaining work
 
 ---
 
-## 🧮 Special Formation Patterns
+## ðŸ§® Special Formation Patterns
 
 ### **Pattern 1: Difference of Squares**
 **Problem:** Numbers differ by 4, product 45.
 
 **Solution:** Let numbers x, x+4
 x(x+4) = 45
-x² + 4x - 45 = 0
+xÂ² + 4x - 45 = 0
 
 ### **Pattern 2: Sum of Squares**
 **Problem:** Sum of squares of two numbers is 13, their product is 6.
 
-**Solution:** x² + y² = 13, xy = 6
-(x + y)² = x² + 2xy + y² = 13 + 12 = 25
+**Solution:** xÂ² + yÂ² = 13, xy = 6
+(x + y)Â² = xÂ² + 2xy + yÂ² = 13 + 12 = 25
 x + y = 5 (taking positive)
 
 ### **Pattern 3: Reciprocal Relationships**
@@ -249,37 +249,37 @@ s = 80/12 = 20/3
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Variable Choice**
-❌ Let time = x, then distance = speed × x
+âŒ Let time = x, then distance = speed Ã— x
 - Choose variable that makes equation quadratic
 
 ### **Mistake 2: Missing Relationships**
-❌ Only one equation for two variables
+âŒ Only one equation for two variables
 - Ensure sufficient equations
 
 ### **Mistake 3: Sign Errors**
-❌ Speed increased by 10 km/h: x - 10
+âŒ Speed increased by 10 km/h: x - 10
 - Increased: x + 10
 
 ### **Mistake 4: Units Inconsistency**
-❌ Mixing hours and minutes without conversion
+âŒ Mixing hours and minutes without conversion
 - Convert to same units
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Basic Formation:**
-1. **Area:** Rectangle area 48m², length 2m more than width.
+1. **Area:** Rectangle area 48mÂ², length 2m more than width.
 2. **Numbers:** Two numbers sum 12, product 35.
-3. **Path:** Square garden with 3m path, total area 400m².
+3. **Path:** Square garden with 3m path, total area 400mÂ².
 
 ### **Advanced Formation:**
 1. **Age:** Father 3 times son. After 12 years, father twice son.
 2. **Speed:** Car covers 240km at x km/h. Speed +10 km/h, time -1 hour.
-3. **Investment:** ₹8,000 in two schemes 6% and 8%, interest ₹520.
+3. **Investment:** â‚¹8,000 in two schemes 6% and 8%, interest â‚¹520.
 
 ### **Complex Scenarios:**
 1. **Consecutive:** Three consecutive evens sum 42.
@@ -292,14 +292,14 @@ s = 80/12 = 20/3
 3. **Pythagorean:** Sides x, 2x+1, 2x+3.
 
 **Answers:**
-Basic: 6×8m; 5,7; Side 14m
-Advanced: Son-12, Father-36; x=40 km/h; ₹3,000 & ₹5,000
+Basic: 6Ã—8m; 5,7; Side 14m
+Advanced: Son-12, Father-36; x=40 km/h; â‚¹3,000 & â‚¹5,000
 Complex: 12,14,16; x=3 (3-4-5); 4 days
 Special: 7,13; 5/6,5/4; x=2 (2,5,7)
 
 ---
 
-## 🎓 Pro Tips for Equation Formation
+## ðŸŽ“ Pro Tips for Equation Formation
 
 1. **Read problem multiple times** - identify quadratic relationships
 2. **Choose variables wisely** - should lead to quadratic equation
@@ -311,7 +311,7 @@ Special: 7,13; 5/6,5/4; x=2 (2,5,7)
 
 ---
 
-## 🔢 Formation Checklist
+## ðŸ”¢ Formation Checklist
 
 - [ ] Problem understood completely
 - [ ] Variables chosen appropriately
@@ -321,5 +321,5 @@ Special: 7,13; 5/6,5/4; x=2 (2,5,7)
 - [ ] Units consistent
 - [ ] Solution makes sense
 
-Master equation formation and convert any word problem to a solvable quadratic equation! 🏆`
+Master equation formation and convert any word problem to a solvable quadratic equation! ðŸ†`"
 };

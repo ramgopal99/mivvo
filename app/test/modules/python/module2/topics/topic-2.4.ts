@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_4: SubLesson = {
   id: "2.4",
   title: 'Loops',
   status: 'demo',
-  content: `# 🚀 Python Loops - Fast Track Template
+  content: "`# ðŸš€ Python Loops - Fast Track Template
 
 Master Python loops from basic to advanced! Each level builds on the previous with templates and examples.
 
 ---
 
-## 🎯 RANGE() FUNCTION - Essential Foundation
+## ðŸŽ¯ RANGE() FUNCTION - Essential Foundation
 
 ### **Template: range() Basics**
-\`\`\`python
+\`"\`\`python
 # Template: range(stop)
 range(STOP)  # 0 to stop-1
 
@@ -82,7 +82,7 @@ for i in range(len(items)):  # Creates: 0, 1, 2
 
 ---
 
-## 📚 LEVEL 1: BASIC - Simple Loops
+## ðŸ“š LEVEL 1: BASIC - Simple Loops
 
 ### **Template 1: Basic For Loop with Range**
 \`\`\`python
@@ -139,7 +139,7 @@ for index, fruit in enumerate(fruits):
 
 ---
 
-## 📈 LEVEL 2: INTERMEDIATE - While Loops & Control
+## ðŸ“ˆ LEVEL 2: INTERMEDIATE - While Loops & Control
 
 ### **Template 3: Basic While Loop**
 \`\`\`python
@@ -228,7 +228,7 @@ for i in range(6):
 
 ---
 
-## 🔧 LEVEL 3: ADVANCED - Nested Loops & Comprehensions
+## ðŸ”§ LEVEL 3: ADVANCED - Nested Loops & Comprehensions
 
 ### **Template 4: Nested Loops**
 \`\`\`python
@@ -307,7 +307,7 @@ print(matrix)           # [[0, 0, 0], [0, 1, 2], [0, 2, 4]]
 
 ---
 
-## 🎯 LEVEL 4: EXPERT - Real-World Patterns
+## ðŸŽ¯ LEVEL 4: EXPERT - Real-World Patterns
 
 ### **Template 6: Common Loop Patterns**
 \`\`\`python
@@ -382,4 +382,5 @@ print(f"Goal reached: {'Yes' if average_steps >= 8000 else 'No'}")
 
 ---`
 };
+
 

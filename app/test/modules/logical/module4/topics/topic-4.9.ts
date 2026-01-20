@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_9: SubLesson = {
   id: "4.9",
   title: 'Order & Ranking Puzzles',
   status: 'completed',
-  content: `# 📊 Order & Ranking Puzzles
+  content: "`# ðŸ“Š Order & Ranking Puzzles
 
 Order and ranking puzzles involve determining the positions, rankings, or sequences of entities based on various criteria. These puzzles require understanding of comparative relationships, position logic, and systematic ranking techniques.
 
 ---
 
-## 🎯 Understanding Order & Ranking Puzzles
+## ðŸŽ¯ Understanding Order & Ranking Puzzles
 
 ### **What are Order & Ranking Puzzles?**
 Order and ranking puzzles involve determining the relative positions, rankings, or sequences of people, objects, or entities based on given criteria. They test your ability to:
@@ -27,7 +27,7 @@ Order and ranking puzzles involve determining the relative positions, rankings, 
 
 ---
 
-## 🧩 Types of Order & Ranking Problems
+## ðŸ§© Types of Order & Ranking Problems
 
 ### **1. Position Ranking**
 **Determining exact positions in a sequence**
@@ -49,7 +49,7 @@ Order and ranking puzzles involve determining the relative positions, rankings, 
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Identify Ranking Criteria**
 - Understand ranking basis (performance, age, height, etc.)
@@ -73,7 +73,7 @@ Order and ranking puzzles involve determining the relative positions, rankings, 
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Race/Event Rankings**
 **Competition or event position determination**
@@ -95,7 +95,7 @@ Order and ranking puzzles involve determining the relative positions, rankings, 
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Ranking Ladder Method**
 1st: ________
@@ -124,7 +124,7 @@ D   >   ?   <   -
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Race Ranking**
 **Conditions:**
@@ -159,7 +159,7 @@ D   >   ?   <   -
 
 ---
 
-## 🔍 Advanced Ranking Concepts
+## ðŸ” Advanced Ranking Concepts
 
 ### **Multi-Criteria Rankings**
 Problems involving multiple ranking criteria simultaneously.
@@ -172,7 +172,7 @@ Problems where only some positions are determined.
 
 ---
 
-## 📊 Ranking Logic Methods
+## ðŸ“Š Ranking Logic Methods
 
 ### **Position-Based Logic**
 - **Exact positions**: 1st, 2nd, 3rd, last
@@ -181,7 +181,7 @@ Problems where only some positions are determined.
 
 ### **Comparative Logic**
 - **Direct comparisons**: A > B (A better than B)
-- **Transitive relationships**: A > B, B > C → A > C
+- **Transitive relationships**: A > B, B > C â†’ A > C
 - **Chain relationships**: Complex ranking networks
 
 ### **Sequence Logic**
@@ -191,23 +191,23 @@ Problems where only some positions are determined.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Transitive Errors**
-❌ Incorrect application of transitive property
-✅ Careful chain verification
+âŒ Incorrect application of transitive property
+âœ… Careful chain verification
 
 ### **Pitfall 2: Position Confusion**
-❌ Mixing ranking directions
-✅ Clear higher/lower understanding
+âŒ Mixing ranking directions
+âœ… Clear higher/lower understanding
 
 ### **Pitfall 3: Incomplete Analysis**
-❌ Missing indirect relationships
-✅ Consider all ranking implications
+âŒ Missing indirect relationships
+âœ… Consider all ranking implications
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Ranking Framework Creation**
 - Create position ladder or matrix
@@ -226,7 +226,7 @@ Problems where only some positions are determined.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Few entities, simple rankings
@@ -245,17 +245,17 @@ Problems where only some positions are determined.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Create Ranking Framework**: Visual position mapping
-2. **Apply Transitive Property**: Use A > B, B > C → A > C
+2. **Apply Transitive Property**: Use A > B, B > C â†’ A > C
 3. **Start with Known**: Place definite rankings first
 4. **Use Elimination**: Remove impossible rankings
 5. **Verify Chains**: Check each comparative step
 
 ---
 
-## 📊 Practice Questions
+## ðŸ“Š Practice Questions
 
 ### **Question 1**
 **Conditions:**
@@ -288,5 +288,5 @@ Problems where only some positions are determined.
 
 **Who is the shortest?**
 
-**Master order and ranking puzzles for systematic position analysis! 📊✨**`
+**Master order and ranking puzzles for systematic position analysis! ðŸ“Šâœ¨**`"
 };

@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_7: SubLesson = {
   id: "5.7",
   title: 'Continued Proportion',
   status: 'completed',
-  content: `# 🔗 Continued Proportion
+  content: "`# ðŸ”— Continued Proportion
 
 Learn about continued proportion where three or more quantities form a chain of equal ratios! This concept is essential for geometric progressions and scaling problems. Master the properties and applications of continued proportion.
 
 ---
 
-## 🎯 What is Continued Proportion?
+## ðŸŽ¯ What is Continued Proportion?
 
 **Continued Proportion** occurs when three or more quantities are in proportion such that the ratio of first to second equals the ratio of second to third, and so on.
 
 ### **Basic Form**
-\`\`\`
+\`"\`\`
 a:b = b:c  (three quantities)
 a:b = b:c = c:d  (four quantities)
 \`\`\`
@@ -25,7 +25,7 @@ The middle term is the geometric mean of the other two terms.
 
 ---
 
-## 📊 Examples
+## ðŸ“Š Examples
 
 ### **Example 1: Three Numbers**
 **Problem:** Find c if 4, 6, c are in continued proportion.
@@ -49,11 +49,11 @@ The middle term is the geometric mean of the other two terms.
 
 ---
 
-## 🔢 Properties
+## ðŸ”¢ Properties
 
 ### **Property 1: Geometric Mean**
 \`\`\`
-b² = a × c  (for a, b, c in continued proportion)
+bÂ² = a Ã— c  (for a, b, c in continued proportion)
 \`\`\`
 
 ### **Property 2: Chain Equality**
@@ -63,12 +63,12 @@ a/b = b/c = c/d = ... = k (constant ratio)
 
 ### **Property 3: Common Ratio**
 \`\`\`
-Each term = previous term × r
+Each term = previous term Ã— r
 \`\`\`
 
 ---
 
-## 🧮 Applications
+## ðŸ§® Applications
 
 ### **1. Geometric Progressions**
 - Terms form continued proportion
@@ -86,16 +86,16 @@ Each term = previous term × r
 
 ---
 
-## 💡 Quick Tricks
+## ðŸ’¡ Quick Tricks
 
 ### **Trick 1: Finding Missing Term**
 \`\`\`
-If a, b, c in continued proportion: c = (b²)/a
+If a, b, c in continued proportion: c = (bÂ²)/a
 \`\`\`
 
 ### **Trick 2: Four Terms**
 \`\`\`
-a, b, c, d: d = (b² × c)/a or d = (c³)/(a²)
+a, b, c, d: d = (bÂ² Ã— c)/a or d = (cÂ³)/(aÂ²)
 \`\`\`
 
 ### **Trick 3: Multiple Terms**
@@ -105,16 +105,16 @@ Use the chain property: a/b = b/c = c/d = ...
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 1. Find third proportional to 2 and 3.
 2. Find mean proportional between 9 and 16.
 3. If 3, x, 12 are in continued proportion, find x.
 
 **Answers:**
-1. 4.5 (since 3:x = x:12, x² = 36, x = 6)
-2. 12 (since x² = 9×16 = 144, x = 12)
+1. 4.5 (since 3:x = x:12, xÂ² = 36, x = 6)
+2. 12 (since xÂ² = 9Ã—16 = 144, x = 12)
 3. 6 (as above)
 
-Master continued proportion for geometric sequences and scaling problems! 🏆`
+Master continued proportion for geometric sequences and scaling problems! ðŸ†`
 };

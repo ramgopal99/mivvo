@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_1: SubLesson = {
   id: "6.1",
   title: 'What are Dictionaries?',
   status: 'demo',
-  content: `# 📚 What are Python Dictionaries?
+  content: "`# ðŸ“š What are Python Dictionaries?
 
 Dictionaries are Python's most powerful data structure for storing **key-value pairs**. Think of them as real-world dictionaries where you look up words (keys) to find their meanings (values)!
 
 ---
 
-## 🎯 What is a Dictionary?
+## ðŸŽ¯ What is a Dictionary?
 
 A **dictionary** is a collection that:
 - **Maps keys to values** - Each key is associated with a value
@@ -19,7 +19,7 @@ A **dictionary** is a collection that:
 - **Values can be anything** - Any data type including other dictionaries
 - **Unordered** (Python 3.6+ maintains insertion order)
 
-\`\`\`python
+\`"\`\`python
 # A simple dictionary of student grades
 grades = {
     "Alice": 95,
@@ -31,7 +31,7 @@ print(grades)  # {'Alice': 95, 'Bob': 87, 'Charlie': 92}
 
 ---
 
-## 🔑 Key Characteristics
+## ðŸ”‘ Key Characteristics
 
 ### **Key-Value Pairs**
 \`\`\`python
@@ -58,7 +58,7 @@ print(duplicate_keys)  # {'key1': 'second', 'key2': 'value2'}
 
 ### **Keys Must Be Immutable**
 \`\`\`python
-# ✅ Valid keys
+# âœ… Valid keys
 valid_dict = {
     "string_key": "value",
     42: "number key",
@@ -66,7 +66,7 @@ valid_dict = {
     True: "boolean key"
 }
 
-# ❌ Invalid keys (would cause error)
+# âŒ Invalid keys (would cause error)
 # invalid_dict = {
 #     ["list", "key"]: "value",  # Lists are mutable
 #     {"dict": "key"}: "value"   # Dictionaries are mutable
@@ -75,19 +75,19 @@ valid_dict = {
 
 ---
 
-## 📊 Dictionary vs Other Collections
+## ðŸ“Š Dictionary vs Other Collections
 
 | Feature | List | Tuple | Dictionary |
 |---------|------|-------|-------------|
 | Access by | Index | Index | Key |
-| Ordered | ✅ | ✅ | ✅ (3.6+) |
-| Mutable | ✅ | ❌ | ✅ |
-| Duplicates | ✅ | ✅ | Keys: ❌ Values: ✅ |
-| Fast lookup | ❌ | ❌ | ✅ |
+| Ordered | âœ… | âœ… | âœ… (3.6+) |
+| Mutable | âœ… | âŒ | âœ… |
+| Duplicates | âœ… | âœ… | Keys: âŒ Values: âœ… |
+| Fast lookup | âŒ | âŒ | âœ… |
 
 ---
 
-## 🎨 Real-World Examples
+## ðŸŽ¨ Real-World Examples
 
 \`\`\`python
 # User database
@@ -106,7 +106,7 @@ inventory = {
 # Translation dictionary
 translations = {
     "hello": "hola",
-    "goodbye": "adiós",
+    "goodbye": "adiÃ³s",
     "thank you": "gracias"
 }
 
@@ -120,7 +120,7 @@ config = {
 
 ---
 
-## 🚀 Why Dictionaries Are Powerful
+## ðŸš€ Why Dictionaries Are Powerful
 
 ### **Fast Lookups**
 \`\`\`python
@@ -141,6 +141,7 @@ student_records = {
 }
 \`\`\`
 
-Dictionaries are the backbone of Python programming - you'll use them everywhere! 🔑`
+Dictionaries are the backbone of Python programming - you'll use them everywhere! ðŸ”‘`
 };
+
 

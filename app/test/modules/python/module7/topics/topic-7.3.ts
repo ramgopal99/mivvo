@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_3: SubLesson = {
   id: "7.3",
   title: 'Function Parameters',
   status: 'demo',
-  content: `# 📥 Function Parameters
+  content: "`# ðŸ“¥ Function Parameters
 
 Parameters allow functions to accept input values. Python offers flexible parameter options for different use cases!
 
 ---
 
-## 🎯 Required Parameters
+## ðŸŽ¯ Required Parameters
 
 ### **Basic Parameters**
-\`\`\`python
+\`"\`\`python
 def greet(name, age):
     """Greet someone with their name and age."""
     print(f"Hello {name}, you are {age} years old!")
@@ -25,7 +25,7 @@ greet("Alice", 25)  # Works
 
 ---
 
-## 🔄 Default Parameters
+## ðŸ”„ Default Parameters
 
 ### **Optional Parameters with Defaults**
 \`\`\`python
@@ -56,7 +56,7 @@ user3 = create_user("Charlie", "charlie@email.com", True, "admin")
 
 ---
 
-## 📊 *args - Variable Positional Arguments
+## ðŸ“Š *args - Variable Positional Arguments
 
 ### **Accept Any Number of Positional Arguments**
 \`\`\`python
@@ -89,7 +89,7 @@ calculate_average("History")  # No scores
 
 ---
 
-## 🔑 **kwargs - Variable Keyword Arguments
+## ðŸ”‘ **kwargs - Variable Keyword Arguments
 
 ### **Accept Any Number of Keyword Arguments**
 \`\`\`python
@@ -123,7 +123,7 @@ advanced_function("hello", "custom", 1, 2, 3, name="Alice", age=25)
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **Flexible Calculator**
 \`\`\`python
@@ -194,15 +194,15 @@ for key, value in prod_config.items():
 
 ---
 
-## ⚠️ Parameter Order Rules
+## âš ï¸ Parameter Order Rules
 
 ### **Correct Parameter Order**
 \`\`\`python
-# ✅ Correct order
+# âœ… Correct order
 def example(required, default="value", *args, **kwargs):
     pass
 
-# ❌ Wrong orders (will cause syntax errors)
+# âŒ Wrong orders (will cause syntax errors)
 # def wrong1(default="value", required):  # Defaults before required
 # def wrong2(required, *args, default="value"):  # Defaults after *args
 # def wrong3(**kwargs, default="value"):  # Defaults after **kwargs
@@ -210,7 +210,7 @@ def example(required, default="value", *args, **kwargs):
 
 ---
 
-## ✅ Best Practices
+## âœ… Best Practices
 
 1. **Use descriptive parameter names** - calculate_tax(amount, rate) not calc(a, r)
 2. **Provide sensible defaults** - Think about what values are commonly used
@@ -218,6 +218,7 @@ def example(required, default="value", *args, **kwargs):
 4. **Use \*\*kwargs for flexible keyword arguments** - When you need extensible options
 5. **Document parameter types and purposes** - Use docstrings with Args section
 
-Function parameters make your functions flexible and reusable! 🎛️`
+Function parameters make your functions flexible and reusable! ðŸŽ›ï¸`
 };
+
 

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_6: SubLesson = {
   id: "12.6",
   title: 'Replacement Problems',
   status: 'completed',
-  content: `# 🔄 Replacement Problems
+  content: "`# ðŸ”„ Replacement Problems
 
 Master replacement scenarios in mixtures - where one ingredient is replaced by another, changing the mixture composition.
 
 ---
 
-## 🎯 Replacement Concept
+## ðŸŽ¯ Replacement Concept
 
 **Replacement problems** involve removing some quantity of a mixture and replacing it with a different ingredient, or replacing one ingredient with another.
 
@@ -21,10 +21,10 @@ Master replacement scenarios in mixtures - where one ingredient is replaced by a
 
 ---
 
-## 📊 Replacement Types
+## ðŸ“Š Replacement Types
 
 ### 1. **Replacing Mixture with Pure Ingredient**
-\`\`\`
+\`"\`\`
 Remove x liters of mixture
 Add x liters of pure ingredient
 New concentration increases
@@ -46,7 +46,7 @@ Volume increases
 
 ---
 
-## 🧮 Replacement Examples
+## ðŸ§® Replacement Examples
 
 ### Example 1: Milk Replacement
 **20 liters milk solution, 25% milk. Remove 5 liters, add 5 liters pure milk. New concentration?**
@@ -58,7 +58,7 @@ Volume increases
 - Add 5 liters pure milk
 - Total milk = 3.75 + 5 = 8.75 liters
 - Total volume = 20 - 5 + 5 = 20 liters
-- New concentration = (8.75/20) × 100% = 43.75%
+- New concentration = (8.75/20) Ã— 100% = 43.75%
 
 ### Example 2: Water Addition
 **10 liters 40% solution. Add 5 liters water. New concentration?**
@@ -68,22 +68,22 @@ Volume increases
 - Add 5 liters water (no solute)
 - Total volume = 10 + 5 = 15 liters
 - Total solute = 4 liters
-- New concentration = (4/15) × 100% = 26.67%
+- New concentration = (4/15) Ã— 100% = 26.67%
 
 ### Example 3: Ingredient Replacement
 **20 liters mixture, milk:water = 3:2. Replace 4 liters water with 4 liters milk. New ratio?**
 
 **Solution:**
-- Initial milk = (3/5) × 20 = 12 liters
-- Initial water = (2/5) × 20 = 8 liters
-- Remove 4 liters water → remaining water = 8 - 4 = 4 liters
-- Add 4 liters milk → total milk = 12 + 4 = 16 liters
+- Initial milk = (3/5) Ã— 20 = 12 liters
+- Initial water = (2/5) Ã— 20 = 8 liters
+- Remove 4 liters water â†’ remaining water = 8 - 4 = 4 liters
+- Add 4 liters milk â†’ total milk = 12 + 4 = 16 liters
 - Total volume = 20 liters
 - New ratio = 16:4 = 4:1
 
 ---
 
-## 🎯 Replacement Strategies
+## ðŸŽ¯ Replacement Strategies
 
 ### **Step-by-Step Method**
 1. **Calculate initial quantities** of each ingredient
@@ -99,17 +99,17 @@ New concentration = (Initial solute - Removed solute + Added solute) / New volum
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Quick Concentration Change**
 \`\`\`
 For adding pure ingredient:
-New % = Old % + (Replacement % - Old %) × (Replaced volume / Total volume)
+New % = Old % + (Replacement % - Old %) Ã— (Replaced volume / Total volume)
 \`\`\`
 
 ### **Water Addition Shortcut**
 \`\`\`
-New concentration = Old concentration × (Old volume / New volume)
+New concentration = Old concentration Ã— (Old volume / New volume)
 \`\`\`
 
 ### **Equal Volume Replacement**
@@ -126,7 +126,7 @@ Convert to common units
 
 ---
 
-## 🔢 Advanced Replacement
+## ðŸ”¢ Advanced Replacement
 
 ### **Multiple Replacements**
 - **Sequential replacements**
@@ -140,7 +140,7 @@ Convert to common units
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 4: Multiple Steps
 **10 liters 30% solution. Replace 3 liters with pure solvent. Then add 2 liters pure solute. Final concentration?**
@@ -152,7 +152,7 @@ Convert to common units
 - Step 2: Add 2L pure solute
 - Total solute = 2.1 + 2 = 4.1L
 - Total volume = 10 + 2 = 12L
-- Final concentration = (4.1/12) × 100% ≈ 34.17%
+- Final concentration = (4.1/12) Ã— 100% â‰ˆ 34.17%
 
 ### Example 5: Target Concentration
 **20L 25% solution. How much water to add to make 20% solution?**
@@ -170,7 +170,7 @@ Convert to common units
 **Milk Rs. 40/L, water free. 100L mixture Rs. 20/L. Replace 20L with pure milk. New average price?**
 
 **Solution:**
-- Initial milk = (20/40) × 100 = 50L (since Rs. 20/L average)
+- Initial milk = (20/40) Ã— 100 = 50L (since Rs. 20/L average)
 - Initial water = 50L
 - Remove 20L mixture containing milk:water = 20:20 = 10L milk, 10L water
 - Remaining milk = 50 - 10 = 40L
@@ -178,11 +178,11 @@ Convert to common units
 - Add 20L pure milk
 - Total milk = 40 + 20 = 60L
 - Total volume = 100L
-- New average price = (60×40 + 40×0)/100 = Rs. 24/L
+- New average price = (60Ã—40 + 40Ã—0)/100 = Rs. 24/L
 
 ---
 
-## 🚨 Replacement Mistakes
+## ðŸš¨ Replacement Mistakes
 
 1. **Removal Calculation**: Wrong proportion of ingredients removed
 2. **Volume Tracking**: Forgetting volume changes
@@ -192,7 +192,7 @@ Convert to common units
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** 15L 40% solution. Remove 3L, add 3L pure solute. New %?
 **2.** 25L milk-water 2:3. Replace 5L water with milk. New ratio?
@@ -204,7 +204,7 @@ Convert to common units
 
 ---
 
-## 🎓 Replacement Strategies
+## ðŸŽ“ Replacement Strategies
 
 1. **Track ingredient quantities** separately
 2. **Account for volume changes** accurately
@@ -212,5 +212,6 @@ Convert to common units
 4. **Apply additions** correctly
 5. **Verify final concentrations** make sense
 
-Master replacement problems and handle mixture modification scenarios! 🏆`
+Master replacement problems and handle mixture modification scenarios! ðŸ†`
 };
+

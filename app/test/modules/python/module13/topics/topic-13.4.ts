@@ -1,32 +1,32 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_4: SubLesson = {
   id: "13.4",
   title: 'BST Properties and Applications',
   status: 'demo',
-  content: `# 🏗️ BST Properties and Applications
+  content: "`# ðŸ—ï¸ BST Properties and Applications
 
 Explore the mathematical properties and real-world applications that make BSTs essential!
 
 ---
 
-## 📐 Mathematical Properties
+## ðŸ“ Mathematical Properties
 
 ### **Height and Balance**
 
 #### **Tree Height**
 - **Height**: Longest path from root to leaf
-- **Balanced Tree**: Height ≈ log₂(n)
+- **Balanced Tree**: Height â‰ˆ logâ‚‚(n)
 - **Skewed Tree**: Height = n-1 (worst case)
 
-\`\`\`python
+\`"\`\`python
 def get_height(root):
     if not root:
         return 0
     return 1 + max(get_height(root.left), get_height(root.right))
 
 # Example heights:
-# Balanced: h ≈ log₂(n)
+# Balanced: h â‰ˆ logâ‚‚(n)
 # Left-skewed: h = n-1
 # Right-skewed: h = n-1
 \`\`\`
@@ -40,13 +40,13 @@ def balance_factor(node):
 
 # Balance Factor:
 # = 0: Perfectly balanced
-# = ±1: Acceptably balanced
-# > ±1: Needs rebalancing
+# = Â±1: Acceptably balanced
+# > Â±1: Needs rebalancing
 \`\`\`
 
 ---
 
-## ⚖️ Time Complexity Analysis
+## âš–ï¸ Time Complexity Analysis
 
 | Operation | Average Case | Worst Case | Best Case |
 |-----------|--------------|------------|-----------|
@@ -62,7 +62,7 @@ def balance_factor(node):
 
 ---
 
-## 🎯 Key BST Properties
+## ðŸŽ¯ Key BST Properties
 
 ### **1. Inorder Property**
 - **Inorder traversal** = **Sorted sequence**
@@ -82,7 +82,7 @@ def balance_factor(node):
 
 ---
 
-## 🔧 Advanced BST Operations
+## ðŸ”§ Advanced BST Operations
 
 ### **Find K-th Smallest Element**
 \`\`\`python
@@ -150,7 +150,7 @@ def is_balanced(root):
 
 ---
 
-## 🌟 Real-World Applications
+## ðŸŒŸ Real-World Applications
 
 ### **1. Database Indexing**
 \`\`\`
@@ -206,7 +206,7 @@ Mathematical expression trees:
 
 ---
 
-## 🔄 BST Variants and Extensions
+## ðŸ”„ BST Variants and Extensions
 
 ### **Self-Balancing BSTs**
 - **AVL Trees**: Height-balanced, strict balance
@@ -220,7 +220,7 @@ Mathematical expression trees:
 
 ---
 
-## ⚠️ Common Pitfalls and Solutions
+## âš ï¸ Common Pitfalls and Solutions
 
 ### **Problem 1: Unbalanced Trees**
 \`\`\`
@@ -248,7 +248,7 @@ Solutions:
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Balance is crucial** for optimal performance
 2. **Inorder = sorted order** - fundamental property
@@ -257,6 +257,7 @@ Solutions:
 5. **Choose right variant** based on specific requirements
 6. **Consider concurrency** for multi-threaded applications
 
-BSTs are fundamental to computer science - understanding them deeply will serve you well! 🚀`,
+BSTs are fundamental to computer science - understanding them deeply will serve you well! ðŸš€`,
 };
+
 

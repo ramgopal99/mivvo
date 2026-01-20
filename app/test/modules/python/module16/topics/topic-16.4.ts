@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_4: SubLesson = {
   id: "16.4",
   title: 'Iterators and Generators',
   status: 'demo',
-  content: `# 🔄 Iterators and Generators
+  content: "`# ðŸ”„ Iterators and Generators
 
 Iterators and generators are fundamental concepts in Python that enable efficient processing of large datasets and lazy evaluation. They form the basis of Python's iteration protocol and are essential for memory-efficient programming. Let's explore these powerful tools!
 
 ---
 
-## 🎯 Understanding Iteration
+## ðŸŽ¯ Understanding Iteration
 
 ### **What is an Iterator?**
-An **iterator** is an object that implements the iterator protocol with \`__iter__()\` and \`__next__()\` methods.
+An **iterator** is an object that implements the iterator protocol with \`"__iter__()\` and \`__next__()\` methods.
 
 ### **What is a Generator?**
 A **generator** is a special type of iterator created using functions with \`yield\` or generator expressions.
@@ -26,7 +26,7 @@ A **generator** is a special type of iterator created using functions with \`yie
 
 ---
 
-## 💻 Creating Custom Iterators
+## ðŸ’» Creating Custom Iterators
 
 ### **Basic Iterator Class**
 \`\`\`python
@@ -97,7 +97,7 @@ for num in fib:
 
 ---
 
-## ⚡ Generator Functions
+## âš¡ Generator Functions
 
 ### **Basic Generator**
 \`\`\`python
@@ -162,7 +162,7 @@ for num in itertools.islice(infinite_counter(1000), 5):
 
 ---
 
-## 🎨 Generator Expressions
+## ðŸŽ¨ Generator Expressions
 
 ### **List Comprehension vs Generator Expression**
 \`\`\`python
@@ -201,7 +201,7 @@ print(list(large_squares))  # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 
 ---
 
-## 🔧 Advanced Generator Techniques
+## ðŸ”§ Advanced Generator Techniques
 
 ### **Generator Pipelines**
 \`\`\`python
@@ -284,7 +284,7 @@ avg_gen.close()  # Final average: 20.0
 
 ---
 
-## 📚 Built-in Iterators and Generators
+## ðŸ“š Built-in Iterators and Generators
 
 ### **range() - Lazy Iterator**
 \`\`\`python
@@ -350,7 +350,7 @@ print(list(combined))  # [1, 2, 3, 'a', 'b', 'c']
 
 ---
 
-## 🧪 Practical Examples
+## ðŸ§ª Practical Examples
 
 ### **Example 1: File Processing**
 \`\`\`python
@@ -431,7 +431,7 @@ print("Inorder traversal:", list(inorder_traversal(root)))  # [4, 2, 5, 1, 3]
 
 ---
 
-## ⚡ Generator Performance Benefits
+## âš¡ Generator Performance Benefits
 
 ### **Memory Usage Comparison**
 \`\`\`python
@@ -476,7 +476,7 @@ print("Second result:", next(results_gen)) # Computes only 1
 
 ---
 
-## 🎯 Iterator Protocol
+## ðŸŽ¯ Iterator Protocol
 
 ### **Making Objects Iterable**
 \`\`\`python
@@ -548,7 +548,7 @@ for item in iterator:
 
 ---
 
-## 🏆 Key Takeaways
+## ðŸ† Key Takeaways
 
 1. **Iterators** implement \`__iter__()\` and \`__next__()\` methods
 2. **Generators** are created with \`yield\` or generator expressions
@@ -557,6 +557,7 @@ for item in iterator:
 5. **Pipeline processing** - chain multiple generators efficiently
 6. **Infinite sequences** possible with generators
 
-**Iterators and generators are essential for writing memory-efficient, scalable Python code. They enable processing of large datasets and create elegant data processing pipelines! 🔄**`
+**Iterators and generators are essential for writing memory-efficient, scalable Python code. They enable processing of large datasets and create elegant data processing pipelines! ðŸ”„**`
 };
+
 

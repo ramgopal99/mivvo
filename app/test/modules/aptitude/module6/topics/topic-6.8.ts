@@ -1,51 +1,51 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_8: SubLesson = {
   id: "6.8",
   title: 'Combined Average',
   status: 'completed',
-  content: `# 🔗 Combined Average
+  content: "`# ðŸ”— Combined Average
 
 Learn to find the overall average when combining multiple groups! Combined averages are essential for merging data from different sources, classes, or time periods. Master the weighted average approach for groups.
 
 ---
 
-## 🎯 What is Combined Average?
+## ðŸŽ¯ What is Combined Average?
 
 **Combined Average** finds the overall average when two or more groups with known averages and sizes are combined.
 
 ### **Formula**
-\`\`\`
-Combined Average = (n₁A₁ + n₂A₂ + ... + nₖAₖ) ÷ (n₁ + n₂ + ... + nₖ)
+\`"\`\`
+Combined Average = (nâ‚Aâ‚ + nâ‚‚Aâ‚‚ + ... + nâ‚–Aâ‚–) Ã· (nâ‚ + nâ‚‚ + ... + nâ‚–)
 \`\`\`
 
 **Where:**
-- n₁, n₂ = sizes of groups
-- A₁, A₂ = averages of groups
+- nâ‚, nâ‚‚ = sizes of groups
+- Aâ‚, Aâ‚‚ = averages of groups
 
 ---
 
-## 📊 Step-by-Step Calculation
+## ðŸ“Š Step-by-Step Calculation
 
 ### **Example 1: Two Classes**
 **Problem:** Class A: 30 students, average 75. Class B: 20 students, average 80. Combined average?
 
 **Solution:**
-- Combined Average = (30×75 + 20×80) ÷ (30+20)
-- = (2250 + 1600) ÷ 50
-- = 3850 ÷ 50 = 77
+- Combined Average = (30Ã—75 + 20Ã—80) Ã· (30+20)
+- = (2250 + 1600) Ã· 50
+- = 3850 Ã· 50 = 77
 
 ### **Example 2: Three Groups**
 **Problem:** Group X: 15 items, average 45. Group Y: 25 items, average 52. Group Z: 10 items, average 48.
 
 **Solution:**
-- Combined = (15×45 + 25×52 + 10×48) ÷ (15+25+10)
-- = (675 + 1300 + 480) ÷ 50
-- = 2455 ÷ 50 = 49.1
+- Combined = (15Ã—45 + 25Ã—52 + 10Ã—48) Ã· (15+25+10)
+- = (675 + 1300 + 480) Ã· 50
+- = 2455 Ã· 50 = 49.1
 
 ---
 
-## 🔢 Applications
+## ðŸ”¢ Applications
 
 ### **1. Class Averages**
 - Combining different class sections
@@ -65,11 +65,11 @@ Combined Average = (n₁A₁ + n₂A₂ + ... + nₖAₖ) ÷ (n₁ + n₂ + ... 
 
 ---
 
-## 💡 Quick Tricks
+## ðŸ’¡ Quick Tricks
 
 ### **Trick 1: Equal Group Sizes**
 \`\`\`
-Combined = (A₁ + A₂) ÷ 2
+Combined = (Aâ‚ + Aâ‚‚) Ã· 2
 \`\`\`
 
 ### **Trick 2: Percentage Weights**
@@ -84,7 +84,7 @@ Calculate deviation from assumed average
 
 ---
 
-## 🎯 Properties
+## ðŸŽ¯ Properties
 
 ### **1. Weighted Nature**
 Larger groups have more influence.
@@ -97,23 +97,23 @@ More weight to larger groups.
 
 ---
 
-## 🚨 Common Mistakes
+## ðŸš¨ Common Mistakes
 
 ### **Mistake 1: Simple Average**
-❌ Adding averages and dividing by 2
+âŒ Adding averages and dividing by 2
 - Must weight by group sizes
 
 ### **Mistake 2: Wrong Weights**
-❌ Using averages as weights
+âŒ Using averages as weights
 - Use group sizes as weights
 
 ### **Mistake 3: Missing Terms**
-❌ Forgetting to include all groups
+âŒ Forgetting to include all groups
 - Include all nA terms and all n terms
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Two Groups:**
 1. Class A: 25 students, avg 70. Class B: 35 students, avg 75. Combined?
@@ -124,8 +124,8 @@ More weight to larger groups.
 2. Section A: 18 students, avg 78. Section B: 22 students, avg 82. Section C: 15 students, avg 75. Combined?
 
 **Answers:**
-Two groups: (25×70 + 35×75)÷60 = 73.75, (12×85 + 15×82)÷27 ≈ 83.3
-Three groups: (20×45 + 30×52 + 25×48)÷75 = 49, (18×78 + 22×82 + 15×75)÷55 ≈ 78.8
+Two groups: (25Ã—70 + 35Ã—75)Ã·60 = 73.75, (12Ã—85 + 15Ã—82)Ã·27 â‰ˆ 83.3
+Three groups: (20Ã—45 + 30Ã—52 + 25Ã—48)Ã·75 = 49, (18Ã—78 + 22Ã—82 + 15Ã—75)Ã·55 â‰ˆ 78.8
 
-Master combined averages for multi-group analysis! 🏆`
+Master combined averages for multi-group analysis! ðŸ†`
 };

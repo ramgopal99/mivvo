@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_2: SubLesson = {
   id: "10.2",
   title: 'Array Operations',
   status: 'demo',
-  content: `# ⚙️ Array Operations
+  content: "`# âš™ï¸ Array Operations
 
 Arrays support various operations for searching, sorting, and manipulation. Let's explore the most common array algorithms and operations!
 
 ---
 
-## 🔍 Searching Operations
+## ðŸ” Searching Operations
 
 ### **Linear Search - O(n)**
-\`\`\`python
+\`"\`\`python
 def linear_search(arr, target):
     """Find target in array using linear search."""
     for i in range(len(arr)):
@@ -51,9 +51,9 @@ print(f"Index of 25: {binary_search(sorted_numbers, 25)}")  # -1
 
 ---
 
-## 📊 Sorting Operations
+## ðŸ“Š Sorting Operations
 
-### **Bubble Sort - O(n²)**
+### **Bubble Sort - O(nÂ²)**
 \`\`\`python
 def bubble_sort(arr):
     """Sort array using bubble sort."""
@@ -92,7 +92,7 @@ print(f"After: {sorted_numbers}")
 
 ---
 
-## 🔄 Array Manipulation
+## ðŸ”„ Array Manipulation
 
 ### **Reverse Array**
 \`\`\`python
@@ -126,7 +126,7 @@ print(f"Rotate left by 4: {rotate_left(numbers, 4)}")
 
 ---
 
-## 📈 Array Statistics
+## ðŸ“ˆ Array Statistics
 
 ### **Common Statistical Operations**
 \`\`\`python
@@ -161,7 +161,7 @@ for key, value in stats.items():
 
 ---
 
-## 🎯 Array Algorithms
+## ðŸŽ¯ Array Algorithms
 
 ### **Find Duplicates**
 \`\`\`python
@@ -216,7 +216,7 @@ print(f"Missing number: {find_missing_number(numbers, 10)}")
 
 ---
 
-## ⚡ Performance Comparison
+## âš¡ Performance Comparison
 
 ### **Algorithm Complexity**
 | Operation | Time Complexity | Use Case |
@@ -224,10 +224,11 @@ print(f"Missing number: {find_missing_number(numbers, 10)}")
 | Access by index | O(1) | Random access |
 | Linear search | O(n) | Unsorted data |
 | Binary search | O(log n) | Sorted data |
-| Bubble sort | O(n²) | Small arrays |
+| Bubble sort | O(nÂ²) | Small arrays |
 | Quick sort | O(n log n) | General sorting |
 | Reverse | O(n) | In-place operations |
 
-Array operations are fundamental to computer science and form the basis of many algorithms! 🔬`
+Array operations are fundamental to computer science and form the basis of many algorithms! ðŸ”¬`
 };
+
 

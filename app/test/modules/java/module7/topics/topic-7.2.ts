@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_2: SubLesson = {
   id: "7.2",
   title: 'Extending Classes',
   status: 'completed',
-  content: `# 🔗 Extending Classes in Java
+  content: "`# ðŸ”— Extending Classes in Java
 
-The \`extends\` keyword is used to create a subclass that inherits from a superclass. This mechanism allows subclasses to inherit fields and methods from their parent class while adding new functionality or modifying inherited behavior. Understanding how to properly extend classes is essential for effective inheritance design.
+The \`"extends\` keyword is used to create a subclass that inherits from a superclass. This mechanism allows subclasses to inherit fields and methods from their parent class while adding new functionality or modifying inherited behavior. Understanding how to properly extend classes is essential for effective inheritance design.
 
 ---
 
-## 📋 The extends Keyword
+## ðŸ“‹ The extends Keyword
 
 ### **Basic Class Extension**
 \`\`\`java
@@ -146,7 +146,7 @@ public class ConstructorChaining {
 
 ---
 
-## 🔄 Method Overriding
+## ðŸ”„ Method Overriding
 
 ### **@Override Annotation**
 \`\`\`java
@@ -209,32 +209,32 @@ public class OverridingRules {
     }
 
     static class Child extends Parent {
-        // ✅ Valid override: same signature, compatible return type
+        // âœ… Valid override: same signature, compatible return type
         @Override
         public void method1() {
             System.out.println("Child method1");
         }
 
-        // ✅ Valid override: can make visibility more permissive
+        // âœ… Valid override: can make visibility more permissive
         @Override
         public void method2() {
             System.out.println("Child method2");
         }
 
-        // ❌ Invalid: cannot override final method
+        // âŒ Invalid: cannot override final method
         // @Override
         // public void method3() { }
 
-        // ❌ Invalid: private methods are not inherited
+        // âŒ Invalid: private methods are not inherited
         // @Override
         // public void method4() { }
 
-        // ✅ Valid overload: different parameter list
+        // âœ… Valid overload: different parameter list
         public void method5(int x, int y) {
             System.out.println("Child method5: " + x + ", " + y);
         }
 
-        // ❌ Invalid: cannot make visibility more restrictive
+        // âŒ Invalid: cannot make visibility more restrictive
         // @Override
         // protected void method2() { }  // Less visible than parent
     }
@@ -251,7 +251,7 @@ public class OverridingRules {
 
 ---
 
-## 🔒 Access to Inherited Members
+## ðŸ”’ Access to Inherited Members
 
 ### **Inherited Field Access**
 \`\`\`java
@@ -266,12 +266,12 @@ public class FieldInheritance {
     static class Child extends Parent {
         public void accessFields() {
             // Accessible fields
-            System.out.println(publicField);     // ✅ Public
-            System.out.println(protectedField);  // ✅ Protected
-            System.out.println(defaultField);    // ✅ Package-private (same package)
+            System.out.println(publicField);     // âœ… Public
+            System.out.println(protectedField);  // âœ… Protected
+            System.out.println(defaultField);    // âœ… Package-private (same package)
 
             // Inaccessible field
-            // System.out.println(privateField); // ❌ Private not inherited
+            // System.out.println(privateField); // âŒ Private not inherited
         }
 
         public void modifyFields() {
@@ -340,7 +340,7 @@ public class SuperKeyword {
 
 ---
 
-## 🎯 Extending Abstract Classes
+## ðŸŽ¯ Extending Abstract Classes
 
 ### **Abstract Class Extension**
 \`\`\`java
@@ -416,7 +416,7 @@ public abstract class AbstractExtension {
 
 ---
 
-## 🔄 Multiple Levels of Extension
+## ðŸ”„ Multiple Levels of Extension
 
 ### **Multilevel Inheritance**
 \`\`\`java
@@ -499,7 +499,7 @@ public class MultilevelExtension {
 
 ---
 
-## 🎯 Extension Best Practices
+## ðŸŽ¯ Extension Best Practices
 
 ### **Composition vs Inheritance**
 \`\`\`java
@@ -634,12 +634,12 @@ public class TemplateMethodPattern {
 
 ---
 
-## 🎯 Extension Guidelines
+## ðŸŽ¯ Extension Guidelines
 
 ### **1. Follow the IS-A Relationship**
 \`\`\`java
 public class IsARelationship {
-    // ✅ Good: Car IS-A Vehicle
+    // âœ… Good: Car IS-A Vehicle
     static class Vehicle {
         public void move() {
             System.out.println("Vehicle moves");
@@ -653,7 +653,7 @@ public class IsARelationship {
         }
     }
 
-    // ❌ Bad: Square IS-NOT-A Rectangle (violates Liskov Substitution)
+    // âŒ Bad: Square IS-NOT-A Rectangle (violates Liskov Substitution)
     static class Rectangle {
         protected int width, height;
 
@@ -752,13 +752,13 @@ public class ProtectedExtension {
 ### **3. Prefer Composition over Deep Inheritance**
 \`\`\`java
 public class CompositionOverDeepInheritance {
-    // ❌ Deep inheritance hierarchy
+    // âŒ Deep inheritance hierarchy
     static class A { public void methodA() {} }
     static class B extends A { public void methodB() {} }
     static class C extends B { public void methodC() {} }
     static class D extends C { public void methodD() {} }
 
-    // ✅ Composition approach
+    // âœ… Composition approach
     static class ComposedClass {
         private A a;
         private B b;
@@ -871,6 +871,7 @@ public class AbstractClassUsage {
 }
 \`\`\`
 
-Extending classes with the \`extends\` keyword is fundamental to inheritance. Always ensure proper constructor chaining with \`super()\`, follow method overriding rules, and consider whether inheritance or composition is more appropriate for your design! 🔗`
+Extending classes with the \`extends\` keyword is fundamental to inheritance. Always ensure proper constructor chaining with \`super()\`, follow method overriding rules, and consider whether inheritance or composition is more appropriate for your design! ðŸ”—`
 };
+
 

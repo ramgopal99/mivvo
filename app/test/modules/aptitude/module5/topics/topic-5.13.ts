@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_13: SubLesson = {
   id: "5.13",
   title: 'Ratio in Word Problems',
   status: 'completed',
-  content: `# 🧩 Ratio in Word Problems
+  content: "`# ðŸ§© Ratio in Word Problems
 
 Master solving ratio word problems! This comprehensive topic covers real-life scenarios from business, age problems, mixture questions, and more. Learn problem-solving strategies and avoid common traps.
 
 ---
 
-## 🎯 Problem-Solving Strategy
+## ðŸŽ¯ Problem-Solving Strategy
 
 ### **Step-by-Step Approach**
 1. **Identify quantities** - What is being compared?
@@ -27,7 +27,7 @@ Master solving ratio word problems! This comprehensive topic covers real-life sc
 
 ---
 
-## 👥 Age Problems
+## ðŸ‘¥ Age Problems
 
 ### **Problem 1: Present Age Ratio**
 **Question:** Ratio of present ages of A and B is 3:4. After 4 years, ratio becomes 7:9. Find current ages.
@@ -51,35 +51,35 @@ Master solving ratio word problems! This comprehensive topic covers real-life sc
 
 ---
 
-## 🏢 Partnership Problems
+## ðŸ¢ Partnership Problems
 
 ### **Problem 1: Profit Sharing**
-**Question:** Partners A, B, C share profit in ratio 2:3:5. B gets ₹3000. Find total profit.
+**Question:** Partners A, B, C share profit in ratio 2:3:5. B gets â‚¹3000. Find total profit.
 
 **Solution:**
 - B's share = 3 parts
-- 3 parts = ₹3000
-- 1 part = ₹1000
+- 3 parts = â‚¹3000
+- 1 part = â‚¹1000
 - Total parts = 10
-- Total profit = 10 × 1000 = ₹10,000
+- Total profit = 10 Ã— 1000 = â‚¹10,000
 
 ### **Problem 2: Investment Ratio**
-**Question:** A:B:C invest in ratio 3:4:5. Profit ₹2400. A's share?
+**Question:** A:B:C invest in ratio 3:4:5. Profit â‚¹2400. A's share?
 
 **Solution:**
 - Total parts = 12
-- A's share = (3/12) × 2400 = ₹600
+- A's share = (3/12) Ã— 2400 = â‚¹600
 
 ---
 
-## 🧪 Mixture Problems
+## ðŸ§ª Mixture Problems
 
 ### **Problem 1: Two Solutions**
 **Question:** Mix 20L of 60% solution with x L of 40% solution to get 50% solution.
 
 **Solution:**
 - Total quantity: 20 + x
-- Acid amount: 0.6×20 + 0.4x = 0.5(20 + x)
+- Acid amount: 0.6Ã—20 + 0.4x = 0.5(20 + x)
 - 12 + 0.4x = 10 + 0.5x
 - 0.1x = 2
 - x = 20L
@@ -88,13 +88,13 @@ Master solving ratio word problems! This comprehensive topic covers real-life sc
 **Question:** 10L mixture, 40% acid. Replace 4L with water. Find new concentration.
 
 **Solution:**
-- Acid remaining: 0.4 × 6 = 2.4L
+- Acid remaining: 0.4 Ã— 6 = 2.4L
 - Total volume: 10L
-- New concentration: (2.4/10) × 100% = 24%
+- New concentration: (2.4/10) Ã— 100% = 24%
 
 ---
 
-## 🏃 Speed & Distance
+## ðŸƒ Speed & Distance
 
 ### **Problem 1: Relative Speed**
 **Question:** A travels 3km/h faster than B. A covers 48km in time B covers 36km. Find speeds.
@@ -103,7 +103,7 @@ Master solving ratio word problems! This comprehensive topic covers real-life sc
 - Let B's speed = x km/h
 - A's speed = x + 3 km/h
 - Time for B: 36/x hours
-- Distance by A: (x+3) × (36/x) = 48
+- Distance by A: (x+3) Ã— (36/x) = 48
 - x+3 = 48x/36 = 4x/3
 - 3x + 9 = 4x
 - x = 9
@@ -117,11 +117,11 @@ Master solving ratio word problems! This comprehensive topic covers real-life sc
 - Time2 = 60/40 = 1.5 hours
 - Total time = 3.5 hours
 - Total distance = 120km
-- Average speed = 120/3.5 ≈ 34.29 km/h
+- Average speed = 120/3.5 â‰ˆ 34.29 km/h
 
 ---
 
-## 💰 Work & Time
+## ðŸ’° Work & Time
 
 ### **Problem 1: Different Efficiency**
 **Question:** A does work in 10 days, B in 15 days. Together?
@@ -146,45 +146,45 @@ Master solving ratio word problems! This comprehensive topic covers real-life sc
 
 ---
 
-## 🛒 Cost & Selling Price
+## ðŸ›’ Cost & Selling Price
 
 ### **Problem 1: Consecutive Discounts**
-**Question:** Price ₹1000. 20% discount, then 10% on marked price. Final price?
+**Question:** Price â‚¹1000. 20% discount, then 10% on marked price. Final price?
 
 **Solution:**
-- After 20%: 1000 × 0.8 = ₹800
-- After 10%: 800 × 0.9 = ₹720
+- After 20%: 1000 Ã— 0.8 = â‚¹800
+- After 10%: 800 Ã— 0.9 = â‚¹720
 
 ### **Problem 2: Profit/Loss**
-**Question:** CP ₹500. SP ₹600. Profit %?
+**Question:** CP â‚¹500. SP â‚¹600. Profit %?
 
 **Solution:**
 - Profit = 100
-- Profit % = (100/500) × 100% = 20%
+- Profit % = (100/500) Ã— 100% = 20%
 
 ---
 
-## 🚨 Common Problem Traps
+## ðŸš¨ Common Problem Traps
 
 ### **Trap 1: Wrong Ratio Interpretation**
-❌ "Ratio 2:3 means 2 and 3"
+âŒ "Ratio 2:3 means 2 and 3"
 - Ratio represents relative quantities, not absolute
 
 ### **Trap 2: Time Confusion**
-❌ "Age after 5 years" - forgetting current age
+âŒ "Age after 5 years" - forgetting current age
 - Add to current age, not replace
 
 ### **Trap 3: Mixture Miscalculation**
-❌ "Final concentration = average"
+âŒ "Final concentration = average"
 - Use weighted average, not simple average
 
 ### **Trap 4: Work Rate Confusion**
-❌ "A works twice as fast as B"
+âŒ "A works twice as fast as B"
 - Speed ratio, not time ratio
 
 ---
 
-## 🎯 Practice Word Problems
+## ðŸŽ¯ Practice Word Problems
 
 ### **Age Problems:**
 1. Ages in ratio 4:5, sum 81. Find ages.
@@ -203,5 +203,5 @@ Age: 36, 45; 24, 32
 Mixture: 10L; 50%
 Work: 7.2 days; 24 days
 
-Master ratio word problems to excel in quantitative aptitude! 🏆`
+Master ratio word problems to excel in quantitative aptitude! ðŸ†`"
 };

@@ -1,24 +1,24 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_1: SubLesson = {
   id: "5.1",
   title: 'Para Jumbles',
   status: 'completed',
-  content: `# 🧩 Para Jumbles: Rearranging for Coherence
+  content: "`# ðŸ§© Para Jumbles: Rearranging for Coherence
 
 Para Jumbles (Paragraph Jumbles) involve rearranging jumbled sentences to form a logical, coherent paragraph. This skill tests your understanding of paragraph structure, logical flow, and contextual relationships - essential for competitive exams.
 
 ---
 
-## 🔍 WHAT ARE PARA JUMBLES?
+## ðŸ” WHAT ARE PARA JUMBLES?
 
 **Para Jumbles** present 4-6 sentences in random order that must be rearranged to form a meaningful paragraph. You need to:
 
-- ✅ **Identify the opening sentence** (introduction/theme)
-- ✅ **Find logical connections** between sentences
-- ✅ **Recognize pronoun references** and transitions
-- ✅ **Determine the concluding sentence** (summary/conclusion)
-- ✅ **Ensure coherent flow** throughout the paragraph
+- âœ… **Identify the opening sentence** (introduction/theme)
+- âœ… **Find logical connections** between sentences
+- âœ… **Recognize pronoun references** and transitions
+- âœ… **Determine the concluding sentence** (summary/conclusion)
+- âœ… **Ensure coherent flow** throughout the paragraph
 
 ### Key Skills Tested:
 - **Logical Sequencing**: Chronological or logical order
@@ -28,7 +28,7 @@ Para Jumbles (Paragraph Jumbles) involve rearranging jumbled sentences to form a
 
 ---
 
-## 🎯 IDENTIFYING OPENING SENTENCES
+## ðŸŽ¯ IDENTIFYING OPENING SENTENCES
 
 ### Characteristics of Opening Sentences:
 1. **Introduction of Topic**: Presents the main subject
@@ -37,48 +37,48 @@ Para Jumbles (Paragraph Jumbles) involve rearranging jumbled sentences to form a
 4. **Background Information**: Provides context or definition
 
 **Examples:**
-- ✅ "Global warming is a serious environmental issue."
-- ✅ "Democracy is a system of government by the people."
-- ✅ "Education plays a crucial role in society."
+- âœ… "Global warming is a serious environmental issue."
+- âœ… "Democracy is a system of government by the people."
+- âœ… "Education plays a crucial role in society."
 
 ### What Opening Sentences DON'T Have:
-- ❌ Pronouns (he, she, it, they, this, these)
-- ❌ Time references (then, after that, subsequently)
-- ❌ Specific details without context
-- ❌ References to previous ideas
+- âŒ Pronouns (he, she, it, they, this, these)
+- âŒ Time references (then, after that, subsequently)
+- âŒ Specific details without context
+- âŒ References to previous ideas
 
 ---
 
-## 🔗 LOGICAL CONNECTORS & TRANSITIONS
+## ðŸ”— LOGICAL CONNECTORS & TRANSITIONS
 
 ### Time Sequence Connectors:
-- ✅ First, Then, After that, Subsequently, Finally
-- ✅ Before, During, While, Meanwhile, Later
-- ✅ Initially, Eventually, Ultimately
+- âœ… First, Then, After that, Subsequently, Finally
+- âœ… Before, During, While, Meanwhile, Later
+- âœ… Initially, Eventually, Ultimately
 
 ### Cause-Effect Connectors:
-- ✅ Because, Therefore, Consequently, As a result
-- ✅ Due to, Owing to, Hence, Thus
-- ✅ So, Since, For this reason
+- âœ… Because, Therefore, Consequently, As a result
+- âœ… Due to, Owing to, Hence, Thus
+- âœ… So, Since, For this reason
 
 ### Addition Connectors:
-- ✅ Moreover, Furthermore, In addition, Also
-- ✅ Besides, Additionally, Not only...but also
-- ✅ Similarly, Likewise
+- âœ… Moreover, Furthermore, In addition, Also
+- âœ… Besides, Additionally, Not only...but also
+- âœ… Similarly, Likewise
 
 ### Contrast Connectors:
-- ✅ However, Nevertheless, On the other hand
-- ✅ Although, Though, Despite, In spite of
-- ✅ But, Yet, Still, Whereas
+- âœ… However, Nevertheless, On the other hand
+- âœ… Although, Though, Despite, In spite of
+- âœ… But, Yet, Still, Whereas
 
 ### Conclusion Connectors:
-- ✅ Therefore, Hence, Thus, In conclusion
-- ✅ To sum up, Overall, In summary
-- ✅ Finally, Lastly, Ultimately
+- âœ… Therefore, Hence, Thus, In conclusion
+- âœ… To sum up, Overall, In summary
+- âœ… Finally, Lastly, Ultimately
 
 ---
 
-## 👥 PRONOUN REFERENCES
+## ðŸ‘¥ PRONOUN REFERENCES
 
 ### Pronoun-Antecedent Relationships:
 - **He/She/They**: Refer to previously mentioned persons
@@ -92,17 +92,17 @@ Para Jumbles (Paragraph Jumbles) involve rearranging jumbled sentences to form a
 3. "This discovery has excited astronomers worldwide." (refers to discovery)
 
 ### Watch for Ambiguity:
-- ✅ Clear pronoun reference: "The teacher explained the lesson. She was very clear."
-- ❌ Unclear reference: "John told Mary that he loved her." (Who loves whom?)
+- âœ… Clear pronoun reference: "The teacher explained the lesson. She was very clear."
+- âŒ Unclear reference: "John told Mary that he loved her." (Who loves whom?)
 
 ---
 
-## 📍 STRUCTURAL PATTERNS
+## ðŸ“ STRUCTURAL PATTERNS
 
 ### Chronological/Process Flow:
-1. **Introduction** → What/Why/How something happens
-2. **Development** → Step-by-step process or sequence
-3. **Conclusion** → Result, importance, or summary
+1. **Introduction** â†’ What/Why/How something happens
+2. **Development** â†’ Step-by-step process or sequence
+3. **Conclusion** â†’ Result, importance, or summary
 
 **Example:**
 1. "Photosynthesis is essential for plant life." (Introduction)
@@ -111,20 +111,20 @@ Para Jumbles (Paragraph Jumbles) involve rearranging jumbled sentences to form a
 4. "Without photosynthesis, life on earth would be impossible." (Conclusion)
 
 ### Problem-Solution Pattern:
-1. **Problem Identification** → States the issue
-2. **Explanation** → Why it's a problem
-3. **Solution** → How to solve it
-4. **Benefits** → Why the solution works
+1. **Problem Identification** â†’ States the issue
+2. **Explanation** â†’ Why it's a problem
+3. **Solution** â†’ How to solve it
+4. **Benefits** â†’ Why the solution works
 
 ### Cause-Effect Pattern:
-1. **Cause** → What leads to something
-2. **Effect** → What happens as a result
-3. **Explanation** → Why this relationship exists
-4. **Implications** → Broader consequences
+1. **Cause** â†’ What leads to something
+2. **Effect** â†’ What happens as a result
+3. **Explanation** â†’ Why this relationship exists
+4. **Implications** â†’ Broader consequences
 
 ---
 
-## 🛠️ SOLVING STRATEGY
+## ðŸ› ï¸ SOLVING STRATEGY
 
 ### Step-by-Step Approach:
 
@@ -154,14 +154,14 @@ Para Jumbles (Paragraph Jumbles) involve rearranging jumbled sentences to form a
 - Ensure no abrupt jumps or missing links
 
 ### Quick Tips:
-- ✅ **Eliminate options** that don't make sense together
-- ✅ **Look for mandatory pairs** (one sentence must follow another)
-- ✅ **Check theme consistency** (all sentences should relate)
-- ✅ **Verify pronoun logic** (each pronoun needs an antecedent)
+- âœ… **Eliminate options** that don't make sense together
+- âœ… **Look for mandatory pairs** (one sentence must follow another)
+- âœ… **Check theme consistency** (all sentences should relate)
+- âœ… **Verify pronoun logic** (each pronoun needs an antecedent)
 
 ---
 
-## ⚠️ COMMON PITFALLS
+## âš ï¸ COMMON PITFALLS
 
 ### Avoid These Mistakes:
 1. **Pronoun Confusion**: Assuming pronouns refer to wrong antecedents
@@ -176,7 +176,7 @@ Para Jumbles (Paragraph Jumbles) involve rearranging jumbled sentences to form a
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Basic Para Jumble
 **Arrange these sentences in logical order:**
@@ -246,7 +246,7 @@ E. Governments must balance development with sustainability.
 
 ---
 
-## 📊 JUMBLE PATTERNS SUMMARY
+## ðŸ“Š JUMBLE PATTERNS SUMMARY
 
 | Pattern | Opening Sentence | Middle Sentences | Closing Sentence |
 |---|---|---|---|
@@ -257,30 +257,30 @@ E. Governments must balance development with sustainability.
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **4-6 Sentences**: Usually 5-6 sentences to arrange
 2. **Logical Flow**: Chronological, cause-effect, or thematic
 3. **Pronoun Logic**: Each pronoun needs clear antecedent
 4. **Connector Clues**: Transition words guide arrangement
 5. **Theme Consistency**: All sentences relate to one topic
 
-### 💡 Quick Solving Strategy:
+### ðŸ’¡ Quick Solving Strategy:
 1. **Find opening sentence** - No pronouns, general introduction
 2. **Look for pairs** - Sentences that must go together
 3. **Check connectors** - "Therefore" follows reason, "However" shows contrast
 4. **Verify pronouns** - Each pronoun references something before
 5. **Read final arrangement** - Ensure smooth, logical flow
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Eliminate options** that break pronoun logic
 - **Find mandatory pairs** first (one must follow another)
 - **Use connector words** as clues ("therefore" can't start)
 - **Check for theme jumps** (all sentences should relate)
 - **Trust logical flow** over complex reasoning
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Practice 10-15 jumbles** daily with timer
 - **Learn pattern recognition** - common sequences repeat
 - **Master pronoun tracking** - essential for most jumbles
@@ -289,21 +289,22 @@ E. Governments must balance development with sustainability.
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Pattern Recognition**: Learn common paragraph structures
 2. **Connector Mastery**: Know what each transition word indicates
 3. **Pronoun Tracking**: Always ensure clear references
 4. **Logical Flow**: Read arranged paragraphs to check coherence
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Para jumbles are like puzzle assembly:**
-- 🧩 **Opening piece**: No pronouns, introduces topic
-- 🧩 **Connector pieces**: Transition words show relationships
-- 🧩 **Pronoun links**: Each pronoun connects to previous noun
-- 🧩 **Theme consistency**: All pieces must relate to same picture
-- 🎯 **Logical flow**: Final picture must make complete sense
+- ðŸ§© **Opening piece**: No pronouns, introduces topic
+- ðŸ§© **Connector pieces**: Transition words show relationships
+- ðŸ§© **Pronoun links**: Each pronoun connects to previous noun
+- ðŸ§© **Theme consistency**: All pieces must relate to same picture
+- ðŸŽ¯ **Logical flow**: Final picture must make complete sense
 
-**Master para jumbles and become a paragraph architect!** 🧩✨`
+**Master para jumbles and become a paragraph architect!** ðŸ§©âœ¨`"
 };
+

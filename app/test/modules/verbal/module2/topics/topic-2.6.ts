@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_6: SubLesson = {
   id: "2.6",
   title: 'Conjunctions',
   status: 'completed',
-  content: `# 🔗 Conjunctions: Words That Connect Ideas
+  content: "`# ðŸ”— Conjunctions: Words That Connect Ideas
 
 Conjunctions are linking words that join words, phrases, clauses, and sentences together. They create smooth, logical connections between ideas, making writing and speech more coherent. Mastering conjunctions helps create complex, sophisticated sentences.
 
 ---
 
-## 🔍 WHAT ARE CONJUNCTIONS?
+## ðŸ” WHAT ARE CONJUNCTIONS?
 
 **Conjunctions** are words that connect:
 - **Words**: red **and** blue
@@ -25,7 +25,7 @@ Conjunctions are linking words that join words, phrases, clauses, and sentences 
 
 ---
 
-## 🤝 COORDINATING CONJUNCTIONS
+## ðŸ¤ COORDINATING CONJUNCTIONS
 
 **Coordinating conjunctions** join words, phrases, or independent clauses of equal importance.
 
@@ -33,213 +33,213 @@ Conjunctions are linking words that join words, phrases, clauses, and sentences 
 - **F**or, **A**nd, **N**or, **B**ut, **O**r, **Y**et, **S**o
 
 ### For - Shows Reason/Cause
-- ✅ **For** he was tired, he went to bed early.
-- ✅ I study hard, **for** I want to succeed.
+- âœ… **For** he was tired, he went to bed early.
+- âœ… I study hard, **for** I want to succeed.
 
 ### And - Adds Information
-- ✅ Tom **and** Jerry are friends.
-- ✅ I like tea **and** coffee.
-- ✅ She sang **and** danced beautifully.
+- âœ… Tom **and** Jerry are friends.
+- âœ… I like tea **and** coffee.
+- âœ… She sang **and** danced beautifully.
 
 ### Nor - Shows Negative Addition
-- ✅ Neither tea **nor** coffee is available.
-- ✅ He neither eats **nor** drinks.
+- âœ… Neither tea **nor** coffee is available.
+- âœ… He neither eats **nor** drinks.
 
 ### But - Shows Contrast
-- ✅ I like tea, **but** he prefers coffee.
-- ✅ She is poor, **but** happy.
-- ✅ It's raining, **but** we must go.
+- âœ… I like tea, **but** he prefers coffee.
+- âœ… She is poor, **but** happy.
+- âœ… It's raining, **but** we must go.
 
 ### Or - Shows Choice/Alternative
-- ✅ Tea **or** coffee? (choice)
-- ✅ Study now **or** fail later. (alternative)
-- ✅ Either this **or** that.
+- âœ… Tea **or** coffee? (choice)
+- âœ… Study now **or** fail later. (alternative)
+- âœ… Either this **or** that.
 
 ### Yet - Shows Unexpected Contrast
-- ✅ He is poor, **yet** honest.
-- ✅ It's expensive, **yet** worth it.
-- ✅ She worked hard, **yet** failed.
+- âœ… He is poor, **yet** honest.
+- âœ… It's expensive, **yet** worth it.
+- âœ… She worked hard, **yet** failed.
 
 ### So - Shows Result/Effect
-- ✅ It rained, **so** we stayed home.
-- ✅ He studied hard, **so** he passed.
-- ✅ I'm tired, **so** I'm going to bed.
+- âœ… It rained, **so** we stayed home.
+- âœ… He studied hard, **so** he passed.
+- âœ… I'm tired, **so** I'm going to bed.
 
 ---
 
-## 📉 SUBORDINATING CONJUNCTIONS
+## ðŸ“‰ SUBORDINATING CONJUNCTIONS
 
 **Subordinating conjunctions** join a dependent clause to an independent clause, making one clause subordinate to the other.
 
 ### Time Relationships:
-- ✅ **After** I finish work, I'll call you.
-- ✅ **Before** you leave, say goodbye.
-- ✅ **When** the bell rings, stand up.
-- ✅ **While** I was sleeping, it rained.
-- ✅ **Since** I arrived, I've been happy.
-- ✅ **Until** he comes, wait here.
+- âœ… **After** I finish work, I'll call you.
+- âœ… **Before** you leave, say goodbye.
+- âœ… **When** the bell rings, stand up.
+- âœ… **While** I was sleeping, it rained.
+- âœ… **Since** I arrived, I've been happy.
+- âœ… **Until** he comes, wait here.
 
 ### Cause & Effect:
-- ✅ I stayed home **because** it was raining.
-- ✅ **Since** you're here, let's study.
-- ✅ He failed **as** he didn't study.
+- âœ… I stayed home **because** it was raining.
+- âœ… **Since** you're here, let's study.
+- âœ… He failed **as** he didn't study.
 
 ### Condition:
-- ✅ **If** it rains, we'll stay home.
-- ✅ I'll go **provided that** you come with me.
-- ✅ **Unless** you hurry, you'll be late.
+- âœ… **If** it rains, we'll stay home.
+- âœ… I'll go **provided that** you come with me.
+- âœ… **Unless** you hurry, you'll be late.
 
 ### Contrast & Concession:
-- ✅ **Although** it's raining, we'll go out.
-- ✅ **Though** he is poor, he is happy.
-- ✅ **Whereas** I like tea, he prefers coffee.
+- âœ… **Although** it's raining, we'll go out.
+- âœ… **Though** he is poor, he is happy.
+- âœ… **Whereas** I like tea, he prefers coffee.
 
 ### Purpose:
-- ✅ I study hard **so that** I can succeed.
-- ✅ She works **in order that** her family can live well.
+- âœ… I study hard **so that** I can succeed.
+- âœ… She works **in order that** her family can live well.
 
 ### Manner & Comparison:
-- ✅ Do it **as** I told you.
-- ✅ He behaved **as if** he were the boss.
-- ✅ Treat others **as** you would like to be treated.
+- âœ… Do it **as** I told you.
+- âœ… He behaved **as if** he were the boss.
+- âœ… Treat others **as** you would like to be treated.
 
 ### Additional Subordinating Conjunctions:
 
 #### Result & Conclusion:
-- ✅ The storm was so severe **that** trees fell down.
-- ✅ He shouted **so that** everyone could hear him.
+- âœ… The storm was so severe **that** trees fell down.
+- âœ… He shouted **so that** everyone could hear him.
 
 #### Place & Position:
-- ✅ Stay **where** you are.
-- ✅ Go **wherever** you want to go.
+- âœ… Stay **where** you are.
+- âœ… Go **wherever** you want to go.
 
 #### Reason & Purpose (Additional):
-- ✅ I came early **lest** I should miss the train.
-- ✅ Work hard **in case** you want to succeed.
+- âœ… I came early **lest** I should miss the train.
+- âœ… Work hard **in case** you want to succeed.
 
 #### Concession (Additional):
-- ✅ **While** I admit his intelligence, I doubt his sincerity.
-- ✅ **Whereas** he is outgoing, she is reserved.
+- âœ… **While** I admit his intelligence, I doubt his sincerity.
+- âœ… **Whereas** he is outgoing, she is reserved.
 
 ---
 
-## ⚖️ CORRELATIVE CONJUNCTIONS
+## âš–ï¸ CORRELATIVE CONJUNCTIONS
 
 **Correlative conjunctions** work in pairs to join equal elements, creating balance in sentences.
 
 ### Common Pairs:
 
 #### Either...Or - Shows Choice
-- ✅ **Either** tea **or** coffee is fine.
-- ✅ You can **either** study **or** play.
-- ✅ **Either** come now **or** don't come at all.
+- âœ… **Either** tea **or** coffee is fine.
+- âœ… You can **either** study **or** play.
+- âœ… **Either** come now **or** don't come at all.
 
 #### Neither...Nor - Shows Negative Choice
-- ✅ **Neither** tea **nor** coffee is available.
-- ✅ He **neither** eats **nor** drinks.
-- ✅ **Neither** you **nor** I am wrong.
+- âœ… **Neither** tea **nor** coffee is available.
+- âœ… He **neither** eats **nor** drinks.
+- âœ… **Neither** you **nor** I am wrong.
 
 #### Both...And - Shows Addition
-- ✅ **Both** tea **and** coffee are good.
-- ✅ She **both** sings **and** dances.
-- ✅ **Both** you **and** I are right.
+- âœ… **Both** tea **and** coffee are good.
+- âœ… She **both** sings **and** dances.
+- âœ… **Both** you **and** I are right.
 
 #### Not Only...But Also - Shows Addition with Emphasis
-- ✅ He is **not only** intelligent **but also** hardworking.
-- ✅ She **not only** sings **but also** dances.
-- ✅ The book is **not only** interesting **but also** educational.
+- âœ… He is **not only** intelligent **but also** hardworking.
+- âœ… She **not only** sings **but also** dances.
+- âœ… The book is **not only** interesting **but also** educational.
 
 #### Whether...Or - Shows Alternative Conditions
-- ✅ I don't know **whether** to study **or** to play.
-- ✅ **Whether** you like it **or** not, you must go.
-- ✅ Ask **whether** he comes **or** stays.
+- âœ… I don't know **whether** to study **or** to play.
+- âœ… **Whether** you like it **or** not, you must go.
+- âœ… Ask **whether** he comes **or** stays.
 
 #### As...As - Shows Equality
-- ✅ He is **as** tall **as** his father.
-- ✅ She sings **as** beautifully **as** a professional.
-- ✅ This is **as** good **as** it gets.
+- âœ… He is **as** tall **as** his father.
+- âœ… She sings **as** beautifully **as** a professional.
+- âœ… This is **as** good **as** it gets.
 
 ---
 
-## 📝 CONJUNCTIVE ADVERBS
+## ðŸ“ CONJUNCTIVE ADVERBS
 
 **Conjunctive adverbs** connect independent clauses and show relationships between ideas. They are followed by commas.
 
 ### Addition: also, besides, furthermore, moreover
-- ✅ I like tea. **Also**, I enjoy coffee.
-- ✅ He is intelligent. **Furthermore**, he is hardworking.
+- âœ… I like tea. **Also**, I enjoy coffee.
+- âœ… He is intelligent. **Furthermore**, he is hardworking.
 
 ### Contrast: however, nevertheless, on the contrary, still
-- ✅ It's raining. **However**, we must go.
-- ✅ He failed. **Nevertheless**, he tried again.
+- âœ… It's raining. **However**, we must go.
+- âœ… He failed. **Nevertheless**, he tried again.
 
 ### Result: consequently, hence, therefore, thus
-- ✅ He studied hard. **Therefore**, he passed.
-- ✅ It rained heavily. **Consequently**, the match was cancelled.
+- âœ… He studied hard. **Therefore**, he passed.
+- âœ… It rained heavily. **Consequently**, the match was cancelled.
 
 ### Time: meanwhile, then, next, finally, subsequently, thereafter
-- ✅ I arrived first. **Then**, others came.
-- ✅ She started singing. **Meanwhile**, he played guitar.
-- ✅ First, we ate dinner. **Subsequently**, we watched a movie.
+- âœ… I arrived first. **Then**, others came.
+- âœ… She started singing. **Meanwhile**, he played guitar.
+- âœ… First, we ate dinner. **Subsequently**, we watched a movie.
 
 #### Emphasis: indeed, in fact, certainly, surely
-- ✅ He is talented. **Indeed**, he is the best in class.
-- ✅ I will help you. **In fact**, I insist on it.
+- âœ… He is talented. **Indeed**, he is the best in class.
+- âœ… I will help you. **In fact**, I insist on it.
 
 #### Exception: otherwise, else
-- ✅ Study hard, **otherwise** you'll fail.
-- ✅ Leave now, **else** you'll be late.
+- âœ… Study hard, **otherwise** you'll fail.
+- âœ… Leave now, **else** you'll be late.
 
 ### Complete List of Conjunctive Adverbs:
 
 #### Addition: also, besides, furthermore, in addition, moreover, similarly
-- ✅ I like tea. **Besides**, it's healthy. **Furthermore**, it's refreshing.
+- âœ… I like tea. **Besides**, it's healthy. **Furthermore**, it's refreshing.
 
 #### Contrast: conversely, however, in contrast, instead, nevertheless, nonetheless, on the contrary, otherwise, still
-- ✅ It's raining. **However**, we must go. **Nevertheless**, we'll try.
+- âœ… It's raining. **However**, we must go. **Nevertheless**, we'll try.
 
 #### Cause/Effect: accordingly, consequently, hence, otherwise, so, therefore, thus
-- ✅ He studied hard. **Therefore**, he passed. **Consequently**, he got a scholarship.
+- âœ… He studied hard. **Therefore**, he passed. **Consequently**, he got a scholarship.
 
 #### Time: finally, meanwhile, next, subsequently, then, thereafter
-- ✅ First, we planned. **Then**, we executed. **Finally**, we succeeded.
+- âœ… First, we planned. **Then**, we executed. **Finally**, we succeeded.
 
 #### Emphasis: certainly, indeed, in fact, surely
-- ✅ He will succeed. **Indeed**, he is very talented.
+- âœ… He will succeed. **Indeed**, he is very talented.
 
 ---
 
-## ⚠️ COMMON CONJUNCTION MISTAKES
+## âš ï¸ COMMON CONJUNCTION MISTAKES
 
-### ❌ Wrong Usage:
-1. ❌ Although it rained but we went out.
-   ✅ Although it rained, we went out. (no but with although)
+### âŒ Wrong Usage:
+1. âŒ Although it rained but we went out.
+   âœ… Although it rained, we went out. (no but with although)
 
-2. ❌ He neither eats nor drinks.
-   ✅ He eats neither rice nor bread. (nor follows neither)
+2. âŒ He neither eats nor drinks.
+   âœ… He eats neither rice nor bread. (nor follows neither)
 
-3. ❌ Because he was tired so he slept.
-   ✅ He slept because he was tired. (no so with because)
+3. âŒ Because he was tired so he slept.
+   âœ… He slept because he was tired. (no so with because)
 
-4. ❌ Either he comes or I go.
-   ✅ Either he comes or I go. ✓ (correct - or with either)
+4. âŒ Either he comes or I go.
+   âœ… Either he comes or I go. âœ“ (correct - or with either)
 
-5. ❌ I like both tea and coffee.
-   ✅ I like both tea and coffee. ✓ (correct)
+5. âŒ I like both tea and coffee.
+   âœ… I like both tea and coffee. âœ“ (correct)
 
-6. ❌ Since you are here therefore let's study.
-   ✅ Since you are here, let's study. (no therefore with since)
+6. âŒ Since you are here therefore let's study.
+   âœ… Since you are here, let's study. (no therefore with since)
 
-### ✅ Correct Usage:
-- ✅ **And** joins similar ideas: tea **and** coffee
-- ✅ **But** shows contrast: good **but** expensive
-- ✅ **Or** shows choice: this **or** that
-- ✅ **So** shows result: tired, **so** slept
-- ✅ **Because** shows reason: failed **because** lazy
+### âœ… Correct Usage:
+- âœ… **And** joins similar ideas: tea **and** coffee
+- âœ… **But** shows contrast: good **but** expensive
+- âœ… **Or** shows choice: this **or** that
+- âœ… **So** shows result: tired, **so** slept
+- âœ… **Because** shows reason: failed **because** lazy
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Choose the Correct Conjunction
 1. I like tea ________ coffee. (and/but/or)
@@ -270,24 +270,24 @@ Conjunctions are linking words that join words, phrases, clauses, and sentences 
 5. whether...or (alternative)
 
 ### Exercise 3: Correct the Conjunction Errors
-1. ❌ Although it rained but we went out.
-   ✅ Although it rained, we went out.
+1. âŒ Although it rained but we went out.
+   âœ… Although it rained, we went out.
 
-2. ❌ He neither studies nor plays.
-   ✅ He studies neither mathematics nor science.
+2. âŒ He neither studies nor plays.
+   âœ… He studies neither mathematics nor science.
 
-3. ❌ Because he worked hard so he succeeded.
-   ✅ He succeeded because he worked hard.
+3. âŒ Because he worked hard so he succeeded.
+   âœ… He succeeded because he worked hard.
 
-4. ❌ I like both tea and coffee.
-   ✅ I like both tea and coffee. ✓
+4. âŒ I like both tea and coffee.
+   âœ… I like both tea and coffee. âœ“
 
-5. ❌ Since you came therefore we can start.
-   ✅ Since you came, we can start.
+5. âŒ Since you came therefore we can start.
+   âœ… Since you came, we can start.
 
 ---
 
-## 📊 CONJUNCTION TYPES SUMMARY
+## ðŸ“Š CONJUNCTION TYPES SUMMARY
 
 | Type | Purpose | Examples | Punctuation |
 |---|---|---|---|
@@ -298,22 +298,22 @@ Conjunctions are linking words that join words, phrases, clauses, and sentences 
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 Common Test Patterns:
+### ðŸ† Common Test Patterns:
 1. **Parallel Structure**: Ensure similar elements are joined properly
 2. **Comma Usage**: Coordinating conjunctions often need commas
 3. **Correlative Pairs**: Must use both words of the pair
 4. **Subordinating Order**: Dependent clause first often needs comma
 5. **Redundancy**: Avoid using two conjunctions that mean the same thing
 
-### 💡 Quick Selection Strategy:
+### ðŸ’¡ Quick Selection Strategy:
 1. **Determine Relationship**: Addition, contrast, choice, reason?
 2. **Check Structure**: Are elements equal or unequal?
 3. **Count Clauses**: One independent + one dependent = subordinating
 4. **Look for Pairs**: Either/or, both/and suggest correlative
 
-### ⚡ Time-Saving Tips:
+### âš¡ Time-Saving Tips:
 - **FANBOYS**: For And Nor But Or Yet So
 - **Correlatives**: Either/or, neither/nor, both/and
 - **Common Contrast**: Although, but, however, yet
@@ -321,21 +321,22 @@ Conjunctions are linking words that join words, phrases, clauses, and sentences 
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Group by Function**: Learn conjunctions by what they do (add, contrast, etc.)
 2. **Master FANBOYS**: Memorize coordinating conjunctions
 3. **Practice Pairs**: Learn correlative conjunctions together
 4. **Context Matters**: Choose based on the relationship between ideas
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Think of conjunctions as "relationship builders":**
-- 👫 **And**: Brings ideas together
-- ⚔️ **But/Yet**: Shows contrast or surprise
-- 🔀 **Or**: Offers choices
-- 🎯 **So**: Shows results
-- 🤔 **Because/Although**: Explains reasons/conditions
+- ðŸ‘« **And**: Brings ideas together
+- âš”ï¸ **But/Yet**: Shows contrast or surprise
+- ðŸ”€ **Or**: Offers choices
+- ðŸŽ¯ **So**: Shows results
+- ðŸ¤” **Because/Although**: Explains reasons/conditions
 
-**Master conjunctions and you'll build perfect "relationships" between your ideas!** 🔗✨`
+**Master conjunctions and you'll build perfect "relationships" between your ideas!** ðŸ”—âœ¨`"
 };
+

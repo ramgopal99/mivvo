@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_8: SubLesson = {
   id: "2.8",
   title: 'Puzzle-Based Blood Relations',
   status: 'completed',
-  content: `# 🧩 Puzzle-Based Blood Relations
+  content: "`# ðŸ§© Puzzle-Based Blood Relations
 
 Puzzle-based blood relation problems combine logical reasoning with family relationships to create complex scenarios. These problems require you to analyze multiple clues, eliminate possibilities, and deduce relationships through systematic reasoning.
 
 ---
 
-## 🎯 Understanding Puzzle-Based Relations
+## ðŸŽ¯ Understanding Puzzle-Based Relations
 
 ### **What are Puzzle-Based Blood Relations?**
 These problems present family relationship information in the form of clues or statements, requiring you to:
@@ -27,7 +27,7 @@ These problems present family relationship information in the form of clues or s
 
 ---
 
-## 🧩 Common Puzzle Types
+## ðŸ§© Common Puzzle Types
 
 ### **Type 1: Family Group Puzzles**
 Problems describing a family gathering or group with relationship clues.
@@ -43,7 +43,7 @@ Family members living in different places with relationship clues.
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Read All Clues Carefully**
 - Note all given information
@@ -67,7 +67,7 @@ Family members living in different places with relationship clues.
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Family Puzzle**
 **Clues:**
@@ -98,7 +98,7 @@ Family members living in different places with relationship clues.
 
 ---
 
-## 🔍 Puzzle-Solving Techniques
+## ðŸ” Puzzle-Solving Techniques
 
 ### **1. Grid Method**
 - Create a grid of all family members
@@ -117,7 +117,7 @@ Family members living in different places with relationship clues.
 
 ---
 
-## 📈 Advanced Puzzle Concepts
+## ðŸ“ˆ Advanced Puzzle Concepts
 
 ### **Multiple Solution Elimination**
 Problems where you must eliminate multiple wrong answers.
@@ -130,7 +130,7 @@ Complex relationship loops that require careful tracing.
 
 ---
 
-## 🛠️ Common Puzzle Patterns
+## ðŸ› ï¸ Common Puzzle Patterns
 
 ### **Pattern 1: Family Gathering**
 - Multiple generations present
@@ -149,7 +149,7 @@ Complex relationship loops that require careful tracing.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Read All Clues First**: Don't solve until you have all information
 2. **Draw Diagrams**: Visual representation helps
@@ -159,20 +159,20 @@ Complex relationship loops that require careful tracing.
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Incomplete Reading**
-❌ Solving before reading all clues
+âŒ Solving before reading all clues
 
 ### **Mistake 2: Wrong Assumptions**
-❌ Assuming relationships without evidence
+âŒ Assuming relationships without evidence
 
 ### **Mistake 3: Missing Clues**
-❌ Not using all available information
+âŒ Not using all available information
 
 ---
 
-## 🧩 Practice Questions
+## ðŸ§© Practice Questions
 
 ### **Question 1**
 **Clues:**
@@ -202,5 +202,5 @@ Complex relationship loops that require careful tracing.
 
 **How many people are mentioned?**
 
-**Master puzzle-based blood relations to solve complex family mysteries! 🧩✨**`
+**Master puzzle-based blood relations to solve complex family mysteries! ðŸ§©âœ¨**`"
 };

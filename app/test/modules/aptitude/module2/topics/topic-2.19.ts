@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_19: SubLesson = {
   id: "2.19",
   title: 'Digit Sum / Digital Root',
   status: 'completed',
-  content: `# 🔢 Digit Sum / Digital Root
+  content: "`# ðŸ”¢ Digit Sum / Digital Root
 
 Digit sum and digital root are important concepts in number theory with applications in divisibility tests, congruence, and pattern recognition. These concepts help solve problems involving large numbers efficiently.
 
 ---
 
-## 🎯 What is Digit Sum?
+## ðŸŽ¯ What is Digit Sum?
 
 ### Definition
 Digit sum is the sum of all digits in a number.
@@ -24,13 +24,13 @@ Digit sum is the sum of all digits in a number.
 
 ---
 
-## 📊 Calculating Digit Sum
+## ðŸ“Š Calculating Digit Sum
 
 ### Method 1: **Direct Addition**
 Add all digits individually.
 
 **Example**: Digit sum of 56789
-\`\`\`
+\`"\`\`
 5 + 6 + 7 + 8 + 9 = 35
 \`\`\`
 
@@ -48,7 +48,7 @@ For large numbers, sum digits repeatedly.
 
 ---
 
-## 🧮 Digital Root
+## ðŸ§® Digital Root
 
 ### Definition
 Digital root is the single digit obtained by repeatedly summing digits until a single digit remains.
@@ -62,7 +62,7 @@ Digital root is the single digit obtained by repeatedly summing digits until a s
 
 ---
 
-## 🎯 Digital Root Properties
+## ðŸŽ¯ Digital Root Properties
 
 ### Property 1: **Range**
 Digital root is always between 1-9, except for multiples of 9 which have digital root 9.
@@ -70,7 +70,7 @@ Digital root is always between 1-9, except for multiples of 9 which have digital
 ### Property 2: **Multiples of 9**
 Numbers divisible by 9 have digital root 9.
 
-**Example**: 18: 1+8=9, divisible by 9 ✓
+**Example**: 18: 1+8=9, divisible by 9 âœ“
 
 ### Property 3: **Congruence**
 Two numbers are congruent modulo 9 if they have the same digital root.
@@ -82,12 +82,12 @@ Digital root of sum = digital root of sum of digital roots.
 \`\`\`
 DR(15)=6, DR(27)=9
 6+9=15, DR(15)=6
-Actual: 15+27=42, DR(42)=6 ✓
+Actual: 15+27=42, DR(42)=6 âœ“
 \`\`\`
 
 ---
 
-## 🧠 Digit Sum Tricks
+## ðŸ§  Digit Sum Tricks
 
 ### Trick 1: **Casting Out Nines**
 To check divisibility by 9, compare digit sum to 9.
@@ -101,11 +101,11 @@ Not 9, so not divisible by 9
 ### Trick 2: **Digital Root for Multiplication**
 Digital root of product = digital root of product of digital roots.
 
-**Example**: Digital root of 12 × 15
+**Example**: Digital root of 12 Ã— 15
 \`\`\`
 DR(12)=3, DR(15)=6
-3×6=18, DR(18)=9
-Actual: 12×15=180, DR(180)=9 ✓
+3Ã—6=18, DR(18)=9
+Actual: 12Ã—15=180, DR(180)=9 âœ“
 \`\`\`
 
 ### Trick 3: **Digital Root for Powers**
@@ -113,7 +113,7 @@ Digital root cycles every power.
 
 **Example**: Digital root of 7^n
 \`\`\`
-7¹: 7, 7²: 49→13→4, 7³: 343→10→1, 7⁴: 2401→7
+7Â¹: 7, 7Â²: 49â†’13â†’4, 7Â³: 343â†’10â†’1, 7â´: 2401â†’7
 Cycle: 7, 4, 1, 7, 4, 1...
 \`\`\`
 
@@ -122,7 +122,7 @@ Keep summing until single digit (digital root).
 
 ---
 
-## 📊 Applications in Aptitude
+## ðŸ“Š Applications in Aptitude
 
 ### 1. **Divisibility Tests**
 **Example**: Check if 142857 is divisible by 9
@@ -142,14 +142,14 @@ Wait, 1+2+3+4+5=15, need sum=25, so x=10 (invalid)
 \`\`\`
 
 ### 4. **Congruence Problems**
-**Example**: Find x such that x ≡ 5 (mod 9)
+**Example**: Find x such that x â‰¡ 5 (mod 9)
 \`\`\`
 Digital root should be 5
 \`\`\`
 
 ---
 
-## 🔍 Advanced Digital Root Concepts
+## ðŸ” Advanced Digital Root Concepts
 
 ### 1. **Digital Root of Factorials**
 **Example**: Digital root of 10!
@@ -169,12 +169,12 @@ Product of digits repeatedly summed.
 \`\`\`
 2^1:2, 2^2:4, 2^3:8, 2^4:7, 2^5:5, 2^6:1, 2^7:2...
 Cycle: 2,4,8,7,5,1
-100÷6=16×6+4, so 2^100 ≡ 2^4 ≡7 (mod 9)
+100Ã·6=16Ã—6+4, so 2^100 â‰¡ 2^4 â‰¡7 (mod 9)
 \`\`\`
 
 ---
 
-## 🧮 Digital Root Table
+## ðŸ§® Digital Root Table
 
 | Number | Digital Root |
 |--------|--------------|
@@ -191,7 +191,7 @@ Cycle: 2,4,8,7,5,1
 
 ---
 
-## 🎯 Special Cases
+## ðŸŽ¯ Special Cases
 
 ### 1. **Numbers Divisible by 9**
 Digital root = 9
@@ -207,7 +207,7 @@ Digital root of 0 is 0
 
 ---
 
-## 📝 Practice Examples
+## ðŸ“ Practice Examples
 
 ### Example 1: Basic Digit Sum
 Find digit sum of 987654
@@ -217,7 +217,7 @@ Find digit sum of 987654
 ### Example 2: Digital Root
 Find digital root of 987654
 
-**Solution**: 39 → 3+9 = 12 → 1+2 = 3
+**Solution**: 39 â†’ 3+9 = 12 â†’ 1+2 = 3
 
 ### Example 3: Divisibility Check
 Is 156789 divisible by 9?
@@ -225,14 +225,14 @@ Is 156789 divisible by 9?
 **Solution**: Digit sum: 1+5+6+7+8+9=36, 3+6=9, yes
 
 ### Example 4: Digital Root of Product
-Find digital root of 25 × 36
+Find digital root of 25 Ã— 36
 
-**Solution**: DR(25)=7, DR(36)=9, 7×9=63, 6+3=9
+**Solution**: DR(25)=7, DR(36)=9, 7Ã—9=63, 6+3=9
 
 ### Example 5: Digital Root of Power
 Find digital root of 3^50
 
-**Solution**: 3^1:3, 3^2:9, 3^3:27→9, cycle:3,9,9,9,...
+**Solution**: 3^1:3, 3^2:9, 3^3:27â†’9, cycle:3,9,9,9,...
 50 mod 2 = 0, so like 3^2: 9
 
 ### Example 6: Missing Digit
@@ -246,10 +246,11 @@ Find digital root of 123456789
 **Solution**: 1+2+3+4+5+6+7+8+9=45, 4+5=9
 
 ### Example 8: Congruence
-Find x such that DR(x) = 7 and x ≡ 3 (mod 9)
+Find x such that DR(x) = 7 and x â‰¡ 3 (mod 9)
 
 **Solution**: x mod 9 = 3, and DR = 7, so x = 9k + 3 where DR(9k+3)=7
 
-Master digit sum and digital root for divisibility tests and number pattern problems! 🚀`
+Master digit sum and digital root for divisibility tests and number pattern problems! ðŸš€`
 };
+
 

@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_3: SubLesson = {
   id: "2.3",
   title: 'Conditions',
   status: 'completed',
-  content: `# 📊 Arrays and Strings in Java
+  content: "`# ðŸ“Š Arrays and Strings in Java
 
 Arrays and strings are fundamental data structures in Java. Understanding how to work with them is essential for effective Java programming.
 
 ---
 
-## 🏗️ Arrays in Java
+## ðŸ—ï¸ Arrays in Java
 
 ### **What is an Array?**
 An array is a fixed-size, homogeneous data structure that stores elements of the same type in contiguous memory locations.
 
-\`\`\`java
+\`"\`\`java
 public class ArrayBasics {
     public static void main(String[] args) {
         // Declaring arrays
@@ -111,7 +111,7 @@ public class MultiDimensionalArrays {
 
 ---
 
-## 📝 Strings in Java
+## ðŸ“ Strings in Java
 
 ### **String Class**
 Strings in Java are objects of the String class. They are immutable (cannot be changed after creation).
@@ -206,7 +206,7 @@ public class StringComparison {
 
 ---
 
-## 🔄 StringBuilder and StringBuffer
+## ðŸ”„ StringBuilder and StringBuffer
 
 ### **StringBuilder (Faster, not thread-safe)**
 \`\`\`java
@@ -271,7 +271,7 @@ public class StringBufferDemo {
 
 ---
 
-## 🛠️ Array Utilities
+## ðŸ› ï¸ Array Utilities
 
 ### **Arrays Class Methods**
 \`\`\`java
@@ -312,7 +312,7 @@ public class ArrayUtilities {
 
 ---
 
-## 📚 Advanced String Operations
+## ðŸ“š Advanced String Operations
 
 ### **Regular Expressions**
 \`\`\`java
@@ -379,7 +379,7 @@ public class StringFormatting {
 
 ---
 
-## ⚠️ Common Array and String Pitfalls
+## âš ï¸ Common Array and String Pitfalls
 
 ### **Array Index Out of Bounds**
 \`\`\`java
@@ -387,15 +387,15 @@ public class CommonErrors {
     public static void main(String[] args) {
         int[] arr = {1, 2, 3};
 
-        // ❌ Runtime error: ArrayIndexOutOfBoundsException
+        // âŒ Runtime error: ArrayIndexOutOfBoundsException
         // System.out.println(arr[3]);  // Index 3 doesn't exist
 
-        // ✅ Safe access
+        // âœ… Safe access
         if (arr.length > 3) {
             System.out.println(arr[3]);
         }
 
-        // ✅ Proper bounds checking
+        // âœ… Proper bounds checking
         for (int i = 0; i < arr.length; i++) {
             System.out.println("Element " + i + ": " + arr[i]);
         }
@@ -425,22 +425,22 @@ public class StringImmutability {
 
 ---
 
-## 🎯 Best Practices
+## ðŸŽ¯ Best Practices
 
 ### **Array Best Practices**
 \`\`\`java
 public class ArrayBestPractices {
     public static void main(String[] args) {
-        // ✅ Use enhanced for loop when possible
+        // âœ… Use enhanced for loop when possible
         int[] numbers = {1, 2, 3, 4, 5};
         for (int num : numbers) {
             System.out.println(num);
         }
 
-        // ✅ Use Arrays utility methods
+        // âœ… Use Arrays utility methods
         int[] copy = Arrays.copyOf(numbers, numbers.length);
 
-        // ✅ Prefer collections for dynamic arrays
+        // âœ… Prefer collections for dynamic arrays
         java.util.List<Integer> list = new java.util.ArrayList<>();
         list.add(1);
         list.add(2);
@@ -453,36 +453,37 @@ public class ArrayBestPractices {
 \`\`\`java
 public class StringBestPractices {
     public static void main(String[] args) {
-        // ✅ Use StringBuilder for concatenation in loops
+        // âœ… Use StringBuilder for concatenation in loops
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < 1000; i++) {
             result.append(i).append(" ");
         }
         String finalResult = result.toString();
 
-        // ❌ Avoid this (inefficient)
+        // âŒ Avoid this (inefficient)
         // String result = "";
         // for (int i = 0; i < 1000; i++) {
         //     result += i + " ";  // Creates new string each time
         // }
 
-        // ✅ Use equals() for string comparison, not ==
+        // âœ… Use equals() for string comparison, not ==
         String str1 = new String("Hello");
         String str2 = new String("Hello");
-        if (str1.equals(str2)) {  // ✅ Correct
+        if (str1.equals(str2)) {  // âœ… Correct
             System.out.println("Strings are equal");
         }
 
-        // ✅ Use String.isEmpty() instead of length check
+        // âœ… Use String.isEmpty() instead of length check
         String text = "";
-        if (text.isEmpty()) {  // ✅ Better than text.length() == 0
+        if (text.isEmpty()) {  // âœ… Better than text.length() == 0
             System.out.println("String is empty");
         }
     }
 }
 \`\`\`
 
-Arrays and strings are fundamental to Java programming. Master these concepts, and you'll handle data effectively in your Java applications! 📊📝`
+Arrays and strings are fundamental to Java programming. Master these concepts, and you'll handle data effectively in your Java applications! ðŸ“ŠðŸ“`
 };
+
 
 

@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_5: SubLesson = {
   id: "7.5",
   title: 'Scope and Variables',
   status: 'demo',
-  content: `# 🌍 Scope and Variables
+  content: "`# ðŸŒ Scope and Variables
 
 Understanding variable scope is crucial for writing correct Python functions. Variables behave differently based on where they're defined!
 
 ---
 
-## 🎯 Local vs Global Scope
+## ðŸŽ¯ Local vs Global Scope
 
 ### **Local Variables (Inside Functions)**
-\`\`\`python
+\`"\`\`python
 def calculate_area():
     """Calculate area using local variables."""
     length = 5      # Local variable
@@ -48,7 +48,7 @@ print(message)    # Hello (unchanged!)
 
 ---
 
-## 🔄 Modifying Global Variables
+## ðŸ”„ Modifying Global Variables
 
 ### **Using global Keyword**
 \`\`\`python
@@ -74,7 +74,7 @@ increment_counter()  # Counter: 1
 
 ---
 
-## 📊 Built-in Scope
+## ðŸ“Š Built-in Scope
 
 ### **Python's Built-in Functions**
 \`\`\`python
@@ -96,7 +96,7 @@ print(custom_len("hello"))  # 5
 
 ---
 
-## 🔍 LEGB Rule
+## ðŸ” LEGB Rule
 
 ### **Variable Lookup Order**
 \`\`\`python
@@ -127,7 +127,7 @@ print(f"Global: {x}")
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **Configuration Management**
 \`\`\`python
@@ -209,7 +209,7 @@ print(counter1())  # 3
 
 ---
 
-## ⚠️ Common Scope Issues
+## âš ï¸ Common Scope Issues
 
 ### **UnboundLocalError**
 \`\`\`python
@@ -253,7 +253,7 @@ print(good_function())  # ['new item'] - Fresh list each time
 
 ---
 
-## ✅ Best Practices
+## âœ… Best Practices
 
 1. **Avoid global variables when possible** - Pass data as parameters instead
 2. **Use global only when necessary** - For truly global state
@@ -261,6 +261,7 @@ print(good_function())  # ['new item'] - Fresh list each time
 4. **Don't use mutable default arguments** - Use None and create inside function
 5. **Keep variable names clear** - Avoid shadowing built-ins
 
-Understanding scope prevents bugs and makes code predictable! 🎯`
+Understanding scope prevents bugs and makes code predictable! ðŸŽ¯`
 };
+
 

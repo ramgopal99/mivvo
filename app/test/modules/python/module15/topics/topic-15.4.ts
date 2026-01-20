@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_4: SubLesson = {
   id: "15.4",
   title: 'Insertion Sort Algorithm',
   status: 'demo',
-  content: `# 🔧 Insertion Sort Algorithm
+  content: "`# ðŸ”§ Insertion Sort Algorithm
 
 Insertion Sort is an efficient algorithm for small datasets and nearly sorted arrays. It works by building a sorted array one element at a time, inserting each new element into its correct position within the already sorted portion. Let's explore this intuitive approach!
 
 ---
 
-## 🎯 How Insertion Sort Works
+## ðŸŽ¯ How Insertion Sort Works
 
 **Insertion Sort** works similarly to how you might sort playing cards in your hand. You take one card at a time and insert it into its correct position among the cards you're already holding.
 
@@ -23,51 +23,51 @@ Insertion Sort is an efficient algorithm for small datasets and nearly sorted ar
 
 ---
 
-## 📝 Step-by-Step Example
+## ðŸ“ Step-by-Step Example
 
 **Input Array**: [12, 11, 13, 5, 6]
 
 ### **Iteration 1: i = 1, key = 11**
 - Sorted portion: [12], Unsorted: [11, 13, 5, 6]
-- Compare 11 < 12 → Shift 12 right → [12, 12]
-- Insert 11 → [**11**, **12**, 13, 5, 6]
+- Compare 11 < 12 â†’ Shift 12 right â†’ [12, 12]
+- Insert 11 â†’ [**11**, **12**, 13, 5, 6]
 
 ### **Iteration 2: i = 2, key = 13**
 - Sorted portion: [11, 12], Unsorted: [13, 5, 6]
-- Compare 13 > 12 → No shift needed
-- Insert 13 → [11, 12, **13**, 5, 6]
+- Compare 13 > 12 â†’ No shift needed
+- Insert 13 â†’ [11, 12, **13**, 5, 6]
 
 ### **Iteration 3: i = 3, key = 5**
 - Sorted portion: [11, 12, 13], Unsorted: [5, 6]
-- Compare 5 < 13 → Shift 13 right → [11, 12, 13, 13, 6]
-- Compare 5 < 12 → Shift 12 right → [11, 12, 12, 13, 6]
-- Compare 5 < 11 → Shift 11 right → [11, 11, 12, 13, 6]
-- Insert 5 → [**5**, **11**, **12**, **13**, 6]
+- Compare 5 < 13 â†’ Shift 13 right â†’ [11, 12, 13, 13, 6]
+- Compare 5 < 12 â†’ Shift 12 right â†’ [11, 12, 12, 13, 6]
+- Compare 5 < 11 â†’ Shift 11 right â†’ [11, 11, 12, 13, 6]
+- Insert 5 â†’ [**5**, **11**, **12**, **13**, 6]
 
 ### **Iteration 4: i = 4, key = 6**
 - Sorted portion: [5, 11, 12, 13], Unsorted: [6]
-- Compare 6 < 13 → Shift 13 right → [5, 11, 12, 13, 13]
-- Compare 6 < 12 → Shift 12 right → [5, 11, 12, 12, 13]
-- Compare 6 > 11 → Stop shifting
-- Insert 6 → [5, 11, **6**, 12, 13]
+- Compare 6 < 13 â†’ Shift 13 right â†’ [5, 11, 12, 13, 13]
+- Compare 6 < 12 â†’ Shift 12 right â†’ [5, 11, 12, 12, 13]
+- Compare 6 > 11 â†’ Stop shifting
+- Insert 6 â†’ [5, 11, **6**, 12, 13]
 
 Wait, that doesn't look right. Let me fix this:
 
 Actually, when we compare 6 with elements from right to left in the sorted portion:
 
-- Compare 6 < 13 → Shift 13 right → [5, 11, 12, 13, 13]
-- Compare 6 < 12 → Shift 12 right → [5, 11, 12, 12, 13]  
-- Compare 6 > 11 → Stop, insert 6 at position after 11
+- Compare 6 < 13 â†’ Shift 13 right â†’ [5, 11, 12, 13, 13]
+- Compare 6 < 12 â†’ Shift 12 right â†’ [5, 11, 12, 12, 13]  
+- Compare 6 > 11 â†’ Stop, insert 6 at position after 11
 - Result: [5, 11, **6**, 12, 13]
 
 **Final Result**: [5, 6, 11, 12, 13]
 
 ---
 
-## 💻 Implementation
+## ðŸ’» Implementation
 
 ### **Basic Insertion Sort**
-\`\`\`python
+\`"\`\`python
 def insertion_sort(arr):
     n = len(arr)
     
@@ -140,12 +140,12 @@ print(arr)  # [5, 6, 11, 12, 13]
 
 ---
 
-## 📊 Algorithm Analysis
+## ðŸ“Š Algorithm Analysis
 
 ### **Time Complexity**
 - **Best Case**: O(n) - when array is already sorted
-- **Worst Case**: O(n²) - when array is reverse sorted
-- **Average Case**: O(n²)
+- **Worst Case**: O(nÂ²) - when array is reverse sorted
+- **Average Case**: O(nÂ²)
 
 ### **Space Complexity**
 - **O(1)** - In-place sorting, only constant extra space
@@ -158,23 +158,23 @@ print(arr)  # [5, 6, 11, 12, 13]
 
 ---
 
-## 🎯 Insertion Sort Properties
+## ðŸŽ¯ Insertion Sort Properties
 
 ### **Advantages**
-- ✅ **Excellent for small datasets** (n ≤ 25 elements)
-- ✅ **Adaptive** - O(n) for nearly sorted arrays
-- ✅ **Stable sorting algorithm**
-- ✅ **In-place sorting** (no extra space needed)
-- ✅ **Online algorithm** - can sort as data comes in
-- ✅ **Simple to implement**
+- âœ… **Excellent for small datasets** (n â‰¤ 25 elements)
+- âœ… **Adaptive** - O(n) for nearly sorted arrays
+- âœ… **Stable sorting algorithm**
+- âœ… **In-place sorting** (no extra space needed)
+- âœ… **Online algorithm** - can sort as data comes in
+- âœ… **Simple to implement**
 
 ### **Disadvantages**
-- ❌ **O(n²) worst case** - not suitable for large arrays
-- ❌ **Inefficient for reverse sorted data**
+- âŒ **O(nÂ²) worst case** - not suitable for large arrays
+- âŒ **Inefficient for reverse sorted data**
 
 ---
 
-## 🔄 Why "Insertion" Sort?
+## ðŸ”„ Why "Insertion" Sort?
 
 The name comes from the way elements are inserted into their correct positions:
 
@@ -189,7 +189,7 @@ Imagine sorting playing cards:
 
 ---
 
-## 🧪 Testing and Examples
+## ðŸ§ª Testing and Examples
 
 ### **Test Case 1: Nearly Sorted Array**
 \`\`\`python
@@ -218,7 +218,7 @@ print("Original:", arr)
 insertion_sort(arr)
 print("Sorted:  ", arr)
 # Output: [1, 2, 3, 4, 5]
-# Worst case: O(n²) time
+# Worst case: O(nÂ²) time
 \`\`\`
 
 ### **Test Case 4: Duplicates (Stability Test)**
@@ -233,10 +233,10 @@ print("Sorted:  ", arr)
 
 ---
 
-## 🎯 When to Use Insertion Sort
+## ðŸŽ¯ When to Use Insertion Sort
 
 ### **Good Use Cases:**
-- **Small datasets** (n ≤ 25 elements)
+- **Small datasets** (n â‰¤ 25 elements)
 - **Nearly sorted data** (excellent performance)
 - **Online sorting** (data arrives incrementally)
 - **Stable sorting required**
@@ -250,7 +250,7 @@ print("Sorted:  ", arr)
 
 ---
 
-## 🔧 Variations and Optimizations
+## ðŸ”§ Variations and Optimizations
 
 ### **Shell Sort (Generalized Insertion Sort)**
 \`\`\`python
@@ -285,27 +285,28 @@ A more complex variation that uses gaps to improve insertion sort.
 
 ---
 
-## 🔍 Comparison with Other Quadratic Sorts
+## ðŸ” Comparison with Other Quadratic Sorts
 
 | Algorithm | Best Case | Average Case | Worst Case | Stable | Adaptive |
 |-----------|-----------|--------------|------------|--------|----------|
-| **Bubble Sort** | O(n) | O(n²) | O(n²) | Yes | Yes |
-| **Selection Sort** | O(n²) | O(n²) | O(n²) | No | No |
-| **Insertion Sort** | O(n) | O(n²) | O(n²) | Yes | Yes |
+| **Bubble Sort** | O(n) | O(nÂ²) | O(nÂ²) | Yes | Yes |
+| **Selection Sort** | O(nÂ²) | O(nÂ²) | O(nÂ²) | No | No |
+| **Insertion Sort** | O(n) | O(nÂ²) | O(nÂ²) | Yes | Yes |
 
 **Insertion Sort is generally the best of the three quadratic sorts!**
 
 ---
 
-## 🏆 Key Takeaways
+## ðŸ† Key Takeaways
 
 1. **Insertion Sort** builds the sorted array one element at a time
-2. **Time complexity** ranges from O(n) to O(n²) depending on input
+2. **Time complexity** ranges from O(n) to O(nÂ²) depending on input
 3. **Space complexity** is O(1) - it's an in-place algorithm
 4. **It's stable** - maintains relative order of equal elements
 5. **Highly adaptive** - excellent performance on nearly sorted data
 6. **Best suited** for small datasets and online sorting scenarios
 
-**Insertion Sort is efficient and practical for many real-world scenarios. Now let's explore the more powerful divide-and-conquer algorithms like Merge Sort! 🚀**`
+**Insertion Sort is efficient and practical for many real-world scenarios. Now let's explore the more powerful divide-and-conquer algorithms like Merge Sort! ðŸš€**`
 };
+
 

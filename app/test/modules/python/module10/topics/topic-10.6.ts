@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_6: SubLesson = {
   id: "10.6",
   title: 'When to Use Arrays vs Linked Lists',
   status: 'demo',
-  content: `# 🤔 When to Use Arrays vs Linked Lists
+  content: "`# ðŸ¤” When to Use Arrays vs Linked Lists
 
 The choice between arrays and linked lists depends on your specific use case, performance requirements, and data access patterns. Let's explore real-world scenarios!
 
 ---
 
-## 🎯 Quick Decision Guide
+## ðŸŽ¯ Quick Decision Guide
 
 ### **Use Arrays When:**
 - **Fast random access** is critical
@@ -27,12 +27,12 @@ The choice between arrays and linked lists depends on your specific use case, pe
 
 ---
 
-## 📊 Real-World Use Cases
+## ðŸ“Š Real-World Use Cases
 
 ### **Arrays Excel At:**
 
 #### **1. Image Processing**
-\`\`\`python
+\`"\`\`python
 # Pixel arrays - random access is crucial
 def invert_colors(image_pixels):
     """Invert colors in image array."""
@@ -233,7 +233,7 @@ print("Linked lists: Perfect for object pooling!")
 
 ---
 
-## ⚖️ Performance Trade-offs
+## âš–ï¸ Performance Trade-offs
 
 ### **Time Complexity Comparison**
 
@@ -251,7 +251,7 @@ print("Linked lists: Perfect for object pooling!")
 
 ---
 
-## 💾 Memory Considerations
+## ðŸ’¾ Memory Considerations
 
 ### **Arrays: Contiguous Memory**
 - **Pros**: Cache-friendly, less memory overhead
@@ -265,7 +265,7 @@ print("Linked lists: Perfect for object pooling!")
 
 ---
 
-## 🛠️ Practical Guidelines
+## ðŸ› ï¸ Practical Guidelines
 
 ### **Choose Arrays for:**
 - **Games & Graphics** - Fast pixel access
@@ -288,7 +288,7 @@ print("Linked lists: Perfect for object pooling!")
 
 ---
 
-## 🚀 Advanced Considerations
+## ðŸš€ Advanced Considerations
 
 ### **Hybrid Approaches**
 \`\`\`python
@@ -321,24 +321,24 @@ print("Python provides optimized alternatives!")
 
 ---
 
-## 🎯 Decision Framework
+## ðŸŽ¯ Decision Framework
 
 ### **Step 1: Analyze Access Patterns**
-- **Mostly random access?** → Arrays
-- **Mostly sequential access?** → Either
-- **Frequent middle modifications?** → Linked Lists
+- **Mostly random access?** â†’ Arrays
+- **Mostly sequential access?** â†’ Either
+- **Frequent middle modifications?** â†’ Linked Lists
 
 ### **Step 2: Consider Size Dynamics**
-- **Size stable?** → Arrays
-- **Size changes frequently?** → Linked Lists
+- **Size stable?** â†’ Arrays
+- **Size changes frequently?** â†’ Linked Lists
 
 ### **Step 3: Memory Constraints**
-- **Memory critical?** → Arrays (less overhead)
-- **Large objects?** → Linked Lists (no wasted space)
+- **Memory critical?** â†’ Arrays (less overhead)
+- **Large objects?** â†’ Linked Lists (no wasted space)
 
 ### **Step 4: Implementation Complexity**
-- **Simple code needed?** → Arrays/Python Lists
-- **Custom behavior needed?** → Linked Lists
+- **Simple code needed?** â†’ Arrays/Python Lists
+- **Custom behavior needed?** â†’ Linked Lists
 
 ### **Step 5: Performance Test**
 \`\`\`python
@@ -353,6 +353,7 @@ def benchmark_structure(structure_type, operations):
 print("Measure, don't assume!")
 \`\`\`
 
-The best choice depends on your specific requirements and constraints! 🎯`
+The best choice depends on your specific requirements and constraints! ðŸŽ¯`
 };
+
 

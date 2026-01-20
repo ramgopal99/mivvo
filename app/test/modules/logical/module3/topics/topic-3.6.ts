@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_6: SubLesson = {
   id: "3.6",
   title: 'Facing Direction Problems',
   status: 'completed',
-  content: `# 🧭 Facing Direction Problems
+  content: "`# ðŸ§­ Facing Direction Problems
 
 Facing direction problems combine seating arrangements with directional orientation (North, South, East, West). These problems require understanding both positional relationships and directional logic, making them more complex than standard arrangements.
 
 ---
 
-## 🎯 Understanding Direction Problems
+## ðŸŽ¯ Understanding Direction Problems
 
 ### **What are Facing Direction Problems?**
 These problems involve people facing different directions (North, South, East, West) while seated in arrangements. They test your ability to:
@@ -27,7 +27,7 @@ These problems involve people facing different directions (North, South, East, W
 
 ---
 
-## 🧩 Basic Direction Concepts
+## ðŸ§© Basic Direction Concepts
 
 ### **Primary Directions**
 - **North (N)**: Facing upwards/forward
@@ -36,19 +36,19 @@ These problems involve people facing different directions (North, South, East, W
 - **West (W)**: Facing left
 
 ### **Secondary Directions**
-- **North-East (NE)**: 45° diagonal
-- **North-West (NW)**: 45° diagonal
-- **South-East (SE)**: 45° diagonal
-- **South-West (SW)**: 45° diagonal
+- **North-East (NE)**: 45Â° diagonal
+- **North-West (NW)**: 45Â° diagonal
+- **South-East (SE)**: 45Â° diagonal
+- **South-West (SW)**: 45Â° diagonal
 
 ### **Directional Relationships**
-- **Opposite Direction**: 180° turn (N↔S, E↔W)
-- **Right Turn**: 90° clockwise
-- **Left Turn**: 90° anticlockwise
+- **Opposite Direction**: 180Â° turn (Nâ†”S, Eâ†”W)
+- **Right Turn**: 90Â° clockwise
+- **Left Turn**: 90Â° anticlockwise
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Understand the Setup**
 - Identify arrangement type (linear/circular)
@@ -72,7 +72,7 @@ These problems involve people facing different directions (North, South, East, W
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Facing Direction Assignment**
 **Specific directional requirements**
@@ -94,12 +94,12 @@ These problems involve people facing different directions (North, South, East, W
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Direction Mapping**
-N ↑
-W ←   → E
-  ↓ S
+N â†‘
+W â†   â†’ E
+  â†“ S
 - Use compass for reference
 - Mark directional relationships
 
@@ -115,7 +115,7 @@ W ←   → E
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Directions**
 **Conditions:**
@@ -146,7 +146,7 @@ W ←   → E
 
 ---
 
-## 🔍 Advanced Direction Concepts
+## ðŸ” Advanced Direction Concepts
 
 ### **Directional Dependencies**
 - Directions based on positions
@@ -165,17 +165,17 @@ W ←   → E
 
 ---
 
-## 📊 Direction Logic Methods
+## ðŸ“Š Direction Logic Methods
 
 ### **Basic Direction Rules**
-- **Opposite**: 180° rotation (N↔S, E↔W)
-- **Right Turn**: 90° clockwise (N→E→S→W→N)
-- **Left Turn**: 90° anticlockwise (N→W→S→E→N)
+- **Opposite**: 180Â° rotation (Nâ†”S, Eâ†”W)
+- **Right Turn**: 90Â° clockwise (Nâ†’Eâ†’Sâ†’Wâ†’N)
+- **Left Turn**: 90Â° anticlockwise (Nâ†’Wâ†’Sâ†’Eâ†’N)
 
 ### **Relative Direction Calculation**
 - **Same Direction**: No turn required
-- **Adjacent Directions**: 90° turn
-- **Opposite Directions**: 180° turn
+- **Adjacent Directions**: 90Â° turn
+- **Opposite Directions**: 180Â° turn
 
 ### **Group Direction Logic**
 - **Same Direction Group**: Multiple people facing same way
@@ -184,23 +184,23 @@ W ←   → E
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Direction Confusion**
-❌ Mixing up relative directions
-✅ Use compass reference consistently
+âŒ Mixing up relative directions
+âœ… Use compass reference consistently
 
 ### **Pitfall 2: Turn Miscalculation**
-❌ Wrong left/right turn logic
-✅ Remember clockwise/anticlockwise rules
+âŒ Wrong left/right turn logic
+âœ… Remember clockwise/anticlockwise rules
 
 ### **Pitfall 3: Position-Direction Mix-up**
-❌ Confusing position with direction
-✅ Keep position and direction separate
+âŒ Confusing position with direction
+âœ… Keep position and direction separate
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Draw Compass Reference**
 - Always sketch N-S-E-W compass
@@ -208,7 +208,7 @@ W ←   → E
 - Note directional changes
 
 ### **2. Use Directional Logic**
-- Apply 90°/180° turn rules
+- Apply 90Â°/180Â° turn rules
 - Consider relative directions
 - Verify directional consistency
 
@@ -219,7 +219,7 @@ W ←   → E
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Simple direction assignments
@@ -238,17 +238,17 @@ W ←   → E
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Draw Compass**: Always reference N-S-E-W directions
-2. **Remember Turn Rules**: 90° right/left, 180° opposite
+2. **Remember Turn Rules**: 90Â° right/left, 180Â° opposite
 3. **Link Position-Direction**: Consider both aspects together
 4. **Use Elimination**: Remove invalid directional combinations
 5. **Verify Consistency**: Check all directional relationships
 
 ---
 
-## 🧭 Practice Questions
+## ðŸ§­ Practice Questions
 
 ### **Question 1**
 **Conditions:**
@@ -284,5 +284,5 @@ W ←   → E
 
 **What direction does H face?**
 
-**Master facing direction problems for advanced logical reasoning! 🧭✨**`
+**Master facing direction problems for advanced logical reasoning! ðŸ§­âœ¨**`"
 };

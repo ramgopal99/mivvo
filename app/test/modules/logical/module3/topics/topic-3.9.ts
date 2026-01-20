@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_9: SubLesson = {
   id: "3.9",
   title: 'Blood Relation with Seating (Basic)',
   status: 'completed',
-  content: `# 👪 Blood Relation with Seating (Basic)
+  content: "`# ðŸ‘ª Blood Relation with Seating (Basic)
 
 Blood relation problems combined with seating arrangements create integrated reasoning challenges. These basic problems combine family relationship logic with positional arrangements, requiring understanding of both familial connections and spatial positioning.
 
 ---
 
-## 🎯 Understanding Blood Relation Seating
+## ðŸŽ¯ Understanding Blood Relation Seating
 
 ### **What are Blood Relation Seating Problems?**
 These problems integrate family relationships with seating arrangements, requiring you to:
@@ -27,7 +27,7 @@ These problems integrate family relationships with seating arrangements, requiri
 
 ---
 
-## 🧩 Basic Integration Concepts
+## ðŸ§© Basic Integration Concepts
 
 ### **Family Relationship Types**
 - **Nuclear Family**: Parents, children, siblings
@@ -43,7 +43,7 @@ These problems integrate family relationships with seating arrangements, requiri
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Map Family Relationships**
 - Identify all family members
@@ -67,7 +67,7 @@ These problems integrate family relationships with seating arrangements, requiri
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Family Group Seating**
 **Family members seated together**
@@ -89,7 +89,7 @@ These problems integrate family relationships with seating arrangements, requiri
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Family Tree + Seating Diagram**
 - Draw family relationship tree
@@ -108,7 +108,7 @@ These problems integrate family relationships with seating arrangements, requiri
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Family Seating**
 **Conditions:**
@@ -136,7 +136,7 @@ Row 2:   D   (facing parents)
 
 ---
 
-## 🔍 Basic Integration Concepts
+## ðŸ” Basic Integration Concepts
 
 ### **Family-Seating Relationships**
 - **Married Couples**: Often face each other
@@ -151,7 +151,7 @@ Row 2:   D   (facing parents)
 
 ---
 
-## 📊 Integration Methods
+## ðŸ“Š Integration Methods
 
 ### **Family-First Approach**
 - Establish family relationships clearly
@@ -170,23 +170,23 @@ Row 2:   D   (facing parents)
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Relationship Confusion**
-❌ Mixing up family relationships
-✅ Verify all relationships clearly
+âŒ Mixing up family relationships
+âœ… Verify all relationships clearly
 
 ### **Pitfall 2: Seating Priority Errors**
-❌ Wrong seating preference application
-✅ Understand family seating norms
+âŒ Wrong seating preference application
+âœ… Understand family seating norms
 
 ### **Pitfall 3: Integration Mistakes**
-❌ Applying one logic without the other
-✅ Combine family and seating logic
+âŒ Applying one logic without the other
+âœ… Combine family and seating logic
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Family Relationship Map**
 - Draw family tree first
@@ -205,7 +205,7 @@ Row 2:   D   (facing parents)
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Small family groups
@@ -224,7 +224,7 @@ Row 2:   D   (facing parents)
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Draw Family Tree**: Always map relationships first
 2. **Understand Seating Norms**: Know family seating preferences
@@ -234,7 +234,7 @@ Row 2:   D   (facing parents)
 
 ---
 
-## 👪 Practice Questions
+## ðŸ‘ª Practice Questions
 
 ### **Question 1**
 **Conditions:**
@@ -272,5 +272,5 @@ Row 2:   D   (facing parents)
 
 **Who sits between G and H?**
 
-**Master basic blood relation seating arrangements for integrated reasoning! 👪✨**`
+**Master basic blood relation seating arrangements for integrated reasoning! ðŸ‘ªâœ¨**`"
 };

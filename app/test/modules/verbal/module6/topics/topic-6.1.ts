@@ -1,23 +1,23 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_1: SubLesson = {
   id: "6.1",
   title: 'Passage Understanding',
   status: 'completed',
-  content: `# 📖 Passage Understanding: Mastering Text Comprehension
+  content: "`# ðŸ“– Passage Understanding: Mastering Text Comprehension
 
 Passage Understanding is the foundation of reading comprehension, requiring you to read, analyze, and extract information from written text. This skill involves understanding explicit information, recognizing relationships, and answering direct questions about the passage.
 
 ---
 
-## 🔍 WHAT IS PASSAGE UNDERSTANDING?
+## ðŸ” WHAT IS PASSAGE UNDERSTANDING?
 
 **Passage Understanding** requires you to:
-- ✅ **Comprehend written text** at literal and surface levels
-- ✅ **Identify explicit information** directly stated in the passage
-- ✅ **Locate specific details** and facts mentioned
-- ✅ **Understand relationships** between ideas and information
-- ✅ **Answer direct questions** based on passage content
+- âœ… **Comprehend written text** at literal and surface levels
+- âœ… **Identify explicit information** directly stated in the passage
+- âœ… **Locate specific details** and facts mentioned
+- âœ… **Understand relationships** between ideas and information
+- âœ… **Answer direct questions** based on passage content
 
 ### Key Skills Tested:
 - **Literal Comprehension**: Understanding directly stated information
@@ -28,7 +28,7 @@ Passage Understanding is the foundation of reading comprehension, requiring you 
 
 ---
 
-## 📚 READING STRATEGIES
+## ðŸ“š READING STRATEGIES
 
 ### Step-by-Step Reading Approach:
 
@@ -58,7 +58,7 @@ Passage Understanding is the foundation of reading comprehension, requiring you 
 
 ---
 
-## 🎯 QUESTION TYPES
+## ðŸŽ¯ QUESTION TYPES
 
 ### 1. **Fact-Based Questions**
 **Test direct information from the passage**
@@ -112,7 +112,7 @@ Answer: The variety of life forms in an ecosystem
 
 ---
 
-## 🛠️ COMPREHENSION TECHNIQUES
+## ðŸ› ï¸ COMPREHENSION TECHNIQUES
 
 ### Skimming Technique:
 - **Read first and last sentences** of paragraphs
@@ -140,7 +140,7 @@ Answer: The variety of life forms in an ecosystem
 
 ---
 
-## ⚠️ COMMON COMPREHENSION ERRORS
+## âš ï¸ COMMON COMPREHENSION ERRORS
 
 ### Avoid These Mistakes:
 
@@ -161,7 +161,7 @@ Answer: The variety of life forms in an ecosystem
 
 ---
 
-## 📊 PASSAGE TYPES & APPROACHES
+## ðŸ“Š PASSAGE TYPES & APPROACHES
 
 ### Narrative Passages:
 - **Tell a story or describe events**
@@ -185,7 +185,7 @@ Answer: The variety of life forms in an ecosystem
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Basic Fact Finding
 **Read the passage and answer the questions:**
@@ -223,14 +223,14 @@ Answer: The variety of life forms in an ecosystem
 ### Exercise 3: Sequence Understanding
 **Read the passage and answer:**
 
-"To bake a cake, first preheat the oven to 350°F. Then, mix the dry ingredients in one bowl and the wet ingredients in another. Next, combine both mixtures and pour into a greased pan. Finally, bake for 30 minutes and let cool."
+"To bake a cake, first preheat the oven to 350Â°F. Then, mix the dry ingredients in one bowl and the wet ingredients in another. Next, combine both mixtures and pour into a greased pan. Finally, bake for 30 minutes and let cool."
 
 1. What is the first step?
 2. What is done after mixing ingredients?
 3. What is the final step before cooling?
 
 **Answers:**
-1. Preheat the oven to 350°F
+1. Preheat the oven to 350Â°F
 2. Pour into a greased pan
 3. Bake for 30 minutes
 
@@ -264,7 +264,7 @@ Answer: The variety of life forms in an ecosystem
 
 ---
 
-## 📊 COMPREHENSION LEVELS
+## ðŸ“Š COMPREHENSION LEVELS
 
 | Level | Focus | Question Types | Skills Required |
 |---|---|---|---|
@@ -275,30 +275,30 @@ Answer: The variety of life forms in an ecosystem
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **4-6 Questions per Passage**: Usually 5-6 comprehension questions
 2. **Direct Information**: Most answers come directly from text
 3. **Multiple Choice**: 4 options with one correct answer
 4. **Context Dependent**: Wrong options may seem correct out of context
 5. **Time-Bound**: 8-10 minutes per passage with questions
 
-### 💡 Quick Reading Strategy:
+### ðŸ’¡ Quick Reading Strategy:
 1. **Read title and first paragraph** - Understand topic and introduction
 2. **Read questions first** - Know what information to focus on
 3. **Scan for keywords** - Look for terms from questions
 4. **Read relevant sections** - Focus on paragraphs containing answers
 5. **Answer directly** - Don't add information not in passage
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Don't read word-for-word** - Use skimming for overview
 - **Eliminate wrong options** - Use passage to rule out incorrect choices
 - **Look for exact matches** - Answers often use same words as passage
 - **Trust the text** - Don't contradict passage information
 - **Skip difficult questions** - Come back if time allows
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Practice 2-3 passages daily** - Build reading speed and accuracy
 - **Focus on keywords** - Questions often contain passage keywords
 - **Eliminate distractors** - Wrong options often seem plausible
@@ -307,21 +307,22 @@ Answer: The variety of life forms in an ecosystem
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Active Reading Practice** - Read newspapers, articles regularly
 2. **Question Prediction** - Try to anticipate what questions might ask
 3. **Vocabulary Building** - Learn words in context
 4. **Speed Reading** - Practice reading faster with comprehension
 5. **Regular Testing** - Take timed comprehension tests
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Passage understanding is like detective work:**
-- 🔍 **Survey the scene** - Read title, scan structure
-- 🕵️ **Gather clues** - Identify key information and relationships
-- 🔎 **Follow leads** - Answer questions using text evidence
-- ✅ **Draw conclusions** - Verify answers match passage exactly
+- ðŸ” **Survey the scene** - Read title, scan structure
+- ðŸ•µï¸ **Gather clues** - Identify key information and relationships
+- ðŸ”Ž **Follow leads** - Answer questions using text evidence
+- âœ… **Draw conclusions** - Verify answers match passage exactly
 
-**Master passage understanding and become a comprehension detective!** 📖🔍✨`
+**Master passage understanding and become a comprehension detective!** ðŸ“–ðŸ”âœ¨`"
 };
+

@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_1: SubLesson = {
   id: "7.1",
   title: 'Introduction to Methods',
   status: 'completed',
-  content: `# 🔧 Introduction to Methods in Java
+  content: "`# ðŸ”§ Introduction to Methods in Java
 
 Methods are fundamental building blocks in Java programming. They encapsulate reusable code, promote modularity, and enable code organization. Understanding methods is crucial for writing clean, maintainable, and efficient Java programs.
 
 ---
 
-## 📋 Method Fundamentals
+## ðŸ“‹ Method Fundamentals
 
 ### **What is a Method?**
 A method is a block of code that performs a specific task and can be called (invoked) from other parts of your program. Methods help you organize code into logical, reusable units.
 
-\`\`\`java
+\`"\`\`java
 // Class definition
 public class Calculator {
     // This is a method
@@ -120,7 +120,7 @@ public class AbstractionExample {
 
 ---
 
-## 📝 Method Declaration Syntax
+## ðŸ“ Method Declaration Syntax
 
 ### **Complete Method Syntax**
 
@@ -170,7 +170,7 @@ public class MethodComponents {
 
 ---
 
-## 🔄 Method Parameters
+## ðŸ”„ Method Parameters
 
 ### **Parameter Types**
 
@@ -218,16 +218,16 @@ public class ReferenceParameters {
 
 \`\`\`java
 public class ParameterRules {
-    // ✅ Valid parameter declarations
+    // âœ… Valid parameter declarations
     public void method1(int a, double b, String c) { }
 
-    // ✅ Parameters can have the same type
+    // âœ… Parameters can have the same type
     public void method2(int x, int y, int z) { }
 
-    // ❌ Duplicate parameter names (compilation error)
+    // âŒ Duplicate parameter names (compilation error)
     // public void method3(int a, String a) { }
 
-    // ✅ Varargs (variable arguments)
+    // âœ… Varargs (variable arguments)
     public void method4(int... numbers) {
         for (int num : numbers) {
             System.out.println(num);
@@ -247,7 +247,7 @@ public class ParameterRules {
 
 ---
 
-## 📤 Method Return Values
+## ðŸ“¤ Method Return Values
 
 ### **Return Statement**
 
@@ -297,22 +297,22 @@ public class ReturnStatement {
 
 \`\`\`java
 public class ReturnTypes {
-    // ✅ Primitive return types
+    // âœ… Primitive return types
     public int getAge() { return 25; }
     public double getPrice() { return 19.99; }
     public boolean isValid() { return true; }
 
-    // ✅ Reference return types
+    // âœ… Reference return types
     public String getName() { return "Alice"; }
     public int[] getNumbers() { return new int[]{1, 2, 3}; }
 
-    // ✅ Autoboxing works
-    public Integer getCount() { return 42; }  // int → Integer
+    // âœ… Autoboxing works
+    public Integer getCount() { return 42; }  // int â†’ Integer
 
-    // ❌ Type mismatch (compilation error)
+    // âŒ Type mismatch (compilation error)
     // public int getValue() { return "hello"; }  // String cannot be converted to int
 
-    // ✅ void methods don't return values
+    // âœ… void methods don't return values
     public void doSomething() {
         // No return statement needed
         System.out.println("Done!");
@@ -322,7 +322,7 @@ public class ReturnTypes {
 
 ---
 
-## 🔧 Method Overloading
+## ðŸ”§ Method Overloading
 
 ### **Same Name, Different Parameters**
 
@@ -368,23 +368,23 @@ public class MethodOverloading {
 
 \`\`\`java
 public class OverloadingRules {
-    // ✅ Valid overloads - different parameter types
+    // âœ… Valid overloads - different parameter types
     public void process(int number) { }
     public void process(double number) { }
     public void process(String text) { }
 
-    // ✅ Valid overloads - different parameter counts
+    // âœ… Valid overloads - different parameter counts
     public void process(int a, int b) { }
     public void process(int a, int b, int c) { }
 
-    // ✅ Valid overloads - different parameter order
+    // âœ… Valid overloads - different parameter order
     public void mix(int x, String y) { }
     public void mix(String x, int y) { }
 
-    // ❌ Invalid - same parameter list (compilation error)
+    // âŒ Invalid - same parameter list (compilation error)
     // public void process(int num) { }  // Duplicate!
 
-    // ✅ Return type alone doesn't make overloads
+    // âœ… Return type alone doesn't make overloads
     // public int calculate() { return 1; }
     // public double calculate() { return 1.0; }  // Compilation error!
 }
@@ -392,7 +392,7 @@ public class OverloadingRules {
 
 ---
 
-## 🏷️ Method Scope and Lifetime
+## ðŸ·ï¸ Method Scope and Lifetime
 
 ### **Local Variables**
 
@@ -456,7 +456,7 @@ public class ParameterScope {
 
 ---
 
-## 🎯 Practical Method Examples
+## ðŸŽ¯ Practical Method Examples
 
 ### **Calculator Class**
 
@@ -502,7 +502,7 @@ public class Calculator {
             System.out.println("5 + 3 = " + calc.add(5, 3));
             System.out.println("10 - 4 = " + calc.subtract(10, 4));
             System.out.println("6 * 7 = " + calc.multiply(6, 7));
-            System.out.println("15 ÷ 4 = " + calc.divide(15, 4));
+            System.out.println("15 Ã· 4 = " + calc.divide(15, 4));
             System.out.println("2^8 = " + calc.power(2, 8));
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
@@ -566,7 +566,7 @@ public class StringUtils {
 
 ---
 
-## 🎯 Method Best Practices
+## ðŸŽ¯ Method Best Practices
 
 ### **1. Single Responsibility Principle**
 
@@ -574,7 +574,7 @@ Each method should do one thing and do it well.
 
 \`\`\`java
 public class SingleResponsibility {
-    // ✅ Good: One clear responsibility
+    // âœ… Good: One clear responsibility
     public void processOrder(Order order) {
         validateOrder(order);
         calculateTotal(order);
@@ -583,7 +583,7 @@ public class SingleResponsibility {
         sendConfirmation(order);
     }
 
-    // ❌ Bad: Multiple responsibilities
+    // âŒ Bad: Multiple responsibilities
     public void processEverything(Order order) {
         // Validate order
         if (order.getItems().isEmpty()) {
@@ -617,17 +617,17 @@ public class SingleResponsibility {
 
 \`\`\`java
 public class MethodNaming {
-    // ✅ Good: Clear, descriptive names
+    // âœ… Good: Clear, descriptive names
     public void calculateMonthlySalary() { }
     public boolean isUserAuthenticated() { }
     public List<Customer> findActiveCustomers() { }
 
-    // ❌ Bad: Unclear or misleading names
+    // âŒ Bad: Unclear or misleading names
     public void doStuff() { }                    // What stuff?
     public void process() { }                     // Process what?
     public boolean check() { }                    // Check what?
 
-    // ✅ Good: Parameters have descriptive names
+    // âœ… Good: Parameters have descriptive names
     public void transferMoney(Account fromAccount, Account toAccount, double amount) {
         // Clear what each parameter represents
     }
@@ -638,7 +638,7 @@ public class MethodNaming {
 
 \`\`\`java
 public class MethodLength {
-    // ✅ Good: Short, focused method
+    // âœ… Good: Short, focused method
     public void processPayment(Payment payment) {
         validatePayment(payment);
         chargeCard(payment);
@@ -646,13 +646,13 @@ public class MethodLength {
         sendReceipt(payment);
     }
 
-    // ❌ Bad: Too long method
+    // âŒ Bad: Too long method
     public void processPaymentLong(Payment payment) {
         // 50+ lines of code...
         // Hard to understand, debug, and maintain
     }
 
-    // ✅ Good: Break down complex logic
+    // âœ… Good: Break down complex logic
     private void validatePayment(Payment payment) {
         // Validation logic here (10-15 lines)
     }
@@ -738,7 +738,7 @@ class InsufficientFundsException extends RuntimeException {
 
 ---
 
-## 🎯 Summary
+## ðŸŽ¯ Summary
 
 Methods are the building blocks of Java programs:
 
@@ -785,4 +785,5 @@ public static int calculateSum(int a, int b) {
 5. Method body: ?
 `
 };
+
 

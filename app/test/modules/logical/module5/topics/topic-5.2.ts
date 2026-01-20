@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_2: SubLesson = {
   id: "5.2",
   title: 'Letter Coding',
   status: 'completed',
-  content: `# 🔤 Letter Coding
+  content: "`# ðŸ”¤ Letter Coding
 
 Letter coding involves transforming letters using various alphabetical rules and patterns. These problems are fundamental to coding-decoding and appear frequently in competitive exams, requiring understanding of letter positions, sequences, and transformations.
 
 ---
 
-## 🎯 Understanding Letter Coding
+## ðŸŽ¯ Understanding Letter Coding
 
 ### **What is Letter Coding?**
 Letter coding involves transforming letters of the alphabet using specific rules, patterns, or mathematical operations. These problems test your ability to:
@@ -27,19 +27,19 @@ Letter coding involves transforming letters of the alphabet using specific rules
 
 ---
 
-## 🧩 Types of Letter Coding
+## ðŸ§© Types of Letter Coding
 
 ### **1. Position-Based Coding**
 **Letter position transformations**
-- **Forward Shift**: A→B, B→C, etc.
-- **Backward Shift**: Z→Y, Y→X, etc.
+- **Forward Shift**: Aâ†’B, Bâ†’C, etc.
+- **Backward Shift**: Zâ†’Y, Yâ†’X, etc.
 - **Position Values**: A=1, B=2, etc.
 
 ### **2. Sequence-Based Coding**
 **Alphabetical order manipulations**
-- **Next Letter**: A→B, M→N
-- **Previous Letter**: B→A, N→M
-- **Alternate Letters**: A→C, B→D
+- **Next Letter**: Aâ†’B, Mâ†’N
+- **Previous Letter**: Bâ†’A, Nâ†’M
+- **Alternate Letters**: Aâ†’C, Bâ†’D
 
 ### **3. Pattern-Based Coding**
 **Rule-based transformations**
@@ -49,7 +49,7 @@ Letter coding involves transforming letters of the alphabet using specific rules
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze Given Examples**
 - Examine input-output pairs carefully
@@ -73,7 +73,7 @@ Letter coding involves transforming letters of the alphabet using specific rules
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Simple Shift Coding**
 **Fixed position shifts**
@@ -95,7 +95,7 @@ Letter coding involves transforming letters of the alphabet using specific rules
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Position Analysis Method**
 
@@ -119,32 +119,32 @@ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Forward Shift**
 **Rule**: Each letter is replaced by the next letter in alphabet
 - **Input**: CAT
 - **Output**: DBU
 
-**Explanation**: C→D, A→B, T→U
+**Explanation**: Câ†’D, Aâ†’B, Tâ†’U
 
 ### **Example 2: Position-Based Coding**
 **Rule**: Replace each letter with letter at position (26 - current position + 1)
 - **Input**: ABC
 - **Output**: ZYX
 
-**Explanation**: A(1)→Z(26), B(2)→Y(25), C(3)→X(24)
+**Explanation**: A(1)â†’Z(26), B(2)â†’Y(25), C(3)â†’X(24)
 
 ### **Example 3: Vowel-Consonant Rule**
 **Rule**: Vowels shifted forward by 1, consonants shifted backward by 1
 - **Input**: BRAIN
 - **Output**: AQHJM
 
-**Explanation**: B→A, R→Q, A→B, I→J, N→M
+**Explanation**: Bâ†’A, Râ†’Q, Aâ†’B, Iâ†’J, Nâ†’M
 
 ---
 
-## 🔍 Advanced Letter Coding Concepts
+## ðŸ” Advanced Letter Coding Concepts
 
 ### **Multi-Rule Coding**
 Problems with different rules for different letter types.
@@ -157,7 +157,7 @@ Different rules based on letter properties or positions.
 
 ---
 
-## 📊 Letter Coding Methods
+## ðŸ“Š Letter Coding Methods
 
 ### **Basic Shift Operations**
 - **Fixed Shift**: +n or -n positions
@@ -176,23 +176,23 @@ Different rules based on letter properties or positions.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Alphabet Wrap-around**
-❌ Forgetting Z→A or A→Z transitions
-✅ Handle alphabet boundaries correctly
+âŒ Forgetting Zâ†’A or Aâ†’Z transitions
+âœ… Handle alphabet boundaries correctly
 
 ### **Pitfall 2: Rule Misapplication**
-❌ Applying wrong rules to letters
-✅ Verify rules against all examples
+âŒ Applying wrong rules to letters
+âœ… Verify rules against all examples
 
 ### **Pitfall 3: Position Confusion**
-❌ Mixing letter and word positions
-✅ Distinguish between different position types
+âŒ Mixing letter and word positions
+âœ… Distinguish between different position types
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Example Analysis**
 - Compare all input-output pairs
@@ -211,7 +211,7 @@ Different rules based on letter properties or positions.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Simple forward/backward shifts
@@ -230,17 +230,17 @@ Different rules based on letter properties or positions.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Know the Alphabet**: Memorize letter positions 1-26
-2. **Handle Boundaries**: Remember Z→A and A→Z transitions
+2. **Handle Boundaries**: Remember Zâ†’A and Aâ†’Z transitions
 3. **Identify Patterns**: Look for consistent transformation rules
 4. **Test Thoroughly**: Verify rules against all given examples
 5. **Apply Systematically**: Use same rules for encoding/decoding
 
 ---
 
-## 🔤 Practice Questions
+## ðŸ”¤ Practice Questions
 
 ### **Question 1**
 If in a code, A is coded as B, B as C, ..., Z as A, then what is the code for "APPLE"?
@@ -254,5 +254,5 @@ If vowels are coded as next vowel and consonants as previous consonant, what is 
 ### **Question 4**
 If A=1, B=2, ..., Z=26, and each letter is replaced by letter at position (27 - current position), what is the code for "CAT"?
 
-**Master letter coding techniques for systematic alphabetical transformations! 🔤✨**`
+**Master letter coding techniques for systematic alphabetical transformations! ðŸ”¤âœ¨**`"
 };

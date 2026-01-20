@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_11: SubLesson = {
   id: "5.11",
   title: 'Matrix Coding (Basic)',
   status: 'completed',
-  content: `# 🔲 Matrix Coding (Basic)
+  content: "`# ðŸ”² Matrix Coding (Basic)
 
 Matrix coding involves arranging letters, numbers, or symbols in grid patterns and applying transformation rules based on matrix positions. These problems require understanding of grid coordinates and positional relationships.
 
 ---
 
-## 🎯 Understanding Matrix Coding
+## ðŸŽ¯ Understanding Matrix Coding
 
 ### **What is Matrix Coding?**
 Matrix coding involves placing letters, numbers, or symbols in a grid (matrix) and applying coding rules based on row-column positions. These problems test your ability to:
@@ -27,7 +27,7 @@ Matrix coding involves placing letters, numbers, or symbols in a grid (matrix) a
 
 ---
 
-## 🧩 Types of Matrix Coding
+## ðŸ§© Types of Matrix Coding
 
 ### **1. Position-Based Matrix Coding**
 **Rules based on matrix coordinates**
@@ -43,16 +43,16 @@ Matrix coding involves placing letters, numbers, or symbols in a grid (matrix) a
 
 ### **3. Coordinate-Based Coding**
 **Mathematical coordinate operations**
-- **Row × Column**: Position-based multiplications
+- **Row Ã— Column**: Position-based multiplications
 - **Row + Column**: Position-based additions
 - **Complex Coordinates**: Advanced position calculations
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Understand Matrix Structure**
-- Identify matrix dimensions (rows × columns)
+- Identify matrix dimensions (rows Ã— columns)
 - Note matrix filling pattern
 - Understand position numbering
 
@@ -73,12 +73,12 @@ Matrix coding involves placing letters, numbers, or symbols in a grid (matrix) a
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Simple Coordinate Coding**
 **Basic position-based transformations**
 - "Code = Row + Column"
-- "Code = Row × Column"
+- "Code = Row Ã— Column"
 - "Code = Row - Column"
 
 ### **Type 2: Pattern Matrix Coding**
@@ -89,13 +89,13 @@ Matrix coding involves placing letters, numbers, or symbols in a grid (matrix) a
 
 ### **Type 3: Complex Matrix Operations**
 **Advanced coordinate transformations**
-- "Code = (Row × Column) + Position"
-- "Code = Row² + Column²"
+- "Code = (Row Ã— Column) + Position"
+- "Code = RowÂ² + ColumnÂ²"
 - "Complex position-based formulas"
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Matrix Visualization**
 
@@ -120,38 +120,38 @@ Row 3: Cell Cell Cell Cell
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Addition Matrix**
 **Rule**: Code = Row + Column
 
-Matrix 2×2 positions:  
+Matrix 2Ã—2 positions:  
 (1,1): 1+1 = 2  
 (1,2): 1+2 = 3  
 (2,1): 2+1 = 3  
 (2,2): 2+2 = 4
 
 ### **Example 2: Multiplication Matrix**
-**Rule**: Code = Row × Column
+**Rule**: Code = Row Ã— Column
 
-Matrix 2×2 positions:  
-(1,1): 1×1 = 1  
-(1,2): 1×2 = 2  
-(2,1): 2×1 = 2  
-(2,2): 2×2 = 4
+Matrix 2Ã—2 positions:  
+(1,1): 1Ã—1 = 1  
+(1,2): 1Ã—2 = 2  
+(2,1): 2Ã—1 = 2  
+(2,2): 2Ã—2 = 4
 
 ### **Example 3: Complex Formula Matrix**
-**Rule**: Code = Row² + Column²
+**Rule**: Code = RowÂ² + ColumnÂ²
 
-Matrix 2×2 positions:  
-(1,1): 1² + 1² = 2  
-(1,2): 1² + 2² = 5  
-(2,1): 2² + 1² = 5  
-(2,2): 2² + 2² = 8
+Matrix 2Ã—2 positions:  
+(1,1): 1Â² + 1Â² = 2  
+(1,2): 1Â² + 2Â² = 5  
+(2,1): 2Â² + 1Â² = 5  
+(2,2): 2Â² + 2Â² = 8
 
 ---
 
-## 🔍 Advanced Matrix Concepts
+## ðŸ” Advanced Matrix Concepts
 
 ### **Multi-Layer Matrices**
 Complex matrices with multiple transformation layers.
@@ -164,16 +164,16 @@ Matrices where rules change based on position or content.
 
 ---
 
-## 📊 Matrix Coding Methods
+## ðŸ“Š Matrix Coding Methods
 
 ### **Basic Coordinate Methods**
 - **Addition**: Row + Column
-- **Multiplication**: Row × Column
+- **Multiplication**: Row Ã— Column
 - **Subtraction**: Row - Column or Column - Row
 
 ### **Advanced Coordinate Methods**
-- **Powers**: Row² + Column²
-- **Complex Formulas**: (Row + Column) × 2
+- **Powers**: RowÂ² + ColumnÂ²
+- **Complex Formulas**: (Row + Column) Ã— 2
 - **Conditional**: Different formulas for different positions
 
 ### **Pattern-Based Methods**
@@ -183,23 +183,23 @@ Matrices where rules change based on position or content.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Coordinate Confusion**
-❌ Mixing row and column positions
-✅ Clearly identify row-column coordinates
+âŒ Mixing row and column positions
+âœ… Clearly identify row-column coordinates
 
 ### **Pitfall 2: Formula Misapplication**
-❌ Wrong formula for specific positions
-✅ Test formulas against all matrix positions
+âŒ Wrong formula for specific positions
+âœ… Test formulas against all matrix positions
 
 ### **Pitfall 3: Pattern Oversight**
-❌ Missing position-based pattern variations
-✅ Consider special position rules
+âŒ Missing position-based pattern variations
+âœ… Consider special position rules
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Matrix Setup**
 - Create clear matrix grid with coordinates
@@ -218,7 +218,7 @@ Matrices where rules change based on position or content.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Simple addition/multiplication formulas
@@ -237,7 +237,7 @@ Matrices where rules change based on position or content.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Create Matrix Grid**: Visual matrix with clear coordinates
 2. **Identify Coordinates**: Know row-column numbering clearly
@@ -247,19 +247,19 @@ Matrices where rules change based on position or content.
 
 ---
 
-## 🔲 Practice Questions
+## ðŸ”² Practice Questions
 
 ### **Question 1**
-For a 2×2 matrix where code = row + column, what are the codes for all positions?
+For a 2Ã—2 matrix where code = row + column, what are the codes for all positions?
 
 ### **Question 2**
-For a 2×2 matrix where code = row × column, what are the codes for all positions?
+For a 2Ã—2 matrix where code = row Ã— column, what are the codes for all positions?
 
 ### **Question 3**
-For a 2×2 matrix where code = row² + column², what are the codes for all positions?
+For a 2Ã—2 matrix where code = rowÂ² + columnÂ², what are the codes for all positions?
 
 ### **Question 4**
-For a 3×3 matrix where corners get (row + column) and center gets (row × column), what are the codes?
+For a 3Ã—3 matrix where corners get (row + column) and center gets (row Ã— column), what are the codes?
 
-**Master matrix coding for coordinate-based logical transformations! 🔲✨**`
+**Master matrix coding for coordinate-based logical transformations! ðŸ”²âœ¨**`"
 };

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_2: SubLesson = {
   id: "13.2",
   title: 'BST Operations: Search, Insert, Delete',
   status: 'demo',
-  content: `# 🔍 BST Operations: Search, Insert, Delete
+  content: "`# ðŸ” BST Operations: Search, Insert, Delete
 
 Master the core operations that make Binary Search Trees powerful and efficient!
 
 ---
 
-## 🎯 Search Operation
+## ðŸŽ¯ Search Operation
 
 ### **How Search Works**
 - Start from root node
@@ -18,7 +18,7 @@ Master the core operations that make Binary Search Trees powerful and efficient!
 - Go left if target < current, right if target > current
 - Continue until found or reach null
 
-\`\`\`python
+\`"\`\`python
 def search(root, target):
     if root is None or root.value == target:
         return root
@@ -47,7 +47,7 @@ def search_iterative(root, target):
 
 ---
 
-## ➕ Insert Operation
+## âž• Insert Operation
 
 ### **How Insert Works**
 - Follow search path to find correct position
@@ -95,7 +95,7 @@ def insert_iterative(root, value):
 
 ---
 
-## 🗑️ Delete Operation
+## ðŸ—‘ï¸ Delete Operation
 
 ### **Three Delete Cases**
 
@@ -103,7 +103,7 @@ def insert_iterative(root, value):
 \`\`\`
 Before:     8      After:     8
           / \\               \\
-         3   10     →        10
+         3   10     â†’        10
         / \\                /
        1   6              1
 \`\`\`
@@ -113,7 +113,7 @@ Simply remove the node.
 \`\`\`
 Before:     8      After:     8
           / \\               \\
-         3   10     →        10
+         3   10     â†’        10
         / \\                /  \\
        1   6              1    14
             \\                 /
@@ -125,7 +125,7 @@ Replace node with its child.
 \`\`\`
 Before:     8      After:     6
           / \\               / \\
-         3   10     →      1   8
+         3   10     â†’      1   8
         / \\                \\   \\
        1   6                4   10
             \\
@@ -169,17 +169,17 @@ def find_min(node):
 
 ---
 
-## ⚡ Operation Comparison
+## âš¡ Operation Comparison
 
 | Operation | Recursive | Iterative | Use Case |
 |-----------|-----------|-----------|----------|
-| **Search** | ✅ Clean code | ✅ Efficient | Both work well |
-| **Insert** | ✅ Simple | ✅ Better for large trees | Iterative preferred |
-| **Delete** | ✅ Standard | ❌ Complex | Recursive preferred |
+| **Search** | âœ… Clean code | âœ… Efficient | Both work well |
+| **Insert** | âœ… Simple | âœ… Better for large trees | Iterative preferred |
+| **Delete** | âœ… Standard | âŒ Complex | Recursive preferred |
 
 ---
 
-## 🔍 Finding Min/Max Values
+## ðŸ” Finding Min/Max Values
 
 \`\`\`python
 def find_minimum(root):
@@ -201,7 +201,7 @@ def find_maximum(root):
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Search**: Follow left/right based on comparisons
 2. **Insert**: Find correct position, add new node
@@ -209,6 +209,7 @@ def find_maximum(root):
 4. **Recursive vs Iterative**: Both valid, choose based on constraints
 5. **Min/Max**: Always at leftmost/rightmost positions
 
-Practice these operations to master BST implementation! 💪`,
+Practice these operations to master BST implementation! ðŸ’ª`,
 };
+
 

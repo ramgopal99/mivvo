@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_1: SubLesson = {
   id: "10.1",
   title: 'Abstract Classes and Interfaces',
   status: 'completed',
-  content: `# 🎯 Abstract Classes and Interfaces in Java
+  content: "`# ðŸŽ¯ Abstract Classes and Interfaces in Java
 
 Abstract classes and interfaces are advanced object-oriented programming concepts that enable abstraction, multiple inheritance, and design flexibility. They provide blueprints for classes and define contracts that implementing classes must follow.
 
 ---
 
-## 📋 Understanding Abstraction
+## ðŸ“‹ Understanding Abstraction
 
 ### **What is Abstraction?**
 
@@ -32,7 +32,7 @@ Java doesn't support multiple class inheritance, but interfaces provide this cap
 
 ---
 
-## 🔷 Abstract Classes
+## ðŸ”· Abstract Classes
 
 ### **What is an Abstract Class?**
 
@@ -40,7 +40,7 @@ An abstract class is a class that cannot be instantiated directly and may contai
 
 ### **Abstract Class Syntax**
 
-\`\`\`java
+\`"\`\`java
 // Abstract class declaration
 public abstract class AbstractClassName {
     // Fields
@@ -177,10 +177,10 @@ public class Triangle extends Shape {
 
 public class AbstractClassDemo {
     public static void main(String[] args) {
-        // ❌ Cannot instantiate abstract class
+        // âŒ Cannot instantiate abstract class
         // Shape shape = new Shape("Red", "Generic"); // Compilation error
 
-        // ✅ Create concrete implementations
+        // âœ… Create concrete implementations
         Circle circle = new Circle("Red", 5.0);
         Rectangle rectangle = new Rectangle("Blue", 4.0, 6.0);
         Triangle triangle = new Triangle("Green", 6.0, 4.0, 5.0, 5.0);
@@ -213,10 +213,10 @@ public abstract class Animal {
     public abstract void makeSound();
 }
 
-// ❌ Compilation error
+// âŒ Compilation error
 // Animal animal = new Animal();
 
-// ✅ Must use concrete subclass
+// âœ… Must use concrete subclass
 public class Dog extends Animal {
     @Override
     public void makeSound() {
@@ -224,7 +224,7 @@ public class Dog extends Animal {
     }
 }
 
-Animal dog = new Dog(); // ✅ OK
+Animal dog = new Dog(); // âœ… OK
 \`\`\`
 
 #### **2. Can Have Abstract and Concrete Methods**
@@ -283,7 +283,7 @@ public abstract class MathUtils {
 
 ---
 
-## 🔗 Interfaces
+## ðŸ”— Interfaces
 
 ### **What is an Interface?**
 
@@ -479,10 +479,10 @@ public interface Constants {
 #### **3. Cannot Have Constructors**
 \`\`\`java
 public interface NoConstructors {
-    // ❌ Interfaces cannot have constructors
+    // âŒ Interfaces cannot have constructors
     // public NoConstructors() { } // Compilation error
 
-    // ✅ Can have default methods for initialization-like behavior
+    // âœ… Can have default methods for initialization-like behavior
     default void initialize() {
         System.out.println("Initializing...");
     }
@@ -516,11 +516,11 @@ public class MultiInterfaceClass implements InterfaceA, InterfaceB {
 
 ---
 
-## ⚖️ Abstract Classes vs Interfaces
+## âš–ï¸ Abstract Classes vs Interfaces
 
 ### **When to Use Abstract Classes**
 
-#### **✅ Use Abstract Classes When:**
+#### **âœ… Use Abstract Classes When:**
 - You want to share code among related classes
 - You have common fields and methods
 - You need to declare non-public members
@@ -555,7 +555,7 @@ public abstract class DatabaseHandler {
 }
 \`\`\`
 
-#### **❌ Don't Use Abstract Classes When:**
+#### **âŒ Don't Use Abstract Classes When:**
 - You need multiple inheritance
 - Classes are not closely related
 - You want complete abstraction
@@ -563,7 +563,7 @@ public abstract class DatabaseHandler {
 
 ### **When to Use Interfaces**
 
-#### **✅ Use Interfaces When:**
+#### **âœ… Use Interfaces When:**
 - You need multiple inheritance
 - You want complete abstraction
 - Classes are unrelated but need common behavior
@@ -618,7 +618,7 @@ public class PayPalProcessor implements PaymentProcessor {
 }
 \`\`\`
 
-#### **❌ Don't Use Interfaces When:**
+#### **âŒ Don't Use Interfaces When:**
 - You need shared implementation code
 - You need non-public members
 - You need constructors
@@ -626,7 +626,7 @@ public class PayPalProcessor implements PaymentProcessor {
 
 ---
 
-## 🎯 Advanced Interface Features
+## ðŸŽ¯ Advanced Interface Features
 
 ### **Default Methods (Java 8+)**
 
@@ -761,7 +761,7 @@ public interface DataProcessor {
 
 ---
 
-## 🎯 Practical Examples
+## ðŸŽ¯ Practical Examples
 
 ### **Shape Drawing System**
 
@@ -1023,14 +1023,14 @@ public class PaymentSystemDemo {
 
 ---
 
-## 🎯 Best Practices
+## ðŸŽ¯ Best Practices
 
 ### **1. Interface Segregation Principle**
 
 Keep interfaces focused and specific rather than having large, general-purpose interfaces.
 
 \`\`\`java
-// ❌ Bad: Large, unfocused interface
+// âŒ Bad: Large, unfocused interface
 public interface Worker {
     void work();
     void eat();
@@ -1040,7 +1040,7 @@ public interface Worker {
     void clean();
 }
 
-// ✅ Good: Focused, specific interfaces
+// âœ… Good: Focused, specific interfaces
 public interface Workable {
     void work();
 }
@@ -1074,7 +1074,7 @@ public class Human implements Workable, Eatable, Drivable {
 Depend on abstractions, not concrete implementations.
 
 \`\`\`java
-// ✅ Good: Depend on interface
+// âœ… Good: Depend on interface
 public class DataProcessor {
     private DataReader reader;
 
@@ -1139,7 +1139,7 @@ public interface Logger {
 
 ---
 
-## 🎯 Summary
+## ðŸŽ¯ Summary
 
 Abstract classes and interfaces are powerful tools for abstraction and design flexibility:
 
@@ -1187,4 +1187,5 @@ Which of these can be instantiated directly?
 Answer: Only #3
 `
 };
+
 

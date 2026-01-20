@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_20: SubLesson = {
   id: "2.20",
   title: 'Trailing Zeros in Factorial',
   status: 'completed',
-  content: `# 🔢 Trailing Zeros in Factorial
+  content: "`# ðŸ”¢ Trailing Zeros in Factorial
 
-Trailing zeros in factorials are created by factors of 10 (2×5). Since there are usually more factors of 2 than 5 in a factorial, the number of trailing zeros is determined by the number of times 5 appears as a factor in the prime factorization of n!.
+Trailing zeros in factorials are created by factors of 10 (2Ã—5). Since there are usually more factors of 2 than 5 in a factorial, the number of trailing zeros is determined by the number of times 5 appears as a factor in the prime factorization of n!.
 
 ---
 
-## 🎯 What are Trailing Zeros?
+## ðŸŽ¯ What are Trailing Zeros?
 
 Trailing zeros are zeros at the end of a number.
 
@@ -21,22 +21,22 @@ Trailing zeros are zeros at the end of a number.
 
 ---
 
-## 📊 Why Trailing Zeros in Factorials?
+## ðŸ“Š Why Trailing Zeros in Factorials?
 
-Trailing zeros in n! come from factors of 10 = 2 × 5.
+Trailing zeros in n! come from factors of 10 = 2 Ã— 5.
 
 Since there are usually more factors of 2 than 5 in n!, the limiting factor is the number of 5s.
 
-**Example**: 10! = 10 × 9 × 8 × 7 × 6 × 5 × 4 × 3 × 2 × 1
-\`\`\`
+**Example**: 10! = 10 Ã— 9 Ã— 8 Ã— 7 Ã— 6 Ã— 5 Ã— 4 Ã— 3 Ã— 2 Ã— 1
+\`"\`\`
 Powers of 5: floor(10/5) = 2
-Powers of 2: floor(10/2)=5, floor(10/4)=2, floor(10/8)=1 → 5+2+1=8
+Powers of 2: floor(10/2)=5, floor(10/4)=2, floor(10/8)=1 â†’ 5+2+1=8
 More 2s than 5s, so 2 trailing zeros
 \`\`\`
 
 ---
 
-## 🧮 Formula for Trailing Zeros
+## ðŸ§® Formula for Trailing Zeros
 
 ### Basic Formula
 Number of trailing zeros in n! = floor(n/5) + floor(n/25) + floor(n/125) + ...
@@ -57,7 +57,7 @@ Total: 20 + 4 = 24
 
 ---
 
-## 🎯 Step-by-Step Method
+## ðŸŽ¯ Step-by-Step Method
 
 ### Step 1: **Count multiples of 5**
 floor(n/5)
@@ -81,12 +81,12 @@ Total: 10 + 2 = 12 trailing zeros
 
 ---
 
-## 🧠 Trailing Zeros Tricks
+## ðŸ§  Trailing Zeros Tricks
 
 ### Trick 1: **For numbers ending with 0**
 These contribute both 2 and 5.
 
-**Example**: In 50!, the number 50 = 2 × 5² contributes 2 extra 5s.
+**Example**: In 50!, the number 50 = 2 Ã— 5Â² contributes 2 extra 5s.
 
 ### Trick 2: **Pattern Recognition**
 Trailing zeros increase at multiples of 5, 25, 125, etc.
@@ -99,7 +99,7 @@ The formula gives the exact number of trailing zeros.
 
 ---
 
-## 📊 Applications in Aptitude
+## ðŸ“Š Applications in Aptitude
 
 ### 1. **Factorial Problems**
 **Example**: How many trailing zeros in 25!?
@@ -120,9 +120,9 @@ Total: 200 + 40 + 8 + 1 = 249
 \`\`\`
 
 ### 3. **Comparison Problems**
-**Example**: Which has more trailing zeros: 50! or 49! × 50?
+**Example**: Which has more trailing zeros: 50! or 49! Ã— 50?
 \`\`\`
-50! has more trailing zeros than 49! × 50
+50! has more trailing zeros than 49! Ã— 50
 \`\`\`
 
 ### 4. **Pattern Questions**
@@ -134,7 +134,7 @@ So 10^12 divides 50!
 
 ---
 
-## 🔍 Special Cases
+## ðŸ” Special Cases
 
 ### 1. **Small Factorials**
 **Example**: 4! = 24, no trailing zeros
@@ -150,10 +150,10 @@ Use the formula systematically.
 
 ---
 
-## 🧮 Trailing Zeros vs Powers of 2
+## ðŸ§® Trailing Zeros vs Powers of 2
 
 ### Important Distinction
-- Trailing zeros come from 2×5 pairs
+- Trailing zeros come from 2Ã—5 pairs
 - Number of 2s is always more than number of 5s
 - So trailing zeros = number of 5s in prime factorization of n!
 
@@ -165,7 +165,7 @@ In 10!:
 
 ---
 
-## 🎯 Related Concepts
+## ðŸŽ¯ Related Concepts
 
 ### 1. **Highest Power of 2 in n!**
 floor(n/2) + floor(n/4) + floor(n/8) + ...
@@ -177,11 +177,11 @@ Same as trailing zeros formula
 Same as trailing zeros
 
 ### 4. **General Highest Power**
-For prime p in n!: floor(n/p) + floor(n/p²) + floor(n/p³) + ...
+For prime p in n!: floor(n/p) + floor(n/pÂ²) + floor(n/pÂ³) + ...
 
 ---
 
-## 📝 Practice Examples
+## ðŸ“ Practice Examples
 
 ### Example 1: Basic Trailing Zeros
 How many trailing zeros in 20!?
@@ -221,6 +221,7 @@ So between 20-24, n=24 gives 4, need 5th at n=25
 
 Actually, need to solve: floor(n/5) + floor(n/25) = 5
 
-Master trailing zeros in factorials to solve factorial-related aptitude problems! 🚀`
+Master trailing zeros in factorials to solve factorial-related aptitude problems! ðŸš€`
 };
+
 

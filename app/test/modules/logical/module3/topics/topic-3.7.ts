@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_7: SubLesson = {
   id: "3.7",
   title: 'Seating with Conditions',
   status: 'completed',
-  content: `# 📋 Seating with Conditions
+  content: "`# ðŸ“‹ Seating with Conditions
 
 Conditional seating arrangements involve complex constraints and requirements beyond basic positioning. These problems include specific rules, preferences, and conditional relationships that must be satisfied while arranging people in seats.
 
 ---
 
-## 🎯 Understanding Conditional Arrangements
+## ðŸŽ¯ Understanding Conditional Arrangements
 
 ### **What are Conditional Arrangements?**
 Conditional arrangements involve specific rules and constraints that must be followed during seating. These problems test your ability to:
@@ -27,7 +27,7 @@ Conditional arrangements involve specific rules and constraints that must be fol
 
 ---
 
-## 🧩 Types of Conditions
+## ðŸ§© Types of Conditions
 
 ### **1. Preference Conditions**
 **Personal preferences and requirements**
@@ -49,7 +49,7 @@ Conditional arrangements involve specific rules and constraints that must be fol
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze All Conditions**
 - List all given conditions
@@ -73,7 +73,7 @@ Conditional arrangements involve specific rules and constraints that must be fol
 
 ---
 
-## 🎯 Common Conditional Types
+## ðŸŽ¯ Common Conditional Types
 
 ### **Type 1: Proximity Conditions**
 **Distance and adjacency requirements**
@@ -95,7 +95,7 @@ Conditional arrangements involve specific rules and constraints that must be fol
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Condition Priority Method**
 - Identify most restrictive conditions
@@ -114,7 +114,7 @@ Conditional arrangements involve specific rules and constraints that must be fol
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Conditions**
 **Conditions:**
@@ -139,7 +139,7 @@ Conditional arrangements involve specific rules and constraints that must be fol
 
 ---
 
-## 🔍 Advanced Conditional Concepts
+## ðŸ” Advanced Conditional Concepts
 
 ### **Multiple Interdependent Conditions**
 Problems where conditions affect each other and require careful sequencing.
@@ -152,7 +152,7 @@ Conditions that change based on other arrangements or external factors.
 
 ---
 
-## 📊 Condition Analysis Methods
+## ðŸ“Š Condition Analysis Methods
 
 ### **Condition Classification**
 - **Mandatory**: Must be satisfied
@@ -171,23 +171,23 @@ Conditions that change based on other arrangements or external factors.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Condition Overlook**
-❌ Missing or ignoring conditions
-✅ List and check all conditions
+âŒ Missing or ignoring conditions
+âœ… List and check all conditions
 
 ### **Pitfall 2: Wrong Priority**
-❌ Applying conditions in wrong order
-✅ Start with most restrictive conditions
+âŒ Applying conditions in wrong order
+âœ… Start with most restrictive conditions
 
 ### **Pitfall 3: Incomplete Verification**
-❌ Not checking all conditions satisfied
-✅ Verify complete arrangement validity
+âŒ Not checking all conditions satisfied
+âœ… Verify complete arrangement validity
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Condition Inventory**
 - List all conditions clearly
@@ -206,7 +206,7 @@ Conditions that change based on other arrangements or external factors.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Few conditions
@@ -225,7 +225,7 @@ Conditions that change based on other arrangements or external factors.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **List All Conditions**: Never work from memory
 2. **Identify Priorities**: Apply restrictive conditions first
@@ -235,7 +235,7 @@ Conditions that change based on other arrangements or external factors.
 
 ---
 
-## 📋 Practice Questions
+## ðŸ“‹ Practice Questions
 
 ### **Question 1**
 **Conditions:**
@@ -270,5 +270,5 @@ Conditions that change based on other arrangements or external factors.
 
 **How many different valid arrangements are possible?**
 
-**Master conditional seating arrangements for complex logical reasoning! 📋✨**`
+**Master conditional seating arrangements for complex logical reasoning! ðŸ“‹âœ¨**`"
 };

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_5: SubLesson = {
   id: "9.5",
   title: 'Logical Deduction',
   status: 'completed',
-  content: `# 🔍 Logical Deduction
+  content: "`# ðŸ” Logical Deduction
 
 Logical deduction forms the core of syllogistic reasoning, involving systematic application of inference rules to draw valid conclusions from given premises. Mastering deductive techniques allows you to determine which conclusions must follow, which may follow, and which cannot follow from categorical statements.
 
 ---
 
-## 🎯 Understanding Logical Deduction
+## ðŸŽ¯ Understanding Logical Deduction
 
 ### **What is Logical Deduction in Syllogism?**
 Logical deduction involves applying systematic rules and principles to derive necessary conclusions from given categorical statements. It requires:
@@ -20,7 +20,7 @@ Logical deduction involves applying systematic rules and principles to derive ne
 - **Using formal logical principles**
 
 ### **Deduction vs Induction**
-\`\`\`
+\`"\`\`
 Deduction: From general premises to specific conclusions
 - All men are mortal (general)
 - Socrates is a man (specific)
@@ -33,7 +33,7 @@ Induction: From specific observations to general conclusions
 
 ---
 
-## 🧩 Fundamental Deduction Rules
+## ðŸ§© Fundamental Deduction Rules
 
 ### **Rule 1: Law of Identity**
 \`\`\`
@@ -61,7 +61,7 @@ Every statement is either true or false
 
 ---
 
-## 📊 Categorical Syllogism Rules
+## ðŸ“Š Categorical Syllogism Rules
 
 ### **Valid Syllogism Structures**
 
@@ -95,41 +95,41 @@ If both premises are particular, no conclusion
 
 ---
 
-## 🎯 Immediate Inference Rules
+## ðŸŽ¯ Immediate Inference Rules
 
 ### **Conversion (Simple)**
 \`\`\`
-All A are B → Some B are A
-No A are B → No B are A
-Some A are B → Some B are A
-Some A are not B → Some B are not A
+All A are B â†’ Some B are A
+No A are B â†’ No B are A
+Some A are B â†’ Some B are A
+Some A are not B â†’ Some B are not A
 \`\`\`
 
 ### **Conversion by Limitation**
 \`\`\`
-All A are B → Some B are A (same as simple conversion)
-No A are B → No B are A (same as simple conversion)
+All A are B â†’ Some B are A (same as simple conversion)
+No A are B â†’ No B are A (same as simple conversion)
 \`\`\`
 
 ### **Contraposition**
 \`\`\`
-All A are B → No non-B are A
-No A are B → All non-B are A
-Some A are B → Some B are not non-A
-Some A are not B → Some non-B are not A
+All A are B â†’ No non-B are A
+No A are B â†’ All non-B are A
+Some A are B â†’ Some B are not non-A
+Some A are not B â†’ Some non-B are not A
 \`\`\`
 
 ### **Obversion**
 \`\`\`
-All A are B → No A are non-B
-No A are B → All A are non-B
-Some A are B → Some A are not non-B
-Some A are not B → Some A are not B (no change)
+All A are B â†’ No A are non-B
+No A are B â†’ All A are non-B
+Some A are B â†’ Some A are not non-B
+Some A are not B â†’ Some A are not B (no change)
 \`\`\`
 
 ---
 
-## 🛠️ Deductive Problem-Solving Framework
+## ðŸ› ï¸ Deductive Problem-Solving Framework
 
 ### **Step-by-Step Deduction Process**
 
@@ -165,39 +165,39 @@ Some A are not B → Some A are not B (no change)
 
 ---
 
-## 🎯 Common Deductive Patterns
+## ðŸŽ¯ Common Deductive Patterns
 
 ### **Pattern 1: Transitive Reasoning**
 \`\`\`
 All A are B
 All B are C
-∴ All A are C (valid deduction)
+âˆ´ All A are C (valid deduction)
 \`\`\`
 
 ### **Pattern 2: Contradiction Elimination**
 \`\`\`
 All A are B
 Some A are not B
-∴ Contradiction (invalid combination)
+âˆ´ Contradiction (invalid combination)
 \`\`\`
 
 ### **Pattern 3: Necessary vs Possible**
 \`\`\`
 All A are B
 Some B are C
-∴ Some A are C (possible, not necessary)
+âˆ´ Some A are C (possible, not necessary)
 \`\`\`
 
 ### **Pattern 4: Exclusion Reasoning**
 \`\`\`
 No A are B
 All C are A
-∴ No C are B (valid exclusion)
+âˆ´ No C are B (valid exclusion)
 \`\`\`
 
 ---
 
-## 📊 Advanced Deduction Techniques
+## ðŸ“Š Advanced Deduction Techniques
 
 ### **Technique 1: Term Substitution**
 \`\`\`
@@ -225,37 +225,37 @@ From "A or B" and "not A", conclude "B":
 
 ---
 
-## 🎯 Fallacy Identification
+## ðŸŽ¯ Fallacy Identification
 
 ### **Common Syllogistic Fallacies**
 
 #### **Illicit Major**
 \`\`\`
 Major term not distributed in major premise but distributed in conclusion
-Example: All A are B, All A are C ∴ All B are C (invalid)
+Example: All A are B, All A are C âˆ´ All B are C (invalid)
 \`\`\`
 
 #### **Illicit Minor**
 \`\`\`
 Minor term not distributed in minor premise but distributed in conclusion
-Example: All A are B, Some C are A ∴ Some C are B (invalid)
+Example: All A are B, Some C are A âˆ´ Some C are B (invalid)
 \`\`\`
 
 #### **Undistributed Middle**
 \`\`\`
 Middle term not distributed in either premise
-Example: All A are C, All B are C ∴ All A are B (invalid)
+Example: All A are C, All B are C âˆ´ All A are B (invalid)
 \`\`\`
 
 #### **Negative Premises Fallacy**
 \`\`\`
 Two negative premises cannot yield a conclusion
-Example: No A are B, No A are C ∴ No conclusion possible
+Example: No A are B, No A are C âˆ´ No conclusion possible
 \`\`\`
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (30%)**
 - Basic immediate inferences
@@ -274,7 +274,7 @@ Example: No A are B, No A are C ∴ No conclusion possible
 
 ---
 
-## 🧮 Formal Logical Rules
+## ðŸ§® Formal Logical Rules
 
 ### **Distribution Rules**
 \`\`\`
@@ -289,37 +289,37 @@ Particular statements distribute predicate:
 
 ### **Syllogism Figure Validation**
 \`\`\`
-Figure 1: M-P, S-M ∴ S-P
-Figure 2: P-M, S-M ∴ S-P
-Figure 3: M-P, M-S ∴ S-P
-Figure 4: P-M, M-S ∴ S-P
+Figure 1: M-P, S-M âˆ´ S-P
+Figure 2: P-M, S-M âˆ´ S-P
+Figure 3: M-P, M-S âˆ´ S-P
+Figure 4: P-M, M-S âˆ´ S-P
 
 Each figure has valid mood combinations
 \`\`\`
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Invalid Distribution**
-❌ Distributing terms not properly distributed in premises
-✅ Check distribution rules carefully
+âŒ Distributing terms not properly distributed in premises
+âœ… Check distribution rules carefully
 
 ### **Mistake 2: Quality Violations**
-❌ Drawing conclusions from two negative premises
-✅ At least one affirmative premise required
+âŒ Drawing conclusions from two negative premises
+âœ… At least one affirmative premise required
 
 ### **Mistake 3: Quantity Errors**
-❌ Concluding from two particular premises
-✅ At least one universal premise required
+âŒ Concluding from two particular premises
+âœ… At least one universal premise required
 
 ### **Mistake 4: Fallacy Oversight**
-❌ Accepting arguments with illicit major/minor
-✅ Verify proper term distribution
+âŒ Accepting arguments with illicit major/minor
+âœ… Verify proper term distribution
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Master Distribution Rules**: Know when terms are distributed
 2. **Apply Validity Rules**: Check middle term and premise quality
@@ -331,7 +331,7 @@ Each figure has valid mood combinations
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Valid Deduction**
 *"All men are mortal. Socrates is a man. Therefore, Socrates is mortal."*
@@ -370,7 +370,7 @@ Each figure has valid mood combinations
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Venn Diagrams**
 - Use diagrams to verify deductive conclusions
@@ -387,5 +387,5 @@ Each figure has valid mood combinations
 - Use statement properties in logical analysis
 - Combine statement analysis with deduction techniques
 
-**Master logical deduction to apply systematic reasoning in all syllogism problems! 🔍✨**`
+**Master logical deduction to apply systematic reasoning in all syllogism problems! ðŸ”âœ¨**`
 };

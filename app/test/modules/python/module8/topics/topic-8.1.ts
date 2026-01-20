@@ -1,20 +1,20 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_1: SubLesson = {
   id: "8.1",
   title: 'Introduction to Built-in Functions',
   status: 'demo',
-  content: `# 🏗️ Introduction to Built-in Functions
+  content: "`# ðŸ—ï¸ Introduction to Built-in Functions
 
 Python comes with many built-in functions that are always available. These are the foundation tools you use every day!
 
 ---
 
-## 🎯 What are Built-in Functions?
+## ðŸŽ¯ What are Built-in Functions?
 
 Built-in functions are functions that Python provides automatically - you don't need to import anything to use them. They're always available in any Python program.
 
-\`\`\`python
+\`"\`\`python
 # These work anywhere in Python
 print("Hello, World!")  # Display text
 len([1, 2, 3])         # Get length: 3
@@ -25,7 +25,7 @@ sum([1, 2, 3])         # Sum elements: 6
 
 ---
 
-## 📊 Categories of Built-in Functions
+## ðŸ“Š Categories of Built-in Functions
 
 ### **Type Conversion Functions**
 \`\`\`python
@@ -72,7 +72,7 @@ id("hello")    # Get memory address
 
 ---
 
-## 🔍 Exploring Built-in Functions
+## ðŸ” Exploring Built-in Functions
 
 ### **See All Built-in Functions**
 \`\`\`python
@@ -102,7 +102,7 @@ help(max)
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **Data Analysis Pipeline**
 \`\`\`python
@@ -165,7 +165,7 @@ print("All are Python:", all(f.endswith('.py') for f in files))
 
 ---
 
-## ⚡ Performance Tips
+## âš¡ Performance Tips
 
 ### **Built-in Functions are Fast**
 \`\`\`python
@@ -205,7 +205,7 @@ print(max(large_list))  # Fast enough
 
 ---
 
-## ✅ Best Practices
+## âœ… Best Practices
 
 1. **Use built-in functions first** - They're optimized and tested
 2. **Combine built-ins creatively** - Chain them for powerful operations
@@ -213,6 +213,7 @@ print(max(large_list))  # Fast enough
 4. **Check performance** - Built-ins are usually fastest
 5. **Use help() to learn** - Discover function capabilities
 
-Built-in functions are your Python superpower! 🦸‍♂️`
+Built-in functions are your Python superpower! ðŸ¦¸â€â™‚ï¸`
 };
+
 

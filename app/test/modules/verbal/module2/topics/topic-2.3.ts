@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_3: SubLesson = {
   id: "2.3",
   title: 'English Tenses',
   status: 'completed',
-  content: `# ⏰ English Tenses: Time Travel in Grammar
+  content: "`# â° English Tenses: Time Travel in Grammar
 
 Tenses are the backbone of English grammar, allowing us to express time relationships. English has **12 main tenses** formed by combining **3 time periods** with **4 aspects**. Understanding tenses is crucial for clear communication and competitive exams.
 
 ---
 
-## 📅 TENSE OVERVIEW
+## ðŸ“… TENSE OVERVIEW
 
 ### Three Time Periods:
 - **Present**: Now, current time
@@ -34,7 +34,7 @@ Tenses are the backbone of English grammar, allowing us to express time relation
 
 ---
 
-## 🎯 PRESENT TENSES
+## ðŸŽ¯ PRESENT TENSES
 
 ### 1. **Present Simple** (V1/base form)
 **Usage:** Facts, habits, routines, general truths
@@ -47,10 +47,10 @@ Tenses are the backbone of English grammar, allowing us to express time relation
 - Questions: Do/Does + subject + V1?
 
 #### Examples:
-- ✅ **I work** at a bank. (fact)
-- ✅ **She eats** breakfast at 8 AM. (habit)
-- ✅ **The sun rises** in the east. (general truth)
-- ✅ **Do you like** coffee? (question)
+- âœ… **I work** at a bank. (fact)
+- âœ… **She eats** breakfast at 8 AM. (habit)
+- âœ… **The sun rises** in the east. (general truth)
+- âœ… **Do you like** coffee? (question)
 
 ### 2. **Present Continuous** (am/is/are + V-ing)
 **Usage:** Ongoing actions now, temporary situations
@@ -64,9 +64,9 @@ Tenses are the backbone of English grammar, allowing us to express time relation
 - Questions: Am/Is/Are + subject + V-ing?
 
 #### Examples:
-- ✅ **I am studying** right now. (ongoing)
-- ✅ **She is living** in Mumbai temporarily. (temporary)
-- ✅ **It is raining** outside. (current action)
+- âœ… **I am studying** right now. (ongoing)
+- âœ… **She is living** in Mumbai temporarily. (temporary)
+- âœ… **It is raining** outside. (current action)
 
 ### 3. **Present Perfect** (have/has + V3)
 **Usage:** Past actions with present connection, life experiences
@@ -79,9 +79,9 @@ Tenses are the backbone of English grammar, allowing us to express time relation
 - Questions: Have/Has + subject + V3?
 
 #### Examples:
-- ✅ **I have finished** my homework. (completed with present result)
-- ✅ **She has visited** Paris twice. (life experience)
-- ✅ **They have lived** here for 5 years. (continuing until now)
+- âœ… **I have finished** my homework. (completed with present result)
+- âœ… **She has visited** Paris twice. (life experience)
+- âœ… **They have lived** here for 5 years. (continuing until now)
 
 ### 4. **Present Perfect Continuous** (have/has + been + V-ing)
 **Usage:** Duration of ongoing actions until now
@@ -94,13 +94,13 @@ Tenses are the backbone of English grammar, allowing us to express time relation
 - Questions: Have/Has + subject + been + V-ing?
 
 #### Examples:
-- ✅ **I have been studying** for 3 hours. (duration until now)
-- ✅ **She has been working** here since 2019. (continuing action)
-- ✅ **It has been raining** all day. (ongoing duration)
+- âœ… **I have been studying** for 3 hours. (duration until now)
+- âœ… **She has been working** here since 2019. (continuing action)
+- âœ… **It has been raining** all day. (ongoing duration)
 
 ---
 
-## ⏪ PAST TENSES
+## âª PAST TENSES
 
 ### 5. **Past Simple** (V2/past form)
 **Usage:** Completed actions at specific past times
@@ -113,9 +113,9 @@ Tenses are the backbone of English grammar, allowing us to express time relation
 - Questions: Did + subject + V1?
 
 #### Examples:
-- ✅ **I visited** Paris last year. (completed action)
-- ✅ **She finished** her work yesterday. (specific past time)
-- ✅ **They arrived** at 6 PM. (exact past time)
+- âœ… **I visited** Paris last year. (completed action)
+- âœ… **She finished** her work yesterday. (specific past time)
+- âœ… **They arrived** at 6 PM. (exact past time)
 
 ### 6. **Past Continuous** (was/were + V-ing)
 **Usage:** Ongoing actions in the past, interrupted actions
@@ -128,9 +128,9 @@ Tenses are the backbone of English grammar, allowing us to express time relation
 - Questions: Was/Were + subject + V-ing?
 
 #### Examples:
-- ✅ **I was studying** when you called. (ongoing past action)
-- ✅ **They were playing** football at 5 PM. (past continuous)
-- ✅ **It was raining** when I left. (background action)
+- âœ… **I was studying** when you called. (ongoing past action)
+- âœ… **They were playing** football at 5 PM. (past continuous)
+- âœ… **It was raining** when I left. (background action)
 
 ### 7. **Past Perfect** (had + V3)
 **Usage:** Action completed before another past action
@@ -142,9 +142,9 @@ Tenses are the backbone of English grammar, allowing us to express time relation
 - Questions: Had + subject + V3?
 
 #### Examples:
-- ✅ **I had finished** my homework before dinner. (completed before another past action)
-- ✅ **She had left** by the time I arrived. (earlier completion)
-- ✅ **They had studied** the lesson before the test. (prior completion)
+- âœ… **I had finished** my homework before dinner. (completed before another past action)
+- âœ… **She had left** by the time I arrived. (earlier completion)
+- âœ… **They had studied** the lesson before the test. (prior completion)
 
 ### 8. **Past Perfect Continuous** (had + been + V-ing)
 **Usage:** Duration of action before another past action
@@ -156,13 +156,13 @@ Tenses are the backbone of English grammar, allowing us to express time relation
 - Questions: Had + subject + been + V-ing?
 
 #### Examples:
-- ✅ **I had been studying** for 2 hours when you called. (duration before interruption)
-- ✅ **She had been working** there for 5 years before quitting. (past duration)
-- ✅ **It had been raining** for hours before it stopped. (completed duration)
+- âœ… **I had been studying** for 2 hours when you called. (duration before interruption)
+- âœ… **She had been working** there for 5 years before quitting. (past duration)
+- âœ… **It had been raining** for hours before it stopped. (completed duration)
 
 ---
 
-## ⏩ FUTURE TENSES
+## â© FUTURE TENSES
 
 ### 9. **Future Simple** (will + V1)
 **Usage:** Predictions, spontaneous decisions, promises
@@ -174,9 +174,9 @@ Tenses are the backbone of English grammar, allowing us to express time relation
 - Questions: Will + subject + V1?
 
 #### Examples:
-- ✅ **I will help** you tomorrow. (promise)
-- ✅ **It will rain** tomorrow. (prediction)
-- ✅ **I will call** you later. (spontaneous decision)
+- âœ… **I will help** you tomorrow. (promise)
+- âœ… **It will rain** tomorrow. (prediction)
+- âœ… **I will call** you later. (spontaneous decision)
 
 ### 10. **Future Continuous** (will + be + V-ing)
 **Usage:** Ongoing actions at specific future times
@@ -188,9 +188,9 @@ Tenses are the backbone of English grammar, allowing us to express time relation
 - Questions: Will + subject + be + V-ing?
 
 #### Examples:
-- ✅ **I will be studying** at 8 PM tomorrow. (future ongoing)
-- ✅ **She will be traveling** next week. (future duration)
-- ✅ **They will be waiting** for us at the station. (future continuous)
+- âœ… **I will be studying** at 8 PM tomorrow. (future ongoing)
+- âœ… **She will be traveling** next week. (future duration)
+- âœ… **They will be waiting** for us at the station. (future continuous)
 
 ### 11. **Future Perfect** (will + have + V3)
 **Usage:** Completed actions by specific future times
@@ -202,9 +202,9 @@ Tenses are the backbone of English grammar, allowing us to express time relation
 - Questions: Will + subject + have + V3?
 
 #### Examples:
-- ✅ **I will have finished** my work by 5 PM. (completed by future time)
-- ✅ **She will have graduated** by next year. (future completion)
-- ✅ **They will have arrived** by the time you get there. (prior completion)
+- âœ… **I will have finished** my work by 5 PM. (completed by future time)
+- âœ… **She will have graduated** by next year. (future completion)
+- âœ… **They will have arrived** by the time you get there. (prior completion)
 
 ### 12. **Future Perfect Continuous** (will + have + been + V-ing)
 **Usage:** Duration of actions continuing until future times
@@ -216,20 +216,20 @@ Tenses are the backbone of English grammar, allowing us to express time relation
 - Questions: Will + subject + have + been + V-ing?
 
 #### Examples:
-- ✅ **I will have been studying** for 4 hours by then. (future duration)
-- ✅ **She will have been working** here for 10 years next month. (ongoing until future)
-- ✅ **They will have been traveling** for 3 days when they arrive. (continuous duration)
+- âœ… **I will have been studying** for 4 hours by then. (future duration)
+- âœ… **She will have been working** here for 10 years next month. (ongoing until future)
+- âœ… **They will have been traveling** for 3 days when they arrive. (continuous duration)
 
 ---
 
-## 🔄 TENSE SEQUENCE RULES
+## ðŸ”„ TENSE SEQUENCE RULES
 
-### ⏰ **Time Sequence:**
+### â° **Time Sequence:**
 - **Past Perfect** before **Past Simple**: I had eaten before she arrived.
 - **Present Perfect** connects past to present: I have lived here for 5 years.
 - **Future Perfect** before **Future Simple**: I will have left before you arrive.
 
-### 🎯 **Key Rules:**
+### ðŸŽ¯ **Key Rules:**
 1. **Completed vs Ongoing**: Simple = completed, Continuous = ongoing
 2. **Perfect = Connection**: Links actions across time periods
 3. **Specific Time**: Past/Present/Future Simple + specific times
@@ -237,27 +237,27 @@ Tenses are the backbone of English grammar, allowing us to express time relation
 
 ---
 
-## ⚠️ COMMON MISTAKES & CORRECTIONS
+## âš ï¸ COMMON MISTAKES & CORRECTIONS
 
 ### Present Tenses:
-1. ❌ I am having a car. ✅ I have a car. (possession ≠ continuous)
-2. ❌ She is liking coffee. ✅ She likes coffee. (stative verbs ≠ continuous)
+1. âŒ I am having a car. âœ… I have a car. (possession â‰  continuous)
+2. âŒ She is liking coffee. âœ… She likes coffee. (stative verbs â‰  continuous)
 
 ### Past Tenses:
-3. ❌ I did my homework yesterday. ✅ I did my homework yesterday. (correct)
-4. ❌ I had went there. ✅ I had gone there. (irregular verb: go → went → gone)
+3. âŒ I did my homework yesterday. âœ… I did my homework yesterday. (correct)
+4. âŒ I had went there. âœ… I had gone there. (irregular verb: go â†’ went â†’ gone)
 
 ### Future Tenses:
-5. ❌ I will go to school tomorrow. ✅ I will go to school tomorrow. (correct)
-6. ❌ I will be going to school tomorrow. ✅ I will go to school tomorrow. (no need for continuous with future time)
+5. âŒ I will go to school tomorrow. âœ… I will go to school tomorrow. (correct)
+6. âŒ I will be going to school tomorrow. âœ… I will go to school tomorrow. (no need for continuous with future time)
 
 ### Sequence Errors:
-7. ❌ When I arrived, she leaves. ✅ When I arrived, she left. (sequence)
-8. ❌ I had ate before you came. ✅ I had eaten before you came. (past perfect formation)
+7. âŒ When I arrived, she leaves. âœ… When I arrived, she left. (sequence)
+8. âŒ I had ate before you came. âœ… I had eaten before you came. (past perfect formation)
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Identify the Tense
 1. I **am studying** English now. _______________
@@ -288,24 +288,24 @@ Tenses are the backbone of English grammar, allowing us to express time relation
 5. had finished (Past Perfect)
 
 ### Exercise 3: Correct the Mistakes
-1. ❌ I am having a headache.
-   ✅ I have a headache.
+1. âŒ I am having a headache.
+   âœ… I have a headache.
 
-2. ❌ She will be going to the party tonight.
-   ✅ She will go to the party tonight.
+2. âŒ She will be going to the party tonight.
+   âœ… She will go to the party tonight.
 
-3. ❌ I had ran 5 kilometers.
-   ✅ I had run 5 kilometers.
+3. âŒ I had ran 5 kilometers.
+   âœ… I had run 5 kilometers.
 
-4. ❌ They are liking the movie.
-   ✅ They like the movie.
+4. âŒ They are liking the movie.
+   âœ… They like the movie.
 
-5. ❌ When I came, she eats dinner.
-   ✅ When I came, she was eating dinner.
+5. âŒ When I came, she eats dinner.
+   âœ… When I came, she was eating dinner.
 
 ---
 
-## 📊 TENSE USAGE SUMMARY
+## ðŸ“Š TENSE USAGE SUMMARY
 
 ### Quick Reference Guide:
 
@@ -326,26 +326,27 @@ Tenses are the backbone of English grammar, allowing us to express time relation
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Master Time Expressions**: Each tense has specific time words
 2. **Practice Formation**: Learn patterns for regular questions/negatives
-3. **Understand Sequence**: Past Perfect → Past Simple → Future
+3. **Understand Sequence**: Past Perfect â†’ Past Simple â†’ Future
 4. **Use Real Contexts**: Practice with daily situations
 
-### 🏆 Competitive Exam Tips:
+### ðŸ† Competitive Exam Tips:
 5. **Spot Key Words**: Time expressions determine the tense
 6. **Check Sequence**: Multiple actions need correct tense relationships
 7. **Avoid Common Traps**: Stative verbs don't use continuous tenses
 8. **Practice Regularly**: Tense questions appear frequently in exams
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Think of tenses as a "time camera":**
-- 📷 **Simple**: Single snapshot
-- 🎬 **Continuous**: Video recording
-- 🎯 **Perfect**: Action completed and connected
-- ⏱️ **Perfect Continuous**: Duration timer
+- ðŸ“· **Simple**: Single snapshot
+- ðŸŽ¬ **Continuous**: Video recording
+- ðŸŽ¯ **Perfect**: Action completed and connected
+- â±ï¸ **Perfect Continuous**: Duration timer
 
-**Master the 12 tenses and you'll control time in English!** ⏰✨`
+**Master the 12 tenses and you'll control time in English!** â°âœ¨`"
 };
+

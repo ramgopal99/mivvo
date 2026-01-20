@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_8: SubLesson = {
   id: "7.8",
   title: 'Mixed Direction Problems',
   status: 'completed',
-  content: `# 🔀 Mixed Direction Problems
+  content: "`# ðŸ”€ Mixed Direction Problems
 
 Mixed direction problems combine multiple directional concepts, requiring integrated application of basic directions, turning, distance calculation, and spatial reasoning. These complex problems test comprehensive understanding of all direction sense principles and appear frequently in advanced competitive exam sections.
 
 ---
 
-## 🎯 Understanding Mixed Direction Problems
+## ðŸŽ¯ Understanding Mixed Direction Problems
 
 ### **What are Mixed Direction Problems?**
 These problems integrate multiple direction sense concepts simultaneously, requiring you to apply:
@@ -29,7 +29,7 @@ These problems integrate multiple direction sense concepts simultaneously, requi
 
 ---
 
-## 🧩 Integration Patterns
+## ðŸ§© Integration Patterns
 
 ### **Pattern 1: Direction + Distance + Turns**
 *"Walk 5m North, turn right, walk 3m, turn left, walk 4m, find shortest distance from start"*
@@ -57,7 +57,7 @@ These problems integrate multiple direction sense concepts simultaneously, requi
 
 ---
 
-## 🛠️ Mixed Problem Solving Framework
+## ðŸ› ï¸ Mixed Problem Solving Framework
 
 ### **Comprehensive Approach**
 
@@ -94,15 +94,15 @@ These problems integrate multiple direction sense concepts simultaneously, requi
 
 ---
 
-## 🎯 Common Mixed Problem Types
+## ðŸŽ¯ Common Mixed Problem Types
 
 ### **Type 1: Complex Movement Sequences**
-*"Start facing North, walk 8m, turn right, walk 6m, turn left, walk 10m, turn 180°, walk 4m"*
+*"Start facing North, walk 8m, turn right, walk 6m, turn left, walk 10m, turn 180Â°, walk 4m"*
 
 **Solution Elements:**
-- Position tracking: (0,0) → (0,8) → (6,8) → (6,18) → (6,14)
-- Direction changes: North → East → North → South
-- Distance calculations: √(6² + 14²) = √(36+196) = √232
+- Position tracking: (0,0) â†’ (0,8) â†’ (6,8) â†’ (6,18) â†’ (6,14)
+- Direction changes: North â†’ East â†’ North â†’ South
+- Distance calculations: âˆš(6Â² + 14Â²) = âˆš(36+196) = âˆš232
 
 ### **Type 2: Multiple Person Problems**
 *"A walks 5m South, B walks 3m East from A, C walks 4m North from B"*
@@ -122,7 +122,7 @@ These problems integrate multiple direction sense concepts simultaneously, requi
 
 ---
 
-## 📊 Advanced Integration Problems
+## ðŸ“Š Advanced Integration Problems
 
 ### **Problem 1: Multi-Variable Scenarios**
 *"A walks 10m North, turns right, walks 15m, B starts from A's position, walks 20m South"*
@@ -150,7 +150,7 @@ These problems integrate multiple direction sense concepts simultaneously, requi
 
 ---
 
-## 🎯 Complex Question Patterns
+## ðŸŽ¯ Complex Question Patterns
 
 ### **Pattern 1: Multi-Step Position Finding**
 *"After a series of movements and turns, where is the final position?"*
@@ -169,7 +169,7 @@ These problems integrate multiple direction sense concepts simultaneously, requi
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Medium Level (60%)**
 - Complex movement sequences
@@ -191,32 +191,32 @@ These problems integrate multiple direction sense concepts simultaneously, requi
 
 ---
 
-## 🧮 Mathematical Integration
+## ðŸ§® Mathematical Integration
 
 ### **Combined Formulas Application**
 
 #### **Distance-Speed-Time Integration**
 
 Speed = Distance/Time  
-Total Distance = Speed × Time  
+Total Distance = Speed Ã— Time  
 Average Speed = Total Distance/Total Time
 
 #### **Multiple Displacement Calculation**
 
-Net Displacement = √[(ΣΔX)² + (ΣΔY)²]  
-Where ΔX = East-West components  
-      ΔY = North-South components
+Net Displacement = âˆš[(Î£Î”X)Â² + (Î£Î”Y)Â²]  
+Where Î”X = East-West components  
+      Î”Y = North-South components
 
 #### **Relative Position Vectors**
 
-Position A: (x₁, y₁)  
-Position B: (x₂, y₂)  
-Relative Position: (x₂-x₁, y₂-y₁)  
-Distance: √((x₂-x₁)² + (y₂-y₁)²)
+Position A: (xâ‚, yâ‚)  
+Position B: (xâ‚‚, yâ‚‚)  
+Relative Position: (xâ‚‚-xâ‚, yâ‚‚-yâ‚)  
+Distance: âˆš((xâ‚‚-xâ‚)Â² + (yâ‚‚-yâ‚)Â²)
 
 ---
 
-## 🎯 Solution Techniques
+## ðŸŽ¯ Solution Techniques
 
 ### **Technique 1: Systematic Tracking Table**
 
@@ -245,27 +245,27 @@ Start: (0,0)
 
 ---
 
-## 🚨 Common Mistakes in Mixed Problems
+## ðŸš¨ Common Mistakes in Mixed Problems
 
 ### **Mistake 1: Incomplete Tracking**
-❌ Missing intermediate position updates
-✅ Track every movement and turn sequentially
+âŒ Missing intermediate position updates
+âœ… Track every movement and turn sequentially
 
 ### **Mistake 2: Formula Misapplication**
-❌ Using wrong formula for integrated problems
-✅ Identify which formulas apply to each component
+âŒ Using wrong formula for integrated problems
+âœ… Identify which formulas apply to each component
 
 ### **Mistake 3: Reference Point Confusion**
-❌ Losing track of relative reference points
-✅ Clearly define and maintain reference positions
+âŒ Losing track of relative reference points
+âœ… Clearly define and maintain reference positions
 
 ### **Mistake 4: Integration Errors**
-❌ Treating components separately instead of integrated
-✅ Combine all elements systematically
+âŒ Treating components separately instead of integrated
+âœ… Combine all elements systematically
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Create Detailed Tracking Tables**: Record every step systematically
 2. **Use Coordinate System Consistently**: Maintain X-Y position tracking
@@ -277,15 +277,15 @@ Start: (0,0)
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Complex Movement Integration**
-*"Start North, walk 6m, turn right, walk 8m, turn left, walk 5m, turn 180°, walk 3m"*
+*"Start North, walk 6m, turn right, walk 8m, turn left, walk 5m, turn 180Â°, walk 3m"*
 
 **Integrated Solution:**
-- Track position: (0,0) → (0,6) → (8,6) → (8,11) → (8,8)
-- Direction changes: N → E → N → S
-- Shortest distance: √(8² + 8²) = √128 = 8√2m
+- Track position: (0,0) â†’ (0,6) â†’ (8,6) â†’ (8,11) â†’ (8,8)
+- Direction changes: N â†’ E â†’ N â†’ S
+- Shortest distance: âˆš(8Â² + 8Â²) = âˆš128 = 8âˆš2m
 
 ### **Example 2: Multi-Person Scenario**
 *"A walks 4m North, 3m East. B starts from A's position, walks 5m South, 2m West"*
@@ -305,7 +305,7 @@ Start: (0,0)
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Blood Relations**
 - Track family member positions
@@ -322,5 +322,5 @@ Start: (0,0)
 - Calculate shortest routes with constraints
 - Optimize multi-step journeys
 
-**Master mixed direction problems to solve the most complex spatial reasoning challenges! 🔀✨**`
+**Master mixed direction problems to solve the most complex spatial reasoning challenges! ðŸ”€âœ¨**`"
 };

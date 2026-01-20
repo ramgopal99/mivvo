@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_5: SubLesson = {
   id: "11.5",
   title: 'Hash Table Applications',
   status: 'demo',
-  content: `# 🎯 Hash Table Applications
+  content: "`# ðŸŽ¯ Hash Table Applications
 
 Hash tables power countless real-world applications. They're everywhere in modern computing - from databases to web browsers!
 
 ---
 
-## 🗄️ Database Indexing
+## ðŸ—„ï¸ Database Indexing
 
 ### **Primary Key Lookups**
-\`\`\`python
+\`"\`\`python
 class SimpleDatabase:
     def __init__(self):
         self.primary_index = {}  # ID -> Record
@@ -112,7 +112,7 @@ print(f"Products cached: {'products' in cache.cache}")
 
 ---
 
-## 🌐 Web Applications
+## ðŸŒ Web Applications
 
 ### **Session Management**
 \`\`\`python
@@ -222,7 +222,7 @@ print("GET /contact:", router.handle_request("/contact"))
 
 ---
 
-## 🔍 Data Analysis & Processing
+## ðŸ” Data Analysis & Processing
 
 ### **Word Frequency Analysis**
 \`\`\`python
@@ -311,7 +311,7 @@ print(f"Cleaned: {cleaned}")
 
 ---
 
-## 🎮 Game Development
+## ðŸŽ® Game Development
 
 ### **Entity Management**
 \`\`\`python
@@ -436,7 +436,7 @@ print(f"Potion count after using 5: {inventory.get_item_count('potion')}")
 
 ---
 
-## 🔧 System Programming
+## ðŸ”§ System Programming
 
 ### **Symbol Tables**
 \`\`\`python
@@ -495,6 +495,7 @@ symbols.exit_scope()
 print("Back to global x:", symbols.lookup_symbol("x"))
 \`\`\`
 
-Hash tables are fundamental to modern software systems - they're everywhere! 🏗️`
+Hash tables are fundamental to modern software systems - they're everywhere! ðŸ—ï¸`
 };
+
 

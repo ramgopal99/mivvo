@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_3: SubLesson = {
   id: "3.3",
   title: 'Linear Arrangement (Single Row)',
   status: 'completed',
-  content: `# 📏 Linear Arrangement (Single Row)
+  content: "`# ðŸ“ Linear Arrangement (Single Row)
 
 Linear arrangement problems involve arranging people or objects in a single straight line based on given conditions. These problems are fundamental to seating arrangement questions and appear frequently in competitive exams. Master the techniques for solving single-row arrangement problems.
 
 ---
 
-## 🎯 Understanding Linear Arrangements
+## ðŸŽ¯ Understanding Linear Arrangements
 
 ### **What are Linear Arrangements?**
 Linear arrangements involve positioning people or objects in a straight line, either horizontally or vertically. These problems test your ability to:
@@ -27,7 +27,7 @@ Linear arrangements involve positioning people or objects in a straight line, ei
 
 ---
 
-## 🧩 Basic Linear Arrangement Concepts
+## ðŸ§© Basic Linear Arrangement Concepts
 
 ### **Position Terminology**
 - **Leftmost/Rightmost**: Extreme end positions
@@ -43,7 +43,7 @@ Linear arrangements involve positioning people or objects in a straight line, ei
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze Conditions**
 - Identify definite positions
@@ -67,7 +67,7 @@ Linear arrangements involve positioning people or objects in a straight line, ei
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Position-Based**
 **Specific position assignments**
@@ -89,7 +89,7 @@ Linear arrangements involve positioning people or objects in a straight line, ei
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Position Mapping Method**
 Positions: 1  2  3  4  5
@@ -110,7 +110,7 @@ People:   ?  ?  ?  ?  ?
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Basic Position Assignment**
 **Conditions:**
@@ -147,7 +147,7 @@ Positions: 1:?  2:Y  3:X  4:Z  5:V  6:U  7:W
 
 ---
 
-## 🔍 Advanced Linear Concepts
+## ðŸ” Advanced Linear Concepts
 
 ### **Multiple Condition Problems**
 Problems with several interrelated conditions requiring careful analysis.
@@ -160,15 +160,15 @@ Linear arrangements combined with other reasoning types.
 
 ---
 
-## 📊 Position Calculation Methods
+## ðŸ“Š Position Calculation Methods
 
 ### **From Left/Right Counting**
 - **nth from left**: Direct position n
 - **nth from right**: Position (total - n + 1)
 
 ### **Relative Positioning**
-- **Immediate neighbor**: ±1 position
-- **Second position**: ±2 positions
+- **Immediate neighbor**: Â±1 position
+- **Second position**: Â±2 positions
 - **Between**: Middle of two positions
 
 ### **Group Positioning**
@@ -178,23 +178,23 @@ Linear arrangements combined with other reasoning types.
 
 ---
 
-## 🎯 Common Pitfalls and Solutions
+## ðŸŽ¯ Common Pitfalls and Solutions
 
 ### **Pitfall 1: Direction Confusion**
-❌ Mixing left-right directions
-✅ Always visualize left-to-right flow
+âŒ Mixing left-right directions
+âœ… Always visualize left-to-right flow
 
 ### **Pitfall 2: Position Miscalculation**
-❌ Wrong nth position calculation
-✅ Double-check position counting
+âŒ Wrong nth position calculation
+âœ… Double-check position counting
 
 ### **Pitfall 3: Missing Relationships**
-❌ Ignoring indirect relationships
-✅ Consider all condition implications
+âŒ Ignoring indirect relationships
+âœ… Consider all condition implications
 
 ---
 
-## 🛠️ Quick Solving Tips
+## ðŸ› ï¸ Quick Solving Tips
 
 ### **1. Draw Clear Diagrams**
 - Use horizontal lines
@@ -213,7 +213,7 @@ Linear arrangements combined with other reasoning types.
 
 ---
 
-## 📈 Difficulty Progression
+## ðŸ“ˆ Difficulty Progression
 
 ### **Easy Level**
 - 3-4 people
@@ -232,7 +232,7 @@ Linear arrangements combined with other reasoning types.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Always Draw Lines**: Visual representation is essential
 2. **Mark Positions Clearly**: Use numbers and labels
@@ -243,7 +243,7 @@ Linear arrangements combined with other reasoning types.
 
 ---
 
-## 🧩 Practice Questions
+## ðŸ§© Practice Questions
 
 ### **Question 1**
 **Conditions:**
@@ -276,5 +276,5 @@ Linear arrangements combined with other reasoning types.
 
 **Who is in the middle?**
 
-**Master linear arrangements for systematic problem solving! 📏✨**`
+**Master linear arrangements for systematic problem solving! ðŸ“âœ¨**`"
 };

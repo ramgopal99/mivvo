@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_9: SubLesson = {
   id: "7.9",
   title: 'Direction with Blood Relation',
   status: 'completed',
-  content: `# 👨‍👩‍👧‍👦 Direction with Blood Relation
+  content: "`# ðŸ‘¨â€ðŸ‘©â€ðŸ‘§â€ðŸ‘¦ Direction with Blood Relation
 
 Direction with blood relation problems combine spatial reasoning with family relationship logic, requiring you to track positions and relationships simultaneously. These integrated problems test both directional understanding and relationship comprehension, making them challenging yet high-scoring in competitive examinations.
 
 ---
 
-## 🎯 Understanding Direction-Blood Relation Integration
+## ðŸŽ¯ Understanding Direction-Blood Relation Integration
 
 ### **What are Direction-Blood Relation Problems?**
 These problems combine directional movements and family relationships, requiring you to:
@@ -27,7 +27,7 @@ These problems combine directional movements and family relationships, requiring
 
 ---
 
-## 👪 Common Family Relationship Terms
+## ðŸ‘ª Common Family Relationship Terms
 
 ### **Basic Relationships**
 - **Father/Mother**: Direct parents
@@ -45,7 +45,7 @@ These problems combine directional movements and family relationships, requiring
 
 ---
 
-## 🧩 Integration Problem Patterns
+## ðŸ§© Integration Problem Patterns
 
 ### **Pattern 1: Family Position Arrangement**
 *"A is facing North. His father is to his left, mother to his right, brother in front. Sister is facing which direction?"*
@@ -73,7 +73,7 @@ These problems combine directional movements and family relationships, requiring
 
 ---
 
-## 🛠️ Blood Relation + Direction Framework
+## ðŸ› ï¸ Blood Relation + Direction Framework
 
 ### **Step-by-Step Solution Approach**
 
@@ -109,7 +109,7 @@ These problems combine directional movements and family relationships, requiring
 
 ---
 
-## 🎯 Common Question Types
+## ðŸŽ¯ Common Question Types
 
 ### **Type 1: Relative Direction Finding**
 *"If A is North of B, and B is East of C, what direction is A from C?"*
@@ -137,7 +137,7 @@ These problems combine directional movements and family relationships, requiring
 
 ---
 
-## 📊 Family Position Matrix
+## ðŸ“Š Family Position Matrix
 
 ### **Standard Family Positioning**
 
@@ -160,7 +160,7 @@ If A faces North:
 
 ---
 
-## 🎯 Complex Integration Examples
+## ðŸŽ¯ Complex Integration Examples
 
 ### **Example 1: Multi-Generation Problem**
 *"A faces East. His father's mother is to his left, his mother's father is to his right. His wife's brother faces which direction?"*
@@ -190,21 +190,21 @@ If A faces North:
 
 ---
 
-## 🧮 Distance and Position Calculations
+## ðŸ§® Distance and Position Calculations
 
 ### **Relative Position Formulas**
 
 #### **Distance Between Family Members**
 
-Distance = √((X₂ - X₁)² + (Y₂ - Y₁)²)  
-Where (X₁,Y₁), (X₂,Y₂) are coordinate positions
+Distance = âˆš((Xâ‚‚ - Xâ‚)Â² + (Yâ‚‚ - Yâ‚)Â²)  
+Where (Xâ‚,Yâ‚), (Xâ‚‚,Yâ‚‚) are coordinate positions
 
 #### **Direction Between Relatives**
 
-If ΔX > 0, ΔY > 0: Northeast  
-If ΔX > 0, ΔY < 0: Southeast  
-If ΔX < 0, ΔY > 0: Northwest  
-If ΔX < 0, ΔY < 0: Southwest
+If Î”X > 0, Î”Y > 0: Northeast  
+If Î”X > 0, Î”Y < 0: Southeast  
+If Î”X < 0, Î”Y > 0: Northwest  
+If Î”X < 0, Î”Y < 0: Southwest
 
 #### **Facing Direction Determination**
 
@@ -214,7 +214,7 @@ Counter-clockwise positioning subtracts from facing direction
 
 ---
 
-## 🎯 Advanced Problem Patterns
+## ðŸŽ¯ Advanced Problem Patterns
 
 ### **Pattern 1: Conditional Relationships**
 *"If A is taller than B, and B is North of C, and A is East of B..."*
@@ -242,7 +242,7 @@ Counter-clockwise positioning subtracts from facing direction
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Medium Level (50%)**
 - Basic family positioning
@@ -261,27 +261,27 @@ Counter-clockwise positioning subtracts from facing direction
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Relationship Confusion**
-❌ Mixing up family relationship terms
-✅ Memorize relationship hierarchies clearly
+âŒ Mixing up family relationship terms
+âœ… Memorize relationship hierarchies clearly
 
 ### **Mistake 2: Position Reference Errors**
-❌ Using wrong reference person for positioning
-✅ Clearly establish reference points
+âŒ Using wrong reference person for positioning
+âœ… Clearly establish reference points
 
 ### **Mistake 3: Directional Logic Errors**
-❌ Incorrect left-right positioning logic
-✅ Apply facing direction rules consistently
+âŒ Incorrect left-right positioning logic
+âœ… Apply facing direction rules consistently
 
 ### **Mistake 4: Integration Failures**
-❌ Treating direction and relationship separately
-✅ Combine both elements systematically
+âŒ Treating direction and relationship separately
+âœ… Combine both elements systematically
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Create Family Relationship Tree**: Map relationships clearly
 2. **Establish Reference Person**: Choose consistent reference point
@@ -293,7 +293,7 @@ Counter-clockwise positioning subtracts from facing direction
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Basic Family Positioning**
 *"A faces North. Father is in front, mother on right, brother on left. Sister faces which direction?"*
@@ -324,7 +324,7 @@ Counter-clockwise positioning subtracts from facing direction
 
 ---
 
-## 🔍 Integration Benefits
+## ðŸ” Integration Benefits
 
 ### **Combined Reasoning Skills**
 - **Directional Logic**: North-South-East-West positioning
@@ -337,5 +337,5 @@ Counter-clockwise positioning subtracts from facing direction
 - **Time Efficient**: Systematic solution approach
 - **Pattern Recognition**: Learnable relationship-direction patterns
 
-**Master direction with blood relation problems to excel in integrated reasoning questions! 👨‍👩‍👧‍👦✨**`
+**Master direction with blood relation problems to excel in integrated reasoning questions! ðŸ‘¨â€ðŸ‘©â€ðŸ‘§â€ðŸ‘¦âœ¨**`"
 };

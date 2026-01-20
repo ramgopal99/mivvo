@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_2: SubLesson = {
   id: "5.2",
   title: 'Defining Methods',
   status: 'completed',
-  content: `# 📝 Defining Methods in Java
+  content: "`# ðŸ“ Defining Methods in Java
 
 Defining methods properly is crucial for creating well-structured, maintainable Java code. This involves understanding method signatures, access modifiers, return types, and following Java's syntax rules and best practices.
 
 ---
 
-## 📋 Method Declaration Syntax
+## ðŸ“‹ Method Declaration Syntax
 
 ### **Complete Method Declaration**
-\`\`\`java
+\`"\`\`java
 public class MethodDeclaration {
     // Complete method declaration syntax:
     // [access modifier] [static] [final] [return type] methodName([parameters]) [throws exceptions] {
@@ -86,7 +86,7 @@ public class MethodSignature {
 
 ---
 
-## 🔧 Method Parameters
+## ðŸ”§ Method Parameters
 
 ### **Parameter Types and Usage**
 \`\`\`java
@@ -175,7 +175,7 @@ public class ParameterPassing {
 
 ---
 
-## 🔄 Method Body and Return Statements
+## ðŸ”„ Method Body and Return Statements
 
 ### **Method Body Structure**
 \`\`\`java
@@ -244,17 +244,17 @@ public class MethodBody {
 ### **Return Statement Rules**
 \`\`\`java
 public class ReturnStatements {
-    // ✅ Correct: void method with no return
+    // âœ… Correct: void method with no return
     public void method1() {
         System.out.println("No return needed");
     }
 
-    // ✅ Correct: non-void method with return
+    // âœ… Correct: non-void method with return
     public int method2() {
         return 42;
     }
 
-    // ✅ Correct: multiple return paths
+    // âœ… Correct: multiple return paths
     public String method3(boolean condition) {
         if (condition) {
             return "True case";
@@ -263,7 +263,7 @@ public class ReturnStatements {
         }
     }
 
-    // ✅ Correct: return in try-catch
+    // âœ… Correct: return in try-catch
     public int method4() {
         try {
             return 1;
@@ -272,13 +272,13 @@ public class ReturnStatements {
         }
     }
 
-    // ❌ Incorrect: unreachable code
+    // âŒ Incorrect: unreachable code
     // public int badMethod() {
     //     return 1;
     //     System.out.println("This is unreachable");  // Compile error
     // }
 
-    // ❌ Incorrect: missing return
+    // âŒ Incorrect: missing return
     // public int anotherBadMethod() {
     //     if (true) {
     //         return 1;
@@ -296,12 +296,12 @@ public class ReturnStatements {
 
 ---
 
-## 🎯 Method Definition Best Practices
+## ðŸŽ¯ Method Definition Best Practices
 
 ### **Method Length and Complexity**
 \`\`\`java
 public class MethodBestPractices {
-    // ✅ Good: Short, focused method
+    // âœ… Good: Short, focused method
     public boolean isValidEmail(String email) {
         if (email == null || email.trim().isEmpty()) {
             return false;
@@ -309,7 +309,7 @@ public class MethodBestPractices {
         return email.contains("@") && email.contains(".");
     }
 
-    // ❌ Bad: Too long and does multiple things
+    // âŒ Bad: Too long and does multiple things
     // public void processUserRegistration(String name, String email, String password) {
     //     // Validation logic (should be separate method)
     //     if (name == null) throw new IllegalArgumentException("Name required");
@@ -326,7 +326,7 @@ public class MethodBestPractices {
     //     // ... 20 lines of logging code ...
     // }
 
-    // ✅ Better: Break into smaller, focused methods
+    // âœ… Better: Break into smaller, focused methods
     public void processUserRegistration(String name, String email, String password) {
         validateRegistrationData(name, email, password);
         User newUser = saveUserToDatabase(name, email, password);
@@ -383,7 +383,7 @@ public class MethodBestPractices {
 
 ---
 
-## 📚 Advanced Method Definition Patterns
+## ðŸ“š Advanced Method Definition Patterns
 
 ### **Method Overriding Preparation**
 \`\`\`java
@@ -490,12 +490,12 @@ public class MethodDocumentation {
 
 ---
 
-## 🎯 Method Definition Guidelines
+## ðŸŽ¯ Method Definition Guidelines
 
 ### **1. Single Responsibility Principle**
 \`\`\`java
 public class SingleResponsibility {
-    // ✅ Good: Each method has one clear purpose
+    // âœ… Good: Each method has one clear purpose
     public void validateUser(User user) {
         // Only validation logic
     }
@@ -508,7 +508,7 @@ public class SingleResponsibility {
         // Only notification logic
     }
 
-    // ❌ Bad: Multiple responsibilities
+    // âŒ Bad: Multiple responsibilities
     // public void processUser(User user) {
     //     // Validation, database, and notification all mixed together
     // }
@@ -523,12 +523,12 @@ public class SingleResponsibility {
 ### **2. Consistent Parameter Ordering**
 \`\`\`java
 public class ParameterOrdering {
-    // ✅ Good: Consistent parameter order across related methods
+    // âœ… Good: Consistent parameter order across related methods
     public void drawRectangle(int x, int y, int width, int height) { }
     public void fillRectangle(int x, int y, int width, int height) { }
     public void moveRectangle(int x, int y, int width, int height, int newX, int newY) { }
 
-    // ❌ Bad: Inconsistent parameter order
+    // âŒ Bad: Inconsistent parameter order
     // public void drawRectangle(int x, int y, int width, int height) { }
     // public void fillRectangle(int width, int height, int x, int y) { }  // Wrong order
     // public void moveRectangle(int newX, int newY, int x, int y, int width, int height) { }  // Wrong order
@@ -571,8 +571,9 @@ public class MethodVisibility {
 }
 \`\`\`
 
-Defining methods properly is fundamental to Java programming. Following consistent naming conventions, maintaining single responsibility, and using appropriate access modifiers leads to clean, maintainable, and reusable code! 📝`
+Defining methods properly is fundamental to Java programming. Following consistent naming conventions, maintaining single responsibility, and using appropriate access modifiers leads to clean, maintainable, and reusable code! ðŸ“`
 };
+
 
 
 

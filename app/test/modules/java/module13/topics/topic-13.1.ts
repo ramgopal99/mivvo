@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_1: SubLesson = {
   id: "13.1",
   title: 'Introduction to Binary Search Tree',
   status: 'completed',
-  content: `# 🌳 Introduction to Binary Search Tree
+  content: "`# ðŸŒ³ Introduction to Binary Search Tree
 
 A Binary Search Tree (BST) is a hierarchical data structure that maintains an ordered relationship between elements in Java!
 
 ---
 
-## 🎯 What is a Binary Search Tree?
+## ðŸŽ¯ What is a Binary Search Tree?
 
 A **Binary Search Tree** is a binary tree data structure where each node has at most two children, and for each node:
 
@@ -18,7 +18,7 @@ A **Binary Search Tree** is a binary tree data structure where each node has at 
 - All values in the right subtree are **greater than** the node's value
 
 ### **Visual Representation**
-\`\`\`
+\`"\`\`
         8
        / \\
       3   10
@@ -30,7 +30,7 @@ A **Binary Search Tree** is a binary tree data structure where each node has at 
 
 ---
 
-## 🏗️ BST Node Structure in Java
+## ðŸ—ï¸ BST Node Structure in Java
 
 Each node in a BST contains:
 - **Value/Data**: The actual data stored (generic type)
@@ -53,7 +53,7 @@ public class TreeNode<T extends Comparable<T>> {
 
 ---
 
-## ✅ BST Properties
+## âœ… BST Properties
 
 ### **1. Ordering Property**
 - Left subtree < Parent < Right subtree
@@ -69,7 +69,7 @@ public class TreeNode<T extends Comparable<T>> {
 
 ---
 
-## 🔍 BST vs Other Data Structures
+## ðŸ” BST vs Other Data Structures
 
 | Data Structure | Search | Insert | Delete | Ordered |
 |----------------|--------|--------|--------|---------|
@@ -79,7 +79,7 @@ public class TreeNode<T extends Comparable<T>> {
 
 ---
 
-## 💡 When to Use BST?
+## ðŸ’¡ When to Use BST?
 
 ### **Perfect for:**
 - **Ordered data storage** with fast operations
@@ -95,7 +95,7 @@ public class TreeNode<T extends Comparable<T>> {
 
 ---
 
-## 🛠️ Basic BST Implementation
+## ðŸ› ï¸ Basic BST Implementation
 
 \`\`\`java
 public class BinarySearchTree<T extends Comparable<T>> {
@@ -118,7 +118,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **BST maintains ordered data** with logarithmic time complexity
 2. **Each node has at most 2 children** with specific ordering rules
@@ -126,6 +126,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 4. **Perfect balance** gives optimal performance
 5. **Used extensively** in databases, file systems, and search algorithms
 
-**Next:** Learn BST operations - Search, Insert, and Delete! 🚀`
+**Next:** Learn BST operations - Search, Insert, and Delete! ðŸš€`
 };
+
 

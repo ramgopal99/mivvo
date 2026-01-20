@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_1: SubLesson = {
   id: "11.1",
   title: 'What are Hash Tables?',
   status: 'demo',
-  content: `# 🗂️ What are Hash Tables?
+  content: "`# ðŸ—‚ï¸ What are Hash Tables?
 
 Hash tables are powerful data structures that provide **average O(1) lookup time** by using a hash function to map keys to array indices. They're the foundation of Python dictionaries!
 
 ---
 
-## 🎯 What is a Hash Table?
+## ðŸŽ¯ What is a Hash Table?
 
 A **hash table** (or hash map) is a data structure that:
 - **Maps keys to values** using a hash function
@@ -18,7 +18,7 @@ A **hash table** (or hash map) is a data structure that:
 - **Uses an array internally** with clever indexing
 - **Handles collisions** when different keys hash to same index
 
-\`\`\`python
+\`"\`\`python
 # Python dict is a hash table implementation
 hash_table = {
     "apple": 1.50,
@@ -32,7 +32,7 @@ print(hash_table["banana"])  # O(1) average lookup
 
 ---
 
-## 🔧 How Hash Tables Work
+## ðŸ”§ How Hash Tables Work
 
 ### **The Hash Function**
 \`\`\`python
@@ -87,7 +87,7 @@ print(f"Age: {ht.get('age')}")
 
 ---
 
-## 💥 The Collision Problem
+## ðŸ’¥ The Collision Problem
 
 ### **What Happens When Keys Collide?**
 \`\`\`python
@@ -190,7 +190,7 @@ print(f"ghi: {ht_probe.get('ghi')}")
 
 ---
 
-## ⚡ Hash Table Performance
+## âš¡ Hash Table Performance
 
 ### **Average Case: O(1)**
 - **Insert**: O(1)
@@ -214,7 +214,7 @@ print("High load factor (> 0.75) triggers resizing")
 
 ---
 
-## 🎨 Real-World Applications
+## ðŸŽ¨ Real-World Applications
 
 ### **Database Indexing**
 \`\`\`python
@@ -277,7 +277,7 @@ print(f"add(5, 3) = {result}")
 
 ---
 
-## 🆚 Hash Tables vs Other Structures
+## ðŸ†š Hash Tables vs Other Structures
 
 | Structure | Lookup | Insert | Delete | Ordered |
 |-----------|--------|--------|--------|---------|
@@ -290,7 +290,7 @@ Hash tables provide the fastest average-case performance for lookups!
 
 ---
 
-## 🔑 Key Concepts
+## ðŸ”‘ Key Concepts
 
 ### **Hash Function Requirements**
 - **Deterministic**: Same key always produces same hash
@@ -307,6 +307,7 @@ Hash tables provide the fastest average-case performance for lookups!
 - **Rehashing**: Create larger table and reinsert items
 - **Growth factor**: Typically 2x size increase
 
-Hash tables are the workhorses of modern computing - fast, flexible, and ubiquitous! 🚀`
+Hash tables are the workhorses of modern computing - fast, flexible, and ubiquitous! ðŸš€`
 };
+
 

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_1: SubLesson = {
   id: "16.1",
   title: 'Advanced Java Concepts Overview',
   status: 'completed',
-  content: `# 🚀 Advanced Java Concepts
+  content: "`# ðŸš€ Advanced Java Concepts
 
 Welcome to the world of advanced Java programming! This module covers sophisticated concepts that separate intermediate from expert Java developers.
 
 ---
 
-## 🎯 What Makes Java "Advanced"?
+## ðŸŽ¯ What Makes Java "Advanced"?
 
 Advanced Java programming goes beyond basic syntax and OOP principles. It involves understanding:
 
@@ -22,7 +22,7 @@ Advanced Java programming goes beyond basic syntax and OOP principles. It involv
 
 ---
 
-## 📚 Module Topics Overview
+## ðŸ“š Module Topics Overview
 
 ### 1. **Design Patterns**
 - Singleton, Factory, Observer, Strategy patterns
@@ -57,7 +57,7 @@ Advanced Java programming goes beyond basic syntax and OOP principles. It involv
 
 ---
 
-## 🛠️ Prerequisites
+## ðŸ› ï¸ Prerequisites
 
 Before diving into advanced Java concepts, ensure you have a solid understanding of:
 
@@ -69,7 +69,7 @@ Before diving into advanced Java concepts, ensure you have a solid understanding
 
 ---
 
-## 🎯 Learning Objectives
+## ðŸŽ¯ Learning Objectives
 
 By the end of this module, you will be able to:
 
@@ -82,7 +82,7 @@ By the end of this module, you will be able to:
 
 ---
 
-## 💡 Why Advanced Java Matters
+## ðŸ’¡ Why Advanced Java Matters
 
 Advanced Java concepts are essential for:
 
@@ -92,5 +92,6 @@ Advanced Java concepts are essential for:
 - **Microservices** - Modern distributed architectures
 - **Performance-Critical Applications** - Gaming, trading systems
 
-Master these concepts and you'll be ready to tackle complex, real-world Java projects! 🚀✨`
+Master these concepts and you'll be ready to tackle complex, real-world Java projects! ðŸš€âœ¨`"
 };
+

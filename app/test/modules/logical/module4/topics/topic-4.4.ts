@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_4: SubLesson = {
   id: "4.4",
   title: 'Floor-Based Puzzles',
   status: 'completed',
-  content: `# 🏢 Floor-Based Puzzles
+  content: "`# ðŸ¢ Floor-Based Puzzles
 
 Floor-based puzzles involve arranging people or objects across multiple floors in a building based on various constraints. These puzzles are common in competitive exams and require understanding of vertical positioning, floor relationships, and complex constraint interactions.
 
 ---
 
-## 🎯 Understanding Floor Puzzles
+## ðŸŽ¯ Understanding Floor Puzzles
 
 ### **What are Floor-Based Puzzles?**
 Floor puzzles involve arranging entities (people, offices, apartments) across multiple building floors based on given constraints. They test your ability to:
@@ -27,7 +27,7 @@ Floor puzzles involve arranging entities (people, offices, apartments) across mu
 
 ---
 
-## 🧩 Basic Floor Puzzle Concepts
+## ðŸ§© Basic Floor Puzzle Concepts
 
 ### **Floor Positioning Terms**
 - **Ground Floor/Bottom Floor**: Floor 1
@@ -43,7 +43,7 @@ Floor puzzles involve arranging entities (people, offices, apartments) across mu
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Understand Building Structure**
 - Identify number of floors
@@ -67,7 +67,7 @@ Floor puzzles involve arranging entities (people, offices, apartments) across mu
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Direct Floor Assignment**
 **Specific floor requirements**
@@ -89,7 +89,7 @@ Floor puzzles involve arranging entities (people, offices, apartments) across mu
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Floor Grid Method**
 Floor 5: ________
@@ -113,7 +113,7 @@ Floor 1: ________
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Floor Assignment**
 **Conditions:**
@@ -150,7 +150,7 @@ Floor 1: ________
 
 ---
 
-## 🔍 Advanced Floor Concepts
+## ðŸ” Advanced Floor Concepts
 
 ### **Multi-Building Arrangements**
 Problems involving multiple buildings with floor relationships.
@@ -163,7 +163,7 @@ Conditional floor assignments based on other factors.
 
 ---
 
-## 📊 Floor Logic Methods
+## ðŸ“Š Floor Logic Methods
 
 ### **Absolute Floor Positioning**
 - **Specific floors**: Direct floor assignments
@@ -182,23 +182,23 @@ Conditional floor assignments based on other factors.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Floor Numbering Confusion**
-❌ Mixing floor numbering systems
-✅ Clarify ground floor numbering
+âŒ Mixing floor numbering systems
+âœ… Clarify ground floor numbering
 
 ### **Pitfall 2: Above/Below Misinterpretation**
-❌ Confusing immediately above/below
-✅ Distinguish between adjacent and general above/below
+âŒ Confusing immediately above/below
+âœ… Distinguish between adjacent and general above/below
 
 ### **Pitfall 3: Attribute Mapping Errors**
-❌ Wrong attribute-floor assignments
-✅ Careful attribute constraint application
+âŒ Wrong attribute-floor assignments
+âœ… Careful attribute constraint application
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Floor Layout Creation**
 - Draw clear vertical floor diagram
@@ -217,7 +217,7 @@ Conditional floor assignments based on other factors.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - 4-5 floors, few constraints
@@ -236,7 +236,7 @@ Conditional floor assignments based on other factors.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Draw Floor Diagram**: Always create vertical floor layout
 2. **Clarify Floor Numbering**: Know if 1 is ground or top floor
@@ -246,7 +246,7 @@ Conditional floor assignments based on other factors.
 
 ---
 
-## 🏢 Practice Questions
+## ðŸ¢ Practice Questions
 
 ### **Question 1**
 **Conditions:**
@@ -279,5 +279,5 @@ Conditional floor assignments based on other factors.
 
 **How many floors are between Q and S?**
 
-**Master floor-based puzzles for vertical reasoning skills! 🏢✨**`
+**Master floor-based puzzles for vertical reasoning skills! ðŸ¢âœ¨**`"
 };

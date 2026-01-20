@@ -1,33 +1,33 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_9: SubLesson = {
   id: "5.9",
   title: 'Mean Proportional',
   status: 'completed',
-  content: `# 📐 Mean Proportional
+  content: "`# ðŸ“ Mean Proportional
 
 Discover the geometric mean - the mean proportional! This concept connects continued proportion with geometric means. Learn to find the middle term that completes a proportion.
 
 ---
 
-## 🎯 What is Mean Proportional?
+## ðŸŽ¯ What is Mean Proportional?
 
 **Mean Proportional** (or geometric mean) between two numbers a and c is the number b such that a, b, c are in continued proportion.
 
 ### **Formula**
-\`\`\`
-b² = a × c
-Therefore: b = √(a × c)
+\`"\`\`
+bÂ² = a Ã— c
+Therefore: b = âˆš(a Ã— c)
 \`\`\`
 
 ### **Example**
 Mean proportional between 4 and 9:
-- b² = 4 × 9 = 36
-- b = √36 = 6
+- bÂ² = 4 Ã— 9 = 36
+- b = âˆš36 = 6
 
 ---
 
-## 📊 Properties
+## ðŸ“Š Properties
 
 ### **1. Three Numbers in Proportion**
 \`\`\`
@@ -36,42 +36,42 @@ a : b = b : c
 
 ### **2. Product Relationship**
 \`\`\`
-a × c = b²
+a Ã— c = bÂ²
 \`\`\`
 
 ### **3. Harmonic Relationship**
 \`\`\`
-2b = √(a² + c²)  (approximately for close numbers)
+2b = âˆš(aÂ² + cÂ²)  (approximately for close numbers)
 \`\`\`
 
 ---
 
-## 🔢 Examples
+## ðŸ”¢ Examples
 
 ### **Example 1: Perfect Squares**
 **Problem:** Find mean proportional between 25 and 49.
 
 **Solution:**
-- b² = 25 × 49 = 1225
-- b = √1225 = 35
+- bÂ² = 25 Ã— 49 = 1225
+- b = âˆš1225 = 35
 
 ### **Example 2: Non-Perfect Squares**
 **Problem:** Find mean proportional between 8 and 18.
 
 **Solution:**
-- b² = 8 × 18 = 144
-- b = √144 = 12
+- bÂ² = 8 Ã— 18 = 144
+- b = âˆš144 = 12
 
 ### **Example 3: Decimal Numbers**
 **Problem:** Find mean proportional between 2.5 and 10.
 
 **Solution:**
-- b² = 2.5 × 10 = 25
-- b = √25 = 5
+- bÂ² = 2.5 Ã— 10 = 25
+- b = âˆš25 = 5
 
 ---
 
-## 🧮 Applications
+## ðŸ§® Applications
 
 ### **1. Geometry**
 - Side ratios in similar triangles
@@ -90,7 +90,7 @@ a × c = b²
 
 ---
 
-## 💡 Quick Tricks
+## ðŸ’¡ Quick Tricks
 
 ### **Trick 1: Perfect Square Products**
 \`\`\`
@@ -109,16 +109,16 @@ Factor out common terms before taking square root
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 1. Find mean proportional between 16 and 25.
 2. Find mean proportional between 27 and 3.
 3. Find mean proportional between 12 and 48.
 
 **Answers:**
-1. b² = 16×25 = 400, b = 20
-2. b² = 27×3 = 81, b = 9
-3. b² = 12×48 = 576, b = 24
+1. bÂ² = 16Ã—25 = 400, b = 20
+2. bÂ² = 27Ã—3 = 81, b = 9
+3. bÂ² = 12Ã—48 = 576, b = 24
 
-Master mean proportional for geometric mean calculations! 🏆`
+Master mean proportional for geometric mean calculations! ðŸ†`
 };

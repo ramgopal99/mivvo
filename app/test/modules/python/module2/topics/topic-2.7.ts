@@ -1,18 +1,18 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_7: SubLesson = {
   id: "2.7",
   title: 'Input & User Interaction',
   status: 'demo',
-  content: `# 🚀 Python Input & User Interaction
+  content: "`# ðŸš€ Python Input & User Interaction
 
 Master user input handling in Python!
 
 ---
 
-## 🎯 INPUT() BASICS
+## ðŸŽ¯ INPUT() BASICS
 
-\`\`\`python
+\`"\`\`python
 # Get user input
 name = input("Enter your name: ")
 print(f"Hello, {name}!")
@@ -24,7 +24,7 @@ print(type(age))  # <class 'str'>
 
 ---
 
-## 📚 BASIC USAGE
+## ðŸ“š BASIC USAGE
 
 \`\`\`python
 # Simple input examples
@@ -40,7 +40,7 @@ print("Your favorite color is " + color + ".")
 
 ---
 
-## 🔧 MULTIPLE INPUTS
+## ðŸ”§ MULTIPLE INPUTS
 
 \`\`\`python
 # Getting multiple inputs
@@ -53,7 +53,7 @@ print("Welcome, " + full_name + "!")
 
 ---
 
-## 🔢 TYPE CONVERSION WITH INPUT
+## ðŸ”¢ TYPE CONVERSION WITH INPUT
 
 \`\`\`python
 # Convert input to INTEGER
@@ -70,7 +70,7 @@ print(f"Student status: {is_student}")
 \`\`\`
 
 
-## 🎯 QUICK EXAMPLES
+## ðŸŽ¯ QUICK EXAMPLES
 
 \`\`\`python
 # Basic conversation
@@ -90,6 +90,7 @@ result = num1 + num2
 print(f"Sum: {result}")
 \`\`\`
 
-Input handling with proper type conversion is essential for interactive programs! 🎯`
+Input handling with proper type conversion is essential for interactive programs! ðŸŽ¯`
 };
+
 

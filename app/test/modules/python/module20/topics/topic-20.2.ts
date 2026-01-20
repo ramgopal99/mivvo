@@ -1,20 +1,20 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_20_2: SubLesson = {
   id: "20.2",
   title: 'Snake Game - Snake Movement and Controls',
   status: 'demo',
-  content: `# 🐍 Snake Game Project - Part 2: Snake Movement
+  content: "`# ðŸ Snake Game Project - Part 2: Snake Movement
 
 Now let's add the snake! We'll create the snake data structure, implement movement controls, and handle keyboard input for direction changes.
 
 ---
 
-## 🛠️ Part 2: Snake Movement and Controls
+## ðŸ› ï¸ Part 2: Snake Movement and Controls
 
 ### **Step 1: Snake Data Structure**
 
-\`\`\`python
+\`"\`\`python
 # Add to snake_game.py (after imports)
 class Snake:
     """Snake class to handle snake behavior"""
@@ -157,7 +157,7 @@ def main():
 
 ---
 
-## 🎯 Understanding Snake Movement
+## ðŸŽ¯ Understanding Snake Movement
 
 ### **Snake Data Structure**
 - **List of tuples**: \`[(x1,y1), (x2,y2), (x3,y3)]\`
@@ -181,18 +181,18 @@ def main():
 
 ---
 
-## 🎮 Testing Movement
+## ðŸŽ® Testing Movement
 
 Run the game now and you should see:
-- ✅ **Snake appears** in center of screen
-- ✅ **Moves automatically** in right direction
-- ✅ **Arrow keys change direction** (with restrictions)
-- ✅ **Length counter** shows current snake size
-- ✅ **Smooth movement** at controlled speed
+- âœ… **Snake appears** in center of screen
+- âœ… **Moves automatically** in right direction
+- âœ… **Arrow keys change direction** (with restrictions)
+- âœ… **Length counter** shows current snake size
+- âœ… **Smooth movement** at controlled speed
 
 ---
 
-## 🔧 Key Concepts Learned
+## ðŸ”§ Key Concepts Learned
 
 ### **Object-Oriented Design**
 - \`Snake\` class encapsulates snake behavior
@@ -216,7 +216,7 @@ Run the game now and you should see:
 
 ---
 
-## 🐛 Common Issues & Solutions
+## ðŸ› Common Issues & Solutions
 
 ### **Snake Disappears**
 - **Problem**: Snake moves off screen
@@ -230,8 +230,9 @@ Run the game now and you should see:
 - **Problem**: Snake moves too fast/slow
 - **Solution**: Adjust FPS in settings
 
-**Next: Adding food and collision detection! 🍎**
+**Next: Adding food and collision detection! ðŸŽ**
 
-**Great progress - our snake can now move and be controlled! 🎮**`
+**Great progress - our snake can now move and be controlled! ðŸŽ®**`
 };
+
 

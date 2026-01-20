@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_6: SubLesson = {
   id: "9.6",
   title: 'Possibility Cases',
   status: 'completed',
-  content: `# ❓ Possibility Cases
+  content: "`# â“ Possibility Cases
 
 Possibility cases represent one of the most important and challenging aspects of syllogism, where conclusions may be true in some scenarios but not in others. Mastering possibility analysis allows you to distinguish between conclusions that must follow (definite) versus those that may follow (possible) from given categorical statements.
 
 ---
 
-## 🎯 Understanding Possibility Cases
+## ðŸŽ¯ Understanding Possibility Cases
 
 ### **What are Possibility Cases in Syllogism?**
 Possibility cases occur when the given statements can be interpreted in multiple ways, leading to scenarios where certain conclusions are possible but not guaranteed. They require:
@@ -22,7 +22,7 @@ Possibility cases occur when the given statements can be interpreted in multiple
 ### **Key Concepts**
 
 #### **Definite Conclusions**
-\`\`\`
+\`"\`\`
 Conclusions that MUST be true in ALL possible scenarios
 - Cannot be false given the premises
 - Hold regardless of interpretation
@@ -39,7 +39,7 @@ Conclusions that MAY be true in SOME scenarios but not others
 
 ---
 
-## 🧩 When Possibility Cases Arise
+## ðŸ§© When Possibility Cases Arise
 
 ### **Situation 1: Particular Statements**
 \`\`\`
@@ -54,7 +54,7 @@ Conclusions that MAY be true in SOME scenarios but not others
 "All A are B" + "Some B are C" allows:
 - All A could be C
 - Some A could be C
-- No A could be C (if C ⊆ B - A)
+- No A could be C (if C âŠ† B - A)
 \`\`\`
 
 ### **Situation 3: Alternative Diagram Configurations**
@@ -67,7 +67,7 @@ Statements can be represented by different Venn diagrams:
 
 ---
 
-## 🎯 Common Possibility Scenarios
+## ðŸŽ¯ Common Possibility Scenarios
 
 ### **Scenario 1: Some + Some Statements**
 *"Some doctors are engineers. Some engineers are pilots."*
@@ -95,7 +95,7 @@ Statements can be represented by different Venn diagrams:
 
 ---
 
-## 📊 Possibility Analysis Framework
+## ðŸ“Š Possibility Analysis Framework
 
 ### **Step-by-Step Possibility Testing**
 
@@ -126,35 +126,35 @@ Statements can be represented by different Venn diagrams:
 
 ---
 
-## 🎯 Possibility vs Definite Conclusions
+## ðŸŽ¯ Possibility vs Definite Conclusions
 
 ### **Definite Conclusions**
 \`\`\`
 Must be true regardless of interpretation:
-- All A are B + All B are C → All A are C
-- No A are B + All C are A → No C are B
-- All A are B → Some B are A
+- All A are B + All B are C â†’ All A are C
+- No A are B + All C are A â†’ No C are B
+- All A are B â†’ Some B are A
 \`\`\`
 
 ### **Possible Conclusions**
 \`\`\`
 True in some interpretations, false in others:
-- All A are B + Some B are C → Some A are C (possible)
-- Some A are B + Some B are C → Some A are C (possible)
-- All A are B + Some A are not C → Some A are not C (possible)
+- All A are B + Some B are C â†’ Some A are C (possible)
+- Some A are B + Some B are C â†’ Some A are C (possible)
+- All A are B + Some A are not C â†’ Some A are not C (possible)
 \`\`\`
 
 ### **Impossible Conclusions**
 \`\`\`
 False in all possible interpretations:
-- All A are B + Some A are not B → Contradiction
-- No A are B + Some A are B → Contradiction
-- All A are B + All A are C + No B are C → Contradiction
+- All A are B + Some A are not B â†’ Contradiction
+- No A are B + Some A are B â†’ Contradiction
+- All A are B + All A are C + No B are C â†’ Contradiction
 \`\`\`
 
 ---
 
-## 🛠️ Practical Possibility Testing
+## ðŸ› ï¸ Practical Possibility Testing
 
 ### **Method 1: Venn Diagram Alternatives**
 \`\`\`
@@ -179,41 +179,41 @@ Check conclusion validity in each case
 ### **Method 3: Logical Contradiction Testing**
 \`\`\`
 Assume conclusion is false, check for contradiction:
-- If assumption leads to contradiction → Conclusion must be true
-- If assumption is possible → Conclusion may or may not be true
-- If assumption is always true → Conclusion is false
+- If assumption leads to contradiction â†’ Conclusion must be true
+- If assumption is possible â†’ Conclusion may or may not be true
+- If assumption is always true â†’ Conclusion is false
 \`\`\`
 
 ---
 
-## 📊 Common Possibility Patterns
+## ðŸ“Š Common Possibility Patterns
 
 ### **Pattern 1: Chain of Possibilities**
 \`\`\`
 All A are B
 Some B are C
 Some C are D
-∴ Some A are D (possible, not definite)
+âˆ´ Some A are D (possible, not definite)
 \`\`\`
 
 ### **Pattern 2: Alternative Overlaps**
 \`\`\`
 Some A are B
 Some A are C
-∴ Some B are C (possible - could overlap or not)
+âˆ´ Some B are C (possible - could overlap or not)
 \`\`\`
 
 ### **Pattern 3: Negative Limitations**
 \`\`\`
 No A are B
 All C are A
-∴ Some C are not B (definite - cannot be B)
-∴ Some C are B (possible - if B and C overlap elsewhere)
+âˆ´ Some C are not B (definite - cannot be B)
+âˆ´ Some C are B (possible - if B and C overlap elsewhere)
 \`\`\`
 
 ---
 
-## 🎯 Advanced Possibility Analysis
+## ðŸŽ¯ Advanced Possibility Analysis
 
 ### **Complex Scenario 1: Multiple Particulars**
 *"Some A are B, Some A are not B, Some B are C"*
@@ -241,7 +241,7 @@ All C are A
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (30%)**
 - Simple particular statement possibilities
@@ -260,7 +260,7 @@ All C are A
 
 ---
 
-## 🧮 Possibility Logic Rules
+## ðŸ§® Possibility Logic Rules
 
 ### **Possibility Determination**
 \`\`\`
@@ -285,27 +285,27 @@ A conclusion is IMPOSSIBLE if:
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Treating Possible as Definite**
-❌ Assuming "may follow" means "must follow"
-✅ Distinguish between possible and definite conclusions
+âŒ Assuming "may follow" means "must follow"
+âœ… Distinguish between possible and definite conclusions
 
 ### **Mistake 2: Missing Alternative Scenarios**
-❌ Considering only one interpretation
-✅ Think of different ways statements can be true
+âŒ Considering only one interpretation
+âœ… Think of different ways statements can be true
 
 ### **Mistake 3: Over-Generalizing Definite Rules**
-❌ Applying definite rules to possibility cases
-✅ Use appropriate logic for each scenario type
+âŒ Applying definite rules to possibility cases
+âœ… Use appropriate logic for each scenario type
 
 ### **Mistake 4: Ignoring Extreme Cases**
-❌ Not considering minimal/maximal overlaps
-✅ Test conclusions against extreme scenarios
+âŒ Not considering minimal/maximal overlaps
+âœ… Test conclusions against extreme scenarios
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Identify Particular Statements**: Look for "Some" as possibility indicators
 2. **Consider Alternative Diagrams**: Draw different valid Venn configurations
@@ -317,51 +317,51 @@ A conclusion is IMPOSSIBLE if:
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Basic Possibility**
 *"All roses are flowers. Some flowers are red."*
 
 **Conclusion analysis:**
-- Some roses are red → Possible (may follow)
-- Some roses are not red → Possible (may follow)
-- All roses are red → Cannot follow (impossible)
+- Some roses are red â†’ Possible (may follow)
+- Some roses are not red â†’ Possible (may follow)
+- All roses are red â†’ Cannot follow (impossible)
 
 ### **Example 2: Complex Possibility**
 *"Some doctors are engineers. Some engineers are pilots."*
 
 **Conclusion analysis:**
-- Some doctors are pilots → Possible (may follow)
-- No doctors are pilots → Possible (may follow)
-- All doctors are pilots → Cannot follow (impossible)
+- Some doctors are pilots â†’ Possible (may follow)
+- No doctors are pilots â†’ Possible (may follow)
+- All doctors are pilots â†’ Cannot follow (impossible)
 
 ### **Example 3: Definite vs Possible**
 *"All A are B. Some B are C. Some C are D."*
 
 **Conclusion analysis:**
-- Some A are C → Possible (may follow)
-- Some A are D → Possible (may follow)
-- Some B are D → Definite (must follow)
+- Some A are C â†’ Possible (may follow)
+- Some A are D â†’ Possible (may follow)
+- Some B are D â†’ Definite (must follow)
 
 ### **Example 4: Impossibility**
 *"All A are B. No B are C. Some A are D."*
 
 **Conclusion analysis:**
-- Some A are C → Cannot follow (impossible)
-- Some A are not C → Definite (must follow)
-- Some D are B → Possible (may follow)
+- Some A are C â†’ Cannot follow (impossible)
+- Some A are not C â†’ Definite (must follow)
+- Some D are B â†’ Possible (may follow)
 
 ### **Example 5: Chain Possibility**
 *"All politicians are leaders. Some leaders are honest. Some honest are rich."*
 
 **Conclusion analysis:**
-- Some politicians are honest → Possible (may follow)
-- Some politicians are rich → Possible (may follow)
-- Some leaders are rich → Definite (must follow)
+- Some politicians are honest â†’ Possible (may follow)
+- Some politicians are rich â†’ Possible (may follow)
+- Some leaders are rich â†’ Definite (must follow)
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Venn Diagrams**
 - Use diagrams to test different scenarios
@@ -378,5 +378,5 @@ A conclusion is IMPOSSIBLE if:
 - Understand how statement types affect conclusion certainty
 - Apply quantifier logic to possibility determination
 
-**Master possibility cases to distinguish definite from possible conclusions in syllogism! ❓✨**`
+**Master possibility cases to distinguish definite from possible conclusions in syllogism! â“âœ¨**`
 };

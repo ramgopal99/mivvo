@@ -1,18 +1,18 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_20_5: SubLesson = {
   id: "20.5",
   title: 'Snake Game - Complete Code & Enhancements',
   status: 'demo',
-  content: `# 🐍 Snake Game - Complete Project
+  content: "`# ðŸ Snake Game - Complete Project
 
 Here's the complete, polished Snake game with all features! This demonstrates professional game development practices and clean code organization.
 
 ---
 
-## 📝 Complete Snake Game Code
+## ðŸ“ Complete Snake Game Code
 
-\`\`\`python
+\`"\`\`python
 # snake_game.py - Complete Snake Game
 import pygame
 import random
@@ -257,7 +257,7 @@ def draw_game_over_screen(screen, score, snake_length, high_scores):
     # High score message
     if is_high_score(score):
         congrats_font = pygame.font.Font(None, 28)
-        congrats_text = congrats_font.render("🎉 New High Score!", True, YELLOW)
+        congrats_text = congrats_font.render("ðŸŽ‰ New High Score!", True, YELLOW)
         congrats_rect = congrats_text.get_rect(center=(WINDOW_WIDTH//2, WINDOW_HEIGHT//2 + 80))
         screen.blit(congrats_text, congrats_rect)
 
@@ -371,7 +371,7 @@ if __name__ == "__main__":
 
 ---
 
-## 📋 Settings File (settings.py)
+## ðŸ“‹ Settings File (settings.py)
 
 \`\`\`python
 # Window settings
@@ -402,7 +402,7 @@ HIGH_SCORE_FILE = "high_scores.txt"
 
 ---
 
-## 🎮 How to Play
+## ðŸŽ® How to Play
 
 1. **Movement**: Use arrow keys to control the snake
 2. **Objective**: Eat the red food squares to grow and score points
@@ -412,33 +412,33 @@ HIGH_SCORE_FILE = "high_scores.txt"
 
 ---
 
-## 🏆 Features Implemented
+## ðŸ† Features Implemented
 
 ### **Core Gameplay**
-- ✅ Smooth snake movement with directional controls
-- ✅ Random food spawning and consumption
-- ✅ Collision detection (walls and self)
-- ✅ Score system with points accumulation
-- ✅ Progressive difficulty (snake grows longer)
+- âœ… Smooth snake movement with directional controls
+- âœ… Random food spawning and consumption
+- âœ… Collision detection (walls and self)
+- âœ… Score system with points accumulation
+- âœ… Progressive difficulty (snake grows longer)
 
 ### **Advanced Features**
-- ✅ High score persistence across sessions
-- ✅ Visual grid system for better gameplay
-- ✅ Professional game over screen with stats
-- ✅ Enhanced UI with score, length, and FPS display
-- ✅ Sound effect support (optional)
-- ✅ Clean code architecture with classes
+- âœ… High score persistence across sessions
+- âœ… Visual grid system for better gameplay
+- âœ… Professional game over screen with stats
+- âœ… Enhanced UI with score, length, and FPS display
+- âœ… Sound effect support (optional)
+- âœ… Clean code architecture with classes
 
 ### **Technical Excellence**
-- ✅ Object-oriented design (Snake, Food classes)
-- ✅ Modular functions for game logic
-- ✅ File I/O for data persistence
-- ✅ Event-driven programming
-- ✅ Error handling and edge cases
+- âœ… Object-oriented design (Snake, Food classes)
+- âœ… Modular functions for game logic
+- âœ… File I/O for data persistence
+- âœ… Event-driven programming
+- âœ… Error handling and edge cases
 
 ---
 
-## 🚀 Running the Game
+## ðŸš€ Running the Game
 
 ### **Basic Setup**
 1. Create a \`snake_game\` folder
@@ -455,7 +455,7 @@ HIGH_SCORE_FILE = "high_scores.txt"
 
 ---
 
-## 🎯 Learning Outcomes
+## ðŸŽ¯ Learning Outcomes
 
 This Snake game project teaches:
 
@@ -481,7 +481,7 @@ This Snake game project teaches:
 
 ---
 
-## 🐛 Troubleshooting
+## ðŸ› Troubleshooting
 
 ### **Game runs too fast/slow**
 - Adjust \`FPS\` in \`settings.py\`
@@ -501,17 +501,17 @@ This Snake game project teaches:
 
 ---
 
-## 🎮 Game Controls
+## ðŸŽ® Game Controls
 
 | Key | Action |
 |-----|--------|
-| ↑↓←→ | Move snake |
+| â†‘â†“â†â†’ | Move snake |
 | SPACE | Restart (when game over) |
 | ESC | Quit game |
 
 ---
 
-## 🏆 Achievement Unlocked!
+## ðŸ† Achievement Unlocked!
 
 You now have a **complete, professional Snake game** that demonstrates:
 - Clean, maintainable code structure
@@ -520,6 +520,7 @@ You now have a **complete, professional Snake game** that demonstrates:
 - User experience design
 - Data persistence techniques
 
-**Congratulations! You've built a fully-featured game from scratch! 🐍🎮✨**`
+**Congratulations! You've built a fully-featured game from scratch! ðŸðŸŽ®âœ¨**`
 };
+
 

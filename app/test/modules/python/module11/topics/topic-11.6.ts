@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_6: SubLesson = {
   id: "11.6",
   title: 'Hash Table Performance',
   status: 'demo',
-  content: `# ⚡ Hash Table Performance
+  content: "`# âš¡ Hash Table Performance
 
 Hash tables offer exceptional performance, but understanding their characteristics helps you use them effectively. Let's analyze the performance factors!
 
 ---
 
-## 📊 Time Complexity Analysis
+## ðŸ“Š Time Complexity Analysis
 
 ### **Average Case Performance**
-\`\`\`python
+\`"\`\`python
 # Hash table operations are typically O(1)
 hash_table = {}
 
@@ -46,7 +46,7 @@ print("Worst case: O(n) when hash function causes many collisions")
 
 ---
 
-## 🔢 Load Factor Impact
+## ðŸ”¢ Load Factor Impact
 
 ### **What is Load Factor?**
 \`\`\`python
@@ -101,7 +101,7 @@ for load_factor, avg_time in results.items():
 
 ---
 
-## 🔄 Resizing Behavior
+## ðŸ”„ Resizing Behavior
 
 ### **Automatic Resizing in Python**
 \`\`\`python
@@ -137,7 +137,7 @@ print("- Amortized O(1) cost per operation")
 
 ---
 
-## 🆚 Comparison with Other Data Structures
+## ðŸ†š Comparison with Other Data Structures
 
 ### **Performance Comparison Table**
 | Operation | Hash Table | Array | Linked List | Binary Tree |
@@ -165,7 +165,7 @@ else:
 
 ---
 
-## 🔧 Optimization Techniques
+## ðŸ”§ Optimization Techniques
 
 ### **Choose Good Hash Functions**
 \`\`\`python
@@ -223,7 +223,7 @@ print("Reduces resizing overhead for known workloads")
 
 ---
 
-## 📈 Real-World Performance Tips
+## ðŸ“ˆ Real-World Performance Tips
 
 ### **Memory Efficiency**
 \`\`\`python
@@ -271,7 +271,7 @@ print("Cached data retrieved efficiently")
 
 ---
 
-## ⚠️ Performance Pitfalls
+## âš ï¸ Performance Pitfalls
 
 ### **Key Distribution Issues**
 \`\`\`python
@@ -307,7 +307,7 @@ print("Use cryptographically secure hashes for security-critical applications")
 
 ---
 
-## 🚀 Advanced Performance Techniques
+## ðŸš€ Advanced Performance Techniques
 
 ### **Concurrent Hash Tables**
 \`\`\`python
@@ -369,7 +369,7 @@ print(f"dict3 has 'a' and 'b': {list(dict3.data.keys())}")  # ['a', 'b']
 
 ---
 
-## 📊 Benchmarking Your Hash Tables
+## ðŸ“Š Benchmarking Your Hash Tables
 
 ### **Comprehensive Benchmark**
 \`\`\`python
@@ -427,6 +427,7 @@ for data_type, metrics in results.items():
     print(f"  Memory: {metrics['memory']} bytes")
 \`\`\`
 
-Hash table performance is exceptional when properly implemented and used! 🏃‍♂️`
+Hash table performance is exceptional when properly implemented and used! ðŸƒâ€â™‚ï¸`
 };
+
 

@@ -1,40 +1,40 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_7: SubLesson = {
   id: "10.7",
   title: 'Work with Different Efficiencies',
   status: 'completed',
-  content: `# ⚖️ Work with Different Efficiencies
+  content: "`# âš–ï¸ Work with Different Efficiencies
 
 Learn to handle problems where workers have different efficiency levels - crucial for real-world work allocation scenarios.
 
 ---
 
-## 🎯 Different Efficiency Concept
+## ðŸŽ¯ Different Efficiency Concept
 
 **Different efficiencies** occur when workers complete work at different rates due to skill levels, experience, or other factors.
 
 ### **Key Understanding**
-\`\`\`
-Efficiency ratio ≠ Time ratio
+\`"\`\`
+Efficiency ratio â‰  Time ratio
 Higher efficiency = Less time for same work
 \`\`\`
 
 ---
 
-## 📊 Efficiency Ratio Calculations
+## ðŸ“Š Efficiency Ratio Calculations
 
 ### 1. **Efficiency Comparison**
 \`\`\`
 If A is 'n' times more efficient than B:
-A's efficiency = n × B's efficiency
+A's efficiency = n Ã— B's efficiency
 A's time = B's time / n
 \`\`\`
 
 ### 2. **Efficiency Proportions**
 \`\`\`
 Efficiency A : B = Time B : Time A
-Efficiency ∝ 1/Time taken
+Efficiency âˆ 1/Time taken
 \`\`\`
 
 ### 3. **Combined Work with Different Efficiencies**
@@ -45,7 +45,7 @@ Time = Total work / Total efficiency
 
 ---
 
-## 🧮 Different Efficiency Examples
+## ðŸ§® Different Efficiency Examples
 
 ### Example 1: Basic Ratio
 **A is twice as efficient as B. B takes 20 days. How long does A take?**
@@ -68,12 +68,12 @@ Time = Total work / Total efficiency
 
 **Solution:**
 - Combined efficiency = 4 + 3 = 7 units/day
-- Total work = 7 × 5 = 35 units ✓
-- A's work = 4/7 × 35 = 20 units
+- Total work = 7 Ã— 5 = 35 units âœ“
+- A's work = 4/7 Ã— 35 = 20 units
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Efficiency Ratio Magic**
 \`\`\`
@@ -89,18 +89,18 @@ Compare efficiencies by comparing work/time ratios
 
 ### **Combined Efficiency Formula**
 \`\`\`
-Total efficiency = Σ (Individual efficiencies)
+Total efficiency = Î£ (Individual efficiencies)
 Never multiply or divide efficiencies!
 \`\`\`
 
 ### **Work Share Calculation**
 \`\`\`
-Person's work = (His efficiency × Total time) / Total efficiency
+Person's work = (His efficiency Ã— Total time) / Total efficiency
 \`\`\`
 
 ---
 
-## 🔢 Advanced Efficiency Scenarios
+## ðŸ”¢ Advanced Efficiency Scenarios
 
 ### **Efficiency Variations**
 - **Skill-based**: Expert vs novice workers
@@ -121,34 +121,34 @@ Person's work = (His efficiency × Total time) / Total efficiency
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 4: Unequal Time Work
 **A (eff 5), B (eff 3) work. A works 6 days, B works 8 days. Work ratio A:B?**
 
 **Solution:**
-- A's work = 5 × 6 = 30 units
-- B's work = 3 × 8 = 24 units
+- A's work = 5 Ã— 6 = 30 units
+- B's work = 3 Ã— 8 = 24 units
 - Work ratio A:B = 30:24 = 5:4
 
 ### Example 5: Sequential Work
 **A (eff 4) works 5 days, B (eff 3) completes remaining work in 6 days. Total work units?**
 
 **Solution:**
-- A's work = 4 × 5 = 20 units
-- B's work = 3 × 6 = 18 units
+- A's work = 4 Ã— 5 = 20 units
+- B's work = 3 Ã— 6 = 18 units
 - Total work = 20 + 18 = 38 units
 
 ### Example 6: Efficiency Percentage
 **A is 25% more efficient than B. B takes 16 days. Time for A?**
 
 **Solution:**
-- A's efficiency = B's efficiency × 1.25
+- A's efficiency = B's efficiency Ã— 1.25
 - Time A = Time B / 1.25 = 16 / 1.25 = 12.8 days
 
 ---
 
-## 🚨 Efficiency Problem Mistakes
+## ðŸš¨ Efficiency Problem Mistakes
 
 1. **Ratio Confusion**: Efficiency vs time ratios are inverse
 2. **Addition Error**: Efficiencies add for combined work
@@ -158,7 +158,7 @@ Person's work = (His efficiency × Total time) / Total efficiency
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** A:B efficiency = 3:2. B takes 15 days. A takes?
 **2.** A (eff 4), B (eff 3), C (eff 2) work together. Combined efficiency?
@@ -170,7 +170,7 @@ Person's work = (His efficiency × Total time) / Total efficiency
 
 ---
 
-## 🎓 Efficiency Problem Strategies
+## ðŸŽ“ Efficiency Problem Strategies
 
 1. **Convert to efficiency units** for easy comparison
 2. **Use ratio methods** - often simpler than absolute values
@@ -178,5 +178,5 @@ Person's work = (His efficiency × Total time) / Total efficiency
 4. **Break complex problems** into individual contributions
 5. **Check combined efficiency** calculations carefully
 
-Master different efficiency problems and solve complex work allocation scenarios! 🏆`
+Master different efficiency problems and solve complex work allocation scenarios! ðŸ†`
 };

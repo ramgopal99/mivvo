@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_18_1: SubLesson = {
   id: "18.1",
   title: 'Guess Number Game Project',
   status: 'demo',
-  content: `# 🎯 Guess Number Game Project
+  content: "`# ðŸŽ¯ Guess Number Game Project
 
 This project demonstrates fundamental Python programming concepts through a complete guess number game. We'll explore functions, lists, random number generation, loops, conditionals, and user interaction.
 
 ---
 
-## 🎮 Game Overview
+## ðŸŽ® Game Overview
 
 The guess number game will:
 - Generate a random number between 1 and 100
@@ -21,12 +21,12 @@ The guess number game will:
 
 ---
 
-## 🛠️ Building the Game Step by Step
+## ðŸ› ï¸ Building the Game Step by Step
 
 ### **Step 1: Basic Setup**
 **Why we do this:** We start with imports and constants because it makes our code organized and easy to change. Constants at the top make it simple to modify game settings without hunting through the code.
 
-\`\`\`python
+\`"\`\`python
 import random  # We need random module to generate secret numbers
 
 # Game configuration - easy to change these values
@@ -64,16 +64,16 @@ def play_round(target_number, attempts_list):
         guess = get_player_guess()  # Get validated input from player
 
         if guess == target_number:  # Player guessed correctly!
-            print(f"🎉 Congratulations! You guessed it in {attempts} attempts!")
+            print(f"ðŸŽ‰ Congratulations! You guessed it in {attempts} attempts!")
             attempts_list.append(attempts)  # Save score for statistics
             return True  # Player won
         elif guess < target_number:  # Guess is too small
-            print("📈 Too low! Try a higher number.")
+            print("ðŸ“ˆ Too low! Try a higher number.")
         else:  # Guess is too big
-            print("📉 Too high! Try a lower number.")
+            print("ðŸ“‰ Too high! Try a lower number.")
 
     # If we get here, player used all attempts without guessing correctly
-    print(f"😞 Sorry! The number was {target_number}. Better luck next time!")
+    print(f"ðŸ˜ž Sorry! The number was {target_number}. Better luck next time!")
     attempts_list.append(MAX_ATTEMPTS + 1)  # Mark as failure in statistics
     return False  # Player lost
 \`\`\`
@@ -87,7 +87,7 @@ def display_statistics(game_history):
         print("No games played yet!")
         return
 
-    print("\\n📊 Game Statistics:")
+    print("\\nðŸ“Š Game Statistics:")
     print(f"Total games played: {len(game_history)}")
 
     # Filter out only the successful games (attempts <= MAX_ATTEMPTS)
@@ -112,7 +112,7 @@ def main():
     games_played = 0   # Count total games
 
     # Welcome message and instructions
-    print("🎯 Welcome to the Guess Number Game!")
+    print("ðŸŽ¯ Welcome to the Guess Number Game!")
     print(f"I'm thinking of a number between {MIN_NUMBER} and {MAX_NUMBER}")
     print(f"You have {MAX_ATTEMPTS} attempts to guess it.\\n")
 
@@ -131,7 +131,7 @@ def main():
             break  # Exit the game loop
 
     # Game over - show final statistics
-    print("\\n🎮 Thanks for playing!")
+    print("\\nðŸŽ® Thanks for playing!")
     display_statistics(game_history)
 
 # This runs main() only when file is executed directly (not imported)
@@ -141,7 +141,7 @@ if __name__ == "__main__":
 
 ---
 
-## 📝 Complete Game Code
+## ðŸ“ Complete Game Code
 
 \`\`\`python
 import random
@@ -172,16 +172,16 @@ def play_round(target_number, attempts_list):
         guess = get_player_guess()  # Get player's guess
 
         if guess == target_number:  # Check if guess is correct
-            print(f"🎉 Congratulations! You guessed it in {attempts} attempts!")
+            print(f"ðŸŽ‰ Congratulations! You guessed it in {attempts} attempts!")
             attempts_list.append(attempts)  # Add attempts to history
             return True  # Return success
         elif guess < target_number:  # Guess is too low
-            print("📈 Too low! Try a higher number.")
+            print("ðŸ“ˆ Too low! Try a higher number.")
         else:  # Guess is too high
-            print("📉 Too high! Try a lower number.")
+            print("ðŸ“‰ Too high! Try a lower number.")
 
     # If we reach here, player ran out of attempts
-    print(f"😞 Sorry! The number was {target_number}. Better luck next time!")
+    print(f"ðŸ˜ž Sorry! The number was {target_number}. Better luck next time!")
     attempts_list.append(MAX_ATTEMPTS + 1)  # Record failure in history
     return False  # Return failure
 
@@ -191,7 +191,7 @@ def display_statistics(game_history):
         print("No games played yet!")
         return
 
-    print("\\n📊 Game Statistics:")
+    print("\\nðŸ“Š Game Statistics:")
     print(f"Total games played: {len(game_history)}")
 
     successful_games = [attempts for attempts in game_history if attempts <= MAX_ATTEMPTS]
@@ -209,7 +209,7 @@ def main():
     game_history = []  # List to store attempts for each game
     games_played = 0   # Counter for total games
 
-    print("🎯 Welcome to the Guess Number Game!")
+    print("ðŸŽ¯ Welcome to the Guess Number Game!")
     print(f"I'm thinking of a number between {MIN_NUMBER} and {MAX_NUMBER}")
     print(f"You have {MAX_ATTEMPTS} attempts to guess it.\\n")
 
@@ -229,7 +229,7 @@ def main():
             break  # Exit the game loop
 
     # Display final statistics
-    print("\\n🎮 Thanks for playing!")
+    print("\\nðŸŽ® Thanks for playing!")
     display_statistics(game_history)
 
 # Start the game when script is run directly
@@ -239,7 +239,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🎯 Key Programming Concepts Demonstrated
+## ðŸŽ¯ Key Programming Concepts Demonstrated
 
 ### **Functions**
 - Modular code organization
@@ -267,7 +267,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🚀 How to Run the Game
+## ðŸš€ How to Run the Game
 
 1. Save the code to a file named \`guess_number_game.py\`
 2. Open a terminal/command prompt
@@ -277,20 +277,20 @@ if __name__ == "__main__":
 
 ---
 
-## 🎮 Sample Game Output
+## ðŸŽ® Sample Game Output
 
 \`\`\`
-🎯 Welcome to the Guess Number Game!
+ðŸŽ¯ Welcome to the Guess Number Game!
 I'm thinking of a number between 1 and 100
 You have 10 attempts to guess it.
 
 --- Game 1 ---
 Guess a number between 1 and 100: 50
-📈 Too low! Try a higher number.
+ðŸ“ˆ Too low! Try a higher number.
 Guess a number between 1 and 100: 75
-📉 Too high! Try a lower number.
+ðŸ“‰ Too high! Try a lower number.
 Guess a number between 1 and 100: 62
-🎉 Congratulations! You guessed it in 3 attempts!
+ðŸŽ‰ Congratulations! You guessed it in 3 attempts!
 
 Would you like to play again? (yes/no): yes
 
@@ -298,6 +298,7 @@ Would you like to play again? (yes/no): yes
 ...
 \`\`\`
 
-**This project provides a solid foundation in Python programming while creating an engaging, interactive game! 🎯**`
+**This project provides a solid foundation in Python programming while creating an engaging, interactive game! ðŸŽ¯**`
 };
+
 

@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_4: SubLesson = {
   id: "4.4",
   title: 'Sentence Completion',
   status: 'completed',
-  content: `# 📝 Sentence Completion: Filling in the Blanks
+  content: "`# ðŸ“ Sentence Completion: Filling in the Blanks
 
 Sentence completion involves choosing the most appropriate word or phrase to fill blanks in sentences. This skill tests your vocabulary, grammar, and contextual understanding in competitive exams.
 
 ---
 
-## 🔍 WHAT IS SENTENCE COMPLETION?
+## ðŸ” WHAT IS SENTENCE COMPLETION?
 
 **Sentence completion** requires you to:
-- ✅ **Understand sentence context** and meaning
-- ✅ **Choose appropriate words** that fit grammatically
-- ✅ **Select options** that maintain coherence
-- ✅ **Apply logical reasoning** to fill blanks
+- âœ… **Understand sentence context** and meaning
+- âœ… **Choose appropriate words** that fit grammatically
+- âœ… **Select options** that maintain coherence
+- âœ… **Apply logical reasoning** to fill blanks
 
 ### Key Skills Tested:
 - **Vocabulary**: Word meaning and usage
@@ -26,16 +26,16 @@ Sentence completion involves choosing the most appropriate word or phrase to fil
 
 ---
 
-## 🎯 TYPES OF SENTENCE COMPLETION
+## ðŸŽ¯ TYPES OF SENTENCE COMPLETION
 
 ### 1. **Single Word Completion**
 **Fill one blank with a single word**
 
 **Examples:**
-- ✅ The ________ of the storm caused widespread damage.
+- âœ… The ________ of the storm caused widespread damage.
   - (a) affect (b) effect (c) effort (d) afford
 
-- ✅ She has been ________ for the job for months.
+- âœ… She has been ________ for the job for months.
   - (a) applying (b) applying (c) applying (d) applying
 
 **Strategy:** Choose word that fits grammatically and contextually
@@ -44,10 +44,10 @@ Sentence completion involves choosing the most appropriate word or phrase to fil
 **Complete with appropriate idiomatic expression**
 
 **Examples:**
-- ✅ He was ________ when he heard the good news.
+- âœ… He was ________ when he heard the good news.
   - (a) on cloud nine (b) under the weather (c) in hot water (d) on thin ice
 
-- ✅ You should ________ before making a decision.
+- âœ… You should ________ before making a decision.
   - (a) sleep on it (b) hit the books (c) break a leg (d) kick the bucket
 
 **Strategy:** Recognize common idiomatic expressions
@@ -56,10 +56,10 @@ Sentence completion involves choosing the most appropriate word or phrase to fil
 **Fill blanks based on grammatical rules**
 
 **Examples:**
-- ✅ Each of the students ________ a book.
+- âœ… Each of the students ________ a book.
   - (a) have (b) has (c) having (d) had
 
-- ✅ If I ________ rich, I would travel the world.
+- âœ… If I ________ rich, I would travel the world.
   - (a) am (b) was (c) were (d) be
 
 **Strategy:** Apply subject-verb agreement, tense rules, etc.
@@ -68,10 +68,10 @@ Sentence completion involves choosing the most appropriate word or phrase to fil
 **Choose word with appropriate meaning**
 
 **Examples:**
-- ✅ The ________ weather made us stay indoors.
+- âœ… The ________ weather made us stay indoors.
   - (a) pleasant (b) inclement (c) beautiful (d) fine
 
-- ✅ His ________ behavior annoyed everyone.
+- âœ… His ________ behavior annoyed everyone.
   - (a) polite (b) courteous (c) obnoxious (d) kind
 
 **Strategy:** Select word that fits the context and connotation
@@ -80,17 +80,17 @@ Sentence completion involves choosing the most appropriate word or phrase to fil
 **Fill with appropriate preposition**
 
 **Examples:**
-- ✅ He is interested ________ mathematics.
+- âœ… He is interested ________ mathematics.
   - (a) at (b) in (c) on (d) for
 
-- ✅ The book is ________ the table.
+- âœ… The book is ________ the table.
   - (a) on (b) in (c) at (d) with
 
 **Strategy:** Use correct preposition for the context
 
 ---
 
-## 🛠️ COMPLETION STRATEGIES
+## ðŸ› ï¸ COMPLETION STRATEGIES
 
 ### Step-by-Step Approach:
 1. **Read the entire sentence** to understand context
@@ -100,43 +100,43 @@ Sentence completion involves choosing the most appropriate word or phrase to fil
 5. **Choose the most appropriate** option
 
 ### Contextual Clues:
-- ✅ **Words before blank**: Provide grammatical hints
-- ✅ **Words after blank**: Give meaning clues
-- ✅ **Sentence structure**: Indicates required word type
-- ✅ **Overall meaning**: Helps choose between similar options
+- âœ… **Words before blank**: Provide grammatical hints
+- âœ… **Words after blank**: Give meaning clues
+- âœ… **Sentence structure**: Indicates required word type
+- âœ… **Overall meaning**: Helps choose between similar options
 
 ---
 
-## 🎯 COMMON COMPLETION PATTERNS
+## ðŸŽ¯ COMMON COMPLETION PATTERNS
 
 ### Subject-Verb Agreement:
-- ✅ Each of the students ________ present.
+- âœ… Each of the students ________ present.
   - (a) is (b) are (c) were (d) be
   - **Answer:** (a) is (Each = singular)
 
 ### Tense Consistency:
-- ✅ If I ________ you, I would apologize.
+- âœ… If I ________ you, I would apologize.
   - (a) am (b) was (c) were (d) be
   - **Answer:** (c) were (conditional)
 
 ### Preposition Usage:
-- ✅ He succeeded ________ hard work.
+- âœ… He succeeded ________ hard work.
   - (a) by (b) in (c) on (d) at
   - **Answer:** (a) by
 
 ### Word Meaning:
-- ✅ The ________ was delicious.
+- âœ… The ________ was delicious.
   - (a) food (b) meal (c) dish (d) cuisine
   - **Answer:** Depends on context, but all could work
 
 ### Idiomatic Expressions:
-- ✅ Don't ________ the boat.
+- âœ… Don't ________ the boat.
   - (a) rock (b) shake (c) move (d) tip
   - **Answer:** (a) rock
 
 ---
 
-## ⚠️ COMPLETION PITFALLS
+## âš ï¸ COMPLETION PITFALLS
 
 ### Avoid Common Mistakes:
 1. **Ignoring Context**: Choosing word that fits grammatically but not contextually
@@ -146,15 +146,15 @@ Sentence completion involves choosing the most appropriate word or phrase to fil
 5. **Overthinking**: Simple answers are often correct
 
 ### Check These Points:
-- ✅ **Grammar**: Subject-verb agreement, tense, articles
-- ✅ **Meaning**: Logical coherence with sentence
-- ✅ **Collocation**: Natural word partnerships
-- ✅ **Connotation**: Appropriate emotional tone
-- ✅ **Context**: Fits the overall situation described
+- âœ… **Grammar**: Subject-verb agreement, tense, articles
+- âœ… **Meaning**: Logical coherence with sentence
+- âœ… **Collocation**: Natural word partnerships
+- âœ… **Connotation**: Appropriate emotional tone
+- âœ… **Context**: Fits the overall situation described
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Single Word Completion
 **Choose the best word to complete each sentence:**
@@ -260,7 +260,7 @@ Sentence completion involves choosing the most appropriate word or phrase to fil
 
 ---
 
-## 📊 COMPLETION TYPES CHART
+## ðŸ“Š COMPLETION TYPES CHART
 
 | Completion Type | Example | Key Focus |
 |---|---|---|
@@ -272,29 +272,29 @@ Sentence completion involves choosing the most appropriate word or phrase to fil
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Single Blank**: One word to complete the sentence
 2. **Multiple Options**: Usually 4 choices with one correct
 3. **Context Dependent**: Answer based on sentence meaning
 4. **Grammar Rules**: Subject-verb agreement, tense, etc.
 
-### 💡 Quick Selection Strategy:
+### ðŸ’¡ Quick Selection Strategy:
 1. **Read the sentence** completely for context
 2. **Identify blank type** (noun, verb, preposition, etc.)
 3. **Check grammar rules** (agreement, tense)
 4. **Test each option** mentally in the sentence
 5. **Choose the most natural** sounding completion
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Eliminate obviously wrong** options first
 - **Look for grammatical clues** around the blank
 - **Check word collocations** (natural partnerships)
 - **Trust contextual logic** over complex reasoning
 - **Use process of elimination** systematically
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Practice 20-25 completions** daily
 - **Build vocabulary** through reading
 - **Learn common collocations** and idioms
@@ -303,22 +303,23 @@ Sentence completion involves choosing the most appropriate word or phrase to fil
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Read extensively** - Build vocabulary through context
 2. **Learn word families** - Related words and their uses
 3. **Practice grammar rules** - Subject-verb, tense, prepositions
 4. **Study idioms** - Common expressions and their meanings
 5. **Review collocations** - Natural word partnerships
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Sentence completion is like puzzle-solving:**
-- 🧩 **Context clues** - Words around blank give hints
-- 🧩 **Grammar rules** - Subject-verb, tense, articles
-- 🧩 **Word meaning** - Precise vocabulary fit
-- 🧩 **Natural flow** - Choose what sounds right
-- 🎯 **Logical choice** - Test mentally in sentence
+- ðŸ§© **Context clues** - Words around blank give hints
+- ðŸ§© **Grammar rules** - Subject-verb, tense, articles
+- ðŸ§© **Word meaning** - Precise vocabulary fit
+- ðŸ§© **Natural flow** - Choose what sounds right
+- ðŸŽ¯ **Logical choice** - Test mentally in sentence
 
-**Master sentence completion and become a word puzzle expert!** 🧩✨`
+**Master sentence completion and become a word puzzle expert!** ðŸ§©âœ¨`"
 };
+

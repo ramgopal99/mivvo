@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_4: SubLesson = {
   id: "2.4",
   title: 'Prime Factorization',
   status: 'completed',
-  content: `# 🔢 Prime Factorization
+  content: "`# ðŸ”¢ Prime Factorization
 
 Prime factorization is the process of breaking down a composite number into its prime factors. This fundamental concept forms the basis for many number theory problems and is essential for understanding HCF, LCM, and factor-related questions.
 
 ---
 
-## 🎯 What is Prime Factorization?
+## ðŸŽ¯ What is Prime Factorization?
 
 **Prime Factorization** is the process of expressing a composite number as a product of its prime factors.
 
@@ -21,20 +21,20 @@ Prime factorization is the process of breaking down a composite number into its 
 
 ---
 
-## 📊 Methods of Prime Factorization
+## ðŸ“Š Methods of Prime Factorization
 
 ### 1. **Division Method** (Factor Tree)
 Start dividing the number by smallest prime factors repeatedly.
 
 **Example**: Prime factorize 84
 
-\`\`\`
-84 ÷ 2 = 42
-42 ÷ 2 = 21
-21 ÷ 3 = 7
-7 ÷ 7 = 1
+\`"\`\`
+84 Ã· 2 = 42
+42 Ã· 2 = 21
+21 Ã· 3 = 7
+7 Ã· 7 = 1
 
-∴ 84 = 2 × 2 × 3 × 7 = 2² × 3¹ × 7¹
+âˆ´ 84 = 2 Ã— 2 Ã— 3 Ã— 7 = 2Â² Ã— 3Â¹ Ã— 7Â¹
 \`\`\`
 
 ### 2. **Factor Tree Method**
@@ -53,7 +53,7 @@ Draw a tree structure to break down the number.
                   /  \\
                  3    5
 
-∴ 120 = 2 × 2 × 2 × 3 × 5 = 2³ × 3¹ × 5¹
+âˆ´ 120 = 2 Ã— 2 Ã— 2 Ã— 3 Ã— 5 = 2Â³ Ã— 3Â¹ Ã— 5Â¹
 \`\`\`
 
 ### 3. **Shortcut Method for Large Numbers**
@@ -62,7 +62,7 @@ Draw a tree structure to break down the number.
 
 ---
 
-## 🧠 Prime Factorization Tricks
+## ðŸ§  Prime Factorization Tricks
 
 ### Trick 1: **Check Small Primes First**
 Always start with 2, then 3, 5, 7, 11, 13, etc.
@@ -77,29 +77,29 @@ Always start with 2, then 3, 5, 7, 11, 13, etc.
 For large numbers, work with factor pairs.
 
 **Example**: Factorize 391
-- 391 ÷ 17 = 23
-- So 391 = 17 × 23
+- 391 Ã· 17 = 23
+- So 391 = 17 Ã— 23
 
 ### Trick 4: **Prime Factorization of Powers**
 For perfect powers, factorize the base first.
 
-**Example**: 512 = 2¹⁰ = (2²)⁵ = 4⁵
-But better: 512 = 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 = 2¹⁰
+**Example**: 512 = 2Â¹â° = (2Â²)âµ = 4âµ
+But better: 512 = 2 Ã— 2 Ã— 2 Ã— 2 Ã— 2 Ã— 2 Ã— 2 Ã— 2 Ã— 2 Ã— 2 = 2Â¹â°
 
 ---
 
-## 🎯 Applications of Prime Factorization
+## ðŸŽ¯ Applications of Prime Factorization
 
 ### 1. **Finding HCF (Highest Common Factor)**
 Take the minimum powers of common prime factors.
 
 **Example**: Find HCF of 84 and 90
 \`\`\`
-84 = 2² × 3¹ × 7¹
-90 = 2¹ × 3² × 5¹
+84 = 2Â² Ã— 3Â¹ Ã— 7Â¹
+90 = 2Â¹ Ã— 3Â² Ã— 5Â¹
 
-Common factors: 2¹ × 3¹ = 6
-∴ HCF(84, 90) = 6
+Common factors: 2Â¹ Ã— 3Â¹ = 6
+âˆ´ HCF(84, 90) = 6
 \`\`\`
 
 ### 2. **Finding LCM (Least Common Multiple)**
@@ -107,58 +107,58 @@ Take the maximum powers of all prime factors.
 
 **Example**: Find LCM of 84 and 90
 \`\`\`
-84 = 2² × 3¹ × 7¹
-90 = 2¹ × 3² × 5¹
+84 = 2Â² Ã— 3Â¹ Ã— 7Â¹
+90 = 2Â¹ Ã— 3Â² Ã— 5Â¹
 
-Maximum powers: 2² × 3² × 5¹ × 7¹ = 4 × 9 × 5 × 7 = 1260
-∴ LCM(84, 90) = 1260
+Maximum powers: 2Â² Ã— 3Â² Ã— 5Â¹ Ã— 7Â¹ = 4 Ã— 9 Ã— 5 Ã— 7 = 1260
+âˆ´ LCM(84, 90) = 1260
 \`\`\`
 
 ### 3. **Number of Factors**
-Formula: If n = p₁^a × p₂^b × p₃^c × ...
-Then number of factors = (a+1) × (b+1) × (c+1) × ...
+Formula: If n = pâ‚^a Ã— pâ‚‚^b Ã— pâ‚ƒ^c Ã— ...
+Then number of factors = (a+1) Ã— (b+1) Ã— (c+1) Ã— ...
 
-**Example**: Factors of 84 = 2² × 3¹ × 7¹
-Number of factors = (2+1) × (1+1) × (1+1) = 3 × 2 × 2 = 12
+**Example**: Factors of 84 = 2Â² Ã— 3Â¹ Ã— 7Â¹
+Number of factors = (2+1) Ã— (1+1) Ã— (1+1) = 3 Ã— 2 Ã— 2 = 12
 
 ### 4. **Sum of Factors**
-Formula: Sum = [(p₁^(a+1)-1)/(p₁-1)] × [(p₂^(b+1)-1)/(p₂-1)] × ...
+Formula: Sum = [(pâ‚^(a+1)-1)/(pâ‚-1)] Ã— [(pâ‚‚^(b+1)-1)/(pâ‚‚-1)] Ã— ...
 
 **Example**: Sum of factors of 84
-= [(2³-1)/(2-1)] × [(3²-1)/(3-1)] × [(7²-1)/(7-1)]
-= (8-1)/1 × (9-1)/2 × (49-1)/6
-= 7 × 4 × 8 = 224
+= [(2Â³-1)/(2-1)] Ã— [(3Â²-1)/(3-1)] Ã— [(7Â²-1)/(7-1)]
+= (8-1)/1 Ã— (9-1)/2 Ã— (49-1)/6
+= 7 Ã— 4 Ã— 8 = 224
 
 ---
 
-## 🔍 Special Cases and Patterns
+## ðŸ” Special Cases and Patterns
 
 ### 1. **Prime Numbers**
 A prime number has only one prime factor: itself.
 
-**Example**: 17 = 17¹
+**Example**: 17 = 17Â¹
 
 ### 2. **Perfect Squares**
 Numbers with even exponents in prime factorization.
 
-**Example**: 36 = 2² × 3² (perfect square)
-**Example**: 48 = 2⁴ × 3¹ (not a perfect square)
+**Example**: 36 = 2Â² Ã— 3Â² (perfect square)
+**Example**: 48 = 2â´ Ã— 3Â¹ (not a perfect square)
 
 ### 3. **Perfect Cubes**
 Numbers with exponents divisible by 3.
 
-**Example**: 27 = 3³ (perfect cube)
-**Example**: 24 = 2³ × 3¹ (not a perfect cube)
+**Example**: 27 = 3Â³ (perfect cube)
+**Example**: 24 = 2Â³ Ã— 3Â¹ (not a perfect cube)
 
 ### 4. **Highly Composite Numbers**
 Numbers with many factors.
 
-**Example**: 60 = 2² × 3¹ × 5¹ has 12 factors
-**Example**: 120 = 2³ × 3¹ × 5¹ has 16 factors
+**Example**: 60 = 2Â² Ã— 3Â¹ Ã— 5Â¹ has 12 factors
+**Example**: 120 = 2Â³ Ã— 3Â¹ Ã— 5Â¹ has 16 factors
 
 ---
 
-## 🎯 Problem Solving Techniques
+## ðŸŽ¯ Problem Solving Techniques
 
 ### Technique 1: **Quick Prime Factorization**
 **Steps**:
@@ -169,20 +169,20 @@ Numbers with many factors.
 5. For large factors, use factor pairs
 
 ### Technique 2: **Factorization by Grouping**
-For quadratic expressions: ax² + bx + c
+For quadratic expressions: axÂ² + bx + c
 
-**Example**: Factorize x² + 5x + 6
+**Example**: Factorize xÂ² + 5x + 6
 = (x + 2)(x + 3)
 
 ### Technique 3: **Difference of Squares**
-a² - b² = (a - b)(a + b)
+aÂ² - bÂ² = (a - b)(a + b)
 
-**Example**: 25 - 9 = 16 = 4²
-25 - 9 = (5)² - (3)² = (5-3)(5+3) = 2 × 8 = 16
+**Example**: 25 - 9 = 16 = 4Â²
+25 - 9 = (5)Â² - (3)Â² = (5-3)(5+3) = 2 Ã— 8 = 16
 
 ---
 
-## 📝 Common Mistakes to Avoid
+## ðŸ“ Common Mistakes to Avoid
 
 ### Mistake 1: **Forgetting to Check All Primes**
 Always continue dividing until you reach 1.
@@ -198,29 +198,30 @@ Count the number of times each prime divides the number.
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### Example 1: Basic Factorization
 Factorize 126:
-126 ÷ 2 = 63
-63 ÷ 3 = 21
-21 ÷ 3 = 7
-7 ÷ 7 = 1
-∴ 126 = 2¹ × 3² × 7¹
+126 Ã· 2 = 63
+63 Ã· 3 = 21
+21 Ã· 3 = 7
+7 Ã· 7 = 1
+âˆ´ 126 = 2Â¹ Ã— 3Â² Ã— 7Â¹
 
 ### Example 2: Large Number
 Factorize 391:
-391 ÷ 17 = 23
-∴ 391 = 17¹ × 23¹
+391 Ã· 17 = 23
+âˆ´ 391 = 17Â¹ Ã— 23Â¹
 
 ### Example 3: Perfect Square
 Factorize 225:
-225 ÷ 5 = 45
-45 ÷ 5 = 9
-9 ÷ 3 = 3
-3 ÷ 3 = 1
-∴ 225 = 3² × 5²
+225 Ã· 5 = 45
+45 Ã· 5 = 9
+9 Ã· 3 = 3
+3 Ã· 3 = 1
+âˆ´ 225 = 3Â² Ã— 5Â²
 
-Master prime factorization and you'll unlock the secrets of number theory! 🔓`
+Master prime factorization and you'll unlock the secrets of number theory! ðŸ”“`
 };
+
 

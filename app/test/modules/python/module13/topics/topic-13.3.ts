@@ -1,28 +1,28 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_3: SubLesson = {
   id: "13.3",
   title: 'BST Traversal Algorithms',
   status: 'demo',
-  content: `# 🚶 BST Traversal Algorithms
+  content: "`# ðŸš¶ BST Traversal Algorithms
 
 Learn different ways to visit all nodes in a Binary Search Tree systematically!
 
 ---
 
-## 🎯 Tree Traversal Methods
+## ðŸŽ¯ Tree Traversal Methods
 
 ### **Depth-First Traversals**
 
-#### **1. Inorder Traversal (Left → Root → Right)**
-\`\`\`
+#### **1. Inorder Traversal (Left â†’ Root â†’ Right)**
+\`"\`\`
 Tree:     8
          / \\
         3   10
        / \\    \\
       1   6    14
 
-Inorder: [1, 3, 6, 8, 10, 14] ← **SORTED ORDER**
+Inorder: [1, 3, 6, 8, 10, 14] â† **SORTED ORDER**
 \`\`\`
 
 **Code:**
@@ -34,9 +34,9 @@ def inorder_traversal(root):
         inorder_traversal(root.right)
 \`\`\`
 
-#### **2. Preorder Traversal (Root → Left → Right)**
+#### **2. Preorder Traversal (Root â†’ Left â†’ Right)**
 \`\`\`
-Preorder: [8, 3, 1, 6, 10, 14] ← **Root first**
+Preorder: [8, 3, 1, 6, 10, 14] â† **Root first**
 \`\`\`
 
 **Code:**
@@ -48,9 +48,9 @@ def preorder_traversal(root):
         preorder_traversal(root.right)
 \`\`\`
 
-#### **3. Postorder Traversal (Left → Right → Root)**
+#### **3. Postorder Traversal (Left â†’ Right â†’ Root)**
 \`\`\`
-Postorder: [1, 6, 3, 14, 10, 8] ← **Root last**
+Postorder: [1, 6, 3, 14, 10, 8] â† **Root last**
 \`\`\`
 
 **Code:**
@@ -66,7 +66,7 @@ def postorder_traversal(root):
 
 #### **4. Level Order Traversal (Queue-based)**
 \`\`\`
-Level Order: [8, 3, 10, 1, 6, 14] ← **Level by level**
+Level Order: [8, 3, 10, 1, 6, 14] â† **Level by level**
 \`\`\`
 
 **Code:**
@@ -90,18 +90,18 @@ def level_order_traversal(root):
 
 ---
 
-## 📊 Traversal Comparison
+## ðŸ“Š Traversal Comparison
 
 | Traversal | Order | Pattern | BST Special Property |
 |-----------|-------|---------|---------------------|
-| **Inorder** | L → R → Root | Left, Root, Right | **Gives sorted order** |
-| **Preorder** | Root → L → R | Root, Left, Right | Useful for copying tree |
-| **Postorder** | L → R → Root | Left, Right, Root | Useful for deletion |
+| **Inorder** | L â†’ R â†’ Root | Left, Root, Right | **Gives sorted order** |
+| **Preorder** | Root â†’ L â†’ R | Root, Left, Right | Useful for copying tree |
+| **Postorder** | L â†’ R â†’ Root | Left, Right, Root | Useful for deletion |
 | **Level** | Level by level | BFS approach | Shows tree structure |
 
 ---
 
-## 🔄 Iterative Implementations
+## ðŸ”„ Iterative Implementations
 
 ### **Iterative Inorder (Using Stack)**
 \`\`\`python
@@ -144,35 +144,35 @@ def preorder_iterative(root):
 
 ---
 
-## 🎯 Applications of Traversals
+## ðŸŽ¯ Applications of Traversals
 
 ### **Inorder Traversal Uses**
-- ✅ Get elements in **sorted order**
-- ✅ **BST validation** (check if inorder is sorted)
-- ✅ **Convert BST to sorted array**
-- ✅ **Find k-th smallest element**
+- âœ… Get elements in **sorted order**
+- âœ… **BST validation** (check if inorder is sorted)
+- âœ… **Convert BST to sorted array**
+- âœ… **Find k-th smallest element**
 
 ### **Preorder Traversal Uses**
-- ✅ **Copy/clone a tree**
-- ✅ **Serialize tree to array/string**
-- ✅ **Expression tree evaluation**
-- ✅ **File system traversal**
+- âœ… **Copy/clone a tree**
+- âœ… **Serialize tree to array/string**
+- âœ… **Expression tree evaluation**
+- âœ… **File system traversal**
 
 ### **Postorder Traversal Uses**
-- ✅ **Delete tree nodes** (safe deletion)
-- ✅ **Calculate directory sizes**
-- ✅ **Expression evaluation** (postfix)
-- ✅ **Syntax tree processing**
+- âœ… **Delete tree nodes** (safe deletion)
+- âœ… **Calculate directory sizes**
+- âœ… **Expression evaluation** (postfix)
+- âœ… **Syntax tree processing**
 
 ### **Level Order Uses**
-- ✅ **Find tree height/depth**
-- ✅ **Print tree level by level**
-- ✅ **Find maximum width**
-- ✅ **Connect nodes at same level**
+- âœ… **Find tree height/depth**
+- âœ… **Print tree level by level**
+- âœ… **Find maximum width**
+- âœ… **Connect nodes at same level**
 
 ---
 
-## 🛠️ Utility Functions Using Traversals
+## ðŸ› ï¸ Utility Functions Using Traversals
 
 ### **Check if BST is Valid**
 \`\`\`python
@@ -203,15 +203,16 @@ def height(root):
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
-1. **Inorder**: Left → Root → Right = **Sorted order in BST**
-2. **Preorder**: Root → Left → Right = **Tree copying**
-3. **Postorder**: Left → Right → Root = **Safe deletion**
+1. **Inorder**: Left â†’ Root â†’ Right = **Sorted order in BST**
+2. **Preorder**: Root â†’ Left â†’ Right = **Tree copying**
+3. **Postorder**: Left â†’ Right â†’ Root = **Safe deletion**
 4. **Level Order**: BFS = **Level-by-level processing**
 5. **Recursive**: Clean, easy to understand
 6. **Iterative**: Better for large trees, uses stack/queue
 
-Master these traversals to unlock BST's full potential! 🌟`,
+Master these traversals to unlock BST's full potential! ðŸŒŸ`,
 };
+
 

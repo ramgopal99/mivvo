@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_6: SubLesson = {
   id: "12.6",
   title: 'Collections Utility Class',
   status: 'completed',
-  content: `# 🛠️ Collections Utility Class in Java
+  content: "`# ðŸ› ï¸ Collections Utility Class in Java
 
 The Collections class is a utility class in Java that provides static methods for operating on collections. It contains polymorphic algorithms that work on collections, providing functionality like sorting, searching, shuffling, and creating synchronized views.
 
 ---
 
-## 🎯 What is the Collections Class?
+## ðŸŽ¯ What is the Collections Class?
 
 ### **Overview**
 
@@ -25,11 +25,11 @@ The Collections class consists exclusively of static methods that operate on or 
 
 ---
 
-## 🔄 Sorting Methods
+## ðŸ”„ Sorting Methods
 
 ### **sort() - Natural and Custom Ordering**
 
-\`\`\`java
+\`"\`\`java
 import java.util.*;
 
 public class SortingMethods {
@@ -146,7 +146,7 @@ public class RotateSwapMethods {
 
 ---
 
-## 🔍 Searching Methods
+## ðŸ” Searching Methods
 
 ### **binarySearch() - Efficient Searching**
 
@@ -191,7 +191,7 @@ public class SearchingMethods {
 
 ---
 
-## 📊 Min/Max and Frequency Methods
+## ðŸ“Š Min/Max and Frequency Methods
 
 ### **min(), max(), and frequency()**
 
@@ -244,7 +244,7 @@ public class MinMaxFrequencyMethods {
 
 ---
 
-## 🔒 Synchronized Collections
+## ðŸ”’ Synchronized Collections
 
 ### **Thread-Safe Wrappers**
 
@@ -289,7 +289,7 @@ public class SynchronizedCollections {
 
 ---
 
-## 🚫 Unmodifiable Collections
+## ðŸš« Unmodifiable Collections
 
 ### **Read-Only Views**
 
@@ -342,7 +342,7 @@ public class UnmodifiableCollections {
 
 ---
 
-## 🎯 Singleton and Empty Collections
+## ðŸŽ¯ Singleton and Empty Collections
 
 ### **Creating Single-Element Collections**
 
@@ -393,7 +393,7 @@ public class SingletonCollections {
 
 ---
 
-## 🔄 Bulk Operations
+## ðŸ”„ Bulk Operations
 
 ### **addAll(), replaceAll(), and fill()**
 
@@ -434,7 +434,7 @@ public class BulkOperations {
 
 ---
 
-## 🎯 Practical Collections Utility Examples
+## ðŸŽ¯ Practical Collections Utility Examples
 
 ### **Finding N Largest/Smallest Elements**
 
@@ -607,7 +607,7 @@ public class EmployeeUtilities {
 
 ---
 
-## 🎯 Summary
+## ðŸŽ¯ Summary
 
 ### **Collections Utility Class Key Methods**
 
@@ -685,4 +685,5 @@ System.out.println(list);
 Output: [C, B, A]
 `
 };
+
 

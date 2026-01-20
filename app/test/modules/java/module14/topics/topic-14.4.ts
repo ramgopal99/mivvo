@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_4: SubLesson = {
   id: "14.4",
   title: 'Recursion vs Iteration',
   status: 'completed',
-  content: `# 🔄 Recursion vs Iteration in Java
+  content: "`# ðŸ”„ Recursion vs Iteration in Java
 
 Learn when to use recursion and when to prefer iteration!
 
 ---
 
-## ⚖️ Comparison Overview
+## âš–ï¸ Comparison Overview
 
 | Aspect | Recursion | Iteration |
 |--------|-----------|-----------|
@@ -22,12 +22,12 @@ Learn when to use recursion and when to prefer iteration!
 
 ---
 
-## 📊 Performance Analysis
+## ðŸ“Š Performance Analysis
 
 ### **1. Time Complexity**
 Both can achieve same time complexity, but recursion has overhead:
 
-\`\`\`java
+\`"\`\`java
 public class PerformanceComparison {
     // Recursive factorial
     public static long factorialRecursive(int n) {
@@ -100,9 +100,9 @@ public class SpaceComparison {
 
 ---
 
-## 🎯 When to Use Recursion
+## ðŸŽ¯ When to Use Recursion
 
-### **✅ Perfect for Recursion:**
+### **âœ… Perfect for Recursion:**
 
 #### **1. Tree and Graph Traversals**
 \`\`\`java
@@ -154,9 +154,9 @@ public boolean solveNQueens(int[][] board, int col) {
 
 ---
 
-## 🎯 When to Use Iteration
+## ðŸŽ¯ When to Use Iteration
 
-### **✅ Perfect for Iteration:**
+### **âœ… Perfect for Iteration:**
 
 #### **1. Simple Loops**
 \`\`\`java
@@ -208,7 +208,7 @@ public boolean validateString(String s) {
 
 ---
 
-## 🔄 Converting Between Recursion and Iteration
+## ðŸ”„ Converting Between Recursion and Iteration
 
 ### **1. Factorial Example**
 \`\`\`java
@@ -280,7 +280,7 @@ public void inorderIter(TreeNode root) {
 
 ---
 
-## 🛠️ Tail Recursion Optimization
+## ðŸ› ï¸ Tail Recursion Optimization
 
 ### **1. What is Tail Recursion?**
 \`\`\`java
@@ -304,7 +304,7 @@ public int factorialNonTail(int n) {
 
 ---
 
-## 🎯 Best Practices
+## ðŸŽ¯ Best Practices
 
 ### **Choosing the Right Approach:**
 
@@ -329,7 +329,7 @@ public int factorialNonTail(int n) {
 
 ---
 
-## 🔧 Practical Guidelines
+## ðŸ”§ Practical Guidelines
 
 ### **1. Maximum Recursion Depth**
 \`\`\`java
@@ -365,15 +365,16 @@ public long fibonacci(int n) {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Recursion**: Clean, natural for trees/graphs, but watch stack limits
 2. **Iteration**: Faster, less memory, but can be more complex
 3. **Choose wisely**: Based on problem structure and constraints
-4. **Convert when needed**: Recursion ↔ Iteration conversion patterns exist
+4. **Convert when needed**: Recursion â†” Iteration conversion patterns exist
 5. **Performance matters**: Profile both approaches for critical code
 6. **Depth limits**: Java has ~1000-10000 call stack limit
 
-**Master both techniques for optimal problem-solving!** 🚀`
+**Master both techniques for optimal problem-solving!** ðŸš€`
 };
+
 

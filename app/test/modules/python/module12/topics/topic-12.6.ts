@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_6: SubLesson = {
   id: "12.6",
   title: 'Heap Operations',
   status: 'demo',
-  content: `# ⚙️ Heap Operations
+  content: "`# âš™ï¸ Heap Operations
 
 Heaps support various operations for insertion, deletion, and manipulation. Let's explore each operation in detail with implementations and algorithms!
 
 ---
 
-## 🔧 Basic Heap Operations
+## ðŸ”§ Basic Heap Operations
 
 ### **Insert Operation**
-\`\`\`python
+\`"\`\`python
 import heapq
 
 class MinHeap:
@@ -79,7 +79,7 @@ while not heap.is_empty():
 
 ---
 
-## 🔍 Advanced Heap Operations
+## ðŸ” Advanced Heap Operations
 
 ### **Size Operation**
 \`\`\`python
@@ -120,7 +120,7 @@ print(f"Heap contains 40: {heap.contains(40)}")
 
 ---
 
-## 🎯 Heap Algorithm Examples
+## ðŸŽ¯ Heap Algorithm Examples
 
 ### **Kth Largest Element**
 \`\`\`python
@@ -234,7 +234,7 @@ print(f"Final medians: {medians}")
 
 ---
 
-## 📊 Heap Performance Analysis
+## ðŸ“Š Heap Performance Analysis
 
 ### **Time Complexity**
 | Operation | Time Complexity | Notes |
@@ -252,7 +252,7 @@ print(f"Final medians: {medians}")
 
 ---
 
-## 🎨 Heap Applications in Depth
+## ðŸŽ¨ Heap Applications in Depth
 
 ### **Dijkstra's Algorithm**
 \`\`\`python
@@ -403,7 +403,7 @@ for event in events:
 
 ---
 
-## 🚀 Advanced Heap Concepts
+## ðŸš€ Advanced Heap Concepts
 
 ### **Fibonacci Heap (Theoretical)**
 \`\`\`python
@@ -458,7 +458,7 @@ while True:
 
 ---
 
-## ✅ Best Practices
+## âœ… Best Practices
 
 1. **Use heapq for simple cases** - Efficient and standard library
 2. **Implement custom heaps when needed** - For complex comparisons
@@ -466,6 +466,7 @@ while True:
 4. **Consider heapify for bulk operations** - More efficient than individual inserts
 5. **Use heaps for priority-based algorithms** - Natural fit for scheduling problems
 
-Heap operations provide efficient priority-based access and are fundamental to many algorithms! 🏔️`
+Heap operations provide efficient priority-based access and are fundamental to many algorithms! ðŸ”ï¸`
 };
+
 

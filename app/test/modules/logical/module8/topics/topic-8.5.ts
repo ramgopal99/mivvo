@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_5: SubLesson = {
   id: "8.5",
   title: 'Finding Middle Position',
   status: 'completed',
-  content: `# 🎯 Finding Middle Position
+  content: "`# ðŸŽ¯ Finding Middle Position
 
 Middle position problems involve locating the central person or object in an arrangement, which is crucial for understanding median positions and central tendencies. These problems require different approaches for odd and even numbers of persons and understanding how middle positions are calculated from different ends.
 
 ---
 
-## 🎯 Understanding Middle Position
+## ðŸŽ¯ Understanding Middle Position
 
 ### **What are Middle Position Problems?**
 These problems involve finding the central position(s) in an arrangement of persons or objects. They test your ability to:
@@ -22,7 +22,7 @@ These problems involve finding the central position(s) in an arrangement of pers
 ### **Key Concepts**
 
 #### **Middle Position Formula**
-\`\`\`
+\`"\`\`
 For N persons:
 - Odd N: Single middle = (N + 1)/2
 - Even N: Two middle positions = N/2 and (N/2 + 1)
@@ -36,7 +36,7 @@ For even N: No single middle, two central positions
 
 ---
 
-## 🧩 Middle Position Calculations
+## ðŸ§© Middle Position Calculations
 
 ### **Odd Number of Persons**
 
@@ -64,7 +64,7 @@ For even N: No single middle, two central positions
 
 ---
 
-## 🎯 Problem Types and Solutions
+## ðŸŽ¯ Problem Types and Solutions
 
 ### **Type 1: Find Middle Position**
 *"In a row of 11 persons, who is in the middle?"*
@@ -93,7 +93,7 @@ For even N: No single middle, two central positions
 
 ---
 
-## 📊 Middle Position Properties
+## ðŸ“Š Middle Position Properties
 
 ### **Symmetry Property**
 \`\`\`
@@ -119,7 +119,7 @@ Two middle positions span:
 
 ---
 
-## 🛠️ Problem-Solving Framework
+## ðŸ› ï¸ Problem-Solving Framework
 
 ### **Step-by-Step Approach**
 
@@ -145,7 +145,7 @@ Two middle positions span:
 
 ---
 
-## 🎯 Common Question Patterns
+## ðŸŽ¯ Common Question Patterns
 
 ### **Pattern 1: Direct Middle Finding**
 *"Who is in the middle of X persons?"*
@@ -161,7 +161,7 @@ Two middle positions span:
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (50%)**
 - Simple odd/even identification
@@ -180,7 +180,7 @@ Two middle positions span:
 
 ---
 
-## 🧮 Mathematical Applications
+## ðŸ§® Mathematical Applications
 
 ### **Middle Position Arithmetic**
 \`\`\`
@@ -201,7 +201,7 @@ If person is at middle position:
 
 ---
 
-## 🎯 Special Cases and Exceptions
+## ðŸŽ¯ Special Cases and Exceptions
 
 ### **Case 1: Single Person**
 \`\`\`
@@ -225,27 +225,27 @@ Position from left = Position from right
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Even Number Confusion**
-❌ Assuming single middle for even numbers
-✅ Even numbers have two middle positions
+âŒ Assuming single middle for even numbers
+âœ… Even numbers have two middle positions
 
 ### **Mistake 2: Formula Error**
-❌ Using wrong formula: (N/2) instead of (N+1)/2
-✅ Odd: (N+1)/2, Even: N/2 and N/2+1
+âŒ Using wrong formula: (N/2) instead of (N+1)/2
+âœ… Odd: (N+1)/2, Even: N/2 and N/2+1
 
 ### **Mistake 3: End Reference Confusion**
-❌ Confusing left/right or top/bottom references
-✅ Middle position is same from both ends (odd N)
+âŒ Confusing left/right or top/bottom references
+âœ… Middle position is same from both ends (odd N)
 
 ### **Mistake 4: Range Misunderstanding**
-❌ Treating middle range as single position
-✅ Even numbers have a middle range, not point
+âŒ Treating middle range as single position
+âœ… Even numbers have a middle range, not point
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Identify Odd vs Even**: Different rules for odd and even totals
 2. **Memorize Formulas**: Odd: (N+1)/2, Even: N/2 and N/2+1
@@ -257,7 +257,7 @@ Position from left = Position from right
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Odd Number Middle**
 *"In a row of 7 persons, who is in the middle?"*
@@ -295,7 +295,7 @@ Position from left = Position from right
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Top-Bottom Ranking**
 - Find vertical middle positions
@@ -312,5 +312,5 @@ Position from left = Position from right
 - Calculate median positions in rankings
 - Determine central tendencies in ordered data
 
-**Master middle position calculations to excel in central position reasoning problems! 🎯✨**`
+**Master middle position calculations to excel in central position reasoning problems! ðŸŽ¯âœ¨**`
 };

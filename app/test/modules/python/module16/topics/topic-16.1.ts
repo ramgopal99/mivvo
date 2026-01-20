@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_1: SubLesson = {
   id: "16.1",
   title: 'Python Modules and Packages',
   status: 'demo',
-  content: `# 📦 Python Modules and Packages
+  content: "`# ðŸ“¦ Python Modules and Packages
 
 Modules and packages are fundamental to organizing and reusing Python code. They allow you to break down large programs into manageable, reusable components. Let's explore how to create, import, and organize Python modules and packages!
 
 ---
 
-## 🎯 What are Modules?
+## ðŸŽ¯ What are Modules?
 
 **Modules** are Python files containing Python code (functions, classes, variables) that can be imported and used in other Python programs.
 
@@ -22,10 +22,10 @@ Modules and packages are fundamental to organizing and reusing Python code. They
 
 ---
 
-## 💻 Creating and Using Modules
+## ðŸ’» Creating and Using Modules
 
 ### **Basic Module Creation**
-\`\`\`python
+\`"\`\`python
 # mymodule.py
 def greet(name):
     return f"Hello, {name}!"
@@ -73,19 +73,19 @@ print("Module name: " + __name__)
 
 ---
 
-## 📁 Python Packages
+## ðŸ“ Python Packages
 
 **Packages** are directories containing multiple modules and a special \`__init__.py\` file.
 
 ### **Package Structure**
 \`\`\`
 mypackage/
-├── __init__.py
-├── module1.py
-├── module2.py
-└── subpackage/
-    ├── __init__.py
-    └── submodule.py
+â”œâ”€â”€ __init__.py
+â”œâ”€â”€ module1.py
+â”œâ”€â”€ module2.py
+â””â”€â”€ subpackage/
+    â”œâ”€â”€ __init__.py
+    â””â”€â”€ submodule.py
 \`\`\`
 
 ### **Creating a Package**
@@ -141,7 +141,7 @@ print(function2())  # Function 2 from module2
 
 ---
 
-## 🔍 Module Search Path
+## ðŸ” Module Search Path
 
 ### **How Python Finds Modules**
 \`\`\`python
@@ -167,7 +167,7 @@ os.environ['PYTHONPATH'] = '/path/to/your/modules'
 
 ---
 
-## 📚 Standard Library Modules
+## ðŸ“š Standard Library Modules
 
 ### **Commonly Used Modules**
 \`\`\`python
@@ -219,7 +219,7 @@ print(r.choice([1, 2, 3, 4, 5]))
 
 ---
 
-## 🔧 Advanced Module Features
+## ðŸ”§ Advanced Module Features
 
 ### **Module Reloading**
 \`\`\`python
@@ -258,7 +258,7 @@ def use_pandas():
 
 ---
 
-## 📦 Package Distribution
+## ðŸ“¦ Package Distribution
 
 ### **setup.py for Distribution**
 \`\`\`python
@@ -291,7 +291,7 @@ pip install .
 
 ---
 
-## 🧪 Module Testing and Examples
+## ðŸ§ª Module Testing and Examples
 
 ### **Test Case 1: Basic Module Usage**
 \`\`\`python
@@ -323,9 +323,9 @@ print(divide(10, 5))     # 2.0
 ### **Test Case 2: Package with Submodules**
 \`\`\`python
 # mylib/
-# ├── __init__.py
-# ├── math_operations.py
-# └── string_operations.py
+# â”œâ”€â”€ __init__.py
+# â”œâ”€â”€ math_operations.py
+# â””â”€â”€ string_operations.py
 
 # mylib/math_operations.py
 def factorial(n):
@@ -360,7 +360,7 @@ print(mylib.is_palindrome("radar"))   # True
 
 ---
 
-## 🎯 Best Practices
+## ðŸŽ¯ Best Practices
 
 ### **Module Organization**
 1. **One responsibility per module** - Keep modules focused
@@ -385,7 +385,7 @@ print(mylib.is_palindrome("radar"))   # True
 
 ---
 
-## 🚀 Key Takeaways
+## ðŸš€ Key Takeaways
 
 1. **Modules** are Python files that can be imported and reused
 2. **Packages** are directories containing modules and __init__.py
@@ -393,6 +393,7 @@ print(mylib.is_palindrome("radar"))   # True
 4. **Standard library** provides many useful modules
 5. **Best practices** ensure maintainable and reusable code
 
-**Modules and packages are essential for writing organized, maintainable Python code. They enable code reuse and help manage complexity in large projects! 📦**`
+**Modules and packages are essential for writing organized, maintainable Python code. They enable code reuse and help manage complexity in large projects! ðŸ“¦**`
 };
+
 

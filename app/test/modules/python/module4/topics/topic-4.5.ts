@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_5: SubLesson = {
   id: "4.5",
   title: 'Tuple Operations',
   status: 'demo',
-  content: `# ⚡ Tuple Operations
+  content: "`# âš¡ Tuple Operations
 
 Even though tuples are immutable, you can still perform many useful operations on them!
 
 ---
 
-## ➕ Concatenation
+## âž• Concatenation
 
 ### **Joining Tuples**
-\`\`\`python
+\`"\`\`python
 tuple1 = (1, 2, 3)
 tuple2 = (4, 5, 6)
 
@@ -28,7 +28,7 @@ print(fruits)  # ('apple', 'banana', 'orange', 'grape')
 
 ---
 
-## 🔄 Repetition
+## ðŸ”„ Repetition
 
 ### **Repeating Tuples**
 \`\`\`python
@@ -47,7 +47,7 @@ print(pattern)  # ('A', 'B', 'A', 'B')
 
 ---
 
-## ✂️ Slicing
+## âœ‚ï¸ Slicing
 
 ### **Extracting Parts**
 \`\`\`python
@@ -71,7 +71,7 @@ print(numbers[::-1]) # (9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
 
 ---
 
-## 🔄 Unpacking Operations
+## ðŸ”„ Unpacking Operations
 
 ### **Advanced Unpacking**
 \`\`\`python
@@ -98,7 +98,7 @@ print(f"a={a}, b={b}, c={c}, d={d}, e={e}, f={f}")
 
 ---
 
-## 🔍 Membership and Comparison
+## ðŸ” Membership and Comparison
 
 ### **Checking Contents**
 \`\`\`python
@@ -124,7 +124,7 @@ print(tuple1 < tuple3)   # True (compares element by element)
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 \`\`\`python
 # Working with coordinates
@@ -152,6 +152,7 @@ first_column = tuple(row[0] for row in matrix)
 print(f"First column: {first_column}")  # (1, 4, 7)
 \`\`\`
 
-Tuples support many operations while staying immutable! 🔒`
+Tuples support many operations while staying immutable! ðŸ”’`
 };
+
 

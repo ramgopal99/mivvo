@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_10: SubLesson = {
   id: "13.10",
   title: 'Consistent and Inconsistent Equations',
   status: 'completed',
-  content: `# ⚖️ Consistent and Inconsistent Equations
+  content: "`# âš–ï¸ Consistent and Inconsistent Equations
 
 Master the classification of systems of linear equations! Understanding consistency helps you determine when solutions exist and interpret different solution scenarios. Learn to analyze equations systematically and identify their nature.
 
 ---
 
-## 🎯 What is Consistency?
+## ðŸŽ¯ What is Consistency?
 
 **Consistency** refers to whether a system of linear equations has solutions or not.
 
@@ -27,13 +27,13 @@ Master the classification of systems of linear equations! Understanding consiste
 
 ---
 
-## 📊 Classification Methods
+## ðŸ“Š Classification Methods
 
 ### **Method 1: Graphical Approach**
 
 #### **Consistent - Unique Solution**
 Lines intersect at one point
-\`\`\`
+\`"\`\`
 x + y = 7  ...(1)
 x - y = 3  ...(2)
 \`\`\`
@@ -60,18 +60,18 @@ x + y = 5  ...(2)
 
 ---
 
-## 🔢 Algebraic Classification
+## ðŸ”¢ Algebraic Classification
 
 ### **Using Elimination Method**
 
 #### **Step 1: Write equations in standard form**
-\`a₁x + b₁y + c₁ = 0\`
-\`a₂x + b₂y + c₂ = 0\`
+\`aâ‚x + bâ‚y + câ‚ = 0\`
+\`aâ‚‚x + bâ‚‚y + câ‚‚ = 0\`
 
 #### **Step 2: Compare coefficients**
-- If \`a₁/a₂ ≠ b₁/b₂\`: Unique solution (consistent)
-- If \`a₁/a₂ = b₁/b₂ = c₁/c₂\`: Infinite solutions (consistent, dependent)
-- If \`a₁/a₂ = b₁/b₂ ≠ c₁/c₂\`: No solution (inconsistent)
+- If \`aâ‚/aâ‚‚ â‰  bâ‚/bâ‚‚\`: Unique solution (consistent)
+- If \`aâ‚/aâ‚‚ = bâ‚/bâ‚‚ = câ‚/câ‚‚\`: Infinite solutions (consistent, dependent)
+- If \`aâ‚/aâ‚‚ = bâ‚/bâ‚‚ â‰  câ‚/câ‚‚\`: No solution (inconsistent)
 
 #### **Examples:**
 
@@ -80,40 +80,40 @@ x + y = 5  ...(2)
 2x + 3y = 11  ...(1)
 x + 2y = 7     ...(2)
 \`\`\`
-Coefficients: 2/1 = 2, 3/2 = 1.5 → Different ratios → Unique solution
+Coefficients: 2/1 = 2, 3/2 = 1.5 â†’ Different ratios â†’ Unique solution
 
 **Infinite Solutions:**
 \`\`\`
 2x + 3y = 6   ...(1)
 4x + 6y = 12  ...(2)
 \`\`\`
-Divide equation (2) by 2: Same as equation (1) → Infinite solutions
+Divide equation (2) by 2: Same as equation (1) â†’ Infinite solutions
 
 **No Solution:**
 \`\`\`
 x + y = 3  ...(1)
 x + y = 5  ...(2)
 \`\`\`
-Same coefficients, different constants → No solution
+Same coefficients, different constants â†’ No solution
 
 ---
 
-## 🧮 Determinant Method
+## ðŸ§® Determinant Method
 
 ### **For Two Equations:**
 \`\`\`
-a₁x + b₁y + c₁ = 0
-a₂x + b₂y + c₂ = 0
+aâ‚x + bâ‚y + câ‚ = 0
+aâ‚‚x + bâ‚‚y + câ‚‚ = 0
 \`\`\`
 
 ### **Determinant D:**
-\`D = a₁b₂ - a₂b₁\`
+\`D = aâ‚bâ‚‚ - aâ‚‚bâ‚\`
 
 ### **Classification:**
-- **D ≠ 0**: Unique solution (consistent)
+- **D â‰  0**: Unique solution (consistent)
 - **D = 0**: Infinite or no solution
-  - If \`a₁c₂ - a₂c₁ = 0\`: Infinite solutions
-  - If \`a₁c₂ - a₂c₁ ≠ 0\`: No solution
+  - If \`aâ‚câ‚‚ - aâ‚‚câ‚ = 0\`: Infinite solutions
+  - If \`aâ‚câ‚‚ - aâ‚‚câ‚ â‰  0\`: No solution
 
 ### **Examples:**
 
@@ -122,27 +122,27 @@ a₂x + b₂y + c₂ = 0
 2x + 3y - 11 = 0
 x + 2y - 7 = 0
 \`\`\`
-D = 2×2 - 1×3 = 4 - 3 = 1 ≠ 0 → Unique solution
+D = 2Ã—2 - 1Ã—3 = 4 - 3 = 1 â‰  0 â†’ Unique solution
 
 **Infinite Solutions:**
 \`\`\`
 2x + 3y - 6 = 0
 4x + 6y - 12 = 0
 \`\`\`
-D = 2×6 - 4×3 = 12 - 12 = 0
-Check: 2×(-12) - 4×(-6) = -24 + 24 = 0 → Infinite solutions
+D = 2Ã—6 - 4Ã—3 = 12 - 12 = 0
+Check: 2Ã—(-12) - 4Ã—(-6) = -24 + 24 = 0 â†’ Infinite solutions
 
 **No Solution:**
 \`\`\`
 x + y - 3 = 0
 x + y - 5 = 0
 \`\`\`
-D = 1×1 - 1×1 = 0
-Check: 1×(-5) - 1×(-3) = -5 + 3 = -2 ≠ 0 → No solution
+D = 1Ã—1 - 1Ã—1 = 0
+Check: 1Ã—(-5) - 1Ã—(-3) = -5 + 3 = -2 â‰  0 â†’ No solution
 
 ---
 
-## 📈 Geometric Interpretation
+## ðŸ“ˆ Geometric Interpretation
 
 ### **Unique Solution (Consistent)**
 - Lines intersect at one point
@@ -161,11 +161,11 @@ Check: 1×(-5) - 1×(-3) = -5 + 3 = -2 ≠ 0 → No solution
 
 ---
 
-## 🎯 Practical Examples
+## ðŸŽ¯ Practical Examples
 
 ### **Example 1: Cost Problem (Unique Solution)**
-**Problem:** 2 apples + 3 oranges = ₹100
-4 apples + 2 oranges = ₹120
+**Problem:** 2 apples + 3 oranges = â‚¹100
+4 apples + 2 oranges = â‚¹120
 
 **System:**
 \`\`\`
@@ -174,8 +174,8 @@ Check: 1×(-5) - 1×(-3) = -5 + 3 = -2 ≠ 0 → No solution
 \`\`\`
 
 **Check consistency:**
-D = 2×2 - 4×3 = 4 - 12 = -8 ≠ 0 → Unique solution
-**Solution:** Apples ₹20, Oranges ₹20
+D = 2Ã—2 - 4Ã—3 = 4 - 12 = -8 â‰  0 â†’ Unique solution
+**Solution:** Apples â‚¹20, Oranges â‚¹20
 
 ### **Example 2: Dependent System**
 **Problem:** Express relationship between quantities
@@ -186,7 +186,7 @@ D = 2×2 - 4×3 = 4 - 12 = -8 ≠ 0 → Unique solution
 4x + 6y = 12  ...(2)
 \`\`\`
 
-**Check:** Equation (2) = 2 × Equation (1) → Dependent
+**Check:** Equation (2) = 2 Ã— Equation (1) â†’ Dependent
 **Solution:** Infinite solutions, y = (6 - 2x)/3
 
 ### **Example 3: Impossible Situation (Inconsistent)**
@@ -198,14 +198,14 @@ x + y = 10  ...(1)
 x - y = 5   ...(2)
 \`\`\`
 
-**Solution:** x = 7.5, y = 2.5 → Consistent
+**Solution:** x = 7.5, y = 2.5 â†’ Consistent
 
 **Inconsistent case:** x + y = 10, x + y = 15
-**Result:** Impossible → No solution
+**Result:** Impossible â†’ No solution
 
 ---
 
-## 🔄 Consistency in Different Methods
+## ðŸ”„ Consistency in Different Methods
 
 ### **Substitution Method:**
 
@@ -215,7 +215,7 @@ x + y = 7  ...(1)
 x - y = 3  ...(2)
 \`\`\`
 From (1): x = 7 - y
-Substitute: (7 - y) - y = 3 → y = 2, x = 5
+Substitute: (7 - y) - y = 3 â†’ y = 2, x = 5
 
 #### **Inconsistent:**
 \`\`\`
@@ -223,7 +223,7 @@ x + y = 3  ...(1)
 x + y = 5  ...(2)
 \`\`\`
 From (1): x = 3 - y
-Substitute: (3 - y) + y = 5 → 3 = 5 → Impossible
+Substitute: (3 - y) + y = 5 â†’ 3 = 5 â†’ Impossible
 
 ### **Elimination Method:**
 
@@ -240,56 +240,56 @@ Subtract: y = 3, x = 1
 x + y = 3
 x + y = 5
 \`\`\`
-Subtract: 0 = -2 → Impossible
+Subtract: 0 = -2 â†’ Impossible
 
 ---
 
-## 🎯 Word Problem Applications
+## ðŸŽ¯ Word Problem Applications
 
 ### **Example 1: Age Problem (Consistent)**
 **Problem:** Father is 40, son is 10. After 10 years, father will be twice son's age.
 
-**Check:** Current: 40 vs 20 (2×10)
-After 10 years: 50 vs 40 (2×20) → Consistent
+**Check:** Current: 40 vs 20 (2Ã—10)
+After 10 years: 50 vs 40 (2Ã—20) â†’ Consistent
 
 ### **Example 2: Investment Problem (Inconsistent)**
-**Problem:** ₹1000 invested at 10% gives ₹200 interest. Same amount at 20% gives ₹300 interest.
+**Problem:** â‚¹1000 invested at 10% gives â‚¹200 interest. Same amount at 20% gives â‚¹300 interest.
 
 **Check:**
-At 10%: 1000 × 0.1 × t = 200 → t = 2 years
-At 20%: 1000 × 0.2 × t = 300 → t = 1.5 years
-Different times → Inconsistent for same amount
+At 10%: 1000 Ã— 0.1 Ã— t = 200 â†’ t = 2 years
+At 20%: 1000 Ã— 0.2 Ã— t = 300 â†’ t = 1.5 years
+Different times â†’ Inconsistent for same amount
 
 ### **Example 3: Work Problem (Dependent)**
 **Problem:** A works twice as fast as B. Together they finish in 3 days.
 
 **Solution:** Let B's rate = r, A's rate = 2r
-Time: 3 days = 1/(r + 2r) = 1/(3r) → r = 1/9
+Time: 3 days = 1/(r + 2r) = 1/(3r) â†’ r = 1/9
 Infinite solutions (A and B rates related)
 
 ---
 
-## 🚨 Common Mistakes
+## ðŸš¨ Common Mistakes
 
 ### **Mistake 1: Wrong Classification**
-❌ Calling dependent system inconsistent
+âŒ Calling dependent system inconsistent
 - Dependent systems are consistent (infinite solutions)
 
 ### **Mistake 2: Incorrect Determinant**
-❌ Using wrong order in determinant
-- Always a₁b₂ - a₂b₁
+âŒ Using wrong order in determinant
+- Always aâ‚bâ‚‚ - aâ‚‚bâ‚
 
 ### **Mistake 3: Missing Negative Signs**
-❌ Forgetting signs in coefficient comparison
+âŒ Forgetting signs in coefficient comparison
 - Pay attention to positive/negative coefficients
 
 ### **Mistake 4: Confusing Parallel and Coincident**
-❌ Parallel lines are inconsistent, coincident are dependent
+âŒ Parallel lines are inconsistent, coincident are dependent
 - Parallel: no intersection, coincident: infinite intersections
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Classify Systems:**
 1. \`2x + 3y = 7\` and \`x + y = 4\`
@@ -302,8 +302,8 @@ Infinite solutions (A and B rates related)
 3. **Speed:** Two trains same speed. One starts later. Check if they meet.
 
 ### **Determinant Method:**
-1. Check: \`a₁x + b₁y + c₁ = 0\` and \`a₂x + b₂y + c₂ = 0\`
-   Given: a₁=2, b₁=3, c₁=-7; a₂=1, b₂=2, c₂=-4
+1. Check: \`aâ‚x + bâ‚y + câ‚ = 0\` and \`aâ‚‚x + bâ‚‚y + câ‚‚ = 0\`
+   Given: aâ‚=2, bâ‚=3, câ‚=-7; aâ‚‚=1, bâ‚‚=2, câ‚‚=-4
 2. Classify: \`3x + 4y = 6\` and \`6x + 8y = 10\`
 
 ### **Graphical:**
@@ -313,12 +313,12 @@ Infinite solutions (A and B rates related)
 **Answers:**
 Systems: Unique, Infinite, No solution
 Word: Consistent, Inconsistent, Consistent
-Determinant: D=1, unique; D=0, c check ≠0, no solution
+Determinant: D=1, unique; D=0, c check â‰ 0, no solution
 Graphical: Parallel, Coincident
 
 ---
 
-## 🎓 Pro Tips for Consistency
+## ðŸŽ“ Pro Tips for Consistency
 
 1. **Use determinant method** - most reliable for classification
 2. **Check ratios of coefficients** - quick method
@@ -330,33 +330,33 @@ Graphical: Parallel, Coincident
 
 ---
 
-## 🔢 Consistency Flowchart
+## ðŸ”¢ Consistency Flowchart
 
 \`\`\`
 Start with system of equations
-    ↓
+    â†“
 Write in standard form: ax + by + c = 0
-    ↓
-Calculate determinant D = a₁b₂ - a₂b₁
-    ↓
-D ≠ 0 → Unique solution (Consistent)
-    ↓
-D = 0 → Check a₁c₂ - a₂c₁
-    ↓
-= 0 → Infinite solutions (Consistent & Dependent)
-    ↓
-≠ 0 → No solution (Inconsistent)
+    â†“
+Calculate determinant D = aâ‚bâ‚‚ - aâ‚‚bâ‚
+    â†“
+D â‰  0 â†’ Unique solution (Consistent)
+    â†“
+D = 0 â†’ Check aâ‚câ‚‚ - aâ‚‚câ‚
+    â†“
+= 0 â†’ Infinite solutions (Consistent & Dependent)
+    â†“
+â‰  0 â†’ No solution (Inconsistent)
 \`\`\`
 
 ---
 
-## 📊 Summary Table
+## ðŸ“Š Summary Table
 
 | Type | Determinant | Geometric | Solutions | Example |
 |------|-------------|-----------|-----------|---------|
-| Unique | D ≠ 0 | Intersecting | One | \`x+y=7, x-y=3\` |
+| Unique | D â‰  0 | Intersecting | One | \`x+y=7, x-y=3\` |
 | Infinite | D = 0 & ratios equal | Coincident | Many | \`2x+y=4, 4x+2y=8\` |
 | None | D = 0 & ratios unequal | Parallel | Zero | \`x+y=3, x+y=5\` |
 
-Master consistency concepts and solve linear equation systems with confidence! 🏆`
+Master consistency concepts and solve linear equation systems with confidence! ðŸ†`
 };

@@ -14,8 +14,12 @@ export default function TestHomePage() {
     router.push(`/test/${course}`);
   };
 
-  const getCourseIcon = () => {
-    return <Code className="w-8 h-8 text-blue-500" />;
+  const getCourseIcon = (course: string) => {
+    const programmingCourses = ['python', 'java', 'c'];
+    if (programmingCourses.includes(course)) {
+      return <Code className="w-8 h-8 text-blue-500" />;
+    }
+    return <Users className="w-8 h-8 text-emerald-500" />;
   };
 
   return (
@@ -41,13 +45,15 @@ export default function TestHomePage() {
             >
               <CardHeader className="text-center pb-4">
                 <div className="flex justify-center mb-4">
-                  {getCourseIcon()}
+                  {getCourseIcon(course)}
                 </div>
                 <CardTitle className="text-2xl capitalize">
                   {getCourseDisplayName(course)}
                 </CardTitle>
                 <CardDescription className="text-base">
-                  Learn {course} programming with hands-on exercises
+                  {['python', 'java', 'c'].includes(course)
+                    ? `Learn ${getCourseDisplayName(course)} programming with hands-on exercises`
+                    : `Practice ${getCourseDisplayName(course)} with topic-wise exercises`}
                 </CardDescription>
               </CardHeader>
               <CardContent className="text-center">
@@ -59,7 +65,7 @@ export default function TestHomePage() {
                     handleCourseSelect(course);
                   }}
                 >
-                  Start {course.charAt(0).toUpperCase() + course.slice(1)} Course
+                  Start {getCourseDisplayName(course)} Course
                 </Button>
               </CardContent>
             </Card>

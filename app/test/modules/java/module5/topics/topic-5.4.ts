@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_4: SubLesson = {
   id: "5.4",
   title: 'Return Values',
   status: 'completed',
-  content: `# ↩️ Return Values in Java Methods
+  content: "`# â†©ï¸ Return Values in Java Methods
 
 Return values allow methods to communicate results back to their callers. Understanding how to properly return values, handle different return types, and design methods with appropriate return behaviors is crucial for effective Java programming.
 
 ---
 
-## 📋 Return Type Declaration
+## ðŸ“‹ Return Type Declaration
 
 ### **Void Methods (No Return)**
-\`\`\`java
+\`"\`\`java
 public class VoidMethods {
     // Void methods perform actions but don't return values
     public void displayMessage(String message) {
@@ -108,7 +108,7 @@ public class PrimitiveReturns {
 
 ---
 
-## 📦 Reference Return Types
+## ðŸ“¦ Reference Return Types
 
 ### **Object Return Types**
 \`\`\`java
@@ -223,12 +223,12 @@ public class ArrayReturns {
 
 ---
 
-## 🔄 Return Statement Patterns
+## ðŸ”„ Return Statement Patterns
 
 ### **Single Return vs Multiple Returns**
 \`\`\`java
 public class ReturnPatterns {
-    // ✅ Single return point (traditional style)
+    // âœ… Single return point (traditional style)
     public String getGradeDescription(int score) {
         String description;
 
@@ -247,7 +247,7 @@ public class ReturnPatterns {
         return description;  // Single return point
     }
 
-    // ✅ Multiple return points (modern style)
+    // âœ… Multiple return points (modern style)
     public String getGradeDescriptionModern(int score) {
         if (score >= 90) {
             return "Excellent";  // Early return
@@ -290,7 +290,7 @@ public class ReturnPatterns {
 ### **Returning null vs Optional**
 \`\`\`java
 public class NullVsOptional {
-    // ❌ Traditional approach: can return null
+    // âŒ Traditional approach: can return null
     public String findUserById(String userId) {
         // Simulate database lookup
         if ("123".equals(userId)) {
@@ -299,7 +299,7 @@ public class NullVsOptional {
         return null;  // Problematic - caller must check for null
     }
 
-    // ✅ Better approach: use Optional
+    // âœ… Better approach: use Optional
     public java.util.Optional<String> findUserByIdSafe(String userId) {
         // Simulate database lookup
         if ("123".equals(userId)) {
@@ -308,7 +308,7 @@ public class NullVsOptional {
         return java.util.Optional.empty();  // Explicit absence
     }
 
-    // ✅ For collections: return empty collection instead of null
+    // âœ… For collections: return empty collection instead of null
     public java.util.List<String> getUserRoles(String userId) {
         if ("admin".equals(userId)) {
             return java.util.Arrays.asList("read", "write", "delete");
@@ -352,17 +352,17 @@ public class NullVsOptional {
 
 ---
 
-## 🎯 Return Value Best Practices
+## ðŸŽ¯ Return Value Best Practices
 
 ### **Consistent Return Types**
 \`\`\`java
 public class ReturnConsistency {
-    // ✅ Good: Consistent return types for similar methods
+    // âœ… Good: Consistent return types for similar methods
     public String getUserName() { return "John"; }
     public String getUserEmail() { return "john@example.com"; }
     public String getUserRole() { return "admin"; }
 
-    // ✅ Good: Use wrapper types for primitive operations that might fail
+    // âœ… Good: Use wrapper types for primitive operations that might fail
     public Integer parseInteger(String input) {
         try {
             return Integer.parseInt(input);
@@ -371,13 +371,13 @@ public class ReturnConsistency {
         }
     }
 
-    // ❌ Bad: Inconsistent return types
+    // âŒ Bad: Inconsistent return types
     // public String getUserInfo() { return "John"; }
     // public int getUserAge() { return 25; }
     // public boolean isUserActive() { return true; }
     // public java.util.Date getUserCreatedDate() { return new java.util.Date(); }
 
-    // ✅ Better: Use consistent object returns
+    // âœ… Better: Use consistent object returns
     public UserInfo getUserInfo() {
         return new UserInfo("John", 25, true, new java.util.Date());
     }
@@ -405,17 +405,17 @@ public class ReturnConsistency {
 public class ImmutableReturns {
     private java.util.List<String> internalList = new java.util.ArrayList<>();
 
-    // ❌ Bad: Returns mutable internal state
+    // âŒ Bad: Returns mutable internal state
     public java.util.List<String> getItems() {
         return internalList;  // Caller can modify internal state!
     }
 
-    // ✅ Good: Return defensive copy
+    // âœ… Good: Return defensive copy
     public java.util.List<String> getItemsSafely() {
         return new java.util.ArrayList<>(internalList);
     }
 
-    // ✅ Better: Return unmodifiable view
+    // âœ… Better: Return unmodifiable view
     public java.util.List<String> getItemsUnmodifiable() {
         return java.util.Collections.unmodifiableList(internalList);
     }
@@ -451,7 +451,7 @@ public class ImmutableReturns {
 
 ---
 
-## 🔄 Advanced Return Patterns
+## ðŸ”„ Advanced Return Patterns
 
 ### **Builder Pattern for Complex Returns**
 \`\`\`java
@@ -632,27 +632,27 @@ public class FactoryMethodReturns {
 
 ---
 
-## 🎯 Return Value Design Guidelines
+## ðŸŽ¯ Return Value Design Guidelines
 
 ### **1. Prefer Specific Return Types**
 \`\`\`java
 public class SpecificReturnTypes {
-    // ✅ Good: Specific return types
+    // âœ… Good: Specific return types
     public java.util.List<String> getActiveUsers() {
         // Return concrete type that matches the contract
         return new java.util.ArrayList<>();
     }
 
-    // ❌ Bad: Overly general return types
+    // âŒ Bad: Overly general return types
     // public java.util.Collection getActiveUsers() { ... }  // Too vague
 
-    // ✅ Good: Use interfaces for flexibility
+    // âœ… Good: Use interfaces for flexibility
     public java.util.Set<String> getUserRoles() {
         // Can return HashSet, TreeSet, etc.
         return new java.util.HashSet<>();
     }
 
-    // ✅ Good: Use Optional for nullable returns
+    // âœ… Good: Use Optional for nullable returns
     public java.util.Optional<String> findUserEmail(String userId) {
         // Explicitly indicates possibility of absence
         return java.util.Optional.empty();
@@ -717,7 +717,7 @@ public class ReturnDocumentation {
 ### **3. Consider Performance Implications**
 \`\`\`java
 public class PerformanceConsiderations {
-    // ✅ Good: Lazy evaluation for expensive operations
+    // âœ… Good: Lazy evaluation for expensive operations
     private java.util.List<String> cachedUsers = null;
 
     public java.util.List<String> getUsers() {
@@ -728,7 +728,7 @@ public class PerformanceConsiderations {
         return new java.util.ArrayList<>(cachedUsers);  // Return copy
     }
 
-    // ✅ Good: Streaming for large datasets
+    // âœ… Good: Streaming for large datasets
     public java.util.stream.Stream<String> getUserStream() {
         // Return stream for lazy processing
         return loadUsersFromDatabase().stream();
@@ -760,8 +760,9 @@ public class PerformanceConsiderations {
 }
 \`\`\`
 
-Return values are a critical part of method design. Choosing appropriate return types, ensuring immutability when needed, and providing clear documentation leads to robust and usable APIs! ↩️`
+Return values are a critical part of method design. Choosing appropriate return types, ensuring immutability when needed, and providing clear documentation leads to robust and usable APIs! â†©ï¸`
 };
+
 
 
 

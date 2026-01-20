@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_1: SubLesson = {
   id: "7.1",
-  title: 'DIRECTION SENSE (Aptitude – Exam-Oriented Topics)',
+  title: 'DIRECTION SENSE (Aptitude â€“ Exam-Oriented Topics)',
   status: 'completed',
-  content: `# 🧭 DIRECTION SENSE (Aptitude – Exam-Oriented Topics)
+  content: "`# ðŸ§­ DIRECTION SENSE (Aptitude â€“ Exam-Oriented Topics)
 
 Welcome to the comprehensive Direction Sense module! This exam-oriented section covers all types of direction-based problems that appear frequently in competitive examinations. Master spatial awareness, directional movements, and distance calculations to excel in banking, SSC, railway, and other competitive exams.
 
 ---
 
-## 🎯 Understanding Direction Sense
+## ðŸŽ¯ Understanding Direction Sense
 
 ### **What are Direction Sense Problems?**
 Direction sense problems involve understanding and tracking movements in different directions (North, South, East, West) and calculating positions, distances, and shortest paths. These problems test your ability to:
@@ -27,7 +27,7 @@ Direction sense problems involve understanding and tracking movements in differe
 
 ---
 
-## 🧩 Basic Directions System
+## ðŸ§© Basic Directions System
 
 ### **Four Main Directions**
 - **North (N)**: Top of the map/compass
@@ -36,10 +36,10 @@ Direction sense problems involve understanding and tracking movements in differe
 - **West (W)**: Left side of the map/compass
 
 ### **Intermediate Directions**
-- **North-East (NE)**: Between North and East (45°)
-- **North-West (NW)**: Between North and West (315°)
-- **South-East (SE)**: Between South and East (135°)
-- **South-West (SW)**: Between South and West (225°)
+- **North-East (NE)**: Between North and East (45Â°)
+- **North-West (NW)**: Between North and West (315Â°)
+- **South-East (SE)**: Between South and East (135Â°)
+- **South-West (SW)**: Between South and West (225Â°)
 
 ### **Direction Relationships**
 | Direction | Opposite | Left Turn | Right Turn |
@@ -51,7 +51,7 @@ Direction sense problems involve understanding and tracking movements in differe
 
 ---
 
-## 📊 Competitive Exam Relevance
+## ðŸ“Š Competitive Exam Relevance
 
 ### **Major Exams Featuring Direction Sense**
 - **Banking Exams** (IBPS, SBI): 5-8 questions per exam
@@ -70,7 +70,7 @@ Direction sense problems involve understanding and tracking movements in differe
 
 ---
 
-## 🎯 Core Direction Sense Skills
+## ðŸŽ¯ Core Direction Sense Skills
 
 ### **1. Spatial Visualization**
 **Mental mapping and position tracking**
@@ -95,14 +95,14 @@ Direction sense problems involve understanding and tracking movements in differe
 
 ### **4. Turning Logic**
 **Direction change understanding**
-- 90° turn effects
-- 180° reversal (U-turn)
+- 90Â° turn effects
+- 180Â° reversal (U-turn)
 - Multiple turn sequences
 - Orientation maintenance
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Establish Initial Position**
 - Mark starting point and facing direction
@@ -126,7 +126,7 @@ Direction sense problems involve understanding and tracking movements in differe
 
 ---
 
-## 📈 Difficulty Levels in Direction Problems
+## ðŸ“ˆ Difficulty Levels in Direction Problems
 
 ### **Easy Level (30-40%)**
 - Simple cardinal directions
@@ -148,7 +148,7 @@ Direction sense problems involve understanding and tracking movements in differe
 
 ---
 
-## 🎯 Common Direction Sense Topics
+## ðŸŽ¯ Common Direction Sense Topics
 
 ### **Basic Direction Problems**
 Simple movement in cardinal directions with position tracking.
@@ -170,7 +170,7 @@ Integrating direction sense with blood relations or other reasoning types.
 
 ---
 
-## 📊 Time Management Strategies
+## ðŸ“Š Time Management Strategies
 
 ### **Question Allocation Time**
 - **Simple Direction**: 1-2 minutes
@@ -185,7 +185,7 @@ Integrating direction sense with blood relations or other reasoning types.
 
 ---
 
-## 🚀 Preparation Strategy
+## ðŸš€ Preparation Strategy
 
 ### **Phase 1: Foundation Building**
 - Learn basic directions and relationships
@@ -206,7 +206,7 @@ Integrating direction sense with blood relations or other reasoning types.
 
 ---
 
-## 📚 Recommended Resources
+## ðŸ“š Recommended Resources
 
 ### **Practice Platforms**
 - **Online Platforms**: Testbook, Adda247, Unacademy
@@ -221,7 +221,7 @@ Integrating direction sense with blood relations or other reasoning types.
 
 ---
 
-## 🎯 Success Factors
+## ðŸŽ¯ Success Factors
 
 ### **1. Visualization Ability**
 - Quick mental mapping skills
@@ -245,39 +245,39 @@ Integrating direction sense with blood relations or other reasoning types.
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Poor Visualization**
-❌ Trying to solve without drawing mental map
-✅ Always visualize or draw the movement path
+âŒ Trying to solve without drawing mental map
+âœ… Always visualize or draw the movement path
 
 ### **Mistake 2: Direction Confusion**
-❌ Mixing up left-right turns
-✅ Clearly identify current facing direction
+âŒ Mixing up left-right turns
+âœ… Clearly identify current facing direction
 
 ### **Mistake 3: Calculation Errors**
-❌ Incorrect distance summation
-✅ Use coordinate method systematically
+âŒ Incorrect distance summation
+âœ… Use coordinate method systematically
 
 ### **Mistake 4: Time Pressure Errors**
-❌ Rushing through complex sequences
-✅ Take time for accurate tracking
+âŒ Rushing through complex sequences
+âœ… Take time for accurate tracking
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Draw Reference Lines**: Always establish north-south and east-west axes
 2. **Track Facing Direction**: Never forget which way you're currently facing
 3. **Use Coordinates**: Assign numerical values to positions for accuracy
-4. **Apply Pythagoras**: For shortest distance, use √(north² + east²)
+4. **Apply Pythagoras**: For shortest distance, use âˆš(northÂ² + eastÂ²)
 5. **Practice Visualization**: Train your spatial reasoning regularly
 6. **Learn Shortcuts**: Develop quick mental calculation techniques
 7. **Stay Oriented**: Keep track of your mental compass throughout the problem
 
 ---
 
-## 🔍 What You'll Learn Next
+## ðŸ” What You'll Learn Next
 
 This module covers comprehensive direction sense topics:
 
@@ -292,5 +292,5 @@ This module covers comprehensive direction sense topics:
 - **Direction with Blood Relation** - Integrated reasoning problems
 - **Direction with Puzzle-Based Questions** - Advanced puzzle integration
 
-**Master direction sense techniques and enhance your spatial reasoning for exam success! 🧭✨**`
+**Master direction sense techniques and enhance your spatial reasoning for exam success! ðŸ§­âœ¨**`"
 };

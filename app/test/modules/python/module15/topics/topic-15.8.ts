@@ -1,44 +1,44 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_8: SubLesson = {
   id: "15.8",
   title: 'Sorting Algorithm Comparison and Analysis',
   status: 'demo',
-  content: `# 📊 Sorting Algorithm Comparison and Analysis
+  content: "`# ðŸ“Š Sorting Algorithm Comparison and Analysis
 
 Now that we've explored all the major sorting algorithms, let's compare them systematically. Understanding the strengths and weaknesses of each algorithm is crucial for choosing the right tool for your specific use case. Let's analyze and compare all the sorting algorithms we've learned!
 
 ---
 
-## 📈 Comprehensive Algorithm Comparison
+## ðŸ“ˆ Comprehensive Algorithm Comparison
 
 ### **Time Complexity Summary**
 
 | Algorithm | Best Case | Average Case | Worst Case | Performance Notes |
 |-----------|-----------|--------------|------------|-------------------|
-| **Bubble Sort** | O(n) | O(n²) | O(n²) | Excellent on nearly sorted data |
-| **Selection Sort** | O(n²) | O(n²) | O(n²) | Consistent, fewest swaps |
-| **Insertion Sort** | O(n) | O(n²) | O(n²) | Best for small & nearly sorted |
+| **Bubble Sort** | O(n) | O(nÂ²) | O(nÂ²) | Excellent on nearly sorted data |
+| **Selection Sort** | O(nÂ²) | O(nÂ²) | O(nÂ²) | Consistent, fewest swaps |
+| **Insertion Sort** | O(n) | O(nÂ²) | O(nÂ²) | Best for small & nearly sorted |
 | **Merge Sort** | O(n log n) | O(n log n) | O(n log n) | Predictable, stable |
-| **Quick Sort** | O(n log n) | O(n log n) | O(n²) | Fastest in practice |
+| **Quick Sort** | O(n log n) | O(n log n) | O(nÂ²) | Fastest in practice |
 | **Heap Sort** | O(n log n) | O(n log n) | O(n log n) | Memory efficient |
 
 ### **Space Complexity & Other Properties**
 
 | Algorithm | Space | Stable | In-place | Adaptive | Notes |
 |-----------|-------|--------|----------|----------|-------|
-| **Bubble Sort** | O(1) | ✅ | ✅ | ✅ | Simple, educational |
-| **Selection Sort** | O(1) | ❌ | ✅ | ❌ | Minimal swaps |
-| **Insertion Sort** | O(1) | ✅ | ✅ | ✅ | Online sorting |
-| **Merge Sort** | O(n) | ✅ | ❌ | ❌ | External sorting |
-| **Quick Sort** | O(log n) | ❌ | ✅ | ❌ | General purpose |
-| **Heap Sort** | O(1) | ❌ | ✅ | ❌ | Worst-case guarantee |
+| **Bubble Sort** | O(1) | âœ… | âœ… | âœ… | Simple, educational |
+| **Selection Sort** | O(1) | âŒ | âœ… | âŒ | Minimal swaps |
+| **Insertion Sort** | O(1) | âœ… | âœ… | âœ… | Online sorting |
+| **Merge Sort** | O(n) | âœ… | âŒ | âŒ | External sorting |
+| **Quick Sort** | O(log n) | âŒ | âœ… | âŒ | General purpose |
+| **Heap Sort** | O(1) | âŒ | âœ… | âŒ | Worst-case guarantee |
 
 ---
 
-## 🎯 Choosing the Right Algorithm
+## ðŸŽ¯ Choosing the Right Algorithm
 
-### **For Small Datasets (n ≤ 25)**
+### **For Small Datasets (n â‰¤ 25)**
 **Use Insertion Sort**
 - Best performance for small arrays
 - Simple implementation
@@ -80,11 +80,11 @@ Now that we've explored all the major sorting algorithms, let's compare them sys
 
 ---
 
-## 🧪 Performance Benchmarks
+## ðŸ§ª Performance Benchmarks
 
 ### **Relative Performance (Random Data)**
 
-\`\`\`text
+\`"\`\`text
 Algorithm       | Time (relative) | Memory | Stability
 ----------------|-----------------|--------|----------
 Quick Sort      | 1.0x           | Low    | No
@@ -102,16 +102,16 @@ Bubble Sort     | 3.0-5.0x       | Low    | Yes
 
 | Array Size | Best Algorithm |
 |------------|----------------|
-| n ≤ 10 | Insertion Sort |
-| 10 < n ≤ 100 | Quick Sort or Merge Sort |
-| 100 < n ≤ 1000 | Quick Sort |
+| n â‰¤ 10 | Insertion Sort |
+| 10 < n â‰¤ 100 | Quick Sort or Merge Sort |
+| 100 < n â‰¤ 1000 | Quick Sort |
 | n > 1000 | Depends on requirements |
 
 ---
 
-## 🔍 Detailed Analysis by Category
+## ðŸ” Detailed Analysis by Category
 
-### **Quadratic Algorithms (O(n²))**
+### **Quadratic Algorithms (O(nÂ²))**
 
 #### **Bubble Sort**
 - **Strengths**: Simple, stable, adaptive
@@ -121,13 +121,13 @@ Bubble Sort     | 3.0-5.0x       | Low    | Yes
 
 #### **Selection Sort**
 - **Strengths**: Minimal swaps, predictable
-- **Weaknesses**: Always O(n²), not adaptive
+- **Weaknesses**: Always O(nÂ²), not adaptive
 - **Best for**: Memory writes are expensive
 - **Real-world use**: Specialized scenarios
 
 #### **Insertion Sort**
 - **Strengths**: Adaptive, stable, simple
-- **Weaknesses**: O(n²) worst case
+- **Weaknesses**: O(nÂ²) worst case
 - **Best for**: Small arrays, online sorting
 - **Real-world use**: Hybrid algorithms, small subarrays
 
@@ -141,7 +141,7 @@ Bubble Sort     | 3.0-5.0x       | Low    | Yes
 
 #### **Quick Sort**
 - **Strengths**: Fast, in-place, cache-friendly
-- **Weaknesses**: Unstable, O(n²) worst case
+- **Weaknesses**: Unstable, O(nÂ²) worst case
 - **Best for**: General-purpose sorting
 - **Real-world use**: C++ std::sort, Python lists
 
@@ -153,7 +153,7 @@ Bubble Sort     | 3.0-5.0x       | Low    | Yes
 
 ---
 
-## 🚀 Modern Hybrid Algorithms
+## ðŸš€ Modern Hybrid Algorithms
 
 ### **Timsort (Python, Java)**
 Combines Merge Sort and Insertion Sort:
@@ -196,7 +196,7 @@ def adaptive_sort(arr):
 
 ---
 
-## 🎯 Practical Considerations
+## ðŸŽ¯ Practical Considerations
 
 ### **Cache Performance**
 - **Quick Sort**: Excellent cache locality
@@ -227,7 +227,7 @@ def adaptive_sort(arr):
 
 ---
 
-## 🧪 Algorithm Testing Framework
+## ðŸ§ª Algorithm Testing Framework
 
 ### **Comprehensive Testing**
 \`\`\`python
@@ -275,7 +275,7 @@ def benchmark_algorithms():
             try:
                 result = test_sorting_algorithm(func, arr, name)
                 results.append(result)
-                status = "✅" if result['correct'] else "❌"
+                status = "âœ…" if result['correct'] else "âŒ"
                 print(".4f")
             except:
                 print(f"{name:15} | Failed")
@@ -293,34 +293,34 @@ benchmark_algorithms()
 
 ---
 
-## 🎯 Algorithm Selection Guide
+## ðŸŽ¯ Algorithm Selection Guide
 
 ### **Decision Tree for Choosing Sort**
 
 \`\`\`text
 Start
-  │
-  ├─ Small dataset (n ≤ 100)?
-  │   ├─ Yes → Insertion Sort
-  │   └─ No  → Continue
-  │
-  ├─ Stability required?
-  │   ├─ Yes → Merge Sort (or stable Quick Sort variant)
-  │   └─ No  → Continue
-  │
-  ├─ Memory very limited?
-  │   ├─ Yes → Heap Sort
-  │   └─ No  → Continue
-  │
-  ├─ Data nearly sorted?
-  │   ├─ Yes → Insertion Sort
-  │   └─ No  → Continue
-  │
-  ├─ Worst-case performance critical?
-  │   ├─ Yes → Merge Sort or Heap Sort
-  │   └─ No  → Quick Sort
-  │
-  └─ Default: Quick Sort (fastest in practice)
+  â”‚
+  â”œâ”€ Small dataset (n â‰¤ 100)?
+  â”‚   â”œâ”€ Yes â†’ Insertion Sort
+  â”‚   â””â”€ No  â†’ Continue
+  â”‚
+  â”œâ”€ Stability required?
+  â”‚   â”œâ”€ Yes â†’ Merge Sort (or stable Quick Sort variant)
+  â”‚   â””â”€ No  â†’ Continue
+  â”‚
+  â”œâ”€ Memory very limited?
+  â”‚   â”œâ”€ Yes â†’ Heap Sort
+  â”‚   â””â”€ No  â†’ Continue
+  â”‚
+  â”œâ”€ Data nearly sorted?
+  â”‚   â”œâ”€ Yes â†’ Insertion Sort
+  â”‚   â””â”€ No  â†’ Continue
+  â”‚
+  â”œâ”€ Worst-case performance critical?
+  â”‚   â”œâ”€ Yes â†’ Merge Sort or Heap Sort
+  â”‚   â””â”€ No  â†’ Quick Sort
+  â”‚
+  â””â”€ Default: Quick Sort (fastest in practice)
 \`\`\`
 
 ### **Real-World Library Choices**
@@ -335,7 +335,7 @@ Start
 
 ---
 
-## 🚀 Advanced Topics
+## ðŸš€ Advanced Topics
 
 ### **Parallel Sorting**
 - **Merge Sort**: Easy to parallelize
@@ -353,7 +353,7 @@ Start
 
 ---
 
-## 🏆 Final Takeaways
+## ðŸ† Final Takeaways
 
 ### **Key Principles**
 1. **No single "best" algorithm** - choice depends on requirements
@@ -363,12 +363,12 @@ Start
 
 ### **Performance Hierarchy (General Case)**
 \`\`\`text
-Fastest → Quick Sort → Merge Sort → Heap Sort → Insertion Sort → Selection Sort → Bubble Sort → Slowest
+Fastest â†’ Quick Sort â†’ Merge Sort â†’ Heap Sort â†’ Insertion Sort â†’ Selection Sort â†’ Bubble Sort â†’ Slowest
 \`\`\`
 
 ### **Memory Usage Hierarchy**
 \`\`\`text
-Least → Heap Sort → Quick Sort → Insertion/Selection/Bubble → Merge Sort → Most
+Least â†’ Heap Sort â†’ Quick Sort â†’ Insertion/Selection/Bubble â†’ Merge Sort â†’ Most
 \`\`\`
 
 ### **Practical Recommendations**
@@ -379,6 +379,7 @@ Least → Heap Sort → Quick Sort → Insertion/Selection/Bubble → Merge Sort
 - **Educational**: Bubble Sort
 - **Predictable performance**: Merge Sort or Heap Sort
 
-**Congratulations! You've mastered sorting algorithms. Each algorithm has its place in the programmer's toolkit. Choose wisely based on your specific requirements! 🎉**`
+**Congratulations! You've mastered sorting algorithms. Each algorithm has its place in the programmer's toolkit. Choose wisely based on your specific requirements! ðŸŽ‰**`
 };
+
 

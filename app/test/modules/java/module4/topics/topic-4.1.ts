@@ -4,7 +4,7 @@ export const topic_4_1: SubLesson = {
   id: "4.1",
   title: 'Arithmetic Operators',
   status: 'completed',
-  content: `# ➕ Arithmetic Operators in Java
+  content: "# ➕ Arithmetic Operators in Java
 
 Arithmetic operators are fundamental mathematical operations used to perform calculations on numeric data types. Java provides a complete set of arithmetic operators for basic mathematical computations.
 
@@ -498,6 +498,6 @@ System.out.println(a / b);     // 4. ?
 System.out.println(a % b);     // 5. ?
 System.out.println(a + b * 2); // 6. ?
 System.out.println((a + b) * 2); // 7. ?
-\`\`\``
+\`\`\`"
 };
 

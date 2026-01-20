@@ -1,27 +1,27 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_6: SubLesson = {
   id: "7.6",
   title: 'Loss Percentage',
   status: 'completed',
-  content: `# 📉 Loss Percentage
+  content: "`# ðŸ“‰ Loss Percentage
 
 Learn loss percentage calculations! Loss percentage measures the extent of financial loss relative to investment. Understanding loss percentages helps assess risk and make better business decisions. Master the calculations to minimize and analyze losses.
 
 ---
 
-## 🎯 What is Loss Percentage?
+## ðŸŽ¯ What is Loss Percentage?
 
-**Loss Percentage** expresses loss as a percentage of the cost price. It shows how much is lost for every ₹100 invested in the product.
+**Loss Percentage** expresses loss as a percentage of the cost price. It shows how much is lost for every â‚¹100 invested in the product.
 
 ### **Formula**
-\`\`\`
-Loss % = (Loss / Cost Price) × 100%
+\`"\`\`
+Loss % = (Loss / Cost Price) Ã— 100%
 \`\`\`
 
 **Or directly:**
 \`\`\`
-Loss % = [(CP - SP) / CP] × 100%
+Loss % = [(CP - SP) / CP] Ã— 100%
 \`\`\`
 
 ### **Key Points**
@@ -31,56 +31,56 @@ Loss % = [(CP - SP) / CP] × 100%
 
 ---
 
-## 📊 Calculation Methods
+## ðŸ“Š Calculation Methods
 
 ### **Method 1: Direct Formula**
 \`\`\`
-Loss % = (Loss Amount / CP) × 100%
+Loss % = (Loss Amount / CP) Ã— 100%
 \`\`\`
 
-**Example:** Loss ₹150, CP ₹1000
-- Loss % = (150/1000) × 100% = 15%
+**Example:** Loss â‚¹150, CP â‚¹1000
+- Loss % = (150/1000) Ã— 100% = 15%
 
 ### **Method 2: SP and CP Method**
 \`\`\`
-Loss % = [(CP - SP)/CP] × 100%
+Loss % = [(CP - SP)/CP] Ã— 100%
 \`\`\`
 
-**Example:** CP ₹800, SP ₹680
-- Loss % = (120/800) × 100% = 15%
+**Example:** CP â‚¹800, SP â‚¹680
+- Loss % = (120/800) Ã— 100% = 15%
 
 ### **Method 3: SP Only Method**
 \`\`\`
-Loss % = [1 - (SP/CP)] × 100%
+Loss % = [1 - (SP/CP)] Ã— 100%
 \`\`\`
 
 ---
 
-## 🔢 Examples of Loss Percentage
+## ðŸ”¢ Examples of Loss Percentage
 
 ### **Example 1: Basic Calculation**
-**Problem:** CP = ₹1200, SP = ₹960. Find loss %.
+**Problem:** CP = â‚¹1200, SP = â‚¹960. Find loss %.
 
 **Solution:**
-- Loss = 1200 - 960 = ₹240
-- Loss % = (240/1200) × 100% = 20%
+- Loss = 1200 - 960 = â‚¹240
+- Loss % = (240/1200) Ã— 100% = 20%
 
 ### **Example 2: With Loss Amount**
-**Problem:** CP = ₹2000, loss ₹400. Find loss %.
+**Problem:** CP = â‚¹2000, loss â‚¹400. Find loss %.
 
 **Solution:**
-- Loss % = (400/2000) × 100% = 20%
+- Loss % = (400/2000) Ã— 100% = 20%
 
 ### **Example 3: Finding SP**
-**Problem:** CP = ₹1500, loss 25%. Find SP.
+**Problem:** CP = â‚¹1500, loss 25%. Find SP.
 
 **Solution:**
-- Loss = 1500 × 0.25 = ₹375
-- SP = 1500 - 375 = ₹1125
+- Loss = 1500 Ã— 0.25 = â‚¹375
+- SP = 1500 - 375 = â‚¹1125
 
 ---
 
-## 💡 Interpretation of Loss Percentage
+## ðŸ’¡ Interpretation of Loss Percentage
 
 ### **1. Acceptable Loss (0-5%)**
 - Minor losses, possibly promotional
@@ -101,7 +101,7 @@ Loss % = [1 - (SP/CP)] × 100%
 
 ---
 
-## 🎯 Applications
+## ðŸŽ¯ Applications
 
 ### **1. Risk Assessment**
 - Evaluate potential losses
@@ -117,7 +117,7 @@ Loss % = [1 - (SP/CP)] × 100%
 
 ---
 
-## 🧮 Loss Recovery Strategies
+## ðŸ§® Loss Recovery Strategies
 
 ### **1. Volume Increase**
 - Sell more at lower price
@@ -133,7 +133,7 @@ Loss % = [1 - (SP/CP)] × 100%
 
 ---
 
-## 📈 Loss Percentage Analysis
+## ðŸ“ˆ Loss Percentage Analysis
 
 ### **1. Loss Ratio**
 \`\`\`
@@ -151,29 +151,30 @@ Required Volume Increase = Loss % / Profit Margin %
 
 ---
 
-## 🚨 Common Mistakes
+## ðŸš¨ Common Mistakes
 
 ### **Mistake 1: Wrong Base**
-❌ "Loss % of SP"
+âŒ "Loss % of SP"
 - Always calculate on CP
 
 ### **Mistake 2: Positive Loss %**
-❌ "Loss % can't be positive"
+âŒ "Loss % can't be positive"
 - Loss % is always positive for losses
 
 ### **Mistake 3: Ignoring Recovery**
-❌ Not calculating recovery needs
+âŒ Not calculating recovery needs
 - Volume increase requirements
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
-1. CP ₹1000, SP ₹800. Find loss %.
-2. CP ₹2500, loss ₹500. Find loss %.
-3. Loss 30%, CP ₹800. Find SP.
+1. CP â‚¹1000, SP â‚¹800. Find loss %.
+2. CP â‚¹2500, loss â‚¹500. Find loss %.
+3. Loss 30%, CP â‚¹800. Find SP.
 
-**Answers:** 20%, 20%, ₹560
+**Answers:** 20%, 20%, â‚¹560
 
-Master loss percentage calculations to assess and minimize business risks! 🏆`
+Master loss percentage calculations to assess and minimize business risks! ðŸ†`
 };
+

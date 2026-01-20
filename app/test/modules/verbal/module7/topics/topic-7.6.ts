@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_6: SubLesson = {
   id: "7.6",
   title: 'Statement-Based Reasoning',
   status: 'completed',
-  content: `# 🧠 Statement-Based Reasoning: Argument Analysis
+  content: "`# ðŸ§  Statement-Based Reasoning: Argument Analysis
 
 Statement-Based Reasoning involves evaluating arguments, identifying logical flaws, assessing argument strength, and determining how statements affect conclusions. This skill tests your ability to analyze reasoning patterns and evaluate the validity of statements.
 
 ---
 
-## 📋 WHAT IS STATEMENT-BASED REASONING?
+## ðŸ“‹ WHAT IS STATEMENT-BASED REASONING?
 
 **Statement-Based Reasoning** requires you to:
-- ✅ **Evaluate argument strength** and logical validity
-- ✅ **Identify reasoning flaws** and weaknesses
-- ✅ **Assess how statements affect conclusions**
-- ✅ **Determine argument relationships** and implications
+- âœ… **Evaluate argument strength** and logical validity
+- âœ… **Identify reasoning flaws** and weaknesses
+- âœ… **Assess how statements affect conclusions**
+- âœ… **Determine argument relationships** and implications
 
 ### Key Skills Tested:
 - **Argument Analysis**: Breaking down reasoning into components
@@ -26,7 +26,7 @@ Statement-Based Reasoning involves evaluating arguments, identifying logical fla
 
 ---
 
-## 🎯 TYPES OF STATEMENT REASONING
+## ðŸŽ¯ TYPES OF STATEMENT REASONING
 
 ### 1. **Argument Evaluation**
 **Assess overall strength of reasoning**
@@ -70,7 +70,7 @@ Assumption: "You actually have the illness the medicine is designed to treat."
 
 ---
 
-## 🛠️ ANALYZING ARGUMENTS
+## ðŸ› ï¸ ANALYZING ARGUMENTS
 
 ### Step-by-Step Evaluation:
 
@@ -105,7 +105,7 @@ Assumption: "You actually have the illness the medicine is designed to treat."
 
 ---
 
-## 📊 COMMON LOGICAL FLAWS
+## ðŸ“Š COMMON LOGICAL FLAWS
 
 ### 1. **Ad Hominem**
 **Attacking the person instead of the argument**
@@ -165,7 +165,7 @@ Flaw: Sample size too small for broad conclusion.
 
 ---
 
-## 🎯 QUESTION PATTERNS
+## ðŸŽ¯ QUESTION PATTERNS
 
 ### Argument Strength Questions:
 **"Which of the following, if true, would most strengthen/weaken the argument?"**
@@ -184,7 +184,7 @@ Flaw: Sample size too small for broad conclusion.
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Argument Evaluation
 **Evaluate the strength of arguments:**
@@ -313,7 +313,7 @@ Reason: The statements allow for the possibility but don't confirm it definitely
 
 ---
 
-## 📊 ARGUMENT EVALUATION FRAMEWORK
+## ðŸ“Š ARGUMENT EVALUATION FRAMEWORK
 
 | Component | Strong Argument | Weak Argument |
 |---|---|---|
@@ -325,30 +325,30 @@ Reason: The statements allow for the possibility but don't confirm it definitely
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Flaw Questions**: "Which of the following is a flaw in the argument?"
 2. **Strengthen/Weaken**: "Which would most strengthen/weaken?"
 3. **Assumption**: "Which is required assumption?"
 4. **Conclusion**: "Which must be true if the statements are true?"
 5. **Paradox**: "Which resolves the apparent contradiction?"
 
-### 💡 Quick Analysis Strategy:
+### ðŸ’¡ Quick Analysis Strategy:
 1. **Identify conclusion** and main premises quickly
 2. **Look for common flaws** (post hoc, false dichotomy, etc.)
 3. **Check assumptions** - what must be true for argument to work?
 4. **Evaluate evidence** - is it relevant and sufficient?
 5. **Consider alternatives** - other explanations possible?
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Learn common flaws** - Memorize 8-10 frequent fallacies
 - **Use elimination** - Rule out obviously wrong options
 - **Check extremes** - Very strong/weak options often wrong
 - **Trust logic** - Choose option that makes argument valid
 - **Verify consistency** - Does option align with argument?
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Practice flaw recognition** - Learn patterns through examples
 - **Master assumption finding** - Use negation test regularly
 - **Study argument structure** - Understand premise-conclusion relationships
@@ -357,22 +357,23 @@ Reason: The statements allow for the possibility but don't confirm it definitely
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Flaw Classification**: Learn to categorize common fallacies
 2. **Argument Structure**: Understand premise-conclusion relationships
 3. **Assumption Testing**: Practice finding necessary unstated premises
 4. **Evidence Evaluation**: Assess quality and relevance of support
 5. **Counterexample Thinking**: Consider cases where arguments fail
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Statement-based reasoning is like legal analysis:**
-- ⚖️ **Plaintiff's case** = Argument premises and evidence
-- ⚖️ **Defense strategy** = Finding flaws and weaknesses
-- ⚖️ **Judge's ruling** = Evaluating overall argument strength
-- ⚖️ **Appeal process** = Considering alternatives and assumptions
-- 🏛️ **Final verdict** = Determining argument validity
+- âš–ï¸ **Plaintiff's case** = Argument premises and evidence
+- âš–ï¸ **Defense strategy** = Finding flaws and weaknesses
+- âš–ï¸ **Judge's ruling** = Evaluating overall argument strength
+- âš–ï¸ **Appeal process** = Considering alternatives and assumptions
+- ðŸ›ï¸ **Final verdict** = Determining argument validity
 
-**Master statement reasoning and become a logical judge!** 🧠⚖️✨`
+**Master statement reasoning and become a logical judge!** ðŸ§ âš–ï¸âœ¨`"
 };
+

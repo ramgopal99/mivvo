@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_3: SubLesson = {
   id: "4.3",
   title: 'Accessing HashMap Elements',
   status: 'completed',
-  content: `# 🔍 Accessing HashMap Elements in Java
+  content: "`# ðŸ” Accessing HashMap Elements in Java
 
 Accessing elements in a HashMap involves retrieving values by keys, checking for existence, and working with the different views (key set, value collection, entry set) that HashMap provides. Understanding these access patterns is crucial for effective HashMap usage.
 
 ---
 
-## 🔑 Basic Value Retrieval
+## ðŸ”‘ Basic Value Retrieval
 
 ### **get() and getOrDefault() Methods**
-\`\`\`java
+\`"\`\`java
 import java.util.*;
 
 public class BasicRetrieval {
@@ -79,7 +79,7 @@ public class NullKeyHandling {
 
 ---
 
-## 🔍 Key and Value Existence Checks
+## ðŸ” Key and Value Existence Checks
 
 ### **containsKey() and containsValue() Methods**
 \`\`\`java
@@ -154,7 +154,7 @@ public class ConditionalAccess {
 
 ---
 
-## 👀 Working with Map Views
+## ðŸ‘€ Working with Map Views
 
 ### **Key Set View**
 \`\`\`java
@@ -262,7 +262,7 @@ public class EntrySetView {
 
 ---
 
-## 🔄 Advanced Access Patterns
+## ðŸ”„ Advanced Access Patterns
 
 ### **Bulk Retrieval Operations**
 \`\`\`java
@@ -355,7 +355,7 @@ public class FunctionalAccess {
 
 ---
 
-## 🔍 Searching and Finding in Maps
+## ðŸ” Searching and Finding in Maps
 
 ### **Finding Keys by Value**
 \`\`\`java
@@ -464,7 +464,7 @@ public class ComplexSearch {
 
 ---
 
-## ⚠️ Common Access Pitfalls
+## âš ï¸ Common Access Pitfalls
 
 ### **Null Pointer Exceptions**
 \`\`\`java
@@ -510,7 +510,7 @@ public class ConcurrentModification {
         map.put("B", 2);
         map.put("C", 3);
 
-        // ❌ Dangerous: Modifying map while iterating keys
+        // âŒ Dangerous: Modifying map while iterating keys
         try {
             for (String key : map.keySet()) {
                 if (map.get(key) < 3) {
@@ -521,7 +521,7 @@ public class ConcurrentModification {
             System.out.println("ConcurrentModificationException: " + e.getClass().getSimpleName());
         }
 
-        // ✅ Safe: Iterate over a copy
+        // âœ… Safe: Iterate over a copy
         Map<String, Integer> map2 = new HashMap<>(map);
         for (String key : new HashSet<>(map2.keySet())) {
             if (map2.get(key) < 3) {
@@ -530,7 +530,7 @@ public class ConcurrentModification {
         }
         System.out.println("Safe removal result: " + map2);
 
-        // ✅ Best: Use removeIf with entrySet
+        // âœ… Best: Use removeIf with entrySet
         Map<String, Integer> map3 = new HashMap<>(map);
         map3.entrySet().removeIf(entry -> entry.getValue() < 3);
         System.out.println("removeIf result: " + map3);
@@ -540,7 +540,7 @@ public class ConcurrentModification {
 
 ---
 
-## 🎯 Access Method Best Practices
+## ðŸŽ¯ Access Method Best Practices
 
 ### **1. Choose the Right Access Method**
 \`\`\`java
@@ -633,15 +633,16 @@ public class ViewBestPractices {
         }
 
         // Remember: views are backed by the map
-        students.add("David");  // ❌ UnsupportedOperationException
-        scores.put("David", 88);  // ✅ Add through the map
+        students.add("David");  // âŒ UnsupportedOperationException
+        scores.put("David", 88);  // âœ… Add through the map
         System.out.println("After adding David: " + students);
     }
 }
 \`\`\`
 
-Accessing HashMap elements efficiently requires understanding the different access methods and views available. Proper null handling and concurrent modification awareness leads to robust and safe code! 🔍`
+Accessing HashMap elements efficiently requires understanding the different access methods and views available. Proper null handling and concurrent modification awareness leads to robust and safe code! ðŸ”`
 };
+
 
 
 

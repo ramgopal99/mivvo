@@ -1,32 +1,32 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_1: SubLesson = {
   id: "4.1",
   title: 'Concept of Percentage',
   status: 'completed',
-  content: `# 📊 Concept of Percentage
+  content: "`# ðŸ“Š Concept of Percentage
 
 Welcome to the world of percentages! Percentages are fundamental to quantitative aptitude and appear in almost every competitive exam. Understanding percentages means understanding "parts per hundred" and how they relate to fractions, decimals, and real-world applications.
 
 ---
 
-## 🎯 What is a Percentage?
+## ðŸŽ¯ What is a Percentage?
 
 **Percentage** is a way of expressing a number as a fraction of 100. It represents "parts per hundred" and is denoted by the symbol "%".
 
 ### **Basic Definition**
-- Percentage = (Part / Whole) × 100
+- Percentage = (Part / Whole) Ã— 100
 - "Per cent" means "per hundred"
 - Symbol: %
 
 ### **Key Formula**
-\`\`\`
-Percentage (%) = (Part ÷ Whole) × 100
+\`"\`\`
+Percentage (%) = (Part Ã· Whole) Ã— 100
 \`\`\`
 
 ---
 
-## 📊 Understanding Percentages
+## ðŸ“Š Understanding Percentages
 
 ### **Example 1: Basic Percentage**
 **Problem:** In a class of 50 students, 35 passed. What percentage passed?
@@ -34,19 +34,19 @@ Percentage (%) = (Part ÷ Whole) × 100
 **Solution:**
 - Part (passed) = 35
 - Whole (total) = 50
-- Percentage = (35 ÷ 50) × 100 = 70%
+- Percentage = (35 Ã· 50) Ã— 100 = 70%
 
 ### **Example 2: Real-World Application**
-**Problem:** A shop offers 20% discount on a ₹1000 item. What is the discount amount?
+**Problem:** A shop offers 20% discount on a â‚¹1000 item. What is the discount amount?
 
 **Solution:**
 - Percentage = 20%
-- Whole = ₹1000
-- Discount = 20% of ₹1000 = (20/100) × 1000 = ₹200
+- Whole = â‚¹1000
+- Discount = 20% of â‚¹1000 = (20/100) Ã— 1000 = â‚¹200
 
 ---
 
-## 🔢 Percentage Components
+## ðŸ”¢ Percentage Components
 
 ### **1. The Whole (100%)**
 - The complete quantity
@@ -65,7 +65,7 @@ Percentage (%) = (Part ÷ Whole) × 100
 
 ---
 
-## 🧮 Converting Between Forms
+## ðŸ§® Converting Between Forms
 
 ### **Percentage to Decimal**
 - Remove % symbol and divide by 100
@@ -84,11 +84,11 @@ Percentage (%) = (Part ÷ Whole) × 100
 
 ### **Fraction to Percentage**
 - Divide numerator by denominator, multiply by 100
-- 3/4 = (3÷4)×100 = 75%
+- 3/4 = (3Ã·4)Ã—100 = 75%
 
 ---
 
-## 💰 Real-Life Applications
+## ðŸ’° Real-Life Applications
 
 ### **1. Shopping & Discounts**
 - "30% off" = 30% discount
@@ -117,79 +117,79 @@ Percentage (%) = (Part ÷ Whole) × 100
 
 ---
 
-## 📈 Percentage Increase/Decrease
+## ðŸ“ˆ Percentage Increase/Decrease
 
 ### **Percentage Increase**
-**Formula:** Increase % = [(New Value - Old Value) ÷ Old Value] × 100
+**Formula:** Increase % = [(New Value - Old Value) Ã· Old Value] Ã— 100
 
-**Example:** Price increases from ₹100 to ₹120
-- Increase = 120 - 100 = ₹20
-- Increase % = (20 ÷ 100) × 100 = 20%
+**Example:** Price increases from â‚¹100 to â‚¹120
+- Increase = 120 - 100 = â‚¹20
+- Increase % = (20 Ã· 100) Ã— 100 = 20%
 
 ### **Percentage Decrease**
-**Formula:** Decrease % = [(Old Value - New Value) ÷ Old Value] × 100
+**Formula:** Decrease % = [(Old Value - New Value) Ã· Old Value] Ã— 100
 
-**Example:** Price decreases from ₹200 to ₹160
-- Decrease = 200 - 160 = ₹40
-- Decrease % = (40 ÷ 200) × 100 = 20%
+**Example:** Price decreases from â‚¹200 to â‚¹160
+- Decrease = 200 - 160 = â‚¹40
+- Decrease % = (40 Ã· 200) Ã— 100 = 20%
 
 ---
 
-## 🔄 Successive Percentage Changes
+## ðŸ”„ Successive Percentage Changes
 
 ### **Two Successive Changes**
-**Formula:** Net % = A + B + (A×B)/100
+**Formula:** Net % = A + B + (AÃ—B)/100
 
 **Example:** 10% increase then 20% increase
-- Net % = 10 + 20 + (10×20)/100 = 30 + 2 = 32%
+- Net % = 10 + 20 + (10Ã—20)/100 = 30 + 2 = 32%
 
 ### **Increase then Decrease**
 **Example:** 25% increase then 20% decrease
-- Net % = 25 + (-20) + (25×-20)/100 = 5 - 5 = 0%
+- Net % = 25 + (-20) + (25Ã—-20)/100 = 5 - 5 = 0%
 
 ---
 
-## 🎯 Types of Percentage Problems
+## ðŸŽ¯ Types of Percentage Problems
 
 ### **1. Finding Percentage**
 - What % of A is B?
-- Formula: (B ÷ A) × 100
+- Formula: (B Ã· A) Ã— 100
 
 ### **2. Finding Part**
 - What is X% of Y?
-- Formula: (X/100) × Y
+- Formula: (X/100) Ã— Y
 
 ### **3. Finding Whole**
 - X is Y% of what number?
-- Formula: (X × 100) ÷ Y
+- Formula: (X Ã— 100) Ã· Y
 
 ### **4. Percentage Change**
 - By what % did it change?
-- Formula: [(New - Old) ÷ Old] × 100
+- Formula: [(New - Old) Ã· Old] Ã— 100
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Base**
-❌ "30% of 200 is 60, so 30% of 400 is 120"
+âŒ "30% of 200 is 60, so 30% of 400 is 120"
 - Correct! 30% of 400 = 120
 
 ### **Mistake 2: Confusing Increase/Decrease**
-❌ "Price increased by 20% to ₹120, then decreased by 20% to ₹96"
-- Correct! 120 × 0.8 = ₹96
+âŒ "Price increased by 20% to â‚¹120, then decreased by 20% to â‚¹96"
+- Correct! 120 Ã— 0.8 = â‚¹96
 
 ### **Mistake 3: Multiple Percentages**
-❌ "10% of 10% of 100 = 1%"
+âŒ "10% of 10% of 100 = 1%"
 - Wrong! 10% of 10% of 100 = 0.1% of 100 = 0.1
 
 ### **Mistake 4: Percentage vs. Amount**
-❌ "20% discount means ₹20 off"
+âŒ "20% discount means â‚¹20 off"
 - Wrong! Depends on original price
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Basic Percentage Calculations:**
 1. What is 25% of 400?
@@ -198,25 +198,25 @@ Percentage (%) = (Part ÷ Whole) × 100
 4. What percentage is 45 out of 60?
 
 ### **Real-Life Applications:**
-1. A shirt costs ₹800. Shop offers 15% discount. Find selling price.
+1. A shirt costs â‚¹800. Shop offers 15% discount. Find selling price.
 2. Student scored 420 out of 500. What percentage?
 3. Population increased from 10,000 to 12,000. Find percentage increase.
 
 ### **Advanced Problems:**
 1. Price increased by 10%, then decreased by 10%. Net effect?
 2. Two successive discounts of 20% and 10%. Find equivalent single discount.
-3. Income is ₹50,000. Expenses are 60% of income. Find savings.
+3. Income is â‚¹50,000. Expenses are 60% of income. Find savings.
 
 **Answers:**
 Basic: 100, 60%, 75%, 75%
-Applications: ₹680, 84%, 20%
-Advanced: 1% decrease, 28%, ₹20,000
+Applications: â‚¹680, 84%, 20%
+Advanced: 1% decrease, 28%, â‚¹20,000
 
 ---
 
-## 🎓 Pro Tips for Exams
+## ðŸŽ“ Pro Tips for Exams
 
-1. **Memorize key conversions** - 1/4=25%, 1/3≈33.33%, 1/2=50%, 3/4=75%
+1. **Memorize key conversions** - 1/4=25%, 1/3â‰ˆ33.33%, 1/2=50%, 3/4=75%
 2. **Use fraction equivalents** - 10%=1/10, 20%=1/5, 25%=1/4, 50%=1/2
 3. **Understand the base** - Always identify what the percentage is of
 4. **Check increase/decrease formulas** - Positive for increase, negative for decrease
@@ -225,7 +225,7 @@ Advanced: 1% decrease, 28%, ₹20,000
 
 ---
 
-## 🔢 Quick Reference Table
+## ðŸ”¢ Quick Reference Table
 
 | Percentage | Decimal | Fraction | Common Use |
 |------------|---------|----------|------------|
@@ -237,5 +237,5 @@ Advanced: 1% decrease, 28%, ₹20,000
 | 75% | 0.75 | 3/4 | Three-quarters |
 | 100% | 1.0 | 1/1 | Whole |
 
-Master percentages and you'll excel in quantitative aptitude problems! 🏆`
+Master percentages and you'll excel in quantitative aptitude problems! ðŸ†`
 };

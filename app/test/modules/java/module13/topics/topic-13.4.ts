@@ -1,25 +1,25 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_4: SubLesson = {
   id: "13.4",
   title: 'BST Properties and Applications',
   status: 'completed',
-  content: `# 🏗️ BST Properties and Applications
+  content: "`# ðŸ—ï¸ BST Properties and Applications
 
 Explore the mathematical properties and real-world applications that make BSTs essential in Java!
 
 ---
 
-## 📐 Mathematical Properties
+## ðŸ“ Mathematical Properties
 
 ### **Height and Balance**
 
 #### **Tree Height**
 - **Height**: Longest path from root to leaf
-- **Balanced Tree**: Height ≈ log₂(n)
+- **Balanced Tree**: Height â‰ˆ logâ‚‚(n)
 - **Skewed Tree**: Height = n-1 (worst case)
 
-\`\`\`java
+\`"\`\`java
 public class BinarySearchTree<T extends Comparable<T>> {
     // ... existing code ...
 
@@ -36,7 +36,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
                            getHeightRecursive(node.right));
     }
 
-    // Check if tree is balanced (height difference ≤ 1)
+    // Check if tree is balanced (height difference â‰¤ 1)
     public boolean isBalanced() {
         return isBalancedRecursive(root) != -1;
     }
@@ -127,7 +127,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 ---
 
-## 🔍 BST Validation
+## ðŸ” BST Validation
 
 ### **Check if Tree is Valid BST**
 \`\`\`java
@@ -159,7 +159,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 ---
 
-## 🌟 Real-World Applications
+## ðŸŒŸ Real-World Applications
 
 ### **1. Database Indexing**
 \`\`\`java
@@ -287,7 +287,7 @@ public class ExpressionTree {
 
 ---
 
-## ⚡ Time Complexity Analysis
+## âš¡ Time Complexity Analysis
 
 | Operation | Average Case | Worst Case | Best Case |
 |-----------|-------------|------------|-----------|
@@ -302,7 +302,7 @@ public class ExpressionTree {
 
 ---
 
-## 🔧 Self-Balancing BSTs
+## ðŸ”§ Self-Balancing BSTs
 
 ### **Why Self-Balancing?**
 - Regular BST can become skewed
@@ -336,7 +336,7 @@ public class SelfBalancingExample {
 
 ---
 
-## 🧪 Complete BST Implementation with Utilities
+## ðŸ§ª Complete BST Implementation with Utilities
 
 \`\`\`java
 import java.util.*;
@@ -423,7 +423,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Height affects performance** - balanced trees are faster
 2. **Validation ensures BST property** - useful for debugging
@@ -431,6 +431,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 4. **Self-balancing variants** exist for guaranteed performance
 5. **Java's TreeMap uses Red-Black Tree** - automatically balanced
 
-**Congratulations!** You've mastered Binary Search Trees in Java! 🎉`
+**Congratulations!** You've mastered Binary Search Trees in Java! ðŸŽ‰`
 };
+
 

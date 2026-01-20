@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_17_1: SubLesson = {
   id: "17.1",
   title: 'Spring Framework & Hibernate',
   status: 'completed',
-  content: `# 🌱 Spring Framework & Hibernate
+  content: "`# ðŸŒ± Spring Framework & Hibernate
 
 Master enterprise Java development with powerful frameworks!
 
 ---
 
-## 🎯 Spring Framework Overview
+## ðŸŽ¯ Spring Framework Overview
 
 ### **1. Dependency Injection (DI)**
-\`\`\`java
+\`"\`\`java
 // Service class
 @Component
 public class UserService {
@@ -79,7 +79,7 @@ public class UserController {
 
 ---
 
-## 🗄️ Hibernate ORM
+## ðŸ—„ï¸ Hibernate ORM
 
 ### **1. Entity Mapping**
 \`\`\`java
@@ -174,7 +174,7 @@ public class UserServiceImpl implements UserService {
 
 ---
 
-## 🔒 Spring Security
+## ðŸ”’ Spring Security
 
 ### **1. Basic Configuration**
 \`\`\`java
@@ -267,7 +267,7 @@ public class JwtTokenProvider {
 
 ---
 
-## 🧪 Testing with Spring
+## ðŸ§ª Testing with Spring
 
 ### **1. Unit Testing**
 \`\`\`java
@@ -322,7 +322,7 @@ public class UserControllerIntegrationTest {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Spring Boot**: Rapid application development with auto-configuration
 2. **Spring Data JPA**: Simplified database operations
@@ -331,6 +331,7 @@ public class UserControllerIntegrationTest {
 5. **Testing**: Unit and integration tests for reliability
 6. **REST APIs**: Building scalable web services
 
-**Build enterprise-grade Java applications with these frameworks!** 🚀`
+**Build enterprise-grade Java applications with these frameworks!** ðŸš€`
 };
+
 

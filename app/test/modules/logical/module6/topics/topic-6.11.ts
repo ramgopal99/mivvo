@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_11: SubLesson = {
   id: "6.11",
   title: 'Special Number Series',
   status: 'completed',
-  content: `# ✨ Special Number Series
+  content: "`# âœ¨ Special Number Series
 
 Special number series involve sequences based on special types of numbers with unique mathematical properties. These series include prime numbers, Fibonacci sequence, triangular numbers, perfect numbers, and other special number sequences that appear frequently in competitive exams. They require knowledge of number theory and special number properties.
 
 ---
 
-## 🎯 Understanding Special Number Series
+## ðŸŽ¯ Understanding Special Number Series
 
 ### **What are Special Number Series?**
 Special number series are sequences based on numbers with unique mathematical characteristics or properties. These problems test your ability to:
@@ -27,7 +27,7 @@ Special number series are sequences based on numbers with unique mathematical ch
 
 ---
 
-## 🧩 Types of Special Number Series
+## ðŸ§© Types of Special Number Series
 
 ### **1. Prime Number Series**
 **Sequences based on prime numbers**
@@ -50,13 +50,13 @@ Special number series are sequences based on numbers with unique mathematical ch
 ### **4. Square Number Series**
 **Sequences based on perfect squares**
 - **Square Numbers**: 1, 4, 9, 16, 25, 36,...
-- **Formula**: n²
+- **Formula**: nÂ²
 - **Square Properties**: Geometric square arrangements
 
 ### **5. Cube Number Series**
 **Sequences based on perfect cubes**
 - **Cube Numbers**: 1, 8, 27, 64, 125, 216,...
-- **Formula**: n³
+- **Formula**: nÂ³
 - **Cube Properties**: Three-dimensional cube arrangements
 
 ### **6. Perfect Number Series**
@@ -72,7 +72,7 @@ Special number series are sequences based on numbers with unique mathematical ch
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Identify Special Number Type**
 - Examine the numbers for special properties
@@ -96,26 +96,26 @@ Special number series are sequences based on numbers with unique mathematical ch
 
 ---
 
-## 🎯 Common Special Number Patterns
+## ðŸŽ¯ Common Special Number Patterns
 
 ### **Prime Number Examples**
 
 #### **Type 1: Prime Sequence**
 **Consecutive prime numbers**
 - **Pattern**: Next prime number
-- **Example**: 2, 3, 5, 7, 11, ? → Primes
+- **Example**: 2, 3, 5, 7, 11, ? â†’ Primes
 - **Next term**: 13
 
 #### **Type 2: Prime Position Series**
 **Numbers at prime positions**
 - **Pattern**: Position n where n is prime
-- **Example**: 3, 5, 11, 17, 31, ? → Primes at positions 2,3,5,7,11,...
+- **Example**: 3, 5, 11, 17, 31, ? â†’ Primes at positions 2,3,5,7,11,...
 - **Next term**: Position 13 = 41
 
 #### **Type 3: Prime Operations**
 **Mathematical operations on primes**
 - **Pattern**: Operations between consecutive primes
-- **Example**: 1, 2, 2, 4, 4, ? → Differences between primes (3-2=1, 5-3=2, 7-5=2, 11-7=4, 13-11=2,...)
+- **Example**: 1, 2, 2, 4, 4, ? â†’ Differences between primes (3-2=1, 5-3=2, 7-5=2, 11-7=4, 13-11=2,...)
 - **Next term**: 13-11=2
 
 ### **Fibonacci Examples**
@@ -123,68 +123,68 @@ Special number series are sequences based on numbers with unique mathematical ch
 #### **Type 1: Standard Fibonacci**
 **Classic Fibonacci sequence**
 - **Pattern**: Each term is sum of previous two
-- **Example**: 1, 1, 2, 3, 5, 8, ? → Fibonacci
+- **Example**: 1, 1, 2, 3, 5, 8, ? â†’ Fibonacci
 - **Next term**: 13
 
 #### **Type 2: Modified Fibonacci**
 **Fibonacci with different starting points**
 - **Pattern**: Fibonacci starting from different numbers
-- **Example**: 2, 3, 5, 8, 13, 21, ? → Fibonacci starting from 2,3
+- **Example**: 2, 3, 5, 8, 13, 21, ? â†’ Fibonacci starting from 2,3
 - **Next term**: 34
 
 #### **Type 3: Fibonacci Operations**
 **Operations on Fibonacci terms**
 - **Pattern**: Mathematical operations on Fibonacci numbers
-- **Example**: 1, 3, 8, 21, 55, ? → Fibonacci × position or other patterns
-- **Better**: 2, 6, 15, 40, 104, ? → Wait, perhaps differences or other patterns
+- **Example**: 1, 3, 8, 21, 55, ? â†’ Fibonacci Ã— position or other patterns
+- **Better**: 2, 6, 15, 40, 104, ? â†’ Wait, perhaps differences or other patterns
 
 ### **Triangular Number Examples**
 
 #### **Type 1: Triangular Sequence**
 **Standard triangular numbers**
 - **Pattern**: Tn = n(n+1)/2
-- **Example**: 1, 3, 6, 10, 15, ? → Triangular
+- **Example**: 1, 3, 6, 10, 15, ? â†’ Triangular
 - **Next term**: 21
 
 #### **Type 2: Modified Triangular**
 **Triangular with operations**
 - **Pattern**: Operations on triangular numbers
-- **Example**: 3, 6, 10, 15, 21, ? → Triangular starting from T2
+- **Example**: 3, 6, 10, 15, 21, ? â†’ Triangular starting from T2
 - **Next term**: T6 = 21, wait already there. Better: differences between triangular numbers
 
 ### **Square Number Examples**
 
 #### **Type 1: Square Sequence**
 **Perfect squares**
-- **Pattern**: n² for n=1,2,3,...
-- **Example**: 1, 4, 9, 16, 25, ? → Squares
+- **Pattern**: nÂ² for n=1,2,3,...
+- **Example**: 1, 4, 9, 16, 25, ? â†’ Squares
 - **Next term**: 36
 
 #### **Type 2: Square Operations**
 **Operations on squares**
 - **Pattern**: Mathematical operations involving squares
-- **Example**: 3, 8, 15, 24, 35, ? → Squares + position (1+2=3, 4+4=8, 9+6=15, 16+8=24, 25+10=35)
+- **Example**: 3, 8, 15, 24, 35, ? â†’ Squares + position (1+2=3, 4+4=8, 9+6=15, 16+8=24, 25+10=35)
 - **Next term**: 36 + 12 = 48
 
 ### **Cube Number Examples**
 
 #### **Type 1: Cube Sequence**
 **Perfect cubes**
-- **Pattern**: n³ for n=1,2,3,...
-- **Example**: 1, 8, 27, 64, 125, ? → Cubes
+- **Pattern**: nÂ³ for n=1,2,3,...
+- **Example**: 1, 8, 27, 64, 125, ? â†’ Cubes
 - **Next term**: 216
 
 #### **Type 2: Cube Operations**
 **Operations on cubes**
 - **Pattern**: Mathematical operations involving cubes
-- **Example**: 9, 35, 91, 189, 341, ? → Cubes + position² or other patterns
+- **Example**: 9, 35, 91, 189, 341, ? â†’ Cubes + positionÂ² or other patterns
 
 ### **Perfect Number Examples**
 
 #### **Type 1: Perfect Number Sequence**
 **Known perfect numbers**
 - **Pattern**: Numbers equal to sum of proper divisors
-- **Example**: 6, 28, 496, 8128, ? → Perfect numbers
+- **Example**: 6, 28, 496, 8128, ? â†’ Perfect numbers
 - **Next term**: 33550336 (next known perfect number)
 
 ### **Composite Number Examples**
@@ -192,12 +192,12 @@ Special number series are sequences based on numbers with unique mathematical ch
 #### **Type 1: Composite Sequence**
 **Consecutive composite numbers**
 - **Pattern**: Non-prime numbers
-- **Example**: 4, 6, 8, 9, 10, ? → Composites
+- **Example**: 4, 6, 8, 9, 10, ? â†’ Composites
 - **Next term**: 12
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Special Number Identification**
 **Recognize special number types**
@@ -225,7 +225,7 @@ Special number series are sequences based on numbers with unique mathematical ch
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (30-40%)**
 - Simple prime sequences
@@ -244,7 +244,7 @@ Special number series are sequences based on numbers with unique mathematical ch
 
 ---
 
-## 🎯 Competitive Exam Relevance
+## ðŸŽ¯ Competitive Exam Relevance
 
 ### **Major Exams Featuring Special Number Series**
 - **Banking Exams**: 3-5 questions per exam
@@ -264,7 +264,7 @@ Special number series are sequences based on numbers with unique mathematical ch
 
 ---
 
-## 🎯 Success Factors
+## ðŸŽ¯ Success Factors
 
 ### **1. Number Theory Knowledge**
 - Understanding prime number properties
@@ -288,27 +288,27 @@ Special number series are sequences based on numbers with unique mathematical ch
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Special Number Type**
-❌ Confusing different special number types
-✅ Carefully verify special number properties
+âŒ Confusing different special number types
+âœ… Carefully verify special number properties
 
 ### **Mistake 2: Incomplete Sequence Knowledge**
-❌ Not knowing enough special numbers
-✅ Study common special number sequences
+âŒ Not knowing enough special numbers
+âœ… Study common special number sequences
 
 ### **Mistake 3: Pattern Misidentification**
-❌ Assuming wrong pattern within special numbers
-✅ Verify pattern against all given terms
+âŒ Assuming wrong pattern within special numbers
+âœ… Verify pattern against all given terms
 
 ### **Mistake 4: Calculation Errors**
-❌ Arithmetic mistakes in special number operations
-✅ Double-check all calculations
+âŒ Arithmetic mistakes in special number operations
+âœ… Double-check all calculations
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Know Special Number Properties**: Study prime, Fibonacci, triangular, square, and cube properties
 2. **Learn Common Sequences**: Memorize first 10-15 terms of each special number type
@@ -316,11 +316,11 @@ Special number series are sequences based on numbers with unique mathematical ch
 4. **Verify Special Properties**: Ensure all terms actually belong to the identified special type
 5. **Practice Sequence Generation**: Learn systematic methods to generate special numbers
 6. **Consider Combinations**: Some series combine multiple special number types
-7. **Use Formulas**: Know formulas for triangular (n(n+1)/2), square (n²), cube (n³) numbers
+7. **Use Formulas**: Know formulas for triangular (n(n+1)/2), square (nÂ²), cube (nÂ³) numbers
 
 ---
 
-## 🔢 Practice Questions
+## ðŸ”¢ Practice Questions
 
 ### **Prime Number Questions**
 
@@ -336,8 +336,8 @@ Find the next term: 3, 5, 11, 17, 31, ?
 
 ### **Question 3**
 Find the next term: 4, 6, 10, 12, 16, ?
-**Pattern**: Twice the prime numbers (2×2=4, 2×3=6, 2×5=10, 2×6=12, 2×8=16)
-**Wait, better**: 1, 2, 2, 4, 2, ? → Differences between consecutive primes
+**Pattern**: Twice the prime numbers (2Ã—2=4, 2Ã—3=6, 2Ã—5=10, 2Ã—6=12, 2Ã—8=16)
+**Wait, better**: 1, 2, 2, 4, 2, ? â†’ Differences between consecutive primes
 **Answer**: 2 (13-11=2)
 
 ### **Fibonacci Questions**
@@ -355,7 +355,7 @@ Find the next term: 2, 3, 5, 8, 13, 21, ?
 ### **Question 6**
 Find the next term: 1, 2, 4, 7, 12, 20, ?
 **Pattern**: Sum of first n Fibonacci numbers or other pattern
-**Better**: 8, 13, 21, 34, 55, ? → Fibonacci from F6 onwards
+**Better**: 8, 13, 21, 34, 55, ? â†’ Fibonacci from F6 onwards
 **Answer**: 89
 
 ### **Triangular Number Questions**
@@ -373,21 +373,21 @@ Find the next term: 3, 6, 10, 15, 21, ?
 ### **Question 9**
 Find the next term: 2, 5, 9, 14, 20, ?
 **Pattern**: Differences between triangular numbers (3-1=2, 6-3=3, 10-6=4, 15-10=5, 21-15=6, 28-21=7)
-**Wait**: 2, 5, 9, 14, 20, ? → Triangular differences or other
-**Better**: 1, 6, 15, 28, 45, ? → Triangular numbers × position or wait
-**Actually**: Let's use simple: 6, 10, 15, 21, 28, ? → Triangular from T3
+**Wait**: 2, 5, 9, 14, 20, ? â†’ Triangular differences or other
+**Better**: 1, 6, 15, 28, 45, ? â†’ Triangular numbers Ã— position or wait
+**Actually**: Let's use simple: 6, 10, 15, 21, 28, ? â†’ Triangular from T3
 **Answer**: 36
 
 ### **Square Number Questions**
 
 ### **Question 10**
 Find the next term: 1, 4, 9, 16, 25, ?
-**Pattern**: Square numbers (n²)
+**Pattern**: Square numbers (nÂ²)
 **Answer**: 36
 
 ### **Question 11**
 Find the next term: 4, 9, 16, 25, 36, ?
-**Pattern**: Square numbers from 2² onwards
+**Pattern**: Square numbers from 2Â² onwards
 **Answer**: 49
 
 ### **Question 12**
@@ -399,18 +399,18 @@ Find the next term: 3, 8, 15, 24, 35, ?
 
 ### **Question 13**
 Find the next term: 1, 8, 27, 64, 125, ?
-**Pattern**: Cube numbers (n³)
+**Pattern**: Cube numbers (nÂ³)
 **Answer**: 216
 
 ### **Question 14**
 Find the next term: 8, 27, 64, 125, 216, ?
-**Pattern**: Cube numbers from 2³ onwards
+**Pattern**: Cube numbers from 2Â³ onwards
 **Answer**: 343
 
 ### **Question 15**
 Find the next term: 9, 35, 91, 189, 341, ?
-**Pattern**: Cubes + position² or other complex patterns
-**Answer**: Need to calculate: perhaps 3³+0=9, 6³-1=215≠35, wait perhaps different pattern
+**Pattern**: Cubes + positionÂ² or other complex patterns
+**Answer**: Need to calculate: perhaps 3Â³+0=9, 6Â³-1=215â‰ 35, wait perhaps different pattern
 
 ### **Perfect Number Questions**
 
@@ -431,5 +431,6 @@ Find the next term: 9, 15, 21, 25, 27, ?
 **Pattern**: Odd composites or other patterns
 **Answer**: 33
 
-**Master special number series and mathematical number properties! ✨🔢**`
+**Master special number series and mathematical number properties! âœ¨ðŸ”¢**`"
 };
+

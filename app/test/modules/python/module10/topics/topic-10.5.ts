@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_5: SubLesson = {
   id: "10.5",
   title: 'Arrays vs Linked Lists',
   status: 'demo',
-  content: `# ⚖️ Arrays vs Linked Lists
+  content: "`# âš–ï¸ Arrays vs Linked Lists
 
 Arrays and linked lists are both linear data structures, but they have different strengths and weaknesses. Choosing the right one depends on your specific use case!
 
 ---
 
-## 📊 Direct Comparison
+## ðŸ“Š Direct Comparison
 
 | Aspect | Arrays | Linked Lists |
 |--------|--------|--------------|
@@ -23,10 +23,10 @@ Arrays and linked lists are both linear data structures, but they have different
 
 ---
 
-## 🎯 Access Patterns
+## ðŸŽ¯ Access Patterns
 
 ### **Random Access - Arrays Win**
-\`\`\`python
+\`"\`\`python
 import time
 
 # Large array
@@ -99,7 +99,7 @@ print("Sequential access: Both are efficient!")
 
 ---
 
-## ➕ Insertion/Deletion Performance
+## âž• Insertion/Deletion Performance
 
 ### **Arrays - Expensive Operations**
 \`\`\`python
@@ -168,7 +168,7 @@ print("None")
 
 ---
 
-## 💾 Memory Considerations
+## ðŸ’¾ Memory Considerations
 
 ### **Arrays - Compact Memory**
 \`\`\`python
@@ -201,7 +201,7 @@ print("Memory overhead: ~2x for pointers")
 
 ---
 
-## 🎯 When to Use Arrays
+## ðŸŽ¯ When to Use Arrays
 
 ### **Perfect for Arrays:**
 - **Fast random access** - Need to access elements by index frequently
@@ -225,7 +225,7 @@ print(f"Max in range 1-4: {find_max_in_range(scores, 1, 4)}")  # 96
 
 ---
 
-## 🎯 When to Use Linked Lists
+## ðŸŽ¯ When to Use Linked Lists
 
 ### **Perfect for Linked Lists:**
 - **Frequent insertions/deletions** - Especially in middle
@@ -269,7 +269,7 @@ print(f"Completed: {manager.complete_first_task()}")
 
 ---
 
-## 🚀 Hybrid Approaches
+## ðŸš€ Hybrid Approaches
 
 ### **Dynamic Arrays (Like Python Lists)**
 \`\`\`python
@@ -293,27 +293,28 @@ print("Skip lists: O(log n) search with linked list insertions")
 
 ---
 
-## 📊 Decision Guide
+## ðŸ“Š Decision Guide
 
 ### **Choose Arrays When:**
-- ✅ Need fast random access
-- ✅ Size is relatively stable
-- ✅ Memory is limited (no pointer overhead)
-- ✅ Working with numerical data
-- ✅ Cache performance is important
+- âœ… Need fast random access
+- âœ… Size is relatively stable
+- âœ… Memory is limited (no pointer overhead)
+- âœ… Working with numerical data
+- âœ… Cache performance is important
 
 ### **Choose Linked Lists When:**
-- ✅ Frequent insertions/deletions in middle
-- ✅ Size changes frequently
-- ✅ No need for random access
-- ✅ Working with large objects
-- ✅ Need to implement custom data structures
+- âœ… Frequent insertions/deletions in middle
+- âœ… Size changes frequently
+- âœ… No need for random access
+- âœ… Working with large objects
+- âœ… Need to implement custom data structures
 
 ### **Consider Python Lists When:**
-- ✅ Need both dynamic sizing AND random access
-- ✅ Simplicity is more important than optimization
-- ✅ Working with general-purpose data
+- âœ… Need both dynamic sizing AND random access
+- âœ… Simplicity is more important than optimization
+- âœ… Working with general-purpose data
 
-The choice depends on your specific performance requirements and access patterns! 🎯`
+The choice depends on your specific performance requirements and access patterns! ðŸŽ¯`
 };
+
 

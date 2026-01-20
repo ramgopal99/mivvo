@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_6: SubLesson = {
   id: "5.6",
   title: 'Set Methods',
   status: 'demo',
-  content: `# 🔧 Set Methods
+  content: "`# ðŸ”§ Set Methods
 
 Sets have many useful methods for manipulation and analysis. Let's explore the most important ones!
 
 ---
 
-## 📏 Length and Membership
+## ðŸ“ Length and Membership
 
 ### **Basic Set Information**
-\`\`\`python
+\`"\`\`python
 fruits = {"apple", "banana", "orange", "grape"}
 
 # Get number of elements
@@ -27,7 +27,7 @@ print("apple" not in fruits)  # False
 
 ---
 
-## 🔄 Copy Method
+## ðŸ”„ Copy Method
 
 ### **Create a Copy**
 \`\`\`python
@@ -41,7 +41,7 @@ print(f"Copy: {copy_set}")      # {1, 2, 3, 4, 5, 6}
 
 ---
 
-## 🔍 Is Disjoint
+## ðŸ” Is Disjoint
 
 ### **Check for No Common Elements**
 \`\`\`python
@@ -55,7 +55,7 @@ print(set1.isdisjoint(set3))  # False (both have 3)
 
 ---
 
-## 📊 Update Methods (In-Place Operations)
+## ðŸ“Š Update Methods (In-Place Operations)
 
 ### **Modify Set Directly**
 \`\`\`python
@@ -95,7 +95,7 @@ print(f"After symmetric_difference_update: {set1}")  # {1, 2, 4, 5}
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **Set Analysis**
 \`\`\`python
@@ -163,7 +163,7 @@ print(f"All pages superset of purchases: {all_pages.issuperset(purchases)}")
 
 ---
 
-## ✅ Method Summary
+## âœ… Method Summary
 
 **add(item)** - Add single item, modifies set  
 **update(iterable)** - Add multiple items, modifies set  
@@ -182,6 +182,7 @@ print(f"All pages superset of purchases: {all_pages.issuperset(purchases)}")
 **len(set)** - Get size, returns integer  
 **item in set** - Check membership, returns boolean
 
-Sets have powerful methods for all kinds of data operations! 🛠️`
+Sets have powerful methods for all kinds of data operations! ðŸ› ï¸`
 };
+
 

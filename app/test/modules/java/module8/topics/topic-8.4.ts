@@ -1,23 +1,23 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_4: SubLesson = {
   id: "8.4",
   title: 'Methods and Encapsulation',
   status: 'completed',
-  content: `# 📦 Methods and Encapsulation in Java
+  content: "`# ðŸ“¦ Methods and Encapsulation in Java
 
 Master method design and data hiding principles in object-oriented programming!
 
 ---
 
-## 🎯 Methods in Java
+## ðŸŽ¯ Methods in Java
 
 ### **What is a Method?**
 
 A **method** is a block of code that performs a specific task and can be called multiple times. Methods help organize code into reusable units.
 
 ### **Method Components:**
-\`\`\`java
+\`"\`\`java
 public class MethodExample {
     // Method signature: access modifier + return type + name + parameters
     public int calculateSum(int a, int b) {  // Method header
@@ -39,7 +39,7 @@ public class MethodExample {
 
 ---
 
-## 📝 Method Types
+## ðŸ“ Method Types
 
 ### **1. Instance Methods**
 Belong to object instances, can access instance variables.
@@ -126,7 +126,7 @@ public class Printer {
 
 ---
 
-## 🔒 Encapsulation
+## ðŸ”’ Encapsulation
 
 ### **What is Encapsulation?**
 
@@ -189,7 +189,7 @@ public class BankAccount {
 
 ---
 
-## 🔐 Access Modifiers
+## ðŸ” Access Modifiers
 
 ### **1. public**
 Accessible from anywhere.
@@ -290,7 +290,7 @@ class SamePackage {
 
 ---
 
-## 🛠️ Getter and Setter Methods
+## ðŸ› ï¸ Getter and Setter Methods
 
 ### **Why Use Getters and Setters?**
 - Encapsulation control
@@ -347,7 +347,7 @@ public class Employee {
 
 ---
 
-## 🎨 Method Design Best Practices
+## ðŸŽ¨ Method Design Best Practices
 
 ### **1. Single Responsibility Principle**
 \`\`\`java
@@ -410,7 +410,7 @@ public class ValidationExample {
 
 ---
 
-## 🔄 Method Overriding vs Overloading
+## ðŸ”„ Method Overriding vs Overloading
 
 ### **Method Overloading (Compile-time Polymorphism)**
 \`\`\`java
@@ -466,7 +466,7 @@ public class Test {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Methods** organize code into reusable, callable units
 2. **Encapsulation** hides internal state and provides controlled access
@@ -476,6 +476,7 @@ public class Test {
 6. **Method Overriding** same signature in subclass (runtime)
 7. **Best Practices**: Single responsibility, clear naming, parameter validation
 
-**Next:** Learn about inheritance and polymorphism! 🚀`
+**Next:** Learn about inheritance and polymorphism! ðŸš€`
 };
+
 

@@ -1,23 +1,23 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_3: SubLesson = {
   id: "6.3",
   title: 'Inference-Based Questions',
   status: 'completed',
-  content: `# 🔮 Inference-Based Questions: Reading Between the Lines
+  content: "`# ðŸ”® Inference-Based Questions: Reading Between the Lines
 
 Inference questions require drawing logical conclusions that are not directly stated in the passage but can be reasonably derived from the information provided. This skill tests your ability to read between the lines and understand implied meanings.
 
 ---
 
-## 🔍 WHAT ARE INFERENCES?
+## ðŸ” WHAT ARE INFERENCES?
 
 **Inferences** are logical conclusions drawn from:
-- ✅ **Explicit information** combined with background knowledge
-- ✅ **Relationships between stated facts**
-- ✅ **Contextual clues** and implications
-- ✅ **Author's tone** and word choice
-- ✅ **Logical connections** between ideas
+- âœ… **Explicit information** combined with background knowledge
+- âœ… **Relationships between stated facts**
+- âœ… **Contextual clues** and implications
+- âœ… **Author's tone** and word choice
+- âœ… **Logical connections** between ideas
 
 ### Key Characteristics:
 - **Not Directly Stated**: Information not explicitly written
@@ -32,7 +32,7 @@ Inference: John was happy to be at the party (not directly stated, but logically
 
 ---
 
-## 🎯 TYPES OF INFERENCES
+## ðŸŽ¯ TYPES OF INFERENCES
 
 ### 1. **Cause and Effect Inferences**
 **Drawing conclusions about relationships between events**
@@ -76,7 +76,7 @@ Inference: Major Indian cities are experiencing severe air pollution problems.
 
 ---
 
-## 🛠️ INFERENCE STRATEGIES
+## ðŸ› ï¸ INFERENCE STRATEGIES
 
 ### Step-by-Step Approach:
 
@@ -106,7 +106,7 @@ Inference: Major Indian cities are experiencing severe air pollution problems.
 
 ---
 
-## 📊 INFERENCE LEVELS
+## ðŸ“Š INFERENCE LEVELS
 
 ### Literal Inference:
 - **Direct connections** between stated facts
@@ -128,33 +128,33 @@ Inference: Major Indian cities are experiencing severe air pollution problems.
 
 ---
 
-## ⚠️ INFERENCE PITFALLS
+## âš ï¸ INFERENCE PITFALLS
 
 ### Avoid These Common Errors:
 
 1. **Over-Inference**: Reading more into text than is warranted
-   - ❌ Passage: "John is quiet." Inference: "John is unfriendly."
-   - ✅ Valid inference requires supporting evidence
+   - âŒ Passage: "John is quiet." Inference: "John is unfriendly."
+   - âœ… Valid inference requires supporting evidence
 
 2. **Under-Inference**: Missing obvious implications
-   - ❌ Passage: "The patient smiled after receiving good news."
-   - ✅ Missing inference: Patient was pleased/happy
+   - âŒ Passage: "The patient smiled after receiving good news."
+   - âœ… Missing inference: Patient was pleased/happy
 
 3. **Personal Bias**: Letting personal opinions influence inferences
-   - ❌ Imposing your views on neutral passage information
-   - ✅ Staying objective and evidence-based
+   - âŒ Imposing your views on neutral passage information
+   - âœ… Staying objective and evidence-based
 
 4. **Contradiction**: Inferences that contradict passage facts
-   - ❌ Drawing conclusions opposite to stated information
-   - ✅ All inferences must align with passage content
+   - âŒ Drawing conclusions opposite to stated information
+   - âœ… All inferences must align with passage content
 
 5. **Unreasonable Assumptions**: Conclusions not supported by evidence
-   - ❌ "Must be true" when only "might be possible"
-   - ✅ Only inferences that are logically necessary
+   - âŒ "Must be true" when only "might be possible"
+   - âœ… Only inferences that are logically necessary
 
 ---
 
-## 🎯 QUESTION TYPES
+## ðŸŽ¯ QUESTION TYPES
 
 ### Direct Inference Questions:
 **"What can be inferred from..." or "Which of the following is implied..."**
@@ -197,7 +197,7 @@ Question: "The author's tone can best be described as:"
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Basic Inferences
 **Draw inferences from the passage:**
@@ -290,7 +290,7 @@ Passage: "The young entrepreneur worked 18-hour days, carefully analyzed market 
 
 ---
 
-## 📊 INFERENCE VALIDATION CHECKLIST
+## ðŸ“Š INFERENCE VALIDATION CHECKLIST
 
 | Criteria | Valid Inference | Invalid Inference |
 |---|---|---|
@@ -302,30 +302,30 @@ Passage: "The young entrepreneur worked 18-hour days, carefully analyzed market 
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Implied Meaning**: "What can be inferred from..."
 2. **Author's Assumption**: "The author implies that..."
 3. **Logical Conclusion**: "Which of the following is a valid inference..."
 4. **Attitude Questions**: "The author's tone suggests..."
 5. **Hidden Meaning**: "The passage suggests that..."
 
-### 💡 Quick Inference Strategy:
+### ðŸ’¡ Quick Inference Strategy:
 1. **Read actively** - Note implications while reading
 2. **Look for clues** - Tone words, cause-effect relationships
 3. **Connect facts** - Link related pieces of information
 4. **Ask "What must be true?"** - Eliminate only possibilities
 5. **Check against passage** - Ensure no contradictions
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Don't overthink** - Choose the most directly supported option
 - **Eliminate extremes** - Too strong or too weak inferences are often wrong
 - **Trust logic** - If it makes sense with the passage, it's likely correct
 - **Avoid assumptions** - Only infer what's reasonably supported
 - **Use process of elimination** - Rule out unsupported options
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Practice 3-4 inference questions daily** - Build pattern recognition
 - **Read between lines** - Notice subtle implications
 - **Question assumptions** - Don't accept surface meanings only
@@ -334,22 +334,23 @@ Passage: "The young entrepreneur worked 18-hour days, carefully analyzed market 
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Active Reading Practice** - Always ask "What does this imply?"
 2. **Pattern Recognition** - Learn common inference types
 3. **Evidence Linking** - Connect facts to draw conclusions
 4. **Tone Awareness** - Notice how word choice implies attitude
 5. **Logical Reasoning** - Practice cause-effect thinking
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Inference is like detective work:**
-- 🔍 **Gather evidence** - Collect facts from the passage
-- 🕵️ **Find connections** - Link related pieces of information
-- 💡 **Draw conclusions** - What must logically follow?
-- ✅ **Verify proof** - Is the inference supported by evidence?
-- 🎯 **Solve the case** - Find the most reasonable conclusion!
+- ðŸ” **Gather evidence** - Collect facts from the passage
+- ðŸ•µï¸ **Find connections** - Link related pieces of information
+- ðŸ’¡ **Draw conclusions** - What must logically follow?
+- âœ… **Verify proof** - Is the inference supported by evidence?
+- ðŸŽ¯ **Solve the case** - Find the most reasonable conclusion!
 
-**Master inference skills and become a reading detective!** 🔮🕵️✨`
+**Master inference skills and become a reading detective!** ðŸ”®ðŸ•µï¸âœ¨`"
 };
+

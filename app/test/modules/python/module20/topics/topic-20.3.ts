@@ -1,20 +1,20 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_20_3: SubLesson = {
   id: "20.3",
   title: 'Snake Game - Food and Collision Detection',
   status: 'demo',
-  content: `# 🍎 Snake Game Project - Part 3: Food & Collision
+  content: "`# ðŸŽ Snake Game Project - Part 3: Food & Collision
 
 Let's add food spawning, collision detection, and scoring! This is where the game becomes interactive and challenging.
 
 ---
 
-## 🛠️ Part 3: Food Generation and Collision
+## ðŸ› ï¸ Part 3: Food Generation and Collision
 
 ### **Step 1: Food Class**
 
-\`\`\`python
+\`"\`\`python
 # Add after Snake class
 class Food:
     """Food class for snake to eat"""
@@ -191,7 +191,7 @@ def main():
 
 ---
 
-## 🎯 Understanding Food & Collision
+## ðŸŽ¯ Understanding Food & Collision
 
 ### **Food Generation Logic**
 - **Grid-based positioning**: Food spawns on block boundaries
@@ -234,19 +234,19 @@ if head == food.position:
 
 ---
 
-## 🎮 Testing Food & Collision
+## ðŸŽ® Testing Food & Collision
 
 Now you should have a fully playable Snake game:
-- ✅ **Food spawns** randomly on screen
-- ✅ **Snake grows** when eating food
-- ✅ **Score increases** with each food eaten
-- ✅ **Game ends** on wall or self collision
-- ✅ **Restart works** with SPACE key
-- ✅ **Visual feedback** for game over
+- âœ… **Food spawns** randomly on screen
+- âœ… **Snake grows** when eating food
+- âœ… **Score increases** with each food eaten
+- âœ… **Game ends** on wall or self collision
+- âœ… **Restart works** with SPACE key
+- âœ… **Visual feedback** for game over
 
 ---
 
-## 🔧 Advanced Features Added
+## ðŸ”§ Advanced Features Added
 
 ### **Boundary Checking**
 - Snake can't move outside window bounds
@@ -257,7 +257,7 @@ Now you should have a fully playable Snake game:
 - Avoids spawning on snake body
 
 ### **Game State Transitions**
-- **Playing** → **Game Over** → **Restart**
+- **Playing** â†’ **Game Over** â†’ **Restart**
 - Clear state management for each phase
 
 ### **User Experience**
@@ -267,7 +267,7 @@ Now you should have a fully playable Snake game:
 
 ---
 
-## 🐛 Debugging Tips
+## ðŸ› Debugging Tips
 
 ### **Food Not Appearing**
 - Check if \`BLOCK_SIZE\` divides evenly into window dimensions
@@ -281,8 +281,9 @@ Now you should have a fully playable Snake game:
 - Add debug prints to collision detection function
 - Verify snake body positions are updating correctly
 
-**Next: Adding high scores and sound effects! 🏆**
+**Next: Adding high scores and sound effects! ðŸ†**
 
-**Excellent! You now have a complete, playable Snake game! 🎮**`
+**Excellent! You now have a complete, playable Snake game! ðŸŽ®**`
 };
+
 

@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_8: SubLesson = {
   id: "3.8",
   title: 'Root Words',
   status: 'completed',
-  content: `# 🌱 Root Words: The Origins of Vocabulary
+  content: "`# ðŸŒ± Root Words: The Origins of Vocabulary
 
 Root words are the fundamental building blocks of English vocabulary, primarily derived from Greek and Latin languages. Understanding roots allows you to decode unfamiliar words, predict meanings, and dramatically expand your vocabulary through systematic learning.
 
 ---
 
-## 📋 WHAT ARE ROOT WORDS?
+## ðŸ“‹ WHAT ARE ROOT WORDS?
 
 **Root words** are the core elements of words that carry the fundamental meaning, allowing you to:
-- ✅ Understand unfamiliar words by breaking them down
-- ✅ Predict meanings of new vocabulary
-- ✅ Build extensive word families
-- ✅ Excel in vocabulary-based competitive exams
+- âœ… Understand unfamiliar words by breaking them down
+- âœ… Predict meanings of new vocabulary
+- âœ… Build extensive word families
+- âœ… Excel in vocabulary-based competitive exams
 
 ### Key Concepts:
 - **Root** = Core meaning-carrying element
@@ -25,171 +25,171 @@ Root words are the fundamental building blocks of English vocabulary, primarily 
 - **Etymology** = Study of word origins
 
 **Examples:**
-- ✅ **Aqua** (water) → **Aquarium**, **Aqueduct**, **Aquatic**
-- ✅ **Bio** (life) → **Biology**, **Biography**, **Antibiotic**
-- ✅ **Port** (carry) → **Transport**, **Export**, **Portable**
+- âœ… **Aqua** (water) â†’ **Aquarium**, **Aqueduct**, **Aquatic**
+- âœ… **Bio** (life) â†’ **Biology**, **Biography**, **Antibiotic**
+- âœ… **Port** (carry) â†’ **Transport**, **Export**, **Portable**
 
 ---
 
-## 🇬🇷 GREEK ROOTS
+## ðŸ‡¬ðŸ‡· GREEK ROOTS
 
 ### Life & Nature Roots:
-- ✅ **Bio-** = Life (biology, biography, antibiotic)
-- ✅ **Zoo-** = Animal (zoology, zoo, zoological)
-- ✅ **Geo-** = Earth (geography, geology, geometry)
-- ✅ **Hydro-** = Water (hydroelectric, hydrant, dehydrate)
-- ✅ **Photo-** = Light (photography, photon, photosynthesis)
-- ✅ **Chrono-** = Time (chronology, chronic, synchronize)
+- âœ… **Bio-** = Life (biology, biography, antibiotic)
+- âœ… **Zoo-** = Animal (zoology, zoo, zoological)
+- âœ… **Geo-** = Earth (geography, geology, geometry)
+- âœ… **Hydro-** = Water (hydroelectric, hydrant, dehydrate)
+- âœ… **Photo-** = Light (photography, photon, photosynthesis)
+- âœ… **Chrono-** = Time (chronology, chronic, synchronize)
 
 ### Body & Health Roots:
-- ✅ **Cardio-** = Heart (cardiology, cardiovascular, cardiologist)
-- ✅ **Derma-** = Skin (dermatology, epidermis, dermatologist)
-- ✅ **Neuro-** = Nerve (neurology, neuron, neurotic)
-- ✅ **Osteo-** = Bone (osteoporosis, osteopath, osteology)
-- ✅ **Psycho-** = Mind (psychology, psychiatrist, psychic)
+- âœ… **Cardio-** = Heart (cardiology, cardiovascular, cardiologist)
+- âœ… **Derma-** = Skin (dermatology, epidermis, dermatologist)
+- âœ… **Neuro-** = Nerve (neurology, neuron, neurotic)
+- âœ… **Osteo-** = Bone (osteoporosis, osteopath, osteology)
+- âœ… **Psycho-** = Mind (psychology, psychiatrist, psychic)
 
 ### Measurement & Science Roots:
-- ✅ **Meter-** = Measure (thermometer, barometer, speedometer)
-- ✅ **Scope-** = See (telescope, microscope, periscope)
-- ✅ **Graph-** = Write (paragraph, autograph, telegraph)
-- ✅ **Tele-** = Far (telephone, television, telescope)
-- ✅ **Micro-** = Small (microscope, microphone, microwave)
+- âœ… **Meter-** = Measure (thermometer, barometer, speedometer)
+- âœ… **Scope-** = See (telescope, microscope, periscope)
+- âœ… **Graph-** = Write (paragraph, autograph, telegraph)
+- âœ… **Tele-** = Far (telephone, television, telescope)
+- âœ… **Micro-** = Small (microscope, microphone, microwave)
 
 ---
 
-## 🇮🇹 LATIN ROOTS
+## ðŸ‡®ðŸ‡¹ LATIN ROOTS
 
 ### Action & Movement Roots:
-- ✅ **Port-** = Carry (transport, export, portable)
-- ✅ **Mob-** = Move (mobile, automobile, mobilize)
-- ✅ **Pedi-** = Foot (pedestrian, pedal, pedicure)
-- ✅ **Curr-** = Run (current, curriculum, currency)
-- ✅ **Grad-** = Step (grade, graduate, gradual)
+- âœ… **Port-** = Carry (transport, export, portable)
+- âœ… **Mob-** = Move (mobile, automobile, mobilize)
+- âœ… **Pedi-** = Foot (pedestrian, pedal, pedicure)
+- âœ… **Curr-** = Run (current, curriculum, currency)
+- âœ… **Grad-** = Step (grade, graduate, gradual)
 
 ### Seeing & Knowing Roots:
-- ✅ **Vis-** = See (visible, vision, television)
-- ✅ **Spec-** = See (spectacle, spectator, inspect)
-- ✅ **Vid-** = See (video, evidence, provide)
-- ✅ **Scrib-** = Write (scribe, describe, manuscript)
-- ✅ **Dict-** = Say (dictionary, dictate, predict)
+- âœ… **Vis-** = See (visible, vision, television)
+- âœ… **Spec-** = See (spectacle, spectator, inspect)
+- âœ… **Vid-** = See (video, evidence, provide)
+- âœ… **Scrib-** = Write (scribe, describe, manuscript)
+- âœ… **Dict-** = Say (dictionary, dictate, predict)
 
 ### Building & Making Roots:
-- ✅ **Struct-** = Build (structure, construct, destruction)
-- ✅ **Fact-** = Make (factory, manufacture, artifact)
-- ✅ **Form-** = Shape (formation, reform, formal)
-- ✅ **Pend-** = Hang (pendulum, pendant, depend)
-- ✅ **Tect-** = Cover (detect, protect, architecture)
+- âœ… **Struct-** = Build (structure, construct, destruction)
+- âœ… **Fact-** = Make (factory, manufacture, artifact)
+- âœ… **Form-** = Shape (formation, reform, formal)
+- âœ… **Pend-** = Hang (pendulum, pendant, depend)
+- âœ… **Tect-** = Cover (detect, protect, architecture)
 
 ### Time & Order Roots:
-- ✅ **Temp-** = Time (temporary, contemporary, temporal)
-- ✅ **Nov-** = New (novel, novice, innovate)
-- ✅ **Prim-** = First (primary, primitive, prime)
-- ✅ **Ultim-** = Last (ultimate, penultimate, ultimatum)
-- ✅ **Medi-** = Middle (medium, intermediate, medieval)
+- âœ… **Temp-** = Time (temporary, contemporary, temporal)
+- âœ… **Nov-** = New (novel, novice, innovate)
+- âœ… **Prim-** = First (primary, primitive, prime)
+- âœ… **Ultim-** = Last (ultimate, penultimate, ultimatum)
+- âœ… **Medi-** = Middle (medium, intermediate, medieval)
 
 ---
 
-## 🔍 COMMON ROOT FAMILIES
+## ðŸ” COMMON ROOT FAMILIES
 
 ### Aqua- (Water) Family:
-- ✅ **Aqua** = Water
-- ✅ **Aquarium** = Water container for fish
-- ✅ **Aqueduct** = Water channel/bridge
-- ✅ **Aquatic** = Living in water
-- ✅ **Aquifer** = Underground water layer
+- âœ… **Aqua** = Water
+- âœ… **Aquarium** = Water container for fish
+- âœ… **Aqueduct** = Water channel/bridge
+- âœ… **Aquatic** = Living in water
+- âœ… **Aquifer** = Underground water layer
 
 ### Bio- (Life) Family:
-- ✅ **Bio** = Life
-- ✅ **Biology** = Study of life
-- ✅ **Biography** = Life story
-- ✅ **Antibiotic** = Against life (bacteria)
-- ✅ **Symbiosis** = Living together
+- âœ… **Bio** = Life
+- âœ… **Biology** = Study of life
+- âœ… **Biography** = Life story
+- âœ… **Antibiotic** = Against life (bacteria)
+- âœ… **Symbiosis** = Living together
 
 ### Port- (Carry) Family:
-- ✅ **Port** = Carry
-- ✅ **Transport** = Carry across
-- ✅ **Export** = Carry out
-- ✅ **Import** = Carry in
-- ✅ **Portable** = Can be carried
-- ✅ **Porter** = One who carries
+- âœ… **Port** = Carry
+- âœ… **Transport** = Carry across
+- âœ… **Export** = Carry out
+- âœ… **Import** = Carry in
+- âœ… **Portable** = Can be carried
+- âœ… **Porter** = One who carries
 
 ### Spec- (See) Family:
-- ✅ **Spec** = See
-- ✅ **Spectacle** = Something to see
-- ✅ **Spectator** = One who sees
-- ✅ **Inspect** = Look into
-- ✅ **Respect** = Look back at
-- ✅ **Prospect** = Look forward
+- âœ… **Spec** = See
+- âœ… **Spectacle** = Something to see
+- âœ… **Spectator** = One who sees
+- âœ… **Inspect** = Look into
+- âœ… **Respect** = Look back at
+- âœ… **Prospect** = Look forward
 
 ---
 
-## 🧠 COGNITIVE ROOTS
+## ðŸ§  COGNITIVE ROOTS
 
 ### Mind & Thought:
-- ✅ **Cogn-** = Know (cognition, recognize, incognito)
-- ✅ **Ment-** = Mind (mental, mention, dementia)
-- ✅ **Psych-** = Soul/Mind (psychology, psychic, psychosis)
-- ✅ **Soph-** = Wise (philosophy, sophisticated, sophomore)
+- âœ… **Cogn-** = Know (cognition, recognize, incognito)
+- âœ… **Ment-** = Mind (mental, mention, dementia)
+- âœ… **Psych-** = Soul/Mind (psychology, psychic, psychosis)
+- âœ… **Soph-** = Wise (philosophy, sophisticated, sophomore)
 
 ### Speaking & Words:
-- ✅ **Log-** = Word/Speech (logic, dialogue, monologue)
-- ✅ **Voc-** = Voice (vocabulary, vocal, advocate)
-- ✅ **Dict-** = Say (dictionary, dictate, verdict)
-- ✅ **Verb-** = Word (verbose, verbal, proverb)
+- âœ… **Log-** = Word/Speech (logic, dialogue, monologue)
+- âœ… **Voc-** = Voice (vocabulary, vocal, advocate)
+- âœ… **Dict-** = Say (dictionary, dictate, verdict)
+- âœ… **Verb-** = Word (verbose, verbal, proverb)
 
 ### Feeling & Emotion:
-- ✅ **Path-** = Feel (sympathy, apathy, pathology)
-- ✅ **Sent-** = Feel (sentiment, consent, resent)
-- ✅ **Affect-** = Influence/Feel (affect, affection, effect)
-- ✅ **Emot-** = Move/Feel (emotion, motivate, locomotive)
+- âœ… **Path-** = Feel (sympathy, apathy, pathology)
+- âœ… **Sent-** = Feel (sentiment, consent, resent)
+- âœ… **Affect-** = Influence/Feel (affect, affection, effect)
+- âœ… **Emot-** = Move/Feel (emotion, motivate, locomotive)
 
 ---
 
-## 📊 ROOT WORD ANALYSIS
+## ðŸ“Š ROOT WORD ANALYSIS
 
 ### Breaking Down Complex Words:
 
 **Unpredictable**
-- ✅ **Un-** (not) + **Predict** (foretell) + **-able** (capable)
+- âœ… **Un-** (not) + **Predict** (foretell) + **-able** (capable)
 - Meaning: Not capable of being foretold
 
 **International**
-- ✅ **Inter-** (between) + **Nation** (country) + **-al** (relating to)
+- âœ… **Inter-** (between) + **Nation** (country) + **-al** (relating to)
 - Meaning: Between nations
 
 **Microorganism**
-- ✅ **Micro-** (small) + **Organ** (body part) + **-ism** (condition)
+- âœ… **Micro-** (small) + **Organ** (body part) + **-ism** (condition)
 - Meaning: Very small living thing
 
 **Telecommunication**
-- ✅ **Tele-** (far) + **Communic** (share) + **-ation** (process)
+- âœ… **Tele-** (far) + **Communic** (share) + **-ation** (process)
 - Meaning: Communication over distance
 
 ---
 
-## 🎯 USING ROOTS FOR VOCABULARY BUILDING
+## ðŸŽ¯ USING ROOTS FOR VOCABULARY BUILDING
 
 ### Strategy 1: Root Recognition
 When you encounter an unfamiliar word, break it down:
-- ✅ **Unknown word**: "chronometer"
-- ✅ **Root identification**: "chrono-" (time) + "meter" (measure)
-- ✅ **Meaning prediction**: "Time measurer" (clock/watch)
+- âœ… **Unknown word**: "chronometer"
+- âœ… **Root identification**: "chrono-" (time) + "meter" (measure)
+- âœ… **Meaning prediction**: "Time measurer" (clock/watch)
 
 ### Strategy 2: Word Family Creation
 Start with a root and build related words:
-- ✅ **Root**: "port" (carry)
-- ✅ **Words**: port, portable, transport, export, import, porter
-- ✅ **Practice**: Create sentences using each word
+- âœ… **Root**: "port" (carry)
+- âœ… **Words**: port, portable, transport, export, import, porter
+- âœ… **Practice**: Create sentences using each word
 
 ### Strategy 3: Etymological Connections
 Link roots to familiar words:
-- ✅ **Aqua** (water) → aquarium, aquatic, aqueduct
-- ✅ **Bio** (life) → biology, biography, antibiotic
-- ✅ **Geo** (earth) → geography, geology, geometry
+- âœ… **Aqua** (water) â†’ aquarium, aquatic, aqueduct
+- âœ… **Bio** (life) â†’ biology, biography, antibiotic
+- âœ… **Geo** (earth) â†’ geography, geology, geometry
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Root Identification
 Identify the root and meaning in each word:
@@ -252,7 +252,7 @@ Predict the meaning of these words based on roots:
 
 ---
 
-## 📊 ROOT WORD CLASSIFICATION
+## ðŸ“Š ROOT WORD CLASSIFICATION
 
 | Origin | Common Roots | Example Words |
 |---|---|---|
@@ -263,29 +263,29 @@ Predict the meaning of these words based on roots:
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Root Word Identification**: Find base root in complex words
 2. **Word Meaning Derivation**: Predict meaning from roots
 3. **Word Family Formation**: Create related words from roots
 4. **Etymology Questions**: Origin and meaning of roots
 5. **Vocabulary Building**: Systematic word creation
 
-### 💡 Quick Analysis Strategy:
+### ðŸ’¡ Quick Analysis Strategy:
 1. **Identify root** - Look for familiar word parts
 2. **Determine meaning** - Use root meaning as base
 3. **Check affixes** - See how prefixes/suffixes modify meaning
 4. **Context verification** - Ensure meaning fits sentence
 5. **Word family linking** - Connect to related vocabulary
 
-### ⚡ Common Traps to Avoid:
+### âš¡ Common Traps to Avoid:
 - **False root identification** - Wrong root selection
 - **Meaning misinterpretation** - Incorrect root meaning
 - **Context ignorance** - Ignoring surrounding words
 - **Over-generalization** - Assuming all similar words have same root
 
-### 📈 Scoring Strategy:
+### ðŸ“ˆ Scoring Strategy:
 - **Learn 50+ common roots** - Focus on Greek/Latin origins
 - **Practice daily** - Create 5-10 words from one root
 - **Word mapping** - Draw root relationship diagrams
@@ -293,22 +293,23 @@ Predict the meaning of these words based on roots:
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Root Categorization**: Group by meaning (nature, action, etc.)
 2. **Word Family Building**: Create related word clusters
 3. **Etymological Connections**: Link roots to familiar words
 4. **Regular Application**: Use roots to decode new vocabulary
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Root words are "vocabulary DNA":**
-- 🧬 **Root** = Core genetic material
-- 🧬 **Affixes** = Modifications to DNA
-- 🧬 **Result** = Complete organism (word)
-- 🧬 **Aqua** (water) + **duct** (lead) = **Aqueduct** (water channel)
-- 🧬 **Bio** (life) + **logy** (study) = **Biology** (life study)
-- 🎯 **Decode the DNA** and unlock unlimited vocabulary!
+- ðŸ§¬ **Root** = Core genetic material
+- ðŸ§¬ **Affixes** = Modifications to DNA
+- ðŸ§¬ **Result** = Complete organism (word)
+- ðŸ§¬ **Aqua** (water) + **duct** (lead) = **Aqueduct** (water channel)
+- ðŸ§¬ **Bio** (life) + **logy** (study) = **Biology** (life study)
+- ðŸŽ¯ **Decode the DNA** and unlock unlimited vocabulary!
 
-**Master roots and become a "vocabulary geneticist"!** 🧬✨`
+**Master roots and become a "vocabulary geneticist"!** ðŸ§¬âœ¨`"
 };
+

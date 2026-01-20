@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_5: SubLesson = {
   id: "3.5",
   title: 'Removing List Elements',
   status: 'demo',
-  content: `# ➖ Removing Elements from Lists
+  content: "`# âž– Removing Elements from Lists
 
 Lists can shrink as well as grow. Let's learn how to remove items!
 
 ---
 
-## 🎯 Remove Method
+## ðŸŽ¯ Remove Method
 
 ### **Remove by Value**
-\`\`\`python
+\`"\`\`python
 fruits = ["apple", "banana", "orange", "banana"]
 print(f"Before: {fruits}")
 
@@ -27,7 +27,7 @@ print(f"Final: {fruits}")  # ['apple', 'banana']
 
 ---
 
-## 🗑️ Pop Method
+## ðŸ—‘ï¸ Pop Method
 
 ### **Remove by Index**
 \`\`\`python
@@ -47,7 +47,7 @@ print(f"After: {numbers}")       # [10, 20, 40]
 
 ---
 
-## ✂️ Del Statement
+## âœ‚ï¸ Del Statement
 
 ### **Delete by Index**
 \`\`\`python
@@ -65,7 +65,7 @@ print(f"Final: {colors}")  # ['yellow']
 
 ---
 
-## 🧹 Clear Method
+## ðŸ§¹ Clear Method
 
 ### **Remove All Items**
 \`\`\`python
@@ -78,7 +78,7 @@ print(f"After: {items}")  # []
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 \`\`\`python
 # Task list
@@ -99,6 +99,7 @@ tasks.clear()
 print(f"All done: {tasks}")
 \`\`\`
 
-Choose the right removal method for your needs! 🗂️`
+Choose the right removal method for your needs! ðŸ—‚ï¸`
 };
+
 

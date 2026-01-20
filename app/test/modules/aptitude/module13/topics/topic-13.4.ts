@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_4: SubLesson = {
   id: "13.4",
   title: 'Solving by Substitution Method',
   status: 'completed',
-  content: `# 🔄 Solving by Substitution Method
+  content: "`# ðŸ”„ Solving by Substitution Method
 
 Master the Substitution Method for solving systems of linear equations! This systematic approach is particularly useful when one equation has a variable with coefficient 1. Learn to substitute and solve with confidence.
 
 ---
 
-## 🎯 What is Substitution Method?
+## ðŸŽ¯ What is Substitution Method?
 
 **Substitution Method** is a technique to solve systems of linear equations by expressing one variable in terms of the other from one equation and substituting it into the second equation.
 
@@ -24,11 +24,11 @@ Express one variable from one equation and substitute into the other equation.
 
 ---
 
-## 🔢 Step-by-Step Substitution Method
+## ðŸ”¢ Step-by-Step Substitution Method
 
 ### **Step 1: Choose the Variable to Substitute**
 - Pick the variable that's easiest to express
-- Usually choose variable with coefficient ±1
+- Usually choose variable with coefficient Â±1
 - If both have complex coefficients, choose simpler one
 
 ### **Step 2: Express Chosen Variable**
@@ -53,11 +53,11 @@ Express one variable from one equation and substitute into the other equation.
 
 ---
 
-## 📊 Examples: Basic Substitution
+## ðŸ“Š Examples: Basic Substitution
 
 ### **Example 1: Simple Case**
 **Solve:**
-\`\`\`
+\`"\`\`
 x + y = 7  ...(1)
 x - y = 3  ...(2)
 \`\`\`
@@ -82,12 +82,12 @@ x - y = 3  ...(2)
 **Solution:** x = 5, y = 2
 
 **Verification:**
-Equation (1): 5 + 2 = 7 ✓
-Equation (2): 5 - 2 = 3 ✓
+Equation (1): 5 + 2 = 7 âœ“
+Equation (2): 5 - 2 = 3 âœ“
 
 ---
 
-## 🧮 Advanced Examples
+## ðŸ§® Advanced Examples
 
 ### **Example 1: Coefficient Other Than 1**
 **Solve:**
@@ -134,7 +134,7 @@ x - 2y = 1  ...(1)
 \`y = 1\`
 
 **Step 4:** Substitute y = 1 in equation (1):
-\`x - 2×1 = 1\`
+\`x - 2Ã—1 = 1\`
 \`x - 2 = 1\`
 \`x = 3\`
 
@@ -142,7 +142,7 @@ x - 2y = 1  ...(1)
 
 ---
 
-## 📈 Complex Examples
+## ðŸ“ˆ Complex Examples
 
 ### **Example 1: Fractional Coefficients**
 **Solve:**
@@ -152,14 +152,14 @@ x/3 + y/2 = 4  ...(2)
 \`\`\`
 
 **Step 1:** Multiply equations to eliminate denominators:
-Equation (1) × 6: \`3x + 2y = 30\` ...(3)
-Equation (2) × 6: \`2x + 3y = 24\` ...(4)
+Equation (1) Ã— 6: \`3x + 2y = 30\` ...(3)
+Equation (2) Ã— 6: \`2x + 3y = 24\` ...(4)
 
 **Step 2:** From equation (3): \`3x = 30 - 2y\`
 \`x = (30 - 2y)/3\`
 
 **Step 3:** Substitute in equation (4):
-\`2×((30 - 2y)/3) + 3y = 24\`
+\`2Ã—((30 - 2y)/3) + 3y = 24\`
 \`2(30 - 2y)/3 + 3y = 24\`
 \`Multiply by 3: 2(30 - 2y) + 9y = 72\`
 \`60 - 4y + 9y = 72\`
@@ -168,16 +168,16 @@ Equation (2) × 6: \`2x + 3y = 24\` ...(4)
 \`y = 12/5 = 2.4\`
 
 **Step 4:** Substitute y = 12/5 in equation (3):
-\`3x + 2×(12/5) = 30\`
+\`3x + 2Ã—(12/5) = 30\`
 \`3x + 24/5 = 30\`
 \`3x = 30 - 24/5 = (150 - 24)/5 = 126/5\`
-\`x = 126/5 ÷ 3 = 126/(5×3) = 126/15 = 8.4\`
+\`x = 126/5 Ã· 3 = 126/(5Ã—3) = 126/15 = 8.4\`
 
 **Solution:** x = 42/5, y = 12/5
 
 ---
 
-## 🎯 Word Problems Using Substitution
+## ðŸŽ¯ Word Problems Using Substitution
 
 ### **Example 1: Age Problem**
 **Problem:** A father is 4 years older than 3 times his son's age. The sum of their ages is 50 years. Find their ages.
@@ -191,17 +191,17 @@ Equation: \`x + (3x + 4) = 50\`
 \`4x = 46\`
 \`x = 11.5\`
 
-Father's age = \`3×11.5 + 4 = 34.5 + 4 = 38.5\`
+Father's age = \`3Ã—11.5 + 4 = 34.5 + 4 = 38.5\`
 
 **Answer:** Son: 11.5 years, Father: 38.5 years
 
 ### **Example 2: Cost Problem**
-**Problem:** A shopkeeper sells two types of items. Type A costs ₹20 each, Type B costs ₹30 each. He sells 5 items of type A and some of type B, totaling ₹400. Find number of type B items.
+**Problem:** A shopkeeper sells two types of items. Type A costs â‚¹20 each, Type B costs â‚¹30 each. He sells 5 items of type A and some of type B, totaling â‚¹400. Find number of type B items.
 
 **Solution:**
 Let number of type B items = \`x\`
 
-Equation: \`5×20 + x×30 = 400\`
+Equation: \`5Ã—20 + xÃ—30 = 400\`
 \`100 + 30x = 400\`
 \`30x = 300\`
 \`x = 10\`
@@ -210,7 +210,7 @@ Equation: \`5×20 + x×30 = 400\`
 
 ---
 
-## 🚨 Special Cases in Substitution
+## ðŸš¨ Special Cases in Substitution
 
 ### **Case 1: Infinite Solutions (Dependent System)**
 **System:**
@@ -247,7 +247,7 @@ x + y = 5  ...(2)
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Basic Substitution:**
 1. Solve: \`x + y = 8\` and \`x - y = 2\`
@@ -261,7 +261,7 @@ x + y = 5  ...(2)
 ### **Word Problems:**
 1. **Number Problem:** Sum of two numbers is 15. One is 3 more than twice the other. Find numbers.
 2. **Age Problem:** Mother is 5 years younger than twice her daughter's age. Sum of ages is 45. Find ages.
-3. **Cost Problem:** Two items A and B. A costs ₹50, B costs ₹30. Bought 3A and 4B for ₹270. Verify if correct.
+3. **Cost Problem:** Two items A and B. A costs â‚¹50, B costs â‚¹30. Bought 3A and 4B for â‚¹270. Verify if correct.
 
 ### **Special Cases:**
 1. Check if these have solutions: \`2x + y = 5\` and \`4x + 2y = 10\`
@@ -275,9 +275,9 @@ Special: Infinite solutions, No solution
 
 ---
 
-## 🎓 Pro Tips for Substitution Method
+## ðŸŽ“ Pro Tips for Substitution Method
 
-1. **Choose the right variable** - pick coefficient ±1 when possible
+1. **Choose the right variable** - pick coefficient Â±1 when possible
 2. **Express carefully** - ensure correct sign when moving terms
 3. **Substitute completely** - replace all occurrences of the variable
 4. **Watch for fractions** - multiply equations if needed
@@ -287,47 +287,47 @@ Special: Infinite solutions, No solution
 
 ---
 
-## 🔢 Substitution Method Flowchart
+## ðŸ”¢ Substitution Method Flowchart
 
 \`\`\`
 Start with two equations
-    ↓
-Choose variable to express (preferably coeff ±1)
-    ↓
+    â†“
+Choose variable to express (preferably coeff Â±1)
+    â†“
 Express chosen variable in terms of other
-    ↓
+    â†“
 Substitute expression into second equation
-    ↓
+    â†“
 Solve the resulting equation
-    ↓
+    â†“
 Substitute found value back into first equation
-    ↓
+    â†“
 Get second variable value
-    ↓
+    â†“
 Verify in both original equations
-    ↓
+    â†“
 Write final solution
 \`\`\`
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Substitution**
-❌ Substituting wrong variable
+âŒ Substituting wrong variable
 - Always substitute the expressed variable
 
 ### **Mistake 2: Sign Errors**
-❌ Forgetting to change signs when transposing
+âŒ Forgetting to change signs when transposing
 - Double-check sign changes
 
 ### **Mistake 3: Incomplete Substitution**
-❌ Missing terms when substituting
+âŒ Missing terms when substituting
 - Replace all occurrences of the variable
 
 ### **Mistake 4: Division Errors**
-❌ Dividing instead of multiplying when eliminating denominators
+âŒ Dividing instead of multiplying when eliminating denominators
 - Multiply equations to clear fractions
 
-Master the substitution method and solve linear equation systems with ease! 🏆`
+Master the substitution method and solve linear equation systems with ease! ðŸ†`
 };

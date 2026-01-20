@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_1: SubLesson = {
   id: "8.1",
   title: 'Principal (P)',
   status: 'completed',
-  content: `# 💰 Principal (P)
+  content: "`# ðŸ’° Principal (P)
 
 Welcome to the foundation of simple interest calculations! Principal (P) is the initial amount of money that earns interest over time. It's the base amount on which interest is calculated and the cornerstone of all lending and borrowing transactions.
 
 ---
 
-## 🎯 What is Principal?
+## ðŸŽ¯ What is Principal?
 
 **Principal (P)** is the original sum of money lent, borrowed, or invested on which interest is calculated. It's the core amount that generates returns or incurs costs.
 
@@ -21,13 +21,13 @@ Welcome to the foundation of simple interest calculations! Principal (P) is the 
 - Principal is returned along with interest at maturity
 
 ### **Symbol**
-\`\`\`
+\`"\`\`
 P (Principal Amount)
 \`\`\`
 
 ---
 
-## 📊 Types of Principal
+## ðŸ“Š Types of Principal
 
 ### **1. Loan Principal**
 - Amount borrowed from lender
@@ -51,7 +51,7 @@ P (Principal Amount)
 
 ---
 
-## 🔢 Principal in Different Contexts
+## ðŸ”¢ Principal in Different Contexts
 
 ### **1. Lending Context**
 \`\`\`
@@ -73,27 +73,27 @@ Bank pays P + Interest
 
 ---
 
-## 🧮 Principal Calculations
+## ðŸ§® Principal Calculations
 
 ### **Finding Principal from SI**
 \`\`\`
-P = (SI × 100) ÷ (R × T)
+P = (SI Ã— 100) Ã· (R Ã— T)
 \`\`\`
 
-**Example:** SI = ₹500, R = 5%, T = 2 years
-- P = (500 × 100) ÷ (5 × 2) = ₹5,000
+**Example:** SI = â‚¹500, R = 5%, T = 2 years
+- P = (500 Ã— 100) Ã· (5 Ã— 2) = â‚¹5,000
 
 ### **Finding Principal from Amount**
 \`\`\`
-P = A ÷ (1 + RT/100)
+P = A Ã· (1 + RT/100)
 \`\`\`
 
-**Example:** A = ₹6,000, R = 10%, T = 1 year
-- P = 6,000 ÷ (1 + 0.10) = ₹5,454.55
+**Example:** A = â‚¹6,000, R = 10%, T = 1 year
+- P = 6,000 Ã· (1 + 0.10) = â‚¹5,454.55
 
 ---
 
-## 💡 Important Properties
+## ðŸ’¡ Important Properties
 
 ### **1. Principal Remains Constant**
 - P stays the same throughout the period
@@ -105,7 +105,7 @@ P = A ÷ (1 + RT/100)
 
 ### **3. Principal Determines Interest**
 - Higher P = Higher interest (for same R and T)
-- Interest ∝ Principal
+- Interest âˆ Principal
 
 ### **4. Principal is the Base Amount**
 - All percentage calculations based on P
@@ -113,7 +113,7 @@ P = A ÷ (1 + RT/100)
 
 ---
 
-## 🎯 Real-Life Applications
+## ðŸŽ¯ Real-Life Applications
 
 ### **1. Personal Finance**
 - Loan amounts
@@ -137,7 +137,7 @@ P = A ÷ (1 + RT/100)
 
 ---
 
-## 🔄 Principal vs Other Amounts
+## ðŸ”„ Principal vs Other Amounts
 
 | Amount Type | Description | Relationship to P |
 |-------------|-------------|-------------------|
@@ -148,12 +148,12 @@ P = A ÷ (1 + RT/100)
 
 ---
 
-## 🧮 Principal in Simple Interest
+## ðŸ§® Principal in Simple Interest
 
 ### **Basic Relationship**
 \`\`\`
 Interest Earned/Cost = Function of P, R, T
-Higher P → Higher Interest
+Higher P â†’ Higher Interest
 \`\`\`
 
 ### **Principal Recovery**
@@ -163,41 +163,42 @@ Higher P → Higher Interest
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Confusing Principal with Amount**
-❌ "Principal includes interest"
+âŒ "Principal includes interest"
 - Principal is the original amount only
 
 ### **Mistake 2: Zero Principal**
-❌ "Interest without principal"
+âŒ "Interest without principal"
 - Principal must be positive
 
 ### **Mistake 3: Changing Principal**
-❌ "Principal increases with interest"
+âŒ "Principal increases with interest"
 - Principal remains constant
 
 ### **Mistake 4: Negative Principal**
-❌ "Negative loan amounts"
+âŒ "Negative loan amounts"
 - Principal is always positive
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Basic Principal Concepts:**
-1. What is principal in a loan of ₹10,000 at 8% for 2 years?
-2. Principal in an investment of ₹50,000 at 6% for 3 years?
-3. Principal when SI = ₹1200, R = 12%, T = 1 year?
+1. What is principal in a loan of â‚¹10,000 at 8% for 2 years?
+2. Principal in an investment of â‚¹50,000 at 6% for 3 years?
+3. Principal when SI = â‚¹1200, R = 12%, T = 1 year?
 
 ### **Application Problems:**
-1. Find principal if amount is ₹5500, R = 10%, T = 2 years.
-2. Principal when SI = ₹2400, R = 8%, T = 3 years.
-3. Principal for investment amount ₹8000, R = 5%, T = 4 years.
+1. Find principal if amount is â‚¹5500, R = 10%, T = 2 years.
+2. Principal when SI = â‚¹2400, R = 8%, T = 3 years.
+3. Principal for investment amount â‚¹8000, R = 5%, T = 4 years.
 
 **Answers:**
-Basic: ₹10,000, ₹50,000, ₹10,000
-Applications: ₹5000, ₹10,000, ₹6153.85
+Basic: â‚¹10,000, â‚¹50,000, â‚¹10,000
+Applications: â‚¹5000, â‚¹10,000, â‚¹6153.85
 
-Master principal concepts to understand the foundation of all interest calculations! 🏆`
+Master principal concepts to understand the foundation of all interest calculations! ðŸ†`
 };
+

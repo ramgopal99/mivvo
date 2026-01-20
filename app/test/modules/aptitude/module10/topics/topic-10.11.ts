@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_11: SubLesson = {
   id: "10.11",
   title: 'Word Problems Based on Time & Work',
   status: 'completed',
-  content: `# 📝 Word Problems Based on Time & Work
+  content: "`# ðŸ“ Word Problems Based on Time & Work
 
 Master solving complex word problems in time and work - the ultimate test of your understanding of all concepts.
 
 ---
 
-## 🎯 Word Problem Approach
+## ðŸŽ¯ Word Problem Approach
 
 **Word problems** combine multiple time & work concepts in real-world scenarios. Success requires systematic problem-solving approach.
 
@@ -24,7 +24,7 @@ Master solving complex word problems in time and work - the ultimate test of you
 
 ---
 
-## 📊 Common Word Problem Types
+## ðŸ“Š Common Word Problem Types
 
 ### 1. **Combined Work Scenarios**
 **"A and B together can complete a work in 8 days. A alone takes 12 days. How long does B take alone?"**
@@ -62,14 +62,14 @@ Master solving complex word problems in time and work - the ultimate test of you
 - B's rate = 0.6/12 = 0.05 work/day
 - Both have same rate!
 - B takes 12 days for 60% = 20 days for 100%
-- For 75% work by B = (75/100) × 20 = 15 days
+- For 75% work by B = (75/100) Ã— 20 = 15 days
 
 ---
 
-## 🧠 Word Problem Tricks & Shortcuts
+## ðŸ§  Word Problem Tricks & Shortcuts
 
 ### **Variable Assignment Magic**
-\`\`\`
+\`"\`\`
 Let total work = LCM of all times mentioned
 Convert everything to work units
 Makes calculations easier
@@ -95,7 +95,7 @@ Total work = Sum of individual works
 
 ---
 
-## 🔢 Complex Word Problem Examples
+## ðŸ”¢ Complex Word Problem Examples
 
 ### Example 1: Multi-Person Project
 **"A, B, C start a work. A works for 2 days, B for 3 days, C for 4 days, then all work together for 1 day to complete. If they get Rs. 6000, find A's share."**
@@ -115,8 +115,8 @@ Total work = Sum of individual works
 - Combined time = 1/(1/((2/3)x) + 1/x) = 8
 - Solve: 1/(2/(3x) + 1/x) = 8
 - 1/((2+3)/(3x)) = 8
-- 3x/5 = 8, x = 40/3 ≈ 13.33 days
-- A takes 40/3 × 2/3 ≈ 80/9 ≈ 8.89 days
+- 3x/5 = 8, x = 40/3 â‰ˆ 13.33 days
+- A takes 40/3 Ã— 2/3 â‰ˆ 80/9 â‰ˆ 8.89 days
 
 ### Example 3: Pipes and Work
 **"Two pipes A and B can fill a tank in 10 and 15 hours respectively. Pipe C can empty in 12 hours. If all work together for 5 hours, what fraction of tank is filled?"**
@@ -124,11 +124,11 @@ Total work = Sum of individual works
 **Solution:**
 - A: +1/10, B: +1/15, C: -1/12 per hour
 - Net rate = 1/10 + 1/15 - 1/12 = (6+4-5)/60 = 5/60 per hour
-- In 5 hours: (5/60) × 5 = 25/60 = 5/12 of tank
+- In 5 hours: (5/60) Ã— 5 = 25/60 = 5/12 of tank
 
 ---
 
-## 🎯 Real-World Scenarios
+## ðŸŽ¯ Real-World Scenarios
 
 ### **Construction Projects**
 - Multiple workers with different skills
@@ -147,7 +147,7 @@ Total work = Sum of individual works
 
 ---
 
-## 🚨 Word Problem Pitfalls
+## ðŸš¨ Word Problem Pitfalls
 
 1. **Missing Information**: Not all data given - look for implied relationships
 2. **Unit Conversion**: Hours to days, percentages to fractions
@@ -163,7 +163,7 @@ Total work = Sum of individual works
 
 ---
 
-## 🎯 Practice Word Problems
+## ðŸŽ¯ Practice Word Problems
 
 **1.** A and B together finish work in 6 days. A alone takes 10 days. B alone takes?
 
@@ -179,7 +179,7 @@ Total work = Sum of individual works
 
 ---
 
-## 🎓 Word Problem Mastery Tips
+## ðŸŽ“ Word Problem Mastery Tips
 
 1. **Read multiple times** - Don't miss hidden information
 2. **Draw diagrams** - Visualize work progress
@@ -189,5 +189,5 @@ Total work = Sum of individual works
 6. **Check calculations** - Common arithmetic errors
 7. **Verify answer** - Does it make sense?
 
-Master word problems and you'll excel in time & work questions across all aptitude exams! 🏆`
+Master word problems and you'll excel in time & work questions across all aptitude exams! ðŸ†`
 };

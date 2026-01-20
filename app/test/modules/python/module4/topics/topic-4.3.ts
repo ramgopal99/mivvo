@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_3: SubLesson = {
   id: "4.3",
   title: 'Accessing Tuple Elements',
   status: 'demo',
-  content: `# 🎯 Accessing Tuple Elements
+  content: "`# ðŸŽ¯ Accessing Tuple Elements
 
 Tuples are ordered, so you can access each item using its position (index). Works just like lists!
 
 ---
 
-## 📍 Index Basics
+## ðŸ“ Index Basics
 
 ### **Position Numbers (Indices)**
-\`\`\`python
+\`"\`\`python
 fruits = ("apple", "banana", "orange", "grape")
 
 # Index starts from 0
@@ -25,7 +25,7 @@ print(fruits[3])  # grape (fourth item)
 
 ---
 
-## 🔄 Negative Indexing
+## ðŸ”„ Negative Indexing
 
 ### **Count from the End**
 \`\`\`python
@@ -40,7 +40,7 @@ print(fruits[-4])  # apple (fourth to last/first)
 
 ---
 
-## 📏 Getting Tuple Length
+## ðŸ“ Getting Tuple Length
 
 ### **How Many Items?**
 \`\`\`python
@@ -55,7 +55,7 @@ if len(fruits) > 2:
 
 ---
 
-## 🔍 Check if Item Exists
+## ðŸ” Check if Item Exists
 
 ### **Using 'in' Operator**
 \`\`\`python
@@ -71,7 +71,7 @@ print("grape" not in fruits)  # True
 
 ---
 
-## 🔢 Count Items
+## ðŸ”¢ Count Items
 
 ### **Count Occurrences**
 \`\`\`python
@@ -82,7 +82,7 @@ print(numbers.count(5))  # 0 (not found)
 
 ---
 
-## 📍 Find Position
+## ðŸ“ Find Position
 
 ### **Index Method**
 \`\`\`python
@@ -93,7 +93,7 @@ print(fruits.index("orange"))  # 2
 
 ---
 
-## 🎨 Simple Examples
+## ðŸŽ¨ Simple Examples
 
 \`\`\`python
 # RGB color example
@@ -117,7 +117,7 @@ print(f"{name} is {age} years old, majoring in {major}")
 
 ---
 
-## ⚠️ Index Errors
+## âš ï¸ Index Errors
 
 ### **Avoid Going Out of Bounds**
 \`\`\`python
@@ -133,6 +133,7 @@ else:
     print("Index 3 doesn't exist")
 \`\`\`
 
-Accessing tuple elements works exactly like lists! 🔢`
+Accessing tuple elements works exactly like lists! ðŸ”¢`
 };
+
 

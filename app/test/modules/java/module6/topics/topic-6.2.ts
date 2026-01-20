@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_2: SubLesson = {
   id: "6.2",
   title: 'Creating Classes',
   status: 'completed',
-  content: `# 🏭 Creating Classes in Java
+  content: "`# ðŸ­ Creating Classes in Java
 
 Creating well-designed classes is fundamental to Java programming. A class definition includes fields, constructors, methods, and proper encapsulation. Understanding class creation patterns leads to maintainable and reusable code.
 
 ---
 
-## 📋 Class Declaration Syntax
+## ðŸ“‹ Class Declaration Syntax
 
 ### **Basic Class Structure**
-\`\`\`java
+\`"\`\`java
 // Complete class declaration
 public class Car {
     // Fields (instance variables)
@@ -96,7 +96,7 @@ public class GenericClass<T> {
 
 ---
 
-## 🔧 Fields (Instance Variables)
+## ðŸ”§ Fields (Instance Variables)
 
 ### **Field Declaration and Types**
 \`\`\`java
@@ -192,7 +192,7 @@ public class FieldInitialization {
 
 ---
 
-## 🏗️ Constructors
+## ðŸ—ï¸ Constructors
 
 ### **Constructor Types and Overloading**
 \`\`\`java
@@ -316,7 +316,7 @@ public class ConstructorChaining {
 
 ---
 
-## 🔄 Methods in Classes
+## ðŸ”„ Methods in Classes
 
 ### **Instance Methods**
 \`\`\`java
@@ -411,7 +411,7 @@ public class StaticMethods {
 
 ---
 
-## 🎯 Class Design Best Practices
+## ðŸŽ¯ Class Design Best Practices
 
 ### **Encapsulation**
 \`\`\`java
@@ -490,7 +490,7 @@ public class EncapsulationDemo {
 
 ---
 
-## 📚 Advanced Class Creation Patterns
+## ðŸ“š Advanced Class Creation Patterns
 
 ### **Builder Pattern for Complex Objects**
 \`\`\`java
@@ -632,11 +632,11 @@ public final class ImmutableClass {
 
 ---
 
-## 🎯 Class Creation Guidelines
+## ðŸŽ¯ Class Creation Guidelines
 
 ### **1. Single Responsibility Principle**
 \`\`\`java
-// ✅ Good: Each class has one clear responsibility
+// âœ… Good: Each class has one clear responsibility
 public class EmailService {
     public void sendEmail(String to, String subject, String body) { }
 }
@@ -650,7 +650,7 @@ public class OrderProcessor {
     public void processOrder(Order order) { }
 }
 
-// ❌ Bad: Class trying to do too many things
+// âŒ Bad: Class trying to do too many things
 // public class UtilityClass {
 //     public void sendEmail(String to, String subject, String body) { }
 //     public void saveToDatabase(Object data) { }
@@ -662,26 +662,26 @@ public class OrderProcessor {
 
 ### **2. Proper Naming Conventions**
 \`\`\`java
-// ✅ Good class names - nouns, descriptive, PascalCase
+// âœ… Good class names - nouns, descriptive, PascalCase
 public class CustomerOrder { }
 public class EmailService { }
 public class DatabaseConnection { }
 public class PaymentProcessor { }
 
-// ❌ Bad class names
+// âŒ Bad class names
 // public class order { }         // Not PascalCase
 // public class Customer { }      // Too generic
 // public class doSomething { }   // Verb, not noun
 // public class Manager { }       // Unclear what it manages
 
-// ✅ Good field names - camelCase, descriptive
+// âœ… Good field names - camelCase, descriptive
 public class GoodNaming {
     private String firstName;
     private String lastName;
     private int ageInYears;
     private boolean isActive;
 
-    // ✅ Good method names - verbs, camelCase
+    // âœ… Good method names - verbs, camelCase
     public void calculateTotal() { }
     public void sendNotification() { }
     public boolean isValidEmail() { }
@@ -689,7 +689,7 @@ public class GoodNaming {
     public void setAgeInYears(int age) { }
 }
 
-// ❌ Bad field names
+// âŒ Bad field names
 // private String fn;             // Unclear abbreviation
 // private int a;                 // Single letter
 // private boolean flag;          // Unclear what it flags
@@ -702,7 +702,7 @@ public class ConstructorPatterns {
     private int age;
     private String email;
 
-    // ✅ Good: All constructors initialize all fields
+    // âœ… Good: All constructors initialize all fields
     public ConstructorPatterns(String name, int age, String email) {
         // Common validation and initialization
         validateAndSetFields(name, age, email);
@@ -745,8 +745,9 @@ public class ConstructorPatterns {
 }
 \`\`\`
 
-Creating classes properly is essential for building robust Java applications. Following encapsulation principles, using appropriate constructors, and maintaining clean design patterns leads to maintainable and reusable code! 🏭`
+Creating classes properly is essential for building robust Java applications. Following encapsulation principles, using appropriate constructors, and maintaining clean design patterns leads to maintainable and reusable code! ðŸ­`
 };
+
 
 
 

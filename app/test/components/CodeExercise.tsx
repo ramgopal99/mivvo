@@ -160,7 +160,13 @@ const CodeExercise: React.FC<CodeExerciseProps> = ({
 
                     {/* Code block with syntax highlighting */}
                     <MarkdownCompound className="text-sm">
-                      {`\`\`\`python\n${question.solution}\n\`\`\``}
+                      {(() => {
+                        // Detect language based on code content
+                        const code = question.solution;
+                        const isPython = /\b(def|print\(|import|input\(|class|elif|len\(|range\()/g.test(code);
+                        const language = isPython ? 'python' : 'c';
+                        return `\`\`\`${language}\n${code}\n\`\`\``;
+                      })()}
                     </MarkdownCompound>
 
                     {/* Footer hint */}

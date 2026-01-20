@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_1: SubLesson = {
   id: "13.1",
   title: 'Concept of Linear Equation',
   status: 'completed',
-  content: `# 📐 Concept of Linear Equation
+  content: "`# ðŸ“ Concept of Linear Equation
 
 Welcome to the world of Linear Equations! Linear equations form the foundation of algebra and are essential for solving real-world problems. Understanding these concepts will help you tackle complex quantitative aptitude problems with confidence.
 
 ---
 
-## 🎯 What is a Linear Equation?
+## ðŸŽ¯ What is a Linear Equation?
 
 **A Linear Equation** is an equation where the highest power of the variable(s) is 1. It represents a straight line when graphed and has a constant rate of change.
 
@@ -21,12 +21,12 @@ Welcome to the world of Linear Equations! Linear equations form the foundation o
 - **Solutions**: Can have one, infinite, or no solutions
 
 ### **General Form**
-For one variable: \`ax + b = 0\` (where a ≠ 0)
-For two variables: \`ax + by + c = 0\` (where a, b ≠ 0)
+For one variable: \`"ax + b = 0\` (where a â‰  0)
+For two variables: \`ax + by + c = 0\` (where a, b â‰  0)
 
 ---
 
-## 🔢 Components of Linear Equations
+## ðŸ”¢ Components of Linear Equations
 
 ### **1. Variables**
 - Unknown quantities represented by letters (x, y, z)
@@ -45,12 +45,12 @@ For two variables: \`ax + by + c = 0\` (where a, b ≠ 0)
 
 ### **4. Operators**
 - Addition (+), Subtraction (-)
-- Multiplication (×), Division (÷)
+- Multiplication (Ã—), Division (Ã·)
 - Equality (=)
 
 ---
 
-## 📊 Types of Linear Equations
+## ðŸ“Š Types of Linear Equations
 
 ### **1. Linear Equation in One Variable**
 \`ax + b = c\`
@@ -77,7 +77,7 @@ For two variables: \`ax + by + c = 0\` (where a, b ≠ 0)
 
 ---
 
-## 🧮 Standard Forms
+## ðŸ§® Standard Forms
 
 ### **1. Slope-Intercept Form (Two Variables)**
 \`y = mx + c\`
@@ -96,7 +96,7 @@ For two variables: \`ax + by + c = 0\` (where a, b ≠ 0)
 
 ---
 
-## 🔄 Converting Between Forms
+## ðŸ”„ Converting Between Forms
 
 ### **Example: Convert to Slope-Intercept Form**
 **Equation:** \`2x + 3y - 6 = 0\`
@@ -112,46 +112,46 @@ For two variables: \`ax + by + c = 0\` (where a, b ≠ 0)
 
 ---
 
-## 🎯 Linear vs Non-Linear Equations
+## ðŸŽ¯ Linear vs Non-Linear Equations
 
 ### **Linear Equations**
-✅ \`2x + 3 = 5\`
-✅ \`x + y = 7\`
-✅ \`3x - 2y + 1 = 0\`
+âœ… \`2x + 3 = 5\`
+âœ… \`x + y = 7\`
+âœ… \`3x - 2y + 1 = 0\`
 
 ### **Non-Linear Equations**
-❌ \`x² + 2x + 1 = 0\` (quadratic)
-❌ \`x³ + x = 5\` (cubic)
-❌ \`1/x + 2 = 3\` (reciprocal)
-❌ \`√x + 1 = 3\` (radical)
+âŒ \`xÂ² + 2x + 1 = 0\` (quadratic)
+âŒ \`xÂ³ + x = 5\` (cubic)
+âŒ \`1/x + 2 = 3\` (reciprocal)
+âŒ \`âˆšx + 1 = 3\` (radical)
 
 ---
 
-## 📈 Real-Life Applications
+## ðŸ“ˆ Real-Life Applications
 
 ### **1. Cost Analysis**
 - Fixed costs + variable costs = total cost
-- \`Total Cost = Fixed Cost + (Variable Rate × Quantity)\`
+- \`Total Cost = Fixed Cost + (Variable Rate Ã— Quantity)\`
 
 ### **2. Distance-Speed-Time**
-- Distance = Speed × Time
-- \`d = s × t\`
+- Distance = Speed Ã— Time
+- \`d = s Ã— t\`
 
 ### **3. Age Problems**
 - Present ages in terms of relationships
 - \`Son's age = Father's age - difference\`
 
 ### **4. Mixture Problems**
-- Final amount = amount₁ + amount₂
+- Final amount = amountâ‚ + amountâ‚‚
 - Concentration relationships
 
 ### **5. Work Problems**
 - Work rates and time relationships
-- \`1/Total Time = 1/Time₁ + 1/Time₂\`
+- \`1/Total Time = 1/Timeâ‚ + 1/Timeâ‚‚\`
 
 ---
 
-## 🔧 Important Properties
+## ðŸ”§ Important Properties
 
 ### **1. Addition Property**
 - Adding same number to both sides keeps equality
@@ -163,42 +163,42 @@ For two variables: \`ax + by + c = 0\` (where a, b ≠ 0)
 
 ### **3. Multiplication Property**
 - Multiplying both sides by same non-zero number keeps equality
-- If \`a = b\`, then \`a × c = b × c\` (c ≠ 0)
+- If \`a = b\`, then \`a Ã— c = b Ã— c\` (c â‰  0)
 
 ### **4. Division Property**
 - Dividing both sides by same non-zero number keeps equality
-- If \`a = b\`, then \`a ÷ c = b ÷ c\` (c ≠ 0)
+- If \`a = b\`, then \`a Ã· c = b Ã· c\` (c â‰  0)
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Variable Identification**
-❌ Thinking \`x² + x = 0\` is linear
+âŒ Thinking \`xÂ² + x = 0\` is linear
 - Linear equations cannot have squared variables
 
 ### **Mistake 2: Incorrect Coefficient Handling**
-❌ Forgetting to multiply both sides when dividing
+âŒ Forgetting to multiply both sides when dividing
 - Always perform same operation on both sides
 
 ### **Mistake 3: Confusing Constants and Variables**
-❌ Treating numbers as variables
+âŒ Treating numbers as variables
 - Constants have fixed values, variables represent unknowns
 
 ### **Mistake 4: Wrong Degree Calculation**
-❌ Calling cubic equations linear
+âŒ Calling cubic equations linear
 - Check the highest power of variables
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Identify Linear Equations:**
 1. Which of these is a linear equation?
    - A) \`x + 2 = 5\`
-   - B) \`x² + 1 = 0\`
+   - B) \`xÂ² + 1 = 0\`
    - C) \`1/x = 3\`
-   - D) \`√x = 2\`
+   - D) \`âˆšx = 2\`
 
 2. Convert \`3x - 4 = 11\` to general form.
 
@@ -208,21 +208,21 @@ For two variables: \`ax + by + c = 0\` (where a, b ≠ 0)
 3. Find slope and intercept: \`y = -3x + 5\`
 
 ### **Application Problems:**
-1. A car rental costs ₹500 fixed + ₹20 per km. Express total cost equation.
+1. A car rental costs â‚¹500 fixed + â‚¹20 per km. Express total cost equation.
 2. John's age is 3 times his son's age. If son is x years, write the relationship.
 
 **Answers:**
 Identify: A) \`x + 2 = 5\`
-Form: 3x - 4 - 11 = 0 → 3x - 15 = 0
+Form: 3x - 4 - 11 = 0 â†’ 3x - 15 = 0
 Type: Two variables, general form
 Convert: 2x - y + 1 = 0
 Slope/Intercept: slope = -3, intercept = 5
-Cost: Total Cost = 500 + 20×(distance in km)
-Age: John = 3×(Son) → John's age = 3x
+Cost: Total Cost = 500 + 20Ã—(distance in km)
+Age: John = 3Ã—(Son) â†’ John's age = 3x
 
 ---
 
-## 🎓 Pro Tips for Linear Equations
+## ðŸŽ“ Pro Tips for Linear Equations
 
 1. **Always check the degree** - highest power should be 1
 2. **Identify variables and constants** clearly
@@ -234,7 +234,7 @@ Age: John = 3×(Son) → John's age = 3x
 
 ---
 
-## 🔢 Quick Reference
+## ðŸ”¢ Quick Reference
 
 | Form | Equation | Example |
 |------|----------|---------|
@@ -243,5 +243,5 @@ Age: John = 3×(Son) → John's age = 3x
 | Slope-Intercept | \`y = mx + c\` | \`y = 3x + 2\` |
 | Intercept | \`x/a + y/b = 1\` | \`x/2 + y/3 = 1\` |
 
-Master the concept of linear equations and you'll have a solid foundation for advanced algebraic topics! 🏆`
+Master the concept of linear equations and you'll have a solid foundation for advanced algebraic topics! ðŸ†`
 };

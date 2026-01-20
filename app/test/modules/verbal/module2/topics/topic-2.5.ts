@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_5: SubLesson = {
   id: "2.5",
   title: 'Prepositions',
   status: 'completed',
-  content: `# 🧭 Prepositions: Words That Connect
+  content: "`# ðŸ§­ Prepositions: Words That Connect
 
 Prepositions are small but powerful words that show relationships between nouns, pronouns, and other words in a sentence. They indicate location, time, direction, manner, and other connections. Mastering prepositions is essential for precise and natural English expression.
 
 ---
 
-## 🔍 WHAT ARE PREPOSITIONS?
+## ðŸ” WHAT ARE PREPOSITIONS?
 
 **Prepositions** are words that link nouns, pronouns, or phrases to other words in a sentence, showing relationships such as:
 - **Location/Place**: in, on, at, under, above
@@ -30,228 +30,228 @@ Prepositions are small but powerful words that show relationships between nouns,
 
 ---
 
-## 📍 PREPOSITIONS OF PLACE & LOCATION
+## ðŸ“ PREPOSITIONS OF PLACE & LOCATION
 
 ### At - Point/Exact Location
 Used for specific points or addresses
-- ✅ **at** the bus stop, **at** home, **at** school
-- ✅ **at** 123 Main Street, **at** the corner
-- ✅ **at** the top/bottom, **at** the entrance
+- âœ… **at** the bus stop, **at** home, **at** school
+- âœ… **at** 123 Main Street, **at** the corner
+- âœ… **at** the top/bottom, **at** the entrance
 
 ### In - Enclosed Spaces
 Used for cities, countries, rooms, containers
-- ✅ **in** Mumbai, **in** India, **in** Asia
-- ✅ **in** the room, **in** the box, **in** the car
-- ✅ **in** the morning, **in** March, **in** 2023
+- âœ… **in** Mumbai, **in** India, **in** Asia
+- âœ… **in** the room, **in** the box, **in** the car
+- âœ… **in** the morning, **in** March, **in** 2023
 
 ### On - Surfaces & Boundaries
 Used for surfaces, floors, streets, boundaries
-- ✅ **on** the table, **on** the floor, **on** the wall
-- ✅ **on** MG Road, **on** the left/right side
-- ✅ **on** the ground, **on** the ceiling
+- âœ… **on** the table, **on** the floor, **on** the wall
+- âœ… **on** MG Road, **on** the left/right side
+- âœ… **on** the ground, **on** the ceiling
 
 ### Other Place Prepositions:
-- ✅ **under** the table, **above** the clouds
-- ✅ **behind** the door, **in front of** the house
-- ✅ **beside** me, **next to** the window
-- ✅ **between** A and B, **among** the crowd
+- âœ… **under** the table, **above** the clouds
+- âœ… **behind** the door, **in front of** the house
+- âœ… **beside** me, **next to** the window
+- âœ… **between** A and B, **among** the crowd
 
 ---
 
-## ⏰ PREPOSITIONS OF TIME
+## â° PREPOSITIONS OF TIME
 
 ### At - Specific Times
 Used for clock times, meal times, holidays
-- ✅ **at** 3 o'clock, **at** noon, **at** midnight
-- ✅ **at** breakfast, **at** lunchtime, **at** dinner
-- ✅ **at** Christmas, **at** the weekend
+- âœ… **at** 3 o'clock, **at** noon, **at** midnight
+- âœ… **at** breakfast, **at** lunchtime, **at** dinner
+- âœ… **at** Christmas, **at** the weekend
 
 ### In - Months, Years, Seasons, Parts of Day
 Used for longer time periods
-- ✅ **in** January, **in** 2023, **in** the 21st century
-- ✅ **in** summer, **in** winter, **in** the morning
-- ✅ **in** the past, **in** the future
+- âœ… **in** January, **in** 2023, **in** the 21st century
+- âœ… **in** summer, **in** winter, **in** the morning
+- âœ… **in** the past, **in** the future
 
 ### On - Days & Dates
 Used for specific days and dates
-- ✅ **on** Monday, **on** Christmas Day
-- ✅ **on** January 1st, **on** my birthday
-- ✅ **on** that day, **on** the weekend
+- âœ… **on** Monday, **on** Christmas Day
+- âœ… **on** January 1st, **on** my birthday
+- âœ… **on** that day, **on** the weekend
 
 ### Other Time Prepositions:
-- ✅ **before** 5 o'clock, **after** lunch
-- ✅ **during** the meeting, **throughout** the year
-- ✅ **until** tomorrow, **since** yesterday
-- ✅ **for** two hours, **within** a week
+- âœ… **before** 5 o'clock, **after** lunch
+- âœ… **during** the meeting, **throughout** the year
+- âœ… **until** tomorrow, **since** yesterday
+- âœ… **for** two hours, **within** a week
 
 ---
 
-## 🎯 PREPOSITIONS OF DIRECTION & MOVEMENT
+## ðŸŽ¯ PREPOSITIONS OF DIRECTION & MOVEMENT
 
 ### To - Movement Towards
 Indicates destination or direction
-- ✅ going **to** school, walking **to** the park
-- ✅ from Mumbai **to** Delhi
-- ✅ pointing **to** the north
+- âœ… going **to** school, walking **to** the park
+- âœ… from Mumbai **to** Delhi
+- âœ… pointing **to** the north
 
 ### From - Movement Away
 Indicates origin or starting point
-- ✅ coming **from** home, arriving **from** abroad
-- ✅ **from** Monday **to** Friday
-- ✅ **from** top **to** bottom
+- âœ… coming **from** home, arriving **from** abroad
+- âœ… **from** Monday **to** Friday
+- âœ… **from** top **to** bottom
 
 ### Other Direction Prepositions:
-- ✅ **into** the room, **out of** the house
-- ✅ **towards** the station, **away from** danger
-- ✅ **across** the street, **through** the tunnel
-- ✅ **along** the road, **around** the corner
-- ✅ **up** the stairs, **down** the hill
+- âœ… **into** the room, **out of** the house
+- âœ… **towards** the station, **away from** danger
+- âœ… **across** the street, **through** the tunnel
+- âœ… **along** the road, **around** the corner
+- âœ… **up** the stairs, **down** the hill
 
 ---
 
-## 🔧 PREPOSITIONS OF MANNER & MEANS
+## ðŸ”§ PREPOSITIONS OF MANNER & MEANS
 
 ### By - Method or Means
 Shows how something is done
-- ✅ travel **by** train, **by** car, **by** air
-- ✅ pay **by** cash, **by** credit card
-- ✅ learn **by** heart, **by** experience
+- âœ… travel **by** train, **by** car, **by** air
+- âœ… pay **by** cash, **by** credit card
+- âœ… learn **by** heart, **by** experience
 
 ### With - Accompaniment or Tool
 Shows what accompanies or what tool is used
-- ✅ coffee **with** milk, tea **with** lemon
-- ✅ cut **with** a knife, write **with** a pen
-- ✅ agree **with** someone, argue **with** a friend
+- âœ… coffee **with** milk, tea **with** lemon
+- âœ… cut **with** a knife, write **with** a pen
+- âœ… agree **with** someone, argue **with** a friend
 
 ### Without - Absence
 Shows lack of something
-- ✅ live **without** water, work **without** electricity
-- ✅ leave **without** saying goodbye
-- ✅ complete **without** help
+- âœ… live **without** water, work **without** electricity
+- âœ… leave **without** saying goodbye
+- âœ… complete **without** help
 
 ---
 
-## 🛠️ PREPOSITIONS OF AGENCY & INSTRUMENT
+## ðŸ› ï¸ PREPOSITIONS OF AGENCY & INSTRUMENT
 
 ### By - Agent or Method
 Shows who performs the action or how something is done
-- ✅ killed **by** a snake, written **by** Shakespeare
-- ✅ travel **by** train, pay **by** card
-- ✅ multiply **by** five, divide **by** two
+- âœ… killed **by** a snake, written **by** Shakespeare
+- âœ… travel **by** train, pay **by** card
+- âœ… multiply **by** five, divide **by** two
 
 ### With - Instrument or Means
 Shows the tool or means used
-- ✅ cut **with** scissors, write **with** a pen
-- ✅ fill **with** water, cover **with** cloth
-- ✅ agree **with** someone, fight **with** courage
+- âœ… cut **with** scissors, write **with** a pen
+- âœ… fill **with** water, cover **with** cloth
+- âœ… agree **with** someone, fight **with** courage
 
 ---
 
-## 👥 PREPOSITIONS OF RELATIONSHIP
+## ðŸ‘¥ PREPOSITIONS OF RELATIONSHIP
 
 ### Of - Possession or Origin
 Shows belonging or source
-- ✅ book **of** mine, king **of** England
-- ✅ made **of** wood, full **of** water
-- ✅ afraid **of** dogs, fond **of** music
+- âœ… book **of** mine, king **of** England
+- âœ… made **of** wood, full **of** water
+- âœ… afraid **of** dogs, fond **of** music
 
 ### To - Direction or Relationship
 Shows movement toward or connection
-- ✅ go **to** school, fly **to** London
-- ✅ married **to** someone, kind **to** animals
-- ✅ listen **to** music, prefer tea **to** coffee
+- âœ… go **to** school, fly **to** London
+- âœ… married **to** someone, kind **to** animals
+- âœ… listen **to** music, prefer tea **to** coffee
 
 ### From - Source or Origin
 Shows starting point or separation
-- ✅ come **from** Mumbai, learn **from** experience
-- ✅ differ **from** others, suffer **from** illness
-- ✅ prevent **from** coming, abstain **from** smoking
+- âœ… come **from** Mumbai, learn **from** experience
+- âœ… differ **from** others, suffer **from** illness
+- âœ… prevent **from** coming, abstain **from** smoking
 
 ---
 
-## 🎯 PREPOSITIONS OF PURPOSE & REASON
+## ðŸŽ¯ PREPOSITIONS OF PURPOSE & REASON
 
 ### For - Purpose or Duration
 Shows intended use or time period
-- ✅ a gift **for** you, medicine **for** headache
-- ✅ study **for** two hours, wait **for** ages
-- ✅ famous **for** his paintings
+- âœ… a gift **for** you, medicine **for** headache
+- âœ… study **for** two hours, wait **for** ages
+- âœ… famous **for** his paintings
 
 ### To - Purpose (Infinitive)
 Used with verbs showing purpose
-- ✅ learn **to** drive, want **to** eat
-- ✅ too tired **to** walk
-- ✅ nice **to** meet you
+- âœ… learn **to** drive, want **to** eat
+- âœ… too tired **to** walk
+- âœ… nice **to** meet you
 
 ### Because of/On account of - Reason
 Show cause or reason
-- ✅ late **because of** traffic
-- ✅ absent **because of** illness
-- ✅ succeed **on account of** hard work
+- âœ… late **because of** traffic
+- âœ… absent **because of** illness
+- âœ… succeed **on account of** hard work
 
 ---
 
-## 🔗 COMPOUND PREPOSITIONS
+## ðŸ”— COMPOUND PREPOSITIONS
 
 ### Two-Word Prepositions:
-- ✅ according **to**, away **from**, because **of**
-- ✅ in front **of**, in spite **of**, on account **of**
-- ✅ on behalf **of**, on top **of**, with regard **to**
+- âœ… according **to**, away **from**, because **of**
+- âœ… in front **of**, in spite **of**, on account **of**
+- âœ… on behalf **of**, on top **of**, with regard **to**
 
 ### Three-Word Prepositions:
-- ✅ in accordance **with**, in addition **to**
-- ✅ in comparison **with**, in connection **with**
-- ✅ in contrast **to**, in relation **to**
+- âœ… in accordance **with**, in addition **to**
+- âœ… in comparison **with**, in connection **with**
+- âœ… in contrast **to**, in relation **to**
 
 ### Examples:
-- ✅ **According to** the news, it will rain.
-- ✅ **In front of** the school, there is a park.
-- ✅ **In spite of** his illness, he came.
-- ✅ **On behalf of** the company, I thank you.
-- ✅ **With regard to** your request, we will respond soon.
+- âœ… **According to** the news, it will rain.
+- âœ… **In front of** the school, there is a park.
+- âœ… **In spite of** his illness, he came.
+- âœ… **On behalf of** the company, I thank you.
+- âœ… **With regard to** your request, we will respond soon.
 
 ---
 
-## 💭 PREPOSITIONS IN PHRASAL VERBS
+## ðŸ’­ PREPOSITIONS IN PHRASAL VERBS
 
 ### Common Phrasal Verbs with Prepositions:
-- ✅ look **after** (care for), look **for** (search)
-- ✅ wait **for** (await), wait **on** (serve)
-- ✅ depend **on** (rely), depend **upon** (rely)
-- ✅ agree **to** (consent), agree **with** (concur)
-- ✅ belong **to** (possession), belong **with** (suit)
+- âœ… look **after** (care for), look **for** (search)
+- âœ… wait **for** (await), wait **on** (serve)
+- âœ… depend **on** (rely), depend **upon** (rely)
+- âœ… agree **to** (consent), agree **with** (concur)
+- âœ… belong **to** (possession), belong **with** (suit)
 
 ### Examples in Context:
-- ✅ I have to look **after** my sister.
-- ✅ He is waiting **for** his friend.
-- ✅ Success depends **on** hard work.
-- ✅ I agree **with** your opinion.
-- ✅ This book belongs **to** me.
+- âœ… I have to look **after** my sister.
+- âœ… He is waiting **for** his friend.
+- âœ… Success depends **on** hard work.
+- âœ… I agree **with** your opinion.
+- âœ… This book belongs **to** me.
 
 ---
 
-## 🎭 PREPOSITIONS IN IDIOMATIC EXPRESSIONS
+## ðŸŽ­ PREPOSITIONS IN IDIOMATIC EXPRESSIONS
 
 ### Common Idioms:
-- ✅ **at** the end of the day (ultimately)
-- ✅ **by** heart (memorize)
-- ✅ **for** good (permanently)
-- ✅ **in** time (punctually)
-- ✅ **on** purpose (intentionally)
-- ✅ **out** of order (not working)
-- ✅ **under** control (managed)
-- ✅ **up** to date (current)
+- âœ… **at** the end of the day (ultimately)
+- âœ… **by** heart (memorize)
+- âœ… **for** good (permanently)
+- âœ… **in** time (punctually)
+- âœ… **on** purpose (intentionally)
+- âœ… **out** of order (not working)
+- âœ… **under** control (managed)
+- âœ… **up** to date (current)
 
 ### Examples:
-- ✅ Learn the lesson **by heart**.
-- ✅ He did it **on purpose**.
-- ✅ The machine is **out of order**.
-- ✅ Everything is **under control**.
-- ✅ **At the end of the day**, honesty matters most.
+- âœ… Learn the lesson **by heart**.
+- âœ… He did it **on purpose**.
+- âœ… The machine is **out of order**.
+- âœ… Everything is **under control**.
+- âœ… **At the end of the day**, honesty matters most.
 
 ---
 
-## 🔗 PREPOSITIONAL PHRASES
+## ðŸ”— PREPOSITIONAL PHRASES
 
 ### What are Prepositional Phrases?
 **Preposition + Object** = Prepositional Phrase
@@ -264,47 +264,47 @@ Show cause or reason
 - **Complex Phrases**: The man **with the red hat** **in the corner** smiled.
 
 ### Common Prepositional Phrases:
-- ✅ **in front of**, **next to**, **close to**
-- ✅ **on behalf of**, **instead of**, **in spite of**
-- ✅ **in addition to**, **as well as**, **along with**
-- ✅ **according to**, **due to**, **owing to**
+- âœ… **in front of**, **next to**, **close to**
+- âœ… **on behalf of**, **instead of**, **in spite of**
+- âœ… **in addition to**, **as well as**, **along with**
+- âœ… **according to**, **due to**, **owing to**
 
 ---
 
-## ⚠️ COMMON PREPOSITION MISTAKES
+## âš ï¸ COMMON PREPOSITION MISTAKES
 
-### ❌ Wrong Usage:
-1. ❌ Live **at** Mumbai (city)
-   ✅ Live **in** Mumbai
+### âŒ Wrong Usage:
+1. âŒ Live **at** Mumbai (city)
+   âœ… Live **in** Mumbai
 
-2. ❌ Arrive **on** 5 o'clock (time)
-   ✅ Arrive **at** 5 o'clock
+2. âŒ Arrive **on** 5 o'clock (time)
+   âœ… Arrive **at** 5 o'clock
 
-3. ❌ Sit **on** the chair (position)
-   ✅ Sit **in** the chair (enclosed)
+3. âŒ Sit **on** the chair (position)
+   âœ… Sit **in** the chair (enclosed)
 
-4. ❌ Wait **since** 2 hours (starting point)
-   ✅ Wait **for** 2 hours (duration)
+4. âŒ Wait **since** 2 hours (starting point)
+   âœ… Wait **for** 2 hours (duration)
 
-5. ❌ Famous **to** his work (reason)
-   ✅ Famous **for** his work
+5. âŒ Famous **to** his work (reason)
+   âœ… Famous **for** his work
 
-6. ❌ Different **than** me (comparison)
-   ✅ Different **from** me
+6. âŒ Different **than** me (comparison)
+   âœ… Different **from** me
 
-7. ❌ Responsible **to** the project (relationship)
-   ✅ Responsible **for** the project
+7. âŒ Responsible **to** the project (relationship)
+   âœ… Responsible **for** the project
 
-### ✅ Correct Usage:
-- ✅ **at** home, **in** bed, **on** the bed
-- ✅ **at** night, **in** the morning, **on** Monday
-- ✅ **by** car, **on** foot, **in** a taxi
-- ✅ **listen to** music, **wait for** someone
-- ✅ **good at** math, **bad in** sports
+### âœ… Correct Usage:
+- âœ… **at** home, **in** bed, **on** the bed
+- âœ… **at** night, **in** the morning, **on** Monday
+- âœ… **by** car, **on** foot, **in** a taxi
+- âœ… **listen to** music, **wait for** someone
+- âœ… **good at** math, **bad in** sports
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Fill in the Correct Preposition
 1. I live ________ Mumbai ________ a small apartment.
@@ -345,24 +345,24 @@ Show cause or reason
 10. for
 
 ### Exercise 3: Correct the Preposition Errors
-1. ❌ He lives at India.
-   ✅ He lives **in** India.
+1. âŒ He lives at India.
+   âœ… He lives **in** India.
 
-2. ❌ The class starts on 9 o'clock.
-   ✅ The class starts **at** 9 o'clock.
+2. âŒ The class starts on 9 o'clock.
+   âœ… The class starts **at** 9 o'clock.
 
-3. ❌ I agree to your plan.
-   ✅ I agree **with** your plan.
+3. âŒ I agree to your plan.
+   âœ… I agree **with** your plan.
 
-4. ❌ She is good to mathematics.
-   ✅ She is good **at** mathematics.
+4. âŒ She is good to mathematics.
+   âœ… She is good **at** mathematics.
 
-5. ❌ Wait me at the station.
-   ✅ Wait **for** me at the station.
+5. âŒ Wait me at the station.
+   âœ… Wait **for** me at the station.
 
 ---
 
-## 📊 PREPOSITION CATEGORIES SUMMARY
+## ðŸ“Š PREPOSITION CATEGORIES SUMMARY
 
 | Category | Common Prepositions | Examples |
 |---|---|---|
@@ -375,22 +375,22 @@ Show cause or reason
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 Common Test Patterns:
+### ðŸ† Common Test Patterns:
 1. **Place vs Position**: in bed (enclosed) vs on bed (surface)
 2. **Time Specificity**: at (exact) vs in (general) vs on (days)
 3. **Transportation**: by + means, in + vehicle
 4. **Fixed Phrases**: according to, due to, in spite of
 5. **Idiomatic Usage**: good at, bad in, interested in
 
-### 💡 Quick Selection Strategy:
+### ðŸ’¡ Quick Selection Strategy:
 1. **Think of the relationship**: What connects the words?
 2. **Consider the logic**: Does it make sense spatially/temporally?
 3. **Check for patterns**: Similar situations use similar prepositions
 4. **Trust context**: Surrounding words often give clues
 
-### ⚡ Common Traps to Avoid:
+### âš¡ Common Traps to Avoid:
 - **in/on/at** confusion with places and times
 - **to/for** mix-up with purpose and duration
 - **by/with** errors in method vs instrument
@@ -398,21 +398,22 @@ Show cause or reason
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Group by Meaning**: Learn prepositions in categories (time, place, etc.)
 2. **Visualize Relationships**: Think of spatial/temporal connections
 3. **Practice Phrases**: Learn common prepositional phrases
 4. **Context Matters**: Same preposition can have different meanings
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Think of prepositions as "relationship bridges":**
-- 🌉 **in**: Inside/enclosed spaces
-- 🌉 **on**: Surface contact
-- 🌉 **at**: Specific points
-- 🌉 **to**: Movement toward destination
-- 🌉 **from**: Movement from origin
+- ðŸŒ‰ **in**: Inside/enclosed spaces
+- ðŸŒ‰ **on**: Surface contact
+- ðŸŒ‰ **at**: Specific points
+- ðŸŒ‰ **to**: Movement toward destination
+- ðŸŒ‰ **from**: Movement from origin
 
-**Master prepositions and you'll build perfect "bridges" in your sentences!** 🌉✨`
+**Master prepositions and you'll build perfect "bridges" in your sentences!** ðŸŒ‰âœ¨`"
 };
+

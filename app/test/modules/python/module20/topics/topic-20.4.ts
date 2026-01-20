@@ -1,20 +1,20 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_20_4: SubLesson = {
   id: "20.4",
   title: 'Snake Game - Scoring and Advanced Features',
   status: 'demo',
-  content: `# 🏆 Snake Game Project - Part 4: Scoring & Polish
+  content: "`# ðŸ† Snake Game Project - Part 4: Scoring & Polish
 
 Let's add high scores, sound effects, better visuals, and polish to make our Snake game feel professional!
 
 ---
 
-## 🛠️ Part 4: Advanced Features
+## ðŸ› ï¸ Part 4: Advanced Features
 
 ### **Step 1: High Score System**
 
-\`\`\`python
+\`"\`\`python
 # Add to settings.py
 HIGH_SCORE_FILE = "high_scores.txt"
 \`\`\`
@@ -153,7 +153,7 @@ def draw_game_over_screen(screen, score, snake_length, high_scores):
     # High score message
     if is_high_score(score):
         congrats_font = pygame.font.Font(None, 28)
-        congrats_text = congrats_font.render("🎉 New High Score!", True, YELLOW)
+        congrats_text = congrats_font.render("ðŸŽ‰ New High Score!", True, YELLOW)
         congrats_rect = congrats_text.get_rect(center=(WINDOW_WIDTH//2, WINDOW_HEIGHT//2 + 80))
         screen.blit(congrats_text, congrats_rect)
 
@@ -276,7 +276,7 @@ def main():
 
 ---
 
-## 🎯 Advanced Features Added
+## ðŸŽ¯ Advanced Features Added
 
 ### **Persistent High Scores**
 - **File storage**: Scores saved between game sessions
@@ -300,36 +300,36 @@ def main():
 
 ---
 
-## 🎮 Complete Game Features
+## ðŸŽ® Complete Game Features
 
 Your Snake game now includes:
-- ✅ **Smooth snake movement** with arrow key controls
-- ✅ **Random food spawning** with collision detection
-- ✅ **Score system** with points for eating food
-- ✅ **Game over detection** (walls and self-collision)
-- ✅ **High score persistence** across game sessions
-- ✅ **Sound effects** and background music (optional)
-- ✅ **Visual grid** and enhanced UI
-- ✅ **Restart functionality** with SPACE key
-- ✅ **Professional game over screen**
+- âœ… **Smooth snake movement** with arrow key controls
+- âœ… **Random food spawning** with collision detection
+- âœ… **Score system** with points for eating food
+- âœ… **Game over detection** (walls and self-collision)
+- âœ… **High score persistence** across game sessions
+- âœ… **Sound effects** and background music (optional)
+- âœ… **Visual grid** and enhanced UI
+- âœ… **Restart functionality** with SPACE key
+- âœ… **Professional game over screen**
 
 ---
 
-## 📁 File Structure
+## ðŸ“ File Structure
 
 \`\`\`
 snake_game/
-├── snake_game.py      # Main game file (all code above)
-├── settings.py        # Game constants
-├── high_scores.txt    # Auto-generated high scores
-├── eat.wav           # Sound effect (optional)
-├── game_over.wav     # Sound effect (optional)
-└── background.mp3    # Background music (optional)
+â”œâ”€â”€ snake_game.py      # Main game file (all code above)
+â”œâ”€â”€ settings.py        # Game constants
+â”œâ”€â”€ high_scores.txt    # Auto-generated high scores
+â”œâ”€â”€ eat.wav           # Sound effect (optional)
+â”œâ”€â”€ game_over.wav     # Sound effect (optional)
+â””â”€â”€ background.mp3    # Background music (optional)
 \`\`\`
 
 ---
 
-## 🚀 Running the Complete Game
+## ðŸš€ Running the Complete Game
 
 1. Create the \`snake_game\` folder
 2. Create \`settings.py\` with all constants
@@ -339,19 +339,20 @@ snake_game/
 
 ---
 
-## 🏆 Game Features Summary
+## ðŸ† Game Features Summary
 
 | Feature | Status | Description |
 |---------|--------|-------------|
-| Snake Movement | ✅ | Smooth directional controls |
-| Food System | ✅ | Random spawning with growth |
-| Collision Detection | ✅ | Walls and self-collision |
-| Scoring | ✅ | Points for eating food |
-| High Scores | ✅ | Persistent top 10 scores |
-| Sound Effects | ✅ | Audio feedback (optional) |
-| Visual Polish | ✅ | Grid, UI, animations |
-| Game States | ✅ | Menu, playing, game over |
+| Snake Movement | âœ… | Smooth directional controls |
+| Food System | âœ… | Random spawning with growth |
+| Collision Detection | âœ… | Walls and self-collision |
+| Scoring | âœ… | Points for eating food |
+| High Scores | âœ… | Persistent top 10 scores |
+| Sound Effects | âœ… | Audio feedback (optional) |
+| Visual Polish | âœ… | Grid, UI, animations |
+| Game States | âœ… | Menu, playing, game over |
 
-**Congratulations! You now have a complete, professional-quality Snake game! 🐍🎮**`
+**Congratulations! You now have a complete, professional-quality Snake game! ðŸðŸŽ®**`
 };
+
 

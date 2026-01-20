@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_5: SubLesson = {
   id: "11.5",
   title: 'Meeting & Crossing Problems',
   status: 'completed',
-  content: `# 🤝 Meeting & Crossing Problems
+  content: "`# ðŸ¤ Meeting & Crossing Problems
 
 Master problems where moving objects meet or cross each other - essential for aptitude exams involving relative motion.
 
 ---
 
-## 🎯 Meeting vs Crossing
+## ðŸŽ¯ Meeting vs Crossing
 
 ### **Meeting Problems**
 Objects approach each other and meet at a point.
@@ -20,17 +20,17 @@ Objects pass each other completely (like trains crossing).
 
 ---
 
-## 📊 Meeting Problems
+## ðŸ“Š Meeting Problems
 
 ### 1. **Two Objects Meeting**
-\`\`\`
-Distance = Speed₁ × Time + Speed₂ × Time
-Time = Distance / (Speed₁ + Speed₂)
+\`"\`\`
+Distance = Speedâ‚ Ã— Time + Speedâ‚‚ Ã— Time
+Time = Distance / (Speedâ‚ + Speedâ‚‚)
 \`\`\`
 
 ### 2. **Multiple Meetings**
-- **Same direction**: Relative speed = |S₁ - S₂|
-- **Opposite direction**: Relative speed = S₁ + S₂
+- **Same direction**: Relative speed = |Sâ‚ - Sâ‚‚|
+- **Opposite direction**: Relative speed = Sâ‚ + Sâ‚‚
 
 ### 3. **Meeting Points**
 \`\`\`
@@ -39,7 +39,7 @@ Distance covered by A : Distance covered by B = Speed A : Speed B
 
 ---
 
-## 🧮 Meeting Examples
+## ðŸ§® Meeting Examples
 
 ### Example 1: Basic Meeting
 **Two trains 120 km apart approach at 50 km/h and 70 km/h. When do they meet?**
@@ -53,22 +53,22 @@ Distance covered by A : Distance covered by B = Speed A : Speed B
 
 **Solution:**
 - Time = 100 / (20 + 30) = 100/50 = 2 hours
-- Distance from A: 20 × 2 = 40 km
-- Distance from B: 30 × 2 = 60 km
+- Distance from A: 20 Ã— 2 = 40 km
+- Distance from B: 30 Ã— 2 = 60 km
 
 ### Example 3: Multiple Meetings
 **Two persons start from same point. A walks north at 4 km/h, B walks south at 3 km/h. Distance after 2 hours?**
 
 **Solution:**
-- Distance between them = (4 + 3) × 2 = 14 km
+- Distance between them = (4 + 3) Ã— 2 = 14 km
 
 ---
 
-## 📊 Crossing Problems
+## ðŸ“Š Crossing Problems
 
 ### 1. **Train Crossing**
 \`\`\`
-Time = (Length₁ + Length₂) / Relative Speed
+Time = (Lengthâ‚ + Lengthâ‚‚) / Relative Speed
 \`\`\`
 
 ### 2. **Person Crossing Road**
@@ -83,14 +83,14 @@ Time = Width of road / Speed of person
 
 ---
 
-## 🧮 Crossing Examples
+## ðŸ§® Crossing Examples
 
 ### Example 4: Train Crossing
 **Two trains 100m and 120m long moving towards each other at 36 km/h and 54 km/h. Crossing time?**
 
 **Solution:**
-- Convert speeds: 36 km/h = 36 × 5/18 = 10 m/s
-- 54 km/h = 54 × 5/18 = 15 m/s
+- Convert speeds: 36 km/h = 36 Ã— 5/18 = 10 m/s
+- 54 km/h = 54 Ã— 5/18 = 15 m/s
 - Relative speed = 10 + 15 = 25 m/s
 - Distance to cross = 100 + 120 = 220 m
 - Time = 220 / 25 = 8.8 seconds
@@ -99,7 +99,7 @@ Time = Width of road / Speed of person
 **Train 200m long crosses 300m platform at 72 km/h. Time?**
 
 **Solution:**
-- Speed = 72 × 5/18 = 20 m/s
+- Speed = 72 Ã— 5/18 = 20 m/s
 - Distance = 200 + 300 = 500 m
 - Time = 500 / 20 = 25 seconds
 
@@ -107,13 +107,13 @@ Time = Width of road / Speed of person
 **Man crosses 50m wide road at 2 m/s. Car approaching at 54 km/h. Safe crossing time?**
 
 **Solution:**
-- Car speed = 54 × 5/18 = 15 m/s
+- Car speed = 54 Ã— 5/18 = 15 m/s
 - Time for man = 50 / 2 = 25 seconds
-- Car covers 15 × 25 = 375 m in that time
+- Car covers 15 Ã— 25 = 375 m in that time
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Meeting Time Formula**
 \`\`\`
@@ -127,19 +127,19 @@ Time = (Length A + Length B) / Relative speed
 
 ### **Distance Ratio**
 \`\`\`
-Distance covered ∝ Speed × Time
+Distance covered âˆ Speed Ã— Time
 A:B = Speed A : Speed B
 \`\`\`
 
 ### **Quick Unit Conversion**
 \`\`\`
 For train problems: Convert km/h to m/s immediately
-Speed (m/s) = Speed (km/h) × 5/18
+Speed (m/s) = Speed (km/h) Ã— 5/18
 \`\`\`
 
 ---
 
-## 🔢 Advanced Meeting & Crossing
+## ðŸ”¢ Advanced Meeting & Crossing
 
 ### **Complex Scenarios**
 - **Multiple objects meeting**
@@ -159,7 +159,7 @@ Speed (m/s) = Speed (km/h) × 5/18
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 7: Three Persons Meeting
 **A, B, C start from same point. A at 3 km/h, B at 4 km/h, C at 5 km/h. Find meeting times.**
@@ -183,7 +183,7 @@ Speed (m/s) = Speed (km/h) × 5/18
 
 ---
 
-## 🚨 Meeting & Crossing Mistakes
+## ðŸš¨ Meeting & Crossing Mistakes
 
 1. **Length confusion**: Total length vs individual lengths
 2. **Direction errors**: Wrong relative speed calculation
@@ -193,7 +193,7 @@ Speed (m/s) = Speed (km/h) × 5/18
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** Trains 100 km apart at 50 km/h, 60 km/h towards each other. Meeting time?
 **2.** Train 150m at 54 km/h crosses 200m platform. Time?
@@ -205,7 +205,7 @@ Speed (m/s) = Speed (km/h) × 5/18
 
 ---
 
-## 🎓 Meeting & Crossing Strategies
+## ðŸŽ“ Meeting & Crossing Strategies
 
 1. **Identify problem type** - meeting or crossing
 2. **Calculate relative speed** correctly
@@ -213,5 +213,5 @@ Speed (m/s) = Speed (km/h) × 5/18
 4. **Convert units** consistently
 5. **Check if crossing complete** or just meeting
 
-Master meeting and crossing problems and handle complex motion scenarios! 🏆`
+Master meeting and crossing problems and handle complex motion scenarios! ðŸ†`
 };

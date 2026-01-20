@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_1: SubLesson = {
   id: "12.1",
   title: 'Introduction to Collections',
   status: 'completed',
-  content: `# 📚 Java Collections Framework
+  content: "`# ðŸ“š Java Collections Framework
 
 The Java Collections Framework is one of the most important and widely used parts of the Java standard library. It provides a unified architecture for storing, manipulating, and processing groups of objects, offering powerful alternatives to traditional arrays.
 
 ---
 
-## 🎯 What are Collections?
+## ðŸŽ¯ What are Collections?
 
 ### **Understanding Collections**
 
@@ -35,38 +35,38 @@ Standard interfaces allow easy switching between implementations.
 
 ---
 
-## 🏗️ Collections Framework Architecture
+## ðŸ—ï¸ Collections Framework Architecture
 
 ### **Core Interfaces**
 
-The Collections Framework is built around a set of core interfaces in the \`java.util\` package:
+The Collections Framework is built around a set of core interfaces in the \`"java.util\` package:
 
 \`\`\`java
 // Core Collection interfaces hierarchy
 public class CollectionHierarchy {
     /*
      * Iterable (base interface for all collections)
-     * └── Collection (root interface for collections)
-     *     ├── List (ordered collection, allows duplicates)
-     *     │   ├── ArrayList (resizable array implementation)
-     *     │   ├── LinkedList (doubly-linked list implementation)
-     *     │   └── Vector (synchronized resizable array)
-     *     ├── Set (unordered collection, no duplicates)
-     *     │   ├── HashSet (hash table implementation)
-     *     │   ├── LinkedHashSet (maintains insertion order)
-     *     │   ├── TreeSet (sorted set implementation)
-     *     │   └── EnumSet (for enum types)
-     *     └── Queue (ordered collection for processing elements)
-     *         ├── PriorityQueue (priority-based ordering)
-     *         ├── LinkedList (also implements Queue)
-     *         └── ArrayDeque (double-ended queue)
+     * â””â”€â”€ Collection (root interface for collections)
+     *     â”œâ”€â”€ List (ordered collection, allows duplicates)
+     *     â”‚   â”œâ”€â”€ ArrayList (resizable array implementation)
+     *     â”‚   â”œâ”€â”€ LinkedList (doubly-linked list implementation)
+     *     â”‚   â””â”€â”€ Vector (synchronized resizable array)
+     *     â”œâ”€â”€ Set (unordered collection, no duplicates)
+     *     â”‚   â”œâ”€â”€ HashSet (hash table implementation)
+     *     â”‚   â”œâ”€â”€ LinkedHashSet (maintains insertion order)
+     *     â”‚   â”œâ”€â”€ TreeSet (sorted set implementation)
+     *     â”‚   â””â”€â”€ EnumSet (for enum types)
+     *     â””â”€â”€ Queue (ordered collection for processing elements)
+     *         â”œâ”€â”€ PriorityQueue (priority-based ordering)
+     *         â”œâ”€â”€ LinkedList (also implements Queue)
+     *         â””â”€â”€ ArrayDeque (double-ended queue)
      *
      * Map (key-value pairs, separate from Collection hierarchy)
-     * ├── HashMap (hash table implementation)
-     * ├── LinkedHashMap (maintains insertion order)
-     * ├── TreeMap (sorted map implementation)
-     * ├── Hashtable (synchronized hash table)
-     * └── EnumMap (for enum keys)
+     * â”œâ”€â”€ HashMap (hash table implementation)
+     * â”œâ”€â”€ LinkedHashMap (maintains insertion order)
+     * â”œâ”€â”€ TreeMap (sorted map implementation)
+     * â”œâ”€â”€ Hashtable (synchronized hash table)
+     * â””â”€â”€ EnumMap (for enum keys)
      */
 }
 \`\`\`
@@ -89,7 +89,7 @@ public class Collections {
 
 ---
 
-## 📋 The List Interface
+## ðŸ“‹ The List Interface
 
 ### **What is a List?**
 
@@ -260,7 +260,7 @@ public class ListOperations {
 
 ---
 
-## 🎯 The Set Interface
+## ðŸŽ¯ The Set Interface
 
 ### **What is a Set?**
 
@@ -401,7 +401,7 @@ public class LinkedHashSetExample {
 
 ---
 
-## 🔑 The Map Interface
+## ðŸ”‘ The Map Interface
 
 ### **What is a Map?**
 
@@ -457,7 +457,7 @@ public class HashMapExample {
         // Iterating through entries
         System.out.println("\\nAll entries:");
         for (Map.Entry<String, Integer> entry : studentGrades.entrySet()) {
-            System.out.println(entry.getKey() + " → " + entry.getValue());
+            System.out.println(entry.getKey() + " â†’ " + entry.getValue());
         }
 
         // Removing entries
@@ -545,7 +545,7 @@ public class LinkedHashMapExample {
 
 ---
 
-## 🧮 Generics in Collections
+## ðŸ§® Generics in Collections
 
 ### **Type Safety with Generics**
 
@@ -649,7 +649,7 @@ public class GenericMethods {
 
 ---
 
-## 🎯 Practical Collection Examples
+## ðŸŽ¯ Practical Collection Examples
 
 ### **Student Management System**
 
@@ -806,7 +806,7 @@ public class WordFrequencyCounter {
 
 ---
 
-## 🎯 Summary
+## ðŸŽ¯ Summary
 
 The Java Collections Framework provides powerful data structures for managing groups of objects:
 
@@ -868,4 +868,5 @@ System.out.println("Set size: " + set.size());
 Output: List size: 3, Set size: 2
 `
 };
+
 

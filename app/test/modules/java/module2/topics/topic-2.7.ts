@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_7: SubLesson = {
   id: "2.7",
   title: 'Input & User Interaction',
   status: 'completed',
-  content: `# 📁 Input/Output and File Handling in Java
+  content: "`# ðŸ“ Input/Output and File Handling in Java
 
 Java provides comprehensive I/O capabilities for reading from and writing to various sources including files, networks, and memory. Understanding Java I/O is essential for building real-world applications.
 
 ---
 
-## 📖 Understanding Java I/O Streams
+## ðŸ“– Understanding Java I/O Streams
 
 ### **What are Streams?**
 Streams represent flow of data between a program and a data source/sink. Java uses streams for all I/O operations.
 
-\`\`\`java
+\`"\`\`java
 import java.io.*;
 
 public class StreamBasics {
@@ -39,7 +39,7 @@ public class StreamBasics {
 
 ---
 
-## 📄 File Handling with File Class
+## ðŸ“„ File Handling with File Class
 
 ### **File Operations**
 \`\`\`java
@@ -88,7 +88,7 @@ public class FileOperations {
 
 ---
 
-## ✍️ Writing to Files
+## âœï¸ Writing to Files
 
 ### **FileWriter (Character Stream)**
 \`\`\`java
@@ -178,7 +178,7 @@ public class PrintWriterDemo {
 
 ---
 
-## 📖 Reading from Files
+## ðŸ“– Reading from Files
 
 ### **FileReader (Character Stream)**
 \`\`\`java
@@ -264,7 +264,7 @@ public class ScannerReading {
 
 ---
 
-## 🔄 Modern File I/O (Java 7+ - NIO.2)
+## ðŸ”„ Modern File I/O (Java 7+ - NIO.2)
 
 ### **Files Class (Simple Operations)**
 \`\`\`java
@@ -345,7 +345,7 @@ public class PathOperations {
 
 ---
 
-## 📂 Directory Operations
+## ðŸ“‚ Directory Operations
 
 ### **Creating and Managing Directories**
 \`\`\`java
@@ -389,7 +389,7 @@ public class DirectoryOperations {
 
 ---
 
-## 📋 File and Directory Information
+## ðŸ“‹ File and Directory Information
 
 ### **File Attributes**
 \`\`\`java
@@ -430,7 +430,7 @@ public class FileAttributes {
 
 ---
 
-## 🔒 Serialization (Object I/O)
+## ðŸ”’ Serialization (Object I/O)
 
 ### **Object Serialization**
 \`\`\`java
@@ -480,7 +480,7 @@ public class SerializationDemo {
 
 ---
 
-## ⚠️ I/O Best Practices and Error Handling
+## âš ï¸ I/O Best Practices and Error Handling
 
 ### **Proper Resource Management**
 \`\`\`java
@@ -595,7 +595,7 @@ public class IOErrorHandling {
 
 ---
 
-## 🚀 Performance Considerations
+## ðŸš€ Performance Considerations
 
 ### **Buffered vs Unbuffered I/O**
 \`\`\`java
@@ -641,7 +641,8 @@ public class IOPerformance {
 }
 \`\`\`
 
-Java I/O provides powerful and flexible ways to work with files and data streams. Always use try-with-resources for automatic cleanup, handle exceptions properly, and consider using buffered I/O for better performance! 📁`
+Java I/O provides powerful and flexible ways to work with files and data streams. Always use try-with-resources for automatic cleanup, handle exceptions properly, and consider using buffered I/O for better performance! ðŸ“`
 };
+
 
 

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_14: SubLesson = {
   id: "2.14",
   title: 'Fractions & Decimals',
   status: 'completed',
-  content: `# 🔢 Fractions & Decimals
+  content: "`# ðŸ”¢ Fractions & Decimals
 
 Fractions and decimals are fundamental concepts in mathematics with extensive applications in quantitative aptitude. Understanding the relationship between fractions and decimals is crucial for solving percentage problems, ratios, and complex calculations.
 
 ---
 
-## 🎯 Understanding Fractions
+## ðŸŽ¯ Understanding Fractions
 
 ### Definition
 A fraction represents a part of a whole, written as a/b where a is numerator and b is denominator.
@@ -21,7 +21,7 @@ A fraction represents a part of a whole, written as a/b where a is numerator and
 Numerator < Denominator: 2/3, 5/7, 3/8
 
 #### 2. **Improper Fractions**
-Numerator ≥ Denominator: 7/3, 5/2, 9/9
+Numerator â‰¥ Denominator: 7/3, 5/2, 9/9
 
 #### 3. **Mixed Fractions**
 Whole number + proper fraction: 2 1/3, 5 2/7
@@ -31,13 +31,13 @@ Represent same value: 1/2 = 2/4 = 3/6
 
 ---
 
-## 📊 Operations with Fractions
+## ðŸ“Š Operations with Fractions
 
 ### 1. **Addition**
 Find common denominator (LCM of denominators)
 
 **Example**: 1/2 + 1/3
-\`\`\`
+\`"\`\`
 LCM of 2,3 = 6
 1/2 = 3/6, 1/3 = 2/6
 3/6 + 2/6 = 5/6
@@ -56,23 +56,23 @@ LCM of 4,6 = 12
 ### 3. **Multiplication**
 Multiply numerators and denominators separately.
 
-**Example**: 2/3 × 3/4 = (2×3)/(3×4) = 6/12 = 1/2
+**Example**: 2/3 Ã— 3/4 = (2Ã—3)/(3Ã—4) = 6/12 = 1/2
 
 ### 4. **Division**
 Multiply by reciprocal.
 
-**Example**: 2/3 ÷ 3/4 = 2/3 × 4/3 = 8/9
+**Example**: 2/3 Ã· 3/4 = 2/3 Ã— 4/3 = 8/9
 
 ---
 
-## 🧮 Converting Between Fractions and Decimals
+## ðŸ§® Converting Between Fractions and Decimals
 
 ### 1. **Fraction to Decimal**
 Divide numerator by denominator.
 
-**Example**: 3/4 = 3 ÷ 4 = 0.75
+**Example**: 3/4 = 3 Ã· 4 = 0.75
 
-**Example**: 1/3 = 1 ÷ 3 = 0.333... = 0.3̅
+**Example**: 1/3 = 1 Ã· 3 = 0.333... = 0.3Ì…
 
 ### 2. **Decimal to Fraction**
 
@@ -80,15 +80,15 @@ Divide numerator by denominator.
 **Example**: 0.75 = 75/100 = 3/4
 
 #### Recurring Decimals
-**Example**: 0.3̅ = 1/3
-**Example**: 0.1̅4̅ = 14/99
+**Example**: 0.3Ì… = 1/3
+**Example**: 0.1Ì…4Ì… = 14/99
 
 ### 3. **Mixed Numbers**
 **Example**: 2.5 = 2 1/2 = 5/2
 
 ---
 
-## 📈 Decimal Operations
+## ðŸ“ˆ Decimal Operations
 
 ### 1. **Addition and Subtraction**
 Align decimal points.
@@ -99,34 +99,34 @@ Align decimal points.
 ### 2. **Multiplication**
 Multiply as whole numbers, then place decimal point.
 
-**Example**: 2.5 × 1.2
+**Example**: 2.5 Ã— 1.2
 \`\`\`
-25 × 12 = 300
+25 Ã— 12 = 300
 Decimal places: 1 + 1 = 2
-30.0 → 30.00 (add zeros)
+30.0 â†’ 30.00 (add zeros)
 3.00 (move decimal left 2 places)
-30.00 → 3.00
+30.00 â†’ 3.00
 \`\`\`
 
 ### 3. **Division**
 Move decimal points to make whole numbers.
 
-**Example**: 2.5 ÷ 1.25
+**Example**: 2.5 Ã· 1.25
 \`\`\`
-2.5 ÷ 1.25 = 25 ÷ 12.5 = 250 ÷ 125 = 2
+2.5 Ã· 1.25 = 25 Ã· 12.5 = 250 Ã· 125 = 2
 \`\`\`
 
 ---
 
-## 🎯 Comparing Fractions and Decimals
+## ðŸŽ¯ Comparing Fractions and Decimals
 
 ### Method 1: **Convert to Decimals**
 **Example**: Compare 3/4 and 5/6
-3/4 = 0.75, 5/6 ≈ 0.833, so 3/4 < 5/6
+3/4 = 0.75, 5/6 â‰ˆ 0.833, so 3/4 < 5/6
 
 ### Method 2: **Cross Multiplication**
 **Example**: Compare 2/3 and 3/4
-2×4 = 8, 3×3 = 9, so 2/3 < 3/4
+2Ã—4 = 8, 3Ã—3 = 9, so 2/3 < 3/4
 
 ### Method 3: **Common Denominator**
 **Example**: Compare 1/2 and 2/3
@@ -134,7 +134,7 @@ Common denominator 6: 3/6 and 4/6, so 1/2 < 2/3
 
 ---
 
-## 🧠 Problem Solving Tricks
+## ðŸ§  Problem Solving Tricks
 
 ### Trick 1: **Mixed Operations**
 Combine fractions and decimals carefully.
@@ -148,20 +148,20 @@ Always simplify fractions.
 **Example**: 12/18 = 2/3
 
 ### Trick 3: **Reciprocal for Division**
-**Example**: 3/4 ÷ 2/5 = 3/4 × 5/2 = 15/8
+**Example**: 3/4 Ã· 2/5 = 3/4 Ã— 5/2 = 15/8
 
 ### Trick 4: **Percentage Calculations**
 **Example**: 25% = 1/4 = 0.25
 
 ---
 
-## 📊 Special Cases
+## ðŸ“Š Special Cases
 
 ### 1. **Unit Fractions**
 Denominator is 1: 5/1 = 5
 
 ### 2. **Zero Fractions**
-0/a = 0 (for a ≠ 0)
+0/a = 0 (for a â‰  0)
 
 ### 3. **Undefined Fractions**
 a/0 is undefined
@@ -171,10 +171,10 @@ Can be positive or negative: -2/3, 2/(-3) = -2/3
 
 ---
 
-## 🎯 Applications in Aptitude
+## ðŸŽ¯ Applications in Aptitude
 
 ### 1. **Percentage Problems**
-**Example**: 25% of 200 = (25/100) × 200 = 50
+**Example**: 25% of 200 = (25/100) Ã— 200 = 50
 
 ### 2. **Ratio Problems**
 **Example**: Divide 100 in ratio 2:3
@@ -182,8 +182,8 @@ Total parts = 5, each part = 20
 2 parts = 40, 3 parts = 60
 
 ### 3. **Mixture Problems**
-**Example**: Mix 2L milk at ₹20/L with 3L water. Cost per liter?
-Total cost = 2×20 = 40, Total volume = 5L, Cost/L = 40/5 = 8
+**Example**: Mix 2L milk at â‚¹20/L with 3L water. Cost per liter?
+Total cost = 2Ã—20 = 40, Total volume = 5L, Cost/L = 40/5 = 8
 
 ### 4. **Work Problems**
 **Example**: A does work in 6 days, B in 8 days. Together?
@@ -192,7 +192,7 @@ Time = 24/7 days
 
 ---
 
-## 🔍 Decimal Patterns
+## ðŸ” Decimal Patterns
 
 ### 1. **Terminating Decimals**
 End after finite digits: 0.5, 0.25, 0.125
@@ -204,26 +204,26 @@ Continue infinitely
 Pattern repeats: 0.333..., 0.142857...
 
 ### 4. **Non-repeating Decimals**
-No pattern: π, √2
+No pattern: Ï€, âˆš2
 
 ---
 
-## 🧮 Fraction-Decimal Equivalents
+## ðŸ§® Fraction-Decimal Equivalents
 
 ### Common Equivalents:
 - 1/2 = 0.5
-- 1/3 ≈ 0.333...
+- 1/3 â‰ˆ 0.333...
 - 1/4 = 0.25
 - 1/5 = 0.2
-- 1/6 ≈ 0.1666...
-- 1/7 ≈ 0.142857...
+- 1/6 â‰ˆ 0.1666...
+- 1/7 â‰ˆ 0.142857...
 - 1/8 = 0.125
-- 1/9 ≈ 0.111...
+- 1/9 â‰ˆ 0.111...
 - 1/10 = 0.1
 
 ---
 
-## 📝 Practice Examples
+## ðŸ“ Practice Examples
 
 ### Example 1: Fraction Operations
 Simplify 2/3 + 1/4 - 1/6
@@ -238,9 +238,9 @@ Convert 0.75 to fraction
 **Solution**: 0.75 = 75/100 = 3/4
 
 ### Example 3: Mixed Operations
-Calculate 2.5 × 1.2
+Calculate 2.5 Ã— 1.2
 
-**Solution**: 2.5 × 1.2 = 25 × 12 / 100 = 300/100 = 3
+**Solution**: 2.5 Ã— 1.2 = 25 Ã— 12 / 100 = 300/100 = 3
 
 ### Example 4: Comparison
 Which is larger: 5/8 or 0.625?
@@ -251,15 +251,16 @@ Which is larger: 5/8 or 0.625?
 If 2/3 of a number is 40, what is 3/4 of the number?
 
 **Solution**: Let number be x
-(2/3)x = 40 → x = 40 × 3/2 = 60
-(3/4)×60 = 45
+(2/3)x = 40 â†’ x = 40 Ã— 3/2 = 60
+(3/4)Ã—60 = 45
 
 ### Example 6: Percentage with Fractions
 What is 37.5% of 240?
 
 **Solution**: 37.5% = 375/1000 = 3/8
-(3/8)×240 = 90
+(3/8)Ã—240 = 90
 
-Master fractions and decimals for percentage and ratio problems! 🚀`
+Master fractions and decimals for percentage and ratio problems! ðŸš€`
 };
+
 

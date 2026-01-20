@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_6: SubLesson = {
   id: "16.6",
   title: 'List Comprehensions and Comprehensions',
   status: 'demo',
-  content: `# 📋 List Comprehensions and Comprehensions
+  content: "`# ðŸ“‹ List Comprehensions and Comprehensions
 
 List comprehensions are Python's elegant way to create lists from iterables with built-in filtering and transformation. Combined with dictionary and set comprehensions, they provide powerful and readable syntax for data manipulation. Let's master these essential Python features!
 
 ---
 
-## 🎯 What are List Comprehensions?
+## ðŸŽ¯ What are List Comprehensions?
 
 **List comprehensions** provide a concise way to create lists by applying an expression to each item in an iterable, with optional filtering.
 
 ### **Basic Syntax**
-\`\`\`python
+\`"\`\`python
 [expression for item in iterable if condition]
 \`\`\`
 
@@ -27,7 +27,7 @@ List comprehensions are Python's elegant way to create lists from iterables with
 
 ---
 
-## 💻 Basic List Comprehensions
+## ðŸ’» Basic List Comprehensions
 
 ### **Simple Transformation**
 \`\`\`python
@@ -80,7 +80,7 @@ print(classification)  # ['odd', 'even', 'odd', 'even', 'odd', 'even']
 
 ---
 
-## 🎨 Advanced List Comprehensions
+## ðŸŽ¨ Advanced List Comprehensions
 
 ### **Nested Loops**
 \`\`\`python
@@ -131,7 +131,7 @@ print(student_info)
 
 ---
 
-## 🔧 Dictionary Comprehensions
+## ðŸ”§ Dictionary Comprehensions
 
 ### **Basic Dictionary Comprehension**
 \`\`\`python
@@ -171,7 +171,7 @@ print(grades)  # {'Alice': 'Pass', 'Bob': 'Pass', 'Charlie': 'Fail'}
 
 ---
 
-## ⚡ Set Comprehensions
+## âš¡ Set Comprehensions
 
 ### **Basic Set Comprehension**
 \`\`\`python
@@ -211,7 +211,7 @@ print(sym_diff)  # {1, 2, 3, 6, 7, 8}
 
 ---
 
-## 🎯 Generator Expressions
+## ðŸŽ¯ Generator Expressions
 
 ### **Memory-Efficient Alternatives**
 \`\`\`python
@@ -247,7 +247,7 @@ print(list(nested_gen))  # [(0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1)]
 
 ---
 
-## 🧪 Practical Examples
+## ðŸ§ª Practical Examples
 
 ### **Example 1: Data Processing**
 \`\`\`python
@@ -322,7 +322,7 @@ print(flattened)  # [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
 ---
 
-## ⚡ Performance Considerations
+## âš¡ Performance Considerations
 
 ### **When to Use Comprehensions**
 \`\`\`python
@@ -354,10 +354,10 @@ print(f"List memory: {sys.getsizeof(squares_lc)} bytes")
 
 ### **Comprehension vs Loop Readability**
 \`\`\`python
-# ✅ Readable comprehension
+# âœ… Readable comprehension
 even_squares = [x ** 2 for x in range(10) if x % 2 == 0]
 
-# ❌ Overly complex comprehension (hard to read)
+# âŒ Overly complex comprehension (hard to read)
 complex_result = [
     x * y + z 
     for x in range(5) 
@@ -368,7 +368,7 @@ complex_result = [
     if z == 0
 ]
 
-# ✅ Better as a regular loop for complex logic
+# âœ… Better as a regular loop for complex logic
 complex_result = []
 for x in range(5):
     if x > 1:
@@ -381,43 +381,43 @@ for x in range(5):
 
 ---
 
-## 🎯 Comprehension Best Practices
+## ðŸŽ¯ Comprehension Best Practices
 
 ### **Readability Guidelines**
 \`\`\`python
-# ✅ Keep it simple
+# âœ… Keep it simple
 simple = [x ** 2 for x in range(10)]
 
-# ✅ Use descriptive variable names
+# âœ… Use descriptive variable names
 squares_of_even_numbers = [num ** 2 for num in numbers if num % 2 == 0]
 
-# ❌ Avoid deeply nested comprehensions
+# âŒ Avoid deeply nested comprehensions
 # Hard to read and debug
 nested = [x for x in [y for y in range(10) if y > 5] if x < 8]
 
-# ✅ Break complex comprehensions into multiple steps
+# âœ… Break complex comprehensions into multiple steps
 temp = [y for y in range(10) if y > 5]
 result = [x for x in temp if x < 8]
 \`\`\`
 
 ### **Performance Tips**
 \`\`\`python
-# ✅ Use generator expressions for large datasets
+# âœ… Use generator expressions for large datasets
 large_gen = (x ** 2 for x in range(1000000))  # Memory efficient
 
-# ✅ Prefer comprehensions over map/filter for simple operations
+# âœ… Prefer comprehensions over map/filter for simple operations
 # Map/filter can be less readable
 traditional = list(map(lambda x: x ** 2, filter(lambda x: x % 2 == 0, range(10))))
 comprehension = [x ** 2 for x in range(10) if x % 2 == 0]
 
-# ✅ Use set/dict comprehensions when appropriate
+# âœ… Use set/dict comprehensions when appropriate
 unique_values = {x for x in data if x > 0}  # Set comprehension
 value_map = {x: x ** 2 for x in range(5)}  # Dict comprehension
 \`\`\`
 
 ---
 
-## 🧪 Advanced Patterns
+## ðŸ§ª Advanced Patterns
 
 ### **Comprehension with walrus operator (Python 3.8+)**
 \`\`\`python
@@ -459,7 +459,7 @@ print(formatted)  # ['a=1', 'b=2', 'c=3']
 
 ---
 
-## 🚀 Key Takeaways
+## ðŸš€ Key Takeaways
 
 1. **List comprehensions** create lists with concise, readable syntax
 2. **Dictionary and set comprehensions** work similarly for other data types
@@ -469,6 +469,7 @@ print(formatted)  # ['a=1', 'b=2', 'c=3']
 6. **Performance** is often better than traditional loops
 7. **Readability** should guide when to use comprehensions vs loops
 
-**Comprehensions are a cornerstone of Pythonic code. They make data manipulation elegant, efficient, and readable! 📋**`
+**Comprehensions are a cornerstone of Pythonic code. They make data manipulation elegant, efficient, and readable! ðŸ“‹**`
 };
+
 

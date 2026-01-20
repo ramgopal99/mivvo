@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_6: SubLesson = {
   id: "8.6",
   title: 'Final Keyword and Immutability',
   status: 'completed',
-  content: `# 🔒 Final Keyword and Immutability in Java
+  content: "`# ðŸ”’ Final Keyword and Immutability in Java
 
 Master immutability and the final keyword for creating robust, thread-safe classes!
 
 ---
 
-## 🎯 The Final Keyword
+## ðŸŽ¯ The Final Keyword
 
 ### **1. Final Variables**
-\`\`\`java
+\`"\`\`java
 public class FinalVariables {
     // Final instance variable - must be initialized
     private final String name;
@@ -118,7 +118,7 @@ public class FinalClassExamples {
 
 ---
 
-## 🛡️ Immutability
+## ðŸ›¡ï¸ Immutability
 
 ### **What is Immutability?**
 
@@ -204,7 +204,7 @@ public class ImmutabilityBenefits {
 
 ---
 
-## 🔄 Mutable vs Immutable Objects
+## ðŸ”„ Mutable vs Immutable Objects
 
 ### **Mutable Objects (Problematic)**
 \`\`\`java
@@ -266,7 +266,7 @@ public final class SafePerson {
 
 ---
 
-## 🎨 Builder Pattern for Immutable Objects
+## ðŸŽ¨ Builder Pattern for Immutable Objects
 
 ### **Immutable Builder Pattern**
 \`\`\`java
@@ -384,7 +384,7 @@ public class BuilderExample {
 
 ---
 
-## 🏆 Java's Built-in Immutable Classes
+## ðŸ† Java's Built-in Immutable Classes
 
 ### **String Immutability**
 \`\`\`java
@@ -455,7 +455,7 @@ public class CollectionsImmutability {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **final variables** cannot be reassigned after initialization
 2. **final methods** cannot be overridden in subclasses
@@ -466,6 +466,7 @@ public class CollectionsImmutability {
 7. **Java's built-in classes** like String, Integer, and Collections are immutable
 8. **Thread safety** comes naturally with immutability
 
-**Next:** Learn about inner classes and nested classes! 🚀`
+**Next:** Learn about inner classes and nested classes! ðŸš€`
 };
+
 

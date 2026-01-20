@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_1: SubLesson = {
   id: "6.1",
   title: 'Concept of Average',
   status: 'completed',
-  content: `# 📊 Concept of Average
+  content: "`# ðŸ“Š Concept of Average
 
 Welcome to the world of averages! Average, also known as arithmetic mean, is a fundamental statistical measure that helps us understand central tendency. It's everywhere in daily life and competitive exams. Master the concept and you'll handle data analysis with confidence.
 
 ---
 
-## 🎯 What is an Average?
+## ðŸŽ¯ What is an Average?
 
 **Average** (or Arithmetic Mean) is the sum of all values divided by the number of values. It represents the "typical" or "central" value in a dataset.
 
@@ -27,7 +27,7 @@ Welcome to the world of averages! Average, also known as arithmetic mean, is a f
 
 ---
 
-## 📈 Understanding Through Examples
+## ðŸ“ˆ Understanding Through Examples
 
 ### **Example 1: Simple Average**
 **Problem:** Find average of 5, 7, 9, 11, 13.
@@ -35,7 +35,7 @@ Welcome to the world of averages! Average, also known as arithmetic mean, is a f
 **Solution:**
 - Sum = 5 + 7 + 9 + 11 + 13 = 45
 - Count = 5 numbers
-- Average = 45 ÷ 5 = 9
+- Average = 45 Ã· 5 = 9
 
 **Interpretation:** 9 is the "balancing point" - some numbers above, some below.
 
@@ -44,20 +44,20 @@ Welcome to the world of averages! Average, also known as arithmetic mean, is a f
 
 **Solution:**
 - Total runs = 45 + 67 + 23 + 89 + 56 = 280
-- Average = 280 ÷ 5 = 56 runs per match
+- Average = 280 Ã· 5 = 56 runs per match
 
 ---
 
-## 🔢 Types of Averages
+## ðŸ”¢ Types of Averages
 
 ### **1. Arithmetic Mean (Simple Average)**
 - What we've been discussing
 - Most common type
-- Formula: Sum ÷ Count
+- Formula: Sum Ã· Count
 
 ### **2. Weighted Average**
 - Values have different importance
-- Formula: (Weight₁ × Value₁ + Weight₂ × Value₂) ÷ (Weight₁ + Weight₂)
+- Formula: (Weightâ‚ Ã— Valueâ‚ + Weightâ‚‚ Ã— Valueâ‚‚) Ã· (Weightâ‚ + Weightâ‚‚)
 
 ### **3. Geometric Mean**
 - Used for growth rates, percentages
@@ -65,7 +65,7 @@ Welcome to the world of averages! Average, also known as arithmetic mean, is a f
 
 ### **4. Harmonic Mean**
 - Used for rates, speeds
-- Formula: n ÷ (1/x₁ + 1/x₂ + ... + 1/xₙ)
+- Formula: n Ã· (1/xâ‚ + 1/xâ‚‚ + ... + 1/xâ‚™)
 
 ### **5. Median**
 - Middle value when sorted
@@ -77,12 +77,12 @@ Welcome to the world of averages! Average, also known as arithmetic mean, is a f
 
 ---
 
-## 🎯 Properties of Arithmetic Mean
+## ðŸŽ¯ Properties of Arithmetic Mean
 
 ### **1. Balancing Point Property**
-\`\`\`
+\`"\`\`
 Sum of deviations from mean = 0
-(M₁ - A) + (M₂ - A) + ... + (Mₙ - A) = 0
+(Mâ‚ - A) + (Mâ‚‚ - A) + ... + (Mâ‚™ - A) = 0
 \`\`\`
 
 ### **2. Effect of Change in Values**
@@ -91,21 +91,21 @@ Sum of deviations from mean = 0
 
 ### **3. Effect of Scale Change**
 - Mean transforms with linear transformations
-- New mean = a × Old mean + b (for x → ax + b)
+- New mean = a Ã— Old mean + b (for x â†’ ax + b)
 
 ---
 
-## 📊 Average vs. Other Measures
+## ðŸ“Š Average vs. Other Measures
 
 | Measure | Definition | Use Case | Affected by Extreme Values |
 |---------|------------|----------|---------------------------|
-| Mean | Sum ÷ Count | General average | Yes |
+| Mean | Sum Ã· Count | General average | Yes |
 | Median | Middle value | Income, house prices | No |
 | Mode | Most frequent | Shoe sizes, grades | No |
 
 ---
 
-## 🧮 Real-Life Applications
+## ðŸ§® Real-Life Applications
 
 ### **1. Academic Performance**
 - Class average marks
@@ -139,32 +139,32 @@ Sum of deviations from mean = 0
 
 ---
 
-## 🎯 Common Misconceptions
+## ðŸŽ¯ Common Misconceptions
 
 ### **Myth 1: Average = Typical Value**
-❌ Not always true with skewed data
+âŒ Not always true with skewed data
 - Example: Average income can be misleading with billionaires
 
 ### **Myth 2: Average = Middle Value**
-❌ Average ≠ Median
+âŒ Average â‰  Median
 - Average is mathematical center, median is positional center
 
 ### **Myth 3: Average Represents Everyone**
-❌ Average can hide variations
+âŒ Average can hide variations
 - Some above, some below - doesn't show distribution
 
 ### **Myth 4: Higher Average = Better**
-❌ Depends on context
+âŒ Depends on context
 - Higher average marks might mean easier exam, not better students
 
 ---
 
-## 💡 Why Averages Can Be Misleading
+## ðŸ’¡ Why Averages Can Be Misleading
 
 ### **Example: Income Average**
-Consider incomes: ₹10,000; ₹15,000; ₹20,000; ₹25,000; ₹10,000,000
-- Average = ₹2,020,000
-- But 4 out of 5 people earn less than ₹25,000!
+Consider incomes: â‚¹10,000; â‚¹15,000; â‚¹20,000; â‚¹25,000; â‚¹10,000,000
+- Average = â‚¹2,020,000
+- But 4 out of 5 people earn less than â‚¹25,000!
 
 ### **Example: Test Scores**
 Scores: 95, 95, 95, 95, 45
@@ -175,10 +175,10 @@ Scores: 95, 95, 95, 95, 45
 
 ---
 
-## 🔄 Average in Different Contexts
+## ðŸ”„ Average in Different Contexts
 
 ### **1. Time Averages**
-- Average speed = Total distance ÷ Total time
+- Average speed = Total distance Ã· Total time
 - Not simple average of speeds
 
 ### **2. Rate Averages**
@@ -191,7 +191,7 @@ Scores: 95, 95, 95, 95, 45
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Basic Concept:**
 1. What is the average of 12, 15, 18, 21, 24?
@@ -199,37 +199,37 @@ Scores: 95, 95, 95, 95, 45
 3. Average age of 5 people is 28. Sum of ages?
 
 ### **Real-Life Scenarios:**
-1. Average temperature over 7 days: 25°C, 27°C, 24°C, 26°C, 28°C, 23°C, 29°C
+1. Average temperature over 7 days: 25Â°C, 27Â°C, 24Â°C, 26Â°C, 28Â°C, 23Â°C, 29Â°C
 2. Average marks in 6 subjects: 85, 90, 88, 92, 87, 89
-3. Average monthly salary: ₹25,000, ₹28,000, ₹30,000, ₹26,000, ₹29,000
+3. Average monthly salary: â‚¹25,000, â‚¹28,000, â‚¹30,000, â‚¹26,000, â‚¹29,000
 
 **Answers:**
 Basic: 18, 87.6, 140
-Real-Life: 26°C, 88.5, ₹27,600
+Real-Life: 26Â°C, 88.5, â‚¹27,600
 
 ---
 
-## 🎓 Pro Tips for Exams
+## ðŸŽ“ Pro Tips for Exams
 
 1. **Read the question carefully** - is it asking for mean, median, or mode?
 2. **Check for outliers** - extreme values can skew the average
 3. **Verify calculations** - sum should be divisible by count
-4. **Consider the context** - average speed ≠ average of speeds
+4. **Consider the context** - average speed â‰  average of speeds
 5. **Use common sense** - average should be reasonable for the data
 6. **Watch for weighted averages** - not all values equally important
 
 ---
 
-## 🔢 Quick Reference
+## ðŸ”¢ Quick Reference
 
 | Situation | Average Type | Formula |
 |-----------|--------------|---------|
-| Equal values | Arithmetic Mean | Sum ÷ Count |
-| Different importance | Weighted Average | Σ(weight × value) ÷ Σ(weight) |
-| Rates/Speeds | Harmonic Mean | n ÷ Σ(1/value) |
+| Equal values | Arithmetic Mean | Sum Ã· Count |
+| Different importance | Weighted Average | Î£(weight Ã— value) Ã· Î£(weight) |
+| Rates/Speeds | Harmonic Mean | n Ã· Î£(1/value) |
 | Growth rates | Geometric Mean | nth root of product |
 | Middle value | Median | Sort and pick middle |
 | Most common | Mode | Most frequent value |
 
-Master the concept of average and you'll understand data like a pro! 🏆`
+Master the concept of average and you'll understand data like a pro! ðŸ†`
 };

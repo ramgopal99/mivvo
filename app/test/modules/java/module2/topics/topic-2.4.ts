@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_4: SubLesson = {
   id: "2.4",
   title: 'Loops',
   status: 'completed',
-  content: `# 🔧 Methods in Java
+  content: "`# ðŸ”§ Methods in Java
 
 Methods are fundamental building blocks in Java. They allow you to organize code into reusable, modular units that perform specific tasks.
 
 ---
 
-## 🏗️ Method Basics
+## ðŸ—ï¸ Method Basics
 
 ### **What is a Method?**
 A method is a block of code that performs a specific task and can be called multiple times from different parts of your program.
 
-\`\`\`java
+\`"\`\`java
 public class MethodBasics {
     // Method declaration
     public static void greet() {
@@ -39,7 +39,7 @@ public class MethodBasics {
 
 ---
 
-## 📝 Method Parameters and Arguments
+## ðŸ“ Method Parameters and Arguments
 
 ### **Parameters vs Arguments**
 - **Parameters**: Variables declared in method signature
@@ -97,7 +97,7 @@ public class ParameterPassing {
 
 ---
 
-## 🔄 Method Overloading
+## ðŸ”„ Method Overloading
 
 ### **What is Method Overloading?**
 Method overloading allows multiple methods with the same name but different parameter lists.
@@ -138,7 +138,7 @@ public class MethodOverloading {
 
 ---
 
-## 📤 Return Values
+## ðŸ“¤ Return Values
 
 ### **Methods with Return Values**
 \`\`\`java
@@ -204,7 +204,7 @@ public class VoidMethods {
 
 ---
 
-## 🔄 Recursion
+## ðŸ”„ Recursion
 
 ### **What is Recursion?**
 Recursion is when a method calls itself to solve a problem by breaking it down into smaller, similar subproblems.
@@ -279,7 +279,7 @@ public class RecursionVsIteration {
 
 ---
 
-## 🎯 Variable Scope
+## ðŸŽ¯ Variable Scope
 
 ### **Local Variables**
 \`\`\`java
@@ -326,14 +326,14 @@ public class BlockScope {
 
 ---
 
-## 🛠️ Method Best Practices
+## ðŸ› ï¸ Method Best Practices
 
 ### **1. Single Responsibility Principle**
 Each method should do one thing and do it well.
 
 \`\`\`java
 public class BestPractices {
-    // ✅ Good: Single responsibility
+    // âœ… Good: Single responsibility
     public static boolean isValidEmail(String email) {
         return email.contains("@") && email.contains(".");
     }
@@ -345,7 +345,7 @@ public class BestPractices {
         }
     }
 
-    // ❌ Bad: Multiple responsibilities
+    // âŒ Bad: Multiple responsibilities
     public static void processUserData(String email, String name) {
         // Validation
         if (!email.contains("@")) {
@@ -372,7 +372,7 @@ public class BestPractices {
 ### **2. Meaningful Method Names**
 \`\`\`java
 public class MethodNaming {
-    // ✅ Good names
+    // âœ… Good names
     public static double calculateCircleArea(double radius) {
         return Math.PI * radius * radius;
     }
@@ -384,7 +384,7 @@ public class MethodNaming {
                password.matches(".*\\d.*");
     }
 
-    // ❌ Bad names
+    // âŒ Bad names
     public static double calc(double r) {  // Too vague
         return Math.PI * r * r;
     }
@@ -426,12 +426,12 @@ public static long factorial(int n) {
 
 ---
 
-## ⚠️ Common Method Mistakes
+## âš ï¸ Common Method Mistakes
 
 ### **1. Missing Return Statement**
 \`\`\`java
 public class CommonMistakes {
-    // ❌ Error: Not all code paths return a value
+    // âŒ Error: Not all code paths return a value
     public static int getMax(int a, int b) {
         if (a > b) {
             return a;
@@ -439,7 +439,7 @@ public class CommonMistakes {
         // Missing return statement for b >= a case
     }
 
-    // ✅ Fixed
+    // âœ… Fixed
     public static int getMaxFixed(int a, int b) {
         if (a > b) {
             return a;
@@ -449,7 +449,7 @@ public class CommonMistakes {
         // Or: return (a > b) ? a : b;
     }
 
-    // ❌ Error: Dead code after return
+    // âŒ Error: Dead code after return
     public static void deadCode() {
         System.out.println("This executes");
         return;
@@ -465,12 +465,12 @@ public class CommonMistakes {
 ### **2. Infinite Recursion**
 \`\`\`java
 public class InfiniteRecursion {
-    // ❌ Infinite recursion - no base case
+    // âŒ Infinite recursion - no base case
     public static int badFactorial(int n) {
         return n * badFactorial(n - 1);  // Will cause StackOverflowError
     }
 
-    // ✅ Proper recursion with base case
+    // âœ… Proper recursion with base case
     public static int goodFactorial(int n) {
         if (n <= 1) {
             return 1;  // Base case stops recursion
@@ -485,6 +485,7 @@ public class InfiniteRecursion {
 }
 \`\`\`
 
-Methods are the building blocks of Java programs. Master method creation, calling, and best practices to write clean, maintainable code! 🔧`
+Methods are the building blocks of Java programs. Master method creation, calling, and best practices to write clean, maintainable code! ðŸ”§`
 };
+
 

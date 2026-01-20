@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_13: SubLesson = {
   id: "3.13",
-  title: 'Sign Change Rules (+ / −)',
+  title: 'Sign Change Rules (+ / âˆ’)',
   status: 'completed',
-  content: `# 🔢 Sign Change Rules (+ / −)
+  content: "`# ðŸ”¢ Sign Change Rules (+ / âˆ’)
 
 Understanding how signs behave in mathematical operations is fundamental to simplification. Sign change rules determine whether results are positive or negative based on the operations and numbers involved. Mastering these rules prevents calculation errors in aptitude exams.
 
 ---
 
-## 🎯 What are Sign Change Rules?
+## ðŸŽ¯ What are Sign Change Rules?
 
 **Sign change rules** govern how positive (+) and negative (-) signs interact in mathematical operations. These rules are crucial for:
 - Addition and subtraction
@@ -20,7 +20,7 @@ Understanding how signs behave in mathematical operations is fundamental to simp
 
 ---
 
-## 📊 Basic Sign Rules
+## ðŸ“Š Basic Sign Rules
 
 ### **Addition and Subtraction**
 
@@ -40,32 +40,32 @@ Subtraction is addition of the negative:
 
 ---
 
-## 🧮 Multiplication Sign Rules
+## ðŸ§® Multiplication Sign Rules
 
 ### **Two Numbers**
-- **Positive × Positive = Positive**: 3 × 4 = 12
-- **Positive × Negative = Negative**: 3 × (-4) = -12
-- **Negative × Positive = Negative**: (-3) × 4 = -12
-- **Negative × Negative = Positive**: (-3) × (-4) = 12
+- **Positive Ã— Positive = Positive**: 3 Ã— 4 = 12
+- **Positive Ã— Negative = Negative**: 3 Ã— (-4) = -12
+- **Negative Ã— Positive = Negative**: (-3) Ã— 4 = -12
+- **Negative Ã— Negative = Positive**: (-3) Ã— (-4) = 12
 
 ### **Three or More Numbers**
 Count the negative signs:
-- **Even negatives = Positive**: (-2) × (-3) × (-4) = +24
-- **Odd negatives = Negative**: (-2) × (-3) × 4 = -24
+- **Even negatives = Positive**: (-2) Ã— (-3) Ã— (-4) = +24
+- **Odd negatives = Negative**: (-2) Ã— (-3) Ã— 4 = -24
 
 ### **Practical Examples**
-- Temperature: +5°C × (-2) hours = -10°C (cools down)
-- Money: +$100 × (-3) days = -$300 (loss over 3 days)
+- Temperature: +5Â°C Ã— (-2) hours = -10Â°C (cools down)
+- Money: +$100 Ã— (-3) days = -$300 (loss over 3 days)
 
 ---
 
-## 🔢 Division Sign Rules
+## ðŸ”¢ Division Sign Rules
 
 ### **Two Numbers**
-- **Positive ÷ Positive = Positive**: 12 ÷ 3 = 4
-- **Positive ÷ Negative = Negative**: 12 ÷ (-3) = -4
-- **Negative ÷ Positive = Negative**: (-12) ÷ 3 = -4
-- **Negative ÷ Negative = Positive**: (-12) ÷ (-3) = 4
+- **Positive Ã· Positive = Positive**: 12 Ã· 3 = 4
+- **Positive Ã· Negative = Negative**: 12 Ã· (-3) = -4
+- **Negative Ã· Positive = Negative**: (-12) Ã· 3 = -4
+- **Negative Ã· Negative = Positive**: (-12) Ã· (-3) = 4
 
 ### **Key Points**
 - Division follows the same rules as multiplication
@@ -73,40 +73,40 @@ Count the negative signs:
 - Zero divided by any number (except zero) is zero
 
 ### **Examples**
-- Work rate: 60 pages ÷ (-2) hours = -30 pages/hour
-- Debt: -$500 ÷ 5 months = -$100/month
+- Work rate: 60 pages Ã· (-2) hours = -30 pages/hour
+- Debt: -$500 Ã· 5 months = -$100/month
 
 ---
 
-## 🎯 Powers and Roots Sign Rules
+## ðŸŽ¯ Powers and Roots Sign Rules
 
 ### **Even Powers**
-- **Any base to even power = Positive**: (-2)² = 4, (-3)⁴ = 81
-- **Zero to even power = Zero**: 0² = 0, 0⁴ = 0
+- **Any base to even power = Positive**: (-2)Â² = 4, (-3)â´ = 81
+- **Zero to even power = Zero**: 0Â² = 0, 0â´ = 0
 
 ### **Odd Powers**
-- **Positive base to odd power = Positive**: 2³ = 8
-- **Negative base to odd power = Negative**: (-2)³ = -8
-- **Zero to odd power = Zero**: 0³ = 0
+- **Positive base to odd power = Positive**: 2Â³ = 8
+- **Negative base to odd power = Negative**: (-2)Â³ = -8
+- **Zero to odd power = Zero**: 0Â³ = 0
 
 ### **Square Roots**
-- **Square root of positive number = Positive**: √4 = 2 (not -2)
-- **Square root of negative number = Imaginary**: √(-4) = 2i
+- **Square root of positive number = Positive**: âˆš4 = 2 (not -2)
+- **Square root of negative number = Imaginary**: âˆš(-4) = 2i
 - **Principal square root is always non-negative**
 
 ### **Even Roots of Negative Numbers**
-- **Not real**: ∛(-8) = -2 (works for odd roots)
-- **Even roots of negatives are imaginary**: ⁴√(-16) is imaginary
+- **Not real**: âˆ›(-8) = -2 (works for odd roots)
+- **Even roots of negatives are imaginary**: â´âˆš(-16) is imaginary
 
 ---
 
-## 🧠 Complex Sign Operations
+## ðŸ§  Complex Sign Operations
 
 ### **Order of Operations with Signs**
 Follow BODMAS, considering signs at each step.
 
-**Example:** -3 + 4 × (-2) - (-5)
-1. 4 × (-2) = -8
+**Example:** -3 + 4 Ã— (-2) - (-5)
+1. 4 Ã— (-2) = -8
 2. -3 + (-8) = -11
 3. -11 - (-5) = -11 + 5 = -6
 
@@ -120,7 +120,7 @@ Follow BODMAS, considering signs at each step.
 
 ---
 
-## 🎯 Sign Rules in Equations
+## ðŸŽ¯ Sign Rules in Equations
 
 ### **Solving Linear Equations**
 Apply sign rules when isolating variables.
@@ -141,61 +141,61 @@ Sign changes when multiplying/dividing by negatives.
 
 ---
 
-## 🚨 Common Sign Mistakes to Avoid
+## ðŸš¨ Common Sign Mistakes to Avoid
 
-### ❌ **Wrong Multiplication Signs**
-\`\`\`
-Wrong: (-3) × (-4) = -12
-Right: (-3) × (-4) = +12
-\`\`\`
-
-### ❌ **Division Sign Errors**
-\`\`\`
-Wrong: (-12) ÷ (-3) = -4
-Right: (-12) ÷ (-3) = +4
+### âŒ **Wrong Multiplication Signs**
+\`"\`\`
+Wrong: (-3) Ã— (-4) = -12
+Right: (-3) Ã— (-4) = +12
 \`\`\`
 
-### ❌ **Power Sign Confusion**
+### âŒ **Division Sign Errors**
 \`\`\`
-Wrong: (-2)² = -4
-Right: (-2)² = +4
+Wrong: (-12) Ã· (-3) = -4
+Right: (-12) Ã· (-3) = +4
 \`\`\`
 
-### ❌ **Double Negative Misapplication**
+### âŒ **Power Sign Confusion**
+\`\`\`
+Wrong: (-2)Â² = -4
+Right: (-2)Â² = +4
+\`\`\`
+
+### âŒ **Double Negative Misapplication**
 \`\`\`
 Wrong: 5 - (-3) = 5 - 3 = 2
 Right: 5 - (-3) = 5 + 3 = 8
 \`\`\`
 
-### ❌ **Order of Operations with Signs**
+### âŒ **Order of Operations with Signs**
 \`\`\`
-Wrong: -3 + 4 × -2 = -3 + 4 × -2 = -3 + -8 = -11
-Right: -3 + 4 × -2 = -3 + (4 × -2) = -3 + (-8) = -11 ✓
+Wrong: -3 + 4 Ã— -2 = -3 + 4 Ã— -2 = -3 + -8 = -11
+Right: -3 + 4 Ã— -2 = -3 + (4 Ã— -2) = -3 + (-8) = -11 âœ“
 \`\`\`
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Basic Operations:**
 1. 5 + (-3) = ?
-2. (-4) × (-6) = ?
-3. 12 ÷ (-3) = ?
-4. (-2)³ = ?
+2. (-4) Ã— (-6) = ?
+3. 12 Ã· (-3) = ?
+4. (-2)Â³ = ?
 
 ### **Complex Expressions:**
-1. -5 + 3 × (-2) = ?
-2. (-8) ÷ (-2) × 3 = ?
-3. 4 - (-2) × (-3) = ?
+1. -5 + 3 Ã— (-2) = ?
+2. (-8) Ã· (-2) Ã— 3 = ?
+3. 4 - (-2) Ã— (-3) = ?
 
 ### **Powers and Roots:**
-1. (-3)² = ?
-2. (-2)⁴ = ?
-3. √(36) = ? (principal root)
-4. ∛(-27) = ?
+1. (-3)Â² = ?
+2. (-2)â´ = ?
+3. âˆš(36) = ? (principal root)
+4. âˆ›(-27) = ?
 
 ### **Word Problems:**
-1. Temperature drops 5°C per hour for 3 hours. Change?
+1. Temperature drops 5Â°C per hour for 3 hours. Change?
 2. Bank balance -$200, deposit $150. New balance?
 3. Investment loses $300 over 4 months. Monthly loss?
 4. Runner completes 5 laps of -400m track. Distance?
@@ -203,25 +203,25 @@ Right: -3 + 4 × -2 = -3 + (4 × -2) = -3 + (-8) = -11 ✓
 ### **Equations:**
 1. Solve: -2x + 5 = -7
 2. Solve: 3x - (-4) = 10
-3. Solve: -x ÷ 2 = -6
+3. Solve: -x Ã· 2 = -6
 
 ### **Inequalities:**
 1. Solve: -3x > 9
-2. Solve: 2x - (-1) ≤ 5
+2. Solve: 2x - (-1) â‰¤ 5
 
 **Answers:**
 Basic: 2, 24, -4, -8
 Complex: -11, 12, 4 + 6 = 10
 Powers: 9, 16, 6, -3
-Word: -15°C, -$50, -$75, -2000m
+Word: -15Â°C, -$50, -$75, -2000m
 Equations: x=6, x=2, x=12
-Inequalities: x<-3, x≤3
+Inequalities: x<-3, xâ‰¤3
 
 ---
 
-## 🎓 Pro Tips for Exams
+## ðŸŽ“ Pro Tips for Exams
 
-1. **Remember multiplication rules**: Negative × Negative = Positive
+1. **Remember multiplication rules**: Negative Ã— Negative = Positive
 2. **Count negative signs** in products with multiple numbers
 3. **Be careful with division** - same rules as multiplication
 4. **Watch for double negatives** - they make positive
@@ -230,6 +230,7 @@ Inequalities: x<-3, x≤3
 7. **Practice mental calculations** with signs
 8. **Check reasonableness** of signed answers
 
-Master sign change rules to avoid calculation errors and solve problems confidently! 🏆`
+Master sign change rules to avoid calculation errors and solve problems confidently! ðŸ†`
 };
+
 

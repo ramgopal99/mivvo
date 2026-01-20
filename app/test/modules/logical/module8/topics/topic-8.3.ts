@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_3: SubLesson = {
   id: "8.3",
   title: 'Ranking from Left & Right',
   status: 'completed',
-  content: `# ⬅️➡️ Ranking from Left & Right
+  content: "`# â¬…ï¸âž¡ï¸ Ranking from Left & Right
 
 Ranking from left and right involves determining positions in horizontal arrangements where people or objects are positioned from both ends. These problems require understanding how left and right positions relate to each other and how to convert between different horizontal perspectives.
 
 ---
 
-## 🎯 Understanding Left-Right Ranking
+## ðŸŽ¯ Understanding Left-Right Ranking
 
 ### **What are Left-Right Ranking Problems?**
 These problems involve horizontal arrangements where positions are counted from both the left (first) and right (last) ends. They test your ability to:
@@ -22,7 +22,7 @@ These problems involve horizontal arrangements where positions are counted from 
 ### **Key Concepts**
 
 #### **Position Conversion**
-\`\`\`
+\`"\`\`
 If a person is nth from left, then:
 Position from right = Total persons - n + 1
 \`\`\`
@@ -34,7 +34,7 @@ Total persons = Position from left + Position from right - 1
 
 ---
 
-## 🧩 Left-Right Position Relationship
+## ðŸ§© Left-Right Position Relationship
 
 ### **Position Conversion Matrix**
 
@@ -52,13 +52,13 @@ Left/Right Relationship:
 Position from Left + Position from Right = Total + 1
 
 Example: 6 persons
-Person A: 2nd from left → 5th from right (6-2+1=5)
-Person B: 4th from right → 3rd from left (6-4+1=3)
+Person A: 2nd from left â†’ 5th from right (6-2+1=5)
+Person B: 4th from right â†’ 3rd from left (6-4+1=3)
 \`\`\`
 
 ---
 
-## 🎯 Problem Types and Solutions
+## ðŸŽ¯ Problem Types and Solutions
 
 ### **Type 1: Find Position from Other End**
 *"A is 3rd from left in a row of 8 persons. What is his position from right?"*
@@ -82,7 +82,7 @@ Person B: 4th from right → 3rd from left (6-4+1=3)
 
 ---
 
-## 📊 Position Conversion Rules
+## ðŸ“Š Position Conversion Rules
 
 ### **From Left to Right**
 \`\`\`
@@ -101,7 +101,7 @@ Total = Left Position + Right Position - 1
 
 ---
 
-## 🛠️ Problem-Solving Framework
+## ðŸ› ï¸ Problem-Solving Framework
 
 ### **Step-by-Step Approach**
 
@@ -127,7 +127,7 @@ Total = Left Position + Right Position - 1
 
 ---
 
-## 🎯 Common Question Patterns
+## ðŸŽ¯ Common Question Patterns
 
 ### **Pattern 1: Position Conversion**
 *"A is nth from left, find position from right"*
@@ -143,7 +143,7 @@ Total = Left Position + Right Position - 1
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (40%)**
 - Simple position conversion
@@ -162,7 +162,7 @@ Total = Left Position + Right Position - 1
 
 ---
 
-## 🧮 Mathematical Applications
+## ðŸ§® Mathematical Applications
 
 ### **Position Arithmetic**
 \`\`\`
@@ -181,13 +181,13 @@ Persons between A and B = |position A - position B| - 1
 
 ---
 
-## 🎯 Special Cases and Exceptions
+## ðŸŽ¯ Special Cases and Exceptions
 
 ### **Case 1: Same Person from Both Ends**
 \`\`\`
 If a person is kth from both left and right:
 Total persons = 2k - 1
-Example: 2nd from left and right → Total = 3 persons
+Example: 2nd from left and right â†’ Total = 3 persons
 \`\`\`
 
 ### **Case 2: Adjacent Positions**
@@ -205,27 +205,27 @@ For even total N: Two middle positions at N/2 and N/2 + 1
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Off-by-One Error**
-❌ Position from right = Total - Left (missing +1)
-✅ Position from right = Total - Left + 1
+âŒ Position from right = Total - Left (missing +1)
+âœ… Position from right = Total - Left + 1
 
 ### **Mistake 2: Formula Confusion**
-❌ Using wrong conversion formula
-✅ Total = Left + Right - 1
+âŒ Using wrong conversion formula
+âœ… Total = Left + Right - 1
 
 ### **Mistake 3: Reference Point Error**
-❌ Confusing left and right references
-✅ Clearly identify which end is being referenced
+âŒ Confusing left and right references
+âœ… Clearly identify which end is being referenced
 
 ### **Mistake 4: Total Person Miscalculation**
-❌ Forgetting to subtract 1 in total formula
-✅ Total = Pos1 + Pos2 - 1
+âŒ Forgetting to subtract 1 in total formula
+âœ… Total = Pos1 + Pos2 - 1
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Memorize Core Formulas**: Total = Left + Right - 1
 2. **Convert Positions Systematically**: Right = Total - Left + 1
@@ -237,7 +237,7 @@ For even total N: Two middle positions at N/2 and N/2 + 1
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Basic Conversion**
 *"In a row of 10 persons, A is 4th from left. What is his position from right?"*
@@ -269,7 +269,7 @@ For even total N: Two middle positions at N/2 and N/2 + 1
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Top-Bottom Ranking**
 - Combine horizontal and vertical positioning
@@ -286,5 +286,5 @@ For even total N: Two middle positions at N/2 and N/2 + 1
 - Calculate median ranking positions
 - Determine central tendencies
 
-**Master left-right ranking to excel in horizontal position reasoning problems! ⬅️➡️✨**`
+**Master left-right ranking to excel in horizontal position reasoning problems! â¬…ï¸âž¡ï¸âœ¨**`
 };

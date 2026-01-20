@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_3: SubLesson = {
   id: "10.3",
   title: 'What are Linked Lists?',
   status: 'demo',
-  content: `# 🔗 What are Linked Lists?
+  content: "`# ðŸ”— What are Linked Lists?
 
 Linked lists are dynamic data structures where elements are connected through pointers. Unlike arrays, they don't require contiguous memory and can grow/shrink easily!
 
 ---
 
-## 🎯 What is a Linked List?
+## ðŸŽ¯ What is a Linked List?
 
 A **linked list** is a collection of nodes where each node contains:
 - **Data** - The actual value stored
 - **Pointer/Reference** - Link to the next node in the sequence
 
-\`\`\`python
+\`"\`\`python
 # Simple Node class
 class Node:
     def __init__(self, data):
@@ -35,7 +35,7 @@ print(f"Third: {head.next.next.data}") # 30
 
 ---
 
-## 🔗 Linked List Types
+## ðŸ”— Linked List Types
 
 ### **Singly Linked List**
 
@@ -57,7 +57,7 @@ Head -> [10|*] -> [20|*] -> [30|*] -> back to Head
 
 ---
 
-## 📦 Linked List Operations
+## ðŸ“¦ Linked List Operations
 
 ### **Basic Structure**
 \`\`\`python
@@ -104,7 +104,7 @@ ll.display()  # 10 -> 20 -> 30 -> None
 
 ---
 
-## 🔍 Linked List Traversal
+## ðŸ” Linked List Traversal
 
 ### **Iterating Through Nodes**
 \`\`\`python
@@ -142,7 +142,7 @@ print(f"Linked list length: {length}")  # 3
 
 ---
 
-## 🎯 Key Advantages
+## ðŸŽ¯ Key Advantages
 
 ### **Dynamic Size**
 \`\`\`python
@@ -177,7 +177,7 @@ traverse_linked_list(head)
 
 ---
 
-## ⚠️ Key Disadvantages
+## âš ï¸ Key Disadvantages
 
 ### **No Random Access**
 \`\`\`python
@@ -212,7 +212,7 @@ print("Memory overhead per element")
 
 ---
 
-## 🎨 Real-World Applications
+## ðŸŽ¨ Real-World Applications
 
 ### **Undo/Redo Functionality**
 \`\`\`python
@@ -304,6 +304,7 @@ browser.go_back()
 print("After back:", browser.current.data)
 \`\`\`
 
-Linked lists are perfect for dynamic collections where insertions and deletions are frequent! 🔗`
+Linked lists are perfect for dynamic collections where insertions and deletions are frequent! ðŸ”—`
 };
+
 

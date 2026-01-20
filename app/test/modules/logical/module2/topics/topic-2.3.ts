@@ -1,20 +1,20 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_3: SubLesson = {
   id: "2.3",
   title: 'Symbols & Notations',
   status: 'completed',
-  content: `# 🔐 Coded Blood Relations
+  content: "`# ðŸ” Coded Blood Relations
 
 Unlock the secrets of coded blood relation problems! These challenging puzzles use symbols, codes, and mathematical operators to represent family relationships. Learn to decode complex relationship patterns and solve intricate family puzzles.
 
 ---
 
-## 🎯 What are Coded Blood Relations?
+## ðŸŽ¯ What are Coded Blood Relations?
 
 **Coded Blood Relations** use symbols, mathematical operators, or codes to represent family relationships. Instead of direct terms, relationships are expressed through:
 
-- Mathematical operators (+, -, ×, ÷)
+- Mathematical operators (+, -, Ã—, Ã·)
 - Symbols and codes (A, B, C, etc.)
 - Logical connectives (and, or, if-then)
 - Puzzle-based representations
@@ -27,31 +27,31 @@ Unlock the secrets of coded blood relation problems! These challenging puzzles u
 
 ---
 
-## 🔢 Common Coding Patterns
+## ðŸ”¢ Common Coding Patterns
 
 ### **Pattern 1: Mathematical Operators**
 
 #### **Basic Operators**
-\`\`\`
+\`"\`\`
 + means "brother/sister of"
 - means "husband/wife of"
-× means "parent of"
-÷ means "child of"
+Ã— means "parent of"
+Ã· means "child of"
 \`\`\`
 
 #### **Example Problem**
 **"A + B means A is brother of B"**
 **"A - B means A is husband of B"**
-**"A × B means A is father of B"**
+**"A Ã— B means A is father of B"**
 
-**Statement: P + Q - R × S**
+**Statement: P + Q - R Ã— S**
 
 **Question: What is S to P?**
 
 **Step-by-step decoding:**
-1. P + Q → P is brother of Q
-2. Q - R → Q is wife of R (or R is husband of Q)
-3. R × S → R is father of S
+1. P + Q â†’ P is brother of Q
+2. Q - R â†’ Q is wife of R (or R is husband of Q)
+3. R Ã— S â†’ R is father of S
 
 **Family analysis:**
 - P and Q are siblings
@@ -64,17 +64,17 @@ Unlock the secrets of coded blood relation problems! These challenging puzzles u
 
 #### **Common Symbols**
 \`\`\`
-♂ = Male, ♀ = Female
-⚭ = Married
-↑ = Parent, ↓ = Child
-→ = Older, ← = Younger
+â™‚ = Male, â™€ = Female
+âš­ = Married
+â†‘ = Parent, â†“ = Child
+â†’ = Older, â† = Younger
 \`\`\`
 
 #### **Example Problem**
-**"A ♂ ↑ B ♀ means A is father of B"**
-**"C ♀ ⚭ D ♂ means C is wife of D"**
+**"A â™‚ â†‘ B â™€ means A is father of B"**
+**"C â™€ âš­ D â™‚ means C is wife of D"**
 
-**Statement: P ♂ ↑ Q ♀ ⚭ R ♂ ↓ S ♀**
+**Statement: P â™‚ â†‘ Q â™€ âš­ R â™‚ â†“ S â™€**
 
 **Analysis:**
 - P is father of Q
@@ -86,7 +86,7 @@ Unlock the secrets of coded blood relation problems! These challenging puzzles u
 
 ---
 
-## 🎯 Systematic Decoding Approach
+## ðŸŽ¯ Systematic Decoding Approach
 
 ### **Step 1: Understand the Code**
 - Read all coding rules carefully
@@ -100,10 +100,10 @@ Unlock the secrets of coded blood relation problems! These challenging puzzles u
 
 ### **Step 3: Create Relationship Map**
 \`\`\`
-Person A → Code → Person B → Relationship
+Person A â†’ Code â†’ Person B â†’ Relationship
 A + B = A is brother of B
 B - C = B is wife of C
-C × D = C is parent of D
+C Ã— D = C is parent of D
 \`\`\`
 
 ### **Step 4: Connect the Relationships**
@@ -113,31 +113,31 @@ C × D = C is parent of D
 
 ---
 
-## 📊 Practice Coded Problems
+## ðŸ“Š Practice Coded Problems
 
 ### **Problem 1: Basic Mathematical Coding**
 
 **Codes:**
 - A + B means A is brother of B
 - A - B means A is sister of B
-- A × B means A is father of B
-- A ÷ B means A is daughter of B
+- A Ã— B means A is father of B
+- A Ã· B means A is daughter of B
 
-**Statement: P + Q ÷ R × S**
+**Statement: P + Q Ã· R Ã— S**
 
 **Question: What is the relationship between P and S?**
 
 **Decoding:**
 1. P + Q: P is brother of Q
-2. Q ÷ R: Q is daughter of R
-3. R × S: R is father of S
+2. Q Ã· R: Q is daughter of R
+3. R Ã— S: R is father of S
 
 **Family Tree:**
 \`\`\`
-R (♂)
-├── Q (♀)
-│   └── Brother: P (♂)
-└── S (♂/♀)
+R (â™‚)
+â”œâ”€â”€ Q (â™€)
+â”‚   â””â”€â”€ Brother: P (â™‚)
+â””â”€â”€ S (â™‚/â™€)
 \`\`\`
 
 **Answer: P is uncle of S**
@@ -161,28 +161,28 @@ R (♂)
 4. D % E: D is mother of E
 
 **Family Analysis:**
-- A is grandfather of E (A → B → C → D → E)
+- A is grandfather of E (A â†’ B â†’ C â†’ D â†’ E)
 - Since E is male, A is great-grandfather
 
 **Answer: Great-grandfather**
 
 ---
 
-## 🧠 Advanced Coding Patterns
+## ðŸ§  Advanced Coding Patterns
 
 ### **Pattern 1: Conditional Coding**
 
 #### **If-Then Relationships**
-**"If A is male, A × B means father-son"**
-**"If A is female, A × B means mother-daughter"**
+**"If A is male, A Ã— B means father-son"**
+**"If A is female, A Ã— B means mother-daughter"**
 
 #### **Example Problem**
-**Statement: P × Q, R × S**
+**Statement: P Ã— Q, R Ã— S**
 **Given: P is male, R is female**
 
 **Analysis:**
-- P × Q: P is father of Q
-- R × S: R is mother of S
+- P Ã— Q: P is father of Q
+- R Ã— S: R is mother of S
 
 **Question: What is the relationship between Q and S?**
 **Answer: Cannot be determined (no connection)**
@@ -191,30 +191,30 @@ R (♂)
 
 #### **Combined Operations**
 **"A + B means A is brother of B"**
-**"A × B means A is father of B"**
-**"A + B × C" means combined operations**
+**"A Ã— B means A is father of B"**
+**"A + B Ã— C" means combined operations**
 
 #### **Example Problem**
-**Statement: M + N × O + P**
+**Statement: M + N Ã— O + P**
 
 **Decoding:**
 1. M + N: M is brother of N
-2. N × O: N is father of O
+2. N Ã— O: N is father of O
 3. O + P: O is brother of P
 
 **Family Tree:**
 \`\`\`
-N (♂)
-├── M (♂) - brother
-├── O (♂/♀)
-│   └── P (♂/♀) - sibling
+N (â™‚)
+â”œâ”€â”€ M (â™‚) - brother
+â”œâ”€â”€ O (â™‚/â™€)
+â”‚   â””â”€â”€ P (â™‚/â™€) - sibling
 \`\`\`
 
 **Answer: M is uncle of P**
 
 ---
 
-## 🎯 Complex Coded Problems
+## ðŸŽ¯ Complex Coded Problems
 
 ### **Problem 1: Puzzle-Based Coding**
 
@@ -235,7 +235,7 @@ N (♂)
 4. S % T: S is brother of T
 
 **Family Analysis:**
-- P → Q → R → S → T
+- P â†’ Q â†’ R â†’ S â†’ T
 - Since T is female and S is brother of T, T is sister of S
 - P is great-grandfather of T
 
@@ -243,32 +243,32 @@ N (♂)
 
 ### **Problem 2: Mathematical Coding**
 
-**"If A × B means A is brother of B"**
+**"If A Ã— B means A is brother of B"**
 **"A + B means A is mother of B"**
-**"A ÷ B means A is father of B"**
+**"A Ã· B means A is father of B"**
 
-**Statement: P × Q + R ÷ S**
+**Statement: P Ã— Q + R Ã· S**
 
 **Question: What is S to P?**
 
 **Decoding:**
-1. P × Q: P is brother of Q
+1. P Ã— Q: P is brother of Q
 2. Q + R: Q is mother of R
-3. R ÷ S: R is father of S (S is child of R)
+3. R Ã· S: R is father of S (S is child of R)
 
 **Family Tree:**
 \`\`\`
-Q (♀)
-├── P (♂) - brother of Q
-└── R (♂) - son of Q
-    └── S (♂/♀) - child of R
+Q (â™€)
+â”œâ”€â”€ P (â™‚) - brother of Q
+â””â”€â”€ R (â™‚) - son of Q
+    â””â”€â”€ S (â™‚/â™€) - child of R
 \`\`\`
 
 **Answer: P is uncle of S**
 
 ---
 
-## 📊 Coding Strategy Framework
+## ðŸ“Š Coding Strategy Framework
 
 ### **Step 1: Code Analysis**
 \`\`\`
@@ -304,47 +304,47 @@ Q (♀)
 
 ---
 
-## 🚨 Common Mistakes in Coded Relations
+## ðŸš¨ Common Mistakes in Coded Relations
 
 ### **Mistake 1: Wrong Operator Precedence**
-❌ Applying codes in wrong order
-✅ Follow left-to-right or specified precedence
+âŒ Applying codes in wrong order
+âœ… Follow left-to-right or specified precedence
 
 ### **Mistake 2: Ignoring Gender Context**
-❌ "Son" always male, "daughter" always female
-✅ Consider context-dependent relationships
+âŒ "Son" always male, "daughter" always female
+âœ… Consider context-dependent relationships
 
 ### **Mistake 3: Missing Relationship Chains**
-❌ Only direct relationships
-✅ Consider indirect connections through family
+âŒ Only direct relationships
+âœ… Consider indirect connections through family
 
 ### **Mistake 4: Incorrect Code Application**
-❌ Applying codes universally
-✅ Check if codes have conditional applications
+âŒ Applying codes universally
+âœ… Check if codes have conditional applications
 
 ---
 
-## 🧮 Quick Reference: Common Codes
+## ðŸ§® Quick Reference: Common Codes
 
 ### **Mathematical Operators**
 | Code | Meaning | Example |
 |------|---------|---------|
 | A + B | Brother/Sister | P + Q = siblings |
 | A - B | Husband/Wife | M - N = married |
-| A × B | Parent-Child | X × Y = parent |
-| A ÷ B | Child-Parent | Y ÷ X = child |
+| A Ã— B | Parent-Child | X Ã— Y = parent |
+| A Ã· B | Child-Parent | Y Ã· X = child |
 
 ### **Symbolic Codes**
 | Symbol | Meaning | Example |
 |--------|---------|---------|
-| → | "is" | A → father |
-| ↑ | Parent | A ↑ B = A parent of B |
-| ↓ | Child | C ↓ D = C child of D |
-| ⚭ | Married | E ⚭ F = married |
+| â†’ | "is" | A â†’ father |
+| â†‘ | Parent | A â†‘ B = A parent of B |
+| â†“ | Child | C â†“ D = C child of D |
+| âš­ | Married | E âš­ F = married |
 
 ---
 
-## 🎯 Practice Coded Problems
+## ðŸŽ¯ Practice Coded Problems
 
 ### **Problem 1: Simple Coding**
 **Codes:**
@@ -360,10 +360,10 @@ Q (♀)
 ### **Problem 2: Complex Coding**
 **Codes:**
 - A + B means A is sister of B
-- A × B means A is mother of B
-- A ÷ B means A is husband of B
+- A Ã— B means A is mother of B
+- A Ã· B means A is husband of B
 
-**Statement: M + N × O ÷ P**
+**Statement: M + N Ã— O Ã· P**
 
 **Question: What is P to M?**
 **Answer: Father-in-law**
@@ -380,7 +380,7 @@ Q (♀)
 
 ---
 
-## 🏆 Pro Tips for Coded Relations
+## ðŸ† Pro Tips for Coded Relations
 
 1. **Read codes multiple times** carefully
 2. **Make a code reference table**
@@ -392,7 +392,7 @@ Q (♀)
 
 ---
 
-## 🔍 Advanced Coded Relation Topics
+## ðŸ” Advanced Coded Relation Topics
 
 ### **Topic 1: Matrix-Based Coding**
 - Grid-based relationship representations
@@ -408,7 +408,7 @@ Q (♀)
 
 ---
 
-## 📊 Coded Relations Statistics
+## ðŸ“Š Coded Relations Statistics
 
 | Coding Type | Difficulty | Frequency | Time Required |
 |-------------|------------|-----------|---------------|
@@ -420,7 +420,7 @@ Q (♀)
 
 ---
 
-## 🎯 Final Challenge Problem
+## ðŸŽ¯ Final Challenge Problem
 
 **Complex Coded Relation:**
 
@@ -442,5 +442,5 @@ Q (♀)
 3. Trace the relationship path
 4. Consider the gender information
 
-**Master coded blood relations and you'll decode any family relationship puzzle! 🔐🩸**`
+**Master coded blood relations and you'll decode any family relationship puzzle! ðŸ”ðŸ©¸**`
 };

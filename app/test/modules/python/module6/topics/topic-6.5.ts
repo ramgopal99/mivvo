@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_5: SubLesson = {
   id: "6.5",
   title: 'Removing Dictionary Elements',
   status: 'demo',
-  content: `# ➖ Removing Dictionary Elements
+  content: "`# âž– Removing Dictionary Elements
 
 Dictionaries provide several methods to remove elements. Each method behaves differently when keys don't exist!
 
 ---
 
-## 🎯 Remove with del Statement
+## ðŸŽ¯ Remove with del Statement
 
 ### **Delete by Key**
-\`\`\`python
+\`"\`\`python
 person = {
     "name": "Alice",
     "age": 25,
@@ -31,7 +31,7 @@ print(f"After deleting 'job': {person}")
 
 ---
 
-## 🗑️ Pop Method
+## ðŸ—‘ï¸ Pop Method
 
 ### **Remove and Return Value**
 \`\`\`python
@@ -50,7 +50,7 @@ print(f"Diana's score: {diana_score}")
 
 ---
 
-## 🧽 Popitem Method
+## ðŸ§½ Popitem Method
 
 ### **Remove Last Item (Python 3.7+)**
 \`\`\`python
@@ -70,7 +70,7 @@ print(f"Final: {data}")
 
 ---
 
-## 🧹 Clear Method
+## ðŸ§¹ Clear Method
 
 ### **Remove All Elements**
 \`\`\`python
@@ -88,7 +88,7 @@ print(f"After clear(): {settings}")  # {}
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **User Session Management**
 \`\`\`python
@@ -163,7 +163,7 @@ for key, value in config.items():
 
 ---
 
-## ✅ Method Comparison
+## âœ… Method Comparison
 
 ### **Single Item Removal**
 - **del dict[key]** - Fastest, raises KeyError if key missing
@@ -185,6 +185,7 @@ for key, value in config.items():
 - **popitem()** maintains insertion order (Python 3.7+)
 - **clear()** is optimized for complete removal
 
-Choose the right removal method for your specific needs! 🗂️`
+Choose the right removal method for your specific needs! ðŸ—‚ï¸`
 };
+
 

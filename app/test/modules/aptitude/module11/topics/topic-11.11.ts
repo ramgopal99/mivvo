@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_11: SubLesson = {
   id: "11.11",
   title: 'Advanced Time, Speed & Distance Problems',
   status: 'completed',
-  content: `# 🧠 Advanced Time, Speed & Distance Problems
+  content: "`# ðŸ§  Advanced Time, Speed & Distance Problems
 
 Master the most challenging problems combining multiple concepts - the pinnacle of time, speed, and distance aptitude questions.
 
 ---
 
-## 🎯 Advanced Problem Concepts
+## ðŸŽ¯ Advanced Problem Concepts
 
 **Advanced problems** require combining multiple concepts and applying critical thinking to solve complex motion scenarios.
 
@@ -22,10 +22,10 @@ Master the most challenging problems combining multiple concepts - the pinnacle 
 
 ---
 
-## 📊 Advanced Problem Types
+## ðŸ“Š Advanced Problem Types
 
 ### 1. **Variable Speed Problems**
-\`\`\`
+\`"\`\`
 Speed changes over time or distance
 Requires integration of speed functions
 \`\`\`
@@ -45,7 +45,7 @@ Optimal speed strategies
 
 ---
 
-## 🧮 Advanced Examples
+## ðŸ§® Advanced Examples
 
 ### Example 1: Escalator Problem
 **A man takes 30 seconds to walk up escalator moving down. Takes 20 seconds to walk down same escalator when it moves up at same speed. Find time to walk up stationary escalator.**
@@ -88,18 +88,18 @@ Optimal speed strategies
 - 2D/B = T + 2 = 10
 - D/B = 5
 - From T = D(1/(B+S) + 1/(B-S)) = 8
-- D(2B)/(B²-S²) = 8
-- 5 × 2B / (B²-4) = 8
-- 10B / (B²-4) = 8
-- 10B = 8(B²-4)
-- 8B² - 32 = 10B
-- 8B² - 10B - 32 = 0
-- 4B² - 5B - 16 = 0
-- B = [5 ± √(25+256)]/8 = [5 ± √281]/8 ≈ 3.2 km/h
+- D(2B)/(BÂ²-SÂ²) = 8
+- 5 Ã— 2B / (BÂ²-4) = 8
+- 10B / (BÂ²-4) = 8
+- 10B = 8(BÂ²-4)
+- 8BÂ² - 32 = 10B
+- 8BÂ² - 10B - 32 = 0
+- 4BÂ² - 5B - 16 = 0
+- B = [5 Â± âˆš(25+256)]/8 = [5 Â± âˆš281]/8 â‰ˆ 3.2 km/h
 
 ---
 
-## 🧠 Advanced Problem Tricks
+## ðŸ§  Advanced Problem Tricks
 
 ### **System of Equations**
 \`\`\`
@@ -131,7 +131,7 @@ Use trial and error intelligently
 
 ---
 
-## 🔢 Complex Advanced Problems
+## ðŸ”¢ Complex Advanced Problems
 
 ### Example 4: Man and Escalator with Variable Speed
 **Escalator brings 60 people in 1 minute when moving. Man takes 30 seconds to walk up stationary escalator. How many people would escalator bring if man walks up moving escalator?**
@@ -142,7 +142,7 @@ Use trial and error intelligently
 - Stationary time = 60/M = 30 seconds = 0.5 minutes
 - M = 120 people/minute
 - Moving escalator: Effective speed = M + E = 120 + E
-- People brought = (M + E) × 1 = 120 + E
+- People brought = (M + E) Ã— 1 = 120 + E
 - We need another relationship. This is insufficient information.
 
 ### Example 5: Trains with Different Starting Times
@@ -162,13 +162,13 @@ Use trial and error intelligently
 - A needs to cover 100m to reach B's position
 - Relative speed = 8 m/s
 - Time = 100/8 = 12.5 seconds
-- A covers 8 × 12.5 = 100m
+- A covers 8 Ã— 12.5 = 100m
 - Position = 100m from start
-- B has covered 8 × 12.5 = 100m from 100m mark = 200m from start
+- B has covered 8 Ã— 12.5 = 100m from 100m mark = 200m from start
 
 ---
 
-## 🚨 Advanced Problem Mistakes
+## ðŸš¨ Advanced Problem Mistakes
 
 1. **Overcomplication**: Simple problems made complex
 2. **Missing variables**: Not accounting for all unknowns
@@ -178,7 +178,7 @@ Use trial and error intelligently
 
 ---
 
-## 🎯 Practice Advanced Problems
+## ðŸŽ¯ Practice Advanced Problems
 
 **1.** Man takes 40s up escalator moving down, 25s down when escalator moves up. Stationary time?
 **2.** Three trains A(50 km/h), B(60 km/h), C(70 km/h) start from same point. C follows A after 2h. When does C meet A?
@@ -190,7 +190,7 @@ Use trial and error intelligently
 
 ---
 
-## 🎓 Advanced Problem Strategies
+## ðŸŽ“ Advanced Problem Strategies
 
 1. **Break into smaller parts** - Solve step by step
 2. **Draw detailed diagrams** - Visualize all motion
@@ -198,5 +198,5 @@ Use trial and error intelligently
 4. **Apply multiple concepts** - Combine different formulas
 5. **Verify with logic** - Check if answer makes sense
 
-Master advanced problems and conquer the most challenging time, speed & distance questions! 🏆`
+Master advanced problems and conquer the most challenging time, speed & distance questions! ðŸ†`
 };

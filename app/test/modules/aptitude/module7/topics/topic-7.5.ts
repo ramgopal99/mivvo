@@ -1,27 +1,27 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_5: SubLesson = {
   id: "7.5",
   title: 'Profit Percentage',
   status: 'completed',
-  content: `# 📈 Profit Percentage
+  content: "`# ðŸ“ˆ Profit Percentage
 
 Master profit percentage calculations! Profit percentage measures profitability relative to investment. It's crucial for comparing business performance and making investment decisions. Learn to calculate and interpret profit percentages effectively.
 
 ---
 
-## 🎯 What is Profit Percentage?
+## ðŸŽ¯ What is Profit Percentage?
 
-**Profit Percentage** expresses profit as a percentage of the cost price. It shows how much profit is earned for every ₹100 invested in the product.
+**Profit Percentage** expresses profit as a percentage of the cost price. It shows how much profit is earned for every â‚¹100 invested in the product.
 
 ### **Formula**
-\`\`\`
-Profit % = (Profit / Cost Price) × 100%
+\`"\`\`
+Profit % = (Profit / Cost Price) Ã— 100%
 \`\`\`
 
 **Or directly:**
 \`\`\`
-Profit % = [(SP - CP) / CP] × 100%
+Profit % = [(SP - CP) / CP] Ã— 100%
 \`\`\`
 
 ### **Key Points**
@@ -31,56 +31,56 @@ Profit % = [(SP - CP) / CP] × 100%
 
 ---
 
-## 📊 Calculation Methods
+## ðŸ“Š Calculation Methods
 
 ### **Method 1: Direct Formula**
 \`\`\`
-Profit % = (Profit Amount / CP) × 100%
+Profit % = (Profit Amount / CP) Ã— 100%
 \`\`\`
 
-**Example:** Profit ₹200, CP ₹1000
-- Profit % = (200/1000) × 100% = 20%
+**Example:** Profit â‚¹200, CP â‚¹1000
+- Profit % = (200/1000) Ã— 100% = 20%
 
 ### **Method 2: SP and CP Method**
 \`\`\`
-Profit % = [(SP - CP)/CP] × 100%
+Profit % = [(SP - CP)/CP] Ã— 100%
 \`\`\`
 
-**Example:** SP ₹1200, CP ₹1000
-- Profit % = (200/1000) × 100% = 20%
+**Example:** SP â‚¹1200, CP â‚¹1000
+- Profit % = (200/1000) Ã— 100% = 20%
 
 ### **Method 3: SP Only Method**
 \`\`\`
-Profit % = [(SP/CP - 1)] × 100%
+Profit % = [(SP/CP - 1)] Ã— 100%
 \`\`\`
 
 ---
 
-## 🔢 Examples of Profit Percentage
+## ðŸ”¢ Examples of Profit Percentage
 
 ### **Example 1: Basic Calculation**
-**Problem:** CP = ₹800, SP = ₹1000. Find profit %.
+**Problem:** CP = â‚¹800, SP = â‚¹1000. Find profit %.
 
 **Solution:**
-- Profit = 1000 - 800 = ₹200
-- Profit % = (200/800) × 100% = 25%
+- Profit = 1000 - 800 = â‚¹200
+- Profit % = (200/800) Ã— 100% = 25%
 
 ### **Example 2: With Profit Amount**
-**Problem:** CP = ₹1500, profit ₹300. Find profit %.
+**Problem:** CP = â‚¹1500, profit â‚¹300. Find profit %.
 
 **Solution:**
-- Profit % = (300/1500) × 100% = 20%
+- Profit % = (300/1500) Ã— 100% = 20%
 
 ### **Example 3: Finding SP**
-**Problem:** CP = ₹600, profit 30%. Find SP.
+**Problem:** CP = â‚¹600, profit 30%. Find SP.
 
 **Solution:**
-- Profit = 600 × 0.30 = ₹180
-- SP = 600 + 180 = ₹780
+- Profit = 600 Ã— 0.30 = â‚¹180
+- SP = 600 + 180 = â‚¹780
 
 ---
 
-## 💡 Interpretation of Profit Percentage
+## ðŸ’¡ Interpretation of Profit Percentage
 
 ### **1. Low Profit % (0-10%)**
 - Thin margins
@@ -103,7 +103,7 @@ Profit % = [(SP/CP - 1)] × 100%
 
 ---
 
-## 🎯 Applications
+## ðŸŽ¯ Applications
 
 ### **1. Business Comparison**
 - Compare profitability of different products
@@ -122,26 +122,26 @@ Profit % = [(SP/CP - 1)] × 100%
 
 ---
 
-## 🧮 Advanced Concepts
+## ðŸ§® Advanced Concepts
 
 ### **1. Gross Profit Margin**
 \`\`\`
-Gross Margin % = (Gross Profit / Sales) × 100%
+Gross Margin % = (Gross Profit / Sales) Ã— 100%
 \`\`\`
 
 ### **2. Net Profit Margin**
 \`\`\`
-Net Margin % = (Net Profit / Sales) × 100%
+Net Margin % = (Net Profit / Sales) Ã— 100%
 \`\`\`
 
 ### **3. Operating Margin**
 \`\`\`
-Operating Margin % = (Operating Profit / Sales) × 100%
+Operating Margin % = (Operating Profit / Sales) Ã— 100%
 \`\`\`
 
 ---
 
-## 📈 Profit Percentage in Different Industries
+## ðŸ“ˆ Profit Percentage in Different Industries
 
 | Industry | Typical Profit % | Factors |
 |----------|------------------|---------|
@@ -153,29 +153,30 @@ Operating Margin % = (Operating Profit / Sales) × 100%
 
 ---
 
-## 🚨 Common Mistakes
+## ðŸš¨ Common Mistakes
 
 ### **Mistake 1: Wrong Base**
-❌ "Profit % of SP"
+âŒ "Profit % of SP"
 - Always calculate on CP
 
 ### **Mistake 2: Including Taxes**
-❌ Adding GST to profit calculation
+âŒ Adding GST to profit calculation
 - Profit calculated before taxes
 
 ### **Mistake 3: Double Counting**
-❌ Including profit in CP
+âŒ Including profit in CP
 - Profit is additional to CP
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
-1. CP ₹500, SP ₹600. Find profit %.
-2. CP ₹800, profit ₹160. Find profit %.
-3. Profit 25%, CP ₹1200. Find SP.
+1. CP â‚¹500, SP â‚¹600. Find profit %.
+2. CP â‚¹800, profit â‚¹160. Find profit %.
+3. Profit 25%, CP â‚¹1200. Find SP.
 
-**Answers:** 20%, 20%, ₹1500
+**Answers:** 20%, 20%, â‚¹1500
 
-Master profit percentage calculations to evaluate business profitability! 🏆`
+Master profit percentage calculations to evaluate business profitability! ðŸ†`
 };
+

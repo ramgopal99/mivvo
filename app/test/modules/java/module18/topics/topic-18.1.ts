@@ -1,43 +1,43 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_18_1: SubLesson = {
   id: "18.1",
   title: 'Simple Calculator Application',
   status: 'completed',
-  content: `# 🧮 Java Beginner Project: Simple Calculator
+  content: "`# ðŸ§® Java Beginner Project: Simple Calculator
 
 Build your first complete Java application with GUI!
 
 ---
 
-## 🎯 Project Overview
+## ðŸŽ¯ Project Overview
 
 Create a calculator application with basic arithmetic operations using Java Swing.
 
 ### **Features to Implement:**
-- ✅ Addition, subtraction, multiplication, division
-- ✅ Clear and equals functionality
-- ✅ Error handling for division by zero
-- ✅ User-friendly GUI interface
-- ✅ Input validation
+- âœ… Addition, subtraction, multiplication, division
+- âœ… Clear and equals functionality
+- âœ… Error handling for division by zero
+- âœ… User-friendly GUI interface
+- âœ… Input validation
 
 ---
 
-## 🏗️ Project Structure
+## ðŸ—ï¸ Project Structure
 
-\`\`\`
+\`"\`\`
 calculator-app/
-├── src/
-│   ├── Calculator.java          # Main class with GUI
-│   ├── CalculatorLogic.java     # Business logic
-│   └── CalculatorTest.java      # Unit tests
-├── lib/                         # Dependencies
-└── README.md                    # Project documentation
+â”œâ”€â”€ src/
+â”‚   â”œâ”€â”€ Calculator.java          # Main class with GUI
+â”‚   â”œâ”€â”€ CalculatorLogic.java     # Business logic
+â”‚   â””â”€â”€ CalculatorTest.java      # Unit tests
+â”œâ”€â”€ lib/                         # Dependencies
+â””â”€â”€ README.md                    # Project documentation
 \`\`\`
 
 ---
 
-## 💻 Implementation
+## ðŸ’» Implementation
 
 ### **1. Calculator Logic Class**
 \`\`\`java
@@ -212,7 +212,7 @@ public class Calculator extends JFrame implements ActionListener {
 
 ---
 
-## 🧪 Unit Tests
+## ðŸ§ª Unit Tests
 
 ### **Testing Calculator Logic**
 \`\`\`java
@@ -272,38 +272,38 @@ public class CalculatorLogicTest {
 
 ---
 
-## 📋 Requirements Checklist
+## ðŸ“‹ Requirements Checklist
 
-- [ ] ✅ Basic arithmetic operations (+, -, *, /)
-- [ ] ✅ Clear functionality
-- [ ] ✅ Error handling for division by zero
-- [ ] ✅ Decimal number support
-- [ ] ✅ User-friendly GUI
-- [ ] ✅ Unit tests
-- [ ] ✅ Input validation
-- [ ] ✅ Proper error messages
+- [ ] âœ… Basic arithmetic operations (+, -, *, /)
+- [ ] âœ… Clear functionality
+- [ ] âœ… Error handling for division by zero
+- [ ] âœ… Decimal number support
+- [ ] âœ… User-friendly GUI
+- [ ] âœ… Unit tests
+- [ ] âœ… Input validation
+- [ ] âœ… Proper error messages
 
 ---
 
-## 🚀 Enhancements (Optional)
+## ðŸš€ Enhancements (Optional)
 
 ### **Advanced Features:**
-- 🔢 **Scientific Calculator**: Add sin, cos, tan, log, etc.
-- 📊 **History**: Keep track of previous calculations
-- 🎨 **Themes**: Dark/light mode
-- ⌨️ **Keyboard Support**: Allow keyboard input
-- 💾 **Memory Functions**: M+, M-, MR, MC
-- 🔄 **Undo/Redo**: Undo last operation
+- ðŸ”¢ **Scientific Calculator**: Add sin, cos, tan, log, etc.
+- ðŸ“Š **History**: Keep track of previous calculations
+- ðŸŽ¨ **Themes**: Dark/light mode
+- âŒ¨ï¸ **Keyboard Support**: Allow keyboard input
+- ðŸ’¾ **Memory Functions**: M+, M-, MR, MC
+- ðŸ”„ **Undo/Redo**: Undo last operation
 
 ### **Code Quality:**
-- 📚 **Documentation**: Add JavaDoc comments
-- 🏗️ **Architecture**: Separate MVC pattern properly
-- 🧪 **Test Coverage**: Aim for 90%+ test coverage
-- 🚀 **Performance**: Optimize for large numbers
+- ðŸ“š **Documentation**: Add JavaDoc comments
+- ðŸ—ï¸ **Architecture**: Separate MVC pattern properly
+- ðŸ§ª **Test Coverage**: Aim for 90%+ test coverage
+- ðŸš€ **Performance**: Optimize for large numbers
 
 ---
 
-## 🎯 Learning Outcomes
+## ðŸŽ¯ Learning Outcomes
 
 By completing this project, you'll learn:
 
@@ -317,9 +317,9 @@ By completing this project, you'll learn:
 
 ---
 
-## 🏆 Project Completion
+## ðŸ† Project Completion
 
-**Congratulations!** 🎉 You've built your first complete Java application.
+**Congratulations!** ðŸŽ‰ You've built your first complete Java application.
 
 ### **Next Steps:**
 - Deploy your calculator as a JAR file
@@ -327,6 +327,7 @@ By completing this project, you'll learn:
 - Show it to friends and family
 - Build upon it with advanced features
 
-**Ready for more challenging projects?** 🚀`
+**Ready for more challenging projects?** ðŸš€`
 };
+
 

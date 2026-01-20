@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_4: SubLesson = {
   id: "6.4",
   title: 'Alphanumeric Series',
   status: 'completed',
-  content: `# 🔠 Alphanumeric Series
+  content: "`# ðŸ”  Alphanumeric Series
 
 Alphanumeric series combine letters and numbers in complex patterns and sequences. These problems require understanding both alphabetical and numerical systems, making them more challenging than pure number or letter series.
 
 ---
 
-## 🎯 Understanding Alphanumeric Series
+## ðŸŽ¯ Understanding Alphanumeric Series
 
 ### **What are Alphanumeric Series?**
 Alphanumeric series involve sequences that combine letters and numbers in specific patterns or rules. They test your ability to:
@@ -27,7 +27,7 @@ Alphanumeric series involve sequences that combine letters and numbers in specif
 
 ---
 
-## 🧩 Types of Alphanumeric Series
+## ðŸ§© Types of Alphanumeric Series
 
 ### **1. Alternating Letter-Number Series**
 **Letters and numbers alternate in sequence**
@@ -49,7 +49,7 @@ Alphanumeric series involve sequences that combine letters and numbers in specif
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze Mixed Sequence**
 - Examine all letters and numbers in series
@@ -73,7 +73,7 @@ Alphanumeric series involve sequences that combine letters and numbers in specif
 
 ---
 
-## 🎯 Common Alphanumeric Series Types
+## ðŸŽ¯ Common Alphanumeric Series Types
 
 ### **Type 1: Simple Alternating**
 **Basic letter-number alternation**
@@ -90,12 +90,12 @@ Alphanumeric series involve sequences that combine letters and numbers in specif
 ### **Type 3: Complex Pattern**
 **Advanced relationship patterns**
 - **Example**: A2B4C6D8E10?
-- **Pattern**: Letters sequential, numbers ×2
+- **Pattern**: Letters sequential, numbers Ã—2
 - **Next**: F12
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Element Separation**
 
@@ -115,35 +115,35 @@ Numbers: 1 2 3 4 ?
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Alternating**
 **Series**: A1B2C3D4E?
-- **Letter Pattern**: A→B→C→D→E→F (+1)
-- **Number Pattern**: 1→2→3→4→5 (+1)
+- **Letter Pattern**: Aâ†’Bâ†’Câ†’Dâ†’Eâ†’F (+1)
+- **Number Pattern**: 1â†’2â†’3â†’4â†’5 (+1)
 - **Next**: F5
 
 ### **Example 2: Mathematical Integration**
 **Series**: A2B4C6D8E?
-- **Letter Pattern**: A→B→C→D→E→F (+1)
-- **Number Pattern**: 2→4→6→8→10→12 (+2)
+- **Letter Pattern**: Aâ†’Bâ†’Câ†’Dâ†’Eâ†’F (+1)
+- **Number Pattern**: 2â†’4â†’6â†’8â†’10â†’12 (+2)
 - **Next**: F12
 
 ### **Example 3: Complex Position Pattern**
 **Series**: A1B3C5D7E?
-- **Letter Pattern**: A→B→C→D→E→F (+1)
-- **Number Pattern**: 1→3→5→7→9→11 (+2)
+- **Letter Pattern**: Aâ†’Bâ†’Câ†’Dâ†’Eâ†’F (+1)
+- **Number Pattern**: 1â†’3â†’5â†’7â†’9â†’11 (+2)
 - **Next**: F11
 
 ### **Example 4: Reverse Integration**
 **Series**: Z26Y25X24W?
-- **Letter Pattern**: Z→Y→X→W→V (-1)
-- **Number Pattern**: 26→25→24→23 (-1)
+- **Letter Pattern**: Zâ†’Yâ†’Xâ†’Wâ†’V (-1)
+- **Number Pattern**: 26â†’25â†’24â†’23 (-1)
 - **Next**: V23
 
 ---
 
-## 🔍 Advanced Alphanumeric Concepts
+## ðŸ” Advanced Alphanumeric Concepts
 
 ### **Multi-Pattern Integration**
 Complex series with multiple interacting patterns.
@@ -156,7 +156,7 @@ Complex calculations involving both letters and numbers.
 
 ---
 
-## 📊 Alphanumeric Series Patterns
+## ðŸ“Š Alphanumeric Series Patterns
 
 ### **Basic Patterns**
 - **Alternating Sequences**: Letter-number alternation
@@ -175,23 +175,23 @@ Complex calculations involving both letters and numbers.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Pattern Separation Issues**
-❌ Not analyzing letters and numbers separately
-✅ Treat elements individually first
+âŒ Not analyzing letters and numbers separately
+âœ… Treat elements individually first
 
 ### **Pitfall 2: Integration Confusion**
-❌ Wrong relationship between letter and number patterns
-✅ Find correct integration logic
+âŒ Wrong relationship between letter and number patterns
+âœ… Find correct integration logic
 
 ### **Pitfall 3: Element Type Errors**
-❌ Confusing letter and number positions
-✅ Clear element type identification
+âŒ Confusing letter and number positions
+âœ… Clear element type identification
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Element Separation**
 - Separate letters and numbers into different sequences
@@ -210,7 +210,7 @@ Complex calculations involving both letters and numbers.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Simple alternating letter-number sequences
@@ -229,7 +229,7 @@ Complex calculations involving both letters and numbers.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Separate Elements**: Analyze letters and numbers separately first
 2. **Find Individual Patterns**: Identify patterns for each element type
@@ -239,7 +239,7 @@ Complex calculations involving both letters and numbers.
 
 ---
 
-## 🔠 Practice Questions
+## ðŸ”  Practice Questions
 
 ### **Question 1**
 Find the next term: A1B2C3D4E?
@@ -256,5 +256,5 @@ Find the next term: Z26Y25X24W?
 ### **Question 5**
 Find the next term: A1C3E5G7I?
 
-**Master alphanumeric series for mixed element sequence completion! 🔠✨**`
+**Master alphanumeric series for mixed element sequence completion! ðŸ” âœ¨**`"
 };

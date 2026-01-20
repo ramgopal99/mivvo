@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_1: SubLesson = {
   id: "9.1",
   title: 'Principal (P)',
   status: 'completed',
-  content: `# 💰 Principal (P) in Compound Interest
+  content: "`# ðŸ’° Principal (P) in Compound Interest
 
 Welcome to compound interest fundamentals! Principal (P) is the foundation of compound interest calculations. Unlike simple interest where principal remains constant, in compound interest, the principal grows each compounding period. Master this key concept to understand CI mechanics.
 
 ---
 
-## 🎯 Principal in Compound Interest
+## ðŸŽ¯ Principal in Compound Interest
 
 **Principal (P)** is the initial amount of money that earns compound interest. In CI, the principal grows over time as interest is added to it periodically.
 
@@ -21,22 +21,22 @@ Welcome to compound interest fundamentals! Principal (P) is the foundation of co
 - Creates exponential growth
 
 ### **Symbol**
-\`\`\`
+\`"\`\`
 P (Initial Principal Amount)
 \`\`\`
 
 ---
 
-## 📊 How Principal Changes in CI
+## ðŸ“Š How Principal Changes in CI
 
 ### **Annual Compounding**
 - **Year 1:** Principal becomes P(1 + R/100)
-- **Year 2:** Principal becomes P(1 + R/100)²
-- **Year 3:** Principal becomes P(1 + R/100)³
+- **Year 2:** Principal becomes P(1 + R/100)Â²
+- **Year 3:** Principal becomes P(1 + R/100)Â³
 
 ### **General Pattern**
 \`\`\`
-Principal after t periods = P × (1 + r)^t
+Principal after t periods = P Ã— (1 + r)^t
 \`\`\`
 
 **Where:**
@@ -46,7 +46,7 @@ Principal after t periods = P × (1 + r)^t
 
 ---
 
-## 🔢 Principal vs Amount
+## ðŸ”¢ Principal vs Amount
 
 ### **Key Distinction**
 - **Principal:** Initial investment/borrowing
@@ -55,18 +55,18 @@ Principal after t periods = P × (1 + r)^t
 ### **Relationship**
 \`\`\`
 Amount = Principal + Compound Interest
-Amount = Principal × (1 + r)^t
+Amount = Principal Ã— (1 + r)^t
 \`\`\`
 
 ### **Finding Principal**
 \`\`\`
 P = Amount / (1 + r)^t
-P = Amount × (1 + r)^(-t)
+P = Amount Ã— (1 + r)^(-t)
 \`\`\`
 
 ---
 
-## 🧮 Principal in Different Scenarios
+## ðŸ§® Principal in Different Scenarios
 
 ### **1. Investment Growth**
 - Initial investment becomes principal
@@ -85,7 +85,7 @@ P = Amount × (1 + r)^(-t)
 
 ---
 
-## 💡 Principal Importance in CI
+## ðŸ’¡ Principal Importance in CI
 
 ### **1. Growth Engine**
 - Larger principal = Larger growth
@@ -101,26 +101,26 @@ P = Amount × (1 + r)^(-t)
 
 ---
 
-## 📈 Principal Growth Examples
+## ðŸ“ˆ Principal Growth Examples
 
 ### **Example 1: Annual Growth**
-**Problem:** ₹10,000 at 10% annual CI. Principal after 2 years?
+**Problem:** â‚¹10,000 at 10% annual CI. Principal after 2 years?
 
 **Solution:**
-- After Year 1: 10,000 × 1.10 = ₹11,000 (new principal)
-- After Year 2: 11,000 × 1.10 = ₹12,100 (final amount)
+- After Year 1: 10,000 Ã— 1.10 = â‚¹11,000 (new principal)
+- After Year 2: 11,000 Ã— 1.10 = â‚¹12,100 (final amount)
 
 ### **Example 2: Half-Yearly Growth**
-**Problem:** ₹5,000 at 8% half-yearly CI. Principal growth?
+**Problem:** â‚¹5,000 at 8% half-yearly CI. Principal growth?
 
 **Solution:**
 - Rate per half-year: 8%/2 = 4%
-- After 1st half: 5,000 × 1.04 = ₹5,200
-- After 2nd half: 5,200 × 1.04 = ₹5,408
+- After 1st half: 5,000 Ã— 1.04 = â‚¹5,200
+- After 2nd half: 5,200 Ã— 1.04 = â‚¹5,408
 
 ---
 
-## 🎯 Applications
+## ðŸŽ¯ Applications
 
 ### **1. Investment Planning**
 - Initial corpus growth tracking
@@ -139,7 +139,7 @@ P = Amount × (1 + r)^(-t)
 
 ---
 
-## 🔄 Principal in CI vs SI
+## ðŸ”„ Principal in CI vs SI
 
 | Aspect | Simple Interest | Compound Interest |
 |--------|----------------|-------------------|
@@ -150,54 +150,54 @@ P = Amount × (1 + r)^(-t)
 
 ---
 
-## 🧮 Principal Calculations
+## ðŸ§® Principal Calculations
 
 ### **Finding Original Principal**
 \`\`\`
 P = A / (1 + r)^t
 \`\`\`
 
-**Example:** A = ₹12,100, r = 10%, t = 2 years
-- P = 12,100 ÷ (1.10)² = 12,100 ÷ 1.21 = ₹10,000
+**Example:** A = â‚¹12,100, r = 10%, t = 2 years
+- P = 12,100 Ã· (1.10)Â² = 12,100 Ã· 1.21 = â‚¹10,000
 
 ### **Principal After n Periods**
 \`\`\`
-Principal_n = P × (1 + r)^n
+Principal_n = P Ã— (1 + r)^n
 \`\`\`
 
 ---
 
-## 🚨 Common Mistakes
+## ðŸš¨ Common Mistakes
 
 ### **Mistake 1: Confusing Principal with Amount**
-❌ "Principal is the final amount"
+âŒ "Principal is the final amount"
 - Principal is initial, amount is final
 
 ### **Mistake 2: Ignoring Growth**
-❌ "Principal stays the same in CI"
+âŒ "Principal stays the same in CI"
 - Principal grows in CI, stays constant in SI
 
 ### **Mistake 3: Wrong Compounding**
-❌ "Principal doubles every year"
+âŒ "Principal doubles every year"
 - Depends on rate and compounding frequency
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Basic Principal Concepts:**
-1. What is principal in CI for ₹1000 investment?
+1. What is principal in CI for â‚¹1000 investment?
 2. How does principal change in CI vs SI?
-3. Principal after 1 year at 10% CI on ₹2000?
+3. Principal after 1 year at 10% CI on â‚¹2000?
 
 ### **Calculation Problems:**
-1. Find original principal: A = ₹2662, R = 10%, T = 2 years.
-2. Principal after 3 years: P = ₹5000, R = 8%, annual CI.
-3. Principal growth: ₹10000 at 12% half-yearly for 1 year.
+1. Find original principal: A = â‚¹2662, R = 10%, T = 2 years.
+2. Principal after 3 years: P = â‚¹5000, R = 8%, annual CI.
+3. Principal growth: â‚¹10000 at 12% half-yearly for 1 year.
 
 **Answers:**
-Basic: ₹1000, Grows in CI, ₹2200
-Calculations: ₹2000, ₹6298.56, ₹11236.16
+Basic: â‚¹1000, Grows in CI, â‚¹2200
+Calculations: â‚¹2000, â‚¹6298.56, â‚¹11236.16
 
-Master principal concepts in compound interest for accurate growth calculations! 🏆`
+Master principal concepts in compound interest for accurate growth calculations! ðŸ†`
 };

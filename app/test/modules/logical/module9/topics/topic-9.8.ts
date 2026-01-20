@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_8: SubLesson = {
   id: "9.8",
-  title: 'Either–Or Type Conclusions',
+  title: 'Eitherâ€“Or Type Conclusions',
   status: 'completed',
-  content: `# 🔀 Either–Or Type Conclusions
+  content: "`# ðŸ”€ Eitherâ€“Or Type Conclusions
 
 Either-or type conclusions occur when syllogistic statements lead to conclusions that present mutually exclusive alternatives. These problems require recognizing when the given premises force a choice between two possible conclusions, where one must be true but both cannot be true simultaneously.
 
 ---
 
-## 🎯 Understanding Either-Or Conclusions
+## ðŸŽ¯ Understanding Either-Or Conclusions
 
 ### **What are Either-Or Type Conclusions?**
 Either-or conclusions arise when the given statements create a situation where exactly one of two possible conclusions must be true, but not both. They occur when:
@@ -22,7 +22,7 @@ Either-or conclusions arise when the given statements create a situation where e
 ### **Key Characteristics**
 
 #### **Mutually Exclusive Options**
-\`\`\`
+\`"\`\`
 Either conclusion A is true, or conclusion B is true, but not both
 Example: Either "All A are B" or "No A are B"
 \`\`\`
@@ -41,7 +41,7 @@ Not just "may be true" but "one of these must be true"
 
 ---
 
-## 🧩 When Either-Or Conclusions Occur
+## ðŸ§© When Either-Or Conclusions Occur
 
 ### **Situation 1: Contradictory Universal Claims**
 \`\`\`
@@ -66,7 +66,7 @@ Given statements that allow only two possible relationships:
 
 ---
 
-## 🎯 Common Either-Or Patterns
+## ðŸŽ¯ Common Either-Or Patterns
 
 ### **Pattern 1: Complete Inclusion vs Partial**
 \`\`\`
@@ -88,7 +88,7 @@ Either-or: Either All B are A or Some B are not A
 
 ---
 
-## 📊 Either-Or Conclusion Framework
+## ðŸ“Š Either-Or Conclusion Framework
 
 ### **Step-by-Step Identification**
 
@@ -119,7 +119,7 @@ Either-or: Either All B are A or Some B are not A
 
 ---
 
-## 🎯 Problem Types and Solutions
+## ðŸŽ¯ Problem Types and Solutions
 
 ### **Type 1: Inclusion Alternatives**
 *"Statements: All A are B, Some B are C, Some B are not C"*
@@ -160,7 +160,7 @@ Either-or: Either All B are A or Some B are not A
 
 ---
 
-## 🛠️ Either-Or Analysis Techniques
+## ðŸ› ï¸ Either-Or Analysis Techniques
 
 ### **Technique 1: Scenario Elimination**
 \`\`\`
@@ -174,8 +174,8 @@ List all possible scenarios, eliminate invalid ones:
 ### **Technique 2: Logical Dichotomy**
 \`\`\`
 Identify the binary choice point:
-- If condition P holds → Conclusion X
-- If condition P doesn't hold → Conclusion Y
+- If condition P holds â†’ Conclusion X
+- If condition P doesn't hold â†’ Conclusion Y
 - The statements force either P or not-P
 - Therefore: Either X or Y
 \`\`\`
@@ -192,7 +192,7 @@ Draw possible Venn diagrams:
 
 ---
 
-## 📊 Common Either-Or Scenarios
+## ðŸ“Š Common Either-Or Scenarios
 
 ### **Scenario 1: Universal-Particular Combination**
 \`\`\`
@@ -214,7 +214,7 @@ Either: All B are A OR Some B are not A
 
 ---
 
-## 🎯 Advanced Either-Or Problems
+## ðŸŽ¯ Advanced Either-Or Problems
 
 ### **Complex Example 1: Multi-Relationship**
 *"All A are B, Some B are C, Some B are not C, No C are D"*
@@ -237,7 +237,7 @@ Either: All B are A OR Some B are not A
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (30%)**
 - Simple universal-particular combinations
@@ -256,7 +256,7 @@ Either: All B are A OR Some B are not A
 
 ---
 
-## 🧮 Logical Rules for Either-Or
+## ðŸ§® Logical Rules for Either-Or
 
 ### **Either-Or Validity Conditions**
 \`\`\`
@@ -270,38 +270,38 @@ For "Either X or Y" to be valid:
 ### **Common Either-Or Templates**
 \`\`\`
 Template 1: All P are Q + Some Q are R + Some Q are not R
-→ Either All P are R or Some P are not R
+â†’ Either All P are R or Some P are not R
 
 Template 2: Some P are Q + Some P are not Q
-→ Either All Q are P or Some Q are not P
+â†’ Either All Q are P or Some Q are not P
 
 Template 3: No P are Q + Some R are P
-→ Either All R are Q or Some R are not Q
+â†’ Either All R are Q or Some R are not Q
 \`\`\`
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Confusing with Possibility**
-❌ Treating either-or as "may be true"
-✅ Either-or means one must be true, both cannot
+âŒ Treating either-or as "may be true"
+âœ… Either-or means one must be true, both cannot
 
 ### **Mistake 2: Missing Mutual Exclusivity**
-❌ Accepting either-or when both options could be true
-✅ Ensure the options are mutually exclusive
+âŒ Accepting either-or when both options could be true
+âœ… Ensure the options are mutually exclusive
 
 ### **Mistake 3: Incomplete Coverage**
-❌ Missing that both options might be false
-✅ Ensure one of the options must be true
+âŒ Missing that both options might be false
+âœ… Ensure one of the options must be true
 
 ### **Mistake 4: Logical Errors**
-❌ Drawing invalid either-or conclusions
-✅ Verify against logical rules and diagram testing
+âŒ Drawing invalid either-or conclusions
+âœ… Verify against logical rules and diagram testing
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Identify Binary Choices**: Look for situations with only two possibilities
 2. **Check Mutual Exclusivity**: Ensure both options cannot be true together
@@ -313,7 +313,7 @@ Template 3: No P are Q + Some R are P
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Basic Either-Or**
 *"Statements: All roses are flowers. Some flowers are red. Some flowers are not red."*
@@ -361,7 +361,7 @@ Template 3: No P are Q + Some R are P
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Possibility Cases**
 - Either-or is a specific type of possibility case
@@ -378,5 +378,5 @@ Template 3: No P are Q + Some R are P
 - Use logical necessity to validate either-or claims
 - Combine deduction with binary choice analysis
 
-**Master either-or type conclusions to identify mutually exclusive logical alternatives! 🔀✨**`
+**Master either-or type conclusions to identify mutually exclusive logical alternatives! ðŸ”€âœ¨**`
 };

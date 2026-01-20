@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_9: SubLesson = {
   id: "10.9",
   title: 'Alternate Days Work',
   status: 'completed',
-  content: `# 🔄 Alternate Days Work
+  content: "`# ðŸ”„ Alternate Days Work
 
 Master problems involving workers who work on alternate days or different schedules - common in aptitude exam scenarios.
 
 ---
 
-## 🎯 Alternate Work Concept
+## ðŸŽ¯ Alternate Work Concept
 
 **Alternate days work** occurs when workers follow different working patterns - working on different days or shifts.
 
@@ -22,10 +22,10 @@ Master problems involving workers who work on alternate days or different schedu
 
 ---
 
-## 📊 Alternate Work Calculations
+## ðŸ“Š Alternate Work Calculations
 
 ### 1. **Basic Alternate Pattern**
-\`\`\`
+\`"\`\`
 Day 1: Only A works
 Day 2: Only B works
 Day 3: Only A works
@@ -45,7 +45,7 @@ Account for who works which days
 
 ---
 
-## 🧮 Alternate Work Examples
+## ðŸ§® Alternate Work Examples
 
 ### Example 1: Simple Alternate
 **A completes work in 12 days, B in 18 days. They work alternate days starting with A. Time together?**
@@ -64,7 +64,7 @@ For 7 days: A works days 1,3,5,7 (4 days), B works days 2,4,6 (3 days)
 - Need 8th day: A works, completes remaining 1/2 work
 - A's work on 8th day = 1/12 = 1/12, but needs 1/2 = 6/12
 - Wait, mistake: after 7 days 1/2 work done, so on 8th day A does full day but only needs 1/2 day's work
-- Time for 1/2 work by A = (1/2) ÷ (1/12) = 6 days? No.
+- Time for 1/2 work by A = (1/2) Ã· (1/12) = 6 days? No.
 
 Let's recalculate properly:
 Total work = 1
@@ -94,7 +94,7 @@ Total time = 7 days + 6/12 days = 7.5 days
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **LCM Method for Alternate Work**
 \`\`\`
@@ -126,7 +126,7 @@ Adjust work rates accordingly
 
 ---
 
-## 🔢 Advanced Alternate Patterns
+## ðŸ”¢ Advanced Alternate Patterns
 
 ### **Different Alternate Patterns**
 - **A,B,A,B,A,B...**: Standard alternate
@@ -146,7 +146,7 @@ Adjust work rates accordingly
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 2: 2-Day Rotation
 **A, B work 2 days each alternately. A takes 15 days alone, B takes 20 days alone. Total time?**
@@ -158,7 +158,7 @@ Adjust work rates accordingly
 
 Pattern: A,A,B,B,A,A,B,B,...
 4-day cycle work: 4+4+3+3 = 14 units
-Cycles needed: 60/14 ≈ 4.28 cycles
+Cycles needed: 60/14 â‰ˆ 4.28 cycles
 4 cycles: 56 units
 Remaining: 4 units
 Next worker is A (after B,B), so A does 4 units in 4/4 = 1 day
@@ -176,7 +176,7 @@ Total time = 16 days + 1 day = 17 days
 
 Pattern: A,B,C,A,B,C,...
 3-day cycle: 15+12+10 = 37 units
-Cycles: 180/37 ≈ 4.86 cycles
+Cycles: 180/37 â‰ˆ 4.86 cycles
 4 cycles: 148 units
 Remaining: 32 units
 Next is A: 15 units (not enough)
@@ -187,7 +187,7 @@ Total time = 12 days + 0.5 days = 12.5 days
 
 ---
 
-## 🚨 Alternate Work Mistakes
+## ðŸš¨ Alternate Work Mistakes
 
 1. **Pattern Tracking**: Lose track of who works when
 2. **Cycle Calculation**: Wrong work per cycle
@@ -197,7 +197,7 @@ Total time = 12 days + 0.5 days = 12.5 days
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** A takes 10d, B takes 15d. Alternate days, A starts. Time?
 **2.** A,B work 2 days each alternately. A:12d, B:16d. Time?
@@ -209,7 +209,7 @@ Total time = 12 days + 0.5 days = 12.5 days
 
 ---
 
-## 🎓 Alternate Work Strategies
+## ðŸŽ“ Alternate Work Strategies
 
 1. **Use LCM method** for precision
 2. **Track work day by day** for complex patterns
@@ -217,5 +217,5 @@ Total time = 12 days + 0.5 days = 12.5 days
 4. **Handle fractional days** carefully
 5. **Double-check starting person** and pattern
 
-Master alternate days work problems and solve complex scheduling scenarios! 🏆`
+Master alternate days work problems and solve complex scheduling scenarios! ðŸ†`
 };

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_9: SubLesson = {
   id: "5.9",
   title: 'Pattern-Based Coding',
   status: 'completed',
-  content: `# 🔮 Pattern-Based Coding
+  content: "`# ðŸ”® Pattern-Based Coding
 
 Pattern-based coding involves identifying and applying complex patterns, sequences, and relationships in coding transformations. These problems require advanced pattern recognition and logical reasoning skills.
 
 ---
 
-## 🎯 Understanding Pattern-Based Coding
+## ðŸŽ¯ Understanding Pattern-Based Coding
 
 ### **What is Pattern-Based Coding?**
 Pattern-based coding involves transformation rules based on complex patterns, sequences, and logical relationships. These problems test your ability to:
@@ -27,11 +27,11 @@ Pattern-based coding involves transformation rules based on complex patterns, se
 
 ---
 
-## 🧩 Types of Pattern-Based Coding
+## ðŸ§© Types of Pattern-Based Coding
 
 ### **1. Sequence Patterns**
 **Pattern-based sequences**
-- **Mathematical Sequences**: Position × 2, +1, etc.
+- **Mathematical Sequences**: Position Ã— 2, +1, etc.
 - **Letter Sequences**: Every nth letter, skip patterns
 - **Mixed Sequences**: Combined letter-number patterns
 
@@ -49,7 +49,7 @@ Pattern-based coding involves transformation rules based on complex patterns, se
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Deep Pattern Analysis**
 - Examine all input-output pairs carefully
@@ -73,11 +73,11 @@ Pattern-based coding involves transformation rules based on complex patterns, se
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Mathematical Patterns**
 **Number-based transformation patterns**
-- "Position × 2 + 1"
+- "Position Ã— 2 + 1"
 - "Alternate addition and subtraction"
 - "Complex mathematical sequences"
 
@@ -95,7 +95,7 @@ Pattern-based coding involves transformation rules based on complex patterns, se
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Pattern Decomposition**
 - Break complex patterns into components
@@ -114,29 +114,29 @@ Pattern-based coding involves transformation rules based on complex patterns, se
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Mathematical Pattern**
-**Pattern**: Position × 2 - 1
+**Pattern**: Position Ã— 2 - 1
 - **Input**: ABC (A=1, B=2, C=3)
 - **Output**: 1, 3, 5
-- **Explanation**: 1×2-1=1, 2×2-1=3, 3×2-1=5
+- **Explanation**: 1Ã—2-1=1, 2Ã—2-1=3, 3Ã—2-1=5
 
 ### **Example 2: Sequence Pattern**
 **Pattern**: Every other letter reversed
 - **Input**: ABCD
-- **Output**: AZCD (A→Z, B stays B, C→X, D stays D)
+- **Output**: AZCD (Aâ†’Z, B stays B, Câ†’X, D stays D)
 - **Explanation**: 1st and 3rd letters reversed in alphabet
 
 ### **Example 3: Relationship Pattern**
 **Pattern**: Each letter replaced by letter at position (current + next)
 - **Input**: ABC
 - **Output**: BCE (A+1=B, B+2=D, but wait - need correct pattern)
-- **Better Example**: Position + 1 for vowels, ×2 for consonants
+- **Better Example**: Position + 1 for vowels, Ã—2 for consonants
 
 ---
 
-## 🔍 Advanced Pattern Concepts
+## ðŸ” Advanced Pattern Concepts
 
 ### **Multi-Layer Patterns**
 Complex patterns requiring multiple levels of analysis.
@@ -149,10 +149,10 @@ Patterns combining multiple transformation types.
 
 ---
 
-## 📊 Pattern-Based Coding Methods
+## ðŸ“Š Pattern-Based Coding Methods
 
 ### **Mathematical Patterns**
-- **Arithmetic Sequences**: +n, ×n, etc.
+- **Arithmetic Sequences**: +n, Ã—n, etc.
 - **Geometric Sequences**: Position-based calculations
 - **Complex Formulas**: Multi-variable calculations
 
@@ -168,23 +168,23 @@ Patterns combining multiple transformation types.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Surface Patterns**
-❌ Stopping at obvious patterns
-✅ Looking for deeper relationships
+âŒ Stopping at obvious patterns
+âœ… Looking for deeper relationships
 
 ### **Pitfall 2: Wrong Pattern Assumption**
-❌ Assuming simple patterns for complex rules
-✅ Testing multiple pattern possibilities
+âŒ Assuming simple patterns for complex rules
+âœ… Testing multiple pattern possibilities
 
 ### **Pitfall 3: Incomplete Analysis**
-❌ Not considering all pattern aspects
-✅ Comprehensive pattern verification
+âŒ Not considering all pattern aspects
+âœ… Comprehensive pattern verification
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Multiple Hypotheses**
 - Generate several possible patterns
@@ -203,7 +203,7 @@ Patterns combining multiple transformation types.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Moderately complex patterns
@@ -222,7 +222,7 @@ Patterns combining multiple transformation types.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Look Deep**: Don't stop at first apparent pattern
 2. **Test Multiple Options**: Consider different pattern possibilities
@@ -232,19 +232,19 @@ Patterns combining multiple transformation types.
 
 ---
 
-## 🔮 Practice Questions
+## ðŸ”® Practice Questions
 
 ### **Question 1**
-Find the pattern for: ABC → 1,3,5 and DEF → 6,8,10
+Find the pattern for: ABC â†’ 1,3,5 and DEF â†’ 6,8,10
 
 ### **Question 2**
-Find the pattern for: CAT → XZG and DOG → WLT
+Find the pattern for: CAT â†’ XZG and DOG â†’ WLT
 
 ### **Question 3**
-Find the pattern for: PEN → 16,5,14 and BOX → 2,15,24
+Find the pattern for: PEN â†’ 16,5,14 and BOX â†’ 2,15,24
 
 ### **Question 4**
-Find the pattern for: ABCD → AZCD and EFGH → EVGH
+Find the pattern for: ABCD â†’ AZCD and EFGH â†’ EVGH
 
-**Master pattern-based coding for advanced logical transformations! 🔮✨**`
+**Master pattern-based coding for advanced logical transformations! ðŸ”®âœ¨**`"
 };

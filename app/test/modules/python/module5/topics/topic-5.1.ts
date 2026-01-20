@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_1: SubLesson = {
   id: "5.1",
   title: 'What are Sets?',
   status: 'demo',
-  content: `# 🎲 What are Python Sets?
+  content: "`# ðŸŽ² What are Python Sets?
 
 Sets are **unordered collections of unique items**. Think of them as mathematical sets with special properties!
 
 ---
 
-## 🎯 What is a Set?
+## ðŸŽ¯ What is a Set?
 
 A **set** is a collection that:
 - **Unordered** - No specific order, no indices
@@ -18,7 +18,7 @@ A **set** is a collection that:
 - **Mutable** - Can add/remove items
 - **Unindexed** - Cannot access by position
 
-\`\`\`python
+\`"\`\`python
 # A simple set of unique numbers
 numbers = {1, 2, 3, 4, 5}
 print(numbers)  # {1, 2, 3, 4, 5} (order may vary)
@@ -30,7 +30,7 @@ print(duplicates)  # {1, 2, 3}
 
 ---
 
-## 🔍 Key Characteristics
+## ðŸ” Key Characteristics
 
 ### **No Duplicates Allowed**
 \`\`\`python
@@ -61,19 +61,19 @@ print(f"After remove: {numbers}")  # {1, 3, 4}
 
 ---
 
-## 📊 Set vs Other Collections
+## ðŸ“Š Set vs Other Collections
 
 | Feature | List | Tuple | Set |
 |---------|------|-------|-----|
-| Ordered | ✅ | ✅ | ❌ |
-| Indexed | ✅ | ✅ | ❌ |
-| Mutable | ✅ | ❌ | ✅ |
-| Duplicates | ✅ | ✅ | ❌ |
-| Fast lookup | ❌ | ❌ | ✅ |
+| Ordered | âœ… | âœ… | âŒ |
+| Indexed | âœ… | âœ… | âŒ |
+| Mutable | âœ… | âŒ | âœ… |
+| Duplicates | âœ… | âœ… | âŒ |
+| Fast lookup | âŒ | âŒ | âœ… |
 
 ---
 
-## 🎨 Real-World Examples
+## ðŸŽ¨ Real-World Examples
 
 \`\`\`python
 # Unique email addresses
@@ -95,7 +95,7 @@ even_numbers = {2, 4, 6, 8, 10}
 
 ---
 
-## 🚀 Why Sets Are Useful
+## ðŸš€ Why Sets Are Useful
 
 ### **Automatic Deduplication**
 \`\`\`python
@@ -114,6 +114,7 @@ large_list = list(range(100000))
 print(50000 in large_list)  # Slower!
 \`\`\`
 
-Sets are perfect for unique collections and fast lookups! ⚡`
+Sets are perfect for unique collections and fast lookups! âš¡`
 };
+
 

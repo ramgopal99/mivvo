@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_2: SubLesson = {
   id: "7.2",
   title: 'Defining Functions',
   status: 'demo',
-  content: `# 🆕 Defining Python Functions
+  content: "`# ðŸ†• Defining Python Functions
 
-Functions are defined using the \`def\` keyword. Let's learn the complete syntax and best practices!
+Functions are defined using the \`"def\` keyword. Let's learn the complete syntax and best practices!
 
 ---
 
-## 🎯 Basic Function Definition
+## ðŸŽ¯ Basic Function Definition
 
 ### **Function Syntax**
 \`\`\`python
@@ -39,7 +39,7 @@ greet_user()
 
 ---
 
-## 📝 Function with Parameters
+## ðŸ“ Function with Parameters
 
 ### **Accepting Input Values**
 \`\`\`python
@@ -61,7 +61,7 @@ calculate_square(10)
 
 ---
 
-## 🔄 Functions with Return Values
+## ðŸ”„ Functions with Return Values
 
 ### **Returning Results**
 \`\`\`python
@@ -88,7 +88,7 @@ print(f"Total: {total}")  # Total: 40
 
 ---
 
-## 📚 Docstrings
+## ðŸ“š Docstrings
 
 ### **Documenting Functions**
 \`\`\`python
@@ -119,7 +119,7 @@ print(f"Area: {area}")
 
 ---
 
-## 🎨 Advanced Examples
+## ðŸŽ¨ Advanced Examples
 
 ### **Multi-Step Functions**
 \`\`\`python
@@ -192,13 +192,13 @@ test_passwords = ["weak", "Password123", "password", "PASSWORD123"]
 
 for pwd in test_passwords:
     is_valid, message = validate_password(pwd)
-    status = "✅" if is_valid else "❌"
+    status = "âœ…" if is_valid else "âŒ"
     print(f"{status} '{pwd}': {message}")
 \`\`\`
 
 ---
 
-## ✅ Best Practices
+## âœ… Best Practices
 
 1. **Use descriptive names** - calculate_total() not calc()
 2. **Write docstrings** - Document what the function does
@@ -206,6 +206,7 @@ for pwd in test_passwords:
 4. **Use return statements** - Make functions useful by returning values
 5. **Handle edge cases** - Consider what happens with invalid inputs
 
-Functions make your code organized, reusable, and maintainable! 📝`
+Functions make your code organized, reusable, and maintainable! ðŸ“`
 };
+
 

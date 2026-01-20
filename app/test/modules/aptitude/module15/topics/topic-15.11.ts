@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_11: SubLesson = {
   id: "15.11",
   title: 'Data Sufficiency (Basic)',
   status: 'completed',
-  content: `# ❓ Data Sufficiency (Basic)
+  content: "`# â“ Data Sufficiency (Basic)
 
 Master Data Sufficiency questions in DI! These unique problems test your ability to determine what information is needed to solve a problem without actually calculating the answer. Learn to analyze requirements and identify when data is sufficient or insufficient.
 
 ---
 
-## 🎯 What is Data Sufficiency?
+## ðŸŽ¯ What is Data Sufficiency?
 
 **Data Sufficiency** questions present a problem and multiple statements, asking whether the given data is enough to solve the problem. The goal is not to find the answer, but to determine if sufficient information exists.
 
@@ -29,7 +29,7 @@ Master Data Sufficiency questions in DI! These unique problems test your ability
 
 ---
 
-## 🔍 Data Sufficiency Analysis
+## ðŸ” Data Sufficiency Analysis
 
 ### **Step 1: Understand the Question**
 - Identify what is being asked
@@ -57,7 +57,7 @@ Master Data Sufficiency questions in DI! These unique problems test your ability
 
 ---
 
-## 🎯 Common Data Sufficiency Patterns
+## ðŸŽ¯ Common Data Sufficiency Patterns
 
 ### **Pattern 1: Single Variable Problems**
 
@@ -88,11 +88,11 @@ Master Data Sufficiency questions in DI! These unique problems test your ability
 ### **Pattern 3: Percentage Problems**
 
 **Question:** What is the marked price?
-**Statement A:** Selling price is ₹800 at 20% discount
-**Statement B:** Cost price is ₹600
+**Statement A:** Selling price is â‚¹800 at 20% discount
+**Statement B:** Cost price is â‚¹600
 
 **Analysis:**
-- A alone: MP = SP/(1-discount%) = 800/0.8 = ₹1000
+- A alone: MP = SP/(1-discount%) = 800/0.8 = â‚¹1000
 - B alone: Not sufficient (profit/loss unknown)
 - A + B: Redundant
 
@@ -100,7 +100,7 @@ Master Data Sufficiency questions in DI! These unique problems test your ability
 
 ---
 
-## 📊 Data Sufficiency in DI Context
+## ðŸ“Š Data Sufficiency in DI Context
 
 ### **Table-Based Questions**
 
@@ -112,12 +112,12 @@ Master Data Sufficiency questions in DI! These unique problems test your ability
 | B       | 150  | 180  | ?        |
 
 **Statement A:** Product B had 20% growth in 2020
-**Statement B:** Total sales in 2020 were ₹500
+**Statement B:** Total sales in 2020 were â‚¹500
 
 **Analysis:**
-- A alone: B grew 20% from 150 to 180 ✓, but doesn't help A
+- A alone: B grew 20% from 150 to 180 âœ“, but doesn't help A
 - B alone: Total 500, but B=180, A unknown
-- A + B: A grew 20% from 100 to 120, total = 120 + 180 = 300 ≠ 500
+- A + B: A grew 20% from 100 to 120, total = 120 + 180 = 300 â‰  500
 
 **Answer:** Neither statement nor both are sufficient
 
@@ -125,12 +125,12 @@ Master Data Sufficiency questions in DI! These unique problems test your ability
 
 **Question:** What percentage of total is Category X?
 
-\`\`\`
+\`"\`\`
 Pie Chart: A-30%, B-40%, C-20%, D-?
 \`\`\`
 
 **Statement A:** Category D is 10%
-**Statement B:** Total value is ₹1000
+**Statement B:** Total value is â‚¹1000
 
 **Analysis:**
 - A alone: D=10%, total % = 30+40+20+10=100%, so X% known
@@ -141,7 +141,7 @@ Pie Chart: A-30%, B-40%, C-20%, D-?
 
 ---
 
-## 🎯 Advanced Data Sufficiency Scenarios
+## ðŸŽ¯ Advanced Data Sufficiency Scenarios
 
 ### **Example 1: Multiple Relationships**
 
@@ -153,7 +153,7 @@ Pie Chart: A-30%, B-40%, C-20%, D-?
 **Analysis:**
 - A alone: Not sufficient (Y unknown)
 - B alone: Not sufficient (relationship unknown)
-- A + B: X = 10,000 × 1.20 = 12,000
+- A + B: X = 10,000 Ã— 1.20 = 12,000
 
 **Answer:** Both statements together are sufficient
 
@@ -161,11 +161,11 @@ Pie Chart: A-30%, B-40%, C-20%, D-?
 
 **Question:** What is the profit percentage?
 
-**Statement A:** Selling price is ₹120, cost price is ₹100
+**Statement A:** Selling price is â‚¹120, cost price is â‚¹100
 **Statement B:** If cost price was 10% less, profit would be 25%
 
 **Analysis:**
-- A alone: Profit = (120-100)/100 × 100 = 20%
+- A alone: Profit = (120-100)/100 Ã— 100 = 20%
 - B alone: Creates equation but SP unknown
 - A + B: Redundant
 
@@ -187,7 +187,7 @@ Pie Chart: A-30%, B-40%, C-20%, D-?
 
 ---
 
-## 📋 Standard Answer Options
+## ðŸ“‹ Standard Answer Options
 
 ### **Option 1: Statement A alone is sufficient**
 - A provides all required information
@@ -212,7 +212,7 @@ Pie Chart: A-30%, B-40%, C-20%, D-?
 
 ---
 
-## 🎯 Common DI Data Sufficiency Types
+## ðŸŽ¯ Common DI Data Sufficiency Types
 
 ### **Type 1: Value Finding**
 **"What is the value of X?"**
@@ -241,31 +241,31 @@ Pie Chart: A-30%, B-40%, C-20%, D-?
 
 ---
 
-## 🚨 Common Pitfalls to Avoid
+## ðŸš¨ Common Pitfalls to Avoid
 
 ### **Pitfall 1: Assuming Information**
-❌ "If A is 50%, B must be 50%" (without total being 100%)
+âŒ "If A is 50%, B must be 50%" (without total being 100%)
 - Don't assume unstated relationships
 
 ### **Pitfall 2: Ignoring Dependencies**
-❌ "A gives ratio, B gives total, so sufficient"
+âŒ "A gives ratio, B gives total, so sufficient"
 - Check if ratio and total together give unique values
 
 ### **Pitfall 3: Overlooking Conditions**
-❌ Missing "if-then" relationships
+âŒ Missing "if-then" relationships
 - Read statements carefully for conditional information
 
 ### **Pitfall 4: Wrong Sufficiency Criteria**
-❌ "Two equations always sufficient for two variables"
+âŒ "Two equations always sufficient for two variables"
 - May have infinite solutions or inconsistencies
 
 ### **Pitfall 5: Calculation Errors**
-❌ Thinking information sufficient when calculations give different answers
+âŒ Thinking information sufficient when calculations give different answers
 - Always check if statements lead to unique answer
 
 ---
 
-## 🎯 Practice Data Sufficiency Questions
+## ðŸŽ¯ Practice Data Sufficiency Questions
 
 ### **Basic Problems**
 
@@ -275,15 +275,15 @@ Pie Chart: A-30%, B-40%, C-20%, D-?
 
    **Analysis:** A alone: Width unknown
    B alone: Length unknown
-   A + B: Width = (30-20)/2 = 5m, Area = 50m²
+   A + B: Width = (30-20)/2 = 5m, Area = 50mÂ²
    **Answer:** Both together sufficient
 
 2. **What is the selling price?**
-   **A:** Cost price is ₹100, profit is 20%
-   **B:** Marked price is ₹120, discount is 10%
+   **A:** Cost price is â‚¹100, profit is 20%
+   **B:** Marked price is â‚¹120, discount is 10%
 
-   **Analysis:** A alone: SP = 100 × 1.2 = ₹120
-   B alone: SP = 120 × 0.9 = ₹108
+   **Analysis:** A alone: SP = 100 Ã— 1.2 = â‚¹120
+   B alone: SP = 120 Ã— 0.9 = â‚¹108
    A + B: Contradictory information
    **Answer:** Each alone sufficient (but different answers!)
 
@@ -291,7 +291,7 @@ Pie Chart: A-30%, B-40%, C-20%, D-?
 
 ---
 
-## 🎓 Pro Tips for Data Sufficiency
+## ðŸŽ“ Pro Tips for Data Sufficiency
 
 1. **Don't solve the actual problem** - just check sufficiency
 2. **Look for unique answers** - any ambiguity means insufficient
@@ -303,31 +303,31 @@ Pie Chart: A-30%, B-40%, C-20%, D-?
 
 ---
 
-## 🔢 Data Sufficiency Decision Tree
+## ðŸ”¢ Data Sufficiency Decision Tree
 
 \`\`\`
 Start with question requirement
-    ↓
+    â†“
 Analyze Statement A
-    ↓
-Does A give unique answer? → Yes: Option 1
-    ↓
-No → Analyze Statement B
-    ↓
-Does B give unique answer? → Yes: Option 2
-    ↓
-No → Analyze A + B together
-    ↓
-Do A + B give unique answer? → Yes: Option 3
-    ↓
-No → Check if each alone works → Yes: Option 4
-    ↓
-No → Option 5 (insufficient)
+    â†“
+Does A give unique answer? â†’ Yes: Option 1
+    â†“
+No â†’ Analyze Statement B
+    â†“
+Does B give unique answer? â†’ Yes: Option 2
+    â†“
+No â†’ Analyze A + B together
+    â†“
+Do A + B give unique answer? â†’ Yes: Option 3
+    â†“
+No â†’ Check if each alone works â†’ Yes: Option 4
+    â†“
+No â†’ Option 5 (insufficient)
 \`\`\`
 
 ---
 
-## 📊 DI-Specific Data Sufficiency
+## ðŸ“Š DI-Specific Data Sufficiency
 
 ### **Table Data Sufficiency**
 
@@ -348,7 +348,7 @@ No → Option 5 (insufficient)
 **Question:** What percentage of total is Category A?
 
 **Statement A:** Pie chart shows A as 25% of total
-**Statement B:** Total value is ₹1000, A contributes ₹250
+**Statement B:** Total value is â‚¹1000, A contributes â‚¹250
 
 **Analysis:**
 - A alone: Directly gives 25%
@@ -357,5 +357,5 @@ No → Option 5 (insufficient)
 
 **Answer:** Each statement alone is sufficient
 
-Master data sufficiency and determine information adequacy with precision! 🏆`
+Master data sufficiency and determine information adequacy with precision! ðŸ†`
 };

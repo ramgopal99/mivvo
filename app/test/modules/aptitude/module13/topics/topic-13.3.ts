@@ -1,25 +1,25 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_3: SubLesson = {
   id: "13.3",
   title: 'Linear Equations in Two Variables',
   status: 'completed',
-  content: `# 📈 Linear Equations in Two Variables
+  content: "`# ðŸ“ˆ Linear Equations in Two Variables
 
 Dive into the fascinating world of linear equations with two variables! These equations form the foundation for coordinate geometry and have countless real-world applications. Learn to recognize, solve, and apply two-variable linear equations effectively.
 
 ---
 
-## 🎯 What is a Linear Equation in Two Variables?
+## ðŸŽ¯ What is a Linear Equation in Two Variables?
 
-A **Linear Equation in Two Variables** is an equation that can be written in the form \`ax + by + c = 0\`, where \`a\`, \`b\`, and \`c\` are real numbers, and \`a\` and \`b\` are not both zero.
+A **Linear Equation in Two Variables** is an equation that can be written in the form \`"ax + by + c = 0\`, where \`a\`, \`b\`, and \`c\` are real numbers, and \`a\` and \`b\` are not both zero.
 
 ### **General Form**
 \`ax + by + c = 0\`
 
 **Where:**
 - \`x\`, \`y\`: variables
-- \`a\`, \`b\`: coefficients (a, b ≠ 0 simultaneously)
+- \`a\`, \`b\`: coefficients (a, b â‰  0 simultaneously)
 - \`c\`: constant term
 
 ### **Alternative Forms**
@@ -29,7 +29,7 @@ A **Linear Equation in Two Variables** is an equation that can be written in the
 
 ---
 
-## 🔢 Standard Forms
+## ðŸ”¢ Standard Forms
 
 ### **1. General Form**
 \`ax + by + c = 0\`
@@ -57,7 +57,7 @@ A **Linear Equation in Two Variables** is an equation that can be written in the
 
 ---
 
-## 🔄 Converting Between Forms
+## ðŸ”„ Converting Between Forms
 
 ### **Example 1: General to Slope-Intercept**
 **Equation:** \`2x + 3y - 6 = 0\`
@@ -85,7 +85,7 @@ A **Linear Equation in Two Variables** is an equation that can be written in the
 
 ---
 
-## 📊 Solutions of Linear Equations
+## ðŸ“Š Solutions of Linear Equations
 
 ### **What is a Solution?**
 A solution is a pair of values (x, y) that satisfies the equation.
@@ -94,10 +94,10 @@ A solution is a pair of values (x, y) that satisfies the equation.
 **Equation:** \`2x + y = 5\`
 
 **Possible solutions:**
-- (1, 3): \`2×1 + 3 = 5\` ✓
-- (2, 1): \`2×2 + 1 = 3\` ≠ 5 ✗
-- (0, 5): \`2×0 + 5 = 5\` ✓
-- (3, -1): \`2×3 + (-1) = 5\` ✓
+- (1, 3): \`2Ã—1 + 3 = 5\` âœ“
+- (2, 1): \`2Ã—2 + 1 = 3\` â‰  5 âœ—
+- (0, 5): \`2Ã—0 + 5 = 5\` âœ“
+- (3, -1): \`2Ã—3 + (-1) = 5\` âœ“
 
 ### **Infinite Solutions**
 Each linear equation in two variables has **infinitely many solutions** because:
@@ -106,7 +106,7 @@ Each linear equation in two variables has **infinitely many solutions** because:
 
 ---
 
-## 🎯 Expressing General Solution
+## ðŸŽ¯ Expressing General Solution
 
 ### **Method 1: Express y in terms of x**
 **Equation:** \`2x + 3y = 6\`
@@ -128,7 +128,7 @@ Each linear equation in two variables has **infinitely many solutions** because:
 
 ---
 
-## 📈 System of Linear Equations
+## ðŸ“ˆ System of Linear Equations
 
 Two or more linear equations with same variables form a **system**.
 
@@ -154,7 +154,7 @@ x - y = 1     ...(2)
 
 ---
 
-## 🧮 Finding Specific Solutions
+## ðŸ§® Finding Specific Solutions
 
 ### **Method 1: Substitution**
 **System:**
@@ -193,7 +193,7 @@ x + 2y = 7    ...(2)
 \`y = 3\`
 
 **Step 3:** Substitute in (2):
-\`x + 2×3 = 7\`
+\`x + 2Ã—3 = 7\`
 \`x + 6 = 7\`
 \`x = 1\`
 
@@ -201,7 +201,7 @@ x + 2y = 7    ...(2)
 
 ---
 
-## 📊 Graphical Representation
+## ðŸ“Š Graphical Representation
 
 ### **Coordinate Plane**
 - x-axis: horizontal
@@ -220,10 +220,10 @@ x + 2y = 7    ...(2)
 
 ---
 
-## 💰 Real-Life Applications
+## ðŸ’° Real-Life Applications
 
 ### **1. Cost Analysis**
-**Problem:** A company sells two products. Product A costs ₹200 profit ₹50/unit. Product B costs ₹300 profit ₹70/unit. Total profit ₹500 from 10 units.
+**Problem:** A company sells two products. Product A costs â‚¹200 profit â‚¹50/unit. Product B costs â‚¹300 profit â‚¹70/unit. Total profit â‚¹500 from 10 units.
 
 **Equations:**
 Let A = units of product A, B = units of product B
@@ -258,27 +258,27 @@ x + y = total amount
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Coefficient Interpretation**
-❌ \`2x + 3y = 6\` means x coefficient is 2
+âŒ \`2x + 3y = 6\` means x coefficient is 2
 - Don't confuse with multiplication
 
 ### **Mistake 2: Incorrect Solution Verification**
-❌ Only checking one equation
+âŒ Only checking one equation
 - Always verify in both equations
 
 ### **Mistake 3: Wrong Substitution**
-❌ Substituting wrong variable
+âŒ Substituting wrong variable
 - Be careful with which variable you're substituting
 
 ### **Mistake 4: Sign Errors in Elimination**
-❌ Wrong sign when subtracting equations
+âŒ Wrong sign when subtracting equations
 - Double-check addition/subtraction
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Express in Different Forms:**
 1. Convert \`3x + 4y = 12\` to slope-intercept form.
@@ -295,18 +295,18 @@ x + y = total amount
 
 ### **Word Problems:**
 1. **Age Problem:** Father's age is twice son's age. Sum of ages is 54. Find ages.
-2. **Cost Problem:** Two items cost ₹150 and ₹200. Total cost of 3 items first and 2 items second is ₹650. Find individual prices.
+2. **Cost Problem:** Two items cost â‚¹150 and â‚¹200. Total cost of 3 items first and 2 items second is â‚¹650. Find individual prices.
 3. **Mixture Problem:** Mix solutions of 10% and 20% acid to get 15% solution.
 
 **Answers:**
 Forms: y = -3x/4 + 3, 2x - y + 5 = 0, slope=-3, intercept=7
 Solutions: (0,3), (2,2), (4,1); y = 3x - 7
 Systems: (5,3), (1,4)
-Word: Son-18, Father-36; ₹150, ₹200; Ratio 1:1
+Word: Son-18, Father-36; â‚¹150, â‚¹200; Ratio 1:1
 
 ---
 
-## 🎓 Pro Tips for Two-Variable Equations
+## ðŸŽ“ Pro Tips for Two-Variable Equations
 
 1. **Master form conversions** - practice all standard forms
 2. **Understand infinite solutions** - not unique like one variable
@@ -318,7 +318,7 @@ Word: Son-18, Father-36; ₹150, ₹200; Ratio 1:1
 
 ---
 
-## 🔢 Quick Reference Table
+## ðŸ”¢ Quick Reference Table
 
 | Form | Equation | Characteristics |
 |------|----------|-----------------|
@@ -333,5 +333,5 @@ Word: Son-18, Father-36; ₹150, ₹200; Ratio 1:1
 | Infinite | Many solutions | Coincident lines |
 | None | No solution | Parallel lines |
 
-Master linear equations in two variables and unlock advanced problem-solving skills! 🏆`
+Master linear equations in two variables and unlock advanced problem-solving skills! ðŸ†`
 };

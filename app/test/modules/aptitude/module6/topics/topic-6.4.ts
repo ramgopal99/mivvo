@@ -1,41 +1,41 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_4: SubLesson = {
   id: "6.4",
   title: 'Finding Average When One Value Is Missing',
   status: 'completed',
-  content: `# 🔍 Finding Average When One Value Is Missing
+  content: "`# ðŸ” Finding Average When One Value Is Missing
 
 Master finding unknown values when average is known! This technique is crucial for solving problems where you have most values and need to find the missing one to achieve a target average.
 
 ---
 
-## 🎯 The Missing Value Formula
+## ðŸŽ¯ The Missing Value Formula
 
 **Key Formula:**
-\`\`\`
-Missing Value = (Average × Total Count) - Sum of Known Values
+\`"\`\`
+Missing Value = (Average Ã— Total Count) - Sum of Known Values
 \`\`\`
 
 **Or:**
 \`\`\`
-x = (A × n) - Σ(known values)
+x = (A Ã— n) - Î£(known values)
 \`\`\`
 
 **Where:**
 - A = Target average
 - n = Total number of values
-- Σ = Sum of all known values
+- Î£ = Sum of all known values
 
 ---
 
-## 📊 Step-by-Step Method
+## ðŸ“Š Step-by-Step Method
 
 ### **Example 1: Basic Missing Value**
 **Problem:** Average of 5 numbers is 40. Four numbers: 35, 45, 38, 42. Find fifth number.
 
 **Step 1:** Calculate required total sum
-- Required sum = 40 × 5 = 200
+- Required sum = 40 Ã— 5 = 200
 
 **Step 2:** Sum of known values
 - 35 + 45 + 38 + 42 = 160
@@ -46,7 +46,7 @@ x = (A × n) - Σ(known values)
 ### **Example 2: Age Problem**
 **Problem:** Average age of 7 family members is 28. Ages of 6: 25, 30, 26, 32, 27, 29. Find seventh age.
 
-**Step 1:** Required sum = 28 × 7 = 196
+**Step 1:** Required sum = 28 Ã— 7 = 196
 
 **Step 2:** Known sum = 25 + 30 + 26 + 32 + 27 + 29 = 169
 
@@ -54,7 +54,7 @@ x = (A × n) - Σ(known values)
 
 ---
 
-## 🔢 Variations
+## ðŸ”¢ Variations
 
 ### **Type 1: Find Value for Specific Average**
 Same as above examples.
@@ -67,7 +67,7 @@ Find replacement value to achieve new average.
 
 ---
 
-## 💡 Quick Tricks
+## ðŸ’¡ Quick Tricks
 
 ### **Trick 1: Mental Calculation**
 \`\`\`
@@ -86,7 +86,7 @@ Look for arithmetic sequences or patterns
 
 ---
 
-## 🎯 Applications
+## ðŸŽ¯ Applications
 
 ### **1. Academic Problems**
 - Find missing test score
@@ -102,23 +102,23 @@ Look for arithmetic sequences or patterns
 
 ---
 
-## 🚨 Common Mistakes
+## ðŸš¨ Common Mistakes
 
 ### **Mistake 1: Wrong Sum**
-❌ Errors in adding known values
+âŒ Errors in adding known values
 - Double-check addition
 
 ### **Mistake 2: Count Error**
-❌ Wrong total count n
+âŒ Wrong total count n
 - Include the missing value in count
 
 ### **Mistake 3: Negative Values**
-❌ Impossible negative ages/heights
+âŒ Impossible negative ages/heights
 - Check result makes sense
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Basic Problems:**
 1. Average 35, 6 numbers. Five: 30, 40, 32, 38, 36. Find sixth.
@@ -132,5 +132,5 @@ Look for arithmetic sequences or patterns
 Basic: 34, 22
 Complex: 43, 85
 
-Master finding missing values to solve average puzzles! 🏆`
+Master finding missing values to solve average puzzles! ðŸ†`
 };

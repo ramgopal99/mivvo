@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_5: SubLesson = {
   id: "2.5",
   title: 'HCF & LCM',
   status: 'completed',
-  content: `# 🔢 HCF & LCM
+  content: "`# ðŸ”¢ HCF & LCM
 
 Highest Common Factor (HCF) and Least Common Multiple (LCM) are fundamental concepts in number theory. These concepts are crucial for solving problems involving fractions, ratios, and number relationships.
 
 ---
 
-## 🎯 Understanding HCF and LCM
+## ðŸŽ¯ Understanding HCF and LCM
 
 ### HCF (Highest Common Factor / GCD)
 **Definition**: The largest number that divides two or more numbers exactly.
@@ -22,18 +22,18 @@ Highest Common Factor (HCF) and Least Common Multiple (LCM) are fundamental conc
 
 ---
 
-## 📊 Methods to Find HCF
+## ðŸ“Š Methods to Find HCF
 
 ### 1. **Prime Factorization Method**
 Factorize both numbers and take minimum powers of common factors.
 
 **Example**: Find HCF of 24 and 36
-\`\`\`
-24 = 2³ × 3¹
-36 = 2² × 3²
+\`"\`\`
+24 = 2Â³ Ã— 3Â¹
+36 = 2Â² Ã— 3Â²
 
-Common factors: 2² × 3¹ = 4 × 3 = 12
-∴ HCF(24, 36) = 12
+Common factors: 2Â² Ã— 3Â¹ = 4 Ã— 3 = 12
+âˆ´ HCF(24, 36) = 12
 \`\`\`
 
 ### 2. **Division Method (Euclidean Algorithm)**
@@ -41,11 +41,11 @@ Repeatedly divide the larger number by the smaller number until remainder is 0.
 
 **Example**: Find HCF of 56 and 98
 \`\`\`
-98 ÷ 56 = 1 (remainder 42)
-56 ÷ 42 = 1 (remainder 14)
-42 ÷ 14 = 3 (remainder 0)
+98 Ã· 56 = 1 (remainder 42)
+56 Ã· 42 = 1 (remainder 14)
+42 Ã· 14 = 3 (remainder 0)
 
-∴ HCF(56, 98) = 14
+âˆ´ HCF(56, 98) = 14
 \`\`\`
 
 ### 3. **Listing Method**
@@ -58,23 +58,23 @@ Factors of 18: 1, 2, 3, 6, 9, 18
 
 Common factors: 1, 2, 3, 6
 Largest: 6
-∴ HCF(12, 18) = 6
+âˆ´ HCF(12, 18) = 6
 \`\`\`
 
 ---
 
-## 📈 Methods to Find LCM
+## ðŸ“ˆ Methods to Find LCM
 
 ### 1. **Prime Factorization Method**
 Factorize both numbers and take maximum powers of all factors.
 
 **Example**: Find LCM of 24 and 36
 \`\`\`
-24 = 2³ × 3¹
-36 = 2² × 3²
+24 = 2Â³ Ã— 3Â¹
+36 = 2Â² Ã— 3Â²
 
-Maximum powers: 2³ × 3² = 8 × 9 = 72
-∴ LCM(24, 36) = 72
+Maximum powers: 2Â³ Ã— 3Â² = 8 Ã— 9 = 72
+âˆ´ LCM(24, 36) = 72
 \`\`\`
 
 ### 2. **Division Method**
@@ -91,39 +91,39 @@ Divide by common factors until no common factors remain.
 5 | 1,  5,  5
   | 1,  1,  1
 
-∴ LCM = 2 × 2 × 3 × 5 = 60
+âˆ´ LCM = 2 Ã— 2 Ã— 3 Ã— 5 = 60
 \`\`\`
 
 ### 3. **Formula Method**
-LCM(a,b) = (a × b) / HCF(a,b)
+LCM(a,b) = (a Ã— b) / HCF(a,b)
 
 **Example**: Find LCM of 15 and 20
 \`\`\`
 HCF(15,20) = 5
-LCM = (15 × 20) / 5 = 300 / 5 = 60
+LCM = (15 Ã— 20) / 5 = 300 / 5 = 60
 \`\`\`
 
 ---
 
-## 🔗 Relationship Between HCF and LCM
+## ðŸ”— Relationship Between HCF and LCM
 
 ### Fundamental Relationship
 For any two numbers a and b:
-**HCF(a,b) × LCM(a,b) = a × b**
+**HCF(a,b) Ã— LCM(a,b) = a Ã— b**
 
 **Proof**: Using prime factorization
 \`\`\`
-a = p₁^a × p₂^b × ...
-b = p₁^c × p₂^d × ...
+a = pâ‚^a Ã— pâ‚‚^b Ã— ...
+b = pâ‚^c Ã— pâ‚‚^d Ã— ...
 
-HCF = p₁^min(a,c) × p₂^min(b,d) × ...
-LCM = p₁^max(a,c) × p₂^max(b,d) × ...
+HCF = pâ‚^min(a,c) Ã— pâ‚‚^min(b,d) Ã— ...
+LCM = pâ‚^max(a,c) Ã— pâ‚‚^max(b,d) Ã— ...
 
-Product: HCF × LCM = p₁^(min+max) × p₂^(min+max) × ...
-a × b = p₁^(a+c) × p₂^(b+d) × ...
+Product: HCF Ã— LCM = pâ‚^(min+max) Ã— pâ‚‚^(min+max) Ã— ...
+a Ã— b = pâ‚^(a+c) Ã— pâ‚‚^(b+d) Ã— ...
 
 Since min(a,c) + max(a,c) = a + c
-∴ HCF × LCM = a × b
+âˆ´ HCF Ã— LCM = a Ã— b
 \`\`\`
 
 ### Important Properties
@@ -135,11 +135,11 @@ HCF(a/b, c/d) = HCF(a,c) / LCM(b,d)
 LCM(a/b, c/d) = LCM(a,c) / HCF(b,d)
 
 #### Property 3: For three numbers
-HCF(a,b,c) × LCM(a,b,c) = HCF(a,b) × LCM(a,b) × LCM(HCF(a,b),c) / HCF(HCF(a,b),c)
+HCF(a,b,c) Ã— LCM(a,b,c) = HCF(a,b) Ã— LCM(a,b) Ã— LCM(HCF(a,b),c) / HCF(HCF(a,b),c)
 
 ---
 
-## 🎯 HCF and LCM of Multiple Numbers
+## ðŸŽ¯ HCF and LCM of Multiple Numbers
 
 ### HCF of Multiple Numbers
 Find HCF of first two, then HCF of result with third, and so on.
@@ -148,7 +148,7 @@ Find HCF of first two, then HCF of result with third, and so on.
 \`\`\`
 HCF(12,18) = 6
 HCF(6,24) = 6
-∴ HCF(12,18,24) = 6
+âˆ´ HCF(12,18,24) = 6
 \`\`\`
 
 ### LCM of Multiple Numbers
@@ -158,12 +158,12 @@ Find LCM of first two, then LCM of result with third, and so on.
 \`\`\`
 LCM(4,6) = 12
 LCM(12,8) = 24
-∴ LCM(4,6,8) = 24
+âˆ´ LCM(4,6,8) = 24
 \`\`\`
 
 ---
 
-## 🧠 Problem Solving Tricks
+## ðŸ§  Problem Solving Tricks
 
 ### Trick 1: **Quick HCF/LCM with Formula**
 When one number is multiple of other: HCF = smaller number, LCM = larger number
@@ -171,7 +171,7 @@ When one number is multiple of other: HCF = smaller number, LCM = larger number
 **Example**: HCF and LCM of 12 and 24
 \`\`\`
 HCF = 12, LCM = 24
-Check: 12 × 24 = 12 × 24 = 288 ✓
+Check: 12 Ã— 24 = 12 Ã— 24 = 288 âœ“
 \`\`\`
 
 ### Trick 2: **HCF and LCM are equal**
@@ -187,7 +187,7 @@ HCF of consecutive numbers is always 1.
 
 ---
 
-## 🎯 Advanced Applications
+## ðŸŽ¯ Advanced Applications
 
 ### 1. **Word Problems**
 **Example**: A gardener plants trees in rows of 6, 8, or 12. What's the minimum number of trees needed to have complete rows?
@@ -207,15 +207,15 @@ HCF of consecutive numbers is always 1.
 
 ---
 
-## 📝 Common Types of Problems
+## ðŸ“ Common Types of Problems
 
 ### Type 1: **Find Numbers with Given HCF and LCM**
 If HCF(a,b) = h and LCM(a,b) = l, then:
-a × b = h × l
+a Ã— b = h Ã— l
 
 **Example**: Two numbers have HCF 12 and LCM 72. Find the numbers.
 \`\`\`
-Product = 12 × 72 = 864
+Product = 12 Ã— 72 = 864
 Possible pairs: (12,72), (24,36), etc.
 \`\`\`
 
@@ -223,20 +223,20 @@ Possible pairs: (12,72), (24,36), etc.
 If LCM : HCF = k, then find the relationship.
 
 ### Type 3: **Find Numbers with Given Sum and HCF/LCM**
-Use the relationship: a + b = sum, a × b = HCF × LCM
+Use the relationship: a + b = sum, a Ã— b = HCF Ã— LCM
 
 ---
 
-## 🎯 Important Formulas
+## ðŸŽ¯ Important Formulas
 
 ### For Two Numbers:
-- **HCF × LCM = a × b**
-- **HCF ≤ min(a,b)**
-- **LCM ≥ max(a,b)**
+- **HCF Ã— LCM = a Ã— b**
+- **HCF â‰¤ min(a,b)**
+- **LCM â‰¥ max(a,b)**
 
 ### For Multiple Numbers:
-- **HCF(a,b,c) ≤ HCF(a,b)**
-- **LCM(a,b,c) ≥ LCM(a,b)**
+- **HCF(a,b,c) â‰¤ HCF(a,b)**
+- **LCM(a,b,c) â‰¥ LCM(a,b)**
 
 ### Special Cases:
 - **HCF(a,a) = a**, **LCM(a,a) = a**
@@ -245,14 +245,14 @@ Use the relationship: a + b = sum, a × b = HCF × LCM
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### Example 1: Basic HCF and LCM
 Find HCF and LCM of 15 and 20
 \`\`\`
 HCF = 5
 LCM = 60
-Check: 5 × 60 = 300, 15 × 20 = 300 ✓
+Check: 5 Ã— 60 = 300, 15 Ã— 20 = 300 âœ“
 \`\`\`
 
 ### Example 2: Multiple Numbers
@@ -267,6 +267,7 @@ Two runners run around a track. One completes a round every 4 minutes, the other
 
 **Solution**: LCM(4,6) = 12 minutes
 
-Master HCF and LCM and you'll solve many quantitative aptitude problems with ease! 🚀`
+Master HCF and LCM and you'll solve many quantitative aptitude problems with ease! ðŸš€`
 };
+
 

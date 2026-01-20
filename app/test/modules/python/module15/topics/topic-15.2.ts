@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_2: SubLesson = {
   id: "15.2",
   title: 'Bubble Sort Algorithm',
   status: 'demo',
-  content: `# 🫧 Bubble Sort Algorithm
+  content: "`# ðŸ«§ Bubble Sort Algorithm
 
 Bubble Sort is one of the simplest sorting algorithms. It works by repeatedly stepping through the list, comparing adjacent elements and swapping them if they are in the wrong order. Let's explore this classic algorithm!
 
 ---
 
-## 🎯 How Bubble Sort Works
+## ðŸŽ¯ How Bubble Sort Works
 
 **Bubble Sort** gets its name because smaller elements "bubble" to the top of the array (beginning) while larger elements sink to the bottom (end).
 
@@ -22,25 +22,25 @@ Bubble Sort is one of the simplest sorting algorithms. It works by repeatedly st
 
 ---
 
-## 📝 Step-by-Step Example
+## ðŸ“ Step-by-Step Example
 
 **Input Array**: [64, 34, 25, 12, 22, 11, 90]
 
 ### **Pass 1:**
-- Compare 64 > 34 → Swap → [34, 64, 25, 12, 22, 11, 90]
-- Compare 64 > 25 → Swap → [34, 25, 64, 12, 22, 11, 90]
-- Compare 64 > 12 → Swap → [34, 25, 12, 64, 22, 11, 90]
-- Compare 64 > 22 → Swap → [34, 25, 12, 22, 64, 11, 90]
-- Compare 64 > 11 → Swap → [34, 25, 12, 22, 11, 64, 90]
-- Compare 64 < 90 → No swap → [34, 25, 12, 22, 11, 64, 90]
+- Compare 64 > 34 â†’ Swap â†’ [34, 64, 25, 12, 22, 11, 90]
+- Compare 64 > 25 â†’ Swap â†’ [34, 25, 64, 12, 22, 11, 90]
+- Compare 64 > 12 â†’ Swap â†’ [34, 25, 12, 64, 22, 11, 90]
+- Compare 64 > 22 â†’ Swap â†’ [34, 25, 12, 22, 64, 11, 90]
+- Compare 64 > 11 â†’ Swap â†’ [34, 25, 12, 22, 11, 64, 90]
+- Compare 64 < 90 â†’ No swap â†’ [34, 25, 12, 22, 11, 64, 90]
 - **Largest element (90) is now in correct position!**
 
 ### **Pass 2:**
-- Compare 34 > 25 → Swap → [25, 34, 12, 22, 11, 64, 90]
-- Compare 34 > 12 → Swap → [25, 12, 34, 22, 11, 64, 90]
-- Compare 34 > 22 → Swap → [25, 12, 22, 34, 11, 64, 90]
-- Compare 34 > 11 → Swap → [25, 12, 22, 11, 34, 64, 90]
-- Compare 34 < 64 → No swap
+- Compare 34 > 25 â†’ Swap â†’ [25, 34, 12, 22, 11, 64, 90]
+- Compare 34 > 12 â†’ Swap â†’ [25, 12, 34, 22, 11, 64, 90]
+- Compare 34 > 22 â†’ Swap â†’ [25, 12, 22, 34, 11, 64, 90]
+- Compare 34 > 11 â†’ Swap â†’ [25, 12, 22, 11, 34, 64, 90]
+- Compare 34 < 64 â†’ No swap
 - **Second largest element (64) is now in correct position!**
 
 ### **And so on...**
@@ -49,10 +49,10 @@ Bubble Sort is one of the simplest sorting algorithms. It works by repeatedly st
 
 ---
 
-## 💻 Implementation
+## ðŸ’» Implementation
 
 ### **Basic Bubble Sort**
-\`\`\`python
+\`"\`\`python
 def bubble_sort(arr):
     n = len(arr)
     for i in range(n):
@@ -95,12 +95,12 @@ print(arr)  # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 ---
 
-## 📊 Algorithm Analysis
+## ðŸ“Š Algorithm Analysis
 
 ### **Time Complexity**
 - **Best Case**: O(n) - when array is already sorted
-- **Worst Case**: O(n²) - when array is reverse sorted
-- **Average Case**: O(n²)
+- **Worst Case**: O(nÂ²) - when array is reverse sorted
+- **Average Case**: O(nÂ²)
 
 ### **Space Complexity**
 - **O(1)** - In-place sorting, only constant extra space needed
@@ -113,7 +113,7 @@ print(arr)  # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 ---
 
-## 🔍 Why "Bubble" Sort?
+## ðŸ” Why "Bubble" Sort?
 
 The name comes from the way smaller elements "bubble up" to the beginning of the array:
 
@@ -142,22 +142,22 @@ Notice how the largest elements "sink" to the bottom, while smaller elements "bu
 
 ---
 
-## 🎯 Bubble Sort Properties
+## ðŸŽ¯ Bubble Sort Properties
 
 ### **Advantages**
-- ✅ **Simple to understand and implement**
-- ✅ **Stable sorting algorithm**
-- ✅ **In-place sorting** (no extra space needed)
-- ✅ **Adaptive** (can be optimized for nearly sorted data)
+- âœ… **Simple to understand and implement**
+- âœ… **Stable sorting algorithm**
+- âœ… **In-place sorting** (no extra space needed)
+- âœ… **Adaptive** (can be optimized for nearly sorted data)
 
 ### **Disadvantages**
-- ❌ **Very slow** for large datasets (O(n²))
-- ❌ **Does many unnecessary comparisons**
-- ❌ **Not suitable for large arrays**
+- âŒ **Very slow** for large datasets (O(nÂ²))
+- âŒ **Does many unnecessary comparisons**
+- âŒ **Not suitable for large arrays**
 
 ---
 
-## 🔧 Variations and Optimizations
+## ðŸ”§ Variations and Optimizations
 
 ### **Cocktail Shaker Sort (Bidirectional Bubble Sort)**
 \`\`\`python
@@ -220,7 +220,7 @@ def odd_even_sort(arr):
 
 ---
 
-## 🧪 Testing and Examples
+## ðŸ§ª Testing and Examples
 
 ### **Test Case 1: Normal Array**
 \`\`\`python
@@ -260,11 +260,11 @@ print("Sorted:  ", arr)
 
 ---
 
-## 🎯 When to Use Bubble Sort
+## ðŸŽ¯ When to Use Bubble Sort
 
 ### **Good Use Cases:**
 - **Educational purposes** - Great for learning sorting concepts
-- **Small datasets** (n ≤ 20 elements)
+- **Small datasets** (n â‰¤ 20 elements)
 - **Nearly sorted data** (with optimization)
 - **When simplicity matters more than performance**
 - **Embedded systems** with limited memory
@@ -276,14 +276,15 @@ print("Sorted:  ", arr)
 
 ---
 
-## 🏆 Key Takeaways
+## ðŸ† Key Takeaways
 
 1. **Bubble Sort** repeatedly swaps adjacent elements if they're in wrong order
-2. **Time complexity** is O(n²) in worst case, but O(n) for already sorted arrays
+2. **Time complexity** is O(nÂ²) in worst case, but O(n) for already sorted arrays
 3. **Space complexity** is O(1) - it's an in-place sorting algorithm
 4. **It's stable** - maintains relative order of equal elements
 5. **Best suited** for small datasets and educational purposes
 
-**Bubble Sort may be slow, but it's the foundation for understanding more complex sorting algorithms! Next, let's explore Selection Sort! 🚀**`
+**Bubble Sort may be slow, but it's the foundation for understanding more complex sorting algorithms! Next, let's explore Selection Sort! ðŸš€**`
 };
+
 

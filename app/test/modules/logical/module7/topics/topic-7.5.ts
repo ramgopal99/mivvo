@@ -1,37 +1,37 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_5: SubLesson = {
   id: "7.5",
   title: 'Turning Left / Right / Back',
   status: 'completed',
-  content: `# 🔄 Turning Left / Right / Back
+  content: "`# ðŸ”„ Turning Left / Right / Back
 
-Turning problems form the core of direction sense questions, requiring understanding of how 90° and 180° turns affect orientation and movement direction. Master turn mechanics to accurately track position changes and solve complex directional sequences in competitive exams.
+Turning problems form the core of direction sense questions, requiring understanding of how 90Â° and 180Â° turns affect orientation and movement direction. Master turn mechanics to accurately track position changes and solve complex directional sequences in competitive exams.
 
 ---
 
-## 🎯 Understanding Turn Mechanics
+## ðŸŽ¯ Understanding Turn Mechanics
 
 ### **Three Fundamental Turns**
 
-#### **1. Left Turn (90° Counter-Clockwise)**
-- **Angle**: +90° from current facing
+#### **1. Left Turn (90Â° Counter-Clockwise)**
+- **Angle**: +90Â° from current facing
 - **Direction Change**: Counter-clockwise rotation
 - **Effect**: Facing direction moves leftward
 
-#### **2. Right Turn (90° Clockwise)**
-- **Angle**: -90° from current facing
+#### **2. Right Turn (90Â° Clockwise)**
+- **Angle**: -90Â° from current facing
 - **Direction Change**: Clockwise rotation
 - **Effect**: Facing direction moves rightward
 
-#### **3. U-Turn/Back (180° Turn)**
-- **Angle**: +180° or -180° from current facing
+#### **3. U-Turn/Back (180Â° Turn)**
+- **Angle**: +180Â° or -180Â° from current facing
 - **Direction Change**: Complete reversal
 - **Effect**: Facing completely opposite direction
 
 ---
 
-## 🧭 Turn Effects Matrix
+## ðŸ§­ Turn Effects Matrix
 
 ### **Left Turn Effects**
 
@@ -62,53 +62,53 @@ Turning problems form the core of direction sense questions, requiring understan
 
 ---
 
-## 🎯 Turn Combination Rules
+## ðŸŽ¯ Turn Combination Rules
 
 ### **Multiple Turn Patterns**
 
 #### **Two Left Turns = U-Turn**
-- Left + Left = 180° total turn
-- Example: North → West → South (opposite)
+- Left + Left = 180Â° total turn
+- Example: North â†’ West â†’ South (opposite)
 
 #### **Two Right Turns = U-Turn**
-- Right + Right = 180° total turn
-- Example: North → East → South (opposite)
+- Right + Right = 180Â° total turn
+- Example: North â†’ East â†’ South (opposite)
 
 #### **Left + Right = Original Direction**
-- Left + Right = 360° total turn (full circle)
-- Example: North → West → North (back to start)
+- Left + Right = 360Â° total turn (full circle)
+- Example: North â†’ West â†’ North (back to start)
 
 #### **Right + Left = Original Direction**
-- Right + Left = 360° total turn (full circle)
-- Example: North → East → North (back to start)
+- Right + Left = 360Â° total turn (full circle)
+- Example: North â†’ East â†’ North (back to start)
 
 ---
 
-## 📊 Angular Mathematics
+## ðŸ“Š Angular Mathematics
 
 ### **Turn Angle Reference**
 
 | Turn Type | Angle Change | Direction Sequence |
 |-----------|--------------|-------------------|
-| **Left Turn** | +90° | North → West → South → East → North |
-| **Right Turn** | -90° | North → East → South → West → North |
-| **U-Turn** | ±180° | North → South, East → West |
+| **Left Turn** | +90Â° | North â†’ West â†’ South â†’ East â†’ North |
+| **Right Turn** | -90Â° | North â†’ East â†’ South â†’ West â†’ North |
+| **U-Turn** | Â±180Â° | North â†’ South, East â†’ West |
 
 ### **Position Values (Clockwise from North)**
 
-North = 0°/360°  
-East = 90°  
-South = 180°  
-West = 270°
+North = 0Â°/360Â°  
+East = 90Â°  
+South = 180Â°  
+West = 270Â°
 
 **Turn Calculations:**
-- Left Turn: Add 90° to current position
-- Right Turn: Subtract 90° from current position
-- U-Turn: Add or subtract 180° from current position
+- Left Turn: Add 90Â° to current position
+- Right Turn: Subtract 90Â° from current position
+- U-Turn: Add or subtract 180Â° from current position
 
 ---
 
-## 🎯 Problem-Solving Techniques
+## ðŸŽ¯ Problem-Solving Techniques
 
 ### **Technique 1: Direction Tracking**
 *"A man faces North, turns left, walks 10m, turns right..."*
@@ -123,9 +123,9 @@ West = 270°
 *"He turns left twice, then right once. Which direction now?"*
 
 **Step-by-Step:**
-1. **First Left**: Direction changes by +90°
-2. **Second Left**: Total +180° (U-turn)
-3. **Right Turn**: +180° - 90° = +90° from original
+1. **First Left**: Direction changes by +90Â°
+2. **Second Left**: Total +180Â° (U-turn)
+3. **Right Turn**: +180Â° - 90Â° = +90Â° from original
 
 ### **Technique 3: Position-Based Turns**
 *"Turn so that you face East"*
@@ -137,7 +137,7 @@ West = 270°
 
 ---
 
-## 🛠️ Turn Analysis Framework
+## ðŸ› ï¸ Turn Analysis Framework
 
 ### **Framework Steps**
 
@@ -167,7 +167,7 @@ West = 270°
 
 ---
 
-## 🎯 Common Question Patterns
+## ðŸŽ¯ Common Question Patterns
 
 ### **Pattern 1: Final Direction After Turns**
 *"After a series of turns, which direction is he facing?"*
@@ -203,7 +203,7 @@ West = 270°
 
 ---
 
-## 📈 Difficulty Progression
+## ðŸ“ˆ Difficulty Progression
 
 ### **Easy Level (40%)**
 - Single turn problems
@@ -222,62 +222,62 @@ West = 270°
 
 ---
 
-## 🧮 Turn Mathematics
+## ðŸ§® Turn Mathematics
 
 ### **Turn Angle Calculations**
 
 | Starting Direction | Target Direction | Left Turns | Right Turns |
 |-------------------|------------------|------------|-------------|
-| North → East | 90° | 3 | 1 |
-| North → South | 180° | 2 | 2 |
-| North → West | 270° | 1 | 3 |
-| East → South | 90° | 3 | 1 |
-| East → West | 180° | 2 | 2 |
+| North â†’ East | 90Â° | 3 | 1 |
+| North â†’ South | 180Â° | 2 | 2 |
+| North â†’ West | 270Â° | 1 | 3 |
+| East â†’ South | 90Â° | 3 | 1 |
+| East â†’ West | 180Â° | 2 | 2 |
 
 ### **Minimum Turns Formula**
 
-Minimum turns = min(|angle_difference| / 90°, 4 - |angle_difference| / 90°)
+Minimum turns = min(|angle_difference| / 90Â°, 4 - |angle_difference| / 90Â°)
 
 ### **Turn Direction Priority**
 - **Right turns**: Usually preferred in problems
 - **Left turns**: When specified or for variety
-- **U-turns**: For 180° changes
+- **U-turns**: For 180Â° changes
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Turn Direction**
-❌ Confusing left and right turns
-✅ Left = counter-clockwise, Right = clockwise
+âŒ Confusing left and right turns
+âœ… Left = counter-clockwise, Right = clockwise
 
 ### **Mistake 2: Turn Timing Confusion**
-❌ Applying turns at wrong sequence points
-✅ Clarify when turns occur (before/after movement)
+âŒ Applying turns at wrong sequence points
+âœ… Clarify when turns occur (before/after movement)
 
 ### **Mistake 3: Cumulative Error**
-❌ Losing track of current facing direction
-✅ Update facing after each turn
+âŒ Losing track of current facing direction
+âœ… Update facing after each turn
 
 ### **Mistake 4: Angle Miscalculation**
-❌ Wrong angle arithmetic for multiple turns
-✅ Each turn = ±90°, U-turn = ±180°
+âŒ Wrong angle arithmetic for multiple turns
+âœ… Each turn = Â±90Â°, U-turn = Â±180Â°
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Use Turn Effects Matrix**: Quick reference for direction changes
 2. **Track Facing Direction**: Update immediately after each turn
 3. **Master Turn Combinations**: Left+Left=U-turn, Left+Right=Original
 4. **Visualize Turn Sequence**: Picture yourself turning step-by-step
-5. **Use Clockwise Reference**: North→East→South→West sequence
+5. **Use Clockwise Reference**: Northâ†’Eastâ†’Southâ†’West sequence
 6. **Calculate Net Effect**: For multiple turns, find cumulative angle
 7. **Practice Turn Sequences**: Master common turn pattern combinations
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Basic Turn Sequence**
 *"A man faces North. He turns left and walks 5m. What is his position?"*
@@ -300,7 +300,7 @@ Minimum turns = min(|angle_difference| / 90°, 4 - |angle_difference| / 90°)
 *"Facing South, how many right turns to face East?"*
 
 **Solution:**
-- South to East = 90° clockwise
+- South to East = 90Â° clockwise
 - One right turn required
 
 ### **Example 4: Complex Sequence**
@@ -313,7 +313,7 @@ Minimum turns = min(|angle_difference| / 90°, 4 - |angle_difference| / 90°)
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Direction-Based Movement**
 - Combine turns with movement tracking
@@ -330,5 +330,5 @@ Minimum turns = min(|angle_difference| / 90°, 4 - |angle_difference| / 90°)
 - Update relative directions after turns
 - Apply correct spatial reasoning
 
-**Master turning mechanics to accurately navigate complex directional sequences! 🔄✨**`
+**Master turning mechanics to accurately navigate complex directional sequences! ðŸ”„âœ¨**`"
 };

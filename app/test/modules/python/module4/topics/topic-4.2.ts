@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_2: SubLesson = {
   id: "4.2",
   title: 'Creating Tuples',
   status: 'demo',
-  content: `# 🆕 Creating Python Tuples
+  content: "`# ðŸ†• Creating Python Tuples
 
 Tuples can be created in several ways. Let's explore the most common methods!
 
 ---
 
-## 🎯 Basic Tuple Creation
+## ðŸŽ¯ Basic Tuple Creation
 
 ### **Using Parentheses ()**
-\`\`\`python
+\`"\`\`python
 # Empty tuple
 empty_tuple = ()
 print(empty_tuple)  # ()
@@ -35,7 +35,7 @@ print(type(not_tuple)) # <class 'str'>
 
 ---
 
-## 🔧 Using the tuple() Function
+## ðŸ”§ Using the tuple() Function
 
 ### **From Other Sequences**
 \`\`\`python
@@ -56,7 +56,7 @@ print(numbers)  # (1, 2, 3, 4, 5)
 
 ---
 
-## 📝 Tuple Packing and Unpacking
+## ðŸ“ Tuple Packing and Unpacking
 
 ### **Tuple Packing**
 \`\`\`python
@@ -81,7 +81,7 @@ print(f"first={first}, middle={middle}, last={last}")
 
 ---
 
-## 🎨 Creating Different Types of Tuples
+## ðŸŽ¨ Creating Different Types of Tuples
 
 \`\`\`python
 # String tuple
@@ -100,7 +100,7 @@ print(matrix)  # ((1, 2), (3, 4), (5, 6))
 
 ---
 
-## ✅ Quick Practice
+## âœ… Quick Practice
 
 \`\`\`python
 # Create these tuples:
@@ -121,6 +121,7 @@ my_list = [1, 2, 3]
 my_tuple = tuple(my_list)
 \`\`\`
 
-Tuples are created similarly to lists but with parentheses! 📦`
+Tuples are created similarly to lists but with parentheses! ðŸ“¦`
 };
+
 

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_1: SubLesson = {
   id: "2.1",
   title: 'Introduction to Blood Relations',
   status: 'completed',
-  content: `# 🩸 Introduction to Blood Relations
+  content: "`# ðŸ©¸ Introduction to Blood Relations
 
 Welcome to the comprehensive Blood Relations module! This exam-oriented section covers all aspects of blood relation problems that appear in competitive examinations. Master family relationships, puzzle-solving techniques, and complex relationship scenarios to excel in banking, SSC, railway, and other competitive exams.
 
 ---
 
-## 🎯 What are Blood Relations?
+## ðŸŽ¯ What are Blood Relations?
 
 **Blood Relations** problems involve understanding and analyzing relationships within families. These problems test your ability to:
 
@@ -27,7 +27,7 @@ Welcome to the comprehensive Blood Relations module! This exam-oriented section 
 
 ---
 
-## 👨‍👩‍👧‍👦 Basic Family Relationships
+## ðŸ‘¨â€ðŸ‘©â€ðŸ‘§â€ðŸ‘¦ Basic Family Relationships
 
 ### **Nuclear Family Relationships**
 
@@ -46,19 +46,19 @@ Welcome to the comprehensive Blood Relations module! This exam-oriented section 
 
 ---
 
-## 🧬 Understanding Blood Relations
+## ðŸ§¬ Understanding Blood Relations
 
 ### **Generation Levels**
 
-\`\`\`
+\`"\`\`
 Great Grandparents (Generation -2)
-    │
+    â”‚
 Grandparents (Generation -1)
-    │
+    â”‚
 Parents (Generation 0)
-    │
+    â”‚
 Children (Generation 1)
-    │
+    â”‚
 Grandchildren (Generation 2)
 \`\`\`
 
@@ -74,37 +74,37 @@ Grandchildren (Generation 2)
 
 ---
 
-## 📊 Basic Problem Types
+## ðŸ“Š Basic Problem Types
 
 ### **Type 1: Direct Relationship Questions**
 
 **"If A is the father of B, and B is the son of C, what is the relationship between A and C?"**
 
 **Solution:**
-- A → B (father-son)
-- B → C (son-mother)
-- Therefore: A → C (husband-wife)
+- A â†’ B (father-son)
+- B â†’ C (son-mother)
+- Therefore: A â†’ C (husband-wife)
 
 ### **Type 2: Coded Relationships**
 
 **"A + B means A is the brother of B"**
 **"A - B means A is the sister of B"**
-**"A × B means A is the father of B"**
+**"A Ã— B means A is the father of B"**
 
-**Statement: P + Q - R × S**
+**Statement: P + Q - R Ã— S**
 
 **Question: What is the relation of S to P?**
 
 **Analysis:**
 - P + Q: P is brother of Q
 - Q - R: Q is sister of R
-- R × S: R is father of S
+- R Ã— S: R is father of S
 
 **Answer: S is nephew of P**
 
 ---
 
-## 🎯 Common Relationship Terms
+## ðŸŽ¯ Common Relationship Terms
 
 ### **Male Relationships**
 | Term | Meaning |
@@ -130,7 +130,7 @@ Grandchildren (Generation 2)
 
 ---
 
-## 🏗️ Building Family Trees
+## ðŸ—ï¸ Building Family Trees
 
 ### **Step-by-Step Approach**
 
@@ -141,15 +141,15 @@ Grandchildren (Generation 2)
 #### **Step 2: Draw Basic Structure**
 \`\`\`
 Grandparents
-    │
+    â”‚
   Parents
-    │
+    â”‚
  Children
 \`\`\`
 
 #### **Step 3: Add Relationships**
 - Connect family members based on given information
-- Use symbols: ♂ (male), ♀ (female), ⚭ (married)
+- Use symbols: â™‚ (male), â™€ (female), âš­ (married)
 
 #### **Step 4: Verify Relationships**
 - Check each relationship mentioned
@@ -157,7 +157,7 @@ Grandparents
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Problem 1: Basic Relations**
 
@@ -176,13 +176,13 @@ D) Son
 
 **Family Tree:**
 \`\`\`
-S (♂) - ⚭ - R (♀)
-             │
-             Q (♀)
-             │
+S (â™‚) - âš­ - R (â™€)
+             â”‚
+             Q (â™€)
+             â”‚
           Brother
-             │
-             P (♂)
+             â”‚
+             P (â™‚)
 \`\`\`
 
 **Answer: A) Father** (S is father of P)
@@ -192,7 +192,7 @@ S (♂) - ⚭ - R (♀)
 **Question:** A is the son of B. B is the daughter of C. C is the father of D. What is the relationship between A and D?
 
 **Solution:**
-- A ←son— B ←daughter— C —father→ D
+- A â†sonâ€” B â†daughterâ€” C â€”fatherâ†’ D
 
 **Analysis:**
 - C is father of D (so D is son/daughter of C)
@@ -201,17 +201,17 @@ S (♂) - ⚭ - R (♀)
 
 **Family Tree:**
 \`\`\`
-C (♂)
-├── B (♀)
-│   └── A (♂)
-└── D (?♂/?♀)
+C (â™‚)
+â”œâ”€â”€ B (â™€)
+â”‚   â””â”€â”€ A (â™‚)
+â””â”€â”€ D (?â™‚/?â™€)
 \`\`\`
 
 **Answer: A is grandson/granddaughter of D** (depending on D's gender)
 
 ---
 
-## 🧠 Problem-Solving Strategy
+## ðŸ§  Problem-Solving Strategy
 
 ### **Step 1: Read Carefully**
 - Identify all persons mentioned
@@ -236,27 +236,27 @@ C (♂)
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Ignoring Gender**
-❌ Assuming "child" is male
-✅ Always consider both genders unless specified
+âŒ Assuming "child" is male
+âœ… Always consider both genders unless specified
 
 ### **Mistake 2: Confusing Generations**
-❌ Grandson could be great-grandson
-✅ Count generations carefully
+âŒ Grandson could be great-grandson
+âœ… Count generations carefully
 
 ### **Mistake 3: Missing Marriage Links**
-❌ Assuming blood relations without marriage
-✅ Marriage creates in-law relationships
+âŒ Assuming blood relations without marriage
+âœ… Marriage creates in-law relationships
 
 ### **Mistake 4: Overlooking Multiple Paths**
-❌ Only one relationship path exists
-✅ A person can be related through multiple paths
+âŒ Only one relationship path exists
+âœ… A person can be related through multiple paths
 
 ---
 
-## 🎯 Advanced Concepts
+## ðŸŽ¯ Advanced Concepts
 
 ### **In-Law Relationships**
 
@@ -276,7 +276,7 @@ C (♂)
 
 ---
 
-## 📊 Relationship Matrix
+## ðŸ“Š Relationship Matrix
 
 | Person A | Person B | Possible Relationships |
 |----------|----------|----------------------|
@@ -288,7 +288,7 @@ C (♂)
 
 ---
 
-## 🎯 Quick Practice
+## ðŸŽ¯ Quick Practice
 
 ### **Identify the Relationship**
 
@@ -313,10 +313,10 @@ C (♂)
 
 ---
 
-## 🏆 Pro Tips for Blood Relations
+## ðŸ† Pro Tips for Blood Relations
 
 1. **Draw diagrams** when possible
-2. **Use symbols** consistently (♂, ♀, ⚭, ├, └)
+2. **Use symbols** consistently (â™‚, â™€, âš­, â”œ, â””)
 3. **Start with known relationships**
 4. **Work generation by generation**
 5. **Consider all possible connections**
@@ -325,7 +325,7 @@ C (♂)
 
 ---
 
-## 🔍 Next Steps
+## ðŸ” Next Steps
 
 Now that you understand the basics of blood relations, you're ready to tackle:
 
@@ -334,5 +334,5 @@ Now that you understand the basics of blood relations, you're ready to tackle:
 - **Puzzle-based Problems** (Logic grid puzzles)
 - **Conditional Relationships** (If-then scenarios)
 
-**Remember:** Blood relations require systematic thinking and attention to detail. Practice regularly and you'll master these problems! 🩸✨`
+**Remember:** Blood relations require systematic thinking and attention to detail. Practice regularly and you'll master these problems! ðŸ©¸âœ¨`
 };

@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_1: SubLesson = {
   id: "7.1",
   title: 'Assumptions',
   status: 'completed',
-  content: `# 🤔 Assumptions: What Must Be True
+  content: "`# ðŸ¤” Assumptions: What Must Be True
 
 Assumptions are unstated premises that must be true for an argument, statement, or conclusion to be valid. Identifying assumptions is crucial for critical thinking and competitive exam success, as questions test your ability to recognize what is taken for granted.
 
 ---
 
-## 📋 WHAT ARE ASSUMPTIONS?
+## ðŸ“‹ WHAT ARE ASSUMPTIONS?
 
 **Assumptions** are beliefs, facts, or conditions that are:
-- ✅ **Not explicitly stated** in the argument
-- ✅ **Necessary for the conclusion** to be true
-- ✅ **Taken for granted** by the speaker/writer
-- ✅ **Underlying premises** that support the reasoning
+- âœ… **Not explicitly stated** in the argument
+- âœ… **Necessary for the conclusion** to be true
+- âœ… **Taken for granted** by the speaker/writer
+- âœ… **Underlying premises** that support the reasoning
 
 ### Key Characteristics:
 - **Hidden**: Not directly mentioned in the statement
@@ -31,51 +31,51 @@ Assumption: Mathematics requires intelligence/good study habits (unstated but ne
 
 ---
 
-## 🎯 TYPES OF ASSUMPTIONS
+## ðŸŽ¯ TYPES OF ASSUMPTIONS
 
 ### 1. **Factual Assumptions**
 **Facts or conditions that must exist**
 
 **Examples:**
-- ✅ Statement: "The meeting will be held in the conference room."
+- âœ… Statement: "The meeting will be held in the conference room."
   - Assumption: A conference room exists in the building
 
-- ✅ Statement: "She bought the red dress from the store."
+- âœ… Statement: "She bought the red dress from the store."
   - Assumption: The store had red dresses available
 
 ### 2. **Causal Assumptions**
 **Cause-effect relationships that must be true**
 
 **Examples:**
-- ✅ Statement: "Eating vegetables improves health."
+- âœ… Statement: "Eating vegetables improves health."
   - Assumption: Vegetables have nutritional benefits
 
-- ✅ Statement: "Exercise reduces stress levels."
+- âœ… Statement: "Exercise reduces stress levels."
   - Assumption: Physical activity affects mental well-being
 
 ### 3. **Value-Based Assumptions**
 **Judgments or standards that are taken for granted**
 
 **Examples:**
-- ✅ Statement: "This university is the best choice."
+- âœ… Statement: "This university is the best choice."
   - Assumption: Certain criteria define "best" (rankings, faculty, etc.)
 
-- ✅ Statement: "Honesty is always the best policy."
+- âœ… Statement: "Honesty is always the best policy."
   - Assumption: Honesty is universally preferable to deception
 
 ### 4. **Comparative Assumptions**
 **Basis for comparisons that must be valid**
 
 **Examples:**
-- ✅ Statement: "This phone is better than that one."
+- âœ… Statement: "This phone is better than that one."
   - Assumption: Both phones are being compared on the same criteria
 
-- ✅ Statement: "She sings better than her sister."
+- âœ… Statement: "She sings better than her sister."
   - Assumption: Both have been heard singing under similar conditions
 
 ---
 
-## 🛠️ IDENTIFYING ASSUMPTIONS
+## ðŸ› ï¸ IDENTIFYING ASSUMPTIONS
 
 ### Step-by-Step Approach:
 
@@ -100,46 +100,46 @@ Assumption: Mathematics requires intelligence/good study habits (unstated but ne
 - **Don't make unwarranted leaps**
 
 ### Common Question Patterns:
-- ✅ "Which of the following is an assumption underlying the argument?"
-- ✅ "The argument assumes that..."
-- ✅ "Which assumption is necessary for the conclusion to be true?"
+- âœ… "Which of the following is an assumption underlying the argument?"
+- âœ… "The argument assumes that..."
+- âœ… "Which assumption is necessary for the conclusion to be true?"
 
 ---
 
-## ⚠️ ASSUMPTION IDENTIFICATION ERRORS
+## âš ï¸ ASSUMPTION IDENTIFICATION ERRORS
 
 ### Avoid These Mistakes:
 
 1. **Confusing Assumptions with Premises**
-   - ❌ Premises are stated evidence
-   - ✅ Assumptions are unstated requirements
+   - âŒ Premises are stated evidence
+   - âœ… Assumptions are unstated requirements
 
 2. **Making Assumptions Too Broad**
-   - ❌ "All people like ice cream" (from "John likes ice cream")
-   - ✅ "John has tried ice cream" (specific and necessary)
+   - âŒ "All people like ice cream" (from "John likes ice cream")
+   - âœ… "John has tried ice cream" (specific and necessary)
 
 3. **Including Stated Information**
-   - ❌ Including facts already mentioned in the argument
-   - ✅ Only unstated but necessary information
+   - âŒ Including facts already mentioned in the argument
+   - âœ… Only unstated but necessary information
 
 4. **Logical Fallacies**
-   - ❌ Circular reasoning or irrelevant assumptions
-   - ✅ Assumptions that logically bridge premises to conclusion
+   - âŒ Circular reasoning or irrelevant assumptions
+   - âœ… Assumptions that logically bridge premises to conclusion
 
 ### The Negation Test:
 **To verify an assumption:**
 1. **Negate the assumption** (make it false)
 2. **Check if conclusion still holds**
-3. **If conclusion becomes invalid** → It's a valid assumption
+3. **If conclusion becomes invalid** â†’ It's a valid assumption
 
 **Example:**
 Assumption: "Regular exercise improves health"
 Negation: "Regular exercise does NOT improve health"
-Result: If true, the argument "Exercise daily to stay healthy" fails → Valid assumption
+Result: If true, the argument "Exercise daily to stay healthy" fails â†’ Valid assumption
 
 ---
 
-## 📊 ASSUMPTION VS OTHER CONCEPTS
+## ðŸ“Š ASSUMPTION VS OTHER CONCEPTS
 
 | Concept | Definition | Example |
 |---|---|---|
@@ -150,7 +150,7 @@ Result: If true, the argument "Exercise daily to stay healthy" fails → Valid a
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Basic Assumptions
 **Identify the assumption in each argument:**
@@ -248,7 +248,7 @@ Key Assumptions:
 
 ---
 
-## 📊 ASSUMPTION ANALYSIS FRAMEWORK
+## ðŸ“Š ASSUMPTION ANALYSIS FRAMEWORK
 
 | Step | Question to Ask | Purpose |
 |---|---|---|
@@ -260,30 +260,30 @@ Key Assumptions:
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Direct Assumption**: "Which of the following is an assumption?"
 2. **Underlying Assumption**: "The argument assumes that..."
 3. **Necessary Condition**: "Which assumption is required?"
 4. **Strength Evaluation**: "Which weakens/strengthens the assumption?"
 5. **Multiple Options**: Choose from 4-5 options
 
-### 💡 Quick Identification Strategy:
+### ðŸ’¡ Quick Identification Strategy:
 1. **Read the argument** and identify conclusion vs premises
 2. **Find the logical gap** between what's stated and concluded
 3. **Bridge the gap** with what must be true
 4. **Test with negation** - if false, argument fails
 5. **Verify unstated** - shouldn't be mentioned in the argument
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Look for causal links** - most assumptions involve cause-effect
 - **Check comparatives** - assumptions often underlie comparisons
 - **Eliminate stated facts** - assumptions are never directly mentioned
 - **Trust logic** - if it makes the argument work, it's likely correct
 - **Use process of elimination** - rule out options that aren't necessary
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Practice daily** - 8-10 assumption questions per session
 - **Master negation test** - key validation technique
 - **Learn assumption types** - factual, causal, comparative, value-based
@@ -292,21 +292,22 @@ Key Assumptions:
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Negation Test Mastery**: Practice making assumptions false
 2. **Gap Analysis**: Learn to spot missing logical links
 3. **Type Recognition**: Identify factual vs causal assumptions
 4. **Argument Structure**: Understand premise-conclusion relationships
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Assumptions are like hidden bridges:**
-- 🌉 **Premises** = Starting points of the bridge
-- 🌉 **Conclusion** = Ending point of the bridge
-- 🌉 **Assumption** = The crucial support beam holding it up
-- 🕵️ **Find the beam** - without it, the whole bridge collapses!
-- ✅ **Test the support** - negate it and see if the bridge falls
+- ðŸŒ‰ **Premises** = Starting points of the bridge
+- ðŸŒ‰ **Conclusion** = Ending point of the bridge
+- ðŸŒ‰ **Assumption** = The crucial support beam holding it up
+- ðŸ•µï¸ **Find the beam** - without it, the whole bridge collapses!
+- âœ… **Test the support** - negate it and see if the bridge falls
 
-**Master assumption identification and become a logical bridge-builder!** 🤔🌉✨`
+**Master assumption identification and become a logical bridge-builder!** ðŸ¤”ðŸŒ‰âœ¨`"
 };
+

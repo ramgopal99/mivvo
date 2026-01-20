@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_1: SubLesson = {
   id: "15.1",
   title: 'Introduction to Sorting Concepts',
   status: 'demo',
-  content: `# 🔄 Introduction to Sorting Concepts
+  content: "`# ðŸ”„ Introduction to Sorting Concepts
 
 Sorting is one of the most fundamental and important algorithms in computer science. It involves arranging data in a particular order - typically ascending or descending. Let's explore the key concepts!
 
 ---
 
-## 🎯 What is Sorting?
+## ðŸŽ¯ What is Sorting?
 
 **Sorting** is the process of arranging elements in a specific order, usually numerical or lexicographical (alphabetical).
 
@@ -22,7 +22,7 @@ Sorting is one of the most fundamental and important algorithms in computer scie
 
 ---
 
-## 📊 Types of Sorting
+## ðŸ“Š Types of Sorting
 
 ### **By Stability**
 - **Stable Sort**: Maintains relative order of equal elements
@@ -38,7 +38,7 @@ Sorting is one of the most fundamental and important algorithms in computer scie
 
 ---
 
-## 📈 Sorting Performance Metrics
+## ðŸ“ˆ Sorting Performance Metrics
 
 ### **Time Complexity**
 - **Best Case**: Minimum operations needed
@@ -55,13 +55,13 @@ Sorting is one of the most fundamental and important algorithms in computer scie
 
 ---
 
-## 🔍 Common Sorting Scenarios
+## ðŸ” Common Sorting Scenarios
 
-### **Small Arrays (n ≤ 20)**
+### **Small Arrays (n â‰¤ 20)**
 - Simple algorithms like Insertion Sort work well
-- O(n²) algorithms are acceptable for small datasets
+- O(nÂ²) algorithms are acceptable for small datasets
 
-### **Medium Arrays (20 < n ≤ 1000)**
+### **Medium Arrays (20 < n â‰¤ 1000)**
 - Hybrid approaches like Timsort (Python's default)
 - Balance between simplicity and efficiency
 
@@ -71,9 +71,9 @@ Sorting is one of the most fundamental and important algorithms in computer scie
 
 ---
 
-## 🏗️ Sorting Algorithm Categories
+## ðŸ—ï¸ Sorting Algorithm Categories
 
-### **Quadratic Time O(n²)**
+### **Quadratic Time O(nÂ²)**
 - **Bubble Sort**: Simple, but slow
 - **Selection Sort**: Finds minimum repeatedly
 - **Insertion Sort**: Builds sorted array incrementally
@@ -90,10 +90,10 @@ Sorting is one of the most fundamental and important algorithms in computer scie
 
 ---
 
-## 🎯 Key Sorting Concepts
+## ðŸŽ¯ Key Sorting Concepts
 
 ### **In-place Sorting**
-\`\`\`python
+\`"\`\`python
 # In-place: modifies original array
 def bubble_sort(arr):
     for i in range(len(arr)):
@@ -127,34 +127,34 @@ def insertion_sort(arr):
 
 ---
 
-## 🔄 Sorting Process Visualization
+## ðŸ”„ Sorting Process Visualization
 
 ### **Input Array**: [64, 34, 25, 12, 22, 11, 90]
 
 **Pass 1**: Compare adjacent elements
-- [64, 34, 25, 12, 22, 11, 90] → [34, 64, 25, 12, 22, 11, 90]
-- [34, 64, 25, 12, 22, 11, 90] → [34, 25, 64, 12, 22, 11, 90]
-- [34, 25, 64, 12, 22, 11, 90] → [34, 25, 12, 64, 22, 11, 90]
+- [64, 34, 25, 12, 22, 11, 90] â†’ [34, 64, 25, 12, 22, 11, 90]
+- [34, 64, 25, 12, 22, 11, 90] â†’ [34, 25, 64, 12, 22, 11, 90]
+- [34, 25, 64, 12, 22, 11, 90] â†’ [34, 25, 12, 64, 22, 11, 90]
 - And so on...
 
 **Final Result**: [11, 12, 22, 25, 34, 64, 90]
 
 ---
 
-## 🎯 Sorting Algorithm Selection Guide
+## ðŸŽ¯ Sorting Algorithm Selection Guide
 
 | Algorithm | Best | Average | Worst | Space | Stable | In-place |
 |-----------|------|---------|-------|-------|--------|----------|
-| Bubble Sort | O(n) | O(n²) | O(n²) | O(1) | Yes | Yes |
-| Selection Sort | O(n²) | O(n²) | O(n²) | O(1) | No | Yes |
-| Insertion Sort | O(n) | O(n²) | O(n²) | O(1) | Yes | Yes |
+| Bubble Sort | O(n) | O(nÂ²) | O(nÂ²) | O(1) | Yes | Yes |
+| Selection Sort | O(nÂ²) | O(nÂ²) | O(nÂ²) | O(1) | No | Yes |
+| Insertion Sort | O(n) | O(nÂ²) | O(nÂ²) | O(1) | Yes | Yes |
 | Merge Sort | O(n log n) | O(n log n) | O(n log n) | O(n) | Yes | No |
-| Quick Sort | O(n log n) | O(n log n) | O(n²) | O(log n) | No | Yes |
+| Quick Sort | O(n log n) | O(n log n) | O(nÂ²) | O(log n) | No | Yes |
 | Heap Sort | O(n log n) | O(n log n) | O(n log n) | O(1) | No | Yes |
 
 ---
 
-## 🚀 When to Use Each Algorithm
+## ðŸš€ When to Use Each Algorithm
 
 ### **Use Bubble Sort when:**
 - Teaching sorting concepts
@@ -191,7 +191,7 @@ def insertion_sort(arr):
 
 ---
 
-## 🧪 Testing Your Understanding
+## ðŸ§ª Testing Your Understanding
 
 **Question 1**: Which sorting algorithm would you choose for sorting a large database of customer records where stability matters?
 
@@ -201,7 +201,7 @@ def insertion_sort(arr):
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Sorting is fundamental** to computer science and efficient data handling
 2. **Different algorithms** have different strengths and use cases
@@ -209,6 +209,7 @@ def insertion_sort(arr):
 4. **Stability** is important when relative order of equal elements matters
 5. **In-place vs out-of-place** affects memory usage and algorithm design
 
-**Ready to dive into specific sorting algorithms? Let's explore Bubble Sort next! 🚀**`
+**Ready to dive into specific sorting algorithms? Let's explore Bubble Sort next! ðŸš€**`
 };
+
 

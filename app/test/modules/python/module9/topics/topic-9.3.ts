@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_3: SubLesson = {
   id: "9.3",
   title: 'Inheritance',
   status: 'demo',
-  content: `# 🏛️ Inheritance
+  content: "`# ðŸ›ï¸ Inheritance
 
 Inheritance allows classes to inherit properties and methods from other classes, promoting code reuse and establishing hierarchical relationships!
 
 ---
 
-## 🎯 Inheritance Basics
+## ðŸŽ¯ Inheritance Basics
 
 **Inheritance** allows a class (child/subclass) to inherit attributes and methods from another class (parent/superclass). It supports both single and multiple inheritance, creating "is-a" relationships.
 
@@ -22,10 +22,10 @@ Inheritance allows classes to inherit properties and methods from other classes,
 
 ---
 
-## 📝 Basic Inheritance Syntax
+## ðŸ“ Basic Inheritance Syntax
 
 ### **Single Inheritance**
-\`\`\`python
+\`"\`\`python
 class ParentClass:
     """Parent class definition"""
     def __init__(self, name):
@@ -51,7 +51,7 @@ print(child.greet())      # Hello from Alice (inherited method)
 
 ---
 
-## 🔄 The \`super()\` Function
+## ðŸ”„ The \`super()\` Function
 
 ### **Purpose of \`super()\`**
 - Calls methods from parent classes
@@ -82,7 +82,7 @@ print(dog.make_sound())  # Some sound - Woof! I am a Golden Retriever
 
 ---
 
-## 🎭 Multiple Inheritance
+## ðŸŽ­ Multiple Inheritance
 
 ### **Multiple Inheritance**
 Allows classes to inherit from multiple parent classes, creating complex but powerful hierarchies.
@@ -119,7 +119,7 @@ print(my_car.drive())
 
 ---
 
-## 🔍 Method Resolution Order (MRO)
+## ðŸ” Method Resolution Order (MRO)
 
 ### **Understanding MRO**
 When a method is called, Python follows the **Method Resolution Order** to find the correct implementation. Use \`ClassName.mro()\` to see the order.
@@ -151,7 +151,7 @@ print(D.mro())  # [<class '__main__.D'>, <class '__main__.B'>, <class '__main__.
 
 ---
 
-## 🎯 Method Overriding
+## ðŸŽ¯ Method Overriding
 
 ### **Overriding Parent Methods**
 Child classes can provide their own implementation of inherited methods.
@@ -200,7 +200,7 @@ for shape in shapes:
 
 ---
 
-## 🏗️ Advanced Patterns
+## ðŸ—ï¸ Advanced Patterns
 
 ### **Mixin Classes**
 Mixins are classes that provide specific functionality and are meant to be combined with other classes.
@@ -263,7 +263,7 @@ print(f"{car.get_info()}: {car.move()}")
 
 ---
 
-## 🔒 Access Control in Inheritance
+## ðŸ”’ Access Control in Inheritance
 
 ### **Public Members**
 Accessible everywhere, including child classes.
@@ -283,9 +283,9 @@ class Parent:
 
 class Child(Parent):
     def show_access(self):
-        print(self.public)      # ✅ Accessible
-        print(self._protected)  # ✅ Accessible (but should be careful)
-        # print(self.__private) # ❌ AttributeError
+        print(self.public)      # âœ… Accessible
+        print(self._protected)  # âœ… Accessible (but should be careful)
+        # print(self.__private) # âŒ AttributeError
 
 child = Child()
 child.show_access()
@@ -295,7 +295,7 @@ print(child._Parent__private)  # "private" - not recommended
 
 ---
 
-## 🎯 Inheritance Best Practices
+## ðŸŽ¯ Inheritance Best Practices
 
 ### **Composition vs Inheritance**
 \`\`\`python
@@ -340,7 +340,7 @@ class Dog(Animal):
 
 ---
 
-## 🔍 Inspecting Inheritance
+## ðŸ” Inspecting Inheritance
 
 ### **Built-in Functions for Inheritance**
 \`\`\`python
@@ -371,7 +371,7 @@ print(C.__bases__)  # (<class '__main__.B'>,)
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Supports both single and multiple inheritance**
 2. **Clean parent method calls** with \`super()\`
@@ -382,6 +382,7 @@ print(C.__bases__)  # (<class '__main__.B'>,)
 7. **Name mangling** provides a form of privacy
 8. **Prefer composition over inheritance** when relationship isn't clearly "is-a"
 
-Ready to explore polymorphism? Let's see how duck typing enables flexible object interactions! 🚀`,
+Ready to explore polymorphism? Let's see how duck typing enables flexible object interactions! ðŸš€`,
 };
+
 

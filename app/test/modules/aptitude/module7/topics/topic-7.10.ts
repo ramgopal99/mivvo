@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_10: SubLesson = {
   id: "7.10",
   title: 'False Weight / Dishonest Dealer',
   status: 'completed',
-  content: `# ⚖️ False Weight / Dishonest Dealer
+  content: "`# âš–ï¸ False Weight / Dishonest Dealer
 
 Understand dishonest business practices involving false weights! This topic covers profit calculations when dealers use incorrect weights or measures. Learn to detect and calculate gains from such fraudulent practices.
 
 ---
 
-## 🎯 What is False Weight?
+## ðŸŽ¯ What is False Weight?
 
 **False Weight** refers to using incorrect weights or measures to cheat customers. The dealer shows one weight but actually gives less, creating artificial profit.
 
@@ -26,11 +26,11 @@ Understand dishonest business practices involving false weights! This topic cove
 
 ---
 
-## 📊 False Weight Calculations
+## ðŸ“Š False Weight Calculations
 
 ### **Basic Formula for Gain**
-\`\`\`
-Gain % = [(True Weight - False Weight) / False Weight] × 100%
+\`"\`\`
+Gain % = [(True Weight - False Weight) / False Weight] Ã— 100%
 \`\`\`
 
 **Where:**
@@ -39,12 +39,12 @@ Gain % = [(True Weight - False Weight) / False Weight] × 100%
 
 ### **Alternative Formula**
 \`\`\`
-Gain % = [(Error in weight) / Billed weight] × 100%
+Gain % = [(Error in weight) / Billed weight] Ã— 100%
 \`\`\`
 
 ---
 
-## 🔢 Examples of False Weight
+## ðŸ”¢ Examples of False Weight
 
 ### **Example 1: Less Weight Given**
 **Problem:** Dealer shows 1 kg but gives 900g. Find gain %.
@@ -52,7 +52,7 @@ Gain % = [(Error in weight) / Billed weight] × 100%
 **Solution:**
 - True weight = 900g
 - False weight = 1000g
-- Gain % = [(1000 - 900) / 900] × 100% = (100/900) × 100% ≈ 11.11%
+- Gain % = [(1000 - 900) / 900] Ã— 100% = (100/900) Ã— 100% â‰ˆ 11.11%
 
 **Explanation:** For every 900g given, charged for 1000g, gain of 100g worth.
 
@@ -61,7 +61,7 @@ Gain % = [(Error in weight) / Billed weight] × 100%
 
 **Solution:**
 - If actual weight = 100g, shown = 120g
-- Gain % = [(120 - 100) / 100] × 100% = 20%
+- Gain % = [(120 - 100) / 100] Ã— 100% = 20%
 
 ### **Example 3: Measurement Fraud**
 **Problem:** 1 liter measure actually holds 900ml. Find gain %.
@@ -69,11 +69,11 @@ Gain % = [(Error in weight) / Billed weight] × 100%
 **Solution:**
 - True quantity = 900ml
 - Billed quantity = 1000ml
-- Gain % = [(1000 - 900) / 900] × 100% ≈ 11.11%
+- Gain % = [(1000 - 900) / 900] Ã— 100% â‰ˆ 11.11%
 
 ---
 
-## 💡 Understanding the Gain
+## ðŸ’¡ Understanding the Gain
 
 ### **Why This Formula?**
 - CP is cost of actual weight given (900g)
@@ -87,7 +87,7 @@ Gain % = [(Error in weight) / Billed weight] × 100%
 
 ---
 
-## 🎯 Applications
+## ðŸŽ¯ Applications
 
 ### **1. Market Regulation**
 - Detecting fraudulent practices
@@ -106,7 +106,7 @@ Gain % = [(Error in weight) / Billed weight] × 100%
 
 ---
 
-## 🧮 Variations
+## ðŸ§® Variations
 
 ### **1. Percentage Error in Weight**
 \`\`\`
@@ -117,7 +117,7 @@ Gain/Loss % = X%
 ### **2. Fixed Error**
 \`\`\`
 If scale shows fixed amount more/less
-Gain % = (Error amount / True weight) × 100%
+Gain % = (Error amount / True weight) Ã— 100%
 \`\`\`
 
 ### **3. Multiple Transactions**
@@ -127,7 +127,7 @@ Overall gain depends on transaction volume
 
 ---
 
-## 🚨 Detection and Prevention
+## ðŸš¨ Detection and Prevention
 
 ### **1. Regular Calibration**
 - Scale checking
@@ -146,7 +146,7 @@ Overall gain depends on transaction volume
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Basic False Weight:**
 1. Shows 1kg, gives 800g. Find gain %.
@@ -162,5 +162,6 @@ Overall gain depends on transaction volume
 Basic: 25%, 15%, 11.11%
 Applications: 5.26%, 5.26%, 11.11%
 
-Master false weight calculations to understand and prevent fraudulent practices! 🏆`
+Master false weight calculations to understand and prevent fraudulent practices! ðŸ†`
 };
+

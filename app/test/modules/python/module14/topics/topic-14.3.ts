@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_3: SubLesson = {
   id: "14.3",
   title: 'Recursive Problem Solving',
   status: 'demo',
-  content: `# 🧩 Recursive Problem Solving
+  content: "`# ðŸ§© Recursive Problem Solving
 
 Learn systematic approaches to solve problems using recursion effectively!
 
 ---
 
-## 🎯 Problem Solving Framework
+## ðŸŽ¯ Problem Solving Framework
 
 ### **1. Identify the Recursive Structure**
 Look for problems that can be broken down into smaller, similar subproblems.
@@ -26,14 +26,14 @@ Make sure each recursive call gets closer to the base case.
 
 ---
 
-## 📝 Classic Recursive Problems
+## ðŸ“ Classic Recursive Problems
 
 ### **1. Fibonacci Sequence**
 
 #### **Problem**: Find the nth Fibonacci number
 **F(n) = F(n-1) + F(n-2), where F(0) = 0, F(1) = 1**
 
-\`\`\`python
+\`"\`\`python
 def fibonacci(n):
     # Base cases
     if n == 0:
@@ -114,7 +114,7 @@ print(binary_search(arr, 4))   # -1
 
 ---
 
-## 🧩 Advanced Recursive Patterns
+## ðŸ§© Advanced Recursive Patterns
 
 ### **1. Divide and Conquer**
 
@@ -224,7 +224,7 @@ print(all_paths(graph, 'A', 'D'))
 
 ---
 
-## 🛠️ Problem Solving Steps
+## ðŸ› ï¸ Problem Solving Steps
 
 ### **Step 1: Understand the Problem**
 - What is the input?
@@ -252,7 +252,7 @@ print(all_paths(graph, 'A', 'D'))
 
 ---
 
-## 🎯 Common Recursive Patterns
+## ðŸŽ¯ Common Recursive Patterns
 
 ### **1. Linear Recursion**
 - Single recursive call
@@ -276,7 +276,7 @@ print(all_paths(graph, 'A', 'D'))
 
 ---
 
-## ⚠️ Common Mistakes to Avoid
+## âš ï¸ Common Mistakes to Avoid
 
 ### **1. Missing Base Case**
 \`\`\`python
@@ -310,7 +310,7 @@ def missing_return(n):
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Framework**: Base case + recursive case + progress
 2. **Patterns**: Linear, tree, tail, mutual recursion
@@ -319,6 +319,7 @@ def missing_return(n):
 5. **Practice**: Start simple, build to complex problems
 6. **Performance**: Consider when recursion vs iteration matters
 
-Recursion is a powerful tool - practice these patterns to master recursive problem solving! 🧠`,
+Recursion is a powerful tool - practice these patterns to master recursive problem solving! ðŸ§ `,
 };
+
 

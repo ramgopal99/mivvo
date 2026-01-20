@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_5: SubLesson = {
   id: "15.5",
   title: 'Merge Sort Algorithm',
   status: 'demo',
-  content: `# 🔀 Merge Sort Algorithm
+  content: "`# ðŸ”€ Merge Sort Algorithm
 
 Merge Sort is a powerful divide-and-conquer algorithm that provides guaranteed O(n log n) performance. It's stable, predictable, and forms the basis for many advanced sorting techniques. Let's explore this elegant algorithm!
 
 ---
 
-## 🎯 How Merge Sort Works
+## ðŸŽ¯ How Merge Sort Works
 
 **Merge Sort** follows the divide-and-conquer paradigm:
 1. **Divide**: Split the array into two halves
@@ -21,18 +21,18 @@ The key insight is that merging two sorted arrays is efficient and straightforwa
 
 ---
 
-## 📝 Step-by-Step Example
+## ðŸ“ Step-by-Step Example
 
 **Input Array**: [38, 27, 43, 3, 9, 82, 10]
 
 ### **Division Phase:**
-\`\`\`text
+\`"\`\`text
 Level 1: [38, 27, 43, 3, 9, 82, 10]
-         ↙                    ↘
+         â†™                    â†˜
 Level 2: [38, 27, 43]     [3, 9, 82, 10]
-         ↙     ↘          ↙     ↘
+         â†™     â†˜          â†™     â†˜
 Level 3: [38] [27, 43]   [3, 9] [82, 10]
-         ↓     ↙   ↘     ↙   ↘   ↓   ↓
+         â†“     â†™   â†˜     â†™   â†˜   â†“   â†“
 Level 4: [38] [27] [43]  [3] [9] [82] [10]
 \`\`\`
 
@@ -40,22 +40,22 @@ Level 4: [38] [27] [43]  [3] [9] [82] [10]
 \`\`\`text
 Level 4: [38] [27] [43]  [3] [9] [82] [10]
 
-Level 3: merge([38], [27]) → [27, 38]
-         merge([43], []) → [43]
-         merge([3], [9]) → [3, 9]
-         merge([82], [10]) → [10, 82]
+Level 3: merge([38], [27]) â†’ [27, 38]
+         merge([43], []) â†’ [43]
+         merge([3], [9]) â†’ [3, 9]
+         merge([82], [10]) â†’ [10, 82]
 
-Level 2: merge([27, 38], [43]) → [27, 38, 43]
-         merge([3, 9], [10, 82]) → [3, 9, 10, 82]
+Level 2: merge([27, 38], [43]) â†’ [27, 38, 43]
+         merge([3, 9], [10, 82]) â†’ [3, 9, 10, 82]
 
-Level 1: merge([27, 38, 43], [3, 9, 10, 82]) → [3, 9, 10, 27, 38, 43, 82]
+Level 1: merge([27, 38, 43], [3, 9, 10, 82]) â†’ [3, 9, 10, 27, 38, 43, 82]
 \`\`\`
 
 **Final Result**: [3, 9, 10, 27, 38, 43, 82]
 
 ---
 
-## 💻 Implementation
+## ðŸ’» Implementation
 
 ### **Basic Merge Sort (Recursive)**
 \`\`\`python
@@ -181,7 +181,7 @@ print(arr)  # [3, 9, 10, 27, 38, 43, 82]
 
 ---
 
-## 📊 Algorithm Analysis
+## ðŸ“Š Algorithm Analysis
 
 ### **Time Complexity**
 - **Best Case**: O(n log n)
@@ -200,7 +200,7 @@ print(arr)  # [3, 9, 10, 27, 38, 43, 82]
 
 ---
 
-## 🔍 The Merge Function
+## ðŸ” The Merge Function
 
 The merge operation is the heart of Merge Sort:
 
@@ -237,24 +237,24 @@ print(merge(left, right))  # [1, 2, 3, 4, 5, 6]
 
 ---
 
-## 🎯 Merge Sort Properties
+## ðŸŽ¯ Merge Sort Properties
 
 ### **Advantages**
-- ✅ **Guaranteed O(n log n)** performance in all cases
-- ✅ **Stable sorting algorithm**
-- ✅ **Predictable performance** (no worst-case surprises)
-- ✅ **Works well for large datasets**
-- ✅ **Parallelizable** (different subarrays can be sorted simultaneously)
+- âœ… **Guaranteed O(n log n)** performance in all cases
+- âœ… **Stable sorting algorithm**
+- âœ… **Predictable performance** (no worst-case surprises)
+- âœ… **Works well for large datasets**
+- âœ… **Parallelizable** (different subarrays can be sorted simultaneously)
 
 ### **Disadvantages**
-- ❌ **O(n) extra space** required
-- ❌ **Not in-place** (uses additional memory)
-- ❌ **Slower than Quick Sort** in practice for small arrays
-- ❌ **Complex implementation** compared to quadratic sorts
+- âŒ **O(n) extra space** required
+- âŒ **Not in-place** (uses additional memory)
+- âŒ **Slower than Quick Sort** in practice for small arrays
+- âŒ **Complex implementation** compared to quadratic sorts
 
 ---
 
-## 🧪 Testing and Examples
+## ðŸ§ª Testing and Examples
 
 ### **Test Case 1: Normal Array**
 \`\`\`python
@@ -297,7 +297,7 @@ print("Sorted by age:", sorted_arr)
 
 ---
 
-## 🎯 When to Use Merge Sort
+## ðŸŽ¯ When to Use Merge Sort
 
 ### **Good Use Cases:**
 - **Large datasets** where predictability matters
@@ -314,7 +314,7 @@ print("Sorted by age:", sorted_arr)
 
 ---
 
-## 🔧 Advanced Variations
+## ðŸ”§ Advanced Variations
 
 ### **Three-Way Merge Sort**
 \`\`\`python
@@ -365,20 +365,20 @@ More complex but uses O(1) additional space (besides recursion stack).
 
 ---
 
-## 🔍 Comparison with Other Algorithms
+## ðŸ” Comparison with Other Algorithms
 
 | Algorithm | Best | Average | Worst | Space | Stable | In-place |
 |-----------|------|---------|-------|-------|--------|----------|
 | **Merge Sort** | O(n log n) | O(n log n) | O(n log n) | O(n) | Yes | No |
-| **Quick Sort** | O(n log n) | O(n log n) | O(n²) | O(log n) | No | Yes |
+| **Quick Sort** | O(n log n) | O(n log n) | O(nÂ²) | O(log n) | No | Yes |
 | **Heap Sort** | O(n log n) | O(n log n) | O(n log n) | O(1) | No | Yes |
-| **Insertion Sort** | O(n) | O(n²) | O(n²) | O(1) | Yes | Yes |
+| **Insertion Sort** | O(n) | O(nÂ²) | O(nÂ²) | O(1) | Yes | Yes |
 
 **Merge Sort excels when stability and predictable performance are needed!**
 
 ---
 
-## 🚀 Real-World Applications
+## ðŸš€ Real-World Applications
 
 ### **External Sorting**
 Merge Sort is ideal for sorting large files that don't fit in memory:
@@ -397,7 +397,7 @@ Merge Sort is ideal for sorting large files that don't fit in memory:
 
 ---
 
-## 🏆 Key Takeaways
+## ðŸ† Key Takeaways
 
 1. **Merge Sort** uses divide-and-conquer: divide, sort, and merge
 2. **Time complexity** is always O(n log n) - predictable performance
@@ -406,6 +406,7 @@ Merge Sort is ideal for sorting large files that don't fit in memory:
 5. **Excellent for large datasets** and external sorting
 6. **Forms the basis** for advanced sorting algorithms like Timsort
 
-**Merge Sort is reliable and efficient, but uses extra space. Next, let's explore Quick Sort, which is often faster in practice! 🚀**`
+**Merge Sort is reliable and efficient, but uses extra space. Next, let's explore Quick Sort, which is often faster in practice! ðŸš€**`
 };
+
 

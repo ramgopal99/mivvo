@@ -1,28 +1,28 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_6: SubLesson = {
   id: "2.6",
   title: 'Type Casting',
   status: 'completed',
-  content: `# 🔄 Type Casting and Conversions in Java
+  content: "`# ðŸ”„ Type Casting and Conversions in Java
 
 Type casting and conversions are essential concepts in Java for converting between different data types. Understanding these concepts helps prevent errors and ensures data integrity.
 
 ---
 
-## 📊 Implicit vs Explicit Conversion
+## ðŸ“Š Implicit vs Explicit Conversion
 
 ### **Implicit Conversion (Automatic)**
 Java automatically converts compatible types without explicit casting.
 
-\`\`\`java
+\`"\`\`java
 public class ImplicitConversion {
     public static void main(String[] args) {
         // Widening conversions (safe, no data loss)
         int intValue = 100;
-        long longValue = intValue;      // int → long
-        float floatValue = intValue;    // int → float
-        double doubleValue = floatValue; // float → double
+        long longValue = intValue;      // int â†’ long
+        float floatValue = intValue;    // int â†’ float
+        double doubleValue = floatValue; // float â†’ double
 
         System.out.println("int to long: " + longValue);
         System.out.println("int to float: " + floatValue);
@@ -44,9 +44,9 @@ public class ExplicitCasting {
     public static void main(String[] args) {
         // Narrowing conversions (potential data loss)
         double doubleValue = 123.456;
-        float floatValue = (float) doubleValue;    // double → float
-        long longValue = (long) doubleValue;       // double → long (truncates decimal)
-        int intValue = (int) doubleValue;          // double → int (truncates decimal)
+        float floatValue = (float) doubleValue;    // double â†’ float
+        long longValue = (long) doubleValue;       // double â†’ long (truncates decimal)
+        int intValue = (int) doubleValue;          // double â†’ int (truncates decimal)
 
         System.out.println("double: " + doubleValue);
         System.out.println("float: " + floatValue);
@@ -63,13 +63,13 @@ public class ExplicitCasting {
 
 ---
 
-## 🏗️ Primitive Type Casting
+## ðŸ—ï¸ Primitive Type Casting
 
 ### **Widening Casting (Safe)**
 \`\`\`java
 public class WideningCasting {
     public static void main(String[] args) {
-        // byte → short → int → long → float → double
+        // byte â†’ short â†’ int â†’ long â†’ float â†’ double
         byte byteValue = 100;
         short shortValue = byteValue;    // byte to short
         int intValue = shortValue;       // short to int
@@ -78,7 +78,7 @@ public class WideningCasting {
         double doubleValue = floatValue; // float to double
 
         System.out.println("Widening: byte " + byteValue +
-                          " → double " + doubleValue);
+                          " â†’ double " + doubleValue);
 
         // char can be widened to int, long, float, double
         char charValue = 'A';  // ASCII 65
@@ -95,7 +95,7 @@ public class WideningCasting {
 \`\`\`java
 public class NarrowingCasting {
     public static void main(String[] args) {
-        // double → float → long → int → short → byte
+        // double â†’ float â†’ long â†’ int â†’ short â†’ byte
         double doubleValue = 123.987;
 
         float floatValue = (float) doubleValue;
@@ -121,7 +121,7 @@ public class NarrowingCasting {
 
 ---
 
-## 🔧 Reference Type Casting
+## ðŸ”§ Reference Type Casting
 
 ### **Upcasting (Safe)**
 \`\`\`java
@@ -146,7 +146,7 @@ public class Upcasting {
     public static void main(String[] args) {
         Dog dog = new Dog();
 
-        // Upcasting: Dog → Animal (automatic)
+        // Upcasting: Dog â†’ Animal (automatic)
         Animal animal = dog;
 
         // Can call methods defined in Animal
@@ -166,7 +166,7 @@ public class Downcasting {
     public static void main(String[] args) {
         Animal animal = new Dog();  // Upcast first
 
-        // Downcasting: Animal → Dog (requires explicit cast)
+        // Downcasting: Animal â†’ Dog (requires explicit cast)
         if (animal instanceof Dog) {
             Dog dog = (Dog) animal;
             dog.makeSound();  // Woof!
@@ -190,7 +190,7 @@ public class Downcasting {
 
 ---
 
-## 🛠️ Utility Methods for Conversion
+## ðŸ› ï¸ Utility Methods for Conversion
 
 ### **String to Primitive**
 \`\`\`java
@@ -261,7 +261,7 @@ public class PrimitiveToString {
 
 ---
 
-## 🔄 Wrapper Classes and Auto-boxing
+## ðŸ”„ Wrapper Classes and Auto-boxing
 
 ### **Wrapper Classes**
 \`\`\`java
@@ -297,14 +297,14 @@ public class AutoBoxing {
     public static void main(String[] args) {
         // Auto-boxing in collections
         java.util.List<Integer> numbers = new java.util.ArrayList<>();
-        numbers.add(1);        // int → Integer (auto-boxing)
+        numbers.add(1);        // int â†’ Integer (auto-boxing)
         numbers.add(2);
         numbers.add(3);
 
         // Auto-unboxing in operations
         int sum = 0;
         for (Integer num : numbers) {
-            sum += num;       // Integer → int (auto-unboxing)
+            sum += num;       // Integer â†’ int (auto-unboxing)
         }
 
         System.out.println("Sum using auto-boxing/unboxing: " + sum);
@@ -324,7 +324,7 @@ public class AutoBoxing {
 
 ---
 
-## 🔍 Advanced Casting Techniques
+## ðŸ” Advanced Casting Techniques
 
 ### **instanceof Operator**
 \`\`\`java
@@ -420,7 +420,7 @@ public class GenericCasting {
 
 ---
 
-## ⚠️ Common Casting Mistakes
+## âš ï¸ Common Casting Mistakes
 
 ### **1. Loss of Precision**
 \`\`\`java
@@ -429,9 +429,9 @@ public class PrecisionLoss {
         double preciseValue = 123.987654321;
 
         // Losing precision in narrowing conversion
-        float lessPrecise = (float) preciseValue;     // double → float
-        long integerPart = (long) preciseValue;       // double → long
-        int evenLessPrecise = (int) preciseValue;     // double → int
+        float lessPrecise = (float) preciseValue;     // double â†’ float
+        long integerPart = (long) preciseValue;       // double â†’ long
+        int evenLessPrecise = (int) preciseValue;     // double â†’ int
 
         System.out.println("Original: " + preciseValue);
         System.out.println("Float: " + lessPrecise);
@@ -511,7 +511,7 @@ public class NullCasting {
 
 ---
 
-## 🎯 Best Practices for Type Conversions
+## ðŸŽ¯ Best Practices for Type Conversions
 
 ### **1. Prefer Explicit Casting**
 \`\`\`java
@@ -519,10 +519,10 @@ public class CastingBestPractices {
     public static void main(String[] args) {
         double value = 123.789;
 
-        // ✅ Clear intent with explicit casting
+        // âœ… Clear intent with explicit casting
         int explicitCast = (int) value;
 
-        // ❌ Implicit narrowing (compilation error)
+        // âŒ Implicit narrowing (compilation error)
         // int implicitCast = value;  // Error!
 
         System.out.println("Explicit cast result: " + explicitCast);
@@ -544,7 +544,7 @@ public class CastingBestPractices {
 \`\`\`java
 public class SafeCasting {
     public static void processVehicle(Object obj) {
-        // ✅ Always check with instanceof before casting
+        // âœ… Always check with instanceof before casting
         if (obj instanceof Car) {
             Car car = (Car) obj;
             car.honk();
@@ -580,16 +580,16 @@ import java.util.ArrayList;
 
 public class GenericSafety {
     public static void main(String[] args) {
-        // ✅ Type-safe generic collections
+        // âœ… Type-safe generic collections
         List<String> stringList = new ArrayList<>();
         stringList.add("Hello");
         // stringList.add(123);  // Compilation error!
 
-        // ✅ Type-safe generic methods
+        // âœ… Type-safe generic methods
         String result = combine("Hello", " World");
         System.out.println("Combined: " + result);
 
-        // ❌ Raw types (avoid in modern Java)
+        // âŒ Raw types (avoid in modern Java)
         List rawList = new ArrayList();  // Allows any type
         rawList.add("String");
         rawList.add(123);  // No compilation error, but risky
@@ -605,7 +605,8 @@ public class GenericSafety {
 }
 \`\`\`
 
-Type casting and conversions are fundamental to Java programming. Always be aware of potential data loss, use explicit casting when narrowing, and check object types before casting references! 🔄`
+Type casting and conversions are fundamental to Java programming. Always be aware of potential data loss, use explicit casting when narrowing, and check object types before casting references! ðŸ”„`
 };
+
 
 

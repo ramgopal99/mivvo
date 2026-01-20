@@ -241,5 +241,5 @@ Quantitative Aptitude is not just about solving mathematical problems—it's abo
 
 **Remember**: Speed comes with practice, accuracy comes with understanding, and success comes with perseverance!
 
-Master the fundamentals and you'll be well-prepared for any quantitative challenge! 🏆`
+Master the fundamentals and you'll be well-prepared for any quantitative challenge! 🏆`"
 };

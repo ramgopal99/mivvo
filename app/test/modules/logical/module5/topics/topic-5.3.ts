@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_3: SubLesson = {
   id: "5.3",
   title: 'Number Coding',
   status: 'completed',
-  content: `# 🔢 Number Coding
+  content: "`# ðŸ”¢ Number Coding
 
 Number coding involves assigning numerical values to letters or using mathematical operations for coding. These problems combine alphabetical knowledge with numerical operations and appear regularly in competitive exams.
 
 ---
 
-## 🎯 Understanding Number Coding
+## ðŸŽ¯ Understanding Number Coding
 
 ### **What is Number Coding?**
 Number coding involves assigning numerical values to letters or using mathematical operations to create codes. These problems test your ability to:
@@ -27,7 +27,7 @@ Number coding involves assigning numerical values to letters or using mathematic
 
 ---
 
-## 🧩 Types of Number Coding
+## ðŸ§© Types of Number Coding
 
 ### **1. Position-Value Coding**
 **Standard alphabetical positions**
@@ -49,7 +49,7 @@ Number coding involves assigning numerical values to letters or using mathematic
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze Given Codes**
 - Examine input-output number pairs
@@ -73,7 +73,7 @@ Number coding involves assigning numerical values to letters or using mathematic
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Simple Position Coding**
 **Direct position assignments**
@@ -95,7 +95,7 @@ Number coding involves assigning numerical values to letters or using mathematic
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Position Mapping Method**
 
@@ -119,7 +119,7 @@ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Position Coding**
 **Rule**: A=1, B=2, C=3, D=4, E=5
@@ -138,12 +138,12 @@ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
 ### **Example 3: Position-Weighted Coding**
 **Rule**: Multiply letter position by its place in word
 - **Input**: CAT (C=3rd letter, A=1st, T=20th)
-- **Output**: 3×3=9, 1×1=1, 20×2=40
+- **Output**: 3Ã—3=9, 1Ã—1=1, 20Ã—2=40
 - **Final Code**: 9140
 
 ---
 
-## 🔍 Advanced Number Coding Concepts
+## ðŸ” Advanced Number Coding Concepts
 
 ### **Multi-Step Operations**
 Complex mathematical transformations requiring multiple steps.
@@ -156,7 +156,7 @@ Complex formulas combining multiple mathematical operations.
 
 ---
 
-## 📊 Number Coding Methods
+## ðŸ“Š Number Coding Methods
 
 ### **Basic Position Methods**
 - **Standard Positions**: A=1 to Z=26
@@ -164,7 +164,7 @@ Complex formulas combining multiple mathematical operations.
 - **Modified Positions**: A=0 or other starting points
 
 ### **Mathematical Operations**
-- **Arithmetic Operations**: +, -, ×, ÷
+- **Arithmetic Operations**: +, -, Ã—, Ã·
 - **Advanced Operations**: Powers, roots, logarithms
 - **Combined Operations**: Multiple arithmetic steps
 
@@ -175,23 +175,23 @@ Complex formulas combining multiple mathematical operations.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Position Confusion**
-❌ Mixing letter positions with word positions
-✅ Distinguish between different position types
+âŒ Mixing letter positions with word positions
+âœ… Distinguish between different position types
 
 ### **Pitfall 2: Operation Errors**
-❌ Wrong mathematical operation application
-✅ Verify calculations carefully
+âŒ Wrong mathematical operation application
+âœ… Verify calculations carefully
 
 ### **Pitfall 3: Factor Oversight**
-❌ Missing position-based factors
-✅ Consider all influencing factors
+âŒ Missing position-based factors
+âœ… Consider all influencing factors
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Value Assignment**
 - Assign correct numerical values to letters
@@ -210,7 +210,7 @@ Complex formulas combining multiple mathematical operations.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Simple position assignments
@@ -229,7 +229,7 @@ Complex formulas combining multiple mathematical operations.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Know Letter Values**: Memorize A=1 to Z=26 positions
 2. **Identify Operations**: Determine mathematical operations clearly
@@ -239,7 +239,7 @@ Complex formulas combining multiple mathematical operations.
 
 ---
 
-## 🔢 Practice Questions
+## ðŸ”¢ Practice Questions
 
 ### **Question 1**
 If A=1, B=2, C=3, ..., Z=26, what is the code for "CAT"?
@@ -251,7 +251,7 @@ If each letter's position value is increased by 2, what is the code for "DOG"?
 If A=26, B=25, C=24, ..., Z=1, what is the code for "BOX"?
 
 ### **Question 4**
-If the code is calculated as (letter position × position in word), what is the code for "BAT"?
+If the code is calculated as (letter position Ã— position in word), what is the code for "BAT"?
 
-**Master number coding techniques for mathematical letter transformations! 🔢✨**`
+**Master number coding techniques for mathematical letter transformations! ðŸ”¢âœ¨**`"
 };

@@ -1,20 +1,20 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_6: SubLesson = {
   id: "6.6",
   title: 'When to Use Classes',
   status: 'completed',
-  content: `# 🎯 When to Use Classes in Java
+  content: "`# ðŸŽ¯ When to Use Classes in Java
 
 Knowing when to create classes and how to structure them effectively is crucial for building maintainable Java applications. Classes should represent meaningful abstractions and follow object-oriented design principles.
 
 ---
 
-## 📋 Identifying Class Candidates
+## ðŸ“‹ Identifying Class Candidates
 
 ### **Modeling Real-World Entities**
-\`\`\`java
-// ✅ Good: Classes representing real-world entities
+\`"\`\`java
+// âœ… Good: Classes representing real-world entities
 public class Customer {
     private String name;
     private String email;
@@ -54,7 +54,7 @@ public class Order {
 
 ### **Encapsulating Related Data and Behavior**
 \`\`\`java
-// ✅ Good: Classes that group related functionality
+// âœ… Good: Classes that group related functionality
 public class EmailService {
     private String smtpHost;
     private int smtpPort;
@@ -102,11 +102,11 @@ public class DatabaseConnection {
 
 ---
 
-## 🏗️ Class Design Patterns
+## ðŸ—ï¸ Class Design Patterns
 
 ### **Data Transfer Objects (DTOs)**
 \`\`\`java
-// ✅ Good: DTOs for transferring data between layers
+// âœ… Good: DTOs for transferring data between layers
 public class UserDTO {
     private final String id;
     private final String name;
@@ -158,7 +158,7 @@ public class User {
 
 ### **Service Classes**
 \`\`\`java
-// ✅ Good: Service classes for business logic
+// âœ… Good: Service classes for business logic
 public class UserService {
     private UserRepository userRepository;
     private EmailService emailService;
@@ -222,7 +222,7 @@ interface PasswordEncoder {
 
 ### **Factory Classes**
 \`\`\`java
-// ✅ Good: Factory classes for object creation
+// âœ… Good: Factory classes for object creation
 public class DatabaseConnectionFactory {
     public static DatabaseConnection createMySQLConnection(String host, int port,
                                                          String database, String user, String password) {
@@ -273,18 +273,18 @@ class PooledDatabaseConnection extends DatabaseConnection {
 
 ---
 
-## 🚫 When NOT to Use Classes
+## ðŸš« When NOT to Use Classes
 
 ### **Avoid Classes for Simple Data**
 \`\`\`java
-// ❌ Bad: Class for simple data that has no behavior
+// âŒ Bad: Class for simple data that has no behavior
 class SimpleData {
     public String name;
     public int value;
     // No methods, just data
 }
 
-// ✅ Better: Use primitive types, arrays, or collections
+// âœ… Better: Use primitive types, arrays, or collections
 String name = "John";
 int value = 42;
 String[] names = {"John", "Jane", "Bob"};
@@ -296,7 +296,7 @@ java.util.Map<String, Integer> dataMap = new java.util.HashMap<>();
 
 ### **Avoid Over-Engineering**
 \`\`\`java
-// ❌ Bad: Unnecessarily complex class hierarchy
+// âŒ Bad: Unnecessarily complex class hierarchy
 abstract class Animal {
     abstract void makeSound();
 }
@@ -313,7 +313,7 @@ class Dog extends Mammal {
     void giveBirth() { System.out.println("Puppies"); }
 }
 
-// ✅ Better: Simple class when complexity isn't needed
+// âœ… Better: Simple class when complexity isn't needed
 class Dog {
     private String name;
     private String breed;
@@ -334,7 +334,7 @@ class Dog {
 
 ### **Avoid God Classes**
 \`\`\`java
-// ❌ Bad: God class that does everything
+// âŒ Bad: God class that does everything
 class ApplicationManager {
     // Database operations
     public void saveUser(User user) { }
@@ -356,7 +356,7 @@ class ApplicationManager {
     public void refreshUI() { }
 }
 
-// ✅ Better: Separate classes with single responsibilities
+// âœ… Better: Separate classes with single responsibilities
 class UserService { /* user operations */ }
 class EmailService { /* email operations */ }
 class FileService { /* file operations */ }
@@ -367,11 +367,11 @@ class UIManager { /* UI operations */ }
 
 ---
 
-## 🎯 Class Design Principles
+## ðŸŽ¯ Class Design Principles
 
 ### **Single Responsibility Principle (SRP)**
 \`\`\`java
-// ✅ Good: Each class has one reason to change
+// âœ… Good: Each class has one reason to change
 public class OrderValidator {
     public boolean isValidOrder(Order order) {
         return validateItems(order) && validateCustomer(order) && validatePayment(order);
@@ -413,7 +413,7 @@ public class OrderRepository {
 
 ### **Open/Closed Principle**
 \`\`\`java
-// ✅ Good: Classes open for extension, closed for modification
+// âœ… Good: Classes open for extension, closed for modification
 public interface PaymentProcessor {
     boolean processPayment(double amount);
 }
@@ -459,30 +459,30 @@ public class NewBankTransferProcessor implements PaymentProcessor {
 
 ---
 
-## 🏗️ Class Organization Patterns
+## ðŸ—ï¸ Class Organization Patterns
 
 ### **Package Organization**
 \`\`\`java
-// ✅ Good: Logical package structure
+// âœ… Good: Logical package structure
 // com.mycompany.ecommerce
-// ├── model/           // Data classes (User, Product, Order)
-// │   ├── User.java
-// │   ├── Product.java
-// │   └── Order.java
-// ├── service/         // Business logic classes
-// │   ├── UserService.java
-// │   ├── ProductService.java
-// │   └── OrderService.java
-// ├── repository/      // Data access classes
-// │   ├── UserRepository.java
-// │   ├── ProductRepository.java
-// │   └── OrderRepository.java
-// ├── controller/      // API/Web classes
-// │   ├── UserController.java
-// │   └── ProductController.java
-// └── util/           // Utility classes
-//     ├── EmailUtils.java
-//     └── ValidationUtils.java
+// â”œâ”€â”€ model/           // Data classes (User, Product, Order)
+// â”‚   â”œâ”€â”€ User.java
+// â”‚   â”œâ”€â”€ Product.java
+// â”‚   â””â”€â”€ Order.java
+// â”œâ”€â”€ service/         // Business logic classes
+// â”‚   â”œâ”€â”€ UserService.java
+// â”‚   â”œâ”€â”€ ProductService.java
+// â”‚   â””â”€â”€ OrderService.java
+// â”œâ”€â”€ repository/      // Data access classes
+// â”‚   â”œâ”€â”€ UserRepository.java
+// â”‚   â”œâ”€â”€ ProductRepository.java
+// â”‚   â””â”€â”€ OrderRepository.java
+// â”œâ”€â”€ controller/      // API/Web classes
+// â”‚   â”œâ”€â”€ UserController.java
+// â”‚   â””â”€â”€ ProductController.java
+// â””â”€â”€ util/           // Utility classes
+//     â”œâ”€â”€ EmailUtils.java
+//     â””â”€â”€ ValidationUtils.java
 
 // Example classes
 package com.mycompany.ecommerce.model;
@@ -517,7 +517,7 @@ public interface UserRepository {
 
 ### **Class Relationships**
 \`\`\`java
-// ✅ Good: Clear class relationships
+// âœ… Good: Clear class relationships
 public class University {
     private String name;
     private java.util.List<Department> departments;
@@ -570,7 +570,7 @@ public class Course {
 
 ---
 
-## 🎯 Decision Framework for Class Creation
+## ðŸŽ¯ Decision Framework for Class Creation
 
 ### **Questions to Ask**
 \`\`\`java
@@ -581,7 +581,7 @@ public class ClassCreationDecision {
     //    - Technical concept (Connection, Cache, Validator)
 
     // 2. Does it have both data AND behavior?
-    // ✅ Good: Classes with both
+    // âœ… Good: Classes with both
     public class CustomerService {
         private CustomerRepository repository;
 
@@ -596,14 +596,14 @@ public class ClassCreationDecision {
         }
     }
 
-    // ❌ Bad: Classes with only data
+    // âŒ Bad: Classes with only data
     public class CustomerData {
         public String name;
         public String email;
         // No behavior - just data
     }
 
-    // ❌ Bad: Classes with only behavior (should be methods in other classes)
+    // âŒ Bad: Classes with only behavior (should be methods in other classes)
     public class StringUtils {
         public static String capitalize(String s) { return s.toUpperCase(); }
         public static boolean isEmpty(String s) { return s == null || s.isEmpty(); }
@@ -611,14 +611,14 @@ public class ClassCreationDecision {
     }
 
     // 3. Does it follow single responsibility?
-    // ✅ Good: One clear purpose
+    // âœ… Good: One clear purpose
     public class EmailService {
         public void sendWelcomeEmail(User user) { }
         public void sendPasswordResetEmail(User user) { }
         // Only email-related functionality
     }
 
-    // ❌ Bad: Multiple responsibilities
+    // âŒ Bad: Multiple responsibilities
     public class UserManager {
         public void createUser(User user) { }
         public void sendEmail(String to, String subject, String body) { }
@@ -627,7 +627,7 @@ public class ClassCreationDecision {
     }
 
     // 4. Will it be instantiated multiple times?
-    // ✅ Good: Regular classes for multiple instances
+    // âœ… Good: Regular classes for multiple instances
     public class ShoppingCart {
         private java.util.List<Item> items = new java.util.ArrayList<>();
 
@@ -635,7 +635,7 @@ public class ClassCreationDecision {
         public double getTotal() { return items.stream().mapToDouble(Item::getPrice).sum(); }
     }
 
-    // ✅ Good: Singleton pattern for single instance
+    // âœ… Good: Singleton pattern for single instance
     public class ConfigurationManager {
         private static ConfigurationManager instance;
         private java.util.Properties config;
@@ -658,14 +658,14 @@ public class ClassCreationDecision {
     }
 
     // 5. Does it need to be extended or customized?
-    // ✅ Good: Non-final classes for inheritance
+    // âœ… Good: Non-final classes for inheritance
     public class BaseService {
         protected void logOperation(String operation) {
             System.out.println("Operation: " + operation);
         }
     }
 
-    // ✅ Good: Abstract classes for partial implementation
+    // âœ… Good: Abstract classes for partial implementation
     public abstract class Shape {
         protected String color;
 
@@ -698,7 +698,7 @@ class Item {
 \`\`\`java
 public class ClassChecklist {
     /*
-    ✅ CLASS CREATION CHECKLIST:
+    âœ… CLASS CREATION CHECKLIST:
 
     1. Purpose & Responsibility
        - Does it represent a clear, single concept?
@@ -755,8 +755,9 @@ public class ClassChecklist {
 }
 \`\`\`
 
-Classes are the fundamental building blocks of Java applications. Use them to model meaningful concepts with clear responsibilities, proper encapsulation, and well-designed interfaces. Always consider the broader architectural context and follow established design principles! 🎯`
+Classes are the fundamental building blocks of Java applications. Use them to model meaningful concepts with clear responsibilities, proper encapsulation, and well-designed interfaces. Always consider the broader architectural context and follow established design principles! ðŸŽ¯`
 };
+
 
 
 

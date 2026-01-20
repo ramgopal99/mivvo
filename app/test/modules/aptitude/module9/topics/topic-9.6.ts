@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_6: SubLesson = {
   id: "9.6",
   title: 'Annual Compounding',
   status: 'completed',
-  content: `# 📅 Annual Compounding
+  content: "`# ðŸ“… Annual Compounding
 
 Master annual compounding - the most common compounding frequency! Annual compounding applies interest once per year, making it simple to calculate while still providing compound growth. This is the standard for most basic CI problems.
 
 ---
 
-## 🎯 What is Annual Compounding?
+## ðŸŽ¯ What is Annual Compounding?
 
 **Annual Compounding** means interest is calculated and added to the principal once per year. The interest for the next year is calculated on the new principal (original + accumulated interest).
 
@@ -22,10 +22,10 @@ Master annual compounding - the most common compounding frequency! Annual compou
 
 ---
 
-## 📊 Annual Compounding Formulas
+## ðŸ“Š Annual Compounding Formulas
 
 ### **Amount Formula**
-\`\`\`
+\`"\`\`
 A = P(1 + R/100)^T
 \`\`\`
 
@@ -41,31 +41,31 @@ CI = P[(1 + R/100)^T - 1]
 
 ---
 
-## 🔢 Step-by-Step Examples
+## ðŸ”¢ Step-by-Step Examples
 
 ### **Example 1: Basic Calculation**
-**Problem:** ₹10,000 at 10% annual CI for 3 years.
+**Problem:** â‚¹10,000 at 10% annual CI for 3 years.
 
-**Year 1:** 10,000 × 1.10 = ₹11,000
-**Year 2:** 11,000 × 1.10 = ₹12,100
-**Year 3:** 12,100 × 1.10 = ₹13,310
+**Year 1:** 10,000 Ã— 1.10 = â‚¹11,000
+**Year 2:** 11,000 Ã— 1.10 = â‚¹12,100
+**Year 3:** 12,100 Ã— 1.10 = â‚¹13,310
 
 **Using Formula:**
-- A = 10,000 × (1.10)^3 = 10,000 × 1.331 = ₹13,310
-- CI = 13,310 - 10,000 = ₹3,310
+- A = 10,000 Ã— (1.10)^3 = 10,000 Ã— 1.331 = â‚¹13,310
+- CI = 13,310 - 10,000 = â‚¹3,310
 
 ### **Example 2: Finding Time**
-**Problem:** P = ₹5,000, R = 8%, A = ₹7,412.16. Find T.
+**Problem:** P = â‚¹5,000, R = 8%, A = â‚¹7,412.16. Find T.
 
 **Solution:**
-- 7,412.16 = 5,000 × (1.08)^T
+- 7,412.16 = 5,000 Ã— (1.08)^T
 - 1.482432 = (1.08)^T
-- Take log: log(1.482432) = T × log(1.08)
-- T = log(1.482432) / log(1.08) ≈ 0.1717 / 0.0334 ≈ 5.14 years
+- Take log: log(1.482432) = T Ã— log(1.08)
+- T = log(1.482432) / log(1.08) â‰ˆ 0.1717 / 0.0334 â‰ˆ 5.14 years
 
 ---
 
-## 💡 Annual Compounding Properties
+## ðŸ’¡ Annual Compounding Properties
 
 ### **1. Linear Exponent**
 - Power equals number of years
@@ -81,7 +81,7 @@ CI = P[(1 + R/100)^T - 1]
 
 ---
 
-## 🎯 Applications
+## ðŸŽ¯ Applications
 
 ### **1. Fixed Deposits**
 - Bank FD maturity calculations
@@ -97,7 +97,7 @@ CI = P[(1 + R/100)^T - 1]
 
 ---
 
-## 🧮 Comparison with Other Frequencies
+## ðŸ§® Comparison with Other Frequencies
 
 | Compounding | Formula | Effective Rate (10% nominal) |
 |-------------|---------|------------------------------|
@@ -108,37 +108,37 @@ CI = P[(1 + R/100)^T - 1]
 
 ---
 
-## 🚨 Common Mistakes
+## ðŸš¨ Common Mistakes
 
 ### **Mistake 1: Wrong Time Units**
-❌ "T must be in years"
+âŒ "T must be in years"
 - Yes, for annual compounding
 
 ### **Mistake 2: Confusing with SI**
-❌ "CI = SI for annual compounding"
+âŒ "CI = SI for annual compounding"
 - CI is higher than SI
 
 ### **Mistake 3: Rate Application**
-❌ "Rate is per compounding period"
+âŒ "Rate is per compounding period"
 - For annual, rate is annual
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Basic Annual CI:**
-1. P = ₹2000, R = 5%, T = 3 years. Find A and CI.
-2. P = ₹1500, R = 8%, T = 2 years. Find A and CI.
-3. P = ₹3000, R = 6%, T = 2 years. Find A and CI.
+1. P = â‚¹2000, R = 5%, T = 3 years. Find A and CI.
+2. P = â‚¹1500, R = 8%, T = 2 years. Find A and CI.
+3. P = â‚¹3000, R = 6%, T = 2 years. Find A and CI.
 
 ### **Reverse Calculations:**
-1. A = ₹1320, P = ₹1200, T = 2 years. Find R.
-2. A = ₹2500, P = ₹2000, R = 10%. Find T.
-3. CI = ₹1310, P = ₹2000, R = 10%. Find T.
+1. A = â‚¹1320, P = â‚¹1200, T = 2 years. Find R.
+2. A = â‚¹2500, P = â‚¹2000, R = 10%. Find T.
+3. CI = â‚¹1310, P = â‚¹2000, R = 10%. Find T.
 
 **Answers:**
-Basic: A ₹2315.50, CI ₹315.50; A ₹1752, CI ₹252; A ₹3367.20, CI ₹367.20
+Basic: A â‚¹2315.50, CI â‚¹315.50; A â‚¹1752, CI â‚¹252; A â‚¹3367.20, CI â‚¹367.20
 Reverse: 10%, 2.5 years, 2 years
 
-Master annual compounding for standard compound interest calculations! 🏆`
+Master annual compounding for standard compound interest calculations! ðŸ†`
 };

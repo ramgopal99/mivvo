@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_9: SubLesson = {
   id: "4.9",
   title: 'Population Increase/Decrease',
   status: 'completed',
-  content: `# 👥 Population Increase/Decrease
+  content: "`# ðŸ‘¥ Population Increase/Decrease
 
 Master population growth and decline calculations! This topic applies percentage concepts to demographic changes, involving compound growth rates over multiple periods. Learn to calculate population changes using exponential formulas.
 
 ---
 
-## 🎯 Population Growth Basics
+## ðŸŽ¯ Population Growth Basics
 
 **Population change** follows compound growth patterns where each year's growth is calculated on the previous year's population.
 
@@ -20,8 +20,8 @@ Master population growth and decline calculations! This topic applies percentage
 - **Time Periods:** Usually in years
 
 ### **Basic Formula**
-\`\`\`
-Population after n years = P × (1 + r/100)^n
+\`"\`\`
+Population after n years = P Ã— (1 + r/100)^n
 \`\`\`
 
 **Where:**
@@ -31,85 +31,85 @@ Population after n years = P × (1 + r/100)^n
 
 ---
 
-## 📈 Population Increase Calculations
+## ðŸ“ˆ Population Increase Calculations
 
 ### **Example 1: Simple Growth**
 **Problem:** Population of a town is 10,000. It grows at 5% per year. Find population after 2 years.
 
 **Solution:**
-- Year 1: 10,000 × 1.05 = 10,500
-- Year 2: 10,500 × 1.05 = 11,025
+- Year 1: 10,000 Ã— 1.05 = 10,500
+- Year 2: 10,500 Ã— 1.05 = 11,025
 
-**Using formula:** 10,000 × (1.05)² = 11,025
+**Using formula:** 10,000 Ã— (1.05)Â² = 11,025
 
 ### **Example 2: Multi-year Growth**
 **Problem:** City population: 50,000. Grows 8% annually. Find population after 3 years.
 
 **Solution:**
-- 50,000 × (1.08)³ = 50,000 × 1.259712 = 62,985.6 ≈ 62,986
+- 50,000 Ã— (1.08)Â³ = 50,000 Ã— 1.259712 = 62,985.6 â‰ˆ 62,986
 
 ### **Example 3: Finding Growth Rate**
 **Problem:** Population grew from 20,000 to 23,200 in 2 years. Find annual growth rate.
 
 **Solution:**
-- 20,000 × (1 + r/100)² = 23,200
-- (1 + r/100)² = 23,200 ÷ 20,000 = 1.16
-- 1 + r/100 = √1.16 ≈ 1.077
+- 20,000 Ã— (1 + r/100)Â² = 23,200
+- (1 + r/100)Â² = 23,200 Ã· 20,000 = 1.16
+- 1 + r/100 = âˆš1.16 â‰ˆ 1.077
 - r/100 = 0.077
 - r = 7.7%
 
 ---
 
-## 📉 Population Decrease Calculations
+## ðŸ“‰ Population Decrease Calculations
 
 ### **Example 1: Population Decline**
 **Problem:** Village population: 15,000. Declines 3% annually. Find population after 2 years.
 
 **Solution:**
-- Formula: P × (1 - r/100)^n
-- 15,000 × (0.97)² = 15,000 × 0.9409 = 14,113.5 ≈ 14,114
+- Formula: P Ã— (1 - r/100)^n
+- 15,000 Ã— (0.97)Â² = 15,000 Ã— 0.9409 = 14,113.5 â‰ˆ 14,114
 
 ### **Example 2: Finding Decline Rate**
 **Problem:** Population decreased from 25,000 to 21,250 in 3 years. Find annual decline rate.
 
 **Solution:**
-- 25,000 × (1 - r/100)³ = 21,250
-- (1 - r/100)³ = 21,250 ÷ 25,000 = 0.85
-- 1 - r/100 = ∛0.85 ≈ 0.946
+- 25,000 Ã— (1 - r/100)Â³ = 21,250
+- (1 - r/100)Â³ = 21,250 Ã· 25,000 = 0.85
+- 1 - r/100 = âˆ›0.85 â‰ˆ 0.946
 - r/100 = 1 - 0.946 = 0.054
 - r = 5.4%
 
 ---
 
-## 💡 Quick Tricks for Population Problems
+## ðŸ’¡ Quick Tricks for Population Problems
 
 ### **Trick 1: Two-Year Growth**
 \`\`\`
-Population = P × (1 + r/100) × (1 + r/100)
-= P × (1 + r/100)²
+Population = P Ã— (1 + r/100) Ã— (1 + r/100)
+= P Ã— (1 + r/100)Â²
 \`\`\`
 
 ### **Trick 2: Three-Year Growth**
 \`\`\`
-Population = P × (1 + r/100)³
+Population = P Ã— (1 + r/100)Â³
 \`\`\`
 
 ### **Trick 3: Growth Rate from Data**
 \`\`\`
-Final Population = Initial × (1 + r/100)^n
-r = [(Final/Initial)^(1/n) - 1] × 100%
+Final Population = Initial Ã— (1 + r/100)^n
+r = [(Final/Initial)^(1/n) - 1] Ã— 100%
 \`\`\`
 
 ### **Trick 4: Population Ratio**
 \`\`\`
 Male/Female ratio = M:F
 Total population = M + F
-Male % = (M/(M+F)) × 100%
+Male % = (M/(M+F)) Ã— 100%
 \`\`\`
 
 ---
 
-## 🔢 Population Composition Problems
+## ðŸ”¢ Population Composition Problems
 
 ### **Example 1: Age Distribution**
 **Problem:** Town has 60,000 people. 35% are children, 50% adults, 15% elderly. How many adults?
@@ -122,7 +122,7 @@ Male % = (M/(M+F)) × 100%
 
 **Solution:**
 - Total parts = 5 + 4 = 9
-- Females = (4/9) × 8000 = 3555.56 ≈ 3556
+- Females = (4/9) Ã— 8000 = 3555.56 â‰ˆ 3556
 
 ### **Example 3: Literacy Rate**
 **Problem:** City: 1,00,000 people. Literacy rate 75%. How many literates?
@@ -132,53 +132,53 @@ Male % = (M/(M+F)) × 100%
 
 ---
 
-## 🎯 Advanced Population Scenarios
+## ðŸŽ¯ Advanced Population Scenarios
 
 ### **Scenario 1: Migration Effects**
 **Problem:** Town population 50,000. Natural growth 2% but 1000 people migrate out annually. Find population after 2 years.
 
 **Solution:**
-- Year 1: 50,000 × 1.02 - 1000 = 51,000 - 1000 = 50,000
-- Year 2: 50,000 × 1.02 - 1000 = 51,000 - 1000 = 50,000
+- Year 1: 50,000 Ã— 1.02 - 1000 = 51,000 - 1000 = 50,000
+- Year 2: 50,000 Ã— 1.02 - 1000 = 51,000 - 1000 = 50,000
 - Population remains constant due to balancing factors
 
 ### **Scenario 2: Different Growth Rates**
 **Problem:** Urban area grows 8%, rural area grows 3%. Urban has 40,000, rural has 60,000. Find total population after 2 years.
 
 **Solution:**
-- Urban: 40,000 × (1.08)² = 46,464
-- Rural: 60,000 × (1.03)² = 63,678
+- Urban: 40,000 Ã— (1.08)Â² = 46,464
+- Rural: 60,000 Ã— (1.03)Â² = 63,678
 - Total: 46,464 + 63,678 = 1,10,142
 
 ### **Scenario 3: Population Density**
 **Problem:** Area 100 sq km, population 2,00,000. Density = ?
 
 **Solution:**
-- Density = Population ÷ Area = 2,00,000 ÷ 100 = 2,000 per sq km
+- Density = Population Ã· Area = 2,00,000 Ã· 100 = 2,000 per sq km
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Simple Addition of Rates**
-❌ "5% + 5% = 10% growth in 2 years"
+âŒ "5% + 5% = 10% growth in 2 years"
 - Wrong! Compound effect gives 10.25%
 
 ### **Mistake 2: Wrong Base for Percentage**
-❌ "Population increased by 1000, so 1000% increase"
+âŒ "Population increased by 1000, so 1000% increase"
 - Wrong! Use original population as base
 
 ### **Mistake 3: Ignoring Compound Effect**
-❌ "2% growth for 3 years = 6% total"
-- Wrong! 2% compounded = (1.02)³ - 1 ≈ 6.12%
+âŒ "2% growth for 3 years = 6% total"
+- Wrong! 2% compounded = (1.02)Â³ - 1 â‰ˆ 6.12%
 
 ### **Mistake 4: Migration Confusion**
-❌ "Migration out reduces growth rate"
+âŒ "Migration out reduces growth rate"
 - Wrong! Migration is absolute, growth is percentage
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Population Growth:**
 1. Population 10,000 grows 6% annually. Find after 2 years = ?
@@ -200,7 +200,7 @@ Composition: 44,000, 69,600
 
 ---
 
-## 🎓 Pro Tips for Exams
+## ðŸŽ“ Pro Tips for Exams
 
 1. **Use compound formula** - don't add percentages
 2. **Careful with negative rates** - decrease uses (1 - r/100)
@@ -211,18 +211,18 @@ Composition: 44,000, 69,600
 
 ---
 
-## 🔢 Population Growth Formula Summary
+## ðŸ”¢ Population Growth Formula Summary
 
 | Scenario | Formula | Example |
 |----------|---------|---------|
 | Growth | P(1 + r/100)^n | 1000(1.05)^2 = 1102.5 |
 | Decline | P(1 - r/100)^n | 1000(0.98)^2 = 960.4 |
-| Find rate | r = [(F/P)^(1/n) - 1]×100% | From 1000→1331 in 3y: 10% |
-| Migration | P(1 ± r/100)^n ± M | Complex scenarios |
+| Find rate | r = [(F/P)^(1/n) - 1]Ã—100% | From 1000â†’1331 in 3y: 10% |
+| Migration | P(1 Â± r/100)^n Â± M | Complex scenarios |
 
 ---
 
-## 💡 Real-World Applications
+## ðŸ’¡ Real-World Applications
 
 ### **1. Urban Planning**
 - City growth projections
@@ -244,5 +244,5 @@ Composition: 44,000, 69,600
 - Customer base growth
 - Sales forecasting
 
-Master population calculations to understand demographic changes and growth patterns! 🏆`
+Master population calculations to understand demographic changes and growth patterns! ðŸ†`
 };

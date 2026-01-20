@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_2: SubLesson = {
   id: "4.2",
   title: 'Creating HashMaps',
   status: 'completed',
-  content: `# 🏗️ Creating HashMaps in Java
+  content: "`# ðŸ—ï¸ Creating HashMaps in Java
 
 HashMap is the most commonly used Map implementation in Java. It provides fast key-value lookups and is the go-to choice for most mapping needs. Understanding how to create and initialize HashMaps effectively is crucial for Java development.
 
 ---
 
-## 🏭 HashMap Creation
+## ðŸ­ HashMap Creation
 
 ### **Basic HashMap Creation**
-\`\`\`java
+\`"\`\`java
 import java.util.*;
 
 public class HashMapCreation {
@@ -45,18 +45,18 @@ public class HashMapCreation {
 \`\`\`java
 public class GenericHashMap {
     public static void main(String[] args) {
-        // ✅ Generic HashMap (recommended)
+        // âœ… Generic HashMap (recommended)
         Map<String, Integer> studentGrades = new HashMap<>();
         studentGrades.put("Alice", 95);
         studentGrades.put("Bob", 87);
         // studentGrades.put("Charlie", "Excellent");  // Compile-time error!
 
-        // ✅ Different key-value type combinations
+        // âœ… Different key-value type combinations
         Map<Integer, String> idToName = new HashMap<>();
         Map<String, List<String>> nameToHobbies = new HashMap<>();
         Map<Student, List<Course>> enrollment = new HashMap<>();
 
-        // ❌ Raw HashMap (avoid in modern Java)
+        // âŒ Raw HashMap (avoid in modern Java)
         Map rawMap = new HashMap();  // Raw type warning
         rawMap.put("key", "value");
         rawMap.put(42, new Object());  // Mixed types allowed (dangerous)
@@ -72,7 +72,7 @@ public class GenericHashMap {
 
 ---
 
-## ➕ Adding Entries to HashMap
+## âž• Adding Entries to HashMap
 
 ### **put() and putIfAbsent() Methods**
 \`\`\`java
@@ -146,7 +146,7 @@ public class BulkOperations {
 
 ---
 
-## 🔄 Initialization Patterns
+## ðŸ”„ Initialization Patterns
 
 ### **Double Brace Initialization**
 \`\`\`java
@@ -233,7 +233,7 @@ public class BuilderPattern {
 
 ---
 
-## 📊 HashMap Capacity and Load Factor
+## ðŸ“Š HashMap Capacity and Load Factor
 
 ### **Understanding Capacity and Load Factor**
 \`\`\`java
@@ -291,7 +291,7 @@ public class PerformanceDemo {
 
 ---
 
-## 🔑 Custom Keys and Hashing
+## ðŸ”‘ Custom Keys and Hashing
 
 ### **Implementing Proper hashCode() and equals()**
 \`\`\`java
@@ -397,7 +397,7 @@ public class HashingMistakes {
 
 ---
 
-## 🛡️ Thread Safety Considerations
+## ðŸ›¡ï¸ Thread Safety Considerations
 
 ### **HashMap vs ConcurrentHashMap**
 \`\`\`java
@@ -429,7 +429,7 @@ public class ThreadSafety {
 
 ---
 
-## 🎯 HashMap Best Practices
+## ðŸŽ¯ HashMap Best Practices
 
 ### **1. Choose Appropriate Initial Capacity**
 \`\`\`java
@@ -457,12 +457,12 @@ public class CapacityBestPractices {
 \`\`\`java
 public class KeyBestPractices {
     public static void main(String[] args) {
-        // ✅ Good keys
+        // âœ… Good keys
         Map<String, String> config = new HashMap<>();      // Immutable String
         Map<Integer, User> userById = new HashMap<>();     // Immutable Integer
         Map<UUID, Order> orderByUuid = new HashMap<>();    // Immutable UUID
 
-        // ✅ Custom immutable key
+        // âœ… Custom immutable key
         Map<Coordinate, String> locationNames = new HashMap<>();
 
         Coordinate coord1 = new Coordinate(10, 20);
@@ -526,7 +526,8 @@ public class NullHandling {
 }
 \`\`\`
 
-HashMap is your primary tool for key-value mappings in Java. Understanding capacity, load factors, and proper key implementation leads to efficient and reliable code! 🏗️`
+HashMap is your primary tool for key-value mappings in Java. Understanding capacity, load factors, and proper key implementation leads to efficient and reliable code! ðŸ—ï¸`
 };
+
 
 

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_9: SubLesson = {
   id: "14.9",
   title: 'Word Problems Based on Quadratic Equations',
   status: 'completed',
-  content: `# 📚 Word Problems Based on Quadratic Equations
+  content: "`# ðŸ“š Word Problems Based on Quadratic Equations
 
 Master solving real-world word problems using quadratic equations! This comprehensive guide covers all major categories of aptitude problems with systematic approaches and solved examples. Learn to convert complex scenarios into quadratic equations.
 
 ---
 
-## 🎯 Importance of Word Problems
+## ðŸŽ¯ Importance of Word Problems
 
 **Word problems** are essential because they:
 - Test practical application of quadratic equations
@@ -28,17 +28,17 @@ Master solving real-world word problems using quadratic equations! This comprehe
 
 ---
 
-## 📐 Geometry Problems
+## ðŸ“ Geometry Problems
 
 ### **Example 1: Rectangle Area Problem**
-**Problem:** A rectangular plot has area 600 m². Length exceeds width by 10m. Find dimensions.
+**Problem:** A rectangular plot has area 600 mÂ². Length exceeds width by 10m. Find dimensions.
 
 **Solution:**
 Let width = x meters
 Length = x + 10 meters
 
 Area: x(x + 10) = 600
-x² + 10x - 600 = 0
+xÂ² + 10x - 600 = 0
 (x + 30)(x - 20) = 0
 x = 20m (width)
 Length = 30m
@@ -48,24 +48,24 @@ Length = 30m
 
 **Solution:**
 Outer side = 20 + 2 + 2 = 24m
-Total area = 24² = 576 m²
+Total area = 24Â² = 576 mÂ²
 
 **Alternative:** Path area = total area - garden area
-Total area = (side + 2×path)² = (20 + 4)² = 576 m²
-Garden area = 20² = 400 m²
-Path area = 576 - 400 = 176 m²
+Total area = (side + 2Ã—path)Â² = (20 + 4)Â² = 576 mÂ²
+Garden area = 20Â² = 400 mÂ²
+Path area = 576 - 400 = 176 mÂ²
 
 ### **Example 3: Two Squares**
-**Problem:** Difference of areas of two squares is 75 m². Sum of sides is 13m. Find sides.
+**Problem:** Difference of areas of two squares is 75 mÂ². Sum of sides is 13m. Find sides.
 
 **Solution:**
 Let sides be x, 13-x
-Area difference: x² - (13-x)² = 75
-x² - (169 - 26x + x²) = 75
-x² - 169 + 26x - x² = 75
+Area difference: xÂ² - (13-x)Â² = 75
+xÂ² - (169 - 26x + xÂ²) = 75
+xÂ² - 169 + 26x - xÂ² = 75
 26x - 169 = 75
 26x = 244
-x = 244/26 = 38/13 ≈ 2.92m (not practical)
+x = 244/26 = 38/13 â‰ˆ 2.92m (not practical)
 
 **Problem correction:** Sum of perimeters is 52m
 Perimeters: 4x + 4(13-x) = 52
@@ -74,7 +74,7 @@ Perimeters: 4x + 4(13-x) = 52
 
 ---
 
-## 🔢 Number Problems
+## ðŸ”¢ Number Problems
 
 ### **Example 1: Sum and Product**
 **Problem:** Sum of two numbers is 20, product is 96. Find numbers.
@@ -82,8 +82,8 @@ Perimeters: 4x + 4(13-x) = 52
 **Solution:**
 Let numbers be x, 20-x
 Product: x(20-x) = 96
-20x - x² = 96
-x² - 20x + 96 = 0
+20x - xÂ² = 96
+xÂ² - 20x + 96 = 0
 (x - 8)(x - 12) = 0
 Numbers: 8 and 12
 
@@ -103,18 +103,18 @@ Numbers: 16, 17, 18
 
 **Solution:**
 Let numbers be x, x+8
-x² + (x+8)² = 260
-x² + x² + 16x + 64 = 260
-2x² + 16x + 64 = 260
-2x² + 16x - 196 = 0
-x² + 8x - 98 = 0
+xÂ² + (x+8)Â² = 260
+xÂ² + xÂ² + 16x + 64 = 260
+2xÂ² + 16x + 64 = 260
+2xÂ² + 16x - 196 = 0
+xÂ² + 8x - 98 = 0
 (x + 14)(x - 7) = 0
 x = 7 (take positive)
 Numbers: 7 and 15
 
 ---
 
-## 👨‍👩‍👧 Age Problems
+## ðŸ‘¨â€ðŸ‘©â€ðŸ‘§ Age Problems
 
 ### **Example 1: Basic Age Relationship**
 **Problem:** Father is 4 times son's age. After 16 years, father will be twice son's age. Find current ages.
@@ -168,12 +168,12 @@ Mother will be 3 times: y + 8 = 3(x + 8)
 5x - 40 = 3x + 24
 2x = 64
 x = 32
-y = 5×32 - 48 = 160 - 48 = 112
+y = 5Ã—32 - 48 = 160 - 48 = 112
 Ages: Daughter = 32, Mother = 112
 
 ---
 
-## ⚙️ Work and Time Problems
+## âš™ï¸ Work and Time Problems
 
 ### **Example 1: Individual Work Rates**
 **Problem:** A completes work in 12 days, B in 18 days. How long together?
@@ -203,11 +203,11 @@ A = 13.5 days
 Filling rates: 1/10 + 1/15 = 1/6 per hour
 Emptying rate: 1/20 per hour
 Net rate: 1/6 - 1/20 = 10/60 - 3/60 = 7/60 per hour
-Time = 60/7 ≈ 8.57 hours
+Time = 60/7 â‰ˆ 8.57 hours
 
 ---
 
-## 🚗 Speed-Distance-Time Problems
+## ðŸš— Speed-Distance-Time Problems
 
 ### **Example 1: Basic SDT**
 **Problem:** Train covers 360km at x km/h. Speed increased by 20 km/h, covers same distance in 2 hours less. Find x.
@@ -217,8 +217,8 @@ Time at x: 360/x hours
 Time at x+20: 360/(x+20) hours
 Difference: 360/x - 360/(x+20) = 2
 360(x+20 - x)/(x(x+20)) = 2
-360(20)/(x² + 20x) = 2
-x² + 20x - 3600 = 0
+360(20)/(xÂ² + 20x) = 2
+xÂ² + 20x - 3600 = 0
 (x + 60)(x - 50) = 0
 x = 50 km/h
 
@@ -226,55 +226,55 @@ x = 50 km/h
 **Problem:** Two trains 120m and 100m long run towards each other at 50 km/h and 40 km/h. How long to cross?
 
 **Solution:**
-Convert speeds: 50 km/h = 50×5/18 = 125/9 m/s
-40 km/h = 40×5/18 = 100/9 m/s
+Convert speeds: 50 km/h = 50Ã—5/18 = 125/9 m/s
+40 km/h = 40Ã—5/18 = 100/9 m/s
 Relative speed = 125/9 + 100/9 = 225/9 m/s
 Distance = 120 + 100 = 220m
-Time = 220 ÷ (225/9) = 220 × 9/225 = 1980/225 = 8.8 seconds
+Time = 220 Ã· (225/9) = 220 Ã— 9/225 = 1980/225 = 8.8 seconds
 
 ### **Example 3: Stream Problems**
 **Problem:** Boat 10 km/h in still water, 12 km/h downstream. Find stream speed.
 
 **Solution:**
-10 + s = 12 → s = 2 km/h
+10 + s = 12 â†’ s = 2 km/h
 
 ---
 
-## 💰 Investment and Profit Problems
+## ðŸ’° Investment and Profit Problems
 
 ### **Example 1: Simple Interest**
-**Problem:** ₹5,000 invested at r% gives ₹600 interest in 2 years. Find r.
+**Problem:** â‚¹5,000 invested at r% gives â‚¹600 interest in 2 years. Find r.
 
 **Solution:**
-SI = P×R×T/100
-600 = 5000×r×2/100
-600 = 100×r
+SI = PÃ—RÃ—T/100
+600 = 5000Ã—rÃ—2/100
+600 = 100Ã—r
 r = 6%
 
 ### **Example 2: Multiple Investments**
-**Problem:** ₹15,000 invested in two schemes at 8% and 12%. Total interest ₹1,560 in 2 years. Find amounts.
+**Problem:** â‚¹15,000 invested in two schemes at 8% and 12%. Total interest â‚¹1,560 in 2 years. Find amounts.
 
 **Solution:**
 Let amount at 8% = x
 Amount at 12% = 15000 - x
 
-Interest: x×0.08×2 + (15000-x)×0.12×2 = 1560
+Interest: xÃ—0.08Ã—2 + (15000-x)Ã—0.12Ã—2 = 1560
 0.16x + 3600 - 0.24x = 1560
 3600 - 0.08x = 1560
 0.08x = 2040
 x = 2040/0.08 = 25,500 (exceeds total - impossible)
 
-**Correct problem:** Total interest ₹1,560 in 1 year
-x×0.08 + (15000-x)×0.12 = 1560
+**Correct problem:** Total interest â‚¹1,560 in 1 year
+xÃ—0.08 + (15000-x)Ã—0.12 = 1560
 0.08x + 1800 - 0.12x = 1560
 1800 - 0.04x = 1560
 0.04x = 240
 x = 6,000
-Amounts: ₹6,000 at 8%, ₹9,000 at 12%
+Amounts: â‚¹6,000 at 8%, â‚¹9,000 at 12%
 
 ---
 
-## 🥛 Mixture Problems
+## ðŸ¥› Mixture Problems
 
 ### **Example 1: Two Solutions**
 **Problem:** Mix 20% and 40% solutions to get 30% solution. Ratio?
@@ -291,8 +291,8 @@ Ratio 1:1
 **Problem:** 10 liters 20% solution. Replace 4 liters with water. New concentration?
 
 **Solution:**
-Salt initially: 10 × 0.2 = 2 liters
-After replacement: 2 - 4×0.2 = 2 - 0.8 = 1.2 liters salt
+Salt initially: 10 Ã— 0.2 = 2 liters
+After replacement: 2 - 4Ã—0.2 = 2 - 0.8 = 1.2 liters salt
 Concentration: 1.2/10 = 12%
 
 ### **Example 3: Multiple Mixings**
@@ -308,12 +308,12 @@ Many solutions possible
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Geometry Problems:**
-1. **Rectangle:** Area 144m², length 4m more than width.
+1. **Rectangle:** Area 144mÂ², length 4m more than width.
 2. **Square path:** Garden side 15m, 2m path, total area?
-3. **Two rectangles:** Areas differ by 21m², widths differ by 2m.
+3. **Two rectangles:** Areas differ by 21mÂ², widths differ by 2m.
 
 ### **Number Problems:**
 1. **Sum product:** Numbers sum 25, product 156.
@@ -336,7 +336,7 @@ Many solutions possible
 3. **Stream:** Boat 12 km/h still water, 16 km/h downstream.
 
 **Answers:**
-Geometry: 12×12m; 361m²; Various solutions
+Geometry: 12Ã—12m; 361mÂ²; Various solutions
 Numbers: 13,12; 5,6,7,8; 6,11
 Age: Son-10, Father-50; C-5, B-15, A-30; Son-15, Father-45
 Work: 4.8 days; A-20, B-30, C-40 days; 8 hours
@@ -344,7 +344,7 @@ Speed: x=48 km/h; 10 seconds; Stream 4 km/h
 
 ---
 
-## 🎓 Pro Tips for Word Problems
+## ðŸŽ“ Pro Tips for Word Problems
 
 1. **Identify the type** - geometry, numbers, age, work, speed
 2. **Choose variables carefully** - should lead to quadratic
@@ -356,9 +356,9 @@ Speed: x=48 km/h; 10 seconds; Stream 4 km/h
 
 ---
 
-## 🔢 Problem-Solving Framework
+## ðŸ”¢ Problem-Solving Framework
 
-\`\`\`
+\`"\`\`
 1. UNDERSTAND the problem
    - Read multiple times
    - Identify unknowns
@@ -380,5 +380,5 @@ Speed: x=48 km/h; 10 seconds; Stream 4 km/h
    - Answer the question asked
 \`\`\`
 
-Master quadratic word problems and excel in aptitude examinations! 🏆`
+Master quadratic word problems and excel in aptitude examinations! ðŸ†`
 };

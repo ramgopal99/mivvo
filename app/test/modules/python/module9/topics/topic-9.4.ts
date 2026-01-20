@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_4: SubLesson = {
   id: "9.4",
   title: 'Polymorphism',
   status: 'demo',
-  content: `# 🎭 Polymorphism
+  content: "`# ðŸŽ­ Polymorphism
 
 Polymorphism enables objects to take multiple forms. The concept of "if it walks like a duck and quacks like a duck, it must be a duck" makes code incredibly flexible and intuitive!
 
 ---
 
-## 🎯 Duck Typing Philosophy
+## ðŸŽ¯ Duck Typing Philosophy
 
 ### **What is Duck Typing?**
 Duck typing is a programming concept where **object suitability is determined by the presence of certain methods and properties**, rather than the type of the object itself.
 
-\`\`\`python
+\`"\`\`python
 # Duck typing in action
 class Dog:
     def speak(self):
@@ -46,7 +46,7 @@ In Python, if an object has the methods and attributes you need, you can use it 
 
 ---
 
-## 🔄 Polymorphism Through Inheritance
+## ðŸ”„ Polymorphism Through Inheritance
 
 ### **Method Overriding**
 Child classes can provide their own implementation of inherited methods.
@@ -87,7 +87,7 @@ animal_actions(zoo)
 
 ---
 
-## 🎭 Duck Typing vs Inheritance Polymorphism
+## ðŸŽ­ Duck Typing vs Inheritance Polymorphism
 
 ### **Inheritance-Based Polymorphism**
 \`\`\`python
@@ -145,7 +145,7 @@ print(f"Total area: {calculate_total_area(shapes):.2f}")
 
 ---
 
-## 🔧 Special Methods and Operator Overloading
+## ðŸ”§ Special Methods and Operator Overloading
 
 ### **Making Custom Objects Work with Built-in Operators**
 
@@ -217,7 +217,7 @@ for item in custom_list:     # Works with for loops
 
 ---
 
-## 📝 Function Polymorphism with *args and **kwargs
+## ðŸ“ Function Polymorphism with *args and **kwargs
 
 ### **Flexible Function Parameters**
 Python functions can accept any number of arguments, enabling polymorphic behavior.
@@ -247,7 +247,7 @@ print(calculate(1, 2, 3, 4, operation='average')) # 2.5 (average)
 
 ---
 
-## 🎨 Protocol-Based Polymorphism
+## ðŸŽ¨ Protocol-Based Polymorphism
 
 ### **File-like Objects Protocol**
 Any object that implements the file protocol can be used wherever files are expected.
@@ -290,7 +290,7 @@ print("StringIO file:", string_file.getvalue())
 
 ---
 
-## 🔄 Abstract Base Classes and Interfaces
+## ðŸ”„ Abstract Base Classes and Interfaces
 
 ### **Defining Contracts with ABC**
 
@@ -342,7 +342,7 @@ render_scene(scene)
 
 ---
 
-## 🌟 Real-World Python Polymorphism
+## ðŸŒŸ Real-World Python Polymorphism
 
 ### **Web Frameworks**
 \`\`\`python
@@ -407,7 +407,7 @@ for processor in processors:
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Duck typing** enables flexible polymorphism
 2. **Behavior matters more than inheritance**
@@ -417,6 +417,7 @@ for processor in processors:
 6. **Flexible functions** enable polymorphism
 7. **Protocol-based design** creates maintainable code
 
-Polymorphism is about **flexibility and practicality** - if it works, use it! This approach leads to cleaner, more maintainable code. 🚀`,
+Polymorphism is about **flexibility and practicality** - if it works, use it! This approach leads to cleaner, more maintainable code. ðŸš€`,
 };
+
 

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_10: SubLesson = {
   id: "9.10",
   title: 'Mixed Syllogism Problems',
   status: 'completed',
-  content: `# 🎭 Mixed Syllogism Problems
+  content: "`# ðŸŽ­ Mixed Syllogism Problems
 
 Mixed syllogism problems combine multiple syllogistic techniques, requiring integrated application of statement types, Venn diagrams, possibility analysis, coded relationships, and complex logical deductions. These advanced problems test comprehensive mastery of all syllogism concepts and appear in the most challenging competitive exam sections.
 
 ---
 
-## 🎯 Understanding Mixed Syllogism Problems
+## ðŸŽ¯ Understanding Mixed Syllogism Problems
 
 ### **What are Mixed Syllogism Problems?**
 Mixed syllogism problems integrate multiple syllogistic techniques simultaneously, requiring you to apply:
@@ -30,7 +30,7 @@ Mixed syllogism problems integrate multiple syllogistic techniques simultaneousl
 
 ---
 
-## 🧩 Mixed Problem Integration Patterns
+## ðŸ§© Mixed Problem Integration Patterns
 
 ### **Pattern 1: Multi-Technique Problems**
 *"Statements: All A are B (Venn), Some B are C (possibility), No C are D (negative)"*
@@ -60,7 +60,7 @@ Mixed syllogism problems integrate multiple syllogistic techniques simultaneousl
 
 ---
 
-## 🛠️ Mixed Syllogism Framework
+## ðŸ› ï¸ Mixed Syllogism Framework
 
 ### **Comprehensive Problem-Solving Approach**
 
@@ -99,13 +99,13 @@ Mixed syllogism problems integrate multiple syllogistic techniques simultaneousl
 
 ---
 
-## 🎯 Common Mixed Problem Types
+## ðŸŽ¯ Common Mixed Problem Types
 
 ### **Type 1: Venn + Possibility Integration**
 *"Statements: All A are B, Some B are C, Some B are not C, No C are D"*
 
 **Solution Elements:**
-- Venn diagram shows A ⊆ B, B overlaps with C and non-C
+- Venn diagram shows A âŠ† B, B overlaps with C and non-C
 - Possibility: Some A may be C or not C
 - Negative: No A can be D
 - Either-or: All A are C OR Some A are not C
@@ -130,10 +130,10 @@ Mixed syllogism problems integrate multiple syllogistic techniques simultaneousl
 
 ---
 
-## 📊 Advanced Mixed Scenarios
+## ðŸ“Š Advanced Mixed Scenarios
 
 ### **Scenario 1: Complete Technique Integration**
-*"Statements: A ⊂ B (Venn), B × C (coded), Some C are D (possibility), No D are E (negative)"*
+*"Statements: A âŠ‚ B (Venn), B Ã— C (coded), Some C are D (possibility), No D are E (negative)"*
 
 **Solution Approach:**
 - Decode all statements to standard form
@@ -162,10 +162,10 @@ Mixed syllogism problems integrate multiple syllogistic techniques simultaneousl
 
 ---
 
-## 🎯 Solution Techniques for Mixed Problems
+## ðŸŽ¯ Solution Techniques for Mixed Problems
 
 ### **Technique 1: Sequential Application**
-\`\`\`
+\`"\`\`
 1. Decode all coded statements
 2. Identify negative statement constraints
 3. Construct Venn diagram with universals
@@ -195,7 +195,7 @@ Apply in order of certainty:
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Medium Level (30%)**
 - Two technique combinations
@@ -214,7 +214,7 @@ Apply in order of certainty:
 
 ---
 
-## 🧮 Integration Logic Rules
+## ðŸ§® Integration Logic Rules
 
 ### **Technique Compatibility**
 \`\`\`
@@ -235,27 +235,27 @@ Negative + Possibility: Negative limits possibilities
 
 ---
 
-## 🚨 Common Mistakes in Mixed Problems
+## ðŸš¨ Common Mistakes in Mixed Problems
 
 ### **Mistake 1: Technique Isolation**
-❌ Applying techniques separately without integration
-✅ Combine findings across all applicable techniques
+âŒ Applying techniques separately without integration
+âœ… Combine findings across all applicable techniques
 
 ### **Mistake 2: Missing Interactions**
-❌ Ignoring how techniques affect each other
-✅ Consider technique interdependencies
+âŒ Ignoring how techniques affect each other
+âœ… Consider technique interdependencies
 
 ### **Mistake 3: Priority Confusion**
-❌ Applying techniques in wrong order
-✅ Follow logical hierarchy and dependencies
+âŒ Applying techniques in wrong order
+âœ… Follow logical hierarchy and dependencies
 
 ### **Mistake 4: Incomplete Analysis**
-❌ Missing secondary technique applications
-✅ Apply all relevant techniques to each conclusion
+âŒ Missing secondary technique applications
+âœ… Apply all relevant techniques to each conclusion
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Identify All Applicable Techniques**: Recognize which methods apply to each problem
 2. **Create Technique Checklist**: Systematically apply each relevant technique
@@ -267,13 +267,13 @@ Negative + Possibility: Negative limits possibilities
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Venn + Possibility + Negative**
 *"Statements: All A are B, Some B are C, Some B are not C, No C are D"*
 
 **Integrated Solution:**
-- Venn: A ⊆ B, B overlaps with C and non-C
+- Venn: A âŠ† B, B overlaps with C and non-C
 - Possibility: Some A may be C (possible) or not C (possible)
 - Negative: No A can be D (definite)
 - Either-or: Either All A are C or Some A are not C
@@ -290,7 +290,7 @@ Negative + Possibility: Negative limits possibilities
 *"Statements: All A are B (Venn), Some B are C (possibility), No C are D (negative), A$ E (coded Some A are E)"*
 
 **Integrated Solution:**
-- Venn construction with A ⊆ B
+- Venn construction with A âŠ† B
 - Possibility analysis for B-C overlap
 - Negative constraints on C-D relationship
 - Coded statement integration
@@ -309,7 +309,7 @@ Negative + Possibility: Negative limits possibilities
 
 ---
 
-## 🔍 Integration Benefits
+## ðŸ” Integration Benefits
 
 ### **Comprehensive Reasoning Skills**
 - **Multi-Method Application**: Using all syllogism techniques together
@@ -322,5 +322,5 @@ Negative + Possibility: Negative limits possibilities
 - **Time Management**: Systematic integrated approach
 - **Logical Confidence**: Mastery of advanced reasoning combinations
 
-**Master mixed syllogism problems to excel in the most challenging logical reasoning scenarios! 🎭✨**`
+**Master mixed syllogism problems to excel in the most challenging logical reasoning scenarios! ðŸŽ­âœ¨**`
 };

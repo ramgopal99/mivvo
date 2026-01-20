@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_6: SubLesson = {
   id: "3.6",
   title: 'Simple List Operations',
   status: 'demo',
-  content: `# 🔧 Simple List Operations
+  content: "`# ðŸ”§ Simple List Operations
 
 Let's explore some common operations you can perform on lists!
 
 ---
 
-## 🔍 Check if Item Exists
+## ðŸ” Check if Item Exists
 
 ### **Using 'in' Operator**
-\`\`\`python
+\`"\`\`python
 fruits = ["apple", "banana", "orange"]
 
 # Check if item is in list
@@ -26,7 +26,7 @@ print("grape" not in fruits)  # True
 
 ---
 
-## 🔢 Count Items
+## ðŸ”¢ Count Items
 
 ### **Count Occurrences**
 \`\`\`python
@@ -37,7 +37,7 @@ print(numbers.count(5))  # 0 (not found)
 
 ---
 
-## 📍 Find Position
+## ðŸ“ Find Position
 
 ### **Index Method**
 \`\`\`python
@@ -48,7 +48,7 @@ print(fruits.index("orange"))  # 2
 
 ---
 
-## 🔄 Reverse List
+## ðŸ”„ Reverse List
 
 ### **Reverse Method**
 \`\`\`python
@@ -72,7 +72,7 @@ print(f"Original unchanged: {numbers}")  # [1, 2, 3, 4, 5]
 
 ---
 
-## 📊 Sort List
+## ðŸ“Š Sort List
 
 ### **Sort Method**
 \`\`\`python
@@ -94,7 +94,7 @@ print(f"Sorted: {words}")  # ['apple', 'banana', 'zebra']
 
 ---
 
-## 🔄 Copy List
+## ðŸ”„ Copy List
 
 ### **Copy Method**
 \`\`\`python
@@ -108,7 +108,7 @@ print(f"Copy: {copy_list}")     # [1, 2, 3, 4]
 
 ---
 
-## ✂️ List Slicing
+## âœ‚ï¸ List Slicing
 
 ### **Slicing Template**
 \`\`\`python
@@ -152,7 +152,7 @@ print(fruits[::2])   # ['apple', 'orange', 'kiwi']
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 \`\`\`python
 # Student grades system
@@ -179,6 +179,7 @@ grades.reverse()
 print(f"Reversed: {grades}")
 \`\`\`
 
-Lists have many useful operations - experiment with them! 🧮`
+Lists have many useful operations - experiment with them! ðŸ§®`
 };
+
 

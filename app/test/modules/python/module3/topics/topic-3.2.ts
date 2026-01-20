@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_2: SubLesson = {
   id: "3.2",
   title: 'Creating Lists',
   status: 'demo',
-  content: `# 🆕 Creating Python Lists
+  content: "`# ðŸ†• Creating Python Lists
 
 There are several ways to create lists in Python. Let's explore the most common methods!
 
 ---
 
-## 🎯 Basic List Creation
+## ðŸŽ¯ Basic List Creation
 
 ### **Using Square Brackets []**
-\`\`\`python
+\`"\`\`python
 # Empty list
 empty_list = []
 print(empty_list)  # []
@@ -29,7 +29,7 @@ print(numbers)  # [1, 2, 3, 4, 5]
 
 ---
 
-## 🔧 Using the list() Function
+## ðŸ”§ Using the list() Function
 
 ### **From Other Sequences**
 \`\`\`python
@@ -45,7 +45,7 @@ print(numbers)  # [1, 2, 3, 4, 5]
 
 ---
 
-## 📝 List Comprehension (Simple)
+## ðŸ“ List Comprehension (Simple)
 
 ### **Basic Pattern**
 \`\`\`python
@@ -60,7 +60,7 @@ print(evens)  # [0, 2, 4, 6, 8]
 
 ---
 
-## 🎨 Creating Different Types of Lists
+## ðŸŽ¨ Creating Different Types of Lists
 
 \`\`\`python
 # String list
@@ -79,7 +79,7 @@ print(matrix)  # [[1, 2], [3, 4], [5, 6]]
 
 ---
 
-## ✅ Quick Practice
+## âœ… Quick Practice
 
 \`\`\`python
 # Create these lists:
@@ -93,6 +93,7 @@ numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 \`\`\`
 
-Lists can be created in many ways - choose the method that fits your needs! 🎯`
+Lists can be created in many ways - choose the method that fits your needs! ðŸŽ¯`
 };
+
 

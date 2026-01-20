@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_17_2: SubLesson = {
   id: "17.2",
   title: 'GUI Programming with Tkinter',
   status: 'demo',
-  content: `# 🖥️ GUI Programming with Tkinter
+  content: "`# ðŸ–¥ï¸ GUI Programming with Tkinter
 
 Tkinter is Python's standard GUI (Graphical User Interface) library. It provides a powerful object-oriented interface to the Tk GUI toolkit, allowing you to create desktop applications with windows, buttons, text fields, and other interactive elements. This topic covers everything from basic windows to advanced widgets and event handling.
 
 ---
 
-## 🎯 Getting Started with Tkinter
+## ðŸŽ¯ Getting Started with Tkinter
 
 ### **Basic Window Creation**
-\`\`\`python
+\`"\`\`python
 import tkinter as tk
 
 # Create main window
@@ -29,16 +29,16 @@ root.mainloop()
 \`\`\`python
 # Tkinter hierarchy:
 # Tk() -> Root window
-#   ├── Toplevel() -> Additional windows
-#   ├── Frame() -> Container widgets
-#   │   ├── Button(), Label(), Entry() -> Child widgets
-#   │   └── Canvas(), Text() -> Complex widgets
-#   └── Menu() -> Menu bar
+#   â”œâ”€â”€ Toplevel() -> Additional windows
+#   â”œâ”€â”€ Frame() -> Container widgets
+#   â”‚   â”œâ”€â”€ Button(), Label(), Entry() -> Child widgets
+#   â”‚   â””â”€â”€ Canvas(), Text() -> Complex widgets
+#   â””â”€â”€ Menu() -> Menu bar
 \`\`\`
 
 ---
 
-## 🏗️ Basic Widgets
+## ðŸ—ï¸ Basic Widgets
 
 ### **Labels and Buttons**
 \`\`\`python
@@ -117,7 +117,7 @@ root.mainloop()
 
 ---
 
-## 🎯 Best Practices
+## ðŸŽ¯ Best Practices
 \`\`\`python
 # Always use pack() for simple layouts
 import tkinter as tk
@@ -138,7 +138,7 @@ root.mainloop()
 
 ---
 
-## 🚀 Key Takeaways
+## ðŸš€ Key Takeaways
 
 1. **Tkinter** is Python's built-in GUI library
 2. **Widgets** like buttons and labels create the interface
@@ -146,6 +146,7 @@ root.mainloop()
 4. **command** connects buttons to functions
 5. **mainloop()** runs the GUI application
 
-**Tkinter lets you create simple desktop apps with Python! 🖥️**`
+**Tkinter lets you create simple desktop apps with Python! ðŸ–¥ï¸**`
 };
+
 

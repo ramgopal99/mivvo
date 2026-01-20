@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_6: SubLesson = {
   id: "15.6",
   title: 'Mixed Graphs',
   status: 'completed',
-  content: `# 📊 Mixed Graphs Interpretation
+  content: "`# ðŸ“Š Mixed Graphs Interpretation
 
 Master complex data visualization! Mixed graphs combine multiple chart types to show different aspects of data. Learn to analyze combinations of bars, lines, and other elements for comprehensive insights.
 
 ---
 
-## 🎯 What are Mixed Graphs?
+## ðŸŽ¯ What are Mixed Graphs?
 
 **Mixed Graphs** combine two or more types of charts in a single visualization to show multiple data dimensions or relationships. They provide richer analysis by displaying different data types together.
 
@@ -30,19 +30,19 @@ Master complex data visualization! Mixed graphs combine multiple chart types to 
 
 ---
 
-## 📊 Types of Mixed Graphs
+## ðŸ“Š Types of Mixed Graphs
 
 ### **1. Bar Chart + Line Graph**
 
-\`\`\`
+\`"\`\`
 Sales and Growth Rate
 
-25 │           ●
-20 │         ●   ●
-15 │ ████  ●     ●
-10 │ ████●       ●
- 5 │ ████        ●
- 0 │___________________
+25 â”‚           â—
+20 â”‚         â—   â—
+15 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ  â—     â—
+10 â”‚ â–ˆâ–ˆâ–ˆâ–ˆâ—       â—
+ 5 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ        â—
+ 0 â”‚___________________
     Q1  Q2  Q3  Q4
 \`\`\`
 
@@ -61,14 +61,14 @@ Sales and Growth Rate
 \`\`\`
 Temperature and Humidity
 
-35 │     ●-------●
-30 │   ●         ●
-25 │ ●           ●
-20 │     Humidity ●
-15 │
-10 │   Temperature ●
- 5 │ ●             ●
- 0 │___________________
+35 â”‚     â—-------â—
+30 â”‚   â—         â—
+25 â”‚ â—           â—
+20 â”‚     Humidity â—
+15 â”‚
+10 â”‚   Temperature â—
+ 5 â”‚ â—             â—
+ 0 â”‚___________________
      Jan Feb Mar Apr
 \`\`\`
 
@@ -87,13 +87,13 @@ Temperature and Humidity
 \`\`\`
 Revenue Breakdown with Total
 
-30 │           ●
-25 │         ●   ●
-20 │ ███████●     ●
-15 │ ███████      ●
-10 │ ██████        ●
- 5 │ █████          ●
- 0 │___________________
+30 â”‚           â—
+25 â”‚         â—   â—
+20 â”‚ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ—     â—
+15 â”‚ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ      â—
+10 â”‚ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ        â—
+ 5 â”‚ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆ          â—
+ 0 â”‚___________________
     Q1  Q2  Q3  Q4
 \`\`\`
 
@@ -108,7 +108,7 @@ Revenue Breakdown with Total
 
 ---
 
-## 🔍 Reading Mixed Graphs
+## ðŸ” Reading Mixed Graphs
 
 ### **Step 1: Identify Chart Types**
 - Recognize each visualization type
@@ -132,7 +132,7 @@ Revenue Breakdown with Total
 
 ---
 
-## 🎯 Common Question Types
+## ðŸŽ¯ Common Question Types
 
 ### **1. Value Reading**
 **"What was the value of Series A in Period X?"**
@@ -164,7 +164,7 @@ Revenue Breakdown with Total
 
 ---
 
-## 📈 Sample Mixed Graph Analysis
+## ðŸ“ˆ Sample Mixed Graph Analysis
 
 ### **Sales Performance Dashboard**
 
@@ -173,18 +173,18 @@ Monthly Sales Analysis
 
 Revenue (bars) & Growth (line)
 
-25 │           ▲
-20 │         ▲   ▲
-15 │ ████  ▲     ▲
-10 │ ████▲       ▲
- 5 │ ████        ▲
- 0 │___________________
+25 â”‚           â–²
+20 â”‚         â–²   â–²
+15 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ  â–²     â–²
+10 â”‚ â–ˆâ–ˆâ–ˆâ–ˆâ–²       â–²
+ 5 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ        â–²
+ 0 â”‚___________________
     Jan Feb Mar Apr May
 \`\`\`
 
 **Data Interpretation:**
-- Bars: Monthly revenue (₹ lakhs)
-- ▲ points: Month-over-month growth %
+- Bars: Monthly revenue (â‚¹ lakhs)
+- â–² points: Month-over-month growth %
 - Jan: Revenue 8, Growth N/A
 - Feb: Revenue 12, Growth +50%
 - Mar: Revenue 15, Growth +25%
@@ -210,23 +210,23 @@ Revenue (bars) & Growth (line)
 
 ---
 
-## 🧮 Advanced Mixed Graph Types
+## ðŸ§® Advanced Mixed Graph Types
 
 ### **1. Combo Charts with Secondary Axis**
 
 \`\`\`
 Dual Axis Chart
 
-Temperature (°C) & Rainfall (mm)
+Temperature (Â°C) & Rainfall (mm)
 
-35 │     ●-------●
-30 │   ●         ●
-25 │ ●           ●
-20 │
-15 │           ■■■■■
-10 │         ■■■■■■■■
- 5 │       ■■■■■■■■■■
- 0 │___________________
+35 â”‚     â—-------â—
+30 â”‚   â—         â—
+25 â”‚ â—           â—
+20 â”‚
+15 â”‚           â– â– â– â– â– 
+10 â”‚         â– â– â– â– â– â– â– â– 
+ 5 â”‚       â– â– â– â– â– â– â– â– â– â– 
+ 0 â”‚___________________
      Jan Feb Mar Apr May
 \`\`\`
 
@@ -240,12 +240,12 @@ Temperature (°C) & Rainfall (mm)
 \`\`\`
 Data Correlation
 
-15 │       ●
-12 │     ●   ●
- 9 │   ●       ●
- 6 │ ●   ●       ●
- 3 │     ●   ●
- 0 │___________________
+15 â”‚       â—
+12 â”‚     â—   â—
+ 9 â”‚   â—       â—
+ 6 â”‚ â—   â—       â—
+ 3 â”‚     â—   â—
+ 0 â”‚___________________
      0   3   6   9   12
 \`\`\`
 
@@ -259,12 +259,12 @@ Data Correlation
 \`\`\`
 Cumulative Sales
 
-25 │     ███████████████
-20 │   █████████████
-15 │ ███████████
-10 │ ████████
- 5 │ ████
- 0 │___________________
+25 â”‚     â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
+20 â”‚   â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
+15 â”‚ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
+10 â”‚ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
+ 5 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ
+ 0 â”‚___________________
     Q1  Q2  Q3  Q4
 \`\`\`
 
@@ -275,7 +275,7 @@ Cumulative Sales
 
 ---
 
-## 🎯 Complex Analysis Questions
+## ðŸŽ¯ Complex Analysis Questions
 
 ### **Example 1: Correlation Analysis**
 **Question:** "What is the relationship between advertising spend and sales?"
@@ -300,21 +300,21 @@ Cumulative Sales
 
 ---
 
-## 📊 Reading Multiple Scales
+## ðŸ“Š Reading Multiple Scales
 
 ### **Dual Y-Axis Charts**
 
 \`\`\`
 Revenue & Profit Margin
 
-Revenue (bars, ₹cr) | Profit % (line)
+Revenue (bars, â‚¹cr) | Profit % (line)
 
-25 │           ●
-20 │         ●   ●
-15 │ ████  ●     ●
-10 │ ████●       ●
- 5 │ ████        ●
- 0 │___________________
+25 â”‚           â—
+20 â”‚         â—   â—
+15 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ  â—     â—
+10 â”‚ â–ˆâ–ˆâ–ˆâ–ˆâ—       â—
+ 5 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ        â—
+ 0 â”‚___________________
     Q1  Q2  Q3  Q4
 
 Left scale: 0-25 (Revenue)
@@ -327,13 +327,13 @@ Right scale: 0-25% (Profit)
 - Compare trends, not absolute values
 
 ### **Scale Conversion**
-- Revenue scale: 1 unit = ₹1 crore
+- Revenue scale: 1 unit = â‚¹1 crore
 - Profit scale: 1 unit = 1%
 - Convert to common units when comparing
 
 ---
 
-## 🚀 Speed Enhancement Techniques
+## ðŸš€ Speed Enhancement Techniques
 
 ### **1. Quick Identification**
 - Recognize chart types instantly
@@ -357,31 +357,31 @@ Right scale: 0-25% (Profit)
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Scale Usage**
-❌ Using revenue scale for profit percentage
+âŒ Using revenue scale for profit percentage
 - Always check which axis belongs to which data
 
 ### **Mistake 2: Missing Legend**
-❌ Confusing data series without legend
+âŒ Confusing data series without legend
 - Always read legend first
 
 ### **Mistake 3: Scale Confusion**
-❌ Comparing values with different units directly
+âŒ Comparing values with different units directly
 - Convert to common units when needed
 
 ### **Mistake 4: Overlooking Relationships**
-❌ Analyzing series independently
+âŒ Analyzing series independently
 - Look for correlations and relationships
 
 ### **Mistake 5: Trend Misinterpretation**
-❌ Ignoring time lags between series
+âŒ Ignoring time lags between series
 - Consider cause-effect relationships
 
 ---
 
-## 🎯 Practice Mixed Graphs
+## ðŸŽ¯ Practice Mixed Graphs
 
 ### **Graph 1: Sales vs Profit**
 
@@ -390,13 +390,13 @@ Quarterly Performance
 
 Sales (bars) & Profit (line)
 
-30 │         ●
-25 │       ●   ●
-20 │ ████●     ●
-15 │ ████      ●
-10 │ ████      ●
- 5 │ ████      ●
- 0 │___________________
+30 â”‚         â—
+25 â”‚       â—   â—
+20 â”‚ â–ˆâ–ˆâ–ˆâ–ˆâ—     â—
+15 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ      â—
+10 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ      â—
+ 5 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ      â—
+ 0 â”‚___________________
     Q1  Q2  Q3  Q4
 \`\`\`
 
@@ -410,16 +410,16 @@ Sales (bars) & Profit (line)
 \`\`\`
 Weather Analysis
 
-Temp (°C) & Rain (mm)
+Temp (Â°C) & Rain (mm)
 
-35 │     ●-------●
-30 │   ●         ●
-25 │ ●           ●
-20 │
-15 │         ████
-10 │       ███████
- 5 │     █████████
- 0 │___________________
+35 â”‚     â—-------â—
+30 â”‚   â—         â—
+25 â”‚ â—           â—
+20 â”‚
+15 â”‚         â–ˆâ–ˆâ–ˆâ–ˆ
+10 â”‚       â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
+ 5 â”‚     â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
+ 0 â”‚___________________
     Jun Jul Aug Sep Oct
 \`\`\`
 
@@ -430,7 +430,7 @@ Temp (°C) & Rain (mm)
 
 ---
 
-## 🎓 Pro Tips for Mixed Graphs
+## ðŸŽ“ Pro Tips for Mixed Graphs
 
 1. **Identify all chart types** and their purposes
 2. **Read legends and scales** carefully
@@ -442,7 +442,7 @@ Temp (°C) & Rain (mm)
 
 ---
 
-## 🔢 Mixed Graph Analysis Framework
+## ðŸ”¢ Mixed Graph Analysis Framework
 
 \`\`\`
 1. IDENTIFY chart components
@@ -471,14 +471,14 @@ Temp (°C) & Rain (mm)
    - Validate calculations
 \`\`\`
 
-Master mixed graph interpretation and extract insights from complex multi-chart visualizations! 🏆
+Master mixed graph interpretation and extract insights from complex multi-chart visualizations! ðŸ†
 
 **Answers for Practice Graphs:**
 1. Q2: 20 units
 2. Q3: Sales 15, Profit ~18 (high profit relative to sales)
 3. 10 + 15 + 20 + 25 = 70 units
 
-Weather: 1. July: 30°C
+Weather: 1. July: 30Â°C
 2. October: highest bars
 3. Generally inverse relationship - higher rainfall in cooler months`
 };

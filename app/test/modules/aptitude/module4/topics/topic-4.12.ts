@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_12: SubLesson = {
   id: "4.12",
   title: 'Percentage in Word Problems',
   status: 'completed',
-  content: `# 🧩 Percentage in Word Problems
+  content: "`# ðŸ§© Percentage in Word Problems
 
 Master solving percentage word problems! This comprehensive topic covers real-life scenarios from business, finance, academics, and daily life. Learn problem-solving strategies and avoid common traps in percentage-based word problems.
 
 ---
 
-## 🎯 Problem-Solving Strategy
+## ðŸŽ¯ Problem-Solving Strategy
 
 ### **Step-by-Step Approach**
 1. **Read carefully** - Identify what's given and what's asked
@@ -20,44 +20,44 @@ Master solving percentage word problems! This comprehensive topic covers real-li
 5. **Verify answer** - Check if it makes sense
 
 ### **Key Phrases to Watch**
-- **"What percent/percentage"** → Finding percentage
-- **"Percent more/less than"** → Comparison
-- **"Increased/decreased by"** → Change problems
-- **"Of"** → Finding percentage of a number
+- **"What percent/percentage"** â†’ Finding percentage
+- **"Percent more/less than"** â†’ Comparison
+- **"Increased/decreased by"** â†’ Change problems
+- **"Of"** â†’ Finding percentage of a number
 
 ---
 
-## 💰 Business & Finance Problems
+## ðŸ’° Business & Finance Problems
 
 ### **Problem 1: Profit & Loss**
-**Question:** A shopkeeper buys a shirt for ₹800 and sells it for ₹1000. Find profit percentage.
+**Question:** A shopkeeper buys a shirt for â‚¹800 and sells it for â‚¹1000. Find profit percentage.
 
 **Solution:**
-- Profit = 1000 - 800 = ₹200
-- Profit% = (200 ÷ 800) × 100% = 25%
+- Profit = 1000 - 800 = â‚¹200
+- Profit% = (200 Ã· 800) Ã— 100% = 25%
 
 **Trick:** Always calculate profit/loss percentage on cost price (CP).
 
 ### **Problem 2: Discount & Selling Price**
-**Question:** A jacket marked ₹2000 is sold at 20% discount. Find selling price.
+**Question:** A jacket marked â‚¹2000 is sold at 20% discount. Find selling price.
 
 **Solution:**
-- Discount = 20% of 2000 = ₹400
-- Selling Price = 2000 - 400 = ₹1600
+- Discount = 20% of 2000 = â‚¹400
+- Selling Price = 2000 - 400 = â‚¹1600
 
 **Trick:** Discount is calculated on marked price (MP).
 
 ### **Problem 3: Commission**
-**Question:** Agent gets 12% commission on sales of ₹50,000. Find commission amount.
+**Question:** Agent gets 12% commission on sales of â‚¹50,000. Find commission amount.
 
 **Solution:**
-- Commission = 12% of 50,000 = ₹6,000
+- Commission = 12% of 50,000 = â‚¹6,000
 
 **Trick:** Commission is always on the total sales/transactions.
 
 ---
 
-## 📚 Academic Performance Problems
+## ðŸ“š Academic Performance Problems
 
 ### **Problem 1: Grade Calculation**
 **Question:** Student scored 85 out of 100 in math, 92 out of 100 in science. Find overall percentage.
@@ -65,24 +65,24 @@ Master solving percentage word problems! This comprehensive topic covers real-li
 **Solution:**
 - Total marks obtained = 85 + 92 = 177
 - Total marks possible = 100 + 100 = 200
-- Percentage = (177 ÷ 200) × 100% = 88.5%
+- Percentage = (177 Ã· 200) Ã— 100% = 88.5%
 
 ### **Problem 2: Pass/Fail Analysis**
 **Question:** In class of 60 students, 45 passed. What percentage passed?
 
 **Solution:**
-- Percentage = (45 ÷ 60) × 100% = 75%
+- Percentage = (45 Ã· 60) Ã— 100% = 75%
 
 ### **Problem 3: Improvement Tracking**
 **Question:** Marks improved from 60% to 75%. Find percentage improvement.
 
 **Solution:**
 - Improvement = 75% - 60% = 15 percentage points
-- Percentage improvement = (15 ÷ 60) × 100% = 25%
+- Percentage improvement = (15 Ã· 60) Ã— 100% = 25%
 
 ---
 
-## 🏠 Mixture & Alligation Problems
+## ðŸ  Mixture & Alligation Problems
 
 ### **Problem 1: Solution Mixing**
 **Question:** How much water added to 10L of 80% alcohol solution to make 60% solution?
@@ -93,26 +93,26 @@ Master solving percentage word problems! This comprehensive topic covers real-li
 - Final solution: 10 + x L with 8L alcohol
 - 8 = 60% of (10 + x)
 - 8 = 0.6(10 + x)
-- 10 + x = 8 ÷ 0.6 = 40/3 ≈ 13.33L
+- 10 + x = 8 Ã· 0.6 = 40/3 â‰ˆ 13.33L
 - Water added = 13.33 - 10 = 3.33L
 
 ### **Problem 2: Price Mixing**
-**Question:** Two types rice: ₹40/kg and ₹60/kg. Mix to get ₹50/kg. Find ratio.
+**Question:** Two types rice: â‚¹40/kg and â‚¹60/kg. Mix to get â‚¹50/kg. Find ratio.
 
 **Solution:**
-- Price difference: 60 - 40 = ₹20/kg
-- Required difference: 50 - 40 = ₹10/kg
+- Price difference: 60 - 40 = â‚¹20/kg
+- Required difference: 50 - 40 = â‚¹10/kg
 - Ratio = 10:10 = 1:1 (simplified)
 
 ---
 
-## 👥 Population & Demographic Problems
+## ðŸ‘¥ Population & Demographic Problems
 
 ### **Problem 1: Population Growth**
 **Question:** Town population 50,000 grows 5% annually. Find population after 2 years.
 
 **Solution:**
-- Population = 50,000 × (1.05)² = 55,125
+- Population = 50,000 Ã— (1.05)Â² = 55,125
 
 ### **Problem 2: Age Distribution**
 **Question:** City 2,00,000 people. 40% adults, 30% children, rest elderly. How many elderly?
@@ -130,122 +130,122 @@ Master solving percentage word problems! This comprehensive topic covers real-li
 
 ---
 
-## 🏢 Election & Voting Problems
+## ðŸ¢ Election & Voting Problems
 
 ### **Problem 1: Vote Percentage**
 **Question:** Candidate A got 12,000 votes, B got 8,000. Total votes 25,000. Find A's vote share.
 
 **Solution:**
-- Percentage = (12,000 ÷ 25,000) × 100% = 48%
+- Percentage = (12,000 Ã· 25,000) Ã— 100% = 48%
 
 ### **Problem 2: Majority Calculation**
 **Question:** Winner got 60% votes. Total votes 50,000. Find winning margin.
 
 **Solution:**
 - Winner votes = 60% of 50,000 = 30,000
-- Each other candidate got (40,000 ÷ 2) = 20,000
+- Each other candidate got (40,000 Ã· 2) = 20,000
 - Margin = 30,000 - 20,000 = 10,000 votes
 
 ---
 
-## 🛒 Shopping & Discount Problems
+## ðŸ›’ Shopping & Discount Problems
 
 ### **Problem 1: Multiple Discounts**
-**Question:** Item ₹1000. First discount 20%, then 10%. Find final price.
+**Question:** Item â‚¹1000. First discount 20%, then 10%. Find final price.
 
 **Solution:**
-- After 20% discount: 1000 × 0.8 = ₹800
-- After 10% discount: 800 × 0.9 = ₹720
+- After 20% discount: 1000 Ã— 0.8 = â‚¹800
+- After 10% discount: 800 Ã— 0.9 = â‚¹720
 
 **Trick:** Don't add discounts - apply successively.
 
 ### **Problem 2: Tax Calculation**
-**Question:** Price ₹5000. GST 18%. Find total amount.
+**Question:** Price â‚¹5000. GST 18%. Find total amount.
 
 **Solution:**
-- GST = 18% of 5000 = ₹900
-- Total = 5000 + 900 = ₹5900
+- GST = 18% of 5000 = â‚¹900
+- Total = 5000 + 900 = â‚¹5900
 
 ### **Problem 3: Net Effect**
 **Question:** Price increased 10%, then decreased 10%. What's net effect?
 
 **Solution:**
-- Net change = 10% + (-10%) + (10% × -10%)/100% = 0% - 1% = -1%
+- Net change = 10% + (-10%) + (10% Ã— -10%)/100% = 0% - 1% = -1%
 - Price decreases by 1%
 
 ---
 
-## 💼 Salary & Income Problems
+## ðŸ’¼ Salary & Income Problems
 
 ### **Problem 1: Salary Hike**
-**Question:** Salary ₹30,000 increased 15%. Find new salary.
+**Question:** Salary â‚¹30,000 increased 15%. Find new salary.
 
 **Solution:**
-- Increase = 15% of 30,000 = ₹4,500
-- New salary = 30,000 + 4,500 = ₹34,500
+- Increase = 15% of 30,000 = â‚¹4,500
+- New salary = 30,000 + 4,500 = â‚¹34,500
 
 ### **Problem 2: Savings Rate**
-**Question:** Income ₹50,000. Saves 20%. Find savings amount.
+**Question:** Income â‚¹50,000. Saves 20%. Find savings amount.
 
 **Solution:**
-- Savings = 20% of 50,000 = ₹10,000
+- Savings = 20% of 50,000 = â‚¹10,000
 
 ### **Problem 3: Tax Deduction**
-**Question:** Salary ₹40,000. Tax 10%. Find take-home salary.
+**Question:** Salary â‚¹40,000. Tax 10%. Find take-home salary.
 
 **Solution:**
-- Tax = 10% of 40,000 = ₹4,000
-- Take-home = 40,000 - 4,000 = ₹36,000
+- Tax = 10% of 40,000 = â‚¹4,000
+- Take-home = 40,000 - 4,000 = â‚¹36,000
 
 ---
 
-## 🔄 Successive Change Problems
+## ðŸ”„ Successive Change Problems
 
 ### **Problem 1: Price Changes**
 **Question:** Price increased 25%, then decreased 20%. Find net change.
 
 **Solution:**
-- Net% = 25% + (-20%) + (25% × -20%)/100% = 5% - 5% = 0%
+- Net% = 25% + (-20%) + (25% Ã— -20%)/100% = 5% - 5% = 0%
 
 ### **Problem 2: Investment Growth**
 **Question:** Investment grew 10% first year, 15% second year. Find total growth.
 
 **Solution:**
-- Net% = 10% + 15% + (10% × 15%)/100% = 25% + 1.5% = 26.5%
+- Net% = 10% + 15% + (10% Ã— 15%)/100% = 25% + 1.5% = 26.5%
 
 ---
 
-## 🚨 Common Problem Traps
+## ðŸš¨ Common Problem Traps
 
 ### **Trap 1: Wrong Base Value**
-❌ "Price increased by ₹100, so 100% increase"
+âŒ "Price increased by â‚¹100, so 100% increase"
 - Wrong! Depends on original price
 
 ### **Trap 2: Adding Percentages**
-❌ "10% + 20% = 30% total increase"
+âŒ "10% + 20% = 30% total increase"
 - Wrong! Use successive change formula
 
 ### **Trap 3: Confusing Profit/Loss**
-❌ "Sold for profit of ₹200 at 20%"
-- Wrong! 20% is percentage, ₹200 is absolute
+âŒ "Sold for profit of â‚¹200 at 20%"
+- Wrong! 20% is percentage, â‚¹200 is absolute
 
 ### **Trap 4: Percentage vs Amount**
-❌ "20% discount means ₹20 off"
+âŒ "20% discount means â‚¹20 off"
 - Wrong! Depends on item price
 
 ---
 
-## 🎯 Practice Word Problems
+## ðŸŽ¯ Practice Word Problems
 
 ### **Easy Problems:**
-1. Book costs ₹250. Sold at 20% profit. Find selling price.
+1. Book costs â‚¹250. Sold at 20% profit. Find selling price.
 2. Student got 450 marks out of 500. Find percentage.
 3. Population 1,00,000. Annual growth 5%. Find after 2 years.
 
 ### **Medium Problems:**
-1. Two articles: ₹50 and ₹30. Sold one at 20% profit, other at 20% loss. Find overall profit/loss%.
+1. Two articles: â‚¹50 and â‚¹30. Sold one at 20% profit, other at 20% loss. Find overall profit/loss%.
 2. Price increased 15%, then decreased 10%. Find net change.
-3. Income ₹40,000. Spends 60% on food, 20% on rent. Find savings.
+3. Income â‚¹40,000. Spends 60% on food, 20% on rent. Find savings.
 
 ### **Hard Problems:**
 1. Car depreciates 10% first year, 15% second year. Find total depreciation.
@@ -253,13 +253,13 @@ Master solving percentage word problems! This comprehensive topic covers real-li
 3. Investment grew 12% first year, fell 8% second year. Find net change.
 
 **Answers:**
-Easy: ₹300, 90%, 1,10,250
-Medium: 4% loss, 3.5% increase, ₹16,000
+Easy: â‚¹300, 90%, 1,10,250
+Medium: 4% loss, 3.5% increase, â‚¹16,000
 Hard: 23.5%, 8000, 7200, 5000, 2.56% increase
 
 ---
 
-## 🎓 Pro Tips for Word Problems
+## ðŸŽ“ Pro Tips for Word Problems
 
 1. **Read twice** - Understand what is given and asked
 2. **Identify keywords** - "of", "percent", "increased by", etc.
@@ -271,16 +271,16 @@ Hard: 23.5%, 8000, 7200, 5000, 2.56% increase
 
 ---
 
-## 🔢 Word Problem Categories
+## ðŸ”¢ Word Problem Categories
 
 | Category | Key Words | Example |
 |----------|-----------|---------|
-| Profit/Loss | profit, loss, sold at | 20% profit on ₹1000 |
-| Discount | discount, off, marked | 15% off ₹2000 |
+| Profit/Loss | profit, loss, sold at | 20% profit on â‚¹1000 |
+| Discount | discount, off, marked | 15% off â‚¹2000 |
 | Increase | increased by, rose | Increased by 25% |
 | Decrease | decreased by, fell | Decreased by 10% |
 | Comparison | more than, less than | 20% more than X |
 | Mixture | mix, ratio, proportion | Mix in 2:3 ratio |
 
-Master percentage word problems to excel in quantitative aptitude and real-life calculations! 🏆`
+Master percentage word problems to excel in quantitative aptitude and real-life calculations! ðŸ†`"
 };

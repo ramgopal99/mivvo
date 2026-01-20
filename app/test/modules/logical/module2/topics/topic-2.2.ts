@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_2: SubLesson = {
   id: "2.2",
   title: 'Family Relationship Basics',
   status: 'completed',
-  content: `# 🌳 Family Tree Problems
+  content: "`# ðŸŒ³ Family Tree Problems
 
 Dive deep into complex family tree analysis! Family trees represent multi-generational relationships and test your ability to navigate intricate relationship networks. Learn systematic approaches to solve complex family relationship puzzles.
 
 ---
 
-## 🎯 Understanding Family Trees
+## ðŸŽ¯ Understanding Family Trees
 
 **Family Tree Problems** involve analyzing relationships across multiple generations. These problems require you to:
 
@@ -27,13 +27,13 @@ Dive deep into complex family tree analysis! Family trees represent multi-genera
 
 ---
 
-## 🏗️ Building Family Trees
+## ðŸ—ï¸ Building Family Trees
 
 ### **Step-by-Step Construction**
 
 #### **Step 1: Identify All Persons**
 - List every person mentioned
-- Note their genders (♂/♀)
+- Note their genders (â™‚/â™€)
 - Identify generations
 
 #### **Step 2: Find Anchor Points**
@@ -42,7 +42,7 @@ Dive deep into complex family tree analysis! Family trees represent multi-genera
 - Identify parent-child relationships
 
 #### **Step 3: Build Generation by Generation**
-\`\`\`
+\`"\`\`
 Generation 1: Grandparents
 Generation 2: Parents
 Generation 3: Children
@@ -50,7 +50,7 @@ Generation 4: Grandchildren
 \`\`\`
 
 #### **Step 4: Add Marriage Links**
-- Connect spouses with marriage symbols (⚭)
+- Connect spouses with marriage symbols (âš­)
 - Note multiple marriages if any
 
 #### **Step 5: Verify Consistency**
@@ -60,7 +60,7 @@ Generation 4: Grandchildren
 
 ---
 
-## 📊 Sample Family Tree Problem
+## ðŸ“Š Sample Family Tree Problem
 
 ### **Problem Statement**
 
@@ -69,12 +69,12 @@ Generation 4: Grandchildren
 ### **Building the Family Tree**
 
 \`\`\`
-Generation 1:    G (♂) - ⚭ - H (♀)
-                     │
-Generation 2:    A (♂) - ⚭ - ? (Unknown)
-                     │
-Generation 3:    B (♂) - ⚭ - D (♀)
-                     │
+Generation 1:    G (â™‚) - âš­ - H (â™€)
+                     â”‚
+Generation 2:    A (â™‚) - âš­ - ? (Unknown)
+                     â”‚
+Generation 3:    B (â™‚) - âš­ - D (â™€)
+                     â”‚
 Generation 4:    E (?)    F (?)
 \`\`\`
 
@@ -91,7 +91,7 @@ Generation 4:    E (?)    F (?)
 
 ---
 
-## 🎯 Complex Family Tree Patterns
+## ðŸŽ¯ Complex Family Tree Patterns
 
 ### **Pattern 1: Multiple Marriages**
 
@@ -99,12 +99,12 @@ Generation 4:    E (?)    F (?)
 
 **Family Tree:**
 \`\`\`
-A (♂)
-├── B (♀)
-│   ├── D (♂)
-│   └── E (♂)
-└── C (♀)
-    └── F (♀)
+A (â™‚)
+â”œâ”€â”€ B (â™€)
+â”‚   â”œâ”€â”€ D (â™‚)
+â”‚   â””â”€â”€ E (â™‚)
+â””â”€â”€ C (â™€)
+    â””â”€â”€ F (â™€)
 \`\`\`
 
 **Relationships:**
@@ -118,9 +118,9 @@ A (♂)
 
 **Family Tree:**
 \`\`\`
-R (♂) - ⚭ - T (♀)    S (♀) - ⚭ - ? (Unknown)
-│                                │
-P (♂) - ⚭ - Q (♀)          Brother-Sister
+R (â™‚) - âš­ - T (â™€)    S (â™€) - âš­ - ? (Unknown)
+â”‚                                â”‚
+P (â™‚) - âš­ - Q (â™€)          Brother-Sister
 \`\`\`
 
 **Relationships:**
@@ -130,7 +130,7 @@ P (♂) - ⚭ - Q (♀)          Brother-Sister
 
 ---
 
-## 🧠 Problem-Solving Techniques
+## ðŸ§  Problem-Solving Techniques
 
 ### **Technique 1: Relationship Mapping**
 
@@ -143,8 +143,8 @@ B        | C        | Mother       | Given
 \`\`\`
 
 #### **Deduce New Relationships**
-- A → B (father) + B → C (mother) = A → C (father-in-law)
-- A → B (father) + B → D (son) = A → D (grandfather)
+- A â†’ B (father) + B â†’ C (mother) = A â†’ C (father-in-law)
+- A â†’ B (father) + B â†’ D (son) = A â†’ D (grandfather)
 
 ### **Technique 2: Generation Tracking**
 
@@ -164,7 +164,7 @@ Generation  2: Grandchildren
 
 ---
 
-## 🎯 Practice Family Tree Problems
+## ðŸŽ¯ Practice Family Tree Problems
 
 ### **Problem 1: Three Generations**
 
@@ -180,7 +180,7 @@ Generation  2: Grandchildren
 3. What is the relationship between T and Q?
 
 **Solutions:**
-1. **P and R**: Grandfather-grandchild (P → Q → R)
+1. **P and R**: Grandfather-grandchild (P â†’ Q â†’ R)
 2. **S and R**: Uncle-aunt relationship (S is uncle of R)
 3. **T and Q**: Sister-in-law (T is wife of S, S is brother of Q)
 
@@ -195,13 +195,13 @@ Generation  2: Grandchildren
 
 **Family Tree Construction:**
 \`\`\`
-C (♂)
-│
-A (♂) - ⚭ - B (♀)
-                    │
-                    D (♂)
-                    │
-                    E (♀) - ⚭ - F (♂)
+C (â™‚)
+â”‚
+A (â™‚) - âš­ - B (â™€)
+                    â”‚
+                    D (â™‚)
+                    â”‚
+                    E (â™€) - âš­ - F (â™‚)
 \`\`\`
 
 **Questions:**
@@ -216,7 +216,7 @@ A (♂) - ⚭ - B (♀)
 
 ---
 
-## 📊 Advanced Family Tree Concepts
+## ðŸ“Š Advanced Family Tree Concepts
 
 ### **Concept 1: Multiple Marriage Families**
 
@@ -250,7 +250,7 @@ A (♂) - ⚭ - B (♀)
 
 ---
 
-## 🎯 Systematic Problem-Solving
+## ðŸŽ¯ Systematic Problem-Solving
 
 ### **Step 1: Information Gathering**
 - List all persons and their genders
@@ -274,27 +274,27 @@ A (♂) - ⚭ - B (♀)
 
 ---
 
-## 🚨 Common Pitfalls in Family Trees
+## ðŸš¨ Common Pitfalls in Family Trees
 
 ### **Pitfall 1: Gender Assumptions**
-❌ Assuming "child" is male
-✅ Always consider both genders unless specified
+âŒ Assuming "child" is male
+âœ… Always consider both genders unless specified
 
 ### **Pitfall 2: Missing Marriage Links**
-❌ "A's father's brother" without considering marriages
-✅ Marriage creates in-law relationships
+âŒ "A's father's brother" without considering marriages
+âœ… Marriage creates in-law relationships
 
 ### **Pitfall 3: Generation Confusion**
-❌ "Grandson" could be great-grandson
-✅ Count generations accurately
+âŒ "Grandson" could be great-grandson
+âœ… Count generations accurately
 
 ### **Pitfall 4: Multiple Relationship Paths**
-❌ Only considering direct relationships
-✅ A person can be related through multiple paths
+âŒ Only considering direct relationships
+âœ… A person can be related through multiple paths
 
 ---
 
-## 🧮 Relationship Calculation Methods
+## ðŸ§® Relationship Calculation Methods
 
 ### **Method 1: Relationship Chains**
 **Example:** "Father's brother's wife"
@@ -305,8 +305,8 @@ A (♂) - ⚭ - B (♀)
 ### **Method 2: Position Mapping**
 **Example:** "Mother's sister's daughter"
 \`\`\`
-Mother → Sister (blood relation)
-Sister → Daughter (parent-child)
+Mother â†’ Sister (blood relation)
+Sister â†’ Daughter (parent-child)
 Final: Cousin (mother's sister's daughter)
 \`\`\`
 
@@ -317,13 +317,13 @@ Final: Cousin (mother's sister's daughter)
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Question 1: Basic Family Tree**
 **"A is the father of B. B is the sister of C. C is the husband of D. E is the son of C."**
 
 **What is the relationship between A and E?**
-- A → B → C → E (grandfather-grandson)
+- A â†’ B â†’ C â†’ E (grandfather-grandson)
 
 ### **Question 2: In-Law Relationships**
 **"P is married to Q. R is the sister of P. S is the brother of Q. T is married to R."**
@@ -336,15 +336,15 @@ Final: Cousin (mother's sister's daughter)
 **"X is the grandfather of Y. Z is the sister of Y. W is the daughter of Z."**
 
 **What is the relationship between X and W?**
-- X → Y → Z → W (great-grandfather)
+- X â†’ Y â†’ Z â†’ W (great-grandfather)
 - Y and Z are siblings, W is niece of Y
 
 ---
 
-## 🏆 Pro Tips for Family Trees
+## ðŸ† Pro Tips for Family Trees
 
 1. **Draw diagrams** whenever possible
-2. **Use consistent symbols** (♂, ♀, ⚭, ├, └)
+2. **Use consistent symbols** (â™‚, â™€, âš­, â”œ, â””)
 3. **Start with known relationships**
 4. **Work generation by generation**
 5. **Consider all possible connections**
@@ -353,7 +353,7 @@ Final: Cousin (mother's sister's daughter)
 
 ---
 
-## 🔍 Advanced Family Tree Topics
+## ðŸ” Advanced Family Tree Topics
 
 ### **Topic 1: Coded Family Trees**
 - Symbolic representations
@@ -372,7 +372,7 @@ Final: Cousin (mother's sister's daughter)
 
 ---
 
-## 📊 Family Tree Problem Statistics
+## ðŸ“Š Family Tree Problem Statistics
 
 | Difficulty Level | Occurrence Rate | Time Required |
 |------------------|-----------------|---------------|
@@ -384,7 +384,7 @@ Final: Cousin (mother's sister's daughter)
 
 ---
 
-## 🎯 Final Practice Problem
+## ðŸŽ¯ Final Practice Problem
 
 **Complex Family Tree Challenge:**
 
@@ -404,5 +404,5 @@ Final: Cousin (mother's sister's daughter)
 
 **Think systematically and draw the family tree!**
 
-**Master family trees and you'll conquer blood relations problems! 🌳🩸**`
+**Master family trees and you'll conquer blood relations problems! ðŸŒ³ðŸ©¸**`
 };

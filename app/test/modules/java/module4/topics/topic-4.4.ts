@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_4: SubLesson = {
   id: "4.4",
   title: 'Map Methods',
   status: 'completed',
-  content: `# 🔧 Map Methods in Java
+  content: "`# ðŸ”§ Map Methods in Java
 
 Java's Map interface provides a rich set of methods for manipulating key-value pairs. Understanding these methods is essential for effective Map usage and covers everything from basic operations to advanced transformations.
 
 ---
 
-## 🏗️ Core Map Methods
+## ðŸ—ï¸ Core Map Methods
 
 ### **Basic CRUD Operations**
-\`\`\`java
+\`"\`\`java
 import java.util.*;
 
 public class BasicMapMethods {
@@ -70,7 +70,7 @@ public class ConditionalMethods {
 
 ---
 
-## 🔄 Bulk Operations
+## ðŸ”„ Bulk Operations
 
 ### **putAll() Method**
 \`\`\`java
@@ -121,7 +121,7 @@ public class ClearAndEmpty {
 
 ---
 
-## 🔍 Search and Check Methods
+## ðŸ” Search and Check Methods
 
 ### **containsKey() and containsValue()**
 \`\`\`java
@@ -159,7 +159,7 @@ public class ContainsMethods {
 
 ---
 
-## 🔄 Java 8+ Functional Methods
+## ðŸ”„ Java 8+ Functional Methods
 
 ### **compute() Methods**
 \`\`\`java
@@ -249,7 +249,7 @@ public class ReplaceMethods {
 
 ---
 
-## 📊 Utility Methods (Collections Class)
+## ðŸ“Š Utility Methods (Collections Class)
 
 ### **Collections Utility Methods**
 \`\`\`java
@@ -292,7 +292,7 @@ public class CollectionsUtilities {
 
 ---
 
-## 🔄 Advanced Method Patterns
+## ðŸ”„ Advanced Method Patterns
 
 ### **Method Chaining**
 \`\`\`java
@@ -349,7 +349,7 @@ public class FluentMapAPI {
 
 ---
 
-## 🎯 Method Return Values
+## ðŸŽ¯ Method Return Values
 
 ### **Understanding Return Types**
 \`\`\`java
@@ -384,7 +384,7 @@ public class MethodReturnValues {
 
 ---
 
-## ⚠️ Common Method Mistakes
+## âš ï¸ Common Method Mistakes
 
 ### **Incorrect Use of putIfAbsent**
 \`\`\`java
@@ -393,15 +393,15 @@ public class CommonMistakes {
         Map<String, Integer> map = new HashMap<>();
         map.put("A", 1);
 
-        // ❌ Thinking putIfAbsent always puts
+        // âŒ Thinking putIfAbsent always puts
         map.putIfAbsent("A", 999);  // Won't put because "A" exists
         System.out.println("After putIfAbsent on existing key: " + map.get("A"));
 
-        // ✅ Correct usage
+        // âœ… Correct usage
         map.putIfAbsent("B", 999);  // Will put because "B" doesn't exist
         System.out.println("After putIfAbsent on new key: " + map);
 
-        // ❌ Confusing put and putIfAbsent
+        // âŒ Confusing put and putIfAbsent
         Map<String, Integer> cache = new HashMap<>();
         // For cache-like behavior, use putIfAbsent
         Integer existing = cache.putIfAbsent("key", computeExpensiveValue());
@@ -426,15 +426,15 @@ public class ComputeMistakes {
         Map<String, Integer> map = new HashMap<>();
         map.put("A", 10);
 
-        // ❌ compute can return null to remove entry
+        // âŒ compute can return null to remove entry
         map.compute("A", (key, value) -> null);
         System.out.println("After compute with null: " + map);
 
-        // ❌ computeIfPresent doesn't execute if key missing
+        // âŒ computeIfPresent doesn't execute if key missing
         map.computeIfPresent("B", (key, value) -> value * 2); // No effect
         System.out.println("computeIfPresent on missing key: " + map);
 
-        // ✅ Correct usage
+        // âœ… Correct usage
         map.put("C", 5);
         map.computeIfPresent("C", (key, value) -> value * 2);
         System.out.println("computeIfPresent on existing key: " + map);
@@ -444,7 +444,7 @@ public class ComputeMistakes {
 
 ---
 
-## 🎯 Best Practices for Map Methods
+## ðŸŽ¯ Best Practices for Map Methods
 
 ### **1. Choose the Right Method for the Job**
 \`\`\`java
@@ -523,8 +523,9 @@ public class MethodReferences {
 }
 \`\`\`
 
-Map methods in Java provide powerful and flexible ways to work with key-value data. Understanding the different method families (basic CRUD, conditional, bulk, functional) enables you to write clean and efficient code! 🔧`
+Map methods in Java provide powerful and flexible ways to work with key-value data. Understanding the different method families (basic CRUD, conditional, bulk, functional) enables you to write clean and efficient code! ðŸ”§`
 };
+
 
 
 

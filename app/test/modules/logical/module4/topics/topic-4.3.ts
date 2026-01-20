@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_3: SubLesson = {
   id: "4.3",
   title: 'Arrangement-Based Puzzles',
   status: 'completed',
-  content: `# 📐 Arrangement-Based Puzzles
+  content: "`# ðŸ“ Arrangement-Based Puzzles
 
 Arrangement-based puzzles involve organizing elements in specific spatial or sequential patterns. These puzzles require understanding of positioning, ordering, and relational constraints to solve complex arrangement problems.
 
 ---
 
-## 🎯 Understanding Arrangement Puzzles
+## ðŸŽ¯ Understanding Arrangement Puzzles
 
 ### **What are Arrangement-Based Puzzles?**
 These puzzles involve arranging people, objects, or entities in specific patterns based on given constraints. They test your ability to:
@@ -27,7 +27,7 @@ These puzzles involve arranging people, objects, or entities in specific pattern
 
 ---
 
-## 🧩 Types of Arrangements
+## ðŸ§© Types of Arrangements
 
 ### **1. Linear Arrangements**
 **One-dimensional positioning**
@@ -52,7 +52,7 @@ These puzzles involve arranging people, objects, or entities in specific pattern
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze Requirements**
 - Identify arrangement type and dimensions
@@ -76,7 +76,7 @@ These puzzles involve arranging people, objects, or entities in specific pattern
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Position-Based Arrangements**
 **Specific position requirements**
@@ -98,7 +98,7 @@ These puzzles involve arranging people, objects, or entities in specific pattern
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Grid Method**
 Positions: 1  2  3  4  5
@@ -119,7 +119,7 @@ People:   ?  ?  ?  ?  ?
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Linear Arrangement**
 **Conditions:**
@@ -151,7 +151,7 @@ People:   ?  ?  ?  ?  ?
 
 ---
 
-## 🔍 Advanced Arrangement Concepts
+## ðŸ” Advanced Arrangement Concepts
 
 ### **Multi-Level Arrangements**
 - Arrangements with hierarchies
@@ -170,7 +170,7 @@ People:   ?  ?  ?  ?  ?
 
 ---
 
-## 📊 Position Logic Methods
+## ðŸ“Š Position Logic Methods
 
 ### **Absolute Positioning**
 - **nth from end**: Direct position calculation
@@ -189,23 +189,23 @@ People:   ?  ?  ?  ?  ?
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Position Miscalculation**
-❌ Wrong nth position counting
-✅ Double-check position arithmetic
+âŒ Wrong nth position counting
+âœ… Double-check position arithmetic
 
 ### **Pitfall 2: Direction Confusion**
-❌ Mixing left-right directions
-✅ Consistent directional application
+âŒ Mixing left-right directions
+âœ… Consistent directional application
 
 ### **Pitfall 3: Relationship Overlook**
-❌ Missing indirect relationships
-✅ Consider all constraint implications
+âŒ Missing indirect relationships
+âœ… Consider all constraint implications
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Framework Creation**
 - Draw appropriate arrangement diagram
@@ -224,7 +224,7 @@ People:   ?  ?  ?  ?  ?
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - 4-5 entities, simple constraints
@@ -243,7 +243,7 @@ People:   ?  ?  ?  ?  ?
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Draw Diagrams**: Always create visual arrangement representations
 2. **Start with Definite**: Place known positions first
@@ -253,7 +253,7 @@ People:   ?  ?  ?  ?  ?
 
 ---
 
-## 🧩 Practice Questions
+## ðŸ§© Practice Questions
 
 ### **Question 1**
 **Conditions:**
@@ -283,5 +283,5 @@ People:   ?  ?  ?  ?  ?
 
 **How many people can be definitely placed?**
 
-**Master arrangement-based puzzles for systematic spatial reasoning! 📐✨**`
+**Master arrangement-based puzzles for systematic spatial reasoning! ðŸ“âœ¨**`"
 };

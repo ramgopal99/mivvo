@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_2: SubLesson = {
   id: "12.2",
   title: 'Stack Operations',
   status: 'demo',
-  content: `# ⚙️ Stack Operations
+  content: "`# âš™ï¸ Stack Operations
 
 Stacks support several fundamental operations. Let's explore each operation in detail with implementations and examples!
 
 ---
 
-## 🔧 Basic Stack Operations
+## ðŸ”§ Basic Stack Operations
 
 ### **Push Operation**
-\`\`\`python
+\`"\`\`python
 class Stack:
     def __init__(self):
         self.items = []
@@ -90,7 +90,7 @@ print(f"Stack still has: {stack.items}")
 
 ---
 
-## 🔍 Advanced Stack Operations
+## ðŸ” Advanced Stack Operations
 
 ### **Size Operation**
 \`\`\`python
@@ -136,7 +136,7 @@ print(f"Position of 'missing': {stack.search('missing')}")
 
 ---
 
-## 🎯 Stack Algorithm Examples
+## ðŸŽ¯ Stack Algorithm Examples
 
 ### **Reverse String Using Stack**
 \`\`\`python
@@ -225,7 +225,7 @@ for num in [10, 25, 100, 255]:
 
 ---
 
-## 📊 Stack Performance Analysis
+## ðŸ“Š Stack Performance Analysis
 
 ### **Time Complexity**
 
@@ -246,7 +246,7 @@ search()       | O(n)           | linear search
 
 ---
 
-## 🎨 Stack Applications in Depth
+## ðŸŽ¨ Stack Applications in Depth
 
 ### **Expression Evaluation (Postfix)**
 \`\`\`python
@@ -348,7 +348,7 @@ for i, (num, greater) in enumerate(zip(numbers, next_greater)):
 
 ---
 
-## 🚀 Advanced Stack Concepts
+## ðŸš€ Advanced Stack Concepts
 
 ### **Stack with Min Operation**
 \`\`\`python
@@ -434,7 +434,7 @@ print("Stack sorting demonstrates advanced stack manipulation")
 
 ---
 
-## ✅ Best Practices
+## âœ… Best Practices
 
 1. **Choose appropriate underlying structure** - List for simple, deque for performance
 2. **Handle empty stack conditions** - Always check before pop/peek
@@ -442,6 +442,7 @@ print("Stack sorting demonstrates advanced stack manipulation")
 4. **Implement bounds checking** - For bounded stacks
 5. **Use stacks for LIFO operations** - Natural fit for many algorithms
 
-Stack operations form the foundation of many algorithmic solutions! 🧱`
+Stack operations form the foundation of many algorithmic solutions! ðŸ§±`
 };
+
 

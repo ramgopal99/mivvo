@@ -1,23 +1,23 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_5: SubLesson = {
   id: "3.5",
   title: 'Decimal Numbers',
   status: 'completed',
-  content: `# 🔢 Decimal Numbers
+  content: "`# ðŸ”¢ Decimal Numbers
 
 Decimal numbers are essential in mathematics and everyday calculations. Understanding decimal operations, conversions, and properties is crucial for aptitude exams. Let's explore the world of decimal numbers and their applications!
 
 ---
 
-## 🎯 What are Decimal Numbers?
+## ðŸŽ¯ What are Decimal Numbers?
 
 **Decimal numbers** use the base-10 system with a decimal point to separate whole numbers from fractional parts.
 
 ### **Structure of Decimal Numbers**
-\`\`\`
+\`"\`\`
 Whole Number Part . Fractional Part
-       ↑              ↑
+       â†‘              â†‘
      123      .     456
 \`\`\`
 
@@ -33,7 +33,7 @@ Whole Number Part . Fractional Part
 
 ---
 
-## 📊 Types of Decimal Numbers
+## ðŸ“Š Types of Decimal Numbers
 
 ### **1. Terminating Decimals**
 Decimals that end after finite digits
@@ -45,17 +45,17 @@ Decimals that continue infinitely
 
 #### **Recurring (Repeating) Decimals**
 - Examples: 0.333..., 0.1666..., 1.272727...
-- Notation: 0.3̅, 0.16̅, 1.27̅
+- Notation: 0.3Ì…, 0.16Ì…, 1.27Ì…
 - Can be converted to fractions
 
 #### **Non-recurring Decimals**
-- Examples: π = 3.1415926535..., e = 2.7182818284...
+- Examples: Ï€ = 3.1415926535..., e = 2.7182818284...
 - Cannot be expressed as exact fractions
 - Known as irrational numbers
 
 ---
 
-## 🔄 Converting Between Decimals and Fractions
+## ðŸ”„ Converting Between Decimals and Fractions
 
 ### **Decimal to Fraction**
 
@@ -70,33 +70,33 @@ Move decimal point to make whole number, divide by power of 10:
 #### **Recurring Decimals**
 Use algebraic method:
 
-**Pure recurring decimals (0.ab̅c̅):**
+**Pure recurring decimals (0.abÌ…cÌ…):**
 Formula: \\frac{abc...}{999...} (same number of 9s as recurring digits)
 
 **Examples:**
-- 0.3̅ = \\frac{3}{9} = \\frac{1}{3}
-- 0.27̅ = \\frac{27}{99} = \\frac{3}{11}
-- 0.142857̅ = \\frac{142857}{999999} = \\frac{1}{7}
+- 0.3Ì… = \\frac{3}{9} = \\frac{1}{3}
+- 0.27Ì… = \\frac{27}{99} = \\frac{3}{11}
+- 0.142857Ì… = \\frac{142857}{999999} = \\frac{1}{7}
 
-**Mixed recurring decimals (0.ab̅c̅d):**
+**Mixed recurring decimals (0.abÌ…cÌ…d):**
 Formula: \\frac{abc... - ab...}{999... - 00...} (non-recurring digits as zeros)
 
 **Examples:**
-- 0.1̅6̅ = \\frac{16 - 1}{99 - 0} = \\frac{15}{99} = \\frac{5}{33}
-- 0.23̅4̅ = \\frac{234 - 23}{999 - 00} = \\frac{211}{900}
+- 0.1Ì…6Ì… = \\frac{16 - 1}{99 - 0} = \\frac{15}{99} = \\frac{5}{33}
+- 0.23Ì…4Ì… = \\frac{234 - 23}{999 - 00} = \\frac{211}{900}
 
 ### **Fraction to Decimal**
 Divide numerator by denominator:
 
 **Examples:**
 - \\frac{1}{2} = 0.5
-- \\frac{1}{3} = 0.333... = 0.3̅
-- \\frac{2}{3} = 0.666... = 0.6̅
-- \\frac{1}{7} = 0.142857̅
+- \\frac{1}{3} = 0.333... = 0.3Ì…
+- \\frac{2}{3} = 0.666... = 0.6Ì…
+- \\frac{1}{7} = 0.142857Ì…
 
 ---
 
-## 🧮 Decimal Operations
+## ðŸ§® Decimal Operations
 
 ### **1. Addition of Decimals**
 Align decimal points vertically, add like whole numbers:
@@ -127,9 +127,9 @@ Multiply as whole numbers, count total decimal places:
 
 \`\`\`
    4.5
-×  2.3
+Ã—  2.3
 ------
-  135  (4.5 × 2.3 = 10.35)
+  135  (4.5 Ã— 2.3 = 10.35)
 \`\`\`
 
 **Rule:** Count decimal places in both numbers (1 + 1 = 2), place decimal 2 places from right in product.
@@ -137,16 +137,16 @@ Multiply as whole numbers, count total decimal places:
 ### **4. Division of Decimals**
 Move decimal points to make divisor whole number:
 
-**Example:** 7.2 ÷ 2.4
+**Example:** 7.2 Ã· 2.4
 \`\`\`
-Move decimal right by 1 in both: 72 ÷ 24 = 3
+Move decimal right by 1 in both: 72 Ã· 24 = 3
 \`\`\`
 
 **Rule:** Move decimal in dividend and divisor same number of places to make divisor whole.
 
 ---
 
-## 🔍 Rounding and Approximation
+## ðŸ” Rounding and Approximation
 
 ### **Rounding Rules**
 - **0-4**: Round down
@@ -166,12 +166,12 @@ Keep specified number of meaningful digits:
 
 ---
 
-## 🧠 Decimal Shortcuts and Tricks
+## ðŸ§  Decimal Shortcuts and Tricks
 
 ### **Multiplication by Powers of 10**
-- Move decimal right for multiplication: 2.5 × 10 = 25
-- Move decimal left for division: 25 ÷ 10 = 2.5
-- Move decimal right for ×100: 2.5 × 100 = 250
+- Move decimal right for multiplication: 2.5 Ã— 10 = 25
+- Move decimal left for division: 25 Ã· 10 = 2.5
+- Move decimal right for Ã—100: 2.5 Ã— 100 = 250
 
 ### **Quick Conversions**
 - 0.5 = \\frac{1}{2}
@@ -187,7 +187,7 @@ Keep specified number of meaningful digits:
 
 ---
 
-## 🎯 Decimal in Word Problems
+## ðŸŽ¯ Decimal in Word Problems
 
 ### **Money Problems**
 A shirt costs $24.50 and pants cost $39.75. Total cost?
@@ -195,21 +195,21 @@ A shirt costs $24.50 and pants cost $39.75. Total cost?
 
 ### **Measurement Problems**
 A rope is 12.5 meters long. Cut into 4 equal pieces. Each piece?
-**Answer:** 12.5 ÷ 4 = 3.125 meters
+**Answer:** 12.5 Ã· 4 = 3.125 meters
 
 ### **Percentage Problems**
 Price increased from $100.00 to $125.50. Percentage increase?
-**Answer:** (($125.50 - $100.00) ÷ $100.00) × 100% = 25.5%
+**Answer:** (($125.50 - $100.00) Ã· $100.00) Ã— 100% = 25.5%
 
 ### **Average Problems**
 Test scores: 85.5, 92.3, 78.8, 88.9. Average?
-**Answer:** (85.5 + 92.3 + 78.8 + 88.9) ÷ 4 = 345.5 ÷ 4 = 86.375
+**Answer:** (85.5 + 92.3 + 78.8 + 88.9) Ã· 4 = 345.5 Ã· 4 = 86.375
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
-### ❌ **Misaligned Decimals**
+### âŒ **Misaligned Decimals**
 \`\`\`
 Wrong:  45.67
        + 23.89
@@ -224,19 +224,19 @@ Right:   45.67
         69.56
 \`\`\`
 
-### ❌ **Wrong Decimal Placement in Product**
+### âŒ **Wrong Decimal Placement in Product**
 \`\`\`
-Wrong: 4.5 × 2.3 = 13.5 (forgot decimal places)
-Right: 4.5 × 2.3 = 10.35 (1+1=2 decimal places)
-\`\`\`
-
-### ❌ **Division Without Adjusting Decimals**
-\`\`\`
-Wrong: 7.2 ÷ 2.4 = 3 (forgot to move decimals)
-Right: 72 ÷ 24 = 3 (moved decimals right by 1)
+Wrong: 4.5 Ã— 2.3 = 13.5 (forgot decimal places)
+Right: 4.5 Ã— 2.3 = 10.35 (1+1=2 decimal places)
 \`\`\`
 
-### ❌ **Rounding Errors**
+### âŒ **Division Without Adjusting Decimals**
+\`\`\`
+Wrong: 7.2 Ã· 2.4 = 3 (forgot to move decimals)
+Right: 72 Ã· 24 = 3 (moved decimals right by 1)
+\`\`\`
+
+### âŒ **Rounding Errors**
 \`\`\`
 Wrong: 3.14159 to 2 decimal places = 3.15 (wrong rounding)
 Right: 3.14159 to 2 decimal places = 3.14 (1 < 5, round down)
@@ -244,18 +244,18 @@ Right: 3.14159 to 2 decimal places = 3.14 (1 < 5, round down)
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Basic Operations:**
 1. 45.67 + 23.89 = ?
 2. 45.67 - 23.89 = ?
-3. 4.5 × 2.3 = ?
-4. 7.2 ÷ 2.4 = ?
+3. 4.5 Ã— 2.3 = ?
+4. 7.2 Ã· 2.4 = ?
 
 ### **Conversions:**
 1. 0.25 = ?
-2. 0.3̅ = ?
-3. 0.142857̅ = ?
+2. 0.3Ì… = ?
+3. 0.142857Ì… = ?
 4. \\frac{3}{8} = ?
 
 ### **Rounding:**
@@ -266,23 +266,23 @@ Right: 3.14159 to 2 decimal places = 3.14 (1 < 5, round down)
 ### **Word Problems:**
 1. Three items cost $12.50, $8.75, and $15.25. Total cost?
 2. A 50-meter rope is cut into 8 equal pieces. Length of each?
-3. Temperature changed from 25.6°C to 31.8°C. Change in temperature?
+3. Temperature changed from 25.6Â°C to 31.8Â°C. Change in temperature?
 
 ### **Mental Math:**
-1. 0.5 × 0.5 = ?
-2. 0.25 × 4 = ?
-3. 100 ÷ 0.25 = ?
+1. 0.5 Ã— 0.5 = ?
+2. 0.25 Ã— 4 = ?
+3. 100 Ã· 0.25 = ?
 
 **Answers:**
 Basic: 69.56, 21.78, 10.35, 3
 Conversions: \\frac{1}{4}, \\frac{1}{3}, \\frac{1}{7}, 0.375
 Rounding: 3.14, 3.0, 157
-Word: $36.50, 6.25 meters, 6.2°C
+Word: $36.50, 6.25 meters, 6.2Â°C
 Mental: 0.25, 1, 400
 
 ---
 
-## 🎓 Pro Tips for Exams
+## ðŸŽ“ Pro Tips for Exams
 
 1. **Always align decimal points** for addition/subtraction
 2. **Count decimal places carefully** in multiplication
@@ -292,6 +292,7 @@ Mental: 0.25, 1, 400
 6. **Remember common fraction-decimal equivalents**
 7. **Practice mental decimal calculations** for speed
 
-Master decimal numbers and you'll handle quantitative problems with ease! 🏆`
+Master decimal numbers and you'll handle quantitative problems with ease! ðŸ†`
 };
+
 

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_2: SubLesson = {
   id: "14.2",
   title: 'Recursion vs Iteration',
   status: 'demo',
-  content: `# ⚖️ Recursion vs Iteration
+  content: "`# âš–ï¸ Recursion vs Iteration
 
 Two different approaches to solve the same problems - each with its own strengths and trade-offs!
 
 ---
 
-## 🎯 Understanding Both Approaches
+## ðŸŽ¯ Understanding Both Approaches
 
 ### **Recursion**
 - Function calls itself
@@ -26,12 +26,12 @@ Two different approaches to solve the same problems - each with its own strength
 
 ---
 
-## 🔄 Converting Between Recursion and Iteration
+## ðŸ”„ Converting Between Recursion and Iteration
 
 ### **Example: Factorial**
 
 #### **Recursive Version**
-\`\`\`python
+\`"\`\`python
 def factorial_recursive(n):
     if n <= 1:
         return 1
@@ -72,7 +72,7 @@ def sum_iterative(arr):
 
 ---
 
-## 📊 Performance Comparison
+## ðŸ“Š Performance Comparison
 
 ### **Time Complexity**
 - **Both approaches**: Usually same O(n) time
@@ -94,7 +94,7 @@ def recursive_sum(n):
 # recursive_sum(3)
 # recursive_sum(2)
 # recursive_sum(1)
-# recursive_sum(0) ← deepest point
+# recursive_sum(0) â† deepest point
 
 # Iteration: No extra stack usage
 def iterative_sum(n):
@@ -107,7 +107,7 @@ def iterative_sum(n):
 
 ---
 
-## 🎯 When to Choose Recursion
+## ðŸŽ¯ When to Choose Recursion
 
 ### **Recursion is Better When:**
 
@@ -173,7 +173,7 @@ def fibonacci(n):
 
 ---
 
-## 🔄 When to Choose Iteration
+## ðŸ”„ When to Choose Iteration
 
 ### **Iteration is Better When:**
 
@@ -229,7 +229,7 @@ def find_max_recursive(arr, n):
 
 ---
 
-## 🛠️ Converting Recursion to Iteration
+## ðŸ› ï¸ Converting Recursion to Iteration
 
 ### **Using a Stack (Manual Simulation)**
 \`\`\`python
@@ -272,7 +272,7 @@ def factorial_tail(n, accumulator=1):
 
 ---
 
-## 🎯 Key Decision Factors
+## ðŸŽ¯ Key Decision Factors
 
 | Factor | Choose Recursion | Choose Iteration |
 |--------|------------------|------------------|
@@ -285,7 +285,7 @@ def factorial_tail(n, accumulator=1):
 
 ---
 
-## 💡 Best Practices
+## ðŸ’¡ Best Practices
 
 ### **1. Know Your Limits**
 \`\`\`python
@@ -308,7 +308,7 @@ sys.setrecursionlimit(2000)
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Recursion**: Elegant but uses stack space
 2. **Iteration**: Efficient but sometimes complex
@@ -317,6 +317,7 @@ sys.setrecursionlimit(2000)
 5. **Can convert**: Between recursion and iteration
 6. **Profile performance**: Test both for critical code
 
-Master both techniques - they'll serve you well in different scenarios! 🚀`,
+Master both techniques - they'll serve you well in different scenarios! ðŸš€`,
 };
+
 

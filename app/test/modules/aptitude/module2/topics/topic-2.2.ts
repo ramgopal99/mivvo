@@ -1,18 +1,18 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_2: SubLesson = {
   id: "2.2",
   title: 'Types of Numbers',
   status: 'completed',
-  content: `# 🔢 Types of Numbers
+  content: "`# ðŸ”¢ Types of Numbers
 
 Let's dive deeper into the different types of numbers and their properties. Understanding these classifications is crucial for solving quantitative aptitude problems.
 
 ---
 
-## 📊 Classification of Numbers
+## ðŸ“Š Classification of Numbers
 
-### 1. **Natural Numbers (ℕ)**
+### 1. **Natural Numbers (â„•)**
 - **Set**: {1, 2, 3, 4, 5, ...}
 - **Properties**:
   - Start from 1
@@ -22,7 +22,7 @@ Let's dive deeper into the different types of numbers and their properties. Unde
 
 **Examples**: 1, 2, 3, 100, 5000
 
-### 2. **Whole Numbers (ℤ⁺ ∪ {0})**
+### 2. **Whole Numbers (â„¤âº âˆª {0})**
 - **Set**: {0, 1, 2, 3, 4, 5, ...}
 - **Properties**:
   - Includes zero
@@ -31,7 +31,7 @@ Let's dive deeper into the different types of numbers and their properties. Unde
 
 **Examples**: 0, 1, 2, 3, 50, 1000
 
-### 3. **Integers (ℤ)**
+### 3. **Integers (â„¤)**
 - **Set**: {..., -3, -2, -1, 0, 1, 2, 3, ...}
 - **Properties**:
   - Include positive, negative, and zero
@@ -42,23 +42,23 @@ Let's dive deeper into the different types of numbers and their properties. Unde
 
 ---
 
-## 🎯 Rational Numbers (ℚ)
+## ðŸŽ¯ Rational Numbers (â„š)
 
 ### Definition
 Numbers that can be expressed as **p/q** where:
 - p and q are integers
-- q ≠ 0
+- q â‰  0
 - p and q have no common factors other than 1
 
 ### Types of Rational Numbers:
 
 #### **Positive Rational Numbers**
 - Greater than zero
-- Examples: ½, ¾, 2/3, 5/4
+- Examples: Â½, Â¾, 2/3, 5/4
 
 #### **Negative Rational Numbers**
 - Less than zero
-- Examples: -½, -¾, -2/3, -5/4
+- Examples: -Â½, -Â¾, -2/3, -5/4
 
 #### **Decimal Representation**
 - **Terminating decimals**: 0.5, 0.25, 0.75
@@ -66,7 +66,7 @@ Numbers that can be expressed as **p/q** where:
 
 ---
 
-## 🔄 Irrational Numbers
+## ðŸ”„ Irrational Numbers
 
 ### Definition
 Numbers that **cannot** be expressed as p/q (where p and q are integers)
@@ -77,51 +77,51 @@ Numbers that **cannot** be expressed as p/q (where p and q are integers)
 
 ### Famous Irrational Numbers:
 
-#### **√2 (Square root of 2)**
-- ≈ 1.414213562...
-- Proof: Assume √2 = p/q in simplest terms
-- Contradiction leads to √2 being irrational
+#### **âˆš2 (Square root of 2)**
+- â‰ˆ 1.414213562...
+- Proof: Assume âˆš2 = p/q in simplest terms
+- Contradiction leads to âˆš2 being irrational
 
-#### **π (Pi)**
-- ≈ 3.141592653...
+#### **Ï€ (Pi)**
+- â‰ˆ 3.141592653...
 - Ratio of circumference to diameter of a circle
 
 #### **e (Euler's number)**
-- ≈ 2.718281828...
+- â‰ˆ 2.718281828...
 - Base of natural logarithm
 
-#### **φ (Golden Ratio)**
-- ≈ 1.618033988...
-- (1 + √5)/2
+#### **Ï† (Golden Ratio)**
+- â‰ˆ 1.618033988...
+- (1 + âˆš5)/2
 
 ---
 
-## 🌟 Real Numbers (ℝ)
+## ðŸŒŸ Real Numbers (â„)
 
 ### Definition
 Union of rational and irrational numbers
 
 ### Properties:
 - All numbers on the number line
-- Include fractions, decimals, roots, π, e, etc.
+- Include fractions, decimals, roots, Ï€, e, etc.
 - Can be positive, negative, or zero
 
 ### Number Line Representation:
-\`\`\`
-... -√2, -π, -2, -½, 0, ½, 2, π, √2, ...
-    ←━━━━━━━━━━━━━━━━━━━━━━━━━━━━→
+\`"\`\`
+... -âˆš2, -Ï€, -2, -Â½, 0, Â½, 2, Ï€, âˆš2, ...
+    â†â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â†’
 \`\`\`
 
 ---
 
-## 🔮 Complex Numbers (ℂ)
+## ðŸ”® Complex Numbers (â„‚)
 
 ### Definition
 Numbers of the form **a + bi** where:
 - a = real part
 - b = imaginary part
-- i = √(-1) (imaginary unit)
-- i² = -1
+- i = âˆš(-1) (imaginary unit)
+- iÂ² = -1
 
 ### Examples:
 - 3 + 2i (real part: 3, imaginary part: 2)
@@ -135,12 +135,12 @@ Numbers of the form **a + bi** where:
 
 ---
 
-## 🧮 Key Relationships
+## ðŸ§® Key Relationships
 
 \`\`\`
-Natural Numbers ⊂ Whole Numbers ⊂ Integers ⊂ Rational Numbers ⊂ Real Numbers ⊂ Complex Numbers
+Natural Numbers âŠ‚ Whole Numbers âŠ‚ Integers âŠ‚ Rational Numbers âŠ‚ Real Numbers âŠ‚ Complex Numbers
 
-      ℕ ⊂ ℤ⁺ ∪ {0} ⊂ ℤ ⊂ ℚ ⊂ ℝ ⊂ ℂ
+      â„• âŠ‚ â„¤âº âˆª {0} âŠ‚ â„¤ âŠ‚ â„š âŠ‚ â„ âŠ‚ â„‚
 \`\`\`
 
 ### Important Notes:
@@ -150,7 +150,7 @@ Natural Numbers ⊂ Whole Numbers ⊂ Integers ⊂ Rational Numbers ⊂ Real Num
 
 ---
 
-## 🎯 Applications in Aptitude
+## ðŸŽ¯ Applications in Aptitude
 
 Understanding number types helps in:
 - **Simplifying calculations**
@@ -159,6 +159,7 @@ Understanding number types helps in:
 - **Understanding number properties**
 - **Solving word problems**
 
-Master these classifications and you'll be well-prepared for quantitative aptitude questions! 🚀`
+Master these classifications and you'll be well-prepared for quantitative aptitude questions! ðŸš€`
 };
+
 

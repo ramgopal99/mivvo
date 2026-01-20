@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_8: SubLesson = {
   id: "5.8",
   title: 'Symbol Coding',
   status: 'completed',
-  content: `# 🔣 Symbol Coding
+  content: "`# ðŸ”£ Symbol Coding
 
 Symbol coding involves replacing letters or numbers with various symbols, special characters, or visual representations. These problems combine pattern recognition with symbol interpretation skills.
 
 ---
 
-## 🎯 Understanding Symbol Coding
+## ðŸŽ¯ Understanding Symbol Coding
 
 ### **What is Symbol Coding?**
 Symbol coding involves replacing letters, numbers, or words with symbols, special characters, or visual representations according to specific rules. These problems test your ability to:
@@ -27,19 +27,19 @@ Symbol coding involves replacing letters, numbers, or words with symbols, specia
 
 ---
 
-## 🧩 Types of Symbol Coding
+## ðŸ§© Types of Symbol Coding
 
 ### **1. Letter-to-Symbol Coding**
 **Letters replaced by symbols**
-- **Shape Symbols**: △, □, ○, etc.
+- **Shape Symbols**: â–³, â–¡, â—‹, etc.
 - **Special Characters**: @, #, $, %, &, *
-- **Visual Patterns**: ↑, ↓, ←, →, etc.
+- **Visual Patterns**: â†‘, â†“, â†, â†’, etc.
 
 ### **2. Number-to-Symbol Coding**
 **Numbers replaced by symbols**
-- **Mathematical Symbols**: +, -, ×, ÷, =
-- **Geometric Shapes**: ■, ●, ▲, ▼
-- **Position Indicators**: ¹, ², ³, etc.
+- **Mathematical Symbols**: +, -, Ã—, Ã·, =
+- **Geometric Shapes**: â– , â—, â–², â–¼
+- **Position Indicators**: Â¹, Â², Â³, etc.
 
 ### **3. Word-to-Symbol Coding**
 **Words or phrases replaced by symbols**
@@ -49,7 +49,7 @@ Symbol coding involves replacing letters, numbers, or words with symbols, specia
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze Symbol Patterns**
 - Examine input-symbol pairs
@@ -73,13 +73,13 @@ Symbol coding involves replacing letters, numbers, or words with symbols, specia
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Direct Symbol Replacement**
 **Simple symbol substitutions**
-- "A=△, B=□, C=○, D=◇"
-- "1=+, 2=-, 3=×, 4=÷"
-- "Red=■, Blue=●, Green=▲"
+- "A=â–³, B=â–¡, C=â—‹, D=â—‡"
+- "1=+, 2=-, 3=Ã—, 4=Ã·"
+- "Red=â– , Blue=â—, Green=â–²"
 
 ### **Type 2: Pattern Symbol Coding**
 **Rule-based symbol assignments**
@@ -95,14 +95,14 @@ Symbol coding involves replacing letters, numbers, or words with symbols, specia
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Symbol Mapping Creation**
 
 Symbol Mapping Reference:  
-A → △    1 → +  
-B → □    2 → -  
-C → ○    3 → ×
+A â†’ â–³    1 â†’ +  
+B â†’ â–¡    2 â†’ -  
+C â†’ â—‹    3 â†’ Ã—
 
 - Create symbol mapping reference
 - Identify pattern or rule
@@ -120,32 +120,32 @@ C → ○    3 → ×
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Shape Symbol Coding**
-**Rule**: A=△, B=□, C=○, D=◇
+**Rule**: A=â–³, B=â–¡, C=â—‹, D=â—‡
 - **Input**: ABC
-- **Output**: △□○
+- **Output**: â–³â–¡â—‹
 
 **Explanation**: Direct shape symbol replacement
 
 ### **Example 2: Mathematical Symbols**
-**Rule**: 1=+, 2=-, 3=×, 4=÷, 5==
+**Rule**: 1=+, 2=-, 3=Ã—, 4=Ã·, 5==
 - **Input**: 123
-- **Output**: +-×
+- **Output**: +-Ã—
 
 **Explanation**: Number to mathematical symbol conversion
 
 ### **Example 3: Complex Symbol System**
 **Rule**: Vowels get round shapes, consonants get angular shapes
 - **Input**: CAT
-- **Output**: ○△□
+- **Output**: â—‹â–³â–¡
 
-**Explanation**: C(○), A(△), T(□) - property-based symbols
+**Explanation**: C(â—‹), A(â–³), T(â–¡) - property-based symbols
 
 ---
 
-## 🔍 Advanced Symbol Concepts
+## ðŸ” Advanced Symbol Concepts
 
 ### **Multi-Symbol Systems**
 Complex symbol combinations and relationships.
@@ -158,7 +158,7 @@ Complex symbol transformation and interpretation systems.
 
 ---
 
-## 📊 Symbol Coding Methods
+## ðŸ“Š Symbol Coding Methods
 
 ### **Direct Methods**
 - **One-to-One**: Simple symbol replacements
@@ -177,23 +177,23 @@ Complex symbol transformation and interpretation systems.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Symbol Confusion**
-❌ Mixing up similar symbols
-✅ Create clear symbol reference
+âŒ Mixing up similar symbols
+âœ… Create clear symbol reference
 
 ### **Pitfall 2: Pattern Misidentification**
-❌ Wrong symbol assignment pattern
-✅ Test patterns against all examples
+âŒ Wrong symbol assignment pattern
+âœ… Test patterns against all examples
 
 ### **Pitfall 3: Incomplete Mapping**
-❌ Missing symbol relationships
-✅ Create complete symbol mapping
+âŒ Missing symbol relationships
+âœ… Create complete symbol mapping
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Symbol Reference Creation**
 - Create clear symbol mapping table
@@ -212,7 +212,7 @@ Complex symbol transformation and interpretation systems.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Simple one-to-one symbol replacements
@@ -231,7 +231,7 @@ Complex symbol transformation and interpretation systems.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Create Symbol Map**: Visual symbol reference guide
 2. **Identify Categories**: Group symbols by type or function
@@ -241,19 +241,19 @@ Complex symbol transformation and interpretation systems.
 
 ---
 
-## 🔣 Practice Questions
+## ðŸ”£ Practice Questions
 
 ### **Question 1**
-If A=△, B=□, C=○, D=◇, what is the symbol code for "BAD"?
+If A=â–³, B=â–¡, C=â—‹, D=â—‡, what is the symbol code for "BAD"?
 
 ### **Question 2**
-If 1=+, 2=-, 3=×, 4=÷, 5==, what is the symbol code for "123"?
+If 1=+, 2=-, 3=Ã—, 4=Ã·, 5==, what is the symbol code for "123"?
 
 ### **Question 3**
-If vowels get round shapes (○) and consonants get square shapes (□), what is the symbol code for "APPLE"?
+If vowels get round shapes (â—‹) and consonants get square shapes (â–¡), what is the symbol code for "APPLE"?
 
 ### **Question 4**
 If A=@, B=# , C=$, D=%, E=^, what is the symbol code for "FACE"?
 
-**Master symbol coding for visual pattern recognition! 🔣✨**`
+**Master symbol coding for visual pattern recognition! ðŸ”£âœ¨**`"
 };

@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_1: SubLesson = {
   id: "3.1",
   title: 'Synonyms',
   status: 'completed',
-  content: `# 🔍 Synonyms: Words with Similar Meanings
+  content: "`# ðŸ” Synonyms: Words with Similar Meanings
 
 Synonyms are words that have **similar meanings** but may differ in connotation, intensity, or context. Mastering synonyms enhances vocabulary, improves writing precision, and helps in understanding nuanced language differences.
 
 ---
 
-## 📋 WHAT ARE SYNONYMS?
+## ðŸ“‹ WHAT ARE SYNONYMS?
 
 **Synonyms** are words or phrases that mean nearly the same thing, allowing you to:
-- ✅ Avoid repetition in writing
-- ✅ Choose the most appropriate word for context
-- ✅ Express ideas with precision and variety
-- ✅ Understand subtle differences in meaning
+- âœ… Avoid repetition in writing
+- âœ… Choose the most appropriate word for context
+- âœ… Express ideas with precision and variety
+- âœ… Understand subtle differences in meaning
 
 ### Key Characteristics:
 - **Similar Meaning**: Core meaning is the same
@@ -25,13 +25,13 @@ Synonyms are words that have **similar meanings** but may differ in connotation,
 - **Connotation**: May have different emotional tones
 
 **Examples:**
-- ✅ Happy = Joyful, delighted, pleased, content
-- ✅ Big = Large, huge, enormous, gigantic
-- ✅ Fast = Quick, rapid, swift, speedy
+- âœ… Happy = Joyful, delighted, pleased, content
+- âœ… Big = Large, huge, enormous, gigantic
+- âœ… Fast = Quick, rapid, swift, speedy
 
 ---
 
-## 🎯 TYPES OF SYNONYMS
+## ðŸŽ¯ TYPES OF SYNONYMS
 
 ### 1. **Absolute Synonyms** (Perfect Synonyms)
 Words with identical meanings in all contexts:
@@ -48,14 +48,14 @@ Words with identical meanings in all contexts:
 Words similar in some contexts but different in others:
 
 #### Positive Connotations:
-- ✅ **Thrifty** (admirable saving) vs **Stingy** (unpleasant saving)
-- ✅ **Confident** (positive) vs **Arrogant** (negative)
-- ✅ **Curious** (good) vs **Nosy** (bad)
+- âœ… **Thrifty** (admirable saving) vs **Stingy** (unpleasant saving)
+- âœ… **Confident** (positive) vs **Arrogant** (negative)
+- âœ… **Curious** (good) vs **Nosy** (bad)
 
 #### Intensity Differences:
-- ✅ **Warm** (mild) vs **Hot** (strong) vs **Scorching** (extreme)
-- ✅ **Angry** (mild) vs **Furious** (strong) vs **Enraged** (extreme)
-- ✅ **Sad** (mild) vs **Sorrowful** (moderate) vs **Heartbroken** (extreme)
+- âœ… **Warm** (mild) vs **Hot** (strong) vs **Scorching** (extreme)
+- âœ… **Angry** (mild) vs **Furious** (strong) vs **Enraged** (extreme)
+- âœ… **Sad** (mild) vs **Sorrowful** (moderate) vs **Heartbroken** (extreme)
 
 ### 3. **Regional Synonyms**
 Words that mean the same but are used in different regions:
@@ -70,99 +70,99 @@ Words that mean the same but are used in different regions:
 
 ---
 
-## 📚 COMMON SYNONYM PAIRS
+## ðŸ“š COMMON SYNONYM PAIRS
 
 ### Positive Emotions:
-- ✅ **Happy** → Joyful, delighted, pleased, content, elated
-- ✅ **Love** → Affection, adoration, devotion, fondness
-- ✅ **Proud** → Dignified, honored, respected
+- âœ… **Happy** â†’ Joyful, delighted, pleased, content, elated
+- âœ… **Love** â†’ Affection, adoration, devotion, fondness
+- âœ… **Proud** â†’ Dignified, honored, respected
 
 ### Negative Emotions:
-- ✅ **Angry** → Furious, enraged, irritated, annoyed
-- ✅ **Sad** → Sorrowful, depressed, gloomy, melancholy
-- ✅ **Afraid** → Frightened, terrified, scared, apprehensive
+- âœ… **Angry** â†’ Furious, enraged, irritated, annoyed
+- âœ… **Sad** â†’ Sorrowful, depressed, gloomy, melancholy
+- âœ… **Afraid** â†’ Frightened, terrified, scared, apprehensive
 
 ### Actions & States:
-- ✅ **Walk** → Stroll, saunter, amble, hike
-- ✅ **Run** → Sprint, dash, race, hurry
-- ✅ **Speak** → Talk, converse, discuss, communicate
-- ✅ **Look** → See, observe, watch, gaze
+- âœ… **Walk** â†’ Stroll, saunter, amble, hike
+- âœ… **Run** â†’ Sprint, dash, race, hurry
+- âœ… **Speak** â†’ Talk, converse, discuss, communicate
+- âœ… **Look** â†’ See, observe, watch, gaze
 
 ### Qualities & Characteristics:
-- ✅ **Beautiful** → Gorgeous, stunning, attractive, lovely
-- ✅ **Intelligent** → Smart, clever, brilliant, wise
-- ✅ **Strong** → Powerful, mighty, robust, sturdy
-- ✅ **Quick** → Fast, rapid, swift, speedy
+- âœ… **Beautiful** â†’ Gorgeous, stunning, attractive, lovely
+- âœ… **Intelligent** â†’ Smart, clever, brilliant, wise
+- âœ… **Strong** â†’ Powerful, mighty, robust, sturdy
+- âœ… **Quick** â†’ Fast, rapid, swift, speedy
 
 ### Sizes & Amounts:
-- ✅ **Big** → Large, huge, enormous, gigantic
-- ✅ **Small** → Tiny, little, miniature, petite
-- ✅ **Many** → Numerous, plentiful, abundant, copious
+- âœ… **Big** â†’ Large, huge, enormous, gigantic
+- âœ… **Small** â†’ Tiny, little, miniature, petite
+- âœ… **Many** â†’ Numerous, plentiful, abundant, copious
 
 ---
 
-## 🎯 SYNONYM USAGE IN CONTEXT
+## ðŸŽ¯ SYNONYM USAGE IN CONTEXT
 
 ### Choosing the Right Synonym:
 
 #### Formal vs Informal:
-- ✅ **Commence** (formal) vs **Start** (informal)
-- ✅ **Terminate** (formal) vs **End** (informal)
-- ✅ **Purchase** (formal) vs **Buy** (informal)
+- âœ… **Commence** (formal) vs **Start** (informal)
+- âœ… **Terminate** (formal) vs **End** (informal)
+- âœ… **Purchase** (formal) vs **Buy** (informal)
 
 #### Intensity Levels:
-- ✅ **Like** (mild) vs **Love** (strong) vs **Adore** (intense)
-- ✅ **Dislike** (mild) vs **Hate** (strong) vs **Despise** (intense)
+- âœ… **Like** (mild) vs **Love** (strong) vs **Adore** (intense)
+- âœ… **Dislike** (mild) vs **Hate** (strong) vs **Despise** (intense)
 
 #### Contextual Appropriateness:
-- ✅ **House** (general) vs **Home** (emotional attachment)
-- ✅ **Job** (general) vs **Career** (long-term profession)
+- âœ… **House** (general) vs **Home** (emotional attachment)
+- âœ… **Job** (general) vs **Career** (long-term profession)
 
 ### Examples in Sentences:
 
 #### Happy Synonyms:
-- ✅ She was **happy** with her results. (general)
-- ✅ She was **delighted** with her results. (strong positive)
-- ✅ She was **pleased** with her results. (satisfied)
-- ✅ She was **content** with her results. (peaceful satisfaction)
+- âœ… She was **happy** with her results. (general)
+- âœ… She was **delighted** with her results. (strong positive)
+- âœ… She was **pleased** with her results. (satisfied)
+- âœ… She was **content** with her results. (peaceful satisfaction)
 
 #### Big Synonyms:
-- ✅ He lives in a **big** house. (general size)
-- ✅ He lives in a **large** house. (formal)
-- ✅ He lives in a **huge** house. (very big)
-- ✅ He lives in an **enormous** house. (extremely big)
+- âœ… He lives in a **big** house. (general size)
+- âœ… He lives in a **large** house. (formal)
+- âœ… He lives in a **huge** house. (very big)
+- âœ… He lives in an **enormous** house. (extremely big)
 
 ---
 
-## ⚠️ SYNONYM PITFALLS
+## âš ï¸ SYNONYM PITFALLS
 
 ### Not All Synonyms Are Interchangeable:
 
 1. **Connotation Differences:**
-   - ❌ **Thrifty** person → ✅ Economical shopper
-   - ❌ **Stingy** person → ❌ Miserly hoarder
+   - âŒ **Thrifty** person â†’ âœ… Economical shopper
+   - âŒ **Stingy** person â†’ âŒ Miserly hoarder
 
 2. **Collocation Restrictions:**
-   - ✅ **Heavy rain** (not strong rain)
-   - ✅ **Strong coffee** (not heavy coffee)
+   - âœ… **Heavy rain** (not strong rain)
+   - âœ… **Strong coffee** (not heavy coffee)
 
 3. **Register Differences:**
-   - ✅ **Commence** (formal) vs **Start** (informal)
-   - ✅ **Terminate** (formal) vs **End** (informal)
+   - âœ… **Commence** (formal) vs **Start** (informal)
+   - âœ… **Terminate** (formal) vs **End** (informal)
 
 4. **Idiomatic Usage:**
-   - ✅ **Heavy smoker** (not strong smoker)
-   - ✅ **Strong language** (not heavy language)
+   - âœ… **Heavy smoker** (not strong smoker)
+   - âœ… **Strong language** (not heavy language)
 
 ### Common Mistakes:
-- ✅ **Big/large/huge** can often be interchanged
-- ❌ **Big/large/huge** cannot replace each other in all contexts
-- ✅ **Happy/glad** are similar but **happy** is more general
-- ❌ **Happy** and **fortunate** are not synonyms
+- âœ… **Big/large/huge** can often be interchanged
+- âŒ **Big/large/huge** cannot replace each other in all contexts
+- âœ… **Happy/glad** are similar but **happy** is more general
+- âŒ **Happy** and **fortunate** are not synonyms
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Choose the Best Synonym
 Select the most appropriate synonym for the underlined word:
@@ -230,7 +230,7 @@ Choose the best synonym to complete each sentence:
 
 ---
 
-## 📊 SYNONYM CLASSIFICATION
+## ðŸ“Š SYNONYM CLASSIFICATION
 
 | Category | Examples | Usage Tips |
 |---|---|---|
@@ -242,28 +242,28 @@ Choose the best synonym to complete each sentence:
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Context-Based Selection**: Choose synonym that fits perfectly
 2. **Connotation Awareness**: Watch for positive/negative undertones
 3. **Intensity Matching**: Ensure synonym has similar strength
 4. **Collocation Check**: Verify word partnerships are natural
 
-### 💡 Quick Selection Strategy:
+### ðŸ’¡ Quick Selection Strategy:
 1. **Read the sentence** with each option mentally
 2. **Check naturalness** - which sounds most appropriate?
 3. **Consider formality** - match the tone of surrounding text
 4. **Verify connotation** - ensure emotional tone fits
 5. **Test collocation** - does the word naturally pair with others?
 
-### ⚡ Common Traps to Avoid:
+### âš¡ Common Traps to Avoid:
 - **False synonyms**: Words that seem similar but aren't
 - **Connotation mismatch**: Positive vs negative emotional tones
 - **Register mismatch**: Formal vs informal word choice
 - **Context ignorance**: Not considering surrounding words
 
-### 📈 Scoring Strategy:
+### ðŸ“ˆ Scoring Strategy:
 - **Eliminate obviously wrong** options first
 - **Look for exact meaning match** in context
 - **Check for connotation fit** with sentence tone
@@ -271,20 +271,21 @@ Choose the best synonym to complete each sentence:
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Group by Meaning**: Learn synonyms in related clusters
 2. **Context Practice**: Use each synonym in different sentences
 3. **Connotation Awareness**: Learn emotional differences
 4. **Regular Review**: Practice with vocabulary apps and flashcards
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Synonyms are like tools in a toolbox:**
-- 🔧 **Different sizes**: Big, large, huge, enormous
-- 🔧 **Different purposes**: Start, commence, begin
-- 🔧 **Different quality**: Good, excellent, superb
-- 🎯 **Choose the right tool** for each writing/speaking situation
+- ðŸ”§ **Different sizes**: Big, large, huge, enormous
+- ðŸ”§ **Different purposes**: Start, commence, begin
+- ðŸ”§ **Different quality**: Good, excellent, superb
+- ðŸŽ¯ **Choose the right tool** for each writing/speaking situation
 
-**Master synonyms and you'll have a complete "vocabulary toolkit"!** 🧰✨`
+**Master synonyms and you'll have a complete "vocabulary toolkit"!** ðŸ§°âœ¨`"
 };
+

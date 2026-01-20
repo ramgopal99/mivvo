@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_6: SubLesson = {
   id: "2.6",
   title: 'Direct Blood Relation Problems',
   status: 'completed',
-  content: `# 👨‍👩‍👧 Direct Blood Relation Problems
+  content: "`# ðŸ‘¨â€ðŸ‘©â€ðŸ‘§ Direct Blood Relation Problems
 
 Direct blood relation problems involve straightforward family relationships without complex coding or puzzles. These form the foundation of blood relation problems and appear frequently in competitive exams. Learn to identify and solve problems involving immediate family relationships.
 
 ---
 
-## 🎯 Understanding Direct Relations
+## ðŸŽ¯ Understanding Direct Relations
 
 ### **What are Direct Blood Relations?**
 Direct relations are immediate family connections that don't require complex reasoning or coding. These include:
@@ -28,7 +28,7 @@ Direct relations are immediate family connections that don't require complex rea
 
 ---
 
-## 🧩 Basic Direct Relation Patterns
+## ðŸ§© Basic Direct Relation Patterns
 
 ### **Pattern 1: Parent-Child Relations**
 - **Father-Child**: Most direct paternal relationship
@@ -49,7 +49,7 @@ Direct relations are immediate family connections that don't require complex rea
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Identify the Question**
 - Who is asking about whom?
@@ -73,7 +73,7 @@ Direct relations are immediate family connections that don't require complex rea
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Direct Relation**
 **Question**: A is the father of B, B is the sister of C. What is C to A?
@@ -92,7 +92,7 @@ Direct relations are immediate family connections that don't require complex rea
 
 ---
 
-## 🔍 Common Problem Types
+## ðŸ” Common Problem Types
 
 ### **Type 1: Pointing Relationships**
 "Who is the son of X?" or "Who is the mother of Y?"
@@ -108,7 +108,7 @@ Direct relations are immediate family connections that don't require complex rea
 
 ---
 
-## 🛠️ Quick Solving Techniques
+## ðŸ› ï¸ Quick Solving Techniques
 
 ### **1. Direct Mapping**
 - Draw simple relationship lines
@@ -127,7 +127,7 @@ Direct relations are immediate family connections that don't require complex rea
 
 ---
 
-## 📈 Advanced Direct Relations
+## ðŸ“ˆ Advanced Direct Relations
 
 ### **Complex Family Structures**
 - Large families with multiple children
@@ -141,7 +141,7 @@ Direct relations are immediate family connections that don't require complex rea
 
 ---
 
-## 🎯 Pro Tips
+## ðŸŽ¯ Pro Tips
 
 1. **Read Carefully**: Pay attention to gender and relationship terms
 2. **Draw Diagrams**: Simple sketches help clarify relationships
@@ -151,7 +151,7 @@ Direct relations are immediate family connections that don't require complex rea
 
 ---
 
-## 🚀 Practice Questions
+## ðŸš€ Practice Questions
 
 ### **Question 1**
 A is the brother of B, B is the daughter of C, C is the husband of D. What is D to A?
@@ -162,5 +162,5 @@ P has three children - two sons and one daughter. Q is the son of P and brother 
 ### **Question 3**
 M is the father of N, N is the sister of O, O is the brother of P. How many children does M have?
 
-**Master direct blood relations for quick and accurate problem solving! 👨‍👩‍👧✨**`
+**Master direct blood relations for quick and accurate problem solving! ðŸ‘¨â€ðŸ‘©â€ðŸ‘§âœ¨**`"
 };

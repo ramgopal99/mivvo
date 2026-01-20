@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_5: SubLesson = {
   id: "3.5",
   title: 'Homophones',
   status: 'completed',
-  content: `# 🔊 Homophones: Words That Sound the Same
+  content: "`# ðŸ”Š Homophones: Words That Sound the Same
 
 Homophones are words that sound identical but have different meanings and often different spellings. They can cause confusion in writing and speaking, making them crucial for language accuracy and competitive exams.
 
 ---
 
-## 📋 WHAT ARE HOMOPHONES?
+## ðŸ“‹ WHAT ARE HOMOPHONES?
 
 **Homophones** are words that sound the same but differ in meaning, origin, or spelling, helping you:
-- ✅ Avoid spelling mistakes in writing
-- ✅ Understand context-dependent word choice
-- ✅ Improve pronunciation and listening skills
-- ✅ Master English spelling irregularities
+- âœ… Avoid spelling mistakes in writing
+- âœ… Understand context-dependent word choice
+- âœ… Improve pronunciation and listening skills
+- âœ… Master English spelling irregularities
 
 ### Key Characteristics:
 - **Same Pronunciation**: Identical sound when spoken
@@ -25,13 +25,13 @@ Homophones are words that sound identical but have different meanings and often 
 - **Context Dependent**: Meaning determined by context
 
 **Examples:**
-- ✅ **Flower** (plant) vs **Flour** (powder) - Same sound, different meaning
-- ✅ **Right** (correct) vs **Write** (compose) - Same sound, different spelling
-- ✅ **Bear** (animal) vs **Bare** (naked) - Same sound, different meaning
+- âœ… **Flower** (plant) vs **Flour** (powder) - Same sound, different meaning
+- âœ… **Right** (correct) vs **Write** (compose) - Same sound, different spelling
+- âœ… **Bear** (animal) vs **Bare** (naked) - Same sound, different meaning
 
 ---
 
-## 🎯 TYPES OF HOMOPHONES
+## ðŸŽ¯ TYPES OF HOMOPHONES
 
 ### 1. **Perfect Homophones** (Different Spelling)
 Words that sound identical but are spelled differently:
@@ -60,46 +60,46 @@ Words spelled the same but pronounced differently with different meanings:
 
 | Word | Pronunciation 1 | Pronunciation 2 | Examples |
 |---|---|---|---|
-| **Lead** | /liːd/ (guide) | /lɛd/ (metal) | Lead the team. / Lead pipe. |
-| **Present** | /ˈprɛzənt/ (gift) | /prɪˈzɛnt/ (introduce) | Birthday present. / Present the facts. |
-| **Record** | /ˈrɛkɔːrd/ (achievement) | /rɪˈkɔːrd/ (document) | World record. / Record the song. |
-| **Conduct** | /ˈkɒndʌkt/ (behavior) | /kənˈdʌkt/ (direct) | Good conduct. / Conduct the orchestra. |
+| **Lead** | /liËd/ (guide) | /lÉ›d/ (metal) | Lead the team. / Lead pipe. |
+| **Present** | /ËˆprÉ›zÉ™nt/ (gift) | /prÉªËˆzÉ›nt/ (introduce) | Birthday present. / Present the facts. |
+| **Record** | /ËˆrÉ›kÉ”Ërd/ (achievement) | /rÉªËˆkÉ”Ërd/ (document) | World record. / Record the song. |
+| **Conduct** | /ËˆkÉ’ndÊŒkt/ (behavior) | /kÉ™nËˆdÊŒkt/ (direct) | Good conduct. / Conduct the orchestra. |
 
 ---
 
-## 📚 COMMON HOMOPHONE PAIRS
+## ðŸ“š COMMON HOMOPHONE PAIRS
 
 ### Action Words:
-- ✅ **Ate** (past of eat) vs **Eight** (number)
-- ✅ **Brake** (stop) vs **Break** (damage)
-- ✅ **By** (next to) vs **Buy** (purchase)
-- ✅ **Cell** (room) vs **Sell** (trade)
-- ✅ **Die** (death) vs **Dye** (color)
+- âœ… **Ate** (past of eat) vs **Eight** (number)
+- âœ… **Brake** (stop) vs **Break** (damage)
+- âœ… **By** (next to) vs **Buy** (purchase)
+- âœ… **Cell** (room) vs **Sell** (trade)
+- âœ… **Die** (death) vs **Dye** (color)
 
 ### Descriptive Words:
-- ✅ **Bare** (naked) vs **Bear** (animal)
-- ✅ **Fair** (just) vs **Fare** (price)
-- ✅ **Hair** (head covering) vs **Hare** (rabbit)
-- ✅ **Heal** (cure) vs **Heel** (foot part)
-- ✅ **Here** (location) vs **Hear** (listen)
+- âœ… **Bare** (naked) vs **Bear** (animal)
+- âœ… **Fair** (just) vs **Fare** (price)
+- âœ… **Hair** (head covering) vs **Hare** (rabbit)
+- âœ… **Heal** (cure) vs **Heel** (foot part)
+- âœ… **Here** (location) vs **Hear** (listen)
 
 ### Question Words & Conjunctions:
-- ✅ **Hour** (60 minutes) vs **Our** (possessive)
-- ✅ **Know** (understand) vs **No** (negative)
-- ✅ **New** (recent) vs **Knew** (past of know)
-- ✅ **Right** (correct) vs **Write** (compose)
-- ✅ **See** (vision) vs **Sea** (ocean)
+- âœ… **Hour** (60 minutes) vs **Our** (possessive)
+- âœ… **Know** (understand) vs **No** (negative)
+- âœ… **New** (recent) vs **Knew** (past of know)
+- âœ… **Right** (correct) vs **Write** (compose)
+- âœ… **See** (vision) vs **Sea** (ocean)
 
 ### Prepositions & Articles:
-- ✅ **For** (purpose) vs **Four** (number)
-- ✅ **In** (inside) vs **Inn** (hotel)
-- ✅ **Of** (belonging) vs **Off** (away)
-- ✅ **To** (direction) vs **Too** (also) vs **Two** (number)
-- ✅ **Way** (path) vs **Weigh** (measure)
+- âœ… **For** (purpose) vs **Four** (number)
+- âœ… **In** (inside) vs **Inn** (hotel)
+- âœ… **Of** (belonging) vs **Off** (away)
+- âœ… **To** (direction) vs **Too** (also) vs **Two** (number)
+- âœ… **Way** (path) vs **Weigh** (measure)
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Basic Homophones
 Choose the correct homophone for each sentence:
@@ -138,31 +138,31 @@ Match the homophones with their correct meanings:
 ### Exercise 4: Error Correction
 Identify and correct the homophone errors:
 
-1. ❌ I need to by some bread.
-   ✅ I need to buy some bread.
+1. âŒ I need to by some bread.
+   âœ… I need to buy some bread.
 
-2. ❌ The flower is made of flour.
-   ✅ The flower is made of flour. (Wait, this is correct actually - different context)
+2. âŒ The flower is made of flour.
+   âœ… The flower is made of flour. (Wait, this is correct actually - different context)
 
-3. ❌ He can here very well.
-   ✅ He can hear very well.
+3. âŒ He can here very well.
+   âœ… He can hear very well.
 
-4. ❌ The knight road his horse.
-   ✅ The knight rode his horse.
+4. âŒ The knight road his horse.
+   âœ… The knight rode his horse.
 
-5. ❌ She new the answer.
-   ✅ She knew the answer.
+5. âŒ She new the answer.
+   âœ… She knew the answer.
 
 **Corrected Answers:**
-1. by → buy
+1. by â†’ buy
 2. (The sentence is actually correct - flower and flour are different words)
-3. here → hear
-4. road → rode
-5. new → knew
+3. here â†’ hear
+4. road â†’ rode
+5. new â†’ knew
 
 ---
 
-## 📊 HOMOPHONE CLASSIFICATION
+## ðŸ“Š HOMOPHONE CLASSIFICATION
 
 | Category | Examples | Difficulty Level |
 |---|---|---|
@@ -174,28 +174,28 @@ Identify and correct the homophone errors:
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Error Identification**: Spot homophone mistakes in sentences
 2. **Sentence Correction**: Choose correct homophone for context
 3. **Fill in Blanks**: Select appropriate word from homophone pairs
 4. **Spelling Correction**: Identify misspelled words due to homophones
 
-### 💡 Quick Selection Strategy:
+### ðŸ’¡ Quick Selection Strategy:
 1. **Read the sentence** and understand the required meaning
 2. **Check pronunciation** - both options should sound the same
 3. **Verify spelling** - choose the correctly spelled word
 4. **Test context** - which word makes logical sense?
 5. **Look for clues** - surrounding words often indicate correct choice
 
-### ⚡ Common Traps to Avoid:
+### âš¡ Common Traps to Avoid:
 - **Sound alike confusion**: Right/Write, Flower/Flour
 - **Context misreading**: Wrong meaning chosen for context
 - **Spelling mistakes**: Writing homophone instead of correct word
 - **Pronunciation bias**: Choosing word based on how it sounds
 
-### 📈 Scoring Strategy:
+### ðŸ“ˆ Scoring Strategy:
 - **Learn pairs together** - Study homophones as related pairs
 - **Practice pronunciation** - Say words aloud to hear differences
 - **Contextual memorization** - Remember with example sentences
@@ -203,20 +203,21 @@ Identify and correct the homophone errors:
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Pair Learning**: Study homophones in related pairs
 2. **Contextual Examples**: Learn with sentences showing usage
 3. **Pronunciation Practice**: Say words aloud to hear similarities
 4. **Visual Association**: Create mental images for each meaning
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Homophones are "sound twins" with different personalities:**
-- 👯‍♀️ **Flower** (beautiful plant) vs **Flour** (baking powder)
-- 👯‍♀️ **Right** (correct) vs **Write** (pen on paper)
-- 👯‍♀️ **Bear** (furry animal) vs **Bare** (naked tree)
-- 🎯 **Listen carefully** and **spell precisely** to tell them apart!
+- ðŸ‘¯â€â™€ï¸ **Flower** (beautiful plant) vs **Flour** (baking powder)
+- ðŸ‘¯â€â™€ï¸ **Right** (correct) vs **Write** (pen on paper)
+- ðŸ‘¯â€â™€ï¸ **Bear** (furry animal) vs **Bare** (naked tree)
+- ðŸŽ¯ **Listen carefully** and **spell precisely** to tell them apart!
 
-**Master homophones and never mix up your "sound-alike" words again!** 👯‍♀️✨`
+**Master homophones and never mix up your "sound-alike" words again!** ðŸ‘¯â€â™€ï¸âœ¨`"
 };
+

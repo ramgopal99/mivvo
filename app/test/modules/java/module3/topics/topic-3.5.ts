@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_5: SubLesson = {
   id: "3.5",
   title: 'Removing Elements from ArrayLists',
   status: 'completed',
-  content: `# 🗑️ Removing Elements from ArrayLists in Java
+  content: "`# ðŸ—‘ï¸ Removing Elements from ArrayLists in Java
 
 Removing elements from ArrayList is a common operation. Java provides multiple methods to remove elements by index, by value, or conditionally.
 
 ---
 
-## 📍 Remove by Index
+## ðŸ“ Remove by Index
 
 ### **remove(int index) Method**
-\`\`\`java
+\`"\`\`java
 import java.util.*;
 
 public class RemoveByIndex {
@@ -63,7 +63,7 @@ public class SafeRemoveByIndex {
 
 ---
 
-## 🔍 Remove by Value
+## ðŸ” Remove by Value
 
 ### **remove(Object obj) Method**
 \`\`\`java
@@ -135,7 +135,7 @@ public class RemoveCustomObjects {
 
 ---
 
-## 🧹 Bulk Removal Operations
+## ðŸ§¹ Bulk Removal Operations
 
 ### **removeAll() Method**
 \`\`\`java
@@ -181,7 +181,7 @@ public class RetainAll {
 
 ---
 
-## 🔄 Conditional Removal
+## ðŸ”„ Conditional Removal
 
 ### **Using Iterator.remove()**
 \`\`\`java
@@ -238,7 +238,7 @@ public class RemoveIfMethod {
 
 ---
 
-## 🗂️ Advanced Removal Techniques
+## ðŸ—‚ï¸ Advanced Removal Techniques
 
 ### **Removing While Iterating**
 \`\`\`java
@@ -250,7 +250,7 @@ public class SafeIterationRemoval {
 
         System.out.println("Original: " + list);
 
-        // ❌ Dangerous: ConcurrentModificationException
+        // âŒ Dangerous: ConcurrentModificationException
         try {
             for (String item : list) {
                 if (item.equals("remove")) {
@@ -261,7 +261,7 @@ public class SafeIterationRemoval {
             System.out.println("Exception: " + e.getClass().getSimpleName());
         }
 
-        // ✅ Safe: Use Iterator
+        // âœ… Safe: Use Iterator
         Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()) {
             String item = iterator.next();
@@ -275,7 +275,7 @@ public class SafeIterationRemoval {
         // Reset for next example
         list.addAll(Arrays.asList("remove", "remove"));
 
-        // ✅ Safe: Use removeIf
+        // âœ… Safe: Use removeIf
         list.removeIf(item -> item.equals("remove"));
         System.out.println("removeIf result: " + list);
     }
@@ -308,7 +308,7 @@ public class RemoveDuplicates {
 
 ---
 
-## 📊 Performance Considerations
+## ðŸ“Š Performance Considerations
 
 ### **Removal Performance**
 \`\`\`java
@@ -328,13 +328,13 @@ public class RemovalPerformance {
         long start = System.nanoTime();
         list.remove(list.size() - 1);  // O(1)
         long endTime = System.nanoTime() - start;
-        System.out.println("Remove from end: " + (endTime / 1000) + " μs");
+        System.out.println("Remove from end: " + (endTime / 1000) + " Î¼s");
 
         // Slow removal from beginning
         start = System.nanoTime();
         list.remove(0);  // O(n) - shifts all remaining elements
         endTime = System.nanoTime() - start;
-        System.out.println("Remove from beginning: " + (endTime / 1000) + " μs");
+        System.out.println("Remove from beginning: " + (endTime / 1000) + " Î¼s");
 
         System.out.println("Final size: " + list.size());
     }
@@ -375,7 +375,7 @@ public class RemovalMethodChoice {
 
 ---
 
-## ⚠️ Common Removal Mistakes
+## âš ï¸ Common Removal Mistakes
 
 ### **Index Shifting During Removal**
 \`\`\`java
@@ -385,7 +385,7 @@ public class IndexShifting {
 
         System.out.println("Original: " + list);
 
-        // ❌ Wrong: Removing in forward loop (skips elements)
+        // âŒ Wrong: Removing in forward loop (skips elements)
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).equals("B") || list.get(i).equals("D")) {
                 list.remove(i);
@@ -398,7 +398,7 @@ public class IndexShifting {
         // Reset list
         list = new ArrayList<>(Arrays.asList("A", "B", "C", "D"));
 
-        // ✅ Correct: Remove from end to beginning
+        // âœ… Correct: Remove from end to beginning
         for (int i = list.size() - 1; i >= 0; i--) {
             if (list.get(i).equals("B") || list.get(i).equals("D")) {
                 list.remove(i);
@@ -445,7 +445,7 @@ public class FixedSizeListRemoval {
 
 ---
 
-## 🎯 Removal Best Practices
+## ðŸŽ¯ Removal Best Practices
 
 ### **1. Choose the Right Removal Method**
 \`\`\`java
@@ -482,7 +482,7 @@ public class SafeConcurrentRemoval {
             "keep", "remove", "keep", "remove", "keep"
         ));
 
-        // ✅ Safe removal during iteration
+        // âœ… Safe removal during iteration
         Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()) {
             if (iterator.next().equals("remove")) {
@@ -490,7 +490,7 @@ public class SafeConcurrentRemoval {
             }
         }
 
-        // ✅ Alternative: Collect indices to remove
+        // âœ… Alternative: Collect indices to remove
         List<String> list2 = new ArrayList<>(Arrays.asList(
             "keep", "remove", "keep", "remove", "keep"
         ));
@@ -518,7 +518,7 @@ public class ValidationBeforeRemoval {
     public static void main(String[] args) {
         List<String> list = new ArrayList<>(Arrays.asList("A", "B", "C"));
 
-        // ✅ Check before removing
+        // âœ… Check before removing
         String toRemove = "D";
         if (list.contains(toRemove)) {
             list.remove(toRemove);
@@ -527,7 +527,7 @@ public class ValidationBeforeRemoval {
             System.out.println("Element not found: " + toRemove);
         }
 
-        // ✅ Safe index removal
+        // âœ… Safe index removal
         int indexToRemove = 5;
         if (indexToRemove >= 0 && indexToRemove < list.size()) {
             String removed = list.remove(indexToRemove);
@@ -541,8 +541,9 @@ public class ValidationBeforeRemoval {
 }
 \`\`\`
 
-Removing elements from ArrayLists requires careful consideration of performance and safety. Always choose the appropriate removal method and handle concurrent modification exceptions properly! 🗑️`
+Removing elements from ArrayLists requires careful consideration of performance and safety. Always choose the appropriate removal method and handle concurrent modification exceptions properly! ðŸ—‘ï¸`
 };
+
 
 
 

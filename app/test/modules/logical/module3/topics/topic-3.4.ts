@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_4: SubLesson = {
   id: "3.4",
   title: 'Double Row Seating',
   status: 'completed',
-  content: `# 📊 Double Row Seating
+  content: "`# ðŸ“Š Double Row Seating
 
 Double row seating arrangements involve two parallel rows of people facing each other. These problems are more complex than single-row arrangements and require understanding both intra-row and inter-row relationships. Master the techniques for solving two-row facing arrangements.
 
 ---
 
-## 🎯 Understanding Double Row Arrangements
+## ðŸŽ¯ Understanding Double Row Arrangements
 
 ### **What are Double Row Arrangements?**
 Double row arrangements consist of two parallel rows with people facing each other. These problems test your ability to:
@@ -27,7 +27,7 @@ Double row arrangements consist of two parallel rows with people facing each oth
 
 ---
 
-## 🧩 Basic Double Row Concepts
+## ðŸ§© Basic Double Row Concepts
 
 ### **Arrangement Structure**
 Row 1: A B C D E  (facing Row 2)
@@ -46,7 +46,7 @@ Row 2: F G H I J  (facing Row 1)
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Visualize the Setup**
 - Draw two parallel lines
@@ -70,7 +70,7 @@ Row 2: F G H I J  (facing Row 1)
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Facing-Based**
 **Direct facing relationships**
@@ -92,12 +92,12 @@ Row 2: F G H I J  (facing Row 1)
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Facing Matrix Method**
 Row 1: A B C
 Row 2: D E F
-Facing: A↔D, B↔E, C↔F
+Facing: Aâ†”D, Bâ†”E, Câ†”F
 
 ### **2. Position Grid Method**
 - Create 2xN grid
@@ -111,7 +111,7 @@ Facing: A↔D, B↔E, C↔F
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Basic Facing**
 **Conditions:**
@@ -142,7 +142,7 @@ Row 2: T ? U ?
 
 ---
 
-## 🔍 Advanced Double Row Concepts
+## ðŸ” Advanced Double Row Concepts
 
 ### **Cross-Row Relationships**
 - Adjacent to facing person
@@ -161,7 +161,7 @@ Row 2: T ? U ?
 
 ---
 
-## 📊 Position Analysis Methods
+## ðŸ“Š Position Analysis Methods
 
 ### **Facing Position Logic**
 - **Direct Facing**: Same column position
@@ -180,23 +180,23 @@ Row 2: T ? U ?
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Facing Confusion**
-❌ Mixing up who faces whom
-✅ Always mark facing relationships clearly
+âŒ Mixing up who faces whom
+âœ… Always mark facing relationships clearly
 
 ### **Pitfall 2: Row Assignment Errors**
-❌ Placing people in wrong rows
-✅ Verify row assignments carefully
+âŒ Placing people in wrong rows
+âœ… Verify row assignments carefully
 
 ### **Pitfall 3: Adjacent Misinterpretation**
-❌ Confusing same-row vs cross-row adjacent
-✅ Distinguish between row relationships
+âŒ Confusing same-row vs cross-row adjacent
+âœ… Distinguish between row relationships
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Create Facing Map**
 - Draw two parallel rows
@@ -215,7 +215,7 @@ Row 2: T ? U ?
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - 4-6 people total
@@ -234,7 +234,7 @@ Row 2: T ? U ?
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Draw Clear Diagrams**: Two parallel lines with facing indicators
 2. **Mark Facing Relationships**: Use arrows or direct lines
@@ -245,7 +245,7 @@ Row 2: T ? U ?
 
 ---
 
-## 🧩 Practice Questions
+## ðŸ§© Practice Questions
 
 ### **Question 1**
 **Conditions:**
@@ -282,5 +282,5 @@ Row 2: T ? U ?
 
 **What is the position of G?**
 
-**Master double row seating arrangements for complex logical reasoning! 📊✨**`
+**Master double row seating arrangements for complex logical reasoning! ðŸ“Šâœ¨**`"
 };

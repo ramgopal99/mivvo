@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_1: SubLesson = {
   id: "4.1",
-  title: 'PUZZLES (Aptitude – Exam-Oriented Topics)',
+  title: 'PUZZLES (Aptitude â€“ Exam-Oriented Topics)',
   status: 'completed',
-  content: `# 🧩 PUZZLES (Aptitude – Exam-Oriented Topics)
+  content: "`# ðŸ§© PUZZLES (Aptitude â€“ Exam-Oriented Topics)
 
 Welcome to the comprehensive Puzzles module! This exam-oriented section covers all types of logical puzzles that appear frequently in competitive examinations. Master various puzzle-solving techniques, analytical reasoning methods, and complex problem-solving scenarios to excel in banking, SSC, railway, and other competitive exams.
 
 ---
 
-## 🎯 Understanding Logical Puzzles
+## ðŸŽ¯ Understanding Logical Puzzles
 
 ### **What are Logical Puzzles?**
 Logical puzzles involve complex reasoning scenarios that require systematic analysis, deduction, and problem-solving skills. These problems test your ability to:
@@ -27,7 +27,7 @@ Logical puzzles involve complex reasoning scenarios that require systematic anal
 
 ---
 
-## 🧩 Types of Logical Puzzles
+## ðŸ§© Types of Logical Puzzles
 
 ### **Arrangement-Based Puzzles**
 **Organizing elements in specific orders or patterns**
@@ -61,7 +61,7 @@ Logical puzzles involve complex reasoning scenarios that require systematic anal
 
 ---
 
-## 📊 Competitive Exam Relevance
+## ðŸ“Š Competitive Exam Relevance
 
 ### **Major Exams Featuring Puzzles**
 - **Banking Exams** (IBPS, SBI): 15-20 marks per exam
@@ -81,7 +81,7 @@ Logical puzzles involve complex reasoning scenarios that require systematic anal
 
 ---
 
-## 🎯 Core Puzzle-Solving Skills
+## ðŸŽ¯ Core Puzzle-Solving Skills
 
 ### **1. Information Analysis**
 **Breaking down complex information**
@@ -109,7 +109,7 @@ Logical puzzles involve complex reasoning scenarios that require systematic anal
 
 ---
 
-## 🛠️ Problem-Solving Framework
+## ðŸ› ï¸ Problem-Solving Framework
 
 ### **Step 1: Read and Understand**
 - Carefully read all given information
@@ -133,7 +133,7 @@ Logical puzzles involve complex reasoning scenarios that require systematic anal
 
 ---
 
-## 📈 Difficulty Levels in Puzzles
+## ðŸ“ˆ Difficulty Levels in Puzzles
 
 ### **Easy Level (30-40%)**
 - Simple puzzles with few variables
@@ -152,7 +152,7 @@ Logical puzzles involve complex reasoning scenarios that require systematic anal
 
 ---
 
-## 🎯 Common Puzzle Categories
+## ðŸŽ¯ Common Puzzle Categories
 
 ### **Floor-Based Puzzles**
 Multi-floor building arrangements with various constraints and relationships.
@@ -177,7 +177,7 @@ Combination of multiple puzzle types requiring integrated reasoning.
 
 ---
 
-## 📊 Time Management Strategies
+## ðŸ“Š Time Management Strategies
 
 ### **Puzzle Allocation Time**
 - **Simple Puzzles**: 5-7 minutes
@@ -192,7 +192,7 @@ Combination of multiple puzzle types requiring integrated reasoning.
 
 ---
 
-## 🚀 Preparation Strategy
+## ðŸš€ Preparation Strategy
 
 ### **Phase 1: Foundation Building**
 - Learn basic puzzle types
@@ -214,7 +214,7 @@ Combination of multiple puzzle types requiring integrated reasoning.
 
 ---
 
-## 📚 Recommended Resources
+## ðŸ“š Recommended Resources
 
 ### **Practice Platforms**
 - **Online Platforms**: Testbook, Adda247, Unacademy
@@ -229,7 +229,7 @@ Combination of multiple puzzle types requiring integrated reasoning.
 
 ---
 
-## 🎯 Success Factors
+## ðŸŽ¯ Success Factors
 
 ### **1. Systematic Approach**
 - Always organize information first
@@ -253,27 +253,27 @@ Combination of multiple puzzle types requiring integrated reasoning.
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Poor Organization**
-❌ Starting to solve without organizing information
-✅ Always create tables/diagrams first
+âŒ Starting to solve without organizing information
+âœ… Always create tables/diagrams first
 
 ### **Mistake 2: Incomplete Reading**
-❌ Missing important constraints or conditions
-✅ Read all information multiple times
+âŒ Missing important constraints or conditions
+âœ… Read all information multiple times
 
 ### **Mistake 3: Wrong Assumptions**
-❌ Making unstated assumptions
-✅ Stick to given information only
+âŒ Making unstated assumptions
+âœ… Stick to given information only
 
 ### **Mistake 4: Time Pressure Errors**
-❌ Rushing through complex puzzles
-✅ Manage time strategically
+âŒ Rushing through complex puzzles
+âœ… Manage time strategically
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Organize First**: Spend time creating tables and diagrams
 2. **Start Simple**: Begin with puzzles having definite information
@@ -285,7 +285,7 @@ Combination of multiple puzzle types requiring integrated reasoning.
 
 ---
 
-## 🏆 Module Benefits
+## ðŸ† Module Benefits
 
 - **Complete Coverage**: All major puzzle types and techniques
 - **Exam-Oriented**: Focus on competitive exam patterns
@@ -294,11 +294,11 @@ Combination of multiple puzzle types requiring integrated reasoning.
 - **Time Management**: Speed improvement techniques
 - **Performance Tracking**: Detailed progress analysis
 
-**Master logical puzzles and enhance your analytical reasoning for exam success! 🧩✨**
+**Master logical puzzles and enhance your analytical reasoning for exam success! ðŸ§©âœ¨**
 
 ---
 
-## 🔍 What You'll Learn Next
+## ðŸ” What You'll Learn Next
 
 This module covers comprehensive logical puzzle topics:
 
@@ -311,5 +311,5 @@ This module covers comprehensive logical puzzle topics:
 - **Assignment Puzzles** - Task and role allocation
 - **Order & Ranking Puzzles** - Position-based ranking problems
 - **Age-Based Puzzles** - Chronological relationship puzzles
-- **Mixed Logical Puzzles** - Integrated complex scenarios`
+- **Mixed Logical Puzzles** - Integrated complex scenarios`"
 };

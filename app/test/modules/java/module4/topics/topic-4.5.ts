@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_5: SubLesson = {
   id: "4.5",
   title: 'Map Operations',
   status: 'completed',
-  content: `# 🔄 Map Operations in Java
+  content: "`# ðŸ”„ Map Operations in Java
 
 Map operations encompass a wide range of techniques for working with key-value data, from iteration and transformation to complex data processing. Mastering these operations is key to effective Java development.
 
 ---
 
-## 🔄 Iteration Techniques
+## ðŸ”„ Iteration Techniques
 
 ### **Iterating Over Map Entries**
-\`\`\`java
+\`"\`\`java
 import java.util.*;
 
 public class MapIteration {
@@ -64,7 +64,7 @@ public class FunctionalIteration {
         System.out.println("\\n=== Entry Set Stream ===");
         scores.entrySet().stream()
             .forEach(entry -> System.out.println(
-                entry.getKey() + " → " + entry.getValue()));
+                entry.getKey() + " â†’ " + entry.getValue()));
 
         // Filter and collect
         Map<String, Integer> highScores = scores.entrySet().stream()
@@ -81,7 +81,7 @@ public class FunctionalIteration {
 
 ---
 
-## 🔄 Transformation Operations
+## ðŸ”„ Transformation Operations
 
 ### **Transforming Keys and Values**
 \`\`\`java
@@ -144,7 +144,7 @@ public class TypeConversions {
 
 ---
 
-## 🔍 Search and Filter Operations
+## ðŸ” Search and Filter Operations
 
 ### **Finding Specific Entries**
 \`\`\`java
@@ -238,7 +238,7 @@ public class AdvancedFiltering {
 
 ---
 
-## 🔄 Sorting Operations
+## ðŸ”„ Sorting Operations
 
 ### **Sorting by Keys**
 \`\`\`java
@@ -299,7 +299,7 @@ public class SortingByValues {
 
 ---
 
-## 🔄 Aggregation Operations
+## ðŸ”„ Aggregation Operations
 
 ### **Calculating Statistics**
 \`\`\`java
@@ -416,7 +416,7 @@ public class GroupingOperations {
 
 ---
 
-## 🔄 Merging and Combining Maps
+## ðŸ”„ Merging and Combining Maps
 
 ### **Merging Multiple Maps**
 \`\`\`java
@@ -470,7 +470,7 @@ public class MergingMaps {
 
 ---
 
-## 🎯 Advanced Map Operations
+## ðŸŽ¯ Advanced Map Operations
 
 ### **Bi-directional Maps**
 \`\`\`java
@@ -494,7 +494,7 @@ public class BidirectionalOperations {
         Integer id = nameToId.get(name);
         String backToName = idToName.get(id);
 
-        System.out.println(name + " → " + id + " → " + backToName);
+        System.out.println(name + " â†’ " + id + " â†’ " + backToName);
     }
 }
 \`\`\`
@@ -542,7 +542,7 @@ public class MapComputations {
 
 ---
 
-## ⚠️ Operation Performance Considerations
+## âš ï¸ Operation Performance Considerations
 
 ### **Choosing the Right Map Implementation**
 \`\`\`java
@@ -583,8 +583,9 @@ public class PerformanceConsiderations {
 }
 \`\`\`
 
-Map operations in Java provide powerful ways to manipulate key-value data. From simple iterations to complex transformations and aggregations, understanding these operations enables efficient and elegant solutions! 🔄`
+Map operations in Java provide powerful ways to manipulate key-value data. From simple iterations to complex transformations and aggregations, understanding these operations enables efficient and elegant solutions! ðŸ”„`
 };
+
 
 
 

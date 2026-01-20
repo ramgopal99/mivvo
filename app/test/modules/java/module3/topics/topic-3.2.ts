@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_2: SubLesson = {
   id: "3.2",
   title: 'Creating ArrayLists',
   status: 'completed',
-  content: `# 📝 Creating ArrayLists in Java
+  content: "`# ðŸ“ Creating ArrayLists in Java
 
 ArrayList is the most commonly used implementation of the List interface in Java. It provides a dynamic array that can grow and shrink as needed, making it much more flexible than regular arrays.
 
 ---
 
-## 🏗️ ArrayList Basics
+## ðŸ—ï¸ ArrayList Basics
 
 ### **What is ArrayList?**
 ArrayList is a resizable array implementation of the List interface. It provides:
@@ -19,7 +19,7 @@ ArrayList is a resizable array implementation of the List interface. It provides
 - **Ordered**: Maintains insertion order
 - **Allows duplicates**: Same elements can be added multiple times
 
-\`\`\`java
+\`"\`\`java
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +65,7 @@ public class ArrayVsArrayList {
 
 ---
 
-## 🔧 Creating ArrayLists
+## ðŸ”§ Creating ArrayLists
 
 ### **Different Ways to Create ArrayList**
 \`\`\`java
@@ -109,12 +109,12 @@ public class CreatingArrayLists {
 \`\`\`java
 public class GenericsExample {
     public static void main(String[] args) {
-        // ✅ Generic ArrayList (recommended)
+        // âœ… Generic ArrayList (recommended)
         List<String> names = new ArrayList<>();
         names.add("Alice");
         // names.add(123);  // Compile-time error!
 
-        // ❌ Raw ArrayList (avoid in modern Java)
+        // âŒ Raw ArrayList (avoid in modern Java)
         List rawList = new ArrayList();  // Raw type
         rawList.add("String");
         rawList.add(123);  // Compiles but dangerous
@@ -129,7 +129,7 @@ public class GenericsExample {
 
 ---
 
-## ➕ Adding Elements
+## âž• Adding Elements
 
 ### **Basic Add Operations**
 \`\`\`java
@@ -176,7 +176,7 @@ public class AddingCollections {
 
 ---
 
-## 📖 Accessing Elements
+## ðŸ“– Accessing Elements
 
 ### **Get by Index**
 \`\`\`java
@@ -242,7 +242,7 @@ public class IteratingArrayList {
 
 ---
 
-## 🔍 Searching and Checking
+## ðŸ” Searching and Checking
 
 ### **Contains and Index Methods**
 \`\`\`java
@@ -295,7 +295,7 @@ public class SizeChecks {
 
 ---
 
-## 🔄 Converting Arrays to ArrayLists
+## ðŸ”„ Converting Arrays to ArrayLists
 
 ### **Arrays.asList() Method**
 \`\`\`java
@@ -332,7 +332,7 @@ public class ArrayToArrayList {
 
 ---
 
-## 📋 ArrayList Best Practices
+## ðŸ“‹ ArrayList Best Practices
 
 ### **1. Choose Appropriate Initial Capacity**
 \`\`\`java
@@ -357,10 +357,10 @@ public class CapacityBestPractice {
 \`\`\`java
 public class InterfaceBestPractice {
     public static void main(String[] args) {
-        // ✅ Good: Use interface type
+        // âœ… Good: Use interface type
         List<String> list = new ArrayList<>();
 
-        // ❌ Avoid: Use concrete type
+        // âŒ Avoid: Use concrete type
         ArrayList<String> arrayList = new ArrayList<>();
 
         // Benefits of interface types:
@@ -379,7 +379,7 @@ public class ConcurrentModification {
     public static void main(String[] args) {
         List<String> list = new ArrayList<>(Arrays.asList("A", "B", "C"));
 
-        // ❌ Dangerous: Modifying while iterating
+        // âŒ Dangerous: Modifying while iterating
         try {
             for (String item : list) {
                 if (item.equals("B")) {
@@ -390,7 +390,7 @@ public class ConcurrentModification {
             System.out.println("Exception: " + e.getClass().getSimpleName());
         }
 
-        // ✅ Safe: Use Iterator.remove()
+        // âœ… Safe: Use Iterator.remove()
         Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()) {
             String item = iterator.next();
@@ -403,8 +403,9 @@ public class ConcurrentModification {
 }
 \`\`\`
 
-ArrayList is your go-to choice for most list operations in Java. It provides fast access, dynamic sizing, and a rich set of methods for all your data manipulation needs! 🚀`
+ArrayList is your go-to choice for most list operations in Java. It provides fast access, dynamic sizing, and a rich set of methods for all your data manipulation needs! ðŸš€`
 };
+
 
 
 

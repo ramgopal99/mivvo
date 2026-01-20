@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_3: SubLesson = {
   id: "4.3",
   title: 'Error Detection',
   status: 'completed',
-  content: `# 🔍 Error Detection: Spotting Mistakes in Sentences
+  content: "`# ðŸ” Error Detection: Spotting Mistakes in Sentences
 
 Error detection involves identifying grammatical, structural, and usage errors in sentences. This skill is crucial for competitive exams where you must quickly spot and mark incorrect parts of sentences without necessarily providing corrections.
 
 ---
 
-## 🔍 WHAT IS ERROR DETECTION?
+## ðŸ” WHAT IS ERROR DETECTION?
 
 **Error detection** requires you to:
-- ✅ **Scan sentences** for grammatical mistakes
-- ✅ **Identify error types** and locations
-- ✅ **Mark incorrect portions** accurately
-- ✅ **Differentiate between** correct and incorrect usage
+- âœ… **Scan sentences** for grammatical mistakes
+- âœ… **Identify error types** and locations
+- âœ… **Mark incorrect portions** accurately
+- âœ… **Differentiate between** correct and incorrect usage
 
 ### Key Skills Tested:
 - **Grammar Rules**: Subject-verb agreement, tense, pronouns
@@ -26,15 +26,15 @@ Error detection involves identifying grammatical, structural, and usage errors i
 
 ---
 
-## 🎯 COMMON ERROR CATEGORIES
+## ðŸŽ¯ COMMON ERROR CATEGORIES
 
 ### 1. **Subject-Verb Agreement Errors**
 **Subject and verb must agree in number and person**
 
 **Error Examples:**
-- ❌ The students **was** studying hard. (plural subject, singular verb)
-- ❌ Each of the boys **play** cricket. (singular subject "each", plural verb)
-- ❌ Neither tea nor coffee **are** available. (compound subject, wrong verb)
+- âŒ The students **was** studying hard. (plural subject, singular verb)
+- âŒ Each of the boys **play** cricket. (singular subject "each", plural verb)
+- âŒ Neither tea nor coffee **are** available. (compound subject, wrong verb)
 
 **Quick Check:** Count the subject - singular = is/was, plural = are/were
 
@@ -42,9 +42,9 @@ Error detection involves identifying grammatical, structural, and usage errors i
 **Tense must be consistent and logical**
 
 **Error Examples:**
-- ❌ He **goes** to school and **studied** there yesterday. (mixed tenses)
-- ❌ I **will have completed** the work by tomorrow. (incorrect perfect future)
-- ❌ She **has been working** here since 5 years. (wrong preposition with present perfect continuous)
+- âŒ He **goes** to school and **studied** there yesterday. (mixed tenses)
+- âŒ I **will have completed** the work by tomorrow. (incorrect perfect future)
+- âŒ She **has been working** here since 5 years. (wrong preposition with present perfect continuous)
 
 **Quick Check:** Ensure all verbs match the time frame described
 
@@ -52,9 +52,9 @@ Error detection involves identifying grammatical, structural, and usage errors i
 **Pronouns must agree with antecedents and be unambiguous**
 
 **Error Examples:**
-- ❌ The teacher gave **their** book to the students. (singular antecedent, plural pronoun)
-- ❌ **One** should do **his** duty. (gender-specific pronoun)
-- ❌ She is taller than **me**. (wrong case - should be "I")
+- âŒ The teacher gave **their** book to the students. (singular antecedent, plural pronoun)
+- âŒ **One** should do **his** duty. (gender-specific pronoun)
+- âŒ She is taller than **me**. (wrong case - should be "I")
 
 **Quick Check:** Subject pronouns (I, he, she) vs Object pronouns (me, him, her)
 
@@ -62,9 +62,9 @@ Error detection involves identifying grammatical, structural, and usage errors i
 **Wrong preposition for the context**
 
 **Error Examples:**
-- ❌ He is interested **at** mathematics. (should be "in")
-- ❌ She arrived **on** 5 o'clock. (should be "at")
-- ❌ The gift is **for** you. (correct - no error)
+- âŒ He is interested **at** mathematics. (should be "in")
+- âŒ She arrived **on** 5 o'clock. (should be "at")
+- âŒ The gift is **for** you. (correct - no error)
 
 **Quick Check:** Common combinations like interested **in**, depend **on**, good **at**
 
@@ -72,9 +72,9 @@ Error detection involves identifying grammatical, structural, and usage errors i
 **Incorrect use of a/an/the or missing articles**
 
 **Error Examples:**
-- ❌ He is **a** honest man. (should be "an" before vowel sound)
-- ❌ **The** honesty is best policy. (should be no article)
-- ❌ I saw **a** elephant. (correct - no error)
+- âŒ He is **a** honest man. (should be "an" before vowel sound)
+- âŒ **The** honesty is best policy. (should be no article)
+- âŒ I saw **a** elephant. (correct - no error)
 
 **Quick Check:** A (consonant), An (vowel), The (specific), None (general plural)
 
@@ -82,9 +82,9 @@ Error detection involves identifying grammatical, structural, and usage errors i
 **Wrong form or incorrect usage**
 
 **Error Examples:**
-- ❌ She sings **beautiful**. (should be "beautifully" - adverb)
-- ❌ He is **more taller** than me. (double comparative)
-- ❌ This is the **best** of all. (correct - no error)
+- âŒ She sings **beautiful**. (should be "beautifully" - adverb)
+- âŒ He is **more taller** than me. (double comparative)
+- âŒ This is the **best** of all. (correct - no error)
 
 **Quick Check:** Describe nouns = adjectives, describe verbs = adverbs
 
@@ -92,9 +92,9 @@ Error detection involves identifying grammatical, structural, and usage errors i
 **Similar elements must have parallel structure**
 
 **Error Examples:**
-- ❌ He likes **reading**, **to write**, and **swimming**. (mixed forms)
-- ❌ The job requires **hard work**, **dedication**, and **being honest**. (inconsistent structure)
-- ❌ She **enjoys** **reading**, **writing**, and **to dance**. (mixed forms)
+- âŒ He likes **reading**, **to write**, and **swimming**. (mixed forms)
+- âŒ The job requires **hard work**, **dedication**, and **being honest**. (inconsistent structure)
+- âŒ She **enjoys** **reading**, **writing**, and **to dance**. (mixed forms)
 
 **Quick Check:** List items should be grammatically similar
 
@@ -102,9 +102,9 @@ Error detection involves identifying grammatical, structural, and usage errors i
 **Modifiers must clearly modify the intended word**
 
 **Error Examples:**
-- ❌ **Walking down the street**, the trees looked beautiful. (dangling modifier)
-- ❌ I saw **a man** with a telescope **running** down the road. (misplaced modifier)
-- ❌ **Having finished** the homework, the TV was turned on. (dangling modifier)
+- âŒ **Walking down the street**, the trees looked beautiful. (dangling modifier)
+- âŒ I saw **a man** with a telescope **running** down the road. (misplaced modifier)
+- âŒ **Having finished** the homework, the TV was turned on. (dangling modifier)
 
 **Quick Check:** Modifier should touch what it modifies
 
@@ -112,9 +112,9 @@ Error detection involves identifying grammatical, structural, and usage errors i
 **Incorrect word for the context**
 
 **Error Examples:**
-- ❌ He **advised** me to be careful. (correct - but context might make it wrong)
-- ❌ The **affect** of the drug was positive. (should be "effect")
-- ❌ She **accepted** the gift. (correct - but might be wrong in context)
+- âŒ He **advised** me to be careful. (correct - but context might make it wrong)
+- âŒ The **affect** of the drug was positive. (should be "effect")
+- âŒ She **accepted** the gift. (correct - but might be wrong in context)
 
 **Quick Check:** Consider meaning, collocation, and context
 
@@ -122,15 +122,15 @@ Error detection involves identifying grammatical, structural, and usage errors i
 **Missing or incorrect punctuation**
 
 **Error Examples:**
-- ❌ I like tea and coffee. (run-on - needs comma)
-- ❌ It's a beautiful day. (correct)
-- ❌ The boys hat is red. (missing apostrophe)
+- âŒ I like tea and coffee. (run-on - needs comma)
+- âŒ It's a beautiful day. (correct)
+- âŒ The boys hat is red. (missing apostrophe)
 
 **Quick Check:** Read aloud to check natural pauses
 
 ---
 
-## 🛠️ DETECTION STRATEGY
+## ðŸ› ï¸ DETECTION STRATEGY
 
 ### Systematic Approach:
 1. **Read the entire sentence** first for overall meaning
@@ -143,15 +143,15 @@ Error detection involves identifying grammatical, structural, and usage errors i
 8. **Scan for punctuation problems**
 
 ### Common Error Patterns:
-- ✅ **S-V Agreement**: Plural subjects often get singular verbs
-- ✅ **Tense Mix**: Present + Past in same sentence
-- ✅ **Pronoun Case**: Object form used as subject
-- ✅ **Preposition**: Wrong word in common phrases
-- ✅ **Parallelism**: Mixed gerunds and infinitives
+- âœ… **S-V Agreement**: Plural subjects often get singular verbs
+- âœ… **Tense Mix**: Present + Past in same sentence
+- âœ… **Pronoun Case**: Object form used as subject
+- âœ… **Preposition**: Wrong word in common phrases
+- âœ… **Parallelism**: Mixed gerunds and infinitives
 
 ---
 
-## ⚠️ FREQUENTLY TESTED ERRORS
+## âš ï¸ FREQUENTLY TESTED ERRORS
 
 ### High-Error Zones:
 1. **Compound Subjects**: And, or, nor, either...or, neither...nor
@@ -161,13 +161,13 @@ Error detection involves identifying grammatical, structural, and usage errors i
 5. **Conditional Sentences**: If clauses with tense issues
 
 ### "No Error" Sentences:
-- ✅ Some sentences have no grammatical errors
-- ✅ Don't force an error where none exists
-- ✅ Check all rules before concluding "No Error"
+- âœ… Some sentences have no grammatical errors
+- âœ… Don't force an error where none exists
+- âœ… Check all rules before concluding "No Error"
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Subject-Verb Agreement
 **Spot the error (if any):**
@@ -255,7 +255,7 @@ Error detection involves identifying grammatical, structural, and usage errors i
 
 ---
 
-## 📊 ERROR DETECTION CHART
+## ðŸ“Š ERROR DETECTION CHART
 
 | Error Type | Common Indicators | Quick Check |
 |---|---|---|
@@ -270,15 +270,15 @@ Error detection involves identifying grammatical, structural, and usage errors i
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Underlined Portion**: Error is usually in the underlined part
 2. **Single Error**: Usually only one grammatical mistake
 3. **No Error Option**: Some sentences are grammatically correct
 4. **Context Clues**: Use surrounding words to spot errors
 
-### 💡 Quick Detection Strategy:
+### ðŸ’¡ Quick Detection Strategy:
 1. **Scan for S-V agreement** (most common error)
 2. **Check tense consistency** throughout sentence
 3. **Verify pronoun usage** and references
@@ -286,14 +286,14 @@ Error detection involves identifying grammatical, structural, and usage errors i
 5. **Look for parallel structure** issues
 6. **Check modifier placement**
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Eliminate obviously correct** parts quickly
 - **Focus on underlined portions** first
 - **Use process of elimination** - rule out correct options
 - **Trust grammatical instinct** - if it sounds wrong, check why
 - **Look for common patterns** - same errors repeat
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Practice 15-20 sentences** daily
 - **Learn error patterns** - master common mistakes
 - **Time yourself** - aim for 30 seconds per sentence
@@ -301,20 +301,21 @@ Error detection involves identifying grammatical, structural, and usage errors i
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Master core rules** - S-V agreement, tense, pronouns
 2. **Practice systematically** - One error type per session
 3. **Learn from examples** - Study both errors and correct sentences
 4. **Build speed** - Time yourself on practice sets
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Error detection is like proofreading:**
-- 🔍 **Systematic scanning** - Check each element methodically
-- 🏹 **Target common errors** - S-V agreement, tense, pronouns
-- ✅ **Verify "No Error"** - Don't force mistakes where none exist
-- 🎯 **Spot and mark** - Identify location and type of error
+- ðŸ” **Systematic scanning** - Check each element methodically
+- ðŸ¹ **Target common errors** - S-V agreement, tense, pronouns
+- âœ… **Verify "No Error"** - Don't force mistakes where none exist
+- ðŸŽ¯ **Spot and mark** - Identify location and type of error
 
-**Master error detection and become a grammar detective!** 🔍✨`
+**Master error detection and become a grammar detective!** ðŸ”âœ¨`"
 };
+

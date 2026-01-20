@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_2: SubLesson = {
   id: "8.2",
   title: 'Type Conversion Functions',
   status: 'demo',
-  content: `# 🔄 Type Conversion Functions
+  content: "`# ðŸ”„ Type Conversion Functions
 
 Convert between different data types using Python's built-in conversion functions!
 
 ---
 
-## 🎯 Basic Type Conversions
+## ðŸŽ¯ Basic Type Conversions
 
 ### **int() - Convert to Integer**
-\`\`\`python
+\`"\`\`python
 # From string
 print(int("42"))        # 42
 print(int("101", 2))    # 5 (binary to decimal)
@@ -59,7 +59,7 @@ print(str({"a": 1}))     # "{'a': 1}"
 
 ---
 
-## 📦 Collection Conversions
+## ðŸ“¦ Collection Conversions
 
 ### **list() - Convert to List**
 \`\`\`python
@@ -111,7 +111,7 @@ print(set({"a": 1, "b": 2}))      # {'a', 'b'}
 
 ---
 
-## 🎯 Advanced Conversions
+## ðŸŽ¯ Advanced Conversions
 
 ### **bool() - Convert to Boolean**
 \`\`\`python
@@ -160,7 +160,7 @@ print(bytes(5))       # b'\x00\x00\x00\x00\x00'
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **Data Processing Pipeline**
 \`\`\`python
@@ -232,7 +232,7 @@ for value in test_values:
 
 ---
 
-## ⚠️ Conversion Gotchas
+## âš ï¸ Conversion Gotchas
 
 ### **Precision Loss**
 \`\`\`python
@@ -274,7 +274,7 @@ print(bool(None))     # False
 
 ---
 
-## ✅ Best Practices
+## âœ… Best Practices
 
 1. **Handle conversion errors** - Use try-except for user input
 2. **Know precision limits** - Float conversions can lose precision
@@ -282,6 +282,7 @@ print(bool(None))     # False
 4. **Check before converting** - Validate input when possible
 5. **Document expected types** - Make conversion requirements clear
 
-Type conversions are essential for data processing! 🔄`
+Type conversions are essential for data processing! ðŸ”„`
 };
+
 

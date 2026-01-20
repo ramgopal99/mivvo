@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_1: SubLesson = {
   id: "2.1",
   title: 'Parts of Speech',
   status: 'completed',
-  content: `# 🔤 Parts of Speech: Building Blocks of English
+  content: "`# ðŸ”¤ Parts of Speech: Building Blocks of English
 
 Parts of speech are the fundamental categories into which words are classified based on their grammatical function. Understanding these eight parts of speech is essential for proper sentence construction and clear communication.
 
 ---
 
-## 📋 Overview of Parts of Speech
+## ðŸ“‹ Overview of Parts of Speech
 
 Every word in English belongs to one of eight parts of speech:
 
@@ -27,7 +27,7 @@ Every word in English belongs to one of eight parts of speech:
 
 ---
 
-## 🏷️ 1. NOUNS
+## ðŸ·ï¸ 1. NOUNS
 
 **Definition**: Words that name people, places, things, ideas, or qualities.
 
@@ -57,7 +57,7 @@ Every word in English belongs to one of eight parts of speech:
 
 ---
 
-## 👥 2. PRONOUNS
+## ðŸ‘¥ 2. PRONOUNS
 
 **Definition**: Words that replace nouns to avoid repetition.
 
@@ -94,7 +94,7 @@ Every word in English belongs to one of eight parts of speech:
 
 ---
 
-## ⚡ 3. VERBS
+## âš¡ 3. VERBS
 
 **Definition**: Words that express action, occurrence, or state of being.
 
@@ -126,7 +126,7 @@ Every word in English belongs to one of eight parts of speech:
 
 ---
 
-## 🎨 4. ADJECTIVES
+## ðŸŽ¨ 4. ADJECTIVES
 
 **Definition**: Words that describe or modify nouns or pronouns.
 
@@ -161,7 +161,7 @@ Every word in English belongs to one of eight parts of speech:
 
 ---
 
-## 🏃 5. ADVERBS
+## ðŸƒ 5. ADVERBS
 
 **Definition**: Words that modify verbs, adjectives, other adverbs, or entire sentences.
 
@@ -201,7 +201,7 @@ Every word in English belongs to one of eight parts of speech:
 
 ---
 
-## 📍 6. PREPOSITIONS
+## ðŸ“ 6. PREPOSITIONS
 
 **Definition**: Words that show relationships between nouns/pronouns and other words in a sentence.
 
@@ -223,7 +223,7 @@ Every word in English belongs to one of eight parts of speech:
 
 ---
 
-## 🔗 7. CONJUNCTIONS
+## ðŸ”— 7. CONJUNCTIONS
 
 **Definition**: Words that join words, phrases, clauses, or sentences.
 
@@ -248,7 +248,7 @@ Every word in English belongs to one of eight parts of speech:
 
 ---
 
-## 😲 8. INTERJECTIONS
+## ðŸ˜² 8. INTERJECTIONS
 
 **Definition**: Words or phrases that express strong emotion or surprise.
 
@@ -272,7 +272,7 @@ Every word in English belongs to one of eight parts of speech:
 
 ---
 
-## 🧩 IDENTIFICATION PRACTICE
+## ðŸ§© IDENTIFICATION PRACTICE
 
 **Identify the parts of speech in these sentences:**
 
@@ -287,7 +287,7 @@ Every word in English belongs to one of eight parts of speech:
 
 ---
 
-## 📝 KEY TAKEAWAYS
+## ðŸ“ KEY TAKEAWAYS
 
 1. **Nouns** name people, places, things, and ideas
 2. **Pronouns** replace nouns to avoid repetition
@@ -298,5 +298,6 @@ Every word in English belongs to one of eight parts of speech:
 7. **Conjunctions** join words, phrases, and clauses
 8. **Interjections** express strong emotions
 
-**Master these building blocks and you'll understand English sentence structure!** 🏗️`
+**Master these building blocks and you'll understand English sentence structure!** ðŸ—ï¸`"
 };
+

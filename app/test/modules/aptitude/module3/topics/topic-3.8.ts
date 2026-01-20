@@ -1,58 +1,58 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_8: SubLesson = {
   id: "3.8",
   title: 'Square Roots and Cube Roots',
   status: 'completed',
-  content: `# 🔢 Square Roots and Cube Roots
+  content: "`# ðŸ”¢ Square Roots and Cube Roots
 
 Square roots and cube roots are essential concepts in mathematics, appearing frequently in aptitude exams. Understanding how to calculate, simplify, and work with roots is crucial for solving complex problems involving radicals.
 
 ---
 
-## 🎯 What are Square Roots and Cube Roots?
+## ðŸŽ¯ What are Square Roots and Cube Roots?
 
-### **Square Root (√)**
+### **Square Root (âˆš)**
 The square root of a number x is a number that, when multiplied by itself, gives x.
-√x = y means y × y = x
+âˆšx = y means y Ã— y = x
 
 **Examples:**
-- √4 = 2 (since 2 × 2 = 4)
-- √9 = 3 (since 3 × 3 = 9)
-- √16 = 4 (since 4 × 4 = 16)
+- âˆš4 = 2 (since 2 Ã— 2 = 4)
+- âˆš9 = 3 (since 3 Ã— 3 = 9)
+- âˆš16 = 4 (since 4 Ã— 4 = 16)
 
-### **Cube Root (∛)**
+### **Cube Root (âˆ›)**
 The cube root of a number x is a number that, when multiplied by itself three times, gives x.
-∛x = y means y × y × y = x
+âˆ›x = y means y Ã— y Ã— y = x
 
 **Examples:**
-- ∛8 = 2 (since 2 × 2 × 2 = 8)
-- ∛27 = 3 (since 3 × 3 × 3 = 27)
-- ∛64 = 4 (since 4 × 4 × 4 = 64)
+- âˆ›8 = 2 (since 2 Ã— 2 Ã— 2 = 8)
+- âˆ›27 = 3 (since 3 Ã— 3 Ã— 3 = 27)
+- âˆ›64 = 4 (since 4 Ã— 4 Ã— 4 = 64)
 
 ---
 
-## 📊 Properties of Roots
+## ðŸ“Š Properties of Roots
 
 ### **Square Root Properties**
-- √0 = 0
-- √1 = 1
-- √(a²) = a (if a ≥ 0)
-- √(a × b) = √a × √b
-- √(a/b) = √a / √b
-- √(a² × b²) = a × b (absolute values)
+- âˆš0 = 0
+- âˆš1 = 1
+- âˆš(aÂ²) = a (if a â‰¥ 0)
+- âˆš(a Ã— b) = âˆša Ã— âˆšb
+- âˆš(a/b) = âˆša / âˆšb
+- âˆš(aÂ² Ã— bÂ²) = a Ã— b (absolute values)
 
 ### **Cube Root Properties**
-- ∛0 = 0
-- ∛1 = 1
-- ∛(a³) = a
-- ∛(a × b) = ∛a × ∛b
-- ∛(a/b) = ∛a / ∛b
-- ∛(a³ × b³) = a × b
+- âˆ›0 = 0
+- âˆ›1 = 1
+- âˆ›(aÂ³) = a
+- âˆ›(a Ã— b) = âˆ›a Ã— âˆ›b
+- âˆ›(a/b) = âˆ›a / âˆ›b
+- âˆ›(aÂ³ Ã— bÂ³) = a Ã— b
 
 ---
 
-## 🧮 Calculating Roots
+## ðŸ§® Calculating Roots
 
 ### **Prime Factorization Method**
 Express number as product of primes, then group factors.
@@ -62,26 +62,26 @@ Express number as product of primes, then group factors.
 - Take one factor from each pair
 
 **Examples:**
-- √144 = √(2² × 3² × 2²) = √(2² × 2² × 3²) = 2 × 2 × 3 = 12
-- √196 = √(2² × 7²) = 2 × 7 = 14
+- âˆš144 = âˆš(2Â² Ã— 3Â² Ã— 2Â²) = âˆš(2Â² Ã— 2Â² Ã— 3Â²) = 2 Ã— 2 Ã— 3 = 12
+- âˆš196 = âˆš(2Â² Ã— 7Â²) = 2 Ã— 7 = 14
 
 #### **Cube Roots:**
 - Group factors in threes
 - Take one factor from each triple
 
 **Examples:**
-- ∛512 = ∛(2³ × 2³ × 2³ × 2²) = ∛(2^(9+2)) = ∛(2^9 × 2^2) = 2^(9÷3) × ∛2² = 2³ × ∛4 = 8 × ∛4
-- ∛729 = ∛(3^6) = ∛(3^6) = 3^(6÷3) = 3² = 9
+- âˆ›512 = âˆ›(2Â³ Ã— 2Â³ Ã— 2Â³ Ã— 2Â²) = âˆ›(2^(9+2)) = âˆ›(2^9 Ã— 2^2) = 2^(9Ã·3) Ã— âˆ›2Â² = 2Â³ Ã— âˆ›4 = 8 Ã— âˆ›4
+- âˆ›729 = âˆ›(3^6) = âˆ›(3^6) = 3^(6Ã·3) = 3Â² = 9
 
 ---
 
-## 🔍 Perfect Squares and Cubes
+## ðŸ” Perfect Squares and Cubes
 
 ### **Perfect Squares (1-100)**
 1, 4, 9, 16, 25, 36, 49, 64, 81, 100
 
 ### **Perfect Cubes (1-1000)**
-1³ = 1, 2³ = 8, 3³ = 27, 4³ = 64, 5³ = 125, 6³ = 216, 7³ = 343, 8³ = 512, 9³ = 729, 10³ = 1000
+1Â³ = 1, 2Â³ = 8, 3Â³ = 27, 4Â³ = 64, 5Â³ = 125, 6Â³ = 216, 7Â³ = 343, 8Â³ = 512, 9Â³ = 729, 10Â³ = 1000
 
 ### **Square Root Patterns**
 - Numbers ending with 2, 3, 7, 8 have irrational square roots
@@ -95,136 +95,136 @@ Express number as product of primes, then group factors.
 
 ---
 
-## 🧠 Simplification of Roots
+## ðŸ§  Simplification of Roots
 
 ### **Simplifying Square Roots**
-Express as √(perfect square × other factor)
+Express as âˆš(perfect square Ã— other factor)
 
 **Examples:**
-- √12 = √(4 × 3) = √4 × √3 = 2√3
-- √18 = √(9 × 2) = √9 × √2 = 3√2
-- √50 = √(25 × 2) = √25 × √2 = 5√2
+- âˆš12 = âˆš(4 Ã— 3) = âˆš4 Ã— âˆš3 = 2âˆš3
+- âˆš18 = âˆš(9 Ã— 2) = âˆš9 Ã— âˆš2 = 3âˆš2
+- âˆš50 = âˆš(25 Ã— 2) = âˆš25 Ã— âˆš2 = 5âˆš2
 
 ### **Simplifying Cube Roots**
-Express as ∛(perfect cube × other factor)
+Express as âˆ›(perfect cube Ã— other factor)
 
 **Examples:**
-- ∛16 = ∛(8 × 2) = ∛8 × ∛2 = 2∛2
-- ∛54 = ∛(27 × 2) = ∛27 × ∛2 = 3∛2
-- ∛40 = ∛(8 × 5) = ∛8 × ∛5 = 2∛5
+- âˆ›16 = âˆ›(8 Ã— 2) = âˆ›8 Ã— âˆ›2 = 2âˆ›2
+- âˆ›54 = âˆ›(27 Ã— 2) = âˆ›27 Ã— âˆ›2 = 3âˆ›2
+- âˆ›40 = âˆ›(8 Ã— 5) = âˆ›8 Ã— âˆ›5 = 2âˆ›5
 
 ---
 
-## 🔧 Operations with Roots
+## ðŸ”§ Operations with Roots
 
 ### **Addition and Subtraction**
 Only like terms can be added/subtracted.
 
 **Examples:**
-- 2√3 + 3√3 = 5√3
-- 4√5 - 2√5 = 2√5
-- √2 + √3 = √2 + √3 (cannot simplify)
+- 2âˆš3 + 3âˆš3 = 5âˆš3
+- 4âˆš5 - 2âˆš5 = 2âˆš5
+- âˆš2 + âˆš3 = âˆš2 + âˆš3 (cannot simplify)
 
 ### **Multiplication**
-√a × √b = √(a × b)
+âˆša Ã— âˆšb = âˆš(a Ã— b)
 
 **Examples:**
-- √2 × √3 = √6
-- √5 × √5 = √25 = 5
-- 2√3 × 3√2 = 2×3 × √(3×2) = 6√6
+- âˆš2 Ã— âˆš3 = âˆš6
+- âˆš5 Ã— âˆš5 = âˆš25 = 5
+- 2âˆš3 Ã— 3âˆš2 = 2Ã—3 Ã— âˆš(3Ã—2) = 6âˆš6
 
 ### **Division**
-√a ÷ √b = √(a/b)
+âˆša Ã· âˆšb = âˆš(a/b)
 
 **Examples:**
-- √8 ÷ √2 = √(8/2) = √4 = 2
-- √15 ÷ √3 = √(15/3) = √5
-- √12 ÷ √3 = √(12/3) = √4 = 2
+- âˆš8 Ã· âˆš2 = âˆš(8/2) = âˆš4 = 2
+- âˆš15 Ã· âˆš3 = âˆš(15/3) = âˆš5
+- âˆš12 Ã· âˆš3 = âˆš(12/3) = âˆš4 = 2
 
 ---
 
-## 🎯 Rationalization
+## ðŸŽ¯ Rationalization
 
 ### **Rationalizing Denominators**
 Multiply numerator and denominator by conjugate to eliminate square roots in denominator.
 
 **Examples:**
-- \\frac{1}{\\sqrt{2}} × \\frac{\\sqrt{2}}{\\sqrt{2}} = \\frac{\\sqrt{2}}{2}
-- \\frac{3}{\\sqrt{5} + 2} × \\frac{\\sqrt{5} - 2}{\\sqrt{5} - 2} = \\frac{3(\\sqrt{5} - 2)}{5 - 4} = 3(\\sqrt{5} - 2)
+- \\frac{1}{\\sqrt{2}} Ã— \\frac{\\sqrt{2}}{\\sqrt{2}} = \\frac{\\sqrt{2}}{2}
+- \\frac{3}{\\sqrt{5} + 2} Ã— \\frac{\\sqrt{5} - 2}{\\sqrt{5} - 2} = \\frac{3(\\sqrt{5} - 2)}{5 - 4} = 3(\\sqrt{5} - 2)
 
 ### **Conjugate Pairs**
-For expressions like a + b√c, the conjugate is a - b√c.
+For expressions like a + bâˆšc, the conjugate is a - bâˆšc.
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
-### ❌ **Wrong Simplification**
-\`\`\`
-Wrong: √12 = √(2×6) = √2 × √6
-Right: √12 = √(4×3) = 2√3
-\`\`\`
-
-### ❌ **Adding Unlike Terms**
-\`\`\`
-Wrong: √2 + √3 = √5
-Right: √2 + √3 cannot be simplified
+### âŒ **Wrong Simplification**
+\`"\`\`
+Wrong: âˆš12 = âˆš(2Ã—6) = âˆš2 Ã— âˆš6
+Right: âˆš12 = âˆš(4Ã—3) = 2âˆš3
 \`\`\`
 
-### ❌ **Cube Root Confusion**
+### âŒ **Adding Unlike Terms**
 \`\`\`
-Wrong: ∛8 = 4 (because 4² = 16, close to 8)
-Right: ∛8 = 2 (because 2³ = 8)
+Wrong: âˆš2 + âˆš3 = âˆš5
+Right: âˆš2 + âˆš3 cannot be simplified
 \`\`\`
 
-### ❌ **Negative Square Roots**
+### âŒ **Cube Root Confusion**
 \`\`\`
-Wrong: √(-4) = -2
-Right: √(-4) is not real (imaginary number)
+Wrong: âˆ›8 = 4 (because 4Â² = 16, close to 8)
+Right: âˆ›8 = 2 (because 2Â³ = 8)
+\`\`\`
+
+### âŒ **Negative Square Roots**
+\`\`\`
+Wrong: âˆš(-4) = -2
+Right: âˆš(-4) is not real (imaginary number)
 \`\`\`
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Square Roots:**
-1. √36 = ?
-2. √144 = ?
-3. √(49 × 4) = ?
-4. Simplify √75
+1. âˆš36 = ?
+2. âˆš144 = ?
+3. âˆš(49 Ã— 4) = ?
+4. Simplify âˆš75
 
 ### **Cube Roots:**
-1. ∛125 = ?
-2. ∛216 = ?
-3. ∛(27 × 8) = ?
-4. Simplify ∛40
+1. âˆ›125 = ?
+2. âˆ›216 = ?
+3. âˆ›(27 Ã— 8) = ?
+4. Simplify âˆ›40
 
 ### **Operations:**
-1. 3√2 + 2√2 = ?
-2. √8 × √2 = ?
-3. √12 ÷ √3 = ?
+1. 3âˆš2 + 2âˆš2 = ?
+2. âˆš8 Ã— âˆš2 = ?
+3. âˆš12 Ã· âˆš3 = ?
 4. Rationalize \\frac{1}{\\sqrt{3}}
 
 ### **Complex Problems:**
-1. Find √(144 ÷ 9) × √16
-2. Simplify ∛(512 ÷ 8)
-3. Calculate 2√5 × 3√5
+1. Find âˆš(144 Ã· 9) Ã— âˆš16
+2. Simplify âˆ›(512 Ã· 8)
+3. Calculate 2âˆš5 Ã— 3âˆš5
 4. Rationalize \\frac{5}{\\sqrt{6} + 1}
 
 ### **Word Problems:**
-1. Area of square is 49 cm². Find side length.
-2. Volume of cube is 512 cm³. Find side length.
+1. Area of square is 49 cmÂ². Find side length.
+2. Volume of cube is 512 cmÂ³. Find side length.
 
 **Answers:**
-Square: 6, 12, √196 = 14, 5√3
-Cube: 5, 6, ∛216 = 6, 2∛5
-Operations: 5√2, √16 = 4, √4 = 2, \\frac{\\sqrt{3}}{3}
-Complex: √16 × 4 = 16, ∛64 = 4, 30, \\frac{5(\\sqrt{6} - 1)}{5} = \\sqrt{6} - 1
+Square: 6, 12, âˆš196 = 14, 5âˆš3
+Cube: 5, 6, âˆ›216 = 6, 2âˆ›5
+Operations: 5âˆš2, âˆš16 = 4, âˆš4 = 2, \\frac{\\sqrt{3}}{3}
+Complex: âˆš16 Ã— 4 = 16, âˆ›64 = 4, 30, \\frac{5(\\sqrt{6} - 1)}{5} = \\sqrt{6} - 1
 Word: 7 cm, 8 cm
 
 ---
 
-## 🎓 Pro Tips for Exams
+## ðŸŽ“ Pro Tips for Exams
 
 1. **Memorize perfect squares and cubes** up to 20
 2. **Look for perfect square/cube factors** first
@@ -234,6 +234,7 @@ Word: 7 cm, 8 cm
 6. **Use prime factorization** for complex roots
 7. **Practice mental calculations** for common roots
 
-Master square roots and cube roots to handle radical problems with confidence! 🏆`
+Master square roots and cube roots to handle radical problems with confidence! ðŸ†`
 };
+
 

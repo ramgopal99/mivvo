@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_2: SubLesson = {
   id: "12.2",
   title: 'Types of Mixtures',
   status: 'completed',
-  content: `# 🥛 Types of Mixtures
+  content: "`# ðŸ¥› Types of Mixtures
 
 Learn different types of mixtures and their specific characteristics - crucial for understanding mixture problems in aptitude exams.
 
 ---
 
-## 🎯 Classification of Mixtures
+## ðŸŽ¯ Classification of Mixtures
 
 Mixtures can be classified based on the physical states of ingredients and their properties.
 
 ---
 
-## 📊 Liquid-Liquid Mixtures
+## ðŸ“Š Liquid-Liquid Mixtures
 
 ### **Characteristics**
 - Both ingredients are liquids
@@ -31,7 +31,7 @@ Mixtures can be classified based on the physical states of ingredients and their
 ### **Examples**
 **Milk and Water Mixture**
 - Ratio 3:2, total 25 liters
-- Milk quantity = (3/5) × 25 = 15 liters
+- Milk quantity = (3/5) Ã— 25 = 15 liters
 
 **Oil and Water**
 - Immiscible mixture
@@ -39,7 +39,7 @@ Mixtures can be classified based on the physical states of ingredients and their
 
 ---
 
-## 📊 Solid-Liquid Mixtures
+## ðŸ“Š Solid-Liquid Mixtures
 
 ### **Characteristics**
 - One solid ingredient, one liquid ingredient
@@ -54,7 +54,7 @@ Mixtures can be classified based on the physical states of ingredients and their
 ### **Examples**
 **Salt Solution**
 - 100g salt in 1 liter water = 10% solution
-- Concentration = (salt mass / total mass) × 100%
+- Concentration = (salt mass / total mass) Ã— 100%
 
 **Sugar Syrup**
 - Used in cooking and beverages
@@ -62,7 +62,7 @@ Mixtures can be classified based on the physical states of ingredients and their
 
 ---
 
-## 📊 Other Mixture Types
+## ðŸ“Š Other Mixture Types
 
 ### **Solid-Solid Mixtures**
 - Both ingredients are solids
@@ -80,17 +80,17 @@ Mixtures can be classified based on the physical states of ingredients and their
 
 ---
 
-## 🧮 Type-Specific Calculations
+## ðŸ§® Type-Specific Calculations
 
 ### **Liquid-Liquid Mixtures**
-\`\`\`
+\`"\`\`
 Volume may not be additive due to mixing
-Actual volume = Volume A + Volume B ± Contraction/Expansion
+Actual volume = Volume A + Volume B Â± Contraction/Expansion
 \`\`\`
 
 ### **Solid-Liquid Mixtures**
 \`\`\`
-Concentration = (Mass of solute / Total mass) × 100%
+Concentration = (Mass of solute / Total mass) Ã— 100%
 Density changes with concentration
 \`\`\`
 
@@ -102,13 +102,13 @@ Properties depend on constituent ratios
 
 ---
 
-## 🎯 Examples by Type
+## ðŸŽ¯ Examples by Type
 
 ### Example 1: Liquid-Liquid
 **2 liters milk at Rs. 40/liter mixed with 3 liters water. Find mixture cost.**
 
 **Solution:**
-- Milk cost = 2 × 40 = Rs. 80
+- Milk cost = 2 Ã— 40 = Rs. 80
 - Water cost = 0 (free)
 - Total cost = Rs. 80
 - Total volume = 5 liters
@@ -119,19 +119,19 @@ Properties depend on constituent ratios
 
 **Solution:**
 - Total mass = 200 + 800 = 1000g
-- Concentration = (200/1000) × 100% = 20%
+- Concentration = (200/1000) Ã— 100% = 20%
 
 ### Example 3: Alloy Mixture
 **5 kg copper at Rs. 200/kg mixed with 3 kg zinc at Rs. 150/kg. Average price?**
 
 **Solution:**
-- Total cost = (5×200) + (3×150) = 1000 + 450 = Rs. 1450
+- Total cost = (5Ã—200) + (3Ã—150) = 1000 + 450 = Rs. 1450
 - Total weight = 8 kg
 - Average price = 1450/8 = Rs. 181.25/kg
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Liquid-Liquid Mixtures**
 \`\`\`
@@ -141,20 +141,20 @@ Cost calculation: Same as any mixture
 
 ### **Solid-Liquid Mixtures**
 \`\`\`
-Concentration = (Solute mass / Solution mass) × 100%
-For dilute solutions: ≈ (Solute / Solvent) × 100%
+Concentration = (Solute mass / Solution mass) Ã— 100%
+For dilute solutions: â‰ˆ (Solute / Solvent) Ã— 100%
 \`\`\`
 
 ### **Quick Type Identification**
 \`\`\`
-- Both measurable by volume → Liquid-liquid
-- One by weight, one by volume → Solid-liquid
-- Both by weight → Solid-solid
+- Both measurable by volume â†’ Liquid-liquid
+- One by weight, one by volume â†’ Solid-liquid
+- Both by weight â†’ Solid-solid
 \`\`\`
 
 ---
 
-## 🔢 Advanced Mixture Types
+## ðŸ”¢ Advanced Mixture Types
 
 ### **Emulsions**
 - Oil + Water with emulsifier
@@ -170,28 +170,28 @@ For dilute solutions: ≈ (Solute / Solvent) × 100%
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 4: Multiple Liquids
 **3 liters A at Rs. 20/liter, 2 liters B at Rs. 30/liter, 1 liter C at Rs. 40/liter. Average price?**
 
 **Solution:**
-- Total cost = (3×20) + (2×30) + (1×40) = 60 + 60 + 40 = Rs. 160
+- Total cost = (3Ã—20) + (2Ã—30) + (1Ã—40) = 60 + 60 + 40 = Rs. 160
 - Total volume = 6 liters
-- Average price = 160/6 ≈ Rs. 26.67/liter
+- Average price = 160/6 â‰ˆ Rs. 26.67/liter
 
 ### Example 5: Density Consideration
-**500g copper (density 9 g/cm³) mixed with 500g aluminum (density 2.7 g/cm³). Average density?**
+**500g copper (density 9 g/cmÂ³) mixed with 500g aluminum (density 2.7 g/cmÂ³). Average density?**
 
 **Solution:**
-- Copper volume = 500/9 ≈ 55.56 cm³
-- Aluminum volume = 500/2.7 ≈ 185.19 cm³
-- Total volume = 55.56 + 185.19 ≈ 240.75 cm³
-- Average density = 1000/240.75 ≈ 4.15 g/cm³
+- Copper volume = 500/9 â‰ˆ 55.56 cmÂ³
+- Aluminum volume = 500/2.7 â‰ˆ 185.19 cmÂ³
+- Total volume = 55.56 + 185.19 â‰ˆ 240.75 cmÂ³
+- Average density = 1000/240.75 â‰ˆ 4.15 g/cmÂ³
 
 ---
 
-## 🚨 Mixture Type Mistakes
+## ðŸš¨ Mixture Type Mistakes
 
 1. **Volume Additivity**: Assuming volumes always add up
 2. **Unit Confusion**: Mixing mass and volume units
@@ -201,7 +201,7 @@ For dilute solutions: ≈ (Solute / Solvent) × 100%
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** 4L milk @ Rs.50/L + 6L water. Average price?
 **2.** 300g salt in 700g water. Concentration %?
@@ -213,7 +213,7 @@ For dilute solutions: ≈ (Solute / Solvent) × 100%
 
 ---
 
-## 🎓 Mixture Type Strategies
+## ðŸŽ“ Mixture Type Strategies
 
 1. **Identify mixture type** from given data
 2. **Convert to consistent units** (mass or volume)
@@ -221,5 +221,6 @@ For dilute solutions: ≈ (Solute / Solvent) × 100%
 4. **Consider special properties** (density, solubility)
 5. **Verify calculations** with common sense
 
-Master mixture types and you'll handle all mixture problems with confidence! 🏆`
+Master mixture types and you'll handle all mixture problems with confidence! ðŸ†`
 };
+

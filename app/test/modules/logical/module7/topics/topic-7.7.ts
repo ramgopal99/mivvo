@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_7: SubLesson = {
   id: "7.7",
   title: 'Direction Sense with Diagrams',
   status: 'completed',
-  content: `# 📊 Direction Sense with Diagrams
+  content: "`# ðŸ“Š Direction Sense with Diagrams
 
 Direction sense with diagrams involves visual problem-solving techniques, requiring the ability to interpret and create spatial representations of movement sequences. These problems combine logical reasoning with visual-spatial skills, making them both challenging and scoring in competitive examinations.
 
 ---
 
-## 🎯 Understanding Visual Direction Problems
+## ðŸŽ¯ Understanding Visual Direction Problems
 
 ### **What are Diagram-Based Direction Problems?**
 These problems require creating or interpreting visual representations of directional movements, positions, and relationships. They test your ability to:
@@ -27,44 +27,44 @@ These problems require creating or interpreting visual representations of direct
 
 ---
 
-## 🧩 Diagram Creation Techniques
+## ðŸ§© Diagram Creation Techniques
 
 ### **Basic Diagram Setup**
 
 #### **1. Establish Reference Axes**
 
         North  
-         ↑  
-         │  
-West ←───┼───→ East  
-         │  
-         ↓  
+         â†‘  
+         â”‚  
+West â†â”€â”€â”€â”¼â”€â”€â”€â†’ East  
+         â”‚  
+         â†“  
         South
 
 #### **2. Mark Starting Position**
 
-Starting point: (0,0) marked with •  
+Starting point: (0,0) marked with â€¢  
 Reference: "Home" or "Starting Point"
 
 #### **3. Plot Movement Vectors**
 
 Each movement shown as arrow:  
-→ East movement  
-← West movement  
-↑ North movement  
-↓ South movement
+â†’ East movement  
+â† West movement  
+â†‘ North movement  
+â†“ South movement
 
 ---
 
-## 📊 Common Diagram Patterns
+## ðŸ“Š Common Diagram Patterns
 
 ### **Pattern 1: Movement Path Diagram**
 *"A man walks 5m North, turns right, walks 3m, turns left, walks 4m"*
 
 **Diagram Representation:**
 
-Start • → 5m North ↑ → Turn Right → 3m East → → Turn Left → 4m North ↑  
-Final position marked with ▲
+Start â€¢ â†’ 5m North â†‘ â†’ Turn Right â†’ 3m East â†’ â†’ Turn Left â†’ 4m North â†‘  
+Final position marked with â–²
 
 ### **Pattern 2: Position Relationship Diagram**
 *"A is 10m North of B, C is 15m East of B"*
@@ -72,10 +72,10 @@ Final position marked with ▲
 **Diagram:**
 
     C  
-    ↗ 15m  
-  ↗  
-A • 10m ↑  
-  ↓  
+    â†— 15m  
+  â†—  
+A â€¢ 10m â†‘  
+  â†“  
   B
 
 ### **Pattern 3: Complex Path with Landmarks**
@@ -84,12 +84,12 @@ A • 10m ↑
 **Visual Layout:**
 
 School  
-  ↑ 500m  
-Home • → 300m Market
+  â†‘ 500m  
+Home â€¢ â†’ 300m Market
 
 ---
 
-## 🛠️ Diagram-Based Problem Solving
+## ðŸ› ï¸ Diagram-Based Problem Solving
 
 ### **Framework for Visual Problems**
 
@@ -126,7 +126,7 @@ Home • → 300m Market
 
 ---
 
-## 🎯 Common Diagram Question Types
+## ðŸŽ¯ Common Diagram Question Types
 
 ### **Type 1: Path Visualization**
 *"Draw the path taken by the person and find final position"*
@@ -162,7 +162,7 @@ Home • → 300m Market
 
 ---
 
-## 📐 Scale and Proportion in Diagrams
+## ðŸ“ Scale and Proportion in Diagrams
 
 ### **Scale Selection Guidelines**
 - **Small distances**: Use 1 unit = 1 meter
@@ -176,7 +176,7 @@ Home • → 300m Market
 
 ---
 
-## 🎯 Advanced Diagram Problems
+## ðŸŽ¯ Advanced Diagram Problems
 
 ### **Problem 1: Multi-Point Navigation**
 *"Navigate between multiple locations with optimal path"*
@@ -204,41 +204,41 @@ Home • → 300m Market
 
 ---
 
-## 🧮 Coordinate System Integration
+## ðŸ§® Coordinate System Integration
 
 ### **Grid-Based Diagrams**
 Y (North)  
 ^  
-│  
-│  • (2,3)  
-│    ↗  
-│  ↗  
-│• (0,0) ────> X (East)
+â”‚  
+â”‚  â€¢ (2,3)  
+â”‚    â†—  
+â”‚  â†—  
+â”‚â€¢ (0,0) â”€â”€â”€â”€> X (East)
 
 ### **Position Calculation**
-- **Point A**: (x₁, y₁)
-- **Point B**: (x₂, y₂)
-- **Distance**: √((x₂-x₁)² + (y₂-y₁)²)
+- **Point A**: (xâ‚, yâ‚)
+- **Point B**: (xâ‚‚, yâ‚‚)
+- **Distance**: âˆš((xâ‚‚-xâ‚)Â² + (yâ‚‚-yâ‚)Â²)
 - **Direction**: Based on coordinate differences
 
 ---
 
-## 🎯 Visual Problem Patterns
+## ðŸŽ¯ Visual Problem Patterns
 
 ### **Pattern 1: Clockwise Movement**
 
-Start → East → South → West → North → East...  
+Start â†’ East â†’ South â†’ West â†’ North â†’ East...  
 Clockwise around a central point
 
 ### **Pattern 2: Rectangular Path**
 
-Forward → Right → Back → Left → Forward...  
+Forward â†’ Right â†’ Back â†’ Left â†’ Forward...  
 Rectangular movement pattern
 
 ### **Pattern 3: Diagonal Movement**
 
 Northeast, Southwest movements  
-45° angle paths requiring trigonometry
+45Â° angle paths requiring trigonometry
 
 ### **Pattern 4: Circular Movement**
 
@@ -247,7 +247,7 @@ Angular displacement calculations
 
 ---
 
-## 📊 Diagram Interpretation Skills
+## ðŸ“Š Diagram Interpretation Skills
 
 ### **Skill 1: Reading Existing Diagrams**
 - Interpret given visual representations
@@ -266,27 +266,27 @@ Angular displacement calculations
 
 ---
 
-## 🚨 Common Mistakes in Diagram Problems
+## ðŸš¨ Common Mistakes in Diagram Problems
 
 ### **Mistake 1: Poor Scale Selection**
-❌ Inappropriate scale making diagram unclear
-✅ Choose scale that fits all elements clearly
+âŒ Inappropriate scale making diagram unclear
+âœ… Choose scale that fits all elements clearly
 
 ### **Mistake 2: Incorrect Angle Representation**
-❌ Wrong directional relationships
-✅ Maintain accurate angular relationships
+âŒ Wrong directional relationships
+âœ… Maintain accurate angular relationships
 
 ### **Mistake 3: Missing Reference Points**
-❌ No clear starting reference
-✅ Always establish clear reference system
+âŒ No clear starting reference
+âœ… Always establish clear reference system
 
 ### **Mistake 4: Proportional Errors**
-❌ Distorted distance relationships
-✅ Maintain accurate proportions
+âŒ Distorted distance relationships
+âœ… Maintain accurate proportions
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Always Draw Reference Axes**: North-South and East-West lines
 2. **Use Consistent Scale**: Same scale throughout the diagram
@@ -299,7 +299,7 @@ Angular displacement calculations
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Simple Path Diagram**
 *"Start at home, walk 100m North to school, 200m East to market, 100m South to park"*
@@ -307,10 +307,10 @@ Angular displacement calculations
 **Diagram Creation:**
 
 Park  
-  ↓ 100m  
-Market ←── 200m ── School  
-  ↑ 100m           ↑  
-Home •             Home
+  â†“ 100m  
+Market â†â”€â”€ 200m â”€â”€ School  
+  â†‘ 100m           â†‘  
+Home â€¢             Home
 
 ### **Example 2: Relative Position Problem**
 *"A is 5km North of B, C is 3km East of A, D is 4km South of C"*
@@ -318,22 +318,22 @@ Home •             Home
 **Visual Layout:**
 
     D  
-    ↓ 4km  
-  C • → 3km  
-    ↑ 5km  
-  A •  
-    ↑  
-  B •
+    â†“ 4km  
+  C â€¢ â†’ 3km  
+    â†‘ 5km  
+  A â€¢  
+    â†‘  
+  B â€¢
 
 ### **Example 3: Distance Calculation**
 *"Find shortest distance from A to C in the above arrangement"*
 
 **Solution:**
-- A: (0,5), C: (3,5+3=8), Distance: √((3-0)² + (8-5)²) = √(9+9) = √18 = 3√2
+- A: (0,5), C: (3,5+3=8), Distance: âˆš((3-0)Â² + (8-5)Â²) = âˆš(9+9) = âˆš18 = 3âˆš2
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Distance Calculation**
 - Use diagrams to visualize Pythagorean applications
@@ -350,5 +350,5 @@ Home •             Home
 - Show directional connections between relatives
 - Visualize complex relationship networks
 
-**Master diagram-based direction sense to solve complex spatial reasoning problems! 📊✨**`
+**Master diagram-based direction sense to solve complex spatial reasoning problems! ðŸ“Šâœ¨**`"
 };

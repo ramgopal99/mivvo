@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_2: SubLesson = {
   id: "5.2",
   title: 'Paragraph Completion',
   status: 'completed',
-  content: `# 📝 Paragraph Completion: Filling Missing Pieces
+  content: "`# ðŸ“ Paragraph Completion: Filling Missing Pieces
 
 Paragraph Completion involves filling blanks in a paragraph with appropriate words, phrases, or sentences to maintain coherence and logical flow. This skill tests your understanding of context, vocabulary, and paragraph structure.
 
 ---
 
-## 🔍 WHAT IS PARAGRAPH COMPLETION?
+## ðŸ” WHAT IS PARAGRAPH COMPLETION?
 
 **Paragraph Completion** requires you to:
-- ✅ **Understand paragraph context** and main idea
-- ✅ **Identify blank requirements** (word type, meaning needed)
-- ✅ **Choose appropriate fillers** that maintain coherence
-- ✅ **Ensure logical flow** between sentences
+- âœ… **Understand paragraph context** and main idea
+- âœ… **Identify blank requirements** (word type, meaning needed)
+- âœ… **Choose appropriate fillers** that maintain coherence
+- âœ… **Ensure logical flow** between sentences
 
 ### Key Skills Tested:
 - **Contextual Understanding**: Grasp paragraph theme and tone
@@ -26,7 +26,7 @@ Paragraph Completion involves filling blanks in a paragraph with appropriate wor
 
 ---
 
-## 🎯 TYPES OF BLANKS
+## ðŸŽ¯ TYPES OF BLANKS
 
 ### 1. **Single Word Blanks**
 **Fill with one appropriate word**
@@ -64,7 +64,7 @@ The ________ of the new law will be ________ by the government next month.
 
 ---
 
-## 🛠️ COMPLETION STRATEGIES
+## ðŸ› ï¸ COMPLETION STRATEGIES
 
 ### Step-by-Step Approach:
 1. **Read the entire paragraph** to understand theme and context
@@ -75,14 +75,14 @@ The ________ of the new law will be ________ by the government next month.
 6. **Choose the most coherent** and grammatically correct option
 
 ### Contextual Clues:
-- ✅ **Words before blank**: Provide grammatical hints
-- ✅ **Words after blank**: Give meaning and flow clues
-- ✅ **Paragraph theme**: Helps choose topic-appropriate words
-- ✅ **Tone and style**: Formal, informal, technical, etc.
+- âœ… **Words before blank**: Provide grammatical hints
+- âœ… **Words after blank**: Give meaning and flow clues
+- âœ… **Paragraph theme**: Helps choose topic-appropriate words
+- âœ… **Tone and style**: Formal, informal, technical, etc.
 
 ---
 
-## 🎯 COMMON COMPLETION PATTERNS
+## ðŸŽ¯ COMMON COMPLETION PATTERNS
 
 ### Vocabulary-Based Completions:
 - **Synonyms/Antonyms**: Words with similar/opposite meanings
@@ -104,36 +104,36 @@ The ________ of the new law will be ________ by the government next month.
 
 ---
 
-## 📚 THEME-BASED COMPLETIONS
+## ðŸ“š THEME-BASED COMPLETIONS
 
 ### Science & Technology:
-- ✅ **Hypothesis, theory, experiment, phenomenon**
-- ✅ **Innovation, breakthrough, advancement, discovery**
-- ✅ **Sustainable, renewable, eco-friendly, biodegradable**
+- âœ… **Hypothesis, theory, experiment, phenomenon**
+- âœ… **Innovation, breakthrough, advancement, discovery**
+- âœ… **Sustainable, renewable, eco-friendly, biodegradable**
 
 ### Business & Economy:
-- ✅ **Profit, revenue, investment, entrepreneurship**
-- ✅ **Inflation, recession, fiscal, monetary**
-- ✅ **Stakeholder, shareholder, dividend, portfolio**
+- âœ… **Profit, revenue, investment, entrepreneurship**
+- âœ… **Inflation, recession, fiscal, monetary**
+- âœ… **Stakeholder, shareholder, dividend, portfolio**
 
 ### Environment & Ecology:
-- ✅ **Conservation, preservation, biodiversity, ecosystem**
-- ✅ **Pollution, deforestation, climate change, global warming**
-- ✅ **Sustainable, renewable, biodegradable, eco-friendly**
+- âœ… **Conservation, preservation, biodiversity, ecosystem**
+- âœ… **Pollution, deforestation, climate change, global warming**
+- âœ… **Sustainable, renewable, biodegradable, eco-friendly**
 
 ### Education & Learning:
-- ✅ **Curriculum, pedagogy, assessment, cognitive**
-- ✅ **Motivation, engagement, comprehension, retention**
-- ✅ **Holistic, interdisciplinary, experiential, collaborative**
+- âœ… **Curriculum, pedagogy, assessment, cognitive**
+- âœ… **Motivation, engagement, comprehension, retention**
+- âœ… **Holistic, interdisciplinary, experiential, collaborative**
 
 ### Health & Medicine:
-- ✅ **Diagnosis, prognosis, therapy, rehabilitation**
-- ✅ **Preventive, curative, palliative, holistic**
-- ✅ **Nutrition, immunity, metabolism, homeostasis**
+- âœ… **Diagnosis, prognosis, therapy, rehabilitation**
+- âœ… **Preventive, curative, palliative, holistic**
+- âœ… **Nutrition, immunity, metabolism, homeostasis**
 
 ---
 
-## ⚠️ COMPLETION PITFALLS
+## âš ï¸ COMPLETION PITFALLS
 
 ### Avoid Common Mistakes:
 1. **Ignoring Context**: Choosing words that fit grammatically but not thematically
@@ -143,15 +143,15 @@ The ________ of the new law will be ________ by the government next month.
 5. **Over-Specific Choices**: Too narrow for general context
 
 ### Check These Points:
-- ✅ **Grammatical Fit**: Correct part of speech, tense, agreement
-- ✅ **Contextual Relevance**: Fits paragraph theme and tone
-- ✅ **Logical Flow**: Maintains coherence with surrounding text
-- ✅ **Collocation**: Natural word partnerships
-- ✅ **Precision**: Exact meaning required, not approximate
+- âœ… **Grammatical Fit**: Correct part of speech, tense, agreement
+- âœ… **Contextual Relevance**: Fits paragraph theme and tone
+- âœ… **Logical Flow**: Maintains coherence with surrounding text
+- âœ… **Collocation**: Natural word partnerships
+- âœ… **Precision**: Exact meaning required, not approximate
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Single Word Completions
 **Complete the paragraph with appropriate words:**
@@ -215,7 +215,7 @@ The ________ of renewable energy sources has become increasingly important in re
 
 ---
 
-## 📊 COMPLETION TYPES SUMMARY
+## ðŸ“Š COMPLETION TYPES SUMMARY
 
 | Completion Type | Example | Key Focus |
 |---|---|---|
@@ -227,30 +227,30 @@ The ________ of renewable energy sources has become increasingly important in re
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Single/Multiple Blanks**: 1-4 blanks per paragraph
 2. **Theme-Based**: Science, environment, economy, etc.
 3. **Context Dependent**: Answer based on paragraph meaning
 4. **Vocabulary Heavy**: Tests advanced word knowledge
 5. **Logic Flow**: Maintains paragraph coherence
 
-### 💡 Quick Selection Strategy:
+### ðŸ’¡ Quick Selection Strategy:
 1. **Read paragraph first** - Understand theme and flow
 2. **Identify blank type** - Word, phrase, or connector needed
 3. **Check surrounding clues** - Words before/after blank
 4. **Test each option** - Which fits best contextually?
 5. **Verify coherence** - Read with choice to check flow
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Predict answer first** - Think what word fits before checking options
 - **Eliminate obviously wrong** - Grammar, context mismatches
 - **Look for keywords** - Theme indicators guide choices
 - **Check collocations** - Natural word partnerships
 - **Trust paragraph logic** - Answer must make overall sense
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Build vocabulary** - Learn 20-30 new words weekly
 - **Practice themes** - Focus on common exam topics
 - **Read actively** - Notice how authors use transitions
@@ -259,21 +259,22 @@ The ________ of renewable energy sources has become increasingly important in re
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Theme Vocabulary**: Learn words by subject areas
 2. **Context Practice**: Read paragraphs and predict missing words
 3. **Connector Mastery**: Learn transition words and phrases
 4. **Flow Awareness**: Understand paragraph structure patterns
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Paragraph completion is like gap-filling in stories:**
-- 📖 **Read the plot** - Understand paragraph theme and flow
-- 🔍 **Spot the gaps** - Identify what's missing (word, phrase, logic)
-- 🧩 **Find the piece** - Choose option that perfectly fits
-- ✅ **Check the fit** - Ensure smooth, logical continuation
-- 📚 **Complete the story** - Paragraph makes complete sense
+- ðŸ“– **Read the plot** - Understand paragraph theme and flow
+- ðŸ” **Spot the gaps** - Identify what's missing (word, phrase, logic)
+- ðŸ§© **Find the piece** - Choose option that perfectly fits
+- âœ… **Check the fit** - Ensure smooth, logical continuation
+- ðŸ“š **Complete the story** - Paragraph makes complete sense
 
-**Master paragraph completion and become a story architect!** 📖✨`
+**Master paragraph completion and become a story architect!** ðŸ“–âœ¨`"
 };
+

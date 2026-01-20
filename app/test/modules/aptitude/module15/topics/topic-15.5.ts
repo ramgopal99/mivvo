@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_5: SubLesson = {
   id: "15.5",
   title: 'Pie Charts',
   status: 'completed',
-  content: `# 🥧 Pie Charts Interpretation
+  content: "`# ðŸ¥§ Pie Charts Interpretation
 
 Master pie chart analysis! Pie charts excel at showing proportions and percentages. Learn to read sectors, calculate angles, and extract proportional insights from circular data representations.
 
 ---
 
-## 🎯 What are Pie Charts?
+## ðŸŽ¯ What are Pie Charts?
 
 **Pie Charts** (also called Circle Graphs) divide a circle into sectors where each sector's area represents a proportion of the whole. The size of each slice shows its relative importance.
 
@@ -29,25 +29,25 @@ Master pie chart analysis! Pie charts excel at showing proportions and percentag
 
 ---
 
-## 📊 Reading Pie Charts
+## ðŸ“Š Reading Pie Charts
 
 ### **Basic Components**
 
-\`\`\`
+\`"\`\`
 Market Share Distribution
 
         30% - Product A
-       ███
-   25% █    █ 20% - Product D
-   █         █
-  █    15%    █
- █      B       █
-█               █
-█       C       █
- █             █
-  █           █
-   █         █
-    ███████
+       â–ˆâ–ˆâ–ˆ
+   25% â–ˆ    â–ˆ 20% - Product D
+   â–ˆ         â–ˆ
+  â–ˆ    15%    â–ˆ
+ â–ˆ      B       â–ˆ
+â–ˆ               â–ˆ
+â–ˆ       C       â–ˆ
+ â–ˆ             â–ˆ
+  â–ˆ           â–ˆ
+   â–ˆ         â–ˆ
+    â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
     10% - Product E
 \`\`\`
 
@@ -59,7 +59,7 @@ Market Share Distribution
 
 ---
 
-## 🔍 Analysis Techniques
+## ðŸ” Analysis Techniques
 
 ### **Step 1: Understand the Total**
 - Read the title and total value
@@ -83,7 +83,7 @@ Market Share Distribution
 
 ---
 
-## 📈 Types of Pie Chart Questions
+## ðŸ“ˆ Types of Pie Chart Questions
 
 ### **1. Direct Value Reading**
 **"What percentage does Category A represent?"**
@@ -91,9 +91,9 @@ Market Share Distribution
 - Answer: Direct from chart
 
 ### **2. Total Calculation**
-**"If total sales are ₹10,000, what are sales of Category B?"**
+**"If total sales are â‚¹10,000, what are sales of Category B?"**
 - Find B's percentage
-- Calculate: (B%/100) × 10,000
+- Calculate: (B%/100) Ã— 10,000
 
 ### **3. Comparison Questions**
 **"How much more is Category A than Category C?"**
@@ -112,39 +112,39 @@ Market Share Distribution
 
 ### **6. Angle Calculations**
 **"What is the central angle for Category X?"**
-- Formula: (Value/Total) × 360°
+- Formula: (Value/Total) Ã— 360Â°
 - Calculate angle in degrees
 
 ---
 
-## 🎯 Sample Pie Chart Analysis
+## ðŸŽ¯ Sample Pie Chart Analysis
 
 ### **Expense Distribution**
 
 \`\`\`
-Monthly Expenses: ₹50,000
+Monthly Expenses: â‚¹50,000
 
         Rent - 35%
-       █████
-   25% █     █ 15% - Food
-   █         █
-  █    10%    █
- █      B       █
-█       U       █
-█      T       █
- █    I       █
-  █  L       █
-   █ I       █
-    ███████
+       â–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
+   25% â–ˆ     â–ˆ 15% - Food
+   â–ˆ         â–ˆ
+  â–ˆ    10%    â–ˆ
+ â–ˆ      B       â–ˆ
+â–ˆ       U       â–ˆ
+â–ˆ      T       â–ˆ
+ â–ˆ    I       â–ˆ
+  â–ˆ  L       â–ˆ
+   â–ˆ I       â–ˆ
+    â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
     15% - Others
 \`\`\`
 
 **Slice Values:**
-- Rent: 35% = ₹17,500
-- Utilities: 25% = ₹12,500
-- Food: 15% = ₹7,500
-- Bills: 10% = ₹5,000
-- Others: 15% = ₹7,500
+- Rent: 35% = â‚¹17,500
+- Utilities: 25% = â‚¹12,500
+- Food: 15% = â‚¹7,500
+- Bills: 10% = â‚¹5,000
+- Others: 15% = â‚¹7,500
 
 ### **Practice Questions**
 
@@ -155,18 +155,18 @@ Monthly Expenses: ₹50,000
 - 25% + 10% = 35%
 
 **3. If total expenses increase by 20%, what will be new rent amount?**
-- Current rent: ₹17,500
-- New rent: 17,500 × 1.20 = ₹21,000
+- Current rent: â‚¹17,500
+- New rent: 17,500 Ã— 1.20 = â‚¹21,000
 
 **4. What is the ratio of Food to Others?**
 - 15:15 = 1:1
 
 **5. What is the central angle for Rent?**
-- (35/100) × 360° = 126°
+- (35/100) Ã— 360Â° = 126Â°
 
 ---
 
-## 📊 Advanced Pie Chart Types
+## ðŸ“Š Advanced Pie Chart Types
 
 ### **1. Exploded Pie Chart**
 Slices pulled out for emphasis
@@ -175,16 +175,16 @@ Slices pulled out for emphasis
 Exploded View
 
     Category A
-       ███
-     █      █
-   █   40%    █
-  █            █
- █      B       █
-█       30%      █
- █              █
-  █            █
-   █          █
-     ███████
+       â–ˆâ–ˆâ–ˆ
+     â–ˆ      â–ˆ
+   â–ˆ   40%    â–ˆ
+  â–ˆ            â–ˆ
+ â–ˆ      B       â–ˆ
+â–ˆ       30%      â–ˆ
+ â–ˆ              â–ˆ
+  â–ˆ            â–ˆ
+   â–ˆ          â–ˆ
+     â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
      Category C
       30%
 \`\`\`
@@ -212,46 +212,46 @@ Ring-shaped with center removed
 
 ---
 
-## 🧮 Calculation Techniques
+## ðŸ§® Calculation Techniques
 
 ### **1. Finding Actual Values**
 **If total is given:**
-- Value = (Percentage/100) × Total
+- Value = (Percentage/100) Ã— Total
 
-**Example:** Total sales ₹1,00,000, A has 25%
-- A sales = (25/100) × 1,00,000 = ₹25,000
+**Example:** Total sales â‚¹1,00,000, A has 25%
+- A sales = (25/100) Ã— 1,00,000 = â‚¹25,000
 
 ### **2. Finding Percentages**
 **If actual values given:**
-- Percentage = (Value/Total) × 100
+- Percentage = (Value/Total) Ã— 100
 
-**Example:** A = ₹30,000, Total = ₹1,20,000
-- A% = (30,000/1,20,000) × 100 = 25%
+**Example:** A = â‚¹30,000, Total = â‚¹1,20,000
+- A% = (30,000/1,20,000) Ã— 100 = 25%
 
 ### **3. Finding Totals**
 **If one value and percentage given:**
-- Total = (Value × 100)/Percentage
+- Total = (Value Ã— 100)/Percentage
 
-**Example:** A = ₹40,000 at 20%
-- Total = (40,000 × 100)/20 = ₹2,00,000
+**Example:** A = â‚¹40,000 at 20%
+- Total = (40,000 Ã— 100)/20 = â‚¹2,00,000
 
 ### **4. Angle Calculations**
-**Central Angle = (Value/Total) × 360°**
+**Central Angle = (Value/Total) Ã— 360Â°**
 
 **Example:** Category with 30% share
-- Angle = (30/100) × 360° = 108°
+- Angle = (30/100) Ã— 360Â° = 108Â°
 
 ---
 
-## 🎯 Common Question Patterns
+## ðŸŽ¯ Common Question Patterns
 
 ### **Pattern 1: Value from Percentage**
 **"If total is X, what is value of category with Y%?"**
-- Formula: (Y/100) × X
+- Formula: (Y/100) Ã— X
 
 ### **Pattern 2: Percentage from Value**
 **"What percentage is category with value A of total T?"**
-- Formula: (A/T) × 100
+- Formula: (A/T) Ã— 100
 
 ### **Pattern 3: Combined Categories**
 **"What percentage is A + B + C together?"**
@@ -267,7 +267,7 @@ Ring-shaped with center removed
 
 ---
 
-## 🚀 Speed Reading Techniques
+## ðŸš€ Speed Reading Techniques
 
 ### **1. Visual Estimation**
 - Compare slice sizes quickly
@@ -280,7 +280,7 @@ Ring-shaped with center removed
 - Round for quick calculations
 
 ### **3. Angle Estimation**
-- 10% = 36°, 25% = 90°, 50% = 180°
+- 10% = 36Â°, 25% = 90Â°, 50% = 180Â°
 - Use these for quick checks
 
 ### **4. Ratio Calculation**
@@ -289,48 +289,48 @@ Ring-shaped with center removed
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Total Assumption**
-❌ Assuming 100% when not stated
+âŒ Assuming 100% when not stated
 - Always check if chart represents full circle
 
 ### **Mistake 2: Visual Distortion**
-❌ Judging by apparent size in 3D charts
+âŒ Judging by apparent size in 3D charts
 - Use percentages, not visual areas
 
 ### **Mistake 3: Missing Categories**
-❌ Forgetting "Others" or unlabeled slices
+âŒ Forgetting "Others" or unlabeled slices
 - Check all slices and legend
 
 ### **Mistake 4: Calculation Errors**
-❌ Wrong percentage: Value × 100 ÷ Total
-- Correct: (Value/Total) × 100
+âŒ Wrong percentage: Value Ã— 100 Ã· Total
+- Correct: (Value/Total) Ã— 100
 
 ### **Mistake 5: Unit Confusion**
-❌ Mixing rupees with percentages
+âŒ Mixing rupees with percentages
 - Convert to same units for calculations
 
 ---
 
-## 🎯 Practice Pie Charts
+## ðŸŽ¯ Practice Pie Charts
 
 ### **Chart 1: Budget Allocation**
 
 \`\`\`
-Annual Budget: ₹12,00,000
+Annual Budget: â‚¹12,00,000
 
       Salary - 40%
-     ████████
-   ███         ███
-  █     20%      █
- █   Education     █
-█         15%       █
-█      Savings      █
- █                 █
-  █               █
-   ███         ███
-     ████████
+     â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
+   â–ˆâ–ˆâ–ˆ         â–ˆâ–ˆâ–ˆ
+  â–ˆ     20%      â–ˆ
+ â–ˆ   Education     â–ˆ
+â–ˆ         15%       â–ˆ
+â–ˆ      Savings      â–ˆ
+ â–ˆ                 â–ˆ
+  â–ˆ               â–ˆ
+   â–ˆâ–ˆâ–ˆ         â–ˆâ–ˆâ–ˆ
+     â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
      Transport - 25%
 \`\`\`
 
@@ -345,14 +345,14 @@ Annual Budget: ₹12,00,000
 Market Share (%)
 
     Brand A - 35
-   ███████
- ███      ███
-█    25     █
-█  Brand B   █
-█            █
- █   20     █
-  █ Brand C █
-   ███████
+   â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
+ â–ˆâ–ˆâ–ˆ      â–ˆâ–ˆâ–ˆ
+â–ˆ    25     â–ˆ
+â–ˆ  Brand B   â–ˆ
+â–ˆ            â–ˆ
+ â–ˆ   20     â–ˆ
+  â–ˆ Brand C â–ˆ
+   â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
    Brand D - 20
 \`\`\`
 
@@ -363,7 +363,7 @@ Market Share (%)
 
 ---
 
-## 🎓 Pro Tips for Pie Charts
+## ðŸŽ“ Pro Tips for Pie Charts
 
 1. **Check if chart represents 100%** total
 2. **Read all labels and legend** carefully
@@ -375,7 +375,7 @@ Market Share (%)
 
 ---
 
-## 🔢 Pie Chart Analysis Framework
+## ðŸ”¢ Pie Chart Analysis Framework
 
 \`\`\`
 1. READ the title and total value
@@ -400,14 +400,14 @@ Market Share (%)
    - Ensure reasonableness
 \`\`\`
 
-Master pie chart interpretation and analyze proportions quickly from any circular chart! 🏆
+Master pie chart interpretation and analyze proportions quickly from any circular chart! ðŸ†
 
 **Answers for Practice Charts:**
-1. Education: 20% of ₹12,00,000 = ₹2,40,000
+1. Education: 20% of â‚¹12,00,000 = â‚¹2,40,000
 2. Transport + Savings: 25% + 15% = 40%
-3. New Salary: ₹4,80,000 × 1.10 = ₹5,28,000
+3. New Salary: â‚¹4,80,000 Ã— 1.10 = â‚¹5,28,000
 
 Market Share: 1. Brand A: 35%
 2. A:D = 35:20 = 7:4
-3. Brand B: 25% → (25/100)×360° = 90°`
+3. Brand B: 25% â†’ (25/100)Ã—360Â° = 90Â°`
 };

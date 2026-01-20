@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_9: SubLesson = {
   id: "8.9",
   title: 'Mixed Ranking Puzzles',
   status: 'completed',
-  content: `# 🧩 Mixed Ranking Puzzles
+  content: "`# ðŸ§© Mixed Ranking Puzzles
 
 Mixed ranking puzzles combine multiple ranking concepts and techniques, requiring integrated application of position calculations, comparative logic, and arrangement principles. These complex problems test comprehensive understanding of all ranking methodologies and appear frequently in advanced competitive exam sections.
 
 ---
 
-## 🎯 Understanding Mixed Ranking Puzzles
+## ðŸŽ¯ Understanding Mixed Ranking Puzzles
 
 ### **What are Mixed Ranking Puzzles?**
 These problems integrate multiple ranking concepts simultaneously, requiring you to apply:
@@ -29,7 +29,7 @@ These problems integrate multiple ranking concepts simultaneously, requiring you
 
 ---
 
-## 🧩 Puzzle Integration Patterns
+## ðŸ§© Puzzle Integration Patterns
 
 ### **Pattern 1: Multi-End Position Problems**
 *"A is 3rd from left, 5th from right, 2nd from top. Find total persons and positions."*
@@ -57,7 +57,7 @@ These problems integrate multiple ranking concepts simultaneously, requiring you
 
 ---
 
-## 🛠️ Mixed Puzzle Solving Framework
+## ðŸ› ï¸ Mixed Puzzle Solving Framework
 
 ### **Comprehensive Problem-Solving Approach**
 
@@ -93,7 +93,7 @@ These problems integrate multiple ranking concepts simultaneously, requiring you
 
 ---
 
-## 🎯 Common Mixed Puzzle Types
+## ðŸŽ¯ Common Mixed Puzzle Types
 
 ### **Type 1: Multi-Dimensional Ranking**
 *"A is 4th from left, 6th from right, 3rd from top in a rectangular arrangement."*
@@ -107,7 +107,7 @@ These problems integrate multiple ranking concepts simultaneously, requiring you
 *"A is better than 3 persons, B is 5th from left, A is immediately before B."*
 
 **Solution Elements:**
-- Comparative quantification: A has rank ≤ 4
+- Comparative quantification: A has rank â‰¤ 4
 - Positional relationship: A and B are adjacent
 - Integrate to find consistent arrangement
 
@@ -121,7 +121,7 @@ These problems integrate multiple ranking concepts simultaneously, requiring you
 
 ---
 
-## 📊 Advanced Integration Scenarios
+## ðŸ“Š Advanced Integration Scenarios
 
 ### **Scenario 1: Complete Arrangement Problems**
 *"9 persons in 3x3 grid. A is center, B is 2nd from left in top row, C is 3rd from top in middle column."*
@@ -149,7 +149,7 @@ These problems integrate multiple ranking concepts simultaneously, requiring you
 
 ---
 
-## 🎯 Complex Question Patterns
+## ðŸŽ¯ Complex Question Patterns
 
 ### **Pattern 1: Multi-System Integration**
 *"Combining left-right, top-bottom, and comparative rankings"*
@@ -165,7 +165,7 @@ These problems integrate multiple ranking concepts simultaneously, requiring you
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Medium Level (40%)**
 - Two ranking system integration
@@ -184,10 +184,10 @@ These problems integrate multiple ranking concepts simultaneously, requiring you
 
 ---
 
-## 🧮 Mathematical Integration Techniques
+## ðŸ§® Mathematical Integration Techniques
 
 ### **Multi-System Position Correlation**
-\`\`\`
+\`"\`\`
 If A is:
 - Pth from left, Qth from right
 - Rth from top, Sth from bottom
@@ -196,7 +196,7 @@ If A is:
 Then:
 Horizontal total = P + Q - 1
 Vertical total = R + S - 1
-A's comparative rank ≤ X + 1
+A's comparative rank â‰¤ X + 1
 \`\`\`
 
 ### **Integrated Ranking Calculations**
@@ -219,7 +219,7 @@ Valid solution must satisfy:
 
 ---
 
-## 🎯 Solution Techniques
+## ðŸŽ¯ Solution Techniques
 
 ### **Technique 1: Systematic Integration**
 \`\`\`
@@ -248,27 +248,27 @@ Create comprehensive position map:
 
 ---
 
-## 🚨 Common Mistakes in Mixed Puzzles
+## ðŸš¨ Common Mistakes in Mixed Puzzles
 
 ### **Mistake 1: System Separation**
-❌ Treating ranking systems independently
-✅ Integrate systems systematically
+âŒ Treating ranking systems independently
+âœ… Integrate systems systematically
 
 ### **Mistake 2: Constraint Conflicts**
-❌ Ignoring conflicting constraints
-✅ Identify and resolve conflicts
+âŒ Ignoring conflicting constraints
+âœ… Identify and resolve conflicts
 
 ### **Mistake 3: Incomplete Integration**
-❌ Missing cross-system relationships
-✅ Apply all integration possibilities
+âŒ Missing cross-system relationships
+âœ… Apply all integration possibilities
 
 ### **Mistake 4: Logical Inconsistencies**
-❌ Accepting impossible combinations
-✅ Verify logical consistency
+âŒ Accepting impossible combinations
+âœ… Verify logical consistency
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Categorize Information Types**: Group by ranking system used
 2. **Apply Strongest Constraints First**: Start with most restrictive information
@@ -280,7 +280,7 @@ Create comprehensive position map:
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Multi-End Integration**
 *"A is 3rd from left, 5th from right, 2nd from top. Find total persons and positions."*
@@ -314,12 +314,12 @@ Create comprehensive position map:
 **Solution:**
 - Marks: 5th from top means 26th from bottom
 - Attendance: 8th from bottom means 23rd from top
-- Better than 12: rank ≤ 13
+- Better than 12: rank â‰¤ 13
 - Need to integrate all criteria
 
 ---
 
-## 🔍 Integration Benefits
+## ðŸ” Integration Benefits
 
 ### **Combined Reasoning Skills**
 - **Positional Logic**: Left-right, top-bottom positioning
@@ -332,5 +332,5 @@ Create comprehensive position map:
 - **Time Management**: Systematic integration approach
 - **Logical Mastery**: Comprehensive reasoning development
 
-**Master mixed ranking puzzles to solve the most complex integrated reasoning problems! 🧩✨**`
+**Master mixed ranking puzzles to solve the most complex integrated reasoning problems! ðŸ§©âœ¨**`
 };

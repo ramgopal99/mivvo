@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_4: SubLesson = {
   id: "7.4",
   title: 'Loss',
   status: 'completed',
-  content: `# 📉 Loss
+  content: "`# ðŸ“‰ Loss
 
 Understand loss calculations in business transactions! Loss occurs when selling price is less than cost price. While undesirable, understanding loss helps in risk assessment and pricing strategies. Learn to calculate and minimize losses.
 
 ---
 
-## 🎯 What is Loss?
+## ðŸŽ¯ What is Loss?
 
 **Loss** is the financial deficit when selling price is lower than cost price. It represents the amount by which expenses exceed revenue in a transaction.
 
 ### **Basic Formula**
-\`\`\`
+\`"\`\`
 Loss = Cost Price - Selling Price
 Loss = CP - SP
 \`\`\`
@@ -27,57 +27,57 @@ Loss = CP - SP
 
 ---
 
-## 📊 Loss Calculation Methods
+## ðŸ“Š Loss Calculation Methods
 
 ### **Method 1: Direct Calculation**
 \`\`\`
 Loss = CP - SP
 \`\`\`
 
-**Example:** CP = ₹1000, SP = ₹800
-- Loss = 1000 - 800 = ₹200
+**Example:** CP = â‚¹1000, SP = â‚¹800
+- Loss = 1000 - 800 = â‚¹200
 
 ### **Method 2: Percentage Method**
 \`\`\`
-SP = CP × (1 - Loss%/100)
-Loss = CP × (Loss%/100)
+SP = CP Ã— (1 - Loss%/100)
+Loss = CP Ã— (Loss%/100)
 \`\`\`
 
-**Example:** CP = ₹1200, Loss = 15%
-- Loss = 1200 × 0.15 = ₹180
+**Example:** CP = â‚¹1200, Loss = 15%
+- Loss = 1200 Ã— 0.15 = â‚¹180
 
 ### **Method 3: Reverse Calculation**
 \`\`\`
-CP = SP ÷ (1 - Loss%/100)
+CP = SP Ã· (1 - Loss%/100)
 Loss = CP - SP
 \`\`\`
 
 ---
 
-## 🔢 Examples of Loss Calculations
+## ðŸ”¢ Examples of Loss Calculations
 
 ### **Example 1: Simple Loss**
-**Problem:** Bought goods for ₹1500, sold for ₹1200. Find loss.
+**Problem:** Bought goods for â‚¹1500, sold for â‚¹1200. Find loss.
 
 **Solution:**
-- Loss = 1500 - 1200 = ₹300
+- Loss = 1500 - 1200 = â‚¹300
 
 ### **Example 2: Loss Percentage**
-**Problem:** CP = ₹800, SP = ₹680. Find loss and percentage.
+**Problem:** CP = â‚¹800, SP = â‚¹680. Find loss and percentage.
 
 **Solution:**
-- Loss = 800 - 680 = ₹120
-- Loss% = (120/800) × 100% = 15%
+- Loss = 800 - 680 = â‚¹120
+- Loss% = (120/800) Ã— 100% = 15%
 
 ### **Example 3: Finding SP for Loss**
-**Problem:** CP = ₹1000, selling at 20% loss. Find SP.
+**Problem:** CP = â‚¹1000, selling at 20% loss. Find SP.
 
 **Solution:**
-- SP = 1000 × (1 - 20/100) = 1000 × 0.8 = ₹800
+- SP = 1000 Ã— (1 - 20/100) = 1000 Ã— 0.8 = â‚¹800
 
 ---
 
-## 💡 Types of Loss
+## ðŸ’¡ Types of Loss
 
 ### **1. Absolute Loss**
 - Actual amount lost
@@ -85,7 +85,7 @@ Loss = CP - SP
 
 ### **2. Percentage Loss**
 - Loss as percentage of CP
-- Loss% = (Loss/CP) × 100%
+- Loss% = (Loss/CP) Ã— 100%
 
 ### **3. Avoidable Loss**
 - Losses that could have been prevented
@@ -97,7 +97,7 @@ Loss = CP - SP
 
 ---
 
-## 🎯 Loss Analysis
+## ðŸŽ¯ Loss Analysis
 
 ### **1. Loss Ratio**
 \`\`\`
@@ -106,7 +106,7 @@ Loss Ratio = Loss/CP
 
 ### **2. Maximum Acceptable Loss**
 \`\`\`
-Max Loss % = (Profit Margin % × Safety Factor)
+Max Loss % = (Profit Margin % Ã— Safety Factor)
 \`\`\`
 
 ### **3. Loss Recovery**
@@ -115,7 +115,7 @@ Max Loss % = (Profit Margin % × Safety Factor)
 
 ---
 
-## 📈 Loss Prevention Strategies
+## ðŸ“ˆ Loss Prevention Strategies
 
 ### **1. Market Research**
 - Understand demand before purchasing
@@ -135,7 +135,7 @@ Max Loss % = (Profit Margin % × Safety Factor)
 
 ---
 
-## 🧮 Real-Life Applications
+## ðŸ§® Real-Life Applications
 
 ### **1. Retail Business**
 - Seasonal sales at discount
@@ -154,29 +154,30 @@ Max Loss % = (Profit Margin % × Safety Factor)
 
 ---
 
-## 🚨 Common Mistakes
+## ðŸš¨ Common Mistakes
 
 ### **Mistake 1: Wrong Base**
-❌ "Loss % of SP"
+âŒ "Loss % of SP"
 - Loss % is always of CP
 
 ### **Mistake 2: Double Loss**
-❌ Subtracting loss twice
+âŒ Subtracting loss twice
 - Loss calculated once
 
 ### **Mistake 3: Ignoring Recovery**
-❌ Not planning loss recovery
+âŒ Not planning loss recovery
 - Volume increase can offset losses
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
-1. CP ₹2000, SP ₹1600. Find loss.
-2. CP ₹1200, loss 10%. Find SP.
-3. SP ₹750, loss ₹150. Find CP.
+1. CP â‚¹2000, SP â‚¹1600. Find loss.
+2. CP â‚¹1200, loss 10%. Find SP.
+3. SP â‚¹750, loss â‚¹150. Find CP.
 
-**Answers:** ₹400, ₹1080, ₹900
+**Answers:** â‚¹400, â‚¹1080, â‚¹900
 
-Master loss calculations to minimize business risks and optimize pricing! 🏆`
+Master loss calculations to minimize business risks and optimize pricing! ðŸ†`
 };
+

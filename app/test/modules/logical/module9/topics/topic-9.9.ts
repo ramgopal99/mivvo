@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_9: SubLesson = {
   id: "9.9",
   title: 'Based on Negative Statements',
   status: 'completed',
-  content: `# 🚫 Based on Negative Statements
+  content: "`# ðŸš« Based on Negative Statements
 
 Negative statement syllogism problems focus on "No" type statements (Universal Negative - Type E) and their logical implications. These problems require special attention to negative relationships and how they combine with affirmative statements to produce valid conclusions.
 
 ---
 
-## 🎯 Understanding Negative Statements
+## ðŸŽ¯ Understanding Negative Statements
 
 ### **What are Negative Statement Problems?**
 Negative statement problems emphasize the "No" type categorical propositions and their unique logical properties. They test your ability to:
@@ -22,9 +22,9 @@ Negative statement problems emphasize the "No" type categorical propositions and
 ### **Key Negative Statement Properties**
 
 #### **Type E Statement: "No S are P"**
-\`\`\`
+\`"\`\`
 - Complete exclusion between sets
-- S ∩ P = ∅ (empty intersection)
+- S âˆ© P = âˆ… (empty intersection)
 - Strongest negative claim
 - Leads to definite exclusions
 \`\`\`
@@ -39,7 +39,7 @@ From "No A are B":
 
 ---
 
-## 🧩 Negative Statement Combinations
+## ðŸ§© Negative Statement Combinations
 
 ### **Combination 1: Two Negative Statements**
 \`\`\`
@@ -52,7 +52,7 @@ Reason: Two negatives cannot establish positive relationships
 \`\`\`
 No A are B + All C are A
 Result: No C are B (definite conclusion)
-Reason: C ⊆ A, and A ∩ B = ∅, therefore C ∩ B = ∅
+Reason: C âŠ† A, and A âˆ© B = âˆ…, therefore C âˆ© B = âˆ…
 \`\`\`
 
 ### **Combination 3: Negative + Particular**
@@ -64,7 +64,7 @@ Reason: C members that are A cannot be B
 
 ---
 
-## 🎯 Problem Types and Solutions
+## ðŸŽ¯ Problem Types and Solutions
 
 ### **Type 1: Negative + Universal Affirmative**
 *"Statements: No politicians are honest. All ministers are politicians."*
@@ -90,31 +90,31 @@ Reason: C members that are A cannot be B
 
 ---
 
-## 📊 Negative Statement Inference Rules
+## ðŸ“Š Negative Statement Inference Rules
 
 ### **Immediate Inferences from Negative Statements**
 
 #### **Conversion**
 \`\`\`
-No A are B → No B are A
+No A are B â†’ No B are A
 (Same as affirmative conversion)
 \`\`\`
 
 #### **Contraposition**
 \`\`\`
-No A are B → All non-B are A
-No A are B → No non-A are non-B
+No A are B â†’ All non-B are A
+No A are B â†’ No non-A are non-B
 \`\`\`
 
 #### **Obversion**
 \`\`\`
-No A are B → All A are non-B
-No A are B → No non-B are non-A
+No A are B â†’ All A are non-B
+No A are B â†’ No non-B are non-A
 \`\`\`
 
 ---
 
-## 🛠️ Negative Syllogism Framework
+## ðŸ› ï¸ Negative Syllogism Framework
 
 ### **Step-by-Step Analysis**
 
@@ -145,29 +145,29 @@ No A are B → No non-B are non-A
 
 ---
 
-## 🎯 Common Negative Patterns
+## ðŸŽ¯ Common Negative Patterns
 
 ### **Pattern 1: Exclusion Chain**
 \`\`\`
-No A are B → No B are C → No A are C
+No A are B â†’ No B are C â†’ No A are C
 Result: No A are C (definite)
 \`\`\`
 
 ### **Pattern 2: Negative with Inclusion**
 \`\`\`
-No A are B + All C are A → No C are B
+No A are B + All C are A â†’ No C are B
 Result: No C are B (definite)
 \`\`\`
 
 ### **Pattern 3: Negative with Partial Overlap**
 \`\`\`
-No A are B + Some C are A → Some C are not B
+No A are B + Some C are A â†’ Some C are not B
 Result: Some C are not B (definite)
 \`\`\`
 
 ---
 
-## 📊 Advanced Negative Problems
+## ðŸ“Š Advanced Negative Problems
 
 ### **Complex Example 1: Multiple Exclusions**
 *"No A are B, No C are D, All E are A, Some F are C"*
@@ -195,7 +195,7 @@ Result: Some C are not B (definite)
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (30%)**
 - Simple negative + affirmative combinations
@@ -214,28 +214,28 @@ Result: Some C are not B (definite)
 
 ---
 
-## 🧮 Negative Logic Rules
+## ðŸ§® Negative Logic Rules
 
 ### **Definite Conclusions from Negative Premises**
 \`\`\`
-1. No A are B + All C are A → No C are B
-2. No A are B + Some C are A → Some C are not B
-3. No A are B + No A are C → No conclusion (two negatives)
-4. No A are B → All A are non-B (obversion)
-5. No A are B → No B are A (conversion)
+1. No A are B + All C are A â†’ No C are B
+2. No A are B + Some C are A â†’ Some C are not B
+3. No A are B + No A are C â†’ No conclusion (two negatives)
+4. No A are B â†’ All A are non-B (obversion)
+5. No A are B â†’ No B are A (conversion)
 \`\`\`
 
 ### **Possibility Cases with Negative Statements**
 \`\`\`
 No A are B allows:
-- Some C may or may not be B (if C ≠ A)
+- Some C may or may not be B (if C â‰  A)
 - All D may be B (if D has no overlap with A)
 - Some relationships remain possible despite exclusions
 \`\`\`
 
 ---
 
-## 🎯 Special Negative Cases
+## ðŸŽ¯ Special Negative Cases
 
 ### **Case 1: Complete Mutual Exclusion**
 \`\`\`
@@ -261,27 +261,27 @@ But allows: Some A are not B
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Invalid Negative Conclusions**
-❌ Drawing conclusions from two negative premises
-✅ At least one affirmative premise required
+âŒ Drawing conclusions from two negative premises
+âœ… At least one affirmative premise required
 
 ### **Mistake 2: Over-Generalizing Exclusions**
-❌ Concluding exclusions beyond what's stated
-✅ Negative statements only exclude specific relationships
+âŒ Concluding exclusions beyond what's stated
+âœ… Negative statements only exclude specific relationships
 
 ### **Mistake 3: Ignoring Affirmative Requirements**
-❌ Expecting conclusions from negatives alone
-✅ Negative statements need affirmative complements
+âŒ Expecting conclusions from negatives alone
+âœ… Negative statements need affirmative complements
 
 ### **Mistake 4: Contraposition Errors**
-❌ Misapplying contraposition rules
-✅ Learn and apply contraposition correctly
+âŒ Misapplying contraposition rules
+âœ… Learn and apply contraposition correctly
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Master Negative Inference Rules**: Learn conversion, contraposition, obversion
 2. **Apply Exclusion Logic**: Understand what negatives definitely exclude
@@ -293,7 +293,7 @@ But allows: Some A are not B
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Basic Negative + Affirmative**
 *"Statements: No politicians are honest. All ministers are politicians."*
@@ -338,7 +338,7 @@ But allows: Some A are not B
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Venn Diagrams**
 - Shade excluded regions for negative statements
@@ -355,5 +355,5 @@ But allows: Some A are not B
 - Apply possibility analysis to negative statement scenarios
 - Determine definite vs possible conclusions with negatives
 
-**Master negative statements to handle exclusion-based syllogistic reasoning! 🚫✨**`
+**Master negative statements to handle exclusion-based syllogistic reasoning! ðŸš«âœ¨**`
 };

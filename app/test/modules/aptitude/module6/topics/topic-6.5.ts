@@ -1,59 +1,59 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_5: SubLesson = {
   id: "6.5",
   title: 'Change in Average',
   status: 'completed',
-  content: `# 📈 Change in Average
+  content: "`# ðŸ“ˆ Change in Average
 
 Learn how averages change when values are added, removed, or replaced! Understanding average dynamics is crucial for tracking performance, analyzing trends, and solving complex average problems.
 
 ---
 
-## 🎯 Average Change Scenarios
+## ðŸŽ¯ Average Change Scenarios
 
 ### **1. Adding a New Value**
-\`\`\`
-New Average = (Old Average × n + New Value) ÷ (n + 1)
+\`"\`\`
+New Average = (Old Average Ã— n + New Value) Ã· (n + 1)
 \`\`\`
 
 **Example:** Average of 5 numbers is 40. Add 50.
-- New average = (40 × 5 + 50) ÷ 6 = (200 + 50) ÷ 6 = 250 ÷ 6 ≈ 41.67
+- New average = (40 Ã— 5 + 50) Ã· 6 = (200 + 50) Ã· 6 = 250 Ã· 6 â‰ˆ 41.67
 
 ### **2. Removing a Value**
 \`\`\`
-New Average = (Old Average × n - Removed Value) ÷ (n - 1)
+New Average = (Old Average Ã— n - Removed Value) Ã· (n - 1)
 \`\`\`
 
 ### **3. Replacing a Value**
 \`\`\`
-New Average = Old Average + (New - Old) ÷ n
+New Average = Old Average + (New - Old) Ã· n
 \`\`\`
 
 **Example:** Average 50, replace 40 with 60, n=10
-- New average = 50 + (60 - 40) ÷ 10 = 50 + 2 = 52
+- New average = 50 + (60 - 40) Ã· 10 = 50 + 2 = 52
 
 ---
 
-## 📊 Detailed Calculations
+## ðŸ“Š Detailed Calculations
 
 ### **Example 1: Adding to Group**
 **Problem:** Class average 75, 20 students. New student scores 85. New average?
 
 **Solution:**
-- New average = (75 × 20 + 85) ÷ 21
-- = (1500 + 85) ÷ 21 = 1585 ÷ 21 ≈ 75.48
+- New average = (75 Ã— 20 + 85) Ã· 21
+- = (1500 + 85) Ã· 21 = 1585 Ã· 21 â‰ˆ 75.48
 
 ### **Example 2: Removing from Group**
 **Problem:** Team average 82, 11 players. Remove player with 95. New average?
 
 **Solution:**
-- New average = (82 × 11 - 95) ÷ 10
-- = (902 - 95) ÷ 10 = 807 ÷ 10 = 80.7
+- New average = (82 Ã— 11 - 95) Ã· 10
+- = (902 - 95) Ã· 10 = 807 Ã· 10 = 80.7
 
 ---
 
-## 🔢 Impact of Changes
+## ðŸ”¢ Impact of Changes
 
 ### **1. Adding High Value**
 - Increases average
@@ -64,12 +64,12 @@ New Average = Old Average + (New - Old) ÷ n
 - Magnitude depends on how low
 
 ### **3. Replacing Values**
-- Net change = (new - old) ÷ total count
+- Net change = (new - old) Ã· total count
 - Independent of other values!
 
 ---
 
-## 💡 Quick Tricks
+## ðŸ’¡ Quick Tricks
 
 ### **Trick 1: Small Changes**
 \`\`\`
@@ -88,7 +88,7 @@ Apply changes sequentially
 
 ---
 
-## 🎯 Applications
+## ðŸŽ¯ Applications
 
 ### **1. Performance Tracking**
 - Adding new test scores
@@ -104,24 +104,24 @@ Apply changes sequentially
 
 ---
 
-## 🚨 Common Mistakes
+## ðŸš¨ Common Mistakes
 
 ### **Mistake 1: Wrong Formula Application**
-❌ Using wrong divisor
+âŒ Using wrong divisor
 - Adding: divide by (n+1)
 - Removing: divide by (n-1)
 
 ### **Mistake 2: Sequential Changes**
-❌ Applying changes to original average
+âŒ Applying changes to original average
 - Use updated average for each step
 
 ### **Mistake 3: Ignoring Count Changes**
-❌ Forgetting to change n
+âŒ Forgetting to change n
 - Critical for correct calculation
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Adding Values:**
 1. Average 60, 8 items. Add 75. New average?
@@ -132,8 +132,8 @@ Apply changes sequentially
 2. Team average 80, 12 players. Replace 85 with 75. New average?
 
 **Answers:**
-Adding: (60×8 + 75)÷9 ≈ 67.22, (70×25 + 85)÷26 ≈ 70.96
-Replacing: 50 + (55-45)÷10 = 51, 80 + (75-85)÷12 = 79.17
+Adding: (60Ã—8 + 75)Ã·9 â‰ˆ 67.22, (70Ã—25 + 85)Ã·26 â‰ˆ 70.96
+Replacing: 50 + (55-45)Ã·10 = 51, 80 + (75-85)Ã·12 = 79.17
 
-Master average changes to track evolving data! 🏆`
+Master average changes to track evolving data! ðŸ†`
 };

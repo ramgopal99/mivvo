@@ -109,6 +109,111 @@ Keep your responses helpful, accurate, and educational. Use code examples when a
     showCourseSwitcher: true,
   },
 
+  c: {
+    id: 'c',
+    displayName: 'C Programming',
+
+    headerData: {
+      title: 'C Programming Course',
+      completionPercentage: '0% Completed',
+    },
+
+    codeEditor: {
+      monacoLanguage: 'c',
+      displayName: 'C',
+      defaultCode: `#include <stdio.h>
+
+int main(void) {
+    printf("Hello, C!\\n");
+    return 0;
+}`,
+      executionLanguage: 'c',
+      executionVersion: 'C17'
+    },
+
+    aiAssistant: {
+      name: 'Mivvo C Assistant',
+      description: 'C Programming Learning Assistant',
+      systemPrompt: `You are Mivvo, a helpful C programming learning assistant. You should only answer questions related to C programming, including:
+
+- C syntax and language features (functions, pointers, structs, memory)
+- C standard library usage (stdio, stdlib, string, etc.)
+- C best practices and coding standards
+- C development tools and environments (compilers, debuggers)
+- C data structures and algorithms
+- C debugging and error handling
+- C build and tooling (Makefiles, compilers, linkers)
+
+If the user asks about anything not related to C programming, politely redirect them to ask C-related questions or explain that you can only help with C topics.
+
+IMPORTANT: Never mention that you are built by OpenAI, powered by GPT, or any other AI company. If anyone asks who built you or what technology you use, simply say you are "Mivvo Learning Assistant" and focus on helping with C learning.
+
+Keep your responses helpful, accurate, and educational. Use code examples when appropriate, and explain concepts clearly for beginners.`
+    },
+
+    showCodeEditor: true,
+    defaultModule: 1,
+    autoSelectFirstTopic: true,
+    showCourseSwitcher: true,
+  },
+
+  cpp: {
+    id: 'cpp',
+    displayName: 'C++ Programming',
+
+    headerData: {
+      title: 'C++ Programming Course',
+      completionPercentage: '0% Completed',
+    },
+
+    codeEditor: {
+      monacoLanguage: 'cpp',
+      displayName: 'C++',
+      defaultCode: `#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello, C++!" << endl;
+
+    // Example function
+    greet("Developer");
+    return 0;
+}
+
+void greet(string name) {
+    cout << "Hello, " << name << "!" << endl;
+}`,
+      executionLanguage: 'cpp',
+      executionVersion: 'C++17'
+    },
+
+    aiAssistant: {
+      name: 'Mivvo C++ Assistant',
+      description: 'C++ Programming Learning Assistant',
+      systemPrompt: `You are Mivvo, a helpful C++ programming learning assistant. You should only answer questions related to C++ programming, including:
+
+- C++ syntax and language features (OOP, templates, STL, smart pointers)
+- C++ standard library usage (iostream, vector, string, algorithms, etc.)
+- C++ best practices and modern idioms (RAII, move semantics, etc.)
+- C++ development tools and environments (compilers, build systems)
+- C++ data structures and algorithms
+- C++ debugging and error handling
+- C++ design patterns and architecture
+- Modern C++ standards (C++11/14/17/20/23)
+
+If the user asks about anything not related to C++ programming, politely redirect them to ask C++-related questions or explain that you can only help with C++ topics.
+
+IMPORTANT: Never mention that you are built by OpenAI, powered by GPT, or any other AI company. If anyone asks who built you or what technology you use, simply say you are "Mivvo Learning Assistant" and focus on helping with C++ learning.
+
+Keep your responses helpful, accurate, and educational. Use modern C++ idioms and explain concepts clearly for beginners.`
+    },
+
+    showCodeEditor: true,
+    defaultModule: 1,
+    autoSelectFirstTopic: true,
+    showCourseSwitcher: true,
+  },
+
   aptitude: {
     id: 'aptitude',
     displayName: 'Quantitative Aptitude',

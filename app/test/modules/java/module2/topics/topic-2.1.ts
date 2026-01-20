@@ -1,20 +1,20 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_1: SubLesson = {
   id: "2.1",
   title: 'Basic Syntax',
   status: 'completed',
-  content: `# 📝 Java Basic Syntax
+  content: "`# ðŸ“ Java Basic Syntax
 
 Java syntax is designed to be clean, readable, and structured. Let's explore the fundamental building blocks of Java code.
 
 ---
 
-## 🏗️ Java Program Structure
+## ðŸ—ï¸ Java Program Structure
 
 ### 1. **Statements and Expressions**
 
-\`\`\`java
+\`"\`\`java
 // Statement (performs an action)
 System.out.println("Hello, World!");
 
@@ -45,20 +45,20 @@ that spans multiple lines
 String userName = "Bob";  // Store the user's name
 \`\`\`
 
-## 📦 Code Blocks and Indentation
+## ðŸ“¦ Code Blocks and Indentation
 
 ### **Consistent Indentation**
 Java uses **curly braces** \`{}\` to define code blocks, but **consistent indentation** is crucial for readability:
 
 \`\`\`java
-// ✅ Correct - consistent indentation
+// âœ… Correct - consistent indentation
 if (true) {
     System.out.println("This works!");
     System.out.println("Still in the if block");
 }
 System.out.println("Outside the if block");
 
-// ❌ Wrong - inconsistent indentation (will compile but hard to read)
+// âŒ Wrong - inconsistent indentation (will compile but hard to read)
 // if (true) {
 // System.out.println("This will compile");
 //     System.out.println("but is hard to read");
@@ -89,9 +89,9 @@ if (condition) {
 }
 \`\`\`
 
-## 🔑 Keywords and Identifiers
+## ðŸ”‘ Keywords and Identifiers
 
-### **🚫 Java Keywords** (Reserved Words)
+### **ðŸš« Java Keywords** (Reserved Words)
 \`\`\`java
 // Some important Java keywords:
 public      // Access modifier
@@ -108,21 +108,21 @@ return      // Return from method
 import      // Import classes
 \`\`\`
 
-### **📋 Naming Rules for Variables and Methods**
+### **ðŸ“‹ Naming Rules for Variables and Methods**
 \`\`\`java
-// ✅ Valid names
+// âœ… Valid names
 String name = "Alice";
 String userName = "Bob";
 int totalScore = 100;
 void calculateTotal() { }
 
-// ❌ Invalid names (will cause compile errors)
+// âŒ Invalid names (will cause compile errors)
 // int 123abc = 10;     // Cannot start with number
 // String my-name = "";  // Cannot use hyphens
 // int class = 5;        // Cannot use keywords
 \`\`\`
 
-### **📝 Naming Conventions**
+### **ðŸ“ Naming Conventions**
 \`\`\`java
 // CamelCase for classes
 public class BankAccount { }
@@ -137,7 +137,7 @@ final double PI = 3.14159;
 final int MAX_USERS = 100;
 \`\`\`
 
-## 🔧 Basic Program Structure
+## ðŸ”§ Basic Program Structure
 
 ### **Minimal Java Program**
 \`\`\`java
@@ -858,6 +858,7 @@ public class DemoProgram {  // 4. Class declaration
 }
 `
 };
+
 
 
 

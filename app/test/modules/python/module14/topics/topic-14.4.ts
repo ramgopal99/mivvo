@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_4: SubLesson = {
   id: "14.4",
   title: 'Advanced Recursion Concepts',
   status: 'demo',
-  content: `# 🚀 Advanced Recursion Concepts
+  content: "`# ðŸš€ Advanced Recursion Concepts
 
 Explore sophisticated recursive techniques and optimization strategies!
 
 ---
 
-## 🎯 Advanced Recursive Patterns
+## ðŸŽ¯ Advanced Recursive Patterns
 
 ### **1. Tail Recursion**
 
@@ -18,7 +18,7 @@ Explore sophisticated recursive techniques and optimization strategies!
 A recursive function is **tail recursive** when the recursive call is the last operation in the function.
 
 #### **Example: Tail Recursive Factorial**
-\`\`\`python
+\`"\`\`python
 # NOT tail recursive
 def factorial_regular(n):
     if n <= 1:
@@ -98,7 +98,7 @@ print(ackermann(3, 2))  # 29
 
 ---
 
-## 🧠 Memoization and Dynamic Programming
+## ðŸ§  Memoization and Dynamic Programming
 
 ### **Memoization Basics**
 Store results of expensive function calls to avoid recomputation.
@@ -145,7 +145,7 @@ def fibonacci_cached(n):
 
 ---
 
-## 🔄 Backtracking Algorithms
+## ðŸ”„ Backtracking Algorithms
 
 ### **Backtracking Template**
 \`\`\`python
@@ -210,7 +210,7 @@ def solve_sudoku(board):
 
 ---
 
-## 🌳 Tree and Graph Recursion
+## ðŸŒ³ Tree and Graph Recursion
 
 ### **Binary Tree Operations**
 \`\`\`python
@@ -277,7 +277,7 @@ dfs(graph, 'A')  # A B D E F C
 
 ---
 
-## ⚡ Recursion Optimization Techniques
+## âš¡ Recursion Optimization Techniques
 
 ### **1. Memoization Table**
 \`\`\`python
@@ -322,7 +322,7 @@ def fib_optimized(n):
 
 ---
 
-## 🎯 Advanced Problem Patterns
+## ðŸŽ¯ Advanced Problem Patterns
 
 ### **1. Generating Permutations**
 \`\`\`python
@@ -391,7 +391,7 @@ def evaluate_expression(nums, operators, target):
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Tail Recursion**: Can be optimized, prevents stack overflow
 2. **Memoization**: Cache results to avoid recomputation
@@ -400,6 +400,7 @@ def evaluate_expression(nums, operators, target):
 5. **Optimization**: Convert to DP when possible for better performance
 6. **Patterns**: Master common recursive patterns for problem solving
 
-Advanced recursion requires understanding both the elegance and the performance implications! 🧠`,
+Advanced recursion requires understanding both the elegance and the performance implications! ðŸ§ `,
 };
+
 

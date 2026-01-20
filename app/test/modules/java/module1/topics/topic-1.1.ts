@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_1_1: SubLesson = {
   id: "1.1",
   title: 'Why Java?',
   status: 'completed',
-  content: `# ☕ Why Java?
+  content: "`# â˜• Why Java?
 
 Java is one of the most popular and powerful programming languages in the world. But what makes it so special?
 
 ---
 
-## 🎯 The Origins of Java
+## ðŸŽ¯ The Origins of Java
 
 ### Created by James Gosling at Sun Microsystems
 - **Born**: May 19, 1955 in Canada
@@ -27,12 +27,12 @@ Java is one of the most popular and powerful programming languages in the world.
 - **2014**: Java 8 - lambda expressions, streams, modern Java
 - **2021**: Java 17 - latest LTS (Long Term Support) version
 
-## ✨ Why Java is Special
+## âœ¨ Why Java is Special
 
 ### 1. **Platform Independence ("Write Once, Run Anywhere")**
 
 **Java** (Platform Independent):
-\`\`\`java
+\`"\`\`java
 public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
@@ -110,7 +110,7 @@ abstract class Shape {
 }
 \`\`\`
 
-## 🌟 Java's Impact
+## ðŸŒŸ Java's Impact
 
 - **3+ million** developers worldwide
 - **200,000+** Java libraries available
@@ -118,11 +118,11 @@ abstract class Shape {
 - **Primary language** for Android development
 - **Used by** major companies like Google, Netflix, Amazon
 
-Java's philosophy of **reliability** and **portability** makes it the perfect language for enterprise applications! 🚀✨
+Java's philosophy of **reliability** and **portability** makes it the perfect language for enterprise applications! ðŸš€âœ¨
 
 ---
 
-## 💻 Java Development Environment Setup
+## ðŸ’» Java Development Environment Setup
 
 ### **What You Need to Start Programming in Java**
 
@@ -159,7 +159,7 @@ For minimal setup:
 
 ---
 
-## ☕ Understanding Java Architecture
+## â˜• Understanding Java Architecture
 
 ### **The Java Platform**
 
@@ -180,7 +180,7 @@ For minimal setup:
 - Includes compiler, debugger, documentation tools
 
 \`\`\`
-JDK ⊃ JRE ⊃ JVM
+JDK âŠƒ JRE âŠƒ JVM
 \`\`\`
 
 ### **How Java Code Execution Works**
@@ -202,7 +202,7 @@ public class HelloWorld {
 
 ---
 
-## 📚 Java Editions
+## ðŸ“š Java Editions
 
 ### **Java SE (Standard Edition)**
 - **Core Java**: Fundamental libraries and APIs
@@ -221,7 +221,7 @@ public class HelloWorld {
 
 ---
 
-## 🎯 Your First Java Program
+## ðŸŽ¯ Your First Java Program
 
 ### **Step-by-Step Guide**
 
@@ -252,7 +252,7 @@ Hello, World!
 
 ---
 
-## 🛠️ Java Development Tools
+## ðŸ› ï¸ Java Development Tools
 
 ### **Command Line Tools**
 
@@ -309,22 +309,22 @@ javadoc -d docs com.example.*
 
 ---
 
-## 📁 Java Project Structure
+## ðŸ“ Java Project Structure
 
 ### **Basic Project Layout**
 \`\`\`
 my-java-project/
-├── src/
-│   ├── com/
-│   │   └── example/
-│   │       ├── Main.java
-│   │       └── utils/
-│   │           └── Helper.java
-│   └── HelloWorld.java
-├── bin/          # Compiled .class files
-├── lib/          # External JAR dependencies
-├── docs/         # Generated documentation
-└── README.md
+â”œâ”€â”€ src/
+â”‚   â”œâ”€â”€ com/
+â”‚   â”‚   â””â”€â”€ example/
+â”‚   â”‚       â”œâ”€â”€ Main.java
+â”‚   â”‚       â””â”€â”€ utils/
+â”‚   â”‚           â””â”€â”€ Helper.java
+â”‚   â””â”€â”€ HelloWorld.java
+â”œâ”€â”€ bin/          # Compiled .class files
+â”œâ”€â”€ lib/          # External JAR dependencies
+â”œâ”€â”€ docs/         # Generated documentation
+â””â”€â”€ README.md
 \`\`\`
 
 ### **Package Naming Convention**
@@ -335,7 +335,7 @@ my-java-project/
 
 ---
 
-## 🔧 Environment Variables
+## ðŸ”§ Environment Variables
 
 ### **Windows Setup**
 \`\`\`cmd
@@ -345,7 +345,7 @@ set JAVA_HOME="C:\\Program Files\\Java\\jdk-17"
 # Add to PATH
 set PATH=%JAVA_HOME%\\bin;%PATH%
 
-# Make permanent (System Properties → Environment Variables)
+# Make permanent (System Properties â†’ Environment Variables)
 \`\`\`
 
 ### **Linux/macOS Setup**
@@ -363,7 +363,7 @@ echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ~/.bashrc
 
 ---
 
-## 🎯 Java Versions and Compatibility
+## ðŸŽ¯ Java Versions and Compatibility
 
 ### **Long-Term Support (LTS) Versions**
 - **Java 8** (2014): Most widely used, LTS until 2030
@@ -378,7 +378,7 @@ echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ~/.bashrc
 
 ---
 
-## 🚀 Next Steps
+## ðŸš€ Next Steps
 
 Now that you have Java set up, you're ready to:
 
@@ -395,6 +395,7 @@ Run this command to verify your setup:
 java -version && javac -version && echo "Java setup complete!"
 \`\`\`
 
-Happy coding! 🎉
+Happy coding! ðŸŽ‰
 `
 };
+

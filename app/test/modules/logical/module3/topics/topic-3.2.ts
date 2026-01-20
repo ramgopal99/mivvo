@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_2: SubLesson = {
   id: "3.2",
   title: 'Concept of Seating Arrangement',
   status: 'completed',
-  content: `# 🎯 Concept of Seating Arrangement
+  content: "`# ðŸŽ¯ Concept of Seating Arrangement
 
 Understanding the fundamental concepts of seating arrangement is crucial for solving complex arrangement problems. This topic covers the basic principles, terminology, and foundational concepts that form the basis of all seating arrangement problems.
 
 ---
 
-## 🎯 What is Seating Arrangement?
+## ðŸŽ¯ What is Seating Arrangement?
 
 ### **Definition**
 Seating arrangement problems involve arranging people or objects in specific positions based on given conditions and constraints. These problems test your ability to:
@@ -27,7 +27,7 @@ Seating arrangement problems involve arranging people or objects in specific pos
 
 ---
 
-## 🧩 Basic Arrangement Types
+## ðŸ§© Basic Arrangement Types
 
 ### **1. Linear Arrangement**
 **One-dimensional arrangement in a straight line**
@@ -52,7 +52,7 @@ Seating arrangement problems involve arranging people or objects in specific pos
 
 ---
 
-## 📊 Key Concepts and Terminology
+## ðŸ“Š Key Concepts and Terminology
 
 ### **Position-Related Terms**
 - **Adjacent**: Next to each other
@@ -74,7 +74,7 @@ Seating arrangement problems involve arranging people or objects in specific pos
 
 ---
 
-## 🎯 Basic Principles
+## ðŸŽ¯ Basic Principles
 
 ### **1. Position Mapping**
 - Assign positions to entities
@@ -98,7 +98,7 @@ Seating arrangement problems involve arranging people or objects in specific pos
 
 ---
 
-## 🛠️ Fundamental Problem-Solving Steps
+## ðŸ› ï¸ Fundamental Problem-Solving Steps
 
 ### **Step 1: Understand the Problem**
 - Read all conditions carefully
@@ -122,7 +122,7 @@ Seating arrangement problems involve arranging people or objects in specific pos
 
 ---
 
-## 📈 Basic Arrangement Patterns
+## ðŸ“ˆ Basic Arrangement Patterns
 
 ### **Pattern 1: Simple Linear**
 Positions: 1  2  3  4  5
@@ -139,7 +139,7 @@ Row 2: D E F  (facing Row 1)
 
 ---
 
-## 🎯 Common Condition Types
+## ðŸŽ¯ Common Condition Types
 
 ### **1. Definite Conditions**
 - "A sits next to B"
@@ -158,7 +158,7 @@ Row 2: D E F  (facing Row 1)
 
 ---
 
-## 🔍 Position Determination Methods
+## ðŸ” Position Determination Methods
 
 ### **1. Direct Position Method**
 - Place people in known positions
@@ -177,7 +177,7 @@ Row 2: D E F  (facing Row 1)
 
 ---
 
-## 📊 Basic Examples
+## ðŸ“Š Basic Examples
 
 ### **Example 1: Simple Linear**
 **Conditions:**
@@ -196,7 +196,7 @@ Row 2: D E F  (facing Row 1)
 
 ---
 
-## 🎯 Key Principles to Remember
+## ðŸŽ¯ Key Principles to Remember
 
 1. **Arrangement Type**: Always identify the type first
 2. **Position Count**: Match entities with available positions
@@ -206,7 +206,7 @@ Row 2: D E F  (facing Row 1)
 
 ---
 
-## 🛠️ Basic Tools and Techniques
+## ðŸ› ï¸ Basic Tools and Techniques
 
 ### **1. Diagram Drawing**
 - Use circles for circular arrangements
@@ -225,7 +225,7 @@ Row 2: D E F  (facing Row 1)
 
 ---
 
-## 🚀 Practice Foundation
+## ðŸš€ Practice Foundation
 
 ### **Basic Practice Sets**
 - Simple 3-4 person arrangements
@@ -241,7 +241,7 @@ Row 2: D E F  (facing Row 1)
 
 ---
 
-## 🎯 Pro Tips
+## ðŸŽ¯ Pro Tips
 
 1. **Always Draw**: Visual representation helps understanding
 2. **Read Carefully**: Don't miss any conditions
@@ -249,5 +249,5 @@ Row 2: D E F  (facing Row 1)
 4. **Use Logic**: Apply systematic reasoning
 5. **Practice Regularly**: Build speed and accuracy
 
-**Master the basic concepts of seating arrangement for strong foundation! 🎯✨**`
+**Master the basic concepts of seating arrangement for strong foundation! ðŸŽ¯âœ¨**`"
 };

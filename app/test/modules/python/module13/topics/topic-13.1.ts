@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_1: SubLesson = {
   id: "13.1",
   title: 'Introduction to Binary Search Tree',
   status: 'demo',
-  content: `# 🌳 Introduction to Binary Search Tree
+  content: "`# ðŸŒ³ Introduction to Binary Search Tree
 
 A Binary Search Tree (BST) is a hierarchical data structure that maintains an ordered relationship between elements!
 
 ---
 
-## 🎯 What is a Binary Search Tree?
+## ðŸŽ¯ What is a Binary Search Tree?
 
 A **Binary Search Tree** is a binary tree data structure where each node has at most two children, and for each node:
 
@@ -18,7 +18,7 @@ A **Binary Search Tree** is a binary tree data structure where each node has at 
 - All values in the right subtree are **greater than** the node's value
 
 ### **Visual Representation**
-\`\`\`
+\`"\`\`
         8
        / \\
       3   10
@@ -30,7 +30,7 @@ A **Binary Search Tree** is a binary tree data structure where each node has at 
 
 ---
 
-## 🏗️ BST Node Structure
+## ðŸ—ï¸ BST Node Structure
 
 Each node in a BST contains:
 - **Value/Data**: The actual data stored
@@ -47,7 +47,7 @@ class TreeNode:
 
 ---
 
-## ✅ BST Properties
+## âœ… BST Properties
 
 ### **Ordering Property**
 - Left subtree < Node < Right subtree
@@ -63,7 +63,7 @@ class TreeNode:
 
 ---
 
-## 🔍 Basic Operations Overview
+## ðŸ” Basic Operations Overview
 
 | Operation | Time Complexity | Description |
 |-----------|----------------|-------------|
@@ -74,24 +74,24 @@ class TreeNode:
 
 ---
 
-## 💡 Why Use BST?
+## ðŸ’¡ Why Use BST?
 
 ### **Advantages**
-- ✅ Efficient search, insert, delete operations
-- ✅ Maintains sorted order automatically
-- ✅ Dynamic size (unlike arrays)
-- ✅ Easy to implement recursive algorithms
+- âœ… Efficient search, insert, delete operations
+- âœ… Maintains sorted order automatically
+- âœ… Dynamic size (unlike arrays)
+- âœ… Easy to implement recursive algorithms
 
 ### **Applications**
-- 📊 Database indexing
-- 🔍 Symbol tables in compilers
-- 📱 File system organization
-- 🎯 Auto-completion features
-- 🗂️ Priority queues implementation
+- ðŸ“Š Database indexing
+- ðŸ” Symbol tables in compilers
+- ðŸ“± File system organization
+- ðŸŽ¯ Auto-completion features
+- ðŸ—‚ï¸ Priority queues implementation
 
 ---
 
-## ⚠️ Important Notes
+## âš ï¸ Important Notes
 
 - **Balance matters**: Tree height affects performance
 - **Worst case**: Can degenerate to linked list (O(n) operations)
@@ -100,7 +100,7 @@ class TreeNode:
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **BST maintains sorted order** through its structural properties
 2. **Operations are efficient** when tree is balanced (O(log n))
@@ -108,6 +108,7 @@ class TreeNode:
 4. **Used extensively** in computer science applications
 5. **Foundation** for more advanced tree structures
 
-Ready to dive into BST operations? Let's explore how to search, insert, and delete nodes in the next topic! 🚀`,
+Ready to dive into BST operations? Let's explore how to search, insert, and delete nodes in the next topic! ðŸš€`,
 };
+
 

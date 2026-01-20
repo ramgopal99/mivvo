@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_13: SubLesson = {
   id: "15.13",
   title: 'Missing Data Problems',
   status: 'completed',
-  content: `# 🔍 Missing Data Problems
+  content: "`# ðŸ” Missing Data Problems
 
 Master missing data identification and calculation in Data Interpretation! Many DI problems have incomplete information that must be logically deduced. Learn systematic approaches to find missing values using relationships, patterns, and mathematical properties.
 
 ---
 
-## 🎯 What are Missing Data Problems?
+## ðŸŽ¯ What are Missing Data Problems?
 
 **Missing Data Problems** involve datasets with some information omitted. The missing values must be calculated using:
 - **Mathematical relationships** between known values
@@ -26,7 +26,7 @@ Master missing data identification and calculation in Data Interpretation! Many 
 
 ---
 
-## 🔍 Types of Missing Data
+## ðŸ” Types of Missing Data
 
 ### **1. Single Missing Value**
 - One cell/data point missing
@@ -47,7 +47,7 @@ Master missing data identification and calculation in Data Interpretation! Many 
 
 ---
 
-## 📊 Missing Data in Tables
+## ðŸ“Š Missing Data in Tables
 
 ### **Example 1: Row/Column Totals**
 
@@ -93,17 +93,17 @@ Wait, the table has inconsistency. Let me correct:
 | Total    | 5000   | 100%       |
 
 **Missing Values:**
-1. **A %:** (2500/5000) × 100 = 50%
+1. **A %:** (2500/5000) Ã— 100 = 50%
 2. **B Amount:** 30% of 5000 = 1500
-3. **C %:** (1500/5000) × 100 = 30%
+3. **C %:** (1500/5000) Ã— 100 = 30%
 
 ---
 
-## 📈 Missing Data in Charts
+## ðŸ“ˆ Missing Data in Charts
 
 ### **Pie Chart Missing Data**
 
-\`\`\`
+\`"\`\`
 Market Share Distribution
 
 Company A: 35%
@@ -120,7 +120,7 @@ Company D: 100% - (35% + 28% + 22%) = 100% - 85% = 15%
 ### **Bar Chart Missing Data**
 
 \`\`\`
-Monthly Sales (₹ lakhs)
+Monthly Sales (â‚¹ lakhs)
 
 Jan: 15    Feb: 18    Mar: 22
 Apr: ?     May: 26    Jun: 28
@@ -129,13 +129,13 @@ Average: 22 lakhs
 \`\`\`
 
 **Missing Value:**
-Total for 6 months: 22 × 6 = 132 lakhs
+Total for 6 months: 22 Ã— 6 = 132 lakhs
 Known total: 15 + 18 + 22 + 26 + 28 = 109 lakhs
 Apr: 132 - 109 = 23 lakhs
 
 ---
 
-## 🧮 Systematic Missing Data Solution
+## ðŸ§® Systematic Missing Data Solution
 
 ### **Step 1: Identify Known Relationships**
 - Find totals, percentages, ratios
@@ -159,7 +159,7 @@ Apr: 132 - 109 = 23 lakhs
 
 ---
 
-## 🎯 Common Missing Data Patterns
+## ðŸŽ¯ Common Missing Data Patterns
 
 ### **Pattern 1: Total-Based Missing Data**
 
@@ -171,7 +171,7 @@ Apr: 132 - 109 = 23 lakhs
 | Total | 500   | 100%       |
 
 **Solutions:**
-1. **B %:** (150/500) × 100 = 30%
+1. **B %:** (150/500) Ã— 100 = 30%
 2. **C Value:** 32% of 500 = 160
 
 ### **Pattern 2: Ratio-Based Missing Data**
@@ -200,11 +200,11 @@ R ratio = 150/50 = 3
 **Solution:**
 Common difference = 8 - 5 = 3
 Term 3 = 8 + 3 = 11
-Term 4 = 11 + 3 = 14 ✓
+Term 4 = 11 + 3 = 14 âœ“
 
 ---
 
-## 📊 Advanced Missing Data Scenarios
+## ðŸ“Š Advanced Missing Data Scenarios
 
 ### **Example 1: Multi-Constraint Problems**
 
@@ -216,11 +216,11 @@ Term 4 = 11 + 3 = 14 ✓
 | Total      | 120       | -               | ?            |
 
 **Solutions:**
-1. **A Total:** 50 × 20000 = 1,000,000
-2. **B Employees:** 500000 ÷ 25000 = 20
+1. **A Total:** 50 Ã— 20000 = 1,000,000
+2. **B Employees:** 500000 Ã· 25000 = 20
 3. **Total Employees:** 120 - 50 - 20 - 40 = 10 (missing C employees)
-4. **C Salary/Employee:** 720000 ÷ 40 = 18,000
-5. **Total Salary:** 1,000,000 + 500,000 + 720,000 + (10 × 18,000) = 2,220,000 + 180,000 = 2,400,000
+4. **C Salary/Employee:** 720000 Ã· 40 = 18,000
+5. **Total Salary:** 1,000,000 + 500,000 + 720,000 + (10 Ã— 18,000) = 2,220,000 + 180,000 = 2,400,000
 
 ### **Example 2: Percentage with Base Missing**
 
@@ -233,20 +233,20 @@ Term 4 = 11 + 3 = 14 ✓
 **Additional Info:** Total 2020 sales = 3000, Z grew by 30%
 
 **Solutions:**
-1. **X 2020:** 1000 × 1.25 = 1,250
-2. **Z 2020:** 800 × 1.30 = 1,040
+1. **X 2020:** 1000 Ã— 1.25 = 1,250
+2. **Z 2020:** 800 Ã— 1.30 = 1,040
 3. **Y 2020:** Total 2020 = 3,000
    Known: 1,250 + 1,040 = 2,290
    Y 2020 = 3,000 - 2,290 = 710
-4. **Y 2019:** 710 ÷ 1.20 = 591.67 ≈ 592
+4. **Y 2019:** 710 Ã· 1.20 = 591.67 â‰ˆ 592
 
 ---
 
-## 🎯 Caselet Missing Data
+## ðŸŽ¯ Caselet Missing Data
 
 ### **Example: Business Caselet**
 
-**"Company has 3 divisions with revenue ratios 2:3:4. Division A expenses are 60% of revenue, B 50%, C 40%. Total expenses ₹24 lakhs. Net profit 20% of total revenue."**
+**"Company has 3 divisions with revenue ratios 2:3:4. Division A expenses are 60% of revenue, B 50%, C 40%. Total expenses â‚¹24 lakhs. Net profit 20% of total revenue."**
 
 **Missing Information to Find:**
 - Individual division revenues
@@ -257,27 +257,27 @@ Term 4 = 11 + 3 = 14 ✓
 **Step-by-Step Solution:**
 
 1. **Revenue Ratios:** 2:3:4, let total parts = 9
-2. **Total Expenses:** ₹24 lakhs
+2. **Total Expenses:** â‚¹24 lakhs
 3. **Expense Ratios:** A:60%, B:50%, C:40%
 4. **Revenue from Expenses:** Need to find revenue values
 
 Let total revenue = R
-A revenue = (2/9)R, expenses = 0.6 × (2/9)R = (1.2/9)R
-B expenses = 0.5 × (3/9)R = (1.5/9)R
-C expenses = 0.4 × (4/9)R = (1.6/9)R
+A revenue = (2/9)R, expenses = 0.6 Ã— (2/9)R = (1.2/9)R
+B expenses = 0.5 Ã— (3/9)R = (1.5/9)R
+C expenses = 0.4 Ã— (4/9)R = (1.6/9)R
 
 Total expenses = (1.2 + 1.5 + 1.6)/9 R = 4.3/9 R = 24
-R = 24 × 9 / 4.3 = 216 / 4.3 ≈ 50.23 lakhs
+R = 24 Ã— 9 / 4.3 = 216 / 4.3 â‰ˆ 50.23 lakhs
 
 **Precise Calculation:**
 Total expenses = 24 lakhs
 Expense coefficients: 1.2 + 1.5 + 1.6 = 4.3
 4.3/9 R = 24
-R = 24 × 9 / 4.3 = 216 / 4.3 ≈ 50.23 lakhs
+R = 24 Ã— 9 / 4.3 = 216 / 4.3 â‰ˆ 50.23 lakhs
 
 ---
 
-## 🚨 Common Missing Data Challenges
+## ðŸš¨ Common Missing Data Challenges
 
 ### **Challenge 1: Insufficient Information**
 **Problem:** Two equations, three variables
@@ -297,7 +297,7 @@ R = 24 × 9 / 4.3 = 216 / 4.3 ≈ 50.23 lakhs
 
 ---
 
-## 🎯 Practice Missing Data Problems
+## ðŸŽ¯ Practice Missing Data Problems
 
 ### **Table Missing Data**
 
@@ -311,8 +311,8 @@ R = 24 × 9 / 4.3 = 216 / 4.3 ≈ 50.23 lakhs
 
 **Solution:**
 1. **2019 Total:** 200 + 150 = 350
-2. **2020 Sales A:** Total growth 20%: 350 × 1.20 = 420 ✓
-   Sales A growth: (A - 200)/200 × 100 = 20%
+2. **2020 Sales A:** Total growth 20%: 350 Ã— 1.20 = 420 âœ“
+   Sales A growth: (A - 200)/200 Ã— 100 = 20%
    A - 200 = 40, A = 240
 3. **2021 Sales B:** Assume B grew 20% from 180 = 216
 4. **2021 Total:** 260 + 216 = 476
@@ -335,12 +335,12 @@ R = 24 × 9 / 4.3 = 216 / 4.3 ≈ 50.23 lakhs
    2000 + 0.25T = T
    2000 = 0.75T
    T = 2000/0.75 = 2,666.67
-3. **Q Amount:** 0.25 × 2666.67 ≈ 666.67
-4. **R %:** (800/2666.67) × 100 ≈ 30%
+3. **Q Amount:** 0.25 Ã— 2666.67 â‰ˆ 666.67
+4. **R %:** (800/2666.67) Ã— 100 â‰ˆ 30%
 
 ---
 
-## 🎓 Pro Tips for Missing Data
+## ðŸŽ“ Pro Tips for Missing Data
 
 1. **Identify all relationships** first
 2. **Start with known totals** or percentages
@@ -352,7 +352,7 @@ R = 24 × 9 / 4.3 = 216 / 4.3 ≈ 50.23 lakhs
 
 ---
 
-## 🔢 Missing Data Solution Framework
+## ðŸ”¢ Missing Data Solution Framework
 
 \`\`\`
 1. SCAN the data structure
@@ -381,5 +381,5 @@ R = 24 × 9 / 4.3 = 216 / 4.3 ≈ 50.23 lakhs
    - Answer makes sense
 \`\`\`
 
-Master missing data problems and complete incomplete datasets with logical precision! 🏆`
+Master missing data problems and complete incomplete datasets with logical precision! ðŸ†`
 };

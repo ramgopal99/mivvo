@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_7: SubLesson = {
   id: "2.7",
   title: 'Indirect / Mixed Blood Relation Problems',
   status: 'completed',
-  content: `# 🔗 Indirect / Mixed Blood Relation Problems
+  content: "`# ðŸ”— Indirect / Mixed Blood Relation Problems
 
 Indirect and mixed blood relation problems combine direct and indirect relationships, requiring you to navigate through multiple family connections. These problems test your ability to trace relationships through various family branches and understand complex familial networks.
 
 ---
 
-## 🎯 Understanding Indirect Relations
+## ðŸŽ¯ Understanding Indirect Relations
 
 ### **What are Indirect Blood Relations?**
 Indirect relations are relationships that are not direct but connected through intermediate family members. These include:
@@ -24,7 +24,7 @@ Problems combining blood relations with marital relations, requiring careful tra
 
 ---
 
-## 🧩 Key Indirect Relationships
+## ðŸ§© Key Indirect Relationships
 
 ### **Through Siblings**
 - **Uncle/Aunt**: Parent's brother/sister
@@ -44,7 +44,7 @@ Problems combining blood relations with marital relations, requiring careful tra
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Identify Relationship Type**
 - Determine if it's blood relation or marital relation
@@ -68,7 +68,7 @@ Problems combining blood relations with marital relations, requiring careful tra
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Uncle Relationship**
 **Question**: A is the brother of B, B is the father of C. What is A to C?
@@ -87,7 +87,7 @@ Problems combining blood relations with marital relations, requiring careful tra
 
 ---
 
-## 🔍 Complex Indirect Scenarios
+## ðŸ” Complex Indirect Scenarios
 
 ### **Multiple Relationship Paths**
 Problems where relationships can be traced through different family branches.
@@ -100,7 +100,7 @@ Problems combining blood relationships with marriage connections.
 
 ---
 
-## 🛠️ Solving Strategies
+## ðŸ› ï¸ Solving Strategies
 
 ### **1. Family Tree Method**
 - Draw a simple family tree
@@ -119,7 +119,7 @@ Problems combining blood relationships with marriage connections.
 
 ---
 
-## 📈 Advanced Mixed Relations
+## ðŸ“ˆ Advanced Mixed Relations
 
 ### **Complex Family Networks**
 - Large extended families
@@ -133,20 +133,20 @@ Problems combining blood relationships with marriage connections.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Mistake 1: Wrong Terminology**
-❌ Using "uncle" for mother's sister's husband
+âŒ Using "uncle" for mother's sister's husband
 
 ### **Mistake 2: Ignoring Marriage**
-❌ Not considering marital relationships
+âŒ Not considering marital relationships
 
 ### **Mistake 3: Gender Confusion**
-❌ Mixing up brother/sister relationships
+âŒ Mixing up brother/sister relationships
 
 ---
 
-## 🚀 Pro Tips for Success
+## ðŸš€ Pro Tips for Success
 
 1. **Draw Diagrams**: Always sketch family relationships
 2. **Consider Both Sides**: Check maternal and paternal connections
@@ -156,7 +156,7 @@ Problems combining blood relationships with marriage connections.
 
 ---
 
-## 🧩 Practice Questions
+## ðŸ§© Practice Questions
 
 ### **Question 1**
 A is the brother of B, B is the husband of C, C is the mother of D. What is A to D?
@@ -167,5 +167,5 @@ P is the sister of Q, R is the brother of P, S is the daughter of Q. What is R t
 ### **Question 3**
 X is the father of Y, Y is the brother of Z, W is the wife of Y. What is W to Z?
 
-**Master indirect and mixed blood relations for comprehensive family relationship understanding! 🔗✨**`
+**Master indirect and mixed blood relations for comprehensive family relationship understanding! ðŸ”—âœ¨**`"
 };

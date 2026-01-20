@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_4: SubLesson = {
   id: "3.4",
   title: 'Adding Elements to Lists',
   status: 'demo',
-  content: `# ➕ Adding Elements to Lists
+  content: "`# âž• Adding Elements to Lists
 
 Lists can grow and shrink as needed. Let's learn how to add new items!
 
 ---
 
-## 🎯 Append Method
+## ðŸŽ¯ Append Method
 
 ### **Add to the End**
-\`\`\`python
+\`"\`\`python
 fruits = ["apple", "banana"]
 print(f"Before: {fruits}")
 
@@ -28,7 +28,7 @@ print(f"Final: {fruits}")
 
 ---
 
-## 📍 Insert Method
+## ðŸ“ Insert Method
 
 ### **Add at Specific Position**
 \`\`\`python
@@ -46,7 +46,7 @@ print(f"Start: {numbers}")  # [0, 1, 2, 3, 4, 5]
 
 ---
 
-## 🔗 Extend Method
+## ðŸ”— Extend Method
 
 ### **Add Multiple Items**
 \`\`\`python
@@ -63,7 +63,7 @@ print(f"Extended: {list1}")  # [1, 2, 3, 4, 5, 6]
 
 ---
 
-## ➕ Using + Operator
+## âž• Using + Operator
 
 ### **Combine Lists**
 \`\`\`python
@@ -81,7 +81,7 @@ print(more_fruits)  # ['orange', 'grape']
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 \`\`\`python
 # Shopping list
@@ -103,6 +103,7 @@ shopping.extend(more_items)
 print(f"Final list: {shopping}")
 \`\`\`
 
-Lists grow as you add items - use the method that fits your needs! 📝`
+Lists grow as you add items - use the method that fits your needs! ðŸ“`
 };
+
 

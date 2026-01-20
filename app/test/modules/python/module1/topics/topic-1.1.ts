@@ -1,32 +1,32 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_1_1: SubLesson = {
   id: "1.1",
   title: 'Why Python?',
   status: 'completed',
-  content: `# 🐍 Why Python?
+  content: "`# ðŸ Why Python?
 
 Python is one of the most popular and versatile programming languages in the world. But what makes it so special?
 
 ---
 
-## 🎯 The Origins of Python
+## ðŸŽ¯ The Origins of Python
 
 ### Created by Guido van Rossum
 - **Born**: December 31, 1956 in Netherlands
 - **Started Python**: Late 1980s, first released in 1991
 - **Named after**: "Monty Python's Flying Circus" - the legendary British surreal comedy TV show (not the snake!)
-- **Philosophy**: "There's only one way to do it" → Clean, readable code
+- **Philosophy**: "There's only one way to do it" â†’ Clean, readable code
 
 ### Key Milestones in Python's History
 - **1991**: Python 0.9.0 released (first public version)
 
-## ✨ Why Python is Special
+## âœ¨ Why Python is Special
 
 ### 1. **Simple & Readable Syntax**
 
 **Python** (Simple & Readable):
-\`\`\`python
+\`"\`\`python
 print("Hello, World!")
 \`\`\`
 
@@ -58,7 +58,7 @@ This means:
 - One obvious solution to each problem
 - Easy to learn and understand
 
-### 3. **📜 The Zen of Python**
+### 3. **ðŸ“œ The Zen of Python**
 
 Run \`import this\` in Python to see the guiding principles:
 
@@ -71,13 +71,14 @@ import this
 > Simple is better than complex.  
 > Complex is better than complicated."
 
-## 🌟 Python's Impact
+## ðŸŒŸ Python's Impact
 
 - **3.5+ million** developers worldwide
 - **200,000+** Python packages available
 - **Most popular** language for data science and AI
 - **Used by** major companies like Google, Netflix, Instagram
 
-Python's philosophy of simplicity and readability makes it the perfect first programming language! 🚀✨`
+Python's philosophy of simplicity and readability makes it the perfect first programming language! ðŸš€âœ¨`
 };
+
 

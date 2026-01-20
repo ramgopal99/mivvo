@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_1_3: SubLesson = {
   id: "1.3",
   title: 'Aptitude Exam Strategies',
   status: 'completed',
-  content: `# 🔢 Aptitude Exam Strategies
+  content: "`# ðŸ”¢ Aptitude Exam Strategies
 
-Success in quantitative aptitude examinations requires more than just mathematical knowledge—it demands strategic thinking, time management, and smart problem-solving techniques. This topic covers essential strategies for excelling in aptitude exams.
+Success in quantitative aptitude examinations requires more than just mathematical knowledgeâ€”it demands strategic thinking, time management, and smart problem-solving techniques. This topic covers essential strategies for excelling in aptitude exams.
 
 ---
 
-## 🎯 Understanding Exam Patterns
+## ðŸŽ¯ Understanding Exam Patterns
 
 ### **Common Exam Formats:**
 - **Banking Exams**: 35-50 questions in 45-60 minutes
@@ -25,7 +25,7 @@ Success in quantitative aptitude examinations requires more than just mathematic
 
 ---
 
-## 📊 Time Management Strategies
+## ðŸ“Š Time Management Strategies
 
 ### **1. Question Allocation:**
 - **Easy Questions**: 30-45 seconds each
@@ -33,7 +33,7 @@ Success in quantitative aptitude examinations requires more than just mathematic
 - **Hard Questions**: 2-3 minutes each (consider skipping)
 
 ### **2. Section Time Planning:**
-\`\`\`
+\`"\`\`
 Total Time: 60 minutes
 
 - First 10 mins: Easy questions (15-20 questions)
@@ -49,7 +49,7 @@ Total Time: 60 minutes
 
 ---
 
-## 🎯 Problem-Solving Approach
+## ðŸŽ¯ Problem-Solving Approach
 
 ### **STEP Method:**
 1. **S** - Survey the question (read carefully)
@@ -65,26 +65,26 @@ Total Time: 60 minutes
 
 ---
 
-## 🧮 Calculation Techniques
+## ðŸ§® Calculation Techniques
 
 ### **1. Mental Math:**
-- **Rounding**: 47 + 52 ≈ 50 + 50 = 100
-- **Compatible Numbers**: 19 × 21 ≈ 20 × 20 = 400
-- **Breaking Numbers**: 17 × 8 = 10×8 + 7×8 = 80 + 56 = 136
+- **Rounding**: 47 + 52 â‰ˆ 50 + 50 = 100
+- **Compatible Numbers**: 19 Ã— 21 â‰ˆ 20 Ã— 20 = 400
+- **Breaking Numbers**: 17 Ã— 8 = 10Ã—8 + 7Ã—8 = 80 + 56 = 136
 
 ### **2. Approximation:**
-- **For Large Numbers**: 999 ≈ 1000, 0.001 ≈ 0
-- **Percentage Calculations**: 98% ≈ 100%, 4.9% ≈ 5%
-- **Square Roots**: √48 ≈ √49 = 7
+- **For Large Numbers**: 999 â‰ˆ 1000, 0.001 â‰ˆ 0
+- **Percentage Calculations**: 98% â‰ˆ 100%, 4.9% â‰ˆ 5%
+- **Square Roots**: âˆš48 â‰ˆ âˆš49 = 7
 
 ### **3. Shortcut Formulas:**
-- **Multiplication by 5**: ×10 ÷ 2
-- **Multiplication by 25**: ×100 ÷ 4
-- **Multiplication by 11**: For 23×11 = 253 (2, 2+3=5, 3)
+- **Multiplication by 5**: Ã—10 Ã· 2
+- **Multiplication by 25**: Ã—100 Ã· 4
+- **Multiplication by 11**: For 23Ã—11 = 253 (2, 2+3=5, 3)
 
 ---
 
-## 🎯 Question Selection Strategy
+## ðŸŽ¯ Question Selection Strategy
 
 ### **1. Easy First:**
 - Scan all questions quickly
@@ -103,7 +103,7 @@ Total Time: 60 minutes
 
 ---
 
-## 📈 Accuracy vs Speed Balance
+## ðŸ“ˆ Accuracy vs Speed Balance
 
 ### **Speed Development:**
 - Practice with timer
@@ -122,7 +122,7 @@ Total Time: 60 minutes
 
 ---
 
-## 🧠 Common Pitfalls & Solutions
+## ðŸ§  Common Pitfalls & Solutions
 
 ### **1. Calculation Errors:**
 **Problem**: Arithmetic mistakes due to hurry
@@ -142,7 +142,7 @@ Total Time: 60 minutes
 
 ---
 
-## 🎯 Topic-Wise Strategies
+## ðŸŽ¯ Topic-Wise Strategies
 
 ### **Arithmetic:**
 - Master BODMAS rule
@@ -166,7 +166,7 @@ Total Time: 60 minutes
 
 ---
 
-## 📊 Mock Test Analysis
+## ðŸ“Š Mock Test Analysis
 
 ### **Post-Test Review:**
 1. **Score Analysis**: Identify strong/weak areas
@@ -185,7 +185,7 @@ Total Time: 60 minutes
 
 ---
 
-## 🎓 Preparation Strategies
+## ðŸŽ“ Preparation Strategies
 
 ### **Daily Routine:**
 - **1 hour**: Concept learning
@@ -205,7 +205,7 @@ Total Time: 60 minutes
 
 ---
 
-## 🚀 Exam Day Strategies
+## ðŸš€ Exam Day Strategies
 
 ### **Pre-Exam Preparation:**
 - **Sleep Well**: 7-8 hours before exam
@@ -227,7 +227,7 @@ Total Time: 60 minutes
 
 ---
 
-## 🎯 Guessing Strategies
+## ðŸŽ¯ Guessing Strategies
 
 ### **For Negative Marking Exams:**
 - **25% negative marking**: Guess only if 25% sure
@@ -242,7 +242,7 @@ Total Time: 60 minutes
 
 ---
 
-## 🎓 Success Mindset
+## ðŸŽ“ Success Mindset
 
 ### **Positive Attitude:**
 - Believe in your preparation
@@ -264,7 +264,7 @@ Total Time: 60 minutes
 
 ---
 
-## 🎯 Final Preparation Checklist
+## ðŸŽ¯ Final Preparation Checklist
 
 ### **One Week Before Exam:**
 - [ ] Complete syllabus revision
@@ -287,27 +287,27 @@ Total Time: 60 minutes
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
-### ❌ **Poor Time Management**
+### âŒ **Poor Time Management**
 \`\`\`
 Wrong: Spending 10 minutes on one hard question
 Right: Skip and return later if time permits
 \`\`\`
 
-### ❌ **Silly Calculation Errors**
+### âŒ **Silly Calculation Errors**
 \`\`\`
 Wrong: 15 + 8 = 22 (missing carry-over)
 Right: 15 + 8 = 23 (proper addition)
 \`\`\`
 
-### ❌ **Misreading Questions**
+### âŒ **Misreading Questions**
 \`\`\`
 Wrong: Solving for wrong variable in word problems
 Right: Read questions multiple times, identify what is asked
 \`\`\`
 
-### ❌ **Negative Marking Trap**
+### âŒ **Negative Marking Trap**
 \`\`\`
 Wrong: Blind guessing in high negative marking exams
 Right: Intelligent elimination and educated guessing
@@ -315,7 +315,7 @@ Right: Intelligent elimination and educated guessing
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Time Management:**
 1. If you have 50 questions and 60 minutes, how much time per question?
@@ -326,8 +326,8 @@ Right: Intelligent elimination and educated guessing
 2. You know 3 out of 4 options are wrong. Should you guess in 25% negative marking exam?
 
 ### **Calculation Practice:**
-1. Quick mental calculation: 47 × 5 = ?
-2. Approximation: 98 × 102 ≈ ?
+1. Quick mental calculation: 47 Ã— 5 = ?
+2. Approximation: 98 Ã— 102 â‰ˆ ?
 
 **Answers:**
 Time: 72 seconds per question, 15-20 easy questions
@@ -336,7 +336,7 @@ Calculation: 235, 10,000
 
 ---
 
-## 🎓 Final Thoughts
+## ðŸŽ“ Final Thoughts
 
 Quantitative aptitude success requires a combination of knowledge, strategy, and practice. Remember that consistent preparation, smart time management, and the right mindset are as important as mathematical skills.
 
@@ -346,5 +346,5 @@ Quantitative aptitude success requires a combination of knowledge, strategy, and
 - **Mindset**: Confidence and stress management
 - **Persistence**: Learning from mistakes and continuous improvement
 
-Master these strategies and you'll not only solve problems faster but also achieve better results in your aptitude examinations! 🏆`
+Master these strategies and you'll not only solve problems faster but also achieve better results in your aptitude examinations! ðŸ†`
 };

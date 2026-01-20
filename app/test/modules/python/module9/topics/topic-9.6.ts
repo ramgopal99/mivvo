@@ -1,20 +1,20 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_6: SubLesson = {
   id: "9.6",
   title: 'OOP Best Practices',
   status: 'demo',
-  content: `# 🏗️ OOP Best Practices
+  content: "`# ðŸ—ï¸ OOP Best Practices
 
 OOP has its own unique approach to design. While SOLID principles apply, the philosophy emphasizes practicality, readability, and clean code. Let's explore best practices!
 
 ---
 
-## 🎯 SOLID Principles
+## ðŸŽ¯ SOLID Principles
 
 ### **Single Responsibility Principle (SRP)**
-\`\`\`python
-# ✅ Good: Each class has one clear purpose
+\`"\`\`python
+# âœ… Good: Each class has one clear purpose
 class UserRepository:
     def save(self, user): pass
     def find_by_id(self, user_id): pass
@@ -23,7 +23,7 @@ class UserService:
     def create_user(self, data): pass
     def update_user(self, user_id, data): pass
 
-# ❌ Bad: One class doing too many things
+# âŒ Bad: One class doing too many things
 class UserManager:
     def save_to_db(self, user): pass
     def send_email(self, user): pass
@@ -33,7 +33,7 @@ class UserManager:
 
 ### **Open/Closed Principle (OCP)**
 \`\`\`python
-# ✅ Good: Extend without modifying
+# âœ… Good: Extend without modifying
 class Shape:
     def area(self): raise NotImplementedError
 
@@ -50,11 +50,11 @@ class Circle(Shape):
 
 ---
 
-## 🐍 Best Practices
+## ðŸ Best Practices
 
 ### **Use Duck Typing Over Inheritance**
 \`\`\`python
-# ✅ Good: Duck typing
+# âœ… Good: Duck typing
 def process_data(data):
     if hasattr(data, 'read'):
         return data.read()  # File-like object
@@ -71,7 +71,7 @@ process_data("hello")
 
 ### **Properties Over Getters/Setters**
 \`\`\`python
-# ✅ Good: Use properties
+# âœ… Good: Use properties
 class Person:
     def __init__(self, name):
         self._name = name
@@ -94,7 +94,7 @@ person.name = "jane smith"
 
 ### **Context Managers for Resources**
 \`\`\`python
-# ✅ Good: Context managers
+# âœ… Good: Context managers
 class DatabaseConnection:
     def __init__(self, conn_string):
         self.conn_string = conn_string
@@ -114,7 +114,7 @@ with DatabaseConnection("sqlite:///db") as db:
 
 ### **Composition Over Inheritance**
 \`\`\`python
-# ✅ Pythonic: Prefer composition
+# âœ… Pythonic: Prefer composition
 class Engine:
     def start(self): return "Engine started"
 
@@ -134,7 +134,7 @@ class Car:
 
 ---
 
-## 📋 Python OOP Guidelines
+## ðŸ“‹ Python OOP Guidelines
 
 ### **Class Design**
 1. **Keep classes small and focused**
@@ -156,7 +156,7 @@ class Car:
 
 ---
 
-## 🔍 Python OOP Patterns
+## ðŸ” Python OOP Patterns
 
 ### **Factory Pattern**
 \`\`\`python
@@ -214,11 +214,11 @@ print(user.to_json())
 
 ---
 
-## ⚠️ Common Python OOP Mistakes
+## âš ï¸ Common Python OOP Mistakes
 
 ### **Overusing Inheritance**
 \`\`\`python
-# ❌ Bad: Deep inheritance for simple needs
+# âŒ Bad: Deep inheritance for simple needs
 class Animal:
     def __init__(self, name): self.name = name
 
@@ -228,7 +228,7 @@ class Mammal(Animal):
 class Dog(Mammal):
     def speak(self): return "Woof"
 
-# ✅ Better: Simple class with attributes
+# âœ… Better: Simple class with attributes
 class Dog:
     def __init__(self, name):
         self.name = name
@@ -241,13 +241,13 @@ class Dog:
 
 ### **Ignoring Duck Typing**
 \`\`\`python
-# ❌ Bad: Unnecessarily strict type checking
+# âŒ Bad: Unnecessarily strict type checking
 def process_file(file):
     if not isinstance(file, File):
         raise TypeError("Must be a File object")
     return file.read()
 
-# ✅ Better: Duck typing
+# âœ… Better: Duck typing
 def process_file(file):
     if not hasattr(file, 'read'):
         raise TypeError("Object must have read method")
@@ -256,7 +256,7 @@ def process_file(file):
 
 ### **Not Using Special Methods**
 \`\`\`python
-# ❌ Bad: Manual implementation
+# âŒ Bad: Manual implementation
 class Vector:
     def __init__(self, x, y):
         self.x = x
@@ -265,7 +265,7 @@ class Vector:
     def add(self, other):
         return Vector(self.x + other.x, self.y + other.y)
 
-# ✅ Better: Use special methods
+# âœ… Better: Use special methods
 class Vector:
     def __init__(self, x, y):
         self.x = x
@@ -280,7 +280,7 @@ class Vector:
 
 ---
 
-## 🎯 Python OOP Key Takeaways
+## ðŸŽ¯ Python OOP Key Takeaways
 
 1. **Duck typing** is more Pythonic than strict inheritance
 2. **Properties** provide cleaner interfaces than getters/setters
@@ -289,7 +289,7 @@ class Vector:
 5. **Context managers** ensure proper resource handling
 6. **Keep it simple** - Python values readability over complexity
 
-**Remember:** "Simple is better than complex. Readability counts." Focus on clean, maintainable code! 🚀\`;
+**Remember:** "Simple is better than complex. Readability counts." Focus on clean, maintainable code! ðŸš€\`;
 \`\`\`python
 class Employee:
     def __init__(self, name, salary):
@@ -312,7 +312,7 @@ class Employee:
         print(f"Sending email to {self.name}: {message}")
 \`\`\`
 
-### **✅ Good Example (Follows SRP)**
+### **âœ… Good Example (Follows SRP)**
 \`\`\`python
 class Employee:
     def __init__(self, name, salary):
@@ -338,11 +338,11 @@ class EmailService:
 
 ---
 
-## 🔓 Open/Closed Principle (OCP)
+## ðŸ”“ Open/Closed Principle (OCP)
 
 **Software entities should be open for extension but closed for modification**.
 
-### **❌ Bad Example (Violates OCP)**
+### **âŒ Bad Example (Violates OCP)**
 \`\`\`python
 class Rectangle:
     def __init__(self, width, height):
@@ -359,7 +359,7 @@ class AreaCalculator:
         return total
 \`\`\`
 
-### **✅ Good Example (Follows OCP)**
+### **âœ… Good Example (Follows OCP)**
 \`\`\`python
 from abc import ABC, abstractmethod
 
@@ -401,11 +401,11 @@ class AreaCalculator:
 
 ---
 
-## 🔄 Liskov Substitution Principle (LSP)
+## ðŸ”„ Liskov Substitution Principle (LSP)
 
 **Subtypes must be substitutable for their base types** - derived classes should be able to replace their base classes without altering program correctness.
 
-### **❌ Bad Example (Violates LSP)**
+### **âŒ Bad Example (Violates LSP)**
 \`\`\`python
 class Bird:
     def fly(self):
@@ -423,7 +423,7 @@ ostrich = Ostrich()
 # make_bird_fly(ostrich)  # Runtime error!
 \`\`\`
 
-### **✅ Good Example (Follows LSP)**
+### **âœ… Good Example (Follows LSP)**
 \`\`\`python
 class Bird:
     pass
@@ -458,11 +458,11 @@ print(make_bird_fly(ostrich))  # This bird can't fly
 
 ---
 
-## 🔌 Interface Segregation Principle (ISP)
+## ðŸ”Œ Interface Segregation Principle (ISP)
 
 **Clients should not be forced to depend on interfaces they don't use** - create specific interfaces rather than general-purpose ones.
 
-### **❌ Bad Example (Violates ISP)**
+### **âŒ Bad Example (Violates ISP)**
 \`\`\`python
 class MultiFunctionPrinter:
     def print(self, document):
@@ -487,7 +487,7 @@ class SimplePrinter:
         raise NotImplementedError("Simple printer can't scan")
 \`\`\`
 
-### **✅ Good Example (Follows ISP)**
+### **âœ… Good Example (Follows ISP)**
 \`\`\`python
 from abc import ABC, abstractmethod
 
@@ -524,18 +524,18 @@ class MultiFunctionDevice(Printer, Scanner, Fax):
 simple_printer = SimplePrinter()
 mfd = MultiFunctionDevice()
 
-simple_printer.print("Document")  # ✅ Only has print method
-mfd.print("Document")             # ✅ Has all methods
-mfd.scan("Document")              # ✅ Has all methods
+simple_printer.print("Document")  # âœ… Only has print method
+mfd.print("Document")             # âœ… Has all methods
+mfd.scan("Document")              # âœ… Has all methods
 \`\`\`
 
 ---
 
-## 🔀 Dependency Inversion Principle (DIP)
+## ðŸ”€ Dependency Inversion Principle (DIP)
 
 **High-level modules should not depend on low-level modules. Both should depend on abstractions.**
 
-### **❌ Bad Example (Violates DIP)**
+### **âŒ Bad Example (Violates DIP)**
 \`\`\`python
 class MySQLDatabase:
     def connect(self):
@@ -555,7 +555,7 @@ class UserService:
 # UserService is tightly coupled to MySQLDatabase
 \`\`\`
 
-### **✅ Good Example (Follows DIP)**
+### **âœ… Good Example (Follows DIP)**
 \`\`\`python
 from abc import ABC, abstractmethod
 
@@ -600,7 +600,7 @@ print(postgres_service.get_user(1))
 
 ---
 
-## 🎯 Other Important Design Principles
+## ðŸŽ¯ Other Important Design Principles
 
 ### **DRY (Don't Repeat Yourself)**
 Avoid code duplication by abstracting common functionality.
@@ -616,7 +616,7 @@ Favor object composition over class inheritance when possible.
 
 ---
 
-## 🏗️ Design Patterns Overview
+## ðŸ—ï¸ Design Patterns Overview
 
 ### **Creational Patterns**
 - **Singleton**: Ensure only one instance exists
@@ -635,7 +635,7 @@ Favor object composition over class inheritance when possible.
 
 ---
 
-## 📊 Code Quality Metrics
+## ðŸ“Š Code Quality Metrics
 
 ### **Cyclomatic Complexity**
 - Measure of code complexity
@@ -651,7 +651,7 @@ Favor object composition over class inheritance when possible.
 
 ---
 
-## 🎯 Best Practices Summary
+## ðŸŽ¯ Best Practices Summary
 
 ### **Class Design**
 1. **Small, focused classes** with single responsibility
@@ -675,7 +675,7 @@ Favor object composition over class inheritance when possible.
 
 ---
 
-## 🏆 Key Takeaways
+## ðŸ† Key Takeaways
 
 1. **SOLID principles** guide good OOP design
 2. **Single Responsibility** keeps classes focused
@@ -686,6 +686,7 @@ Favor object composition over class inheritance when possible.
 7. **Design patterns** solve common problems
 8. **Quality metrics** help assess code health
 
-Congratulations! You've completed the comprehensive OOP concepts course. These principles will help you write better, more maintainable code! 🎉`
+Congratulations! You've completed the comprehensive OOP concepts course. These principles will help you write better, more maintainable code! ðŸŽ‰`
 };
+
 

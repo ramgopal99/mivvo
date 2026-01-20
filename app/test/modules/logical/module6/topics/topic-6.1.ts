@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_1: SubLesson = {
   id: "6.1",
-  title: 'SERIES (Aptitude – Exam-Oriented Topics)',
+  title: 'SERIES (Aptitude â€“ Exam-Oriented Topics)',
   status: 'completed',
-  content: `# 🔢 SERIES (Aptitude – Exam-Oriented Topics)
+  content: "`# ðŸ”¢ SERIES (Aptitude â€“ Exam-Oriented Topics)
 
 Welcome to the comprehensive Series module! This exam-oriented section covers all types of number, alphabet, and pattern series that appear frequently in competitive examinations. Master series completion, pattern recognition, and logical sequencing to excel in banking, SSC, railway, and other competitive exams.
 
 ---
 
-## 🎯 Understanding Series
+## ðŸŽ¯ Understanding Series
 
 ### **What are Series Problems?**
 Series problems involve identifying patterns in sequences of numbers, letters, or symbols and finding the next term or missing term. These problems test your ability to:
@@ -27,7 +27,7 @@ Series problems involve identifying patterns in sequences of numbers, letters, o
 
 ---
 
-## 🧩 Types of Series
+## ðŸ§© Types of Series
 
 ### **Number-Based Series**
 **Mathematical and numerical patterns**
@@ -55,7 +55,7 @@ Series problems involve identifying patterns in sequences of numbers, letters, o
 
 ---
 
-## 📊 Competitive Exam Relevance
+## ðŸ“Š Competitive Exam Relevance
 
 ### **Major Exams Featuring Series**
 - **Banking Exams** (IBPS, SBI): 10-15 questions per exam
@@ -74,7 +74,7 @@ Series problems involve identifying patterns in sequences of numbers, letters, o
 
 ---
 
-## 🎯 Core Series Skills
+## ðŸŽ¯ Core Series Skills
 
 ### **1. Pattern Recognition**
 **Identifying underlying rules**
@@ -102,7 +102,7 @@ Series problems involve identifying patterns in sequences of numbers, letters, o
 
 ---
 
-## 🛠️ Problem-Solving Framework
+## ðŸ› ï¸ Problem-Solving Framework
 
 ### **Step 1: Analyze the Series**
 - Carefully examine all given terms
@@ -126,7 +126,7 @@ Series problems involve identifying patterns in sequences of numbers, letters, o
 
 ---
 
-## 📈 Difficulty Levels in Series Problems
+## ðŸ“ˆ Difficulty Levels in Series Problems
 
 ### **Easy Level (30-40%)**
 - Simple arithmetic/geometric progressions
@@ -148,7 +148,7 @@ Series problems involve identifying patterns in sequences of numbers, letters, o
 
 ---
 
-## 🎯 Common Series Categories
+## ðŸŽ¯ Common Series Categories
 
 ### **Number Series Types**
 Simple arithmetic, geometric, and complex mathematical series patterns.
@@ -164,7 +164,7 @@ Position-based, alternating, and advanced mathematical series.
 
 ---
 
-## 📊 Time Management Strategies
+## ðŸ“Š Time Management Strategies
 
 ### **Question Allocation Time**
 - **Simple Series**: 1-2 minutes
@@ -179,7 +179,7 @@ Position-based, alternating, and advanced mathematical series.
 
 ---
 
-## 🚀 Preparation Strategy
+## ðŸš€ Preparation Strategy
 
 ### **Phase 1: Foundation Building**
 - Learn basic series types (arithmetic, geometric)
@@ -201,7 +201,7 @@ Position-based, alternating, and advanced mathematical series.
 
 ---
 
-## 📚 Recommended Resources
+## ðŸ“š Recommended Resources
 
 ### **Practice Platforms**
 - **Online Platforms**: Testbook, Adda247, Unacademy
@@ -216,7 +216,7 @@ Position-based, alternating, and advanced mathematical series.
 
 ---
 
-## 🎯 Success Factors
+## ðŸŽ¯ Success Factors
 
 ### **1. Pattern Recognition**
 - Quick identification of series types
@@ -240,27 +240,27 @@ Position-based, alternating, and advanced mathematical series.
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Pattern Assumption**
-❌ Assuming arithmetic when geometric applies
-✅ Test multiple pattern possibilities
+âŒ Assuming arithmetic when geometric applies
+âœ… Test multiple pattern possibilities
 
 ### **Mistake 2: Calculation Errors**
-❌ Mathematical mistakes in calculations
-✅ Careful arithmetic and double-checking
+âŒ Mathematical mistakes in calculations
+âœ… Careful arithmetic and double-checking
 
 ### **Mistake 3: Missing Pattern Variations**
-❌ Not considering position-based factors
-✅ Look for complex pattern relationships
+âŒ Not considering position-based factors
+âœ… Look for complex pattern relationships
 
 ### **Mistake 4: Time Pressure Errors**
-❌ Rushing through complex series
-✅ Manage time strategically
+âŒ Rushing through complex series
+âœ… Manage time strategically
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Start with Differences**: Check differences between consecutive terms first
 2. **Try Common Patterns**: Arithmetic, geometric, and position-based patterns
@@ -272,7 +272,7 @@ Position-based, alternating, and advanced mathematical series.
 
 ---
 
-## 🔍 What You'll Learn Next
+## ðŸ” What You'll Learn Next
 
 This module covers comprehensive series topics:
 
@@ -287,5 +287,5 @@ This module covers comprehensive series topics:
 - **Position-Based Series** - Position-dependent relationship series
 - **Special Number Series** - Advanced and unusual number patterns
 
-**Master series completion and pattern recognition for exam success! 🔢✨**`
+**Master series completion and pattern recognition for exam success! ðŸ”¢âœ¨**`"
 };

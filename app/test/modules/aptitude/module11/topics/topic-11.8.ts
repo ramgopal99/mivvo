@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_8: SubLesson = {
   id: "11.8",
   title: 'Circular Track Problems',
   status: 'completed',
-  content: `# 🏁 Circular Track Problems
+  content: "`# ðŸ Circular Track Problems
 
 Master problems involving motion on circular tracks - including meeting points, lap times, and relative speeds in circular motion.
 
 ---
 
-## 🎯 Circular Track Concepts
+## ðŸŽ¯ Circular Track Concepts
 
 **Circular track problems** involve objects moving in circles, meeting periodically, and calculating lap times and meeting frequencies.
 
@@ -21,10 +21,10 @@ Master problems involving motion on circular tracks - including meeting points, 
 
 ---
 
-## 📊 Circular Track Calculations
+## ðŸ“Š Circular Track Calculations
 
 ### 1. **Lap Time**
-\`\`\`
+\`"\`\`
 Time for one lap = Circumference / Speed
 \`\`\`
 
@@ -40,7 +40,7 @@ Meetings per lap = Number of objects - 1
 
 ---
 
-## 🧮 Circular Track Examples
+## ðŸ§® Circular Track Examples
 
 ### Example 1: Single Runner
 **Runner runs 400m track at 8 m/s. Lap time?**
@@ -61,26 +61,26 @@ Meetings per lap = Number of objects - 1
 **Solution:**
 - Relative speed = 12 - 8 = 4 m/s
 - Time to meet = 500 / 4 = 125 seconds
-- Distance covered by faster runner = 12 × 125 = 1500 m
+- Distance covered by faster runner = 12 Ã— 125 = 1500 m
 - Position = 1500 mod 500 = 0 (back at start)
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Same Direction Meeting**
 \`\`\`
-Time = Circumference / |Speed₁ - Speed₂|
+Time = Circumference / |Speedâ‚ - Speedâ‚‚|
 \`\`\`
 
 ### **Opposite Direction Meeting**
 \`\`\`
-Time = Circumference / (Speed₁ + Speed₂)
+Time = Circumference / (Speedâ‚ + Speedâ‚‚)
 \`\`\`
 
 ### **Lapping Time**
 \`\`\`
-Time for faster to lap slower = Circumference / (Speed₁ - Speed₂)
+Time for faster to lap slower = Circumference / (Speedâ‚ - Speedâ‚‚)
 \`\`\`
 
 ### **Meeting Frequency**
@@ -90,7 +90,7 @@ Number of meetings per unit time = Relative speed / Circumference
 
 ---
 
-## 🔢 Advanced Circular Problems
+## ðŸ”¢ Advanced Circular Problems
 
 ### **Multiple Runners**
 - **Three runners**: Complex meeting patterns
@@ -109,7 +109,7 @@ Number of meetings per unit time = Relative speed / Circumference
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 4: Three Runners
 **Three runners on 600m track, speeds 10, 8, 6 m/s. Find meeting times.**
@@ -126,21 +126,21 @@ Number of meetings per unit time = Relative speed / Circumference
 - Effective distance = 100 m (B's head start)
 - Relative speed = 12 - 8 = 4 m/s
 - Time to catch = 100 / 4 = 25 seconds
-- Distance covered by A = 12 × 25 = 300 m
+- Distance covered by A = 12 Ã— 25 = 300 m
 - Position = 300 mod 400 = 300 m from start
 
 ### Example 6: Race Completion
 **Two runners race on 500m track. A at 10 m/s, B at 8 m/s. How many laps does B complete when A finishes 5 laps?**
 
 **Solution:**
-- A completes 5 laps: Distance = 5 × 500 = 2500 m
+- A completes 5 laps: Distance = 5 Ã— 500 = 2500 m
 - Time = 2500 / 10 = 250 seconds
-- B's distance = 8 × 250 = 2000 m
+- B's distance = 8 Ã— 250 = 2000 m
 - B's laps = 2000 / 500 = 4 laps
 
 ---
 
-## 🚨 Circular Track Mistakes
+## ðŸš¨ Circular Track Mistakes
 
 1. **Direction confusion**: Same vs opposite direction
 2. **Starting point**: Offset distances
@@ -150,7 +150,7 @@ Number of meetings per unit time = Relative speed / Circumference
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** Runner on 400m track at 8 m/s. Lap time?
 **2.** Two runners 500m track, 12 m/s and 8 m/s. Meeting time?
@@ -162,7 +162,7 @@ Number of meetings per unit time = Relative speed / Circumference
 
 ---
 
-## 🎓 Circular Track Strategies
+## ðŸŽ“ Circular Track Strategies
 
 1. **Determine direction** - same or opposite
 2. **Calculate relative speed** correctly
@@ -170,5 +170,5 @@ Number of meetings per unit time = Relative speed / Circumference
 4. **Use modulo arithmetic** for position calculations
 5. **Account for complete laps** when needed
 
-Master circular track problems and handle track racing scenarios! 🏆`
+Master circular track problems and handle track racing scenarios! ðŸ†`
 };

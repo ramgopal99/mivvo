@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_4: SubLesson = {
   id: "6.4",
   title: 'Class Members',
   status: 'completed',
-  content: `# 👥 Class Members in Java
+  content: "`# ðŸ‘¥ Class Members in Java
 
 Class members include fields, methods, constructors, and nested classes. Understanding the different types of members and their scopes is essential for designing well-structured Java classes.
 
 ---
 
-## 📊 Instance Members vs Static Members
+## ðŸ“Š Instance Members vs Static Members
 
 ### **Instance Members**
-\`\`\`java
+\`"\`\`java
 public class InstanceMembers {
     // Instance fields - each object has its own copy
     private String name;
@@ -100,7 +100,7 @@ public class StaticMembers {
 
 ---
 
-## 🔒 Access Modifiers
+## ðŸ”’ Access Modifiers
 
 ### **Public Members**
 \`\`\`java
@@ -224,7 +224,7 @@ class SamePackageClass {
 
 ---
 
-## 🏗️ Nested Classes
+## ðŸ—ï¸ Nested Classes
 
 ### **Static Nested Classes**
 \`\`\`java
@@ -341,7 +341,7 @@ public class AnonymousClasses {
 
 ---
 
-## 🎯 Member Initialization Order
+## ðŸŽ¯ Member Initialization Order
 
 ### **Class Loading and Initialization**
 \`\`\`java
@@ -385,18 +385,18 @@ public class InitializationOrder {
 
 ---
 
-## 📊 Member Visibility Summary
+## ðŸ“Š Member Visibility Summary
 
 | Modifier | Class | Package | Subclass | World |
 |----------|-------|---------|----------|-------|
-| public | ✅ | ✅ | ✅ | ✅ |
-| protected | ✅ | ✅ | ✅ | ❌ |
-| default | ✅ | ✅ | ❌ | ❌ |
-| private | ✅ | ❌ | ❌ | ❌ |
+| public | âœ… | âœ… | âœ… | âœ… |
+| protected | âœ… | âœ… | âœ… | âŒ |
+| default | âœ… | âœ… | âŒ | âŒ |
+| private | âœ… | âŒ | âŒ | âŒ |
 
 ---
 
-## 🎯 Best Practices for Class Members
+## ðŸŽ¯ Best Practices for Class Members
 
 ### **1. Encapsulation**
 \`\`\`java
@@ -556,8 +556,9 @@ public class NestedClassPatterns {
 }
 \`\`\`
 
-Class members form the structure and behavior of your classes. Proper use of access modifiers, understanding static vs instance members, and appropriate use of nested classes leads to well-designed, maintainable Java code! 👥`
+Class members form the structure and behavior of your classes. Proper use of access modifiers, understanding static vs instance members, and appropriate use of nested classes leads to well-designed, maintainable Java code! ðŸ‘¥`
 };
+
 
 
 

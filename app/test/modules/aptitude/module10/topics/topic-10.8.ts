@@ -1,28 +1,28 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_8: SubLesson = {
   id: "10.8",
   title: 'Pipes and Cisterns (Basic)',
   status: 'completed',
-  content: `# 🚰 Pipes and Cisterns (Basic)
+  content: "`# ðŸš° Pipes and Cisterns (Basic)
 
 Learn the fundamentals of pipes and cisterns problems - water filling and emptying scenarios common in aptitude exams.
 
 ---
 
-## 🎯 Pipes and Cisterns Concept
+## ðŸŽ¯ Pipes and Cisterns Concept
 
 **Pipes and Cisterns** problems involve filling or emptying containers using pipes with different flow rates.
 
 ### **Basic Principle**
-\`\`\`
-Work = Time × Rate
+\`"\`\`
+Work = Time Ã— Rate
 Filling/Emptying follows same time & work principles
 \`\`\`
 
 ---
 
-## 📊 Basic Pipe Operations
+## ðŸ“Š Basic Pipe Operations
 
 ### 1. **Inlet Pipe (Fills Tank)**
 \`\`\`
@@ -42,7 +42,7 @@ Time = 1 / Net rate
 
 ---
 
-## 🧮 Basic Examples
+## ðŸ§® Basic Examples
 
 ### Example 1: Two Pipes Filling
 **Pipe A fills tank in 10 hours, Pipe B in 15 hours. Time together?**
@@ -72,7 +72,7 @@ Time = 1 / Net rate
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Rate Calculation Magic**
 \`\`\`
@@ -97,13 +97,13 @@ Calculate time for 1 unit work
 
 ### **Emptying Time Trick**
 \`\`\`
-If net rate is negative → Tank empties
+If net rate is negative â†’ Tank empties
 Time = 1 / |Net rate|
 \`\`\`
 
 ---
 
-## 🔢 Advanced Pipe Scenarios
+## ðŸ”¢ Advanced Pipe Scenarios
 
 ### **Partial Tank Problems**
 - **Fill to certain level**: Work = fraction of tank
@@ -122,7 +122,7 @@ Time = 1 / |Net rate|
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 4: Partial Filling
 **A fills tank in 8 hours. How long to fill half tank?**
@@ -138,7 +138,7 @@ Time = 1 / |Net rate|
 **Solution:**
 - Work needed = 2/3 tank
 - Rate = 1/10 per hour
-- Time = (2/3) / (1/10) = 20/3 ≈ 6.67 hours
+- Time = (2/3) / (1/10) = 20/3 â‰ˆ 6.67 hours
 
 ### Example 6: Sequential Operation
 **A fills in 6h, B empties in 8h. A works 3h, then B works 2h. Final level?**
@@ -150,7 +150,7 @@ Time = 1 / |Net rate|
 
 ---
 
-## 🚨 Pipe Problem Mistakes
+## ðŸš¨ Pipe Problem Mistakes
 
 1. **Sign Convention**: Inlet +, Outlet -
 2. **Net Rate Zero**: Pipes cancel out - no change
@@ -160,7 +160,7 @@ Time = 1 / |Net rate|
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** A fills in 8h, B fills in 12h. Time together?
 **2.** A fills in 10h, B empties in 15h. Time together?
@@ -172,7 +172,7 @@ Time = 1 / |Net rate|
 
 ---
 
-## 🎓 Pipe Problem Strategies
+## ðŸŽ“ Pipe Problem Strategies
 
 1. **Assign correct signs** - inlet positive, outlet negative
 2. **Calculate net rate** first
@@ -180,5 +180,5 @@ Time = 1 / |Net rate|
 4. **Use LCM method** for multiple pipes
 5. **Check if tank fills or empties** based on net rate
 
-Master basic pipes and cisterns problems and handle water flow calculations with ease! 🏆`
+Master basic pipes and cisterns problems and handle water flow calculations with ease! ðŸ†`
 };

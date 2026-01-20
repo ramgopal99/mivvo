@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_1: SubLesson = {
   id: "6.1",
   title: 'Introduction to Arrays',
   status: 'completed',
-  content: `# 📊 Introduction to Arrays in Java
+  content: "`# ðŸ“Š Introduction to Arrays in Java
 
 Arrays are fundamental data structures in Java that allow you to store multiple values of the same type in a single variable. They provide efficient access to elements using index-based positioning and are essential for handling collections of data in Java programs.
 
 ---
 
-## 🎯 What is an Array?
+## ðŸŽ¯ What is an Array?
 
 An **array** is a container object that holds a fixed number of values of a single type. Each item in an array is called an **element**, and each element can be accessed by its **index** (position in the array).
 
@@ -23,13 +23,13 @@ An **array** is a container object that holds a fixed number of values of a sing
 
 ---
 
-## 📝 Array Declaration and Creation
+## ðŸ“ Array Declaration and Creation
 
 ### **Array Declaration**
 
 Arrays can be declared in several ways:
 
-\`\`\`java
+\`"\`\`java
 public class ArrayDeclaration {
     public static void main(String[] args) {
         // Method 1: Declare and create separately
@@ -77,7 +77,7 @@ public class ArraySyntax {
 
 ---
 
-## 🔢 Array Indexing and Access
+## ðŸ”¢ Array Indexing and Access
 
 ### **Zero-Based Indexing**
 
@@ -128,7 +128,7 @@ public class ArrayLength {
 
 ---
 
-## 🔄 Iterating Through Arrays
+## ðŸ”„ Iterating Through Arrays
 
 ### **Traditional for Loop**
 
@@ -199,7 +199,7 @@ public class EnhancedForLoop {
 
 ---
 
-## 🧮 Array Operations
+## ðŸ§® Array Operations
 
 ### **Array Initialization Patterns**
 
@@ -290,7 +290,7 @@ public class ArrayOperations {
 
 ---
 
-## 🎯 Practical Array Applications
+## ðŸŽ¯ Practical Array Applications
 
 ### **Student Grade Management**
 
@@ -368,15 +368,15 @@ public class InventorySystem {
 \`\`\`java
 public class TemperatureAnalysis {
     public static void main(String[] args) {
-        // Weekly temperature readings (°C)
+        // Weekly temperature readings (Â°C)
         double[] temperatures = {22.5, 24.1, 19.8, 26.3, 23.7, 21.4, 25.0};
 
         // Analyze temperature data
         double sum = 0.0;
         double maxTemp = temperatures[0];
         double minTemp = temperatures[0];
-        int hotDays = 0;  // Days with temp >= 25°C
-        int coldDays = 0;  // Days with temp < 20°C
+        int hotDays = 0;  // Days with temp >= 25Â°C
+        int coldDays = 0;  // Days with temp < 20Â°C
 
         for (double temp : temperatures) {
             sum += temp;
@@ -392,17 +392,17 @@ public class TemperatureAnalysis {
 
         System.out.println("Weekly Temperature Analysis:");
         System.out.println("============================");
-        System.out.println("Average Temperature: " + String.format("%.1f°C", averageTemp));
-        System.out.println("Highest Temperature: " + maxTemp + "°C");
-        System.out.println("Lowest Temperature: " + minTemp + "°C");
-        System.out.println("Hot Days (≥25°C): " + hotDays);
-        System.out.println("Cold Days (<20°C): " + coldDays);
+        System.out.println("Average Temperature: " + String.format("%.1fÂ°C", averageTemp));
+        System.out.println("Highest Temperature: " + maxTemp + "Â°C");
+        System.out.println("Lowest Temperature: " + minTemp + "Â°C");
+        System.out.println("Hot Days (â‰¥25Â°C): " + hotDays);
+        System.out.println("Cold Days (<20Â°C): " + coldDays);
 
         // Temperature trend
         System.out.println("\\nDaily Temperatures:");
         for (int i = 0; i < temperatures.length; i++) {
             String day = getDayName(i);
-            System.out.println(day + ": " + temperatures[i] + "°C");
+            System.out.println(day + ": " + temperatures[i] + "Â°C");
         }
     }
 
@@ -415,7 +415,7 @@ public class TemperatureAnalysis {
 
 ---
 
-## ⚠️ Common Array Mistakes
+## âš ï¸ Common Array Mistakes
 
 ### **ArrayIndexOutOfBoundsException**
 
@@ -424,7 +424,7 @@ public class ArrayErrors {
     public static void main(String[] args) {
         int[] numbers = {1, 2, 3, 4, 5};
 
-        // ❌ Wrong: Accessing invalid index
+        // âŒ Wrong: Accessing invalid index
         try {
             // int invalid = numbers[10];  // Index 10 doesn't exist (valid: 0-4)
             // int negative = numbers[-1]; // Negative indices not allowed
@@ -433,7 +433,7 @@ public class ArrayErrors {
             System.out.println("Caught: " + e.getMessage());
         }
 
-        // ✅ Correct: Always check bounds
+        // âœ… Correct: Always check bounds
         int safeIndex = 2;
         if (safeIndex >= 0 && safeIndex < numbers.length) {
             System.out.println("Safe access: " + numbers[safeIndex]);
@@ -441,7 +441,7 @@ public class ArrayErrors {
             System.out.println("Invalid index: " + safeIndex);
         }
 
-        // ✅ Use length property to avoid errors
+        // âœ… Use length property to avoid errors
         for (int i = 0; i < numbers.length; i++) {  // Always safe
             System.out.println("Element " + i + ": " + numbers[i]);
         }
@@ -457,7 +457,7 @@ public class NullPointerIssue {
         // Object arrays are initialized with null values
         String[] names = new String[3];  // [null, null, null]
 
-        // ❌ Wrong: Calling method on null reference
+        // âŒ Wrong: Calling method on null reference
         try {
             // System.out.println(names[0].length()); // NullPointerException
             System.out.println("Would cause NullPointerException");
@@ -465,14 +465,14 @@ public class NullPointerIssue {
             System.out.println("Caught: " + e.getMessage());
         }
 
-        // ✅ Correct: Check for null before using
+        // âœ… Correct: Check for null before using
         if (names[0] != null) {
             System.out.println("Length: " + names[0].length());
         } else {
             System.out.println("String is null");
         }
 
-        // ✅ Initialize array elements
+        // âœ… Initialize array elements
         names[0] = "Alice";
         names[1] = "Bob";
         names[2] = "Charlie";
@@ -487,7 +487,7 @@ public class NullPointerIssue {
 
 ---
 
-## 🎯 Array Best Practices
+## ðŸŽ¯ Array Best Practices
 
 ### **1. Validate Array Access**
 
@@ -496,7 +496,7 @@ public class ArrayBestPractices {
     public static void main(String[] args) {
         int[] data = {10, 20, 30, 40, 50};
 
-        // ✅ Always validate indices
+        // âœ… Always validate indices
         int index = 3;
         if (isValidIndex(data, index)) {
             System.out.println("Value at index " + index + ": " + data[index]);
@@ -504,7 +504,7 @@ public class ArrayBestPractices {
             System.out.println("Invalid index: " + index);
         }
 
-        // ✅ Use enhanced for-each when possible
+        // âœ… Use enhanced for-each when possible
         int sum = 0;
         for (int value : data) {
             sum += value;
@@ -524,19 +524,19 @@ public class ArrayBestPractices {
 \`\`\`java
 public class ProperInitialization {
     public static void main(String[] args) {
-        // ✅ Initialize with meaningful defaults
+        // âœ… Initialize with meaningful defaults
         int[] scores = new int[5];  // Defaults to 0 (meaningful for scores)
 
-        // ✅ Initialize with specific values
+        // âœ… Initialize with specific values
         String[] statusOptions = {"Pending", "Processing", "Completed", "Failed"};
 
-        // ✅ Use array literals for small, fixed data
+        // âœ… Use array literals for small, fixed data
         double[] taxRates = {0.05, 0.10, 0.15, 0.20};  // 5%, 10%, 15%, 20%
 
-        // ❌ Avoid uninitialized arrays
+        // âŒ Avoid uninitialized arrays
         // int[] uninitialized;  // Compiler error if used before initialization
 
-        // ✅ Initialize object arrays with actual objects
+        // âœ… Initialize object arrays with actual objects
         String[] names = new String[3];
         names[0] = "Alice";
         names[1] = "Bob";
@@ -575,7 +575,7 @@ public class EdgeCases {
 
 ---
 
-## 🎯 Summary
+## ðŸŽ¯ Summary
 
 Arrays are fundamental data structures in Java:
 
@@ -616,4 +616,5 @@ System.out.println(arr[3]);         // 3. ?
 // System.out.println(arr[4]);      // 4. What happens?
 \`\`\``
 };
+
 

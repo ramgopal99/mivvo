@@ -1,33 +1,33 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_21: SubLesson = {
   id: "2.21",
   title: 'Highest Power of a Number in Factorial',
   status: 'completed',
-  content: `# 🔢 Highest Power of a Number in Factorial
+  content: "`# ðŸ”¢ Highest Power of a Number in Factorial
 
 Finding the highest power of a number that divides a factorial is a crucial concept in number theory. This helps determine how many times a prime or composite number appears as a factor in n!.
 
 ---
 
-## 🎯 Basic Concept
+## ðŸŽ¯ Basic Concept
 
 The highest power of a prime p that divides n! is given by:
 
-**Formula**: floor(n/p) + floor(n/p²) + floor(n/p³) + ... 
+**Formula**: floor(n/p) + floor(n/pÂ²) + floor(n/pÂ³) + ... 
 
 **Example**: Highest power of 2 in 10!
-\`\`\`
+\`"\`\`
 floor(10/2) + floor(10/4) + floor(10/8) = 5 + 2 + 1 = 8
 So 2^8 divides 10!, but 2^9 does not
 \`\`\`
 
 ---
 
-## 📊 For Prime Numbers
+## ðŸ“Š For Prime Numbers
 
 ### Method 1: **Direct Formula**
-For prime p: floor(n/p) + floor(n/p²) + floor(n/p³) + ...
+For prime p: floor(n/p) + floor(n/pÂ²) + floor(n/pÂ³) + ...
 
 **Example**: Highest power of 5 in 50!
 \`\`\`
@@ -48,17 +48,17 @@ Total: 14 + 2 = 16
 
 ---
 
-## 🧮 For Composite Numbers
+## ðŸ§® For Composite Numbers
 
 ### Method 1: **Prime Factorization**
 Express the number as product of primes, then find minimum of the powers.
 
 **Example**: Highest power of 12 in 50!
 \`\`\`
-12 = 2² × 3
+12 = 2Â² Ã— 3
 Power of 2 in 50!: floor(50/2)+floor(50/4)+floor(50/8)+floor(50/16)+floor(50/32) = 25+12+6+3+1 = 47
 Power of 3 in 50!: floor(50/3)+floor(50/9)+floor(50/27) = 16+5+1 = 22
-For 12=2²×3: min(floor(47/2), 22) = min(23, 22) = 22
+For 12=2Â²Ã—3: min(floor(47/2), 22) = min(23, 22) = 22
 So 12^22 divides 50!
 \`\`\`
 
@@ -67,7 +67,7 @@ Keep dividing n! by increasing powers of the composite number.
 
 ---
 
-## 🎯 Special Cases
+## ðŸŽ¯ Special Cases
 
 ### 1. **Power of 2 in n!**
 Always more than power of any odd prime.
@@ -76,14 +76,14 @@ Always more than power of any odd prime.
 Power of 10 = min(power of 2, power of 5)
 
 ### 3. **Power of 4 in n!**
-Since 4=2², power = floor( (power of 2 in n!) / 2 )
+Since 4=2Â², power = floor( (power of 2 in n!) / 2 )
 
 ### 4. **Power of 8 in n!**
-Since 8=2³, power = floor( (power of 2 in n!) / 3 )
+Since 8=2Â³, power = floor( (power of 2 in n!) / 3 )
 
 ---
 
-## 🧠 Problem Solving Tricks
+## ðŸ§  Problem Solving Tricks
 
 ### Trick 1: **For Prime Powers**
 Use the standard formula directly.
@@ -95,17 +95,17 @@ Factorize and find limiting prime factor.
 For large n, approximate using n/(p-1) for prime p.
 
 ### Trick 4: **Pattern Recognition**
-Powers increase significantly at multiples of p, p², etc.
+Powers increase significantly at multiples of p, pÂ², etc.
 
 ---
 
-## 📊 Applications in Aptitude
+## ðŸ“Š Applications in Aptitude
 
 ### 1. **Factorial Divisibility**
 **Example**: Does 50! have 12^20 as a factor?
 
-**Solution**: Check if power of 12 in 50! ≥ 20
-Power of 12 = 22 (from earlier), 22 ≥ 20, yes
+**Solution**: Check if power of 12 in 50! â‰¥ 20
+Power of 12 = 22 (from earlier), 22 â‰¥ 20, yes
 
 ### 2. **Trailing Zeros**
 **Example**: How many trailing zeros in 100!?
@@ -124,10 +124,10 @@ So 24 trailing zeros
 
 ---
 
-## 🔍 Advanced Concepts
+## ðŸ” Advanced Concepts
 
 ### 1. **Legendre's Formula**
-The formula floor(n/p) + floor(n/p²) + ... is called Legendre's formula.
+The formula floor(n/p) + floor(n/pÂ²) + ... is called Legendre's formula.
 
 ### 2. **Kummer's Theorem**
 For binomial coefficients, the power of p is floor( (a+b)/p ) - floor(a/p) - floor(b/p)
@@ -140,7 +140,7 @@ Alternative way to compute the power.
 
 ---
 
-## 🧮 Calculation Examples
+## ðŸ§® Calculation Examples
 
 ### Example 1: Prime Power
 Find highest power of 3 in 20!
@@ -150,10 +150,10 @@ Find highest power of 3 in 20!
 ### Example 2: Composite Power
 Find highest power of 6 in 15!
 
-**Solution**: 6 = 2 × 3
+**Solution**: 6 = 2 Ã— 3
 Power of 2: floor(15/2)+floor(15/4)+floor(15/8)=7+3+1=11
 Power of 3: floor(15/3)+floor(15/9)=5+1=6
-For 6=2×3: min(11,6) = 6
+For 6=2Ã—3: min(11,6) = 6
 
 ### Example 3: High Power Prime
 Find highest power of 7 in 50!
@@ -164,7 +164,7 @@ Find highest power of 7 in 50!
 Find highest power of 4 in 20!
 
 **Solution**: Power of 2 in 20! = floor(20/2)+floor(20/4)+floor(20/8)+floor(20/16)=10+5+2+1=18
-Power of 4 = 2², so floor(18/2) = 9
+Power of 4 = 2Â², so floor(18/2) = 9
 
 ### Example 5: Large Factorial
 Find highest power of 13 in 100!
@@ -180,11 +180,12 @@ Which has higher power of 5: 24! or 25!?
 ### Example 7: Complex Composite
 Find highest power of 24 in 30!
 
-**Solution**: 24 = 2³ × 3
+**Solution**: 24 = 2Â³ Ã— 3
 Power of 2: floor(30/2)+floor(30/4)+floor(30/8)+floor(30/16)=15+7+3+1=26
 Power of 3: floor(30/3)+floor(30/9)+floor(30/27)=10+3+1=14
-For 24=2³×3: min(floor(26/3),14) = min(8,14) = 8
+For 24=2Â³Ã—3: min(floor(26/3),14) = min(8,14) = 8
 
-Master finding highest powers in factorials for advanced number theory problems! 🚀`
+Master finding highest powers in factorials for advanced number theory problems! ðŸš€`
 };
+
 

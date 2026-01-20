@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_17_3: SubLesson = {
   id: "17.3",
   title: 'Game Development with Pygame',
   status: 'demo',
-  content: `# 🎮 Game Development with Pygame
+  content: "`# ðŸŽ® Game Development with Pygame
 
 Pygame is a cross-platform set of Python modules designed for writing video games. It provides excellent support for graphics, sound, and input handling, making it perfect for creating 2D games. This topic covers the fundamental concepts and architecture of Pygame without practical implementation examples.
 
 ---
 
-## 🎯 Understanding Pygame Architecture
+## ðŸŽ¯ Understanding Pygame Architecture
 
 ### **Core Components**
 Pygame consists of several key modules that work together to create games:
@@ -38,7 +38,7 @@ Every Pygame application follows a fundamental pattern called the game loop:
 ### **Basic Pygame Application Structure**
 Here's a simple Pygame window:
 
-\`\`\`python
+\`"\`\`python
 import pygame
 
 # Start Pygame
@@ -74,7 +74,7 @@ Pygame uses a standard Cartesian coordinate system:
 
 ---
 
-## 🎨 Graphics and Rendering
+## ðŸŽ¨ Graphics and Rendering
 
 ### **Surface Objects**
 The fundamental drawing element in Pygame is the Surface:
@@ -136,7 +136,7 @@ screen.blit(image, (100, 100))
 
 ---
 
-## ⌨️ Input and Event Handling
+## âŒ¨ï¸ Input and Event Handling
 
 ### **Event System**
 Pygame uses an event-driven architecture for input:
@@ -205,7 +205,7 @@ System-level window management:
 
 ---
 
-## 👾 Sprite System
+## ðŸ‘¾ Sprite System
 
 ### **Sprite Classes**
 The foundation of game object management:
@@ -262,7 +262,7 @@ screen.blit(player.image, player.rect)
 
 ---
 
-## 💥 Collision Detection
+## ðŸ’¥ Collision Detection
 
 ### **Rectangle Collision**
 The most common and efficient collision method:
@@ -311,7 +311,7 @@ if rect.collidepoint(mouse_x, mouse_y):
 
 ---
 
-## 🔊 Audio System
+## ðŸ”Š Audio System
 
 ### **Sound Effects**
 Short audio clips for game interactions:
@@ -355,7 +355,7 @@ pygame.mixer.music.play(-1)  # Loop forever
 
 ---
 
-## ⏱️ Time and Animation
+## â±ï¸ Time and Animation
 
 ### **Frame Rate Control**
 Ensuring consistent game performance:
@@ -398,7 +398,7 @@ print(f"FPS: {fps}")
 
 ---
 
-## 📝 Text and Fonts
+## ðŸ“ Text and Fonts
 
 ### **Font Rendering**
 Displaying text in games:
@@ -437,7 +437,7 @@ screen.blit(title, (200, 50))
 
 ---
 
-## 🏗️ Game Architecture Patterns
+## ðŸ—ï¸ Game Architecture Patterns
 
 ### **Scene Management**
 Organizing different game states:
@@ -465,7 +465,7 @@ Different approaches to game logic:
 
 ---
 
-## 🎯 Best Practices
+## ðŸŽ¯ Best Practices
 
 ### **Performance Optimization**
 Techniques for smooth gameplay:
@@ -493,7 +493,7 @@ Ensuring games work on different systems:
 
 ---
 
-## 🚀 Key Takeaways
+## ðŸš€ Key Takeaways
 
 1. **Pygame** provides comprehensive 2D game development capabilities through modular components
 2. **Game Loop** is the fundamental pattern that drives all Pygame applications
@@ -504,6 +504,7 @@ Ensuring games work on different systems:
 7. **Time Management** ensures consistent gameplay across different hardware speeds
 8. **Performance Optimization** techniques are essential for smooth game execution
 
-**Pygame serves as a powerful foundation for creating engaging 2D games and interactive multimedia applications with Python! 🎮**`
+**Pygame serves as a powerful foundation for creating engaging 2D games and interactive multimedia applications with Python! ðŸŽ®**`
 };
+
 

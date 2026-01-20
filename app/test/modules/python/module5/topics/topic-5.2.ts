@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_2: SubLesson = {
   id: "5.2",
   title: 'Creating Sets',
   status: 'demo',
-  content: `# 🆕 Creating Python Sets
+  content: "`# ðŸ†• Creating Python Sets
 
 Sets can be created in several ways. Let's explore all the methods!
 
 ---
 
-## 🎯 Basic Set Creation
+## ðŸŽ¯ Basic Set Creation
 
 ### **Using Curly Braces {}**
-\`\`\`python
+\`"\`\`python
 # Empty set (can't use {} - that's a dict!)
 empty_set = set()
 print(empty_set)    # set()
@@ -30,7 +30,7 @@ print(numbers)  # {1, 2, 3}
 
 ---
 
-## 🔧 Using the set() Function
+## ðŸ”§ Using the set() Function
 
 ### **From Other Collections**
 \`\`\`python
@@ -52,7 +52,7 @@ print(letters)  # {'l', 'o', 'e', 'h'} (unique letters)
 
 ---
 
-## 📝 Set Comprehension
+## ðŸ“ Set Comprehension
 
 ### **Create Sets with Conditions**
 \`\`\`python
@@ -71,7 +71,7 @@ print(word_lengths)  # {3, 5, 8}
 
 ---
 
-## 🔄 Creating Special Sets
+## ðŸ”„ Creating Special Sets
 
 ### **Range and Other Iterables**
 \`\`\`python
@@ -90,7 +90,7 @@ fibonacci = {1, 1, 2, 3, 5, 8, 13}
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 \`\`\`python
 # Remove duplicates from user input
@@ -120,7 +120,7 @@ print(f"Student IDs: {student_ids}")
 
 ---
 
-## ✅ Quick Practice
+## âœ… Quick Practice
 
 \`\`\`python
 # Create these sets:
@@ -142,6 +142,7 @@ text = "the quick brown fox jumps over the lazy dog"
 words = set(text.split())
 \`\`\`
 
-Sets automatically handle uniqueness - perfect for deduplication! 🎯`
+Sets automatically handle uniqueness - perfect for deduplication! ðŸŽ¯`
 };
+
 

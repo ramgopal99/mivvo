@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_3: SubLesson = {
   id: "7.3",
   title: 'Inferences',
   status: 'completed',
-  content: `# 🔍 Inferences: Logical Reasoning from Facts
+  content: "`# ðŸ” Inferences: Logical Reasoning from Facts
 
 Inferences in verbal reasoning involve drawing probable conclusions from given information. Unlike conclusions that must necessarily follow, inferences are likely but not certain outcomes based on evidence, context, and logical reasoning.
 
 ---
 
-## 📋 WHAT ARE INFERENCES?
+## ðŸ“‹ WHAT ARE INFERENCES?
 
 **Inferences** are conclusions that are:
-- ✅ **Probably true** based on the given information
-- ✅ **Logically supported** by evidence and context
-- ✅ **Reasonable assumptions** drawn from facts
-- ✅ **Context-dependent** interpretations
+- âœ… **Probably true** based on the given information
+- âœ… **Logically supported** by evidence and context
+- âœ… **Reasonable assumptions** drawn from facts
+- âœ… **Context-dependent** interpretations
 
 ### Key Characteristics:
 - **Probable**: Likely to be true, not certain
@@ -31,61 +31,61 @@ Inference: "John was happy to be at the party." (probable, not certain)
 
 ---
 
-## 🎯 TYPES OF INFERENCES
+## ðŸŽ¯ TYPES OF INFERENCES
 
 ### 1. **Cause-Effect Inferences**
 **Inferring relationships between actions and outcomes**
 
 **Examples:**
-- ✅ Statement: "Sales increased after the new advertisement campaign."
+- âœ… Statement: "Sales increased after the new advertisement campaign."
   - Inference: The advertisement caused the sales increase.
 
-- ✅ Statement: "The patient recovered quickly after taking the medicine."
+- âœ… Statement: "The patient recovered quickly after taking the medicine."
   - Inference: The medicine helped the recovery.
 
 ### 2. **Character/Personality Inferences**
 **Understanding people's traits, emotions, or behaviors**
 
 **Examples:**
-- ✅ Statement: "She carefully reviewed each document three times before signing."
+- âœ… Statement: "She carefully reviewed each document three times before signing."
   - Inference: She is thorough and detail-oriented.
 
-- ✅ Statement: "He interrupted others frequently and dismissed their ideas."
+- âœ… Statement: "He interrupted others frequently and dismissed their ideas."
   - Inference: He is impatient and uncooperative.
 
 ### 3. **Situational Inferences**
 **Understanding context, circumstances, or conditions**
 
 **Examples:**
-- ✅ Statement: "The restaurant was empty at 8 PM on a Friday night."
+- âœ… Statement: "The restaurant was empty at 8 PM on a Friday night."
   - Inference: The restaurant might not be popular or affordable.
 
-- ✅ Statement: "Students were excited and talking loudly during the announcement."
+- âœ… Statement: "Students were excited and talking loudly during the announcement."
   - Inference: The announcement contained good news.
 
 ### 4. **Temporal Inferences**
 **Understanding time relationships and sequences**
 
 **Examples:**
-- ✅ Statement: "He checked his watch repeatedly during the meeting."
+- âœ… Statement: "He checked his watch repeatedly during the meeting."
   - Inference: He was concerned about time or had another appointment.
 
-- ✅ Statement: "The project was completed ahead of schedule."
+- âœ… Statement: "The project was completed ahead of schedule."
   - Inference: The team worked efficiently or had good planning.
 
 ### 5. **Comparative Inferences**
 **Understanding relationships and rankings**
 
 **Examples:**
-- ✅ Statement: "Company A outperformed Company B in quarterly results."
+- âœ… Statement: "Company A outperformed Company B in quarterly results."
   - Inference: Company A is more successful or better managed.
 
-- ✅ Statement: "She chose the more expensive option despite budget constraints."
+- âœ… Statement: "She chose the more expensive option despite budget constraints."
   - Inference: Quality or prestige was more important than cost.
 
 ---
 
-## 🛠️ DRAWING INFERENCES
+## ðŸ› ï¸ DRAWING INFERENCES
 
 ### Step-by-Step Process:
 
@@ -116,7 +116,7 @@ Inference: "John was happy to be at the party." (probable, not certain)
 
 ---
 
-## 📊 INFERENCE VS CONCLUSION
+## ðŸ“Š INFERENCE VS CONCLUSION
 
 | Aspect | Inference | Conclusion |
 |---|---|---|
@@ -132,33 +132,33 @@ Inference: "John was happy to be at the party." (probable, not certain)
 
 ---
 
-## ⚠️ INFERENCE PITFALLS
+## âš ï¸ INFERENCE PITFALLS
 
 ### Avoid These Errors:
 
 1. **Over-Inference**
-   - ❌ Reading more than the evidence supports
-   - ✅ Sticking to what's reasonably indicated
+   - âŒ Reading more than the evidence supports
+   - âœ… Sticking to what's reasonably indicated
 
 2. **Under-Inference**
-   - ❌ Missing obvious implications
-   - ✅ Recognizing clear contextual clues
+   - âŒ Missing obvious implications
+   - âœ… Recognizing clear contextual clues
 
 3. **Personal Bias**
-   - ❌ Imposing personal experiences on neutral statements
-   - ✅ Maintaining objective interpretation
+   - âŒ Imposing personal experiences on neutral statements
+   - âœ… Maintaining objective interpretation
 
 4. **Extreme Interpretations**
-   - ❌ Assuming worst/best case scenarios without basis
-   - ✅ Choosing balanced, reasonable conclusions
+   - âŒ Assuming worst/best case scenarios without basis
+   - âœ… Choosing balanced, reasonable conclusions
 
 5. **Ignoring Context**
-   - ❌ Interpreting statements in isolation
-   - ✅ Considering surrounding information and tone
+   - âŒ Interpreting statements in isolation
+   - âœ… Considering surrounding information and tone
 
 ---
 
-## 🎯 QUESTION PATTERNS
+## ðŸŽ¯ QUESTION PATTERNS
 
 ### Direct Inference Questions:
 **"What can be inferred from the statement?" or "Which of the following can be inferred?"**
@@ -174,7 +174,7 @@ Inference: "John was happy to be at the party." (probable, not certain)
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Cause-Effect Inferences
 **Draw inferences about relationships:**
@@ -289,7 +289,7 @@ Inferences:
 
    Correct: ________
 
-2. Statement: "She chose the crowded, expensive restaurant over the quiet, affordable café."
+2. Statement: "She chose the crowded, expensive restaurant over the quiet, affordable cafÃ©."
 
    Most reasonable inference:
    - (a) She prefers expensive food
@@ -305,7 +305,7 @@ Inferences:
 
 ---
 
-## 📊 INFERENCE VALIDATION CHECKLIST
+## ðŸ“Š INFERENCE VALIDATION CHECKLIST
 
 | Criteria | Strong Inference | Weak Inference |
 |---|---|---|
@@ -317,30 +317,30 @@ Inferences:
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Most Probable**: "Which of the following is most likely?"
 2. **Can be Inferred**: "What can be inferred from..."
 3. **Suggests That**: "The statement suggests..."
 4. **Implies**: "Which of the following is implied?"
 5. **Reasonable Conclusion**: "Which conclusion is reasonable?"
 
-### 💡 Quick Analysis Strategy:
+### ðŸ’¡ Quick Analysis Strategy:
 1. **Read the statement** and identify key actions/words
 2. **Look for clues** - emotional words, behaviors, context
 3. **Consider alternatives** - what other explanations exist?
 4. **Choose most reasonable** - eliminate unlikely options
 5. **Check reasonableness** - does it make logical sense?
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Look for behavioral clues** - actions suggest personality/attitude
 - **Note emotional indicators** - words reveal feelings/motivations
 - **Consider cause-effect** - what might have led to the situation?
 - **Use process of elimination** - rule out unlikely interpretations
 - **Trust common sense** - choose logical, everyday explanations
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Practice daily** - 8-10 inference questions per session
 - **Build pattern recognition** - learn common inference types
 - **Read actively** - always ask "What does this suggest?"
@@ -349,21 +349,22 @@ Inferences:
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Contextual Reading**: Always consider situation and background
 2. **Pattern Recognition**: Learn common inference relationships
 3. **Alternative Thinking**: Consider multiple possible interpretations
 4. **Reasonableness Check**: Ask if inference makes logical sense
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Inferences are like detective work:**
-- 🔍 **Gather clues** - Read the statement for hints and details
-- 🕵️ **Consider motives** - What might explain the behavior/situation?
-- 💡 **Form hypotheses** - What are possible explanations?
-- ✅ **Choose most likely** - Which explanation fits best with evidence?
-- 🎯 **Solve the case** - Find the most reasonable conclusion
+- ðŸ” **Gather clues** - Read the statement for hints and details
+- ðŸ•µï¸ **Consider motives** - What might explain the behavior/situation?
+- ðŸ’¡ **Form hypotheses** - What are possible explanations?
+- âœ… **Choose most likely** - Which explanation fits best with evidence?
+- ðŸŽ¯ **Solve the case** - Find the most reasonable conclusion
 
-**Master inference skills and become a reasoning detective!** 🔍🕵️✨`
+**Master inference skills and become a reasoning detective!** ðŸ”ðŸ•µï¸âœ¨`"
 };
+

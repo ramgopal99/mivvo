@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_4: SubLesson = {
   id: "10.4",
   title: 'Combined Work',
   status: 'completed',
-  content: `# 👥 Combined Work
+  content: "`# ðŸ‘¥ Combined Work
 
 Learn how to calculate work done by multiple people working together - essential for aptitude exam problems.
 
 ---
 
-## 🎯 Combined Work Principle
+## ðŸŽ¯ Combined Work Principle
 
 **Combined work** is the total work completed when multiple workers work together on the same task.
 
 ### **Key Formula**
-\`\`\`
+\`"\`\`
 Work by A + Work by B = Combined work
 \`\`\`
 
@@ -23,7 +23,7 @@ Work by A + Work by B = Combined work
 
 ---
 
-## 📊 Combined Work Calculations
+## ðŸ“Š Combined Work Calculations
 
 ### 1. **Basic Combined Work**
 \`\`\`
@@ -45,7 +45,7 @@ Total work rate = A's rate + B's rate + C's rate
 
 ---
 
-## 🧮 Combined Work Examples
+## ðŸ§® Combined Work Examples
 
 ### Example 1: Two Workers
 **A completes work in 10 days, B in 15 days. Time together?**
@@ -69,11 +69,11 @@ Total work rate = A's rate + B's rate + C's rate
 
 **Solution:**
 - Work done = 3/5 in 8 days
-- Full work = (5/3) × 8 = 40/3 ≈ 13.33 days
+- Full work = (5/3) Ã— 8 = 40/3 â‰ˆ 13.33 days
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **LCM Method for Precision**
 \`\`\`
@@ -85,14 +85,14 @@ Divide total work by combined rate
 
 ### **Quick Combined Time Formula**
 \`\`\`
-Time = (a×b)/(a+b) for two workers
+Time = (aÃ—b)/(a+b) for two workers
 \`\`\`
 
 ### **Efficiency Based Approach**
 \`\`\`
 Convert everything to efficiencies
 Add efficiencies for combined work
-Use work = efficiency × time
+Use work = efficiency Ã— time
 \`\`\`
 
 ### **Work Unit Method**
@@ -107,7 +107,7 @@ Time = 60/12 = 5 days
 
 ---
 
-## 🔢 Advanced Combined Work
+## ðŸ”¢ Advanced Combined Work
 
 ### **Different Working Patterns**
 - **Continuous work**: All work together throughout
@@ -126,15 +126,15 @@ Effective combined work = Work during working hours only
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 4: Unequal Efficiency
 **A does work in 8 days, B in 12 days. A works 6 days, then B completes. Total time?**
 
 **Solution:**
-- A's 6-day work = 6×(1/8) = 6/8 = 3/4
+- A's 6-day work = 6Ã—(1/8) = 6/8 = 3/4
 - Remaining work = 1/4
-- B's time for 1/4 work = (1/4) ÷ (1/12) = 3 days
+- B's time for 1/4 work = (1/4) Ã· (1/12) = 3 days
 - Total time = 6 + 3 = 9 days
 
 ### Example 5: Work Sharing
@@ -145,7 +145,7 @@ Effective combined work = Work during working hours only
 - B's 3-day work = 3/15 = 1/5
 - Total work done = 2/5 + 1/5 = 3/5
 - Remaining = 2/5
-- C's time = (2/5) ÷ (1/20) = 8 days
+- C's time = (2/5) Ã· (1/20) = 8 days
 - Total time = 4 + 3 + 8 = 15 days
 
 ### Example 6: Overtime Work
@@ -153,12 +153,12 @@ Effective combined work = Work during working hours only
 
 **Solution:**
 - Normal: A + B work normally
-- Overtime: A works 2 hours at 2× normal rate
+- Overtime: A works 2 hours at 2Ã— normal rate
 - Effective: Account for increased efficiency during overtime
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 1. **Adding Times**: Never add individual times directly
 2. **Wrong Combination**: Work rates add, times don't
@@ -168,7 +168,7 @@ Effective combined work = Work during working hours only
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** A takes 12 days, B takes 16 days. Time together?
 **2.** A, B, C take 8, 12, 24 days. Time together?
@@ -180,7 +180,7 @@ Effective combined work = Work during working hours only
 
 ---
 
-## 🎓 Combined Work Strategies
+## ðŸŽ“ Combined Work Strategies
 
 1. **Use LCM for multiple workers** - ensures precision
 2. **Break complex problems** into smaller parts
@@ -188,5 +188,5 @@ Effective combined work = Work during working hours only
 4. **Check reasonableness** - combined time should be less than individual times
 5. **Account for all workers** - don't miss anyone
 
-Master combined work calculations and tackle group work problems confidently! 🏆`
+Master combined work calculations and tackle group work problems confidently! ðŸ†`
 };

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_1: SubLesson = {
   id: "8.1",
   title: 'Introduction to Classes and Objects',
   status: 'completed',
-  content: `# 🏗️ Introduction to Classes and Objects in Java
+  content: "`# ðŸ—ï¸ Introduction to Classes and Objects in Java
 
 Classes and objects are fundamental concepts in object-oriented programming (OOP). They form the building blocks of Java applications, enabling encapsulation, abstraction, and modular design. Understanding these concepts is essential for writing clean, maintainable, and efficient Java programs.
 
 ---
 
-## 🎯 Understanding Object-Oriented Programming
+## ðŸŽ¯ Understanding Object-Oriented Programming
 
 ### **What is OOP?**
 
@@ -18,7 +18,7 @@ Object-Oriented Programming is a programming paradigm that uses objects and clas
 
 ### **Four Pillars of OOP**
 
-\`\`\`java
+\`"\`\`java
 public class OOPPillars {
     /*
      * 1. ENCAPSULATION: Bundling data and methods together
@@ -43,7 +43,7 @@ Ability of objects to take many forms - same method name, different behavior.
 
 ---
 
-## 📦 What is a Class?
+## ðŸ“¦ What is a Class?
 
 A **class** is a blueprint or template that defines the structure and behavior of objects. It encapsulates data (fields/attributes) and methods that operate on that data.
 
@@ -149,7 +149,7 @@ public class Car {
 
 ---
 
-## 🎯 What is an Object?
+## ðŸŽ¯ What is an Object?
 
 An **object** is an instance of a class - a concrete realization of the blueprint. Each object has its own state (field values) but shares the same behavior (methods) defined by its class.
 
@@ -256,7 +256,7 @@ public class ObjectIdentity {
 
 ---
 
-## 🏗️ Class Components
+## ðŸ—ï¸ Class Components
 
 ### **1. Fields (Instance Variables)**
 
@@ -372,7 +372,7 @@ public class MethodTypes {
 
 ---
 
-## 🎯 Practical Examples
+## ðŸŽ¯ Practical Examples
 
 ### **Bank Account System**
 
@@ -520,7 +520,7 @@ public class Student {
 
 ---
 
-## 🔒 Access Modifiers
+## ðŸ”’ Access Modifiers
 
 ### **Public, Private, Protected, Default**
 
@@ -560,7 +560,7 @@ class TestAccess {
 
 ---
 
-## 🎯 Summary
+## ðŸŽ¯ Summary
 
 Classes and objects are the foundation of Java programming:
 
@@ -633,5 +633,6 @@ public class Test {
 2. Second output: ?
 3. Third output: ?
 `};
+
 
 

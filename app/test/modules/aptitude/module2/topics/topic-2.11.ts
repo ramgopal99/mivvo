@@ -1,36 +1,36 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_11: SubLesson = {
   id: "2.11",
   title: 'Square Root & Cube Root',
   status: 'completed',
-  content: `# 🔢 Square Root & Cube Root
+  content: "`# ðŸ”¢ Square Root & Cube Root
 
 Square roots and cube roots are fundamental mathematical operations with important applications in algebra, geometry, and quantitative aptitude. Understanding these concepts helps solve problems involving areas, volumes, and complex equations.
 
 ---
 
-## 🎯 Square Root
+## ðŸŽ¯ Square Root
 
 ### Definition
-The square root of a number x is a number y such that y² = x.
+The square root of a number x is a number y such that yÂ² = x.
 
-**Notation**: √x or x^(1/2)
+**Notation**: âˆšx or x^(1/2)
 
 **Examples**:
-- √4 = 2 (since 2² = 4)
-- √9 = 3 (since 3² = 9)
-- √16 = 4 (since 4² = 16)
-- √25 = 5 (since 5² = 25)
+- âˆš4 = 2 (since 2Â² = 4)
+- âˆš9 = 3 (since 3Â² = 9)
+- âˆš16 = 4 (since 4Â² = 16)
+- âˆš25 = 5 (since 5Â² = 25)
 
 ---
 
-## 📊 Properties of Square Roots
+## ðŸ“Š Properties of Square Roots
 
 ### 1. **Positive and Negative Roots**
 Every positive number has two square roots: positive and negative.
 
-**Example**: √4 = ±2
+**Example**: âˆš4 = Â±2
 
 ### 2. **Square Root of Negative Numbers**
 Not defined in real numbers (imaginary in complex numbers).
@@ -43,20 +43,20 @@ Irrational numbers.
 
 ---
 
-## 🧮 Methods to Find Square Root
+## ðŸ§® Methods to Find Square Root
 
 ### 1. **Prime Factorization Method**
 Express number as product of prime factors, then pair them.
 
-**Example**: Find √(144)
-\`\`\`
-144 = 2² × 3²
-√144 = √(2² × 3²) = 2 × 3 = 6
+**Example**: Find âˆš(144)
+\`"\`\`
+144 = 2Â² Ã— 3Â²
+âˆš144 = âˆš(2Â² Ã— 3Â²) = 2 Ã— 3 = 6
 \`\`\`
 
 ### 2. **Long Division Method**
 \`\`\`
-Find √196:
+Find âˆš196:
   14
 ---------
 14|196.00
@@ -68,30 +68,30 @@ Find √196:
 ### 3. **Estimation Method**
 Find two perfect squares between which the number lies.
 
-**Example**: Find √15
+**Example**: Find âˆš15
 \`\`\`
-3² = 9, 4² = 16
-So 3 < √15 < 4
+3Â² = 9, 4Â² = 16
+So 3 < âˆš15 < 4
 \`\`\`
 
 ---
 
-## 📈 Cube Root
+## ðŸ“ˆ Cube Root
 
 ### Definition
-The cube root of a number x is a number y such that y³ = x.
+The cube root of a number x is a number y such that yÂ³ = x.
 
-**Notation**: ∛x or x^(1/3)
+**Notation**: âˆ›x or x^(1/3)
 
 **Examples**:
-- ∛8 = 2 (since 2³ = 8)
-- ∛27 = 3 (since 3³ = 27)
-- ∛64 = 4 (since 4³ = 64)
-- ∛125 = 5 (since 5³ = 125)
+- âˆ›8 = 2 (since 2Â³ = 8)
+- âˆ›27 = 3 (since 3Â³ = 27)
+- âˆ›64 = 4 (since 4Â³ = 64)
+- âˆ›125 = 5 (since 5Â³ = 125)
 
 ---
 
-## 🔧 Properties of Cube Roots
+## ðŸ”§ Properties of Cube Roots
 
 ### 1. **Unique Root**
 Every real number has exactly one real cube root.
@@ -99,7 +99,7 @@ Every real number has exactly one real cube root.
 ### 2. **Negative Numbers**
 Cube roots of negative numbers are negative.
 
-**Example**: ∛(-8) = -2
+**Example**: âˆ›(-8) = -2
 
 ### 3. **Perfect Cubes**
 Cube roots are rational for perfect cubes.
@@ -109,62 +109,62 @@ Group prime factors in threes.
 
 ---
 
-## 🧠 Problem Solving Tricks
+## ðŸ§  Problem Solving Tricks
 
 ### Trick 1: **Square Root of Large Numbers**
 Use prime factorization and pair factors.
 
-**Example**: Find √(1296)
+**Example**: Find âˆš(1296)
 \`\`\`
-1296 = 2^4 × 3^4
-√1296 = √(2^4 × 3^4) = 2² × 3² = 4 × 9 = 36
+1296 = 2^4 Ã— 3^4
+âˆš1296 = âˆš(2^4 Ã— 3^4) = 2Â² Ã— 3Â² = 4 Ã— 9 = 36
 \`\`\`
 
 ### Trick 2: **Cube Root of Large Numbers**
 Group factors in threes.
 
-**Example**: Find ∛(3375)
+**Example**: Find âˆ›(3375)
 \`\`\`
-3375 = 3^3 × 5^3
-∛3375 = 3 × 5 = 15
+3375 = 3^3 Ã— 5^3
+âˆ›3375 = 3 Ã— 5 = 15
 \`\`\`
 
 ### Trick 3: **Square Root Between Two Numbers**
-For any number n, √n lies between floor(√n) and ceil(√n).
+For any number n, âˆšn lies between floor(âˆšn) and ceil(âˆšn).
 
 ### Trick 4: **Rationalizing Denominators**
 Multiply numerator and denominator by conjugate.
 
-**Example**: Simplify 1/(√3 - 1)
+**Example**: Simplify 1/(âˆš3 - 1)
 \`\`\`
-Multiply by √3 + 1: (√3 + 1)/((√3 - 1)(√3 + 1)) = (√3 + 1)/(3 - 1) = (√3 + 1)/2
+Multiply by âˆš3 + 1: (âˆš3 + 1)/((âˆš3 - 1)(âˆš3 + 1)) = (âˆš3 + 1)/(3 - 1) = (âˆš3 + 1)/2
 \`\`\`
 
 ---
 
-## 🎯 Square Root & Cube Root Identities
+## ðŸŽ¯ Square Root & Cube Root Identities
 
 ### 1. **Square Root Identities**
-- √(ab) = √a × √b (if a,b ≥ 0)
-- √(a/b) = √a / √b (if a,b > 0)
-- √(a²) = |a|
-- (√a + √b)(√a - √b) = a - b
+- âˆš(ab) = âˆša Ã— âˆšb (if a,b â‰¥ 0)
+- âˆš(a/b) = âˆša / âˆšb (if a,b > 0)
+- âˆš(aÂ²) = |a|
+- (âˆša + âˆšb)(âˆša - âˆšb) = a - b
 
 ### 2. **Cube Root Identities**
-- ∛(abc) = ∛a × ∛b × ∛c
-- ∛(a/b) = ∛a / ∛b
-- ∛(a³) = a
+- âˆ›(abc) = âˆ›a Ã— âˆ›b Ã— âˆ›c
+- âˆ›(a/b) = âˆ›a / âˆ›b
+- âˆ›(aÂ³) = a
 
 ### 3. **Mixed Operations**
-- √(a³) = √a × √a × √a = a√a
-- ∛(a²) = ∛a × ∛a = a^(2/3)
+- âˆš(aÂ³) = âˆša Ã— âˆša Ã— âˆša = aâˆša
+- âˆ›(aÂ²) = âˆ›a Ã— âˆ›a = a^(2/3)
 
 ---
 
-## 📊 Approximating Roots
+## ðŸ“Š Approximating Roots
 
 ### 1. **Linear Approximation**
-For √x where x is near a perfect square.
+For âˆšx where x is near a perfect square.
 
 ### 2. **Newton's Method**
 Iterative formula: x_{n+1} = (x_n + a/x_n)/2 for square root.
@@ -174,52 +174,52 @@ Direct calculation for precise values.
 
 ---
 
-## 🎯 Applications in Aptitude
+## ðŸŽ¯ Applications in Aptitude
 
 ### 1. **Geometry Problems**
-**Example**: Find side of square with area 144 cm².
+**Example**: Find side of square with area 144 cmÂ².
 
-**Solution**: Side = √144 = 12 cm
+**Solution**: Side = âˆš144 = 12 cm
 
 ### 2. **Volume Problems**
-**Example**: Find edge of cube with volume 125 cm³.
+**Example**: Find edge of cube with volume 125 cmÂ³.
 
-**Solution**: Edge = ∛125 = 5 cm
+**Solution**: Edge = âˆ›125 = 5 cm
 
 ### 3. **Quadratic Equations**
-**Example**: Solve x² - 7x + 12 = 0
+**Example**: Solve xÂ² - 7x + 12 = 0
 
-**Solution**: Roots = [7 ± √(49-48)]/2 = [7 ± √1]/2 = [7 ± 1]/2
+**Solution**: Roots = [7 Â± âˆš(49-48)]/2 = [7 Â± âˆš1]/2 = [7 Â± 1]/2
 x = 4 or x = 3
 
 ### 4. **Simplification Problems**
-**Example**: Simplify √(48) + √(12)
+**Example**: Simplify âˆš(48) + âˆš(12)
 
-**Solution**: √(16×3) + √(4×3) = 4√3 + 2√3 = 6√3
+**Solution**: âˆš(16Ã—3) + âˆš(4Ã—3) = 4âˆš3 + 2âˆš3 = 6âˆš3
 
 ---
 
-## 🔍 Special Cases
+## ðŸ” Special Cases
 
 ### 1. **Square Root of Fractions**
-√(a/b) = √a / √b
+âˆš(a/b) = âˆša / âˆšb
 
 ### 2. **Square Root of Decimals**
 Convert to fractions first.
 
 ### 3. **Cube Root of Fractions**
-∛(a/b) = ∛a / ∛b
+âˆ›(a/b) = âˆ›a / âˆ›b
 
 ### 4. **Complex Roots**
 Square roots of negative numbers involve imaginary unit i.
 
 ---
 
-## 🧮 Root Calculations
+## ðŸ§® Root Calculations
 
 ### 1. **Square Root by Division**
 \`\`\`
-Find √784:
+Find âˆš784:
   28
 ---------
 28|784.00
@@ -236,44 +236,45 @@ Most reliable method for exact answers.
 
 ---
 
-## 📝 Practice Examples
+## ðŸ“ Practice Examples
 
 ### Example 1: Square Root by Factors
-Find √(2025)
+Find âˆš(2025)
 
-**Solution**: 2025 = 45² = (9×5)² = 81 × 25
-√2025 = 45
+**Solution**: 2025 = 45Â² = (9Ã—5)Â² = 81 Ã— 25
+âˆš2025 = 45
 
 ### Example 2: Cube Root by Factors
-Find ∛(13824)
+Find âˆ›(13824)
 
-**Solution**: 13824 = 24³ = (2×12)³ = 8 × 1728
-∛13824 = 24
+**Solution**: 13824 = 24Â³ = (2Ã—12)Â³ = 8 Ã— 1728
+âˆ›13824 = 24
 
 ### Example 3: Simplification
-Simplify √(75) - √(27) + √(12)
+Simplify âˆš(75) - âˆš(27) + âˆš(12)
 
-**Solution**: √(25×3) - √(9×3) + √(4×3) = 5√3 - 3√3 + 2√3 = 4√3
+**Solution**: âˆš(25Ã—3) - âˆš(9Ã—3) + âˆš(4Ã—3) = 5âˆš3 - 3âˆš3 + 2âˆš3 = 4âˆš3
 
 ### Example 4: Equation Solving
-Solve √(x+1) + √(x-1) = 2
+Solve âˆš(x+1) + âˆš(x-1) = 2
 
-**Solution**: Square both sides: x+1 + x-1 + 2√((x+1)(x-1)) = 4
-2x + 2√(x²-1) = 4
-x + √(x²-1) = 2
-Square again: x² + (x²-1) + 2x√(x²-1) = 4
-2x² - 1 + 2x√(x²-1) = 4
-2x² + 2x√(x²-1) = 5
-Divide by 2: x² + x√(x²-1) = 5/2
+**Solution**: Square both sides: x+1 + x-1 + 2âˆš((x+1)(x-1)) = 4
+2x + 2âˆš(xÂ²-1) = 4
+x + âˆš(xÂ²-1) = 2
+Square again: xÂ² + (xÂ²-1) + 2xâˆš(xÂ²-1) = 4
+2xÂ² - 1 + 2xâˆš(xÂ²-1) = 4
+2xÂ² + 2xâˆš(xÂ²-1) = 5
+Divide by 2: xÂ² + xâˆš(xÂ²-1) = 5/2
 
 This requires further solving.
 
 ### Example 5: Rationalization
-Rationalize 1/(√5 - √3)
+Rationalize 1/(âˆš5 - âˆš3)
 
-**Solution**: Multiply by √5 + √3:
-(√5 + √3)/((√5 - √3)(√5 + √3)) = (√5 + √3)/(5 - 3) = (√5 + √3)/2
+**Solution**: Multiply by âˆš5 + âˆš3:
+(âˆš5 + âˆš3)/((âˆš5 - âˆš3)(âˆš5 + âˆš3)) = (âˆš5 + âˆš3)/(5 - 3) = (âˆš5 + âˆš3)/2
 
-Master square roots and cube roots for geometry and algebra problems! 🚀`
+Master square roots and cube roots for geometry and algebra problems! ðŸš€`
 };
+
 

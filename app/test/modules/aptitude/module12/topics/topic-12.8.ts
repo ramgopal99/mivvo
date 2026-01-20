@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_8: SubLesson = {
   id: "12.8",
   title: 'Mixing Two or More Ingredients',
   status: 'completed',
-  content: `# 🥣 Mixing Two or More Ingredients
+  content: "`# ðŸ¥£ Mixing Two or More Ingredients
 
 Learn systematic approaches for mixing multiple ingredients with different properties to achieve target mixtures.
 
 ---
 
-## 🎯 Multiple Ingredient Mixing
+## ðŸŽ¯ Multiple Ingredient Mixing
 
 **Multiple ingredient mixing** involves combining two or more ingredients with different properties to create a mixture with desired characteristics.
 
@@ -22,10 +22,10 @@ Learn systematic approaches for mixing multiple ingredients with different prope
 
 ---
 
-## 📊 Mixing Strategies
+## ðŸ“Š Mixing Strategies
 
 ### 1. **Cost-Based Mixing**
-\`\`\`
+\`"\`\`
 Find quantities to achieve target average cost
 Use weighted average formula
 \`\`\`
@@ -44,7 +44,7 @@ Calculate required quantities
 
 ---
 
-## 🧮 Mixing Examples
+## ðŸ§® Mixing Examples
 
 ### Example 1: Cost Optimization
 **Three types rice: Rs. 20/kg, Rs. 30/kg, Rs. 40/kg. Mix to get Rs. 25/kg. Find ratio.**
@@ -58,7 +58,7 @@ Calculate required quantities
 - Assume z = k, then y = m, x = m + 3k
 - Ratio x:y:z = (m+3k):m:k
 - Common ratios: let m=k=1, x=4, ratio 4:1:1
-- Check: (20×4 + 30×1 + 40×1)/(4+1+1) = (80+30+40)/6 = 150/6 = 25 ✓
+- Check: (20Ã—4 + 30Ã—1 + 40Ã—1)/(4+1+1) = (80+30+40)/6 = 150/6 = 25 âœ“
 
 ### Example 2: Concentration Mixing
 **Two acids: 30% and 70%. Mix 4 liters each. Final concentration?**
@@ -79,7 +79,7 @@ Calculate required quantities
 
 ---
 
-## 🎯 Systematic Approach
+## ðŸŽ¯ Systematic Approach
 
 ### **Step-by-Step Method**
 1. **Identify target property** (cost, concentration, etc.)
@@ -96,7 +96,7 @@ Combine results systematically
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Variable Assignment**
 \`\`\`
@@ -125,7 +125,7 @@ Adjust ratios based on differences
 
 ---
 
-## 🔢 Advanced Mixing Problems
+## ðŸ”¢ Advanced Mixing Problems
 
 ### **Complex Constraints**
 - **Multiple properties** (cost + quality)
@@ -139,14 +139,14 @@ Adjust ratios based on differences
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 4: Three Ingredients Cost
 **A Rs. 15/kg, B Rs. 20/kg, C Rs. 25/kg. Mix in 2:3:1 ratio. Average cost?**
 
 **Solution:**
 - Ratio 2:3:1, total parts = 6
-- Average cost = (2×15 + 3×20 + 1×25)/6 = (30 + 60 + 25)/6 = 115/6 ≈ Rs. 19.17/kg
+- Average cost = (2Ã—15 + 3Ã—20 + 1Ã—25)/6 = (30 + 60 + 25)/6 = 115/6 â‰ˆ Rs. 19.17/kg
 
 ### Example 5: Target with Constraints
 **Two solutions: 25% and 75% acid. Mix 100L total. Get 50% acid. Quantities?**
@@ -154,7 +154,7 @@ Adjust ratios based on differences
 **Solution:**
 - Let x liters of 25% solution
 - (100-x) liters of 75% solution
-- Acid equation: 0.25x + 0.75(100-x) = 0.50 × 100
+- Acid equation: 0.25x + 0.75(100-x) = 0.50 Ã— 100
 - 0.25x + 75 - 0.75x = 50
 - 75 - 0.5x = 50
 - 0.5x = 25
@@ -172,7 +172,7 @@ Adjust ratios based on differences
 
 ---
 
-## 🚨 Multiple Ingredient Mistakes
+## ðŸš¨ Multiple Ingredient Mistakes
 
 1. **Equation Setup**: Wrong variable relationships
 2. **Unit Consistency**: Different units not converted
@@ -182,7 +182,7 @@ Adjust ratios based on differences
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** A Rs.25/kg, B Rs.35/kg. Mix 2:3 ratio. Average cost?
 **2.** 40%, 60% solutions. Mix for 50%. If equal volumes, concentration?
@@ -194,7 +194,7 @@ Adjust ratios based on differences
 
 ---
 
-## 🎓 Multiple Ingredient Strategies
+## ðŸŽ“ Multiple Ingredient Strategies
 
 1. **Identify target property** clearly
 2. **Set up appropriate equations**
@@ -202,5 +202,6 @@ Adjust ratios based on differences
 4. **Solve systematically** for unknowns
 5. **Verify solution** meets all requirements
 
-Master multiple ingredient mixing and create perfect mixtures! 🏆`
+Master multiple ingredient mixing and create perfect mixtures! ðŸ†`
 };
+

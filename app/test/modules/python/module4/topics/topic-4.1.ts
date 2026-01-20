@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_1: SubLesson = {
   id: "4.1",
   title: 'What are Tuples?',
   status: 'demo',
-  content: `# 📦 What are Python Tuples?
+  content: "`# ðŸ“¦ What are Python Tuples?
 
 Tuples are **immutable** sequences that can hold multiple items. Think of them as "read-only" lists!
 
 ---
 
-## 🎯 What is a Tuple?
+## ðŸŽ¯ What is a Tuple?
 
 A **tuple** is a collection of items that are:
 - **Ordered** - Items have a specific position
@@ -18,7 +18,7 @@ A **tuple** is a collection of items that are:
 - **Allow duplicates** - Same item can appear multiple times
 - **Can hold different types** - Like lists, but fixed
 
-\`\`\`python
+\`"\`\`python
 # A simple tuple of coordinates
 point = (10, 20)
 print(point)  # (10, 20)
@@ -30,25 +30,25 @@ print(person)  # ('Alice', 25, 'Engineer')
 
 ---
 
-## 🔒 Key Difference: Immutable vs Mutable
+## ðŸ”’ Key Difference: Immutable vs Mutable
 
 ### **Lists are Mutable (can change)**
 \`\`\`python
 fruits = ["apple", "banana"]
-fruits[0] = "orange"  # ✅ This works
+fruits[0] = "orange"  # âœ… This works
 print(fruits)  # ['orange', 'banana']
 \`\`\`
 
 ### **Tuples are Immutable (cannot change)**
 \`\`\`python
 fruits = ("apple", "banana")
-# fruits[0] = "orange"  # ❌ This will cause an error!
+# fruits[0] = "orange"  # âŒ This will cause an error!
 print(fruits)  # ('apple', 'banana')
 \`\`\`
 
 ---
 
-## 📊 Tuple Characteristics
+## ðŸ“Š Tuple Characteristics
 
 ### **Ordered Collection**
 \`\`\`python
@@ -71,7 +71,7 @@ print(mixed)  # ('hello', 42, 3.14, True, [1, 2, 3])
 
 ---
 
-## 🔍 Real-World Examples
+## ðŸ” Real-World Examples
 
 \`\`\`python
 # Geographic coordinates
@@ -88,6 +88,7 @@ student = ("Bob", 16, "A")
 months_days = (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
 \`\`\`
 
-Tuples are perfect for data that should never change! 🔒`
+Tuples are perfect for data that should never change! ðŸ”’`
 };
+
 

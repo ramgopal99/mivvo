@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_1: SubLesson = {
   id: "12.1",
   title: 'Concept of Mixture',
   status: 'completed',
-  content: `# 🥤 Concept of Mixture
+  content: "`# ðŸ¥¤ Concept of Mixture
 
 Master the fundamental concepts of mixtures - the foundation of all mixture and alligation problems in aptitude exams.
 
 ---
 
-## 🎯 What is a Mixture?
+## ðŸŽ¯ What is a Mixture?
 
 **A mixture** is a combination of two or more substances (ingredients) that are physically mixed together but not chemically combined.
 
@@ -22,10 +22,10 @@ Master the fundamental concepts of mixtures - the foundation of all mixture and 
 
 ---
 
-## 📊 Basic Mixture Concepts
+## ðŸ“Š Basic Mixture Concepts
 
 ### 1. **Ingredients and Quantities**
-\`\`\`
+\`"\`\`
 Mixture = Ingredient A + Ingredient B + Ingredient C + ...
 Quantity of mixture = Sum of individual quantities
 \`\`\`
@@ -38,19 +38,19 @@ Proportion = Ratio of ingredients in the mixture
 
 ### 3. **Cost and Value**
 \`\`\`
-Total cost = (Quantity A × Price A) + (Quantity B × Price B) + ...
+Total cost = (Quantity A Ã— Price A) + (Quantity B Ã— Price B) + ...
 Average price = Total cost / Total quantity
 \`\`\`
 
 ---
 
-## 🧮 Basic Mixture Examples
+## ðŸ§® Basic Mixture Examples
 
 ### Example 1: Simple Mixture
 **10 kg sugar at Rs. 40/kg mixed with 15 kg sugar at Rs. 50/kg. Find average price.**
 
 **Solution:**
-- Total cost = (10 × 40) + (15 × 50) = 400 + 750 = Rs. 1150
+- Total cost = (10 Ã— 40) + (15 Ã— 50) = 400 + 750 = Rs. 1150
 - Total quantity = 10 + 15 = 25 kg
 - Average price = 1150 / 25 = Rs. 46/kg
 
@@ -59,18 +59,18 @@ Average price = Total cost / Total quantity
 
 **Solution:**
 - Total mixture = 5 + 3 = 8 liters
-- Milk percentage = (3/8) × 100% = 37.5%
+- Milk percentage = (3/8) Ã— 100% = 37.5%
 
 ### Example 3: Ratio in Mixture
 **A mixture contains milk and water in ratio 3:2. If total mixture is 25 liters, find milk quantity.**
 
 **Solution:**
 - Total parts = 3 + 2 = 5 parts
-- Milk quantity = (3/5) × 25 = 15 liters
+- Milk quantity = (3/5) Ã— 25 = 15 liters
 
 ---
 
-## 🎯 Types of Mixtures
+## ðŸŽ¯ Types of Mixtures
 
 ### **Based on State**
 - **Liquid-Liquid**: Milk + Water, Oil + Water
@@ -85,7 +85,7 @@ Average price = Total cost / Total quantity
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Quick Average Calculation**
 \`\`\`
@@ -96,19 +96,19 @@ Always calculate total cost first
 ### **Ratio to Quantity Conversion**
 \`\`\`
 If ratio A:B = x:y and total = T
-Quantity A = (x/(x+y)) × T
-Quantity B = (y/(x+y)) × T
+Quantity A = (x/(x+y)) Ã— T
+Quantity B = (y/(x+y)) Ã— T
 \`\`\`
 
 ### **Percentage Mixture**
 \`\`\`
 If ingredient A is p% of mixture
-Quantity A = (p/100) × Total mixture
+Quantity A = (p/100) Ã— Total mixture
 \`\`\`
 
 ---
 
-## 🔢 Advanced Mixture Concepts
+## ðŸ”¢ Advanced Mixture Concepts
 
 ### **Multi-Component Mixtures**
 - **Three or more ingredients**
@@ -128,13 +128,13 @@ Quantity A = (p/100) × Total mixture
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 4: Three Ingredients
 **10 kg rice at Rs. 20/kg, 15 kg wheat at Rs. 25/kg, 5 kg sugar at Rs. 40/kg. Average price?**
 
 **Solution:**
-- Total cost = (10×20) + (15×25) + (5×40) = 200 + 375 + 200 = Rs. 775
+- Total cost = (10Ã—20) + (15Ã—25) + (5Ã—40) = 200 + 375 + 200 = Rs. 775
 - Total quantity = 10 + 15 + 5 = 30 kg
 - Average price = 775/30 = Rs. 25.83/kg
 
@@ -143,25 +143,25 @@ Quantity A = (p/100) × Total mixture
 
 **Solution:**
 - First convert to same units. Assume oil density = 0.9 kg/liter
-- Oil quantity = 5 × 0.9 = 4.5 kg, cost = 5 × 100 = Rs. 500
-- Ghee = 3 kg, cost = 3 × 200 = Rs. 600
+- Oil quantity = 5 Ã— 0.9 = 4.5 kg, cost = 5 Ã— 100 = Rs. 500
+- Ghee = 3 kg, cost = 3 Ã— 200 = Rs. 600
 - Total quantity = 4.5 + 3 = 7.5 kg
 - Total cost = 500 + 600 = Rs. 1100
-- Average price = 1100/7.5 ≈ Rs. 146.67/kg
+- Average price = 1100/7.5 â‰ˆ Rs. 146.67/kg
 
 ---
 
-## 🚨 Common Mixture Mistakes
+## ðŸš¨ Common Mixture Mistakes
 
 1. **Unit Confusion**: Mixing kg with liters without conversion
-2. **Cost Calculation**: Forgetting to multiply quantity × price
+2. **Cost Calculation**: Forgetting to multiply quantity Ã— price
 3. **Average Formula**: Dividing by wrong total
 4. **Ratio Errors**: Wrong proportion calculations
 5. **Percentage Confusion**: Mixing percentages with actual quantities
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** 20 kg sugar at Rs. 30/kg mixed with 30 kg at Rs. 40/kg. Average price?
 **2.** Mixture of milk:water = 4:1. Total 45 liters. Milk quantity?
@@ -173,7 +173,7 @@ Quantity A = (p/100) × Total mixture
 
 ---
 
-## 🎓 Mixture Concept Strategies
+## ðŸŽ“ Mixture Concept Strategies
 
 1. **Identify ingredients** and their quantities/prices
 2. **Convert to same units** before calculations
@@ -181,5 +181,6 @@ Quantity A = (p/100) × Total mixture
 4. **Apply average formula** correctly
 5. **Check reasonableness** - average should be between extremes
 
-Master mixture concepts and you'll handle complex combination problems with confidence! 🏆`
+Master mixture concepts and you'll handle complex combination problems with confidence! ðŸ†`
 };
+

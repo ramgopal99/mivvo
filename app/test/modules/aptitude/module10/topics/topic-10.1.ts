@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_1: SubLesson = {
   id: "10.1",
   title: 'Concept of Work',
   status: 'completed',
-  content: `# 🏗️ Concept of Work
+  content: "`# ðŸ—ï¸ Concept of Work
 
 Master the fundamental concepts of work problems that form the foundation of time and work calculations in aptitude exams.
 
 ---
 
-## 🎯 What is Work?
+## ðŸŽ¯ What is Work?
 
 **Work** is a measurable quantity that represents the completion of a task or job. In aptitude problems, work is typically expressed as a fraction or percentage of total completion.
 
@@ -21,12 +21,12 @@ Master the fundamental concepts of work problems that form the foundation of tim
 
 ---
 
-## 📊 Basic Work Relationships
+## ðŸ“Š Basic Work Relationships
 
 ### 1. **Work and Time are Inversely Proportional**
-\`\`\`
-More workers → Less time (for same work)
-More time → More work completed
+\`"\`\`
+More workers â†’ Less time (for same work)
+More time â†’ More work completed
 \`\`\`
 
 ### 2. **Work Efficiency Formula**
@@ -42,7 +42,7 @@ Efficiency = (Work Done) / (Time Taken)
 
 ---
 
-## 🧮 Basic Examples
+## ðŸ§® Basic Examples
 
 ### Example 1: Simple Work Completion
 **A can complete a work in 10 days. What fraction of work does A complete in 1 day?**
@@ -52,16 +52,16 @@ Efficiency = (Work Done) / (Time Taken)
 ### Example 2: Work in Multiple Days
 **A completes 1/5th of work in 2 days. In how many days will A complete the full work?**
 
-**Solution:** If 1/5th work takes 2 days, then full work takes 2 × 5 = 10 days.
+**Solution:** If 1/5th work takes 2 days, then full work takes 2 Ã— 5 = 10 days.
 
 ### Example 3: Multiple Workers
 **A completes work in 8 days, B in 12 days. Together they complete 1/4th work in how many days?**
 
-**Solution:** A's 1 day work = 1/8, B's 1 day work = 1/12. Combined work = 1/8 + 1/12 = 5/24. So 1/4th work takes (1/4) ÷ (5/24) = 6/5 days.
+**Solution:** A's 1 day work = 1/8, B's 1 day work = 1/12. Combined work = 1/8 + 1/12 = 5/24. So 1/4th work takes (1/4) Ã· (5/24) = 6/5 days.
 
 ---
 
-## 🎯 Important Principles
+## ðŸŽ¯ Important Principles
 
 ### 1. **Work Addition Principle**
 \`\`\`
@@ -80,11 +80,11 @@ Total work completed = Work by A + Work by B + Work by C + ...
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Quick Work Calculation**
 - **If A takes 'a' days**: A's 1-day work = 1/a
-- **If work takes 't' days with 'n' people**: Each person's 1-day work = 1/(n×t)
+- **If work takes 't' days with 'n' people**: Each person's 1-day work = 1/(nÃ—t)
 
 ### **Efficiency Comparison**
 \`\`\`
@@ -99,7 +99,7 @@ A's efficiency : B's efficiency = b : a
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 1. **Wrong Unit Conversion**: Always convert to same units (days to hours, etc.)
 2. **Sign Errors**: Work completed is always positive
@@ -108,7 +108,7 @@ A's efficiency : B's efficiency = b : a
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 **1.** A completes work in 15 days. B completes same work in 20 days. What fraction of work do they complete together in 1 day?
 
@@ -120,7 +120,7 @@ A's efficiency : B's efficiency = b : a
 
 ---
 
-## 🎓 Pro Tips for Exams
+## ðŸŽ“ Pro Tips for Exams
 
 1. **Always assume total work = 1 unit** unless specified otherwise
 2. **Convert everything to same time units** (days/hours/minutes)
@@ -128,5 +128,5 @@ A's efficiency : B's efficiency = b : a
 4. **Draw diagrams** for complex problems to visualize work distribution
 5. **Check units** - work should be dimensionless (fraction or pure number)
 
-Master these concepts and you'll handle any time & work problem with confidence! 🏆`
+Master these concepts and you'll handle any time & work problem with confidence! ðŸ†`
 };

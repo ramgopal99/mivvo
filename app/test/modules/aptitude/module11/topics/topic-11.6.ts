@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_6: SubLesson = {
   id: "11.6",
   title: 'Trains (Crossing a Pole/Platform/Train)',
   status: 'completed',
-  content: `# 🚂 Trains (Crossing a Pole/Platform/Train)
+  content: "`# ðŸš‚ Trains (Crossing a Pole/Platform/Train)
 
 Master train crossing problems - a favorite topic in aptitude exams involving relative speed and distance calculations.
 
 ---
 
-## 🎯 Train Crossing Concepts
+## ðŸŽ¯ Train Crossing Concepts
 
 **Train crossing problems** involve trains passing stationary objects (pole/platform) or moving objects (another train).
 
@@ -20,10 +20,10 @@ Master train crossing problems - a favorite topic in aptitude exams involving re
 
 ---
 
-## 📊 Types of Train Crossing
+## ðŸ“Š Types of Train Crossing
 
 ### 1. **Crossing a Pole**
-\`\`\`
+\`"\`\`
 Time = Length of train / Speed of train
 \`\`\`
 
@@ -34,25 +34,25 @@ Time = (Length of train + Length of platform) / Speed of train
 
 ### 3. **Crossing Another Train**
 \`\`\`
-Time = (Length₁ + Length₂) / Relative Speed
+Time = (Lengthâ‚ + Lengthâ‚‚) / Relative Speed
 \`\`\`
 
 ---
 
-## 🧮 Train Crossing Examples
+## ðŸ§® Train Crossing Examples
 
 ### Example 1: Crossing a Pole
 **Train 200m long crosses a pole at 72 km/h. Time taken?**
 
 **Solution:**
-- Speed = 72 × 5/18 = 20 m/s
+- Speed = 72 Ã— 5/18 = 20 m/s
 - Time = 200 / 20 = 10 seconds
 
 ### Example 2: Crossing a Platform
 **Train 150m long crosses 250m platform at 54 km/h. Time?**
 
 **Solution:**
-- Speed = 54 × 5/18 = 15 m/s
+- Speed = 54 Ã— 5/18 = 15 m/s
 - Total distance = 150 + 250 = 400 m
 - Time = 400 / 15 = 26.67 seconds
 
@@ -60,15 +60,15 @@ Time = (Length₁ + Length₂) / Relative Speed
 **Train A 120m at 60 km/h, Train B 100m at 40 km/h towards each other. Crossing time?**
 
 **Solution:**
-- Speed A = 60 × 5/18 ≈ 16.67 m/s
-- Speed B = 40 × 5/18 ≈ 11.11 m/s
+- Speed A = 60 Ã— 5/18 â‰ˆ 16.67 m/s
+- Speed B = 40 Ã— 5/18 â‰ˆ 11.11 m/s
 - Relative speed = 16.67 + 11.11 = 27.78 m/s
 - Distance = 120 + 100 = 220 m
-- Time = 220 / 27.78 ≈ 7.92 seconds
+- Time = 220 / 27.78 â‰ˆ 7.92 seconds
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Pole Crossing**
 \`\`\`
@@ -90,12 +90,12 @@ Where L = length, S = speed
 ### **Unit Conversion**
 \`\`\`
 Always convert speed to m/s for meter distances
-Speed (m/s) = Speed (km/h) × 5/18
+Speed (m/s) = Speed (km/h) Ã— 5/18
 \`\`\`
 
 ---
 
-## 🔢 Advanced Train Problems
+## ðŸ”¢ Advanced Train Problems
 
 ### **Same Direction Crossing**
 - **Overtaking**: Faster train overtaking slower train
@@ -114,14 +114,14 @@ Speed (m/s) = Speed (km/h) × 5/18
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 4: Overtaking Train
 **Train A 200m at 72 km/h overtakes train B 150m at 54 km/h. Time to cross completely?**
 
 **Solution:**
-- Speed A = 72 × 5/18 = 20 m/s
-- Speed B = 54 × 5/18 = 15 m/s
+- Speed A = 72 Ã— 5/18 = 20 m/s
+- Speed B = 54 Ã— 5/18 = 15 m/s
 - Relative speed = 20 - 15 = 5 m/s
 - Distance = 200 + 150 = 350 m
 - Time = 350 / 5 = 70 seconds
@@ -139,11 +139,11 @@ Speed (m/s) = Speed (km/h) × 5/18
 **Solution:**
 - Total distance = 300 + 500 = 800 m
 - Time = 30 seconds
-- Speed = 800 / 30 = 26.67 m/s = 26.67 × 18/5 = 96 km/h
+- Speed = 800 / 30 = 26.67 m/s = 26.67 Ã— 18/5 = 96 km/h
 
 ---
 
-## 🚨 Train Crossing Mistakes
+## ðŸš¨ Train Crossing Mistakes
 
 1. **Length addition**: Forgetting to add lengths
 2. **Direction confusion**: Same vs opposite direction
@@ -153,7 +153,7 @@ Speed (m/s) = Speed (km/h) × 5/18
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** Train 120m at 90 km/h crosses pole. Time?
 **2.** Train 180m crosses 220m platform at 60 km/h. Time?
@@ -165,7 +165,7 @@ Speed (m/s) = Speed (km/h) × 5/18
 
 ---
 
-## 🎓 Train Crossing Strategies
+## ðŸŽ“ Train Crossing Strategies
 
 1. **Identify crossing type** - pole, platform, or another train
 2. **Determine relative speed** correctly
@@ -173,5 +173,5 @@ Speed (m/s) = Speed (km/h) × 5/18
 4. **Convert units** appropriately
 5. **Ensure complete crossing** time
 
-Master train crossing problems and solve railway motion scenarios! 🏆`
+Master train crossing problems and solve railway motion scenarios! ðŸ†`
 };

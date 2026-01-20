@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_3: SubLesson = {
   id: "5.3",
   title: 'Comparison of Ratios',
   status: 'completed',
-  content: `# ⚖️ Comparison of Ratios
+  content: "`# âš–ï¸ Comparison of Ratios
 
 Learn to compare different ratios and determine which is greater or smaller! This skill is essential for ranking options, making decisions, and solving aptitude problems where you need to identify the best or worst ratio relationships.
 
 ---
 
-## 🎯 What is Ratio Comparison?
+## ðŸŽ¯ What is Ratio Comparison?
 
 **Ratio comparison** involves determining the relative magnitudes of different ratios. We compare ratios to see which represents a larger or smaller proportion.
 
@@ -27,31 +27,31 @@ Learn to compare different ratios and determine which is greater or smaller! Thi
 
 ---
 
-## 🔄 Cross Multiplication Method
+## ðŸ”„ Cross Multiplication Method
 
 ### **For Two Ratios a:b and c:d**
-\`\`\`
-Compare a×d and b×c
-If a×d > b×c, then a:b > c:d
-If a×d < b×c, then a:b < c:d
-If a×d = b×c, then a:b = c:d
+\`"\`\`
+Compare aÃ—d and bÃ—c
+If aÃ—d > bÃ—c, then a:b > c:d
+If aÃ—d < bÃ—c, then a:b < c:d
+If aÃ—d = bÃ—c, then a:b = c:d
 \`\`\`
 
 ### **Example 1: Compare 3:4 and 5:6**
 **Solution:**
 - 3:4 and 5:6
-- Cross multiply: 3×6 = 18, 4×5 = 20
+- Cross multiply: 3Ã—6 = 18, 4Ã—5 = 20
 - 18 < 20, so 3:4 < 5:6
 
 ### **Example 2: Compare 7:8 and 9:10**
 **Solution:**
 - 7:8 and 9:10
-- Cross multiply: 7×10 = 70, 8×9 = 72
+- Cross multiply: 7Ã—10 = 70, 8Ã—9 = 72
 - 70 < 72, so 7:8 < 9:10
 
 ---
 
-## 📊 Equivalent Fraction Method
+## ðŸ“Š Equivalent Fraction Method
 
 ### **Convert to Same Denominator**
 \`\`\`
@@ -61,19 +61,19 @@ Compare the numerators
 
 ### **Example 1: Compare 2:3 and 3:5**
 **Solution:**
-- 2:3 = 2/3 ≈ 0.667
+- 2:3 = 2/3 â‰ˆ 0.667
 - 3:5 = 3/5 = 0.6
 - 2/3 > 3/5, so 2:3 > 3:5
 
 ### **Example 2: Compare 5:7 and 6:9**
 **Solution:**
-- 5:7 ≈ 0.714
-- 6:9 = 2:3 ≈ 0.667
+- 5:7 â‰ˆ 0.714
+- 6:9 = 2:3 â‰ˆ 0.667
 - 5/7 > 6/9, so 5:7 > 6:9
 
 ---
 
-## 🧮 Decimal Method
+## ðŸ§® Decimal Method
 
 ### **Convert to Decimal**
 \`\`\`
@@ -83,19 +83,19 @@ Compare the decimal values
 
 ### **Example 1: Compare 7:9 and 8:11**
 **Solution:**
-- 7÷9 ≈ 0.777...
-- 8÷11 ≈ 0.727...
+- 7Ã·9 â‰ˆ 0.777...
+- 8Ã·11 â‰ˆ 0.727...
 - 0.777 > 0.727, so 7:9 > 8:11
 
 ### **Example 2: Compare 13:15 and 14:17**
 **Solution:**
-- 13÷15 ≈ 0.8667
-- 14÷17 ≈ 0.8235
+- 13Ã·15 â‰ˆ 0.8667
+- 14Ã·17 â‰ˆ 0.8235
 - 0.8667 > 0.8235, so 13:15 > 14:17
 
 ---
 
-## 💡 Comparison of Multiple Ratios
+## ðŸ’¡ Comparison of Multiple Ratios
 
 ### **Method 1: Common Denominator**
 Convert all ratios to equivalent forms with same denominator.
@@ -110,13 +110,13 @@ Convert all ratios to equivalent forms with same denominator.
 Compare each pair systematically.
 
 **Example:** Compare 5:6, 7:8, 9:10
-- 5:6 vs 7:8: 5×8=40, 6×7=42 → 5:6 < 7:8
-- 7:8 vs 9:10: 7×10=70, 8×9=72 → 7:8 < 9:10
+- 5:6 vs 7:8: 5Ã—8=40, 6Ã—7=42 â†’ 5:6 < 7:8
+- 7:8 vs 9:10: 7Ã—10=70, 8Ã—9=72 â†’ 7:8 < 9:10
 - Order: 5:6 < 7:8 < 9:10
 
 ---
 
-## 🎯 Special Cases in Ratio Comparison
+## ðŸŽ¯ Special Cases in Ratio Comparison
 
 ### **Case 1: Same Numerator**
 When first terms are equal, compare denominators inversely.
@@ -138,11 +138,11 @@ When second terms are equal, compare numerators directly.
 Compare a ratio with its reciprocal.
 
 **Example:** Compare 3:4 and 4:3
-- 3:4 < 4:3 (since 3/4 = 0.75, 4/3 ≈ 1.333)
+- 3:4 < 4:3 (since 3/4 = 0.75, 4/3 â‰ˆ 1.333)
 
 ---
 
-## 📈 Applications in Real Life
+## ðŸ“ˆ Applications in Real Life
 
 ### **1. Performance Comparison**
 - **Exam scores:** 85:100 vs 92:100
@@ -166,7 +166,7 @@ Compare a ratio with its reciprocal.
 
 ---
 
-## 🧠 Advanced Comparison Techniques
+## ðŸ§  Advanced Comparison Techniques
 
 ### **Technique 1: Difference of Ratios**
 \`\`\`
@@ -176,7 +176,7 @@ Compare (a/b) - (c/d) or use cross multiplication
 ### **Technique 2: Percentage Difference**
 \`\`\`
 Convert to percentages and compare
-Example: 3:4 = 75%, 5:6 ≈ 83.33%
+Example: 3:4 = 75%, 5:6 â‰ˆ 83.33%
 \`\`\`
 
 ### **Technique 3: Common Multiplier**
@@ -184,27 +184,27 @@ Multiply both ratios by suitable numbers to compare.
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Cross Multiplication**
-❌ Compare 2:3 and 4:5 as 2×5 vs 3×4
-- Correct: 2×5=10, 3×4=12, so 2:3 < 4:5
+âŒ Compare 2:3 and 4:5 as 2Ã—5 vs 3Ã—4
+- Correct: 2Ã—5=10, 3Ã—4=12, so 2:3 < 4:5
 
 ### **Mistake 2: Decimal Precision**
-❌ Compare 1:3 and 2:7 as 0.333 vs 0.285
-- 1/3 ≈ 0.333, 2/7 ≈ 0.285, so 1:3 > 2:7
+âŒ Compare 1:3 and 2:7 as 0.333 vs 0.285
+- 1/3 â‰ˆ 0.333, 2/7 â‰ˆ 0.285, so 1:3 > 2:7
 
 ### **Mistake 3: Equivalent Forms**
-❌ Compare 2:4 and 3:6 as different ratios
+âŒ Compare 2:4 and 3:6 as different ratios
 - Both simplify to 1:2, so equal
 
 ### **Mistake 4: Order Confusion**
-❌ "Larger ratio means better"
+âŒ "Larger ratio means better"
 - Depends on context (defect rates: smaller ratio is better)
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Basic Comparisons:**
 1. Compare 3:4 and 5:6
@@ -228,7 +228,7 @@ Applications: Worker B more efficient, Item Y cheaper, Car Q faster
 
 ---
 
-## 🎓 Pro Tips for Exams
+## ðŸŽ“ Pro Tips for Exams
 
 1. **Use cross multiplication** for quick comparison
 2. **Convert to decimals** for close ratios
@@ -239,23 +239,23 @@ Applications: Worker B more efficient, Item Y cheaper, Car Q faster
 
 ---
 
-## 🔢 Comparison Flowchart
+## ðŸ”¢ Comparison Flowchart
 
 \`\`\`
 Compare a:b and c:d
-   ↓
-Cross multiply: a×d vs b×c
-   ↓
-If a×d > b×c → a:b > c:d
-If a×d < b×c → a:b < c:d
-If equal → ratios equal
-   ↓
+   â†“
+Cross multiply: aÃ—d vs bÃ—c
+   â†“
+If aÃ—d > bÃ—c â†’ a:b > c:d
+If aÃ—d < bÃ—c â†’ a:b < c:d
+If equal â†’ ratios equal
+   â†“
 For close ratios, use decimals
 \`\`\`
 
 ---
 
-## 💡 Decision Making with Ratio Comparison
+## ðŸ’¡ Decision Making with Ratio Comparison
 
 ### **1. Best Value Selection**
 - Compare price ratios for same quantity
@@ -273,5 +273,5 @@ For close ratios, use decimals
 - Compare defect/accuracy ratios
 - Lower defect ratio = better quality
 
-Master ratio comparison techniques to make informed decisions and solve comparison problems effectively! 🏆`
+Master ratio comparison techniques to make informed decisions and solve comparison problems effectively! ðŸ†`
 };

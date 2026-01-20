@@ -1,20 +1,20 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_2: SubLesson = {
   id: "13.2",
   title: 'BST Operations: Search, Insert, Delete',
   status: 'completed',
-  content: `# 🔍 BST Operations: Search, Insert, Delete
+  content: "`# ðŸ” BST Operations: Search, Insert, Delete
 
 Master the core operations that make Binary Search Trees powerful and efficient in Java!
 
 ---
 
-## 🎯 Search Operation
+## ðŸŽ¯ Search Operation
 
 ### **How Search Works**
 - Start from root node
-- Compare target with current node using \`compareTo()\`
+- Compare target with current node using \`"compareTo()\`
 - Go left if target < current, right if target > current
 - Continue until found or reach null
 
@@ -62,7 +62,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 ---
 
-## ➕ Insert Operation
+## âž• Insert Operation
 
 ### **How Insert Works**
 1. Search for the correct position (like search)
@@ -119,7 +119,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 ---
 
-## 🗑️ Delete Operation
+## ðŸ—‘ï¸ Delete Operation
 
 ### **Delete is Complex - Three Cases**
 
@@ -128,7 +128,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 // Delete 1 from tree
 // Before:    8     After:    8
 //           / \\            / \\
-//          3   10   →     3   10
+//          3   10   â†’     3   10
 //         /
 //        1
 \`\`\`
@@ -138,7 +138,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 // Delete 3 from tree
 // Before:    8     After:    8
 //           / \\            / \\
-//          3   10   →     6   10
+//          3   10   â†’     6   10
 //           \\
 //            6
 \`\`\`
@@ -149,7 +149,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 // Find inorder successor (smallest in right subtree)
 // Before:    8     After:   10
 //           / \\           / \\
-//          3   10   →    3   14
+//          3   10   â†’    3   14
 //         / \\   \\       / \\   \\
 //        1   6   14     1   6   14
 //           / \\           / \\
@@ -212,7 +212,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 ---
 
-## 🧪 Complete BST Implementation
+## ðŸ§ª Complete BST Implementation
 
 \`\`\`java
 public class BinarySearchTree<T extends Comparable<T>> {
@@ -292,7 +292,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 ---
 
-## 🧪 Testing BST Operations
+## ðŸ§ª Testing BST Operations
 
 \`\`\`java
 public class BSTDemo {
@@ -323,7 +323,7 @@ public class BSTDemo {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Search**: Recursive traversal using compareTo()
 2. **Insert**: Find null position and create new node
@@ -331,6 +331,7 @@ public class BSTDemo {
 4. **Time Complexity**: O(log n) average, O(n) worst case
 5. **Space Complexity**: O(n) for storing nodes
 
-**Next:** Learn BST traversal algorithms! 🚀`
+**Next:** Learn BST traversal algorithms! ðŸš€`
 };
+
 

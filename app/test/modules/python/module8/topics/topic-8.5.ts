@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_5: SubLesson = {
   id: "8.5",
   title: 'Input/Output Functions',
   status: 'demo',
-  content: `# 💬 Input/Output Functions
+  content: "`# ðŸ’¬ Input/Output Functions
 
 Functions for interacting with users and the outside world!
 
 ---
 
-## 🎯 Basic I/O Functions
+## ðŸŽ¯ Basic I/O Functions
 
 ### **print() - Display Output**
-\`\`\`python
+\`"\`\`python
 # Basic printing
 print("Hello, World!")          # Hello, World!
 print(42)                       # 42
@@ -58,7 +58,7 @@ print(f"You entered: {numbers}")
 
 ---
 
-## 📁 File I/O Functions
+## ðŸ“ File I/O Functions
 
 ### **open() - Open Files**
 \`\`\`python
@@ -100,7 +100,7 @@ with open("image.jpg", "rb") as f:
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **Interactive Calculator**
 \`\`\`python
@@ -225,16 +225,16 @@ print("All items processed!")
 
 ---
 
-## ⚠️ Best Practices
+## âš ï¸ Best Practices
 
 ### **File Handling**
 \`\`\`python
 # Always use 'with' statement for files
-# ✅ Good
+# âœ… Good
 with open("file.txt", "r") as f:
     content = f.read()
 
-# ❌ Bad - may not close file properly
+# âŒ Bad - may not close file properly
 f = open("file.txt", "r")
 content = f.read()
 f.close()  # Easy to forget!
@@ -274,6 +274,7 @@ content = safe_read_file("data.txt")
 print(content)
 \`\`\`
 
-I/O functions connect your programs to the outside world! 🌍`
+I/O functions connect your programs to the outside world! ðŸŒ`
 };
+
 

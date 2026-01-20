@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_19_1: SubLesson = {
   id: "19.1",
   title: 'Bank Account System Project',
   status: 'demo',
-  content: `# 🏦 Bank Account System Project
+  content: "`# ðŸ¦ Bank Account System Project
 
 Create a complete banking system using Object-Oriented Programming (OOP) principles! This project demonstrates inheritance, encapsulation, polymorphism, and file handling in a real-world application.
 
 ---
 
-## 🎯 Project Overview
+## ðŸŽ¯ Project Overview
 
 The Bank Account System will include:
 - **Base Account class** with common banking operations
@@ -22,20 +22,20 @@ The Bank Account System will include:
 
 ---
 
-## 📁 Project Structure (Multiple Files)
+## ðŸ“ Project Structure (Multiple Files)
 
-\`\`\`
+\`"\`\`
 bank_system/
-├── account.py           # Base Account class
-├── savings_account.py   # Savings Account subclass
-├── checking_account.py  # Checking Account subclass
-├── bank.py             # Bank management system
-└── main.py             # Main application
+â”œâ”€â”€ account.py           # Base Account class
+â”œâ”€â”€ savings_account.py   # Savings Account subclass
+â”œâ”€â”€ checking_account.py  # Checking Account subclass
+â”œâ”€â”€ bank.py             # Bank management system
+â””â”€â”€ main.py             # Main application
 \`\`\`
 
 ---
 
-## 🏗️ Building the System Step by Step
+## ðŸ—ï¸ Building the System Step by Step
 
 ### **Step 1: Base Account Class**
 
@@ -264,7 +264,7 @@ from bank import Bank
 
 def display_menu():
     """Display main menu"""
-    print("\\n🏦 Bank Account System")
+    print("\\nðŸ¦ Bank Account System")
     print("=" * 30)
     print("1. Create Account")
     print("2. Deposit Money")
@@ -279,7 +279,7 @@ def display_menu():
 
 def create_account_menu(bank):
     """Create account menu"""
-    print("\\n📝 Create New Account")
+    print("\\nðŸ“ Create New Account")
     print("Account Types:")
     print("1. Regular Account")
     print("2. Savings Account")
@@ -309,7 +309,7 @@ def create_account_menu(bank):
 def main():
     bank = Bank()
 
-    print("🏦 Welcome to the Bank Account System!")
+    print("ðŸ¦ Welcome to the Bank Account System!")
 
     while True:
         display_menu()
@@ -324,11 +324,11 @@ def main():
             if account:
                 amount = float(input("Enter deposit amount: "))
                 if account.deposit(amount):
-                    print(f"✅ Deposited \${amount}. New balance: \${account.get_balance()}")
+                    print(f"âœ… Deposited \${amount}. New balance: \${account.get_balance()}")
                 else:
-                    print("❌ Invalid amount")
+                    print("âŒ Invalid amount")
             else:
-                print("❌ Account not found")
+                print("âŒ Account not found")
 
         elif choice == "3":
             acc_num = input("Enter account number: ").strip()
@@ -336,21 +336,21 @@ def main():
             if account:
                 amount = float(input("Enter withdrawal amount: "))
                 if account.withdraw(amount):
-                    print(f"✅ Withdrew \${amount}. New balance: \${account.get_balance()}")
+                    print(f"âœ… Withdrew \${amount}. New balance: \${account.get_balance()}")
                 else:
-                    print("❌ Insufficient funds or invalid amount")
+                    print("âŒ Insufficient funds or invalid amount")
             else:
-                print("❌ Account not found")
+                print("âŒ Account not found")
 
         elif choice == "4":
             acc_num = input("Enter account number: ").strip()
             account = bank.get_account(acc_num)
             if account:
-                print(f"💰 Balance: \${account.get_balance()}")
+                print(f"ðŸ’° Balance: \${account.get_balance()}")
                 if hasattr(account, 'get_available_balance'):
-                    print(f"💳 Available balance: \${account.get_available_balance()}")
+                    print(f"ðŸ’³ Available balance: \${account.get_available_balance()}")
             else:
-                print("❌ Account not found")
+                print("âŒ Account not found")
 
         elif choice == "5":
             from_acc = input("From account number: ").strip()
@@ -364,16 +364,16 @@ def main():
             acc_num = input("Enter account number: ").strip()
             account = bank.get_account(acc_num)
             if account:
-                print(f"\\n📜 Transaction History for {account.holder_name}:")
+                print(f"\\nðŸ“œ Transaction History for {account.holder_name}:")
                 for transaction in account.get_transaction_history():
-                    print(f"  • {transaction}")
+                    print(f"  â€¢ {transaction}")
             else:
-                print("❌ Account not found")
+                print("âŒ Account not found")
 
         elif choice == "7":
             accounts = bank.get_all_accounts()
             if accounts:
-                print("\\n📋 All Accounts:")
+                print("\\nðŸ“‹ All Accounts:")
                 for account in accounts:
                     print(f"  {account}")
             else:
@@ -384,16 +384,16 @@ def main():
             account = bank.get_account(acc_num)
             if isinstance(account, SavingsAccount):
                 interest = account.calculate_interest()
-                print(f"💰 Interest added: \${interest:.2f}. New balance: \${account.get_balance():.2f}")
+                print(f"ðŸ’° Interest added: \${interest:.2f}. New balance: \${account.get_balance():.2f}")
             else:
-                print("❌ Not a savings account")
+                print("âŒ Not a savings account")
 
         elif choice == "9":
-            print("👋 Thank you for using our Bank Account System!")
+            print("ðŸ‘‹ Thank you for using our Bank Account System!")
             break
 
         else:
-            print("❌ Invalid choice. Please try again.")
+            print("âŒ Invalid choice. Please try again.")
 
 if __name__ == "__main__":
     main()
@@ -401,7 +401,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🎯 OOP Concepts Demonstrated
+## ðŸŽ¯ OOP Concepts Demonstrated
 
 ### **Inheritance**
 - \`SavingsAccount\` and \`CheckingAccount\` inherit from \`Account\`
@@ -421,7 +421,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🚀 How to Run the Project
+## ðŸš€ How to Run the Project
 
 1. Create a \`bank_system\` folder
 2. Create the 5 Python files as shown above
@@ -430,16 +430,17 @@ if __name__ == "__main__":
 
 ---
 
-## 💡 Key Features
+## ðŸ’¡ Key Features
 
-- ✅ **Multiple Account Types** - Regular, Savings, Checking
-- ✅ **Data Persistence** - Accounts saved to JSON file
-- ✅ **Transaction History** - Track all account activity
-- ✅ **Interest Calculation** - Automatic interest for savings
-- ✅ **Overdraft Protection** - Checking accounts with limits
-- ✅ **Money Transfers** - Between different accounts
-- ✅ **Error Handling** - Robust input validation
+- âœ… **Multiple Account Types** - Regular, Savings, Checking
+- âœ… **Data Persistence** - Accounts saved to JSON file
+- âœ… **Transaction History** - Track all account activity
+- âœ… **Interest Calculation** - Automatic interest for savings
+- âœ… **Overdraft Protection** - Checking accounts with limits
+- âœ… **Money Transfers** - Between different accounts
+- âœ… **Error Handling** - Robust input validation
 
-**This project showcases professional-level OOP design with real-world banking functionality! 🏦✨**`
+**This project showcases professional-level OOP design with real-world banking functionality! ðŸ¦âœ¨**`
 };
+
 

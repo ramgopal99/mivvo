@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_7: SubLesson = {
   id: "15.7",
   title: 'Heap Sort Algorithm',
   status: 'demo',
-  content: `# 🏗️ Heap Sort Algorithm
+  content: "`# ðŸ—ï¸ Heap Sort Algorithm
 
 Heap Sort is a sophisticated sorting algorithm that uses a binary heap data structure. It provides guaranteed O(n log n) performance with minimal extra space, making it perfect for memory-constrained environments. Let's explore this elegant algorithm that combines data structure knowledge with sorting!
 
 ---
 
-## 🎯 How Heap Sort Works
+## ðŸŽ¯ How Heap Sort Works
 
 **Heap Sort** leverages the properties of a binary heap:
 1. **Build a max-heap** from the input array
@@ -22,18 +22,18 @@ The key insight is that a max-heap always keeps the largest element at the root,
 
 ---
 
-## 📝 Step-by-Step Example
+## ðŸ“ Step-by-Step Example
 
 **Input Array**: [4, 10, 3, 5, 1]
 
 ### **Step 1: Build Max-Heap**
-\`\`\`text
+\`"\`\`text
 Initial array: [4, 10, 3, 5, 1]
 
 Build heap (heapify from bottom up):
 - Start with leaf nodes (already heaps)
-- Heapify node at index 1: [4, 10, 3, 5, 1] → [4, 10, 3, 5, 1] (no change)
-- Heapify node at index 0: [4, 10, 3, 5, 1] → [10, 4, 3, 5, 1] (swap 4 and 10)
+- Heapify node at index 1: [4, 10, 3, 5, 1] â†’ [4, 10, 3, 5, 1] (no change)
+- Heapify node at index 0: [4, 10, 3, 5, 1] â†’ [10, 4, 3, 5, 1] (swap 4 and 10)
 
 Max-heap: [10, 5, 3, 4, 1]
          10
@@ -45,8 +45,8 @@ Max-heap: [10, 5, 3, 4, 1]
 
 ### **Step 2: Extract Maximum (First Pass)**
 \`\`\`text
-Heap: [10, 5, 3, 4, 1]  →  Swap root with last element
-Result: [1, 5, 3, 4, 10] →  Now heapify root (ignore last element)
+Heap: [10, 5, 3, 4, 1]  â†’  Swap root with last element
+Result: [1, 5, 3, 4, 10] â†’  Now heapify root (ignore last element)
 
 After heapify: [5, 4, 3, 1, 10]
        5
@@ -60,8 +60,8 @@ Largest element (10) is now in correct position!
 
 ### **Step 3: Extract Maximum (Second Pass)**
 \`\`\`text
-Heap: [5, 4, 3, 1, 10]  →  Swap root with last unsorted element
-Result: [1, 4, 3, 5, 10] →  Now heapify root
+Heap: [5, 4, 3, 1, 10]  â†’  Swap root with last unsorted element
+Result: [1, 4, 3, 5, 10] â†’  Now heapify root
 
 After heapify: [4, 1, 3, 5, 10]
       4
@@ -77,7 +77,7 @@ Largest element (5) is now in correct position!
 
 ---
 
-## 💻 Implementation
+## ðŸ’» Implementation
 
 ### **Complete Heap Sort**
 \`\`\`python
@@ -155,11 +155,11 @@ heapify_verbose(arr, len(arr), 0)
 
 ---
 
-## 🏗️ Understanding Binary Heaps
+## ðŸ—ï¸ Understanding Binary Heaps
 
 ### **Heap Properties**
 - **Complete Binary Tree**: All levels filled except possibly last level
-- **Heap Property**: Parent ≥ children (max-heap) or Parent ≤ children (min-heap)
+- **Heap Property**: Parent â‰¥ children (max-heap) or Parent â‰¤ children (min-heap)
 
 ### **Array Representation**
 \`\`\`text
@@ -192,7 +192,7 @@ print(arr)  # [10, 5, 3, 4, 1]
 
 ---
 
-## 📊 Algorithm Analysis
+## ðŸ“Š Algorithm Analysis
 
 ### **Time Complexity**
 - **Build Heap**: O(n)
@@ -213,36 +213,36 @@ print(arr)  # [10, 5, 3, 4, 1]
 
 ---
 
-## 🎯 Heap Sort Properties
+## ðŸŽ¯ Heap Sort Properties
 
 ### **Advantages**
-- ✅ **Guaranteed O(n log n)** performance in all cases
-- ✅ **In-place sorting** - uses only O(1) extra space
-- ✅ **No worst-case surprises** like Quick Sort
-- ✅ **Cache-friendly** - good locality of reference
+- âœ… **Guaranteed O(n log n)** performance in all cases
+- âœ… **In-place sorting** - uses only O(1) extra space
+- âœ… **No worst-case surprises** like Quick Sort
+- âœ… **Cache-friendly** - good locality of reference
 
 ### **Disadvantages**
-- ❌ **Unstable** - may change relative order of equal elements
-- ❌ **Not adaptive** - always O(n log n) even for sorted data
-- ❌ **Complex implementation** compared to simpler algorithms
-- ❌ **Slower than Quick Sort** in practice for random data
+- âŒ **Unstable** - may change relative order of equal elements
+- âŒ **Not adaptive** - always O(n log n) even for sorted data
+- âŒ **Complex implementation** compared to simpler algorithms
+- âŒ **Slower than Quick Sort** in practice for random data
 
 ---
 
-## 🔍 Heap Sort vs Other Algorithms
+## ðŸ” Heap Sort vs Other Algorithms
 
 | Algorithm | Best | Average | Worst | Space | Stable | In-place |
 |-----------|------|---------|-------|-------|--------|----------|
 | **Heap Sort** | O(n log n) | O(n log n) | O(n log n) | O(1) | No | Yes |
-| **Quick Sort** | O(n log n) | O(n log n) | O(n²) | O(log n) | No | Yes |
+| **Quick Sort** | O(n log n) | O(n log n) | O(nÂ²) | O(log n) | No | Yes |
 | **Merge Sort** | O(n log n) | O(n log n) | O(n log n) | O(n) | Yes | No |
-| **Insertion Sort** | O(n) | O(n²) | O(n²) | O(1) | Yes | Yes |
+| **Insertion Sort** | O(n) | O(nÂ²) | O(nÂ²) | O(1) | Yes | Yes |
 
 **Heap Sort provides the best of both worlds: guaranteed performance with minimal memory usage!**
 
 ---
 
-## 🧪 Testing and Examples
+## ðŸ§ª Testing and Examples
 
 ### **Test Case 1: Normal Array**
 \`\`\`python
@@ -284,7 +284,7 @@ print("Sorted:  ", arr)
 
 ---
 
-## 🎯 When to Use Heap Sort
+## ðŸŽ¯ When to Use Heap Sort
 
 ### **Good Use Cases:**
 - **Memory-constrained systems** (embedded systems)
@@ -300,7 +300,7 @@ print("Sorted:  ", arr)
 
 ---
 
-## 🔧 Advanced Heap Operations
+## ðŸ”§ Advanced Heap Operations
 
 ### **Heap Extract Max/Min**
 \`\`\`python
@@ -381,7 +381,7 @@ class MaxHeap:
 
 ---
 
-## 🚀 Real-World Applications
+## ðŸš€ Real-World Applications
 
 ### **Priority Queues**
 - Operating system task scheduling
@@ -403,7 +403,7 @@ class MaxHeap:
 
 ---
 
-## 🏆 Key Takeaways
+## ðŸ† Key Takeaways
 
 1. **Heap Sort** uses a binary heap to sort elements
 2. **Time complexity** is guaranteed O(n log n) in all cases
@@ -412,6 +412,7 @@ class MaxHeap:
 5. **In-place sorting** - modifies the original array
 6. **Perfect for systems** where memory is limited and predictable performance is needed
 
-**Heap Sort provides guaranteed performance with minimal memory usage. Now let's compare all the sorting algorithms we've learned! 🚀**`
+**Heap Sort provides guaranteed performance with minimal memory usage. Now let's compare all the sorting algorithms we've learned! ðŸš€**`
 };
+
 

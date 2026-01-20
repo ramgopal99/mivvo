@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_9: SubLesson = {
   id: "6.9",
   title: 'Alternating Series',
   status: 'completed',
-  content: `# 🔄 Alternating Series
+  content: "`# ðŸ”„ Alternating Series
 
 Alternating series involve sequences where patterns change systematically between different operations, rules, or sequences. These series alternate between different mathematical operations, sequences, or rules, making them more complex and challenging than simple series. They require careful pattern recognition and understanding of alternating behaviors.
 
 ---
 
-## 🎯 Understanding Alternating Series
+## ðŸŽ¯ Understanding Alternating Series
 
 ### **What are Alternating Series?**
 Alternating series are sequences where different patterns or rules are applied alternately to generate consecutive terms. These problems test your ability to:
@@ -27,7 +27,7 @@ Alternating series are sequences where different patterns or rules are applied a
 
 ---
 
-## 🧩 Types of Alternating Series
+## ðŸ§© Types of Alternating Series
 
 ### **1. Operation Alternating Series**
 **Different arithmetic operations alternating**
@@ -55,7 +55,7 @@ Alternating series are sequences where different patterns or rules are applied a
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze Position Patterns**
 - Examine terms at even and odd positions separately
@@ -79,40 +79,40 @@ Alternating series are sequences where different patterns or rules are applied a
 
 ---
 
-## 🎯 Common Alternating Series Patterns
+## ðŸŽ¯ Common Alternating Series Patterns
 
 ### **Operation Alternating Examples**
 
 #### **Type 1: Add-Multiply Alternation**
 **Addition and multiplication alternating**
 - **Pattern**: Add constant, multiply by constant, alternating
-- **Example**: 2, 5, 15, 18, 54, ? → +3, ×3, +3, ×3,...
+- **Example**: 2, 5, 15, 18, 54, ? â†’ +3, Ã—3, +3, Ã—3,...
 - **Next term**: 54 + 3 = 57
 
 #### **Type 2: Subtract-Divide Alternation**
 **Subtraction and division alternating**
 - **Pattern**: Subtract constant, divide by constant, alternating
-- **Example**: 20, 15, 5, 12, 4, ? → -5, ÷3, -5, ÷3,...
+- **Example**: 20, 15, 5, 12, 4, ? â†’ -5, Ã·3, -5, Ã·3,...
 - **Next term**: 4 - 5 = -1
 
 #### **Type 3: Complex Operation Alternation**
 **Multiple operations alternating in sequence**
-- **Pattern**: ×2, +3, ÷2, -1, repeating cycle
-- **Example**: 3, 6, 9, 4.5, 3.5, ? → ×2, +3, ÷2, -1, ×2,...
-- **Next term**: 3.5 × 2 = 7
+- **Pattern**: Ã—2, +3, Ã·2, -1, repeating cycle
+- **Example**: 3, 6, 9, 4.5, 3.5, ? â†’ Ã—2, +3, Ã·2, -1, Ã—2,...
+- **Next term**: 3.5 Ã— 2 = 7
 
 ### **Sequence Alternating Examples**
 
 #### **Type 1: Arithmetic-Geometric Alternation**
 **AP and GP terms alternating**
 - **Pattern**: AP term, GP term, AP term, GP term,...
-- **Example**: 2, 3, 6, 9, 14, ? → AP(+4), GP(×3), AP(+4), GP(×3),...
-- **Next term**: 14 × 3 = 42
+- **Example**: 2, 3, 6, 9, 14, ? â†’ AP(+4), GP(Ã—3), AP(+4), GP(Ã—3),...
+- **Next term**: 14 Ã— 3 = 42
 
 #### **Type 2: Even-Odd Alternation**
 **Even and odd sequences alternating**
 - **Pattern**: Even sequence, odd sequence, alternating
-- **Example**: 2, 1, 4, 3, 6, ? → Even(+2), Odd(+2), Even(+2), Odd(+2),...
+- **Example**: 2, 1, 4, 3, 6, ? â†’ Even(+2), Odd(+2), Even(+2), Odd(+2),...
 - **Next term**: 6 + 2 = 8 (even position)
 
 ### **Pattern Alternating Examples**
@@ -120,13 +120,13 @@ Alternating series are sequences where different patterns or rules are applied a
 #### **Type 1: Square-Cube Alternation**
 **Squares and cubes alternating**
 - **Pattern**: Square, cube, square, cube,...
-- **Example**: 1, 1, 4, 8, 9, ? → 1², 1³, 2², 2³, 3², 3³,...
-- **Next term**: 3³ = 27
+- **Example**: 1, 1, 4, 8, 9, ? â†’ 1Â², 1Â³, 2Â², 2Â³, 3Â², 3Â³,...
+- **Next term**: 3Â³ = 27
 
 #### **Type 2: Fibonacci-Arithmetic Alternation**
 **Fibonacci terms alternating with AP**
 - **Pattern**: Fibonacci term, AP term, alternating
-- **Example**: 1, 2, 1, 5, 2, ? → Fib(1,1,2,...), AP(2,5,8,...), Fib, AP,...
+- **Example**: 1, 2, 1, 5, 2, ? â†’ Fib(1,1,2,...), AP(2,5,8,...), Fib, AP,...
 - **Next term**: 8 (AP: 2+3=5, 5+3=8)
 
 ### **Rule Alternating Examples**
@@ -134,18 +134,18 @@ Alternating series are sequences where different patterns or rules are applied a
 #### **Type 1: Position-Based Rule Alternation**
 **Different rules for different positions**
 - **Pattern**: Rule A for position 1,3,5,...; Rule B for position 2,4,6,...
-- **Example**: 3, 2, 9, 4, 27, ? → ×3, +2, ×3, +2, ×3, +2,...
+- **Example**: 3, 2, 9, 4, 27, ? â†’ Ã—3, +2, Ã—3, +2, Ã—3, +2,...
 - **Next term**: 27 + 2 = 29
 
 #### **Type 2: Value-Based Rule Alternation**
 **Rules changing based on term values**
 - **Pattern**: Different rules for numbers above/below threshold
-- **Example**: 2, 3, 8, 11, 32, ? → ×4, +3, ×4, +3, ×4, +3,...
+- **Example**: 2, 3, 8, 11, 32, ? â†’ Ã—4, +3, Ã—4, +3, Ã—4, +3,...
 - **Next term**: 32 + 3 = 35
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Position Analysis Method**
 **Analyze terms by their positions**
@@ -173,7 +173,7 @@ Alternating series are sequences where different patterns or rules are applied a
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (30-40%)**
 - Simple add-multiply alternation
@@ -192,7 +192,7 @@ Alternating series are sequences where different patterns or rules are applied a
 
 ---
 
-## 🎯 Competitive Exam Relevance
+## ðŸŽ¯ Competitive Exam Relevance
 
 ### **Major Exams Featuring Alternating Series**
 - **Banking Exams**: 3-5 questions per exam
@@ -211,7 +211,7 @@ Alternating series are sequences where different patterns or rules are applied a
 
 ---
 
-## 🎯 Success Factors
+## ðŸŽ¯ Success Factors
 
 ### **1. Position Recognition**
 - Quick identification of position-based patterns
@@ -235,27 +235,27 @@ Alternating series are sequences where different patterns or rules are applied a
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Ignoring Position Effects**
-❌ Treating all terms with same rule
-✅ Separate rules by position or alternation
+âŒ Treating all terms with same rule
+âœ… Separate rules by position or alternation
 
 ### **Mistake 2: Wrong Alternation Pattern**
-❌ Assuming wrong alternation frequency
-✅ Verify alternation pattern carefully
+âŒ Assuming wrong alternation frequency
+âœ… Verify alternation pattern carefully
 
 ### **Mistake 3: Rule Conflicts**
-❌ Using same rule for different positions
-✅ Apply different rules to different positions
+âŒ Using same rule for different positions
+âœ… Apply different rules to different positions
 
 ### **Mistake 4: Incomplete Verification**
-❌ Not checking all terms in each sequence
-✅ Verify each rule against all its terms
+âŒ Not checking all terms in each sequence
+âœ… Verify each rule against all its terms
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Separate by Position**: Always analyze odd and even positions separately
 2. **Identify Alternation Type**: Determine if it's operation, sequence, or rule alternation
@@ -267,76 +267,77 @@ Alternating series are sequences where different patterns or rules are applied a
 
 ---
 
-## 🔢 Practice Questions
+## ðŸ”¢ Practice Questions
 
 ### **Operation Alternating Questions**
 
 ### **Question 1**
 Find the next term: 3, 6, 18, 21, 63, ?
-**Pattern**: ×2, +3, ×2, +3,...
-**Answer**: 63 × 2 = 126
+**Pattern**: Ã—2, +3, Ã—2, +3,...
+**Answer**: 63 Ã— 2 = 126
 
 ### **Question 2**
 Find the next term: 4, 12, 10, 30, 26, ?
-**Pattern**: ×3, -2, ×3, -2,...
-**Answer**: 26 × 3 = 78
+**Pattern**: Ã—3, -2, Ã—3, -2,...
+**Answer**: 26 Ã— 3 = 78
 
 ### **Question 3**
 Find the next term: 5, 15, 12, 36, 33, ?
-**Pattern**: ×3, -3, ×3, -3,...
-**Answer**: 33 × 3 = 99
+**Pattern**: Ã—3, -3, Ã—3, -3,...
+**Answer**: 33 Ã— 3 = 99
 
 ### **Sequence Alternating Questions**
 
 ### **Question 4**
 Find the next term: 1, 2, 2, 6, 3, ?
-**Pattern**: ×2, +4, ×3, +6,... (Fibonacci × n, AP +4n)
-**Answer**: 3 × 4 = 12 (or 6 + 6 = 12)
+**Pattern**: Ã—2, +4, Ã—3, +6,... (Fibonacci Ã— n, AP +4n)
+**Answer**: 3 Ã— 4 = 12 (or 6 + 6 = 12)
 
 ### **Question 5**
 Find the next term: 2, 3, 6, 4, 12, ?
-**Pattern**: ×3, +3, ×2, +8,... (alternating operations)
-**Answer**: 12 × 3 = 36 (following ×3 pattern for even positions)
+**Pattern**: Ã—3, +3, Ã—2, +8,... (alternating operations)
+**Answer**: 12 Ã— 3 = 36 (following Ã—3 pattern for even positions)
 
 ### **Pattern Alternating Questions**
 
 ### **Question 6**
 Find the next term: 1, 1, 4, 8, 9, ?
-**Pattern**: n², n³, alternating for n=1,2,3,...
-**Answer**: 2³ = 8 (wait, let's check: position 1:1²=1, 2:1³=1, 3:2²=4, 4:2³=8, 5:3²=9, 6:3³=27)
+**Pattern**: nÂ², nÂ³, alternating for n=1,2,3,...
+**Answer**: 2Â³ = 8 (wait, let's check: position 1:1Â²=1, 2:1Â³=1, 3:2Â²=4, 4:2Â³=8, 5:3Â²=9, 6:3Â³=27)
 **Answer**: 27
 
 ### **Question 7**
 Find the next term: 2, 1, 8, 1, 32, ?
-**Pattern**: 2³, Fib(1), 2⁴, Fib(1), 2⁵, Fib(2),...
+**Pattern**: 2Â³, Fib(1), 2â´, Fib(1), 2âµ, Fib(2),...
 **Answer**: 2 (Fibonacci sequence for odd positions after first)
 
 ### **Rule Alternating Questions**
 
 ### **Question 8**
 Find the next term: 4, 3, 16, 6, 64, ?
-**Pattern**: ×4, +3, ×4, +3,...
+**Pattern**: Ã—4, +3, Ã—4, +3,...
 **Answer**: 64 + 3 = 67
 
 ### **Question 9**
 Find the next term: 1, 2, 4, 6, 8, ?
-**Pattern**: +1, ×2, +2, ×2,...
-**Answer**: 8 × 2 = 16
+**Pattern**: +1, Ã—2, +2, Ã—2,...
+**Answer**: 8 Ã— 2 = 16
 
 ### **Question 10**
 Find the next term: 3, 5, 12, 8, 48, ?
-**Pattern**: ×4, +4, ×4, +40,... (increasing addition)
-**Answer**: 48 × 4 = 192
+**Pattern**: Ã—4, +4, Ã—4, +40,... (increasing addition)
+**Answer**: 48 Ã— 4 = 192
 
 ### **Question 11**
 Find the next term: 2, 4, 3, 12, 5, ?
-**Pattern**: +2, ×3, +2, ×3,...
-**Answer**: 5 × 3 = 15
+**Pattern**: +2, Ã—3, +2, Ã—3,...
+**Answer**: 5 Ã— 3 = 15
 
 ### **Question 12**
 Find the next term: 6, 3, 24, 9, 96, ?
-**Pattern**: ÷2, ×8, ÷2, ×8,...
-**Answer**: 96 ÷ 2 = 48
+**Pattern**: Ã·2, Ã—8, Ã·2, Ã—8,...
+**Answer**: 96 Ã· 2 = 48
 
-**Master alternating series patterns and systematic pattern alternation! 🔄✨**`
+**Master alternating series patterns and systematic pattern alternation! ðŸ”„âœ¨**`"
 };
+

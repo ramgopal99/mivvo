@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_3: SubLesson = {
   id: "12.3",
   title: 'What are Queues?',
   status: 'demo',
-  content: `# 📋 What are Queues?
+  content: "`# ðŸ“‹ What are Queues?
 
 Queues are fundamental data structures that follow the **First In, First Out (FIFO)** principle. Think of them as a line at a store - the first person in line is the first to be served!
 
 ---
 
-## 🎯 What is a Queue?
+## ðŸŽ¯ What is a Queue?
 
 A **queue** is a linear data structure that allows operations at two ends:
 - **Enqueue** (add) at the **rear/back**
 - **Dequeue** (remove) from the **front**
 
-\`\`\`python
+\`"\`\`python
 # Visual representation of queue operations
 # Queue: [1, 2, 3]  <- Front is 1, Rear is 3
 # Enqueue 4: [1, 2, 3, 4]  <- Rear is now 4
@@ -25,7 +25,7 @@ A **queue** is a linear data structure that allows operations at two ends:
 
 ---
 
-## 🏗️ Queue Operations
+## ðŸ—ï¸ Queue Operations
 
 ### **Core Operations**
 \`\`\`python
@@ -78,7 +78,7 @@ print(f"New front: {queue.front()}")
 
 ---
 
-## 🎨 Queue Analogy
+## ðŸŽ¨ Queue Analogy
 
 ### **Real-World Examples**
 \`\`\`python
@@ -127,7 +127,7 @@ printer.show_queue()
 
 ---
 
-## 📊 Queue Properties
+## ðŸ“Š Queue Properties
 
 ### **FIFO Principle**
 \`\`\`python
@@ -152,7 +152,7 @@ while not queue.is_empty():
 
 ---
 
-## 🔧 Queue Implementation Options
+## ðŸ”§ Queue Implementation Options
 
 ### **Using Python List (Simple but Inefficient)**
 \`\`\`python
@@ -210,7 +210,7 @@ print("Deque implementation: Both enqueue and dequeue are O(1)")
 
 ---
 
-## 🎯 Queue Applications
+## ðŸŽ¯ Queue Applications
 
 ### **Task Scheduling**
 \`\`\`python
@@ -339,7 +339,7 @@ while True:
 
 ---
 
-## ⚖️ Queue vs Other Structures
+## âš–ï¸ Queue vs Other Structures
 
 | Operation | Queue | Stack | List |
 |-----------|-------|-------|------|
@@ -360,7 +360,7 @@ while True:
 
 ---
 
-## 🚀 Queue Implementation Best Practices
+## ðŸš€ Queue Implementation Best Practices
 
 ### **Choose Right Underlying Structure**
 \`\`\`python
@@ -423,6 +423,7 @@ consumer_thread.join()
 print("Thread-safe queue operations completed")
 \`\`\`
 
-Queues are essential for ordered processing and sequential operations! 📋`
+Queues are essential for ordered processing and sequential operations! ðŸ“‹`
 };
+
 

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_8: SubLesson = {
   id: "6.8",
   title: 'Mathematical Series (Addition, Subtraction, Multiplication, Division)',
   status: 'completed',
-  content: `# ➕ Mathematical Series (Addition, Subtraction, Multiplication, Division)
+  content: "`# âž• Mathematical Series (Addition, Subtraction, Multiplication, Division)
 
 Mathematical series involve sequences where terms are connected through basic arithmetic operations like addition, subtraction, multiplication, and division. These series form the foundation of most number series problems and appear frequently in competitive exams, testing your understanding of arithmetic relationships and patterns.
 
 ---
 
-## 🎯 Understanding Mathematical Series
+## ðŸŽ¯ Understanding Mathematical Series
 
 ### **What are Mathematical Series?**
 Mathematical series are sequences of numbers where consecutive terms are related through consistent arithmetic operations. These problems test your ability to:
@@ -20,14 +20,14 @@ Mathematical series are sequences of numbers where consecutive terms are related
 - **Solve step-by-step calculation problems**
 
 ### **Key Characteristics**
-- **Arithmetic Operations**: Based on +, -, ×, ÷ operations
+- **Arithmetic Operations**: Based on +, -, Ã—, Ã· operations
 - **Consistent Patterns**: Same operation applied systematically
 - **Sequential Relationships**: Each term derived from previous term(s)
 - **Calculation-Based**: Requires careful mathematical computation
 
 ---
 
-## 🧩 Types of Mathematical Series
+## ðŸ§© Types of Mathematical Series
 
 ### **1. Addition-Based Series**
 **Terms connected by addition operations**
@@ -66,7 +66,7 @@ Mathematical series are sequences of numbers where consecutive terms are related
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze the Series**
 - Carefully examine all given terms
@@ -94,26 +94,26 @@ Mathematical series are sequences of numbers where consecutive terms are related
 
 ---
 
-## 🎯 Common Mathematical Series Patterns
+## ðŸŽ¯ Common Mathematical Series Patterns
 
 ### **Addition Series Examples**
 
 #### **Type 1: Constant Addition**
 **Fixed number added to each term**
 - **Pattern**: Add the same number each time
-- **Example**: 2, 5, 8, 11, 14, ? → Add 3 each time
+- **Example**: 2, 5, 8, 11, 14, ? â†’ Add 3 each time
 - **Next term**: 14 + 3 = 17
 
 #### **Type 2: Variable Addition**
 **Different numbers added in sequence**
 - **Pattern**: Add increasing/decreasing numbers
-- **Example**: 1, 3, 6, 10, 15, ? → Add 2,3,4,5,...
+- **Example**: 1, 3, 6, 10, 15, ? â†’ Add 2,3,4,5,...
 - **Next term**: 15 + 6 = 21
 
 #### **Type 3: Position-Based Addition**
 **Addition amount depends on position**
 - **Pattern**: Add position number or function of position
-- **Example**: 1, 4, 9, 16, 25, ? → Add 3,5,7,9,...
+- **Example**: 1, 4, 9, 16, 25, ? â†’ Add 3,5,7,9,...
 - **Next term**: 25 + 11 = 36
 
 ### **Subtraction Series Examples**
@@ -121,13 +121,13 @@ Mathematical series are sequences of numbers where consecutive terms are related
 #### **Type 1: Constant Subtraction**
 **Fixed number subtracted each time**
 - **Pattern**: Subtract the same number each time
-- **Example**: 20, 15, 10, 5, 0, ? → Subtract 5 each time
+- **Example**: 20, 15, 10, 5, 0, ? â†’ Subtract 5 each time
 - **Next term**: 0 - 5 = -5
 
 #### **Type 2: Variable Subtraction**
 **Different numbers subtracted in sequence**
 - **Pattern**: Subtract increasing/decreasing numbers
-- **Example**: 100, 95, 85, 70, 50, ? → Subtract 5,10,15,20,...
+- **Example**: 100, 95, 85, 70, 50, ? â†’ Subtract 5,10,15,20,...
 - **Next term**: 50 - 25 = 25
 
 ### **Multiplication Series Examples**
@@ -135,62 +135,62 @@ Mathematical series are sequences of numbers where consecutive terms are related
 #### **Type 1: Constant Multiplication**
 **Fixed number multiplied each time**
 - **Pattern**: Multiply by the same number each time
-- **Example**: 3, 6, 12, 24, 48, ? → Multiply by 2 each time
-- **Next term**: 48 × 2 = 96
+- **Example**: 3, 6, 12, 24, 48, ? â†’ Multiply by 2 each time
+- **Next term**: 48 Ã— 2 = 96
 
 #### **Type 2: Variable Multiplication**
 **Different multipliers used**
 - **Pattern**: Multiply by increasing/decreasing numbers
-- **Example**: 1, 2, 6, 24, 120, ? → Multiply by 2,3,4,5,...
-- **Next term**: 120 × 6 = 720
+- **Example**: 1, 2, 6, 24, 120, ? â†’ Multiply by 2,3,4,5,...
+- **Next term**: 120 Ã— 6 = 720
 
 #### **Type 3: Position-Based Multiplication**
 **Multiplication factor depends on position**
 - **Pattern**: Multiply by position number or function
-- **Example**: 1, 4, 18, 96, 600, ? → Multiply by 4,4.5,5.33,6.25,...
-- **Next term**: 600 × 7.2 = 4320
+- **Example**: 1, 4, 18, 96, 600, ? â†’ Multiply by 4,4.5,5.33,6.25,...
+- **Next term**: 600 Ã— 7.2 = 4320
 
 ### **Division Series Examples**
 
 #### **Type 1: Constant Division**
 **Fixed number divided each time**
 - **Pattern**: Divide by the same number each time
-- **Example**: 96, 48, 24, 12, 6, ? → Divide by 2 each time
-- **Next term**: 6 ÷ 2 = 3
+- **Example**: 96, 48, 24, 12, 6, ? â†’ Divide by 2 each time
+- **Next term**: 6 Ã· 2 = 3
 
 #### **Type 2: Variable Division**
 **Different divisors used**
 - **Pattern**: Divide by increasing/decreasing numbers
-- **Example**: 360, 120, 40, 15, 6, ? → Divide by 3,3,2.67,2.5,...
-- **Next term**: 6 ÷ 2.4 = 2.5
+- **Example**: 360, 120, 40, 15, 6, ? â†’ Divide by 3,3,2.67,2.5,...
+- **Next term**: 6 Ã· 2.4 = 2.5
 
 ### **Mixed Operation Series Examples**
 
 #### **Type 1: Alternating Operations**
 **Different operations alternating**
 - **Pattern**: Addition then subtraction, etc.
-- **Example**: 5, 8, 6, 12, 8, ? → +3, -2, +6, -4, +8,...
+- **Example**: 5, 8, 6, 12, 8, ? â†’ +3, -2, +6, -4, +8,...
 - **Next term**: 8 - 6 = 2
 
 #### **Type 2: Cyclic Operations**
 **Repeating operation patterns**
 - **Pattern**: Same sequence of operations repeating
-- **Example**: 2, 4, 6, 12, 36, ? → ×2, +2, ×2, ×3,...
-- **Next term**: 36 × 3 = 108
+- **Example**: 2, 4, 6, 12, 36, ? â†’ Ã—2, +2, Ã—2, Ã—3,...
+- **Next term**: 36 Ã— 3 = 108
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Difference Analysis Method**
 **Check differences between consecutive terms**
-- Calculate first differences: term₂ - term₁, term₃ - term₂, etc.
+- Calculate first differences: termâ‚‚ - termâ‚, termâ‚ƒ - termâ‚‚, etc.
 - Look for constant differences (addition/subtraction)
 - Check if differences form a pattern themselves
 
 ### **2. Ratio Analysis Method**
 **Check ratios between consecutive terms**
-- Calculate ratios: term₂ ÷ term₁, term₃ ÷ term₂, etc.
+- Calculate ratios: termâ‚‚ Ã· termâ‚, termâ‚ƒ Ã· termâ‚‚, etc.
 - Look for constant ratios (multiplication/division)
 - Check if ratios form a pattern
 
@@ -208,7 +208,7 @@ Mathematical series are sequences of numbers where consecutive terms are related
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (30-40%)**
 - Simple constant addition/subtraction/multiplication
@@ -227,7 +227,7 @@ Mathematical series are sequences of numbers where consecutive terms are related
 
 ---
 
-## 🎯 Competitive Exam Relevance
+## ðŸŽ¯ Competitive Exam Relevance
 
 ### **Major Exams Featuring Mathematical Series**
 - **Banking Exams**: 5-8 questions per exam
@@ -247,7 +247,7 @@ Mathematical series are sequences of numbers where consecutive terms are related
 
 ---
 
-## 🎯 Success Factors
+## ðŸŽ¯ Success Factors
 
 ### **1. Operation Recognition**
 - Quick identification of arithmetic operations
@@ -271,27 +271,27 @@ Mathematical series are sequences of numbers where consecutive terms are related
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Operation Assumption**
-❌ Assuming multiplication when addition is correct
-✅ Test all basic operations systematically
+âŒ Assuming multiplication when addition is correct
+âœ… Test all basic operations systematically
 
 ### **Mistake 2: Incomplete Pattern Check**
-❌ Verifying only first few terms
-✅ Check pattern against entire series
+âŒ Verifying only first few terms
+âœ… Check pattern against entire series
 
 ### **Mistake 3: Calculation Errors**
-❌ Arithmetic mistakes in computation
-✅ Double-check all calculations
+âŒ Arithmetic mistakes in computation
+âœ… Double-check all calculations
 
 ### **Mistake 4: Missing Alternating Patterns**
-❌ Not recognizing alternating operations
-✅ Consider operation alternation possibilities
+âŒ Not recognizing alternating operations
+âœ… Consider operation alternation possibilities
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Start with Differences**: Always calculate differences first to identify addition/subtraction
 2. **Check Ratios**: Calculate ratios to identify multiplication/division patterns
@@ -303,7 +303,7 @@ Mathematical series are sequences of numbers where consecutive terms are related
 
 ---
 
-## 🔢 Practice Questions
+## ðŸ”¢ Practice Questions
 
 ### **Addition Series Questions**
 
@@ -339,41 +339,42 @@ Find the next term: 100, 90, 75, 55, 30, ?
 ### **Question 6**
 Find the next term: 2, 6, 18, 54, 162, ?
 **Pattern**: Multiply by 3 each time
-**Answer**: 162 × 3 = 486
+**Answer**: 162 Ã— 3 = 486
 
 ### **Question 7**
 Find the next term: 1, 3, 12, 60, 360, ?
 **Pattern**: Multiply by 3,4,5,6,...
-**Answer**: 360 × 7 = 2520
+**Answer**: 360 Ã— 7 = 2520
 
 ### **Division Series Questions**
 
 ### **Question 8**
 Find the next term: 128, 64, 32, 16, 8, ?
 **Pattern**: Divide by 2 each time
-**Answer**: 8 ÷ 2 = 4
+**Answer**: 8 Ã· 2 = 4
 
 ### **Question 9**
 Find the next term: 720, 240, 96, 48, 24, ?
 **Pattern**: Divide by 3,2.5,2,2,...
-**Answer**: 24 ÷ 2 = 12
+**Answer**: 24 Ã· 2 = 12
 
 ### **Mixed Operation Series Questions**
 
 ### **Question 10**
 Find the next term: 4, 9, 5, 45, 41, ?
-**Pattern**: ×2+1, ÷1.8, ×9, -4,... (alternating operations)
+**Pattern**: Ã—2+1, Ã·1.8, Ã—9, -4,... (alternating operations)
 **Answer**: 41 + 205 = 246
 
 ### **Question 11**
 Find the next term: 2, 4, 3, 12, 9, ?
-**Pattern**: ×2, -1, ×4, -3,... (alternating operations)
+**Pattern**: Ã—2, -1, Ã—4, -3,... (alternating operations)
 **Answer**: 9 + 27 = 36
 
 ### **Question 12**
 Find the next term: 5, 10, 8, 24, 20, ?
-**Pattern**: ×2, -2, ×3, -4,... (cyclic operations)
+**Pattern**: Ã—2, -2, Ã—3, -4,... (cyclic operations)
 **Answer**: 20 + 16 = 36
 
-**Master mathematical series patterns and arithmetic operation relationships! ➕➖✖️➗✨**`
+**Master mathematical series patterns and arithmetic operation relationships! âž•âž–âœ–ï¸âž—âœ¨**`"
 };
+

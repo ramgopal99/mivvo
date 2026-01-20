@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_2: SubLesson = {
   id: "4.2",
   title: 'Concept of Logical Puzzles',
   status: 'completed',
-  content: `# 🧠 Concept of Logical Puzzles
+  content: "`# ðŸ§  Concept of Logical Puzzles
 
 Understanding the fundamental concepts of logical puzzles is essential for solving complex reasoning problems. This topic covers the basic principles, terminology, and foundational concepts that form the basis of all logical puzzle solving.
 
 ---
 
-## 🎯 What are Logical Puzzles?
+## ðŸŽ¯ What are Logical Puzzles?
 
 ### **Definition**
 Logical puzzles are complex reasoning problems that require systematic analysis, deduction, and problem-solving skills. They involve multiple variables, constraints, and relationships that must be analyzed and resolved logically.
@@ -23,7 +23,7 @@ Logical puzzles are complex reasoning problems that require systematic analysis,
 
 ---
 
-## 🧩 Basic Puzzle Components
+## ðŸ§© Basic Puzzle Components
 
 ### **1. Information Analysis**
 - **Direct Information**: Explicitly stated facts
@@ -45,7 +45,7 @@ Logical puzzles are complex reasoning problems that require systematic analysis,
 
 ---
 
-## 📊 Puzzle Classification
+## ðŸ“Š Puzzle Classification
 
 ### **By Complexity**
 - **Simple Puzzles**: Few variables, direct relationships
@@ -64,7 +64,7 @@ Logical puzzles are complex reasoning problems that require systematic analysis,
 
 ---
 
-## 🎯 Fundamental Principles
+## ðŸŽ¯ Fundamental Principles
 
 ### **1. Information Sufficiency**
 - **Complete Information**: All data needed is provided
@@ -83,7 +83,7 @@ Logical puzzles are complex reasoning problems that require systematic analysis,
 
 ---
 
-## 🛠️ Basic Solving Framework
+## ðŸ› ï¸ Basic Solving Framework
 
 ### **Step 1: Understand the Problem**
 - Read all information carefully
@@ -107,25 +107,25 @@ Logical puzzles are complex reasoning problems that require systematic analysis,
 
 ---
 
-## 📈 Basic Puzzle Patterns
+## ðŸ“ˆ Basic Puzzle Patterns
 
 ### **Pattern 1: Direct Relationship**
 A is brother of B
 B is father of C
-→ A is uncle of C
+â†’ A is uncle of C
 
 ### **Pattern 2: Conditional Relationship**
 If A is taller than B, then B is shorter than A
 If B is shorter than C, then A is shorter than C
 
 ### **Pattern 3: Network Relationship**
-A → B → C
-A → D → E
-→ Complex relationship network
+A â†’ B â†’ C
+A â†’ D â†’ E
+â†’ Complex relationship network
 
 ---
 
-## 🎯 Common Puzzle Elements
+## ðŸŽ¯ Common Puzzle Elements
 
 ### **1. Variables and Entities**
 - **People**: Names, relationships, attributes
@@ -145,7 +145,7 @@ A → D → E
 
 ---
 
-## 🔍 Basic Reasoning Techniques
+## ðŸ” Basic Reasoning Techniques
 
 ### **1. Direct Deduction**
 - Apply rules directly to given information
@@ -164,7 +164,7 @@ A → D → E
 
 ---
 
-## 📊 Information Organization Methods
+## ðŸ“Š Information Organization Methods
 
 ### **1. Tabular Method**
 - Create tables for variables
@@ -183,7 +183,7 @@ A → D → E
 
 ---
 
-## 🎯 Basic Practice Concepts
+## ðŸŽ¯ Basic Practice Concepts
 
 ### **Simple Deduction**
 - **Example**: If A > B and B > C, then A > C
@@ -199,7 +199,7 @@ A → D → E
 
 ---
 
-## 🚀 Building Foundations
+## ðŸš€ Building Foundations
 
 ### **Practice Focus Areas**
 - **Basic Deduction**: Simple if-then relationships
@@ -215,7 +215,7 @@ A → D → E
 
 ---
 
-## 🎯 Pro Tips
+## ðŸŽ¯ Pro Tips
 
 1. **Read Carefully**: Understand all information before starting
 2. **Organize First**: Spend time creating proper data structures
@@ -223,5 +223,5 @@ A → D → E
 4. **Use Logic**: Apply systematic reasoning techniques
 5. **Verify Always**: Check solutions against all constraints
 
-**Master the basic concepts of logical puzzles for strong foundation! 🧠✨**`
+**Master the basic concepts of logical puzzles for strong foundation! ðŸ§ âœ¨**`"
 };

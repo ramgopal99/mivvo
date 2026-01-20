@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_4: SubLesson = {
   id: "11.4",
   title: 'Hash Table Operations',
   status: 'demo',
-  content: `# ⚙️ Hash Table Operations
+  content: "`# âš™ï¸ Hash Table Operations
 
 Hash tables support standard dictionary operations with excellent performance. Let's explore the core operations and their implementations!
 
 ---
 
-## 🔧 Basic Operations
+## ðŸ”§ Basic Operations
 
 ### **Put/Insert Operation**
-\`\`\`python
+\`"\`\`python
 # Adding key-value pairs
 hash_table = {}
 
@@ -70,7 +70,7 @@ if hash_table:
 
 ---
 
-## 🔍 Advanced Operations
+## ðŸ” Advanced Operations
 
 ### **Membership Testing**
 \`\`\`python
@@ -119,7 +119,7 @@ for key in hash_table:
 
 ---
 
-## 🔄 Bulk Operations
+## ðŸ”„ Bulk Operations
 
 ### **Clear Operation**
 \`\`\`python
@@ -154,7 +154,7 @@ print(f"Deep copy apple price: \${deep_copy['fruits']['apple']}")
 
 ---
 
-## 🎯 Set Operations on Keys
+## ðŸŽ¯ Set Operations on Keys
 
 ### **Key Set Operations**
 \`\`\`python
@@ -195,7 +195,7 @@ print(f"Number of keys: {len(keys_view)}")
 
 ---
 
-## 📊 Performance Characteristics
+## ðŸ“Š Performance Characteristics
 
 ### **Time Complexity Analysis**
 
@@ -218,7 +218,7 @@ items()        | O(n)         | O(n)       | Must visit all items
 
 ---
 
-## 🛠️ Practical Implementations
+## ðŸ› ï¸ Practical Implementations
 
 ### **Simple Cache Implementation**
 \`\`\`python
@@ -312,7 +312,7 @@ else:
 
 ---
 
-## ⚠️ Common Pitfalls
+## âš ï¸ Common Pitfalls
 
 ### **Key Immutability**
 \`\`\`python
@@ -359,7 +359,7 @@ print("Python automatically manages resizing for good performance")
 
 ---
 
-## 🚀 Advanced Operations
+## ðŸš€ Advanced Operations
 
 ### **Dictionary Comprehensions**
 \`\`\`python
@@ -399,6 +399,7 @@ print(f"Merged with **: {merged}")
 # print(f"Union operator: {merged_new}")
 \`\`\`
 
-Hash table operations are the foundation of efficient data manipulation! ⚡`
+Hash table operations are the foundation of efficient data manipulation! âš¡`
 };
+
 

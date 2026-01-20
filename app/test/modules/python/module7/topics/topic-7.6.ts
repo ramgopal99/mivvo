@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_6: SubLesson = {
   id: "7.6",
   title: 'Advanced Functions',
   status: 'demo',
-  content: `# 🚀 Advanced Functions
+  content: "`# ðŸš€ Advanced Functions
 
 Python functions support advanced features like recursion, lambda functions, decorators, and more. Let's explore these powerful concepts!
 
 ---
 
-## 🔄 Recursive Functions
+## ðŸ”„ Recursive Functions
 
 ### **Functions That Call Themselves**
-\`\`\`python
+\`"\`\`python
 def factorial(n):
     """Calculate factorial using recursion."""
     if n <= 1:
@@ -43,7 +43,7 @@ countdown(5)
 
 ---
 
-## λ Lambda Functions
+## Î» Lambda Functions
 
 ### **Anonymous Functions**
 \`\`\`python
@@ -76,7 +76,7 @@ print(squares)  # [1, 4, 9, 16, 25]
 
 ---
 
-## 🎨 Function Decorators
+## ðŸŽ¨ Function Decorators
 
 ### **Modify Function Behavior**
 \`\`\`python
@@ -110,7 +110,7 @@ print(f"Results: {result1}, {result2}")
 
 ---
 
-## 📚 Higher-Order Functions
+## ðŸ“š Higher-Order Functions
 
 ### **Functions as Arguments and Return Values**
 \`\`\`python
@@ -138,7 +138,7 @@ print(add_100(5))  # 105
 
 ---
 
-## 🔄 Generators
+## ðŸ”„ Generators
 
 ### **Functions That Yield Values**
 \`\`\`python
@@ -168,7 +168,7 @@ for num in countdown_gen:
 
 ---
 
-## 🎯 Function Annotations
+## ðŸŽ¯ Function Annotations
 
 ### **Type Hints for Functions**
 \`\`\`python
@@ -195,7 +195,7 @@ print(calculate_area.__annotations__)  # {'length': <class 'float'>, 'width': <c
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **Memoization Decorator**
 \`\`\`python
@@ -259,7 +259,7 @@ print(f"Manual result: {manual}")
 
 ---
 
-## ✅ Best Practices
+## âœ… Best Practices
 
 1. **Use recursion carefully** - Avoid deep recursion that could cause stack overflow
 2. **Lambda for simple functions** - Use named functions for complex logic
@@ -267,6 +267,7 @@ print(f"Manual result: {manual}")
 4. **Generators for large datasets** - Memory efficient for big data
 5. **Type annotations for clarity** - Especially in team projects
 
-Advanced functions unlock Python's full potential! 🚀`
+Advanced functions unlock Python's full potential! ðŸš€`
 };
+
 

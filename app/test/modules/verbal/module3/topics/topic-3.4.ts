@@ -1,159 +1,159 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_4: SubLesson = {
   id: "3.4",
   title: 'Idioms & Phrases',
   status: 'completed',
-  content: `# 🗣️ Idioms & Phrases: Language Beyond Words
+  content: "`# ðŸ—£ï¸ Idioms & Phrases: Language Beyond Words
 
 Idioms are expressions whose meanings cannot be deduced from the literal meanings of their individual words. Phrases are groups of words that function as a unit. Mastering idioms and phrases enhances natural language use and is essential for competitive exams.
 
 ---
 
-## 📋 WHAT ARE IDIOMS?
+## ðŸ“‹ WHAT ARE IDIOMS?
 
 **Idioms** are fixed expressions where the meaning is different from the literal interpretation of the words, allowing you to:
-- ✅ Sound more natural and fluent in English
-- ✅ Understand native speakers better
-- ✅ Express complex ideas concisely
-- ✅ Demonstrate advanced language proficiency
+- âœ… Sound more natural and fluent in English
+- âœ… Understand native speakers better
+- âœ… Express complex ideas concisely
+- âœ… Demonstrate advanced language proficiency
 
 ### Key Characteristics:
-- **Non-literal Meaning**: Meaning ≠ sum of individual words
+- **Non-literal Meaning**: Meaning â‰  sum of individual words
 - **Fixed Expression**: Words cannot be changed without losing meaning
 - **Cultural Context**: Often reflect cultural values and experiences
 - **Figurative Language**: Use metaphor, simile, or other literary devices
 
 **Examples:**
-- ✅ **Kick the bucket** = Die (not literally kick a bucket)
-- ✅ **Break a leg** = Good luck (not literally break your leg)
-- ✅ **Hit the books** = Study hard (not literally hit books)
+- âœ… **Kick the bucket** = Die (not literally kick a bucket)
+- âœ… **Break a leg** = Good luck (not literally break your leg)
+- âœ… **Hit the books** = Study hard (not literally hit books)
 
 ---
 
-## 💭 COMMON IDIOMATIC EXPRESSIONS
+## ðŸ’­ COMMON IDIOMATIC EXPRESSIONS
 
 ### Time & Urgency:
-- ✅ **Against the clock** = Working with very little time
-- ✅ **Beat the clock** = Finish something before time runs out
-- ✅ **Kill time** = Spend time doing nothing useful
-- ✅ **Make up for lost time** = Work faster to compensate for delays
+- âœ… **Against the clock** = Working with very little time
+- âœ… **Beat the clock** = Finish something before time runs out
+- âœ… **Kill time** = Spend time doing nothing useful
+- âœ… **Make up for lost time** = Work faster to compensate for delays
 
 ### Success & Failure:
-- ✅ **Hit the jackpot** = Have great success unexpectedly
-- ✅ **Strike it rich** = Become suddenly wealthy
-- ✅ **Go belly up** = Fail completely (business)
-- ✅ **Bite the dust** = Fail or be defeated
+- âœ… **Hit the jackpot** = Have great success unexpectedly
+- âœ… **Strike it rich** = Become suddenly wealthy
+- âœ… **Go belly up** = Fail completely (business)
+- âœ… **Bite the dust** = Fail or be defeated
 
 ### Emotions & States:
-- ✅ **On cloud nine** = Extremely happy
-- ✅ **Down in the dumps** = Feeling sad/depressed
-- ✅ **Jump for joy** = Be extremely happy
-- ✅ **Beside oneself** = Extremely upset or angry
+- âœ… **On cloud nine** = Extremely happy
+- âœ… **Down in the dumps** = Feeling sad/depressed
+- âœ… **Jump for joy** = Be extremely happy
+- âœ… **Beside oneself** = Extremely upset or angry
 
 ### Money & Wealth:
-- ✅ **Break the bank** = Cost a lot of money
-- ✅ **Born with a silver spoon** = Born into wealth
-- ✅ **Cost an arm and a leg** = Be very expensive
-- ✅ **Penny-pinching** = Being very careful with money
+- âœ… **Break the bank** = Cost a lot of money
+- âœ… **Born with a silver spoon** = Born into wealth
+- âœ… **Cost an arm and a leg** = Be very expensive
+- âœ… **Penny-pinching** = Being very careful with money
 
 ### Work & Effort:
-- ✅ **Burn the midnight oil** = Work late into the night
-- ✅ **Pull one's weight** = Do one's fair share of work
-- ✅ **Go the extra mile** = Make extra effort
-- ✅ **Cut corners** = Do something poorly to save time/money
+- âœ… **Burn the midnight oil** = Work late into the night
+- âœ… **Pull one's weight** = Do one's fair share of work
+- âœ… **Go the extra mile** = Make extra effort
+- âœ… **Cut corners** = Do something poorly to save time/money
 
 ---
 
-## 🗣️ SPEAKING & COMMUNICATION
+## ðŸ—£ï¸ SPEAKING & COMMUNICATION
 
 ### Agreement & Disagreement:
-- ✅ **Sing from the same hymnbook** = Agree completely
-- ✅ **On the same wavelength** = Think alike, agree
-- ✅ **See eye to eye** = Agree on something
-- ✅ **At loggerheads** = In strong disagreement
+- âœ… **Sing from the same hymnbook** = Agree completely
+- âœ… **On the same wavelength** = Think alike, agree
+- âœ… **See eye to eye** = Agree on something
+- âœ… **At loggerheads** = In strong disagreement
 
 ### Truth & Deception:
-- ✅ **Above board** = Honest and legal
-- ✅ **Straight from the horse's mouth** = Directly from reliable source
-- ✅ **Blow the lid off** = Reveal a secret or scandal
-- ✅ **Pull the wool over someone's eyes** = Deceive someone
+- âœ… **Above board** = Honest and legal
+- âœ… **Straight from the horse's mouth** = Directly from reliable source
+- âœ… **Blow the lid off** = Reveal a secret or scandal
+- âœ… **Pull the wool over someone's eyes** = Deceive someone
 
 ### Decision Making:
-- ✅ **Cross that bridge when you come to it** = Deal with problems when they arise
-- ✅ **Jump on the bandwagon** = Join a popular activity/trend
-- ✅ **Take the bull by the horns** = Deal with a problem directly
-- ✅ **Sleep on it** = Think about a decision overnight
+- âœ… **Cross that bridge when you come to it** = Deal with problems when they arise
+- âœ… **Jump on the bandwagon** = Join a popular activity/trend
+- âœ… **Take the bull by the horns** = Deal with a problem directly
+- âœ… **Sleep on it** = Think about a decision overnight
 
 ---
 
-## 👥 RELATIONSHIPS & BEHAVIOR
+## ðŸ‘¥ RELATIONSHIPS & BEHAVIOR
 
 ### Friendship & Trust:
-- ✅ **Thick as thieves** = Very close friends
-- ✅ **Through thick and thin** = In good times and bad
-- ✅ **Old as the hills** = Very old (friendship)
-- ✅ **Parting of the ways** = End of relationship/association
+- âœ… **Thick as thieves** = Very close friends
+- âœ… **Through thick and thin** = In good times and bad
+- âœ… **Old as the hills** = Very old (friendship)
+- âœ… **Parting of the ways** = End of relationship/association
 
 ### Criticism & Praise:
-- ✅ **Blow one's own trumpet** = Praise oneself excessively
-- ✅ **Sing someone's praises** = Praise someone highly
-- ✅ **Take someone down a peg** = Make someone less conceited
-- ✅ **Give someone the benefit of the doubt** = Trust someone without proof
+- âœ… **Blow one's own trumpet** = Praise oneself excessively
+- âœ… **Sing someone's praises** = Praise someone highly
+- âœ… **Take someone down a peg** = Make someone less conceited
+- âœ… **Give someone the benefit of the doubt** = Trust someone without proof
 
 ### Help & Support:
-- ✅ **Lend a hand** = Help someone
-- ✅ **Go to bat for someone** = Support/defend someone
-- ✅ **Have someone's back** = Support someone
-- ✅ **Stick one's neck out** = Take a risk to help
+- âœ… **Lend a hand** = Help someone
+- âœ… **Go to bat for someone** = Support/defend someone
+- âœ… **Have someone's back** = Support someone
+- âœ… **Stick one's neck out** = Take a risk to help
 
 ---
 
-## 🎯 SITUATIONS & CIRCUMSTANCES
+## ðŸŽ¯ SITUATIONS & CIRCUMSTANCES
 
 ### Problems & Solutions:
-- ✅ **Between a rock and a hard place** = In a difficult situation
-- ✅ **Up the creek without a paddle** = In serious trouble
-- ✅ **Out of the frying pan into the fire** = Worse situation than before
-- ✅ **Make a mountain out of a molehill** = Exaggerate a small problem
+- âœ… **Between a rock and a hard place** = In a difficult situation
+- âœ… **Up the creek without a paddle** = In serious trouble
+- âœ… **Out of the frying pan into the fire** = Worse situation than before
+- âœ… **Make a mountain out of a molehill** = Exaggerate a small problem
 
 ### Change & Adaptation:
-- ✅ **Turn over a new leaf** = Start behaving better
-- ✅ **Change of heart** = Change one's opinion/attitude
-- ✅ **Bite the bullet** = Face a difficult situation bravely
-- ✅ **Roll with the punches** = Adapt to difficulties
+- âœ… **Turn over a new leaf** = Start behaving better
+- âœ… **Change of heart** = Change one's opinion/attitude
+- âœ… **Bite the bullet** = Face a difficult situation bravely
+- âœ… **Roll with the punches** = Adapt to difficulties
 
 ### Beginning & Ending:
-- ✅ **From scratch** = From the beginning
-- ✅ **From the ground up** = Completely from beginning
-- ✅ **Bring something to a head** = Force a decision/conclusion
-- ✅ **The last straw** = Final problem that causes failure
+- âœ… **From scratch** = From the beginning
+- âœ… **From the ground up** = Completely from beginning
+- âœ… **Bring something to a head** = Force a decision/conclusion
+- âœ… **The last straw** = Final problem that causes failure
 
 ---
 
-## 📚 COMMON PHRASAL EXPRESSIONS
+## ðŸ“š COMMON PHRASAL EXPRESSIONS
 
 ### Time Expressions:
-- ✅ **At the eleventh hour** = At the last possible moment
-- ✅ **Once in a blue moon** = Very rarely
-- ✅ **In the nick of time** = Just in time
-- ✅ **From time to time** = Occasionally
+- âœ… **At the eleventh hour** = At the last possible moment
+- âœ… **Once in a blue moon** = Very rarely
+- âœ… **In the nick of time** = Just in time
+- âœ… **From time to time** = Occasionally
 
 ### Quantity Expressions:
-- ✅ **By and large** = Generally speaking
-- ✅ **For the most part** = Mostly
-- ✅ **In the main** = Generally
-- ✅ **On the whole** = Considering everything
+- âœ… **By and large** = Generally speaking
+- âœ… **For the most part** = Mostly
+- âœ… **In the main** = Generally
+- âœ… **On the whole** = Considering everything
 
 ### Emphasis Expressions:
-- ✅ **If truth be told** = To be honest
-- ✅ **To tell the truth** = Honestly speaking
-- ✅ **As a matter of fact** = Actually
-- ✅ **Believe it or not** = Surprisingly
+- âœ… **If truth be told** = To be honest
+- âœ… **To tell the truth** = Honestly speaking
+- âœ… **As a matter of fact** = Actually
+- âœ… **Believe it or not** = Surprisingly
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Basic Idioms
 Choose the correct meaning of the idiom:
@@ -220,7 +220,7 @@ Match the idioms with their meanings:
 
 ---
 
-## 📊 IDIOM CLASSIFICATION
+## ðŸ“Š IDIOM CLASSIFICATION
 
 | Category | Examples | Usage Context |
 |---|---|---|
@@ -233,28 +233,28 @@ Match the idioms with their meanings:
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Meaning Identification**: Choose the correct idiomatic meaning
 2. **Contextual Usage**: Select idiom that fits the sentence
 3. **Phrase Replacement**: Find idiom that replaces the given phrase
 4. **Sentence Completion**: Fill blanks with appropriate idioms
 
-### 💡 Quick Selection Strategy:
+### ðŸ’¡ Quick Selection Strategy:
 1. **Understand literal meaning** first, then look for figurative
 2. **Check context clues** - surrounding words give hints
 3. **Eliminate literal options** - idioms are rarely literal
 4. **Trust familiarity** - choose the idiom you know well
 5. **Consider tone** - formal vs informal usage
 
-### ⚡ Common Traps to Avoid:
+### âš¡ Common Traps to Avoid:
 - **Literal interpretation**: Idioms don't mean what they say
 - **Similar sounding idioms**: Break a leg vs Break the bank
 - **Context mismatch**: Wrong idiom for the situation
 - **Over-literal options**: Don't choose obvious literal meanings
 
-### 📈 Scoring Strategy:
+### ðŸ“ˆ Scoring Strategy:
 - **Learn 5-10 idioms daily** - consistent practice
 - **Group by themes** - emotions, work, money, etc.
 - **Use in sentences** - practice contextual usage
@@ -262,20 +262,21 @@ Match the idioms with their meanings:
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Thematic Grouping**: Learn idioms by categories (emotions, work, etc.)
 2. **Contextual Learning**: Remember idioms with their situations
 3. **Regular Practice**: Use idioms in daily conversation/writing
 4. **Visual Association**: Connect idioms with mental images
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Idioms are the "secret sauce" of natural English:**
-- 🍝 **Without idioms**: Plain, literal, boring language
-- 🍝 **With idioms**: Colorful, expressive, native-like speech
-- 🍝 **"Very happy"** → **"On cloud nine"** (more vivid!)
-- 🍝 **"Study hard"** → **"Hit the books"** (more natural!)
+- ðŸ **Without idioms**: Plain, literal, boring language
+- ðŸ **With idioms**: Colorful, expressive, native-like speech
+- ðŸ **"Very happy"** â†’ **"On cloud nine"** (more vivid!)
+- ðŸ **"Study hard"** â†’ **"Hit the books"** (more natural!)
 
-**Add idioms to your language and make it deliciously expressive!** 🍝✨`
+**Add idioms to your language and make it deliciously expressive!** ðŸâœ¨`"
 };
+

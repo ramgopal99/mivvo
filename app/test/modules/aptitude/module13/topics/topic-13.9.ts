@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_9: SubLesson = {
   id: "13.9",
   title: 'Graphical Representation (Basic)',
   status: 'completed',
-  content: `# 📊 Graphical Representation (Basic)
+  content: "`# ðŸ“Š Graphical Representation (Basic)
 
 Explore the visual beauty of linear equations through graphs! Understanding graphical representation helps you visualize solutions and comprehend the geometric meaning of linear equations. Learn to plot lines and interpret their relationships.
 
 ---
 
-## 🎯 Why Graphical Representation?
+## ðŸŽ¯ Why Graphical Representation?
 
 **Graphical representation** provides:
 - Visual understanding of linear equations
@@ -26,7 +26,7 @@ Explore the visual beauty of linear equations through graphs! Understanding grap
 
 ---
 
-## 📈 The Coordinate Plane
+## ðŸ“ˆ The Coordinate Plane
 
 ### **Components:**
 - **X-axis**: Horizontal axis (abscissa)
@@ -47,10 +47,10 @@ A point is represented as **(x, y)**
 
 ---
 
-## 📊 Plotting Linear Equations
+## ðŸ“Š Plotting Linear Equations
 
 ### **Method 1: Table of Values**
-**Equation:** \`2x + y = 6\`
+**Equation:** \`"2x + y = 6\`
 
 **Step 1:** Express y in terms of x
 \`y = 6 - 2x\`
@@ -70,14 +70,14 @@ A point is represented as **(x, y)**
 **Equation:** \`x/2 + y/3 = 1\`
 
 **Step 1:** Find intercepts
-- X-intercept (y=0): \`x/2 = 1\` → \`x = 2\` → (2, 0)
-- Y-intercept (x=0): \`y/3 = 1\` → \`y = 3\` → (0, 3)
+- X-intercept (y=0): \`x/2 = 1\` â†’ \`x = 2\` â†’ (2, 0)
+- Y-intercept (x=0): \`y/3 = 1\` â†’ \`y = 3\` â†’ (0, 3)
 
 **Step 2:** Plot intercepts and draw line
 
 ---
 
-## 🔢 Slope-Intercept Form
+## ðŸ”¢ Slope-Intercept Form
 
 ### **General Form:** \`y = mx + c\`
 
@@ -99,7 +99,7 @@ A point is represented as **(x, y)**
 
 ---
 
-## 📊 System of Linear Equations
+## ðŸ“Š System of Linear Equations
 
 ### **Graphical Solution Methods:**
 
@@ -131,7 +131,7 @@ x + 2y = 8     ...(2)
 
 ---
 
-## 🎯 Types of Solutions
+## ðŸŽ¯ Types of Solutions
 
 ### **1. Unique Solution (Intersecting Lines)**
 Lines cross at exactly one point
@@ -171,13 +171,13 @@ x + y = 5
 
 ---
 
-## 📈 Distance Formula
+## ðŸ“ˆ Distance Formula
 
 ### **Distance Between Two Points:**
-**Formula:** \`d = √[(x₂ - x₁)² + (y₂ - y₁)²]\`
+**Formula:** \`d = âˆš[(xâ‚‚ - xâ‚)Â² + (yâ‚‚ - yâ‚)Â²]\`
 
 **Example:** Distance between (2, 3) and (5, 7)
-\`d = √[(5-2)² + (7-3)²] = √[9 + 16] = √25 = 5\`
+\`d = âˆš[(5-2)Â² + (7-3)Â²] = âˆš[9 + 16] = âˆš25 = 5\`
 
 ### **Applications:**
 - Finding distance between solution points
@@ -186,16 +186,16 @@ x + y = 5
 
 ---
 
-## 📊 Area of Triangle
+## ðŸ“Š Area of Triangle
 
-### **Formula:** \`Area = ½| (x₁(y₂ - y₃) + x₂(y₃ - y₁) + x₃(y₁ - y₂)) |\`
+### **Formula:** \`Area = Â½| (xâ‚(yâ‚‚ - yâ‚ƒ) + xâ‚‚(yâ‚ƒ - yâ‚) + xâ‚ƒ(yâ‚ - yâ‚‚)) |\`
 
 **Example:** Points (0,0), (4,0), (2,3)
-\`Area = ½| (0(0-3) + 4(3-0) + 2(0-0)) | = ½|0 + 12 + 0| = ½×12 = 6\`
+\`Area = Â½| (0(0-3) + 4(3-0) + 2(0-0)) | = Â½|0 + 12 + 0| = Â½Ã—12 = 6\`
 
 ---
 
-## 🔄 Converting Forms
+## ðŸ”„ Converting Forms
 
 ### **Slope-Intercept to General Form**
 **Equation:** \`y = 2x + 3\`
@@ -216,7 +216,7 @@ x + y = 5
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Plotting Lines:**
 1. Plot the line: \`y = 2x + 1\`
@@ -243,11 +243,11 @@ x + y = 5
 Intercepts: (6,0) & (0,4); (3,0) & (0,4)
 Systems: (2.67,3.33); (2,3)
 Special: Same line; Parallel lines
-Distance: √13; Area: 6
+Distance: âˆš13; Area: 6
 
 ---
 
-## 🎓 Pro Tips for Graphical Representation
+## ðŸŽ“ Pro Tips for Graphical Representation
 
 1. **Choose appropriate scale** - make graph readable
 2. **Use graph paper** - accurate plotting
@@ -259,43 +259,43 @@ Distance: √13; Area: 6
 
 ---
 
-## 🔢 Graphical Problem-Solving Steps
+## ðŸ”¢ Graphical Problem-Solving Steps
 
 \`\`\`
 1. CONVERT equations to slope-intercept form
-   ↓
+   â†“
 2. IDENTIFY slopes and intercepts
-   ↓
+   â†“
 3. PLOT y-intercepts on y-axis
-   ↓
+   â†“
 4. USE slope to find second point
-   ↓
+   â†“
 5. DRAW lines through the points
-   ↓
+   â†“
 6. FIND intersection point (if exists)
-   ↓
+   â†“
 7. VERIFY solution algebraically
 \`\`\`
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Intercepts**
-❌ For \`2x + 3y = 6\`, intercepts are (3,0) and (0,2)
+âŒ For \`2x + 3y = 6\`, intercepts are (3,0) and (0,2)
 - Set one variable to zero correctly
 
 ### **Mistake 2: Incorrect Slope**
-❌ Slope is rise over run, not run over rise
+âŒ Slope is rise over run, not run over rise
 - y-change over x-change
 
 ### **Mistake 3: Not Using Scale**
-❌ Plotting (0,100) and (1,0) without scale
+âŒ Plotting (0,100) and (1,0) without scale
 - Use appropriate scale for readability
 
 ### **Mistake 4: Missing Negative Signs**
-❌ Plotting (-2,3) as (2,-3)
+âŒ Plotting (-2,3) as (2,-3)
 - Pay attention to coordinate signs
 
-Master graphical representation and visualize linear equations like a pro! 🏆`
+Master graphical representation and visualize linear equations like a pro! ðŸ†`
 };

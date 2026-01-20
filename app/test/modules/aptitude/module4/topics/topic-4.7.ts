@@ -1,40 +1,40 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_7: SubLesson = {
   id: "4.7",
   title: 'Finding Percentage of a Number',
   status: 'completed',
-  content: `# 🔢 Finding Percentage of a Number
+  content: "`# ðŸ”¢ Finding Percentage of a Number
 
 Master the essential skill of calculating percentages of numbers! This fundamental operation appears in almost every quantitative aptitude question. Learn efficient methods and mental math tricks to solve percentage problems quickly.
 
 ---
 
-## 🎯 What Does "Percentage of a Number" Mean?
+## ðŸŽ¯ What Does "Percentage of a Number" Mean?
 
 **Finding percentage of a number** means calculating what portion a certain percentage represents of a given quantity.
 
 ### **Basic Concept**
 - "X% of Y" means X hundredths of Y
-- Mathematically: X% of Y = (X/100) × Y
+- Mathematically: X% of Y = (X/100) Ã— Y
 
 ### **Key Formula**
-\`\`\`
-Percentage of Number = (Percentage ÷ 100) × Number
+\`"\`\`
+Percentage of Number = (Percentage Ã· 100) Ã— Number
 \`\`\`
 
 ---
 
-## 📊 Step-by-Step Calculation
+## ðŸ“Š Step-by-Step Calculation
 
 ### **Example 1: Basic Calculation**
 **Problem:** Find 20% of 500.
 
 **Step 1:** Convert percentage to decimal
-- 20% = 20 ÷ 100 = 0.20
+- 20% = 20 Ã· 100 = 0.20
 
 **Step 2:** Multiply by the number
-- 0.20 × 500 = 100
+- 0.20 Ã— 500 = 100
 
 **Answer:** 20% of 500 = 100
 
@@ -42,16 +42,16 @@ Percentage of Number = (Percentage ÷ 100) × Number
 **Problem:** Find 12.5% of 800.
 
 **Step 1:** Convert to decimal
-- 12.5% = 12.5 ÷ 100 = 0.125
+- 12.5% = 12.5 Ã· 100 = 0.125
 
 **Step 2:** Multiply
-- 0.125 × 800 = 100
+- 0.125 Ã— 800 = 100
 
 **Answer:** 12.5% of 800 = 100
 
 ---
 
-## 💡 Mental Math Tricks
+## ðŸ’¡ Mental Math Tricks
 
 ### **Trick 1: Easy Percentages**
 | Percentage | Trick | Example |
@@ -60,13 +60,13 @@ Percentage of Number = (Percentage ÷ 100) × Number
 | 20%        | Divide by 5 | 20% of 250 = 50 |
 | 25%        | Divide by 4 | 25% of 200 = 50 |
 | 50%        | Divide by 2 | 50% of 180 = 90 |
-| 75%        | ¾ of number | 75% of 100 = 75 |
+| 75%        | Â¾ of number | 75% of 100 = 75 |
 
 ### **Trick 2: 5% and Multiples**
 - 5% = half of 10%
 - 15% = 10% + 5%
 - 25% = 25% (direct)
-- 30% = 3 × 10%
+- 30% = 3 Ã— 10%
 
 **Example:** 15% of 200
 - 10% of 200 = 20
@@ -78,21 +78,21 @@ Convert percentage to fraction first:
 
 **Example:** 40% of 150
 - 40% = 40/100 = 2/5
-- 2/5 of 150 = (2 × 150) ÷ 5 = 300 ÷ 5 = 60
+- 2/5 of 150 = (2 Ã— 150) Ã· 5 = 300 Ã· 5 = 60
 
 ---
 
-## 🔢 Common Percentage Calculations
+## ðŸ”¢ Common Percentage Calculations
 
 ### **1. Single Percentage**
 \`\`\`
-Result = (Percentage/100) × Number
+Result = (Percentage/100) Ã— Number
 \`\`\`
 
 **Examples:**
-- 15% of 200 = (15/100) × 200 = 30
-- 8% of 250 = (8/100) × 250 = 20
-- 125% of 80 = (125/100) × 80 = 100
+- 15% of 200 = (15/100) Ã— 200 = 30
+- 8% of 250 = (8/100) Ã— 250 = 20
+- 125% of 80 = (125/100) Ã— 80 = 100
 
 ### **2. Multiple Percentages**
 Find several percentages of the same number:
@@ -111,11 +111,11 @@ Find percentage of a percentage:
 
 ---
 
-## 🎯 Real-Life Applications
+## ðŸŽ¯ Real-Life Applications
 
 ### **1. Shopping & Commerce**
-- **GST Calculation:** 18% of ₹1000 = ₹180
-- **Discount:** 20% off ₹500 = ₹100 discount
+- **GST Calculation:** 18% of â‚¹1000 = â‚¹180
+- **Discount:** 20% off â‚¹500 = â‚¹100 discount
 - **Profit Margin:** 15% of cost price
 
 ### **2. Finance**
@@ -135,55 +135,55 @@ Find percentage of a percentage:
 
 ---
 
-## 🧮 Advanced Techniques
+## ðŸ§® Advanced Techniques
 
 ### **Technique 1: Using Proportions**
 Set up proportions for complex calculations:
 
 **Example:** What percentage of 240 is 60?
 - 60/240 = x/100
-- x = (60 × 100) ÷ 240 = 25%
+- x = (60 Ã— 100) Ã· 240 = 25%
 
 ### **Technique 2: Cross Multiplication**
 For "what percentage" problems:
 
 **Example:** 45 is what percentage of 90?
 - 45/90 = x/100
-- x = (45 × 100) ÷ 90 = 50%
+- x = (45 Ã— 100) Ã· 90 = 50%
 
 ### **Technique 3: Factor Method**
 Break down numbers for easier calculation:
 
 **Example:** 25% of 288
 - 25% = 1/4
-- 1/4 of 288 = 288 ÷ 4 = 72
+- 1/4 of 288 = 288 Ã· 4 = 72
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Multiplication Order**
-❌ "20% of 50 = 20 × 50 = 1000"
+âŒ "20% of 50 = 20 Ã— 50 = 1000"
 - Wrong! Must convert percentage first
-- Right: (20/100) × 50 = 0.2 × 50 = 10
+- Right: (20/100) Ã— 50 = 0.2 Ã— 50 = 10
 
 ### **Mistake 2: Forgetting to Divide by 100**
-❌ "15% of 200 = 15 × 200 = 3000"
+âŒ "15% of 200 = 15 Ã— 200 = 3000"
 - Wrong! 15% = 15/100 = 0.15
-- Right: 0.15 × 200 = 30
+- Right: 0.15 Ã— 200 = 30
 
 ### **Mistake 3: Percentage vs. Absolute Value**
-❌ "20% of 100 is 20" (confusing with percentage symbol)
+âŒ "20% of 100 is 20" (confusing with percentage symbol)
 - 20% of 100 = 20, but "20%" means the percentage itself
 
 ### **Mistake 4: Decimal Confusion**
-❌ "0.25% of 100 = 0.25 × 100 = 25"
+âŒ "0.25% of 100 = 0.25 Ã— 100 = 25"
 - Wrong! 0.25% = 0.0025
-- Right: 0.0025 × 100 = 0.25
+- Right: 0.0025 Ã— 100 = 0.25
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Basic Calculations:**
 1. Find 10% of 500 = ?
@@ -192,10 +192,10 @@ Break down numbers for easier calculation:
 4. Find 40% of 150 = ?
 
 ### **Application Problems:**
-1. Find 18% GST on ₹1000 = ?
-2. Find 20% discount on ₹2500 = ?
-3. Find 12% commission on ₹5000 sales = ?
-4. Find 8% interest on ₹10000 = ?
+1. Find 18% GST on â‚¹1000 = ?
+2. Find 20% discount on â‚¹2500 = ?
+3. Find 12% commission on â‚¹5000 sales = ?
+4. Find 8% interest on â‚¹10000 = ?
 
 ### **Complex Problems:**
 1. Find 12.5% of 320 = ?
@@ -210,7 +210,7 @@ Complex: 40, 100, 300, 50
 
 ---
 
-## 🎓 Pro Tips for Exams
+## ðŸŽ“ Pro Tips for Exams
 
 1. **Convert percentage to decimal first** - divide by 100
 2. **Use fractions for common percentages** - 25% = 1/4, 50% = 1/2
@@ -221,20 +221,20 @@ Complex: 40, 100, 300, 50
 
 ---
 
-## 🔢 Quick Reference Table
+## ðŸ”¢ Quick Reference Table
 
 | Find X% of Y | Method | Example |
 |--------------|--------|---------|
-| 10% of Y     | Y ÷ 10 | 10% of 500 = 50 |
-| 20% of Y     | Y ÷ 5  | 20% of 500 = 100 |
-| 25% of Y     | Y ÷ 4  | 25% of 400 = 100 |
-| 50% of Y     | Y ÷ 2  | 50% of 200 = 100 |
-| 75% of Y     | 3Y ÷ 4 | 75% of 200 = 150 |
-| 1% of Y      | Y ÷ 100 | 1% of 500 = 5 |
+| 10% of Y     | Y Ã· 10 | 10% of 500 = 50 |
+| 20% of Y     | Y Ã· 5  | 20% of 500 = 100 |
+| 25% of Y     | Y Ã· 4  | 25% of 400 = 100 |
+| 50% of Y     | Y Ã· 2  | 50% of 200 = 100 |
+| 75% of Y     | 3Y Ã· 4 | 75% of 200 = 150 |
+| 1% of Y      | Y Ã· 100 | 1% of 500 = 5 |
 
 ---
 
-## 💡 Special Cases
+## ðŸ’¡ Special Cases
 
 ### **Case 1: Percentage > 100%**
 - More than the whole amount
@@ -252,5 +252,5 @@ Complex: 40, 100, 300, 50
 - Zero percentage of any number = zero
 - Example: 0% of 1000 = 0
 
-Master finding percentages of numbers and you'll handle most percentage calculations with confidence! 🏆`
+Master finding percentages of numbers and you'll handle most percentage calculations with confidence! ðŸ†`
 };

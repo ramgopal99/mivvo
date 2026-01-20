@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_7: SubLesson = {
   id: "2.7",
   title: 'Modifiers',
   status: 'completed',
-  content: `# 🎨 Modifiers: Adding Color to Your Language
+  content: "`# ðŸŽ¨ Modifiers: Adding Color to Your Language
 
 Modifiers are words or phrases that add description, detail, or clarification to other words in a sentence. They make writing more vivid and precise by qualifying nouns (adjectives) and verbs/actions (adverbs). Understanding modifiers helps create sophisticated, descriptive language.
 
 ---
 
-## 🔍 WHAT ARE MODIFIERS?
+## ðŸ” WHAT ARE MODIFIERS?
 
 **Modifiers** are words or groups of words that provide additional information about:
 - **Nouns**: Adjectives describe qualities, quantities, etc.
@@ -22,108 +22,108 @@ Modifiers are words or phrases that add description, detail, or clarification to
 2. **Adverbs** - Modify verbs, adjectives, and other adverbs
 
 **Examples:**
-- ✅ The **big**, **red** car drove **quickly** down the **narrow** road.
-- ✅ She sings **beautifully** and dances **very** gracefully.
+- âœ… The **big**, **red** car drove **quickly** down the **narrow** road.
+- âœ… She sings **beautifully** and dances **very** gracefully.
 
 ---
 
-## 🎨 ADJECTIVES: Describing Nouns
+## ðŸŽ¨ ADJECTIVES: Describing Nouns
 
 **Adjectives** answer questions about nouns: Which? What kind? How many? How much?
 
 ### Descriptive Adjectives
 Tell what kind or quality:
-- ✅ **Beautiful** flowers, **tall** building, **happy** child
-- ✅ **Blue** sky, **wooden** table, **delicious** food
+- âœ… **Beautiful** flowers, **tall** building, **happy** child
+- âœ… **Blue** sky, **wooden** table, **delicious** food
 
 ### Quantitative Adjectives
 Tell how many or how much:
-- ✅ **Many** books, **few** people, **several** cars
-- ✅ **Some** water, **little** time, **enough** food
+- âœ… **Many** books, **few** people, **several** cars
+- âœ… **Some** water, **little** time, **enough** food
 
 ### Demonstrative Adjectives
 Point out specific nouns:
-- ✅ **This** book, **that** car, **these** flowers, **those** trees
+- âœ… **This** book, **that** car, **these** flowers, **those** trees
 
 ### Possessive Adjectives
 Show ownership:
-- ✅ **My** book, **your** pen, **his** car, **her** bag
-- ✅ **Our** house, **their** dog, **its** tail
+- âœ… **My** book, **your** pen, **his** car, **her** bag
+- âœ… **Our** house, **their** dog, **its** tail
 
 ### Interrogative Adjectives
 Used in questions:
-- ✅ **Which** book? **What** color? **Whose** pen?
+- âœ… **Which** book? **What** color? **Whose** pen?
 
 ---
 
-## 🏃 ADVERBS: Describing Actions
+## ðŸƒ ADVERBS: Describing Actions
 
 **Adverbs** answer questions about verbs: How? When? Where? How much? Why?
 
 ### Adverbs of Manner (How?)
 Describe how an action is performed:
-- ✅ She sings **beautifully**. He runs **quickly**.
-- ✅ They work **hard**. She speaks **softly**.
+- âœ… She sings **beautifully**. He runs **quickly**.
+- âœ… They work **hard**. She speaks **softly**.
 
 ### Adverbs of Place (Where?)
 Describe where an action occurs:
-- ✅ He lives **here**. She went **there**.
-- ✅ Put it **down**. Look **up**.
+- âœ… He lives **here**. She went **there**.
+- âœ… Put it **down**. Look **up**.
 
 ### Adverbs of Time (When?)
 Describe when an action occurs:
-- ✅ She arrived **yesterday**. Call me **tomorrow**.
-- ✅ He comes **daily**. Leave **now**.
+- âœ… She arrived **yesterday**. Call me **tomorrow**.
+- âœ… He comes **daily**. Leave **now**.
 
 ### Adverbs of Frequency (How often?)
 Describe how often actions happen:
-- ✅ He **always** helps. She **never** complains.
-- ✅ I **often** read. They **sometimes** argue.
+- âœ… He **always** helps. She **never** complains.
+- âœ… I **often** read. They **sometimes** argue.
 
 ### Adverbs of Degree (How much?)
 Describe the intensity or degree:
-- ✅ **Very** tired, **quite** good, **too** expensive
-- ✅ **Almost** finished, **extremely** happy
+- âœ… **Very** tired, **quite** good, **too** expensive
+- âœ… **Almost** finished, **extremely** happy
 
 ### Adverbs of Reason (Why?)
 Describe the purpose or reason:
-- ✅ He studies **therefore** he succeeds.
-- ✅ She works hard **consequently** she gets promoted.
+- âœ… He studies **therefore** he succeeds.
+- âœ… She works hard **consequently** she gets promoted.
 
 ### Adverbs of Affirmation & Negation:
-- ✅ He **definitely** knows the answer. (**Affirmation**)
-- ✅ I **certainly** agree with you.
-- ✅ She **probably** won't come.
-- ✅ He **never** tells lies. (**Negation**)
-- ✅ We **barely** finished on time.
+- âœ… He **definitely** knows the answer. (**Affirmation**)
+- âœ… I **certainly** agree with you.
+- âœ… She **probably** won't come.
+- âœ… He **never** tells lies. (**Negation**)
+- âœ… We **barely** finished on time.
 
 ### Adverbs of Comment:
 Express speaker's attitude toward the information:
-- ✅ **Frankly**, I don't like it.
-- ✅ **Obviously**, he is wrong.
-- ✅ **Fortunately**, we arrived on time.
-- ✅ **Unfortunately**, it rained.
-- ✅ **Honestly**, I didn't know.
+- âœ… **Frankly**, I don't like it.
+- âœ… **Obviously**, he is wrong.
+- âœ… **Fortunately**, we arrived on time.
+- âœ… **Unfortunately**, it rained.
+- âœ… **Honestly**, I didn't know.
 
 ---
 
-## 📝 ADVERBIALS VS ADVERBS
+## ðŸ“ ADVERBIALS VS ADVERBS
 
 ### Adverbials (Adverb Phrases)
 Groups of words functioning as adverbs:
-- ✅ Prepositional phrases: **in the morning**, **with great care**
-- ✅ Infinitive phrases: **to tell the truth**, **to be honest**
-- ✅ Clause adverbials: **as if nothing happened**
+- âœ… Prepositional phrases: **in the morning**, **with great care**
+- âœ… Infinitive phrases: **to tell the truth**, **to be honest**
+- âœ… Clause adverbials: **as if nothing happened**
 
 ### Examples:
-- ✅ He arrived **on time**. (single adverb)
-- ✅ He arrived **in the morning**. (adverbial phrase)
-- ✅ She sings **beautifully**. (adverb)
-- ✅ She sings **with great passion**. (adverbial phrase)
+- âœ… He arrived **on time**. (single adverb)
+- âœ… He arrived **in the morning**. (adverbial phrase)
+- âœ… She sings **beautifully**. (adverb)
+- âœ… She sings **with great passion**. (adverbial phrase)
 
 ---
 
-## 🎯 TYPES OF ADJECTIVES (Extended)
+## ðŸŽ¯ TYPES OF ADJECTIVES (Extended)
 
 ### Limiting Adjectives:
 - **Articles**: a, an, the
@@ -144,95 +144,95 @@ Groups of words functioning as adverbs:
 
 ### Compound Adjectives:
 Two or more words acting as single adjective:
-- ✅ A **well-known** author
-- ✅ **State-of-the-art** technology
-- ✅ A **five-year-old** child
-- ✅ **Part-time** job
-- ✅ **Middle-aged** man
+- âœ… A **well-known** author
+- âœ… **State-of-the-art** technology
+- âœ… A **five-year-old** child
+- âœ… **Part-time** job
+- âœ… **Middle-aged** man
 
 ---
 
-## 🔄 FORMATION: Adjective → Adverb
+## ðŸ”„ FORMATION: Adjective â†’ Adverb
 
 ### Regular Formation:
-- Add **-ly** to adjectives ending in consonant: quick → **quickly**
-- Add **-ly** to adjectives ending in -e: nice → **nicely**
-- Add **-ly** to adjectives ending in -y: happy → **happily**
+- Add **-ly** to adjectives ending in consonant: quick â†’ **quickly**
+- Add **-ly** to adjectives ending in -e: nice â†’ **nicely**
+- Add **-ly** to adjectives ending in -y: happy â†’ **happily**
 
 ### Irregular Formation:
-- Good → **Well** (not goodly)
-- Fast → **Fast** (same for both)
-- Hard → **Hard** (same for both)
-- Late → **Late** (same for both)
+- Good â†’ **Well** (not goodly)
+- Fast â†’ **Fast** (same for both)
+- Hard â†’ **Hard** (same for both)
+- Late â†’ **Late** (same for both)
 
 ### Special Cases:
-- Adjectives ending in -ic: economic → **economically**
-- Adjectives ending in -le: simple → **simply**
-- Adjectives ending in -ue: true → **truly**
+- Adjectives ending in -ic: economic â†’ **economically**
+- Adjectives ending in -le: simple â†’ **simply**
+- Adjectives ending in -ue: true â†’ **truly**
 
 ---
 
-## 📍 POSITION OF MODIFIERS
+## ðŸ“ POSITION OF MODIFIERS
 
 ### Adjective Position:
 **Before the noun** (attributive position):
-- ✅ The **big** house, **red** roses, **beautiful** garden
+- âœ… The **big** house, **red** roses, **beautiful** garden
 
 **After linking verbs** (predicative position):
-- ✅ The house is **big**. Roses are **red**. Garden is **beautiful**.
+- âœ… The house is **big**. Roses are **red**. Garden is **beautiful**.
 
 ### Adverb Position:
 **After verbs** (most common):
-- ✅ She sings **beautifully**. He runs **quickly**.
+- âœ… She sings **beautifully**. He runs **quickly**.
 
 **Before adjectives/adverbs** (intensifiers):
-- ✅ **Very** beautiful, **quite** good, **too** expensive
+- âœ… **Very** beautiful, **quite** good, **too** expensive
 
 **At sentence beginning/end** (for emphasis):
-- ✅ **Fortunately**, we arrived on time.
-- ✅ We arrived on time, **fortunately**.
+- âœ… **Fortunately**, we arrived on time.
+- âœ… We arrived on time, **fortunately**.
 
 ---
 
-## ⚠️ COMMON MODIFIER MISTAKES
+## âš ï¸ COMMON MODIFIER MISTAKES
 
 ### Dangling Modifiers
 Modifier doesn't clearly modify the intended word:
 
-1. ❌ **Walking down the street**, the trees looked beautiful.
-   ✅ **Walking down the street**, I saw beautiful trees.
+1. âŒ **Walking down the street**, the trees looked beautiful.
+   âœ… **Walking down the street**, I saw beautiful trees.
 
-2. ❌ **Having finished homework**, the TV was turned on.
-   ✅ **Having finished homework**, he turned on the TV.
+2. âŒ **Having finished homework**, the TV was turned on.
+   âœ… **Having finished homework**, he turned on the TV.
 
 ### Misplaced Modifiers
 Modifier is placed too far from the word it modifies:
 
-3. ❌ I almost ate **ten** pizzas. (almost ten pizzas?)
-   ✅ I ate **almost ten** pizzas.
+3. âŒ I almost ate **ten** pizzas. (almost ten pizzas?)
+   âœ… I ate **almost ten** pizzas.
 
-4. ❌ She served coffee **only** to the guests. (only guests?)
-   ✅ She **only** served coffee to the guests.
+4. âŒ She served coffee **only** to the guests. (only guests?)
+   âœ… She **only** served coffee to the guests.
 
 ### Squinting Modifiers
 Modifier that could modify either preceding or following word:
 
-5. ❌ Students **often** fail exams **regularly**.
-   ✅ Students **often** fail exams.
-   ✅ Students fail exams **regularly**.
+5. âŒ Students **often** fail exams **regularly**.
+   âœ… Students **often** fail exams.
+   âœ… Students fail exams **regularly**.
 
 ### Wrong Word Form
 Using adjective instead of adverb (or vice versa):
 
-6. ❌ She sings **beautiful**. (adjective)
-   ✅ She sings **beautifully**. (adverb)
+6. âŒ She sings **beautiful**. (adjective)
+   âœ… She sings **beautifully**. (adverb)
 
-7. ❌ He is **terrible** tired. (adverb)
-   ✅ He is **terribly** tired. (adverb)
+7. âŒ He is **terrible** tired. (adverb)
+   âœ… He is **terribly** tired. (adverb)
 
 ---
 
-## 🎯 COMPARISON OF MODIFIERS
+## ðŸŽ¯ COMPARISON OF MODIFIERS
 
 ### Adjective Comparison:
 - **Positive**: big, beautiful, good
@@ -255,7 +255,7 @@ Using adjective instead of adverb (or vice versa):
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Identify Adjectives and Adverbs
 **The** **quick** **brown** fox jumps **quickly** over **the** **lazy** dog.
@@ -282,20 +282,20 @@ Using adjective instead of adverb (or vice versa):
 5. well
 
 ### Exercise 3: Correct Modifier Errors
-1. ❌ Walking down the street, the birds sang beautifully.
-   ✅ **Walking down the street**, I heard the birds sing beautifully.
+1. âŒ Walking down the street, the birds sang beautifully.
+   âœ… **Walking down the street**, I heard the birds sing beautifully.
 
-2. ❌ I only eat vegetables.
-   ✅ I eat **only** vegetables.
+2. âŒ I only eat vegetables.
+   âœ… I eat **only** vegetables.
 
-3. ❌ She almost drove 100 kilometers.
-   ✅ She drove **almost** 100 kilometers.
+3. âŒ She almost drove 100 kilometers.
+   âœ… She drove **almost** 100 kilometers.
 
-4. ❌ The book was good written.
-   ✅ The book was **well** written.
+4. âŒ The book was good written.
+   âœ… The book was **well** written.
 
-5. ❌ He is terrible at mathematics.
-   ✅ He is **terribly** bad at mathematics.
+5. âŒ He is terrible at mathematics.
+   âœ… He is **terribly** bad at mathematics.
 
 ### Exercise 4: Position the Modifiers Correctly
 Rewrite with correct modifier placement:
@@ -311,7 +311,7 @@ Rewrite with correct modifier placement:
 
 ---
 
-## 📊 MODIFIER TYPES SUMMARY
+## ðŸ“Š MODIFIER TYPES SUMMARY
 
 | Modifier Type | Function | Position | Examples |
 |---|---|---|---|
@@ -325,22 +325,22 @@ Rewrite with correct modifier placement:
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 Common Test Patterns:
+### ðŸ† Common Test Patterns:
 1. **Dangling Modifiers**: Fix misplaced descriptive phrases
 2. **Adjective vs Adverb**: Choose correct form (good/well)
 3. **Comparison**: Correct comparative/superlative forms
 4. **Position**: Place modifiers correctly in sentences
 5. **Intensifiers**: Very, quite, too, enough usage
 
-### 💡 Quick Selection Strategy:
+### ðŸ’¡ Quick Selection Strategy:
 1. **Identify the word being modified**: Noun = adjective, Verb = adverb
 2. **Check the question**: How? When? Where? = Adverb
 3. **Form check**: Ends in -ly? = Adverb (usually)
 4. **Position**: Adjectives before nouns, adverbs after verbs
 
-### ⚡ Common Traps to Avoid:
+### âš¡ Common Traps to Avoid:
 - **Good vs Well**: Good = adjective, Well = adverb
 - **Dangling phrases**: Must modify a logical noun
 - **Misplaced modifiers**: Keep close to modified word
@@ -348,20 +348,21 @@ Rewrite with correct modifier placement:
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Form Recognition**: Adjectives describe nouns, adverbs describe actions
 2. **Position Practice**: Adjectives before nouns, adverbs after verbs
 3. **Comparison Rules**: Learn irregular forms (good-better-best)
 4. **Context Matters**: Choose based on what is being modified
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Think of modifiers as "decorators":**
-- 🎨 **Adjectives**: Paint nouns with colors and qualities
-- 🏃 **Adverbs**: Add speed, manner, and style to actions
-- 📍 **Position**: Place decorators close to what they decorate
-- ⚖️ **Comparison**: Show relative levels (bigger, biggest)
+- ðŸŽ¨ **Adjectives**: Paint nouns with colors and qualities
+- ðŸƒ **Adverbs**: Add speed, manner, and style to actions
+- ðŸ“ **Position**: Place decorators close to what they decorate
+- âš–ï¸ **Comparison**: Show relative levels (bigger, biggest)
 
-**Master modifiers and you'll "decorate" your language beautifully!** 🎨✨`
+**Master modifiers and you'll "decorate" your language beautifully!** ðŸŽ¨âœ¨`"
 };
+

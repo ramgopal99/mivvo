@@ -1,46 +1,46 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_20_1: SubLesson = {
   id: "20.1",
   title: 'E-Commerce Platform',
   status: 'completed',
-  content: `# 🛒 Java Advanced Project: Full-Stack E-Commerce Platform
+  content: "`# ðŸ›’ Java Advanced Project: Full-Stack E-Commerce Platform
 
 Build a complete e-commerce application with microservices architecture!
 
 ---
 
-## 🎯 Project Overview
+## ðŸŽ¯ Project Overview
 
 Create a scalable e-commerce platform with modern architecture and advanced features.
 
 ### **Features to Implement:**
-- ✅ User authentication and authorization
-- ✅ Product catalog with search and filtering
-- ✅ Shopping cart and checkout system
-- ✅ Order management and tracking
-- ✅ Payment integration (Stripe/PayPal)
-- ✅ Admin dashboard for inventory management
-- ✅ Review and rating system
-- ✅ Email notifications
-- ✅ Docker containerization
+- âœ… User authentication and authorization
+- âœ… Product catalog with search and filtering
+- âœ… Shopping cart and checkout system
+- âœ… Order management and tracking
+- âœ… Payment integration (Stripe/PayPal)
+- âœ… Admin dashboard for inventory management
+- âœ… Review and rating system
+- âœ… Email notifications
+- âœ… Docker containerization
 
 ---
 
-## 🏗️ Architecture Overview
+## ðŸ—ï¸ Architecture Overview
 
 ### **Microservices Architecture**
-\`\`\`
+\`"\`\`
 ecommerce-platform/
-├── api-gateway/           # API Gateway (Spring Cloud Gateway)
-├── user-service/          # User management & authentication
-├── product-service/       # Product catalog & inventory
-├── order-service/         # Order processing & management
-├── payment-service/       # Payment processing
-├── notification-service/  # Email & SMS notifications
-├── discovery-server/      # Service discovery (Eureka)
-├── config-server/         # Configuration management
-└── frontend/              # React/Angular SPA
+â”œâ”€â”€ api-gateway/           # API Gateway (Spring Cloud Gateway)
+â”œâ”€â”€ user-service/          # User management & authentication
+â”œâ”€â”€ product-service/       # Product catalog & inventory
+â”œâ”€â”€ order-service/         # Order processing & management
+â”œâ”€â”€ payment-service/       # Payment processing
+â”œâ”€â”€ notification-service/  # Email & SMS notifications
+â”œâ”€â”€ discovery-server/      # Service discovery (Eureka)
+â”œâ”€â”€ config-server/         # Configuration management
+â””â”€â”€ frontend/              # React/Angular SPA
 \`\`\`
 
 ### **Technology Stack**
@@ -53,7 +53,7 @@ ecommerce-platform/
 
 ---
 
-## 🔧 Core Services Implementation
+## ðŸ”§ Core Services Implementation
 
 ### **1. User Service**
 \`\`\`java
@@ -345,7 +345,7 @@ public class OrderService {
 
 ---
 
-## 🔄 Event-Driven Architecture
+## ðŸ”„ Event-Driven Architecture
 
 ### **Event Publishing**
 \`\`\`java
@@ -381,7 +381,7 @@ public class OrderEventListener {
 
 ---
 
-## 🔐 Security & Authentication
+## ðŸ” Security & Authentication
 
 ### **JWT Authentication Filter**
 \`\`\`java
@@ -434,7 +434,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 ---
 
-## 🧪 Testing Strategy
+## ðŸ§ª Testing Strategy
 
 ### **Unit Tests**
 \`\`\`java
@@ -532,7 +532,7 @@ public class EcommerceIntegrationTest {
 
 ---
 
-## 🐳 Docker & Deployment
+## ðŸ³ Docker & Deployment
 
 ### **Docker Compose**
 \`\`\`yaml
@@ -601,7 +601,7 @@ services:
 
 ---
 
-## 📊 Monitoring & Observability
+## ðŸ“Š Monitoring & Observability
 
 ### **Spring Boot Actuator**
 \`\`\`java
@@ -652,7 +652,7 @@ public class OrderMetricsService {
 
 ---
 
-## 🎯 Learning Outcomes
+## ðŸŽ¯ Learning Outcomes
 
 By completing this project, you'll master:
 
@@ -669,23 +669,23 @@ By completing this project, you'll master:
 
 ---
 
-## 🚀 Advanced Features (Optional)
+## ðŸš€ Advanced Features (Optional)
 
-- 🔍 **Advanced Search**: Elasticsearch integration
-- 📊 **Analytics Dashboard**: Real-time metrics with Grafana
-- 🌐 **Multi-tenancy**: Support for multiple merchants
-- 💳 **Multiple Payment Gateways**: Stripe, PayPal, Apple Pay
-- 🌍 **Internationalization**: Multi-language support
-- 📱 **Mobile Apps**: React Native companion apps
-- 🤖 **AI Recommendations**: Product recommendations engine
-- 📦 **Inventory Management**: Advanced stock tracking
-- 📈 **A/B Testing**: Feature experimentation framework
+- ðŸ” **Advanced Search**: Elasticsearch integration
+- ðŸ“Š **Analytics Dashboard**: Real-time metrics with Grafana
+- ðŸŒ **Multi-tenancy**: Support for multiple merchants
+- ðŸ’³ **Multiple Payment Gateways**: Stripe, PayPal, Apple Pay
+- ðŸŒ **Internationalization**: Multi-language support
+- ðŸ“± **Mobile Apps**: React Native companion apps
+- ðŸ¤– **AI Recommendations**: Product recommendations engine
+- ðŸ“¦ **Inventory Management**: Advanced stock tracking
+- ðŸ“ˆ **A/B Testing**: Feature experimentation framework
 
 ---
 
-## 🏆 Final Achievement
+## ðŸ† Final Achievement
 
-**Congratulations!** 🎉 You've built a production-ready, enterprise-grade e-commerce platform!
+**Congratulations!** ðŸŽ‰ You've built a production-ready, enterprise-grade e-commerce platform!
 
 ### **Skills Demonstrated:**
 - **System Architecture** & Design
@@ -697,6 +697,7 @@ By completing this project, you'll master:
 - **DevOps & Deployment**
 - **Performance Monitoring**
 
-This project showcases your ability to build complex, scalable software systems - a key requirement for senior software engineering roles! 🚀`
+This project showcases your ability to build complex, scalable software systems - a key requirement for senior software engineering roles! ðŸš€`
 };
+
 

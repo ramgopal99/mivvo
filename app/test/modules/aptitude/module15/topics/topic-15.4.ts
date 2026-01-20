@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_4: SubLesson = {
   id: "15.4",
   title: 'Line Graphs',
   status: 'completed',
-  content: `# 📈 Line Graphs Interpretation
+  content: "`# ðŸ“ˆ Line Graphs Interpretation
 
 Master line graph analysis! Line graphs excel at showing trends, patterns, and changes over time. Learn to interpret slopes, intersections, and extract meaningful insights from connected data points.
 
 ---
 
-## 🎯 What are Line Graphs?
+## ðŸŽ¯ What are Line Graphs?
 
 **Line Graphs** (also called Line Charts) connect data points with straight lines to show how values change over time or across categories. They are ideal for displaying trends and patterns.
 
@@ -29,21 +29,21 @@ Master line graph analysis! Line graphs excel at showing trends, patterns, and c
 
 ---
 
-## 📊 Reading Line Graphs
+## ðŸ“Š Reading Line Graphs
 
 ### **Basic Components**
 
-\`\`\`
+\`"\`\`
 Stock Price Movement
-(₹ per share)
+(â‚¹ per share)
 
-120 │           ●
-110 │         ●   ●
-100 │       ●       ●
- 90 │     ●           ●
- 80 │   ●               ●
- 70 │ ●                   ●
- 60 │___________________________
+120 â”‚           â—
+110 â”‚         â—   â—
+100 â”‚       â—       â—
+ 90 â”‚     â—           â—
+ 80 â”‚   â—               â—
+ 70 â”‚ â—                   â—
+ 60 â”‚___________________________
      Jan Feb Mar Apr May Jun
 \`\`\`
 
@@ -55,7 +55,7 @@ Stock Price Movement
 
 ---
 
-## 🔍 Analysis Techniques
+## ðŸ” Analysis Techniques
 
 ### **Step 1: Understand the Setup**
 - Read title and axis labels
@@ -64,10 +64,10 @@ Stock Price Movement
 - Check legend for multiple lines
 
 ### **Step 2: Identify Trends**
-- **Increasing**: Line going up → positive growth
-- **Decreasing**: Line going down → decline
-- **Flat**: Horizontal line → stable
-- **Fluctuating**: Up and down → variable
+- **Increasing**: Line going up â†’ positive growth
+- **Decreasing**: Line going down â†’ decline
+- **Flat**: Horizontal line â†’ stable
+- **Fluctuating**: Up and down â†’ variable
 
 ### **Step 3: Analyze Patterns**
 - **Steady Growth**: Consistent upward slope
@@ -82,7 +82,7 @@ Stock Price Movement
 
 ---
 
-## 📈 Types of Line Graph Questions
+## ðŸ“ˆ Types of Line Graph Questions
 
 ### **1. Value Reading**
 **"What was the value in March?"**
@@ -104,7 +104,7 @@ Stock Price Movement
 
 ### **4. Change Calculations**
 **"By what percentage did value increase from A to B?"**
-- Formula: [(New - Old)/Old] × 100
+- Formula: [(New - Old)/Old] Ã— 100
 - Calculate for specific period
 
 ### **5. Intersection Points**
@@ -119,20 +119,20 @@ Stock Price Movement
 
 ---
 
-## 🎯 Sample Line Graph Analysis
+## ðŸŽ¯ Sample Line Graph Analysis
 
 ### **Company Revenue Growth**
 
 \`\`\`
-Annual Revenue (₹ crores)
+Annual Revenue (â‚¹ crores)
 
-25 │           ●
-20 │         ●   ●
-15 │       ●       ●
-10 │     ●           ●
- 5 │   ●               ●
- 0 │ ●                   ●
-   │___________________________
+25 â”‚           â—
+20 â”‚         â—   â—
+15 â”‚       â—       â—
+10 â”‚     â—           â—
+ 5 â”‚   â—               â—
+ 0 â”‚ â—                   â—
+   â”‚___________________________
     2015 2016 2017 2018 2019 2020
 \`\`\`
 
@@ -154,7 +154,7 @@ Annual Revenue (₹ crores)
 - Growth rate accelerating over time
 
 **3. Calculate percentage increase from 2015 to 2020**
-- (22 - 2)/2 × 100 = 1000%
+- (22 - 2)/2 Ã— 100 = 1000%
 
 **4. What is the average annual growth rate?**
 - Total increase: 20 crores over 5 years
@@ -171,20 +171,20 @@ Annual Revenue (₹ crores)
 
 ---
 
-## 📊 Multiple Line Graphs
+## ðŸ“Š Multiple Line Graphs
 
 ### **Example: Product Sales Comparison**
 
 \`\`\`
-Sales Comparison (₹ lakhs)
+Sales Comparison (â‚¹ lakhs)
 
-30 │     ●-------●-------●
-25 │   ●         ●     ●
-20 │ ●           ●   ●
-15 │             ● ●
-10 │           ●   ●
- 5 │         ●       ●
- 0 │___________________________
+30 â”‚     â—-------â—-------â—
+25 â”‚   â—         â—     â—
+20 â”‚ â—           â—   â—
+15 â”‚             â— â—
+10 â”‚           â—   â—
+ 5 â”‚         â—       â—
+ 0 â”‚___________________________
     Q1  Q2  Q3  Q4  Q1  Q2
         2019        2020
 \`\`\`
@@ -209,32 +209,32 @@ Sales Comparison (₹ lakhs)
 
 **4. What is the percentage difference in Q2 2020?**
 - Read both values
-- Calculate: (A - B)/B × 100 or absolute difference
+- Calculate: (A - B)/B Ã— 100 or absolute difference
 
 ---
 
-## 📈 Slope and Rate of Change
+## ðŸ“ˆ Slope and Rate of Change
 
 ### **Understanding Slope**
-- **Positive Slope**: Line going up → increasing
-- **Negative Slope**: Line going down → decreasing
-- **Zero Slope**: Horizontal line → constant
+- **Positive Slope**: Line going up â†’ increasing
+- **Negative Slope**: Line going down â†’ decreasing
+- **Zero Slope**: Horizontal line â†’ constant
 - **Steep Slope**: Rapid change
 - **Gentle Slope**: Slow change
 
 ### **Calculating Rate of Change**
 **From point A to point B:**
-- **Absolute Rate**: (Y₂ - Y₁)/(X₂ - X₁)
-- **Percentage Rate**: [(Y₂ - Y₁)/Y₁] × 100
+- **Absolute Rate**: (Yâ‚‚ - Yâ‚)/(Xâ‚‚ - Xâ‚)
+- **Percentage Rate**: [(Yâ‚‚ - Yâ‚)/Yâ‚] Ã— 100
 
 ### **Example**
 From 2018 (12) to 2019 (16):
 - Absolute rate: (16-12)/(2019-2018) = 4 per year
-- Percentage rate: (4/12) × 100 = 33.33% per year
+- Percentage rate: (4/12) Ã— 100 = 33.33% per year
 
 ---
 
-## 🎯 Common Patterns in Line Graphs
+## ðŸŽ¯ Common Patterns in Line Graphs
 
 ### **Pattern 1: Linear Growth**
 \`\`\`
@@ -270,7 +270,7 @@ Peak then decline
 
 ---
 
-## 🚀 Speed Reading Techniques
+## ðŸš€ Speed Reading Techniques
 
 ### **1. Overall Trend**
 - Quick scan for general direction
@@ -294,45 +294,45 @@ Peak then decline
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Point Reading**
-❌ Reading value at wrong x-position
+âŒ Reading value at wrong x-position
 - Align with exact x-axis position
 
 ### **Mistake 2: Slope Misinterpretation**
-❌ "Steeper means higher value"
+âŒ "Steeper means higher value"
 - Steeper means faster rate of change
 
 ### **Mistake 3: Missing Multiple Lines**
-❌ Confusing lines in multi-line graphs
+âŒ Confusing lines in multi-line graphs
 - Check legend and line styles
 
 ### **Mistake 4: Trend Generalization**
-❌ "Always increasing" when actually fluctuating
+âŒ "Always increasing" when actually fluctuating
 - Check each segment carefully
 
 ### **Mistake 5: Calculation Errors**
-❌ Wrong percentage: (New - Old)/New × 100
-- Correct: (New - Old)/Old × 100
+âŒ Wrong percentage: (New - Old)/New Ã— 100
+- Correct: (New - Old)/Old Ã— 100
 
 ---
 
-## 🎯 Practice Line Graphs
+## ðŸŽ¯ Practice Line Graphs
 
 ### **Graph 1: Temperature Variation**
 
 \`\`\`
-Monthly Temperature (°C)
+Monthly Temperature (Â°C)
 
-35 │     ●-----●-----●
-30 │   ●       ●   ●
-25 │ ●         ● ●
-20 │           ●  ●
-15 │         ●    ●
-10 │       ●      ●
- 5 │     ●        ●
- 0 │___________________
+35 â”‚     â—-----â—-----â—
+30 â”‚   â—       â—   â—
+25 â”‚ â—         â— â—
+20 â”‚           â—  â—
+15 â”‚         â—    â—
+10 â”‚       â—      â—
+ 5 â”‚     â—        â—
+ 0 â”‚___________________
     Jan Feb Mar Apr May
 \`\`\`
 
@@ -344,15 +344,15 @@ Monthly Temperature (°C)
 ### **Graph 2: Stock Price Movement**
 
 \`\`\`
-Stock Price (₹)
+Stock Price (â‚¹)
 
-500 │
-400 │   ●-----●-----●-----●
-300 │ ●       ●   ●     ●
-200 │         ● ●       ●
-100 │       ●   ●     ●
-  0 │     ●     ●   ●   ●
-    │___________________________
+500 â”‚
+400 â”‚   â—-----â—-----â—-----â—
+300 â”‚ â—       â—   â—     â—
+200 â”‚         â— â—       â—
+100 â”‚       â—   â—     â—
+  0 â”‚     â—     â—   â—   â—
+    â”‚___________________________
       Mon Tue Wed Thu Fri
 \`\`\`
 
@@ -363,7 +363,7 @@ Stock Price (₹)
 
 ---
 
-## 🎓 Pro Tips for Line Graphs
+## ðŸŽ“ Pro Tips for Line Graphs
 
 1. **Read the title and labels** carefully
 2. **Identify overall trend** first
@@ -375,7 +375,7 @@ Stock Price (₹)
 
 ---
 
-## 🔢 Line Graph Analysis Framework
+## ðŸ”¢ Line Graph Analysis Framework
 
 \`\`\`
 1. UNDERSTAND the graph setup
@@ -401,12 +401,12 @@ Stock Price (₹)
    - Check reasonableness
 \`\`\`
 
-Master line graph interpretation and identify trends and patterns quickly! 🏆
+Master line graph interpretation and identify trends and patterns quickly! ðŸ†
 
 **Answers for Practice Graphs:**
-1. March: 30°C
-2. Fluctuating: Jan(10)→Feb(20)→Mar(30)→Apr(25)→May(15) - peak in March, decline after
-3. Apr(25) - Feb(20) = 5°C increase
+1. March: 30Â°C
+2. Fluctuating: Jan(10)â†’Feb(20)â†’Mar(30)â†’Apr(25)â†’May(15) - peak in March, decline after
+3. Apr(25) - Feb(20) = 5Â°C increase
 
 Stock: 1. Wednesday: around 450
 2. Tuesday: significant drop, or Thursday: big increase

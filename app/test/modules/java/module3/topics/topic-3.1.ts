@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_1: SubLesson = {
   id: "3.1",
   title: 'Introduction to Variables',
   status: 'completed',
-  content: `# 📊 Introduction to Variables in Java
+  content: "`# ðŸ“Š Introduction to Variables in Java
 
 Variables are fundamental building blocks of any programming language. In Java, variables store data that can be manipulated and used throughout your program. Understanding how variables work is essential for effective Java programming.
 
 ---
 
-## 🎯 What is a Variable?
+## ðŸŽ¯ What is a Variable?
 
 A **variable** is a named storage location in memory that holds a value. Think of it as a container that can store different types of data and can be referenced by name throughout your program.
 
 ### **Variable Characteristics**
-\`\`\`java
+\`"\`\`java
 public class VariableBasics {
     public static void main(String[] args) {
         // Variable declaration and assignment
@@ -37,7 +37,7 @@ public class VariableBasics {
 
 ---
 
-## 📝 Variable Declaration
+## ðŸ“ Variable Declaration
 
 ### **Basic Declaration Syntax**
 \`\`\`java
@@ -66,12 +66,12 @@ boolean flag;
 
 ---
 
-## 🎨 Variable Naming Rules
+## ðŸŽ¨ Variable Naming Rules
 
 ### **Java Naming Conventions**
 \`\`\`java
 public class NamingExamples {
-    // ✅ Valid variable names
+    // âœ… Valid variable names
     int age;
     String firstName;
     double accountBalance;
@@ -79,7 +79,7 @@ public class NamingExamples {
     int userCount;
     String emailAddress;
 
-    // ❌ Invalid variable names (compilation errors)
+    // âŒ Invalid variable names (compilation errors)
     // int 123abc;        // Cannot start with number
     // int my-variable;   // Cannot contain hyphens
     // int class;         // Reserved keyword
@@ -92,8 +92,8 @@ public class NamingExamples {
         double gpaScore = 3.8;
 
         // Use descriptive names
-        int numberOfStudents = 150;  // ✅ Good
-        int n = 150;                // ❌ Bad (not descriptive)
+        int numberOfStudents = 150;  // âœ… Good
+        int n = 150;                // âŒ Bad (not descriptive)
 
         System.out.println(studentName + " is " + studentAge + " years old");
     }
@@ -103,7 +103,7 @@ public class NamingExamples {
 #### **Naming Rules**
 - **Must start with**: letter (a-z, A-Z), underscore (_), or dollar sign ($)
 - **Can contain**: letters, digits (0-9), underscores, dollar signs
-- **Case sensitive**: \`myVar\` ≠ \`myvar\` ≠ \`MYVAR\`
+- **Case sensitive**: \`myVar\` â‰  \`myvar\` â‰  \`MYVAR\`
 - **No keywords**: Cannot use reserved words like \`class\`, \`int\`, \`public\`
 - **No spaces**: Variable names cannot contain spaces
 
@@ -115,7 +115,7 @@ public class NamingExamples {
 
 ---
 
-## 🔄 Variable Assignment
+## ðŸ”„ Variable Assignment
 
 ### **Assignment Operator (=)**
 \`\`\`java
@@ -170,7 +170,7 @@ public class CompoundAssignment {
 
 ---
 
-## 🌍 Variable Scope
+## ðŸŒ Variable Scope
 
 ### **Local Variables**
 Variables declared inside methods, constructors, or blocks.
@@ -229,7 +229,7 @@ public class ParameterScope {
 
 ---
 
-## 🏷️ Variable Initialization
+## ðŸ·ï¸ Variable Initialization
 
 ### **Default Initialization**
 Local variables must be initialized before use. Class/instance variables have default values.
@@ -266,7 +266,7 @@ public class InitializationExample {
 
 ---
 
-## 🔄 Variable Reassignment
+## ðŸ”„ Variable Reassignment
 
 ### **Changing Variable Values**
 \`\`\`java
@@ -301,13 +301,13 @@ public class ReassignmentExample {
 
 ---
 
-## 🎯 Variable Usage Best Practices
+## ðŸŽ¯ Variable Usage Best Practices
 
 ### **1. Declare Variables Close to Usage**
 \`\`\`java
 public class BestPractices {
     public static void main(String[] args) {
-        // ✅ Good: Declare when needed
+        // âœ… Good: Declare when needed
         System.out.println("Enter your age:");
         int age = getUserInput();
 
@@ -319,7 +319,7 @@ public class BestPractices {
             System.out.println(message);
         }
 
-        // ❌ Bad: Declare all at top
+        // âŒ Bad: Declare all at top
         // int age;
         // String message;
         // age = getUserInput();
@@ -337,7 +337,7 @@ public class BestPractices {
 \`\`\`java
 public class MeaningfulNames {
     public static void main(String[] args) {
-        // ✅ Good: Self-documenting code
+        // âœ… Good: Self-documenting code
         double principalAmount = 1000.0;
         double interestRate = 0.05;
         int investmentPeriodYears = 5;
@@ -348,7 +348,7 @@ public class MeaningfulNames {
             investmentPeriodYears
         );
 
-        // ❌ Bad: Unclear abbreviations
+        // âŒ Bad: Unclear abbreviations
         // double p = 1000.0;
         // double r = 0.05;
         // int t = 5;
@@ -370,7 +370,7 @@ public class MeaningfulNames {
 \`\`\`java
 public class ProperInitialization {
     public static void main(String[] args) {
-        // ✅ Good: Initialize with meaningful defaults
+        // âœ… Good: Initialize with meaningful defaults
         int count = 0;              // Counter starts at 0
         String result = "";         // Empty string, not null
         boolean found = false;      // Default to not found
@@ -393,7 +393,7 @@ public class ProperInitialization {
 
 ---
 
-## 🎯 Summary
+## ðŸŽ¯ Summary
 
 Variables are the foundation of Java programming:
 
@@ -418,7 +418,7 @@ Variables are the foundation of Java programming:
 - Initialize with appropriate default values
 - Keep variable scope as narrow as possible
 
-Now that you understand variables, you're ready to explore **data types** - the different kinds of values variables can hold! 🚀
+Now that you understand variables, you're ready to explore **data types** - the different kinds of values variables can hold! ðŸš€
 
 ### **Quick Check**
 Identify the variables and their characteristics in this code:
@@ -441,4 +441,5 @@ public class Quiz {
 }
 \`\`\``
 };
+
 

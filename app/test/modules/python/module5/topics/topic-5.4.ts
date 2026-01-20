@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_4: SubLesson = {
   id: "5.4",
   title: 'Removing Elements from Sets',
   status: 'demo',
-  content: `# ➖ Removing Elements from Sets
+  content: "`# âž– Removing Elements from Sets
 
 Sets provide several ways to remove elements. Each method behaves differently when the element doesn't exist!
 
 ---
 
-## 🎯 Remove Method
+## ðŸŽ¯ Remove Method
 
 ### **Remove Specific Element (Error if Missing)**
-\`\`\`python
+\`"\`\`python
 fruits = {"apple", "banana", "orange", "grape"}
 print(f"Original: {fruits}")
 
@@ -26,7 +26,7 @@ print(f"After remove: {fruits}")  # {'orange', 'grape', 'apple'}
 
 ---
 
-## 🗑️ Discard Method
+## ðŸ—‘ï¸ Discard Method
 
 ### **Remove Element Safely (No Error if Missing)**
 \`\`\`python
@@ -43,7 +43,7 @@ print(f"After discard missing: {numbers}")  # No change, no error
 
 ---
 
-## 🏀 Pop Method
+## ðŸ€ Pop Method
 
 ### **Remove and Return Random Element**
 \`\`\`python
@@ -63,7 +63,7 @@ print(f"Remaining: {colors}")
 
 ---
 
-## 🧹 Clear Method
+## ðŸ§¹ Clear Method
 
 ### **Remove All Elements**
 \`\`\`python
@@ -76,7 +76,7 @@ print(f"After clear: {items}")  # set()
 
 ---
 
-## ✂️ Set Difference Operations
+## âœ‚ï¸ Set Difference Operations
 
 ### **Remove Multiple Elements**
 \`\`\`python
@@ -96,7 +96,7 @@ print(f"Using -: {result2}")
 
 ---
 
-## 📏 Difference Update
+## ðŸ“ Difference Update
 
 ### **Remove Elements In-Place**
 \`\`\`python
@@ -114,7 +114,7 @@ print(f"After difference_update: {set1}")  # {1, 3, 5}
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 \`\`\`python
 # Managing a guest list
@@ -153,7 +153,7 @@ print(f"After clear: {valid_ids}")
 
 ---
 
-## ✅ Method Comparison
+## âœ… Method Comparison
 
 **remove()** - Removes specific element (error if missing), modifies set  
 **discard()** - Removes specific element safely (no error if missing), modifies set  
@@ -162,6 +162,7 @@ print(f"After clear: {valid_ids}")
 **difference()** - Returns new set with elements in first but not second, doesn't modify  
 **difference_update()** - Removes elements from second set, modifies set
 
-Choose the right removal method for your needs! 🗂️`
+Choose the right removal method for your needs! ðŸ—‚ï¸`
 };
+
 

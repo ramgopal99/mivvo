@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_3: SubLesson = {
   id: "11.3",
   title: 'Collision Handling',
   status: 'demo',
-  content: `# 💥 Collision Handling
+  content: "`# ðŸ’¥ Collision Handling
 
 Collisions are inevitable in hash tables. Different keys can produce the same hash value, and we need strategies to handle this gracefully!
 
 ---
 
-## 🎯 Understanding Collisions
+## ðŸŽ¯ Understanding Collisions
 
 ### **What Causes Collisions?**
-\`\`\`python
+\`"\`\`python
 # Two different keys can hash to same value
 key1 = "abc"
 key2 = "def"
@@ -47,7 +47,7 @@ for items in [10, 23, 50, 100]:
 
 ---
 
-## 🔗 Separate Chaining
+## ðŸ”— Separate Chaining
 
 ### **Store Multiple Items Per Bucket**
 \`\`\`python
@@ -105,20 +105,20 @@ print(f"Grape: {ht.get('grape')}")
 ### **Advantages & Disadvantages**
 \`\`\`python
 # Advantages
-print("✅ Simple to implement")
-print("✅ Handles any number of collisions")
-print("✅ Deletion is straightforward")
-print("✅ Better cache performance")
+print("âœ… Simple to implement")
+print("âœ… Handles any number of collisions")
+print("âœ… Deletion is straightforward")
+print("âœ… Better cache performance")
 
 # Disadvantages
-print("❌ Extra memory for linked structures")
-print("❌ Lookup requires searching linked list")
-print("❌ Worst case: O(n) lookup time")
+print("âŒ Extra memory for linked structures")
+print("âŒ Lookup requires searching linked list")
+print("âŒ Worst case: O(n) lookup time")
 \`\`\`
 
 ---
 
-## 🔄 Open Addressing
+## ðŸ”„ Open Addressing
 
 ### **Find Next Available Slot**
 
@@ -204,7 +204,7 @@ def quadratic_probe(index, attempt, size):
     return (index + attempt * attempt) % size
 
 # Reduces clustering compared to linear probing
-print("Quadratic probing: index + 1², index + 2², index + 3², ...")
+print("Quadratic probing: index + 1Â², index + 2Â², index + 3Â², ...")
 \`\`\`
 
 #### **Double Hashing**
@@ -264,7 +264,7 @@ print("Double hashing provides better distribution than linear probing")
 
 ---
 
-## ⚖️ Comparing Collision Resolution
+## âš–ï¸ Comparing Collision Resolution
 
 ### **Performance Comparison**
 \`\`\`python
@@ -312,7 +312,7 @@ print("Trade-off: Flexibility vs Memory efficiency")
 
 ---
 
-## 🔧 Load Factor Management
+## ðŸ”§ Load Factor Management
 
 ### **When to Resize**
 \`\`\`python
@@ -357,7 +357,7 @@ print("Resize strategy: Create new table, rehash all items")
 
 ---
 
-## 🎯 Choosing Collision Resolution
+## ðŸŽ¯ Choosing Collision Resolution
 
 ### **When to Use Separate Chaining**
 - **Simple implementation needed**
@@ -383,7 +383,7 @@ print("Modern hash tables use sophisticated collision resolution")
 
 ---
 
-## ⚠️ Common Collision Issues
+## âš ï¸ Common Collision Issues
 
 ### **Primary Clustering (Linear Probing)**
 \`\`\`python
@@ -413,7 +413,7 @@ print("Monitor load factor and resize when > 0.75")
 
 ---
 
-## 🚀 Advanced Techniques
+## ðŸš€ Advanced Techniques
 
 ### **Robin Hood Hashing**
 \`\`\`python
@@ -441,6 +441,7 @@ print("Hopscotch: Keep related items close together")
 print("Cuckoo: Multiple homes for each item")
 \`\`\`
 
-Collision resolution is what makes hash tables practical and efficient! 🎯`
+Collision resolution is what makes hash tables practical and efficient! ðŸŽ¯`
 };
+
 

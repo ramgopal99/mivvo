@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_16_8: SubLesson = {
   id: "16.8",
   title: 'Advanced Python Features',
   status: 'demo',
-  content: `# 🚀 Advanced Python Features
+  content: "`# ðŸš€ Advanced Python Features
 
 Python offers many advanced features that enable sophisticated programming patterns and techniques. This topic covers powerful language features like metaclasses, descriptors, method resolution order, and other advanced concepts that take Python programming to the next level. Let's explore these advanced capabilities!
 
 ---
 
-## 🎯 Metaclasses
+## ðŸŽ¯ Metaclasses
 
 ### **What are Metaclasses?**
 **Metaclasses** are classes that create classes. They allow you to customize class creation and behavior.
 
-\`\`\`python
+\`"\`\`python
 # The default metaclass is 'type'
 class MyClass:
     pass
@@ -75,7 +75,7 @@ print(obj)  # ValidatedClass(mandatory)
 
 ---
 
-## 🔍 Descriptors
+## ðŸ” Descriptors
 
 ### **What are Descriptors?**
 **Descriptors** are objects that customize attribute access. They implement \`__get__\`, \`__set__\`, or \`__delete__\` methods.
@@ -166,7 +166,7 @@ print(processor.processed_data)  # Uses cached value
 
 ---
 
-## 🏗️ Method Resolution Order (MRO)
+## ðŸ—ï¸ Method Resolution Order (MRO)
 
 ### **Understanding MRO**
 \`\`\`python
@@ -215,7 +215,7 @@ print(B.__mro__)
 
 ---
 
-## 🎨 Abstract Base Classes (ABCs)
+## ðŸŽ¨ Abstract Base Classes (ABCs)
 
 ### **Creating Abstract Classes**
 \`\`\`python
@@ -311,7 +311,7 @@ print(result)  # [2, 4, 6]
 
 ---
 
-## 🔧 Advanced Function Features
+## ðŸ”§ Advanced Function Features
 
 ### **Function Introspection**
 \`\`\`python
@@ -371,7 +371,7 @@ print(complex_function(3))  # ((3+1)*2)^2 = 64
 
 ---
 
-## 🎯 Advanced Class Features
+## ðŸŽ¯ Advanced Class Features
 
 ### **__slots__ for Memory Optimization**
 \`\`\`python
@@ -423,7 +423,7 @@ print(obj.new_method())  # New method called on MyClass
 
 ---
 
-## 🚀 Advanced Data Structures
+## ðŸš€ Advanced Data Structures
 
 ### **Named Tuples**
 \`\`\`python
@@ -473,7 +473,7 @@ print(color_counts.most_common(2))  # [('red', 3), ('blue', 2)]
 
 ---
 
-## 🧪 Practical Advanced Examples
+## ðŸ§ª Practical Advanced Examples
 
 ### **Example 1: Custom Property Descriptor**
 \`\`\`python
@@ -557,7 +557,7 @@ print(route_request('/unknown', 'get'))         # 404 Not Found
 
 ---
 
-## 🎯 Advanced Exception Handling
+## ðŸŽ¯ Advanced Exception Handling
 
 ### **Custom Exception Hierarchy**
 \`\`\`python
@@ -631,7 +631,7 @@ except ValueError as e:
 
 ---
 
-## 🏆 Key Takeaways
+## ðŸ† Key Takeaways
 
 1. **Metaclasses** customize class creation and behavior
 2. **Descriptors** control attribute access and validation
@@ -643,6 +643,7 @@ except ValueError as e:
 8. **Advanced data structures** like named tuples enhance code clarity
 9. **Custom exceptions** improve error handling and debugging
 
-**These advanced features enable sophisticated Python programming patterns and are essential for building robust, maintainable applications! 🚀**`
+**These advanced features enable sophisticated Python programming patterns and are essential for building robust, maintainable applications! ðŸš€**`
 };
+
 

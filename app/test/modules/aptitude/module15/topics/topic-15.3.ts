@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_3: SubLesson = {
   id: "15.3",
   title: 'Bar Graphs',
   status: 'completed',
-  content: `# 📊 Bar Graphs Interpretation
+  content: "`# ðŸ“Š Bar Graphs Interpretation
 
 Master bar graph analysis! Bar graphs are excellent for comparing categories and showing discrete data. Learn to read, compare, and extract insights from vertical and horizontal bar charts with precision.
 
 ---
 
-## 🎯 What are Bar Graphs?
+## ðŸŽ¯ What are Bar Graphs?
 
 **Bar Graphs** (also called Bar Charts) use rectangular bars to represent data values. Each bar's length/height is proportional to the value it represents.
 
@@ -28,7 +28,7 @@ Master bar graph analysis! Bar graphs are excellent for comparing categories and
 
 ---
 
-## 📊 Reading Bar Graphs
+## ðŸ“Š Reading Bar Graphs
 
 ### **Basic Components**
 - **Bars**: Rectangles representing values
@@ -39,8 +39,8 @@ Master bar graph analysis! Bar graphs are excellent for comparing categories and
 
 ### **Example Bar Graph**
 
-\`\`\`
-Sales by Month (₹ in lakhs)
+\`"\`\`
+Sales by Month (â‚¹ in lakhs)
 
 12
 10
@@ -60,7 +60,7 @@ Sales by Month (₹ in lakhs)
 
 ---
 
-## 🔍 Analysis Techniques
+## ðŸ” Analysis Techniques
 
 ### **Step 1: Understand the Context**
 - Read title and description
@@ -87,7 +87,7 @@ Sales by Month (₹ in lakhs)
 
 ---
 
-## 📈 Types of Bar Graph Questions
+## ðŸ“ˆ Types of Bar Graph Questions
 
 ### **1. Direct Value Reading**
 **"What was the sales in March?"**
@@ -102,12 +102,12 @@ Sales by Month (₹ in lakhs)
 ### **3. Percentage Calculations**
 **"What percentage of total sales was in April?"**
 - Find April value and total
-- Calculate: (April/Total) × 100
+- Calculate: (April/Total) Ã— 100
 
 ### **4. Growth/Change Questions**
 **"By what percentage did sales increase from Jan to Mar?"**
-- Formula: [(Mar - Jan)/Jan] × 100
-- (10 - 2)/2 × 100 = 400%
+- Formula: [(Mar - Jan)/Jan] Ã— 100
+- (10 - 2)/2 Ã— 100 = 400%
 
 ### **5. Ratio Questions**
 **"What is the ratio of Feb to Apr sales?"**
@@ -116,32 +116,32 @@ Sales by Month (₹ in lakhs)
 
 ### **6. Average Questions**
 **"What is the average monthly sales?"**
-- Sum all values ÷ number of months
-- (2+6+10+4+3+7)/6 ≈ 32/6 ≈ 5.33 lakhs
+- Sum all values Ã· number of months
+- (2+6+10+4+3+7)/6 â‰ˆ 32/6 â‰ˆ 5.33 lakhs
 
 ---
 
-## 🎯 Sample Bar Graph Analysis
+## ðŸŽ¯ Sample Bar Graph Analysis
 
 ### **Monthly Sales Data**
 
 \`\`\`
 Monthly Sales Performance
-(Values in ₹ lakhs)
+(Values in â‚¹ lakhs)
 
-12 │
-11 │
-10 │         ███
- 9 │
- 8 │
- 7 │                     ███
- 6 │       ███
- 5 │
- 4 │           ███
- 3 │                 ███
- 2 │   ███
- 1 │
- 0 │___________________________
+12 â”‚
+11 â”‚
+10 â”‚         â–ˆâ–ˆâ–ˆ
+ 9 â”‚
+ 8 â”‚
+ 7 â”‚                     â–ˆâ–ˆâ–ˆ
+ 6 â”‚       â–ˆâ–ˆâ–ˆ
+ 5 â”‚
+ 4 â”‚           â–ˆâ–ˆâ–ˆ
+ 3 â”‚                 â–ˆâ–ˆâ–ˆ
+ 2 â”‚   â–ˆâ–ˆâ–ˆ
+ 1 â”‚
+ 0 â”‚___________________________
     Jan Feb Mar Apr May Jun
 \`\`\`
 
@@ -162,33 +162,33 @@ Monthly Sales Performance
 - 3 + 6 + 10 + 8 + 4 + 11 = 42 lakhs
 
 **3. What percentage of total sales was in March?**
-- (10/42) × 100 ≈ 23.81%
+- (10/42) Ã— 100 â‰ˆ 23.81%
 
 **4. By what percentage did sales decrease from Apr to May?**
 - Decrease: 8 - 4 = 4
-- Percentage: (4/8) × 100 = 50%
+- Percentage: (4/8) Ã— 100 = 50%
 
 **5. What is the ratio of highest to lowest sales?**
-- 11:3 = 11/3 ≈ 3.67:1
+- 11:3 = 11/3 â‰ˆ 3.67:1
 
 ---
 
-## 📊 Grouped Bar Graphs
+## ðŸ“Š Grouped Bar Graphs
 
 ### **Example: Multi-Category Comparison**
 
 \`\`\`
 Sales by Product and Quarter
-(₹ in lakhs)
+(â‚¹ in lakhs)
 
-14 │
-12 │
-10 │     ███   ███   ███
- 8 │   ███ ███ ███ ███
- 6 │ ███ ███ ███ ███ ███
- 4 │ ███ ███ ███ ███ ███
- 2 │
- 0 │___________________________
+14 â”‚
+12 â”‚
+10 â”‚     â–ˆâ–ˆâ–ˆ   â–ˆâ–ˆâ–ˆ   â–ˆâ–ˆâ–ˆ
+ 8 â”‚   â–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆ
+ 6 â”‚ â–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆ
+ 4 â”‚ â–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆ
+ 2 â”‚
+ 0 â”‚___________________________
     P1  P2  P3  Q1  Q2  Q3
 \`\`\`
 
@@ -214,20 +214,20 @@ Sales by Product and Quarter
 
 ---
 
-## 📊 Stacked Bar Graphs
+## ðŸ“Š Stacked Bar Graphs
 
 ### **Example: Component Breakdown**
 
 \`\`\`
 Market Share by Region
-(₹ in crores)
+(â‚¹ in crores)
 
-25 │
-20 │ ████ ███ ████ ████
-15 │ ████ ███ ████ ████
-10 │ ████ ███ ████ ████
- 5 │ ████ ███ ████ ████
- 0 │___________________________
+25 â”‚
+20 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+15 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+10 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+ 5 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+ 0 â”‚___________________________
     North South East West
 \`\`\`
 
@@ -245,11 +245,11 @@ Market Share by Region
 - Compare component sizes in South bar
 
 **3. What percentage of East market is Product A?**
-- (Product A in East / Total East) × 100
+- (Product A in East / Total East) Ã— 100
 
 ---
 
-## 🎯 Common Question Patterns
+## ðŸŽ¯ Common Question Patterns
 
 ### **Pattern 1: Value Comparison**
 **"Compare sales of Product A and B in Q2"**
@@ -263,19 +263,19 @@ Market Share by Region
 
 ### **Pattern 3: Percentage Share**
 **"What percentage of total sales is Category X?"**
-- (Category X / Total) × 100
+- (Category X / Total) Ã— 100
 
 ### **Pattern 4: Growth Calculation**
 **"By what percent did sales increase?"**
-- [(New - Old)/Old] × 100
+- [(New - Old)/Old] Ã— 100
 
 ### **Pattern 5: Average Calculation**
 **"What is the average value?"**
-- Sum of values ÷ Number of items
+- Sum of values Ã· Number of items
 
 ---
 
-## 🚀 Speed Reading Techniques
+## ðŸš€ Speed Reading Techniques
 
 ### **1. Visual Estimation**
 - Compare bar heights quickly
@@ -299,44 +299,44 @@ Market Share by Region
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Scale Reading**
-❌ Reading 8 when bar reaches 7.5 mark
+âŒ Reading 8 when bar reaches 7.5 mark
 - Align eyes with top of bar exactly
 
 ### **Mistake 2: Missing Components**
-❌ Forgetting stacked bar components
+âŒ Forgetting stacked bar components
 - Sum all parts for total values
 
 ### **Mistake 3: Incorrect Comparisons**
-❌ Comparing different categories incorrectly
+âŒ Comparing different categories incorrectly
 - Ensure same scale and units
 
 ### **Mistake 4: Calculation Errors**
-❌ Wrong percentage: (Part/Total) × 100
+âŒ Wrong percentage: (Part/Total) Ã— 100
 - Don't forget multiplication by 100
 
 ### **Mistake 5: Trend Misinterpretation**
-❌ "Increasing" when actually fluctuating
+âŒ "Increasing" when actually fluctuating
 - Check consecutive values carefully
 
 ---
 
-## 🎯 Practice Bar Graphs
+## ðŸŽ¯ Practice Bar Graphs
 
 ### **Graph 1: Company Profits**
 
 \`\`\`
-Annual Profits (₹ crores)
+Annual Profits (â‚¹ crores)
 
-12 │
-10 │         ███
- 8 │       ███
- 6 │     ███
- 4 │   ███
- 2 │ ███
- 0 │___________________
+12 â”‚
+10 â”‚         â–ˆâ–ˆâ–ˆ
+ 8 â”‚       â–ˆâ–ˆâ–ˆ
+ 6 â”‚     â–ˆâ–ˆâ–ˆ
+ 4 â”‚   â–ˆâ–ˆâ–ˆ
+ 2 â”‚ â–ˆâ–ˆâ–ˆ
+ 0 â”‚___________________
     2018 2019 2020 2021
 \`\`\`
 
@@ -350,13 +350,13 @@ Annual Profits (₹ crores)
 \`\`\`
 Average Scores by Subject
 
-100 │
- 90 │ ████ ████ ████ ████ ████
- 80 │ ████ ████ ████ ████ ████
- 70 │ ████ ████ ████ ████ ████
- 60 │ ████ ████ ████ ████ ████
- 50 │ ████ ████ ████ ████ ████
- 40 │
+100 â”‚
+ 90 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+ 80 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+ 70 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+ 60 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+ 50 â”‚ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ â–ˆâ–ˆâ–ˆâ–ˆ
+ 40 â”‚
     Math Sci Eng His Geo
 \`\`\`
 
@@ -367,7 +367,7 @@ Average Scores by Subject
 
 ---
 
-## 🎓 Pro Tips for Bar Graphs
+## ðŸŽ“ Pro Tips for Bar Graphs
 
 1. **Read the scale carefully** - note units and intervals
 2. **Identify highest/lowest** bars quickly
@@ -379,7 +379,7 @@ Average Scores by Subject
 
 ---
 
-## 🔢 Bar Graph Analysis Framework
+## ðŸ”¢ Bar Graph Analysis Framework
 
 \`\`\`
 1. READ the title and axes labels
@@ -404,14 +404,14 @@ Average Scores by Subject
    - Ensure calculation correctness
 \`\`\`
 
-Master bar graph interpretation and extract insights quickly from any bar chart! 🏆
+Master bar graph interpretation and extract insights quickly from any bar chart! ðŸ†
 
 **Answers for Practice Graphs:**
 1. 2021: 10 crores
-2. (8-2)/2 × 100 = 300%
+2. (8-2)/2 Ã— 100 = 300%
 3. (2+4+6+8+10)/5 = 6 crores
 
-Student Scores: 1. Math: 90, Science: 85, English: 75, History: 65, Geography: 70 → Math
+Student Scores: 1. Math: 90, Science: 85, English: 75, History: 65, Geography: 70 â†’ Math
 2. Range: 90 - 65 = 25 marks
 3. Above 70: Math(90), Science(85), English(75) = 3 out of 5 = 60%`
 };

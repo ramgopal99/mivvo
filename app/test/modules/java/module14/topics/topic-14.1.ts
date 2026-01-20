@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_14_1: SubLesson = {
   id: "14.1",
   title: 'Introduction to Recursion',
   status: 'completed',
-  content: `# 🔄 Introduction to Recursion in Java
+  content: "`# ðŸ”„ Introduction to Recursion in Java
 
 Recursion is a powerful programming technique where a method calls itself to solve problems!
 
 ---
 
-## 🎯 What is Recursion?
+## ðŸŽ¯ What is Recursion?
 
 **Recursion** is a programming technique where a method calls itself directly or indirectly to solve a problem by breaking it down into smaller, similar subproblems.
 
@@ -27,10 +27,10 @@ Each recursive call must get closer to the base case
 
 ---
 
-## 📝 Simple Recursive Method
+## ðŸ“ Simple Recursive Method
 
 ### **Factorial Example**
-\`\`\`java
+\`"\`\`java
 public class RecursionExamples {
     // Recursive factorial method
     public static long factorial(int n) {
@@ -65,7 +65,7 @@ factorial(5) = 5 * 24 = 120
 
 ---
 
-## 🛑 Call Stack
+## ðŸ›‘ Call Stack
 
 Each recursive call creates a new **stack frame** in memory:
 
@@ -75,17 +75,17 @@ main()
     factorial(4)
       factorial(3)
         factorial(2)
-          factorial(1) ← Base case reached
-          factorial(2) ← Returns 2
-        factorial(3) ← Returns 6
-      factorial(4) ← Returns 24
-    factorial(5) ← Returns 120
-  main() ← Prints result
+          factorial(1) â† Base case reached
+          factorial(2) â† Returns 2
+        factorial(3) â† Returns 6
+      factorial(4) â† Returns 24
+    factorial(5) â† Returns 120
+  main() â† Prints result
 \`\`\`
 
 ---
 
-## ⚠️ Common Pitfalls
+## âš ï¸ Common Pitfalls
 
 ### **1. Missing Base Case**
 \`\`\`java
@@ -112,7 +112,7 @@ public static int infiniteLoop(int n) {
 
 ---
 
-## 🔄 Types of Recursion
+## ðŸ”„ Types of Recursion
 
 ### **1. Direct Recursion**
 Method calls itself directly:
@@ -156,7 +156,7 @@ public static void tailRecursion(int n) {
 
 ---
 
-## 🎯 When to Use Recursion?
+## ðŸŽ¯ When to Use Recursion?
 
 ### **Perfect for:**
 - **Tree/Graph traversals** (DFS)
@@ -171,7 +171,7 @@ public static void tailRecursion(int n) {
 
 ---
 
-## 🧪 Practice Examples
+## ðŸ§ª Practice Examples
 
 ### **1. Sum of Natural Numbers**
 \`\`\`java
@@ -195,7 +195,7 @@ public static int power(int base, int exp) {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Base case** stops recursion and prevents infinite loops
 2. **Recursive case** breaks problem into smaller subproblems
@@ -203,6 +203,7 @@ public static int power(int base, int exp) {
 4. **Choose recursion** for naturally recursive problems
 5. **Consider stack limits** for deep recursion
 
-**Next:** Learn advanced recursion techniques! 🚀`
+**Next:** Learn advanced recursion techniques! ðŸš€`
 };
+
 

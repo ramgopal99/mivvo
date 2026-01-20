@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_5: SubLesson = {
   id: "13.5",
   title: 'Solving by Elimination Method',
   status: 'completed',
-  content: `# ➕ Solving by Elimination Method
+  content: "`# âž• Solving by Elimination Method
 
 Master the Elimination Method for solving systems of linear equations! This powerful technique eliminates one variable by adding or subtracting equations, making it ideal for most aptitude problems. Learn systematic elimination with confidence.
 
 ---
 
-## 🎯 What is Elimination Method?
+## ðŸŽ¯ What is Elimination Method?
 
 **Elimination Method** (also called **Addition Method**) solves systems of linear equations by eliminating one variable through addition or subtraction of the equations.
 
@@ -25,10 +25,10 @@ Make coefficients of one variable equal in magnitude but opposite in sign, then 
 
 ---
 
-## 🔢 Step-by-Step Elimination Method
+## ðŸ”¢ Step-by-Step Elimination Method
 
 ### **Step 1: Write Equations in Standard Form**
-- Ensure both equations are in \`ax + by = c\` form
+- Ensure both equations are in \`"ax + by = c\` form
 - Align like terms
 
 ### **Step 2: Choose Variable to Eliminate**
@@ -55,7 +55,7 @@ Make coefficients of one variable equal in magnitude but opposite in sign, then 
 
 ---
 
-## 📊 Basic Examples
+## ðŸ“Š Basic Examples
 
 ### **Example 1: Direct Elimination**
 **Solve:**
@@ -95,7 +95,7 @@ LCM = 2
 \`y = 3\`
 
 **Step 4:** Substitute y = 3 in equation (2):
-\`x + 2×3 = 7\`
+\`x + 2Ã—3 = 7\`
 \`x + 6 = 7\`
 \`x = 1\`
 
@@ -103,7 +103,7 @@ LCM = 2
 
 ---
 
-## 🧮 Advanced Examples
+## ðŸ§® Advanced Examples
 
 ### **Example 1: Eliminate y Variable**
 **Solve:**
@@ -143,19 +143,19 @@ LCM = 6
 **Step 3:** Subtract (4) from (3):
 \`(6x + 9y) - (6x - 4y) = 39 - 10\`
 \`13y = 29\`
-\`y = 29/13 ≈ 2.23\`
+\`y = 29/13 â‰ˆ 2.23\`
 
 **Step 4:** Substitute y = 29/13 in equation (1):
-\`2x + 3×(29/13) = 13\`
+\`2x + 3Ã—(29/13) = 13\`
 \`2x + 87/13 = 13\`
 \`2x = 13 - 87/13 = (169 - 87)/13 = 82/13\`
-\`x = 82/26 = 41/13 ≈ 3.15\`
+\`x = 82/26 = 41/13 â‰ˆ 3.15\`
 
 **Solution:** x = 41/13, y = 29/13
 
 ---
 
-## 📈 Complex Examples
+## ðŸ“ˆ Complex Examples
 
 ### **Example 1: Three-Step Elimination**
 **Solve:**
@@ -193,7 +193,7 @@ LCM = 15
 \`y = 2.5\`
 
 **Step 5:** Substitute in (3):
-\`3x + 5×2.5 = 17\`
+\`3x + 5Ã—2.5 = 17\`
 \`3x + 12.5 = 17\`
 \`3x = 4.5\`
 \`x = 1.5\`
@@ -202,10 +202,10 @@ LCM = 15
 
 ---
 
-## 🎯 Word Problems Using Elimination
+## ðŸŽ¯ Word Problems Using Elimination
 
 ### **Example 1: Investment Problem**
-**Problem:** A man invested ₹10,000 in two schemes. Scheme A gives 8% profit, Scheme B gives 10% profit. Total profit ₹880. Find amounts invested.
+**Problem:** A man invested â‚¹10,000 in two schemes. Scheme A gives 8% profit, Scheme B gives 10% profit. Total profit â‚¹880. Find amounts invested.
 
 **Solution:**
 Let amount in A = \`x\`, amount in B = \`y\`
@@ -228,7 +228,7 @@ Subtract (4) from (3):
 
 From (1): \`x = 10,000 - 4,000 = 6,000\`
 
-**Answer:** ₹6,000 in A, ₹4,000 in B
+**Answer:** â‚¹6,000 in A, â‚¹4,000 in B
 
 ### **Example 2: Age Problem**
 **Problem:** Ages of A and B differ by 10 years. 5 years ago, A was twice as old as B. Find current ages.
@@ -246,7 +246,7 @@ Ages: B = 15, A = 25
 
 ---
 
-## 🚨 Special Cases
+## ðŸš¨ Special Cases
 
 ### **Case 1: Parallel Lines (No Solution)**
 **System:**
@@ -259,7 +259,7 @@ x + y = 5  ...(2)
 \`(x + y) - (x + y) = 3 - 5\`
 \`0 = -2\`
 
-**Result:** Contradiction → No solution
+**Result:** Contradiction â†’ No solution
 
 ### **Case 2: Coincident Lines (Infinite Solutions)**
 **System:**
@@ -273,11 +273,11 @@ x + y = 5  ...(2)
 **Step 2:** Subtract equations:
 \`0 = 0\`
 
-**Result:** Identity → Infinite solutions
+**Result:** Identity â†’ Infinite solutions
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Basic Elimination:**
 1. Solve: \`x + y = 8\` and \`x - y = 2\`
@@ -289,7 +289,7 @@ x + y = 5  ...(2)
 2. Solve: \`1.5x + 2.5y = 8.5\` and \`2.5x + 1.5y = 7.5\`
 
 ### **Word Problems:**
-1. **Investment:** ₹15,000 invested at 6% and 8%. Total interest ₹1,080. Find amounts.
+1. **Investment:** â‚¹15,000 invested at 6% and 8%. Total interest â‚¹1,080. Find amounts.
 2. **Numbers:** Two numbers differ by 8. Their sum is 40. Find numbers.
 3. **Age:** Father is 30 years older than son. 5 years ago, father was 3 times son's age. Find ages.
 
@@ -300,12 +300,12 @@ x + y = 5  ...(2)
 **Answers:**
 Basic: (5,3), (1,3), (0,6)
 Advanced: (41/13,29/13), (1.5,2.5)
-Word: ₹9,000 & ₹6,000, 16 & 24, Son-10, Father-40
+Word: â‚¹9,000 & â‚¹6,000, 16 & 24, Son-10, Father-40
 Special: Unique solution (1,3), No solution
 
 ---
 
-## 🎓 Pro Tips for Elimination Method
+## ðŸŽ“ Pro Tips for Elimination Method
 
 1. **Choose elimination variable wisely** - pick easier coefficients
 2. **Find LCM correctly** - crucial for multiplication factors
@@ -317,51 +317,51 @@ Special: Unique solution (1,3), No solution
 
 ---
 
-## 🔢 Elimination Method Decision Tree
+## ðŸ”¢ Elimination Method Decision Tree
 
 \`\`\`
 Choose variable to eliminate
-    ↓
+    â†“
 Check coefficients
-    ↓
-Same signs? → Subtract equations
-    ↓
-Opposite signs? → Add equations
-    ↓
-Different magnitudes? → Find LCM and multiply
-    ↓
+    â†“
+Same signs? â†’ Subtract equations
+    â†“
+Opposite signs? â†’ Add equations
+    â†“
+Different magnitudes? â†’ Find LCM and multiply
+    â†“
 Eliminate variable
-    ↓
+    â†“
 Solve remaining equation
-    ↓
+    â†“
 Substitute back
-    ↓
+    â†“
 Verify solution
 \`\`\`
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Wrong Operation**
-❌ Adding when you should subtract
+âŒ Adding when you should subtract
 - Check signs of coefficients
 
 ### **Mistake 2: Incorrect LCM**
-❌ Wrong multiplication factors
+âŒ Wrong multiplication factors
 - Double-check LCM calculation
 
 ### **Mistake 3: Sign Errors in Subtraction**
-❌ Forgetting to change signs when subtracting
+âŒ Forgetting to change signs when subtracting
 - All signs change in subtraction
 
 ### **Mistake 4: Incomplete Elimination**
-❌ Not multiplying both equations by correct factors
+âŒ Not multiplying both equations by correct factors
 - Both equations must be multiplied
 
 ### **Mistake 5: Division Instead of Multiplication**
-❌ Dividing equations instead of multiplying to eliminate decimals
+âŒ Dividing equations instead of multiplying to eliminate decimals
 - Always multiply to clear fractions/decimals
 
-Master the elimination method and solve linear equation systems efficiently! 🏆`
+Master the elimination method and solve linear equation systems efficiently! ðŸ†`
 };

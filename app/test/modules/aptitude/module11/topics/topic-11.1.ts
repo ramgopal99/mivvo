@@ -1,29 +1,29 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_1: SubLesson = {
   id: "11.1",
   title: 'Basic Formula (Speed = Distance / Time)',
   status: 'completed',
-  content: `# 🏃‍♂️ Basic Formula (Speed = Distance / Time)
+  content: "`# ðŸƒâ€â™‚ï¸ Basic Formula (Speed = Distance / Time)
 
 Master the fundamental relationship between speed, distance, and time - the cornerstone of all motion problems.
 
 ---
 
-## 🎯 The Fundamental Relationship
+## ðŸŽ¯ The Fundamental Relationship
 
 **Speed, Distance, and Time** are interconnected through a simple but powerful relationship.
 
 ### **Basic Formula**
-\`\`\`
+\`"\`\`
 Speed = Distance / Time
-Distance = Speed × Time
+Distance = Speed Ã— Time
 Time = Distance / Speed
 \`\`\`
 
 ---
 
-## 📊 Understanding the Units
+## ðŸ“Š Understanding the Units
 
 ### **Speed Units**
 - **km/h**: Kilometers per hour
@@ -45,7 +45,7 @@ Time = Distance / Speed
 
 ---
 
-## 🧮 Basic Calculations
+## ðŸ§® Basic Calculations
 
 ### Example 1: Speed Calculation
 **A car travels 150 km in 3 hours. Find speed.**
@@ -57,7 +57,7 @@ Time = Distance / Speed
 **A train travels at 60 km/h for 4 hours. Find distance.**
 
 **Solution:**
-- Distance = Speed × Time = 60 × 4 = 240 km
+- Distance = Speed Ã— Time = 60 Ã— 4 = 240 km
 
 ### Example 3: Time Calculation
 **A cyclist covers 45 km at 15 km/h. Find time.**
@@ -67,12 +67,12 @@ Time = Distance / Speed
 
 ---
 
-## 🧠 Exam Tricks & Shortcuts
+## ðŸ§  Exam Tricks & Shortcuts
 
 ### **Unit Consistency**
 \`\`\`
 Always convert to same units before calculation
-Speed in km/h → Distance in km, Time in hours
+Speed in km/h â†’ Distance in km, Time in hours
 \`\`\`
 
 ### **Quick Conversions**
@@ -83,8 +83,8 @@ Speed in km/h → Distance in km, Time in hours
 
 ### **Mental Math Tricks**
 \`\`\`
-For speed in km/h and time in hours: Distance = Speed × Time
-For speed in m/s and time in seconds: Distance = Speed × Time
+For speed in km/h and time in hours: Distance = Speed Ã— Time
+For speed in m/s and time in seconds: Distance = Speed Ã— Time
 \`\`\`
 
 ### **Common Values**
@@ -97,7 +97,7 @@ Train speed: 60-100 km/h
 
 ---
 
-## 🔢 Advanced Applications
+## ðŸ”¢ Advanced Applications
 
 ### **Variable Speed Problems**
 - **Average speed**: Total distance / Total time
@@ -116,7 +116,7 @@ Train speed: 60-100 km/h
 
 ---
 
-## 🎯 Complex Examples
+## ðŸŽ¯ Complex Examples
 
 ### Example 4: Multiple Segments
 **A car travels 120 km at 60 km/h, then 180 km at 90 km/h. Find average speed.**
@@ -133,7 +133,7 @@ Train speed: 60-100 km/h
 
 **Solution:**
 - Speed in m/s = 100/10 = 10 m/s
-- Speed in km/h = 10 × (3600/1000) = 10 × 3.6 = 36 km/h
+- Speed in km/h = 10 Ã— (3600/1000) = 10 Ã— 3.6 = 36 km/h
 
 ### Example 6: Time Breakdown
 **A journey of 360 km takes 6 hours. Find time at 50 km/h speed.**
@@ -144,7 +144,7 @@ Train speed: 60-100 km/h
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 1. **Unit Mismatch**: km/h with meters and seconds
 2. **Time Conversion**: Hours vs minutes vs seconds
@@ -154,7 +154,7 @@ Train speed: 60-100 km/h
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 **1.** Car travels 240 km in 4 hours. Speed?
 **2.** Train at 80 km/h travels for 5 hours. Distance?
@@ -166,13 +166,13 @@ Train speed: 60-100 km/h
 
 ---
 
-## 🎓 Basic Formula Strategies
+## ðŸŽ“ Basic Formula Strategies
 
 1. **Identify the unknown** - speed, distance, or time
 2. **Convert units** to be consistent
-3. **Apply the formula** - S=D/T, D=S×T, T=D/S
+3. **Apply the formula** - S=D/T, D=SÃ—T, T=D/S
 4. **Check reasonableness** - speed should be realistic
 5. **Use mental math** for quick calculations
 
-Master the basic formula and you'll handle all speed-distance-time problems with confidence! 🏆`
+Master the basic formula and you'll handle all speed-distance-time problems with confidence! ðŸ†`
 };

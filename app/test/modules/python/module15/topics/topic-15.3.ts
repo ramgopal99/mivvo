@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_3: SubLesson = {
   id: "15.3",
   title: 'Selection Sort Algorithm',
   status: 'demo',
-  content: `# 🎯 Selection Sort Algorithm
+  content: "`# ðŸŽ¯ Selection Sort Algorithm
 
 Selection Sort is another simple comparison-based sorting algorithm. Unlike Bubble Sort, it minimizes the number of swaps by finding the minimum element and placing it in its correct position in each pass. Let's explore this efficient approach!
 
 ---
 
-## 🎯 How Selection Sort Works
+## ðŸŽ¯ How Selection Sort Works
 
 **Selection Sort** works by repeatedly finding the minimum element from the unsorted portion and putting it at the beginning. It maintains two subarrays: sorted and unsorted.
 
@@ -22,41 +22,41 @@ Selection Sort is another simple comparison-based sorting algorithm. Unlike Bubb
 
 ---
 
-## 📝 Step-by-Step Example
+## ðŸ“ Step-by-Step Example
 
 **Input Array**: [64, 25, 12, 22, 11]
 
 ### **Pass 1:**
-- Find minimum element in [64, 25, 12, 22, 11] → **11**
-- Swap 11 with first element (64) → [**11**, 25, 12, 22, 64]
+- Find minimum element in [64, 25, 12, 22, 11] â†’ **11**
+- Swap 11 with first element (64) â†’ [**11**, 25, 12, 22, 64]
 - **11 is now in its correct position!**
 
 ### **Pass 2:**
-- Find minimum element in [25, 12, 22, 64] → **12**
-- Swap 12 with first unsorted element (25) → [11, **12**, 25, 22, 64]
+- Find minimum element in [25, 12, 22, 64] â†’ **12**
+- Swap 12 with first unsorted element (25) â†’ [11, **12**, 25, 22, 64]
 - **12 is now in its correct position!**
 
 ### **Pass 3:**
-- Find minimum element in [25, 22, 64] → **22**
-- Swap 22 with first unsorted element (25) → [11, 12, **22**, 25, 64]
+- Find minimum element in [25, 22, 64] â†’ **22**
+- Swap 22 with first unsorted element (25) â†’ [11, 12, **22**, 25, 64]
 - **22 is now in its correct position!**
 
 ### **Pass 4:**
-- Find minimum element in [25, 64] → **25**
-- 25 is already in correct position → [11, 12, 22, **25**, 64]
+- Find minimum element in [25, 64] â†’ **25**
+- 25 is already in correct position â†’ [11, 12, 22, **25**, 64]
 - **25 is now in its correct position!**
 
 ### **Pass 5:**
-- Only one element left [64] → Already sorted!
+- Only one element left [64] â†’ Already sorted!
 
 **Final Result**: [11, 12, 22, 25, 64]
 
 ---
 
-## 💻 Implementation
+## ðŸ’» Implementation
 
 ### **Basic Selection Sort**
-\`\`\`python
+\`"\`\`python
 def selection_sort(arr):
     n = len(arr)
     
@@ -106,12 +106,12 @@ selection_sort_verbose(arr)
 
 ---
 
-## 📊 Algorithm Analysis
+## ðŸ“Š Algorithm Analysis
 
 ### **Time Complexity**
-- **Best Case**: O(n²) - Always scans entire unsorted portion
-- **Worst Case**: O(n²) - Reverse sorted array
-- **Average Case**: O(n²)
+- **Best Case**: O(nÂ²) - Always scans entire unsorted portion
+- **Worst Case**: O(nÂ²) - Reverse sorted array
+- **Average Case**: O(nÂ²)
 
 ### **Space Complexity**
 - **O(1)** - In-place sorting, only constant extra space
@@ -124,36 +124,36 @@ selection_sort_verbose(arr)
 
 ---
 
-## 🔍 Selection Sort vs Bubble Sort
+## ðŸ” Selection Sort vs Bubble Sort
 
 | Aspect | Selection Sort | Bubble Sort |
 |--------|----------------|-------------|
-| **Swaps** | O(n) - Minimal | O(n²) - Many |
-| **Comparisons** | O(n²) - Always | O(n²) - Always |
-| **Best Case** | O(n²) | O(n) |
+| **Swaps** | O(n) - Minimal | O(nÂ²) - Many |
+| **Comparisons** | O(nÂ²) - Always | O(nÂ²) - Always |
+| **Best Case** | O(nÂ²) | O(n) |
 | **Stability** | Unstable | Stable |
 | **Memory** | O(1) | O(1) |
 
-**Key Difference**: Selection Sort performs fewer swaps but always takes O(n²) time.
+**Key Difference**: Selection Sort performs fewer swaps but always takes O(nÂ²) time.
 
 ---
 
-## 🎯 Selection Sort Properties
+## ðŸŽ¯ Selection Sort Properties
 
 ### **Advantages**
-- ✅ **Simple to understand and implement**
-- ✅ **Performs fewer swaps** than Bubble Sort
-- ✅ **In-place sorting** (no extra space needed)
-- ✅ **Predictable performance** (always O(n²))
+- âœ… **Simple to understand and implement**
+- âœ… **Performs fewer swaps** than Bubble Sort
+- âœ… **In-place sorting** (no extra space needed)
+- âœ… **Predictable performance** (always O(nÂ²))
 
 ### **Disadvantages**
-- ❌ **Always O(n²)** - even for already sorted arrays
-- ❌ **Unstable** - may change relative order of equal elements
-- ❌ **Not suitable for large arrays**
+- âŒ **Always O(nÂ²)** - even for already sorted arrays
+- âŒ **Unstable** - may change relative order of equal elements
+- âŒ **Not suitable for large arrays**
 
 ---
 
-## 🔧 Bidirectional Selection Sort
+## ðŸ”§ Bidirectional Selection Sort
 
 A variation that finds both minimum and maximum elements in each pass:
 
@@ -197,7 +197,7 @@ print(arr)  # [11, 12, 22, 25, 64, 90]
 
 ---
 
-## 🧪 Testing and Examples
+## ðŸ§ª Testing and Examples
 
 ### **Test Case 1: Normal Array**
 \`\`\`python
@@ -215,7 +215,7 @@ print("Original:", arr)
 selection_sort(arr)
 print("Sorted:  ", arr)
 # Output: [1, 2, 3, 4, 5]
-# Still takes O(n²) time!
+# Still takes O(nÂ²) time!
 \`\`\`
 
 ### **Test Case 3: Reverse Sorted**
@@ -239,10 +239,10 @@ print("Sorted:  ", arr)
 
 ---
 
-## 🎯 When to Use Selection Sort
+## ðŸŽ¯ When to Use Selection Sort
 
 ### **Good Use Cases:**
-- **Small datasets** (n ≤ 100 elements)
+- **Small datasets** (n â‰¤ 100 elements)
 - **Memory-constrained environments**
 - **When minimizing swaps is important**
 - **Simple implementation needed**
@@ -256,33 +256,33 @@ print("Sorted:  ", arr)
 
 ---
 
-## 🔄 Selection Sort Visualization
+## ðŸ”„ Selection Sort Visualization
 
 \`\`\`text
 Initial: [29, 10, 14, 37, 13]
 
 Pass 1:  [29, 10, 14, 37, 13]
-          ↑           ↑
+          â†‘           â†‘
          min=10     swap with 29
          [10, 29, 14, 37, 13]
 
 Pass 2:  [10, 29, 14, 37, 13]
-              ↑     ↑
+              â†‘     â†‘
              min=14 swap with 29
          [10, 14, 29, 37, 13]
 
 Pass 3:  [10, 14, 29, 37, 13]
-                  ↑     ↑
+                  â†‘     â†‘
                  min=13 swap with 29
          [10, 14, 13, 37, 29]
 
 Pass 4:  [10, 14, 13, 37, 29]
-               ↑  ↑
+               â†‘  â†‘
               min=13 swap with 14
          [10, 13, 14, 37, 29]
 
 Pass 5:  [10, 13, 14, 37, 29]
-                     ↑  ↑
+                     â†‘  â†‘
                     min=29 swap with 37
          [10, 13, 14, 29, 37]
 
@@ -291,14 +291,15 @@ Final:   [10, 13, 14, 29, 37]
 
 ---
 
-## 🏆 Key Takeaways
+## ðŸ† Key Takeaways
 
 1. **Selection Sort** finds the minimum element and places it at the beginning
-2. **Time complexity** is always O(n²) regardless of input order
+2. **Time complexity** is always O(nÂ²) regardless of input order
 3. **Space complexity** is O(1) - it's an in-place algorithm
 4. **It's unstable** - may change relative order of equal elements
 5. **Performs fewer swaps** than Bubble Sort (at most n-1)
 
-**Selection Sort is simple and predictable, but not the most efficient. Next, let's explore Insertion Sort, which performs better on nearly sorted data! 🚀**`
+**Selection Sort is simple and predictable, but not the most efficient. Next, let's explore Insertion Sort, which performs better on nearly sorted data! ðŸš€**`
 };
+
 

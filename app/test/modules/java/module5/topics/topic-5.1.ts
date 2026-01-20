@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_1: SubLesson = {
   id: "5.1",
   title: 'if-else Statements',
   status: 'completed',
-  content: `# 🔀 if-else Statements in Java
+  content: "`# ðŸ”€ if-else Statements in Java
 
 Control structures allow your program to make decisions and execute different code paths based on conditions. The if-else statement is the most fundamental decision-making construct in Java, enabling conditional execution of code blocks.
 
 ---
 
-## 📋 Basic if Statement
+## ðŸ“‹ Basic if Statement
 
 ### **Simple if Statement**
 
 The if statement executes a block of code only if a specified condition is true.
 
-\`\`\`java
+\`"\`\`java
 public class SimpleIf {
     public static void main(String[] args) {
         int age = 18;
@@ -72,7 +72,7 @@ public class BooleanConditions {
 
 ---
 
-## 🔀 if-else Statement
+## ðŸ”€ if-else Statement
 
 ### **Basic if-else Structure**
 
@@ -135,7 +135,7 @@ public class IfElseExamples {
 
 ---
 
-## 🔄 if-else if-else Ladder
+## ðŸ”„ if-else if-else Ladder
 
 ### **Multiple Conditions**
 
@@ -191,7 +191,7 @@ public class TrafficLight {
 
 ---
 
-## 🎯 Nested if Statements
+## ðŸŽ¯ Nested if Statements
 
 ### **if Inside if**
 
@@ -237,7 +237,7 @@ public class AvoidingDeepNesting {
         boolean hasLicense = true;
         boolean hasInsurance = false;
 
-        // ❌ Deep nesting (hard to read)
+        // âŒ Deep nesting (hard to read)
         if (age >= 18) {
             if (hasLicense) {
                 if (hasInsurance) {
@@ -252,7 +252,7 @@ public class AvoidingDeepNesting {
             System.out.println("Too young");
         }
 
-        // ✅ Early returns (cleaner)
+        // âœ… Early returns (cleaner)
         if (age < 18) {
             System.out.println("Too young to drive");
             return;
@@ -275,7 +275,7 @@ public class AvoidingDeepNesting {
 
 ---
 
-## 🔧 Comparison Operators in Conditions
+## ðŸ”§ Comparison Operators in Conditions
 
 ### **Common Comparison Patterns**
 
@@ -336,7 +336,7 @@ public class ComparisonOperators {
 
 ---
 
-## 🎯 Practical Applications
+## ðŸŽ¯ Practical Applications
 
 ### **User Authentication**
 
@@ -453,7 +453,7 @@ public class GradeCalculator {
 
 ---
 
-## ⚠️ Common if-else Mistakes
+## âš ï¸ Common if-else Mistakes
 
 ### **Missing Braces**
 
@@ -462,18 +462,18 @@ public class CommonMistakes {
     public static void main(String[] args) {
         int x = 5;
 
-        // ❌ Missing braces - only first statement is conditional
+        // âŒ Missing braces - only first statement is conditional
         if (x > 0)
             System.out.println("x is positive");
             System.out.println("This always executes!"); // Bug!
 
-        // ✅ Correct with braces
+        // âœ… Correct with braces
         if (x > 0) {
             System.out.println("x is positive");
             System.out.println("Both statements are conditional");
         }
 
-        // ✅ Single statement doesn't need braces (but recommended)
+        // âœ… Single statement doesn't need braces (but recommended)
         if (x < 0)
             System.out.println("x is negative");
     }
@@ -488,22 +488,22 @@ public class AssignmentVsComparison {
         int x = 5;
         boolean condition;
 
-        // ❌ Wrong: assignment instead of comparison
+        // âŒ Wrong: assignment instead of comparison
         // if (condition = true) {  // This assigns true to condition
         //     System.out.println("This will always execute");
         // }
 
-        // ❌ Wrong: assignment in condition
+        // âŒ Wrong: assignment in condition
         // if (x = 10) {  // This assigns 10 to x, then checks if x is truthy
         //     System.out.println("This might not work as expected");
         // }
 
-        // ✅ Correct: comparison
+        // âœ… Correct: comparison
         if (x == 10) {
             System.out.println("x equals 10");
         }
 
-        // ✅ Correct: explicit assignment and comparison
+        // âœ… Correct: explicit assignment and comparison
         condition = (x > 0);
         if (condition) {
             System.out.println("x is positive");
@@ -519,18 +519,18 @@ public class FloatingPointIssues {
     public static void main(String[] args) {
         double x = 0.1 + 0.2;  // 0.30000000000000004 due to floating-point precision
 
-        // ❌ Wrong: direct comparison
+        // âŒ Wrong: direct comparison
         // if (x == 0.3) {
         //     System.out.println("x equals 0.3");
         // }
 
-        // ✅ Better: use epsilon comparison
+        // âœ… Better: use epsilon comparison
         double epsilon = 0.0001;
         if (Math.abs(x - 0.3) < epsilon) {
             System.out.println("x is approximately equal to 0.3");
         }
 
-        // ✅ For money, use BigDecimal or integer cents
+        // âœ… For money, use BigDecimal or integer cents
         // BigDecimal price = new BigDecimal("19.99");
         // if (price.compareTo(new BigDecimal("20.00")) < 0) {
         //     System.out.println("Price is less than $20.00");
@@ -541,7 +541,7 @@ public class FloatingPointIssues {
 
 ---
 
-## 🎯 Ternary Operator (?:)
+## ðŸŽ¯ Ternary Operator (?:)
 
 ### **Compact if-else**
 
@@ -581,7 +581,7 @@ public class TernaryOperator {
 
 ---
 
-## 🎯 Best Practices
+## ðŸŽ¯ Best Practices
 
 ### **1. Use Descriptive Conditions**
 
@@ -592,17 +592,17 @@ public class BestPractices {
         boolean isLoggedIn = true;
         boolean hasPermission = false;
 
-        // ✅ Good: descriptive conditions
+        // âœ… Good: descriptive conditions
         if (userAge >= 18 && isLoggedIn && hasPermission) {
             System.out.println("Access granted");
         }
 
-        // ❌ Bad: magic numbers and unclear logic
+        // âŒ Bad: magic numbers and unclear logic
         // if (userAge > 17 && isLoggedIn == true && hasPermission == false) {
         //     System.out.println("Access granted");
         // }
 
-        // ✅ Extract complex conditions to variables
+        // âœ… Extract complex conditions to variables
         boolean isAuthorized = userAge >= 18 && isLoggedIn;
         boolean hasAccess = isAuthorized && hasPermission;
 
@@ -622,14 +622,14 @@ public class PositiveConditions {
     public static void main(String[] args) {
         boolean isValid = false;
 
-        // ❌ Negative condition (harder to read)
+        // âŒ Negative condition (harder to read)
         if (!isValid) {
             System.out.println("Input is invalid");
             return;
         }
         // Continue with valid input...
 
-        // ✅ Positive condition (easier to read)
+        // âœ… Positive condition (easier to read)
         if (isValid) {
             // Process valid input
             System.out.println("Processing valid input...");
@@ -646,12 +646,12 @@ public class PositiveConditions {
 \`\`\`java
 public class SimpleConditions {
     public static void main(String[] args) {
-        // ✅ Simple, readable conditions
+        // âœ… Simple, readable conditions
         if (isUserLoggedIn() && hasValidSubscription()) {
             showPremiumContent();
         }
 
-        // ❌ Complex condition (hard to debug)
+        // âŒ Complex condition (hard to debug)
         // if (user != null && user.getAccount() != null &&
         //     user.getAccount().getSubscription() != null &&
         //     user.getAccount().getSubscription().isActive() &&
@@ -671,7 +671,7 @@ public class SimpleConditions {
 
 ---
 
-## 🎯 Summary
+## ðŸŽ¯ Summary
 
 if-else statements are the foundation of decision-making in Java:
 
@@ -711,4 +711,5 @@ if (score >= 90) {
 }
 \`\`\``
 };
+
 

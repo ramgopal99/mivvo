@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_3: SubLesson = {
   id: "6.3",
   title: 'Creating Objects',
   status: 'completed',
-  content: `# 🆕 Creating Objects in Java
+  content: "`# ðŸ†• Creating Objects in Java
 
-Object creation is the process of instantiating classes. Understanding how objects are created, initialized, and managed is crucial for effective Java programming. The \`new\` keyword and constructors play central roles in this process.
+Object creation is the process of instantiating classes. Understanding how objects are created, initialized, and managed is crucial for effective Java programming. The \`"new\` keyword and constructors play central roles in this process.
 
 ---
 
-## 📋 Object Instantiation
+## ðŸ“‹ Object Instantiation
 
 ### **Basic Object Creation**
 \`\`\`java
@@ -107,7 +107,7 @@ class Person {
 
 ---
 
-## 🏗️ Constructor Overloading and Chaining
+## ðŸ—ï¸ Constructor Overloading and Chaining
 
 ### **Constructor Overloading**
 \`\`\`java
@@ -223,7 +223,7 @@ class Address {
 
 ---
 
-## 🔄 Object Initialization Patterns
+## ðŸ”„ Object Initialization Patterns
 
 ### **Instance Initializer Blocks**
 \`\`\`java
@@ -299,7 +299,7 @@ public class StaticInitializers {
 
 ---
 
-## 🏭 Object Creation Methods
+## ðŸ­ Object Creation Methods
 
 ### **Factory Methods**
 \`\`\`java
@@ -431,7 +431,7 @@ public class BuilderPattern {
 
 ---
 
-## 🗂️ Object Lifecycle
+## ðŸ—‚ï¸ Object Lifecycle
 
 ### **Object Creation Process**
 \`\`\`java
@@ -493,7 +493,7 @@ public class GarbageCollection {
 
 ---
 
-## 🎯 Object Creation Best Practices
+## ðŸŽ¯ Object Creation Best Practices
 
 ### **1. Prefer Constructor Injection**
 \`\`\`java
@@ -655,6 +655,7 @@ public class ConstructorOverloadingLimits {
 }
 \`\`\`
 
-Object creation is a fundamental aspect of Java programming. Understanding constructors, initialization patterns, and object lifecycle enables you to create robust and maintainable applications! 🆕`
+Object creation is a fundamental aspect of Java programming. Understanding constructors, initialization patterns, and object lifecycle enables you to create robust and maintainable applications! ðŸ†•`
 };
+
 

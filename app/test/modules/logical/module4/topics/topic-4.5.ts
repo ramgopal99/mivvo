@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_5: SubLesson = {
   id: "4.5",
   title: 'Box / Distribution Puzzles',
   status: 'completed',
-  content: `# 📦 Box / Distribution Puzzles
+  content: "`# ðŸ“¦ Box / Distribution Puzzles
 
 Box and distribution puzzles involve allocating items, resources, or entities into containers or groups based on various constraints. These puzzles require systematic distribution logic and constraint satisfaction to solve complex allocation problems.
 
 ---
 
-## 🎯 Understanding Distribution Puzzles
+## ðŸŽ¯ Understanding Distribution Puzzles
 
 ### **What are Box/Distribution Puzzles?**
 These puzzles involve distributing items, people, or resources into boxes, groups, or categories based on given constraints. They test your ability to:
@@ -27,7 +27,7 @@ These puzzles involve distributing items, people, or resources into boxes, group
 
 ---
 
-## 🧩 Types of Distribution Problems
+## ðŸ§© Types of Distribution Problems
 
 ### **1. Box Distribution**
 **Allocating items into boxes with constraints**
@@ -52,7 +52,7 @@ These puzzles involve distributing items, people, or resources into boxes, group
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Understand Distribution Requirements**
 - Identify containers and their properties
@@ -76,7 +76,7 @@ These puzzles involve distributing items, people, or resources into boxes, group
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Box Capacity Problems**
 **Items distributed into boxes with size limits**
@@ -98,7 +98,7 @@ These puzzles involve distributing items, people, or resources into boxes, group
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Distribution Matrix Method**
 Box A: [ ] [ ] [ ]
@@ -120,7 +120,7 @@ Box C: [ ] [ ]
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Box Distribution**
 **Conditions:**
@@ -159,7 +159,7 @@ Box C: [ ] [ ]
 
 ---
 
-## 🔍 Advanced Distribution Concepts
+## ðŸ” Advanced Distribution Concepts
 
 ### **Multi-Constraint Distributions**
 Complex problems with multiple interacting constraints.
@@ -172,7 +172,7 @@ Distributions that change based on conditions.
 
 ---
 
-## 📊 Distribution Logic Methods
+## ðŸ“Š Distribution Logic Methods
 
 ### **Capacity-Based Logic**
 - **Fixed capacity**: Exact number requirements
@@ -191,23 +191,23 @@ Distributions that change based on conditions.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Capacity Miscalculation**
-❌ Wrong capacity constraint application
-✅ Careful capacity limit checking
+âŒ Wrong capacity constraint application
+âœ… Careful capacity limit checking
 
 ### **Pitfall 2: Relationship Confusion**
-❌ Mixing compatibility and exclusion rules
-✅ Clear relationship rule application
+âŒ Mixing compatibility and exclusion rules
+âœ… Clear relationship rule application
 
 ### **Pitfall 3: Incomplete Distribution**
-❌ Not distributing all items
-✅ Ensure all items are allocated
+âŒ Not distributing all items
+âœ… Ensure all items are allocated
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Framework Creation**
 - Create clear distribution matrix
@@ -226,7 +226,7 @@ Distributions that change based on conditions.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Few containers, simple constraints
@@ -245,7 +245,7 @@ Distributions that change based on conditions.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Create Distribution Matrix**: Visual allocation framework
 2. **List All Constraints**: Systematic constraint organization
@@ -255,7 +255,7 @@ Distributions that change based on conditions.
 
 ---
 
-## 📦 Practice Questions
+## ðŸ“¦ Practice Questions
 
 ### **Question 1**
 **Conditions:**
@@ -292,5 +292,5 @@ Distributions that change based on conditions.
 
 **What is the minimum number of balls that can be distributed?**
 
-**Master box and distribution puzzles for systematic allocation skills! 📦✨**`
+**Master box and distribution puzzles for systematic allocation skills! ðŸ“¦âœ¨**`"
 };

@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_2: SubLesson = {
   id: "4.2",
   title: 'Sentence Improvement',
   status: 'completed',
-  content: `# 🚀 Sentence Improvement: Making Sentences Better
+  content: "`# ðŸš€ Sentence Improvement: Making Sentences Better
 
 Sentence improvement involves selecting the best option to enhance clarity, conciseness, grammar, and effectiveness of a sentence. This skill tests your ability to recognize and implement superior language choices in competitive exams.
 
 ---
 
-## 🔍 WHAT IS SENTENCE IMPROVEMENT?
+## ðŸ” WHAT IS SENTENCE IMPROVEMENT?
 
 **Sentence improvement** requires you to:
-- ✅ **Identify weaknesses** in the given sentence
-- ✅ **Choose better alternatives** from options
-- ✅ **Improve clarity, conciseness, and effectiveness**
-- ✅ **Select grammatically superior options**
+- âœ… **Identify weaknesses** in the given sentence
+- âœ… **Choose better alternatives** from options
+- âœ… **Improve clarity, conciseness, and effectiveness**
+- âœ… **Select grammatically superior options**
 
 ### Key Improvement Areas:
 - **Word Choice**: More precise or appropriate vocabulary
@@ -27,118 +27,118 @@ Sentence improvement involves selecting the best option to enhance clarity, conc
 
 ---
 
-## 🎯 COMMON IMPROVEMENT TYPES
+## ðŸŽ¯ COMMON IMPROVEMENT TYPES
 
 ### 1. **Word Choice Improvements**
 **Replace weak or inappropriate words with stronger alternatives**
 
 **Examples:**
-- ✅ **Original**: The man was **very** happy.
+- âœ… **Original**: The man was **very** happy.
   - **Improved**: The man was **ecstatic**.
   - **Why**: "Ecstatic" is more precise than "very happy"
 
-- ✅ **Original**: She **walked** to the store.
+- âœ… **Original**: She **walked** to the store.
   - **Improved**: She **strolled** to the store.
   - **Why**: "Strolled" is more descriptive
 
 **Common Replacements:**
-- ✅ Very + adjective → Single strong adjective
-- ✅ Good → Excellent, superb, outstanding
-- ✅ Bad → Terrible, dreadful, appalling
-- ✅ Big → Enormous, massive, gigantic
+- âœ… Very + adjective â†’ Single strong adjective
+- âœ… Good â†’ Excellent, superb, outstanding
+- âœ… Bad â†’ Terrible, dreadful, appalling
+- âœ… Big â†’ Enormous, massive, gigantic
 
 ### 2. **Grammar and Structure Improvements**
 **Fix grammatical errors and improve sentence structure**
 
 **Examples:**
-- ✅ **Original**: He don't like apples.
+- âœ… **Original**: He don't like apples.
   - **Improved**: He doesn't like apples.
   - **Why**: Correct subject-verb agreement
 
-- ✅ **Original**: The boy which won the prize.
+- âœ… **Original**: The boy which won the prize.
   - **Improved**: The boy who won the prize.
   - **Why**: Correct relative pronoun
 
 **Common Fixes:**
-- ✅ Subject-verb agreement
-- ✅ Pronoun case and reference
-- ✅ Tense consistency
-- ✅ Parallel structure
+- âœ… Subject-verb agreement
+- âœ… Pronoun case and reference
+- âœ… Tense consistency
+- âœ… Parallel structure
 
 ### 3. **Conciseness Improvements**
 **Remove unnecessary words and redundancy**
 
 **Examples:**
-- ✅ **Original**: Due to the fact that it was raining, we stayed home.
+- âœ… **Original**: Due to the fact that it was raining, we stayed home.
   - **Improved**: Because it was raining, we stayed home.
   - **Why**: Concise without losing meaning
 
-- ✅ **Original**: The final outcome of the meeting was that they decided to postpone it.
+- âœ… **Original**: The final outcome of the meeting was that they decided to postpone it.
   - **Improved**: They decided to postpone the meeting.
   - **Why**: Removed redundant words
 
 **Redundancy to Avoid:**
-- ✅ Final outcome/result
-- ✅ Past history/experience
-- ✅ Future plans
-- ✅ Basic fundamentals
+- âœ… Final outcome/result
+- âœ… Past history/experience
+- âœ… Future plans
+- âœ… Basic fundamentals
 
 ### 4. **Clarity and Precision Improvements**
 **Make meaning clearer and more specific**
 
 **Examples:**
-- ✅ **Original**: The man hit the ball with a stick.
+- âœ… **Original**: The man hit the ball with a stick.
   - **Improved**: The batsman hit the ball with his bat.
   - **Why**: More precise terminology
 
-- ✅ **Original**: She helped her friend with her homework.
+- âœ… **Original**: She helped her friend with her homework.
   - **Improved**: She assisted her friend with the homework.
   - **Why**: "Assisted" is clearer than "helped"
 
 **Ambiguity to Resolve:**
-- ✅ Pronoun reference clarity
-- ✅ Modifier placement
-- ✅ Word meaning precision
+- âœ… Pronoun reference clarity
+- âœ… Modifier placement
+- âœ… Word meaning precision
 
 ### 5. **Style and Tone Improvements**
 **Improve formality, naturalness, or effectiveness**
 
 **Examples:**
-- ✅ **Original**: The teacher informed the students regarding the test.
+- âœ… **Original**: The teacher informed the students regarding the test.
   - **Improved**: The teacher told the students about the test.
   - **Why**: More natural and conversational
 
-- ✅ **Original**: Please do not make noise.
+- âœ… **Original**: Please do not make noise.
   - **Improved**: Please be quiet.
   - **Why**: More polite and effective
 
 **Tone Adjustments:**
-- ✅ Formal → Informal (when appropriate)
-- ✅ Wordy → Concise
-- ✅ Passive → Active (when clearer)
-- ✅ Indirect → Direct
+- âœ… Formal â†’ Informal (when appropriate)
+- âœ… Wordy â†’ Concise
+- âœ… Passive â†’ Active (when clearer)
+- âœ… Indirect â†’ Direct
 
 ### 6. **Idiom and Phrasal Verb Improvements**
 **Use more natural idiomatic expressions**
 
 **Examples:**
-- ✅ **Original**: He stopped doing his bad habits.
+- âœ… **Original**: He stopped doing his bad habits.
   - **Improved**: He gave up his bad habits.
   - **Why**: "Gave up" is more idiomatic
 
-- ✅ **Original**: She remembered her childhood suddenly.
+- âœ… **Original**: She remembered her childhood suddenly.
   - **Improved**: She recalled her childhood suddenly.
   - **Why**: "Recalled" is more precise
 
 **Common Idiomatic Improvements:**
-- ✅ Give up (not stop/quit for habits)
-- ✅ Put up with (not tolerate)
-- ✅ Look after (not take care of)
-- ✅ Carry out (not do/perform)
+- âœ… Give up (not stop/quit for habits)
+- âœ… Put up with (not tolerate)
+- âœ… Look after (not take care of)
+- âœ… Carry out (not do/perform)
 
 ---
 
-## 🛠️ IMPROVEMENT STRATEGIES
+## ðŸ› ï¸ IMPROVEMENT STRATEGIES
 
 ### Step-by-Step Approach:
 1. **Read the original sentence** carefully
@@ -148,31 +148,31 @@ Sentence improvement involves selecting the best option to enhance clarity, conc
 5. **Choose the best overall** improvement
 
 ### Common Improvement Indicators:
-- ✅ **Very + adjective** → Can be replaced with stronger single word
-- ✅ **Due to the fact that** → Can be simplified to "because"
-- ✅ **Redundant phrases** → Can be condensed
-- ✅ **Weak verbs** → Can be replaced with stronger ones
-- ✅ **Unclear references** → Can be made more specific
+- âœ… **Very + adjective** â†’ Can be replaced with stronger single word
+- âœ… **Due to the fact that** â†’ Can be simplified to "because"
+- âœ… **Redundant phrases** â†’ Can be condensed
+- âœ… **Weak verbs** â†’ Can be replaced with stronger ones
+- âœ… **Unclear references** â†’ Can be made more specific
 
 ---
 
-## ⚠️ WHAT NOT TO CHANGE
+## âš ï¸ WHAT NOT TO CHANGE
 
 ### Preserve Correct Elements:
-- ✅ **Correct grammar** - Don't introduce new errors
-- ✅ **Original meaning** - Don't change the intended message
-- ✅ **Context appropriateness** - Maintain suitable tone
-- ✅ **Essential information** - Don't omit important details
+- âœ… **Correct grammar** - Don't introduce new errors
+- âœ… **Original meaning** - Don't change the intended message
+- âœ… **Context appropriateness** - Maintain suitable tone
+- âœ… **Essential information** - Don't omit important details
 
 ### Avoid Over-Correction:
-- ✅ Don't change correct sentences
-- ✅ Don't make sentences more complex unnecessarily
-- ✅ Don't alter meaning or emphasis
-- ✅ Don't introduce ambiguity
+- âœ… Don't change correct sentences
+- âœ… Don't make sentences more complex unnecessarily
+- âœ… Don't alter meaning or emphasis
+- âœ… Don't introduce ambiguity
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Word Choice Improvements
 **Choose the best improvement:**
@@ -260,7 +260,7 @@ Sentence improvement involves selecting the best option to enhance clarity, conc
 
 ---
 
-## 📊 IMPROVEMENT TYPES CHART
+## ðŸ“Š IMPROVEMENT TYPES CHART
 
 | Improvement Type | Original Issue | Improved Version | Benefit |
 |---|---|---|---|
@@ -273,29 +273,29 @@ Sentence improvement involves selecting the best option to enhance clarity, conc
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Single Best Option**: Choose most improved version
 2. **No Improvement**: Some sentences may already be optimal
 3. **Multiple Improvements**: Some options may be partially better
 4. **Context Dependent**: Improvement depends on context
 
-### 💡 Quick Selection Strategy:
+### ðŸ’¡ Quick Selection Strategy:
 1. **Read the original** - Identify weaknesses
 2. **Check each option** - Compare improvements
 3. **Verify grammar** - Ensure grammatical correctness
 4. **Test conciseness** - Prefer shorter, clearer options
 5. **Consider naturalness** - Choose most natural-sounding option
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Spot obvious improvements** first (wordiness, errors)
 - **Eliminate wrong options** quickly
 - **Look for redundancy** - Common improvement area
 - **Check word strength** - Very + adjective often improvable
 - **Trust natural feel** - Choose what sounds best
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Practice regularly** - 10-15 improvements daily
 - **Learn improvement patterns** - Common types repeat
 - **Build vocabulary** - Stronger word choices
@@ -303,20 +303,21 @@ Sentence improvement involves selecting the best option to enhance clarity, conc
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Master common patterns** - Wordiness, weak words, redundancy
 2. **Build vocabulary** - Learn stronger word alternatives
 3. **Practice systematically** - Different improvement types
 4. **Read and compare** - Notice good vs better writing
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Sentence improvement is like editing:**
-- ✂️ **Cut redundancy** - Remove unnecessary words
-- 🔍 **Strengthen words** - Replace weak with strong
-- 🔧 **Fix errors** - Correct grammatical mistakes
-- 🎨 **Polish style** - Make it more natural and effective
+- âœ‚ï¸ **Cut redundancy** - Remove unnecessary words
+- ðŸ” **Strengthen words** - Replace weak with strong
+- ðŸ”§ **Fix errors** - Correct grammatical mistakes
+- ðŸŽ¨ **Polish style** - Make it more natural and effective
 
-**Master sentence improvement and become a writing editor!** 🚀✨`
+**Master sentence improvement and become a writing editor!** ðŸš€âœ¨`"
 };
+

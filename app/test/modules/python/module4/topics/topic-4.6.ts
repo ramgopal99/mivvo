@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_6: SubLesson = {
   id: "4.6",
   title: 'When to Use Tuples',
   status: 'demo',
-  content: `# 🤔 When to Use Tuples
+  content: "`# ðŸ¤” When to Use Tuples
 
 Tuples are great for specific situations. Knowing when to use them makes your code better!
 
 ---
 
-## 🎯 Use Tuples When Data Should NOT Change
+## ðŸŽ¯ Use Tuples When Data Should NOT Change
 
 ### **Constants and Fixed Values**
-\`\`\`python
+\`"\`\`python
 # Mathematical constants
 PI = 3.14159
 E = 2.71828
@@ -30,7 +30,7 @@ BLUE = (0, 0, 255)
 
 ---
 
-## 📍 Use Tuples for Coordinates and Points
+## ðŸ“ Use Tuples for Coordinates and Points
 
 ### **Geographic and Geometric Data**
 \`\`\`python
@@ -48,7 +48,7 @@ mouse_position = (500, 300)
 
 ---
 
-## 🔄 Use Tuples for Returning Multiple Values
+## ðŸ”„ Use Tuples for Returning Multiple Values
 
 ### **Function Returns**
 \`\`\`python
@@ -68,7 +68,7 @@ print(f"Min: {minimum}, Max: {maximum}, Avg: {average:.1f}")
 
 ---
 
-## 🔑 Use Tuples as Dictionary Keys
+## ðŸ”‘ Use Tuples as Dictionary Keys
 
 ### **Immutable Keys**
 \`\`\`python
@@ -92,7 +92,7 @@ print(grades[("Math", 101)])     # 95
 
 ---
 
-## 📊 Use Tuples for Data Records
+## ðŸ“Š Use Tuples for Data Records
 
 ### **Structured Data**
 \`\`\`python
@@ -119,7 +119,7 @@ weather_data = [
 
 ---
 
-## ⚡ Use Tuples for Performance
+## âš¡ Use Tuples for Performance
 
 ### **Faster than Lists for Read-Only Data**
 \`\`\`python
@@ -146,15 +146,15 @@ print(f"List access: {list_time:.4f}s")
 
 ---
 
-## 🚫 When NOT to Use Tuples
+## ðŸš« When NOT to Use Tuples
 
 ### **Don't Use for Changing Data**
 \`\`\`python
-# ❌ Bad - trying to modify tuple
+# âŒ Bad - trying to modify tuple
 # directions = ("north", "south", "east", "west")
 # directions[0] = "North"  # Error!
 
-# ✅ Good - use list for changing data
+# âœ… Good - use list for changing data
 directions = ["north", "south", "east", "west"]
 directions[0] = "North"  # Works!
 \`\`\`
@@ -167,7 +167,7 @@ directions[0] = "North"  # Works!
 
 ---
 
-## 🎨 Best Practices
+## ðŸŽ¨ Best Practices
 
 1. **Use tuples for immutable data** - constants, coordinates, function returns
 2. **Use tuples as dictionary keys** - they must be immutable
@@ -176,13 +176,14 @@ directions[0] = "North"  # Works!
 5. **Consider performance** - tuples are slightly faster for read-only access
 
 ### **Quick Decision Guide:**
-- Data never changes → Tuple
-- Data changes frequently → List
-- Need dictionary key → Tuple
-- Multiple function returns → Tuple
-- Coordinates/points → Tuple
-- Constants → Tuple
+- Data never changes â†’ Tuple
+- Data changes frequently â†’ List
+- Need dictionary key â†’ Tuple
+- Multiple function returns â†’ Tuple
+- Coordinates/points â†’ Tuple
+- Constants â†’ Tuple
 
-Tuples shine when data should stay constant! ✨`
+Tuples shine when data should stay constant! âœ¨`
 };
+
 

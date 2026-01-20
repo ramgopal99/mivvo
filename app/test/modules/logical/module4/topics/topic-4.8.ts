@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_8: SubLesson = {
   id: "4.8",
   title: 'Assignment Puzzles',
   status: 'completed',
-  content: `# 🎯 Assignment Puzzles
+  content: "`# ðŸŽ¯ Assignment Puzzles
 
 Assignment puzzles involve allocating tasks, roles, or resources to people or entities based on various constraints and requirements. These puzzles require understanding of matching logic, constraint satisfaction, and systematic allocation techniques.
 
 ---
 
-## 🎯 Understanding Assignment Puzzles
+## ðŸŽ¯ Understanding Assignment Puzzles
 
 ### **What are Assignment Puzzles?**
 Assignment puzzles involve systematically allocating tasks, roles, or resources to people or entities based on given constraints. They test your ability to:
@@ -27,7 +27,7 @@ Assignment puzzles involve systematically allocating tasks, roles, or resources 
 
 ---
 
-## 🧩 Types of Assignment Problems
+## ðŸ§© Types of Assignment Problems
 
 ### **1. Task Assignment**
 **Allocating tasks to people**
@@ -49,7 +49,7 @@ Assignment puzzles involve systematically allocating tasks, roles, or resources 
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Understand Assignment Requirements**
 - Identify assignees and assignments
@@ -73,7 +73,7 @@ Assignment puzzles involve systematically allocating tasks, roles, or resources 
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Job Assignment**
 **Assigning jobs to workers**
@@ -95,7 +95,7 @@ Assignment puzzles involve systematically allocating tasks, roles, or resources 
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Assignment Matrix Method**
 Tasks:  T1  T2  T3  T4
@@ -119,7 +119,7 @@ P4:    [ ] [ ] [ ] [ ]
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Task Assignment**
 **Conditions:**
@@ -156,7 +156,7 @@ P4:    [ ] [ ] [ ] [ ]
 
 ---
 
-## 🔍 Advanced Assignment Concepts
+## ðŸ” Advanced Assignment Concepts
 
 ### **Multi-Constraint Assignments**
 Complex problems with multiple interacting constraints.
@@ -169,7 +169,7 @@ Assignments that depend on other factors.
 
 ---
 
-## 📊 Assignment Logic Methods
+## ðŸ“Š Assignment Logic Methods
 
 ### **Constraint-Based Logic**
 - **Capability constraints**: Who can do what
@@ -188,23 +188,23 @@ Assignments that depend on other factors.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Constraint Misapplication**
-❌ Wrong constraint interpretation
-✅ Careful constraint analysis
+âŒ Wrong constraint interpretation
+âœ… Careful constraint analysis
 
 ### **Pitfall 2: Incomplete Assignment**
-❌ Not assigning all tasks/people
-✅ Ensure complete allocation
+âŒ Not assigning all tasks/people
+âœ… Ensure complete allocation
 
 ### **Pitfall 3: Logical Conflicts**
-❌ Creating impossible assignments
-✅ Check constraint consistency
+âŒ Creating impossible assignments
+âœ… Check constraint consistency
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Assignment Matrix Creation**
 - Create clear assignee-assignment grid
@@ -223,7 +223,7 @@ Assignments that depend on other factors.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Few assignees/assignments, simple constraints
@@ -242,7 +242,7 @@ Assignments that depend on other factors.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Create Assignment Matrix**: Visual allocation framework
 2. **List All Constraints**: Systematic constraint organization
@@ -252,7 +252,7 @@ Assignments that depend on other factors.
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Question 1**
 **Conditions:**
@@ -286,5 +286,5 @@ Assignments that depend on other factors.
 
 **How many employees have fixed departments?**
 
-**Master assignment puzzles for systematic allocation skills! 🎯✨**`
+**Master assignment puzzles for systematic allocation skills! ðŸŽ¯âœ¨**`"
 };

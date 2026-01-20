@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_3: SubLesson = {
   id: "2.3",
   title: 'Conditions',
   status: 'demo',
-  content: `# 🚀 Python Conditionals - Fast Track Template
+  content: "`# ðŸš€ Python Conditionals - Fast Track Template
 
 Master Python conditionals from basic to advanced! Each level builds on the previous with templates and examples.
 
 ---
 
-## 📚 LEVEL 1: BASIC - Simple Decisions
+## ðŸ“š LEVEL 1: BASIC - Simple Decisions
 
 ### **Template 1: Basic If Statement**
-\`\`\`python
+\`"\`\`python
 # Template: if condition:
 if CONDITION:
     # Do something
@@ -40,7 +40,7 @@ if score >= 60:
 
 ---
 
-## 📈 LEVEL 2: INTERMEDIATE - Alternatives & Multiple Choices
+## ðŸ“ˆ LEVEL 2: INTERMEDIATE - Alternatives & Multiple Choices
 
 ### **Template 2: If-Else Statement**
 \`\`\`python
@@ -109,7 +109,7 @@ if not CONDITION:
 
 ---
 
-## 🔧 LEVEL 3: ADVANCED - Complex Logic & Shortcuts
+## ðŸ”§ LEVEL 3: ADVANCED - Complex Logic & Shortcuts
 
 ### **Template 4: Nested Conditions**
 \`\`\`python
@@ -188,7 +188,7 @@ if "role" in user:
 
 ---
 
-## 🎯 LEVEL 4: EXPERT - Real-World Patterns
+## ðŸŽ¯ LEVEL 4: EXPERT - Real-World Patterns
 
 ### **Template 6: Guard Clauses**
 \`\`\`python
@@ -236,4 +236,5 @@ def authenticate(username, password, is_admin=False):
 
 ---`
 };
+
 

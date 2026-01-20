@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_9_7: SubLesson = {
   id: "9.7",
   title: 'Coded Syllogism',
   status: 'completed',
-  content: `# 🔢 Coded Syllogism
+  content: "`# ðŸ”¢ Coded Syllogism
 
 Coded syllogism involves interpreting categorical statements represented by codes, symbols, or abbreviated forms rather than plain English words. These problems require decoding the symbolic representations and applying standard syllogistic reasoning to determine valid conclusions.
 
 ---
 
-## 🎯 Understanding Coded Syllogism
+## ðŸŽ¯ Understanding Coded Syllogism
 
 ### **What are Coded Syllogism Problems?**
 Coded syllogism problems present categorical statements using codes, symbols, numbers, or abbreviated forms instead of regular words. They test your ability to:
@@ -22,15 +22,15 @@ Coded syllogism problems present categorical statements using codes, symbols, nu
 ### **Common Coding Types**
 
 #### **Letter Coding**
-\`\`\`
+\`"\`\`
 A = All, E = No, I = Some, O = Some...not
 Example: "A + B" means "All A are B"
 \`\`\`
 
 #### **Symbolic Coding**
 \`\`\`
-→ = are, ⊂ = are included in, ∩ = overlap
-Example: "A ⊂ B" means "All A are B"
+â†’ = are, âŠ‚ = are included in, âˆ© = overlap
+Example: "A âŠ‚ B" means "All A are B"
 \`\`\`
 
 #### **Numerical Coding**
@@ -41,19 +41,19 @@ Example: "A 1 B" means "All A are B"
 
 ---
 
-## 🧩 Decoding Coded Statements
+## ðŸ§© Decoding Coded Statements
 
 ### **Standard Coding Patterns**
 
 #### **Pattern 1: Direct Symbol Replacement**
 \`\`\`
-Code: A → B
+Code: A â†’ B
 Meaning: All A are B
 
-Code: A × B
+Code: A Ã— B
 Meaning: No A are B
 
-Code: A ∩ B
+Code: A âˆ© B
 Meaning: Some A are B
 \`\`\`
 
@@ -75,25 +75,25 @@ Code: A % B means "Some A are not B"
 
 ---
 
-## 🎯 Problem Types and Solutions
+## ðŸŽ¯ Problem Types and Solutions
 
 ### **Type 1: Simple Code Decoding**
-*"Statements: A ⊂ B, B ⊄ C"*
+*"Statements: A âŠ‚ B, B âŠ„ C"*
 
 **Decoding:**
-- A ⊂ B → All A are B
-- B ⊄ C → No B are C (⊄ means "not subset of")
+- A âŠ‚ B â†’ All A are B
+- B âŠ„ C â†’ No B are C (âŠ„ means "not subset of")
 
 **Solution:**
-- All A are B + No B are C → No A are C
+- All A are B + No B are C â†’ No A are C
 
 ### **Type 2: Complex Symbolic Logic**
-*"Statements: A → B, B ↔ C, C ← D"*
+*"Statements: A â†’ B, B â†” C, C â† D"*
 
 **Decoding:**
-- A → B → All A are B
-- B ↔ C → Some B are C and Some C are B
-- C ← D → All D are C
+- A â†’ B â†’ All A are B
+- B â†” C â†’ Some B are C and Some C are B
+- C â† D â†’ All D are C
 
 **Solution:**
 - Apply syllogistic rules to the decoded statements
@@ -102,24 +102,24 @@ Code: A % B means "Some A are not B"
 *"Statements: A1B, B3C, C2D"*
 
 **Decoding:**
-- A1B → All A are B
-- B3C → Some B are C
-- C2D → No C are D
+- A1B â†’ All A are B
+- B3C â†’ Some B are C
+- C2D â†’ No C are D
 
 **Solution:**
 - Some A are C (possible), No A are D, etc.
 
 ---
 
-## 📊 Common Coding Systems
+## ðŸ“Š Common Coding Systems
 
 ### **System 1: Mathematical Operators**
 \`\`\`
 + = All are
-× = No are
-∩ = Some are
-⊂ = are included in
-⊄ = are not included in
+Ã— = No are
+âˆ© = Some are
+âŠ‚ = are included in
+âŠ„ = are not included in
 \`\`\`
 
 ### **System 2: Letter Codes**
@@ -136,14 +136,14 @@ Example: "AB1" = "All A are B"
 
 ### **System 4: Symbolic Operators**
 \`\`\`
-→ = are, ← = are included in
-↔ = some overlap
-≠ = no overlap
+â†’ = are, â† = are included in
+â†” = some overlap
+â‰  = no overlap
 \`\`\`
 
 ---
 
-## 🛠️ Coded Syllogism Framework
+## ðŸ› ï¸ Coded Syllogism Framework
 
 ### **Step-by-Step Decoding Process**
 
@@ -174,32 +174,32 @@ Example: "AB1" = "All A are B"
 
 ---
 
-## 🎯 Common Coded Patterns
+## ðŸŽ¯ Common Coded Patterns
 
 ### **Pattern 1: Operator Chains**
 \`\`\`
-A → B → C → D
+A â†’ B â†’ C â†’ D
 Means: All A are B, All B are C, All C are D
-∴ All A are D
+âˆ´ All A are D
 \`\`\`
 
 ### **Pattern 2: Mixed Operators**
 \`\`\`
-A ⊂ B, B ∩ C, C ⊄ D
+A âŠ‚ B, B âˆ© C, C âŠ„ D
 Means: All A are B, Some B are C, No C are D
-∴ Some A are C, No A are D
+âˆ´ Some A are C, No A are D
 \`\`\`
 
 ### **Pattern 3: Complex Relations**
 \`\`\`
-A ↔ B, B ⊄ C, C ⊂ D
+A â†” B, B âŠ„ C, C âŠ‚ D
 Means: Some A are B and Some B are A, No B are C, All C are D
-∴ Some A are not C, Some D are C
+âˆ´ Some A are not C, Some D are C
 \`\`\`
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (40%)**
 - Simple operator replacement
@@ -218,7 +218,7 @@ Means: Some A are B and Some B are A, No B are C, All C are D
 
 ---
 
-## 🧮 Decoding Techniques
+## ðŸ§® Decoding Techniques
 
 ### **Technique 1: Pattern Recognition**
 \`\`\`
@@ -231,9 +231,9 @@ Look for consistent patterns:
 ### **Technique 2: Context Analysis**
 \`\`\`
 Use surrounding codes to understand meaning:
-- If A→B and B→C, likely "All A are B, All B are C"
-- If A×B, likely "No A are B"
-- If A∩B, likely "Some A are B"
+- If Aâ†’B and Bâ†’C, likely "All A are B, All B are C"
+- If AÃ—B, likely "No A are B"
+- If Aâˆ©B, likely "Some A are B"
 \`\`\`
 
 ### **Technique 3: Logical Consistency**
@@ -246,16 +246,16 @@ Test decoded meanings:
 
 ---
 
-## 🎯 Advanced Coded Problems
+## ðŸŽ¯ Advanced Coded Problems
 
 ### **Complex Example 1: Multi-Symbol System**
-*"A ⇄ B, B ⊈ C, C ⊆ D, D ↔ E"*
+*"A â‡„ B, B âŠˆ C, C âŠ† D, D â†” E"*
 
 **Decoding:**
-- A ⇄ B: Some A are B and Some B are A
-- B ⊈ C: No B are C
-- C ⊆ D: All C are D
-- D ↔ E: Some D are E and Some E are D
+- A â‡„ B: Some A are B and Some B are A
+- B âŠˆ C: No B are C
+- C âŠ† D: All C are D
+- D â†” E: Some D are E and Some E are D
 
 **Conclusions:**
 - Some A are not C, Some C are D, Some D are E, etc.
@@ -274,27 +274,27 @@ Test decoded meanings:
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Incorrect Symbol Interpretation**
-❌ Misunderstanding what symbols represent
-✅ Analyze the coding system carefully
+âŒ Misunderstanding what symbols represent
+âœ… Analyze the coding system carefully
 
 ### **Mistake 2: Inconsistent Decoding**
-❌ Using different meanings for same symbol
-✅ Maintain consistent symbol interpretation
+âŒ Using different meanings for same symbol
+âœ… Maintain consistent symbol interpretation
 
 ### **Mistake 3: Missing Context**
-❌ Ignoring how symbols relate to each other
-✅ Consider the overall coding pattern
+âŒ Ignoring how symbols relate to each other
+âœ… Consider the overall coding pattern
 
 ### **Mistake 4: Logical Errors**
-❌ Applying wrong syllogistic rules to decoded statements
-✅ Treat decoded statements like regular categorical statements
+âŒ Applying wrong syllogistic rules to decoded statements
+âœ… Treat decoded statements like regular categorical statements
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Analyze the Coding System**: Understand what each symbol means
 2. **Look for Patterns**: Identify consistent symbol usage
@@ -306,25 +306,25 @@ Test decoded meanings:
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Arrow Coding**
-*"Statements: A → B, B → C"*
+*"Statements: A â†’ B, B â†’ C"*
 
 **Decoding:**
-- A → B: All A are B
-- B → C: All B are C
+- A â†’ B: All A are B
+- B â†’ C: All B are C
 
 **Conclusion:**
-- A → C: All A are C
+- A â†’ C: All A are C
 
 ### **Example 2: Symbolic Coding**
-*"Statements: A ⊂ B, B ∩ C, C ⊄ D"*
+*"Statements: A âŠ‚ B, B âˆ© C, C âŠ„ D"*
 
 **Decoding:**
-- A ⊂ B: All A are B
-- B ∩ C: Some B are C
-- C ⊄ D: No C are D
+- A âŠ‚ B: All A are B
+- B âˆ© C: Some B are C
+- C âŠ„ D: No C are D
 
 **Conclusions:**
 - Some A are C (possible)
@@ -355,13 +355,13 @@ Test decoded meanings:
 - Some A are D (possible)
 
 ### **Example 5: Complex Relations**
-*"Statements: A ↔ B, B ⊄ C, C ⊂ D, D ≠ E"*
+*"Statements: A â†” B, B âŠ„ C, C âŠ‚ D, D â‰  E"*
 
 **Decoding:**
-- A ↔ B: Some A are B and Some B are A
-- B ⊄ C: No B are C
-- C ⊂ D: All C are D
-- D ≠ E: No D are E (or D and E don't overlap)
+- A â†” B: Some A are B and Some B are A
+- B âŠ„ C: No B are C
+- C âŠ‚ D: All C are D
+- D â‰  E: No D are E (or D and E don't overlap)
 
 **Conclusions:**
 - Some A are not C
@@ -370,7 +370,7 @@ Test decoded meanings:
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Venn Diagrams**
 - Draw diagrams for decoded statements
@@ -387,5 +387,5 @@ Test decoded meanings:
 - Apply statement properties to coded problems
 - Use type analysis for conclusion validation
 
-**Master coded syllogism to decode and solve symbolic logical reasoning problems! 🔢✨**`
+**Master coded syllogism to decode and solve symbolic logical reasoning problems! ðŸ”¢âœ¨**`
 };

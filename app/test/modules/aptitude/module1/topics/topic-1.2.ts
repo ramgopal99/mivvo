@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_1_2: SubLesson = {
   id: "1.2",
   title: 'Basic Mathematical Concepts',
   status: 'completed',
-  content: `# 🔢 Basic Mathematical Concepts
+  content: "`# ðŸ”¢ Basic Mathematical Concepts
 
 Before diving into complex quantitative aptitude problems, it's essential to have a solid foundation in basic mathematical concepts. This topic covers the fundamental building blocks that form the basis of all quantitative aptitude questions.
 
 ---
 
-## 🎯 Number Systems
+## ðŸŽ¯ Number Systems
 
 ### **Natural Numbers (N)**
 - Counting numbers: 1, 2, 3, 4, 5, ...
@@ -28,18 +28,18 @@ Before diving into complex quantitative aptitude problems, it's essential to hav
 - Closed under addition, subtraction, multiplication
 
 ### **Rational Numbers (Q)**
-- Numbers that can be expressed as p/q where p and q are integers, q ≠ 0
+- Numbers that can be expressed as p/q where p and q are integers, q â‰  0
 - Include fractions, decimals, and percentages
 - Most commonly used in daily life
 
 ### **Irrational Numbers**
 - Cannot be expressed as p/q
-- Include √2, π, e, φ (golden ratio)
+- Include âˆš2, Ï€, e, Ï† (golden ratio)
 - Non-terminating, non-repeating decimals
 
 ---
 
-## 📊 Fundamental Operations
+## ðŸ“Š Fundamental Operations
 
 ### **Addition (+)** - Combining Quantities
 **Properties:**
@@ -61,34 +61,34 @@ Before diving into complex quantitative aptitude problems, it's essential to hav
 - 5 - 8 = -3
 - (-4) - (-6) = 2
 
-### **Multiplication (×)** - Repeated Addition
+### **Multiplication (Ã—)** - Repeated Addition
 **Properties:**
-- Commutative: a × b = b × a
-- Associative: (a × b) × c = a × (b × c)
-- Identity: a × 1 = a
-- Zero Property: a × 0 = 0
-- Inverse: a × (1/a) = 1 (for a ≠ 0)
+- Commutative: a Ã— b = b Ã— a
+- Associative: (a Ã— b) Ã— c = a Ã— (b Ã— c)
+- Identity: a Ã— 1 = a
+- Zero Property: a Ã— 0 = 0
+- Inverse: a Ã— (1/a) = 1 (for a â‰  0)
 
 **Examples:**
-- 4 × 3 = 12
-- (-2) × 5 = -10
-- 6 × (-3) = -18
+- 4 Ã— 3 = 12
+- (-2) Ã— 5 = -10
+- 6 Ã— (-3) = -18
 
-### **Division (÷)** - Splitting into Equal Parts
-**Definition:** a ÷ b = a × (1/b) = a/b
+### **Division (Ã·)** - Splitting into Equal Parts
+**Definition:** a Ã· b = a Ã— (1/b) = a/b
 
 **Properties:**
-- Not commutative: a ÷ b ≠ b ÷ a
-- Inverse of multiplication: (a × b) ÷ b = a (for b ≠ 0)
+- Not commutative: a Ã· b â‰  b Ã· a
+- Inverse of multiplication: (a Ã— b) Ã· b = a (for b â‰  0)
 
 **Examples:**
-- 15 ÷ 3 = 5
-- (-20) ÷ 4 = -5
-- 18 ÷ (-6) = -3
+- 15 Ã· 3 = 5
+- (-20) Ã· 4 = -5
+- 18 Ã· (-6) = -3
 
 ---
 
-## 🧮 Order of Operations (BODMAS/PEMDAS)
+## ðŸ§® Order of Operations (BODMAS/PEMDAS)
 
 ### **Priority Order:**
 1. **B/P** - Brackets/Parentheses (First)
@@ -97,18 +97,18 @@ Before diving into complex quantitative aptitude problems, it's essential to hav
 4. **A/S** - Addition/Subtraction (Last - Left to Right)
 
 ### **Examples:**
-- 2 + 3 × 4 = 2 + 12 = 14 (not 20)
-- (2 + 3) × 4 = 5 × 4 = 20
-- 8 ÷ 2 × 3 = 4 × 3 = 12 (not 12 ÷ 6 = 2)
+- 2 + 3 Ã— 4 = 2 + 12 = 14 (not 20)
+- (2 + 3) Ã— 4 = 5 Ã— 4 = 20
+- 8 Ã· 2 Ã— 3 = 4 Ã— 3 = 12 (not 12 Ã· 6 = 2)
 
 ---
 
-## 📈 Understanding Percentages
+## ðŸ“ˆ Understanding Percentages
 
 ### **Basic Concept:**
 Percentage means "per hundred" (per centum)
 
-**Formula:** Percentage = (Part/Whole) × 100%
+**Formula:** Percentage = (Part/Whole) Ã— 100%
 
 ### **Common Conversions:**
 - 25% = 25/100 = 1/4 = 0.25
@@ -117,13 +117,13 @@ Percentage means "per hundred" (per centum)
 - 100% = 100/100 = 1 = 1.0
 
 ### **Percentage Calculations:**
-- **Increase**: New Value = Old Value + (Percentage × Old Value)
-- **Decrease**: New Value = Old Value - (Percentage × Old Value)
-- **Percentage Change**: ((New - Old)/Old) × 100%
+- **Increase**: New Value = Old Value + (Percentage Ã— Old Value)
+- **Decrease**: New Value = Old Value - (Percentage Ã— Old Value)
+- **Percentage Change**: ((New - Old)/Old) Ã— 100%
 
 ---
 
-## 🎯 Ratios and Proportions
+## ðŸŽ¯ Ratios and Proportions
 
 ### **Ratio:**
 Comparison of two quantities of the same kind.
@@ -145,7 +145,7 @@ Equality of two ratios.
 
 ---
 
-## 📏 Units and Measurements
+## ðŸ“ Units and Measurements
 
 ### **Length:**
 - Millimeter (mm) = 0.001 meter
@@ -171,28 +171,28 @@ Equality of two ratios.
 
 ---
 
-## 🧠 Basic Algebraic Concepts
+## ðŸ§  Basic Algebraic Concepts
 
 ### **Variables:**
 Symbols that represent unknown values (x, y, z, a, b, c)
 
 ### **Constants:**
-Fixed values that don't change (2, 5, π, e)
+Fixed values that don't change (2, 5, Ï€, e)
 
 ### **Expressions:**
 Combinations of variables, constants, and operations:
 - 2x + 3
-- a² + 2ab + b²
+- aÂ² + 2ab + bÂ²
 - 3(x + y) - 2z
 
 ### **Equations:**
 Statements that two expressions are equal:
 - 2x + 3 = 7
-- a² + b² = c² (Pythagoras theorem)
+- aÂ² + bÂ² = cÂ² (Pythagoras theorem)
 
 ---
 
-## 🎯 Types of Problems
+## ðŸŽ¯ Types of Problems
 
 ### **1. Word Problems**
 Translate verbal descriptions into mathematical equations.
@@ -212,35 +212,35 @@ Involve relationships between ages at different times.
 - Equation: 3x + 5 = 2(x + 5)
 
 ### **3. Speed, Time, Distance**
-Relationship: Distance = Speed × Time
+Relationship: Distance = Speed Ã— Time
 
 **Example:**
 "Car travels at 60 km/h for 3 hours. Distance covered?"
-- Distance = 60 × 3 = 180 km
+- Distance = 60 Ã— 3 = 180 km
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
-### ❌ **Order of Operations**
-\`\`\`
-Wrong: 2 + 3 × 4 = (2 + 3) × 4 = 20
-Right: 2 + 3 × 4 = 2 + 12 = 14
-\`\`\`
-
-### ❌ **Percentage Calculations**
-\`\`\`
-Wrong: 20% of 150 = 20 × 150 = 3000
-Right: 20% of 150 = 0.20 × 150 = 30
+### âŒ **Order of Operations**
+\`"\`\`
+Wrong: 2 + 3 Ã— 4 = (2 + 3) Ã— 4 = 20
+Right: 2 + 3 Ã— 4 = 2 + 12 = 14
 \`\`\`
 
-### ❌ **Negative Number Operations**
+### âŒ **Percentage Calculations**
 \`\`\`
-Wrong: (-3) × (-4) = +12 (thinking negative × negative = negative)
-Right: (-3) × (-4) = +12 (negative × negative = positive)
+Wrong: 20% of 150 = 20 Ã— 150 = 3000
+Right: 20% of 150 = 0.20 Ã— 150 = 30
 \`\`\`
 
-### ❌ **Ratio Misinterpretation**
+### âŒ **Negative Number Operations**
+\`\`\`
+Wrong: (-3) Ã— (-4) = +12 (thinking negative Ã— negative = negative)
+Right: (-3) Ã— (-4) = +12 (negative Ã— negative = positive)
+\`\`\`
+
+### âŒ **Ratio Misinterpretation**
 \`\`\`
 Wrong: Ratio 2:3 means 2 > 3
 Right: Ratio 2:3 means 2 parts out of 5 total parts
@@ -248,11 +248,11 @@ Right: Ratio 2:3 means 2 parts out of 5 total parts
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Basic Operations:**
-1. Simplify: 15 + 8 × 2 - 6 ÷ 3
-2. Calculate: (-5) × (-3) + 10 ÷ 2
+1. Simplify: 15 + 8 Ã— 2 - 6 Ã· 3
+2. Calculate: (-5) Ã— (-3) + 10 Ã· 2
 3. Find: 25% of 200
 
 ### **Ratios and Proportions:**
@@ -260,22 +260,22 @@ Right: Ratio 2:3 means 2 parts out of 5 total parts
 2. Divide 360 in ratio 2:3:4
 
 ### **Word Problems:**
-1. A man buys 5 kg apples at ₹40/kg and 3 kg oranges at ₹30/kg. Total cost?
+1. A man buys 5 kg apples at â‚¹40/kg and 3 kg oranges at â‚¹30/kg. Total cost?
 2. Train travels 300 km in 5 hours. Average speed?
 
 ### **Percentages:**
 1. What is 15% of 250?
-2. If price increases by 20%, what is new price of ₹500 item?
+2. If price increases by 20%, what is new price of â‚¹500 item?
 
 **Answers:**
 Basic: 15 + 16 - 2 = 29, (+15) + 5 = 20, 50
 Ratios: 15:24, 72:108:144 or 2:3:4
 Word: 200 + 90 = 290, 60 km/h
-Percentages: 37.5, ₹600
+Percentages: 37.5, â‚¹600
 
 ---
 
-## 🎓 Building Strong Foundations
+## ðŸŽ“ Building Strong Foundations
 
 1. **Master the Basics**: Ensure complete understanding of fundamental operations
 2. **Practice Regularly**: Daily practice of basic calculations
@@ -284,5 +284,5 @@ Percentages: 37.5, ₹600
 5. **Use Visual Aids**: Draw diagrams for word problems
 6. **Check Work**: Always verify calculations
 
-Strong foundations in basic mathematical concepts will make advanced topics much easier to understand and master! 🏆`
+Strong foundations in basic mathematical concepts will make advanced topics much easier to understand and master! ðŸ†`
 };

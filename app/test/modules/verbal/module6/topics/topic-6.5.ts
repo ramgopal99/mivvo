@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_5: SubLesson = {
   id: "6.5",
   title: 'Vocabulary in Context',
   status: 'completed',
-  content: `# 📖 Vocabulary in Context: Word Meanings from Usage
+  content: "`# ðŸ“– Vocabulary in Context: Word Meanings from Usage
 
 Vocabulary in Context questions test your ability to determine word meanings based on how they are used in passages, rather than relying on dictionary definitions. This skill involves using surrounding context to infer precise meanings.
 
 ---
 
-## 📋 WHAT IS VOCABULARY IN CONTEXT?
+## ðŸ“‹ WHAT IS VOCABULARY IN CONTEXT?
 
 **Vocabulary in Context** requires understanding word meanings through:
-- ✅ **Surrounding words** and sentence structure
-- ✅ **Contextual relationships** with other ideas
-- ✅ **Author's intended meaning** in the passage
-- ✅ **Logical connections** between concepts
+- âœ… **Surrounding words** and sentence structure
+- âœ… **Contextual relationships** with other ideas
+- âœ… **Author's intended meaning** in the passage
+- âœ… **Logical connections** between concepts
 
 ### Key Skills Tested:
 - **Context Clue Recognition**: Identifying helpful surrounding information
@@ -32,59 +32,59 @@ In context: "Groundbreaking" means innovative or pioneering (revolutionized medi
 
 ---
 
-## 🎯 TYPES OF CONTEXT CLUES
+## ðŸŽ¯ TYPES OF CONTEXT CLUES
 
 ### 1. **Definition Clues**
 **Words or phrases that directly define or explain the unknown word**
 
 **Examples:**
-- ✅ "The **autocracy**, a system of government where one person has absolute power, was unpopular among citizens."
-- ✅ "The **altruist**, someone who helps others without expecting reward, donated generously."
-- ✅ "The **catalyst**, a substance that speeds up chemical reactions, was added to the mixture."
+- âœ… "The **autocracy**, a system of government where one person has absolute power, was unpopular among citizens."
+- âœ… "The **altruist**, someone who helps others without expecting reward, donated generously."
+- âœ… "The **catalyst**, a substance that speeds up chemical reactions, was added to the mixture."
 
 ### 2. **Synonym Clues**
 **Words with similar meanings appear near the unknown word**
 
 **Examples:**
-- ✅ "The room was **spacious** and **capacious**, providing ample space for the gathering."
-- ✅ "Her **eloquent** and **articulate** speech captivated the audience."
-- ✅ "The **meticulous** and **scrupulous** worker checked every detail carefully."
+- âœ… "The room was **spacious** and **capacious**, providing ample space for the gathering."
+- âœ… "Her **eloquent** and **articulate** speech captivated the audience."
+- âœ… "The **meticulous** and **scrupulous** worker checked every detail carefully."
 
 ### 3. **Antonym Clues**
 **Words with opposite meanings contrast with the unknown word**
 
 **Examples:**
-- ✅ "Unlike the **cowardly** lion, the brave knight charged forward."
-- ✅ "The **frugal** shopper saved money, while the extravagant one spent freely."
-- ✅ "The **concise** report was brief, unlike the verbose one that rambled on."
+- âœ… "Unlike the **cowardly** lion, the brave knight charged forward."
+- âœ… "The **frugal** shopper saved money, while the extravagant one spent freely."
+- âœ… "The **concise** report was brief, unlike the verbose one that rambled on."
 
 ### 4. **Example Clues**
 **Specific examples illustrate the meaning of the unknown word**
 
 **Examples:**
-- ✅ "The **carnivores**, such as lions and tigers, hunt other animals for food."
-- ✅ "The **polyglot** speaker knew multiple languages, including French, Spanish, and Japanese."
-- ✅ "The **alumni**, graduates like Sarah and John, gathered for the reunion."
+- âœ… "The **carnivores**, such as lions and tigers, hunt other animals for food."
+- âœ… "The **polyglot** speaker knew multiple languages, including French, Spanish, and Japanese."
+- âœ… "The **alumni**, graduates like Sarah and John, gathered for the reunion."
 
 ### 5. **Cause-Effect Clues**
 **Relationships show how the word functions in context**
 
 **Examples:**
-- ✅ "The **catalyst** caused the reaction to speed up dramatically."
-- ✅ "The **stimulus** provoked an immediate response from the participants."
-- ✅ "The **precipitant** triggered the sudden change in policy."
+- âœ… "The **catalyst** caused the reaction to speed up dramatically."
+- âœ… "The **stimulus** provoked an immediate response from the participants."
+- âœ… "The **precipitant** triggered the sudden change in policy."
 
 ### 6. **Inference Clues**
 **Logical reasoning helps determine meaning from context**
 
 **Examples:**
-- ✅ "The **ephemeral** beauty of the flower lasted only a few days before wilting."
-- ✅ "The **ubiquitous** smartphones were present everywhere in the modern world."
-- ✅ "The **anachronism** of using a typewriter in the computer age seemed odd."
+- âœ… "The **ephemeral** beauty of the flower lasted only a few days before wilting."
+- âœ… "The **ubiquitous** smartphones were present everywhere in the modern world."
+- âœ… "The **anachronism** of using a typewriter in the computer age seemed odd."
 
 ---
 
-## 🛠️ CONTEXT ANALYSIS STRATEGY
+## ðŸ› ï¸ CONTEXT ANALYSIS STRATEGY
 
 ### Step-by-Step Approach:
 
@@ -115,7 +115,7 @@ In context: "Groundbreaking" means innovative or pioneering (revolutionized medi
 
 ---
 
-## 🎯 COMMON QUESTION TYPES
+## ðŸŽ¯ COMMON QUESTION TYPES
 
 ### Direct Meaning Questions:
 **"In the context of the passage, what does [word] mean?"**
@@ -136,58 +136,58 @@ In context: "Groundbreaking" means innovative or pioneering (revolutionized medi
 **Words that can have different meanings in different contexts**
 
 **Examples:**
-- ✅ **Bank**: Financial institution vs river edge
-- ✅ **Light**: Not heavy vs illumination
-- ✅ **Right**: Correct vs direction
+- âœ… **Bank**: Financial institution vs river edge
+- âœ… **Light**: Not heavy vs illumination
+- âœ… **Right**: Correct vs direction
 
 ---
 
-## ⚠️ CONTEXT INTERPRETATION PITFALLS
+## âš ï¸ CONTEXT INTERPRETATION PITFALLS
 
 ### Avoid These Common Errors:
 
 1. **Primary Meaning Assumption**: Using only the most common dictionary definition
-   - ✅ **Light** can mean "not heavy" or "illumination" depending on context
+   - âœ… **Light** can mean "not heavy" or "illumination" depending on context
 
 2. **Contextual Ignorance**: Ignoring surrounding words that provide clues
-   - ✅ Always read the full sentence and surrounding context
+   - âœ… Always read the full sentence and surrounding context
 
 3. **Over-Inference**: Reading more meaning than the context supports
-   - ✅ Stick to what's reasonably indicated by the passage
+   - âœ… Stick to what's reasonably indicated by the passage
 
 4. **Word-by-Word Reading**: Missing how words work together
-   - ✅ Consider the entire phrase or sentence meaning
+   - âœ… Consider the entire phrase or sentence meaning
 
 5. **Grammatical Mismatch**: Choosing wrong part of speech
-   - ✅ Ensure your answer fits grammatically in the sentence
+   - âœ… Ensure your answer fits grammatically in the sentence
 
 ---
 
-## 📚 WORD TYPE ANALYSIS
+## ðŸ“š WORD TYPE ANALYSIS
 
 ### Nouns in Context:
-- ✅ Look for articles (a, an, the) and modifiers
-- ✅ Consider what the noun represents in the passage
-- ✅ Check relationships with verbs and other nouns
+- âœ… Look for articles (a, an, the) and modifiers
+- âœ… Consider what the noun represents in the passage
+- âœ… Check relationships with verbs and other nouns
 
 ### Verbs in Context:
-- ✅ Identify subject and object relationships
-- ✅ Consider tense and aspect implications
-- ✅ Look for adverbs that modify the verb
+- âœ… Identify subject and object relationships
+- âœ… Consider tense and aspect implications
+- âœ… Look for adverbs that modify the verb
 
 ### Adjectives in Context:
-- ✅ Find what noun the adjective describes
-- ✅ Consider degree (very, quite, extremely)
-- ✅ Look for comparison structures
+- âœ… Find what noun the adjective describes
+- âœ… Consider degree (very, quite, extremely)
+- âœ… Look for comparison structures
 
 ### Adverbs in Context:
-- ✅ Identify what they modify (verb, adjective, adverb)
-- ✅ Consider intensity and manner implications
-- ✅ Look for placement clues in sentence structure
+- âœ… Identify what they modify (verb, adjective, adverb)
+- âœ… Consider intensity and manner implications
+- âœ… Look for placement clues in sentence structure
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Definition Clues
 **Use definition clues to determine meaning:**
@@ -297,7 +297,7 @@ Passage: "The **innovative** entrepreneur developed a groundbreaking solution th
 
 ---
 
-## 📊 CONTEXT CLUE HIERARCHY
+## ðŸ“Š CONTEXT CLUE HIERARCHY
 
 | Clue Strength | Reliability | Examples |
 |---|---|---|
@@ -310,30 +310,30 @@ Passage: "The **innovative** entrepreneur developed a groundbreaking solution th
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 SSC/Banking/UPSC Patterns:
+### ðŸ† SSC/Banking/UPSC Patterns:
 1. **Direct Meaning**: "The word X means..."
 2. **Context Usage**: "In the passage, X refers to..."
 3. **Synonym Choice**: "A suitable synonym for X is..."
 4. **Inference Based**: "X can best be described as..."
 5. **Multiple Choice**: Choose from 4 options
 
-### 💡 Quick Analysis Strategy:
+### ðŸ’¡ Quick Analysis Strategy:
 1. **Read the target sentence** and surrounding context
 2. **Identify clue types** present (definition, synonym, etc.)
 3. **Eliminate wrong options** that don't fit context
 4. **Test each option** mentally in the sentence
 5. **Choose the most precise** meaning for the context
 
-### ⚡ Time-Saving Techniques:
+### âš¡ Time-Saving Techniques:
 - **Focus on target area** - Read 2-3 sentences around the word
 - **Look for direct clues** first (definitions, synonyms)
 - **Use elimination** - Rule out options that don't make sense
 - **Trust context logic** - Meaning must fit passage flow
 - **Check grammar** - Ensure answer fits sentence structure
 
-### 📈 Scoring Maximization:
+### ðŸ“ˆ Scoring Maximization:
 - **Practice 15-20 questions daily** - Build context recognition speed
 - **Learn clue patterns** - Master different context clue types
 - **Build vocabulary** - Understand word meanings in various contexts
@@ -342,22 +342,23 @@ Passage: "The **innovative** entrepreneur developed a groundbreaking solution th
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Context Clue Practice**: Learn to spot different clue types quickly
 2. **Vocabulary Building**: Understand words in multiple contexts
 3. **Reading Practice**: Read actively, noting how words are used
 4. **Pattern Recognition**: Identify common context clue structures
 5. **Inference Skills**: Practice drawing meanings from context
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Vocabulary in context is like word detective work:**
-- 🔍 **Examine the crime scene** - Read the sentence and context
-- 🕵️ **Find the clues** - Look for definitions, synonyms, antonyms
-- 💡 **Connect the evidence** - Link clues to determine meaning
-- ✅ **Verify the solution** - Test meaning in the sentence
-- 🎯 **Solve the case** - Choose the correct contextual meaning!
+- ðŸ” **Examine the crime scene** - Read the sentence and context
+- ðŸ•µï¸ **Find the clues** - Look for definitions, synonyms, antonyms
+- ðŸ’¡ **Connect the evidence** - Link clues to determine meaning
+- âœ… **Verify the solution** - Test meaning in the sentence
+- ðŸŽ¯ **Solve the case** - Choose the correct contextual meaning!
 
-**Master context clues and become a vocabulary detective!** 📖🔍✨`
+**Master context clues and become a vocabulary detective!** ðŸ“–ðŸ”âœ¨`"
 };
+

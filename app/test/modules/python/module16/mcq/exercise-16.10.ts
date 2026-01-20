@@ -908,7 +908,7 @@ def main():
     start_time = time.time()
     math_module = lazy.heavy_math
     load_time = time.time() - start_time
-    print(".6f")
+    print(f"Lazy loading time: {load_time:.6f}")
 
     print(f"Heavy math factorial: {lazy.heavy_math.factorial(6)}")
     print()

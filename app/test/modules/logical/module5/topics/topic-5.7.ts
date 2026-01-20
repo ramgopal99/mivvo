@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_7: SubLesson = {
   id: "5.7",
   title: 'Substitution Coding',
   status: 'completed',
-  content: `# 🔄 Substitution Coding
+  content: "`# ðŸ”„ Substitution Coding
 
 Substitution coding involves replacing letters or symbols with other letters, numbers, or symbols according to specific rules. These problems are common in coding-decoding and require pattern recognition and systematic replacement skills.
 
 ---
 
-## 🎯 Understanding Substitution Coding
+## ðŸŽ¯ Understanding Substitution Coding
 
 ### **What is Substitution Coding?**
 Substitution coding involves replacing one set of characters with another set according to predefined rules. These problems test your ability to:
@@ -27,18 +27,18 @@ Substitution coding involves replacing one set of characters with another set ac
 
 ---
 
-## 🧩 Types of Substitution Coding
+## ðŸ§© Types of Substitution Coding
 
 ### **1. Letter-to-Letter Substitution**
 **Direct letter replacements**
-- **One-to-One**: A→X, B→Y, etc.
+- **One-to-One**: Aâ†’X, Bâ†’Y, etc.
 - **Pattern-Based**: Every nth letter, etc.
 - **Alphabetical**: Reverse alphabet, skip letters
 
 ### **2. Letter-to-Number Substitution**
 **Letters replaced by numbers**
 - **Position-Based**: A=1, B=2, etc.
-- **Mathematical**: Position × 2, etc.
+- **Mathematical**: Position Ã— 2, etc.
 - **Pattern-Based**: Alternating numbers
 
 ### **3. Letter-to-Symbol Substitution**
@@ -49,7 +49,7 @@ Substitution coding involves replacing one set of characters with another set ac
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze Substitution Pattern**
 - Examine input-output pairs
@@ -73,7 +73,7 @@ Substitution coding involves replacing one set of characters with another set ac
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Direct Substitution**
 **Simple one-to-one replacements**
@@ -95,7 +95,7 @@ Substitution coding involves replacing one set of characters with another set ac
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Mapping Creation**
 
@@ -119,7 +119,7 @@ Replaced: Z Y X W V U T S R Q P O N M L K J I H G F E D C B A
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Reverse Alphabet**
 **Rule**: A=Z, B=Y, C=X, D=W, E=V, etc.
@@ -144,7 +144,7 @@ Replaced: Z Y X W V U T S R Q P O N M L K J I H G F E D C B A
 
 ---
 
-## 🔍 Advanced Substitution Concepts
+## ðŸ” Advanced Substitution Concepts
 
 ### **Multi-Rule Substitutions**
 Complex substitution involving multiple rules or conditions.
@@ -157,7 +157,7 @@ Substitutions following complex patterns or sequences.
 
 ---
 
-## 📊 Substitution Coding Methods
+## ðŸ“Š Substitution Coding Methods
 
 ### **Direct Methods**
 - **One-to-One**: Simple character replacements
@@ -176,23 +176,23 @@ Substitutions following complex patterns or sequences.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Incomplete Mapping**
-❌ Not identifying all substitution pairs
-✅ Create complete mapping table
+âŒ Not identifying all substitution pairs
+âœ… Create complete mapping table
 
 ### **Pitfall 2: Pattern Misidentification**
-❌ Wrong substitution pattern assumption
-✅ Test patterns against all examples
+âŒ Wrong substitution pattern assumption
+âœ… Test patterns against all examples
 
 ### **Pitfall 3: Inconsistent Application**
-❌ Applying different rules inconsistently
-✅ Use same rules throughout
+âŒ Applying different rules inconsistently
+âœ… Use same rules throughout
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Mapping Creation**
 - Create substitution mapping table
@@ -211,7 +211,7 @@ Substitutions following complex patterns or sequences.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Simple one-to-one substitutions
@@ -230,7 +230,7 @@ Substitutions following complex patterns or sequences.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Create Mapping Table**: Visual substitution reference
 2. **Identify Patterns**: Look for consistent replacement rules
@@ -240,7 +240,7 @@ Substitutions following complex patterns or sequences.
 
 ---
 
-## 🔄 Practice Questions
+## ðŸ”„ Practice Questions
 
 ### **Question 1**
 If A=Z, B=Y, C=X, D=W, E=V, what is the code for "BED"?
@@ -254,5 +254,5 @@ If A=@, B=# , C=$, D=%, E=^, what is the code for "BEAD"?
 ### **Question 4**
 If every letter is replaced by the letter 3 positions ahead, what is the code for "CAT"?
 
-**Master substitution coding for systematic character replacements! 🔄✨**`
+**Master substitution coding for systematic character replacements! ðŸ”„âœ¨**`"
 };

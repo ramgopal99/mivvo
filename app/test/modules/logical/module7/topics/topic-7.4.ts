@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_4: SubLesson = {
   id: "7.4",
   title: 'Direction-Based Movement',
   status: 'completed',
-  content: `# 🚶 Direction-Based Movement
+  content: "`# ðŸš¶ Direction-Based Movement
 
 Direction-based movement problems involve tracking sequential movements in different directions, combining distance, turning, and position calculations. These problems require systematic tracking of each movement step while maintaining spatial orientation throughout the sequence.
 
 ---
 
-## 🎯 Understanding Direction-Based Movement
+## ðŸŽ¯ Understanding Direction-Based Movement
 
 ### **What are Direction-Based Movement Problems?**
 These problems involve a person or object moving through a sequence of directional changes, requiring you to track position, distance, and orientation at each step. They combine elements of basic directions, turning, and distance calculation.
@@ -23,7 +23,7 @@ These problems involve a person or object moving through a sequence of direction
 
 ---
 
-## 🧩 Movement Tracking System
+## ðŸ§© Movement Tracking System
 
 ### **Essential Tracking Elements**
 
@@ -44,7 +44,7 @@ These problems involve a person or object moving through a sequence of direction
 
 ---
 
-## 📊 Step-by-Step Movement Tracking
+## ðŸ“Š Step-by-Step Movement Tracking
 
 ### **Movement Recording Template**
 
@@ -63,7 +63,7 @@ These problems involve a person or object moving through a sequence of direction
 
 ---
 
-## 🎯 Common Movement Patterns
+## ðŸŽ¯ Common Movement Patterns
 
 ### **Pattern 1: Straight-Line Movements**
 *"Walk 10m North, 15m East, 8m South"*
@@ -95,7 +95,7 @@ These problems involve a person or object moving through a sequence of direction
 
 ---
 
-## 🛠️ Movement Analysis Framework
+## ðŸ› ï¸ Movement Analysis Framework
 
 ### **Framework Steps**
 
@@ -126,16 +126,16 @@ These problems involve a person or object moving through a sequence of direction
 
 ---
 
-## 📐 Coordinate Calculation Rules
+## ðŸ“ Coordinate Calculation Rules
 
-### **Movement Direction → Coordinate Changes**
+### **Movement Direction â†’ Coordinate Changes**
 
 | Direction | X-Change | Y-Change | Example |
 |-----------|----------|----------|---------|
-| **North** | X + 0 | Y + D | (0,0) → (0,D) |
-| **South** | X + 0 | Y - D | (0,0) → (0,-D) |
-| **East** | X + D | Y + 0 | (0,0) → (D,0) |
-| **West** | X - D | Y + 0 | (0,0) → (-D,0) |
+| **North** | X + 0 | Y + D | (0,0) â†’ (0,D) |
+| **South** | X + 0 | Y - D | (0,0) â†’ (0,-D) |
+| **East** | X + D | Y + 0 | (0,0) â†’ (D,0) |
+| **West** | X - D | Y + 0 | (0,0) â†’ (-D,0) |
 
 ### **Turn Effects on Facing Direction**
 
@@ -148,7 +148,7 @@ These problems involve a person or object moving through a sequence of direction
 
 ---
 
-## 🎯 Problem Types and Solutions
+## ðŸŽ¯ Problem Types and Solutions
 
 ### **Type 1: Position Finding**
 *"Where will he be after these movements?"*
@@ -172,7 +172,7 @@ These problems involve a person or object moving through a sequence of direction
 **Solution Approach:**
 1. Calculate final coordinates
 2. Apply Pythagorean theorem
-3. √[(X)² + (Y)²] = displacement
+3. âˆš[(X)Â² + (Y)Â²] = displacement
 
 ### **Type 4: Return Path**
 *"How should he return to start?"*
@@ -184,7 +184,7 @@ These problems involve a person or object moving through a sequence of direction
 
 ---
 
-## 📊 Advanced Movement Problems
+## ðŸ“Š Advanced Movement Problems
 
 ### **Problem 1: Multi-Step Sequences**
 *"Complex movement patterns with multiple turns"*
@@ -212,7 +212,7 @@ These problems involve a person or object moving through a sequence of direction
 
 ---
 
-## 🎯 Tracking Techniques
+## ðŸŽ¯ Tracking Techniques
 
 ### **Technique 1: Coordinate Grid Method**
 
@@ -225,9 +225,9 @@ Draw a grid and mark each position:
 
 Step-by-step written record:  
 Step 1: Start at (0,0) facing North  
-Step 2: Move North 5m → (0,5) facing North  
-Step 3: Turn left → (0,5) facing West  
-Step 4: Move West 3m → (-3,5) facing West
+Step 2: Move North 5m â†’ (0,5) facing North  
+Step 3: Turn left â†’ (0,5) facing West  
+Step 4: Move West 3m â†’ (-3,5) facing West
 
 ### **Technique 3: Mental Visualization**
 
@@ -238,7 +238,7 @@ Imagine yourself moving:
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level (30%)**
 - Simple sequential movements
@@ -257,27 +257,27 @@ Imagine yourself moving:
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
 ### **Mistake 1: Losing Track of Facing Direction**
-❌ Forgetting to update facing after turns
-✅ Always track current orientation
+âŒ Forgetting to update facing after turns
+âœ… Always track current orientation
 
 ### **Mistake 2: Coordinate Calculation Errors**
-❌ Wrong sign for directions (+/- confusion)
-✅ Use consistent coordinate system
+âŒ Wrong sign for directions (+/- confusion)
+âœ… Use consistent coordinate system
 
 ### **Mistake 3: Missing Movement Steps**
-❌ Skipping intermediate positions
-✅ Track every movement sequentially
+âŒ Skipping intermediate positions
+âœ… Track every movement sequentially
 
 ### **Mistake 4: Turn Timing Confusion**
-❌ Applying turns at wrong times
-✅ Clarify when turns occur (before/after movement)
+âŒ Applying turns at wrong times
+âœ… Clarify when turns occur (before/after movement)
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Use a Tracking Table**: Create step-by-step movement log
 2. **Establish Clear Coordinates**: Define X-Y axes consistently
@@ -289,7 +289,7 @@ Imagine yourself moving:
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Basic Movement Sequence**
 *"Start facing North. Walk 6m North, turn right, walk 8m, turn left, walk 4m."*
@@ -303,13 +303,13 @@ Imagine yourself moving:
 - North 4m: (8,10), North
 
 ### **Example 2: Complex Path**
-*"Walk 3m South, 5m East, turn 180°, walk 5m, turn left, walk 3m."*
+*"Walk 3m South, 5m East, turn 180Â°, walk 5m, turn left, walk 3m."*
 
 **Solution Tracking:**
 - Start: (0,0), North
 - South 3m: (0,-3), North
 - East 5m: (5,-3), East
-- Turn 180°: (5,-3), West
+- Turn 180Â°: (5,-3), West
 - West 5m: (0,-3), West
 - Turn left: (0,-3), South
 - South 3m: (0,-6), South
@@ -324,7 +324,7 @@ Imagine yourself moving:
 
 ---
 
-## 🔍 Integration with Other Topics
+## ðŸ” Integration with Other Topics
 
 ### **With Distance Calculation**
 - Track both actual distance and displacement
@@ -341,5 +341,5 @@ Imagine yourself moving:
 - Calculate minimum distance paths
 - Optimize movement efficiency
 
-**Master direction-based movement tracking to solve complex sequential movement problems! 🚶✨**`
+**Master direction-based movement tracking to solve complex sequential movement problems! ðŸš¶âœ¨**`"
 };

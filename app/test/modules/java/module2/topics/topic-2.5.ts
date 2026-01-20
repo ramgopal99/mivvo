@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_5: SubLesson = {
   id: "2.5",
   title: 'String Validation',
   status: 'completed',
-  content: `# 🚨 Exception Handling in Java
+  content: "`# ðŸš¨ Exception Handling in Java
 
 Exception handling is crucial for writing robust Java applications. It allows programs to gracefully handle runtime errors and unexpected situations.
 
 ---
 
-## ⚠️ What are Exceptions?
+## âš ï¸ What are Exceptions?
 
 ### **What is an Exception?**
 An exception is an event that occurs during program execution that disrupts the normal flow of instructions. Exceptions can be caused by:
@@ -20,7 +20,7 @@ An exception is an event that occurs during program execution that disrupts the 
 - Division by zero
 - Array index out of bounds
 
-\`\`\`java
+\`"\`\`java
 public class ExceptionBasics {
     public static void main(String[] args) {
         // This will cause ArithmeticException
@@ -53,7 +53,7 @@ public class ExceptionBasics {
 
 ---
 
-## 🛡️ Try-Catch Blocks
+## ðŸ›¡ï¸ Try-Catch Blocks
 
 ### **Basic Try-Catch**
 \`\`\`java
@@ -134,7 +134,7 @@ public class FinallyBlock {
 
 ---
 
-## 🚀 Try-With-Resources (Java 7+)
+## ðŸš€ Try-With-Resources (Java 7+)
 
 ### **Automatic Resource Management**
 \`\`\`java
@@ -186,7 +186,7 @@ public class MultipleResources {
 
 ---
 
-## 🛠️ Throwing Exceptions
+## ðŸ› ï¸ Throwing Exceptions
 
 ### **Throw Keyword**
 \`\`\`java
@@ -258,7 +258,7 @@ public class CustomExceptions {
 
 ---
 
-## 📋 Method Signatures with Exceptions
+## ðŸ“‹ Method Signatures with Exceptions
 
 ### **Throws Declaration**
 \`\`\`java
@@ -315,7 +315,7 @@ public class ExceptionInheritance {
 
 ---
 
-## 🎯 Exception Handling Best Practices
+## ðŸŽ¯ Exception Handling Best Practices
 
 ### **1. Catch Specific Exceptions**
 \`\`\`java
@@ -360,7 +360,7 @@ public class AvoidCatchingException {
             int[] arr = {1, 2, 3};
             System.out.println(arr[10]);  // ArrayIndexOutOfBoundsException
 
-        } catch (Exception e) {  // ❌ Too broad
+        } catch (Exception e) {  // âŒ Too broad
             System.out.println("Something went wrong");
             // This catches ALL exceptions, including programming errors
             // Makes debugging difficult
@@ -372,7 +372,7 @@ public class AvoidCatchingException {
             int[] arr = {1, 2, 3};
             System.out.println(arr[10]);
 
-        } catch (ArrayIndexOutOfBoundsException e) {  // ✅ Specific
+        } catch (ArrayIndexOutOfBoundsException e) {  // âœ… Specific
             System.out.println("Array index error: " + e.getMessage());
         }
     }
@@ -453,7 +453,7 @@ public class ExceptionChaining {
 
 ---
 
-## ⚠️ Common Exception Handling Mistakes
+## âš ï¸ Common Exception Handling Mistakes
 
 ### **1. Empty Catch Blocks**
 \`\`\`java
@@ -462,7 +462,7 @@ public class EmptyCatch {
         try {
             riskyOperation();
         } catch (Exception e) {
-            // ❌ Empty catch - silently ignores errors
+            // âŒ Empty catch - silently ignores errors
             // Makes debugging impossible
         }
     }
@@ -471,7 +471,7 @@ public class EmptyCatch {
         try {
             riskyOperation();
         } catch (Exception e) {
-            // ✅ Log the error at minimum
+            // âœ… Log the error at minimum
             System.err.println("Error occurred: " + e.getMessage());
             e.printStackTrace();
         }
@@ -496,7 +496,7 @@ public class CatchTooEarly {
             validateInput("invalid");
             processData();
         } catch (Exception e) {
-            // ❌ Catches too early - loses context
+            // âŒ Catches too early - loses context
             System.out.println("Something failed");
         }
     }
@@ -539,7 +539,7 @@ public class Rethrowing {
         try {
             riskyOperation();
         } catch (Exception e) {
-            // ❌ Loses original stack trace
+            // âŒ Loses original stack trace
             throw new Exception("Operation failed");
         }
     }
@@ -548,7 +548,7 @@ public class Rethrowing {
         try {
             riskyOperation();
         } catch (Exception e) {
-            // ✅ Preserves original exception
+            // âœ… Preserves original exception
             throw new Exception("Operation failed", e);
         }
     }
@@ -576,7 +576,8 @@ public class Rethrowing {
 }
 \`\`\`
 
-Exception handling is essential for robust Java applications. Use try-catch-finally blocks appropriately, throw meaningful exceptions, and always handle errors gracefully! 🚨`
+Exception handling is essential for robust Java applications. Use try-catch-finally blocks appropriately, throw meaningful exceptions, and always handle errors gracefully! ðŸš¨`
 };
+
 
 

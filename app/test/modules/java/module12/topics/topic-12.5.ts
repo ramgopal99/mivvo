@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_12_5: SubLesson = {
   id: "12.5",
   title: 'Iterators and Enhanced For Loop',
   status: 'completed',
-  content: `# 🔄 Iterators and Enhanced For Loop in Java Collections
+  content: "`# ðŸ”„ Iterators and Enhanced For Loop in Java Collections
 
 Iteration is a fundamental operation in collections. Java provides several ways to iterate through collections, each with its own advantages and use cases. Understanding these iteration mechanisms is crucial for effective collection usage.
 
 ---
 
-## 🎯 Iterator Interface
+## ðŸŽ¯ Iterator Interface
 
 ### **What is an Iterator?**
 
@@ -18,7 +18,7 @@ An Iterator is an object that enables you to traverse through a collection and s
 
 ### **Iterator Methods**
 
-\`\`\`java
+\`"\`\`java
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.List;
@@ -102,7 +102,7 @@ public class IteratorVsForLoop {
 
 ---
 
-## 🔄 Enhanced For Loop (For-Each Loop)
+## ðŸ”„ Enhanced For Loop (For-Each Loop)
 
 ### **What is Enhanced For Loop?**
 
@@ -158,7 +158,7 @@ public class EnhancedForLoopLimitations {
 
         System.out.println("Original list: " + list);
 
-        // ❌ Cannot modify collection during iteration
+        // âŒ Cannot modify collection during iteration
         try {
             for (String item : list) {
                 if (item.equals("B")) {
@@ -169,19 +169,19 @@ public class EnhancedForLoopLimitations {
             System.out.println("Exception: " + e.getMessage());
         }
 
-        // ❌ Cannot access index
+        // âŒ Cannot access index
         // Enhanced for loop doesn't provide index information
         for (String item : list) {
             // System.out.println("Index: ???, Value: " + item);  // No index available
         }
 
-        // ✅ Use traditional for loop when index is needed
+        // âœ… Use traditional for loop when index is needed
         System.out.println("\\nWith index (traditional for loop):");
         for (int i = 0; i < list.size(); i++) {
             System.out.println("Index: " + i + ", Value: " + list.get(i));
         }
 
-        // ✅ Use Iterator when modification is needed
+        // âœ… Use Iterator when modification is needed
         System.out.println("\\nSafe modification with Iterator:");
         Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()) {
@@ -198,7 +198,7 @@ public class EnhancedForLoopLimitations {
 
 ---
 
-## 🔧 ListIterator Interface
+## ðŸ”§ ListIterator Interface
 
 ### **What is ListIterator?**
 
@@ -268,7 +268,7 @@ public class ListIteratorDemo {
 
 ---
 
-## 🎯 Choosing the Right Iteration Method
+## ðŸŽ¯ Choosing the Right Iteration Method
 
 ### **When to Use Each Method**
 
@@ -365,7 +365,7 @@ public class IterationPerformance {
         System.out.println("Traditional for loop: " + traditionalForTime / 1000000 + "ms");
         System.out.println("Iterator: " + iteratorTime / 1000000 + "ms");
 
-        // For ArrayList: Enhanced for loop ≈ Iterator > Traditional for loop
+        // For ArrayList: Enhanced for loop â‰ˆ Iterator > Traditional for loop
         // For LinkedList: Iterator is much faster than random access with get()
     }
 }
@@ -373,7 +373,7 @@ public class IterationPerformance {
 
 ---
 
-## 🚨 Fail-Fast vs Fail-Safe Iterators
+## ðŸš¨ Fail-Fast vs Fail-Safe Iterators
 
 ### **Fail-Fast Iterators**
 
@@ -452,7 +452,7 @@ public class FailSafeIterator {
 
 ---
 
-## 🎯 Practical Iterator Examples
+## ðŸŽ¯ Practical Iterator Examples
 
 ### **Custom Iterator Implementation**
 
@@ -610,7 +610,7 @@ public class ConcurrentIteration {
 
 ---
 
-## 🎯 Summary
+## ðŸŽ¯ Summary
 
 ### **Iterator Interface Key Points**
 
@@ -671,4 +671,5 @@ System.out.println(list);
 Output: [B, C]
 `
 };
+
 

@@ -1,22 +1,22 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_10_2: SubLesson = {
   id: "10.2",
   title: 'Abstract Classes vs Interfaces',
   status: 'completed',
-  content: `# ⚖️ Abstract Classes vs Interfaces in Java
+  content: "`# âš–ï¸ Abstract Classes vs Interfaces in Java
 
 Master the differences and use cases for abstraction mechanisms in Java!
 
 ---
 
-## 🎯 Abstract Classes
+## ðŸŽ¯ Abstract Classes
 
 ### **What is an Abstract Class?**
 
 An **abstract class** is a class that cannot be instantiated and may contain abstract methods (methods without implementation) that must be implemented by subclasses.
 
-\`\`\`java
+\`"\`\`java
 // Abstract class
 public abstract class Shape {
     // Abstract fields (can have state)
@@ -109,7 +109,7 @@ public class AbstractClassDemo {
 
 ---
 
-## 🔌 Interfaces
+## ðŸ”Œ Interfaces
 
 ### **What is an Interface?**
 
@@ -200,7 +200,7 @@ public class InterfaceDemo {
 
 ---
 
-## ⚖️ Abstract Class vs Interface
+## âš–ï¸ Abstract Class vs Interface
 
 ### **Comparison Table**
 
@@ -318,7 +318,7 @@ public class FunctionalInterfaceDemo {
 
 ---
 
-## 🎨 Design Patterns with Abstraction
+## ðŸŽ¨ Design Patterns with Abstraction
 
 ### **1. Template Method Pattern**
 \`\`\`java
@@ -448,7 +448,7 @@ public class StrategyPatternDemo {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
 1. **Abstract classes** share code with subclasses, interfaces define contracts
 2. **Multiple inheritance** possible with interfaces, single with classes
@@ -459,6 +459,7 @@ public class StrategyPatternDemo {
 7. **Choose interfaces** for HAS-A relationships and multiple inheritance
 8. **Design patterns** leverage both for flexible, maintainable code
 
-**Next:** Learn about exception handling and polymorphism! 🚀`
+**Next:** Learn about exception handling and polymorphism! ðŸš€`
 };
+
 

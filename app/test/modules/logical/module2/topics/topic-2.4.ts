@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_4: SubLesson = {
   id: "2.4",
   title: 'Generation-Based Relations',
   status: 'completed',
-  content: `# 👨‍👩‍👧‍👦 Generation-Based Relations
+  content: "`# ðŸ‘¨â€ðŸ‘©â€ðŸ‘§â€ðŸ‘¦ Generation-Based Relations
 
 Understanding generation-based relationships is crucial for solving complex blood relation problems. Learn how to navigate different generations, understand familial hierarchies, and solve problems involving grandparents, parents, children, grandchildren, and extended family relationships.
 
 ---
 
-## 🎯 Understanding Generations in Families
+## ðŸŽ¯ Understanding Generations in Families
 
 ### **Generation Hierarchy**
 - **1st Generation**: Grandparents/Great-grandparents
@@ -25,7 +25,7 @@ Understanding generation-based relationships is crucial for solving complex bloo
 
 ---
 
-## 🧩 Basic Generation Terms
+## ðŸ§© Basic Generation Terms
 
 ### **Direct Relationships**
 - **Parent-Child**: Mother, Father, Son, Daughter
@@ -39,7 +39,7 @@ Understanding generation-based relationships is crucial for solving complex bloo
 
 ---
 
-## 📊 Generation-Based Problem Solving
+## ðŸ“Š Generation-Based Problem Solving
 
 ### **Example Problem 1**
 **Question**: If A is the father of B, and B is the father of C, then:
@@ -55,11 +55,11 @@ Understanding generation-based relationships is crucial for solving complex bloo
 
 ---
 
-## 🎯 Complex Generation Scenarios
+## ðŸŽ¯ Complex Generation Scenarios
 
 ### **Multi-Generation Families**
-- **3-Generation Family**: Grandparents → Parents → Children
-- **4-Generation Family**: Great-grandparents → Grandparents → Parents → Children
+- **3-Generation Family**: Grandparents â†’ Parents â†’ Children
+- **4-Generation Family**: Great-grandparents â†’ Grandparents â†’ Parents â†’ Children
 - **Extended Family**: Including uncles, aunts, cousins across generations
 
 ### **Cross-Generation Relationships**
@@ -69,7 +69,7 @@ Understanding generation-based relationships is crucial for solving complex bloo
 
 ---
 
-## 🛠️ Problem-Solving Techniques
+## ðŸ› ï¸ Problem-Solving Techniques
 
 ### **Step 1: Identify Generations**
 - Count the number of generations involved
@@ -88,7 +88,7 @@ Understanding generation-based relationships is crucial for solving complex bloo
 
 ---
 
-## 📈 Advanced Generation Concepts
+## ðŸ“ˆ Advanced Generation Concepts
 
 ### **Mixed Generation Problems**
 - Problems involving multiple family branches
@@ -102,7 +102,7 @@ Understanding generation-based relationships is crucial for solving complex bloo
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Generation**
 P is the father of Q, Q is the brother of R, R is the mother of S.
@@ -118,7 +118,7 @@ A is the son of B, B is the daughter of C, C is the mother of D.
 
 ---
 
-## 🚀 Key Takeaways
+## ðŸš€ Key Takeaways
 
 1. **Generation Mapping**: Always map out family generations first
 2. **Relationship Hierarchy**: Understand the generation ladder
@@ -126,5 +126,5 @@ A is the son of B, B is the daughter of C, C is the mother of D.
 4. **Terminology Accuracy**: Use correct familial terms
 5. **Systematic Approach**: Work generation by generation
 
-**Master generation-based relationships to solve complex family puzzles! 🧩✨**`
+**Master generation-based relationships to solve complex family puzzles! ðŸ§©âœ¨**`"
 };

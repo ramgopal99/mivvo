@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_4: SubLesson = {
   id: "4.4",
   title: 'Tuple Methods',
   status: 'demo',
-  content: `# 🔧 Tuple Methods
+  content: "`# ðŸ”§ Tuple Methods
 
 Tuples have fewer methods than lists because they are immutable. Let's explore what methods are available!
 
 ---
 
-## 🔢 Count Method
+## ðŸ”¢ Count Method
 
 ### **Count Occurrences**
-\`\`\`python
+\`"\`\`python
 numbers = (1, 2, 3, 2, 4, 2, 5)
 print(numbers.count(2))  # 3 (2 appears 3 times)
 print(numbers.count(6))  # 0 (6 not found)
@@ -25,7 +25,7 @@ print(fruits.count("grape"))  # 0
 
 ---
 
-## 📍 Index Method
+## ðŸ“ Index Method
 
 ### **Find Position**
 \`\`\`python
@@ -39,7 +39,7 @@ print(fruits.index("banana", 2))  # 3 (start searching from index 2)
 
 ---
 
-## 📏 Length and Membership
+## ðŸ“ Length and Membership
 
 ### **Built-in Functions**
 \`\`\`python
@@ -56,7 +56,7 @@ print("red" not in colors)  # False
 
 ---
 
-## 🔄 Sorting and Reversing
+## ðŸ”„ Sorting and Reversing
 
 ### **Create Sorted/Reverse Copies**
 \`\`\`python
@@ -77,7 +77,7 @@ print(f"Original: {numbers}")  # (3, 1, 4, 1, 5, 9, 2)
 
 ---
 
-## 📊 Min, Max, and Sum
+## ðŸ“Š Min, Max, and Sum
 
 ### **Aggregate Functions**
 \`\`\`python
@@ -96,7 +96,7 @@ print(f"Last alphabetically: {max(words)}")  # cherry
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 \`\`\`python
 # Student grades analysis
@@ -120,6 +120,7 @@ print(f"Anyone got 100? {100 in grades}")
 print(f"Anyone failed? {min(grades) < 60}")
 \`\`\`
 
-Tuples have fewer methods because they're immutable - but these methods are still very useful! 📊`
+Tuples have fewer methods because they're immutable - but these methods are still very useful! ðŸ“Š`
 };
+
 

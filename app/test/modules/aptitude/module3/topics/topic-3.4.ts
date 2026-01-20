@@ -1,21 +1,21 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_3_4: SubLesson = {
   id: "3.4",
   title: 'Fractions (Simple & Complex)',
   status: 'completed',
-  content: `# 🔢 Fractions: Simple & Complex
+  content: "`# ðŸ”¢ Fractions: Simple & Complex
 
 Fractions are fundamental to mathematics and appear frequently in aptitude exams. Understanding how to add, subtract, multiply, and divide fractions is essential for solving complex problems. Let's master both simple and complex fractions!
 
 ---
 
-## 🎯 What is a Fraction?
+## ðŸŽ¯ What is a Fraction?
 
 A **fraction** represents a part of a whole number. It consists of:
 - **Numerator** (top number) - represents parts taken
 - **Denominator** (bottom number) - represents total equal parts
-- **Fraction bar** (÷ or /) - separates numerator and denominator
+- **Fraction bar** (Ã· or /) - separates numerator and denominator
 
 **Examples:**
 - \\frac{3}{4} (three quarters)
@@ -24,7 +24,7 @@ A **fraction** represents a part of a whole number. It consists of:
 
 ---
 
-## 📊 Types of Fractions
+## ðŸ“Š Types of Fractions
 
 ### **1. Proper Fractions**
 Numerator < Denominator
@@ -47,7 +47,7 @@ Different fractions with same value
 
 ---
 
-## 🔧 Basic Operations with Fractions
+## ðŸ”§ Basic Operations with Fractions
 
 ### **1. Addition of Fractions**
 
@@ -61,7 +61,7 @@ Add numerators, keep denominator same:
 
 #### **Different Denominator (Unlike Fractions)**
 Find LCM of denominators, convert to equivalent fractions:
-\\frac{a}{b} + \\frac{c}{d} = \\frac{a × d + c × b}{b × d}
+\\frac{a}{b} + \\frac{c}{d} = \\frac{a Ã— d + c Ã— b}{b Ã— d}
 
 **Examples:**
 - \\frac{1}{2} + \\frac{1}{3} = \\frac{3 + 2}{6} = \\frac{5}{6}
@@ -74,7 +74,7 @@ Subtract numerators, keep denominator:
 \\frac{a}{c} - \\frac{b}{c} = \\frac{a - b}{c}
 
 #### **Different Denominator**
-\\frac{a}{b} - \\frac{c}{d} = \\frac{a × d - c × b}{b × d}
+\\frac{a}{b} - \\frac{c}{d} = \\frac{a Ã— d - c Ã— b}{b Ã— d}
 
 **Examples:**
 - \\frac{3}{4} - \\frac{1}{4} = \\frac{2}{4} = \\frac{1}{2}
@@ -82,35 +82,35 @@ Subtract numerators, keep denominator:
 
 ### **3. Multiplication of Fractions**
 Multiply numerators and denominators:
-\\frac{a}{b} × \\frac{c}{d} = \\frac{a × c}{b × d}
+\\frac{a}{b} Ã— \\frac{c}{d} = \\frac{a Ã— c}{b Ã— d}
 
 **Examples:**
-- \\frac{2}{3} × \\frac{3}{4} = \\frac{6}{12} = \\frac{1}{2}
-- \\frac{1}{2} × \\frac{2}{5} × \\frac{5}{6} = \\frac{10}{60} = \\frac{1}{6}
+- \\frac{2}{3} Ã— \\frac{3}{4} = \\frac{6}{12} = \\frac{1}{2}
+- \\frac{1}{2} Ã— \\frac{2}{5} Ã— \\frac{5}{6} = \\frac{10}{60} = \\frac{1}{6}
 
 ### **4. Division of Fractions**
 Multiply by reciprocal (flip second fraction):
-\\frac{a}{b} ÷ \\frac{c}{d} = \\frac{a}{b} × \\frac{d}{c} = \\frac{a × d}{b × c}
+\\frac{a}{b} Ã· \\frac{c}{d} = \\frac{a}{b} Ã— \\frac{d}{c} = \\frac{a Ã— d}{b Ã— c}
 
 **Examples:**
-- \\frac{2}{3} ÷ \\frac{4}{5} = \\frac{2}{3} × \\frac{5}{4} = \\frac{10}{12} = \\frac{5}{6}
-- \\frac{3}{4} ÷ \\frac{1}{2} = \\frac{3}{4} × \\frac{2}{1} = \\frac{6}{4} = \\frac{3}{2}
+- \\frac{2}{3} Ã· \\frac{4}{5} = \\frac{2}{3} Ã— \\frac{5}{4} = \\frac{10}{12} = \\frac{5}{6}
+- \\frac{3}{4} Ã· \\frac{1}{2} = \\frac{3}{4} Ã— \\frac{2}{1} = \\frac{6}{4} = \\frac{3}{2}
 
 ---
 
-## 🔄 Converting Between Fraction Types
+## ðŸ”„ Converting Between Fraction Types
 
 ### **Mixed Fraction to Improper Fraction**
 Multiply whole number by denominator, add numerator:
-a\\frac{b}{c} = \\frac{a × c + b}{c}
+a\\frac{b}{c} = \\frac{a Ã— c + b}{c}
 
 **Examples:**
-- 2\\frac{1}{3} = \\frac{2 × 3 + 1}{3} = \\frac{7}{3}
-- 3\\frac{2}{5} = \\frac{3 × 5 + 2}{5} = \\frac{17}{5}
+- 2\\frac{1}{3} = \\frac{2 Ã— 3 + 1}{3} = \\frac{7}{3}
+- 3\\frac{2}{5} = \\frac{3 Ã— 5 + 2}{5} = \\frac{17}{5}
 
 ### **Improper Fraction to Mixed Fraction**
 Divide numerator by denominator:
-\\frac{a}{b} = q\\frac{r}{b} where a = q × b + r
+\\frac{a}{b} = q\\frac{r}{b} where a = q Ã— b + r
 
 **Examples:**
 - \\frac{7}{3} = 2\\frac{1}{3}
@@ -123,14 +123,14 @@ Move decimal places to make whole number:
 
 ---
 
-## 🧮 Complex Fraction Operations
+## ðŸ§® Complex Fraction Operations
 
 ### **Compound Fractions**
 Fractions containing fractions within them.
 
 **Examples:**
-- \\frac{\\frac{1}{2}}{\\frac{3}{4}} = \\frac{1}{2} ÷ \\frac{3}{4} = \\frac{1}{2} × \\frac{4}{3} = \\frac{4}{6} = \\frac{2}{3}
-- \\frac{2 + \\frac{1}{3}}{4 - \\frac{1}{2}} = \\frac{\\frac{7}{3}}{\\frac{7}{2}} = \\frac{7}{3} × \\frac{2}{7} = \\frac{2}{3}
+- \\frac{\\frac{1}{2}}{\\frac{3}{4}} = \\frac{1}{2} Ã· \\frac{3}{4} = \\frac{1}{2} Ã— \\frac{4}{3} = \\frac{4}{6} = \\frac{2}{3}
+- \\frac{2 + \\frac{1}{3}}{4 - \\frac{1}{2}} = \\frac{\\frac{7}{3}}{\\frac{7}{2}} = \\frac{7}{3} Ã— \\frac{2}{7} = \\frac{2}{3}
 
 ### **Adding Mixed Fractions**
 Convert to improper fractions first:
@@ -138,17 +138,17 @@ Convert to improper fractions first:
 
 ### **Multiplying Mixed Fractions**
 Convert to improper fractions:
-2\\frac{1}{3} × 1\\frac{1}{4} = \\frac{7}{3} × \\frac{5}{4} = \\frac{35}{12} = 2\\frac{11}{12}
+2\\frac{1}{3} Ã— 1\\frac{1}{4} = \\frac{7}{3} Ã— \\frac{5}{4} = \\frac{35}{12} = 2\\frac{11}{12}
 
 ---
 
-## 🧠 Simplification Techniques
+## ðŸ§  Simplification Techniques
 
 ### **1. Common Factor Cancellation**
 Cancel common factors before multiplying:
 
 **Example:**
-\\frac{2}{3} × \\frac{9}{10} × \\frac{5}{4} = \\frac{2 × 9 × 5}{3 × 10 × 4} = \\frac{2 × 3 × 5}{3 × 2 × 4} = \\frac{5}{4}
+\\frac{2}{3} Ã— \\frac{9}{10} Ã— \\frac{5}{4} = \\frac{2 Ã— 9 Ã— 5}{3 Ã— 10 Ã— 4} = \\frac{2 Ã— 3 Ã— 5}{3 Ã— 2 Ã— 4} = \\frac{5}{4}
 
 ### **2. LCM for Addition/Subtraction**
 Find LCM of denominators to add/subtract:
@@ -158,14 +158,14 @@ Find LCM of denominators to add/subtract:
 
 ### **3. Cross Multiplication**
 For comparing fractions: a/b vs c/d
-If a×d > b×c, then a/b > c/d
+If aÃ—d > bÃ—c, then a/b > c/d
 
 ### **4. Reciprocal Method**
 For division: flip the second fraction and multiply
 
 ---
 
-## 🎯 Word Problems with Fractions
+## ðŸŽ¯ Word Problems with Fractions
 
 ### **Part of a Whole**
 If a pizza is divided into 8 equal slices and John eats 3 slices, what fraction did he eat?
@@ -177,31 +177,31 @@ Mary has \\frac{2}{5} of a cake and Peter has \\frac{1}{3} of the same cake. How
 
 ### **Division Problems**
 If 5 workers complete \\frac{2}{3} of a job in one day, how much does one worker complete?
-**Answer:** \\frac{2}{3} ÷ 5 = \\frac{2}{15}
+**Answer:** \\frac{2}{3} Ã· 5 = \\frac{2}{15}
 
 ---
 
-## 🚨 Common Mistakes to Avoid
+## ðŸš¨ Common Mistakes to Avoid
 
-### ❌ **Adding Without Common Denominator**
-\`\`\`
+### âŒ **Adding Without Common Denominator**
+\`"\`\`
 Wrong: \\frac{1}{2} + \\frac{1}{3} = \\frac{2}{5}
 Right: \\frac{1}{2} + \\frac{1}{3} = \\frac{3 + 2}{6} = \\frac{5}{6}
 \`\`\`
 
-### ❌ **Multiplying Instead of Dividing**
+### âŒ **Multiplying Instead of Dividing**
 \`\`\`
-Wrong: \\frac{2}{3} ÷ \\frac{4}{5} = \\frac{2 × 4}{3 × 5} = \\frac{8}{15}
-Right: \\frac{2}{3} ÷ \\frac{4}{5} = \\frac{2}{3} × \\frac{5}{4} = \\frac{10}{12} = \\frac{5}{6}
-\`\`\`
-
-### ❌ **Wrong Reciprocal**
-\`\`\`
-Wrong: \\frac{3}{4} ÷ 2 = \\frac{3}{4} × \\frac{1}{2} = \\frac{3}{8}
-Right: \\frac{3}{4} ÷ 2 = \\frac{3}{4} × \\frac{1}{2} = \\frac{3}{8} ✓
+Wrong: \\frac{2}{3} Ã· \\frac{4}{5} = \\frac{2 Ã— 4}{3 Ã— 5} = \\frac{8}{15}
+Right: \\frac{2}{3} Ã· \\frac{4}{5} = \\frac{2}{3} Ã— \\frac{5}{4} = \\frac{10}{12} = \\frac{5}{6}
 \`\`\`
 
-### ❌ **Mixed Fraction Conversion**
+### âŒ **Wrong Reciprocal**
+\`\`\`
+Wrong: \\frac{3}{4} Ã· 2 = \\frac{3}{4} Ã— \\frac{1}{2} = \\frac{3}{8}
+Right: \\frac{3}{4} Ã· 2 = \\frac{3}{4} Ã— \\frac{1}{2} = \\frac{3}{8} âœ“
+\`\`\`
+
+### âŒ **Mixed Fraction Conversion**
 \`\`\`
 Wrong: 2\\frac{1}{3} = \\frac{2}{3}
 Right: 2\\frac{1}{3} = \\frac{7}{3}
@@ -209,18 +209,18 @@ Right: 2\\frac{1}{3} = \\frac{7}{3}
 
 ---
 
-## 🎯 Practice Problems
+## ðŸŽ¯ Practice Problems
 
 ### **Simple Fractions:**
 1. \\frac{2}{3} + \\frac{1}{4} = ?
 2. \\frac{5}{6} - \\frac{1}{3} = ?
-3. \\frac{3}{4} × \\frac{2}{5} = ?
-4. \\frac{2}{3} ÷ \\frac{4}{5} = ?
+3. \\frac{3}{4} Ã— \\frac{2}{5} = ?
+4. \\frac{2}{3} Ã· \\frac{4}{5} = ?
 
 ### **Mixed Fractions:**
 1. 2\\frac{1}{3} + 1\\frac{1}{4} = ?
 2. 3\\frac{1}{2} - 1\\frac{2}{3} = ?
-3. 2\\frac{1}{3} × 1\\frac{1}{4} = ?
+3. 2\\frac{1}{3} Ã— 1\\frac{1}{4} = ?
 
 ### **Complex Fractions:**
 1. \\frac{\\frac{1}{2} + \\frac{1}{3}}{\\frac{1}{4}} = ?
@@ -238,7 +238,7 @@ Word: 1\\frac{5}{6} meters, \\frac{3}{8}
 
 ---
 
-## 🎓 Pro Tips for Exams
+## ðŸŽ“ Pro Tips for Exams
 
 1. **Always find LCM** for addition/subtraction of unlike fractions
 2. **Cancel common factors** before multiplying to simplify calculations
@@ -247,6 +247,7 @@ Word: 1\\frac{5}{6} meters, \\frac{3}{8}
 5. **Simplify final answers** by dividing numerator and denominator by GCD
 6. **Check reasonableness** - improper fractions should give answers > 1
 
-Master fractions and you'll excel in quantitative aptitude problems! 🏆`
+Master fractions and you'll excel in quantitative aptitude problems! ðŸ†`
 };
+
 

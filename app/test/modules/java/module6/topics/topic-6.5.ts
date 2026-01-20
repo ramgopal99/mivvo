@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_5: SubLesson = {
   id: "6.5",
   title: 'Access Modifiers',
   status: 'completed',
-  content: `# 🔐 Access Modifiers in Java
+  content: "`# ðŸ” Access Modifiers in Java
 
 Access modifiers control the visibility and accessibility of classes, fields, methods, and constructors. They are fundamental to encapsulation and play a crucial role in designing secure and maintainable Java applications.
 
 ---
 
-## 📋 The Four Access Modifiers
+## ðŸ“‹ The Four Access Modifiers
 
 ### **Public Access**
-\`\`\`java
+\`"\`\`java
 // Accessible from anywhere
 public class PublicClass {
     public String publicField = "Anyone can access";
@@ -31,8 +31,8 @@ public class PublicClass {
 public class AnyClass {
     public void accessPublic() {
         PublicClass obj = new PublicClass();
-        obj.publicField = "Modified";     // ✅ Accessible
-        obj.publicMethod();               // ✅ Callable
+        obj.publicField = "Modified";     // âœ… Accessible
+        obj.publicMethod();               // âœ… Callable
     }
 }
 \`\`\`
@@ -63,8 +63,8 @@ public class PrivateExample {
         PrivateExample obj = new PrivateExample();
 
         // Cannot access private members directly
-        // obj.secretData = "test";     // ❌ Compilation error
-        // obj.secretMethod();          // ❌ Compilation error
+        // obj.secretData = "test";     // âŒ Compilation error
+        // obj.secretMethod();          // âŒ Compilation error
 
         // Must use public methods
         System.out.println(obj.getSecretData());
@@ -91,8 +91,8 @@ public class ProtectedExample {
 // Subclass in same package
 class SamePackageSubclass extends ProtectedExample {
     public void accessProtected() {
-        System.out.println(protectedField);  // ✅ Accessible
-        protectedMethod();                  // ✅ Callable
+        System.out.println(protectedField);  // âœ… Accessible
+        protectedMethod();                  // âœ… Callable
     }
 }
 
@@ -100,8 +100,8 @@ class SamePackageSubclass extends ProtectedExample {
 class SamePackageClass {
     public void accessProtected() {
         ProtectedExample obj = new ProtectedExample();
-        System.out.println(obj.protectedField);  // ✅ Accessible (same package)
-        obj.protectedMethod();                   // ✅ Callable (same package)
+        System.out.println(obj.protectedField);  // âœ… Accessible (same package)
+        obj.protectedMethod();                   // âœ… Callable (same package)
     }
 }
 
@@ -109,8 +109,8 @@ class SamePackageClass {
 package different;
 class DifferentPackageSubclass extends ProtectedExample {
     public void accessProtected() {
-        System.out.println(protectedField);  // ✅ Accessible (subclass)
-        protectedMethod();                  // ✅ Callable (subclass)
+        System.out.println(protectedField);  // âœ… Accessible (subclass)
+        protectedMethod();                  // âœ… Callable (subclass)
     }
 }
 
@@ -119,8 +119,8 @@ package different;
 class DifferentPackageClass {
     public void tryAccessProtected() {
         ProtectedExample obj = new ProtectedExample();
-        // obj.protectedField = "test";  // ❌ Compilation error
-        // obj.protectedMethod();        // ❌ Compilation error
+        // obj.protectedField = "test";  // âŒ Compilation error
+        // obj.protectedMethod();        // âŒ Compilation error
     }
 }
 \`\`\`
@@ -144,8 +144,8 @@ class PackagePrivateClass {
 class SamePackageAccess {
     public void accessDefault() {
         PackagePrivateClass obj = new PackagePrivateClass();
-        obj.defaultField = "Modified";      // ✅ Accessible
-        obj.defaultMethod();                // ✅ Callable
+        obj.defaultField = "Modified";      // âœ… Accessible
+        obj.defaultMethod();                // âœ… Callable
     }
 }
 
@@ -153,7 +153,7 @@ class SamePackageAccess {
 package other;
 class DifferentPackageAccess {
     public void tryAccessDefault() {
-        // PackagePrivateClass obj = new PackagePrivateClass();  // ❌ Compilation error
+        // PackagePrivateClass obj = new PackagePrivateClass();  // âŒ Compilation error
         // Cannot even see the class from different package
     }
 }
@@ -161,7 +161,7 @@ class DifferentPackageAccess {
 
 ---
 
-## 🎯 Access Modifier Usage Guidelines
+## ðŸŽ¯ Access Modifier Usage Guidelines
 
 ### **Class-Level Access**
 \`\`\`java
@@ -281,7 +281,7 @@ class CustomSubclass extends MethodAccessPatterns {
 
 ---
 
-## 🔒 Encapsulation with Access Modifiers
+## ðŸ”’ Encapsulation with Access Modifiers
 
 ### **Complete Encapsulation Example**
 \`\`\`java
@@ -351,14 +351,14 @@ public class BankAccount {
         System.out.println("Final balance: $" + account.getBalance());
 
         // Cannot directly modify private fields
-        // account.balance = 1000000;  // ❌ Compilation error
+        // account.balance = 1000000;  // âŒ Compilation error
     }
 }
 \`\`\`
 
 ---
 
-## 📦 Access Modifiers and Inheritance
+## ðŸ“¦ Access Modifiers and Inheritance
 
 ### **Inheritance Access Rules**
 \`\`\`java
@@ -377,45 +377,45 @@ public class ParentClass {
 class ChildClass extends ParentClass {
     public void testAccess() {
         // Inherited access from parent
-        System.out.println(publicField);      // ✅ Accessible
-        System.out.println(protectedField);   // ✅ Accessible
-        System.out.println(defaultField);     // ✅ Accessible (same package)
-        // System.out.println(privateField);  // ❌ Not accessible
+        System.out.println(publicField);      // âœ… Accessible
+        System.out.println(protectedField);   // âœ… Accessible
+        System.out.println(defaultField);     // âœ… Accessible (same package)
+        // System.out.println(privateField);  // âŒ Not accessible
 
-        publicMethod();      // ✅ Accessible
-        protectedMethod();   // ✅ Accessible
-        defaultMethod();     // ✅ Accessible (same package)
-        // privateMethod();   // ❌ Not accessible
+        publicMethod();      // âœ… Accessible
+        protectedMethod();   // âœ… Accessible
+        defaultMethod();     // âœ… Accessible (same package)
+        // privateMethod();   // âŒ Not accessible
     }
 }
 
 class SamePackageClass {
     public void testAccess() {
         ParentClass parent = new ParentClass();
-        System.out.println(parent.publicField);    // ✅
-        System.out.println(parent.protectedField); // ✅ (same package)
-        System.out.println(parent.defaultField);   // ✅ (same package)
-        // System.out.println(parent.privateField); // ❌
+        System.out.println(parent.publicField);    // âœ…
+        System.out.println(parent.protectedField); // âœ… (same package)
+        System.out.println(parent.defaultField);   // âœ… (same package)
+        // System.out.println(parent.privateField); // âŒ
 
-        parent.publicMethod();    // ✅
-        parent.protectedMethod(); // ✅ (same package)
-        parent.defaultMethod();   // ✅ (same package)
-        // parent.privateMethod(); // ❌
+        parent.publicMethod();    // âœ…
+        parent.protectedMethod(); // âœ… (same package)
+        parent.defaultMethod();   // âœ… (same package)
+        // parent.privateMethod(); // âŒ
     }
 }
 \`\`\`
 
 ---
 
-## 🚫 Common Access Modifier Mistakes
+## ðŸš« Common Access Modifier Mistakes
 
 ### **Overly Permissive Access**
 \`\`\`java
 public class BadAccessExample {
-    // ❌ Bad: Public field allows direct modification
+    // âŒ Bad: Public field allows direct modification
     public int age;
 
-    // ❌ Bad: Public setter without validation
+    // âŒ Bad: Public setter without validation
     public void setAge(int age) {
         this.age = age;  // No validation
     }
@@ -431,7 +431,7 @@ public class BadAccessExample {
     }
 }
 
-// ✅ Better: Proper encapsulation
+// âœ… Better: Proper encapsulation
 class GoodAccessExample {
     private int age;
 
@@ -452,7 +452,7 @@ class GoodAccessExample {
 ### **Inconsistent Access Patterns**
 \`\`\`java
 public class InconsistentAccess {
-    // ❌ Inconsistent: Some fields public, some private
+    // âŒ Inconsistent: Some fields public, some private
     public String name;       // Public field
     private String email;     // Private field with getter/setter
     public int age;          // Public field
@@ -463,7 +463,7 @@ public class InconsistentAccess {
     // This creates confusion about the class's encapsulation policy
 }
 
-// ✅ Better: Consistent encapsulation
+// âœ… Better: Consistent encapsulation
 class ConsistentAccess {
     private String name;
     private String email;
@@ -483,7 +483,7 @@ class ConsistentAccess {
 
 ---
 
-## 🎯 Best Practices
+## ðŸŽ¯ Best Practices
 
 ### **1. Favor Private Fields**
 \`\`\`java
@@ -600,8 +600,9 @@ public class AccessModifierSummary {
 }
 \`\`\`
 
-Access modifiers are essential for creating well-encapsulated, maintainable Java classes. They control visibility and help establish clear contracts between different parts of your code! 🔐`
+Access modifiers are essential for creating well-encapsulated, maintainable Java classes. They control visibility and help establish clear contracts between different parts of your code! ðŸ”`
 };
+
 
 
 

@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_7: SubLesson = {
   id: "4.7",
   title: 'Scheduling Puzzles',
   status: 'completed',
-  content: `# 📅 Scheduling Puzzles
+  content: "`# ðŸ“… Scheduling Puzzles
 
 Scheduling puzzles involve arranging events, appointments, or activities in specific time slots based on various constraints. These puzzles require understanding of time management, sequence logic, and constraint satisfaction to solve complex scheduling problems.
 
 ---
 
-## 🎯 Understanding Scheduling Puzzles
+## ðŸŽ¯ Understanding Scheduling Puzzles
 
 ### **What are Scheduling Puzzles?**
 Scheduling puzzles involve arranging activities, meetings, or events in time slots based on given constraints. They test your ability to:
@@ -27,7 +27,7 @@ Scheduling puzzles involve arranging activities, meetings, or events in time slo
 
 ---
 
-## 🧩 Types of Scheduling Problems
+## ðŸ§© Types of Scheduling Problems
 
 ### **1. Time Slot Scheduling**
 **Assigning activities to specific time slots**
@@ -49,7 +49,7 @@ Scheduling puzzles involve arranging activities, meetings, or events in time slo
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Understand Time Framework**
 - Identify time slots available
@@ -73,7 +73,7 @@ Scheduling puzzles involve arranging activities, meetings, or events in time slo
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Meeting Scheduling**
 **Meeting room and time assignments**
@@ -95,7 +95,7 @@ Scheduling puzzles involve arranging activities, meetings, or events in time slo
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Time Grid Method**
 Time: 9AM 10AM 11AM 12PM 1PM
@@ -117,7 +117,7 @@ Tue:  [ ]  [ ]  [ ]  [ ]  [ ]
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Meeting Schedule**
 **Conditions:**
@@ -157,7 +157,7 @@ Tue:  [ ]  [ ]  [ ]  [ ]  [ ]
 
 ---
 
-## 🔍 Advanced Scheduling Concepts
+## ðŸ” Advanced Scheduling Concepts
 
 ### **Multi-Resource Scheduling**
 Problems involving multiple resources simultaneously.
@@ -170,7 +170,7 @@ Complex activity dependency networks.
 
 ---
 
-## 📊 Scheduling Logic Methods
+## ðŸ“Š Scheduling Logic Methods
 
 ### **Time-Based Logic**
 - **Before/After**: Temporal sequence relationships
@@ -189,23 +189,23 @@ Complex activity dependency networks.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Time Confusion**
-❌ Mixing time formats or slots
-✅ Clear time slot identification
+âŒ Mixing time formats or slots
+âœ… Clear time slot identification
 
 ### **Pitfall 2: Sequence Errors**
-❌ Wrong precedence application
-✅ Careful before/after logic
+âŒ Wrong precedence application
+âœ… Careful before/after logic
 
 ### **Pitfall 3: Resource Conflicts**
-❌ Overbooking resources
-✅ Resource availability checking
+âŒ Overbooking resources
+âœ… Resource availability checking
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Time Framework Creation**
 - Draw clear time slot layout
@@ -224,7 +224,7 @@ Complex activity dependency networks.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Few activities, simple constraints
@@ -243,7 +243,7 @@ Complex activity dependency networks.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Create Time Grid**: Visual time-activity framework
 2. **List All Constraints**: Systematic constraint organization
@@ -253,7 +253,7 @@ Complex activity dependency networks.
 
 ---
 
-## 📅 Practice Questions
+## ðŸ“… Practice Questions
 
 ### **Question 1**
 **Conditions:**
@@ -289,5 +289,5 @@ Complex activity dependency networks.
 
 **What is the sequence of tasks?**
 
-**Master scheduling puzzles for effective time management! 📅✨**`
+**Master scheduling puzzles for effective time management! ðŸ“…âœ¨**`"
 };

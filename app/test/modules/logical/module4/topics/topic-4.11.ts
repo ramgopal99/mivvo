@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_4_11: SubLesson = {
   id: "4.11",
   title: 'Mixed Logical Puzzles',
   status: 'completed',
-  content: `# 🎭 Mixed Logical Puzzles
+  content: "`# ðŸŽ­ Mixed Logical Puzzles
 
 Mixed logical puzzles combine multiple reasoning types and problem-solving techniques into complex scenarios. These advanced puzzles require integrating various logical concepts, applying multiple solution strategies, and demonstrating comprehensive analytical skills.
 
 ---
 
-## 🎯 Understanding Mixed Logical Puzzles
+## ðŸŽ¯ Understanding Mixed Logical Puzzles
 
 ### **What are Mixed Logical Puzzles?**
 Mixed logical puzzles combine different reasoning types, problem-solving techniques, and analytical concepts into complex integrated problems. They test your ability to:
@@ -27,7 +27,7 @@ Mixed logical puzzles combine different reasoning types, problem-solving techniq
 
 ---
 
-## 🧩 Types of Mixed Logical Puzzles
+## ðŸ§© Types of Mixed Logical Puzzles
 
 ### **1. Multi-Concept Integration**
 **Combining different reasoning types**
@@ -49,7 +49,7 @@ Mixed logical puzzles combine different reasoning types, problem-solving techniq
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Comprehensive Analysis**
 - Identify all reasoning types involved
@@ -73,7 +73,7 @@ Mixed logical puzzles combine different reasoning types, problem-solving techniq
 
 ---
 
-## 🎯 Common Mixed Problem Types
+## ðŸŽ¯ Common Mixed Problem Types
 
 ### **Type 1: Family-Arrangement Integration**
 **Family relationships + spatial arrangements**
@@ -95,7 +95,7 @@ Mixed logical puzzles combine different reasoning types, problem-solving techniq
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Component Integration Method**
 - Identify puzzle components
@@ -114,7 +114,7 @@ Mixed logical puzzles combine different reasoning types, problem-solving techniq
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Family-Seating-Age Integration**
 **Conditions:**
@@ -145,7 +145,7 @@ Mixed logical puzzles combine different reasoning types, problem-solving techniq
 
 ---
 
-## 🔍 Advanced Mixed Concepts
+## ðŸ” Advanced Mixed Concepts
 
 ### **Complex Integration Scenarios**
 Problems requiring multiple reasoning domains simultaneously.
@@ -158,7 +158,7 @@ Complex interdependencies requiring systematic resolution.
 
 ---
 
-## 📊 Integration Methods
+## ðŸ“Š Integration Methods
 
 ### **Component-Based Integration**
 - **Arrangement Component**: Spatial positioning logic
@@ -178,23 +178,23 @@ Complex interdependencies requiring systematic resolution.
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Component Isolation**
-❌ Solving components without integration
-✅ Consider cross-component relationships
+âŒ Solving components without integration
+âœ… Consider cross-component relationships
 
 ### **Pitfall 2: Constraint Conflicts**
-❌ Ignoring conflicting requirements
-✅ Identify and resolve constraint conflicts
+âŒ Ignoring conflicting requirements
+âœ… Identify and resolve constraint conflicts
 
 ### **Pitfall 3: Incomplete Integration**
-❌ Missing component interactions
-✅ Verify all integration points
+âŒ Missing component interactions
+âœ… Verify all integration points
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Problem Decomposition**
 - Break into component puzzles
@@ -213,7 +213,7 @@ Complex interdependencies requiring systematic resolution.
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Two reasoning domains
@@ -232,7 +232,7 @@ Complex interdependencies requiring systematic resolution.
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Decompose Systematically**: Break into manageable components
 2. **Identify Integration Points**: Map cross-component relationships
@@ -242,7 +242,7 @@ Complex interdependencies requiring systematic resolution.
 
 ---
 
-## 🎭 Practice Questions
+## ðŸŽ­ Practice Questions
 
 ### **Question 1**
 **Conditions:**
@@ -288,5 +288,5 @@ Complex interdependencies requiring systematic resolution.
 
 **What is the minimum number of constraint violations possible?**
 
-**Master mixed logical puzzles for ultimate analytical integration! 🎭✨**`
+**Master mixed logical puzzles for ultimate analytical integration! ðŸŽ­âœ¨**`"
 };

@@ -1,28 +1,28 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_3: SubLesson = {
   id: "13.3",
   title: 'BST Traversal Algorithms',
   status: 'completed',
-  content: `# 🚶 BST Traversal Algorithms
+  content: "`# ðŸš¶ BST Traversal Algorithms
 
 Learn different ways to visit all nodes in a Binary Search Tree systematically in Java!
 
 ---
 
-## 🎯 Tree Traversal Methods
+## ðŸŽ¯ Tree Traversal Methods
 
 ### **Depth-First Traversals**
 
-#### **1. Inorder Traversal (Left → Root → Right)**
-\`\`\`
+#### **1. Inorder Traversal (Left â†’ Root â†’ Right)**
+\`"\`\`
 Tree:     8
          / \\
         3   10
        / \\    \\
       1   6    14
 
-Inorder: [1, 3, 6, 8, 10, 14] ← **SORTED ORDER**
+Inorder: [1, 3, 6, 8, 10, 14] â† **SORTED ORDER**
 \`\`\`
 
 **Code:**
@@ -46,7 +46,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 }
 \`\`\`
 
-#### **2. Preorder Traversal (Root → Left → Right)**
+#### **2. Preorder Traversal (Root â†’ Left â†’ Right)**
 \`\`\`
 Tree:     8
          / \\
@@ -54,7 +54,7 @@ Tree:     8
        / \\    \\
       1   6    14
 
-Preorder: [8, 3, 1, 6, 10, 14] ← **Root first**
+Preorder: [8, 3, 1, 6, 10, 14] â† **Root first**
 \`\`\`
 
 **Code:**
@@ -78,7 +78,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 }
 \`\`\`
 
-#### **3. Postorder Traversal (Left → Right → Root)**
+#### **3. Postorder Traversal (Left â†’ Right â†’ Root)**
 \`\`\`
 Tree:     8
          / \\
@@ -86,7 +86,7 @@ Tree:     8
        / \\    \\
       1   6    14
 
-Postorder: [1, 6, 3, 14, 10, 8] ← **Root last**
+Postorder: [1, 6, 3, 14, 10, 8] â† **Root last**
 \`\`\`
 
 **Code:**
@@ -112,7 +112,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 ---
 
-## 🌊 Breadth-First Traversal (Level Order)
+## ðŸŒŠ Breadth-First Traversal (Level Order)
 
 ### **Level Order Traversal (Queue-based)**
 \`\`\`
@@ -124,7 +124,7 @@ Tree:     8
          / \\   /
         4   7 12
 
-Level Order: [8, 3, 10, 1, 6, 14, 4, 7, 12] ← **Level by level**
+Level Order: [8, 3, 10, 1, 6, 14, 4, 7, 12] â† **Level by level**
 \`\`\`
 
 **Code:**
@@ -160,18 +160,18 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 ---
 
-## 📊 Comparison of Traversals
+## ðŸ“Š Comparison of Traversals
 
 | Traversal | Order | Use Case |
 |-----------|-------|----------|
-| **Inorder** | Left → Root → Right | Get **sorted** elements |
-| **Preorder** | Root → Left → Right | Create **tree copy**, prefix notation |
-| **Postorder** | Left → Right → Root | Delete tree, postfix notation |
+| **Inorder** | Left â†’ Root â†’ Right | Get **sorted** elements |
+| **Preorder** | Root â†’ Left â†’ Right | Create **tree copy**, prefix notation |
+| **Postorder** | Left â†’ Right â†’ Root | Delete tree, postfix notation |
 | **Level Order** | Level by level | Find **shortest path**, level info |
 
 ---
 
-## 🔄 Iterative Traversals (Stack-based)
+## ðŸ”„ Iterative Traversals (Stack-based)
 
 ### **Iterative Inorder Traversal**
 \`\`\`java
@@ -237,7 +237,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 ---
 
-## 🧪 Complete BST with All Traversals
+## ðŸ§ª Complete BST with All Traversals
 
 \`\`\`java
 import java.util.LinkedList;
@@ -310,7 +310,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 ---
 
-## 🧪 Testing All Traversals
+## ðŸ§ª Testing All Traversals
 
 \`\`\`java
 public class BSTTraversalDemo {
@@ -345,15 +345,16 @@ public class BSTTraversalDemo {
 
 ---
 
-## 🎯 Key Takeaways
+## ðŸŽ¯ Key Takeaways
 
-1. **Inorder**: Left → Root → Right (gives sorted order in BST)
-2. **Preorder**: Root → Left → Right (useful for copying trees)
-3. **Postorder**: Left → Right → Root (useful for deletion)
+1. **Inorder**: Left â†’ Root â†’ Right (gives sorted order in BST)
+2. **Preorder**: Root â†’ Left â†’ Right (useful for copying trees)
+3. **Postorder**: Left â†’ Right â†’ Root (useful for deletion)
 4. **Level Order**: Breadth-first, level by level
 5. **Recursive**: Simple but can cause stack overflow for deep trees
 6. **Iterative**: Uses stacks/queues, better for large trees
 
-**Next:** Learn BST properties and applications! 🚀`
+**Next:** Learn BST properties and applications! ðŸš€`
 };
+
 

@@ -1,37 +1,37 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_10: SubLesson = {
   id: "2.10",
   title: 'Square & Cube Numbers',
   status: 'completed',
-  content: `# 🔢 Square & Cube Numbers
+  content: "`# ðŸ”¢ Square & Cube Numbers
 
 Square and cube numbers are fundamental concepts in mathematics with important properties and applications. Understanding these special numbers helps in solving various aptitude problems involving patterns, factorization, and number properties.
 
 ---
 
-## 🎯 Square Numbers
+## ðŸŽ¯ Square Numbers
 
 ### Definition
 A square number (or perfect square) is the result of multiplying an integer by itself.
 
-**Formula**: n² = n × n
+**Formula**: nÂ² = n Ã— n
 
 **Examples**:
-- 1² = 1
-- 2² = 4
-- 3² = 9
-- 4² = 16
-- 5² = 25
-- 6² = 36
-- 7² = 49
-- 8² = 64
-- 9² = 81
-- 10² = 100
+- 1Â² = 1
+- 2Â² = 4
+- 3Â² = 9
+- 4Â² = 16
+- 5Â² = 25
+- 6Â² = 36
+- 7Â² = 49
+- 8Â² = 64
+- 9Â² = 81
+- 10Â² = 100
 
 ---
 
-## 📊 Properties of Square Numbers
+## ðŸ“Š Properties of Square Numbers
 
 ### 1. **Last Digit Pattern**
 Square numbers end with: 0, 1, 4, 5, 6, 9
@@ -48,32 +48,32 @@ Square of any number has digital root 1, 4, 7, or 9.
 - Odd square = odd number
 
 ### 4. **Prime Factorization**
-In prime factorization of n², all exponents are even.
+In prime factorization of nÂ², all exponents are even.
 
 ---
 
-## 🧮 Cube Numbers
+## ðŸ§® Cube Numbers
 
 ### Definition
 A cube number (or perfect cube) is the result of multiplying an integer by itself twice.
 
-**Formula**: n³ = n × n × n
+**Formula**: nÂ³ = n Ã— n Ã— n
 
 **Examples**:
-- 1³ = 1
-- 2³ = 8
-- 3³ = 27
-- 4³ = 64
-- 5³ = 125
-- 6³ = 216
-- 7³ = 343
-- 8³ = 512
-- 9³ = 729
-- 10³ = 1000
+- 1Â³ = 1
+- 2Â³ = 8
+- 3Â³ = 27
+- 4Â³ = 64
+- 5Â³ = 125
+- 6Â³ = 216
+- 7Â³ = 343
+- 8Â³ = 512
+- 9Â³ = 729
+- 10Â³ = 1000
 
 ---
 
-## 📈 Properties of Cube Numbers
+## ðŸ“ˆ Properties of Cube Numbers
 
 ### 1. **Last Digit Pattern**
 Cube numbers can end with any digit (0-9).
@@ -82,7 +82,7 @@ Cube numbers can end with any digit (0-9).
 Cubes can have any digital root.
 
 ### 3. **Prime Factorization**
-In prime factorization of n³, all exponents are divisible by 3.
+In prime factorization of nÂ³, all exponents are divisible by 3.
 
 ### 4. **Even/Odd Property**
 - Even cube = even number
@@ -90,7 +90,7 @@ In prime factorization of n³, all exponents are divisible by 3.
 
 ---
 
-## 🎯 Special Square & Cube Numbers
+## ðŸŽ¯ Special Square & Cube Numbers
 
 ### 1. **Triangular Numbers that are Square**
 Numbers that are both triangular and square.
@@ -98,21 +98,21 @@ Numbers that are both triangular and square.
 **Examples**: 1, 36, 1225
 
 ### 2. **Square Triangular Numbers**
-Solutions to: 8x² + 1 = y²
+Solutions to: 8xÂ² + 1 = yÂ²
 
 ### 3. **Taxicab Numbers**
 Numbers that can be expressed as sum of two cubes in two different ways.
 
-**Example**: 1729 = 1³ + 12³ = 9³ + 10³
+**Example**: 1729 = 1Â³ + 12Â³ = 9Â³ + 10Â³
 
 ### 4. **Palindromic Squares**
 Square numbers that are palindromes.
 
-**Example**: 121 = 11², 484 = 22²
+**Example**: 121 = 11Â², 484 = 22Â²
 
 ---
 
-## 🧠 Problem Solving Tricks
+## ðŸ§  Problem Solving Tricks
 
 ### Trick 1: **Square Number Recognition**
 A number n is a perfect square if:
@@ -121,9 +121,9 @@ A number n is a perfect square if:
 - Digital root is 1, 4, 7, or 9
 
 **Example**: Is 441 a perfect square?
-\`\`\`
-441 ends with 1 ✓
-441 = 21² = 441 ✓
+\`"\`\`
+441 ends with 1 âœ“
+441 = 21Â² = 441 âœ“
 \`\`\`
 
 ### Trick 2: **Cube Number Recognition**
@@ -133,135 +133,136 @@ A number n is a perfect cube if:
 
 **Example**: Is 512 a perfect cube?
 \`\`\`
-512 = 2^9 = (2^3)^3 = 8^3 ✓
+512 = 2^9 = (2^3)^3 = 8^3 âœ“
 \`\`\`
 
 ### Trick 3: **Between Squares**
-For any number n, there is exactly one perfect square between n² and (n+1)².
+For any number n, there is exactly one perfect square between nÂ² and (n+1)Â².
 
 ### Trick 4: **Sum of First n Squares**
-Formula: Σk² = n(n+1)(2n+1)/6
+Formula: Î£kÂ² = n(n+1)(2n+1)/6
 
 **Example**: Sum of squares from 1 to 5 = 1+4+9+16+25 = 55
-Formula: 5×6×11/6 = 55 ✓
+Formula: 5Ã—6Ã—11/6 = 55 âœ“
 
 ### Trick 5: **Sum of First n Cubes**
-Formula: Σk³ = [n(n+1)/2]²
+Formula: Î£kÂ³ = [n(n+1)/2]Â²
 
 **Example**: Sum of cubes from 1 to 3 = 1+8+27 = 36
-Formula: (3×4/2)² = 6² = 36 ✓
+Formula: (3Ã—4/2)Â² = 6Â² = 36 âœ“
 
 ---
 
-## 📊 Patterns and Sequences
+## ðŸ“Š Patterns and Sequences
 
 ### 1. **Square Number Pattern**
 \`\`\`
-1² = 1
-1² + 3 = 4 = 2²
-4 + 5 = 9 = 3²
-9 + 7 = 16 = 4²
-16 + 9 = 25 = 5²
-25 + 11 = 36 = 6²
+1Â² = 1
+1Â² + 3 = 4 = 2Â²
+4 + 5 = 9 = 3Â²
+9 + 7 = 16 = 4Â²
+16 + 9 = 25 = 5Â²
+25 + 11 = 36 = 6Â²
 \`\`\`
 **Pattern**: Add odd numbers: 1, 3, 5, 7, 9, 11...
 
 ### 2. **Cube Number Pattern**
 \`\`\`
-1³ = 1
-2³ = 8
-3³ = 27
-4³ = 64
-5³ = 125
+1Â³ = 1
+2Â³ = 8
+3Â³ = 27
+4Â³ = 64
+5Â³ = 125
 \`\`\`
 
 ### 3. **Difference of Squares**
-a² - b² = (a - b)(a + b)
+aÂ² - bÂ² = (a - b)(a + b)
 
 ### 4. **Difference of Cubes**
-a³ - b³ = (a - b)(a² + ab + b²)
+aÂ³ - bÂ³ = (a - b)(aÂ² + ab + bÂ²)
 
 ### 5. **Sum of Cubes**
-a³ + b³ = (a + b)(a² - ab + b²)
+aÂ³ + bÂ³ = (a + b)(aÂ² - ab + bÂ²)
 
 ---
 
-## 🎯 Applications in Aptitude
+## ðŸŽ¯ Applications in Aptitude
 
 ### 1. **Finding Square Roots**
-**Example**: Find √(144) without calculator.
+**Example**: Find âˆš(144) without calculator.
 
-**Solution**: 12² = 144 ✓
+**Solution**: 12Â² = 144 âœ“
 
 ### 2. **Cube Roots**
-**Example**: Find ∛(125).
+**Example**: Find âˆ›(125).
 
-**Solution**: 5³ = 125 ✓
+**Solution**: 5Â³ = 125 âœ“
 
 ### 3. **Pattern Recognition**
 **Example**: Find the next number: 1, 4, 9, 16, 25, ?
 
-**Solution**: 36 (6²)
+**Solution**: 36 (6Â²)
 
 ### 4. **Factor Analysis**
 **Example**: Is 225 a perfect square?
 
-**Solution**: 225 = 15² = 3² × 5² ✓
+**Solution**: 225 = 15Â² = 3Â² Ã— 5Â² âœ“
 
 ---
 
-## 🔍 Advanced Concepts
+## ðŸ” Advanced Concepts
 
 ### 1. **Square-Free Numbers**
 Numbers not divisible by any perfect square other than 1.
 
-**Example**: 15 = 3×5 (square-free)
-**Example**: 12 = 4×3 (not square-free, divisible by 4)
+**Example**: 15 = 3Ã—5 (square-free)
+**Example**: 12 = 4Ã—3 (not square-free, divisible by 4)
 
 ### 2. **Cube-Free Numbers**
 Numbers not divisible by any perfect cube other than 1.
 
 ### 3. **Powerful Numbers**
-Numbers where every prime factor has exponent ≥2.
+Numbers where every prime factor has exponent â‰¥2.
 
 ### 4. **Achilles Numbers**
 Powerful numbers that are not perfect powers.
 
 ---
 
-## 📝 Practice Examples
+## ðŸ“ Practice Examples
 
 ### Example 1: Perfect Square Check
 Is 169 a perfect square?
 
-**Solution**: 169 = 13² ✓
+**Solution**: 169 = 13Â² âœ“
 
 ### Example 2: Perfect Cube Check
 Is 343 a perfect cube?
 
-**Solution**: 343 = 7³ ✓
+**Solution**: 343 = 7Â³ âœ“
 
 ### Example 3: Square Pattern
 What is the sum of first 10 odd numbers?
 
-**Solution**: 10² = 100 ✓
+**Solution**: 10Â² = 100 âœ“
 
 ### Example 4: Cube Pattern
 What is the sum of cubes from 1 to n?
 
-**Solution**: [n(n+1)/2]²
+**Solution**: [n(n+1)/2]Â²
 
 ### Example 5: Difference Pattern
-Simplify: 50² - 49²
+Simplify: 50Â² - 49Â²
 
-**Solution**: (50-49)(50+49) = 1 × 99 = 99
+**Solution**: (50-49)(50+49) = 1 Ã— 99 = 99
 
 ### Example 6: Complex Squares
 Find the square of 15.
 
-**Solution**: 15² = 225
-Or: (10+5)² = 100 + 2×10×5 + 25 = 100 + 100 + 25 = 225
+**Solution**: 15Â² = 225
+Or: (10+5)Â² = 100 + 2Ã—10Ã—5 + 25 = 100 + 100 + 25 = 225
 
-Master square and cube numbers to solve pattern and number problems! 🚀`
+Master square and cube numbers to solve pattern and number problems! ðŸš€`
 };
+
 

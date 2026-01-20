@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_13_6: SubLesson = {
   id: "13.6",
   title: 'Cross-Multiplication Method',
   status: 'completed',
-  content: `# ❌ Cross-Multiplication Method
+  content: "`# âŒ Cross-Multiplication Method
 
 Discover the elegant Cross-Multiplication Method for solving systems of linear equations! This visual and systematic approach is perfect for competitive exams where speed matters. Learn to solve equations with confidence using this powerful technique.
 
 ---
 
-## 🎯 What is Cross-Multiplication Method?
+## ðŸŽ¯ What is Cross-Multiplication Method?
 
 **Cross-Multiplication Method** is a systematic way to solve systems of two linear equations by multiplying across the equations and eliminating variables through cross-multiplication.
 
@@ -25,46 +25,46 @@ Multiply each term by the coefficient of the opposite variable in the other equa
 
 ---
 
-## 🔢 Standard Form for Cross-Multiplication
+## ðŸ”¢ Standard Form for Cross-Multiplication
 
 ### **General Equations:**
-\`\`\`
-a₁x + b₁y + c₁ = 0  ...(1)
-a₂x + b₂y + c₂ = 0  ...(2)
+\`"\`\`
+aâ‚x + bâ‚y + câ‚ = 0  ...(1)
+aâ‚‚x + bâ‚‚y + câ‚‚ = 0  ...(2)
 \`\`\`
 
 ### **Cross-Multiplication Formula:**
 \`\`\`
-x/(b₁c₂ - b₂c₁) = y/(c₁a₂ - c₂a₁) = 1/(a₁b₂ - a₂b₁)
+x/(bâ‚câ‚‚ - bâ‚‚câ‚) = y/(câ‚aâ‚‚ - câ‚‚aâ‚) = 1/(aâ‚bâ‚‚ - aâ‚‚bâ‚)
 \`\`\`
 
 ### **Simplified:**
 \`\`\`
-x = (b₁c₂ - b₂c₁)/(a₁b₂ - a₂b₁)
-y = (c₁a₂ - c₂a₁)/(a₁b₂ - a₂b₁)
+x = (bâ‚câ‚‚ - bâ‚‚câ‚)/(aâ‚bâ‚‚ - aâ‚‚bâ‚)
+y = (câ‚aâ‚‚ - câ‚‚aâ‚)/(aâ‚bâ‚‚ - aâ‚‚bâ‚)
 \`\`\`
 
 **Where:**
-- \`a₁b₂ - a₂b₁\` = determinant of coefficients
+- \`aâ‚bâ‚‚ - aâ‚‚bâ‚\` = determinant of coefficients
 - If determinant = 0, system has no unique solution
 
 ---
 
-## 📊 Step-by-Step Cross-Multiplication
+## ðŸ“Š Step-by-Step Cross-Multiplication
 
 ### **Step 1: Write Equations in Standard Form**
 Ensure both equations are: \`ax + by + c = 0\`
 
 ### **Step 2: Identify Coefficients**
 \`\`\`
-a₁x + b₁y + c₁ = 0
-a₂x + b₂y + c₂ = 0
+aâ‚x + bâ‚y + câ‚ = 0
+aâ‚‚x + bâ‚‚y + câ‚‚ = 0
 \`\`\`
 
 ### **Step 3: Apply Formula**
 \`\`\`
-x = (b₁c₂ - b₂c₁) / (a₁b₂ - a₂b₁)
-y = (c₁a₂ - c₂a₁) / (a₁b₂ - a₂b₁)
+x = (bâ‚câ‚‚ - bâ‚‚câ‚) / (aâ‚bâ‚‚ - aâ‚‚bâ‚)
+y = (câ‚aâ‚‚ - câ‚‚aâ‚) / (aâ‚bâ‚‚ - aâ‚‚bâ‚)
 \`\`\`
 
 ### **Step 4: Simplify**
@@ -75,7 +75,7 @@ Substitute values in original equations
 
 ---
 
-## 🔧 Basic Examples
+## ðŸ”§ Basic Examples
 
 ### **Example 1: Simple Case**
 **Solve:**
@@ -85,19 +85,19 @@ x - y - 1 = 0  ...(2)
 \`\`\`
 
 **Coefficients:**
-\`a₁ = 1, b₁ = 1, c₁ = -3\`
-\`a₂ = 1, b₂ = -1, c₂ = -1\`
+\`aâ‚ = 1, bâ‚ = 1, câ‚ = -3\`
+\`aâ‚‚ = 1, bâ‚‚ = -1, câ‚‚ = -1\`
 
 **Apply formula:**
 \`\`\`
-x = (b₁c₂ - b₂c₁) / (a₁b₂ - a₂b₁)
-  = (1×(-1) - (-1)×(-3)) / (1×(-1) - 1×1)
+x = (bâ‚câ‚‚ - bâ‚‚câ‚) / (aâ‚bâ‚‚ - aâ‚‚bâ‚)
+  = (1Ã—(-1) - (-1)Ã—(-3)) / (1Ã—(-1) - 1Ã—1)
   = (-1 - 3) / (-1 - 1)
   = (-4) / (-2)
   = 2
 
-y = (c₁a₂ - c₂a₁) / (a₁b₂ - a₂b₁)
-  = ((-3)×1 - (-1)×1) / (-1 - 1)
+y = (câ‚aâ‚‚ - câ‚‚aâ‚) / (aâ‚bâ‚‚ - aâ‚‚bâ‚)
+  = ((-3)Ã—1 - (-1)Ã—1) / (-1 - 1)
   = (-3 + 1) / (-2)
   = (-2) / (-2)
   = 1
@@ -113,17 +113,17 @@ y = (c₁a₂ - c₂a₁) / (a₁b₂ - a₂b₁)
 \`\`\`
 
 **Coefficients:**
-\`a₁ = 2, b₁ = 3, c₁ = -7\`
-\`a₂ = 3, b₂ = -2, c₂ = -3\`
+\`aâ‚ = 2, bâ‚ = 3, câ‚ = -7\`
+\`aâ‚‚ = 3, bâ‚‚ = -2, câ‚‚ = -3\`
 
 **Apply formula:**
 \`\`\`
-x = (3×(-3) - (-2)×(-7)) / (2×(-2) - 3×3)
+x = (3Ã—(-3) - (-2)Ã—(-7)) / (2Ã—(-2) - 3Ã—3)
   = (-9 - 14) / (-4 - 9)
   = (-23) / (-13)
   = 23/13
 
-y = ((-7)×3 - (-3)×2) / (-4 - 9)
+y = ((-7)Ã—3 - (-3)Ã—2) / (-4 - 9)
   = (-21 + 6) / (-13)
   = (-15) / (-13)
   = 15/13
@@ -133,27 +133,27 @@ y = ((-7)×3 - (-3)×2) / (-4 - 9)
 
 ---
 
-## 🧮 Advanced Examples
+## ðŸ§® Advanced Examples
 
 ### **Example 1: With Constants**
 **Solve:**
 \`\`\`
-x + 2y = 5      ...(1) → x + 2y - 5 = 0
-2x - y = 4       ...(2) → 2x - y - 4 = 0
+x + 2y = 5      ...(1) â†’ x + 2y - 5 = 0
+2x - y = 4       ...(2) â†’ 2x - y - 4 = 0
 \`\`\`
 
 **Coefficients:**
-\`a₁ = 1, b₁ = 2, c₁ = -5\`
-\`a₂ = 2, b₂ = -1, c₂ = -4\`
+\`aâ‚ = 1, bâ‚ = 2, câ‚ = -5\`
+\`aâ‚‚ = 2, bâ‚‚ = -1, câ‚‚ = -4\`
 
 **Apply formula:**
 \`\`\`
-x = (2×(-4) - (-1)×(-5)) / (1×(-1) - 2×2)
+x = (2Ã—(-4) - (-1)Ã—(-5)) / (1Ã—(-1) - 2Ã—2)
   = (-8 - 5) / (-1 - 4)
   = (-13) / (-5)
   = 13/5
 
-y = ((-5)×2 - (-4)×1) / (-1 - 4)
+y = ((-5)Ã—2 - (-4)Ã—1) / (-1 - 4)
   = (-10 + 4) / (-5)
   = (-6) / (-5)
   = 6/5
@@ -164,22 +164,22 @@ y = ((-5)×2 - (-4)×1) / (-1 - 4)
 ### **Example 2: Negative Constants**
 **Solve:**
 \`\`\`
-3x + 4y = -2     ...(1) → 3x + 4y + 2 = 0
-2x - 3y = 7      ...(2) → 2x - 3y - 7 = 0
+3x + 4y = -2     ...(1) â†’ 3x + 4y + 2 = 0
+2x - 3y = 7      ...(2) â†’ 2x - 3y - 7 = 0
 \`\`\`
 
 **Coefficients:**
-\`a₁ = 3, b₁ = 4, c₁ = 2\`
-\`a₂ = 2, b₂ = -3, c₂ = -7\`
+\`aâ‚ = 3, bâ‚ = 4, câ‚ = 2\`
+\`aâ‚‚ = 2, bâ‚‚ = -3, câ‚‚ = -7\`
 
 **Apply formula:**
 \`\`\`
-x = (4×(-7) - (-3)×2) / (3×(-3) - 2×4)
+x = (4Ã—(-7) - (-3)Ã—2) / (3Ã—(-3) - 2Ã—4)
   = (-28 + 6) / (-9 - 8)
   = (-22) / (-17)
   = 22/17
 
-y = (2×2 - (-7)×3) / (-9 - 8)
+y = (2Ã—2 - (-7)Ã—3) / (-9 - 8)
   = (4 + 21) / (-17)
   = 25 / (-17)
   = -25/17
@@ -189,45 +189,45 @@ y = (2×2 - (-7)×3) / (-9 - 8)
 
 ---
 
-## 📈 Special Cases
+## ðŸ“ˆ Special Cases
 
 ### **Case 1: No Solution (Inconsistent)**
 **System:**
 \`\`\`
-x + y = 3  ...(1) → x + y - 3 = 0
-x + y = 5  ...(2) → x + y - 5 = 0
+x + y = 3  ...(1) â†’ x + y - 3 = 0
+x + y = 5  ...(2) â†’ x + y - 5 = 0
 \`\`\`
 
 **Coefficients:**
-\`a₁ = 1, b₁ = 1, c₁ = -3\`
-\`a₂ = 1, b₂ = 1, c₂ = -5\`
+\`aâ‚ = 1, bâ‚ = 1, câ‚ = -3\`
+\`aâ‚‚ = 1, bâ‚‚ = 1, câ‚‚ = -5\`
 
-**Determinant:** \`1×1 - 1×1 = 0\`
+**Determinant:** \`1Ã—1 - 1Ã—1 = 0\`
 
-**Result:** Determinant = 0 → No unique solution
+**Result:** Determinant = 0 â†’ No unique solution
 
 ### **Case 2: Infinite Solutions (Dependent)**
 **System:**
 \`\`\`
-2x + 3y = 6  ...(1) → 2x + 3y - 6 = 0
-4x + 6y = 12 ...(2) → 4x + 6y - 12 = 0
+2x + 3y = 6  ...(1) â†’ 2x + 3y - 6 = 0
+4x + 6y = 12 ...(2) â†’ 4x + 6y - 12 = 0
 \`\`\`
 
 **Divide equation (2) by 2:** Same as equation (1)
 
-**Determinant:** \`2×6 - 4×3 = 12 - 12 = 0\`
+**Determinant:** \`2Ã—6 - 4Ã—3 = 12 - 12 = 0\`
 
-**Result:** Determinant = 0 → Infinite solutions
+**Result:** Determinant = 0 â†’ Infinite solutions
 
 ---
 
-## 🎯 Word Problems Using Cross-Multiplication
+## ðŸŽ¯ Word Problems Using Cross-Multiplication
 
 ### **Example 1: Cost Problem**
-**Problem:** A man buys 2 kg apples and 3 kg oranges for ₹250. Another man buys 1 kg apples and 2 kg oranges for ₹150. Find prices per kg.
+**Problem:** A man buys 2 kg apples and 3 kg oranges for â‚¹250. Another man buys 1 kg apples and 2 kg oranges for â‚¹150. Find prices per kg.
 
 **Solution:**
-Let apple price = \`x\` ₹/kg, orange price = \`y\` ₹/kg
+Let apple price = \`x\` â‚¹/kg, orange price = \`y\` â‚¹/kg
 
 Equations:
 \`\`\`
@@ -242,21 +242,21 @@ x + 2y - 150 = 0   ...(2)
 \`\`\`
 
 **Coefficients:**
-\`a₁ = 2, b₁ = 3, c₁ = -250\`
-\`a₂ = 1, b₂ = 2, c₂ = -150\`
+\`aâ‚ = 2, bâ‚ = 3, câ‚ = -250\`
+\`aâ‚‚ = 1, bâ‚‚ = 2, câ‚‚ = -150\`
 
 **Apply formula:**
 \`\`\`
-x = (3×(-150) - 2×(-250)) / (2×2 - 1×3)
+x = (3Ã—(-150) - 2Ã—(-250)) / (2Ã—2 - 1Ã—3)
   = (-450 + 500) / (4 - 3)
   = 50/1 = 50
 
-y = ((-250)×1 - (-150)×2) / (4 - 3)
+y = ((-250)Ã—1 - (-150)Ã—2) / (4 - 3)
   = (-250 + 300) / 1
   = 50/1 = 50
 \`\`\`
 
-**Answer:** Apples: ₹50/kg, Oranges: ₹50/kg
+**Answer:** Apples: â‚¹50/kg, Oranges: â‚¹50/kg
 
 ### **Example 2: Age Problem**
 **Problem:** Sum of ages of A and B is 45. A is 5 years older than B. Find ages.
@@ -273,30 +273,30 @@ Ages: A = 25, B = 20
 
 ---
 
-## 🔢 Cross-Multiplication Pattern
+## ðŸ”¢ Cross-Multiplication Pattern
 
 ### **Visual Representation:**
 \`\`\`
-a₁x + b₁y = -c₁    a₂x + b₂y = -c₂
+aâ‚x + bâ‚y = -câ‚    aâ‚‚x + bâ‚‚y = -câ‚‚
 
 Cross-multiply:
-x coefficient of y × y coefficient of x, etc.
+x coefficient of y Ã— y coefficient of x, etc.
 \`\`\`
 
 ### **Memory Aid:**
 \`\`\`
-x = (b₁(-c₂) - b₂(-c₁)) / (a₁b₂ - a₂b₁)
-y = (c₁(-a₂) - c₂(-a₁)) / (a₁b₂ - a₂b₁)
+x = (bâ‚(-câ‚‚) - bâ‚‚(-câ‚)) / (aâ‚bâ‚‚ - aâ‚‚bâ‚)
+y = (câ‚(-aâ‚‚) - câ‚‚(-aâ‚)) / (aâ‚bâ‚‚ - aâ‚‚bâ‚)
 
 Simplified:
-x = (b₁c₂ - b₂c₁) / D
-y = (c₁a₂ - c₂a₁) / D
-where D = a₁b₂ - a₂b₁
+x = (bâ‚câ‚‚ - bâ‚‚câ‚) / D
+y = (câ‚aâ‚‚ - câ‚‚aâ‚) / D
+where D = aâ‚bâ‚‚ - aâ‚‚bâ‚
 \`\`\`
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Basic Cross-Multiplication:**
 1. Solve: \`x + y = 7\` and \`x - y = 3\`
@@ -308,7 +308,7 @@ where D = a₁b₂ - a₂b₁
 2. Solve: \`3x + 4y = -2\` and \`2x - 3y = 7\`
 
 ### **Word Problems:**
-1. **Investment:** ₹8000 invested at 5% and 6%. Total interest ₹430. Find amounts.
+1. **Investment:** â‚¹8000 invested at 5% and 6%. Total interest â‚¹430. Find amounts.
 2. **Numbers:** Two numbers ratio 2:3, sum 50. Find numbers.
 3. **Age:** Father 4 times son's age. Ages sum 75. Find ages.
 
@@ -319,12 +319,12 @@ where D = a₁b₂ - a₂b₁
 **Answers:**
 Basic: (5,2), (1,3), (0,6)
 Advanced: (13/5,6/5), (22/17,-25/17)
-Word: ₹3000 & ₹5000, 20 & 30, Son-15, Father-60
+Word: â‚¹3000 & â‚¹5000, 20 & 30, Son-15, Father-60
 Special: Infinite solutions, No solution
 
 ---
 
-## 🎓 Pro Tips for Cross-Multiplication
+## ðŸŽ“ Pro Tips for Cross-Multiplication
 
 1. **Always use standard form** - convert to \`ax + by + c = 0\`
 2. **Identify coefficients carefully** - don't mix up positions
@@ -336,19 +336,19 @@ Special: Infinite solutions, No solution
 
 ---
 
-## 🔢 Quick Reference
+## ðŸ”¢ Quick Reference
 
 | Component | Formula | Purpose |
 |-----------|---------|---------|
-| x value | \`(b₁c₂ - b₂c₁)/D\` | Find x coordinate |
-| y value | \`(c₁a₂ - c₂a₁)/D\` | Find y coordinate |
-| Determinant | \`a₁b₂ - a₂b₁\` | Check solution existence |
+| x value | \`(bâ‚câ‚‚ - bâ‚‚câ‚)/D\` | Find x coordinate |
+| y value | \`(câ‚aâ‚‚ - câ‚‚aâ‚)/D\` | Find y coordinate |
+| Determinant | \`aâ‚bâ‚‚ - aâ‚‚bâ‚\` | Check solution existence |
 | Special case | D = 0 | No unique solution |
 
 | D Value | Solution Type | Meaning |
 |---------|---------------|---------|
-| D ≠ 0 | Unique solution | Intersecting lines |
+| D â‰  0 | Unique solution | Intersecting lines |
 | D = 0 | Infinite/No solution | Parallel/coincident lines |
 
-Master cross-multiplication and solve linear equations with elegance and speed! 🏆`
+Master cross-multiplication and solve linear equations with elegance and speed! ðŸ†`
 };

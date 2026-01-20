@@ -1,37 +1,37 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_2_8: SubLesson = {
   id: "2.8",
   title: 'Active & Passive Voice',
   status: 'completed',
-  content: `# 🔄 Active & Passive Voice: Changing Perspectives
+  content: "`# ðŸ”„ Active & Passive Voice: Changing Perspectives
 
 Voice refers to the relationship between the subject and the verb in a sentence. **Active voice** emphasizes the doer of the action, while **passive voice** emphasizes the receiver of the action. Understanding voice helps create variety in writing and communicate different emphases.
 
 ---
 
-## 🎯 ACTIVE VS PASSIVE VOICE
+## ðŸŽ¯ ACTIVE VS PASSIVE VOICE
 
 ### Active Voice
-**Subject performs the action** → **Object receives the action**
+**Subject performs the action** â†’ **Object receives the action**
 
 **Structure:** Subject + Verb + Object
-- ✅ **The dog** (subject) **bites** (verb) **the man** (object).
-- ✅ **Students** (subject) **write** (verb) **essays** (object).
+- âœ… **The dog** (subject) **bites** (verb) **the man** (object).
+- âœ… **Students** (subject) **write** (verb) **essays** (object).
 
 ### Passive Voice
-**Object receives the action** → **Subject is acted upon**
+**Object receives the action** â†’ **Subject is acted upon**
 
 **Structure:** Object + Be + Past Participle (+ By + Agent)
-- ✅ **The man** (object) **is bitten** (be + past participle) **by the dog** (agent).
-- ✅ **Essays** (object) **are written** (be + past participle) **by students** (agent).
+- âœ… **The man** (object) **is bitten** (be + past participle) **by the dog** (agent).
+- âœ… **Essays** (object) **are written** (be + past participle) **by students** (agent).
 
 ---
 
-## 🔧 FORMING PASSIVE VOICE
+## ðŸ”§ FORMING PASSIVE VOICE
 
 ### Basic Formula:
-**Active Subject + Active Verb → Passive Object + Be + Past Participle + By + Passive Subject**
+**Active Subject + Active Verb â†’ Passive Object + Be + Past Participle + By + Passive Subject**
 
 ### Step-by-Step Conversion:
 
@@ -41,176 +41,176 @@ Voice refers to the relationship between the subject and the verb in a sentence.
 4. **Add "By"**: Optional, introduces original subject (agent)
 
 ### Examples:
-- ✅ Active: **He** writes **letters**.
-- ✅ Passive: **Letters** are written **by him**.
+- âœ… Active: **He** writes **letters**.
+- âœ… Passive: **Letters** are written **by him**.
 
 ---
 
-## ⏰ PASSIVE VOICE IN ALL TENSES
+## â° PASSIVE VOICE IN ALL TENSES
 
 ### Present Simple:
-- ✅ Active: He **eats** an apple.
-- ✅ Passive: An apple **is eaten** by him.
+- âœ… Active: He **eats** an apple.
+- âœ… Passive: An apple **is eaten** by him.
 
 ### Present Continuous:
-- ✅ Active: She **is writing** a letter.
-- ✅ Passive: A letter **is being written** by her.
+- âœ… Active: She **is writing** a letter.
+- âœ… Passive: A letter **is being written** by her.
 
 ### Present Perfect:
-- ✅ Active: They **have built** the house.
-- ✅ Passive: The house **has been built** by them.
+- âœ… Active: They **have built** the house.
+- âœ… Passive: The house **has been built** by them.
 
 ### Past Simple:
-- ✅ Active: The teacher **taught** the lesson.
-- ✅ Passive: The lesson **was taught** by the teacher.
+- âœ… Active: The teacher **taught** the lesson.
+- âœ… Passive: The lesson **was taught** by the teacher.
 
 ### Past Continuous:
-- ✅ Active: I **was reading** a book.
-- ✅ Passive: A book **was being read** by me.
+- âœ… Active: I **was reading** a book.
+- âœ… Passive: A book **was being read** by me.
 
 ### Past Perfect:
-- ✅ Active: She **had finished** her work.
-- ✅ Passive: Her work **had been finished** by her.
+- âœ… Active: She **had finished** her work.
+- âœ… Passive: Her work **had been finished** by her.
 
 ### Future Simple:
-- ✅ Active: He **will buy** a car.
-- ✅ Passive: A car **will be bought** by him.
+- âœ… Active: He **will buy** a car.
+- âœ… Passive: A car **will be bought** by him.
 
 ### Future Perfect:
-- ✅ Active: They **will have completed** the project.
-- ✅ Passive: The project **will have been completed** by them.
+- âœ… Active: They **will have completed** the project.
+- âœ… Passive: The project **will have been completed** by them.
 
 ---
 
-## 🎯 WHEN TO USE ACTIVE VOICE
+## ðŸŽ¯ WHEN TO USE ACTIVE VOICE
 
 ### Use Active Voice When:
 1. **Clear Subject-Action Relationship**
-   - ✅ **The chef** prepares delicious meals.
-   - ✅ **Students** study hard for exams.
+   - âœ… **The chef** prepares delicious meals.
+   - âœ… **Students** study hard for exams.
 
 2. **Direct, Concise Writing**
-   - ✅ **I completed** the assignment yesterday.
-   - ✅ **She solved** the problem quickly.
+   - âœ… **I completed** the assignment yesterday.
+   - âœ… **She solved** the problem quickly.
 
 3. **Personal Involvement**
-   - ✅ **We organized** the event successfully.
-   - ✅ **You achieved** great results.
+   - âœ… **We organized** the event successfully.
+   - âœ… **You achieved** great results.
 
 4. **Most Academic/Professional Writing**
-   - ✅ **Scientists conduct** experiments.
-   - ✅ **Companies develop** new products.
+   - âœ… **Scientists conduct** experiments.
+   - âœ… **Companies develop** new products.
 
 ---
 
-## 🎯 WHEN TO USE PASSIVE VOICE
+## ðŸŽ¯ WHEN TO USE PASSIVE VOICE
 
 ### Use Passive Voice When:
 1. **Emphasis on the Action/Object**
-   - ✅ **The report** was submitted on time. (not who submitted)
-   - ✅ **The cake** was eaten quickly. (emphasizes cake, not eater)
+   - âœ… **The report** was submitted on time. (not who submitted)
+   - âœ… **The cake** was eaten quickly. (emphasizes cake, not eater)
 
 2. **Unknown or Unimportant Doer**
-   - ✅ **The window** was broken. (don't know who)
-   - ✅ **Mistakes** were made. (unimportant who made them)
+   - âœ… **The window** was broken. (don't know who)
+   - âœ… **Mistakes** were made. (unimportant who made them)
 
 3. **Formal/Impersonal Style**
-   - ✅ **The meeting** has been postponed.
-   - ✅ **The decision** will be announced soon.
+   - âœ… **The meeting** has been postponed.
+   - âœ… **The decision** will be announced soon.
 
 4. **Scientific/Technical Writing**
-   - ✅ **The experiment** was conducted carefully.
-   - ✅ **The results** were analyzed statistically.
+   - âœ… **The experiment** was conducted carefully.
+   - âœ… **The results** were analyzed statistically.
 
 5. **News Headlines**
-   - ✅ **President** was elected yesterday.
-   - ✅ **New law** was passed today.
+   - âœ… **President** was elected yesterday.
+   - âœ… **New law** was passed today.
 
 ---
 
-## ⚠️ COMMON MISTAKES & CORRECTIONS
+## âš ï¸ COMMON MISTAKES & CORRECTIONS
 
-### ❌ Passive Voice Errors:
+### âŒ Passive Voice Errors:
 
-1. ❌ The letter **is wrote** by him.
-   ✅ The letter **is written** by him. (past participle, not simple past)
+1. âŒ The letter **is wrote** by him.
+   âœ… The letter **is written** by him. (past participle, not simple past)
 
-2. ❌ The work **has did** by the team.
-   ✅ The work **has been done** by the team. (correct auxiliary + past participle)
+2. âŒ The work **has did** by the team.
+   âœ… The work **has been done** by the team. (correct auxiliary + past participle)
 
-3. ❌ The book **is being read** by me now.
-   ✅ The book **is being read** by me now. ✓ (correct for continuous)
+3. âŒ The book **is being read** by me now.
+   âœ… The book **is being read** by me now. âœ“ (correct for continuous)
 
-4. ❌ English **is spoke** here.
-   ✅ English **is spoken** here. (irregular past participle)
+4. âŒ English **is spoke** here.
+   âœ… English **is spoken** here. (irregular past participle)
 
-### ✅ Correct Passive Constructions:
+### âœ… Correct Passive Constructions:
 
 #### With Two Objects (Active):
-- ✅ He gave **me** (indirect) **the book** (direct).
-- ✅ **I** was given the book by him. (passive with indirect object)
-- ✅ **The book** was given to me by him. (passive with direct object)
+- âœ… He gave **me** (indirect) **the book** (direct).
+- âœ… **I** was given the book by him. (passive with indirect object)
+- âœ… **The book** was given to me by him. (passive with direct object)
 
 #### With Prepositions:
-- ✅ Active: They laughed **at** him.
-- ✅ Passive: He **was laughed at** by them.
+- âœ… Active: They laughed **at** him.
+- âœ… Passive: He **was laughed at** by them.
 
 #### Causative Structures:
-- ✅ Active: She **had** her car **repaired**.
-- ✅ Passive: Her car **was repaired** by her.
+- âœ… Active: She **had** her car **repaired**.
+- âœ… Passive: Her car **was repaired** by her.
 
 ### Passive with Prepositions:
-- ✅ Active: They laughed **at** him.
-- ✅ Passive: He **was laughed at** by them.
+- âœ… Active: They laughed **at** him.
+- âœ… Passive: He **was laughed at** by them.
 
-- ✅ Active: She looked **after** the children.
-- ✅ Passive: The children **were looked after** by her.
+- âœ… Active: She looked **after** the children.
+- âœ… Passive: The children **were looked after** by her.
 
 ### Passive with Two Objects:
-- ✅ Active: He gave **me** (indirect) **the book** (direct).
-- ✅ Passive 1: **I** was given the book by him. (indirect object becomes subject)
-- ✅ Passive 2: **The book** was given to me by him. (direct object becomes subject)
+- âœ… Active: He gave **me** (indirect) **the book** (direct).
+- âœ… Passive 1: **I** was given the book by him. (indirect object becomes subject)
+- âœ… Passive 2: **The book** was given to me by him. (direct object becomes subject)
 
 ### Passive with Get (Informal):
-- ✅ **Get** + Past Participle (similar to be, but more informal)
-- ✅ I **got** my car repaired. (instead of "My car was repaired")
-- ✅ She **got** her hair cut. (instead of "Her hair was cut")
+- âœ… **Get** + Past Participle (similar to be, but more informal)
+- âœ… I **got** my car repaired. (instead of "My car was repaired")
+- âœ… She **got** her hair cut. (instead of "Her hair was cut")
 
 ### Complex Passive Structures:
-- ✅ **Be** + being + Past Participle (passive continuous)
-- ✅ The house **is being built** by workers.
-- ✅ **Have** + been + Past Participle (perfect passive)
-- ✅ The work **has been completed** by the team.
+- âœ… **Be** + being + Past Participle (passive continuous)
+- âœ… The house **is being built** by workers.
+- âœ… **Have** + been + Past Participle (perfect passive)
+- âœ… The work **has been completed** by the team.
 
 ---
 
-## 🔄 ACTIVE ↔ PASSIVE CONVERSION
+## ðŸ”„ ACTIVE â†” PASSIVE CONVERSION
 
 ### Converting Active to Passive:
 
-1. **Make Object → Subject**
+1. **Make Object â†’ Subject**
 2. **Add appropriate "Be" verb**
 3. **Change main verb to past participle**
 4. **Add "by" + original subject (optional)**
 
 **Example:**
 - Active: **Scientists** (S) **conduct** (V) **experiments** (O).
-- Passive: **Experiments** (O→S) **are conducted** (be + PP) **by scientists** (by + S).
+- Passive: **Experiments** (Oâ†’S) **are conducted** (be + PP) **by scientists** (by + S).
 
 ### Converting Passive to Active:
 
-1. **Make "by" phrase → Subject** (if present)
-2. **Change past participle → Active verb**
+1. **Make "by" phrase â†’ Subject** (if present)
+2. **Change past participle â†’ Active verb**
 3. **Remove "be" verb**
-4. **Make original subject → Object**
+4. **Make original subject â†’ Object**
 
 **Example:**
 - Passive: **The cake** (S) **was eaten** (be + PP) **by the children** (by + agent).
-- Active: **The children** (agent → S) **ate** (PP → active) **the cake** (S → O).
+- Active: **The children** (agent â†’ S) **ate** (PP â†’ active) **the cake** (S â†’ O).
 
 ---
 
-## 🧩 PRACTICE EXERCISES
+## ðŸ§© PRACTICE EXERCISES
 
 ### Exercise 1: Identify Active or Passive Voice
 1. The teacher **explains** the lesson. _______________
@@ -269,7 +269,7 @@ Voice refers to the relationship between the subject and the verb in a sentence.
 
 ---
 
-## 📊 VOICE USAGE SUMMARY
+## ðŸ“Š VOICE USAGE SUMMARY
 
 | Situation | Preferred Voice | Example |
 |---|---|---|
@@ -283,47 +283,48 @@ Voice refers to the relationship between the subject and the verb in a sentence.
 
 ---
 
-## 🎯 COMPETITIVE EXAM TIPS
+## ðŸŽ¯ COMPETITIVE EXAM TIPS
 
-### 🏆 Common Test Patterns:
-1. **Voice Conversion**: Active ↔ Passive transformation
+### ðŸ† Common Test Patterns:
+1. **Voice Conversion**: Active â†” Passive transformation
 2. **Appropriate Usage**: Choose correct voice for context
 3. **Tense Consistency**: Maintain tense in conversion
 4. **Agent Omission**: When to include/exclude "by" phrase
 5. **Two-Object Verbs**: Give, send, tell, etc.
 
-### 💡 Quick Selection Strategy:
+### ðŸ’¡ Quick Selection Strategy:
 1. **Identify the focus**: Doer or receiver of action?
 2. **Check formality**: Formal contexts often prefer passive
 3. **Look for agent**: If unknown/unimportant, use passive
 4. **Tense matching**: Use correct "be" verb for the tense
 
-### ⚡ Time-Saving Tips:
+### âš¡ Time-Saving Tips:
 - **Active = Subject acts**: Subject does the action
 - **Passive = Subject receives**: Subject is acted upon
 - **By + agent**: Optional in passive, omit if unimportant
 - **State verbs**: Cannot be passive (be, seem, have, etc.)
 
-### 🚫 Verbs That Cannot Be Passive:
+### ðŸš« Verbs That Cannot Be Passive:
 - **Intransitive verbs**: go, come, arrive, die
 - **State verbs**: be, seem, appear, have, own
 - **Linking verbs**: become, feel, look, taste
 
 ---
 
-## 🎯 FINAL TIPS
+## ðŸŽ¯ FINAL TIPS
 
-### 📚 Learning Strategy:
+### ðŸ“š Learning Strategy:
 1. **Master the Formula**: Object + Be + Past Participle + By + Subject
 2. **Practice Conversions**: Regular transformation exercises
 3. **Context Recognition**: When to use each voice appropriately
 4. **Tense Consistency**: Match auxiliary verbs correctly
 
-### 💡 Pro Tip:
+### ðŸ’¡ Pro Tip:
 **Think of voice as "camera angles":**
-- 📷 **Active Voice**: Close-up on the doer ("Who did it?")
-- 📷 **Passive Voice**: Focus on the action/result ("What happened?")
-- 🎬 **Choose wisely**: Pick the angle that serves your message best
+- ðŸ“· **Active Voice**: Close-up on the doer ("Who did it?")
+- ðŸ“· **Passive Voice**: Focus on the action/result ("What happened?")
+- ðŸŽ¬ **Choose wisely**: Pick the angle that serves your message best
 
-**Master voice control and you'll direct your sentences like a pro!** 🎬✨`
+**Master voice control and you'll direct your sentences like a pro!** ðŸŽ¬âœ¨`"
 };
+

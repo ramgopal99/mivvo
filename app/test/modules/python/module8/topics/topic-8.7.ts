@@ -1,20 +1,20 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_8_7: SubLesson = {
   id: "8.7",
   title: 'Importing Useful Modules',
   status: 'demo',
-  content: `# 📦 Importing Useful Modules
+  content: "`# ðŸ“¦ Importing Useful Modules
 
 Python has many built-in modules that add powerful features. Learn how to import and use the most useful ones!
 
 ---
 
-## 🎯 What are Modules?
+## ðŸŽ¯ What are Modules?
 
 Modules are files with Python code that add extra functionality. You can import them to use their functions and classes.
 
-\`\`\`python
+\`"\`\`python
 # Import a module
 import math
 
@@ -25,7 +25,7 @@ print(result)  # 4.0
 
 ---
 
-## 🔢 Math Module
+## ðŸ”¢ Math Module
 
 The math module provides mathematical functions and constants.
 
@@ -50,7 +50,7 @@ print(math.cos(angle))    # Cosine
 
 ---
 
-## 🎲 Random Module
+## ðŸŽ² Random Module
 
 Generate random numbers and make random choices.
 
@@ -74,7 +74,7 @@ print(numbers)  # List in random order
 
 ---
 
-## 📄 JSON Module
+## ðŸ“„ JSON Module
 
 Work with JSON data (JavaScript Object Notation).
 
@@ -103,7 +103,7 @@ with open("data.json", "r") as file:
 
 ---
 
-## 📁 OS Module
+## ðŸ“ OS Module
 
 Interact with the operating system and file system.
 
@@ -134,7 +134,7 @@ if os.path.exists("myfile.txt"):
 
 ---
 
-## 📅 DateTime Module
+## ðŸ“… DateTime Module
 
 Work with dates and times.
 
@@ -165,7 +165,7 @@ print(f"Days until 2025: {days_until}")
 
 ---
 
-## 🔍 Other Useful Modules
+## ðŸ” Other Useful Modules
 
 ### Collections Module
 \`\`\`python
@@ -200,7 +200,7 @@ print(password)  # Random 8-character password
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **Simple Calculator with Math**
 \`\`\`python
@@ -247,7 +247,7 @@ print(f"Level: {loaded_game['level']}, Score: {loaded_game['score']}")
 
 ---
 
-## 🚀 Key Takeaways
+## ðŸš€ Key Takeaways
 
 1. **import module_name** - Import entire module
 2. **from module import function** - Import specific functions
@@ -258,6 +258,7 @@ print(f"Level: {loaded_game['level']}, Score: {loaded_game['score']}")
 7. **OS module** - Interact with operating system
 8. **DateTime module** - Work with dates and times
 
-**Importing modules gives you access to powerful tools that extend Python's capabilities! 📦**`
+**Importing modules gives you access to powerful tools that extend Python's capabilities! ðŸ“¦**`
 };
+
 

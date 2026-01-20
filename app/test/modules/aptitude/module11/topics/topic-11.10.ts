@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_10: SubLesson = {
   id: "11.10",
   title: 'Word Problems Based on Time, Speed & Distance',
   status: 'completed',
-  content: `# 📝 Word Problems Based on Time, Speed & Distance
+  content: "`# ðŸ“ Word Problems Based on Time, Speed & Distance
 
 Master solving complex word problems combining multiple time, speed, and distance concepts - the ultimate test of understanding.
 
 ---
 
-## 🎯 Word Problem Approach
+## ðŸŽ¯ Word Problem Approach
 
 **Word problems** combine multiple concepts from time, speed, and distance. Success requires systematic problem-solving.
 
@@ -25,13 +25,13 @@ Master solving complex word problems combining multiple time, speed, and distanc
 
 ---
 
-## 📊 Common Word Problem Types
+## ðŸ“Š Common Word Problem Types
 
 ### 1. **Journey Problems**
 **"A car travels from city A to B at 60 km/h, returns at 40 km/h. Average speed for round trip?"**
 
 **Solution:**
-- Use harmonic mean: Average = 2×60×40/(60+40) = 48 km/h
+- Use harmonic mean: Average = 2Ã—60Ã—40/(60+40) = 48 km/h
 
 ### 2. **Meeting Problems**
 **"Two trains start towards each other, 200 km apart. Meet in 2 hours. Find relative speed."**
@@ -45,18 +45,18 @@ Master solving complex word problems combining multiple time, speed, and distanc
 
 **Solution:**
 - Convert speeds to m/s
-- Relative speed = 60×5/18 + 40×5/18 = 16.67 + 11.11 = 27.78 m/s
+- Relative speed = 60Ã—5/18 + 40Ã—5/18 = 16.67 + 11.11 = 27.78 m/s
 - Distance = 150 + 120 = 270 m
-- Time = 270 / 27.78 ≈ 9.7 seconds
+- Time = 270 / 27.78 â‰ˆ 9.7 seconds
 
 ---
 
-## 🧠 Word Problem Tricks & Shortcuts
+## ðŸ§  Word Problem Tricks & Shortcuts
 
 ### **Variable Assignment**
-\`\`\`
+\`"\`\`
 Let speed = S, time = T, distance = D
-Use S = D/T, D = S×T, T = D/S
+Use S = D/T, D = SÃ—T, T = D/S
 \`\`\`
 
 ### **Common Relationships**
@@ -68,9 +68,9 @@ Average speed = Total distance / Total time
 
 ### **Quick Conversions**
 \`\`\`
-km/h to m/s: ×5/18
-m/s to km/h: ×18/5
-Hours to seconds: ×3600
+km/h to m/s: Ã—5/18
+m/s to km/h: Ã—18/5
+Hours to seconds: Ã—3600
 \`\`\`
 
 ### **Efficiency Checks**
@@ -82,7 +82,7 @@ Ensure time/distance relationships hold
 
 ---
 
-## 🔢 Complex Word Problem Examples
+## ðŸ”¢ Complex Word Problem Examples
 
 ### Example 1: Multi-Leg Journey
 **"A cyclist travels 40 km at 20 km/h, then 60 km at 30 km/h, then returns 50 km at 25 km/h. Average speed?"**
@@ -99,24 +99,24 @@ Ensure time/distance relationships hold
 **"Boat goes 24 km downstream in 1.5 hours, returns in 2 hours. Boat and stream speeds?"**
 
 **Solution:**
-- Downstream: 24 = (B + S) × 1.5 ⇒ B + S = 16
-- Upstream: 24 = (B - S) × 2 ⇒ B - S = 12
-- Add: 2B = 28 ⇒ B = 14 km/h
-- Subtract: 2S = 4 ⇒ S = 2 km/h
+- Downstream: 24 = (B + S) Ã— 1.5 â‡’ B + S = 16
+- Upstream: 24 = (B - S) Ã— 2 â‡’ B - S = 12
+- Add: 2B = 28 â‡’ B = 14 km/h
+- Subtract: 2S = 4 â‡’ S = 2 km/h
 
 ### Example 3: Trains Meeting
 **"Two trains start from stations 300 km apart. Meet in 3 hours. One returns, meets other again in 4 hours. Speeds?"**
 
 **Solution:**
 - Let speeds be V1, V2 km/h
-- First meeting: 300 = (V1 + V2) × 3 ⇒ V1 + V2 = 100
+- First meeting: 300 = (V1 + V2) Ã— 3 â‡’ V1 + V2 = 100
 - Second meeting: When first train returns, they've effectively swapped directions
 - The returning train has covered the distance at its speed, while the other continues
 - This is complex - requires careful distance analysis
 
 ---
 
-## 🎯 Real-World Scenarios
+## ðŸŽ¯ Real-World Scenarios
 
 ### **Traffic Problems**
 - **Overtaking on highways**
@@ -135,7 +135,7 @@ Ensure time/distance relationships hold
 
 ---
 
-## 🚨 Word Problem Pitfalls
+## ðŸš¨ Word Problem Pitfalls
 
 1. **Missing information**: Not all data given explicitly
 2. **Hidden relationships**: Implied conditions
@@ -152,7 +152,7 @@ Ensure time/distance relationships hold
 
 ---
 
-## 🎯 Practice Word Problems
+## ðŸŽ¯ Practice Word Problems
 
 **1.** Car travels 120 km at 60 km/h, 180 km at 90 km/h. Average speed?
 **2.** Trains 200 km apart approach at 50 km/h, 70 km/h. Meeting time?
@@ -164,7 +164,7 @@ Ensure time/distance relationships hold
 
 ---
 
-## 🎓 Word Problem Mastery Tips
+## ðŸŽ“ Word Problem Mastery Tips
 
 1. **Read multiple times** - Don't miss hidden information
 2. **Draw motion diagrams** - Visualize all movements
@@ -174,5 +174,5 @@ Ensure time/distance relationships hold
 6. **Check calculations** - Arithmetic errors are common
 7. **Verify with logic** - Does answer make sense?
 
-Master word problems and you'll excel in time, speed & distance questions across all aptitude exams! 🏆`
+Master word problems and you'll excel in time, speed & distance questions across all aptitude exams! ðŸ†`
 };

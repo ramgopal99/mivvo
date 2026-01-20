@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_5: SubLesson = {
   id: "5.5",
   title: 'Set Operations',
   status: 'demo',
-  content: `# ⚡ Set Operations
+  content: "`# âš¡ Set Operations
 
 Sets support mathematical operations like union, intersection, and difference. These are very powerful for data analysis!
 
 ---
 
-## 🔗 Union (Combine Sets)
+## ðŸ”— Union (Combine Sets)
 
 ### **All Elements from Both Sets**
-\`\`\`python
+\`"\`\`python
 set1 = {1, 2, 3}
 set2 = {3, 4, 5}
 
@@ -33,7 +33,7 @@ print(f"All union: {all_union}")  # {1, 2, 3, 4, 5, 6, 7}
 
 ---
 
-## 🎯 Intersection (Common Elements)
+## ðŸŽ¯ Intersection (Common Elements)
 
 ### **Elements Present in Both Sets**
 \`\`\`python
@@ -56,7 +56,7 @@ print(f"All three: {all_three}")  # {'Charlie'}
 
 ---
 
-## ➖ Difference (Elements in First but Not Second)
+## âž– Difference (Elements in First but Not Second)
 
 ### **Elements Unique to First Set**
 \`\`\`python
@@ -78,7 +78,7 @@ print(f"Not in class: {not_passed}")  # set()
 
 ---
 
-## △ Symmetric Difference (Elements in Either but Not Both)
+## â–³ Symmetric Difference (Elements in Either but Not Both)
 
 ### **Elements in One Set or the Other, but Not Both**
 \`\`\`python
@@ -100,7 +100,7 @@ print(f"Same result: {unique3}")  # {'Alice', 'Diana'}
 
 ---
 
-## 🔍 Subset and Superset
+## ðŸ” Subset and Superset
 
 ### **Set Relationships**
 \`\`\`python
@@ -128,7 +128,7 @@ print(equal1.issubset(equal2))  # True
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **Data Analysis**
 \`\`\`python
@@ -174,6 +174,7 @@ print(f"Multiple languages: {multiple}")
 **Subset** - issubset() or <= - All elements of first are in second  
 **Superset** - issuperset() or >= - All elements of second are in first
 
-Set operations are incredibly powerful for data analysis! 📊`
+Set operations are incredibly powerful for data analysis! ðŸ“Š`
 };
+
 

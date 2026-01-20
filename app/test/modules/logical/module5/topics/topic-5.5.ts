@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_5_5: SubLesson = {
   id: "5.5",
   title: 'Direct Coding',
   status: 'completed',
-  content: `# 🎯 Direct Coding
+  content: "`# ðŸŽ¯ Direct Coding
 
 Direct coding involves straightforward, rule-based transformations where the coding rule is clear and can be applied directly. These problems are fundamental to coding-decoding and appear frequently in competitive exams.
 
 ---
 
-## 🎯 Understanding Direct Coding
+## ðŸŽ¯ Understanding Direct Coding
 
 ### **What is Direct Coding?**
 Direct coding involves straightforward transformation rules that can be applied directly to encode or decode messages. These problems test your ability to:
@@ -27,12 +27,12 @@ Direct coding involves straightforward transformation rules that can be applied 
 
 ---
 
-## 🧩 Types of Direct Coding
+## ðŸ§© Types of Direct Coding
 
 ### **1. Letter Shift Coding**
 **Simple alphabetical shifts**
-- **Forward Shift**: A→B, B→C, etc.
-- **Backward Shift**: Z→Y, Y→X, etc.
+- **Forward Shift**: Aâ†’B, Bâ†’C, etc.
+- **Backward Shift**: Zâ†’Y, Yâ†’X, etc.
 - **Fixed Shift**: Consistent shift amount
 
 ### **2. Position-Based Coding**
@@ -43,13 +43,13 @@ Direct coding involves straightforward transformation rules that can be applied 
 
 ### **3. Substitution Coding**
 **Direct letter replacements**
-- **One-to-One**: A→X, B→Y, etc.
-- **Pattern-Based**: Vowels→numbers, etc.
+- **One-to-One**: Aâ†’X, Bâ†’Y, etc.
+- **Pattern-Based**: Vowelsâ†’numbers, etc.
 - **Rule-Based**: Clear substitution rules
 
 ---
 
-## 📊 Problem-Solving Framework
+## ðŸ“Š Problem-Solving Framework
 
 ### **Step 1: Analyze Examples**
 - Examine given input-output pairs
@@ -73,7 +73,7 @@ Direct coding involves straightforward transformation rules that can be applied 
 
 ---
 
-## 🎯 Common Problem Types
+## ðŸŽ¯ Common Problem Types
 
 ### **Type 1: Simple Shift Problems**
 **Fixed position shifts**
@@ -95,7 +95,7 @@ Direct coding involves straightforward transformation rules that can be applied 
 
 ---
 
-## 🛠️ Solving Techniques
+## ðŸ› ï¸ Solving Techniques
 
 ### **1. Rule Identification**
 - Compare input and output carefully
@@ -114,13 +114,13 @@ Direct coding involves straightforward transformation rules that can be applied 
 
 ---
 
-## 🎯 Practice Examples
+## ðŸŽ¯ Practice Examples
 
 ### **Example 1: Simple Letter Shift**
 **Rule**: Each letter replaced by next letter
 - **Input**: CAT
 - **Output**: DBU
-- **Explanation**: C→D, A→B, T→U
+- **Explanation**: Câ†’D, Aâ†’B, Tâ†’U
 
 ### **Example 2: Position-Based Coding**
 **Rule**: Letters replaced by position numbers
@@ -136,7 +136,7 @@ Direct coding involves straightforward transformation rules that can be applied 
 
 ---
 
-## 🔍 Direct Coding Principles
+## ðŸ” Direct Coding Principles
 
 ### **Rule Clarity**
 - **Clear Rules**: Transformation rules are obvious
@@ -155,7 +155,7 @@ Direct coding involves straightforward transformation rules that can be applied 
 
 ---
 
-## 📊 Direct Coding Methods
+## ðŸ“Š Direct Coding Methods
 
 ### **Alphabetical Methods**
 - **Forward Shift**: Consistent forward movement
@@ -174,23 +174,23 @@ Direct coding involves straightforward transformation rules that can be applied 
 
 ---
 
-## 🎯 Common Pitfalls
+## ðŸŽ¯ Common Pitfalls
 
 ### **Pitfall 1: Incomplete Analysis**
-❌ Not examining all examples thoroughly
-✅ Analyze all given input-output pairs
+âŒ Not examining all examples thoroughly
+âœ… Analyze all given input-output pairs
 
 ### **Pitfall 2: Wrong Rule Assumption**
-❌ Assuming wrong transformation rule
-✅ Test rules against all examples
+âŒ Assuming wrong transformation rule
+âœ… Test rules against all examples
 
 ### **Pitfall 3: Inconsistent Application**
-❌ Applying different rules to different parts
-✅ Use same rule consistently
+âŒ Applying different rules to different parts
+âœ… Use same rule consistently
 
 ---
 
-## 🛠️ Quick Solving Strategies
+## ðŸ› ï¸ Quick Solving Strategies
 
 ### **1. Careful Comparison**
 - Compare each input-output pair
@@ -209,7 +209,7 @@ Direct coding involves straightforward transformation rules that can be applied 
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Easy Level**
 - Simple forward/backward shifts
@@ -228,7 +228,7 @@ Direct coding involves straightforward transformation rules that can be applied 
 
 ---
 
-## 🎯 Pro Tips for Success
+## ðŸŽ¯ Pro Tips for Success
 
 1. **Examine All Examples**: Always check all given input-output pairs
 2. **Find the Pattern**: Identify consistent transformation rules
@@ -238,7 +238,7 @@ Direct coding involves straightforward transformation rules that can be applied 
 
 ---
 
-## 🎯 Practice Questions
+## ðŸŽ¯ Practice Questions
 
 ### **Question 1**
 If in a code, A=B, B=C, C=D, ..., Z=A, what is the code for "DOG"?
@@ -252,5 +252,5 @@ If each letter is replaced by the letter two positions ahead, what is the code f
 ### **Question 4**
 If vowels are replaced by numbers (A=1, E=2, I=3, O=4, U=5), what is the code for "HOUSE"?
 
-**Master direct coding for straightforward transformation rules! 🎯✨**`
+**Master direct coding for straightforward transformation rules! ðŸŽ¯âœ¨**`"
 };

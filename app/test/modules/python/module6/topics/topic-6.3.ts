@@ -1,19 +1,19 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_6_3: SubLesson = {
   id: "6.3",
   title: 'Accessing Dictionary Elements',
   status: 'demo',
-  content: `# 🎯 Accessing Dictionary Elements
+  content: "`# ðŸŽ¯ Accessing Dictionary Elements
 
 Accessing dictionary values is done through keys, not indices. Let's learn all the ways to get data from dictionaries!
 
 ---
 
-## 📍 Basic Access with Keys
+## ðŸ“ Basic Access with Keys
 
 ### **Using Square Brackets []**
-\`\`\`python
+\`"\`\`python
 person = {
     "name": "Alice",
     "age": 25,
@@ -27,7 +27,7 @@ print(person["city"])   # New York
 
 ---
 
-## 🔄 Safe Access with get()
+## ðŸ”„ Safe Access with get()
 
 ### **Avoid KeyError Exceptions**
 \`\`\`python
@@ -41,7 +41,7 @@ print(person.get("city", "Unknown"))  # Unknown (default value)
 
 ---
 
-## 🔍 Checking Key Existence
+## ðŸ” Checking Key Existence
 
 ### **Using 'in' Operator**
 \`\`\`python
@@ -54,7 +54,7 @@ print("city" not in person)  # True
 
 ---
 
-## 📊 Getting All Keys, Values, and Items
+## ðŸ“Š Getting All Keys, Values, and Items
 
 ### **Dictionary Views**
 \`\`\`python
@@ -72,7 +72,7 @@ print(list(person.items()))     # [('name', 'Alice'), ('age', 25), ('city', 'New
 
 ---
 
-## 🔄 Iterating Through Dictionaries
+## ðŸ”„ Iterating Through Dictionaries
 
 ### **Loop Through Keys, Values, or Items**
 \`\`\`python
@@ -100,7 +100,7 @@ for value in student.values():
 
 ---
 
-## 🎨 Practical Examples
+## ðŸŽ¨ Practical Examples
 
 ### **Data Processing**
 \`\`\`python
@@ -159,7 +159,7 @@ print(f"Database host: {db_host}")
 
 ---
 
-## ⚠️ Common Pitfalls
+## âš ï¸ Common Pitfalls
 
 ### **KeyError vs Safe Access**
 \`\`\`python
@@ -180,6 +180,7 @@ else:
     print("Age not available")
 \`\`\`
 
-Dictionary access is powerful but requires careful key management! 🔑`
+Dictionary access is powerful but requires careful key management! ðŸ”‘`
 };
+
 

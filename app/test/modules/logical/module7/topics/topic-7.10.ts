@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_7_10: SubLesson = {
   id: "7.10",
   title: 'Direction with Puzzle-Based Questions',
   status: 'completed',
-  content: `# 🧩 Direction with Puzzle-Based Questions
+  content: "`# ðŸ§© Direction with Puzzle-Based Questions
 
 Direction with puzzle-based questions combine spatial reasoning with complex logical puzzles, requiring integrated problem-solving skills. These advanced problems test your ability to apply directional logic within puzzle frameworks, making them among the most challenging yet rewarding questions in competitive examinations.
 
 ---
 
-## 🎯 Understanding Direction Puzzles
+## ðŸŽ¯ Understanding Direction Puzzles
 
 ### **What are Direction Puzzle Problems?**
 These problems integrate direction sense with puzzle-solving elements, requiring you to:
@@ -28,7 +28,7 @@ These problems integrate direction sense with puzzle-solving elements, requiring
 
 ---
 
-## 🧩 Common Puzzle Integration Patterns
+## ðŸ§© Common Puzzle Integration Patterns
 
 ### **Pattern 1: Object Movement Puzzles**
 *"Three people start at different positions, move according to rules, find final arrangement"*
@@ -56,7 +56,7 @@ These problems integrate direction sense with puzzle-solving elements, requiring
 
 ---
 
-## 🛠️ Puzzle + Direction Framework
+## ðŸ› ï¸ Puzzle + Direction Framework
 
 ### **Integrated Problem-Solving Approach**
 
@@ -92,7 +92,7 @@ These problems integrate direction sense with puzzle-solving elements, requiring
 
 ---
 
-## 🎯 Common Puzzle Question Types
+## ðŸŽ¯ Common Puzzle Question Types
 
 ### **Type 1: Movement Sequence Puzzles**
 *"A moves North 2 steps, B moves East 1 step, then A turns right..."*
@@ -120,7 +120,7 @@ These problems integrate direction sense with puzzle-solving elements, requiring
 
 ---
 
-## 📊 Advanced Puzzle Scenarios
+## ðŸ“Š Advanced Puzzle Scenarios
 
 ### **Scenario 1: Multi-Object Coordination**
 *"Three cars start at different positions, must reach destinations without collision"*
@@ -148,7 +148,7 @@ These problems integrate direction sense with puzzle-solving elements, requiring
 
 ---
 
-## 🎯 Complex Puzzle Patterns
+## ðŸŽ¯ Complex Puzzle Patterns
 
 ### **Pattern 1: Circular Movement Puzzles**
 *"Objects move in circles with directional changes at specific points"*
@@ -176,20 +176,20 @@ These problems integrate direction sense with puzzle-solving elements, requiring
 
 ---
 
-## 🧮 Mathematical Puzzle Integration
+## ðŸ§® Mathematical Puzzle Integration
 
 ### **Grid Coordinate System**
 
 (0,0) = Bottom-left corner  
 +X = East (right)  
 +Y = North (up)  
-Movement: (x,y) → (x±dx, y±dy)
+Movement: (x,y) â†’ (xÂ±dx, yÂ±dy)
 
 ### **Angle-Based Movement**
 
-45° movements: Δx = Δy = d/√2  
-90° movements: Standard N,S,E,W  
-135° movements: Reverse diagonals
+45Â° movements: Î”x = Î”y = d/âˆš2  
+90Â° movements: Standard N,S,E,W  
+135Â° movements: Reverse diagonals
 
 ### **Sequence Pattern Recognition**
 
@@ -199,7 +199,7 @@ Arithmetic movement: Steps increase by constant
 
 ---
 
-## 🎯 Solution Techniques
+## ðŸŽ¯ Solution Techniques
 
 ### **Technique 1: State Tracking Table**
 
@@ -211,10 +211,10 @@ Step | Object A Position | Object B Position | Direction A | Direction B | Actio
 
 ### **Technique 2: Rule Application Matrix**
 
-Condition → Action → Direction Change  
-Blocked North → Turn right → East  
-Blocked East → Turn left → North  
-Clear path → Continue → Same direction
+Condition â†’ Action â†’ Direction Change  
+Blocked North â†’ Turn right â†’ East  
+Blocked East â†’ Turn left â†’ North  
+Clear path â†’ Continue â†’ Same direction
 
 ### **Technique 3: Position Vector Tracking**
 
@@ -224,7 +224,7 @@ Resultant: A(1,0), B(3,3), C(0,5)
 
 ---
 
-## 📈 Difficulty Levels
+## ðŸ“ˆ Difficulty Levels
 
 ### **Medium Level (40%)**
 - Multi-object movement tracking
@@ -243,27 +243,27 @@ Resultant: A(1,0), B(3,3), C(0,5)
 
 ---
 
-## 🚨 Common Mistakes in Puzzle Problems
+## ðŸš¨ Common Mistakes in Puzzle Problems
 
 ### **Mistake 1: Rule Misapplication**
-❌ Applying wrong rules at wrong times
-✅ Carefully track when each rule applies
+âŒ Applying wrong rules at wrong times
+âœ… Carefully track when each rule applies
 
 ### **Mistake 2: Position Tracking Errors**
-❌ Losing track of multiple object positions
-✅ Use systematic position tracking
+âŒ Losing track of multiple object positions
+âœ… Use systematic position tracking
 
 ### **Mistake 3: Sequence Confusion**
-❌ Applying moves in wrong order
-✅ Follow puzzle sequence exactly
+âŒ Applying moves in wrong order
+âœ… Follow puzzle sequence exactly
 
 ### **Mistake 4: Integration Failures**
-❌ Treating direction and puzzle separately
-✅ Combine both elements systematically
+âŒ Treating direction and puzzle separately
+âœ… Combine both elements systematically
 
 ---
 
-## 🎓 Pro Tips for Success
+## ðŸŽ“ Pro Tips for Success
 
 1. **Create Detailed Tracking Tables**: Record every object's position and direction
 2. **Apply Rules Systematically**: Follow puzzle rules in exact sequence
@@ -275,7 +275,7 @@ Resultant: A(1,0), B(3,3), C(0,5)
 
 ---
 
-## 📊 Practice Examples
+## ðŸ“Š Practice Examples
 
 ### **Example 1: Multi-Object Movement**
 *"A starts at (0,0) facing North, moves 2 steps. B starts at (4,0) facing East, moves 3 steps. Find distance between them."*
@@ -283,7 +283,7 @@ Resultant: A(1,0), B(3,3), C(0,5)
 **Solution:**
 - A ends at (0,2)
 - B ends at (7,0)
-- Distance: √((7-0)² + (0-2)²) = √(49+4) = √53
+- Distance: âˆš((7-0)Â² + (0-2)Â²) = âˆš(49+4) = âˆš53
 
 ### **Example 2: Rule-Based Movement**
 *"Move North if path clear, turn right if blocked. Grid has obstacles at (2,1), (3,2)."*
@@ -311,7 +311,7 @@ Resultant: A(1,0), B(3,3), C(0,5)
 
 ---
 
-## 🔍 Integration Benefits
+## ðŸ” Integration Benefits
 
 ### **Combined Reasoning Skills**
 - **Directional Logic**: Spatial positioning and movement
@@ -324,5 +324,5 @@ Resultant: A(1,0), B(3,3), C(0,5)
 - **Time Management**: Learnable patterns and techniques
 - **Confidence Building**: Master advanced reasoning combinations
 
-**Master direction with puzzle-based questions to solve the most challenging integrated reasoning problems! 🧩✨**`
+**Master direction with puzzle-based questions to solve the most challenging integrated reasoning problems! ðŸ§©âœ¨**`"
 };

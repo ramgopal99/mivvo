@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_15_6: SubLesson = {
   id: "15.6",
   title: 'Quick Sort Algorithm',
   status: 'demo',
-  content: `# ⚡ Quick Sort Algorithm
+  content: "`# âš¡ Quick Sort Algorithm
 
 Quick Sort is one of the most widely used sorting algorithms due to its excellent average-case performance and efficient use of memory. It's a divide-and-conquer algorithm that works by selecting a 'pivot' element and partitioning the array around it. Let's explore this fast and practical algorithm!
 
 ---
 
-## 🎯 How Quick Sort Works
+## ðŸŽ¯ How Quick Sort Works
 
 **Quick Sort** follows the divide-and-conquer approach:
 1. **Choose a pivot** element from the array
@@ -21,40 +21,40 @@ The key insight is that once the pivot is in its correct position, you just need
 
 ---
 
-## 📝 Step-by-Step Example
+## ðŸ“ Step-by-Step Example
 
 **Input Array**: [10, 80, 30, 90, 40, 50, 70]
 
 Let's use **50** as the pivot (last element).
 
 ### **Partitioning Process:**
-\`\`\`text
-Initial: [10, 80, 30, 90, 40, 50, 70]  ← pivot = 50
-         ↑                       ↑
+\`"\`\`text
+Initial: [10, 80, 30, 90, 40, 50, 70]  â† pivot = 50
+         â†‘                       â†‘
        start                    end
 
-Step 1: Compare 10 < 50 → No swap, move start → [10, 80, 30, 90, 40, 50, 70]
-         ↑↑                      ↑
+Step 1: Compare 10 < 50 â†’ No swap, move start â†’ [10, 80, 30, 90, 40, 50, 70]
+         â†‘â†‘                      â†‘
        start                    end
 
-Step 2: Compare 80 > 50 → Swap with end-1 → [10, 40, 30, 90, 80, 50, 70]
-            ↑↑                   ↑
+Step 2: Compare 80 > 50 â†’ Swap with end-1 â†’ [10, 40, 30, 90, 80, 50, 70]
+            â†‘â†‘                   â†‘
           start                 end
 
-Step 3: Compare 30 < 50 → No swap, move start → [10, 40, 30, 90, 80, 50, 70]
-               ↑↑                ↑
+Step 3: Compare 30 < 50 â†’ No swap, move start â†’ [10, 40, 30, 90, 80, 50, 70]
+               â†‘â†‘                â†‘
              start              end
 
-Step 4: Compare 90 > 50 → Swap with end-1 → [10, 40, 30, 70, 80, 50, 90]
-                  ↑↑             ↑
+Step 4: Compare 90 > 50 â†’ Swap with end-1 â†’ [10, 40, 30, 70, 80, 50, 90]
+                  â†‘â†‘             â†‘
                 start           end
 
 Step 5: All elements processed. Swap pivot:
-        [10, 40, 30, 70, 80, 50, 90] → [10, 40, 30, 50, 80, 70, 90]
+        [10, 40, 30, 70, 80, 50, 90] â†’ [10, 40, 30, 50, 80, 70, 90]
 \`\`\`
 
 **Result after partitioning:**
-- Left: [10, 40, 30] (elements ≤ 50)
+- Left: [10, 40, 30] (elements â‰¤ 50)
 - Pivot: 50 (in correct position)
 - Right: [80, 70, 90] (elements > 50)
 
@@ -62,7 +62,7 @@ Step 5: All elements processed. Swap pivot:
 
 ---
 
-## 💻 Implementation
+## ðŸ’» Implementation
 
 ### **Basic Quick Sort (Recursive)**
 \`\`\`python
@@ -165,7 +165,7 @@ print(arr)  # [10, 30, 40, 50, 70, 80, 90]
 
 ---
 
-## 🎯 Pivot Selection Strategies
+## ðŸŽ¯ Pivot Selection Strategies
 
 ### **1. First Element**
 \`\`\`python
@@ -203,11 +203,11 @@ def median_of_three(arr, low, high):
 
 ---
 
-## 📊 Algorithm Analysis
+## ðŸ“Š Algorithm Analysis
 
 ### **Time Complexity**
 - **Best Case**: O(n log n) - when pivot splits array evenly
-- **Worst Case**: O(n²) - when pivot is always smallest/largest element
+- **Worst Case**: O(nÂ²) - when pivot is always smallest/largest element
 - **Average Case**: O(n log n)
 
 ### **Space Complexity**
@@ -222,22 +222,22 @@ def median_of_three(arr, low, high):
 
 ---
 
-## 🎯 Quick Sort Properties
+## ðŸŽ¯ Quick Sort Properties
 
 ### **Advantages**
-- ✅ **Fast in practice** - often the fastest sorting algorithm
-- ✅ **In-place sorting** - uses O(log n) extra space
-- ✅ **Cache-friendly** - good locality of reference
-- ✅ **Highly optimized** in standard libraries
+- âœ… **Fast in practice** - often the fastest sorting algorithm
+- âœ… **In-place sorting** - uses O(log n) extra space
+- âœ… **Cache-friendly** - good locality of reference
+- âœ… **Highly optimized** in standard libraries
 
 ### **Disadvantages**
-- ❌ **O(n²) worst case** - can be slow on already sorted data
-- ❌ **Unstable** - may change relative order of equal elements
-- ❌ **Not suitable for external sorting**
+- âŒ **O(nÂ²) worst case** - can be slow on already sorted data
+- âŒ **Unstable** - may change relative order of equal elements
+- âŒ **Not suitable for external sorting**
 
 ---
 
-## 🔧 Optimizations and Improvements
+## ðŸ”§ Optimizations and Improvements
 
 ### **1. Hybrid Quick Sort (Intro Sort)**
 Combines Quick Sort with Heap Sort to avoid worst-case performance:
@@ -284,7 +284,7 @@ def three_way_partition(arr, low, high):
 
 ---
 
-## 🧪 Testing and Examples
+## ðŸ§ª Testing and Examples
 
 ### **Test Case 1: Normal Array**
 \`\`\`python
@@ -302,7 +302,7 @@ print("Original:", arr)
 quick_sort_inplace(arr)
 print("Sorted:  ", arr)
 # Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-# O(n²) performance - very slow!
+# O(nÂ²) performance - very slow!
 \`\`\`
 
 ### **Test Case 3: Reverse Sorted**
@@ -312,7 +312,7 @@ print("Original:", arr)
 quick_sort_inplace(arr)
 print("Sorted:  ", arr)
 # Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-# O(n²) performance
+# O(nÂ²) performance
 \`\`\`
 
 ### **Test Case 4: Many Duplicates**
@@ -327,7 +327,7 @@ print("Sorted:  ", arr)
 
 ---
 
-## 🎯 When to Use Quick Sort
+## ðŸŽ¯ When to Use Quick Sort
 
 ### **Good Use Cases:**
 - **General-purpose sorting** in standard libraries
@@ -344,20 +344,20 @@ print("Sorted:  ", arr)
 
 ---
 
-## 🔍 Quick Sort vs Other Algorithms
+## ðŸ” Quick Sort vs Other Algorithms
 
 | Algorithm | Best | Average | Worst | Space | Stable | In-place |
 |-----------|------|---------|-------|-------|--------|----------|
-| **Quick Sort** | O(n log n) | O(n log n) | O(n²) | O(log n) | No | Yes |
+| **Quick Sort** | O(n log n) | O(n log n) | O(nÂ²) | O(log n) | No | Yes |
 | **Merge Sort** | O(n log n) | O(n log n) | O(n log n) | O(n) | Yes | No |
 | **Heap Sort** | O(n log n) | O(n log n) | O(n log n) | O(1) | No | Yes |
-| **Insertion Sort** | O(n) | O(n²) | O(n²) | O(1) | Yes | Yes |
+| **Insertion Sort** | O(n) | O(nÂ²) | O(nÂ²) | O(1) | Yes | Yes |
 
 **Quick Sort is usually the fastest in practice for random data!**
 
 ---
 
-## 🚀 Real-World Usage
+## ðŸš€ Real-World Usage
 
 ### **Standard Library Implementations**
 - **C++**: \`std::sort()\` uses introsort (Quick Sort + Heap Sort)
@@ -380,15 +380,16 @@ Modern implementations use:
 
 ---
 
-## 🏆 Key Takeaways
+## ðŸ† Key Takeaways
 
 1. **Quick Sort** uses divide-and-conquer with a pivot element
-2. **Time complexity** is O(n log n) average, O(n²) worst case
+2. **Time complexity** is O(n log n) average, O(nÂ²) worst case
 3. **Space complexity** is O(log n) - very memory efficient
 4. **It's unstable** - doesn't preserve relative order of equal elements
 5. **In-place sorting** - modifies the original array
 6. **Fastest in practice** for most real-world scenarios
 
-**Quick Sort is the go-to algorithm for general-purpose sorting, but watch out for its worst-case behavior! Next, let's explore Heap Sort for guaranteed performance! 🚀**`
+**Quick Sort is the go-to algorithm for general-purpose sorting, but watch out for its worst-case behavior! Next, let's explore Heap Sort for guaranteed performance! ðŸš€**`
 };
+
 

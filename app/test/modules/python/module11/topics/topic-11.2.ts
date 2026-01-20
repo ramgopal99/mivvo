@@ -1,16 +1,16 @@
-import { SubLesson } from '../../../../data/lessonsData';
+﻿import { SubLesson } from '../../../../data/lessonsData';
 
 export const topic_11_2: SubLesson = {
   id: "11.2",
   title: 'Hash Functions',
   status: 'demo',
-  content: `# 🔢 Hash Functions
+  content: "`# ðŸ”¢ Hash Functions
 
 Hash functions are the heart of hash tables. They convert keys into array indices and must satisfy specific mathematical properties for optimal performance!
 
 ---
 
-## 🎯 What Makes a Good Hash Function?
+## ðŸŽ¯ What Makes a Good Hash Function?
 
 A good hash function should:
 - **Be deterministic** - Same input always produces same output
@@ -18,7 +18,7 @@ A good hash function should:
 - **Be fast to compute** - Minimal computational overhead
 - **Minimize collisions** - Different keys produce different hashes
 
-\`\`\`python
+\`"\`\`python
 # Python's built-in hash function
 print(f"hash('hello'): {hash('hello')}")
 print(f"hash('world'): {hash('world')}")
@@ -30,7 +30,7 @@ print(f"hash('hello') again: {hash('hello')}")
 
 ---
 
-## 🛠️ Common Hash Function Techniques
+## ðŸ› ï¸ Common Hash Function Techniques
 
 ### **Division Method**
 \`\`\`python
@@ -50,7 +50,7 @@ for key in keys:
 \`\`\`python
 def multiplication_hash(key, table_size):
     """Knuth's multiplicative hash."""
-    # Use golden ratio conjugate: (√5 - 1)/2 ≈ 0.6180339887
+    # Use golden ratio conjugate: (âˆš5 - 1)/2 â‰ˆ 0.6180339887
     A = 0.6180339887
     frac = (abs(hash(key)) * A) % 1
     return int(table_size * frac)
@@ -86,7 +86,7 @@ print(f"Python hash: {abs(hash(word)) % 100}")
 
 ---
 
-## 📊 Hash Function Properties
+## ðŸ“Š Hash Function Properties
 
 ### **Avalanche Effect**
 \`\`\`python
@@ -130,7 +130,7 @@ test_distribution(djb2_hash, test_keys)
 
 ---
 
-## 🔐 Cryptographic vs Non-Cryptographic Hashes
+## ðŸ” Cryptographic vs Non-Cryptographic Hashes
 
 ### **Non-Cryptographic (Table Usage)**
 - **Fast computation**
@@ -176,7 +176,7 @@ print(f"SHA256: {crypto_hash[:16]}...")  # First 16 chars
 
 ---
 
-## ⚠️ Common Hash Function Problems
+## âš ï¸ Common Hash Function Problems
 
 ### **Poor Distribution**
 \`\`\`python
@@ -221,7 +221,7 @@ for key in predictable_keys:
 
 ---
 
-## 🎯 Python's Hash Implementation
+## ðŸŽ¯ Python's Hash Implementation
 
 ### **Built-in hash() Function**
 \`\`\`python
@@ -245,7 +245,7 @@ print("Hash randomization prevents hash collision attacks")
 
 ---
 
-## 🚀 Advanced Hash Techniques
+## ðŸš€ Advanced Hash Techniques
 
 ### **Universal Hashing**
 \`\`\`python
@@ -285,7 +285,7 @@ print("Perfect hashing: O(1) with zero collisions for known keys")
 
 ---
 
-## 📈 Hash Function Quality Metrics
+## ðŸ“ˆ Hash Function Quality Metrics
 
 ### **Collision Rate**
 \`\`\`python
@@ -335,7 +335,7 @@ print(f"Distribution uniformity: {uniformity:.3f} (closer to 1 is better)")
 
 ---
 
-## ✅ Best Practices
+## âœ… Best Practices
 
 1. **Choose appropriate hash functions** - Fast, uniform, deterministic
 2. **Handle collisions gracefully** - Use chaining or probing
@@ -343,6 +343,7 @@ print(f"Distribution uniformity: {uniformity:.3f} (closer to 1 is better)")
 4. **Use cryptographic hashes only when needed** - Too slow for general use
 5. **Test hash quality** - Measure collisions and distribution
 
-Hash functions are the secret sauce that makes hash tables fast and reliable! 🔑`
+Hash functions are the secret sauce that makes hash tables fast and reliable! ðŸ”‘`
 };
+
 
