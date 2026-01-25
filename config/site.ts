@@ -8,6 +8,7 @@ export const siteConfig = {
   email: "hello@mivvo.life",
   enableCourses: true,
   enableForeignLanguage: false,
+  enableVideoLearn: true, // Set to true to show video learn page, false to hide it
   enablePricing: true,
   enableCustomInterviews: true, // Set to true to show interviews page, false to show coming soon
   aiProvider: "puter" as AIProvider, // "openai" or "puter" - controls which AI service to use for chat
