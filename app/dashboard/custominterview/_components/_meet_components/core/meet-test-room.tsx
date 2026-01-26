@@ -133,6 +133,8 @@ export function MeetTestRoom({
   }, [handleTranscriptUpdate, voiceTranscript])
 
   // Initialize LLM service with system prompt from interview data
+  // Priority: Use stored prompt from DB (customPrompt) > JD > default
+  // The customPrompt should always come from the database, not regenerated
   useEffect(() => {
     const systemPrompt = interviewData?.customPrompt || 
                         interviewData?.jd || 

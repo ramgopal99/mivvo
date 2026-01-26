@@ -41,6 +41,9 @@ export interface InterviewData {
     isActive: boolean
   }>
   attempts?: InterviewAttempt[]
+  customPrompt?: string
+  interviewType?: string
+  foreignLanguageSubType?: string | null
 }
 
 interface InterviewCardProps {

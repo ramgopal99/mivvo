@@ -60,4 +60,9 @@ export interface InterviewData {
   jd?: string
   interviewType?: string
   foreignLanguageSubType?: string
+  prompts?: Array<{
+    id: string
+    promptText: string
+    isActive: boolean
+  }>
 }
