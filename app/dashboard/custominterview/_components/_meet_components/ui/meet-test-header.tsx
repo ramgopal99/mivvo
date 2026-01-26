@@ -114,11 +114,12 @@ export function MeetTestHeader({
                 <Button
                   onClick={onStartConversation}
                   disabled={isLoading}
-                  className="bg-green-600 hover:bg-green-700 gap-2 cursor-pointer"
+                  className="bg-green-600 hover:bg-green-700 gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   size="sm"
+                  title={isLoading ? 'Loading voice...' : 'Start Interview'}
                 >
                   <Mic className="h-4 w-4" />
-                  Start Interview
+                  {isLoading ? 'Loading...' : 'Start Interview'}
                 </Button>
               ) : (
                 <>

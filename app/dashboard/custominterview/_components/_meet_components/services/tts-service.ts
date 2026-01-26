@@ -253,10 +253,18 @@ export class TTSService {
     return this.availableVoices.find(v => v.voiceURI === this.config.voice) || null
   }
 
-  // Set voice by voiceURI
+  // Set voice by voiceURI - applies immediately
   setVoice(voiceURI: string): void {
+    // Reload voices first to ensure we have the latest list
+    this.loadVoices()
+    
     const voice = this.availableVoices.find(v => v.voiceURI === voiceURI)
     if (voice) {
+      this.config.voice = voiceURI
+      console.log('✅ TTS Voice set immediately to:', voice.name, 'URI:', voiceURI)
+    } else {
+      console.warn('⚠️ TTS Voice URI not found in available voices:', voiceURI)
+      // Still set it in config in case it becomes available later
       this.config.voice = voiceURI
     }
   }

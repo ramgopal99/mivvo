@@ -9,7 +9,9 @@ export const defaultVoiceConfig: VoiceConfig = {
   speechPitch: 1.0,
   autoListenAfterAI: false,
   silenceTimeoutMs: 5000, // 5 seconds default, can be changed
-  defaultVoiceName: 'WilliamMu1-tiIingual' // Default preferred voice
+  // Default voice name - will try to find this voice, falls back to best available English voice if not found
+  // Using shorter name for better matching - will match voices containing "WilliamMultilingual" or "William"
+  defaultVoiceName: 'WilliamMultilingual' // Default preferred voice - matches "Microsoft WilliamMultilingual Online (Natural) - English (Australia)"
 }
 
 export const defaultUiConfig: UiConfig = {

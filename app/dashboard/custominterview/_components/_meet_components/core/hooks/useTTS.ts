@@ -41,31 +41,95 @@ export function useTTS({
   const findDefaultVoice = (voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice | null => {
     if (voices.length === 0) return null
 
-    // First priority: configured default voice name
+    // First priority: configured default voice name - try exact match first, then partial
     if (voiceConfig.defaultVoiceName) {
-      const defaultVoice = voices.find(voice => {
-        const defaultName = voiceConfig.defaultVoiceName!
-        return voice.name.toLowerCase().includes(defaultName.toLowerCase()) ||
-               voice.name.includes(defaultName)
-      })
+      const defaultName = voiceConfig.defaultVoiceName.toLowerCase().trim()
+      
+      console.log('🔍 Searching for default voice:', voiceConfig.defaultVoiceName)
+      
+      // Try exact match (case-insensitive)
+      let defaultVoice = voices.find(voice => 
+        voice.name.toLowerCase() === defaultName
+      )
+      
+      // Try contains match if exact not found (voice name contains default name)
+      if (!defaultVoice) {
+        defaultVoice = voices.find(voice => {
+          const voiceName = voice.name.toLowerCase()
+          return voiceName.includes(defaultName)
+        })
+        if (defaultVoice) {
+          console.log('✅ Found voice using contains match:', defaultVoice.name)
+        }
+      }
+      
+      // Try reverse contains match (default name contains voice name - for partial names)
+      if (!defaultVoice) {
+        defaultVoice = voices.find(voice => {
+          const voiceName = voice.name.toLowerCase()
+          return defaultName.includes(voiceName)
+        })
+        if (defaultVoice) {
+          console.log('✅ Found voice using reverse contains match:', defaultVoice.name)
+        }
+      }
+      
+      // Try matching parts of the name (e.g., "WilliamMultilingual" -> "william", "multilingual")
+      if (!defaultVoice) {
+        const nameParts = defaultName.split(/[-_\s]+/).filter(part => part.length > 2)
+        defaultVoice = voices.find(voice => {
+          const voiceName = voice.name.toLowerCase()
+          // Check if all significant parts are found in the voice name
+          return nameParts.every(part => voiceName.includes(part)) || 
+                 nameParts.some(part => part.length > 4 && voiceName.includes(part))
+        })
+        if (defaultVoice) {
+          console.log('✅ Found voice using parts match:', defaultVoice.name)
+        }
+      }
+      
       if (defaultVoice) {
-        console.log('Found configured default voice:', defaultVoice.name)
+        console.log('✅ Found configured default voice:', defaultVoice.name, 'URI:', defaultVoice.voiceURI)
         return defaultVoice
+      } else {
+        console.warn('⚠️ Default voice not found:', voiceConfig.defaultVoiceName)
+        console.log('📋 Available English voices:', 
+          voices
+            .filter(v => v.lang.startsWith('en'))
+            .slice(0, 15)
+            .map(v => `"${v.name}"`)
+            .join(', ')
+        )
       }
     }
 
-    // Second priority: Google/Microsoft English voices
+    // If default voice was configured but not found, return null
+    // This allows the system to retry when voices are loaded
+    if (voiceConfig.defaultVoiceName) {
+      // Don't log warning here - voices might not be loaded yet
+      // The warning will be logged when voices are actually available
+      return null
+    }
+
+    // Second priority: Google/Microsoft English voices (only if no default configured)
     const preferredEnglish = voices.find(voice => 
       voice.lang.startsWith('en') && 
       (voice.name.includes('Google') || voice.name.includes('Microsoft'))
     )
-    if (preferredEnglish) return preferredEnglish
+    if (preferredEnglish) {
+      console.log('Using fallback: Google/Microsoft English voice:', preferredEnglish.name)
+      return preferredEnglish
+    }
 
     // Third priority: Any English voice
     const englishVoice = voices.find(voice => voice.lang.startsWith('en'))
-    if (englishVoice) return englishVoice
+    if (englishVoice) {
+      console.log('Using fallback: English voice:', englishVoice.name)
+      return englishVoice
+    }
 
     // Fallback: First available voice
+    console.log('Using fallback: First available voice:', voices[0].name)
     return voices[0]
   }
 
@@ -75,13 +139,14 @@ export function useTTS({
     if (!ttsServiceRef.current) {
       const defaultVoice = findDefaultVoice(availableVoices)
 
-      console.log('Initializing TTS service with voice:', defaultVoice?.name || 'default (will be set when voices load)')
-      if (voiceConfig.defaultVoiceName) {
-        console.log('Looking for default voice:', voiceConfig.defaultVoiceName)
-        const foundVoice = availableVoices.find(v => 
-          v.name.toLowerCase().includes(voiceConfig.defaultVoiceName!.toLowerCase())
-        )
-        console.log('Found default voice?', foundVoice?.name || 'Not found')
+      // Only log if voices are actually available (not during initial empty state)
+      if (availableVoices.length > 0) {
+        console.log('🎤 Initializing TTS service with voice:', defaultVoice?.name || 'default')
+        if (voiceConfig.defaultVoiceName && !defaultVoice) {
+          console.warn('⚠️ Default voice not found during initialization:', voiceConfig.defaultVoiceName)
+        }
+      } else {
+        console.log('⏳ Initializing TTS service (voices loading...)')
       }
 
       ttsServiceRef.current = getTTSService(
@@ -146,26 +211,95 @@ export function useTTS({
         }
       )
 
-      // Set the default voice in state if available and not already set
-      if (defaultVoice && !selectedVoice) {
-        setSelectedVoice(defaultVoice.voiceURI)
+      // IMMEDIATELY set the default voice in state and TTS service if available
+      if (defaultVoice) {
+        // Set in TTS service immediately
+        if (ttsServiceRef.current) {
+          ttsServiceRef.current.setVoice(defaultVoice.voiceURI)
+          console.log('✅ Default voice set immediately during initialization:', defaultVoice.name)
+        }
+        // Set in state
+        if (!selectedVoice) {
+          setSelectedVoice(defaultVoice.voiceURI)
+        }
       }
     } else if (ttsServiceRef.current && availableVoices.length > 0) {
       // Update TTS service if it exists and voices are now available
       const defaultVoice = findDefaultVoice(availableVoices)
 
-      if (defaultVoice && !ttsServiceRef.current.getCurrentVoice()) {
-        ttsServiceRef.current.setVoice(defaultVoice.voiceURI)
-        if (!selectedVoice) {
+      // ALWAYS force use default voice if configured and found, regardless of current voice
+      // This ensures the default voice is always used when available
+      if (defaultVoice && voiceConfig.defaultVoiceName) {
+        const currentVoiceURI = ttsServiceRef.current.getCurrentVoice()
+        const isDefaultVoice = defaultVoice.voiceURI === currentVoiceURI
+        
+        if (!isDefaultVoice) {
+          const currentVoice = availableVoices.find(v => v.voiceURI === currentVoiceURI)
+          console.log('🎯 IMMEDIATELY applying default voice:', defaultVoice.name, 'replacing:', currentVoice?.name || currentVoiceURI || 'unknown')
+          
+          // IMMEDIATELY apply the voice - don't wait for state updates
+          ttsServiceRef.current.setVoice(defaultVoice.voiceURI)
+          ttsServiceRef.current.setRate(voiceConfig.speechRate || 1.2)
+          ttsServiceRef.current.setPitch(voiceConfig.speechPitch || 1.0)
+          ttsServiceRef.current.setLanguage(voiceConfig.language || 'en-US')
+          
+          // Update state to keep it in sync
           setSelectedVoice(defaultVoice.voiceURI)
+          
+          console.log('✅ Default voice applied immediately:', defaultVoice.name)
+        } else {
+          console.log('✅ Default voice already active:', defaultVoice.name)
         }
+      } else if (voiceConfig.defaultVoiceName && availableVoices.length > 0) {
+        // Default voice not found - log warning with available voices
+        console.warn('⚠️ Default voice not found:', voiceConfig.defaultVoiceName)
+        console.log('📋 Available English voices:', 
+          availableVoices
+            .filter(v => v.lang.startsWith('en'))
+            .slice(0, 15)
+            .map(v => `"${v.name}"`)
+            .join(', ')
+        )
       }
     }
-  }, [availableVoices.length, voiceConfig.speechRate, voiceConfig.speechPitch, voiceConfig.language, voiceConfig.defaultVoiceName, setSelectedVoice, selectedVoice, isAudioEnabled, isConversationMode])
+  }, [availableVoices, voiceConfig.speechRate, voiceConfig.speechPitch, voiceConfig.language, voiceConfig.defaultVoiceName, setSelectedVoice, selectedVoice, isAudioEnabled, isConversationMode])
 
   // Update TTS service when voice changes or config changes
   useEffect(() => {
-    if (ttsServiceRef.current) {
+    if (ttsServiceRef.current && availableVoices.length > 0) {
+      // ALWAYS prioritize default voice if configured, regardless of selectedVoice
+      if (voiceConfig.defaultVoiceName) {
+        const defaultVoice = findDefaultVoice(availableVoices)
+        if (defaultVoice) {
+          const currentVoiceURI = ttsServiceRef.current.getCurrentVoice()
+          const isCurrentlyDefault = defaultVoice.voiceURI === currentVoiceURI
+          
+          if (!isCurrentlyDefault) {
+            const currentVoice = availableVoices.find(v => v.voiceURI === currentVoiceURI)
+            console.log('🎯 IMMEDIATELY forcing default voice:', defaultVoice.name, 'replacing:', currentVoice?.name || currentVoiceURI || 'unknown')
+            
+            // IMMEDIATELY apply - don't wait for anything
+            ttsServiceRef.current.setVoice(defaultVoice.voiceURI)
+            ttsServiceRef.current.setRate(voiceConfig.speechRate || 1.2)
+            ttsServiceRef.current.setPitch(voiceConfig.speechPitch || 1.0)
+            ttsServiceRef.current.setLanguage(voiceConfig.language || 'en-US')
+            
+            // Update state to keep in sync
+            setSelectedVoice(defaultVoice.voiceURI)
+            
+            console.log('✅ Default voice applied immediately in update effect')
+            return // Exit early since we've set everything
+          } else {
+            // Voice is already correct, just update rate/pitch/language if needed
+            ttsServiceRef.current.setRate(voiceConfig.speechRate || 1.2)
+            ttsServiceRef.current.setPitch(voiceConfig.speechPitch || 1.0)
+            ttsServiceRef.current.setLanguage(voiceConfig.language || 'en-US')
+            return
+          }
+        }
+      }
+      
+      // Use selected voice (only if no default configured or default not found)
       if (selectedVoice) {
         ttsServiceRef.current.setVoice(selectedVoice)
       }
@@ -173,7 +307,7 @@ export function useTTS({
       ttsServiceRef.current.setPitch(voiceConfig.speechPitch || 1.0)
       ttsServiceRef.current.setLanguage(voiceConfig.language || 'en-US')
     }
-  }, [selectedVoice, voiceConfig.speechRate, voiceConfig.speechPitch, voiceConfig.language])
+  }, [selectedVoice, voiceConfig.speechRate, voiceConfig.speechPitch, voiceConfig.language, voiceConfig.defaultVoiceName, availableVoices, setSelectedVoice])
 
   // Cleanup TTS service on unmount
   useEffect(() => {

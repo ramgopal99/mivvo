@@ -28,6 +28,7 @@ import {
   InterviewData
 } from '../types'
 import { getLLMService, Message as LLMMessage } from '../services/llm-service'
+import { getRandomGreeting } from '../greeting-message'
 
 interface AssistantDetails {
   id: string
@@ -125,20 +126,45 @@ export function MeetTestRoom({
   const isProcessingLLMRef = useRef<boolean>(false)
   const handleTranscriptUpdateRef = useRef(handleTranscriptUpdate)
   const voiceTranscriptRef = useRef(voiceTranscript)
+  const greetingSpokenRef = useRef<boolean>(false)
+  const isGreetingResponseRef = useRef<boolean>(false)
+  const isUserSpeakingRef = useRef<boolean>(false)
 
   // Keep refs updated
   useEffect(() => {
     handleTranscriptUpdateRef.current = handleTranscriptUpdate
     voiceTranscriptRef.current = voiceTranscript
-  }, [handleTranscriptUpdate, voiceTranscript])
+    isUserSpeakingRef.current = isUserSpeaking
+  }, [handleTranscriptUpdate, voiceTranscript, isUserSpeaking])
+
+  // Reset timeout if user starts speaking again
+  useEffect(() => {
+    if (isUserSpeaking && silenceTimeoutRef.current) {
+      // User started speaking again - clear the timeout to prevent sending incomplete speech
+      console.log('[STT] User started speaking again, clearing timeout to prevent premature send')
+      clearSilenceTimeout()
+    }
+  }, [isUserSpeaking])
 
   // Initialize LLM service with system prompt from interview data
   // Priority: Use stored prompt from DB (customPrompt) > JD > default
   // The customPrompt should always come from the database, not regenerated
   useEffect(() => {
-    const systemPrompt = interviewData?.customPrompt || 
+    const basePrompt = interviewData?.customPrompt || 
                         interviewData?.jd || 
                         'You are an AI interviewer conducting a professional interview. Ask relevant questions and provide constructive feedback.'
+    
+    // Get a random greeting for this interview session
+    const greetingMessage = getRandomGreeting()
+    
+    // Add greeting context to the system prompt
+    const systemPrompt = `${basePrompt}
+
+IMPORTANT: The interview starts with a greeting question. The greeting will be randomly selected from available greetings.
+- When the user responds to the greeting, treat it as their first answer about themselves
+- After receiving their greeting response, continue with the interview naturally
+- Do NOT repeat the greeting question - it has already been asked
+- Build on their response to ask follow-up questions related to their background and the job requirements`
     
     llmServiceRef.current = getLLMService(
       {
@@ -215,6 +241,10 @@ export function MeetTestRoom({
       const currentTranscript = voiceTranscriptRef.current
       const lastMessage = currentTranscript[currentTranscript.length - 1]
       
+      // Check if this is the first user response (greeting response)
+      const isFirstResponse = !greetingSpokenRef.current || currentTranscript.length === 0 || 
+                             (currentTranscript.length === 1 && currentTranscript[0].role === 'assistant')
+      
       // Ensure the user message is finalized in the transcript
       let finalizedTranscript = currentTranscript
       if (lastMessage && lastMessage.role === 'user') {
@@ -241,13 +271,33 @@ export function MeetTestRoom({
         handleTranscriptUpdateRef.current(finalizedTranscript)
       }
       
+      // Get the greeting message that was used (from transcript)
+      const greetingMessage = finalizedTranscript.find(m => m.role === 'assistant' && m.text.includes('Mivvo'))?.text || 'the greeting question'
+      
       // Convert to LLM message format
-      const llmMessages: LLMMessage[] = finalizedTranscript.map(msg => ({
-        id: `msg-${msg.timestamp}`,
-        role: msg.role as 'user' | 'assistant',
-        content: msg.text,
-        timestamp: new Date(msg.timestamp)
-      }))
+      // If this is the greeting response, add context about the greeting
+      const llmMessages: LLMMessage[] = finalizedTranscript.map((msg, index) => {
+        // For the first user message (greeting response), add context
+        if (isFirstResponse && msg.role === 'user' && index === finalizedTranscript.length - 1) {
+          return {
+            id: `msg-${msg.timestamp}`,
+            role: msg.role as 'user' | 'assistant',
+            content: `[This is the user's response to the greeting question: "${greetingMessage}"]\n\n${msg.text}`,
+            timestamp: new Date(msg.timestamp)
+          }
+        }
+        return {
+          id: `msg-${msg.timestamp}`,
+          role: msg.role as 'user' | 'assistant',
+          content: msg.text,
+          timestamp: new Date(msg.timestamp)
+        }
+      })
+
+      // Mark that we've processed the greeting response
+      if (isFirstResponse) {
+        isGreetingResponseRef.current = true
+      }
 
       // Send to LLM with conversation context
       await llmServiceRef.current.sendMessage({
@@ -314,10 +364,15 @@ export function MeetTestRoom({
         // Set timeout to send to LLM after silence period
         // This will be reset if user continues speaking
         const silenceTimeout = voiceConfig.silenceTimeoutMs || 5000
+        console.log(`[STT] Setting silence timeout: ${silenceTimeout}ms (${silenceTimeout / 1000} seconds) - will send to LLM after user stops speaking`)
         silenceTimeoutRef.current = setTimeout(() => {
           const textToSend = accumulatedUserSpeechRef.current.trim()
-          if (textToSend && !isProcessingLLMRef.current && !isVoiceChatActive && llmServiceRef.current) {
-            // User has been silent for the full timeout period, send to LLM
+          // Check if user is still speaking before sending - use ref to get current value
+          const userCurrentlySpeaking = isUserSpeakingRef.current
+          
+          if (textToSend && !isProcessingLLMRef.current && !isVoiceChatActive && !userCurrentlySpeaking && llmServiceRef.current) {
+            // User has been silent for the full timeout period AND is not currently speaking, send to LLM
+            console.log(`[STT] Silence timeout reached (${silenceTimeout}ms). User not speaking. Sending to LLM:`, textToSend.substring(0, 100))
             const textToSendFinal = textToSend
             // Clear accumulated speech BEFORE sending to prevent new speech from appending to old message
             accumulatedUserSpeechRef.current = ''
@@ -330,6 +385,8 @@ export function MeetTestRoom({
             if (resetTranscript) {
               resetTranscript()
             }
+          } else {
+            console.log(`[STT] Timeout reached but not sending - isProcessingLLM: ${isProcessingLLMRef.current}, isVoiceChatActive: ${isVoiceChatActive}, isUserSpeaking: ${userCurrentlySpeaking}, hasText: ${!!textToSend}`)
           }
         }, silenceTimeout)
       }
@@ -397,6 +454,43 @@ export function MeetTestRoom({
     }
   }, [isAudioEnabled, setIsAudioEnabled])
 
+  // Speak greeting when conversation mode starts
+  useEffect(() => {
+    if (isConversationMode && !greetingSpokenRef.current) {
+      // Wait for TTS service to be ready
+      const checkAndSpeakGreeting = () => {
+        if (ttsServiceRef.current) {
+          greetingSpokenRef.current = true
+          
+          // Get a random greeting for this interview session
+          const randomGreeting = getRandomGreeting()
+          
+          // Add greeting to transcript as assistant message
+          const greetingMessage = {
+            role: 'assistant',
+            text: randomGreeting,
+            timestamp: new Date().toISOString()
+          }
+          handleTranscriptUpdate([greetingMessage])
+          
+          // Speak the greeting via TTS
+          console.log('Speaking random greeting:', randomGreeting)
+          ttsServiceRef.current.speak(randomGreeting)
+        } else {
+          // If TTS not ready yet, check again after a short delay
+          setTimeout(checkAndSpeakGreeting, 200)
+        }
+      }
+      
+      // Start checking after a small delay to allow TTS to initialize
+      const greetingTimeout = setTimeout(checkAndSpeakGreeting, 500)
+      
+      return () => {
+        clearTimeout(greetingTimeout)
+      }
+    }
+  }, [isConversationMode, handleTranscriptUpdate, ttsService])
+
   // Handlers
   const handleEndCall = async () => {
     if (isConversationMode) {
@@ -414,11 +508,21 @@ export function MeetTestRoom({
 
   const handleStartInterview = () => {
     setShowInterviewStartDialog(false)
+    // Reset greeting state when starting new interview
+    greetingSpokenRef.current = false
+    isGreetingResponseRef.current = false
+    // Enable conversation mode first, then trigger start event
+    setIsConversationMode(true)
     const startEvent = new CustomEvent('startVoiceChat')
     window.dispatchEvent(startEvent)
   }
 
   const handleStartConversation = () => {
+    // Reset greeting state when starting conversation
+    greetingSpokenRef.current = false
+    isGreetingResponseRef.current = false
+    // Enable conversation mode first
+    setIsConversationMode(true)
     const event = new CustomEvent('startVoiceChat')
     window.dispatchEvent(event)
   }
