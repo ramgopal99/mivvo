@@ -5,35 +5,27 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Send, Loader2 } from "lucide-react"
+import { Send, Loader2, PlayCircle } from "lucide-react"
 import { VideoPresentation } from "./video-presentation"
+import type { TypedSlide } from "./slides"
+import { DEMO_SLIDES } from "./demo-slides"
 import { toast } from "sonner"
-
-interface Slide {
-  slideNumber: number
-  title: string
-  content: {
-    text: string
-    tts: string
-  }
-  timing: {
-    displayDelay: number
-    ttsDuration: number
-  }
-}
 
 export function VideoLearnPrompt() {
   const [prompt, setPrompt] = useState("")
   const [slideCount, setSlideCount] = useState(2)
   const [isLoading, setIsLoading] = useState(false)
-  const [slides, setSlides] = useState<Slide[]>([])
+  const [slides, setSlides] = useState<TypedSlide[]>([])
   const [hasContent, setHasContent] = useState(false)
+  const [demoReady, setDemoReady] = useState(false)
+  const [startFromDemo, setStartFromDemo] = useState(false)
 
   const handleSend = async () => {
     if (!prompt.trim()) return
 
     setIsLoading(true)
     setHasContent(false)
+    setDemoReady(false)
 
     try {
       const response = await fetch("/api/videolearn/generate", {
@@ -75,14 +67,29 @@ export function VideoLearnPrompt() {
   const handleReset = () => {
     setSlides([])
     setHasContent(false)
+    setDemoReady(false)
+    setStartFromDemo(false)
     setPrompt("")
+  }
+
+  const handleDemo = () => {
+    setSlides(DEMO_SLIDES)
+    setHasContent(true)
+    setDemoReady(true)
+    setStartFromDemo(false)
+    toast.success("Demo ready. Click Start to begin.")
+  }
+
+  const handleStartDemo = () => {
+    setDemoReady(false)
+    setStartFromDemo(true)
   }
 
   return (
     <div className="space-y-4">
       {/* Options Section */}
-      <div className="flex gap-4 items-end">
-        <div className="flex-1 space-y-2">
+      <div className="flex flex-wrap gap-4 items-end">
+        <div className="flex-1 min-w-[160px] space-y-2">
           <Label htmlFor="slideCount">Number of Slides</Label>
           <Select 
             value={slideCount.toString()} 
@@ -100,6 +107,16 @@ export function VideoLearnPrompt() {
             </SelectContent>
           </Select>
         </div>
+        <Button
+          type="button"
+          variant="outline"
+          onClick={handleDemo}
+          disabled={isLoading}
+          className="shrink-0"
+        >
+          <PlayCircle className="h-4 w-4 mr-2" />
+          Demo
+        </Button>
       </div>
 
       {/* Input Section */}
@@ -141,10 +158,23 @@ export function VideoLearnPrompt() {
         </div>
       )}
 
-      {/* Presentation */}
-      {hasContent && slides.length > 0 && !isLoading && (
+      {/* Demo placeholder: simple "Demo" in middle + Start (no slides, no animation) */}
+      {hasContent && demoReady && slides.length > 0 && !isLoading && (
+        <div className="flex flex-col items-center justify-center min-h-[320px] rounded-xl border bg-muted/30 p-8">
+          <p className="text-4xl font-medium text-muted-foreground mb-6">Demo</p>
+          <Button onClick={handleStartDemo} size="lg">
+            <PlayCircle className="h-5 w-5 mr-2" />
+            Start
+          </Button>
+        </div>
+      )}
+
+      {/* Presentation (after Start from demo, or after generate from prompt) */}
+      {hasContent && !demoReady && slides.length > 0 && !isLoading && (
         <VideoPresentation
           slides={slides}
+          autoStart={startFromDemo}
+          onAutoStartDone={() => setStartFromDemo(false)}
           onComplete={() => {
             toast.success("Presentation completed!")
           }}
