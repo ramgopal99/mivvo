@@ -1,10 +1,11 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { Chat } from '@/components/meet/chat'
 import { MeetTestHeader } from '../ui/meet-test-header'
 import { MeetTestControls } from '../ui/meet-test-controls'
-import { ScreenShareDisplay } from '../ui/screen-share-display'
+import { ScreenShareDisplay, ScreenShareInterviewLayout } from '../ui'
+import { getScreenShareQuestion } from '../data/coding-questions'
 import { VoiceSettings } from './components'
 import {
   useMediaStream,
@@ -29,6 +30,7 @@ import {
 } from '../types'
 import { getLLMService, Message as LLMMessage } from '../services/llm-service'
 import { getRandomGreeting } from '../greeting-message'
+import { getCodingModeSystemPrompt, CODING_MODE_GREETING } from '../coding-mode-prompt'
 
 interface AssistantDetails {
   id: string
@@ -129,6 +131,17 @@ export function MeetTestRoom({
   const greetingSpokenRef = useRef<boolean>(false)
   const isGreetingResponseRef = useRef<boolean>(false)
   const isUserSpeakingRef = useRef<boolean>(false)
+  const codingCodeRef = useRef<{ code: string; language: string }>({ code: '', language: 'javascript' })
+
+  const {
+    isScreenSharing,
+    screenStream,
+    showScreenShareDialog,
+    setShowScreenShareDialog,
+    toggleScreenShare,
+  } = useScreenShare({ uiConfig })
+
+  const codingModeQuestion = useMemo(() => getScreenShareQuestion(0), [])
 
   // Keep refs updated
   useEffect(() => {
@@ -146,25 +159,24 @@ export function MeetTestRoom({
     }
   }, [isUserSpeaking])
 
-  // Initialize LLM service with system prompt from interview data
-  // Priority: Use stored prompt from DB (customPrompt) > JD > default
-  // The customPrompt should always come from the database, not regenerated
+  // Initialize LLM service with system prompt - different for coding mode vs regular
   useEffect(() => {
-    const basePrompt = interviewData?.customPrompt || 
-                        interviewData?.jd || 
-                        'You are an AI interviewer conducting a professional interview. Ask relevant questions and provide constructive feedback.'
-    
-    // Get a random greeting for this interview session
-    const greetingMessage = getRandomGreeting()
-    
-    // Add greeting context to the system prompt
-    const systemPrompt = `${basePrompt}
+    const systemPrompt = isScreenSharing
+      ? getCodingModeSystemPrompt(codingModeQuestion.title, codingModeQuestion.description)
+      : (() => {
+          const basePrompt = interviewData?.customPrompt ||
+            interviewData?.jd ||
+            'You are an AI interviewer conducting a professional interview. Ask relevant questions and provide constructive feedback.'
+          const greetingMessage = getRandomGreeting()
+          return `${basePrompt}
 
 IMPORTANT: The interview starts with a greeting question. The greeting will be randomly selected from available greetings.
 - When the user responds to the greeting, treat it as their first answer about themselves
 - After receiving their greeting response, continue with the interview naturally
 - Do NOT repeat the greeting question - it has already been asked
-- Build on their response to ask follow-up questions related to their background and the job requirements`
+- Build on their response to ask follow-up questions related to their background and the job requirements
+- Do NOT prefix your responses with "Mivvo:" or your name - respond directly`
+        })()
     
     llmServiceRef.current = getLLMService(
       {
@@ -175,11 +187,12 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
       },
       {
         onResponse: (response) => {
-          // Add AI response to chat
+          // Add AI response to chat (strip "Mivvo:" prefix if present)
           if (response && response.trim()) {
+            const text = response.trim().replace(/^Mivvo:\s*/i, '').trim() || response.trim()
             const aiMessage = {
               role: 'assistant',
-              text: response.trim(),
+              text,
               timestamp: new Date().toISOString()
             }
             // Simple approach: Just add the AI message to the current transcript
@@ -192,8 +205,8 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
 
             // Speak the AI response using TTS
             if (ttsServiceRef.current) {
-              console.log('Calling TTS speak with:', response.trim().substring(0, 50))
-              ttsServiceRef.current.speak(response.trim())
+              console.log('Calling TTS speak with:', text.substring(0, 50))
+              ttsServiceRef.current.speak(text)
             } else {
               console.warn('TTS service not initialized when trying to speak')
             }
@@ -218,7 +231,7 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
         clearTimeout(silenceTimeoutRef.current)
       }
     }
-  }, [interviewData?.customPrompt, interviewData?.jd])
+  }, [interviewData?.customPrompt, interviewData?.jd, isScreenSharing, codingModeQuestion.title, codingModeQuestion.description])
 
   // Clear silence timeout
   const clearSilenceTimeout = () => {
@@ -274,22 +287,25 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
       // Get the greeting message that was used (from transcript)
       const greetingMessage = finalizedTranscript.find(m => m.role === 'assistant' && m.text.includes('Mivvo'))?.text || 'the greeting question'
       
-      // Convert to LLM message format
-      // If this is the greeting response, add context about the greeting
+      // Convert to LLM message format. In coding mode, append user's code so AI can view it.
+      const code = codingCodeRef.current
+      const codeBlock = (isScreenSharing && code?.code)
+        ? `\n\n[CURRENT USER CODE (${code.language}):]\n\`\`\`${code.language}\n${code.code}\n\`\`\``
+        : ''
+
       const llmMessages: LLMMessage[] = finalizedTranscript.map((msg, index) => {
-        // For the first user message (greeting response), add context
-        if (isFirstResponse && msg.role === 'user' && index === finalizedTranscript.length - 1) {
-          return {
-            id: `msg-${msg.timestamp}`,
-            role: msg.role as 'user' | 'assistant',
-            content: `[This is the user's response to the greeting question: "${greetingMessage}"]\n\n${msg.text}`,
-            timestamp: new Date(msg.timestamp)
-          }
+        const isLastUserMsg = msg.role === 'user' && index === finalizedTranscript.length - 1
+        let content = msg.text
+        if (isFirstResponse && isLastUserMsg) {
+          content = `[This is the user's response to the greeting question: "${greetingMessage}"]\n\n${msg.text}`
+        }
+        if (isScreenSharing && isLastUserMsg && codeBlock) {
+          content = content + codeBlock
         }
         return {
           id: `msg-${msg.timestamp}`,
           role: msg.role as 'user' | 'assistant',
-          content: msg.text,
+          content,
           timestamp: new Date(msg.timestamp)
         }
       })
@@ -308,7 +324,7 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
       console.error('Error sending to LLM:', error)
       isProcessingLLMRef.current = false
     }
-  }, [interviewData?.customPrompt, interviewData?.jd])
+  }, [interviewData?.customPrompt, interviewData?.jd, isScreenSharing])
 
   const { transcript: userTranscript, resetTranscript } = useUserTranscription({
     isAudioEnabled,
@@ -423,14 +439,6 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
     ttsServiceRef.current = ttsService
   }, [ttsService])
 
-  const {
-    isScreenSharing,
-    screenStream,
-    showScreenShareDialog,
-    setShowScreenShareDialog,
-    toggleScreenShare,
-  } = useScreenShare({ uiConfig })
-
   // Show interview start dialog
   useEffect(() => {
     if (uiConfig.showInterviewStartDialog) {
@@ -462,8 +470,8 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
         if (ttsServiceRef.current) {
           greetingSpokenRef.current = true
           
-          // Get a random greeting for this interview session
-          const randomGreeting = getRandomGreeting()
+          // Use coding mode greeting when in coding mode, else random greeting
+          const randomGreeting = isScreenSharing ? CODING_MODE_GREETING : getRandomGreeting()
           
           // Add greeting to transcript as assistant message
           const greetingMessage = {
@@ -489,7 +497,7 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
         clearTimeout(greetingTimeout)
       }
     }
-  }, [isConversationMode, handleTranscriptUpdate, ttsService])
+  }, [isConversationMode, handleTranscriptUpdate, ttsService, isScreenSharing])
 
   // Handlers
   const handleEndCall = async () => {
@@ -549,46 +557,58 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
         onStartConversation={handleStartConversation}
         onStopConversation={handleStopConversation}
         isRegularInterviewActive={isConversationMode}
-        isScreenSharing={isScreenSharing}
+        isCodingMode={isScreenSharing}
         showInterviewStartDialog={uiConfig.showInterviewStartDialog}
         isChatOpen={isChatOpen && uiConfig.showChatBox}
       />
 
       {/* Main Content Area with Sidebar */}
       <div className="flex flex-1 overflow-hidden pt-20">
-        {/* Main Content Area - Left Side */}
-        <div className={`flex-1 transition-all duration-300 ${isChatOpen && uiConfig.showChatBox ? 'mr-[400px]' : ''} h-full overflow-auto`}>
-          <div className="grid h-full grid-cols-2 gap-4 p-4">
-            <VideoFeed
+        {/* Main Content Area - Layout switches when screen sharing */}
+        <div className={`flex-1 transition-all duration-300 ${isChatOpen && uiConfig.showChatBox ? 'mr-[400px]' : ''} h-full overflow-hidden flex flex-col`}>
+          {isScreenSharing ? (
+            <ScreenShareInterviewLayout
+              question={codingModeQuestion}
               stream={stream}
               isVideoEnabled={isVideoEnabled}
               isAudioEnabled={isAudioEnabled}
-              isUserSpeaking={isUserSpeaking}
               isGettingStream={isGettingStream}
               videoRef={videoRef}
-              userTranscript={userTranscript}
-              showUserTranscription={uiConfig.showUserTranscription}
-              sttAvailable={sttAvailable}
-              ttsAvailable={ttsAvailable}
+              codingCodeRef={codingCodeRef}
             />
+          ) : (
+            <div className="grid h-full grid-cols-2 gap-4 p-4">
+              <VideoFeed
+                stream={stream}
+                isVideoEnabled={isVideoEnabled}
+                isAudioEnabled={isAudioEnabled}
+                isUserSpeaking={isUserSpeaking}
+                isGettingStream={isGettingStream}
+                videoRef={videoRef}
+                userTranscript={userTranscript}
+                showUserTranscription={uiConfig.showUserTranscription}
+                sttAvailable={sttAvailable}
+                ttsAvailable={ttsAvailable}
+              />
 
-            <VoiceChatPanel
-              selectedVoice={selectedVoice}
-              voiceConfig={voiceConfig}
-              availableVoices={availableVoices}
-              isVoiceChatActive={isVoiceChatActive}
-              isUserSpeaking={isUserSpeaking}
-              isWaitingForUserResponse={isWaitingForUserResponse}
-              uiConfig={uiConfig}
-              interviewData={interviewData}
-              voiceChatMessages={voiceChatMessages}
-              isAudioEnabled={isAudioEnabled}
-              onTranscriptUpdate={handleTranscriptUpdate}
-              onVoiceChatStateChange={handleVoiceChatStateChange}
-              onConversationModeChange={handleConversationModeChange}
-              onWaitingForResponseChange={handleWaitingForResponseChange}
-            />
-          </div>
+              <VoiceChatPanel
+                selectedVoice={selectedVoice}
+                voiceConfig={voiceConfig}
+                availableVoices={availableVoices}
+                isVoiceChatActive={isVoiceChatActive}
+                isUserSpeaking={isUserSpeaking}
+                isWaitingForUserResponse={isWaitingForUserResponse}
+                uiConfig={uiConfig}
+                interviewData={interviewData}
+                voiceChatMessages={voiceChatMessages}
+                isAudioEnabled={isAudioEnabled}
+                onTranscriptUpdate={handleTranscriptUpdate}
+                onVoiceChatStateChange={handleVoiceChatStateChange}
+                onConversationModeChange={handleConversationModeChange}
+                onWaitingForResponseChange={handleWaitingForResponseChange}
+              />
+            </div>
+          )}
         </div>
 
         {/* Chat Sidebar - Right Side - Only show when chat icon is clicked */}
@@ -656,6 +676,7 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
       <InterviewStartDialog
         open={showInterviewStartDialog}
         onStart={handleStartInterview}
+        isCodingMode={isScreenSharing}
       />
 
       <ScreenShareDialog

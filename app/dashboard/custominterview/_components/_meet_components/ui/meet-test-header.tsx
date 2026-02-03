@@ -35,7 +35,7 @@ interface MeetTestHeaderProps {
   onStopCodingInterview?: () => void
   isCodingInterviewActive?: boolean
   isRegularInterviewActive?: boolean
-  isScreenSharing?: boolean
+  isCodingMode?: boolean
   showInterviewStartDialog?: boolean
   isChatOpen?: boolean
 }
@@ -56,7 +56,7 @@ export function MeetTestHeader({
   onStopCodingInterview,
   isCodingInterviewActive = false,
   isRegularInterviewActive = false,
-  isScreenSharing = false,
+  isCodingMode = false,
   showInterviewStartDialog = false,
   isChatOpen = false
 }: MeetTestHeaderProps) {
@@ -112,14 +112,18 @@ export function MeetTestHeader({
             <>
               {!isRegularInterviewActive ? (
                 <Button
-                  onClick={onStartConversation}
+                  onClick={() => onStartConversation?.()}
                   disabled={isLoading}
-                  className="bg-green-600 hover:bg-green-700 gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  className={`gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${
+                    isCodingMode
+                      ? "bg-yellow-500 hover:bg-yellow-600 text-black"
+                      : "bg-green-600 hover:bg-green-700"
+                  }`}
                   size="sm"
-                  title={isLoading ? 'Loading voice...' : 'Start Interview'}
+                  title={isLoading ? 'Loading...' : isCodingMode ? 'Start Coding Interview' : 'Start Interview'}
                 >
                   <Mic className="h-4 w-4" />
-                  {isLoading ? 'Loading...' : 'Start Interview'}
+                  {isLoading ? 'Loading...' : isCodingMode ? 'Start Coding Interview' : 'Start Interview'}
                 </Button>
               ) : (
                 <>
@@ -158,7 +162,7 @@ export function MeetTestHeader({
 
 
           {/* Coding Interview Button */}
-          {onStartCodingInterview && onStopCodingInterview && (!defaultUiConfig.showCodingInterviewOnlyOnScreenShare || isScreenSharing) && (
+          {onStartCodingInterview && onStopCodingInterview && (!defaultUiConfig.showCodingInterviewOnlyOnScreenShare || isCodingMode) && (
             <Button
               onClick={isCodingInterviewActive ? onStopCodingInterview : onStartCodingInterview}
               variant={isCodingInterviewActive ? "destructive" : "outline"}
