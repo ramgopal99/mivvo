@@ -1,0 +1,8 @@
+export { ClassicTitle } from "./classic-title"
+export { MinimalTitle } from "./minimal-title"
+export { SplitTitle } from "./split-title"
+export { GradientTitle } from "./gradient-title"
+export { CornerTitle } from "./corner-title"
+export { StripeTitle } from "./stripe-title"
+export { UnderlineTitle } from "./underline-title"
+export { TitleSlide } from "./title-slide"

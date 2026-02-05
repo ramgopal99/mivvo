@@ -113,6 +113,70 @@ html {
   animation-delay: 300ms;
 }
 
+/* Title slide stagger: title first, then subtitle */
+@keyframes slide-up-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up-fade-in {
+  animation: slide-up-fade-in 1.2s ease-out both;
+}
+
+/* Slide animation variants (rotation/random) */
+@keyframes slide-left-fade-in {
+  0% { opacity: 0; transform: translateX(16px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes slide-right-fade-in {
+  0% { opacity: 0; transform: translateX(-16px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes scale-fade-in {
+  0% { opacity: 0; transform: scale(0.96); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes fade-in-only {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes slide-down-fade-in {
+  0% { opacity: 0; transform: translateY(-12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-left-fade-in { animation: slide-left-fade-in 1.2s ease-out both; }
+.animate-slide-right-fade-in { animation: slide-right-fade-in 1.2s ease-out both; }
+.animate-scale-fade-in { animation: scale-fade-in 1.2s ease-out both; }
+.animate-fade-in-only { animation: fade-in-only 1.2s ease-out both; }
+.animate-slide-down-fade-in { animation: slide-down-fade-in 1.2s ease-out both; }
+
+.animation-delay-350 {
+  animation-delay: 600ms;
+}
+
+.animation-delay-550 {
+  animation-delay: 1200ms;
+}
+
+.animation-delay-750 {
+  animation-delay: 1800ms;
+}
+
+.animation-delay-950 {
+  animation-delay: 2400ms;
+}
+
+.animation-delay-1150 {
+  animation-delay: 3000ms;
+}
+
 /* Floating emoji animation */
 @keyframes float-up {
   0% {
