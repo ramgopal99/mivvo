@@ -1,14 +1,153 @@
-export * from "./types"
+export type {
+  TypedSlide,
+  SlideType,
+  LineDelays,
+  TitleVariant,
+  TitleSlideProps,
+  SummaryVariant,
+  SummarySlideProps,
+  BulletVariant,
+  BulletSlideProps,
+  CodeBlockVariant,
+  CodeBlockSlideProps,
+  CodeStepExplainStep,
+  CodeStepExplainVariant,
+  CodeStepExplainSlideProps,
+  ComparisonTableVariant,
+  ComparisonTableSlideProps,
+  FallbackVariant,
+  FallbackSlideProps,
+  FlowTreeNode,
+  FlowTreeVariant,
+  FlowTreeSlideProps,
+  HighlightBoxVariant,
+  HighlightBoxSlideProps,
+  QuestionPromptVariant,
+  QuestionPromptSlideProps,
+} from "./types"
+export {
+  getSlideLineInfo,
+  getLineDelayMs,
+  getLineDelayStyle,
+  DEFAULT_LINE_DELAY_MS,
+} from "./line-timing"
+export type { SlideLineInfo } from "./line-timing"
 export { SlideRenderer } from "./slide-renderer"
-export { SlideWrapper } from "./slide-wrapper"
-export { TitleSlide } from "./title-slide"
-export { BulletPointsSlide } from "./bullet-points-slide"
-export { StepBlocksSlide } from "./step-blocks-slide"
-export { HighlightBoxSlide } from "./highlight-box-slide"
-export { FlowTreeSlide } from "./flow-tree-slide"
-export { ComparisonTableSlide } from "./comparison-table-slide"
-export { CodeBlockSlide } from "./code-block-slide"
-export { CodeStepExplainSlide } from "./code-step-explain-slide"
-export { QuestionPromptSlide } from "./question-prompt-slide"
-export { SummarySlide } from "./summary-slide"
-export { FallbackSlide } from "./fallback-slide"
+export {
+  getSlideAnimationClass,
+  buildRandomAnimationIndices,
+  SLIDE_ANIMATION_CLASSES,
+  DEFAULT_SLIDE_ANIMATION_CLASS,
+} from "./animations"
+export type { SlideAnimationMode } from "./animations"
+export {
+  ClassicTitle,
+  MinimalTitle,
+  SplitTitle,
+  GradientTitle,
+  CornerTitle,
+  StripeTitle,
+  UnderlineTitle,
+  TitleSlide,
+} from "./title"
+export {
+  ClassicSummary,
+  MinimalSummary,
+  NumberedSummary,
+  CardsSummary,
+  ChecklistSummary,
+  SplitSummary,
+  GradientSummary,
+  SummarySlide,
+} from "./summary"
+export {
+  ClassicBullets,
+  MinimalBullets,
+  NumberedBullets,
+  CardsBullets,
+  ChecklistBullets,
+  SplitBullets,
+  GradientBullets,
+  TwoColumnBullets,
+  TimelineBullets,
+  DashedBullets,
+  CornerBullets,
+  StripeBullets,
+  BulletSlide,
+} from "./bullets"
+export {
+  ClassicCode,
+  MinimalCode,
+  LineNumbersCode,
+  DarkCode,
+  LightCode,
+  SplitCode,
+  TerminalCode,
+  GradientCode,
+  CodeBlockSlide,
+  CodeDisplay,
+} from "./code-block"
+export {
+  ClassicCodeStep,
+  MinimalCodeStep,
+  StackedCodeStep,
+  SplitCodeStep,
+  CardsCodeStep,
+  TimelineCodeStep,
+  DarkCodeStep,
+  GradientCodeStep,
+  CodeStepExplainSlide,
+} from "./code-step-explain"
+export {
+  ClassicComparison,
+  MinimalComparison,
+  StripedComparison,
+  CardsComparison,
+  SplitComparison,
+  DarkComparison,
+  GradientComparison,
+  BorderedComparison,
+  ComparisonTableSlide,
+} from "./comparison-table"
+export {
+  ClassicFallback,
+  MinimalFallback,
+  SplitFallback,
+  GradientFallback,
+  StripeFallback,
+  DarkFallback,
+  FallbackSlide,
+} from "./fallback"
+export {
+  ClassicFlowTree,
+  MinimalFlowTree,
+  VerticalFlowTree,
+  HorizontalFlowTree,
+  CardsFlowTree,
+  TimelineFlowTree,
+  DarkFlowTree,
+  BracketFlowTree,
+  FlowTreeSlide,
+} from "./flow-tree"
+export {
+  ClassicHighlight,
+  MinimalHighlight,
+  SplitHighlight,
+  GradientHighlight,
+  StripeHighlight,
+  DarkHighlight,
+  BorderedHighlight,
+  QuoteHighlight,
+  HighlightBoxSlide,
+} from "./highlight-box"
+export {
+  ClassicQuestion,
+  MinimalQuestion,
+  CardsQuestion,
+  NumberedQuestion,
+  ListQuestion,
+  DarkQuestion,
+  GradientQuestion,
+  SplitQuestion,
+  QuestionPromptSlide,
+} from "./question-prompt"
