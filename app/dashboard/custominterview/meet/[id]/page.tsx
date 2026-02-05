@@ -18,7 +18,13 @@ export default function CustomInterviewMeetPage() {
 
   const [interviewData, setInterviewData] = useState<InterviewData | null>(null)
   const [loading, setLoading] = useState(true)
-  const [uiConfig, setUiConfig] = useState(defaultUiConfig)
+  // Simple mode (Templates/Custom JD): hide share screen. Coding Round: show share screen and require it first.
+  // useFullScreenInMeet: false for dev, true for testing (from siteConfig)
+  const [uiConfig, setUiConfig] = useState(() => ({
+    ...defaultUiConfig,
+    showShareScreen: false, // set from interviewData once loaded
+    useFullScreenInMeet: siteConfig.useFullScreenInMeet ?? false,
+  }))
 
   // Permission check states
   const [showPermissionDialog, setShowPermissionDialog] = useState(false)
@@ -31,6 +37,7 @@ export default function CustomInterviewMeetPage() {
   const [sttAvailable, setSttAvailable] = useState<boolean | null>(null)
   const [ttsAvailable, setTtsAvailable] = useState<boolean | null>(null)
   const [showCapabilityDialog, setShowCapabilityDialog] = useState(false)
+  const [isFullScreenPromptVisible, setIsFullScreenPromptVisible] = useState(false)
 
   // Fetch interview data from database
   useEffect(() => {
@@ -44,6 +51,8 @@ export default function CustomInterviewMeetPage() {
         const data = await getInterviewById(interviewId)
         if (data) {
           setInterviewData(data)
+          // Coding Round interviews: show share screen. Simple mode (Templates/Custom JD): hide it.
+          setUiConfig(prev => ({ ...prev, showShareScreen: data.screenShareEnabled === true }))
         }
       } catch (error) {
         console.error('Error fetching interview:', error)
@@ -286,22 +295,25 @@ export default function CustomInterviewMeetPage() {
     customPrompt: storedPrompt || interviewData?.customPrompt || undefined,
     jd: interviewData?.jd,
     interviewType: interviewData?.interviewType,
-    foreignLanguageSubType: interviewData?.foreignLanguageSubType ?? undefined
+    foreignLanguageSubType: interviewData?.foreignLanguageSubType ?? undefined,
+    screenShareEnabled: interviewData?.screenShareEnabled,
   }
 
   return (
     <>
-      {/* Debug Info Panel */}
-      <InterviewDebugPanel
-        interviewData={interviewData}
-        assistantDetails={assistantDetails}
-        storedPrompt={storedPrompt}
-        interviewDataForRoom={interviewDataForRoom}
-        sttAvailable={sttAvailable}
-        ttsAvailable={ttsAvailable}
-        hasVideoPermission={hasVideoPermission}
-        hasAudioPermission={hasAudioPermission}
-      />
+      {/* Debug panel hidden when full-screen prompt is shown (white-only screen) */}
+      {!isFullScreenPromptVisible && (
+        <InterviewDebugPanel
+          interviewData={interviewData}
+          assistantDetails={assistantDetails}
+          storedPrompt={storedPrompt}
+          interviewDataForRoom={interviewDataForRoom}
+          sttAvailable={sttAvailable}
+          ttsAvailable={ttsAvailable}
+          hasVideoPermission={hasVideoPermission}
+          hasAudioPermission={hasAudioPermission}
+        />
+      )}
 
       <MeetTestRoom
         interviewTitle={interviewData?.title}
@@ -314,6 +326,7 @@ export default function CustomInterviewMeetPage() {
         interviewData={interviewDataForRoom}
         sttAvailable={sttAvailable}
         ttsAvailable={ttsAvailable}
+        onFullScreenPromptVisible={setIsFullScreenPromptVisible}
       />
     </>
   )

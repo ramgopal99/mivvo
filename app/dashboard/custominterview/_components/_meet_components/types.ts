@@ -30,6 +30,8 @@ export interface UiConfig {
   screenShareRestrictToScreen: boolean
   screenShareRestrictionErrorMessage: string
   enableAnalysisOnStop: boolean
+  /** When true, meet room enters full screen (both simple and coding mode). Set false for dev, true for testing */
+  useFullScreenInMeet?: boolean
 }
 
 export interface VoiceChatConfig {
@@ -60,6 +62,8 @@ export interface InterviewData {
   jd?: string
   interviewType?: string
   foreignLanguageSubType?: string
+  /** When true, this is a coding interview; user is asked to share screen when they enter the meet */
+  screenShareEnabled?: boolean
   prompts?: Array<{
     id: string
     promptText: string

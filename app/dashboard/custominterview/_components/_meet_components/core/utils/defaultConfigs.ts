@@ -27,4 +27,5 @@ export const defaultUiConfig: UiConfig = {
   screenShareRestrictToScreen: true,
   screenShareRestrictionErrorMessage: "Please select your entire screen to share. Sharing individual windows or tabs is not allowed.",
   enableAnalysisOnStop: true,
+  useFullScreenInMeet: true, // false for dev; set true for testing
 }

@@ -21,6 +21,7 @@ import {
   VoiceChatPanel,
   InterviewStartDialog,
   ScreenShareDialog,
+  FullScreenPrompt,
 } from './components'
 import { defaultVoiceConfig, defaultUiConfig } from './utils'
 import {
@@ -31,6 +32,8 @@ import {
 import { getLLMService, Message as LLMMessage } from '../services/llm-service'
 import { getRandomGreeting } from '../greeting-message'
 import { getCodingModeSystemPrompt, CODING_MODE_GREETING } from '../coding-mode-prompt'
+import { Monitor } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 interface AssistantDetails {
   id: string
@@ -54,6 +57,8 @@ interface MeetTestRoomProps {
   greeting?: string
   sttAvailable?: boolean | null
   ttsAvailable?: boolean | null
+  /** Called when the full-screen prompt is shown/hidden so parent can hide Debug etc. */
+  onFullScreenPromptVisible?: (visible: boolean) => void
 }
 
 export function MeetTestRoom({
@@ -67,6 +72,7 @@ export function MeetTestRoom({
   interviewData,
   sttAvailable,
   ttsAvailable,
+  onFullScreenPromptVisible,
 }: MeetTestRoomProps) {
   // Use assistantDetails if provided, otherwise fallback to props
   const assistant: AssistantDetails = assistantDetails || {
@@ -132,6 +138,9 @@ export function MeetTestRoom({
   const isGreetingResponseRef = useRef<boolean>(false)
   const isUserSpeakingRef = useRef<boolean>(false)
   const codingCodeRef = useRef<{ code: string; language: string }>({ code: '', language: 'javascript' })
+  const containerRef = useRef<HTMLDivElement>(null)
+  const fullscreenEnteredRef = useRef(false)
+  const [showFullScreenPrompt, setShowFullScreenPrompt] = useState(false)
 
   const {
     isScreenSharing,
@@ -499,16 +508,72 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
     }
   }, [isConversationMode, handleTranscriptUpdate, ttsService, isScreenSharing])
 
+  // Full screen: show "Click to enter" prompt when useFullScreenInMeet is true (browsers require user gesture)
+  useEffect(() => {
+    if (uiConfig.useFullScreenInMeet) {
+      setShowFullScreenPrompt(true)
+    }
+    return () => {
+      if (fullscreenEnteredRef.current && document.fullscreenElement != null) {
+        document.exitFullscreen?.().catch(() => {})
+        fullscreenEnteredRef.current = false
+      }
+    }
+  }, [uiConfig.useFullScreenInMeet])
+
+  // Notify parent when full-screen prompt is visible so it can hide Debug panel etc.
+  useEffect(() => {
+    onFullScreenPromptVisible?.(showFullScreenPrompt)
+    return () => onFullScreenPromptVisible?.(false)
+  }, [showFullScreenPrompt, onFullScreenPromptVisible])
+
+  const enterFullScreen = useCallback(() => {
+    if (!uiConfig.useFullScreenInMeet) return
+    // Fullscreen the document so the entire meet page (layout + room) fills the screen
+    const el = document.documentElement
+    el.requestFullscreen?.().then(() => {
+      fullscreenEnteredRef.current = true
+      setShowFullScreenPrompt(false)
+      onFullScreenPromptVisible?.(false)
+    }).catch(() => {
+      setShowFullScreenPrompt(false)
+      onFullScreenPromptVisible?.(false)
+    })
+  }, [uiConfig.useFullScreenInMeet])
+
+  // When document is fullscreen, make html/body fill viewport so entire UI is visible
+  useEffect(() => {
+    const onFullscreenChange = () => {
+      if (document.fullscreenElement === document.documentElement) {
+        document.documentElement.style.width = '100%'
+        document.documentElement.style.height = '100%'
+        document.body.style.width = '100%'
+        document.body.style.height = '100%'
+        document.body.style.minHeight = '100%'
+      } else {
+        document.documentElement.style.width = ''
+        document.documentElement.style.height = ''
+        document.body.style.width = ''
+        document.body.style.height = ''
+        document.body.style.minHeight = ''
+      }
+    }
+    document.addEventListener('fullscreenchange', onFullscreenChange)
+    return () => document.removeEventListener('fullscreenchange', onFullscreenChange)
+  }, [])
+
   // Handlers
   const handleEndCall = async () => {
     if (isConversationMode) {
       setIsConversationMode(false)
     }
-
+    if (uiConfig.useFullScreenInMeet && fullscreenEnteredRef.current && document.fullscreenElement != null) {
+      document.exitFullscreen?.().catch(() => {})
+      fullscreenEnteredRef.current = false
+    }
     if (onEndCall) {
       onEndCall()
     }
-
     if (uiConfig.redirectOnStop) {
       window.location.href = '/dashboard/custominterview'
     }
@@ -545,8 +610,44 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
     handleEndCall()
   }
 
+  // Coding Round: require screen share before showing main UI
+  const requireScreenShareFirst = interviewData?.screenShareEnabled === true && !isScreenSharing
+
   return (
-    <div className="relative h-screen bg-background flex flex-col overflow-hidden">
+    <div
+      ref={containerRef}
+      className="relative w-full min-w-0 h-screen min-h-screen bg-background flex flex-col overflow-hidden"
+    >
+      {/* Full screen: must be triggered by user click (browser requirement) */}
+      {showFullScreenPrompt && <FullScreenPrompt onEnterFullScreen={enterFullScreen} />}
+
+      {/* Coding Round: ask user to share screen first */}
+      {requireScreenShareFirst && (
+        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-background/95 backdrop-blur-sm p-6">
+          <div className="max-w-md text-center space-y-6">
+            <div className="flex justify-center">
+              <div className="rounded-full bg-amber-100 p-4">
+                <Monitor className="h-12 w-12 text-amber-600" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <h2 className="text-xl font-semibold text-foreground">This is a coding interview</h2>
+              <p className="text-muted-foreground">
+                Share your screen to continue. You’ll code in the browser while the AI interviewer asks follow-up questions.
+              </p>
+            </div>
+            <Button
+              onClick={toggleScreenShare}
+              size="lg"
+              className="gap-2 bg-amber-600 hover:bg-amber-700"
+            >
+              <Monitor className="h-5 w-5" />
+              Share screen to start
+            </Button>
+          </div>
+        </div>
+      )}
+
       <MeetTestHeader
         interviewTitle={interviewTitle || interviewData?.title}
         assistantName={assistant.name}

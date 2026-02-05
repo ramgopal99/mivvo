@@ -74,7 +74,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { Plus, FileText, X, Mic, Square } from "lucide-react"
+import { Plus, FileText, X, Mic, Square, Code2 } from "lucide-react"
 import {
   getAvailableRoles,
   getAvailableInterviewTypes
@@ -364,6 +364,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
     setVoiceText("")
     setRefinedText("")
     setIsDialogOpen(false)
+    setActiveTab("predefined")
     if (cvInputRef.current) {
       cvInputRef.current.value = ''
     }
@@ -501,6 +502,23 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
       return
     }
 
+    // Handle Coding Round tab - DSA coding round; screen share required; user asked to share screen when they enter the meet
+    if (activeTab === "codingRound") {
+      const jdDetails = "Technical coding round focused on Data Structures & Algorithms (DSA). The candidate will solve a coding problem while sharing their screen. The AI interviewer will ask follow-up questions about approach, time complexity, and implementation."
+      const interviewData = {
+        jdDetails,
+        interviewType: "Technical",
+        screenShare: true,
+        company: "Coding Round",
+        cvText: cvText || userCvData || undefined,
+        title: undefined
+      }
+      onInterviewCreated?.(interviewData)
+      setIsDialogOpen(false)
+      setActiveTab("predefined")
+      return
+    }
+
     // Handle predefined tab
     // Validation based on interview type
     if (!interviewType) {
@@ -566,9 +584,10 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
         </DialogHeader>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className={`grid w-full ${showVoiceTab ? 'grid-cols-3' : 'grid-cols-2'}`}>
+          <TabsList className={`grid w-full ${showVoiceTab ? 'grid-cols-4' : 'grid-cols-3'}`}>
             <TabsTrigger value="predefined">Templates</TabsTrigger>
             <TabsTrigger value="custom">Custom JD</TabsTrigger>
+            <TabsTrigger value="codingRound">Coding Round</TabsTrigger>
             {showVoiceTab && <TabsTrigger value="voice">Voice</TabsTrigger>}
           </TabsList>
 
@@ -705,6 +724,18 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
                   </div>
                 )}
               </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="codingRound" className="space-y-6 mt-6">
+            <div className="rounded-lg border border-amber-200 bg-amber-50/50 p-4 space-y-3">
+              <div className="flex items-center gap-2 text-amber-800">
+                <Code2 className="h-5 w-5" />
+                <span className="font-medium">DSA coding round</span>
+              </div>
+              <p className="text-sm text-gray-700">
+                Create a technical coding round with DSA questions only. When you start, you’ll be asked to share your screen. You’ll code in the browser while the AI interviewer asks follow-up questions about your approach and complexity.
+              </p>
             </div>
           </TabsContent>
 
@@ -877,6 +908,8 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
                   ? (!interviewType || (interviewType === 'Technical' ? !selectedRole : false))
                   : activeTab === 'custom'
                   ? (!customJD.trim() || isAnalyzingJD || isExtractingCV)
+                  : activeTab === 'codingRound'
+                  ? false
                   : activeTab === 'voice' && showVoiceTab
                   ? (!refinedText.trim() || isProcessingVoice || isRecording)
                   : false
@@ -898,6 +931,11 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
               <>
                 <FileText className="w-4 h-4 mr-2" />
                 Create Custom Interview
+              </>
+            ) : activeTab === 'codingRound' ? (
+              <>
+                <Code2 className="w-4 h-4 mr-2" />
+                Create Coding Interview
               </>
             ) : activeTab === 'voice' && showVoiceTab ? (
               <>
