@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
         duration: duration || latestAttempt.duration,
         feedback: overallFeedback,
         knowledge: knowledgeScore,
-        overallScore: analysis.final_score * 10, // Convert to 0-100 scale
+        overallScore: analysis.final_score <= 10 ? analysis.final_score * 10 : Math.round(analysis.final_score), // Support both 0-10 and 0-100 from LLM
         overallFeedback: overallFeedback,
         strengths: analysis.strengths,
         weaknesses: analysis.weaknesses,

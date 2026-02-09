@@ -59,6 +59,14 @@ interface MeetTestRoomProps {
   ttsAvailable?: boolean | null
   /** Called when the full-screen prompt is shown/hidden so parent can hide Debug etc. */
   onFullScreenPromptVisible?: (visible: boolean) => void
+  /** Called when user clicks Start Interview – e.g. to create attempt (start-attempt API). */
+  onBeforeStartInterview?: () => Promise<void>
+  /** Called when call ends with duration and transcript so parent can save conversation and update time usage. */
+  onEndCallWithPayload?: (payload: {
+    durationSeconds: number
+    transcript: { role: string; text: string; timestamp: string }[]
+    messages: { id: string; role: 'user' | 'assistant'; content: string; timestamp: string }[]
+  }) => void | Promise<void>
 }
 
 export function MeetTestRoom({
@@ -73,6 +81,8 @@ export function MeetTestRoom({
   sttAvailable,
   ttsAvailable,
   onFullScreenPromptVisible,
+  onBeforeStartInterview,
+  onEndCallWithPayload,
 }: MeetTestRoomProps) {
   // Use assistantDetails if provided, otherwise fallback to props
   const assistant: AssistantDetails = assistantDetails || {
@@ -89,6 +99,7 @@ export function MeetTestRoom({
   const [isChatOpen, setIsChatOpen] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
   const [showInterviewStartDialog, setShowInterviewStartDialog] = useState(false)
+  const [elapsedSeconds, setElapsedSeconds] = useState(0)
 
   // Custom hooks
   const {
@@ -140,6 +151,7 @@ export function MeetTestRoom({
   const codingCodeRef = useRef<{ code: string; language: string }>({ code: '', language: 'javascript' })
   const containerRef = useRef<HTMLDivElement>(null)
   const fullscreenEnteredRef = useRef(false)
+  const sessionStartTimeRef = useRef<number | null>(null)
   const [showFullScreenPrompt, setShowFullScreenPrompt] = useState(false)
 
   const {
@@ -527,6 +539,22 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
     return () => onFullScreenPromptVisible?.(false)
   }, [showFullScreenPrompt, onFullScreenPromptVisible])
 
+  // Timer: update elapsed time every second when conversation is active
+  useEffect(() => {
+    if (!isConversationMode) {
+      setElapsedSeconds(0)
+      return
+    }
+    const tick = () => {
+      if (sessionStartTimeRef.current != null) {
+        setElapsedSeconds(Math.floor((Date.now() - sessionStartTimeRef.current) / 1000))
+      }
+    }
+    tick() // run immediately
+    const interval = setInterval(tick, 1000)
+    return () => clearInterval(interval)
+  }, [isConversationMode])
+
   const enterFullScreen = useCallback(() => {
     if (!uiConfig.useFullScreenInMeet) return
     // Fullscreen the document so the entire meet page (layout + room) fills the screen
@@ -567,6 +595,20 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
     if (isConversationMode) {
       setIsConversationMode(false)
     }
+    // If we have a session start time, report duration and transcript for saving + credit deduction
+    if (sessionStartTimeRef.current != null && onEndCallWithPayload) {
+      const durationSeconds = Math.round((Date.now() - sessionStartTimeRef.current) / 1000)
+      try {
+        await onEndCallWithPayload({
+          durationSeconds,
+          transcript: voiceTranscript,
+          messages,
+        })
+      } catch (e) {
+        console.error('Error in onEndCallWithPayload:', e)
+      }
+      sessionStartTimeRef.current = null
+    }
     if (uiConfig.useFullScreenInMeet && fullscreenEnteredRef.current && document.fullscreenElement != null) {
       document.exitFullscreen?.().catch(() => {})
       fullscreenEnteredRef.current = false
@@ -579,7 +621,16 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
     }
   }
 
-  const handleStartInterview = () => {
+  const handleStartInterview = async () => {
+    if (onBeforeStartInterview) {
+      try {
+        await onBeforeStartInterview()
+      } catch (e) {
+        console.error('Error in onBeforeStartInterview:', e)
+        return
+      }
+    }
+    sessionStartTimeRef.current = Date.now()
     setShowInterviewStartDialog(false)
     // Reset greeting state when starting new interview
     greetingSpokenRef.current = false
@@ -590,7 +641,16 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
     window.dispatchEvent(startEvent)
   }
 
-  const handleStartConversation = () => {
+  const handleStartConversation = async () => {
+    if (onBeforeStartInterview) {
+      try {
+        await onBeforeStartInterview()
+      } catch (e) {
+        console.error('Error in onBeforeStartInterview:', e)
+        return
+      }
+    }
+    sessionStartTimeRef.current = Date.now()
     // Reset greeting state when starting conversation
     greetingSpokenRef.current = false
     isGreetingResponseRef.current = false
@@ -655,6 +715,9 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
         isConversationMode={isConversationMode}
         isLoading={false}
         hasTranscriptData={voiceTranscript.length > 0}
+        elapsedTime={elapsedSeconds}
+        isTimerRunning={isConversationMode}
+        formatTime={(s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`}
         onStartConversation={handleStartConversation}
         onStopConversation={handleStopConversation}
         isRegularInterviewActive={isConversationMode}

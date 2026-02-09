@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button'
 import { Bug, ChevronDown, ChevronUp, X } from 'lucide-react'
 import { InterviewData } from '@/app/dashboard/custominterview/_components/InterviewCard'
 
-// Debug mode control - set to false to hide debug panel in production
-const SHOW_DEBUG_INFO = process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_DEBUG === 'true'
+// Default: show in development or when NEXT_PUBLIC_SHOW_DEBUG=true. Override with showDebug prop from siteConfig.
+const DEFAULT_SHOW_DEBUG = process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_DEBUG === 'true'
 
 interface AssistantDetails {
   id?: string
@@ -33,6 +33,8 @@ interface InterviewDebugPanelProps {
   ttsAvailable: boolean | null
   hasVideoPermission: boolean
   hasAudioPermission: boolean
+  /** When false, debug panel is hidden. When true, shown. When undefined, uses default (dev or NEXT_PUBLIC_SHOW_DEBUG). */
+  showDebug?: boolean
 }
 
 export function InterviewDebugPanel({
@@ -44,7 +46,9 @@ export function InterviewDebugPanel({
   ttsAvailable,
   hasVideoPermission,
   hasAudioPermission,
+  showDebug,
 }: InterviewDebugPanelProps) {
+  const showDebugInfo = showDebug !== undefined ? showDebug : DEFAULT_SHOW_DEBUG
   const [showDebugPanel, setShowDebugPanel] = useState(false)
   const [debugExpanded, setDebugExpanded] = useState(false)
   
@@ -138,7 +142,7 @@ export function InterviewDebugPanel({
     }
   }, [])
 
-  if (!SHOW_DEBUG_INFO) {
+  if (!showDebugInfo) {
     return null
   }
 
