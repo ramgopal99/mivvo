@@ -111,8 +111,10 @@ export default function CustomInterviewMeetPage() {
       } catch (e) {
         console.error('Failed to update time usage:', e)
       }
-      // Run AI analysis when enabled and we have conversation to analyze
-      const runAnalysis = defaultUiConfig.enableAnalysisOnStop && payload.transcript.length > 0
+      // Run AI analysis when enabled and we have conversation to analyze (skipped in test mode)
+      const runAnalysis =
+        !siteConfig.customInterviewTestMode &&
+        payload.transcript.length > 0
       if (runAnalysis) {
         try {
           const conversationForAnalysis = payload.transcript.map((m) => ({ role: m.role, text: m.text }))
@@ -138,16 +140,20 @@ export default function CustomInterviewMeetPage() {
           console.error('Failed to run or save analysis:', e)
         }
       }
-      window.location.href = '/dashboard/custominterview'
+      if (!siteConfig.customInterviewTestMode) {
+        window.location.href = '/dashboard/custominterview'
+      }
     },
     [interviewId, interviewData]
   )
 
   const handleEndCall = useCallback(() => {
-    // When no payload (user left without starting), redirect after a short delay
-    setTimeout(() => {
-      window.location.href = '/dashboard/custominterview'
-    }, 100)
+    // When no payload (user left without starting), redirect after a short delay (skip in test mode)
+    if (!siteConfig.customInterviewTestMode) {
+      setTimeout(() => {
+        window.location.href = '/dashboard/custominterview'
+      }, 100)
+    }
   }, [])
 
   // Check video and microphone permissions
@@ -412,6 +418,7 @@ export default function CustomInterviewMeetPage() {
         onFullScreenPromptVisible={setIsFullScreenPromptVisible}
         onBeforeStartInterview={handleBeforeStartInterview}
         onEndCallWithPayload={handleEndCallWithPayload}
+        lockMicAndVideo={!siteConfig.customInterviewTestMode}
       />
     </>
   )

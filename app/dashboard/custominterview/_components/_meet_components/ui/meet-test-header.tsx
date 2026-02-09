@@ -65,7 +65,7 @@ export function MeetTestHeader({
 
   const handleStopConversation = () => {
     onStopConversation?.()
-    if (defaultUiConfig.redirectOnStop) {
+    if (defaultUiConfig.redirectOnStop === true) {
       router.push('/dashboard/custominterview')
     }
     setShowEndInterviewDialog(false)

@@ -233,16 +233,18 @@ export function useUserTranscription({
         setIsListening(false)
         if (shouldListenRef.current && sttServiceRef.current) {
           setTimeout(() => {
-            if (shouldListenRef.current && sttServiceRef.current) {
-              try {
-                sttServiceRef.current.start({
-                  language: language,
-                  continuous: true,
-                  interimResults: true,
-                })
-              } catch (error) {
-                console.error('Error restarting recognition:', error)
-              }
+            if (!shouldListenRef.current || !sttServiceRef.current) return
+            // Present-timing guard: only start if not already listening (avoids double-start
+            // e.g. if useTTS also restarted STT after TTS ended)
+            if (sttServiceRef.current.isListening()) return
+            try {
+              sttServiceRef.current.start({
+                language: language,
+                continuous: true,
+                interimResults: true,
+              })
+            } catch (error) {
+              console.error('Error restarting recognition:', error)
             }
           }, 100)
         }

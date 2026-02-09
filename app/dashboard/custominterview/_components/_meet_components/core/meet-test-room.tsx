@@ -32,8 +32,16 @@ import {
 import { getLLMService, Message as LLMMessage } from '../services/llm-service'
 import { getRandomGreeting } from '../greeting-message'
 import { getCodingModeSystemPrompt, CODING_MODE_GREETING } from '../coding-mode-prompt'
-import { Monitor } from 'lucide-react'
+import { Monitor, AlertTriangle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 
 interface AssistantDetails {
   id: string
@@ -67,6 +75,8 @@ interface MeetTestRoomProps {
     transcript: { role: string; text: string; timestamp: string }[]
     messages: { id: string; role: 'user' | 'assistant'; content: string; timestamp: string }[]
   }) => void | Promise<void>
+  /** When true, mic and video stay on and user cannot disable them (e.g. when test mode is false). */
+  lockMicAndVideo?: boolean
 }
 
 export function MeetTestRoom({
@@ -83,6 +93,7 @@ export function MeetTestRoom({
   onFullScreenPromptVisible,
   onBeforeStartInterview,
   onEndCallWithPayload,
+  lockMicAndVideo = false,
 }: MeetTestRoomProps) {
   // Use assistantDetails if provided, otherwise fallback to props
   const assistant: AssistantDetails = assistantDetails || {
@@ -111,6 +122,14 @@ export function MeetTestRoom({
     setIsAudioEnabled,
     setIsVideoEnabled,
   } = useMediaStream()
+
+  // When lockMicAndVideo (e.g. test mode false): keep mic and video on, user cannot disable
+  useEffect(() => {
+    if (lockMicAndVideo) {
+      setIsAudioEnabled(true)
+      setIsVideoEnabled(true)
+    }
+  }, [lockMicAndVideo, setIsAudioEnabled, setIsVideoEnabled])
 
   // Default voice chat messages (no greeting - start clean)
   const voiceChatMessages = {
@@ -153,6 +172,14 @@ export function MeetTestRoom({
   const fullscreenEnteredRef = useRef(false)
   const sessionStartTimeRef = useRef<number | null>(null)
   const [showFullScreenPrompt, setShowFullScreenPrompt] = useState(false)
+  const [showExitWarning, setShowExitWarning] = useState(false)
+  const [exitCountdown, setExitCountdown] = useState(30)
+  const [exitWarningCount, setExitWarningCount] = useState(0)
+  const exitCountdownIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const exitingFullscreenProgrammaticallyRef = useRef(false)
+  const handleEndCallRef = useRef<() => Promise<void>>(() => Promise.resolve())
+  const EXIT_WARNING_MAX = 3
+  const EXIT_COUNTDOWN_SECONDS = 30
 
   const {
     isScreenSharing,
@@ -590,6 +617,66 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
     return () => document.removeEventListener('fullscreenchange', onFullscreenChange)
   }, [])
 
+  // Full screen exit warning: when user exits fullscreen (e.g. Esc), show warning up to 3 times; 4th time or 30s expiry = auto submit
+  useEffect(() => {
+    if (!uiConfig.useFullScreenInMeet) return
+    const onFullscreenChange = () => {
+      if (document.fullscreenElement != null) return
+      if (exitingFullscreenProgrammaticallyRef.current) {
+        exitingFullscreenProgrammaticallyRef.current = false
+        return
+      }
+      if (!fullscreenEnteredRef.current) return
+      fullscreenEnteredRef.current = false
+      if (exitWarningCount >= EXIT_WARNING_MAX) {
+        handleEndCallRef.current()
+        return
+      }
+      setExitCountdown(EXIT_COUNTDOWN_SECONDS)
+      setExitWarningCount((c) => c + 1)
+      setShowExitWarning(true)
+    }
+    document.addEventListener('fullscreenchange', onFullscreenChange)
+    return () => document.removeEventListener('fullscreenchange', onFullscreenChange)
+  }, [uiConfig.useFullScreenInMeet, exitWarningCount])
+
+  // Keep handleEndCall ref updated
+  useEffect(() => {
+    handleEndCallRef.current = handleEndCall
+  })
+
+  // Exit warning countdown: start timer when dialog opens
+  useEffect(() => {
+    if (!showExitWarning) return
+    const id = setInterval(() => {
+      setExitCountdown((prev) => {
+        if (prev <= 1) {
+          if (exitCountdownIntervalRef.current) {
+            clearInterval(exitCountdownIntervalRef.current)
+            exitCountdownIntervalRef.current = null
+          }
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+    exitCountdownIntervalRef.current = id
+    return () => {
+      if (exitCountdownIntervalRef.current) {
+        clearInterval(exitCountdownIntervalRef.current)
+        exitCountdownIntervalRef.current = null
+      }
+    }
+  }, [showExitWarning])
+
+  // When countdown hits 0, auto submit and close dialog
+  useEffect(() => {
+    if (showExitWarning && exitCountdown === 0) {
+      setShowExitWarning(false)
+      handleEndCallRef.current()
+    }
+  }, [showExitWarning, exitCountdown])
+
   // Handlers
   const handleEndCall = async () => {
     if (isConversationMode) {
@@ -610,13 +697,14 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
       sessionStartTimeRef.current = null
     }
     if (uiConfig.useFullScreenInMeet && fullscreenEnteredRef.current && document.fullscreenElement != null) {
+      exitingFullscreenProgrammaticallyRef.current = true
       document.exitFullscreen?.().catch(() => {})
       fullscreenEnteredRef.current = false
     }
     if (onEndCall) {
       onEndCall()
     }
-    if (uiConfig.redirectOnStop) {
+    if (uiConfig.redirectOnStop === true) {
       window.location.href = '/dashboard/custominterview'
     }
   }
@@ -670,6 +758,25 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
     handleEndCall()
   }
 
+  const handleExitWarningStay = useCallback(() => {
+    if (exitCountdownIntervalRef.current) {
+      clearInterval(exitCountdownIntervalRef.current)
+      exitCountdownIntervalRef.current = null
+    }
+    setShowExitWarning(false)
+    enterFullScreen()
+    fullscreenEnteredRef.current = true
+  }, [enterFullScreen])
+
+  const handleExitWarningLeave = useCallback(() => {
+    if (exitCountdownIntervalRef.current) {
+      clearInterval(exitCountdownIntervalRef.current)
+      exitCountdownIntervalRef.current = null
+    }
+    setShowExitWarning(false)
+    handleEndCallRef.current()
+  }, [])
+
   // Coding Round: require screen share before showing main UI
   const requireScreenShareFirst = interviewData?.screenShareEnabled === true && !isScreenSharing
 
@@ -680,6 +787,34 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
     >
       {/* Full screen: must be triggered by user click (browser requirement) */}
       {showFullScreenPrompt && <FullScreenPrompt onEnterFullScreen={enterFullScreen} />}
+
+      {/* Exit full screen warning: 30s countdown, up to 3 warnings; 4th exit or timer expiry = auto submit */}
+      <Dialog open={showExitWarning} onOpenChange={(open) => { if (!open) handleExitWarningStay() }}>
+        <DialogContent className="sm:max-w-md" onPointerDownOutside={(e) => e.preventDefault()} onEscapeKeyDown={(e) => e.preventDefault()}>
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-amber-600">
+              <AlertTriangle className="h-5 w-5 shrink-0" />
+              You&apos;ve exited full screen
+            </DialogTitle>
+            <DialogDescription asChild>
+              <div className="space-y-2 text-left">
+                <p>Stay in the interview to continue. Return to full screen within the time below, or your interview will be submitted automatically.</p>
+                <p className="font-semibold text-foreground">This is warning {exitWarningCount} of {EXIT_WARNING_MAX}.</p>
+                <p className="text-sm text-muted-foreground">After {EXIT_WARNING_MAX} warnings, leaving full screen again will automatically submit your interview.</p>
+                <p className="text-2xl font-mono font-bold text-amber-600 tabular-nums">{exitCountdown}s</p>
+              </div>
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="gap-2 sm:gap-0">
+            <Button variant="outline" onClick={handleExitWarningLeave}>
+              Leave & submit
+            </Button>
+            <Button onClick={handleExitWarningStay}>
+              Stay in interview
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Coding Round: ask user to share screen first */}
       {requireScreenShareFirst && (
@@ -753,6 +888,7 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
                 showUserTranscription={uiConfig.showUserTranscription}
                 sttAvailable={sttAvailable}
                 ttsAvailable={ttsAvailable}
+                isAISpeaking={isVoiceChatActive}
               />
 
               <VoiceChatPanel
@@ -804,8 +940,10 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
         isAudioEnabled={isAudioEnabled}
         isVideoEnabled={isVideoEnabled}
         isChatOpen={isChatOpen}
-        onToggleAudio={() => setIsAudioEnabled(!isAudioEnabled)}
-        onToggleVideo={() => setIsVideoEnabled(!isVideoEnabled)}
+        onToggleAudio={lockMicAndVideo ? () => {} : () => setIsAudioEnabled(!isAudioEnabled)}
+        onToggleVideo={lockMicAndVideo ? () => {} : () => setIsVideoEnabled(!isVideoEnabled)}
+        lockMicAndVideo={lockMicAndVideo}
+        isAISpeaking={isVoiceChatActive}
         onToggleChat={uiConfig.showChatBox ? () => setIsChatOpen(!isChatOpen) : undefined}
         onShowSettings={uiConfig.showVoiceSettings ? () => setShowSettings(!showSettings) : undefined}
         showShareScreen={uiConfig.showShareScreen}
