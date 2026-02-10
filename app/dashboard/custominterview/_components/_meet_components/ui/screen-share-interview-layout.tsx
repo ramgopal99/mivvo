@@ -44,9 +44,13 @@ interface ScreenShareInterviewLayoutProps {
   codingCodeRef?: React.MutableRefObject<{ code: string; language: string }>
 }
 
-const DEFAULT_CODE = {
+const DEFAULT_CODE: Record<string, string> = {
   javascript: 'function solution() {\n  // Write your code here\n  return null;\n}',
   python: 'def solution():\n    # Write your code here\n    return None',
+  c: '#include <stdio.h>\n\nint solution() {\n  // Write your code here\n  return 0;\n}',
+  cpp: '#include <iostream>\nusing namespace std;\n\nint solution() {\n  // Write your code here\n  return 0;\n}',
+  java: 'public class Solution {\n  public static void main(String[] args) {\n    // Write your code here\n  }\n}',
+  sql: '-- Write your SQL query here\nSELECT * FROM table_name\nWHERE 1=1;',
 }
 
 export function ScreenShareInterviewLayout({
@@ -117,11 +121,11 @@ export function ScreenShareInterviewLayout({
 
   const handleLanguageChange = (newLanguage: string) => {
     setLanguage(newLanguage)
-    setCode(DEFAULT_CODE[newLanguage as keyof typeof DEFAULT_CODE] || DEFAULT_CODE.javascript)
+    setCode(DEFAULT_CODE[newLanguage] ?? DEFAULT_CODE.javascript)
   }
 
   const handleResetCode = () => {
-    setCode(DEFAULT_CODE[language as keyof typeof DEFAULT_CODE] || DEFAULT_CODE.javascript)
+    setCode(DEFAULT_CODE[language] ?? DEFAULT_CODE.javascript)
   }
 
   const handleEditorMount = useCallback(
@@ -294,6 +298,10 @@ export function ScreenShareInterviewLayout({
             >
               <option value="javascript">JavaScript</option>
               <option value="python">Python</option>
+              <option value="c">C</option>
+              <option value="cpp">C++</option>
+              <option value="java">Java</option>
+              <option value="sql">SQL</option>
             </select>
           </div>
         </div>

@@ -31,7 +31,7 @@ import {
 } from '../types'
 import { getLLMService, Message as LLMMessage } from '../services/llm-service'
 import { getRandomGreeting } from '../greeting-message'
-import { getCodingModeSystemPrompt, CODING_MODE_GREETING, CHANGE_QUESTION_SIGNAL } from '../coding-mode-prompt'
+import { getCodingModeSystemPrompt, CODING_MODE_GREETING, CHANGE_QUESTION_SIGNAL, USER_FINISHED_SIGNAL } from '../coding-mode-prompt'
 import { Monitor, AlertTriangle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
@@ -186,6 +186,11 @@ export function MeetTestRoom({
   const effectiveCodingIndexRef = useRef<number>(0)
   const setCodingQuestionIndexOverrideRef = useRef(setCodingQuestionIndexOverride)
   setCodingQuestionIndexOverrideRef.current = setCodingQuestionIndexOverride
+  /** Count AI follow-up questions after user has "finished" current problem; after 5 we auto-switch. */
+  const CODING_AI_MAX_QUESTIONS = 5
+  const aiFollowUpCountRef = useRef<number>(0)
+  /** True once user has said they're done/finished for the current question; then we count AI follow-ups. */
+  const userFinishedCurrentQuestionRef = useRef<boolean>(false)
 
   const {
     isScreenSharing,
@@ -274,6 +279,14 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
               const newIndex = getRandomCodingQuestionIndex(roundType, currentIndex)
               effectiveCodingIndexRef.current = newIndex
               setCodingQuestionIndexOverrideRef.current(newIndex)
+              aiFollowUpCountRef.current = 0
+              userFinishedCurrentQuestionRef.current = false
+            }
+
+            // Coding mode: if AI signals user completed their solution (AI inferred from user's words), start counting follow-ups
+            if (isScreenSharing && interviewData?.screenShareEnabled && text.includes(USER_FINISHED_SIGNAL)) {
+              text = text.replace(USER_FINISHED_SIGNAL, '').trim() || text
+              userFinishedCurrentQuestionRef.current = true
             }
 
             const aiMessage = {
@@ -295,6 +308,25 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
               ttsServiceRef.current.speak(text)
             } else {
               console.warn('TTS service not initialized when trying to speak')
+            }
+
+            // Coding mode: after user has "finished" this question, count AI follow-ups; after 5, auto-switch
+            if (isScreenSharing && interviewData?.screenShareEnabled && userFinishedCurrentQuestionRef.current) {
+              aiFollowUpCountRef.current = (aiFollowUpCountRef.current || 0) + 1
+              if (aiFollowUpCountRef.current >= CODING_AI_MAX_QUESTIONS) {
+                const roundType = (interviewData.role === 'sql' || interviewData.role === 'dsa' ? interviewData.role : 'dsa') as CodingRoundType
+                const currentIndex = effectiveCodingIndexRef.current
+                const newIndex = getRandomCodingQuestionIndex(roundType, currentIndex)
+                effectiveCodingIndexRef.current = newIndex
+                setCodingQuestionIndexOverrideRef.current(newIndex)
+                aiFollowUpCountRef.current = 0
+                userFinishedCurrentQuestionRef.current = false
+                const switchMsg = "Let's try a different problem."
+                const switchMessage = { role: 'assistant', text: switchMsg, timestamp: new Date().toISOString() }
+                const updatedMessages = [...currentMessages, switchMessage]
+                handleTranscriptUpdateRef.current(updatedMessages)
+                if (ttsServiceRef.current) ttsServiceRef.current.speak(switchMsg)
+              }
             }
           }
           isProcessingLLMRef.current = false
