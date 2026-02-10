@@ -1,14 +1,16 @@
 "use client"
 
 import { cn } from "@/lib/utils"
+import { DEFAULT_SLIDE_ANIMATION_CLASS } from "../animations"
 import { CodeDisplay } from "./code-display"
 import type { CodeBlockSlideProps } from "../types"
 
 const DELAY_CLASSES = ["animation-delay-350", "animation-delay-550"] as const
 
 /** Line numbers code block: code with line numbers. */
-export function LineNumbersCode({ title, code, language, isPlaying, className }: CodeBlockSlideProps) {
+export function LineNumbersCode({ title, code, language, isPlaying, animationClass, className }: CodeBlockSlideProps) {
   const animate = !!isPlaying
+  const anim = animationClass ?? DEFAULT_SLIDE_ANIMATION_CLASS
   return (
     <div
       className={cn(

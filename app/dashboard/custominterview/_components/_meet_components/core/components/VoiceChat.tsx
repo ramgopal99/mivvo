@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { Brain } from 'lucide-react'
-import { Orb } from '../../ui/orb'
+import { VoiceChatOrb } from './VoiceChatOrb'
 
 interface VoiceChatProps {
   onVoiceChatStateChange?: (isActive: boolean) => void
@@ -61,13 +61,13 @@ export function VoiceChat({
       <div className="flex flex-col items-center justify-center h-full">
         {isConversationMode ? (
           <div className="w-24 h-24 mb-4">
-            <Orb
+            <VoiceChatOrb
               agentState={
-                isAISpeaking ? "talking" :
-                isUserSpeaking ? "listening" :
-                "thinking"
+                isAISpeaking ? 'talking' :
+                isUserSpeaking ? 'listening' :
+                'thinking'
               }
-              colors={["#CADCFC", "#A0B9D1"]}
+              colors={['#CADCFC', '#A0B9D1']}
               className="w-full h-full"
             />
           </div>

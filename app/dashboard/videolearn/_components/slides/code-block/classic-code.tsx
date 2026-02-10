@@ -8,8 +8,9 @@ import type { CodeBlockSlideProps } from "../types"
 const DELAY_CLASSES = ["animation-delay-350", "animation-delay-550", "animation-delay-750"] as const
 
 /** Classic code block: title + code. */
-export function ClassicCode({ title, code, language, isPlaying, className }: CodeBlockSlideProps) {
+export function ClassicCode({ title, code, language, isPlaying, animationClass, className }: CodeBlockSlideProps) {
   const animate = !!isPlaying
+  const anim = animationClass ?? DEFAULT_SLIDE_ANIMATION_CLASS
   return (
     <div
       className={cn(
