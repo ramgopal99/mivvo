@@ -1,3 +1,42 @@
+import { VoiceConfig, UiConfig } from './types'
+
+// Supported languages for voice selection
+export const SUPPORTED_LANGUAGES = ['hi', 'en'] as const
+
+// =============================================
+// VOICE CHAT TIMING – single source; all timing should read from here so behaviour doesn't break.
+// Wired: SILENCE_TIMEOUT_MS (room), TTS_RESTART_DELAY_MS (useTTS). Rest reserved for future use.
+// Restarts (e.g. STT after TTS) use present-timing guards: only start if not already listening.
+// =============================================
+export const VOICE_CHAT_CONFIG = {
+  SILENCE_TIMEOUT_MS: 3500,
+  RECOGNITION_KEEP_ALIVE_MS: 6000,
+  TTS_RESTART_DELAY_MS: 1500,
+  USER_RESPONSE_TIMEOUT_MS: 30000,
+}
+
+export const defaultVoiceConfig: VoiceConfig = {
+  language: 'en-US',
+  speechRate: 1.2,
+  speechPitch: 1.0,
+  autoListenAfterAI: false,
+  silenceTimeoutMs: VOICE_CHAT_CONFIG.SILENCE_TIMEOUT_MS,
+  ttsRestartDelayMs: VOICE_CHAT_CONFIG.TTS_RESTART_DELAY_MS,
+  defaultVoiceName: 'WilliamMultilingual',
+}
+
+export const defaultUiConfig: UiConfig = {
+  showChatBox: true,
+  showVoiceSettings: true,
+  showUserTranscription: true,
+  showShareScreen: true,
+  showInterviewStartDialog: false,
+  screenShareSuccessMessage: "Screen sharing started successfully!",
+  screenShareDialogTitle: "Screen shared",
+  screenShareDialogDescription: "Your full screen is shared with the AI interviewer. Click the Start coding Interview button to start the interview.",
+  screenShareRestrictionErrorMessage: "Only full screen can be shared. Please select your entire screen (not a window or tab).",
+}
+
 // Coding Question Interface (shared with other components)
 export interface CodingQuestion {
   title: string
@@ -23,18 +62,6 @@ export interface CodingInterviewConfig {
   focus: string
 }
 
-
-// =============================================
-// VOICE CHAT TIMING CONFIGURATIONS
-// =============================================
-
-export const VOICE_CHAT_CONFIG = {
-  SILENCE_TIMEOUT_MS: 2500,
-  RECOGNITION_KEEP_ALIVE_MS: 6000,
-  TTS_RESTART_DELAY_MS: 1500,
-  USER_RESPONSE_TIMEOUT_MS: 30000,
-}
-
 // =============================================
 // VOICE ACTIVITY DETECTION CONFIGURATIONS
 // =============================================
@@ -48,7 +75,7 @@ export const VAD_CONFIG = {
 }
 
 export const CODING_VOICE_CHAT_CONFIG = {
-  SILENCE_TIMEOUT_MS: 3500,
+  SILENCE_TIMEOUT_MS: VOICE_CHAT_CONFIG.SILENCE_TIMEOUT_MS,
   RECOGNITION_KEEP_ALIVE_MS: 6000,
   TTS_RESTART_DELAY_MS: 1500,
   USER_RESPONSE_TIMEOUT_MS: 60000,

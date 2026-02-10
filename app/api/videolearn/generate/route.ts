@@ -44,10 +44,10 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const isLearningRequest = /teach me|learn|explain|show me/i.test(prompt)
+    const isLearningRequest = /teach|learn|explain|show me|how to/i.test(prompt)
     if (!isLearningRequest) {
       return NextResponse.json(
-        { error: 'Please use phrases like "teach me", "learn", "explain", or "show me" to generate content' },
+        { error: 'Use phrases like "teach me", "teach this", "explain", "learn", or "how to" to generate content' },
         { status: 400 }
       )
     }

@@ -4,9 +4,10 @@ import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Bug, ChevronDown, ChevronUp, X } from 'lucide-react'
 import { InterviewData } from '@/app/dashboard/custominterview/_components/InterviewCard'
+import { getDisplayJd } from '@/app/dashboard/custominterview/_components/utils/interview-utils'
 
-// Debug mode control - set to false to hide debug panel in production
-const SHOW_DEBUG_INFO = process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_DEBUG === 'true'
+// Default: show in development or when NEXT_PUBLIC_SHOW_DEBUG=true. Override with showDebug prop from siteConfig.
+const DEFAULT_SHOW_DEBUG = process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_DEBUG === 'true'
 
 interface AssistantDetails {
   id?: string
@@ -33,6 +34,8 @@ interface InterviewDebugPanelProps {
   ttsAvailable: boolean | null
   hasVideoPermission: boolean
   hasAudioPermission: boolean
+  /** When false, debug panel is hidden. When true, shown. When undefined, uses default (dev or NEXT_PUBLIC_SHOW_DEBUG). */
+  showDebug?: boolean
 }
 
 export function InterviewDebugPanel({
@@ -44,7 +47,9 @@ export function InterviewDebugPanel({
   ttsAvailable,
   hasVideoPermission,
   hasAudioPermission,
+  showDebug,
 }: InterviewDebugPanelProps) {
+  const showDebugInfo = showDebug !== undefined ? showDebug : DEFAULT_SHOW_DEBUG
   const [showDebugPanel, setShowDebugPanel] = useState(false)
   const [debugExpanded, setDebugExpanded] = useState(false)
   
@@ -138,7 +143,7 @@ export function InterviewDebugPanel({
     }
   }, [])
 
-  if (!SHOW_DEBUG_INFO) {
+  if (!showDebugInfo) {
     return null
   }
 
@@ -267,12 +272,15 @@ export function InterviewDebugPanel({
                 <h4 className="font-semibold text-yellow-400 mb-2">Job Description</h4>
                 <div className="p-2 bg-gray-800 rounded text-xs font-mono overflow-x-auto max-h-32 overflow-y-auto">
                   <pre className="whitespace-pre-wrap break-words text-gray-300">
-                    {interviewData?.jd ? (
-                      <>
-                        {interviewData.jd.substring(0, 500)}
-                        {interviewData.jd.length > 500 && '...'}
-                      </>
-                    ) : (
+                    {interviewData?.jd ? (() => {
+                      const displayJd = getDisplayJd(interviewData.jd)
+                      return (
+                        <>
+                          {displayJd.substring(0, 500)}
+                          {displayJd.length > 500 && '...'}
+                        </>
+                      )
+                    })() : (
                       <span className="text-gray-500">No job description</span>
                     )}
                   </pre>

@@ -328,7 +328,8 @@ export default function DashboardLayout({
   const displayInitial = displayName.charAt(0).toUpperCase()
 
   // Check if we're on a specific course detail page to conditionally hide sidebar
-  const isCourseDetailPage = pathname.match(/\/courses\/[^\/]+$/)
+  // Only /dashboard/courses/[id] (not videolearn/courses/[id]) uses the no-sidebar layout
+  const isCourseDetailPage = pathname.match(/^\/dashboard\/courses\/[^\/]+$/)
   const isMockInterviewPage = pathname.match(/\/mockinterview\/[^\/]+$/)
   const isCustomInterviewMeetPage = pathname.match(/\/custominterview\/meet\/[^\/]+$/)
   const isForeignLanguagePracticePage = pathname.match(/\/foreign-lang\/practice\/[^\/]+$/)

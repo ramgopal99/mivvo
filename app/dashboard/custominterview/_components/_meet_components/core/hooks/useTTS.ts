@@ -8,6 +8,7 @@ import { useEffect, useRef } from 'react'
 import { getTTSService } from '../../services/tts-service'
 import { getSTTService } from '../../services/stt-service'
 import { VoiceConfig } from '../../types'
+import { VOICE_CHAT_CONFIG } from '../../config'
 
 interface UseTTSProps {
   voiceConfig: VoiceConfig
@@ -174,25 +175,32 @@ export function useTTS({
             
             // TTS finished speaking - resume STT if conversation mode is still active
             if (sttServiceRef.current && wasListeningBeforeTTSRef.current) {
-              // Wait a small delay before resuming to ensure TTS is completely finished
+              const restartDelayMs = voiceConfig.ttsRestartDelayMs ?? VOICE_CHAT_CONFIG.TTS_RESTART_DELAY_MS
+              // Wait before resuming so TTS is fully finished; then check present state before restart
               setTimeout(() => {
-                if (isAudioEnabled && isConversationMode && sttServiceRef.current) {
-                  try {
-                    sttServiceRef.current.start({
-                      language: voiceConfig.language || 'en-US',
-                      continuous: true,
-                      interimResults: true,
-                    })
-                    wasListeningBeforeTTSRef.current = false
-                    console.log('STT resumed: AI finished speaking')
-                  } catch (error) {
-                    console.error('Error resuming STT after TTS:', error)
-                    wasListeningBeforeTTSRef.current = false
-                  }
-                } else {
+                if (!isAudioEnabled || !isConversationMode || !sttServiceRef.current) {
+                  wasListeningBeforeTTSRef.current = false
+                  return
+                }
+                // Present-timing guard: only start if not already listening (avoids double-start
+                // or interrupting if user already started speaking and STT was resumed elsewhere)
+                if (sttServiceRef.current.isListening()) {
+                  wasListeningBeforeTTSRef.current = false
+                  return
+                }
+                try {
+                  sttServiceRef.current.start({
+                    language: voiceConfig.language || 'en-US',
+                    continuous: true,
+                    interimResults: true,
+                  })
+                  wasListeningBeforeTTSRef.current = false
+                  console.log('STT resumed: AI finished speaking')
+                } catch (error) {
+                  console.error('Error resuming STT after TTS:', error)
                   wasListeningBeforeTTSRef.current = false
                 }
-              }, 500) // Increased delay to ensure TTS is completely finished
+              }, restartDelayMs)
             }
           },
           onError: (error) => {

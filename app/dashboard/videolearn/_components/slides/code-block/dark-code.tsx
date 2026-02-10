@@ -6,8 +6,9 @@ import { DEFAULT_SLIDE_ANIMATION_CLASS } from "../animations"
 import type { CodeBlockSlideProps } from "../types"
 
 /** Dark code block: full dark theme. */
-export function DarkCode({ title, code, language, isPlaying, className }: CodeBlockSlideProps) {
+export function DarkCode({ title, code, language, isPlaying, animationClass, className }: CodeBlockSlideProps) {
   const animate = !!isPlaying
+  const anim = animationClass ?? DEFAULT_SLIDE_ANIMATION_CLASS
   return (
     <div
       className={cn(

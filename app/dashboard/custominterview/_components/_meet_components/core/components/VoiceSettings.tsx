@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Settings, ChevronDown, ChevronUp, Volume2, X } from 'lucide-react'
-import { SUPPORTED_LANGUAGES } from '../utils/defaultConfigs'
+import { SUPPORTED_LANGUAGES } from '../../config'
 
 interface VoiceSettingsProps {
   selectedVoice: string

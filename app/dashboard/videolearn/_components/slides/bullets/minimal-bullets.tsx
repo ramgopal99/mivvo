@@ -1,6 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
+import { DEFAULT_SLIDE_ANIMATION_CLASS } from "../animations"
 import type { BulletSlideProps } from "../types"
 
 const DELAY_CLASSES = ["animation-delay-350", "animation-delay-550", "animation-delay-750", "animation-delay-950", "animation-delay-1150"] as const

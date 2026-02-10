@@ -5,7 +5,7 @@ import { Chat } from '@/components/meet/chat'
 import { MeetTestHeader } from '../ui/meet-test-header'
 import { MeetTestControls } from '../ui/meet-test-controls'
 import { ScreenShareDisplay, ScreenShareInterviewLayout } from '../ui'
-import { getScreenShareQuestion } from '../data/coding-questions'
+import { getCodingQuestion, getRandomCodingQuestionIndex, type CodingRoundType } from '../data/coding-questions'
 import { VoiceSettings } from './components'
 import {
   useMediaStream,
@@ -31,9 +31,17 @@ import {
 } from '../types'
 import { getLLMService, Message as LLMMessage } from '../services/llm-service'
 import { getRandomGreeting } from '../greeting-message'
-import { getCodingModeSystemPrompt, CODING_MODE_GREETING } from '../coding-mode-prompt'
-import { Monitor } from 'lucide-react'
+import { getCodingModeSystemPrompt, CODING_MODE_GREETING, CHANGE_QUESTION_SIGNAL, USER_FINISHED_SIGNAL } from '../coding-mode-prompt'
+import { Monitor, AlertTriangle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 
 interface AssistantDetails {
   id: string
@@ -59,6 +67,16 @@ interface MeetTestRoomProps {
   ttsAvailable?: boolean | null
   /** Called when the full-screen prompt is shown/hidden so parent can hide Debug etc. */
   onFullScreenPromptVisible?: (visible: boolean) => void
+  /** Called when user clicks Start Interview – e.g. to create attempt (start-attempt API). */
+  onBeforeStartInterview?: () => Promise<void>
+  /** Called when call ends with duration and transcript so parent can save conversation and update time usage. */
+  onEndCallWithPayload?: (payload: {
+    durationSeconds: number
+    transcript: { role: string; text: string; timestamp: string }[]
+    messages: { id: string; role: 'user' | 'assistant'; content: string; timestamp: string }[]
+  }) => void | Promise<void>
+  /** When true, mic and video stay on and user cannot disable them (e.g. when test mode is false). */
+  lockMicAndVideo?: boolean
 }
 
 export function MeetTestRoom({
@@ -73,6 +91,9 @@ export function MeetTestRoom({
   sttAvailable,
   ttsAvailable,
   onFullScreenPromptVisible,
+  onBeforeStartInterview,
+  onEndCallWithPayload,
+  lockMicAndVideo = false,
 }: MeetTestRoomProps) {
   // Use assistantDetails if provided, otherwise fallback to props
   const assistant: AssistantDetails = assistantDetails || {
@@ -89,6 +110,7 @@ export function MeetTestRoom({
   const [isChatOpen, setIsChatOpen] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
   const [showInterviewStartDialog, setShowInterviewStartDialog] = useState(false)
+  const [elapsedSeconds, setElapsedSeconds] = useState(0)
 
   // Custom hooks
   const {
@@ -100,6 +122,14 @@ export function MeetTestRoom({
     setIsAudioEnabled,
     setIsVideoEnabled,
   } = useMediaStream()
+
+  // When lockMicAndVideo (e.g. test mode false): keep mic and video on, user cannot disable
+  useEffect(() => {
+    if (lockMicAndVideo) {
+      setIsAudioEnabled(true)
+      setIsVideoEnabled(true)
+    }
+  }, [lockMicAndVideo, setIsAudioEnabled, setIsVideoEnabled])
 
   // Default voice chat messages (no greeting - start clean)
   const voiceChatMessages = {
@@ -140,7 +170,27 @@ export function MeetTestRoom({
   const codingCodeRef = useRef<{ code: string; language: string }>({ code: '', language: 'javascript' })
   const containerRef = useRef<HTMLDivElement>(null)
   const fullscreenEnteredRef = useRef(false)
+  const sessionStartTimeRef = useRef<number | null>(null)
   const [showFullScreenPrompt, setShowFullScreenPrompt] = useState(false)
+  const [showExitWarning, setShowExitWarning] = useState(false)
+  const [exitCountdown, setExitCountdown] = useState(30)
+  const [exitWarningCount, setExitWarningCount] = useState(0)
+  const exitCountdownIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const exitingFullscreenProgrammaticallyRef = useRef(false)
+  const handleEndCallRef = useRef<() => Promise<void>>(() => Promise.resolve())
+  const EXIT_WARNING_MAX = 3
+  const EXIT_COUNTDOWN_SECONDS = 30
+
+  /** When set, overrides the question index from JD (used when AI signals [CHANGE_QUESTION]). */
+  const [codingQuestionIndexOverride, setCodingQuestionIndexOverride] = useState<number | null>(null)
+  const effectiveCodingIndexRef = useRef<number>(0)
+  const setCodingQuestionIndexOverrideRef = useRef(setCodingQuestionIndexOverride)
+  setCodingQuestionIndexOverrideRef.current = setCodingQuestionIndexOverride
+  /** Count AI follow-up questions after user has "finished" current problem; after 5 we auto-switch. */
+  const CODING_AI_MAX_QUESTIONS = 5
+  const aiFollowUpCountRef = useRef<number>(0)
+  /** True once user has said they're done/finished for the current question; then we count AI follow-ups. */
+  const userFinishedCurrentQuestionRef = useRef<boolean>(false)
 
   const {
     isScreenSharing,
@@ -148,9 +198,30 @@ export function MeetTestRoom({
     showScreenShareDialog,
     setShowScreenShareDialog,
     toggleScreenShare,
+    displaySurface,
   } = useScreenShare({ uiConfig })
 
-  const codingModeQuestion = useMemo(() => getScreenShareQuestion(0), [])
+  // Only allow interview content when entire screen was chosen (coding round). Window/tab share is rejected in useScreenShare.
+  const isEntireScreenShared = isScreenSharing && (displaySurface === 'monitor' || displaySurface === 'screen')
+
+  const codingModeQuestion = useMemo(() => {
+    if (!interviewData?.screenShareEnabled) return getCodingQuestion('dsa', 0)
+    const roundType = (interviewData.role === 'sql' || interviewData.role === 'dsa' ? interviewData.role : 'dsa') as CodingRoundType
+    const jd = interviewData.jd || ''
+    const match = jd.match(/\[CODING_QUESTION_INDEX:(\d+)\]/)
+    const jdIndex = match ? parseInt(match[1], 10) : 0
+    const index = codingQuestionIndexOverride !== null ? codingQuestionIndexOverride : jdIndex
+    return getCodingQuestion(roundType, index)
+  }, [interviewData?.screenShareEnabled, interviewData?.role, interviewData?.jd, codingQuestionIndexOverride])
+
+  // Keep ref in sync so LLM callback can read current index when handling [CHANGE_QUESTION]
+  useEffect(() => {
+    if (!interviewData?.screenShareEnabled) return
+    const jd = interviewData.jd || ''
+    const match = jd.match(/\[CODING_QUESTION_INDEX:(\d+)\]/)
+    const jdIndex = match ? parseInt(match[1], 10) : 0
+    effectiveCodingIndexRef.current = codingQuestionIndexOverride !== null ? codingQuestionIndexOverride : jdIndex
+  }, [interviewData?.screenShareEnabled, interviewData?.jd, codingQuestionIndexOverride])
 
   // Keep refs updated
   useEffect(() => {
@@ -198,7 +269,26 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
         onResponse: (response) => {
           // Add AI response to chat (strip "Mivvo:" prefix if present)
           if (response && response.trim()) {
-            const text = response.trim().replace(/^Mivvo:\s*/i, '').trim() || response.trim()
+            let text = response.trim().replace(/^Mivvo:\s*/i, '').trim() || response.trim()
+
+            // Coding mode: if AI signals change question, switch to a new question from the list and strip the signal
+            if (isScreenSharing && interviewData?.screenShareEnabled && text.includes(CHANGE_QUESTION_SIGNAL)) {
+              text = text.replace(CHANGE_QUESTION_SIGNAL, '').trim() || "Let's try a different problem."
+              const roundType = (interviewData.role === 'sql' || interviewData.role === 'dsa' ? interviewData.role : 'dsa') as CodingRoundType
+              const currentIndex = effectiveCodingIndexRef.current
+              const newIndex = getRandomCodingQuestionIndex(roundType, currentIndex)
+              effectiveCodingIndexRef.current = newIndex
+              setCodingQuestionIndexOverrideRef.current(newIndex)
+              aiFollowUpCountRef.current = 0
+              userFinishedCurrentQuestionRef.current = false
+            }
+
+            // Coding mode: if AI signals user completed their solution (AI inferred from user's words), start counting follow-ups
+            if (isScreenSharing && interviewData?.screenShareEnabled && text.includes(USER_FINISHED_SIGNAL)) {
+              text = text.replace(USER_FINISHED_SIGNAL, '').trim() || text
+              userFinishedCurrentQuestionRef.current = true
+            }
+
             const aiMessage = {
               role: 'assistant',
               text,
@@ -218,6 +308,25 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
               ttsServiceRef.current.speak(text)
             } else {
               console.warn('TTS service not initialized when trying to speak')
+            }
+
+            // Coding mode: after user has "finished" this question, count AI follow-ups; after 5, auto-switch
+            if (isScreenSharing && interviewData?.screenShareEnabled && userFinishedCurrentQuestionRef.current) {
+              aiFollowUpCountRef.current = (aiFollowUpCountRef.current || 0) + 1
+              if (aiFollowUpCountRef.current >= CODING_AI_MAX_QUESTIONS) {
+                const roundType = (interviewData.role === 'sql' || interviewData.role === 'dsa' ? interviewData.role : 'dsa') as CodingRoundType
+                const currentIndex = effectiveCodingIndexRef.current
+                const newIndex = getRandomCodingQuestionIndex(roundType, currentIndex)
+                effectiveCodingIndexRef.current = newIndex
+                setCodingQuestionIndexOverrideRef.current(newIndex)
+                aiFollowUpCountRef.current = 0
+                userFinishedCurrentQuestionRef.current = false
+                const switchMsg = "Let's try a different problem."
+                const switchMessage = { role: 'assistant', text: switchMsg, timestamp: new Date().toISOString() }
+                const updatedMessages = [...currentMessages, switchMessage]
+                handleTranscriptUpdateRef.current(updatedMessages)
+                if (ttsServiceRef.current) ttsServiceRef.current.speak(switchMsg)
+              }
             }
           }
           isProcessingLLMRef.current = false
@@ -527,6 +636,22 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
     return () => onFullScreenPromptVisible?.(false)
   }, [showFullScreenPrompt, onFullScreenPromptVisible])
 
+  // Timer: update elapsed time every second when conversation is active
+  useEffect(() => {
+    if (!isConversationMode) {
+      setElapsedSeconds(0)
+      return
+    }
+    const tick = () => {
+      if (sessionStartTimeRef.current != null) {
+        setElapsedSeconds(Math.floor((Date.now() - sessionStartTimeRef.current) / 1000))
+      }
+    }
+    tick() // run immediately
+    const interval = setInterval(tick, 1000)
+    return () => clearInterval(interval)
+  }, [isConversationMode])
+
   const enterFullScreen = useCallback(() => {
     if (!uiConfig.useFullScreenInMeet) return
     // Fullscreen the document so the entire meet page (layout + room) fills the screen
@@ -562,24 +687,108 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
     return () => document.removeEventListener('fullscreenchange', onFullscreenChange)
   }, [])
 
+  // Full screen exit warning: when user exits fullscreen (e.g. Esc), show warning up to 3 times; 4th time or 30s expiry = auto submit
+  useEffect(() => {
+    if (!uiConfig.useFullScreenInMeet) return
+    const onFullscreenChange = () => {
+      if (document.fullscreenElement != null) return
+      if (exitingFullscreenProgrammaticallyRef.current) {
+        exitingFullscreenProgrammaticallyRef.current = false
+        return
+      }
+      if (!fullscreenEnteredRef.current) return
+      fullscreenEnteredRef.current = false
+      if (exitWarningCount >= EXIT_WARNING_MAX) {
+        handleEndCallRef.current()
+        return
+      }
+      setExitCountdown(EXIT_COUNTDOWN_SECONDS)
+      setExitWarningCount((c) => c + 1)
+      setShowExitWarning(true)
+    }
+    document.addEventListener('fullscreenchange', onFullscreenChange)
+    return () => document.removeEventListener('fullscreenchange', onFullscreenChange)
+  }, [uiConfig.useFullScreenInMeet, exitWarningCount])
+
+  // Keep handleEndCall ref updated
+  useEffect(() => {
+    handleEndCallRef.current = handleEndCall
+  })
+
+  // Exit warning countdown: start timer when dialog opens
+  useEffect(() => {
+    if (!showExitWarning) return
+    const id = setInterval(() => {
+      setExitCountdown((prev) => {
+        if (prev <= 1) {
+          if (exitCountdownIntervalRef.current) {
+            clearInterval(exitCountdownIntervalRef.current)
+            exitCountdownIntervalRef.current = null
+          }
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+    exitCountdownIntervalRef.current = id
+    return () => {
+      if (exitCountdownIntervalRef.current) {
+        clearInterval(exitCountdownIntervalRef.current)
+        exitCountdownIntervalRef.current = null
+      }
+    }
+  }, [showExitWarning])
+
+  // When countdown hits 0, auto submit and close dialog
+  useEffect(() => {
+    if (showExitWarning && exitCountdown === 0) {
+      setShowExitWarning(false)
+      handleEndCallRef.current()
+    }
+  }, [showExitWarning, exitCountdown])
+
   // Handlers
   const handleEndCall = async () => {
     if (isConversationMode) {
       setIsConversationMode(false)
     }
+    // If we have a session start time, report duration and transcript for saving + credit deduction
+    if (sessionStartTimeRef.current != null && onEndCallWithPayload) {
+      const durationSeconds = Math.round((Date.now() - sessionStartTimeRef.current) / 1000)
+      try {
+        await onEndCallWithPayload({
+          durationSeconds,
+          transcript: voiceTranscript,
+          messages,
+        })
+      } catch (e) {
+        console.error('Error in onEndCallWithPayload:', e)
+      }
+      sessionStartTimeRef.current = null
+    }
     if (uiConfig.useFullScreenInMeet && fullscreenEnteredRef.current && document.fullscreenElement != null) {
+      exitingFullscreenProgrammaticallyRef.current = true
       document.exitFullscreen?.().catch(() => {})
       fullscreenEnteredRef.current = false
     }
     if (onEndCall) {
       onEndCall()
     }
-    if (uiConfig.redirectOnStop) {
+    if (uiConfig.redirectOnStop === true) {
       window.location.href = '/dashboard/custominterview'
     }
   }
 
-  const handleStartInterview = () => {
+  const handleStartInterview = async () => {
+    if (onBeforeStartInterview) {
+      try {
+        await onBeforeStartInterview()
+      } catch (e) {
+        console.error('Error in onBeforeStartInterview:', e)
+        return
+      }
+    }
+    sessionStartTimeRef.current = Date.now()
     setShowInterviewStartDialog(false)
     // Reset greeting state when starting new interview
     greetingSpokenRef.current = false
@@ -590,7 +799,16 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
     window.dispatchEvent(startEvent)
   }
 
-  const handleStartConversation = () => {
+  const handleStartConversation = async () => {
+    if (onBeforeStartInterview) {
+      try {
+        await onBeforeStartInterview()
+      } catch (e) {
+        console.error('Error in onBeforeStartInterview:', e)
+        return
+      }
+    }
+    sessionStartTimeRef.current = Date.now()
     // Reset greeting state when starting conversation
     greetingSpokenRef.current = false
     isGreetingResponseRef.current = false
@@ -610,8 +828,27 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
     handleEndCall()
   }
 
-  // Coding Round: require screen share before showing main UI
-  const requireScreenShareFirst = interviewData?.screenShareEnabled === true && !isScreenSharing
+  const handleExitWarningStay = useCallback(() => {
+    if (exitCountdownIntervalRef.current) {
+      clearInterval(exitCountdownIntervalRef.current)
+      exitCountdownIntervalRef.current = null
+    }
+    setShowExitWarning(false)
+    enterFullScreen()
+    fullscreenEnteredRef.current = true
+  }, [enterFullScreen])
+
+  const handleExitWarningLeave = useCallback(() => {
+    if (exitCountdownIntervalRef.current) {
+      clearInterval(exitCountdownIntervalRef.current)
+      exitCountdownIntervalRef.current = null
+    }
+    setShowExitWarning(false)
+    handleEndCallRef.current()
+  }, [])
+
+  // Coding Round: only show interview when user chose entire screen (not window/tab). Gate same idea as app/test2.
+  const requireScreenShareFirst = interviewData?.screenShareEnabled === true && !isEntireScreenShared
 
   return (
     <div
@@ -620,6 +857,34 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
     >
       {/* Full screen: must be triggered by user click (browser requirement) */}
       {showFullScreenPrompt && <FullScreenPrompt onEnterFullScreen={enterFullScreen} />}
+
+      {/* Exit full screen warning: 30s countdown, up to 3 warnings; 4th exit or timer expiry = auto submit */}
+      <Dialog open={showExitWarning} onOpenChange={(open) => { if (!open) handleExitWarningStay() }}>
+        <DialogContent className="sm:max-w-md" onPointerDownOutside={(e) => e.preventDefault()} onEscapeKeyDown={(e) => e.preventDefault()}>
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-amber-600">
+              <AlertTriangle className="h-5 w-5 shrink-0" />
+              You&apos;ve exited full screen
+            </DialogTitle>
+            <DialogDescription asChild>
+              <div className="space-y-2 text-left">
+                <p>Stay in the interview to continue. Return to full screen within the time below, or your interview will be submitted automatically.</p>
+                <p className="font-semibold text-foreground">This is warning {exitWarningCount} of {EXIT_WARNING_MAX}.</p>
+                <p className="text-sm text-muted-foreground">After {EXIT_WARNING_MAX} warnings, leaving full screen again will automatically submit your interview.</p>
+                <p className="text-2xl font-mono font-bold text-amber-600 tabular-nums">{exitCountdown}s</p>
+              </div>
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="gap-2 sm:gap-0">
+            <Button variant="outline" onClick={handleExitWarningLeave}>
+              Leave & submit
+            </Button>
+            <Button onClick={handleExitWarningStay}>
+              Stay in interview
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Coding Round: ask user to share screen first */}
       {requireScreenShareFirst && (
@@ -633,7 +898,7 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
             <div className="space-y-2">
               <h2 className="text-xl font-semibold text-foreground">This is a coding interview</h2>
               <p className="text-muted-foreground">
-                Share your screen to continue. You’ll code in the browser while the AI interviewer asks follow-up questions.
+                Share your entire screen to continue (window or tab is not allowed). You will code in the browser while the AI interviewer asks follow-up questions.
               </p>
             </div>
             <Button
@@ -655,6 +920,9 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
         isConversationMode={isConversationMode}
         isLoading={false}
         hasTranscriptData={voiceTranscript.length > 0}
+        elapsedTime={elapsedSeconds}
+        isTimerRunning={isConversationMode}
+        formatTime={(s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`}
         onStartConversation={handleStartConversation}
         onStopConversation={handleStopConversation}
         isRegularInterviewActive={isConversationMode}
@@ -663,12 +931,20 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
         isChatOpen={isChatOpen && uiConfig.showChatBox}
       />
 
+      {/* Coding: confirm entire screen shared (same idea as app/test2) */}
+      {interviewData?.screenShareEnabled && isEntireScreenShared && (
+        <div className="shrink-0 px-4 py-2 bg-green-500/15 border-b border-green-500/30 text-center text-sm text-green-800 dark:text-green-200">
+          You shared: Entire screen. You can start the interview.
+        </div>
+      )}
+
       {/* Main Content Area with Sidebar */}
       <div className="flex flex-1 overflow-hidden pt-20">
-        {/* Main Content Area - Layout switches when screen sharing */}
+        {/* Main Content Area - Only show shared screen + your video when entire screen is shared (not window/tab) */}
         <div className={`flex-1 transition-all duration-300 ${isChatOpen && uiConfig.showChatBox ? 'mr-[400px]' : ''} h-full overflow-hidden flex flex-col`}>
-          {isScreenSharing ? (
+          {isEntireScreenShared ? (
             <ScreenShareInterviewLayout
+              key={`coding-q-${codingModeQuestion.title}-${codingQuestionIndexOverride ?? 'initial'}`}
               question={codingModeQuestion}
               stream={stream}
               isVideoEnabled={isVideoEnabled}
@@ -690,6 +966,7 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
                 showUserTranscription={uiConfig.showUserTranscription}
                 sttAvailable={sttAvailable}
                 ttsAvailable={ttsAvailable}
+                isAISpeaking={isVoiceChatActive}
               />
 
               <VoiceChatPanel
@@ -741,8 +1018,10 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
         isAudioEnabled={isAudioEnabled}
         isVideoEnabled={isVideoEnabled}
         isChatOpen={isChatOpen}
-        onToggleAudio={() => setIsAudioEnabled(!isAudioEnabled)}
-        onToggleVideo={() => setIsVideoEnabled(!isVideoEnabled)}
+        onToggleAudio={lockMicAndVideo ? () => {} : () => setIsAudioEnabled(!isAudioEnabled)}
+        onToggleVideo={lockMicAndVideo ? () => {} : () => setIsVideoEnabled(!isVideoEnabled)}
+        lockMicAndVideo={lockMicAndVideo}
+        isAISpeaking={isVoiceChatActive}
         onToggleChat={uiConfig.showChatBox ? () => setIsChatOpen(!isChatOpen) : undefined}
         onShowSettings={uiConfig.showVoiceSettings ? () => setShowSettings(!showSettings) : undefined}
         showShareScreen={uiConfig.showShareScreen}
@@ -771,17 +1050,18 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
 
       <ScreenShareDisplay
         stream={screenStream}
-        isVisible={isScreenSharing}
+        isVisible={isEntireScreenShared}
       />
 
       <InterviewStartDialog
         open={showInterviewStartDialog}
         onStart={handleStartInterview}
-        isCodingMode={isScreenSharing}
+        isCodingMode={isEntireScreenShared}
       />
 
+      {/* Only show "Your entire screen is now being shared" when we confirmed entire screen (not window/tab) */}
       <ScreenShareDialog
-        open={showScreenShareDialog}
+        open={showScreenShareDialog && (isEntireScreenShared || !interviewData?.screenShareEnabled)}
         onOpenChange={setShowScreenShareDialog}
         title={uiConfig.screenShareDialogTitle}
         description={uiConfig.screenShareDialogDescription}

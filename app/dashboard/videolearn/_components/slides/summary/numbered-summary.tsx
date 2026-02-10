@@ -7,7 +7,7 @@ import type { SummarySlideProps } from "../types"
 const DELAY_CLASSES = ["animation-delay-350", "animation-delay-550", "animation-delay-750", "animation-delay-950", "animation-delay-1150"] as const
 
 /** Numbered summary: prominent 1, 2, 3… with accent circles and clear hierarchy. */
-export function NumberedSummary({ title, points, isPlaying, className }: SummarySlideProps) {
+export function NumberedSummary({ title, points, isPlaying, animationClass, className }: SummarySlideProps) {
   const animate = !!isPlaying
   return (
     <div
@@ -20,7 +20,7 @@ export function NumberedSummary({ title, points, isPlaying, className }: Summary
         <h2
           className={cn(
             "text-xl md:text-2xl font-bold text-foreground mb-8 text-center",
-            animate && `${anim} opacity-0`
+            animate && `${animationClass ?? DEFAULT_SLIDE_ANIMATION_CLASS} opacity-0`
           )}
         >
           {title}
@@ -32,7 +32,7 @@ export function NumberedSummary({ title, points, isPlaying, className }: Summary
             key={i}
             className={cn(
               "flex gap-5 items-start",
-              animate && `${anim} opacity-0`,
+              animate && `${animationClass ?? DEFAULT_SLIDE_ANIMATION_CLASS} opacity-0`,
               animate && (DELAY_CLASSES[Math.min(i + 1, DELAY_CLASSES.length - 1)] ?? DELAY_CLASSES[DELAY_CLASSES.length - 1])
             )}
           >

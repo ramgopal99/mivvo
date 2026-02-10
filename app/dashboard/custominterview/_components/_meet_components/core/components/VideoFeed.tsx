@@ -12,6 +12,8 @@ interface VideoFeedProps {
   showUserTranscription?: boolean
   sttAvailable?: boolean | null
   ttsAvailable?: boolean | null
+  /** When true, AI is speaking: user's live waveform is hidden. */
+  isAISpeaking?: boolean
 }
 
 export function VideoFeed({
@@ -25,6 +27,7 @@ export function VideoFeed({
   showUserTranscription,
   sttAvailable,
   ttsAvailable,
+  isAISpeaking = false,
 }: VideoFeedProps) {
   return (
     <div className="relative aspect-video overflow-hidden rounded-xl bg-muted">
@@ -79,19 +82,21 @@ export function VideoFeed({
         )}
       </div>
 
-      <div className="absolute bottom-4 right-4 w-32 h-8">
-        <LiveWaveform
-          active={isAudioEnabled}
-          mode="static"
-          barWidth={2}
-          barGap={1}
-          barHeight={6}
-          height={32}
-          sensitivity={2}
-          updateRate={60}
-          barColor="#1f2937"
-        />
-      </div>
+      {!isAISpeaking && (
+        <div className="absolute bottom-4 right-4 w-32 h-8">
+          <LiveWaveform
+            active={isAudioEnabled}
+            mode="static"
+            barWidth={2}
+            barGap={1}
+            barHeight={6}
+            height={32}
+            sensitivity={2}
+            updateRate={60}
+            barColor="#1f2937"
+          />
+        </div>
+      )}
 
       {/* User Transcription Display */}
       {showUserTranscription && userTranscript && (

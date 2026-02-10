@@ -12,9 +12,10 @@ export const siteConfig = {
   enablePricing: true,
   enableCustomInterviews: true, // Set to true to show interviews page, false to show coming soon
   aiProvider: "puter" as AIProvider, // "openai" or "puter" - controls which AI service to use for chat
-  testMode: false, // Enable test mode in development
-  /** Full screen in meet room (simple + coding). false = dev, true = testing/production */
-  useFullScreenInMeet: true,
+  useFullScreenInMeet: false,
+  showCustomInterviewDebug: false,
+  /** When true: end interview does not run AI analysis and does not redirect; use for testing start/stop repeatedly. */
+  customInterviewTestMode: true,
   links: {
     twitter: "https://twitter.com/mivvo",
     github: "https://github.com/mivvo",

@@ -1,12 +1,13 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useParams } from 'next/navigation'
 import { MeetTestRoom } from '@/app/dashboard/custominterview/_components/_meet_components/core'
 import { defaultVoiceConfig, defaultUiConfig } from '@/app/dashboard/custominterview/_components/_meet_components/core/utils'
 import { getInterviewById } from '@/app/dashboard/custominterview/data'
 import { InterviewData } from '@/app/dashboard/custominterview/_components/InterviewCard'
 import { siteConfig } from '@/config/site'
+import { getAuthHeaders } from '@/lib/auth-utils'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Mic, Video } from 'lucide-react'
@@ -51,8 +52,13 @@ export default function CustomInterviewMeetPage() {
         const data = await getInterviewById(interviewId)
         if (data) {
           setInterviewData(data)
-          // Coding Round interviews: show share screen. Simple mode (Templates/Custom JD): hide it.
-          setUiConfig(prev => ({ ...prev, showShareScreen: data.screenShareEnabled === true }))
+          const isCodingRound = data.screenShareEnabled === true
+          // Coding Round: show share screen and allow only full screen (no window/tab). Simple mode: hide share.
+          setUiConfig(prev => ({
+            ...prev,
+            showShareScreen: isCodingRound,
+            screenShareRestrictToScreen: isCodingRound,
+          }))
         }
       } catch (error) {
         console.error('Error fetching interview:', error)
@@ -64,9 +70,96 @@ export default function CustomInterviewMeetPage() {
     fetchInterview()
   }, [interviewId])
 
-  const handleEndCall = () => {
-    console.log('Call ended')
-  }
+  const handleBeforeStartInterview = useCallback(async () => {
+    if (!interviewId) return
+    const res = await fetch('/api/custom-interviews/start-attempt', {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify({ interviewId }),
+    })
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}))
+      throw new Error(err.error || 'Failed to start attempt')
+    }
+  }, [interviewId])
+
+  const handleEndCallWithPayload = useCallback(
+    async (payload: {
+      durationSeconds: number
+      transcript: { role: string; text: string; timestamp: string }[]
+      messages: { id: string; role: 'user' | 'assistant'; content: string; timestamp: string }[]
+    }) => {
+      if (!interviewId) return
+      const headers = getAuthHeaders()
+      const timeUsedMinutes = Math.max(1, Math.ceil(payload.durationSeconds / 60))
+      try {
+        await fetch('/api/custom-interviews/save-conversation', {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({
+            interviewId,
+            transcript: payload.transcript,
+            messages: payload.messages,
+            duration: payload.durationSeconds,
+            createdAt: new Date().toISOString(),
+          }),
+        })
+      } catch (e) {
+        console.error('Failed to save conversation:', e)
+      }
+      try {
+        await fetch('/api/custom-interviews/update-time-usage', {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({ interviewId, timeUsedMinutes }),
+        })
+      } catch (e) {
+        console.error('Failed to update time usage:', e)
+      }
+      // Run AI analysis when enabled and we have conversation to analyze (skipped in test mode)
+      const runAnalysis =
+        !siteConfig.customInterviewTestMode &&
+        payload.transcript.length > 0
+      if (runAnalysis) {
+        try {
+          const conversationForAnalysis = payload.transcript.map((m) => ({ role: m.role, text: m.text }))
+          const topic = interviewData?.title || interviewData?.jd || ''
+          const analysisRes = await fetch('/api/analysis', {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({ conversation: conversationForAnalysis, topic }),
+          })
+          if (analysisRes.ok) {
+            const analysis = await analysisRes.json()
+            await fetch('/api/custom-interviews/save-analysis', {
+              method: 'POST',
+              headers,
+              body: JSON.stringify({
+                interviewId,
+                analysis,
+                duration: payload.durationSeconds,
+              }),
+            })
+          }
+        } catch (e) {
+          console.error('Failed to run or save analysis:', e)
+        }
+      }
+      if (!siteConfig.customInterviewTestMode) {
+        window.location.href = '/dashboard/custominterview'
+      }
+    },
+    [interviewId, interviewData]
+  )
+
+  const handleEndCall = useCallback(() => {
+    // When no payload (user left without starting), redirect after a short delay (skip in test mode)
+    if (!siteConfig.customInterviewTestMode) {
+      setTimeout(() => {
+        window.location.href = '/dashboard/custominterview'
+      }, 100)
+    }
+  }, [])
 
   // Check video and microphone permissions
   const checkPermissions = async () => {
@@ -312,6 +405,7 @@ export default function CustomInterviewMeetPage() {
           ttsAvailable={ttsAvailable}
           hasVideoPermission={hasVideoPermission}
           hasAudioPermission={hasAudioPermission}
+          showDebug={siteConfig.showCustomInterviewDebug}
         />
       )}
 
@@ -322,11 +416,14 @@ export default function CustomInterviewMeetPage() {
         assistantDetails={assistantDetails}
         onEndCall={handleEndCall}
         voiceConfig={defaultVoiceConfig}
-        uiConfig={uiConfig}
+        uiConfig={{ ...uiConfig, redirectOnStop: false }}
         interviewData={interviewDataForRoom}
         sttAvailable={sttAvailable}
         ttsAvailable={ttsAvailable}
         onFullScreenPromptVisible={setIsFullScreenPromptVisible}
+        onBeforeStartInterview={handleBeforeStartInterview}
+        onEndCallWithPayload={handleEndCallWithPayload}
+        lockMicAndVideo={!siteConfig.customInterviewTestMode}
       />
     </>
   )

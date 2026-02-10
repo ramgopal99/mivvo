@@ -6,38 +6,42 @@ interface UseScreenShareProps {
   uiConfig: UiConfig
 }
 
+/** When restricting, we only set isScreenSharing true for entire screen (monitor/screen). So user can only "go to" interview when they chose entire screen. */
 export function useScreenShare({ uiConfig }: UseScreenShareProps) {
   const [isScreenSharing, setIsScreenSharing] = useState(false)
   const [screenStream, setScreenStream] = useState<MediaStream | null>(null)
   const [showScreenShareDialog, setShowScreenShareDialog] = useState(false)
+  const [displaySurface, setDisplaySurface] = useState<string | null>(null)
 
   const startScreenShare = async () => {
     try {
       const displayMediaOptions: DisplayMediaStreamOptions = {
-        video: true,
+        video: uiConfig.screenShareRestrictToScreen
+          ? { displaySurface: 'monitor' as ConstrainDOMString }
+          : true,
         audio: false
       }
 
       const stream = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions)
       const videoTrack = stream.getVideoTracks()[0]
 
-      await new Promise(resolve => setTimeout(resolve, 100))
+      await new Promise(resolve => setTimeout(resolve, 150))
 
       const settings = videoTrack.getSettings()
       const displaySurface = (settings as MediaTrackSettings & { displaySurface?: string }).displaySurface
 
-      if (uiConfig.screenShareRestrictToScreen && displaySurface) {
-        if (displaySurface !== 'monitor') {
+      if (uiConfig.screenShareRestrictToScreen) {
+        const isEntireScreen = displaySurface === 'monitor' || displaySurface === 'screen'
+        if (!isEntireScreen) {
           stream.getTracks().forEach(track => track.stop())
           toast.error(uiConfig.screenShareRestrictionErrorMessage)
           return
         }
-      } else if (uiConfig.screenShareRestrictToScreen && !displaySurface) {
-        toast.warning('Please ensure you selected your entire screen. If you shared a window or tab, please stop and try again.')
       }
 
       setScreenStream(stream)
       setIsScreenSharing(true)
+      setDisplaySurface(displaySurface ?? null)
       toast.success(uiConfig.screenShareSuccessMessage)
       setShowScreenShareDialog(true)
 
@@ -61,6 +65,7 @@ export function useScreenShare({ uiConfig }: UseScreenShareProps) {
       setScreenStream(null)
     }
     setIsScreenSharing(false)
+    setDisplaySurface(null)
   }
 
   const toggleScreenShare = () => {
@@ -86,5 +91,6 @@ export function useScreenShare({ uiConfig }: UseScreenShareProps) {
     showScreenShareDialog,
     setShowScreenShareDialog,
     toggleScreenShare,
+    displaySurface, // 'monitor' | 'screen' when restricting and accepted; only then do we show interview
   }
 }

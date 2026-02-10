@@ -9,7 +9,8 @@ export interface VoiceConfig {
   speechRate: number
   speechPitch: number
   autoListenAfterAI: boolean
-  silenceTimeoutMs?: number // Time to wait after user stops speaking before sending to LLM (default: 2000ms)
+  silenceTimeoutMs?: number // Time to wait after user stops speaking before sending to LLM
+  ttsRestartDelayMs?: number // Delay before resuming STT after TTS ends (from VOICE_CHAT_CONFIG.TTS_RESTART_DELAY_MS)
   defaultVoiceName?: string // Preferred default voice name (e.g., "WilliamMu1-tiIingual")
 }
 
@@ -23,13 +24,13 @@ export interface UiConfig {
   showCodeButtonOnlyOnScreenShare?: boolean
   showCodingInterviewOnlyOnScreenShare?: boolean
   showInterviewStartDialog: boolean
-  redirectOnStop: boolean
+  redirectOnStop?: boolean
   screenShareSuccessMessage: string
   screenShareDialogTitle: string
   screenShareDialogDescription: string
-  screenShareRestrictToScreen: boolean
+  screenShareRestrictToScreen?: boolean
   screenShareRestrictionErrorMessage: string
-  enableAnalysisOnStop: boolean
+  enableAnalysisOnStop?: boolean
   /** When true, meet room enters full screen (both simple and coding mode). Set false for dev, true for testing */
   useFullScreenInMeet?: boolean
 }
@@ -61,6 +62,7 @@ export interface InterviewData {
   customPrompt?: string
   jd?: string
   interviewType?: string
+  role?: string | null
   foreignLanguageSubType?: string
   /** When true, this is a coding interview; user is asked to share screen when they enter the meet */
   screenShareEnabled?: boolean

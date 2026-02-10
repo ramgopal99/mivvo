@@ -7,8 +7,9 @@ import type { BulletSlideProps } from "../types"
 const DELAY_CLASSES = ["animation-delay-350", "animation-delay-550", "animation-delay-750", "animation-delay-950", "animation-delay-1150"] as const
 
 /** Gradient bullets: full-bleed gradient bg. */
-export function GradientBullets({ title, bullets, isPlaying, className }: BulletSlideProps) {
+export function GradientBullets({ title, bullets, isPlaying, animationClass, className }: BulletSlideProps) {
   const animate = !!isPlaying
+  const anim = animationClass ?? DEFAULT_SLIDE_ANIMATION_CLASS
   return (
     <div
       className={cn(

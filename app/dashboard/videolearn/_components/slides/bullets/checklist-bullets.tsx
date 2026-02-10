@@ -8,8 +8,9 @@ import type { BulletSlideProps } from "../types"
 const DELAY_CLASSES = ["animation-delay-350", "animation-delay-550", "animation-delay-750", "animation-delay-950", "animation-delay-1150"] as const
 
 /** Checklist bullets: checkmark-style list. */
-export function ChecklistBullets({ title, bullets, isPlaying, className }: BulletSlideProps) {
+export function ChecklistBullets({ title, bullets, isPlaying, animationClass, className }: BulletSlideProps) {
   const animate = !!isPlaying
+  const anim = animationClass ?? DEFAULT_SLIDE_ANIMATION_CLASS
   return (
     <div
       className={cn(

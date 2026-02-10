@@ -79,6 +79,7 @@ import {
   getAvailableRoles,
   getAvailableInterviewTypes
 } from "./utils/interview-utils"
+import { DSA_CODING_QUESTIONS, SQL_CODING_QUESTIONS, type CodingRoundType } from "./_meet_components/data/coding-questions"
 import { getJDTemplateForRole } from "./utils/interview-config"
 import { VoiceRecordingAnimation } from "./animations"
 import { generateInterviewTitle } from "./utils/interview-title-utils"
@@ -106,6 +107,9 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
   // Predefined Role state
   const [selectedRole, setSelectedRole] = useState("")
   const [interviewType, setInterviewType] = useState("")
+
+  // Coding Round state (round type only; question is picked at random)
+  const [codingRoundType, setCodingRoundType] = useState<CodingRoundType | "">("")
 
 
 
@@ -502,20 +506,34 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
       return
     }
 
-    // Handle Coding Round tab - DSA coding round; screen share required; user asked to share screen when they enter the meet
+    // Handle Coding Round tab - DSA or SQL; round type only, question picked at random
     if (activeTab === "codingRound") {
-      const jdDetails = "Technical coding round focused on Data Structures & Algorithms (DSA). The candidate will solve a coding problem while sharing their screen. The AI interviewer will ask follow-up questions about approach, time complexity, and implementation."
+      if (!codingRoundType) {
+        import('sonner').then(({ toast }) => {
+          toast.error('Please select a round type (DSA or SQL)')
+        })
+        return
+      }
+      const list = codingRoundType === "sql" ? SQL_CODING_QUESTIONS : DSA_CODING_QUESTIONS
+      const questionIndex = Math.floor(Math.random() * list.length)
+      const baseDesc = codingRoundType === "sql"
+        ? "Technical coding round focused on SQL. The candidate will solve a SQL problem while sharing their screen. The AI interviewer will ask follow-up questions about approach, queries, and optimization."
+        : "Technical coding round focused on Data Structures & Algorithms (DSA). The candidate will solve a coding problem while sharing their screen. The AI interviewer will ask follow-up questions about approach, time complexity, and implementation."
+      const jdDetails = `${baseDesc}\n[CODING_QUESTION_INDEX:${questionIndex}]`
       const interviewData = {
         jdDetails,
         interviewType: "Technical",
         screenShare: true,
-        company: "Coding Round",
+        company: codingRoundType === "sql" ? "SQL Coding Round" : "DSA Coding Round",
+        generalSubType: codingRoundType,
+        role: codingRoundType,
         cvText: cvText || userCvData || undefined,
         title: undefined
       }
       onInterviewCreated?.(interviewData)
       setIsDialogOpen(false)
       setActiveTab("predefined")
+      setCodingRoundType("")
       return
     }
 
@@ -731,11 +749,28 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
             <div className="rounded-lg border border-amber-200 bg-amber-50/50 p-4 space-y-3">
               <div className="flex items-center gap-2 text-amber-800">
                 <Code2 className="h-5 w-5" />
-                <span className="font-medium">DSA coding round</span>
+                <span className="font-medium">Coding round</span>
               </div>
               <p className="text-sm text-gray-700">
-                Create a technical coding round with DSA questions only. When you start, you’ll be asked to share your screen. You’ll code in the browser while the AI interviewer asks follow-up questions about your approach and complexity.
+                Pick a round type below. A random question will be shown when you start. You will share your screen and solve the problem in the browser while the AI interviewer asks follow-up questions about your approach and solution.
               </p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="coding-round-type" className="text-sm font-medium">
+                Round type *
+              </Label>
+              <Select
+                value={codingRoundType}
+                onValueChange={(value) => setCodingRoundType(value as CodingRoundType)}
+              >
+                <SelectTrigger id="coding-round-type" className="w-full cursor-pointer">
+                  <SelectValue placeholder="Select round type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="dsa" className="cursor-pointer">DSA (Data Structures & Algorithms)</SelectItem>
+                  <SelectItem value="sql" className="cursor-pointer">SQL</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </TabsContent>
 
@@ -909,7 +944,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
                   : activeTab === 'custom'
                   ? (!customJD.trim() || isAnalyzingJD || isExtractingCV)
                   : activeTab === 'codingRound'
-                  ? false
+                  ? !codingRoundType
                   : activeTab === 'voice' && showVoiceTab
                   ? (!refinedText.trim() || isProcessingVoice || isRecording)
                   : false
