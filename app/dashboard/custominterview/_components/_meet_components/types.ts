@@ -62,6 +62,7 @@ export interface InterviewData {
   customPrompt?: string
   jd?: string
   interviewType?: string
+  role?: string | null
   foreignLanguageSubType?: string
   /** When true, this is a coding interview; user is asked to share screen when they enter the meet */
   screenShareEnabled?: boolean

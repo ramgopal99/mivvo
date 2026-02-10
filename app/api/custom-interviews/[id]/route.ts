@@ -93,6 +93,7 @@ export async function GET(
       company: interview.companyName || "",
       jd: interview.jobDescription || "",
       interviewType: interview.interviewType, // Add interview type for greeting selection
+      role: interview.role || null, // e.g. technical role or coding round type (dsa/sql)
       foreignLanguageSubType: interview.interviewType === 'GENERAL_INTERVIEW' && ['English', 'Spanish', 'French', 'German'].includes(interview.role || '') ? interview.role : null, // Get foreign language from role field
       user: {
         name: interview.user.name,

@@ -5,7 +5,7 @@ import { Chat } from '@/components/meet/chat'
 import { MeetTestHeader } from '../ui/meet-test-header'
 import { MeetTestControls } from '../ui/meet-test-controls'
 import { ScreenShareDisplay, ScreenShareInterviewLayout } from '../ui'
-import { getScreenShareQuestion } from '../data/coding-questions'
+import { getCodingQuestion, getRandomCodingQuestionIndex, type CodingRoundType } from '../data/coding-questions'
 import { VoiceSettings } from './components'
 import {
   useMediaStream,
@@ -31,7 +31,7 @@ import {
 } from '../types'
 import { getLLMService, Message as LLMMessage } from '../services/llm-service'
 import { getRandomGreeting } from '../greeting-message'
-import { getCodingModeSystemPrompt, CODING_MODE_GREETING } from '../coding-mode-prompt'
+import { getCodingModeSystemPrompt, CODING_MODE_GREETING, CHANGE_QUESTION_SIGNAL } from '../coding-mode-prompt'
 import { Monitor, AlertTriangle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
@@ -181,15 +181,42 @@ export function MeetTestRoom({
   const EXIT_WARNING_MAX = 3
   const EXIT_COUNTDOWN_SECONDS = 30
 
+  /** When set, overrides the question index from JD (used when AI signals [CHANGE_QUESTION]). */
+  const [codingQuestionIndexOverride, setCodingQuestionIndexOverride] = useState<number | null>(null)
+  const effectiveCodingIndexRef = useRef<number>(0)
+  const setCodingQuestionIndexOverrideRef = useRef(setCodingQuestionIndexOverride)
+  setCodingQuestionIndexOverrideRef.current = setCodingQuestionIndexOverride
+
   const {
     isScreenSharing,
     screenStream,
     showScreenShareDialog,
     setShowScreenShareDialog,
     toggleScreenShare,
+    displaySurface,
   } = useScreenShare({ uiConfig })
 
-  const codingModeQuestion = useMemo(() => getScreenShareQuestion(0), [])
+  // Only allow interview content when entire screen was chosen (coding round). Window/tab share is rejected in useScreenShare.
+  const isEntireScreenShared = isScreenSharing && (displaySurface === 'monitor' || displaySurface === 'screen')
+
+  const codingModeQuestion = useMemo(() => {
+    if (!interviewData?.screenShareEnabled) return getCodingQuestion('dsa', 0)
+    const roundType = (interviewData.role === 'sql' || interviewData.role === 'dsa' ? interviewData.role : 'dsa') as CodingRoundType
+    const jd = interviewData.jd || ''
+    const match = jd.match(/\[CODING_QUESTION_INDEX:(\d+)\]/)
+    const jdIndex = match ? parseInt(match[1], 10) : 0
+    const index = codingQuestionIndexOverride !== null ? codingQuestionIndexOverride : jdIndex
+    return getCodingQuestion(roundType, index)
+  }, [interviewData?.screenShareEnabled, interviewData?.role, interviewData?.jd, codingQuestionIndexOverride])
+
+  // Keep ref in sync so LLM callback can read current index when handling [CHANGE_QUESTION]
+  useEffect(() => {
+    if (!interviewData?.screenShareEnabled) return
+    const jd = interviewData.jd || ''
+    const match = jd.match(/\[CODING_QUESTION_INDEX:(\d+)\]/)
+    const jdIndex = match ? parseInt(match[1], 10) : 0
+    effectiveCodingIndexRef.current = codingQuestionIndexOverride !== null ? codingQuestionIndexOverride : jdIndex
+  }, [interviewData?.screenShareEnabled, interviewData?.jd, codingQuestionIndexOverride])
 
   // Keep refs updated
   useEffect(() => {
@@ -237,7 +264,18 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
         onResponse: (response) => {
           // Add AI response to chat (strip "Mivvo:" prefix if present)
           if (response && response.trim()) {
-            const text = response.trim().replace(/^Mivvo:\s*/i, '').trim() || response.trim()
+            let text = response.trim().replace(/^Mivvo:\s*/i, '').trim() || response.trim()
+
+            // Coding mode: if AI signals change question, switch to a new question from the list and strip the signal
+            if (isScreenSharing && interviewData?.screenShareEnabled && text.includes(CHANGE_QUESTION_SIGNAL)) {
+              text = text.replace(CHANGE_QUESTION_SIGNAL, '').trim() || "Let's try a different problem."
+              const roundType = (interviewData.role === 'sql' || interviewData.role === 'dsa' ? interviewData.role : 'dsa') as CodingRoundType
+              const currentIndex = effectiveCodingIndexRef.current
+              const newIndex = getRandomCodingQuestionIndex(roundType, currentIndex)
+              effectiveCodingIndexRef.current = newIndex
+              setCodingQuestionIndexOverrideRef.current(newIndex)
+            }
+
             const aiMessage = {
               role: 'assistant',
               text,
@@ -777,8 +815,8 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
     handleEndCallRef.current()
   }, [])
 
-  // Coding Round: require screen share before showing main UI
-  const requireScreenShareFirst = interviewData?.screenShareEnabled === true && !isScreenSharing
+  // Coding Round: only show interview when user chose entire screen (not window/tab). Gate same idea as app/test2.
+  const requireScreenShareFirst = interviewData?.screenShareEnabled === true && !isEntireScreenShared
 
   return (
     <div
@@ -828,7 +866,7 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
             <div className="space-y-2">
               <h2 className="text-xl font-semibold text-foreground">This is a coding interview</h2>
               <p className="text-muted-foreground">
-                Share your screen to continue. You’ll code in the browser while the AI interviewer asks follow-up questions.
+                Share your entire screen to continue (window or tab is not allowed). You will code in the browser while the AI interviewer asks follow-up questions.
               </p>
             </div>
             <Button
@@ -861,12 +899,20 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
         isChatOpen={isChatOpen && uiConfig.showChatBox}
       />
 
+      {/* Coding: confirm entire screen shared (same idea as app/test2) */}
+      {interviewData?.screenShareEnabled && isEntireScreenShared && (
+        <div className="shrink-0 px-4 py-2 bg-green-500/15 border-b border-green-500/30 text-center text-sm text-green-800 dark:text-green-200">
+          You shared: Entire screen. You can start the interview.
+        </div>
+      )}
+
       {/* Main Content Area with Sidebar */}
       <div className="flex flex-1 overflow-hidden pt-20">
-        {/* Main Content Area - Layout switches when screen sharing */}
+        {/* Main Content Area - Only show shared screen + your video when entire screen is shared (not window/tab) */}
         <div className={`flex-1 transition-all duration-300 ${isChatOpen && uiConfig.showChatBox ? 'mr-[400px]' : ''} h-full overflow-hidden flex flex-col`}>
-          {isScreenSharing ? (
+          {isEntireScreenShared ? (
             <ScreenShareInterviewLayout
+              key={`coding-q-${codingModeQuestion.title}-${codingQuestionIndexOverride ?? 'initial'}`}
               question={codingModeQuestion}
               stream={stream}
               isVideoEnabled={isVideoEnabled}
@@ -972,17 +1018,18 @@ IMPORTANT: The interview starts with a greeting question. The greeting will be r
 
       <ScreenShareDisplay
         stream={screenStream}
-        isVisible={isScreenSharing}
+        isVisible={isEntireScreenShared}
       />
 
       <InterviewStartDialog
         open={showInterviewStartDialog}
         onStart={handleStartInterview}
-        isCodingMode={isScreenSharing}
+        isCodingMode={isEntireScreenShared}
       />
 
+      {/* Only show "Your entire screen is now being shared" when we confirmed entire screen (not window/tab) */}
       <ScreenShareDialog
-        open={showScreenShareDialog}
+        open={showScreenShareDialog && (isEntireScreenShared || !interviewData?.screenShareEnabled)}
         onOpenChange={setShowScreenShareDialog}
         title={uiConfig.screenShareDialogTitle}
         description={uiConfig.screenShareDialogDescription}

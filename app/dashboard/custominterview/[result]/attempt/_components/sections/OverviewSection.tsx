@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dialog"
 import { Target, Award, FileText } from "lucide-react"
 import { useState } from "react"
+import { getDisplayJd } from "@/app/dashboard/custominterview/_components/utils/interview-utils"
 
 interface InterviewAttempt {
   id: string
@@ -62,7 +63,7 @@ export function OverviewSection({ attempt, totalMessages, totalSessions, overall
           <div>
             <label className="text-sm font-medium text-gray-600">Job Description</label>
             <p className="text-sm text-gray-700 mt-1 line-clamp-3 leading-relaxed">
-              {attempt.interview.jobDescription || 'No description available'}
+              {getDisplayJd(attempt.interview.jobDescription) || 'No description available'}
             </p>
             {attempt.interview.jobDescription && (
               <Button
@@ -127,7 +128,7 @@ export function OverviewSection({ attempt, totalMessages, totalSessions, overall
           <div className="flex-1 overflow-y-auto pr-2">
             <div className="bg-gray-50 rounded-lg p-6">
               <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">
-                {attempt.interview.jobDescription}
+                {getDisplayJd(attempt.interview.jobDescription)}
               </p>
             </div>
           </div>

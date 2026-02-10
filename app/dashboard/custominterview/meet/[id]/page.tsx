@@ -52,8 +52,13 @@ export default function CustomInterviewMeetPage() {
         const data = await getInterviewById(interviewId)
         if (data) {
           setInterviewData(data)
-          // Coding Round interviews: show share screen. Simple mode (Templates/Custom JD): hide it.
-          setUiConfig(prev => ({ ...prev, showShareScreen: data.screenShareEnabled === true }))
+          const isCodingRound = data.screenShareEnabled === true
+          // Coding Round: show share screen and allow only full screen (no window/tab). Simple mode: hide share.
+          setUiConfig(prev => ({
+            ...prev,
+            showShareScreen: isCodingRound,
+            screenShareRestrictToScreen: isCodingRound,
+          }))
         }
       } catch (error) {
         console.error('Error fetching interview:', error)

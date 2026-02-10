@@ -32,9 +32,9 @@ export const defaultUiConfig: UiConfig = {
   showShareScreen: true,
   showInterviewStartDialog: false,
   screenShareSuccessMessage: "Screen sharing started successfully!",
-  screenShareDialogTitle: "Screen Sharing Active",
-  screenShareDialogDescription: "Your entire screen is now being shared. Others can see everything on your screen in the bottom-right corner of their view.\n\nTips:\n• Click the monitor button again to stop sharing\n• Your entire screen content is visible to others",
-  screenShareRestrictionErrorMessage: "Please select your entire screen to share. Sharing individual windows or tabs is not allowed.",
+  screenShareDialogTitle: "Screen shared",
+  screenShareDialogDescription: "Your full screen is shared with the AI interviewer. Click the Start coding Interview button to start the interview.",
+  screenShareRestrictionErrorMessage: "Only full screen can be shared. Please select your entire screen (not a window or tab).",
 }
 
 // Coding Question Interface (shared with other components)

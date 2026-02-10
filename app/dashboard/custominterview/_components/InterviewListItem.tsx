@@ -13,6 +13,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog"
 import { useState } from "react"
+import { getDisplayJd } from "./utils/interview-utils"
 
 interface InterviewListItemProps {
   interview: InterviewData
@@ -51,7 +52,7 @@ export function InterviewListItem({ interview, onStartInterview, onDeleteIntervi
               {new Date(interview.createdAt).toLocaleDateString()}
             </div>
           </div>
-          <p className="text-sm text-gray-700 mt-2 line-clamp-1">{interview.jd}</p>
+          <p className="text-sm text-gray-700 mt-2 line-clamp-1">{getDisplayJd(interview.jd)}</p>
         </div>
       </div>
 

@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog"
 import { Info, Calendar, Building, Trash2 } from "lucide-react"
 import { useState } from "react"
+import { getDisplayJd } from "./utils/interview-utils"
 
 type InterviewStatus = "completed" | "in_progress"
 
@@ -127,7 +128,7 @@ export function InterviewCard({ interview, onStartInterview, onDeleteInterview, 
                     <h4 className="text-sm font-medium">Job Description</h4>
                     <div className="bg-gray-50 rounded-lg p-4 max-h-48 overflow-y-auto">
                       <p className="text-sm text-gray-700 leading-relaxed">
-                        {interview.jd}
+                        {getDisplayJd(interview.jd)}
                       </p>
                     </div>
                   </div>
@@ -176,7 +177,7 @@ export function InterviewCard({ interview, onStartInterview, onDeleteInterview, 
         {/* JD Preview */}
         <div className="bg-gray-50 rounded-lg p-3">
           <p className="text-sm text-gray-700 line-clamp-2">
-            {interview.jd}
+            {getDisplayJd(interview.jd)}
           </p>
         </div>
 

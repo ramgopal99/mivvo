@@ -29,6 +29,16 @@ import {
 } from './interview-config'
 
 // =============================================================================
+// JD DISPLAY HELPERS
+// =============================================================================
+
+/** Strip internal [CODING_QUESTION_INDEX:n] from JD so it is not shown to the user */
+export function getDisplayJd(jd: string | null | undefined): string {
+  if (jd == null || jd === '') return ''
+  return jd.replace(/\n\[CODING_QUESTION_INDEX:\d+\]/g, '').trim()
+}
+
+// =============================================================================
 // CONFIGURATION GETTER FUNCTIONS
 // =============================================================================
 

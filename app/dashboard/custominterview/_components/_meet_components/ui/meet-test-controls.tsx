@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { siteConfig } from '@/config/site'
 import { Mic, MicOff, Video, VideoOff, MessageSquare, Settings, Monitor } from 'lucide-react'
 
 interface MeetTestControlsProps {
@@ -74,8 +75,8 @@ export function MeetTestControls({
           )}
         </Button>
 
-        {/* Share Screen - Only show if showShareScreen is true */}
-        {showShareScreen && onToggleScreenShare && (
+        {/* Share Screen - Only show when customInterviewTestMode and showShareScreen are true */}
+        {siteConfig.customInterviewTestMode && showShareScreen && onToggleScreenShare && (
           <Button
             onClick={onToggleScreenShare}
             variant={isScreenSharing ? "default" : "outline"}

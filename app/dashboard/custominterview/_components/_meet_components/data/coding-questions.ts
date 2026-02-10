@@ -1,58 +1,34 @@
-import { CodingQuestion } from '../config'
+import type { CodingQuestion } from '../config'
+import { DSA_CODING_QUESTIONS } from './dsa-questions'
+import { SQL_CODING_QUESTIONS } from './sql-questions'
 
-/**
- * Dummy coding interview questions for screen-share mode.
- * Used when user shares screen - displays question and Monaco editor.
- */
-export const SCREEN_SHARE_CODING_QUESTIONS: CodingQuestion[] = [
-  {
-    title: 'Two Sum',
-    description:
-      'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.',
-    examples: [
-      {
-        input: 'nums = [2,7,11,15], target = 9',
-        output: '[0,1]',
-        explanation: 'Because nums[0] + nums[1] == 9, we return [0, 1].',
-      },
-    ],
-    constraints: [
-      '2 ≤ nums.length ≤ 10⁴',
-      '-10⁹ ≤ nums[i] ≤ 10⁹',
-      '-10⁹ ≤ target ≤ 10⁹',
-      'Only one valid answer exists.',
-    ],
-    difficulty: 'Easy',
-    topic: 'Arrays',
-  },
-  {
-    title: 'Valid Parentheses',
-    description:
-      'Given a string s containing just the characters \'(\', \')\', \'{\', \'}\', \'[\' and \']\', determine if the input string is valid. An input string is valid if: Open brackets must be closed by the same type of brackets. Open brackets must be closed in the correct order. Every close bracket has a corresponding open bracket of the same type.',
-    examples: [
-      { input: 's = "()"', output: 'true', explanation: 'The string is valid.' },
-      { input: 's = "()[]{}"', output: 'true', explanation: 'The string is valid.' },
-      { input: 's = "(]"', output: 'false', explanation: "The closing bracket ']' does not match the opening bracket '('." },
-    ],
-    constraints: ["1 ≤ s.length ≤ 10⁴", "s consists of parentheses only '()[]{}'."],
-    difficulty: 'Easy',
-    topic: 'Stack',
-  },
-  {
-    title: 'Reverse a String',
-    description:
-      'Write a function that reverses a string. The input string is given as an array of characters s. You must do this by modifying the input array in-place with O(1) extra memory.',
-    examples: [
-      { input: 's = ["h","e","l","l","o"]', output: '["o","l","l","e","h"]', explanation: 'Reverse in place.' },
-      { input: 's = ["H","a","n","n","a","h"]', output: '["h","a","n","n","a","H"]', explanation: 'Reverse in place.' },
-    ],
-    constraints: ['1 ≤ s.length ≤ 10⁵', 's[i] is a printable ascii character.'],
-    difficulty: 'Easy',
-    topic: 'Strings',
-  },
-]
+/** Coding round type: DSA (Data Structures & Algorithms) or SQL */
+export type CodingRoundType = 'dsa' | 'sql'
 
-export const getScreenShareQuestion = (index = 0): CodingQuestion => {
-  const idx = index % SCREEN_SHARE_CODING_QUESTIONS.length
-  return SCREEN_SHARE_CODING_QUESTIONS[idx]
+/** @deprecated Use DSA_CODING_QUESTIONS from ./dsa-questions */
+export const SCREEN_SHARE_CODING_QUESTIONS = DSA_CODING_QUESTIONS
+
+export { DSA_CODING_QUESTIONS, getScreenShareQuestion, getDsaQuestionOptions } from './dsa-questions'
+export { SQL_CODING_QUESTIONS, getSqlQuestionOptions } from './sql-questions'
+
+/** Get coding question by round type (DSA or SQL) and index */
+export function getCodingQuestion(roundType: CodingRoundType, index: number): CodingQuestion {
+  const list = roundType === 'sql' ? SQL_CODING_QUESTIONS : DSA_CODING_QUESTIONS
+  const idx = Math.max(0, index) % list.length
+  return list[idx]
+}
+
+/** Get a random question index for the round type. If excludeIndex is set and list has >1 item, returns a different index. */
+export function getRandomCodingQuestionIndex(roundType: CodingRoundType, excludeIndex?: number): number {
+  const list = roundType === 'sql' ? SQL_CODING_QUESTIONS : DSA_CODING_QUESTIONS
+  const len = list.length
+  if (len === 0) return 0
+  if (len === 1) return 0
+  if (excludeIndex !== undefined && excludeIndex >= 0) {
+    const safeExclude = excludeIndex % len
+    let idx = Math.floor(Math.random() * len)
+    if (idx === safeExclude) idx = (idx + 1) % len
+    return idx
+  }
+  return Math.floor(Math.random() * len)
 }
