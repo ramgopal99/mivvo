@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // LLM (Large Language Model) Service
 // Handles communication with language model APIs
 

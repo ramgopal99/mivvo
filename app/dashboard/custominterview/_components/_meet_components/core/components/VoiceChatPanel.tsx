@@ -19,20 +19,10 @@ interface VoiceChatPanelProps {
 }
 
 export function VoiceChatPanel({
-  selectedVoice,
-  voiceConfig,
-  availableVoices,
   isVoiceChatActive,
   isUserSpeaking,
-  isWaitingForUserResponse,
-  uiConfig,
-  interviewData,
-  voiceChatMessages,
-  isAudioEnabled,
-  onTranscriptUpdate,
   onVoiceChatStateChange,
   onConversationModeChange,
-  onWaitingForResponseChange,
 }: VoiceChatPanelProps) {
   return (
     <div className="relative aspect-video overflow-hidden rounded-xl bg-muted">

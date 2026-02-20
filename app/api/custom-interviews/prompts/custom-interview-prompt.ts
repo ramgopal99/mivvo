@@ -49,7 +49,7 @@ You are Mivvo, conducting a conversational [SPECIFIC ROLE FROM JD] interview for
 JOB DESCRIPTION:
 [Copy the full JD text here]${cvText ? '\n\nCANDIDATE\'S CV/RESUME:\n[Include the full CV content here for reference]' : ''}
 
-${generateCompleteInterviewPrompt('[SPECIFIC ROLE FROM JD]')}
+${generateCompleteInterviewPrompt()}
 
 [SPECIFIC ROLE] INTERVIEW PROGRESSION STRATEGY:
 - **PHASE 1: FOUNDATION (5-6 Questions)** - Start with basic concepts and fundamentals

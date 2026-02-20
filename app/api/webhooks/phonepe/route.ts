@@ -135,7 +135,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
         if (state === "COMPLETED") {
             // Update payment status to COMPLETED
-            const updatedPayment = await prisma.payment.update({
+            await prisma.payment.update({
                 where: { id: payment.id },
                 data: { status: 'COMPLETED' }
             });

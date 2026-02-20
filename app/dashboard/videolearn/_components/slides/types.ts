@@ -77,6 +77,7 @@ export interface SummarySlideProps {
   isPlaying?: boolean
   className?: string
   animationClass?: string
+  lineDelays?: LineDelays
 }
 
 export type BulletVariant =
@@ -142,6 +143,7 @@ export interface CodeBlockSlideProps {
   isPlaying?: boolean
   className?: string
   animationClass?: string
+  lineDelays?: LineDelays
 }
 
 export interface CodeStepExplainStep {

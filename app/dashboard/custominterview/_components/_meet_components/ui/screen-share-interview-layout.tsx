@@ -24,6 +24,8 @@ import {
   OCR_WATERMARK_TEXT,
 } from '../coding-mode-cheating-config'
 
+import type { OnMount } from '@monaco-editor/react'
+
 const Editor = dynamic(() => import('@monaco-editor/react').then((mod) => mod.default), {
   ssr: false,
   loading: () => (
@@ -129,7 +131,7 @@ export function ScreenShareInterviewLayout({
   }
 
   const handleEditorMount = useCallback(
-    (editor: Parameters<React.ComponentProps<typeof Editor>['onMount']>[0]) => {
+    (editor: Parameters<OnMount>[0]) => {
       const container = editor.getContainerDomNode()
       if (BLOCK_PASTE) {
         const blockPaste = (e: ClipboardEvent) => {

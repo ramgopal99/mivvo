@@ -8,7 +8,7 @@
  * @param techArea - The technical area (e.g., 'Python', 'behavioral HR', 'UPSE')
  * @returns Complete interview prompt with all sections
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 export function generateCompleteInterviewPrompt(): string {
   return `INTERVIEW RULES:
 

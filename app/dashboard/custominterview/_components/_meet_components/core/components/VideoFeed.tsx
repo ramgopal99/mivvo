@@ -7,7 +7,7 @@ interface VideoFeedProps {
   isAudioEnabled: boolean
   isUserSpeaking: boolean
   isGettingStream: boolean
-  videoRef: React.RefObject<HTMLVideoElement>
+  videoRef: React.RefObject<HTMLVideoElement | null>
   userTranscript?: string
   showUserTranscription?: boolean
   sttAvailable?: boolean | null
@@ -20,13 +20,10 @@ export function VideoFeed({
   stream,
   isVideoEnabled,
   isAudioEnabled,
-  isUserSpeaking,
   isGettingStream,
   videoRef,
   userTranscript,
   showUserTranscription,
-  sttAvailable,
-  ttsAvailable,
   isAISpeaking = false,
 }: VideoFeedProps) {
   return (

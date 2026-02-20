@@ -71,6 +71,28 @@ Requirements:
 - Familiarity with database technologies (PostgreSQL, MongoDB)
 - Understanding of testing frameworks (pytest, unittest)
 - Knowledge of version control and CI/CD pipelines`
+      },
+      {
+        value: 'java-developer',
+        title: 'Java Developer Interview',
+        jdTemplate: `We are looking for a skilled Java Developer to join our development team. You will be responsible for designing, developing, and maintaining Java-based applications and systems.
+
+Key Responsibilities:
+- Design and develop Java applications and services
+- Work with Spring Boot, Spring Framework, or Jakarta EE
+- Implement RESTful APIs and microservices
+- Build scalable, maintainable backend systems
+- Collaborate on system design and performance optimization
+- Write unit and integration tests (JUnit, Mockito)
+- Stay updated with Java ecosystem and best practices
+
+Requirements:
+- Proficiency in Core Java and Java 17+ features
+- Experience with Spring Boot, Spring MVC, or Spring Cloud
+- Knowledge of RESTful APIs and web services
+- Familiarity with databases (SQL, JPA/Hibernate)
+- Understanding of testing frameworks (JUnit, Mockito)
+- Knowledge of build tools (Maven, Gradle) and CI/CD pipelines`
       }
     ]
   },

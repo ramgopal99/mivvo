@@ -1,7 +1,6 @@
 "use client"
 
-import type { TypedSlide, FlowTreeNode } from "./types"
-import type { LineDelays } from "./types"
+import type { TypedSlide, FlowTreeNode, LineDelays, SummarySlideProps } from "./types"
 import { parseTitleVariant, parseSummaryVariant, parseBulletVariant, parseCodeBlockVariant, parseCodeStepExplainVariant, parseComparisonTableVariant, parseFallbackVariant, parseFlowTreeVariant, parseHighlightBoxVariant, parseQuestionPromptVariant } from "./types"
 import { TitleSlide } from "./title"
 import { SummarySlide } from "./summary"
@@ -50,16 +49,15 @@ export function SlideRenderer({ slide, isPlaying, animationClass, lineDelays: li
   if (slide.type === "summary_slide") {
     const points = (slide.content?.points as string[] | undefined) ?? []
     const variant = parseSummaryVariant(slide.content?.variant)
-    return (
-      <SummarySlide
-        title={slide.title}
-        points={points}
-        variant={variant}
-        isPlaying={isPlaying}
-        animationClass={animationClass}
-        lineDelays={lineDelays}
-      />
-    )
+    const summaryProps: SummarySlideProps = {
+      title: slide.title,
+      points,
+      variant,
+      isPlaying,
+      animationClass,
+      lineDelays,
+    }
+    return <SummarySlide {...summaryProps} />
   }
 
   if (slide.type === "bullet_points") {

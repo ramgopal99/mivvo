@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
+
+import { Button } from "@/components/ui/button";
 
 interface CourseFooterProps {
   courseId?: string;
@@ -22,12 +25,13 @@ export default function CourseFooter({ courseId, onViewDemo }: CourseFooterProps
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
+            <Button
               onClick={onViewDemo}
-              className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer"
+              size="lg"
+              className="px-8 py-3 font-semibold shadow-lg hover:shadow-xl"
             >
               View Course Demo
-            </button>
+            </Button>
           </div>
 
           <div className="pt-8 border-t border-border/50">

@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react'
 interface UseMediaStreamReturn {
   stream: MediaStream | null
   isGettingStream: boolean
-  videoRef: React.RefObject<HTMLVideoElement>
+  videoRef: React.RefObject<HTMLVideoElement | null>
   isAudioEnabled: boolean
   isVideoEnabled: boolean
   setIsAudioEnabled: (enabled: boolean) => void

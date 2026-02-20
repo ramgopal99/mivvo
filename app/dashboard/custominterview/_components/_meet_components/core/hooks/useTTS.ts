@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /**
  * useTTS Hook
  * 
@@ -238,12 +239,13 @@ export function useTTS({
       // ALWAYS force use default voice if configured and found, regardless of current voice
       // This ensures the default voice is always used when available
       if (defaultVoice && voiceConfig.defaultVoiceName) {
-        const currentVoiceURI = ttsServiceRef.current.getCurrentVoice()
+        const currentVoice = ttsServiceRef.current.getCurrentVoice()
+        const currentVoiceURI = currentVoice?.voiceURI ?? ''
         const isDefaultVoice = defaultVoice.voiceURI === currentVoiceURI
-        
+
         if (!isDefaultVoice) {
-          const currentVoice = availableVoices.find(v => v.voiceURI === currentVoiceURI)
-          console.log('🎯 IMMEDIATELY applying default voice:', defaultVoice.name, 'replacing:', currentVoice?.name || currentVoiceURI || 'unknown')
+          const currentVoiceMatch = availableVoices.find(v => v.voiceURI === currentVoiceURI)
+          console.log('🎯 IMMEDIATELY applying default voice:', defaultVoice.name, 'replacing:', currentVoiceMatch?.name || currentVoiceURI || 'unknown')
           
           // IMMEDIATELY apply the voice - don't wait for state updates
           ttsServiceRef.current.setVoice(defaultVoice.voiceURI)
@@ -279,12 +281,13 @@ export function useTTS({
       if (voiceConfig.defaultVoiceName) {
         const defaultVoice = findDefaultVoice(availableVoices)
         if (defaultVoice) {
-          const currentVoiceURI = ttsServiceRef.current.getCurrentVoice()
+          const currentVoice = ttsServiceRef.current.getCurrentVoice()
+          const currentVoiceURI = currentVoice?.voiceURI ?? ''
           const isCurrentlyDefault = defaultVoice.voiceURI === currentVoiceURI
-          
+
           if (!isCurrentlyDefault) {
-            const currentVoice = availableVoices.find(v => v.voiceURI === currentVoiceURI)
-            console.log('🎯 IMMEDIATELY forcing default voice:', defaultVoice.name, 'replacing:', currentVoice?.name || currentVoiceURI || 'unknown')
+            const currentVoiceMatch = availableVoices.find(v => v.voiceURI === currentVoiceURI)
+            console.log('🎯 IMMEDIATELY forcing default voice:', defaultVoice.name, 'replacing:', currentVoiceMatch?.name || currentVoiceURI || 'unknown')
             
             // IMMEDIATELY apply - don't wait for anything
             ttsServiceRef.current.setVoice(defaultVoice.voiceURI)

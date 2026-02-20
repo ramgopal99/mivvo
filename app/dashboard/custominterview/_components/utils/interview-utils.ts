@@ -17,7 +17,8 @@
  */
 
 import {
-  generatePythonDeveloperPrompt
+  generatePythonDeveloperPrompt,
+  generateJavaDeveloperPrompt
 } from '@/app/api/custom-interviews/prompts/technical'
 import {
   INTERVIEW_TYPES,
@@ -188,6 +189,7 @@ export function cleanCompanyNameForDisplay(companyName: string | null): string |
  */
 const PROMPT_FUNCTION_REGISTRY: Record<string, (jdDetails: string, title: string) => string> = {
   'python-developer': generatePythonDeveloperPrompt,
+  'java-developer': generateJavaDeveloperPrompt,
 }
 
 /**

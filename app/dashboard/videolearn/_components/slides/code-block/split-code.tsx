@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils"
 import { CodeDisplay } from "./code-display"
-import { DEFAULT_SLIDE_ANIMATION_CLASS } from "../animations"
 import type { CodeBlockSlideProps } from "../types"
 
 const DELAY_CLASSES = ["animation-delay-350", "animation-delay-550"] as const

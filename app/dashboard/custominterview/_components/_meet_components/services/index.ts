@@ -6,13 +6,7 @@ export { TTSService, getTTSService, destroyTTSService } from './tts-service'
 // Re-export types
 export type {
   STTConfig,
-  STTCallbacks,
-  SpeechRecognition,
-  SpeechRecognitionEvent,
-  SpeechRecognitionErrorEvent,
-  SpeechRecognitionResultList,
-  SpeechRecognitionResult,
-  SpeechRecognitionAlternative
+  STTCallbacks
 } from './stt-service'
 
 export type {

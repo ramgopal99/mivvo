@@ -17,13 +17,13 @@ export function QuoteHighlight({ title, highlight, supporting, isPlaying, classN
       )}
       <div className={cn("relative", animate && "animate-slide-up-fade-in", animate && (DELAY_CLASSES[0] ?? DELAY_CLASSES[DELAY_CLASSES.length - 1]))}>
         <span className="absolute -top-2 -left-1 text-6xl text-primary/30 font-serif leading-none" aria-hidden>
-          "
+          &quot;
         </span>
         <p className="text-xl md:text-2xl font-medium text-foreground leading-relaxed pl-8 pr-8 italic">
           {highlight}
         </p>
         <span className="absolute -bottom-4 -right-1 text-6xl text-primary/30 font-serif leading-none" aria-hidden>
-          "
+          &quot;
         </span>
       </div>
       {supporting && (

@@ -4,5 +4,9 @@ export type { InterviewData } from "./InterviewCard"
 export { InterviewListItem } from "./InterviewListItem"
 export { InterviewStats } from "./InterviewStats"
 export { InterviewList } from "./InterviewList"
-export * from "./utils/interview-title-utils"
+export {
+  generateInterviewTitle,
+  generateBackendInterviewTitle,
+  getTechnicalRoles,
+} from "./utils/interview-title-utils"
 export * from "./utils/interview-utils"

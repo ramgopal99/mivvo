@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
@@ -250,7 +251,7 @@ export function MeetTestRoom({
           const greetingMessage = getRandomGreeting()
           return `${basePrompt}
 
-IMPORTANT: The interview starts with a greeting question. The greeting will be randomly selected from available greetings.
+IMPORTANT: The interview starts with a greeting question. The following greeting has already been sent to the user: "${greetingMessage}"
 - When the user responds to the greeting, treat it as their first answer about themselves
 - After receiving their greeting response, continue with the interview naturally
 - Do NOT repeat the greeting question - it has already been asked

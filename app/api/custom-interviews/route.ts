@@ -181,7 +181,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Parse request body
-    const { jdDetails, interviewType, screenShare, company, generalSubType, hrSubType, foreignLanguageSubType, customPrompt, cvText, role, experienceLevel } = await request.json()
+    const { jdDetails, interviewType, screenShare, company, generalSubType, hrSubType, foreignLanguageSubType, customPrompt, cvText, role } = await request.json()
 
     // Rate limit check moved to analyze-jd route to prevent token waste
 
@@ -226,8 +226,7 @@ export async function POST(request: NextRequest) {
       undefined, // hrSubType no longer needed separately
       extractedData,
       cleanedCompanyName,
-      foreignLanguageSubType,
-      experienceLevel // Include experience level for Technical interviews
+      foreignLanguageSubType
     )
 
 
@@ -325,16 +324,12 @@ export async function POST(request: NextRequest) {
 
     // Generate and save interview prompt based on type
     const promptSelectionData: PromptSelectionData = {
-      interviewType,
       mappedInterviewType,
       generalSubType,
-      hrSubType: hrSubType || (interview.role && interview.interviewType === 'HR_INTERVIEW' ? interview.role : null),
-      foreignLanguageSubType: foreignLanguageSubType || null,
-      role: role || null,
+      role: role || (interview.role && interview.interviewType === 'HR_INTERVIEW' ? interview.role : null),
       jdDetails,
       title: interview.title || undefined,
-      customPrompt,
-      experienceLevel: experienceLevel || undefined
+      customPrompt
     }
 
     const promptText = selectInterviewPrompt(promptSelectionData)

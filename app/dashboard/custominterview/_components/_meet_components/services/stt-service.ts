@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // STT (Speech-to-Text) Service
 // Handles speech recognition functionality with support for multiple providers
 
