@@ -8,6 +8,7 @@
     "start": "next start -p 3001",
     "lint": "eslint",
     "promote-admin": "tsx scripts/promote-admin.ts",
+    "grant-credits-pro": "tsx scripts/grant-credits-and-pro.ts",
     "clean-collections": "tsx scripts/clean-unused-collections.ts",
     "clear-reading-data": "node scripts/clear-reading-data.js",
     "clear-mcq-data": "node scripts/clear-mcq-data.js",
