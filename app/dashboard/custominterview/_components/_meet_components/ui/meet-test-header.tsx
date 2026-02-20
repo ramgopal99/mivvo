@@ -16,7 +16,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
-import { UI_CONFIG } from '../config'
+import { defaultUiConfig } from '../core/utils'
 import { KnowYourPlatformDialog } from './know-your-platform-dialog'
 
 interface MeetTestHeaderProps {
@@ -35,8 +35,9 @@ interface MeetTestHeaderProps {
   onStopCodingInterview?: () => void
   isCodingInterviewActive?: boolean
   isRegularInterviewActive?: boolean
-  isScreenSharing?: boolean
+  isCodingMode?: boolean
   showInterviewStartDialog?: boolean
+  isChatOpen?: boolean
 }
 
 export function MeetTestHeader({
@@ -55,15 +56,16 @@ export function MeetTestHeader({
   onStopCodingInterview,
   isCodingInterviewActive = false,
   isRegularInterviewActive = false,
-  isScreenSharing = false,
-  showInterviewStartDialog = false
+  isCodingMode = false,
+  showInterviewStartDialog = false,
+  isChatOpen = false
 }: MeetTestHeaderProps) {
   const router = useRouter()
   const [showEndInterviewDialog, setShowEndInterviewDialog] = useState(false)
 
   const handleStopConversation = () => {
     onStopConversation?.()
-    if (UI_CONFIG.redirectOnStop) {
+    if (defaultUiConfig.redirectOnStop === true) {
       router.push('/dashboard/custominterview')
     }
     setShowEndInterviewDialog(false)
@@ -79,7 +81,7 @@ export function MeetTestHeader({
   const displayTime = formatTime ? formatTime(elapsedTime) : defaultFormatTime(elapsedTime)
 
   return (
-    <div className="absolute top-0 left-0 right-0 z-10 bg-background/95 backdrop-blur-sm border-b">
+    <div className={`absolute top-0 left-0 z-10 bg-background/95 backdrop-blur-sm border-b transition-all duration-300 ${isChatOpen ? 'right-[400px]' : 'right-0'}`}>
       <div className="flex items-center justify-between px-6 py-4">
         {/* Left side - Assistant info */}
         <div className="flex items-center gap-3">
@@ -110,13 +112,18 @@ export function MeetTestHeader({
             <>
               {!isRegularInterviewActive ? (
                 <Button
-                  onClick={onStartConversation}
+                  onClick={() => onStartConversation?.()}
                   disabled={isLoading}
-                  className="bg-green-600 hover:bg-green-700 gap-2 cursor-pointer"
+                  className={`gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${
+                    isCodingMode
+                      ? "bg-yellow-500 hover:bg-yellow-600 text-black"
+                      : "bg-green-600 hover:bg-green-700"
+                  }`}
                   size="sm"
+                  title={isLoading ? 'Loading...' : isCodingMode ? 'Start Coding Interview' : 'Start Interview'}
                 >
                   <Mic className="h-4 w-4" />
-                  Start Interview
+                  {isLoading ? 'Loading...' : isCodingMode ? 'Start Coding Interview' : 'Start Interview'}
                 </Button>
               ) : (
                 <>
@@ -155,7 +162,7 @@ export function MeetTestHeader({
 
 
           {/* Coding Interview Button */}
-          {onStartCodingInterview && onStopCodingInterview && (!UI_CONFIG.showCodingInterviewOnlyOnScreenShare || isScreenSharing) && (
+          {onStartCodingInterview && onStopCodingInterview && (!defaultUiConfig.showCodingInterviewOnlyOnScreenShare || isCodingMode) && (
             <Button
               onClick={isCodingInterviewActive ? onStopCodingInterview : onStartCodingInterview}
               variant={isCodingInterviewActive ? "destructive" : "outline"}

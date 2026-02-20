@@ -1,1177 +1,1028 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
-import { useState, useRef, useEffect, useCallback } from 'react'
-import { MicOff, VideoOff } from 'lucide-react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import { Chat } from '@/components/meet/chat'
+import { MeetTestHeader } from '../ui/meet-test-header'
+import { MeetTestControls } from '../ui/meet-test-controls'
+import { ScreenShareDisplay, ScreenShareInterviewLayout } from '../ui'
+import { getCodingQuestion, getRandomCodingQuestionIndex, type CodingRoundType } from '../data/coding-questions'
+import { VoiceSettings } from './components'
+import {
+  useMediaStream,
+  useVoiceDetection,
+  useScreenShare,
+  useVoiceSettings,
+  useVoiceChatState,
+  useUserTranscription,
+  useTTS,
+} from './hooks'
+import {
+  VideoFeed,
+  VoiceChatPanel,
+  InterviewStartDialog,
+  ScreenShareDialog,
+  FullScreenPrompt,
+} from './components'
+import { defaultVoiceConfig, defaultUiConfig } from './utils'
+import {
+  VoiceConfig,
+  UiConfig,
+  InterviewData
+} from '../types'
+import { getLLMService, Message as LLMMessage } from '../services/llm-service'
+import { getRandomGreeting } from '../greeting-message'
+import { getCodingModeSystemPrompt, CODING_MODE_GREETING, CHANGE_QUESTION_SIGNAL, USER_FINISHED_SIGNAL } from '../coding-mode-prompt'
+import { Monitor, AlertTriangle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { toast } from 'sonner'
 import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { MeetTestHeader } from '../ui/meet-test-header'
-import { MeetTestControls } from '../ui/meet-test-controls'
-import { getAuthHeaders } from '@/lib/auth-utils'
-import { ScreenShareDisplay } from '../ui/screen-share-display'
-import { DraggableCodeButton } from '../ui/draggable-code-button'
-import { CodeDialog } from '../ui/code-dialog'
-import { VoiceChat } from '../voice/voice-chat'
-import { VoiceSettings } from '../voice/voice-settings'
-import { LiveWaveform } from '../ui/live-waveform'
-import { Chat } from '@/components/meet/chat'
-import { CodingQuestion } from '../config'
-import { getRandomStaticQuestion } from '../static-questions'
-import { generateInterviewGreeting } from '../greeting-generator'
-import {
-  VoiceConfig,
-  UiConfig,
-  VoiceChatConfig,
-  VoiceChatMessages,
-  CodingQuestionDisplay,
-  InterviewData
-} from '../types'
 
-
-// Extend window interface for coding code getter
-declare global {
-  interface Window {
-    getCurrentCodingCode?: () => { code: string; language: string }
-  }
+interface AssistantDetails {
+  id: string
+  name: string
+  avatar?: string
+  role?: string
+  industry?: string
+  experienceLevel?: string
+  hasVoiceEnabled?: boolean
 }
 
 interface MeetTestRoomProps {
   interviewTitle?: string
   assistantName?: string
   assistantAvatar?: string
+  assistantDetails?: AssistantDetails
   onEndCall?: () => void
   voiceConfig?: VoiceConfig
   uiConfig?: UiConfig
-  codingVoiceChatConfig?: VoiceChatConfig
-  codingVoiceChatMessages?: VoiceChatMessages
-  codingQuestionDisplay?: CodingQuestionDisplay
-  interviewData?: InterviewData // Interview data with custom prompts
-  greeting?: string // Predefined greeting for the interview
+  interviewData?: InterviewData
+  greeting?: string
+  sttAvailable?: boolean | null
+  ttsAvailable?: boolean | null
+  /** Called when the full-screen prompt is shown/hidden so parent can hide Debug etc. */
+  onFullScreenPromptVisible?: (visible: boolean) => void
+  /** Called when user clicks Start Interview – e.g. to create attempt (start-attempt API). */
+  onBeforeStartInterview?: () => Promise<void>
+  /** Called when call ends with duration and transcript so parent can save conversation and update time usage. */
+  onEndCallWithPayload?: (payload: {
+    durationSeconds: number
+    transcript: { role: string; text: string; timestamp: string }[]
+    messages: { id: string; role: 'user' | 'assistant'; content: string; timestamp: string }[]
+  }) => void | Promise<void>
+  /** When true, mic and video stay on and user cannot disable them (e.g. when test mode is false). */
+  lockMicAndVideo?: boolean
 }
 
 export function MeetTestRoom({
-  interviewTitle = 'Interview',
-  assistantName = 'Mivvo',
+  interviewTitle,
+  assistantName,
   assistantAvatar,
+  assistantDetails,
   onEndCall,
-  voiceConfig = {
-    language: 'hi-IN',
-    speechRate: 1.2,
-    speechPitch: 1.0,
-    autoListenAfterAI: false
-  },
-  uiConfig = {
-    showChatBox: false,
-    showVoiceSettings: true,
-    showLiveTranscription: false,
-    showLiveTranscriptionCoding: false,
-    showShareScreen: true,
-    showCodeButtonOnlyOnScreenShare: true,
-    showCodingInterviewOnlyOnScreenShare: true,
-    showInterviewStartDialog: false,
-    redirectOnStop: false,
-    screenShareSuccessMessage: "Screen sharing started successfully!",
-    screenShareDialogTitle: "Screen Sharing Active",
-    screenShareDialogDescription: "Your entire screen is now being shared. Others can see everything on your screen in the bottom-right corner of their view.\n\nTips:\n• Click the monitor button again to stop sharing\n• Your entire screen content is visible to others",
-    screenShareRestrictToScreen: true,
-    screenShareRestrictionErrorMessage: "Please select your entire screen to share. Sharing individual windows or tabs is not allowed.",
-    enableAnalysisOnStop: true
-  },
-  codingVoiceChatConfig = {
-    SILENCE_TIMEOUT_MS: 3500,
-    RECOGNITION_KEEP_ALIVE_MS: 6000,
-    TTS_RESTART_DELAY_MS: 250,
-    USER_RESPONSE_TIMEOUT_MS: 60000
-  },
-  codingVoiceChatMessages = {
-    AI_GREETING_MESSAGE: "",
-    USER_RESPONSE_TIMEOUT_MESSAGE: "I'm still here. Feel free to continue working on the problem.",
-    QUESTION_INSTRUCTIONS: "Feel free to ask questions if you need any clarification. When you're done writing your code, just say done or submit, and I'll review your solution. You can continue with more questions anytime by saying next question."
-  },
-  codingQuestionDisplay = {
-    INCLUDE_QUESTION_TITLE: true,
-    INCLUDE_QUESTION_DESCRIPTION: false,
-    INCLUDE_QUESTION_INSTRUCTIONS: true
-  },
+  voiceConfig = defaultVoiceConfig,
+  uiConfig = defaultUiConfig,
   interviewData,
-  greeting
+  sttAvailable,
+  ttsAvailable,
+  onFullScreenPromptVisible,
+  onBeforeStartInterview,
+  onEndCallWithPayload,
+  lockMicAndVideo = false,
 }: MeetTestRoomProps) {
-  // Set greeting when interviewData or greeting prop changes
+  // Use assistantDetails if provided, otherwise fallback to props
+  const assistant: AssistantDetails = assistantDetails || {
+    id: interviewData?.id || 'meet-test-assistant',
+    name: assistantName || interviewData?.title || 'AI Assistant',
+    avatar: assistantAvatar,
+    role: 'AI Assistant',
+    industry: 'Technology',
+    experienceLevel: 'Expert',
+    hasVoiceEnabled: true
+  }
+
+  // UI state
+  const [isChatOpen, setIsChatOpen] = useState(false)
+  const [showSettings, setShowSettings] = useState(false)
+  const [showInterviewStartDialog, setShowInterviewStartDialog] = useState(false)
+  const [elapsedSeconds, setElapsedSeconds] = useState(0)
+
+  // Custom hooks
+  const {
+    stream,
+    isGettingStream,
+    videoRef,
+    isAudioEnabled,
+    isVideoEnabled,
+    setIsAudioEnabled,
+    setIsVideoEnabled,
+  } = useMediaStream()
+
+  // When lockMicAndVideo (e.g. test mode false): keep mic and video on, user cannot disable
   useEffect(() => {
-    const generateGreeting = async () => {
-      // Priority: 1. Provided greeting prop, 2. Generated greeting, 3. Default fallback
-      let greetingMessage = greeting
+    if (lockMicAndVideo) {
+      setIsAudioEnabled(true)
+      setIsVideoEnabled(true)
+    }
+  }, [lockMicAndVideo, setIsAudioEnabled, setIsVideoEnabled])
 
-      if (!greetingMessage && interviewData) {
-        // Generate dynamic greeting based on interview data
-        greetingMessage = await generateInterviewGreeting({
-          jd: interviewData.jd || interviewData.customPrompt, // Use JD or customPrompt as context
-          interviewType: interviewData.interviewType, // Use interview type for proper messaging
-          title: interviewData.title
-        }, assistantName)
+  // Default voice chat messages (no greeting - start clean)
+  const voiceChatMessages = {
+    AI_GREETING_MESSAGE: "",
+    USER_RESPONSE_TIMEOUT_MESSAGE: "I'm still here. Please continue with your thoughts.",
+  }
+
+  const {
+    voiceTranscript,
+    isVoiceChatActive,
+    isConversationMode,
+    isWaitingForUserResponse,
+    messages,
+    handleTranscriptUpdate,
+    handleVoiceChatStateChange,
+    handleConversationModeChange,
+    handleWaitingForResponseChange,
+    setIsConversationMode,
+  } = useVoiceChatState()
+
+  const { isUserSpeaking } = useVoiceDetection({
+    stream,
+    isAudioEnabled,
+    isVoiceChatActive,
+  })
+
+  // Track last sent transcript to avoid duplicates
+  const lastSentTranscriptRef = useRef<string>('')
+  const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const accumulatedUserSpeechRef = useRef<string>('')
+  const llmServiceRef = useRef<ReturnType<typeof getLLMService> | null>(null)
+  const isProcessingLLMRef = useRef<boolean>(false)
+  const handleTranscriptUpdateRef = useRef(handleTranscriptUpdate)
+  const voiceTranscriptRef = useRef(voiceTranscript)
+  const greetingSpokenRef = useRef<boolean>(false)
+  const isGreetingResponseRef = useRef<boolean>(false)
+  const isUserSpeakingRef = useRef<boolean>(false)
+  const codingCodeRef = useRef<{ code: string; language: string }>({ code: '', language: 'javascript' })
+  const containerRef = useRef<HTMLDivElement>(null)
+  const fullscreenEnteredRef = useRef(false)
+  const sessionStartTimeRef = useRef<number | null>(null)
+  const [showFullScreenPrompt, setShowFullScreenPrompt] = useState(false)
+  const [showExitWarning, setShowExitWarning] = useState(false)
+  const [exitCountdown, setExitCountdown] = useState(30)
+  const [exitWarningCount, setExitWarningCount] = useState(0)
+  const exitCountdownIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const exitingFullscreenProgrammaticallyRef = useRef(false)
+  const handleEndCallRef = useRef<() => Promise<void>>(() => Promise.resolve())
+  const EXIT_WARNING_MAX = 3
+  const EXIT_COUNTDOWN_SECONDS = 30
+
+  /** When set, overrides the question index from JD (used when AI signals [CHANGE_QUESTION]). */
+  const [codingQuestionIndexOverride, setCodingQuestionIndexOverride] = useState<number | null>(null)
+  const effectiveCodingIndexRef = useRef<number>(0)
+  const setCodingQuestionIndexOverrideRef = useRef(setCodingQuestionIndexOverride)
+  setCodingQuestionIndexOverrideRef.current = setCodingQuestionIndexOverride
+  /** Count AI follow-up questions after user has "finished" current problem; after 5 we auto-switch. */
+  const CODING_AI_MAX_QUESTIONS = 5
+  const aiFollowUpCountRef = useRef<number>(0)
+  /** True once user has said they're done/finished for the current question; then we count AI follow-ups. */
+  const userFinishedCurrentQuestionRef = useRef<boolean>(false)
+
+  const {
+    isScreenSharing,
+    screenStream,
+    showScreenShareDialog,
+    setShowScreenShareDialog,
+    toggleScreenShare,
+    displaySurface,
+  } = useScreenShare({ uiConfig })
+
+  // Only allow interview content when entire screen was chosen (coding round). Window/tab share is rejected in useScreenShare.
+  const isEntireScreenShared = isScreenSharing && (displaySurface === 'monitor' || displaySurface === 'screen')
+
+  const codingModeQuestion = useMemo(() => {
+    if (!interviewData?.screenShareEnabled) return getCodingQuestion('dsa', 0)
+    const roundType = (interviewData.role === 'sql' || interviewData.role === 'dsa' ? interviewData.role : 'dsa') as CodingRoundType
+    const jd = interviewData.jd || ''
+    const match = jd.match(/\[CODING_QUESTION_INDEX:(\d+)\]/)
+    const jdIndex = match ? parseInt(match[1], 10) : 0
+    const index = codingQuestionIndexOverride !== null ? codingQuestionIndexOverride : jdIndex
+    return getCodingQuestion(roundType, index)
+  }, [interviewData?.screenShareEnabled, interviewData?.role, interviewData?.jd, codingQuestionIndexOverride])
+
+  // Keep ref in sync so LLM callback can read current index when handling [CHANGE_QUESTION]
+  useEffect(() => {
+    if (!interviewData?.screenShareEnabled) return
+    const jd = interviewData.jd || ''
+    const match = jd.match(/\[CODING_QUESTION_INDEX:(\d+)\]/)
+    const jdIndex = match ? parseInt(match[1], 10) : 0
+    effectiveCodingIndexRef.current = codingQuestionIndexOverride !== null ? codingQuestionIndexOverride : jdIndex
+  }, [interviewData?.screenShareEnabled, interviewData?.jd, codingQuestionIndexOverride])
+
+  // Keep refs updated
+  useEffect(() => {
+    handleTranscriptUpdateRef.current = handleTranscriptUpdate
+    voiceTranscriptRef.current = voiceTranscript
+    isUserSpeakingRef.current = isUserSpeaking
+  }, [handleTranscriptUpdate, voiceTranscript, isUserSpeaking])
+
+  // Reset timeout if user starts speaking again
+  useEffect(() => {
+    if (isUserSpeaking && silenceTimeoutRef.current) {
+      // User started speaking again - clear the timeout to prevent sending incomplete speech
+      console.log('[STT] User started speaking again, clearing timeout to prevent premature send')
+      clearSilenceTimeout()
+    }
+  }, [isUserSpeaking])
+
+  // Initialize LLM service with system prompt - different for coding mode vs regular
+  useEffect(() => {
+    const systemPrompt = isScreenSharing
+      ? getCodingModeSystemPrompt(codingModeQuestion.title, codingModeQuestion.description)
+      : (() => {
+          const basePrompt = interviewData?.customPrompt ||
+            interviewData?.jd ||
+            'You are an AI interviewer conducting a professional interview. Ask relevant questions and provide constructive feedback.'
+          const greetingMessage = getRandomGreeting()
+          return `${basePrompt}
+
+IMPORTANT: The interview starts with a greeting question. The following greeting has already been sent to the user: "${greetingMessage}"
+- When the user responds to the greeting, treat it as their first answer about themselves
+- After receiving their greeting response, continue with the interview naturally
+- Do NOT repeat the greeting question - it has already been asked
+- Build on their response to ask follow-up questions related to their background and the job requirements
+- Do NOT prefix your responses with "Mivvo:" or your name - respond directly`
+        })()
+    
+    llmServiceRef.current = getLLMService(
+      {
+        model: 'gpt-4o-mini',
+        systemPrompt: systemPrompt,
+        temperature: 0.7,
+        maxTokens: 500,
+      },
+      {
+        onResponse: (response) => {
+          // Add AI response to chat (strip "Mivvo:" prefix if present)
+          if (response && response.trim()) {
+            let text = response.trim().replace(/^Mivvo:\s*/i, '').trim() || response.trim()
+
+            // Coding mode: if AI signals change question, switch to a new question from the list and strip the signal
+            if (isScreenSharing && interviewData?.screenShareEnabled && text.includes(CHANGE_QUESTION_SIGNAL)) {
+              text = text.replace(CHANGE_QUESTION_SIGNAL, '').trim() || "Let's try a different problem."
+              const roundType = (interviewData.role === 'sql' || interviewData.role === 'dsa' ? interviewData.role : 'dsa') as CodingRoundType
+              const currentIndex = effectiveCodingIndexRef.current
+              const newIndex = getRandomCodingQuestionIndex(roundType, currentIndex)
+              effectiveCodingIndexRef.current = newIndex
+              setCodingQuestionIndexOverrideRef.current(newIndex)
+              aiFollowUpCountRef.current = 0
+              userFinishedCurrentQuestionRef.current = false
+            }
+
+            // Coding mode: if AI signals user completed their solution (AI inferred from user's words), start counting follow-ups
+            if (isScreenSharing && interviewData?.screenShareEnabled && text.includes(USER_FINISHED_SIGNAL)) {
+              text = text.replace(USER_FINISHED_SIGNAL, '').trim() || text
+              userFinishedCurrentQuestionRef.current = true
+            }
+
+            const aiMessage = {
+              role: 'assistant',
+              text,
+              timestamp: new Date().toISOString()
+            }
+            // Simple approach: Just add the AI message to the current transcript
+            // The user message should already be finalized in the transcript from sendToLLM
+            const currentMessages = [...voiceTranscriptRef.current, aiMessage]
+            handleTranscriptUpdateRef.current(currentMessages)
+
+            // Voice chat active state is managed by onTTSSpeak callback in useTTS
+            // No need to set it here as it's handled by TTS callbacks
+
+            // Speak the AI response using TTS
+            if (ttsServiceRef.current) {
+              console.log('Calling TTS speak with:', text.substring(0, 50))
+              ttsServiceRef.current.speak(text)
+            } else {
+              console.warn('TTS service not initialized when trying to speak')
+            }
+
+            // Coding mode: after user has "finished" this question, count AI follow-ups; after 5, auto-switch
+            if (isScreenSharing && interviewData?.screenShareEnabled && userFinishedCurrentQuestionRef.current) {
+              aiFollowUpCountRef.current = (aiFollowUpCountRef.current || 0) + 1
+              if (aiFollowUpCountRef.current >= CODING_AI_MAX_QUESTIONS) {
+                const roundType = (interviewData.role === 'sql' || interviewData.role === 'dsa' ? interviewData.role : 'dsa') as CodingRoundType
+                const currentIndex = effectiveCodingIndexRef.current
+                const newIndex = getRandomCodingQuestionIndex(roundType, currentIndex)
+                effectiveCodingIndexRef.current = newIndex
+                setCodingQuestionIndexOverrideRef.current(newIndex)
+                aiFollowUpCountRef.current = 0
+                userFinishedCurrentQuestionRef.current = false
+                const switchMsg = "Let's try a different problem."
+                const switchMessage = { role: 'assistant', text: switchMsg, timestamp: new Date().toISOString() }
+                const updatedMessages = [...currentMessages, switchMessage]
+                handleTranscriptUpdateRef.current(updatedMessages)
+                if (ttsServiceRef.current) ttsServiceRef.current.speak(switchMsg)
+              }
+            }
+          }
+          isProcessingLLMRef.current = false
+        },
+        onError: (error) => {
+          console.error('LLM Error:', error)
+          isProcessingLLMRef.current = false
+        },
+        onStart: () => {
+          isProcessingLLMRef.current = true
+        },
+        onComplete: () => {
+          isProcessingLLMRef.current = false
+        },
       }
+    )
 
-      // Fallback to default if nothing else
-      greetingMessage = greetingMessage || `Hi! I'm ${assistantName}. Could you tell me about your background?`
+    return () => {
+      if (silenceTimeoutRef.current) {
+        clearTimeout(silenceTimeoutRef.current)
+      }
+    }
+  }, [interviewData?.customPrompt, interviewData?.jd, isScreenSharing, codingModeQuestion.title, codingModeQuestion.description])
 
-      console.log('Setting greeting:', greetingMessage)
+  // Clear silence timeout
+  const clearSilenceTimeout = () => {
+    if (silenceTimeoutRef.current) {
+      clearTimeout(silenceTimeoutRef.current)
+      silenceTimeoutRef.current = null
+    }
+  }
 
-      setVoiceChatMessages(prev => ({
-        ...prev,
-        AI_GREETING_MESSAGE: greetingMessage
-      }))
+  // Send accumulated speech to LLM
+  const sendToLLM = useCallback(async (userText: string) => {
+    if (!userText.trim() || isProcessingLLMRef.current || !llmServiceRef.current) {
+      return
     }
 
-    generateGreeting()
-  }, [interviewData, greeting, assistantName])
+    try {
+      isProcessingLLMRef.current = true
+      
+      // Finalize the user message in transcript before sending
+      const currentTranscript = voiceTranscriptRef.current
+      const lastMessage = currentTranscript[currentTranscript.length - 1]
+      
+      // Check if this is the first user response (greeting response)
+      const isFirstResponse = !greetingSpokenRef.current || currentTranscript.length === 0 || 
+                             (currentTranscript.length === 1 && currentTranscript[0].role === 'assistant')
+      
+      // Ensure the user message is finalized in the transcript
+      let finalizedTranscript = currentTranscript
+      if (lastMessage && lastMessage.role === 'user') {
+        // Update the last user message to match exactly what we're sending
+        finalizedTranscript = [
+          ...currentTranscript.slice(0, -1),
+          {
+            role: 'user',
+            text: userText.trim(),
+            timestamp: lastMessage.timestamp // Keep original timestamp
+          }
+        ]
+        handleTranscriptUpdateRef.current(finalizedTranscript)
+      } else if (!lastMessage || lastMessage.text !== userText.trim()) {
+        // Add user message if it doesn't exist
+        finalizedTranscript = [
+          ...currentTranscript,
+          {
+            role: 'user',
+            text: userText.trim(),
+            timestamp: new Date().toISOString()
+          }
+        ]
+        handleTranscriptUpdateRef.current(finalizedTranscript)
+      }
+      
+      // Get the greeting message that was used (from transcript)
+      const greetingMessage = finalizedTranscript.find(m => m.role === 'assistant' && m.text.includes('Mivvo'))?.text || 'the greeting question'
+      
+      // Convert to LLM message format. In coding mode, append user's code so AI can view it.
+      const code = codingCodeRef.current
+      const codeBlock = (isScreenSharing && code?.code)
+        ? `\n\n[CURRENT USER CODE (${code.language}):]\n\`\`\`${code.language}\n${code.code}\n\`\`\``
+        : ''
 
-  // Show interview start dialog if enabled in config
+      const llmMessages: LLMMessage[] = finalizedTranscript.map((msg, index) => {
+        const isLastUserMsg = msg.role === 'user' && index === finalizedTranscript.length - 1
+        let content = msg.text
+        if (isFirstResponse && isLastUserMsg) {
+          content = `[This is the user's response to the greeting question: "${greetingMessage}"]\n\n${msg.text}`
+        }
+        if (isScreenSharing && isLastUserMsg && codeBlock) {
+          content = content + codeBlock
+        }
+        return {
+          id: `msg-${msg.timestamp}`,
+          role: msg.role as 'user' | 'assistant',
+          content,
+          timestamp: new Date(msg.timestamp)
+        }
+      })
+
+      // Mark that we've processed the greeting response
+      if (isFirstResponse) {
+        isGreetingResponseRef.current = true
+      }
+
+      // Send to LLM with conversation context
+      await llmServiceRef.current.sendMessage({
+        messages: llmMessages,
+        customPrompt: interviewData?.customPrompt || interviewData?.jd
+      })
+    } catch (error) {
+      console.error('Error sending to LLM:', error)
+      isProcessingLLMRef.current = false
+    }
+  }, [interviewData?.customPrompt, interviewData?.jd, isScreenSharing])
+
+  const { transcript: userTranscript, resetTranscript } = useUserTranscription({
+    isAudioEnabled,
+    isConversationMode, // Pass isConversationMode as-is, handle pause in hook
+    language: voiceConfig.language,
+    shouldPause: isVoiceChatActive, // Pass separate flag to pause when AI is speaking
+    onFinalTranscript: (text) => {
+      // Don't process if AI is speaking or processing LLM
+      if (isVoiceChatActive || isProcessingLLMRef.current) {
+        return
+      }
+
+      // Accumulate user speech - append new text to existing accumulated speech
+      if (text.trim()) {
+        // Append new text to accumulated speech (add space if there's existing content)
+        const newText = text.trim()
+        if (accumulatedUserSpeechRef.current) {
+          accumulatedUserSpeechRef.current = accumulatedUserSpeechRef.current + ' ' + newText
+        } else {
+          accumulatedUserSpeechRef.current = newText
+        }
+        
+        // Simple chat approach: Update the last message if it's a pending user message
+        // Otherwise create a new user message
+        const userMessage = {
+          role: 'user',
+          text: accumulatedUserSpeechRef.current,
+          timestamp: new Date().toISOString()
+        }
+        
+        // Simple chat approach: Check if last message is a user message that we're still building
+        // Only update if we're building on the same message (last message matches our accumulated speech start)
+        const lastMessage = voiceTranscript[voiceTranscript.length - 1]
+        
+        // Check if we're still building the same message
+        // This happens when user continues speaking (accumulated speech grows)
+        // If accumulated was cleared (empty), we're starting fresh, so add new message
+        const isStillBuildingLastMessage = lastMessage && 
+                                          lastMessage.role === 'user' && 
+                                          accumulatedUserSpeechRef.current.length > 0 &&
+                                          (lastMessage.text.trim() === accumulatedUserSpeechRef.current.trim() ||
+                                           accumulatedUserSpeechRef.current.startsWith(lastMessage.text.trim() + ' '))
+        
+        // Update existing message if still building, otherwise add new one
+        const currentMessages = isStillBuildingLastMessage
+          ? [...voiceTranscript.slice(0, -1), userMessage]
+          : [...voiceTranscript, userMessage]
+        handleTranscriptUpdate(currentMessages)
+
+        // Clear existing timeout and reset it - user is still speaking
+        clearSilenceTimeout()
+        
+        // Set timeout to send to LLM after silence period
+        // This will be reset if user continues speaking
+        const silenceTimeout = voiceConfig.silenceTimeoutMs || 5000
+        console.log(`[STT] Setting silence timeout: ${silenceTimeout}ms (${silenceTimeout / 1000} seconds) - will send to LLM after user stops speaking`)
+        silenceTimeoutRef.current = setTimeout(() => {
+          const textToSend = accumulatedUserSpeechRef.current.trim()
+          // Check if user is still speaking before sending - use ref to get current value
+          const userCurrentlySpeaking = isUserSpeakingRef.current
+          
+          if (textToSend && !isProcessingLLMRef.current && !isVoiceChatActive && !userCurrentlySpeaking && llmServiceRef.current) {
+            // User has been silent for the full timeout period AND is not currently speaking, send to LLM
+            console.log(`[STT] Silence timeout reached (${silenceTimeout}ms). User not speaking. Sending to LLM:`, textToSend.substring(0, 100))
+            const textToSendFinal = textToSend
+            // Clear accumulated speech BEFORE sending to prevent new speech from appending to old message
+            accumulatedUserSpeechRef.current = ''
+            lastSentTranscriptRef.current = ''
+            
+            // Send to LLM
+            sendToLLM(textToSendFinal)
+            
+            // Reset the transcript after sending
+            if (resetTranscript) {
+              resetTranscript()
+            }
+          } else {
+            console.log(`[STT] Timeout reached but not sending - isProcessingLLM: ${isProcessingLLMRef.current}, isVoiceChatActive: ${isVoiceChatActive}, isUserSpeaking: ${userCurrentlySpeaking}, hasText: ${!!textToSend}`)
+          }
+        }, silenceTimeout)
+      }
+    },
+  })
+
+  const {
+    selectedVoice,
+    setSelectedVoice,
+    availableVoices,
+    testVoice,
+  } = useVoiceSettings(voiceConfig)
+
+  // Initialize and manage TTS service using custom hook
+  // This hook handles all TTS initialization, default voice selection, and STT pause/resume
+  const { ttsService } = useTTS({
+    voiceConfig,
+    availableVoices,
+    selectedVoice,
+    setSelectedVoice,
+    isAudioEnabled,
+    isConversationMode,
+    onTTSSpeak: (isSpeaking) => {
+      // Update voice chat active state based on TTS speaking status
+      // This prevents user transcription while AI is speaking
+      handleVoiceChatStateChange(isSpeaking)
+    },
+  })
+  
+  const ttsServiceRef = useRef(ttsService)
+  
+  // Keep ref updated for LLM callback
+  useEffect(() => {
+    ttsServiceRef.current = ttsService
+  }, [ttsService])
+
+  // Show interview start dialog
   useEffect(() => {
     if (uiConfig.showInterviewStartDialog) {
       setShowInterviewStartDialog(true)
     }
   }, [uiConfig.showInterviewStartDialog])
 
-  // Handle end call - save conversation data and perform analysis if interview is active
-  const handleEndCall = async () => {
-    // Prevent multiple end call attempts
-    if (isEndingCall) {
-      console.log('End call already in progress, skipping duplicate call')
-      return
-    }
-
-    setIsEndingCall(true) // Prevent double saving and multiple calls
-
-    try {
-      // If there's an active conversation and analysis is enabled, save it and perform analysis before ending
-      if (isConversationMode && voiceTranscript.length > 0 && interviewData?.id) {
-        if (uiConfig.enableAnalysisOnStop) {
-          console.log('End call clicked with active conversation, saving data and performing analysis...')
-
-          // Save conversation data (this already includes analysis)
-          console.log('💾 handleEndCall: Calling handleSaveConversation')
-          await handleSaveConversation()
-          console.log('💾 handleEndCall: Calling handleUpdateTimeUsage')
-          await handleUpdateTimeUsage()
-        } else {
-          console.log('End call clicked with active conversation, but analysis disabled (saving tokens for testing)')
-          // Still update time usage even if not analyzing
-          console.log('💾 handleEndCall: Calling handleUpdateTimeUsage (no analysis)')
-          await handleUpdateTimeUsage()
-        }
-      }
-
-      // Stop any active conversations AFTER saving (to prevent state change triggers)
-      if (isConversationMode) {
-        setIsConversationMode(false)
-      }
-      if (isCodingInterviewActive) {
-        setIsCodingInterviewActive(false)
-      }
-
-      // Call the original onEndCall
-      if (onEndCall) {
-        onEndCall()
-      }
-
-      // Redirect to custom interview page if enabled in config
-      if (uiConfig.redirectOnStop) {
-        window.location.href = '/dashboard/custominterview'
-      }
-    } finally {
-      // Reset flag after everything is done
-      setIsEndingCall(false)
-    }
-  }
-
-  // State for media controls
-  const [isAudioEnabled, setIsAudioEnabled] = useState(false)
-  const [isVideoEnabled, setIsVideoEnabled] = useState(false)
-  const [isChatOpen, setIsChatOpen] = useState(false)
-  const [showSettings, setShowSettings] = useState(false)
-
-  // State for screen sharing
-  const [isScreenSharing, setIsScreenSharing] = useState(false)
-  const [screenStream, setScreenStream] = useState<MediaStream | null>(null)
-  const [showScreenShareDialog, setShowScreenShareDialog] = useState(false)
-
-  // State for interview start dialog
-  const [showInterviewStartDialog, setShowInterviewStartDialog] = useState(false)
-
-  // State for code dialog
-  const [showCodeDialog, setShowCodeDialog] = useState(false)
-  const [currentCodingQuestion, setCurrentCodingQuestion] = useState<CodingQuestion | null>(null)
-
-  // State to prevent double saving when ending call
-  const [isEndingCall, setIsEndingCall] = useState(false)
-
-  // Ref to prevent multiple simultaneous save operations (using ref for synchronous access)
-  const isSavingConversationRef = useRef(false)
-
-  // Ref to prevent multiple simultaneous time usage updates
-  const isUpdatingTimeUsageRef = useRef(false)
-
-  // State for media stream
-  const [stream, setStream] = useState<MediaStream | null>(null)
-  const [isGettingStream, setIsGettingStream] = useState(false)
-  const [isUserSpeaking, setIsUserSpeaking] = useState(false)
-
-  // State for dynamic voice chat messages
-  const [voiceChatMessages, setVoiceChatMessages] = useState<VoiceChatMessages>({
-    AI_GREETING_MESSAGE: "Hi! I'm Mivvo. Could you tell me about your background?",
-    USER_RESPONSE_TIMEOUT_MESSAGE: "I'm still here. Please continue with your thoughts.",
-  })
-  
-  // State for voice chat
-  const [voiceTranscript, setVoiceTranscript] = useState<{ role: string; text: string; timestamp: string }[]>([])
-  const [isVoiceChatActive, setIsVoiceChatActive] = useState(false)
-  const [isConversationMode, setIsConversationMode] = useState(false)
-  const [messages, setMessages] = useState<{ id: string; role: 'user' | 'assistant'; content: string; timestamp: string }[]>([])
-
-  // State for coding interview voice chat (separate from regular voice chat)
-  const [isCodingVoiceChatActive, setIsCodingVoiceChatActive] = useState(false)
-  const [isCodingInterviewActive, setIsCodingInterviewActive] = useState(false)
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
-  
-  // Voice settings state - using configuration values
-  const [selectedVoice, setSelectedVoice] = useState<string>('')
-  const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([])
-
-  // Timer state
-  const [elapsedTime, setElapsedTime] = useState<number>(0)
-  const [isTimerRunning, setIsTimerRunning] = useState<boolean>(false)
-
-  // User response waiting state
-  const [isWaitingForUserResponse, setIsWaitingForUserResponse] = useState<boolean>(false)
-  const [isWaitingForCodingUserResponse, setIsWaitingForCodingUserResponse] = useState<boolean>(false)
-
-  // Refs
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const audioContextRef = useRef<AudioContext | null>(null)
-  const analyserRef = useRef<AnalyserNode | null>(null)
-  const microphoneRef = useRef<MediaStreamAudioSourceNode | null>(null)
-  const isGettingStreamRef = useRef<boolean>(false)
-
-  // Load available voices and test media access
+  // Listen for start voice chat event to enable microphone
   useEffect(() => {
-    const loadVoices = () => {
-      const voices = speechSynthesis.getVoices()
-      setAvailableVoices(voices)
-
-      // Filter for Indian and English voices
-      const targetVoices = voices.filter(voice =>
-        voice.lang.startsWith('hi') || voice.lang.startsWith('en') ||
-        voice.lang.startsWith('bn') || voice.lang.startsWith('ta') ||
-        voice.lang.startsWith('te') || voice.lang.startsWith('gu') ||
-        voice.lang.startsWith('kn') || voice.lang.startsWith('ml') ||
-        voice.lang.startsWith('mr') || voice.lang.startsWith('or') ||
-        voice.lang.startsWith('pa') || voice.lang.startsWith('as') ||
-        voice.lang.startsWith('ne')
-      )
-
-      // Auto-select configured language voice if available
-      if (targetVoices.length > 0) {
-        const targetVoice = targetVoices.find(v =>
-          v.lang.startsWith(voiceConfig.language) ||
-          v.lang.startsWith(voiceConfig.language.split('-')[0])
-        )
-        if (targetVoice) {
-          setSelectedVoice(targetVoice.voiceURI)
-          console.log(`Auto-selected ${voiceConfig.language} voice:`, targetVoice.name, targetVoice.voiceURI)
-        } else if (!selectedVoice) {
-          // Fallback to first available voice if configured language not found
-          setSelectedVoice(targetVoices[0].voiceURI)
-          console.log('Fallback to first available voice:', targetVoices[0].name)
-        }
+    const handleStartVoiceChat = () => {
+      // Enable microphone when start is clicked
+      if (!isAudioEnabled) {
+        setIsAudioEnabled(true)
       }
     }
 
-    loadVoices()
-    speechSynthesis.onvoiceschanged = loadVoices
-
-    // Test if getUserMedia is available
-    if (navigator.mediaDevices) {
-      console.log('getUserMedia is available')
-    } else {
-      console.error('getUserMedia is not available')
-    }
+    window.addEventListener('startVoiceChat', handleStartVoiceChat as EventListener)
 
     return () => {
-      speechSynthesis.onvoiceschanged = null
+      window.removeEventListener('startVoiceChat', handleStartVoiceChat as EventListener)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [voiceConfig.language])
+  }, [isAudioEnabled, setIsAudioEnabled])
 
-  // Voice activity detection for user
+  // Speak greeting when conversation mode starts
   useEffect(() => {
-    if (!stream || !isAudioEnabled) {
-      setIsUserSpeaking(false)
-      return
-    }
-
-    const audioTracks = stream.getAudioTracks()
-    if (audioTracks.length === 0) {
-      setIsUserSpeaking(false)
-      return
-    }
-
-    // Create audio context and analyser
-    audioContextRef.current = new AudioContext()
-    analyserRef.current = audioContextRef.current.createAnalyser()
-    analyserRef.current.fftSize = 256
-    analyserRef.current.smoothingTimeConstant = 0.8
-
-    // Connect microphone to analyser
-    microphoneRef.current = audioContextRef.current.createMediaStreamSource(stream)
-    microphoneRef.current.connect(analyserRef.current)
-
-    const bufferLength = analyserRef.current.frequencyBinCount
-    const dataArray = new Uint8Array(bufferLength)
-
-    const detectVoice = () => {
-      if (!analyserRef.current) return
-
-      analyserRef.current.getByteFrequencyData(dataArray)
-
-      // Calculate average volume
-      const average = dataArray.reduce((sum, value) => sum + value, 0) / bufferLength
-      const normalizedLevel = average / 255
-
-      // Determine if speaking (threshold can be adjusted)
-      // But don't detect as speaking if AI is currently speaking to prevent feedback
-      const isCurrentlySpeaking = normalizedLevel > 0.1 && !(isVoiceChatActive || isCodingVoiceChatActive)
-      setIsUserSpeaking(isCurrentlySpeaking)
-
-      requestAnimationFrame(detectVoice)
-    }
-
-    detectVoice()
-
-    return () => {
-      if (microphoneRef.current) {
-        microphoneRef.current.disconnect()
-      }
-      if (audioContextRef.current) {
-        audioContextRef.current.close()
-      }
-    }
-  }, [stream, isAudioEnabled, isVoiceChatActive, isCodingVoiceChatActive])
-
-  // Manage media stream
-  useEffect(() => {
-    let mounted = true
-    let currentStream: MediaStream | null = null
-
-    const updateMediaStream = async () => {
-      console.log('updateMediaStream called, isGettingStream:', isGettingStreamRef.current)
-      if (isGettingStreamRef.current) return
-      
-      console.log('Setting isGettingStream to true')
-      isGettingStreamRef.current = true
-      setIsGettingStream(true)
-
-      try {
-        // Stop existing stream completely
-        if (currentStream) {
-          console.log('Stopping existing stream')
-          currentStream.getTracks().forEach(track => track.stop())
-          currentStream = null
-        }
-
-        // Create new stream if needed
-        if (isVideoEnabled || isAudioEnabled) {
-          const constraints = {
-            video: isVideoEnabled ? {
-              width: { ideal: 640, max: 1280 },
-              height: { ideal: 480, max: 720 },
-              facingMode: 'user'
-            } : false,
-            audio: isAudioEnabled
-          }
-
-          console.log('Requesting media with constraints:', constraints)
-          const newStream = await navigator.mediaDevices.getUserMedia(constraints)
-          console.log('Got media stream:', newStream)
-          console.log('Stream tracks:', newStream.getTracks())
+    if (isConversationMode && !greetingSpokenRef.current) {
+      // Wait for TTS service to be ready
+      const checkAndSpeakGreeting = () => {
+        if (ttsServiceRef.current) {
+          greetingSpokenRef.current = true
           
-          if (mounted) {
-            currentStream = newStream
-            console.log('Setting stream in state')
-            setStream(newStream)
-
-            if (isVideoEnabled && videoRef.current) {
-              console.log('Setting video srcObject')
-              videoRef.current.srcObject = newStream
-              
-              // Wait for video to be ready
-              videoRef.current.onloadedmetadata = () => {
-                console.log('Video metadata loaded, attempting to play')
-                videoRef.current?.play().catch(error => {
-                  console.error("Video play error:", error)
-                })
-              }
-            }
-          } else {
-            console.log('Component unmounted, stopping stream')
-            newStream.getTracks().forEach(track => track.stop())
+          // Use coding mode greeting when in coding mode, else random greeting
+          const randomGreeting = isScreenSharing ? CODING_MODE_GREETING : getRandomGreeting()
+          
+          // Add greeting to transcript as assistant message
+          const greetingMessage = {
+            role: 'assistant',
+            text: randomGreeting,
+            timestamp: new Date().toISOString()
           }
+          handleTranscriptUpdate([greetingMessage])
+          
+          // Speak the greeting via TTS
+          console.log('Speaking random greeting:', randomGreeting)
+          ttsServiceRef.current.speak(randomGreeting)
         } else {
-          console.log('No video/audio needed, clearing stream')
-          if (videoRef.current) {
-            videoRef.current.srcObject = null
-          }
-          if (mounted) {
-            setStream(null)
-          }
-        }
-      } catch (error) {
-        console.error("Error accessing media devices:", error)
-        console.error("Error details:", error)
-        if (mounted) {
-          setStream(null)
-        }
-      } finally {
-        if (mounted) {
-          console.log('Setting isGettingStream to false')
-          isGettingStreamRef.current = false
-          setIsGettingStream(false)
-        }
-      }
-    }
-
-    updateMediaStream()
-
-    return () => {
-      mounted = false
-      if (currentStream) {
-        currentStream.getTracks().forEach(track => track.stop())
-      }
-    }
-  }, [isVideoEnabled, isAudioEnabled])
-
-  // Screen sharing functions
-  const startScreenShare = async () => {
-    try {
-      // Configure display media options
-      const displayMediaOptions: DisplayMediaStreamOptions = {
-        video: true, // Allow all video sources, we'll restrict in the validation below
-        audio: false
-      }
-
-      const stream = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions)
-
-      // Check if user selected a browser tab (not entire screen or other app)
-      const videoTrack = stream.getVideoTracks()[0]
-
-      // Wait a bit for the track to be fully initialized
-      await new Promise(resolve => setTimeout(resolve, 100))
-
-      const settings = videoTrack.getSettings()
-      const displaySurface = (settings as MediaTrackSettings & { displaySurface?: string }).displaySurface
-
-      // Debug: Log what was selected
-      console.log('Screen share selection:', { displaySurface, settings, allSettings: Object.keys(settings) })
-
-      // If restriction is enabled and we can detect the surface type
-      if (uiConfig.screenShareRestrictToScreen && displaySurface) {
-        if (displaySurface !== 'monitor') {
-          // User selected something other than entire screen, reject and show error
-          console.log('Rejected screen share - only entire screen allowed:', displaySurface)
-          stream.getTracks().forEach(track => track.stop())
-          toast.error(uiConfig.screenShareRestrictionErrorMessage)
-          return
-        }
-      } else if (uiConfig.screenShareRestrictToScreen && !displaySurface) {
-        // displaySurface not available - allow sharing with warning
-        console.log('displaySurface not available, allowing share with warning')
-        toast.warning('Please ensure you selected your entire screen. If you shared a window or tab, please stop and try again.')
-      }
-
-      setScreenStream(stream)
-      setIsScreenSharing(true)
-
-      // Show success message and dialog
-      toast.success(uiConfig.screenShareSuccessMessage)
-      setShowScreenShareDialog(true)
-
-      // Handle when user stops sharing via browser UI
-      stream.getVideoTracks()[0].addEventListener('ended', () => {
-        stopScreenShare(false)
-      })
-    } catch (error: unknown) {
-      // Handle user denial/cancellation
-      if (error instanceof DOMException && error.name === 'NotAllowedError') {
-        toast.error('Screen sharing was cancelled or denied. Please try again and allow access.')
-        return
-      }
-
-      // Log other errors to console for debugging
-      console.error('Error starting screen share:', error)
-      toast.error('Failed to start screen sharing. Please try again.')
-    }
-  }
-
-  const stopScreenShare = (showMessage = true) => {
-    if (screenStream) {
-      screenStream.getTracks().forEach(track => track.stop())
-      setScreenStream(null)
-    }
-    setIsScreenSharing(false)
-
-    if (showMessage) {
-      console.log('Screen sharing stopped')
-    }
-  }
-
-  const toggleScreenShare = () => {
-    if (isScreenSharing) {
-      stopScreenShare()
-    } else {
-      startScreenShare()
-    }
-  }
-
-  // Cleanup screen sharing on unmount
-  useEffect(() => {
-    return () => {
-      if (screenStream) {
-        screenStream.getTracks().forEach(track => track.stop())
-      }
-    }
-  }, [screenStream])
-
-  // Ensure video element gets the stream when available
-  useEffect(() => {
-    if (stream && isVideoEnabled && videoRef.current) {
-      console.log('Setting video stream in useEffect')
-      videoRef.current.srcObject = stream
-      
-      // Try to play immediately
-      const playVideo = () => {
-        if (videoRef.current) {
-          videoRef.current.play().catch(error => {
-            console.error("Video play error:", error)
-          })
+          // If TTS not ready yet, check again after a short delay
+          setTimeout(checkAndSpeakGreeting, 200)
         }
       }
       
-      // Try to play immediately
-      playVideo()
+      // Start checking after a small delay to allow TTS to initialize
+      const greetingTimeout = setTimeout(checkAndSpeakGreeting, 500)
       
-      // Also try after a short delay in case the video isn't ready
-      const timeoutId = setTimeout(playVideo, 100)
-      
-      return () => clearTimeout(timeoutId)
+      return () => {
+        clearTimeout(greetingTimeout)
+      }
     }
-  }, [stream, isVideoEnabled])
+  }, [isConversationMode, handleTranscriptUpdate, ttsService, isScreenSharing])
 
-  // Timer effect
+  // Full screen: show "Click to enter" prompt when useFullScreenInMeet is true (browsers require user gesture)
   useEffect(() => {
-    let intervalId: NodeJS.Timeout | null = null
-
-    if (isTimerRunning) {
-      intervalId = setInterval(() => {
-        setElapsedTime(prev => prev + 1)
-      }, 1000)
+    if (uiConfig.useFullScreenInMeet) {
+      setShowFullScreenPrompt(true)
     }
-
     return () => {
-      if (intervalId) {
-        clearInterval(intervalId)
+      if (fullscreenEnteredRef.current && document.fullscreenElement != null) {
+        document.exitFullscreen?.().catch(() => {})
+        fullscreenEnteredRef.current = false
       }
     }
-  }, [isTimerRunning])
+  }, [uiConfig.useFullScreenInMeet])
 
-  const speakCodingQuestion = useCallback((question: CodingQuestion) => {
-    // Build text to speak based on config options
-    const textParts = []
-
-    if (codingQuestionDisplay.INCLUDE_QUESTION_TITLE) {
-      textParts.push(question.title)
-    }
-
-    if (codingQuestionDisplay.INCLUDE_QUESTION_DESCRIPTION) {
-      textParts.push(question.description)
-    }
-
-    if (codingQuestionDisplay.INCLUDE_QUESTION_INSTRUCTIONS) {
-      textParts.push(codingVoiceChatMessages.QUESTION_INSTRUCTIONS || "")
-    }
-
-    const textToSpeak = textParts.join('. ')
-
-    const utterance = new SpeechSynthesisUtterance(textToSpeak)
-    utterance.rate = voiceConfig.speechRate
-    utterance.pitch = voiceConfig.speechPitch
-
-    if (selectedVoice) {
-      const voice = availableVoices.find(v => v.voiceURI === selectedVoice)
-      if (voice) {
-        utterance.voice = voice
-      }
-    }
-
-    // Manage speaking state for UI indicators
-    utterance.onstart = () => {
-      setIsCodingVoiceChatActive(true)
-    }
-    utterance.onend = () => {
-      setIsCodingVoiceChatActive(false)
-      // Start timer after AI finishes speaking the question (like regular interviews)
-      if (isCodingInterviewActive && !isTimerRunning) {
-        setIsTimerRunning(true)
-        setElapsedTime(0)
-      }
-    }
-    utterance.onerror = () => {
-      setIsCodingVoiceChatActive(false)
-      // Start timer even on error
-      if (isCodingInterviewActive && !isTimerRunning) {
-        setIsTimerRunning(true)
-        setElapsedTime(0)
-      }
-    }
-
-    speechSynthesis.speak(utterance)
-  }, [selectedVoice, availableVoices, isCodingInterviewActive, isTimerRunning, codingQuestionDisplay.INCLUDE_QUESTION_TITLE, codingQuestionDisplay.INCLUDE_QUESTION_DESCRIPTION, codingQuestionDisplay.INCLUDE_QUESTION_INSTRUCTIONS, codingVoiceChatMessages.QUESTION_INSTRUCTIONS, voiceConfig.speechRate, voiceConfig.speechPitch])
-
-  const handleNextCodingQuestion = useCallback(() => {
-    // Always advance to next question (no session limit)
-    if (isCodingInterviewActive) {
-      // Advance to next question
-      const nextIndex = currentQuestionIndex + 1
-      setCurrentQuestionIndex(nextIndex)
-
-      // Generate new question
-      const newQuestion = getRandomStaticQuestion()
-      setCurrentCodingQuestion(newQuestion)
-
-      // Clear current code and reset dialog
-      setShowCodeDialog(false)
-
-      // Small delay then show new question
-      setTimeout(() => {
-        setShowCodeDialog(true)
-
-        // Speak the full new question with instructions after dialog opens
-        setTimeout(() => {
-          speakCodingQuestion(newQuestion)
-        }, 1500)
-      }, 1000)
-    }
-  }, [isCodingInterviewActive, currentQuestionIndex, speakCodingQuestion])
-
-  // Listen for next coding question event
+  // Notify parent when full-screen prompt is visible so it can hide Debug panel etc.
   useEffect(() => {
-    window.addEventListener('nextCodingQuestion', handleNextCodingQuestion)
+    onFullScreenPromptVisible?.(showFullScreenPrompt)
+    return () => onFullScreenPromptVisible?.(false)
+  }, [showFullScreenPrompt, onFullScreenPromptVisible])
 
-    return () => {
-      window.removeEventListener('nextCodingQuestion', handleNextCodingQuestion)
-    }
-  }, [handleNextCodingQuestion])
-
-  // Start timer when conversation mode starts (regular interviews only)
-  // Coding interviews start timer after AI finishes speaking the question
+  // Timer: update elapsed time every second when conversation is active
   useEffect(() => {
-    if (isConversationMode && !isCodingInterviewActive && !isTimerRunning) {
-      setIsTimerRunning(true)
-      setElapsedTime(0) // Reset timer when starting conversation
-    } else if (!isConversationMode && !isCodingInterviewActive && isTimerRunning) {
-      setIsTimerRunning(false)
-    }
-  }, [isConversationMode, isCodingInterviewActive, isTimerRunning, isEndingCall])
-
-  const handleTranscriptUpdate = (transcript: { role: string; text: string; timestamp: string }[]) => {
-    setVoiceTranscript(transcript)
-    setMessages(transcript.map((t, index) => ({
-      id: `msg-${index}`,
-      role: t.role as 'user' | 'assistant',
-      content: t.text,
-      timestamp: t.timestamp
-    })))
-  }
-
-  const handleVoiceChatStateChange = (isActive: boolean) => {
-    console.log('Voice chat state changed:', isActive)
-    setIsVoiceChatActive(isActive)
-  }
-
-  const handleConversationModeChange = async (isActive: boolean) => {
-    console.log('Conversation mode changed:', isActive)
-
-    // Create attempt when conversation starts (voice chat begins)
-    if (isActive && !isConversationMode) {
-      console.log('Conversation starting, creating interview attempt...')
-      try {
-        const response = await fetch('/api/custom-interviews/start-attempt', {
-          method: 'POST',
-          headers: getAuthHeaders(),
-          body: JSON.stringify({
-            interviewId: interviewData?.id
-          })
-        })
-
-        if (response.ok) {
-          console.log('Interview attempt created successfully')
-        } else {
-          console.error('Failed to create interview attempt:', response.status)
-        }
-      } catch (error) {
-        console.error('Error creating interview attempt:', error)
-      }
-    }
-
-    // Save conversation data when conversation stops naturally (not when user ends call)
-    // Note: Only save here if conversation stops without user explicitly ending it, and analysis is enabled
-    if (!isActive && isConversationMode && !isEndingCall && !isSavingConversationRef.current && uiConfig.enableAnalysisOnStop) {
-      console.log('🎤 handleConversationModeChange: Calling handleSaveConversation (analysis enabled)')
-      await handleSaveConversation()
-      // Don't update time usage here - it's already handled by handleEndCall
-      console.log('🎤 handleConversationModeChange: Skipping handleUpdateTimeUsage (handled by handleEndCall)')
-    } else if (!isActive && isConversationMode && !isEndingCall && !isSavingConversationRef.current && !uiConfig.enableAnalysisOnStop) {
-      console.log('🎤 handleConversationModeChange: Skipping handleSaveConversation (analysis disabled for testing)')
-    }
-
-    setIsConversationMode(isActive)
-  }
-
-  const handleWaitingForResponseChange = (isWaiting: boolean) => {
-    console.log('Waiting for user response:', isWaiting)
-    setIsWaitingForUserResponse(isWaiting)
-  }
-
-  // Coding interview voice chat handlers
-  const handleCodingVoiceChatStateChange = (isActive: boolean) => {
-    console.log('Coding voice chat state changed:', isActive)
-    setIsCodingVoiceChatActive(isActive)
-  }
-
-  const handleCodingWaitingForResponseChange = (isWaiting: boolean) => {
-    console.log('Coding interview waiting for user response:', isWaiting)
-    setIsWaitingForCodingUserResponse(isWaiting)
-  }
-
-  const handleSaveConversation = useCallback(async () => {
-    // Prevent multiple simultaneous save operations using ref (synchronous)
-    if (isSavingConversationRef.current) {
-      console.log('Save already in progress, skipping duplicate save')
+    if (!isConversationMode) {
+      setElapsedSeconds(0)
       return
     }
-
-    // Save conversation data to database
-    if (voiceTranscript.length > 0 && interviewData?.id) {
-      try {
-        isSavingConversationRef.current = true
-        console.log('🔄 Saving conversation data to database...')
-        console.log('Current state - isEndingCall:', isEndingCall, 'isConversationMode:', isConversationMode, 'isCodingInterviewActive:', isCodingInterviewActive)
-
-        const conversationData = {
-          interviewId: interviewData.id,
-          transcript: voiceTranscript,
-          messages: messages,
-          duration: elapsedTime,
-          createdAt: new Date().toISOString()
-        }
-
-        const response = await fetch('/api/custom-interviews/save-conversation', {
-          method: 'POST',
-          headers: getAuthHeaders(),
-          body: JSON.stringify(conversationData)
-        })
-
-        if (response.ok) {
-          console.log('Conversation data saved successfully')
-
-          // Now perform AI analysis of the conversation
-          try {
-            console.log('Performing AI analysis of conversation...')
-
-            const analysisResponse = await fetch('/api/analysis', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                conversation: voiceTranscript,
-                topic: interviewData.customPrompt || interviewData.jd
-              })
-            })
-
-            if (analysisResponse.ok) {
-              const analysis = await analysisResponse.json()
-              console.log('Analysis completed, saving results...')
-
-              // Save analysis results to database
-              const saveAnalysisResponse = await fetch('/api/custom-interviews/save-analysis', {
-                method: 'POST',
-                headers: getAuthHeaders(),
-                body: JSON.stringify({
-                  interviewId: interviewData.id,
-                  analysis: analysis,
-                  duration: elapsedTime
-                })
-              })
-
-              if (saveAnalysisResponse.ok) {
-                console.log('Analysis results saved successfully')
-              } else {
-                console.error('Failed to save analysis results:', saveAnalysisResponse.status)
-              }
-            } else {
-              console.error('Failed to analyze conversation:', analysisResponse.status)
-            }
-          } catch (analysisError) {
-            console.error('Error during analysis:', analysisError)
-          }
-        } else {
-          console.error('Failed to save conversation data:', response.status)
-        }
-      } catch (error) {
-        console.error('Error saving conversation data:', error)
-      } finally {
-        isSavingConversationRef.current = false
+    const tick = () => {
+      if (sessionStartTimeRef.current != null) {
+        setElapsedSeconds(Math.floor((Date.now() - sessionStartTimeRef.current) / 1000))
       }
-    } else {
-      isSavingConversationRef.current = false
     }
-  }, [voiceTranscript, interviewData?.id, interviewData?.customPrompt, interviewData?.jd, messages, elapsedTime, isEndingCall, isConversationMode, isCodingInterviewActive])
+    tick() // run immediately
+    const interval = setInterval(tick, 1000)
+    return () => clearInterval(interval)
+  }, [isConversationMode])
 
-  const handleUpdateTimeUsage = useCallback(async () => {
-    console.log('⏰ handleUpdateTimeUsage called, ref status:', isUpdatingTimeUsageRef.current)
+  const enterFullScreen = useCallback(() => {
+    if (!uiConfig.useFullScreenInMeet) return
+    // Fullscreen the document so the entire meet page (layout + room) fills the screen
+    const el = document.documentElement
+    el.requestFullscreen?.().then(() => {
+      fullscreenEnteredRef.current = true
+      setShowFullScreenPrompt(false)
+      onFullScreenPromptVisible?.(false)
+    }).catch(() => {
+      setShowFullScreenPrompt(false)
+      onFullScreenPromptVisible?.(false)
+    })
+  }, [uiConfig.useFullScreenInMeet])
 
-    // Prevent multiple simultaneous time usage updates
-    if (isUpdatingTimeUsageRef.current) {
-      console.log('⏰ BLOCKED: Time usage update already in progress, skipping duplicate update')
-      return
-    }
-
-    // Update user's time allowance based on interview duration
-    if (!interviewData?.id) {
-      console.log('No interview data available for time update')
-      return
-    }
-
-    try {
-      isUpdatingTimeUsageRef.current = true
-      console.log('⏰ STARTING: Updating user time usage...')
-
-      // Calculate time used in minutes (round up to nearest minute)
-      const timeUsedMinutes = Math.ceil(elapsedTime / 60)
-
-      if (timeUsedMinutes <= 0) {
-        console.log('No time used, skipping update')
-        return
-      }
-
-      console.log(`⏰ EXECUTING: Time used: ${timeUsedMinutes} minutes (${elapsedTime} seconds)`)
-
-      // Update user's used time in database
-      const response = await fetch('/api/custom-interviews/update-time-usage', {
-        method: 'POST',
-        headers: getAuthHeaders(),
-        body: JSON.stringify({
-          interviewId: interviewData.id,
-          timeUsedMinutes: timeUsedMinutes
-        })
-      })
-
-      if (response.ok) {
-        console.log('⏰ SUCCESS: User time usage updated successfully')
+  // When document is fullscreen, make html/body fill viewport so entire UI is visible
+  useEffect(() => {
+    const onFullscreenChange = () => {
+      if (document.fullscreenElement === document.documentElement) {
+        document.documentElement.style.width = '100%'
+        document.documentElement.style.height = '100%'
+        document.body.style.width = '100%'
+        document.body.style.height = '100%'
+        document.body.style.minHeight = '100%'
       } else {
-        const errorData = await response.json()
-        console.error('Failed to update time usage:', response.status, errorData)
+        document.documentElement.style.width = ''
+        document.documentElement.style.height = ''
+        document.body.style.width = ''
+        document.body.style.height = ''
+        document.body.style.minHeight = ''
       }
-    } catch (error) {
-      console.error('Error updating time usage:', error)
-    } finally {
-      isUpdatingTimeUsageRef.current = false
-      console.log('⏰ COMPLETED: Time usage update completed, ref reset to false')
     }
-  }, [elapsedTime, interviewData?.id])
+    document.addEventListener('fullscreenchange', onFullscreenChange)
+    return () => document.removeEventListener('fullscreenchange', onFullscreenChange)
+  }, [])
 
-  const handleStartCodingInterview = () => {
-    // Stop any existing voice chat first
+  // Full screen exit warning: when user exits fullscreen (e.g. Esc), show warning up to 3 times; 4th time or 30s expiry = auto submit
+  useEffect(() => {
+    if (!uiConfig.useFullScreenInMeet) return
+    const onFullscreenChange = () => {
+      if (document.fullscreenElement != null) return
+      if (exitingFullscreenProgrammaticallyRef.current) {
+        exitingFullscreenProgrammaticallyRef.current = false
+        return
+      }
+      if (!fullscreenEnteredRef.current) return
+      fullscreenEnteredRef.current = false
+      if (exitWarningCount >= EXIT_WARNING_MAX) {
+        handleEndCallRef.current()
+        return
+      }
+      setExitCountdown(EXIT_COUNTDOWN_SECONDS)
+      setExitWarningCount((c) => c + 1)
+      setShowExitWarning(true)
+    }
+    document.addEventListener('fullscreenchange', onFullscreenChange)
+    return () => document.removeEventListener('fullscreenchange', onFullscreenChange)
+  }, [uiConfig.useFullScreenInMeet, exitWarningCount])
+
+  // Keep handleEndCall ref updated
+  useEffect(() => {
+    handleEndCallRef.current = handleEndCall
+  })
+
+  // Exit warning countdown: start timer when dialog opens
+  useEffect(() => {
+    if (!showExitWarning) return
+    const id = setInterval(() => {
+      setExitCountdown((prev) => {
+        if (prev <= 1) {
+          if (exitCountdownIntervalRef.current) {
+            clearInterval(exitCountdownIntervalRef.current)
+            exitCountdownIntervalRef.current = null
+          }
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+    exitCountdownIntervalRef.current = id
+    return () => {
+      if (exitCountdownIntervalRef.current) {
+        clearInterval(exitCountdownIntervalRef.current)
+        exitCountdownIntervalRef.current = null
+      }
+    }
+  }, [showExitWarning])
+
+  // When countdown hits 0, auto submit and close dialog
+  useEffect(() => {
+    if (showExitWarning && exitCountdown === 0) {
+      setShowExitWarning(false)
+      handleEndCallRef.current()
+    }
+  }, [showExitWarning, exitCountdown])
+
+  // Handlers
+  const handleEndCall = async () => {
     if (isConversationMode) {
-      const stopEvent = new CustomEvent('stopVoiceChat')
-      window.dispatchEvent(stopEvent)
+      setIsConversationMode(false)
     }
-
-    // Get a random coding question and open the dialog
-    const question = getRandomStaticQuestion()
-    setCurrentCodingQuestion(question)
-    setShowCodeDialog(true)
-
-    // Start coding interview voice conversation (separate from regular voice chat)
-    setIsCodingInterviewActive(true)
-
-    // Start coding interview voice chat and read the question
-    setTimeout(() => {
-      const event = new CustomEvent('startCodingInterviewVoiceChat')
-      window.dispatchEvent(event)
-
-      // After voice chat starts, read the full question with instructions
-      setTimeout(() => {
-        speakCodingQuestion(question)
-      }, 1500) // Additional delay to let voice chat fully initialize
-    }, 1000) // Small delay to let the dialog open first
+    // If we have a session start time, report duration and transcript for saving + credit deduction
+    if (sessionStartTimeRef.current != null && onEndCallWithPayload) {
+      const durationSeconds = Math.round((Date.now() - sessionStartTimeRef.current) / 1000)
+      try {
+        await onEndCallWithPayload({
+          durationSeconds,
+          transcript: voiceTranscript,
+          messages,
+        })
+      } catch (e) {
+        console.error('Error in onEndCallWithPayload:', e)
+      }
+      sessionStartTimeRef.current = null
+    }
+    if (uiConfig.useFullScreenInMeet && fullscreenEnteredRef.current && document.fullscreenElement != null) {
+      exitingFullscreenProgrammaticallyRef.current = true
+      document.exitFullscreen?.().catch(() => {})
+      fullscreenEnteredRef.current = false
+    }
+    if (onEndCall) {
+      onEndCall()
+    }
+    if (uiConfig.redirectOnStop === true) {
+      window.location.href = '/dashboard/custominterview'
+    }
   }
 
-  const handleStopCodingInterview = useCallback(async () => {
-    // Save conversation data and update time usage before stopping (for coding interviews)
-    // But don't save if we're already ending the call (preventing double saves)
-    if (isCodingInterviewActive && !isEndingCall && !isSavingConversationRef.current) {
-      console.log('💻 handleStopCodingInterview: Calling handleSaveConversation')
-      await handleSaveConversation()
-      if (!isUpdatingTimeUsageRef.current) {
-        console.log('💻 handleStopCodingInterview: Calling handleUpdateTimeUsage')
-        await handleUpdateTimeUsage()
-      } else {
-        console.log('💻 handleStopCodingInterview: Skipping handleUpdateTimeUsage (already in progress)')
+  const handleStartInterview = async () => {
+    if (onBeforeStartInterview) {
+      try {
+        await onBeforeStartInterview()
+      } catch (e) {
+        console.error('Error in onBeforeStartInterview:', e)
+        return
       }
     }
+    sessionStartTimeRef.current = Date.now()
+    setShowInterviewStartDialog(false)
+    // Reset greeting state when starting new interview
+    greetingSpokenRef.current = false
+    isGreetingResponseRef.current = false
+    // Enable conversation mode first, then trigger start event
+    setIsConversationMode(true)
+    const startEvent = new CustomEvent('startVoiceChat')
+    window.dispatchEvent(startEvent)
+  }
 
-    // Stop coding interview voice chat
+  const handleStartConversation = async () => {
+    if (onBeforeStartInterview) {
+      try {
+        await onBeforeStartInterview()
+      } catch (e) {
+        console.error('Error in onBeforeStartInterview:', e)
+        return
+      }
+    }
+    sessionStartTimeRef.current = Date.now()
+    // Reset greeting state when starting conversation
+    greetingSpokenRef.current = false
+    isGreetingResponseRef.current = false
+    // Enable conversation mode first
+    setIsConversationMode(true)
+    const event = new CustomEvent('startVoiceChat')
+    window.dispatchEvent(event)
+  }
+
+  const handleStopConversation = () => {
+    // Clear silence timeout when stopping conversation
+    clearSilenceTimeout()
+    accumulatedUserSpeechRef.current = ''
+    
     const event = new CustomEvent('stopVoiceChat')
     window.dispatchEvent(event)
-
-    // Stop the timer (like regular interviews)
-    setIsTimerRunning(false)
-
-    // Close the code dialog
-    setShowCodeDialog(false)
-
-    // Reset coding interview state
-    setIsCodingInterviewActive(false)
-    setCurrentQuestionIndex(0)
-
-    // Clear global code function
-    delete window.getCurrentCodingCode
-  }, [isCodingInterviewActive, handleSaveConversation, handleUpdateTimeUsage, isEndingCall])
-
-
-  // Format elapsed time as MM:SS
-  const formatTime = (seconds: number): string => {
-    const mins = Math.floor(seconds / 60)
-    const secs = seconds % 60
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
+    handleEndCall()
   }
 
-  const testVoice = () => {
-    const utterance = new SpeechSynthesisUtterance("This is how your selected voice sounds.")
-    utterance.rate = voiceConfig.speechRate
-    utterance.pitch = voiceConfig.speechPitch
-
-    if (selectedVoice) {
-      const voice = availableVoices.find(v => v.voiceURI === selectedVoice)
-      if (voice) {
-        utterance.voice = voice
-      }
+  const handleExitWarningStay = useCallback(() => {
+    if (exitCountdownIntervalRef.current) {
+      clearInterval(exitCountdownIntervalRef.current)
+      exitCountdownIntervalRef.current = null
     }
+    setShowExitWarning(false)
+    enterFullScreen()
+    fullscreenEnteredRef.current = true
+  }, [enterFullScreen])
 
-    speechSynthesis.speak(utterance)
-  }
+  const handleExitWarningLeave = useCallback(() => {
+    if (exitCountdownIntervalRef.current) {
+      clearInterval(exitCountdownIntervalRef.current)
+      exitCountdownIntervalRef.current = null
+    }
+    setShowExitWarning(false)
+    handleEndCallRef.current()
+  }, [])
 
-
-
+  // Coding Round: only show interview when user chose entire screen (not window/tab). Gate same idea as app/test2.
+  const requireScreenShareFirst = interviewData?.screenShareEnabled === true && !isEntireScreenShared
 
   return (
-    <div className="relative h-screen bg-background">
-        {/* Header */}
-        <MeetTestHeader
-          interviewTitle={interviewTitle}
-          assistantName={assistantName}
-          assistantAvatar={assistantAvatar}
-          isConversationMode={isConversationMode}
-          isLoading={false}
-          hasTranscriptData={voiceTranscript.length > 0}
-          elapsedTime={elapsedTime}
-          isTimerRunning={isTimerRunning}
-          formatTime={formatTime}
-          onStartConversation={() => {
-            console.log('Header: Starting voice chat')
-            // Trigger voice chat start - this will be handled by the VoiceChat component
-            const event = new CustomEvent('startVoiceChat')
-            window.dispatchEvent(event)
-          }}
-          onStopConversation={() => {
-            console.log('Header: Stopping voice chat')
-            // Trigger voice chat stop - this will be handled by the VoiceChat component
-            const event = new CustomEvent('stopVoiceChat')
-            window.dispatchEvent(event)
-            // Call the comprehensive end call handler
-            handleEndCall()
-          }}
-          onStartCodingInterview={handleStartCodingInterview}
-          onStopCodingInterview={handleStopCodingInterview}
-          isCodingInterviewActive={isCodingInterviewActive}
-          isRegularInterviewActive={isConversationMode && !isCodingInterviewActive}
-          isScreenSharing={isScreenSharing}
-          showInterviewStartDialog={uiConfig.showInterviewStartDialog}
-        />
+    <div
+      ref={containerRef}
+      className="relative w-full min-w-0 h-screen min-h-screen bg-background flex flex-col overflow-hidden"
+    >
+      {/* Full screen: must be triggered by user click (browser requirement) */}
+      {showFullScreenPrompt && <FullScreenPrompt onEnterFullScreen={enterFullScreen} />}
 
+      {/* Exit full screen warning: 30s countdown, up to 3 warnings; 4th exit or timer expiry = auto submit */}
+      <Dialog open={showExitWarning} onOpenChange={(open) => { if (!open) handleExitWarningStay() }}>
+        <DialogContent className="sm:max-w-md" onPointerDownOutside={(e) => e.preventDefault()} onEscapeKeyDown={(e) => e.preventDefault()}>
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-amber-600">
+              <AlertTriangle className="h-5 w-5 shrink-0" />
+              You&apos;ve exited full screen
+            </DialogTitle>
+            <DialogDescription asChild>
+              <div className="space-y-2 text-left">
+                <p>Stay in the interview to continue. Return to full screen within the time below, or your interview will be submitted automatically.</p>
+                <p className="font-semibold text-foreground">This is warning {exitWarningCount} of {EXIT_WARNING_MAX}.</p>
+                <p className="text-sm text-muted-foreground">After {EXIT_WARNING_MAX} warnings, leaving full screen again will automatically submit your interview.</p>
+                <p className="text-2xl font-mono font-bold text-amber-600 tabular-nums">{exitCountdown}s</p>
+              </div>
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="gap-2 sm:gap-0">
+            <Button variant="outline" onClick={handleExitWarningLeave}>
+              Leave & submit
+            </Button>
+            <Button onClick={handleExitWarningStay}>
+              Stay in interview
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
-      {/* Video Grid */}
-      <div className="grid h-full grid-cols-2 gap-4 p-4 pt-24 mt-4">
-        {/* User's video */}
-        <div className="relative aspect-video overflow-hidden rounded-xl bg-muted">
-          {stream && isVideoEnabled ? (
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              muted
-              controls={false}
-              preload="metadata"
-              className="h-full w-full object-cover scale-x-[-1]"
-              onLoadStart={() => console.log('Video load started')}
-              onLoadedData={() => console.log('Video data loaded')}
-              onCanPlay={() => console.log('Video can play')}
-              onPlay={() => console.log('Video playing')}
-              onError={(e) => console.error('Video error:', e)}
+      {/* Coding Round: ask user to share screen first */}
+      {requireScreenShareFirst && (
+        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-background/95 backdrop-blur-sm p-6">
+          <div className="max-w-md text-center space-y-6">
+            <div className="flex justify-center">
+              <div className="rounded-full bg-amber-100 p-4">
+                <Monitor className="h-12 w-12 text-amber-600" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <h2 className="text-xl font-semibold text-foreground">This is a coding interview</h2>
+              <p className="text-muted-foreground">
+                Share your entire screen to continue (window or tab is not allowed). You will code in the browser while the AI interviewer asks follow-up questions.
+              </p>
+            </div>
+            <Button
+              onClick={toggleScreenShare}
+              size="lg"
+              className="gap-2 bg-amber-600 hover:bg-amber-700"
+            >
+              <Monitor className="h-5 w-5" />
+              Share screen to start
+            </Button>
+          </div>
+        </div>
+      )}
+
+      <MeetTestHeader
+        interviewTitle={interviewTitle || interviewData?.title}
+        assistantName={assistant.name}
+        assistantAvatar={assistant.avatar}
+        isConversationMode={isConversationMode}
+        isLoading={false}
+        hasTranscriptData={voiceTranscript.length > 0}
+        elapsedTime={elapsedSeconds}
+        isTimerRunning={isConversationMode}
+        formatTime={(s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`}
+        onStartConversation={handleStartConversation}
+        onStopConversation={handleStopConversation}
+        isRegularInterviewActive={isConversationMode}
+        isCodingMode={isScreenSharing}
+        showInterviewStartDialog={uiConfig.showInterviewStartDialog}
+        isChatOpen={isChatOpen && uiConfig.showChatBox}
+      />
+
+      {/* Coding: confirm entire screen shared (same idea as app/test2) */}
+      {interviewData?.screenShareEnabled && isEntireScreenShared && (
+        <div className="shrink-0 px-4 py-2 bg-green-500/15 border-b border-green-500/30 text-center text-sm text-green-800 dark:text-green-200">
+          You shared: Entire screen. You can start the interview.
+        </div>
+      )}
+
+      {/* Main Content Area with Sidebar */}
+      <div className="flex flex-1 overflow-hidden pt-20">
+        {/* Main Content Area - Only show shared screen + your video when entire screen is shared (not window/tab) */}
+        <div className={`flex-1 transition-all duration-300 ${isChatOpen && uiConfig.showChatBox ? 'mr-[400px]' : ''} h-full overflow-hidden flex flex-col`}>
+          {isEntireScreenShared ? (
+            <ScreenShareInterviewLayout
+              key={`coding-q-${codingModeQuestion.title}-${codingQuestionIndexOverride ?? 'initial'}`}
+              question={codingModeQuestion}
+              stream={stream}
+              isVideoEnabled={isVideoEnabled}
+              isAudioEnabled={isAudioEnabled}
+              isGettingStream={isGettingStream}
+              videoRef={videoRef}
+              codingCodeRef={codingCodeRef}
             />
           ) : (
-            <div className="flex h-full w-full items-center justify-center bg-muted">
-              <div className="text-center">
-                <div className="mx-auto mb-4 h-20 w-20 rounded-full bg-muted-foreground/30 flex items-center justify-center border-2 border-muted-foreground/20">
-                  {stream ? (
-                    <VideoOff className="h-12 w-12 text-muted-foreground" />
-                  ) : (
-                    <svg className="h-12 w-12 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 002 2z" />
-                    </svg>
-                  )}
-                </div>
-                <p className="text-base font-medium text-muted-foreground mb-1">
-                  {isVideoEnabled ? "Starting camera..." : (stream ? "Video Off" : "Camera not available")}
-                </p>
-                {isGettingStream && (
-                  <p className="text-sm text-muted-foreground">Requesting media access...</p>
-                )}
-                {!isGettingStream && !stream && (
-                  <p className="text-sm text-muted-foreground">Use controls below to enable camera and microphone</p>
-                )}
-              </div>
+            <div className="grid h-full grid-cols-2 gap-4 p-4">
+              <VideoFeed
+                stream={stream}
+                isVideoEnabled={isVideoEnabled}
+                isAudioEnabled={isAudioEnabled}
+                isUserSpeaking={isUserSpeaking}
+                isGettingStream={isGettingStream}
+                videoRef={videoRef}
+                userTranscript={userTranscript}
+                showUserTranscription={uiConfig.showUserTranscription}
+                sttAvailable={sttAvailable}
+                ttsAvailable={ttsAvailable}
+                isAISpeaking={isVoiceChatActive}
+              />
+
+              <VoiceChatPanel
+                selectedVoice={selectedVoice}
+                voiceConfig={voiceConfig}
+                availableVoices={availableVoices}
+                isVoiceChatActive={isVoiceChatActive}
+                isUserSpeaking={isUserSpeaking}
+                isWaitingForUserResponse={isWaitingForUserResponse}
+                uiConfig={uiConfig}
+                interviewData={interviewData}
+                voiceChatMessages={voiceChatMessages}
+                isAudioEnabled={isAudioEnabled}
+                onTranscriptUpdate={handleTranscriptUpdate}
+                onVoiceChatStateChange={handleVoiceChatStateChange}
+                onConversationModeChange={handleConversationModeChange}
+                onWaitingForResponseChange={handleWaitingForResponseChange}
+              />
             </div>
           )}
-          
-          {/* Status indicators */}
-          <div className="absolute bottom-4 left-4 flex items-center gap-2">
-            {!isAudioEnabled && (
-              <div className="flex items-center gap-1 rounded-full bg-destructive/80 px-2 py-1 text-xs text-white">
-                <MicOff className="h-3 w-3" />
-                <span>Muted</span>
-              </div>
-            )}
-            {!isVideoEnabled && (
-              <div className="flex items-center gap-1 rounded-full bg-destructive/80 px-2 py-1 text-xs text-white">
-                <VideoOff className="h-3 w-3" />
-                <span>Video Off</span>
-              </div>
-            )}
-          </div>
-
-          {/* Voice Activity Waveform */}
-          <div className="absolute bottom-4 right-4 w-32 h-8">
-            <LiveWaveform
-              active={isAudioEnabled && isUserSpeaking}
-              mode="static"
-              barWidth={2}
-              barGap={1}
-              barHeight={6}
-              height={32}
-              sensitivity={2}
-              updateRate={60}
-              barColor="#1f2937"
-            />
-          </div>
         </div>
 
-        {/* AI Assistant Display with Voice Chat */}
-        <div className="relative aspect-video overflow-hidden rounded-xl bg-muted">
-          {/* Regular Voice Chat - only show when not in coding interview */}
-          {!isCodingInterviewActive && (
-            <VoiceChat
-              key="regular-voice-chat"
-              onTranscriptUpdate={handleTranscriptUpdate}
-              onVoiceChatStateChange={handleVoiceChatStateChange}
-              onConversationModeChange={handleConversationModeChange}
-              selectedVoice={selectedVoice}
-              speechRate={voiceConfig.speechRate}
-              speechPitch={voiceConfig.speechPitch}
-              availableVoices={availableVoices}
-              autoListenAfterAI={voiceConfig.autoListenAfterAI}
-              isAISpeaking={isVoiceChatActive}
-              isUserSpeaking={isUserSpeaking}
-              onWaitingForResponseChange={handleWaitingForResponseChange}
-              isCoding={false}
-              showLiveTranscription={uiConfig.showLiveTranscription}
-              customPrompt={interviewData?.customPrompt}
-              voiceChatMessages={voiceChatMessages}
-              isAudioEnabled={isAudioEnabled}
+        {/* Chat Sidebar - Right Side - Only show when chat icon is clicked */}
+        {isChatOpen && uiConfig.showChatBox && (
+          <div className="fixed right-0 top-0 h-full w-[400px] bg-background border-l border-border shadow-lg z-30 flex flex-col">
+            <Chat
+              isOpen={true}
+              onOpenChange={setIsChatOpen}
+              messages={messages}
+              assistant={{
+                id: assistant.id,
+                name: assistant.name || 'AI Assistant',
+                avatar: assistant.avatar,
+                role: assistant.role || 'AI Assistant',
+                industry: assistant.industry || 'Technology',
+                experienceLevel: assistant.experienceLevel || 'Expert',
+                hasVoiceEnabled: assistant.hasVoiceEnabled ?? true
+              }}
+              voiceTranscript={voiceTranscript}
+              isVoiceChatActive={isVoiceChatActive}
+              mode="sidebar"
+              showCloseButton={true}
             />
-          )}
-
-          {/* Coding Interview Voice Chat - separate instance for coding interviews */}
-          {isCodingInterviewActive && (
-            <VoiceChat
-              key="coding-voice-chat"
-              onVoiceChatStateChange={handleCodingVoiceChatStateChange}
-              onConversationModeChange={handleConversationModeChange}
-              selectedVoice={selectedVoice}
-              speechRate={voiceConfig.speechRate}
-              speechPitch={voiceConfig.speechPitch}
-              availableVoices={availableVoices}
-              autoListenAfterAI={voiceConfig.autoListenAfterAI}
-              isAISpeaking={isCodingVoiceChatActive}
-              isUserSpeaking={isUserSpeaking}
-              onWaitingForResponseChange={handleCodingWaitingForResponseChange}
-              isCoding={true}
-              currentQuestion={currentCodingQuestion ? { title: currentCodingQuestion.title, description: currentCodingQuestion.description } : undefined}
-              eventName="startCodingInterviewVoiceChat"
-              voiceChatConfig={codingVoiceChatConfig}
-              voiceChatMessages={codingVoiceChatMessages}
-              showLiveTranscription={uiConfig.showLiveTranscriptionCoding}
-              customPrompt={interviewData?.customPrompt}
-              isAudioEnabled={isAudioEnabled}
-            />
-          )}
-
-          {/* AI Speaking Indicator */}
-          {(isVoiceChatActive || isCodingVoiceChatActive) && (
-            <div className="absolute top-4 right-4 z-20">
-              <div className="bg-blue-600/90 text-white px-3 py-1.5 rounded-lg text-sm font-medium shadow-lg border border-white/20">
-                {isCodingInterviewActive ? "Coding Interview Active" : "Let Interviewer complete"}
-              </div>
-            </div>
-          )}
-
-          {/* Waiting for User Response Indicator */}
-          {((isWaitingForUserResponse && !isVoiceChatActive) || (isWaitingForCodingUserResponse && !isCodingVoiceChatActive)) && (
-            <div className="absolute top-4 right-4 z-20">
-              <div className="bg-orange-500/90 text-white px-3 py-1.5 rounded-lg text-sm font-medium shadow-lg border border-white/20 flex items-center gap-2">
-                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                Waiting for response...
-              </div>
-            </div>
-          )}
-
-
-        </div>
+          </div>
+        )}
       </div>
 
-      {/* Controls */}
       <MeetTestControls
         isAudioEnabled={isAudioEnabled}
         isVideoEnabled={isVideoEnabled}
         isChatOpen={isChatOpen}
-        onToggleAudio={() => setIsAudioEnabled(!isAudioEnabled)}
-        onToggleVideo={() => setIsVideoEnabled(!isVideoEnabled)}
+        onToggleAudio={lockMicAndVideo ? () => {} : () => setIsAudioEnabled(!isAudioEnabled)}
+        onToggleVideo={lockMicAndVideo ? () => {} : () => setIsVideoEnabled(!isVideoEnabled)}
+        lockMicAndVideo={lockMicAndVideo}
+        isAISpeaking={isVoiceChatActive}
         onToggleChat={uiConfig.showChatBox ? () => setIsChatOpen(!isChatOpen) : undefined}
         onShowSettings={uiConfig.showVoiceSettings ? () => setShowSettings(!showSettings) : undefined}
         showShareScreen={uiConfig.showShareScreen}
@@ -1179,34 +1030,18 @@ export function MeetTestRoom({
         onToggleScreenShare={toggleScreenShare}
       />
 
-      {/* Chat - Only show if enabled in uiConfig */}
-      {uiConfig.showChatBox && (
-        <Chat
-          isOpen={isChatOpen}
-          onOpenChange={setIsChatOpen}
-          messages={messages}
-          assistant={{
-            id: 'meet-test-assistant',
-            name: assistantName,
-            avatar: assistantAvatar,
-            role: 'AI Assistant',
-            industry: 'Technology',
-            experienceLevel: 'Expert',
-            hasVoiceEnabled: true
-          }}
-          voiceTranscript={voiceTranscript}
-          isVoiceChatActive={isVoiceChatActive}
-        />
-      )}
 
-      {/* Voice Settings Panel - Only show if enabled in uiConfig */}
       {uiConfig.showVoiceSettings && showSettings && (
         <div className="absolute top-32 left-4 right-4 z-20 flex justify-center">
           <div className="w-full max-w-md">
             <VoiceSettings
               selectedVoice={selectedVoice}
               availableVoices={availableVoices}
-              onVoiceChange={setSelectedVoice}
+              onVoiceChange={(voiceURI) => {
+                console.log('Voice changed in UI to:', voiceURI)
+                setSelectedVoice(voiceURI)
+                // TTS service will be updated automatically via useTTS hook
+              }}
               onTestVoice={testVoice}
               onClose={() => setShowSettings(false)}
             />
@@ -1214,78 +1049,24 @@ export function MeetTestRoom({
         </div>
       )}
 
-      {/* Screen Share Display */}
       <ScreenShareDisplay
         stream={screenStream}
-        isVisible={isScreenSharing}
+        isVisible={isEntireScreenShared}
       />
 
-      {/* Interview Start Dialog */}
-      <Dialog open={showInterviewStartDialog} >
-        <DialogContent className="sm:max-w-md [&>button]:hidden">
-          <DialogHeader >
-            <DialogTitle className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-              Start Your Interview
-            </DialogTitle>
-            <DialogDescription>
-              Welcome to your AI-powered interview! Click the button below to begin your conversation with the interviewer.
-              The AI will ask you relevant questions based on your experience and the job requirements.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex justify-end gap-2 mt-4">
-            <Button
-              onClick={() => {
-                setShowInterviewStartDialog(false)
-                // Start voice chat by triggering the start event
-                const startEvent = new CustomEvent('startVoiceChat')
-                window.dispatchEvent(startEvent)
-              }}
-              className="bg-green-600 hover:bg-green-700"
-            >
-              Start Interview
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      {/* Screen Share Dialog */}
-      <Dialog open={showScreenShareDialog} onOpenChange={setShowScreenShareDialog}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              {uiConfig.screenShareDialogTitle}
-            </DialogTitle>
-            <DialogDescription>
-              {uiConfig.screenShareDialogDescription.split('\n').map((line, index) => (
-                <span key={index}>
-                  {line}
-                  {index < uiConfig.screenShareDialogDescription.split('\n').length - 1 && <br />}
-                </span>
-              ))}
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
-
-      {/* Code Dialog */}
-      <CodeDialog
-        isOpen={showCodeDialog}
-        onClose={() => {
-          // Just close the dialog, don't stop the coding interview
-          setShowCodeDialog(false)
-        }}
-        question={currentCodingQuestion}
+      <InterviewStartDialog
+        open={showInterviewStartDialog}
+        onStart={handleStartInterview}
+        isCodingMode={isEntireScreenShared}
       />
 
-      {/* Draggable Code Button */}
-      {(!uiConfig.showCodeButtonOnlyOnScreenShare || isScreenSharing) && (
-        <DraggableCodeButton
-          onClick={() => setShowCodeDialog(true)}
-        />
-      )}
-
+      {/* Only show "Your entire screen is now being shared" when we confirmed entire screen (not window/tab) */}
+      <ScreenShareDialog
+        open={showScreenShareDialog && (isEntireScreenShared || !interviewData?.screenShareEnabled)}
+        onOpenChange={setShowScreenShareDialog}
+        title={uiConfig.screenShareDialogTitle}
+        description={uiConfig.screenShareDialogDescription}
+      />
     </div>
   )
 }

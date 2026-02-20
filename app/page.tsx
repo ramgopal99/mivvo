@@ -1,4 +1,4 @@
-import { Navbar, HeroSection, RoadmapSection, FeaturesSection, StepsSection, EducationSection, CoursesSection, MorphingSection, FaqSection, TestimonialsSection, CtaSection, Footer } from "@/components/main"
+import { Navbar, HeroSection, RoadmapSection, FeaturesSection, StepsSection, EducationSection, CoursesSection, MorphingSection, FaqSection, CtaSection, Footer } from "@/components/main"
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'

@@ -60,6 +60,12 @@ export const sidebarConfig: SidebarConfig = {
           url: "/dashboard/courses",
           icon: BookOpen,
           description: "Access programming courses"
+        }] : []),
+        ...(siteConfig.enableVideoLearn ? [{
+          title: "Video Learn",
+          url: "/dashboard/videolearn",
+          icon: BookOpen,
+          description: "Learn through videos"
         }] : [])
       ]
     }

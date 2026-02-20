@@ -5,13 +5,10 @@
  * and create a completely customized interview prompt.
  */
 
-import { generateCompleteInterviewPrompt } from './prompt-utils';
+import { generateCompleteInterviewPrompt } from './prompt-utils'
 
 /**
  * Generate a system prompt for custom interview prompt generation
- * @param jdText - Job description text to analyze
- * @param cvText - Optional CV/resume text to understand candidate background
- * @returns System prompt for OpenAI to generate customized interview prompt
  */
 export function generateCustomInterviewPrompt(jdText: string, cvText?: string): string {
   const cvContext = cvText
@@ -52,7 +49,7 @@ You are Mivvo, conducting a conversational [SPECIFIC ROLE FROM JD] interview for
 JOB DESCRIPTION:
 [Copy the full JD text here]${cvText ? '\n\nCANDIDATE\'S CV/RESUME:\n[Include the full CV content here for reference]' : ''}
 
-${generateCompleteInterviewPrompt('[SPECIFIC ROLE FROM JD]')}
+${generateCompleteInterviewPrompt()}
 
 [SPECIFIC ROLE] INTERVIEW PROGRESSION STRATEGY:
 - **PHASE 1: FOUNDATION (5-6 Questions)** - Start with basic concepts and fundamentals

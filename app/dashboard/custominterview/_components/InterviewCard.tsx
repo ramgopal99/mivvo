@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog"
 import { Info, Calendar, Building, Trash2 } from "lucide-react"
 import { useState } from "react"
+import { getDisplayJd } from "./utils/interview-utils"
 
 type InterviewStatus = "completed" | "in_progress"
 
@@ -41,6 +42,9 @@ export interface InterviewData {
     isActive: boolean
   }>
   attempts?: InterviewAttempt[]
+  customPrompt?: string
+  interviewType?: string
+  foreignLanguageSubType?: string | null
 }
 
 interface InterviewCardProps {
@@ -119,26 +123,16 @@ export function InterviewCard({ interview, onStartInterview, onDeleteInterview, 
                     </div>
                   </div>
 
-                  {/* Job Description */}
+                  {/* Description */}
                   <div className="space-y-2">
                     <h4 className="text-sm font-medium">Job Description</h4>
                     <div className="bg-gray-50 rounded-lg p-4 max-h-48 overflow-y-auto">
                       <p className="text-sm text-gray-700 leading-relaxed">
-                        {interview.jd}
+                        {getDisplayJd(interview.jd)}
                       </p>
                     </div>
                   </div>
 
-                  {/* Status */}
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-medium">Status</h4>
-                    <Badge
-                      variant={interview.status === "completed" ? "default" : "secondary"}
-                      className="text-xs"
-                    >
-                      {interview.status === "in_progress" ? "IN PROGRESS" : "COMPLETED"}
-                    </Badge>
-                  </div>
                 </div>
               </DialogContent>
             </Dialog>
@@ -158,10 +152,10 @@ export function InterviewCard({ interview, onStartInterview, onDeleteInterview, 
                   </DialogDescription>
                 </DialogHeader>
                 <DialogFooter className="flex gap-2">
-                  <Button variant="outline" onClick={() => setShowDeleteDialog(false)}>
+                  <Button variant="outline" onClick={() => setShowDeleteDialog(false)} className="cursor-pointer">
                     Cancel
                   </Button>
-                <Button variant="destructive" onClick={handleDelete} disabled={isDeleting}>
+                <Button variant="destructive" onClick={handleDelete} disabled={isDeleting} className="cursor-pointer">
                   {isDeleting ? (
                     <>
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
@@ -183,7 +177,7 @@ export function InterviewCard({ interview, onStartInterview, onDeleteInterview, 
         {/* JD Preview */}
         <div className="bg-gray-50 rounded-lg p-3">
           <p className="text-sm text-gray-700 line-clamp-2">
-            {interview.jd}
+            {getDisplayJd(interview.jd)}
           </p>
         </div>
 

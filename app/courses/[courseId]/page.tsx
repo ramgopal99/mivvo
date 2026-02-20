@@ -14,6 +14,7 @@ import {
   NotFoundState,
   CourseStats
 } from './components';
+import { COURSE_ORIGINAL_PRICE } from '@/config/site';
 import { Course } from '../types';
 
 export default function CourseDetailsPage() {
@@ -200,8 +201,16 @@ export default function CourseDetailsPage() {
             <div className="flex flex-col items-center gap-2">
               <div className="text-center">
                 <div className="text-xs text-muted-foreground">Course Price</div>
-                <div className="text-xl font-bold text-primary">
-                  ₹{course.price}
+                <div className="flex items-center justify-center gap-2 flex-wrap">
+                  {course.price > 0 && (
+                    <span className="text-base text-muted-foreground line-through">
+                      ₹{Math.round(course.price * 2)}
+                    </span>
+                  )}
+                  <span className="text-xl font-bold text-primary">
+                    ₹{course.price}
+                  </span>
+                  <span className="text-xs text-muted-foreground">(you pay)</span>
                 </div>
                 <div className="text-xs text-muted-foreground">
                   One-time payment
@@ -253,8 +262,16 @@ export default function CourseDetailsPage() {
             <div className="flex items-center gap-4">
               <div className="text-left">
                 <div className="text-sm text-muted-foreground">Course Price</div>
-                <div className="text-2xl font-bold text-primary">
-                  ₹{course.price}
+                <div className="flex items-center gap-2 flex-wrap">
+                  {course.price > 0 && (
+                    <span className="text-lg text-muted-foreground line-through">
+                      ₹{COURSE_ORIGINAL_PRICE}
+                    </span>
+                  )}
+                  <span className="text-2xl font-bold text-primary">
+                    ₹{course.price}
+                  </span>
+                  <span className="text-xs text-muted-foreground">(you pay)</span>
                 </div>
                 <div className="text-xs text-muted-foreground">
                   One-time payment

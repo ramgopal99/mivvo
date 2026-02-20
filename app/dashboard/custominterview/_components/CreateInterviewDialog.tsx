@@ -74,16 +74,13 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { Plus, FileText, X, Mic, Square } from "lucide-react"
+import { Plus, FileText, X, Mic, Square, Code2 } from "lucide-react"
 import {
   getAvailableRoles,
-  getAvailableLevels,
-  getAvailableInterviewTypes,
-  getGeneralInterviewSubTypes,
-  getHRInterviewSubTypes,
-  getForeignLanguageSubTypes
+  getAvailableInterviewTypes
 } from "./utils/interview-utils"
-import { getJDTemplate } from "./utils/jd-templates"
+import { DSA_CODING_QUESTIONS, SQL_CODING_QUESTIONS, type CodingRoundType } from "./_meet_components/data/coding-questions"
+import { getJDTemplateForRole } from "./utils/interview-config"
 import { VoiceRecordingAnimation } from "./animations"
 import { generateInterviewTitle } from "./utils/interview-title-utils"
 import { CreditUsageInfo } from "@/lib/credit-converter"
@@ -109,11 +106,10 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
 
   // Predefined Role state
   const [selectedRole, setSelectedRole] = useState("")
-  const [selectedLevel, setSelectedLevel] = useState("")
   const [interviewType, setInterviewType] = useState("")
-  const [generalSubType, setGeneralSubType] = useState("")
-  const [hrSubType, setHrSubType] = useState("")
-  const [foreignLanguageSubType, setForeignLanguageSubType] = useState("")
+
+  // Coding Round state (round type only; question is picked at random)
+  const [codingRoundType, setCodingRoundType] = useState<CodingRoundType | "">("")
 
 
 
@@ -365,17 +361,14 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
   // Function to reset the form
   const resetForm = useCallback(() => {
     setSelectedRole("")
-    setSelectedLevel("")
     setInterviewType("")
-    setGeneralSubType("")
-    setHrSubType("")
-    setForeignLanguageSubType("")
     setCustomJD("")
     setCvFile(null)
     setCvText("")
     setVoiceText("")
     setRefinedText("")
     setIsDialogOpen(false)
+    setActiveTab("predefined")
     if (cvInputRef.current) {
       cvInputRef.current.value = ''
     }
@@ -513,6 +506,37 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
       return
     }
 
+    // Handle Coding Round tab - DSA or SQL; round type only, question picked at random
+    if (activeTab === "codingRound") {
+      if (!codingRoundType) {
+        import('sonner').then(({ toast }) => {
+          toast.error('Please select a round type (DSA or SQL)')
+        })
+        return
+      }
+      const list = codingRoundType === "sql" ? SQL_CODING_QUESTIONS : DSA_CODING_QUESTIONS
+      const questionIndex = Math.floor(Math.random() * list.length)
+      const baseDesc = codingRoundType === "sql"
+        ? "Technical coding round focused on SQL. The candidate will solve a SQL problem while sharing their screen. The AI interviewer will ask follow-up questions about approach, queries, and optimization."
+        : "Technical coding round focused on Data Structures & Algorithms (DSA). The candidate will solve a coding problem while sharing their screen. The AI interviewer will ask follow-up questions about approach, time complexity, and implementation."
+      const jdDetails = `${baseDesc}\n[CODING_QUESTION_INDEX:${questionIndex}]`
+      const interviewData = {
+        jdDetails,
+        interviewType: "Technical",
+        screenShare: true,
+        company: codingRoundType === "sql" ? "SQL Coding Round" : "DSA Coding Round",
+        generalSubType: codingRoundType,
+        role: codingRoundType,
+        cvText: cvText || userCvData || undefined,
+        title: undefined
+      }
+      onInterviewCreated?.(interviewData)
+      setIsDialogOpen(false)
+      setActiveTab("predefined")
+      setCodingRoundType("")
+      return
+    }
+
     // Handle predefined tab
     // Validation based on interview type
     if (!interviewType) {
@@ -522,35 +546,11 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
       return
     }
 
-    if (interviewType === 'General') {
-      // For General interviews, only need sub-type
-      if (!generalSubType) {
+      if (interviewType === 'Technical') {
+      // For Technical interviews, need role
+      if (!selectedRole) {
         import('sonner').then(({ toast }) => {
-          toast.error('Please select a General interview sub-type')
-        })
-        return
-      }
-  } else if (interviewType === 'HR') {
-    // For HR interviews, only need sub-type
-    if (!hrSubType) {
-      import('sonner').then(({ toast }) => {
-        toast.error('Please select an HR interview sub-type')
-      })
-      return
-    }
-  } else if (interviewType === 'Foreign Language') {
-    // For Foreign Language interviews, only need sub-type
-    if (!foreignLanguageSubType) {
-      import('sonner').then(({ toast }) => {
-        toast.error('Please select a language proficiency test')
-      })
-      return
-    }
-  } else if (interviewType === 'Technical') {
-    // For Technical interviews, need role and level
-      if (!selectedRole || !selectedLevel) {
-        import('sonner').then(({ toast }) => {
-          toast.error('Please select role and experience level')
+          toast.error('Please select a role')
         })
         return
       }
@@ -558,16 +558,10 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
 
     // Generate JD details based on interview type
     let finalJdDetails = ""
-    if (interviewType === 'General') {
-      finalJdDetails = getJDTemplate(interviewType, generalSubType) || `General Interview: ${generalSubType || 'General Topics'}`
-    } else if (interviewType === 'HR') {
-      finalJdDetails = getJDTemplate(interviewType, hrSubType) || `HR Interview: ${hrSubType || 'HR Topics'}`
-    } else if (interviewType === 'Foreign Language') {
-      finalJdDetails = getJDTemplate(interviewType, foreignLanguageSubType) || `Foreign Language Interview: ${foreignLanguageSubType || 'Language Proficiency'}`
-    } else if (interviewType === 'Technical') {
-      finalJdDetails = getJDTemplate(interviewType, selectedRole) || `Technical Interview: ${selectedRole?.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()) || 'Technical Topics'}`
+    if (interviewType === 'Technical' && selectedRole) {
+      finalJdDetails = getJDTemplateForRole(selectedRole) || `Technical Interview: ${selectedRole?.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()) || 'Technical Topics'}`
     } else {
-      finalJdDetails = getJDTemplate(interviewType) || "Custom Interview"
+      finalJdDetails = "Custom Interview"
     }
 
 
@@ -576,11 +570,8 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
       jdDetails: finalJdDetails,
       interviewType: interviewType, // Pass the original interview type
       screenShare: false, // Screen sharing disabled for now since Coding interviews are coming soon
-      generalSubType: interviewType === 'General' ? generalSubType : (interviewType === 'Technical' ? selectedRole : undefined), // Pass role as generalSubType for technical interviews
-      hrSubType: interviewType === 'HR' ? hrSubType : undefined, // Pass HR sub-type for HR interviews
-      foreignLanguageSubType: interviewType === 'Foreign Language' ? foreignLanguageSubType : undefined,
+      generalSubType: interviewType === 'Technical' ? selectedRole : undefined, // Pass role as generalSubType for technical interviews
       role: interviewType === 'Technical' ? selectedRole : undefined, // Keep role field for backward compatibility
-      experienceLevel: interviewType === 'Technical' ? selectedLevel : undefined, // Pass the selected experience level only for Technical interviews
       cvText: cvText || userCvData || undefined, // Use uploaded CV, or existing CV if available
       // Let backend generate title based on interview type and role/subtype
       title: undefined
@@ -611,9 +602,10 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
         </DialogHeader>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className={`grid w-full ${showVoiceTab ? 'grid-cols-3' : 'grid-cols-2'}`}>
+          <TabsList className={`grid w-full ${showVoiceTab ? 'grid-cols-4' : 'grid-cols-3'}`}>
             <TabsTrigger value="predefined">Templates</TabsTrigger>
             <TabsTrigger value="custom">Custom JD</TabsTrigger>
+            <TabsTrigger value="codingRound">Coding Round</TabsTrigger>
             {showVoiceTab && <TabsTrigger value="voice">Voice</TabsTrigger>}
           </TabsList>
 
@@ -627,133 +619,29 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
               console.log('Selected Interview Type:', value)
               setInterviewType(value)
               // Clear selections when switching interview types
-              if (value === 'General') {
-                // Clear role-related fields when switching to General
+              if (value !== 'Technical') {
+                // Clear role-related fields when switching away from Technical
                 setSelectedRole("")
-                setSelectedLevel("")
-                setHrSubType("")
-                setForeignLanguageSubType("")
-              } else if (value === 'HR') {
-                // Clear role-related fields when switching to HR
-                setSelectedRole("")
-                setSelectedLevel("")
-                setGeneralSubType("")
-                setForeignLanguageSubType("")
-              } else if (value === 'Foreign Language') {
-                // Clear role-related fields when switching to Foreign Language
-                setSelectedRole("")
-                setSelectedLevel("")
-                setGeneralSubType("")
-                setHrSubType("")
-                // Default to English for Foreign Language interviews
-                  setForeignLanguageSubType("English")
-              } else {
-                // Clear sub-types when switching to Technical
-                setGeneralSubType("")
-                setHrSubType("")
-                // Don't set foreignLanguageSubType for Technical interviews
               }
             }}>
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full cursor-pointer">
                 <SelectValue placeholder="Select interview type" />
               </SelectTrigger>
               <SelectContent>
-                {getAvailableInterviewTypes().map(type => (
-                  <SelectItem
-                    key={type.value}
-                    value={type.value}
-                  >
-                    {type.label}
-                  </SelectItem>
-                ))}
+                {getAvailableInterviewTypes()
+                  .filter(type => type.value !== 'Custom') // Exclude Custom - it's in separate tab
+                  .map(type => (
+                    <SelectItem
+                      key={type.value}
+                      value={type.value}
+                      className="cursor-pointer"
+                    >
+                      {type.label || type.value}
+                    </SelectItem>
+                  ))}
               </SelectContent>
             </Select>
           </div>
-
-          {/* General Interview Sub-Type Selection */}
-          {interviewType === 'General' && (
-            <div className="space-y-2">
-              <Label htmlFor="general-subtype" className="text-sm font-medium">
-                General Interview Type *
-              </Label>
-              <Select value={generalSubType} onValueChange={(value) => {
-                console.log('Selected General Subtype:', value)
-                setGeneralSubType(value)
-              }}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select General interview type" />
-                </SelectTrigger>
-                <SelectContent>
-                  {getGeneralInterviewSubTypes().map(type => (
-                    <SelectItem
-                      key={type.value}
-                      value={type.value}
-                    >
-                      {type.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          )}
-
-          {/* HR Interview Sub-Type Selection */}
-          {interviewType === 'HR' && (
-            <div className="space-y-2">
-              <Label htmlFor="hr-subtype" className="text-sm font-medium">
-                HR Interview Type *
-              </Label>
-              <Select value={hrSubType} onValueChange={(value) => {
-                console.log('Selected HR Subtype:', value)
-                setHrSubType(value)
-              }}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select HR interview type" />
-                </SelectTrigger>
-                <SelectContent>
-                  {getHRInterviewSubTypes().map(type => (
-                    <SelectItem
-                      key={type.value}
-                      value={type.value}
-                    >
-                      {type.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          )}
-
-          {/* Foreign Language Sub-Type Selection */}
-          {interviewType === 'Foreign Language' && (
-            <div className="space-y-2">
-              <Label htmlFor="foreign-language-subtype" className="text-sm font-medium">
-                Language Proficiency Test *
-              </Label>
-              <Select
-                key={`foreign-lang-${interviewType}-${foreignLanguageSubType}`}
-                value={foreignLanguageSubType}
-                onValueChange={(value) => {
-                  console.log('Selected Foreign Language Subtype:', value)
-                  setForeignLanguageSubType(value)
-                }}
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select language proficiency test" />
-                </SelectTrigger>
-                <SelectContent>
-                  {getForeignLanguageSubTypes().map(type => (
-                    <SelectItem
-                      key={type.value}
-                      value={type.value}
-                    >
-                      {type.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          )}
 
           {/* Role Selection - Only show for Technical types */}
           {interviewType === 'Technical' && (
@@ -765,7 +653,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
                 console.log('Selected Role:', value)
                 setSelectedRole(value)
               }}>
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full cursor-pointer">
                   <SelectValue placeholder="Select a role" />
                 </SelectTrigger>
                 <SelectContent>
@@ -773,6 +661,7 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
                     <SelectItem
                       key={role.value}
                       value={role.value}
+                      className="cursor-pointer"
                     >
                       {role.label}
                     </SelectItem>
@@ -782,29 +671,6 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
             </div>
           )}
 
-          {/* Level Selection - Only show for Technical types */}
-          {interviewType === 'Technical' && (
-          <div className="space-y-2">
-            <Label htmlFor="level" className="text-sm font-medium">
-              Years of Experience *
-            </Label>
-            <Select value={selectedLevel} onValueChange={(value) => {
-              console.log('Selected Experience Level:', value)
-              setSelectedLevel(value)
-            }}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select experience level" />
-              </SelectTrigger>
-              <SelectContent>
-                {getAvailableLevels().map(level => (
-                  <SelectItem key={level.value} value={level.value}>
-                    {level.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          )}
 
           </TabsContent>
 
@@ -876,6 +742,35 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
                   </div>
                 )}
               </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="codingRound" className="space-y-6 mt-6">
+            <div className="rounded-lg border border-amber-200 bg-amber-50/50 p-4 space-y-3">
+              <div className="flex items-center gap-2 text-amber-800">
+                <Code2 className="h-5 w-5" />
+                <span className="font-medium">Coding round</span>
+              </div>
+              <p className="text-sm text-gray-700">
+                Pick a round type below. A random question will be shown when you start. You will share your screen and solve the problem in the browser while the AI interviewer asks follow-up questions about your approach and solution.
+              </p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="coding-round-type" className="text-sm font-medium">
+                Round type *
+              </Label>
+              <Select
+                value={codingRoundType}
+                onValueChange={(value) => setCodingRoundType(value as CodingRoundType)}
+              >
+                <SelectTrigger id="coding-round-type" className="w-full cursor-pointer">
+                  <SelectValue placeholder="Select round type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="dsa" className="cursor-pointer">DSA (Data Structures & Algorithms)</SelectItem>
+                  <SelectItem value="sql" className="cursor-pointer">SQL</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </TabsContent>
 
@@ -1045,13 +940,11 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
             disabled={
               isCreating || (
                 activeTab === 'predefined'
-                  ? (!interviewType ||
-                     (interviewType === 'General' ? !generalSubType :
-                      interviewType === 'HR' ? !hrSubType :
-                      interviewType === 'Foreign Language' ? !foreignLanguageSubType :
-                      interviewType === 'Technical' ? (!selectedRole || !selectedLevel) : false))
+                  ? (!interviewType || (interviewType === 'Technical' ? !selectedRole : false))
                   : activeTab === 'custom'
                   ? (!customJD.trim() || isAnalyzingJD || isExtractingCV)
+                  : activeTab === 'codingRound'
+                  ? !codingRoundType
                   : activeTab === 'voice' && showVoiceTab
                   ? (!refinedText.trim() || isProcessingVoice || isRecording)
                   : false
@@ -1073,6 +966,11 @@ const CreateInterviewDialog = forwardRef<{ reset: () => void }, CreateInterviewD
               <>
                 <FileText className="w-4 h-4 mr-2" />
                 Create Custom Interview
+              </>
+            ) : activeTab === 'codingRound' ? (
+              <>
+                <Code2 className="w-4 h-4 mr-2" />
+                Create Coding Interview
               </>
             ) : activeTab === 'voice' && showVoiceTab ? (
               <>

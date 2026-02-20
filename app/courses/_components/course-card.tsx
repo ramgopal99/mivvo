@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { Play, BookOpen, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
+import { COURSE_ORIGINAL_PRICE } from '@/config/site'
 import type { Course, UserProgress } from '../types'
 
 interface CourseCardProps {
@@ -69,10 +70,18 @@ export function CourseCard({ course, progress, onCourseClick }: CourseCardProps)
             </CardDescription>
           </div>
 
-          {/* Price */}
+          {/* Price: strikethrough original + what user pays */}
           <div className="flex items-center justify-between min-h-[2rem]">
-            <div className="text-2xl font-bold text-primary">
-              ₹{course.price}
+            <div className="flex items-center gap-2 flex-wrap">
+              {course.price > 0 && (
+                <span className="text-lg text-muted-foreground line-through">
+                  ₹{COURSE_ORIGINAL_PRICE}
+                </span>
+              )}
+              <span className="text-2xl font-bold text-primary">
+                ₹{course.price}
+              </span>
+              <span className="text-xs text-muted-foreground">(you pay)</span>
             </div>
             <div className="text-xs text-muted-foreground">
               One-time payment
