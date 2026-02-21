@@ -12,10 +12,10 @@ export const siteConfig = {
   enablePricing: true,
   enableCustomInterviews: true, // Set to true to show interviews page, false to show coming soon
   aiProvider: "puter" as AIProvider, // "openai" or "puter" - controls which AI service to use for chat
-  useFullScreenInMeet: false, //----
+  useFullScreenInMeet: false,
   showCustomInterviewDebug: false,
   /** When true: end interview does not run AI analysis and does not redirect; use for testing start/stop repeatedly. */
-  customInterviewTestMode: true, //----
+  customInterviewTestMode: true,
   links: {
     twitter: "https://twitter.com/mivvo",
     github: "https://github.com/mivvo",
@@ -43,9 +43,6 @@ export const CREDIT_PACKAGES = {
 
 // Course enrollment credits
 export const COURSE_ENROLLMENT_CREDITS = 1000 as const
-
-/** Strikethrough / catalog price shown for courses (e.g. ₹1999). User actually pays course.price from API. */
-export const COURSE_ORIGINAL_PRICE = 999 as const
 
 // Credit expiration configuration - set ONE of these values, others will be automatically calculated
 const CREDIT_EXPIRATION = {
