@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { Play, BookOpen, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
-import { COURSE_ORIGINAL_PRICE } from '@/config/site'
+import { COURSE_LIST_PRICE_MULTIPLIER } from '@/config/site'
 import type { Course, UserProgress } from '../types'
 
 interface CourseCardProps {
@@ -75,7 +75,7 @@ export function CourseCard({ course, progress, onCourseClick }: CourseCardProps)
             <div className="flex items-center gap-2 flex-wrap">
               {course.price > 0 && (
                 <span className="text-lg text-muted-foreground line-through">
-                  ₹{COURSE_ORIGINAL_PRICE}
+                  ₹{Math.round(course.price * COURSE_LIST_PRICE_MULTIPLIER)}
                 </span>
               )}
               <span className="text-2xl font-bold text-primary">

@@ -14,7 +14,7 @@ import {
   NotFoundState,
   CourseStats
 } from './components';
-import { COURSE_ORIGINAL_PRICE } from '@/config/site';
+import { COURSE_LIST_PRICE_MULTIPLIER } from '@/config/site';
 import { Course } from '../types';
 
 export default function CourseDetailsPage() {
@@ -204,7 +204,7 @@ export default function CourseDetailsPage() {
                 <div className="flex items-center justify-center gap-2 flex-wrap">
                   {course.price > 0 && (
                     <span className="text-base text-muted-foreground line-through">
-                      ₹{Math.round(course.price * 2)}
+                      ₹{Math.round(course.price * COURSE_LIST_PRICE_MULTIPLIER)}
                     </span>
                   )}
                   <span className="text-xl font-bold text-primary">
@@ -265,7 +265,7 @@ export default function CourseDetailsPage() {
                 <div className="flex items-center gap-2 flex-wrap">
                   {course.price > 0 && (
                     <span className="text-lg text-muted-foreground line-through">
-                      ₹{COURSE_ORIGINAL_PRICE}
+                      ₹{Math.round(course.price * COURSE_LIST_PRICE_MULTIPLIER)}
                     </span>
                   )}
                   <span className="text-2xl font-bold text-primary">

@@ -8,14 +8,14 @@ export const siteConfig = {
   email: "hello@mivvo.life",
   enableCourses: true,
   enableForeignLanguage: false,
-  enableVideoLearn: true, // Set to true to show video learn page, false to hide it
+  enableVideoLearn: false, // Set to true to show video learn page, false to hide it
   enablePricing: true,
   enableCustomInterviews: true, // Set to true to show interviews page, false to show coming soon
   aiProvider: "puter" as AIProvider, // "openai" or "puter" - controls which AI service to use for chat
-  useFullScreenInMeet: false,
+  useFullScreenInMeet: true,
   showCustomInterviewDebug: false,
   /** When true: end interview does not run AI analysis and does not redirect; use for testing start/stop repeatedly. */
-  customInterviewTestMode: true,
+  customInterviewTestMode: false,
   links: {
     twitter: "https://twitter.com/mivvo",
     github: "https://github.com/mivvo",
@@ -43,6 +43,9 @@ export const CREDIT_PACKAGES = {
 
 // Course enrollment credits
 export const COURSE_ENROLLMENT_CREDITS = 1000 as const
+
+/** Display-only “list” price (strikethrough) = round(actual price × this). */
+export const COURSE_LIST_PRICE_MULTIPLIER = 2 as const
 
 // Credit expiration configuration - set ONE of these values, others will be automatically calculated
 const CREDIT_EXPIRATION = {

@@ -8,7 +8,7 @@ import { BookOpen } from 'lucide-react';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { PaymentDialog } from '@/components/payment-dialog';
-import { COURSE_ORIGINAL_PRICE } from '@/config/site';
+import { COURSE_LIST_PRICE_MULTIPLIER } from '@/config/site';
 
 interface Course {
   id: string;
@@ -281,7 +281,7 @@ export default function CoursePage() {
                     <div className="flex items-center justify-center gap-2 flex-wrap">
                       {course.price > 0 && (
                         <span className="text-base md:text-lg text-muted-foreground line-through">
-                          ₹{COURSE_ORIGINAL_PRICE}
+                          ₹{Math.round(course.price * COURSE_LIST_PRICE_MULTIPLIER)}
                         </span>
                       )}
                       <span className="text-xl md:text-2xl font-bold text-primary">

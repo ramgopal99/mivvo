@@ -25,7 +25,7 @@ const iconMap = {
 }
 
 export function RecruiterSection() {
-  const [selectedTag, setSelectedTag] = useState(
+  const [selectedTag, setSelectedTag] = useState<string>(
     landingConfig.recruiters.header.tabOptions[0].value
   )
 
