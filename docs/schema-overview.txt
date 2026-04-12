@@ -1,0 +1,135 @@
+================================================================================
+MIVVO DATABASE SCHEMA — SHORT OVERVIEW
+================================================================================
+Database: MongoDB (Prisma). Each model maps to a MongoDB collection.
+
+This file is a plain-language summary. For exact fields and types, see:
+  prisma/schema.prisma
+
+================================================================================
+1. ACCOUNTS & USERS
+================================================================================
+User          — Main person using the app (email, profile, password optional).
+                Role: USER, COLLEGE_ADMIN, COLLEGE_STUDENT, SUPERADMIN.
+                Status: ACTIVE / INACTIVE / SUSPENDED.
+                Plan: FREE or PRO.
+                Interview "credits" live here as minutes: totalCreditAllocation,
+                usedCredits, creditResetAt.
+                Links to: college (optional), OAuth accounts, sessions.
+
+Account       — OAuth provider link (Google, etc.) for NextAuth.
+
+Session       — Signed-in browser session.
+
+College       — Institution for B2B: name, billing settings, linked users &
+                student enrollments.
+
+VerificationToken — Email / magic-link style tokens.
+
+StudentEnrollment — A student user tied to a college: roll number, paid
+                months, expiration, payment status.
+
+================================================================================
+2. MOCK / CUSTOM INTERVIEWS
+================================================================================
+MockInterview — One interview setup (title, JD, type, screen share on/off,
+                who created it).
+
+InterviewAttempt — One run of that interview (start/end, duration, status).
+
+InterviewConversation — Saved transcript + messages + duration for an attempt.
+
+InterviewResult — AI/scoring output for an attempt (scores, strengths,
+                weaknesses, feedback).
+
+InterviewPrompt — Optional stored prompt text linked to an interview.
+
+================================================================================
+3. COURSES (CODING / APTITUDE STYLE LMS)
+================================================================================
+Course        — Catalog item: title, price, code editor settings, credits
+                rules, AI assistant text.
+
+CourseModule  — Section inside a course (ordered).
+
+CourseTopic   — Lesson content inside a module (locked/demo/completed).
+
+CourseExercise — Practice block (MCQ or code).
+
+CourseMcqQuestion / CourseCodeQuestion — Actual questions.
+
+CourseFormula — Math/formula cards for aptitude-style modules.
+
+CourseEnrollment — User enrolled in a course.
+
+CourseCredit  — Per-user credit balance for a specific course.
+
+CourseUserProgress — Which topic/exercise a user completed.
+
+================================================================================
+4. FOREIGN LANGUAGE LEARNING
+================================================================================
+LanguageConfig — Which languages exist (English, French, …).
+
+SkillConfig   — Skills per language (reading, writing, speaking, MCQ) and
+                weights for leveling.
+
+UserLevelProgress — Per user + language + CEFR level + skill: average score,
+                target, completed or not.
+
+READING
+  ReadingSession → ReadingComprehension / ReadingRearrange (content)
+  ReadingAttempt → per-user run; results + ReadingOverallResult
+
+MCQ
+  McqSession → McqQuestion
+  McqAttempt → McqResult + McqOverallResult
+
+SPEAKING
+  SpeakingSession → SpeakingQuestion
+  SpeakingAttempt → SpeakingResult (transcription, audio stats) +
+                    SpeakingOverallResult
+
+WRITING
+  WritingSession → WritingTopic, WritingChatScenario
+  WritingAttempt → topic/chat results + WritingOverallResult
+
+================================================================================
+5. SUPPORT, CONTACT, FEEDBACK
+================================================================================
+SupportTicket — User help request (category, priority, status, replies).
+
+TicketReply   — Staff reply on a ticket.
+
+Contact       — Public contact form submissions.
+
+Feedback      — In-app feedback from a logged-in user.
+
+================================================================================
+6. PAYMENTS & AFFILIATES
+================================================================================
+Payment       — User payment (amount, category: subscription, credits, course,
+                etc., status).
+
+EnterprisePayment — College billing (per student count, period, invoice).
+
+Affiliate     — Partner account: referral code, bank/UPI, earnings.
+
+AffiliateReferral — Click/signup tracking for a code.
+
+AffiliateCommission — Money owed per referral/sale (pending/paid).
+
+================================================================================
+KEY ENUMS (VALUES ONLY — NAMES ARE SELF-EXPLANATORY)
+================================================================================
+UserRole, UserStatus, UserType
+InterviewStatus, InterviewType
+Support ticket: status, priority, category
+LessonStatus, ExerciseType
+PaymentStatus, PaymentCategory
+Language: CEFRLevel, SkillType, session/attempt types for reading/MCQ/speaking/writing
+ContactStatus, AffiliateStatus, CommissionStatus
+
+================================================================================
+END
+================================================================================
