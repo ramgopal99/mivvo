@@ -4,13 +4,13 @@ export const landingConfig = {
   hero: {
     newTag: {
       text: "AI-Powered",
-      subtitle: "The future of interview preparation"
+      subtitle: "Interview prep, upgraded"
     },
     headline: {
       text: "Ace Interviews with AI & Courses"
     },
     description: {
-      text: "Master interviews with AI mock practice and comprehensive courses for technical roles, corporate positions, and professional careers. Get instant feedback and detailed analysis to land your dream job."
+      text: "Practice with AI mock interviews and courses. Instant feedback for tech, corporate, and professional roles."
     },
     cta: {
       text: "Start Learning Today",
@@ -18,7 +18,7 @@ export const landingConfig = {
       href: "/auth/signup"
     },
     additionalInfo: {
-      text: "Free to start • AI mock interviews • Interactive courses • Instant feedback"
+      text: "Free to start • AI interviews • Courses • Instant feedback"
     },
   },
   navigation: {
@@ -48,16 +48,16 @@ export const landingConfig = {
   },
   steps: {
     header: {
-      title: "Get started with our simple 3 step process",
-      description: "Experience our comprehensive 3-step interview preparation process designed to build your confidence and skills.",
+      title: "Start in 3 steps",
+      description: "Create a session, interview with AI, then review your analysis.",
       tabOptions: [
         { label: "Steps", value: "steps" },
-        { label: "Discover how Mivvo works", value: "discover" }
+        { label: "How it works", value: "discover" }
       ]
     },
     step1: {
       title: "Create Interview",
-      description: "Set up your mock interview session and choose your preferred interview type and difficulty level.",
+      description: "Pick interview type, difficulty, and duration.",
       form: {
         fields: [
           { label: "Your name", placeholder: "Enter your name", icon: "User" },
@@ -70,7 +70,7 @@ export const landingConfig = {
     },
     step2: {
       title: "Give Interview",
-      description: "Practice with our AI interviewer that adapts to your responses and provides realistic interview scenarios.",
+      description: "Voice practice with an AI that adapts to your answers.",
       interview: {
         status: "Ready to start",
         time: "00:00",
@@ -87,7 +87,7 @@ export const landingConfig = {
     },
     step3: {
       title: "Get Analysis",
-      description: "Receive detailed performance analysis with strengths, areas for improvement, and personalized recommendations.",
+      description: "See scores, strengths, and clear next steps.",
       analysis: {
         overallScore: {
           score: 85,
@@ -115,43 +115,43 @@ export const landingConfig = {
   },
   education: {
     header: {
-      title: "Empower students for diverse career paths",
-      description: "Prepare students for technical interviews, corporate positions, and professional careers with comprehensive AI-powered mock interviews.",
+      title: "For colleges & coaching",
+      description: "AI mock interviews for tech, corporate, and public-sector prep—plus progress you can track.",
       tabOptions: [
-        { label: "For Colleges & Coaching", value: "colleges" },
-        { label: "Student Practice Platform", value: "platform" }
+        { label: "Institutions", value: "colleges" },
+        { label: "Student platform", value: "platform" }
       ]
     },
     features: [
       {
-        title: "Technical Interview Prep",
-        description: "Comprehensive preparation for software engineering, data science, and tech company interviews.",
+        title: "Tech interviews",
+        description: "Software, data, and product-style practice.",
         icon: "GraduationCap"
       },
       {
-        title: "Professional Career Training",
-        description: "Specialized coaching for government positions, public sector roles, and administrative career interviews.",
+        title: "Govt & admin",
+        description: "Public-sector and administrative scenarios.",
         icon: "Users"
       },
       {
-        title: "Finance & Business",
-        description: "Prepare students for financial services, business roles, and corporate career interviews.",
+        title: "Finance & business",
+        description: "Corporate and finance-style questions.",
         icon: "BookOpen"
       },
       {
-        title: "Progress Tracking",
-        description: "Monitor student performance across all interview types with detailed analytics and reports.",
+        title: "Analytics",
+        description: "Batch progress and performance reports.",
         icon: "Award"
       }
     ],
     cta: {
-      text: "Contact Us for Institutions",
-      mobileText: "Contact Us",
+      text: "Contact for institutions",
+      mobileText: "Contact",
       href: "/contact"
     },
     mockInterface: {
-      title: "Professional Development Program 2026",
-      subtitle: "120 students • 45 completed interviews",
+      title: "Campus program 2026",
+      subtitle: "120 students • 45 interviews",
       status: "Active",
       stats: [
         { label: "Avg. Score", value: "82%", icon: "Star" },
@@ -165,42 +165,95 @@ export const landingConfig = {
       ]
     }
   },
-  courses: {
+  recruiters: {
     header: {
-      title: "Build Skills the Way Interviews Demand",
-      description: "Master technical concepts and build expertise through comprehensive courses designed specifically for career advancement and professional development.",
+      title: "Screen faster with AI interviews",
+      description:
+        "JD-based voice screens for every candidate—consistent, fair signal without booking dozens of intro calls.",
       tabOptions: [
-        { label: "Skill Development", value: "courses" },
-        { label: "Interview Preparation", value: "preparation" }
+        { label: "Recruiters", value: "recruiters" },
+        { label: "AI screening", value: "workflow" }
       ]
     },
     features: [
       {
-        title: "All-in-One Exam & Interview Prep",
-        description: "Courses designed for programming, aptitude, and technical foundations—everything you need in one place.",
+        title: "JD-aligned",
+        description: "Questions match role and seniority from your job description.",
+        icon: "FileText"
+      },
+      {
+        title: "Voice AI",
+        description: "Adaptive follow-ups—more signal than static forms alone.",
+        icon: "Mic"
+      },
+      {
+        title: "Scores & summaries",
+        description: "Compare candidates with structured breakdowns.",
+        icon: "BarChart3"
+      },
+      {
+        title: "Scale invites",
+        description: "Run many screens in parallel; your team focuses on final rounds.",
+        icon: "Users"
+      }
+    ],
+    cta: {
+      text: "Talk to sales",
+      mobileText: "Contact",
+      href: "/contact"
+    },
+    mockInterface: {
+      title: "Senior Backend Engineer — AI screen",
+      subtitle: "Role from JD • 24 invites • 18 completed",
+      status: "Live",
+      roleBadge: "Technical",
+      stats: [
+        { label: "Completed", value: "18/24", icon: "CheckCircle" },
+        { label: "Median score", value: "78", icon: "BarChart3" }
+      ],
+      candidates: [
+        { initials: "AM", name: "Alex Morgan", detail: "AI interview • 12 min", score: 82, label: "Strong fit" },
+        { initials: "SK", name: "Sam Khan", detail: "AI interview • 14 min", score: 71, label: "Review" },
+        { initials: "JL", name: "Jordan Lee", detail: "In progress", score: null, label: "Pending" }
+      ]
+    }
+  },
+  courses: {
+    header: {
+      title: "Skills built for real interviews",
+      description: "Courses for programming, aptitude, and interview-style practice in one place.",
+      tabOptions: [
+        { label: "Courses", value: "courses" },
+        { label: "Interview prep", value: "preparation" }
+      ]
+    },
+    features: [
+      {
+        title: "All-in-one prep",
+        description: "Programming, aptitude, and foundations together.",
         icon: "BookOpen"
       },
       {
-        title: "Inbuilt Coding IDE",
-        description: "Practice coding directly inside the course with real interview-style problems and exercises.",
+        title: "Built-in IDE",
+        description: "Code inside the course on interview-style problems.",
         icon: "Code"
       },
       {
-        title: "Aptitude Formula Sheet & Calculator",
-        description: "Quick access to formulas and a built-in calculator for faster, more accurate problem-solving.",
+        title: "Formulas & calculator",
+        description: "Quick references and tools for aptitude drills.",
         icon: "Calculator"
       },
       {
-        title: "Progress Tracking",
-        description: "Track your learning and practice performance in one clear dashboard.",
+        title: "Progress",
+        description: "One dashboard for learning and practice.",
         icon: "Award"
       }
     ],
     stats: [
-      { label: "Interview Success Rate", value: "85%", icon: "Users" },
-      { label: "Courses Available", value: "25+", icon: "BookOpen" },
-      { label: "Avg. Performance Boost", value: "+23%", icon: "Award" },
-      { label: "Expert Instructors", value: "15+", icon: "GraduationCap" }
+      { label: "Success rate", value: "85%", icon: "Users" },
+      { label: "Courses", value: "25+", icon: "BookOpen" },
+      { label: "Avg. boost", value: "+23%", icon: "Award" },
+      { label: "Instructors", value: "15+", icon: "GraduationCap" }
     ],
     cta: {
       text: "Explore All Courses",
@@ -210,42 +263,42 @@ export const landingConfig = {
   },
   faq: {
     header: {
-      title: "Questions?",
-      subtitle: "We're Glad You Asked.",
+      title: "FAQ",
+      subtitle: "Quick answers",
       tabOptions: [
         { label: "FAQs", value: "faqs" },
-        { label: "Questions you might have", value: "questions" }
+        { label: "More", value: "questions" }
       ]
     },
     questions: [
       {
-        question: "What interview types does Mivvo support?",
-        answer: "Mivvo supports all types of interviews including technical (coding, system design, algorithms), HR (behavioral, situational), CV/resume-based, JD/job description-based, government positions, financial services, and corporate roles. We cover all major career paths from tech companies to professional careers with job description-based scenarios."
+        question: "What interview types are supported?",
+        answer: "Technical (coding, system design), HR/behavioral, CV- and JD-based, government, finance, and corporate scenarios."
       },
       {
         question: "How does the AI interviewer work?",
-        answer: "Our AI interviewer uses advanced natural language processing to conduct realistic mock interviews that feel exactly like real interviews. It adapts to your responses, asks cross-examination questions, follow-up questions, and evaluates your answers just like human interviewers would. The system creates dynamic interview scenarios with contextual questions based on industry best practices and exam patterns."
+        answer: "Voice-style practice with follow-ups that adapt to your answers, plus structured scoring after each session."
       },
       {
-        question: "What courses are available on Mivvo?",
-        answer: "We offer comprehensive courses covering technical skills, interview preparation, coding fundamentals, system design, and career development. We currently have courses available in our catalog and add new courses every week. Our courses are designed to complement our AI mock interviews and provide structured learning paths for various career tracks."
+        question: "What about courses?",
+        answer: "Technical, interview prep, coding basics, and career topics—with new content added regularly."
       },
       {
-        question: "Is this suitable for colleges and coaching institutes?",
-        answer: "Yes! Mivvo is perfect for colleges and coaching institutes. We offer institutional licensing with batch management, progress tracking, and comprehensive preparation for both technical and professional career interviews."
+        question: "Colleges and coaching?",
+        answer: "Yes—licensing with batches, tracking, and tech plus professional interview tracks."
       },
       {
-        question: "How accurate is the performance analysis?",
-        answer: "Our AI analyzes your communication skills, technical knowledge, problem-solving approach, and confidence levels. The analysis is based on industry standards and provides detailed insights with actionable recommendations for improvement."
+        question: "How good is the analysis?",
+        answer: "Scores communication, technical depth, problem-solving, and confidence with practical improvement tips."
       },
     ]
   },
   cta: {
     headline: {
-      main: "Master Interviews & Skills = Career Success",
+      main: "Practice smarter. Interview stronger.",
       sub: ""
     },
-    description: "Start practicing with AI mock interviews and comprehensive courses. Get instant feedback and build expertise delivered straight to your dashboard.",
+    description: "AI interviews plus courses—feedback on your dashboard in minutes.",
     button: {
       text: "Start Learning Today",
       mobileText: "Get Started",
@@ -260,16 +313,16 @@ export const landingConfig = {
   testimonials: {
     header: {
       badge: "Testimonials",
-      subtitle: "Not just words, see results"
+      subtitle: "Real outcomes"
     },
-    title: "Loved by students and professionals",
+    title: "From learners who used Mivvo",
     testimonials: [
       {
         name: "Arjun Patel",
         role: "Software Engineer at Google",
         avatar: "https://avatar.iran.liara.run/public/boy",
-        quote: "I received a job offer mid-course, and the AI practice sessions were current, if not more so, in the company I joined. I honestly feel I got every penny's worth.",
-        description: "I was struggling with technical interviews for many months before I joined Mivvo. The AI interviewer was incredibly realistic and helped me practice exactly the types of questions I faced in real interviews. The detailed feedback on my communication style and technical knowledge was invaluable.",
+        quote: "Offer mid-course—the practice matched what I saw on the job.",
+        description: "Technical rounds finally clicked after realistic AI sessions and clear feedback.",
         verified: "Verified Graduate",
         cardStyle: "purple"
       },
@@ -277,8 +330,8 @@ export const landingConfig = {
         name: "Priya Sharma",
         role: "Government Administrator",
         avatar: "https://avatar.iran.liara.run/public/girl",
-        quote: "The AI interviewer perfectly simulated government interview scenarios. It helped me master administrative aptitude and governance questions.",
-        description: "I was preparing for government positions and needed specialized interview practice. Mivvo's AI interviewer understood the unique requirements of administrative interviews - from policy scenarios to governance discussions. The feedback on my analytical thinking and ethical framework was exactly what I needed to clear the interview.",
+        quote: "Govt-style scenarios felt spot-on.",
+        description: "Admin and policy-style questions plus feedback on structure helped me pass.",
         verified: "Verified Graduate",
         cardStyle: "dark-blue"
       },
@@ -286,8 +339,8 @@ export const landingConfig = {
         name: "Vikram Joshi",
         role: "Financial Services Professional",
         avatar: "https://avatar.iran.liara.run/public/boy",
-        quote: "Such a life-changing experience. Highly recommended!",
-        description: "I was preparing for financial services interviews and needed practice with business scenarios. Mivvo's AI interviewer provided realistic finance interview simulations covering financial products, regulatory compliance, and client service scenarios. The detailed feedback on my financial knowledge and communication skills helped me land my dream job.",
+        quote: "Worth it for finance interview prep.",
+        description: "Business cases and communication notes sharpened my answers fast.",
         verified: "Verified Graduate",
         cardStyle: "white"
       },
@@ -295,8 +348,8 @@ export const landingConfig = {
         name: "Rahul Singh",
         role: "Public Sector Officer",
         avatar: "https://avatar.iran.liara.run/public/boy",
-        quote: "An overall wonderful and rewarding experience",
-        description: "Thank you for the wonderful experience! I now have a public sector job I really enjoy, and I owe it all to Mivvo's AI practice sessions. The specialized interview format with general knowledge questions and administrative scenarios prepared me perfectly for the real interview.",
+        quote: "Prepared me for the real panel.",
+        description: "GK and admin-style drills matched the format I faced.",
         verified: "Verified Graduate",
         cardStyle: "white"
       },
@@ -304,8 +357,8 @@ export const landingConfig = {
         name: "Ananya Gupta",
         role: "Full Stack Developer @ Amazon",
         avatar: "https://avatar.iran.liara.run/public/girl",
-        quote: "Awesome teaching support from AI that actually understands interview dynamics. Getting guidance and learning from realistic scenarios was easy.",
-        description: "The staff seem genuinely concerned about my progress which I find really refreshing. The AI interviewer provided such detailed feedback that I could see my improvement week by week. The program gave me the confidence I needed to excel in my interviews.",
+        quote: "Feedback I could act on every week.",
+        description: "Scenarios felt like real loops—not generic Q&A.",
         verified: "Verified Graduate",
         cardStyle: "dark-blue"
       },
@@ -313,8 +366,8 @@ export const landingConfig = {
         name: "Siddharth Jain",
         role: "Software Engineer @ Microsoft",
         avatar: "https://avatar.iran.liara.run/public/boy",
-        quote: "The perfect combination of structured learning and AI practice. Mivvo courses built my foundation while interviews honed my skills.",
-        description: "I started with Mivvo courses to learn system design fundamentals, then practiced extensively with their AI mock interviews. The integrated approach helped me land my dream job at Microsoft. The courses provided the knowledge base, while interviews gave me practical experience.",
+        quote: "Courses plus AI interviews closed the gap.",
+        description: "System design study, then mock rounds—integrated and practical.",
         verified: "Verified Graduate",
         cardStyle: "purple"
       },
@@ -322,8 +375,8 @@ export const landingConfig = {
         name: "Meera Patel",
         role: "Data Scientist @ Google",
         avatar: "https://avatar.iran.liara.run/public/girl",
-        quote: "Courses and AI interviews together created the perfect learning ecosystem. I went from beginner to Google in 6 months.",
-        description: "Mivvo's courses gave me the technical foundation I needed, covering everything from basic algorithms to advanced machine learning concepts. The AI mock interviews then helped me apply this knowledge in real scenarios. The combination was unbeatable for my career growth.",
+        quote: "Learned concepts, then stress-tested them in mocks.",
+        description: "Algorithms through ML topics—interviews forced me to explain clearly.",
         verified: "Verified Graduate",
         cardStyle: "dark-blue"
       }
@@ -332,22 +385,22 @@ export const landingConfig = {
   features: {
     header: {
       headline: {
-        firstPart: "Everything you need to",
-        secondPart: "master interviews & skills"
+        firstPart: "Everything to",
+        secondPart: "nail interviews & skills"
       },
-      description: "Our comprehensive platform provides AI mock interviews and interactive courses to prepare for any career path - from technical roles to corporate positions and professional careers."
+      description: "AI mock interviews and courses for tech, corporate, and professional tracks."
     },
     mainFeatures: {
       aiInterviews: {
-        title: "AI Interviews & Courses Combined",
-        description: "Master interviews with AI-powered practice sessions and comprehensive courses. From technical roles to corporate positions, get the complete preparation package."
+        title: "AI interviews + courses",
+        description: "Practice and learn in one flow—technical to corporate roles."
       },
       technicalCoding: {
-        title: "Technical Skills & Coding Courses",
-        description: "Master coding interviews and technical concepts with interactive courses and AI-powered practice sessions."
+        title: "Coding & technical depth",
+        description: "IDE-style practice plus AI sessions for coding rounds."
       },
       performanceAnalytics: {
-        header: "Learning & Interview Analytics",
+        header: "Analytics",
         badge: "Live Session",
         mainScore: 85,
         scoreLabel: "Interview Score",
@@ -370,27 +423,27 @@ export const landingConfig = {
         ]
       },
       companyPractice: {
-        title: "Diverse Interview Practice",
-        description: "Practice interviews and take courses for top tech companies, corporate positions, and professional careers. Master both interview skills and foundational knowledge across all career paths.",
+        title: "Many interview styles",
+        description: "Tech, public sector, finance, consulting, and more—same platform.",
         interviewCalls: [
-          { company: "Google", role: "Senior Software Engineer", type: "Technical Interview" },
-          { company: "Amazon", role: "Full Stack Developer", type: "System Design" },
-          { company: "Microsoft", role: "Frontend Engineer", type: "Coding Challenge" },
-          { company: "Government", role: "Public Administrator", type: "Administrative Interview" },
-          { company: "Finance Corp", role: "Financial Analyst", type: "Financial Services Interview" },
-          { company: "Consulting", role: "Management Consultant", type: "Case Study Interview" },
-          { company: "Healthcare", role: "Healthcare Administrator", type: "Policy Interview" },
-          { company: "Defense", role: "Defense Officer", type: "Leadership Interview" },
-          { company: "Netflix", role: "Backend Engineer", type: "Architecture Review" },
-          { company: "Tesla", role: "Full Stack Engineer", type: "Problem Solving" },
-          { company: "Uber", role: "Mobile Developer", type: "Code Review" }
+          { company: "Google", role: "Senior SWE", type: "Technical" },
+          { company: "Amazon", role: "Full Stack", type: "System design" },
+          { company: "Microsoft", role: "Frontend", type: "Coding" },
+          { company: "Government", role: "Administrator", type: "Admin" },
+          { company: "Finance", role: "Analyst", type: "Finance" },
+          { company: "Consulting", role: "Consultant", type: "Case" },
+          { company: "Healthcare", role: "Administrator", type: "Policy" },
+          { company: "Defense", role: "Officer", type: "Leadership" },
+          { company: "Netflix", role: "Backend", type: "Architecture" },
+          { company: "Tesla", role: "Full Stack", type: "Problem solving" },
+          { company: "Uber", role: "Mobile", type: "Code review" }
         ]
       }
     }
   },
   footer: {
     brand: {
-      description: "AI-powered mock interviews and comprehensive courses that help you practice, learn, and land your dream job."
+      description: "AI mock interviews and courses to practice, learn, and get hired."
     },
     company: {
       title: "Company",
@@ -418,9 +471,9 @@ export const landingConfig = {
   },
   pricing: {
     header: {
-      title: "Simple pricing for all your needs",
-      subtitle: "Choose the plan that's right for you and start practicing today.",
-      additionalInfo: `${CREDIT_PACKAGES.FREE * CREDIT_MULTIPLIER} credits free • No credit card required`
+      title: "Simple pricing",
+      subtitle: "Pick a plan and start practicing.",
+      additionalInfo: `${CREDIT_PACKAGES.FREE * CREDIT_MULTIPLIER} credits free • No card`
     },
     plans: [
       {
@@ -429,13 +482,13 @@ export const landingConfig = {
         price: "180",
         currency: "",
         billingPeriod: `credits`,
-        description: "Access all Pro features with 180 free credits - no credit card required.",
+        description: "Pro-level features with free credits—no card.",
         features: [
-          "180 credits included",
-          "Advanced AI analysis",
-          "Detailed performance reports",
-          "Company-specific practice",
-          "Custom interview creation",
+          "180 credits",
+          "AI analysis",
+          "Performance reports",
+          "Company practice",
+          "Custom interviews",
           "Priority support"
         ],
         cta: {
@@ -450,13 +503,13 @@ export const landingConfig = {
         price: "249",
         currency: "₹",
         billingPeriod: `/month`,
-        description: "Best for serious job seekers and career changers.",
+        description: "For active job seekers.",
         features: [
-          `${CREDIT_PACKAGES.PRO * CREDIT_MULTIPLIER} credits included`,
-          "Advanced AI analysis",
-          "Detailed performance reports",
-          "Company-specific practice",
-          "Make your own interview",
+          `${CREDIT_PACKAGES.PRO * CREDIT_MULTIPLIER} credits / month`,
+          "AI analysis",
+          "Reports",
+          "Company practice",
+          "Custom interviews",
           "Priority support"
         ],
         cta: {
@@ -471,13 +524,13 @@ export const landingConfig = {
         price: "Custom",
         currency: "",
         billingPeriod: "",
-        description: "Everything in Pro plus enterprise features for organizations and institutions.",
+        description: "Pro plus org features.",
         features: [
-          "All Pro features included",
-          "Bulk user management",
-          "Custom interview scenarios",
-          "Advanced analytics dashboard",
-          "Dedicated account manager",
+          "Everything in Pro",
+          "Bulk users",
+          "Custom scenarios",
+          "Analytics dashboard",
+          "Account manager",
           "Priority support"
         ],
         cta: {
