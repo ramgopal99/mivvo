@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge"
 import { Play, BookOpen, CheckCircle2 } from "lucide-react"
 import { VideoPresentation } from "@/app/dashboard/videolearn/_components/video-presentation"
 import { COURSE_DATA, type CourseModule } from "./course-data"
-import type { TypedSlide } from "@/app/dashboard/videolearn/_components/slides"
 
 export function CoursePage() {
   const [selectedModule, setSelectedModule] = useState<CourseModule | null>(null)
